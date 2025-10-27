@@ -7,13 +7,14 @@ package org.thoughtcrime.securesms.conversation
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,12 +23,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.compose.rememberFragmentState
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -40,7 +42,6 @@ import org.signal.core.util.DimensionUnit
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
@@ -54,13 +55,14 @@ import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.ViewUtil
 import java.util.Optional
 import java.util.function.Consumer
 
 /**
  * Provides a recipient search and selection UI.
  */
+@Suppress("KotlinConstantConditions")
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun RecipientPicker(
   searchQuery: String,
@@ -78,11 +80,26 @@ fun RecipientPicker(
   Column(
     modifier = modifier
   ) {
-    RecipientSearchField(
-      searchQuery = searchQuery,
-      onFilterChanged = { filter -> callbacks.listActions.onSearchQueryChanged(query = filter) },
-      focusAndShowKeyboard = focusAndShowKeyboard,
+    val focusRequester = remember { FocusRequester() }
+    var shouldRequestFocus by rememberSaveable { mutableStateOf(focusAndShowKeyboard) }
+
+    LaunchedEffect(Unit) {
+      if (shouldRequestFocus) {
+        focusRequester.requestFocus()
+      }
+    }
+
+    val isImeVisible = WindowInsets.isImeVisible
+    LaunchedEffect(isImeVisible) {
+      shouldRequestFocus = isImeVisible
+    }
+
+    RecipientSearchBar(
+      query = searchQuery,
+      onQueryChange = { filter -> callbacks.listActions.onSearchQueryChanged(query = filter) },
+      onSearch = {},
       modifier = Modifier
+        .focusRequester(focusRequester)
         .fillMaxWidth()
         .padding(horizontal = 16.dp)
     )
@@ -104,54 +121,7 @@ fun RecipientPicker(
   }
 }
 
-/**
- * A search input field for finding recipients.
- *
- * Intended to be a compose-based replacement for [ContactFilterView].
- */
-@Composable
-private fun RecipientSearchField(
-  searchQuery: String,
-  onFilterChanged: (String) -> Unit,
-  @StringRes hintText: Int? = null,
-  focusAndShowKeyboard: Boolean = false,
-  modifier: Modifier = Modifier
-) {
-  val context = LocalContext.current
-  val wrappedView = remember {
-    ContactFilterView(context, null, 0).apply {
-      hintText?.let { setHint(it) }
-    }
-  }
-
-  LaunchedEffect(searchQuery) {
-    wrappedView.setText(searchQuery)
-  }
-
-  // TODO [jeff] This causes the keyboard to re-open on rotation, which doesn't match the existing behavior of ContactFilterView. To fix this,
-  //  RecipientSearchField needs to be converted to compose so we can use FocusRequestor.
-  LaunchedEffect(focusAndShowKeyboard) {
-    if (focusAndShowKeyboard) {
-      wrappedView.focusAndShowKeyboard()
-    } else {
-      wrappedView.clearFocus()
-      ViewUtil.hideKeyboard(wrappedView.context, wrappedView)
-    }
-  }
-
-  DisposableEffect(onFilterChanged) {
-    wrappedView.setOnFilterChangedListener { filter -> onFilterChanged(filter) }
-    onDispose {
-      wrappedView.setOnFilterChangedListener(null)
-    }
-  }
-
-  AndroidView(
-    factory = { wrappedView },
-    modifier = modifier
-  )
-}
-
+@Suppress("KotlinConstantConditions")
 @Composable
 private fun RecipientSearchResultsList(
   displayModes: Set<RecipientPicker.DisplayMode>,
@@ -179,6 +149,7 @@ private fun RecipientSearchResultsList(
   val fragmentState = rememberFragmentState()
   var currentFragment by remember { mutableStateOf<ContactSelectionListFragment?>(null) }
   val coroutineScope = rememberCoroutineScope()
+  val focusManager = LocalFocusManager.current
 
   Fragments.Fragment<ContactSelectionListFragment>(
     arguments = fragmentArgs,
@@ -188,6 +159,7 @@ private fun RecipientSearchResultsList(
       fragment.view?.setPadding(0, 0, 0, 0)
       fragment.setUpCallbacks(
         callbacks = callbacks,
+        clearFocus = { focusManager.clearFocus() },
         coroutineScope = coroutineScope
       )
     },
@@ -241,6 +213,7 @@ private fun RecipientSearchResultsList(
 
 private fun ContactSelectionListFragment.setUpCallbacks(
   callbacks: RecipientPickerCallbacks,
+  clearFocus: () -> Unit,
   coroutineScope: CoroutineScope
 ) {
   val fragment: ContactSelectionListFragment = this
@@ -302,9 +275,7 @@ private fun ContactSelectionListFragment.setUpCallbacks(
   }
 
   fragment.setOnRefreshListener { callbacks.refresh?.onRefresh() }
-  fragment.setScrollCallback {
-    fragment.view?.let { view -> ViewUtil.hideKeyboard(view.context, view) }
-  }
+  fragment.setScrollCallback { clearFocus() }
 }
 
 private suspend fun showItemContextMenu(

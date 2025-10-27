@@ -29,7 +29,7 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
                 android:gravity="center_vertical"
-                android:hint="@string/ContactFilterView__search_name_or_number"
+                android:hint="@string/RecipientSearchBar__search_name_or_number"
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="6sp"
                 android:textAppearance="@style/TextSecure.TitleTextStyle"

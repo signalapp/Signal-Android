@@ -27,9 +27,10 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**
  * A search input field for finding recipients.
- * <p>
- * In compose, use RecipientSearchField instead.
+ *
+ * @deprecated Use the RecipientSearchBar composable instead.
  */
+@Deprecated
 public final class ContactFilterView extends FrameLayout {
   private OnFilterChangedListener listener;
 
