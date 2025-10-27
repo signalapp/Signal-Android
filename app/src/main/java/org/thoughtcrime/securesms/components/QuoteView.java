@@ -422,7 +422,7 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
       return;
     }
 
-    if (TextUtils.isEmpty(quoteTargetContentType) || slide == null || slide.getUri() == null) {
+    if (TextUtils.isEmpty(quoteTargetContentType)) {
       thumbnailView.setVisibility(GONE);
       attachmentNameViewStub.setVisibility(GONE);
 
