@@ -235,6 +235,8 @@ class BackupMessagesJob private constructor(
         when (result.code) {
           413 -> {
             Log.i(TAG, "Backup file is too large! Size: ${tempBackupFile.length()} bytes", result.getCause(), true)
+            tempBackupFile.delete()
+            this.dataFile = ""
             // TODO [backup] Need to show the user an error
           }
           else -> {
@@ -410,6 +412,8 @@ class BackupMessagesJob private constructor(
 
       is ArchiveValidator.ValidationResult.MessageValidationError -> {
         Log.w(TAG, "The backup file fails validation! Message: ${result.exception.message}, Details: ${result.messageDetails}", true)
+        tempBackupFile.delete()
+        this.dataFile = ""
         SignalStore.backup.hasValidationError = true
         ArchiveUploadProgress.onValidationFailure()
         return BackupFileResult.Failure
@@ -417,6 +421,8 @@ class BackupMessagesJob private constructor(
 
       is ArchiveValidator.ValidationResult.RecipientDuplicateE164Error -> {
         Log.w(TAG, "The backup file fails validation with a duplicate recipient! Message: ${result.exception.message}, Details: ${result.details}", true)
+        tempBackupFile.delete()
+        this.dataFile = ""
         AppDependencies.jobManager.add(E164FormattingJob())
         SignalStore.backup.hasValidationError = true
         ArchiveUploadProgress.onValidationFailure()
