@@ -3109,7 +3109,7 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Скопіюйте цю URL-адресу й додайте її до свого повідомлення про проблему чи листа в службу підтримки:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Поділитися</string>
     <!-- Displayed when entering activity in view-only mode -->
-    <string name="SubmitDebugLogActivity_close">Close</string>
+    <string name="SubmitDebugLogActivity_close">Закрити</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Цей журнал буде загальнодоступний онлайн для перегляду відповідними фахівцями. Ви можете ознайомитися з ним перед вивантаженням.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Коли ви натиснете «Надіслати», журнал буде вивантажено в мережу на 30 днів за унікальною URL-адресою, до якої немає загального доступу. Перед надсиланням його також можна зберегти на пристрої.</string>
@@ -5451,13 +5451,13 @@
 
     <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
     <plurals name="CreateGroupActivity__s_members">
-        <item quantity="one">%1$s member</item>
-        <item quantity="few">%1$s members</item>
-        <item quantity="many">%1$s members</item>
-        <item quantity="other">%1$s members</item>
+        <item quantity="one">%1$s учасник</item>
+        <item quantity="few">%1$s учасники</item>
+        <item quantity="many">%1$s учасників</item>
+        <item quantity="other">%1$s учасника</item>
     </plurals>
     <!-- Accessibility label for navigating to the next screen in the create group flow. -->
-    <string name="CreateGroupActivity__accessibility_next">Next</string>
+    <string name="CreateGroupActivity__accessibility_next">Далі</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Поділитися</string>
@@ -6198,7 +6198,7 @@
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s не користується Signal</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
-    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Open menu</string>
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Відкрити меню</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
         <item quantity="one">%1$s не користується Signal</item>
@@ -6207,8 +6207,14 @@
         <item quantity="other">%1$s не користуються Signal</item>
     </plurals>
 
-    <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Ім\'я, ім\'я користувача або номер</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Name, username or number</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Switch to numeric keyboard</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Switch to alphanumeric keyboard</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Reset search filter</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8794,15 +8800,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Ключ відновлення</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that you will need to restore your backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Ключ відновлення — це код із 64 символів, який дає змогу відновити дані з резервної копії.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Store your recovery key somewhere safe like a secure password manager, and don’t share it with anyone.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Зберігайте ключ відновлення тільки в надійному місці, як-от менеджері паролів, і нікому його не повідомляйте.</string>
     <!-- Screen body part 3 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">If you lose it, you won’t be able to recover your messages.</string>
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Якщо ви втратите ключ, то не зможете відновити свої повідомлення.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">View recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Переглянути ключ відновлення</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -9193,7 +9199,7 @@
     <!-- Title of screen that shows the poll results of a poll after it has ended-->
     <string name="Poll__poll_results">Результати опитування</string>
     <!-- Title of screen that shows the poll details of a poll -->
-    <string name="Poll__poll_details">Poll details</string>
+    <string name="Poll__poll_details">Підсумки опитування</string>
     <!-- Header text displaying the question of the poll -->
     <string name="Poll__question">Запитання</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
@@ -9204,15 +9210,15 @@
         <item quantity="other">%1$d голосу</item>
     </plurals>
     <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
-    <string name="Poll__poll_winner">Winner</string>
+    <string name="Poll__poll_winner">Найпопулярніша відповідь</string>
     <!-- Text that when pressed will end the poll   -->
     <string name="Poll__end_poll">Завершити опитування</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
     <string name="Poll__see_all">Показати решту</string>
     <!-- Dialog title when a poll fails to end -->
-    <string name="Poll__couldnt_end_poll">Couldn\'t end poll</string>
+    <string name="Poll__couldnt_end_poll">Не вдалося завершити опитування</string>
     <!-- Dialog body when a poll fails to end and to try again -->
-    <string name="Poll__check_connection">Check your connection and try again.</string>
+    <string name="Poll__check_connection">Перевірте з\'єднання та спробуйте ще раз.</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">Нове опитування</string>
     <!-- Section text to enter in a question for a poll  -->
@@ -9236,73 +9242,73 @@
 
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
-    <string name="CallQualityIssue__audio_issue">Audio issue</string>
+    <string name="CallQualityIssue__audio_issue">Проблема зі звуком</string>
     <!-- Label for general video issue category -->
-    <string name="CallQualityIssue__video_issue">Video issue</string>
+    <string name="CallQualityIssue__video_issue">Проблема з відео</string>
     <!-- Label for call dropped issue -->
-    <string name="CallQualityIssue__call_droppped">Call dropped</string>
+    <string name="CallQualityIssue__call_droppped">Виклик перервався</string>
     <!-- Label for other/custom issues not covered by predefined categories -->
-    <string name="CallQualityIssue__something_else">Something else</string>
+    <string name="CallQualityIssue__something_else">Інше</string>
     <!-- Label for audio stuttering/choppy audio issue -->
-    <string name="CallQualityIssue__audio_stuttering">Audio stuttering</string>
+    <string name="CallQualityIssue__audio_stuttering">Звук переривався</string>
     <!-- Label for audio cutting out/dropping issue -->
-    <string name="CallQualityIssue__audio_cut_out">Audio cut out</string>
+    <string name="CallQualityIssue__audio_cut_out">Звук зовсім пропадав</string>
     <!-- Label for echo heard by the user -->
-    <string name="CallQualityIssue__i_heard_echo">I heard echo</string>
+    <string name="CallQualityIssue__i_heard_echo">Було відлуння</string>
     <!-- Label for echo heard by other call participants -->
-    <string name="CallQualityIssue__others_heard_echo">Others heard echo</string>
+    <string name="CallQualityIssue__others_heard_echo">Інші чули відлуння</string>
     <!-- Label for poor video quality issue -->
-    <string name="CallQualityIssue__poor_video_quality">Poor video quality</string>
+    <string name="CallQualityIssue__poor_video_quality">Низька якість відео</string>
     <!-- Label for low video resolution issue -->
-    <string name="CallQualityIssue__low_resolution">Low resolution</string>
+    <string name="CallQualityIssue__low_resolution">Низька роздільна здатність</string>
     <!-- Label for camera malfunction issue -->
-    <string name="CallQualityIssue__camera_did_not_work">Camera didn\'t work</string>
+    <string name="CallQualityIssue__camera_did_not_work">Камера не працювала</string>
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Something else</string>
+    <string name="CallQualitySomethingElseScreen__title">Інше</string>
     <!-- Label for text field where user describes their call quality issue -->
-    <string name="CallQualitySomethingElseScreen__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Опишіть проблему</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
-    <string name="CallQualitySomethingElseScreen__privacy_notice">Please include any details relevant to the issue. Anything you share here will be kept private and will only be used to help improve calls in Signal.</string>
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Зазначте всі подробиці, що стосуються проблеми. Уся інформація залишиться конфіденційною. Ми використаємо її лише для покращення викликів у Signal.</string>
     <!-- Button to save the call quality issue description -->
-    <string name="CallQualitySomethingElseScreen__save">Save</string>
+    <string name="CallQualitySomethingElseScreen__save">Зберегти</string>
     <!-- Content description for the back navigation button -->
-    <string name="CallQualitySomethingElseScreen__back">Back</string>
+    <string name="CallQualitySomethingElseScreen__back">Назад</string>
 
     <!-- CallQualitySheet -->
     <!-- Title asking user how their call was -->
-    <string name="CallQualitySheet__how_was_your_call">How was your call?</string>
+    <string name="CallQualitySheet__how_was_your_call">Як пройшов ваш дзвінок?</string>
     <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
-    <string name="CallQualitySheet__how_was_your_call_subtitle">This helps us improve calls in Signal. No personally identifiable information will be stored.</string>
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Ваш відгук допоможе нам покращити виклики в Signal. Ми не зберігатимемо ніякої особистої інформації.</string>
     <!-- Button label indicating the call had issues -->
-    <string name="CallQualitySheet__had_issues">Had issues</string>
+    <string name="CallQualitySheet__had_issues">Були проблеми</string>
     <!-- Button label indicating the call was great -->
-    <string name="CallQualitySheet__great">Great</string>
+    <string name="CallQualitySheet__great">Чудово</string>
     <!-- Title asking what issues the user experienced -->
-    <string name="CallQualitySheet__what_issues_did_you_have">What issues did you have?</string>
+    <string name="CallQualitySheet__what_issues_did_you_have">Яка проблема у вас виникла?</string>
     <!-- Instruction to select all applicable issues -->
-    <string name="CallQualitySheet__select_all_that_apply">Select all that apply</string>
+    <string name="CallQualitySheet__select_all_that_apply">Можна вибрати кілька варіантів</string>
     <!-- Placeholder text for describing a custom issue -->
-    <string name="CallQualitySheet__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySheet__describe_your_issue">Опишіть проблему</string>
     <!-- Button to continue to the next step -->
-    <string name="CallQualitySheet__continue">Continue</string>
+    <string name="CallQualitySheet__continue">Продовжити</string>
     <!-- Title asking user to help improve Signal -->
-    <string name="CallQualitySheet__help_us_improve">Help us improve</string>
+    <string name="CallQualitySheet__help_us_improve">Допоможіть нам покращити Signal</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Sending us your diagnostics info helps us improve call quality. You can </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Надішліть нам дані для діагностики, щоб ми могли поліпшити якість викликів. Ви можете </string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">view your debug log</string>
+    <string name="CallQualitySheet__view_your_debug_log">переглянути журнал налагодження</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> перед надсиланням</string>
     <!-- Toggle label for sharing debug log -->
-    <string name="CallQualitySheet__share_debug_log">Share debug log</string>
+    <string name="CallQualitySheet__share_debug_log">Надіслати журнал налагодження</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
-    <string name="CallQualitySheet__debug_log_privacy_notice">Debug logs contain low level app information and do not reveal any of your message contents.</string>
+    <string name="CallQualitySheet__debug_log_privacy_notice">Журнали налагодження містять інформацію нижнього рівня про застосунок і не розкривають вмісту ваших повідомлень.</string>
     <!-- Button to submit the call quality feedback -->
-    <string name="CallQualitySheet__submit">Submit</string>
+    <string name="CallQualitySheet__submit">Надіслати</string>
     <!-- Displayed as a snackbar after submitting feedback -->
-    <string name="CallQualitySheet__thanks_for_your_feedback">Thanks for your feedback!</string>
+    <string name="CallQualitySheet__thanks_for_your_feedback">Дякуємо за відгук!</string>
 
     <!-- EOF -->
 </resources>

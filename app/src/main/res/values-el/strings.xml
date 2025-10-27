@@ -2923,7 +2923,7 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Αντέγραψε αυτό το URL και προσθεσέ το στην αναφορά σφάλματος ή στο email υποστήριξης:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Διαμοιρασμός</string>
     <!-- Displayed when entering activity in view-only mode -->
-    <string name="SubmitDebugLogActivity_close">Close</string>
+    <string name="SubmitDebugLogActivity_close">Κλείσιμο</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Αυτό το αρχείο καταγραφής συμβάντων θα αναρτηθεί δημόσια στο διαδίκτυο για προβολή από τους συνεισφέροντες. Μπορείς να το εξετάσεις πριν το υποβάλλεις.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Όταν πατήσεις Υποβολή, το αρχείο καταγραφής θα αναρτηθεί στο διαδίκτυο για 30 ημέρες, σε ένα μοναδικό και μη δημοσιευμένο σύνδεσμο URL. Μπορείς να το αποθηκεύσεις πρώτα τοπικά.</string>
@@ -5191,11 +5191,11 @@
 
     <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
     <plurals name="CreateGroupActivity__s_members">
-        <item quantity="one">%1$s member</item>
-        <item quantity="other">%1$s members</item>
+        <item quantity="one">%1$s μέλος</item>
+        <item quantity="other">%1$s μέλη</item>
     </plurals>
     <!-- Accessibility label for navigating to the next screen in the create group flow. -->
-    <string name="CreateGroupActivity__accessibility_next">Next</string>
+    <string name="CreateGroupActivity__accessibility_next">Επόμενο</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Μοιράσου</string>
@@ -5920,15 +5920,21 @@
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">Ο χρήστης %1$s δεν χρησιμοποιεί Signal</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
-    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Open menu</string>
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Άνοιγμα μενού</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
         <item quantity="one">Ο/Η %1$s δεν χρησιμοποιεί το Signal</item>
         <item quantity="other">Οι %1$s δεν χρησιμοποιούν το Signal</item>
     </plurals>
 
-    <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Όνομα, όνομα χρήστη ή αριθμός τηλεφώνου</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Name, username or number</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Switch to numeric keyboard</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Switch to alphanumeric keyboard</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Reset search filter</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8430,15 +8436,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Κλειδί ανάκτησης</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that you will need to restore your backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Το κλειδί ανάκτησης είναι ένας κωδικός 64 χαρακτήρων που θα χρειαστείς για να επαναφέρεις το αντίγραφο ασφαλείας σου.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Store your recovery key somewhere safe like a secure password manager, and don’t share it with anyone.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Αποθήκευσε το κλειδί ανάκτησης με ασφάλεια, όπως σε έναν διαχειριστή κωδικών πρόσβασης, και μην το κοινοποιήσεις σε κανέναν.</string>
     <!-- Screen body part 3 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">If you lose it, you won’t be able to recover your messages.</string>
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Εάν το χάσεις, δεν θα μπορείς να ανακτήσεις τα μηνύματά σου.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">View recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Προβολή κλειδιού ανάκτησης</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8821,7 +8827,7 @@
     <!-- Title of screen that shows the poll results of a poll after it has ended-->
     <string name="Poll__poll_results">Αποτελέσματα δημοσκόπησης</string>
     <!-- Title of screen that shows the poll details of a poll -->
-    <string name="Poll__poll_details">Poll details</string>
+    <string name="Poll__poll_details">Λεπτομέρειες δημοσκόπησης</string>
     <!-- Header text displaying the question of the poll -->
     <string name="Poll__question">Ερώτηση</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
@@ -8830,15 +8836,15 @@
         <item quantity="other">%1$d ψήφοι</item>
     </plurals>
     <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
-    <string name="Poll__poll_winner">Winner</string>
+    <string name="Poll__poll_winner">Νίκη</string>
     <!-- Text that when pressed will end the poll   -->
     <string name="Poll__end_poll">Λήξη δημοσκόπησης</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
     <string name="Poll__see_all">Προβολή όλων</string>
     <!-- Dialog title when a poll fails to end -->
-    <string name="Poll__couldnt_end_poll">Couldn\'t end poll</string>
+    <string name="Poll__couldnt_end_poll">Δεν ήταν δυνατή η λήξη της δημοσκόπησης</string>
     <!-- Dialog body when a poll fails to end and to try again -->
-    <string name="Poll__check_connection">Check your connection and try again.</string>
+    <string name="Poll__check_connection">Έλεγξε τη σύνδεσή σου και δοκίμασε πάλι.</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">Νέα δημοσκόπηση</string>
     <!-- Section text to enter in a question for a poll  -->
@@ -8862,73 +8868,73 @@
 
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
-    <string name="CallQualityIssue__audio_issue">Audio issue</string>
+    <string name="CallQualityIssue__audio_issue">Πρόβλημα με τον ήχο</string>
     <!-- Label for general video issue category -->
-    <string name="CallQualityIssue__video_issue">Video issue</string>
+    <string name="CallQualityIssue__video_issue">Πρόβλημα με βίντεο</string>
     <!-- Label for call dropped issue -->
-    <string name="CallQualityIssue__call_droppped">Call dropped</string>
+    <string name="CallQualityIssue__call_droppped">Η κλήση διακόπηκε</string>
     <!-- Label for other/custom issues not covered by predefined categories -->
-    <string name="CallQualityIssue__something_else">Something else</string>
+    <string name="CallQualityIssue__something_else">Κάτι άλλο</string>
     <!-- Label for audio stuttering/choppy audio issue -->
-    <string name="CallQualityIssue__audio_stuttering">Audio stuttering</string>
+    <string name="CallQualityIssue__audio_stuttering">Ο ήχος είχε διακοπές</string>
     <!-- Label for audio cutting out/dropping issue -->
-    <string name="CallQualityIssue__audio_cut_out">Audio cut out</string>
+    <string name="CallQualityIssue__audio_cut_out">Ο ήχος κόπηκε</string>
     <!-- Label for echo heard by the user -->
-    <string name="CallQualityIssue__i_heard_echo">I heard echo</string>
+    <string name="CallQualityIssue__i_heard_echo">Άκουσα ηχώ</string>
     <!-- Label for echo heard by other call participants -->
-    <string name="CallQualityIssue__others_heard_echo">Others heard echo</string>
+    <string name="CallQualityIssue__others_heard_echo">Άλλοι άκουσαν ηχώ</string>
     <!-- Label for poor video quality issue -->
-    <string name="CallQualityIssue__poor_video_quality">Poor video quality</string>
+    <string name="CallQualityIssue__poor_video_quality">Κακή ποιότητα βίντεο</string>
     <!-- Label for low video resolution issue -->
-    <string name="CallQualityIssue__low_resolution">Low resolution</string>
+    <string name="CallQualityIssue__low_resolution">Χαμηλή ανάλυση</string>
     <!-- Label for camera malfunction issue -->
-    <string name="CallQualityIssue__camera_did_not_work">Camera didn\'t work</string>
+    <string name="CallQualityIssue__camera_did_not_work">Η κάμερα δεν λειτούργησε</string>
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Something else</string>
+    <string name="CallQualitySomethingElseScreen__title">Κάτι άλλο</string>
     <!-- Label for text field where user describes their call quality issue -->
-    <string name="CallQualitySomethingElseScreen__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Περίγραψε το πρόβλημά σου</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
-    <string name="CallQualitySomethingElseScreen__privacy_notice">Please include any details relevant to the issue. Anything you share here will be kept private and will only be used to help improve calls in Signal.</string>
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Πρόσθεσε τυχόν λεπτομέρειες σχετικές με το πρόβλημα. Οτιδήποτε κοινοποιείς εδώ θα παραμείνει ιδιωτικό και θα χρησιμοποιηθεί μόνο για τη βελτίωση των κλήσεων στο Signal.</string>
     <!-- Button to save the call quality issue description -->
-    <string name="CallQualitySomethingElseScreen__save">Save</string>
+    <string name="CallQualitySomethingElseScreen__save">Αποθήκευση</string>
     <!-- Content description for the back navigation button -->
-    <string name="CallQualitySomethingElseScreen__back">Back</string>
+    <string name="CallQualitySomethingElseScreen__back">Πίσω</string>
 
     <!-- CallQualitySheet -->
     <!-- Title asking user how their call was -->
-    <string name="CallQualitySheet__how_was_your_call">How was your call?</string>
+    <string name="CallQualitySheet__how_was_your_call">Πώς ήταν η κλήση σου;</string>
     <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
-    <string name="CallQualitySheet__how_was_your_call_subtitle">This helps us improve calls in Signal. No personally identifiable information will be stored.</string>
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Αυτό μας βοηθά να βελτιώσουμε τις κλήσεις στο Signal. Δεν θα αποθηκευτούν προσωπικά αναγνωρίσιμες πληροφορίες.</string>
     <!-- Button label indicating the call had issues -->
-    <string name="CallQualitySheet__had_issues">Had issues</string>
+    <string name="CallQualitySheet__had_issues">Είχε θέματα</string>
     <!-- Button label indicating the call was great -->
-    <string name="CallQualitySheet__great">Great</string>
+    <string name="CallQualitySheet__great">Τέλεια</string>
     <!-- Title asking what issues the user experienced -->
-    <string name="CallQualitySheet__what_issues_did_you_have">What issues did you have?</string>
+    <string name="CallQualitySheet__what_issues_did_you_have">Τι προβλήματα αντιμετώπισες;</string>
     <!-- Instruction to select all applicable issues -->
-    <string name="CallQualitySheet__select_all_that_apply">Select all that apply</string>
+    <string name="CallQualitySheet__select_all_that_apply">Επίλεξε όλα όσα ισχύουν</string>
     <!-- Placeholder text for describing a custom issue -->
-    <string name="CallQualitySheet__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySheet__describe_your_issue">Περίγραψε το πρόβλημά σου</string>
     <!-- Button to continue to the next step -->
-    <string name="CallQualitySheet__continue">Continue</string>
+    <string name="CallQualitySheet__continue">Συνέχεια</string>
     <!-- Title asking user to help improve Signal -->
-    <string name="CallQualitySheet__help_us_improve">Help us improve</string>
+    <string name="CallQualitySheet__help_us_improve">Βοήθησέ μας να βελτιωθούμε</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Sending us your diagnostics info helps us improve call quality. You can </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Η αποστολή των διαγνωστικών σου πληροφοριών μας βοηθά να βελτιώσουμε την ποιότητα των κλήσεων. Μπορείς να </string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">view your debug log</string>
+    <string name="CallQualitySheet__view_your_debug_log">δεις το αρχείο καταγραφής αποσφαλμάτωσης</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> πριν από την υποβολή</string>
     <!-- Toggle label for sharing debug log -->
-    <string name="CallQualitySheet__share_debug_log">Share debug log</string>
+    <string name="CallQualitySheet__share_debug_log">Κοινή χρήση αρχείου καταγραφής αποσφαλμάτωσης</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
-    <string name="CallQualitySheet__debug_log_privacy_notice">Debug logs contain low level app information and do not reveal any of your message contents.</string>
+    <string name="CallQualitySheet__debug_log_privacy_notice">Τα αρχεία καταγραφής αποσφαλμάτωσης περιέχουν πληροφορίες εφαρμογής χαμηλού επιπέδου και δεν αποκαλύπτουν κανένα από τα περιεχόμενα των μηνυμάτων σου.</string>
     <!-- Button to submit the call quality feedback -->
-    <string name="CallQualitySheet__submit">Submit</string>
+    <string name="CallQualitySheet__submit">Αποστολή</string>
     <!-- Displayed as a snackbar after submitting feedback -->
-    <string name="CallQualitySheet__thanks_for_your_feedback">Thanks for your feedback!</string>
+    <string name="CallQualitySheet__thanks_for_your_feedback">Ευχαριστούμε για τα σχόλιά σου!</string>
 
     <!-- EOF -->
 </resources>

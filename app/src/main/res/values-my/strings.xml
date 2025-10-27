@@ -2830,7 +2830,7 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">၎င်း URL ကိုကူးယူပြီး သင်၏ ပြဿနာ မှတ်တမ်းစာ သို့မဟုတ် ပံ့ပိုးရန်အီးမေးလ်ထဲသို့ ထည့်ပါ။ \n\n <b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">ဝေမျှရန်</string>
     <!-- Displayed when entering activity in view-only mode -->
-    <string name="SubmitDebugLogActivity_close">Close</string>
+    <string name="SubmitDebugLogActivity_close">ပိတ်မည်</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">ကူညီပံ့ပိုးသူများ ကြည့်ရှုနိုင်ရန်အတွက် ဤမှတ်တမ်းကို အွန်လိုင်းတွင် လူသူမရွေးကြည့်နိုင်ရန် တင်သွားပါမည်။ အပ်လုဒ်မလုပ်မီ ဆန်းစစ်နိုင်ပါသည်။</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">ပေးပို့ရန်ကို နှိပ်သည့်အခါ သင့်မှတ်တမ်းကို သီးခြား အများနှင့်မဆိုင်သော URL တွင် ရက် ၃၀ ကြာ ပို့စ်တင်ထားပါမည်။ ဦးစွာ ၎င်းကို စက်ထဲတွင် သိမ်းထားနိုင်ပါသည်။</string>
@@ -5061,10 +5061,10 @@
 
     <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
     <plurals name="CreateGroupActivity__s_members">
-        <item quantity="other">%1$s members</item>
+        <item quantity="other">အဖွဲ့ဝင် %1$s ဦး</item>
     </plurals>
     <!-- Accessibility label for navigating to the next screen in the create group flow. -->
-    <string name="CreateGroupActivity__accessibility_next">Next</string>
+    <string name="CreateGroupActivity__accessibility_next">ဆက်သွားမည်</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">ဝေမျှမည်</string>
@@ -5781,14 +5781,20 @@
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s သည် Signal သုံးစွဲသူ မဟုတ်ပါ</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
-    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Open menu</string>
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">မီနူးကို ဖွင့်ရန်</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
         <item quantity="other">%1$s သည် Signal သုံးစွဲသူများ မဟုတ်ပါ</item>
     </plurals>
 
-    <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">အမည်၊ သုံးစွဲသူအမည် သို့မဟုတ် နံပါတ်</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Name, username or number</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Switch to numeric keyboard</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Switch to alphanumeric keyboard</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Reset search filter</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8248,15 +8254,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">ပြန်လည်ရယူရေးကီး</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that you will need to restore your backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">ပြန်လည်ရယူရေးကီးသည် သင့် ဘက်ခ်အပ်ကို ပြန်လည်ရယူရန်လိုအပ်သော စာလုံး 64 လုံးပါ ကုဒ်တစ်ခုဖြစ်သည်။</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Store your recovery key somewhere safe like a secure password manager, and don’t share it with anyone.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">လုံခြုံသော စကားဝှက်စီမံရေးကဲ့သို့ သင့်ပြန်လည်ရယူရေးကီးကို လုံခြုံသောနေရာတွင် သိမ်းဆည်းထားပြီး မည်သူနှင့်မျှ မမျှဝေပါနှင့်။</string>
     <!-- Screen body part 3 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">If you lose it, you won’t be able to recover your messages.</string>
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">၎င်းကိုသင်ဆုံးရှုံးသွားပါက သင့်မက်ဆေ့ချ်များကို ပြန်လည်ရယူနိုင်မည်မဟုတ်ပါ။</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">View recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">ပြန်လည်ရယူရေးကီးကို ကြည့်ရန်</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8635,7 +8641,7 @@
     <!-- Title of screen that shows the poll results of a poll after it has ended-->
     <string name="Poll__poll_results">စစ်တမ်းရလဒ်များ</string>
     <!-- Title of screen that shows the poll details of a poll -->
-    <string name="Poll__poll_details">Poll details</string>
+    <string name="Poll__poll_details">စစ်တမ်းအသေးစိတ်</string>
     <!-- Header text displaying the question of the poll -->
     <string name="Poll__question">မေးခွန်း</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
@@ -8643,15 +8649,15 @@
         <item quantity="other">%1$d မဲ</item>
     </plurals>
     <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
-    <string name="Poll__poll_winner">Winner</string>
+    <string name="Poll__poll_winner">အောင်နိုင်သူ</string>
     <!-- Text that when pressed will end the poll   -->
     <string name="Poll__end_poll">စစ်တမ်း အဆုံးသတ်</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
     <string name="Poll__see_all">အားလုံးကြည့်ရန်</string>
     <!-- Dialog title when a poll fails to end -->
-    <string name="Poll__couldnt_end_poll">Couldn\'t end poll</string>
+    <string name="Poll__couldnt_end_poll">စစ်တမ်းကို အဆုံးမသတ်နိုင်ပါ</string>
     <!-- Dialog body when a poll fails to end and to try again -->
-    <string name="Poll__check_connection">Check your connection and try again.</string>
+    <string name="Poll__check_connection">ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">စစ်တမ်းအသစ်</string>
     <!-- Section text to enter in a question for a poll  -->
@@ -8675,73 +8681,73 @@
 
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
-    <string name="CallQualityIssue__audio_issue">Audio issue</string>
+    <string name="CallQualityIssue__audio_issue">အော်ဒီယို ပြဿနာ</string>
     <!-- Label for general video issue category -->
-    <string name="CallQualityIssue__video_issue">Video issue</string>
+    <string name="CallQualityIssue__video_issue">ဗီဒီယို ပြဿနာ</string>
     <!-- Label for call dropped issue -->
-    <string name="CallQualityIssue__call_droppped">Call dropped</string>
+    <string name="CallQualityIssue__call_droppped">ခေါ်ဆိုမှု ပြတ်တောက်ခြင်း</string>
     <!-- Label for other/custom issues not covered by predefined categories -->
-    <string name="CallQualityIssue__something_else">Something else</string>
+    <string name="CallQualityIssue__something_else">အခြားပြဿနာ</string>
     <!-- Label for audio stuttering/choppy audio issue -->
-    <string name="CallQualityIssue__audio_stuttering">Audio stuttering</string>
+    <string name="CallQualityIssue__audio_stuttering">အသံထစ်ခြင်း</string>
     <!-- Label for audio cutting out/dropping issue -->
-    <string name="CallQualityIssue__audio_cut_out">Audio cut out</string>
+    <string name="CallQualityIssue__audio_cut_out">အသံပြတ်တောက်ခြင်း</string>
     <!-- Label for echo heard by the user -->
-    <string name="CallQualityIssue__i_heard_echo">I heard echo</string>
+    <string name="CallQualityIssue__i_heard_echo">ပဲ့တင်သံကြားရခြင်း</string>
     <!-- Label for echo heard by other call participants -->
-    <string name="CallQualityIssue__others_heard_echo">Others heard echo</string>
+    <string name="CallQualityIssue__others_heard_echo">အခြားသူများ ပဲ့တင်သံကြားရခြင်း</string>
     <!-- Label for poor video quality issue -->
-    <string name="CallQualityIssue__poor_video_quality">Poor video quality</string>
+    <string name="CallQualityIssue__poor_video_quality">ဗီဒီယိုအရည်အသွေး မကောင်းခြင်း</string>
     <!-- Label for low video resolution issue -->
-    <string name="CallQualityIssue__low_resolution">Low resolution</string>
+    <string name="CallQualityIssue__low_resolution">ကြည်လင်ပြတ်သားမှု နည်းပါးခြင်း</string>
     <!-- Label for camera malfunction issue -->
-    <string name="CallQualityIssue__camera_did_not_work">Camera didn\'t work</string>
+    <string name="CallQualityIssue__camera_did_not_work">ကင်မရာ အလုပ်မလုပ်ခြင်း</string>
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Something else</string>
+    <string name="CallQualitySomethingElseScreen__title">အခြားအရာများ</string>
     <!-- Label for text field where user describes their call quality issue -->
-    <string name="CallQualitySomethingElseScreen__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">သင့်ပြဿနာကို ဖော်ပြပါ</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
-    <string name="CallQualitySomethingElseScreen__privacy_notice">Please include any details relevant to the issue. Anything you share here will be kept private and will only be used to help improve calls in Signal.</string>
+    <string name="CallQualitySomethingElseScreen__privacy_notice">ကျေးဇူးပြု၍ ပြဿနာနှင့်သက်ဆိုင်သည့် အသေးစိတ်အချက်အလက်များကို ထည့်သွင်းပါ။ သင်မျှဝေထားသမျှကို လျှို့ဝှက်ထားမည်ဖြစ်ပြီး Signal တွင် ခေါ်ဆိုမှုများကို ပိုမိုကောင်းမွန်စေရန်အတွက်သာ အသုံးပြုမည်ဖြစ်သည်။</string>
     <!-- Button to save the call quality issue description -->
-    <string name="CallQualitySomethingElseScreen__save">Save</string>
+    <string name="CallQualitySomethingElseScreen__save">သိမ်းရန်</string>
     <!-- Content description for the back navigation button -->
-    <string name="CallQualitySomethingElseScreen__back">Back</string>
+    <string name="CallQualitySomethingElseScreen__back">နောက်သို့</string>
 
     <!-- CallQualitySheet -->
     <!-- Title asking user how their call was -->
-    <string name="CallQualitySheet__how_was_your_call">How was your call?</string>
+    <string name="CallQualitySheet__how_was_your_call">သင့်ခေါ်ဆိုမှု အဆင်ပြေပါသလား။</string>
     <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
-    <string name="CallQualitySheet__how_was_your_call_subtitle">This helps us improve calls in Signal. No personally identifiable information will be stored.</string>
+    <string name="CallQualitySheet__how_was_your_call_subtitle">၎င်းသည် Signal တွင် ခေါ်ဆိုမှုများကို ပိုမိုကောင်းမွန်အောင် ကူညီပေးသည်။ ပုဂ္ဂိုလ်ရေးဆိုင်ရာ သိရှိနိုင်သော အချက်အလက်များကို သိမ်းဆည်းထားမည်မဟုတ်ပါ။</string>
     <!-- Button label indicating the call had issues -->
-    <string name="CallQualitySheet__had_issues">Had issues</string>
+    <string name="CallQualitySheet__had_issues">ပြဿနာများ ရှိခဲ့သည်</string>
     <!-- Button label indicating the call was great -->
-    <string name="CallQualitySheet__great">Great</string>
+    <string name="CallQualitySheet__great">ကောင်းပါသည်</string>
     <!-- Title asking what issues the user experienced -->
-    <string name="CallQualitySheet__what_issues_did_you_have">What issues did you have?</string>
+    <string name="CallQualitySheet__what_issues_did_you_have">ဘာပြဿနာရှိပါသလဲ။</string>
     <!-- Instruction to select all applicable issues -->
-    <string name="CallQualitySheet__select_all_that_apply">Select all that apply</string>
+    <string name="CallQualitySheet__select_all_that_apply">သက်ဆိုင်သမျှကို ရွေးပါ</string>
     <!-- Placeholder text for describing a custom issue -->
-    <string name="CallQualitySheet__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySheet__describe_your_issue">သင့်ပြဿနာကို ဖော်ပြပါ</string>
     <!-- Button to continue to the next step -->
-    <string name="CallQualitySheet__continue">Continue</string>
+    <string name="CallQualitySheet__continue">ဆက်လုပ်ရန်</string>
     <!-- Title asking user to help improve Signal -->
-    <string name="CallQualitySheet__help_us_improve">Help us improve</string>
+    <string name="CallQualitySheet__help_us_improve">ပိုမိုကောင်းမွန်စေရန် ကူညီပေးပါ</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Sending us your diagnostics info helps us improve call quality. You can </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">သင့်ခေါ်ဆိုမှု အတွေ့အကြုံကို ကျွန်ုပ်တို့ထံ ပေးပို့ခြင်းက ခေါ်ဆိုမှုအရည်အသွေးကို မြှင့်တင်ပေးပါသည်။ မတင်ပြမီ သင်၏ </string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">view your debug log</string>
+    <string name="CallQualitySheet__view_your_debug_log">ပြစ်ချက်မှတ်တမ်းကို ကြည့်ရှု</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> နိုင်သည်။</string>
     <!-- Toggle label for sharing debug log -->
-    <string name="CallQualitySheet__share_debug_log">Share debug log</string>
+    <string name="CallQualitySheet__share_debug_log">ပြစ်ချက်မှတ်တမ်း မျှဝေရန်</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
-    <string name="CallQualitySheet__debug_log_privacy_notice">Debug logs contain low level app information and do not reveal any of your message contents.</string>
+    <string name="CallQualitySheet__debug_log_privacy_notice">ပြစ်ချက်ရှာဖွေပြုပြင်မှု မှတ်တမ်းများတွင် အဆင့်နိမ့် အက်ပ်အချက်အလက်များ ပါဝင်ပြီး သင်၏မက်ဆေ့ချ်တွင် ပါရှိသော မည်သည့်အကြောင်းအရာကိုမျှ ထုတ်ဖော်ခြင်းမပြုပါ။</string>
     <!-- Button to submit the call quality feedback -->
-    <string name="CallQualitySheet__submit">Submit</string>
+    <string name="CallQualitySheet__submit">တင်သွင်းမည်</string>
     <!-- Displayed as a snackbar after submitting feedback -->
-    <string name="CallQualitySheet__thanks_for_your_feedback">Thanks for your feedback!</string>
+    <string name="CallQualitySheet__thanks_for_your_feedback">သင့်အကြံပြုချက်အတွက် ကျေးဇူးတင်ပါသည်။</string>
 
     <!-- EOF -->
 </resources>

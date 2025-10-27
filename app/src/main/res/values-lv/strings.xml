@@ -3016,7 +3016,7 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Nokopējiet šo URL un pievienojiet to problēmas ziņojumam vai atbalsta e-pastam:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Kopīgot</string>
     <!-- Displayed when entering activity in view-only mode -->
-    <string name="SubmitDebugLogActivity_close">Close</string>
+    <string name="SubmitDebugLogActivity_close">Aizvērt</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Šis žurnāls tiks publiski izlikts tiešsaistē apskatei līdzstrādniekiem. Pirms augšupielādes varat to pārbaudīt.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Kad noklikšķināsiet uz \"Iesniegt\", jūsu žurnāls tiks publicēts un 30 dienas būs pieejams tiešsaistē ar unikālu, nepublisku URL. Varat to vispirms saglabāt lokāli.</string>
@@ -5321,12 +5321,12 @@
 
     <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
     <plurals name="CreateGroupActivity__s_members">
-        <item quantity="zero">%1$s members</item>
-        <item quantity="one">%1$s member</item>
-        <item quantity="other">%1$s members</item>
+        <item quantity="zero">%1$s dalībnieki</item>
+        <item quantity="one">%1$s dalībnieks</item>
+        <item quantity="other">%1$s dalībnieki</item>
     </plurals>
     <!-- Accessibility label for navigating to the next screen in the create group flow. -->
-    <string name="CreateGroupActivity__accessibility_next">Next</string>
+    <string name="CreateGroupActivity__accessibility_next">Tālāk</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Kopīgot</string>
@@ -6059,7 +6059,7 @@
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s nav Signal lietotājs</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
-    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Open menu</string>
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Atvērt izvēlni</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
         <item quantity="zero">%1$s nav Signal lietotāji</item>
@@ -6067,8 +6067,14 @@
         <item quantity="other">%1$s nav Signal lietotāji</item>
     </plurals>
 
-    <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Vārds, lietotājvārds vai numurs</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Name, username or number</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Switch to numeric keyboard</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Switch to alphanumeric keyboard</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Reset search filter</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8612,7 +8618,7 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Atkopšanas atslēga</string>
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that you will need to restore your backup.</string>
     <!-- Screen body part 2 -->
@@ -8620,7 +8626,7 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">If you lose it, you won’t be able to recover your messages.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">View recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Skatīt atkopšanas atslēgu</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -9007,7 +9013,7 @@
     <!-- Title of screen that shows the poll results of a poll after it has ended-->
     <string name="Poll__poll_results">Aptaujas rezultāti</string>
     <!-- Title of screen that shows the poll details of a poll -->
-    <string name="Poll__poll_details">Poll details</string>
+    <string name="Poll__poll_details">Informācija par aptauju</string>
     <!-- Header text displaying the question of the poll -->
     <string name="Poll__question">Jautājums</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
@@ -9025,7 +9031,7 @@
     <!-- Dialog title when a poll fails to end -->
     <string name="Poll__couldnt_end_poll">Couldn\'t end poll</string>
     <!-- Dialog body when a poll fails to end and to try again -->
-    <string name="Poll__check_connection">Check your connection and try again.</string>
+    <string name="Poll__check_connection">Pārbaudiet savienojumu un mēģiniet vēlreiz.</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">Jauna aptauja</string>
     <!-- Section text to enter in a question for a poll  -->
@@ -9079,9 +9085,9 @@
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
     <string name="CallQualitySomethingElseScreen__privacy_notice">Please include any details relevant to the issue. Anything you share here will be kept private and will only be used to help improve calls in Signal.</string>
     <!-- Button to save the call quality issue description -->
-    <string name="CallQualitySomethingElseScreen__save">Save</string>
+    <string name="CallQualitySomethingElseScreen__save">Saglabāt</string>
     <!-- Content description for the back navigation button -->
-    <string name="CallQualitySomethingElseScreen__back">Back</string>
+    <string name="CallQualitySomethingElseScreen__back">Atpakaļ</string>
 
     <!-- CallQualitySheet -->
     <!-- Title asking user how their call was -->
@@ -9099,7 +9105,7 @@
     <!-- Placeholder text for describing a custom issue -->
     <string name="CallQualitySheet__describe_your_issue">Describe your issue</string>
     <!-- Button to continue to the next step -->
-    <string name="CallQualitySheet__continue">Continue</string>
+    <string name="CallQualitySheet__continue">Turpināt</string>
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Help us improve</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
@@ -9113,7 +9119,7 @@
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
     <string name="CallQualitySheet__debug_log_privacy_notice">Debug logs contain low level app information and do not reveal any of your message contents.</string>
     <!-- Button to submit the call quality feedback -->
-    <string name="CallQualitySheet__submit">Submit</string>
+    <string name="CallQualitySheet__submit">Iesniegt</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Thanks for your feedback!</string>
 
