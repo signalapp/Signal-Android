@@ -146,7 +146,7 @@ object MessageDecryptor {
     }
 
     val bufferedStore = bufferedProtocolStore.get(destination)
-    val localAddress = SignalServiceAddress(selfAci, SignalStore.account.e164)
+    val localAddress = SignalServiceAddress(destination, SignalStore.account.e164)
     val cipher = SignalServiceCipher(localAddress, SignalStore.account.deviceId, bufferedStore, ReentrantSessionLock.INSTANCE, SealedSenderAccessUtil.getCertificateValidator())
 
     return try {

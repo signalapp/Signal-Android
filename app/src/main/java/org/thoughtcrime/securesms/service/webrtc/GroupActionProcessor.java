@@ -49,12 +49,12 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     this.actionProcessorFactory = actionProcessorFactory;
   }
 
-  protected @NonNull WebRtcServiceState handleReceivedOffer(@NonNull WebRtcServiceState currentState,
-                                                            @NonNull WebRtcData.CallMetadata callMetadata,
-                                                            @NonNull WebRtcData.OfferMetadata offerMetadata,
-                                                            @NonNull WebRtcData.ReceivedOfferMetadata receivedOfferMetadata)
+  protected @NonNull WebRtcServiceState handleValidatedReceivedOffer(@NonNull WebRtcServiceState currentState,
+                                                                     @NonNull WebRtcData.CallMetadata callMetadata,
+                                                                     @NonNull WebRtcData.OfferMetadata offerMetadata,
+                                                                     @NonNull WebRtcData.ReceivedOfferMetadata receivedOfferMetadata)
   {
-    Log.i(tag, "handleReceivedOffer(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
+    Log.i(tag, "handleValidatedReceivedOffer(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
 
     Log.i(tag, "In a group call, send busy back to 1:1 call offer.");
     currentState.getActionProcessor().handleSendBusy(currentState, callMetadata, true);

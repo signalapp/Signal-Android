@@ -65,6 +65,19 @@ public class ProfileKeySendJob extends BaseJob {
    * @return The job that is created, or null if the threadId provided was invalid.
    */
   @WorkerThread
+  public static @Nullable ProfileKeySendJob create(@NonNull Recipient recipient, boolean queueLimits) {
+    return create(SignalDatabase.threads().getOrCreateThreadIdFor(recipient), queueLimits);
+  }
+
+  /**
+   * Suitable for a 1:1 conversation or a GV1 group only.
+   *
+   * @param queueLimits True if you only want one of these to be run per person after decryptions
+   *                    are drained, otherwise false.
+   *
+   * @return The job that is created, or null if the threadId provided was invalid.
+   */
+  @WorkerThread
   public static @Nullable ProfileKeySendJob create(long threadId, boolean queueLimits) {
     Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
 
