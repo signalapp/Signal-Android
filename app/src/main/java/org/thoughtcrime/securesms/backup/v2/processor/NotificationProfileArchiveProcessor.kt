@@ -31,9 +31,9 @@ import org.thoughtcrime.securesms.backup.v2.proto.NotificationProfile as Notific
 /**
  * Handles exporting and importing [NotificationProfile] models.
  */
-object NotificationProfileProcessor {
+object NotificationProfileArchiveProcessor {
 
-  private val TAG = Log.tag(NotificationProfileProcessor::class)
+  private val TAG = Log.tag(NotificationProfileArchiveProcessor::class)
 
   fun export(db: SignalDatabase, exportState: ExportState, emitter: BackupFrameEmitter) {
     db.notificationProfileTables

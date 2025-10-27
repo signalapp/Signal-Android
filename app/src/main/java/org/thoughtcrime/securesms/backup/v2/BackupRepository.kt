@@ -65,9 +65,9 @@ import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.AdHocCallArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatArchiveProcessor
-import org.thoughtcrime.securesms.backup.v2.processor.ChatFolderProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.ChatFolderArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatItemArchiveProcessor
-import org.thoughtcrime.securesms.backup.v2.processor.NotificationProfileProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.NotificationProfileArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.RecipientArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.StickerArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.proto.BackupDebugInfo
@@ -1035,7 +1035,7 @@ object BackupRepository {
           }
 
           progressEmitter?.onNotificationProfile()
-          NotificationProfileProcessor.export(dbSnapshot, exportState) { frame ->
+          NotificationProfileArchiveProcessor.export(dbSnapshot, exportState) { frame ->
             writer.write(frame)
             extraFrameOperation?.invoke(frame)
             eventTimer.emit("notification-profile")
@@ -1047,7 +1047,7 @@ object BackupRepository {
           }
 
           progressEmitter?.onChatFolder()
-          ChatFolderProcessor.export(dbSnapshot, exportState) { frame ->
+          ChatFolderArchiveProcessor.export(dbSnapshot, exportState) { frame ->
             writer.write(frame)
             extraFrameOperation?.invoke(frame)
             eventTimer.emit("chat-folder")
@@ -1338,13 +1338,13 @@ object BackupRepository {
           }
 
           frame.notificationProfile != null -> {
-            NotificationProfileProcessor.import(frame.notificationProfile, importState)
+            NotificationProfileArchiveProcessor.import(frame.notificationProfile, importState)
             eventTimer.emit("notification-profile")
             frameCount++
           }
 
           frame.chatFolder != null -> {
-            ChatFolderProcessor.import(frame.chatFolder, importState)
+            ChatFolderArchiveProcessor.import(frame.chatFolder, importState)
             eventTimer.emit("chat-folder")
             frameCount++
           }

@@ -29,9 +29,9 @@ import org.thoughtcrime.securesms.backup.v2.proto.ChatFolder as ChatFolderProto
 /**
  * Handles exporting and importing [ChatFolderRecord]s.
  */
-object ChatFolderProcessor {
+object ChatFolderArchiveProcessor {
 
-  private val TAG = Log.tag(ChatFolderProcessor::class)
+  private val TAG = Log.tag(ChatFolderArchiveProcessor::class)
 
   fun export(db: SignalDatabase, exportState: ExportState, emitter: BackupFrameEmitter) {
     val folders = db
