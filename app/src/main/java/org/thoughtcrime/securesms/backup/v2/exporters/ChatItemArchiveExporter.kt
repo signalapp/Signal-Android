@@ -1562,7 +1562,7 @@ private fun String.e164ToLong(): Long? {
     this
   }
 
-  return fixed.toLongOrNull()
+  return fixed.toLongOrNull()?.takeIf { it > 0L }
 }
 
 private fun <T> ExecutorService.submitTyped(callable: Callable<T>): Future<T> {
