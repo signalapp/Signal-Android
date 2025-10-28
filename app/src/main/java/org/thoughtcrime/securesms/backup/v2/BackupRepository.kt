@@ -572,6 +572,11 @@ object BackupRepository {
    */
   @JvmStatic
   fun shouldDisplayCouldNotCompleteBackupSheet(): Boolean {
+    // Temporarily disabling. May re-enable in the future.
+    if (true) {
+      return false
+    }
+
     if (shouldNotDisplayBackupFailedMessaging()) {
       return false
     }
