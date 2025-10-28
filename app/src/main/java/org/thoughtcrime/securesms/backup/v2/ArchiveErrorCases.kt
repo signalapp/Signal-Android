@@ -235,6 +235,14 @@ object ImportSkips {
     return log(0, "Failed to parse notificationProfileId for the provided notification profile.")
   }
 
+  fun failedToCreateChat(): String {
+    return log(0, "Failed to create a Chat. Likely a duplicate recipient was found. Keeping pre-existing data and skipping data in this frame.")
+  }
+
+  fun missingChatRecipient(chatId: Long): String {
+    return log(0, "Missing recipient for chat $chatId")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }

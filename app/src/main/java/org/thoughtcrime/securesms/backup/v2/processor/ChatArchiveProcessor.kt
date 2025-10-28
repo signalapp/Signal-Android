@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.processor
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ExportState
+import org.thoughtcrime.securesms.backup.v2.ImportSkips
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.database.getThreadsForBackup
 import org.thoughtcrime.securesms.backup.v2.importer.ChatArchiveImporter
@@ -39,11 +40,16 @@ object ChatArchiveProcessor {
   fun import(chat: Chat, importState: ImportState) {
     val recipientId: RecipientId? = importState.remoteToLocalRecipientId[chat.recipientId]
     if (recipientId == null) {
-      Log.w(TAG, "Missing recipient for chat ${chat.id}")
+      Log.w(TAG, ImportSkips.missingChatRecipient(chat.id))
       return
     }
 
     val threadId = ChatArchiveImporter.import(chat, recipientId, importState)
+    if (threadId == null) {
+      Log.w(TAG, ImportSkips.failedToCreateChat())
+      return
+    }
+
     importState.chatIdToLocalRecipientId[chat.id] = recipientId
     importState.chatIdToLocalThreadId[chat.id] = threadId
     importState.chatIdToBackupRecipientId[chat.id] = chat.recipientId
