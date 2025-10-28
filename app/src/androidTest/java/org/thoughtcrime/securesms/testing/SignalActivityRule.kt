@@ -9,7 +9,6 @@ import android.preference.PreferenceManager
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.runBlocking
-import okhttp3.mockwebserver.MockResponse
 import org.junit.rules.ExternalResource
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -21,7 +20,6 @@ import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.NewAccount
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -80,8 +78,6 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
         others[1].asMember()
       )
     }
-
-    InstrumentationApplicationDependencyProvider.clearHandlers()
   }
 
   private fun setupSelf(): Recipient {
@@ -94,7 +90,6 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
     SignalStore.account.generateAciIdentityKeyIfNecessary()
     SignalStore.account.generatePniIdentityKeyIfNecessary()
 
-    InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(Put("/v2/keys") { MockResponse().success() })
     runBlocking {
       val registrationData = RegistrationData(
         code = "123123",

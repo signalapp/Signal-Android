@@ -16,7 +16,6 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
-import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.AliceClient
 import org.thoughtcrime.securesms.testing.BobClient
@@ -94,13 +93,7 @@ class MessageProcessingPerformanceTest {
     val lastTimestamp = envelopes.last().timestamp ?: 0
 
     // Inject the envelopes into the websocket
-    Thread {
-      for (envelope in envelopes) {
-        Log.i(TIMING_TAG, "Retrieved envelope! ${envelope.timestamp}")
-        InstrumentationApplicationDependencyProvider.injectWebSocketMessage(envelope.toWebSocketPayload())
-      }
-      InstrumentationApplicationDependencyProvider.injectWebSocketMessage(webSocketTombstone())
-    }.start()
+    // TODO: mock websocket messages
 
     // Wait until they've all been fully decrypted + processed
     harness
