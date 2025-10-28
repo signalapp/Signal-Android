@@ -127,6 +127,10 @@ object ExportSkips {
     return log(sentTimestamp, "A chat update that only makes sense for individual chats was found in a different kind of chat.")
   }
 
+  fun callWithMissingRecipient(sentTimestamp: Long): String {
+    return log(sentTimestamp, "A call had a ringer with no matching exported Recipient.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }

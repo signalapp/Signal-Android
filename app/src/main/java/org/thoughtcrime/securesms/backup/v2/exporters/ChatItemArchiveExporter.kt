@@ -747,7 +747,7 @@ private fun CallTable.Call.toRemoteCallUpdate(exportState: ExportState, messageR
             CallTable.Event.OUTGOING_RING -> GroupCall.State.OUTGOING_RING
             CallTable.Event.DELETE -> return null
           },
-          ringerRecipientId = this.ringerRecipient?.toLong(),
+          ringerRecipientId = this.ringerRecipient?.toLong()?.takeIf { exportState.recipientIdToAci[it] != null },
           startedCallRecipientId = groupCallUpdateDetails.startedCallUuid.takeIf { it.isNotEmpty() }?.let { exportState.aciToRecipientId[it] },
           startedCallTimestamp = this.timestamp.clampToValidBackupRange(),
           endedCallTimestamp = groupCallUpdateDetails.endedCallTimestamp.clampToValidBackupRange().takeIf { it > 0 },
