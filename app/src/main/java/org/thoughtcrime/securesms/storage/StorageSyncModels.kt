@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
@@ -133,7 +134,8 @@ object StorageSyncModels {
         AccountRecord.PinnedConversation(
           contact = AccountRecord.PinnedConversation.Contact(
             serviceId = settings.serviceId?.toString() ?: "",
-            e164 = settings.e164 ?: ""
+            e164 = settings.e164 ?: "",
+            serviceIdBinary = settings.serviceId?.toByteString().takeIf { RemoteConfig.useBinaryId } ?: ByteString.EMPTY
           )
         )
       }
@@ -210,6 +212,8 @@ object StorageSyncModels {
       nickname = recipient.nickname.takeUnless { it.isEmpty }?.let { ContactRecord.Name(given = it.givenName, family = it.familyName) }
       note = recipient.note ?: ""
       avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
+      aciBinary = recipient.aci?.toByteString()?.takeIf { RemoteConfig.useBinaryId } ?: ByteString.EMPTY
+      pniBinary = recipient.pni?.toByteStringWithoutPrefix()?.takeIf { RemoteConfig.useBinaryId } ?: ByteString.EMPTY
     }.build().toSignalContactRecord(StorageId.forContact(rawStorageId))
   }
 
@@ -294,6 +298,14 @@ object StorageSyncModels {
         .map { Recipient.resolved(it) }
         .filter { it.hasServiceId }
         .map { it.requireServiceId().toString() }
+      recipientServiceIdsBinary = if (RemoteConfig.useBinaryId) {
+        record.getMembersToSync()
+          .map { Recipient.resolved(it) }
+          .filter { it.hasServiceId }
+          .map { it.requireServiceId().toByteString() }
+      } else {
+        emptyList()
+      }
       allowsReplies = record.allowsReplies
       isBlockList = record.privacyMode.isBlockList
     }.build().toSignalStoryDistributionListRecord(StorageId.forStoryDistributionList(rawStorageId))
@@ -493,7 +505,13 @@ object StorageSyncModels {
       } else {
         when (recipient.recipientType) {
           RecipientType.INDIVIDUAL -> {
-            RemoteRecipient(contact = RemoteRecipient.Contact(serviceId = recipient.serviceId?.toString() ?: "", e164 = recipient.e164 ?: ""))
+            RemoteRecipient(
+              contact = RemoteRecipient.Contact(
+                serviceId = recipient.serviceId?.toString() ?: "",
+                e164 = recipient.e164 ?: "",
+                serviceIdBinary = recipient.serviceId?.toByteString().takeIf { RemoteConfig.useBinaryId } ?: ByteString.EMPTY
+              )
+            )
           }
           RecipientType.GV1 -> {
             RemoteRecipient(legacyGroupId = recipient.groupId!!.requireV1().decodedId.toByteString())
@@ -509,7 +527,7 @@ object StorageSyncModels {
 
   fun remoteToLocalRecipient(remoteRecipient: RemoteRecipient): Recipient? {
     return if (remoteRecipient.contact != null) {
-      val serviceId = ServiceId.parseOrNull(remoteRecipient.contact!!.serviceId)
+      val serviceId = ServiceId.parseOrNull(remoteRecipient.contact!!.serviceId, remoteRecipient.contact!!.serviceIdBinary)
       val e164 = remoteRecipient.contact!!.e164
       Recipient.externalPush(SignalServiceAddress(serviceId, e164))
     } else if (remoteRecipient.legacyGroupId != null) {

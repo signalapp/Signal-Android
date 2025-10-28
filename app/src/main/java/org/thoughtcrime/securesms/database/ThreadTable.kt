@@ -1605,7 +1605,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       for (pinned: AccountRecord.PinnedConversation in record.proto.pinnedConversations) {
         val pinnedRecipient: Recipient? = if (pinned.contact != null) {
-          if (ServiceId.parseOrNull(pinned.contact!!.serviceId) != null) {
+          if (ServiceId.parseOrNull(pinned.contact!!.serviceId, pinned.contact!!.serviceIdBinary) != null) {
             Recipient.externalPush(pinned.contact!!.toSignalServiceAddress())
           } else {
             Log.w(TAG, "Failed to parse serviceId!")

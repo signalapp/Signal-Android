@@ -235,6 +235,8 @@ class ContactRecordProcessor(
       pniSignatureVerified = remote.proto.pniSignatureVerified || local.proto.pniSignatureVerified
       note = remote.proto.note.nullIfBlank() ?: ""
       avatarColor = if (SignalStore.account.isPrimaryDevice) local.proto.avatarColor else remote.proto.avatarColor
+      aciBinary = local.proto.aciBinary.nullIfEmpty() ?: remote.proto.aciBinary
+      pniBinary = mergedPni?.toByteStringWithoutPrefix() ?: byteArrayOf().toByteString()
     }.build().toSignalContactRecord(StorageId.forContact(keyGenerator.generate()))
 
     val matchesRemote = doParamsMatch(remote, merged)
@@ -265,9 +267,9 @@ class ContactRecordProcessor(
 
   override fun compare(lhs: SignalContactRecord, rhs: SignalContactRecord): Int {
     return if (
-      (lhs.proto.signalAci != null && lhs.proto.aci == rhs.proto.aci) ||
+      (lhs.proto.signalAci != null && lhs.proto.aci == rhs.proto.aci && lhs.proto.aciBinary == rhs.proto.aciBinary) ||
       (lhs.proto.e164.isNotBlank() && lhs.proto.e164 == rhs.proto.e164) ||
-      (lhs.proto.signalPni != null && lhs.proto.pni == rhs.proto.pni)
+      (lhs.proto.signalPni != null && lhs.proto.pni == rhs.proto.pni && lhs.proto.pniBinary == rhs.proto.pniBinary)
     ) {
       0
     } else {

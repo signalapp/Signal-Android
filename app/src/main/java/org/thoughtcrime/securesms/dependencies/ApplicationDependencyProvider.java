@@ -174,7 +174,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                             Optional.of(new SecurityEventListener(context)),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 16, 30),
                                             RemoteConfig.maxEnvelopeSizeBytes(),
-                                            RemoteConfig::useMessageSendRestFallback);
+                                            RemoteConfig::useMessageSendRestFallback,
+                                            RemoteConfig.useBinaryId());
   }
 
   @Override

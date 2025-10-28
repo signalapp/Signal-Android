@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.api.util.toByteArray
 import org.whispersystems.signalservice.internal.push.AddressableMessage
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
@@ -43,7 +44,7 @@ object MessageContentFuzzer {
     return Envelope.Builder()
       .timestamp(timestamp)
       .serverTimestamp(timestamp + 5)
-      .serverGuid(serverGuid.toString())
+      .serverGuidBinary(serverGuid.toByteArray().toByteString())
       .build()
   }
 
@@ -127,7 +128,7 @@ object MessageContentFuzzer {
             unidentifiedStatus(
               deliveredTo.map {
                 SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder().buildWith {
-                  destinationServiceId = Recipient.resolved(it).requireServiceId().toString()
+                  destinationServiceIdBinary = Recipient.resolved(it).requireServiceId().toByteString()
                   unidentified = true
                 }
               }
@@ -147,7 +148,7 @@ object MessageContentFuzzer {
         SyncMessage.Builder().buildWith {
           read = timestamps.map { (senderId, timestamp) ->
             SyncMessage.Read.Builder().buildWith {
-              this.senderAci = Recipient.resolved(senderId).requireAci().toString()
+              this.senderAciBinary = Recipient.resolved(senderId).requireAci().toByteString()
               this.timestamp = timestamp
             }
           }
@@ -167,12 +168,12 @@ object MessageContentFuzzer {
                 conversation = if (conversation.isGroup) {
                   ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
                 } else {
-                  ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                  ConversationIdentifier(threadServiceIdBinary = conversation.requireAci().toByteString())
                 },
 
                 messages = conversationDeletes.map { (author, timestamp) ->
                   AddressableMessage(
-                    authorServiceId = Recipient.resolved(author).requireAci().toString(),
+                    authorServiceIdBinary = Recipient.resolved(author).requireAci().toByteString(),
                     sentTimestamp = timestamp
                   )
                 }
@@ -195,19 +196,19 @@ object MessageContentFuzzer {
                 conversation = if (conversation.isGroup) {
                   ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
                 } else {
-                  ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                  ConversationIdentifier(threadServiceIdBinary = conversation.requireAci().toByteString())
                 },
 
                 mostRecentMessages = delete.messages.map { (author, timestamp) ->
                   AddressableMessage(
-                    authorServiceId = Recipient.resolved(author).requireAci().toString(),
+                    authorServiceIdBinary = Recipient.resolved(author).requireAci().toByteString(),
                     sentTimestamp = timestamp
                   )
                 },
 
                 mostRecentNonExpiringMessages = delete.nonExpiringMessages.map { (author, timestamp) ->
                   AddressableMessage(
-                    authorServiceId = Recipient.resolved(author).requireAci().toString(),
+                    authorServiceIdBinary = Recipient.resolved(author).requireAci().toByteString(),
                     sentTimestamp = timestamp
                   )
                 },
@@ -232,7 +233,7 @@ object MessageContentFuzzer {
                 conversation = if (conversation.isGroup) {
                   ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
                 } else {
-                  ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                  ConversationIdentifier(threadServiceIdBinary = conversation.requireAci().toByteString())
                 }
               )
             }
@@ -254,10 +255,10 @@ object MessageContentFuzzer {
                 conversation = if (conversation.isGroup) {
                   ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
                 } else {
-                  ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                  ConversationIdentifier(threadServiceIdBinary = conversation.requireAci().toByteString())
                 },
                 targetMessage = AddressableMessage(
-                  authorServiceId = Recipient.resolved(message.first).requireAci().toString(),
+                  authorServiceIdBinary = Recipient.resolved(message.first).requireAci().toByteString(),
                   sentTimestamp = message.second
                 ),
                 clientUuid = uuid?.let { UuidUtil.toByteString(it) },
@@ -290,7 +291,7 @@ object MessageContentFuzzer {
             val quoted = quoteAble.random(random)
             quote = DataMessage.Quote.Builder().buildWith {
               id = quoted.envelope.timestamp
-              authorAci = quoted.metadata.sourceServiceId.toString()
+              authorAciBinary = quoted.metadata.sourceServiceId.toByteString()
               text = quoted.content.dataMessage?.body
               attachments(quoted.content.dataMessage?.attachments ?: emptyList())
               bodyRanges(quoted.content.dataMessage?.bodyRanges ?: emptyList())
@@ -302,7 +303,7 @@ object MessageContentFuzzer {
             val quoted = quoteAble.random(random)
             quote = DataMessage.Quote.Builder().buildWith {
               id = random.nextLong(quoted.envelope.timestamp!! - 1000000, quoted.envelope.timestamp!!)
-              authorAci = quoted.metadata.sourceServiceId.toString()
+              authorAciBinary = quoted.metadata.sourceServiceId.toByteString()
               text = quoted.content.dataMessage?.body
             }
           }
@@ -329,7 +330,7 @@ object MessageContentFuzzer {
             reaction = DataMessage.Reaction.Builder().buildWith {
               emoji = emojis.random(random)
               remove = false
-              targetAuthorAci = reactTo.metadata.sourceServiceId.toString()
+              targetAuthorAciBinary = reactTo.metadata.sourceServiceId.toByteString()
               targetSentTimestamp = reactTo.envelope.timestamp
             }
           }

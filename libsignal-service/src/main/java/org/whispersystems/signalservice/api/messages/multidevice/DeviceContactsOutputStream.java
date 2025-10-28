@@ -16,8 +16,11 @@ import okio.ByteString;
 
 public class DeviceContactsOutputStream extends ChunkedOutputStream {
 
-  public DeviceContactsOutputStream(OutputStream out) {
+  private final boolean useBinaryId;
+
+  public DeviceContactsOutputStream(OutputStream out, boolean useBinaryId) {
     super(out);
+    this.useBinaryId = useBinaryId;
   }
 
   public void write(DeviceContact contact) throws IOException {
@@ -40,6 +43,7 @@ public class DeviceContactsOutputStream extends ChunkedOutputStream {
 
     if (contact.getAci().isPresent()) {
       contactDetails.aci(contact.getAci().get().toString());
+      contactDetails.aciBinary(useBinaryId ? contact.getAci().get().toByteString() : null);
     }
 
     if (contact.getE164().isPresent()) {

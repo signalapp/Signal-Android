@@ -99,7 +99,7 @@ class ChatFolderRecordProcessor : DefaultStorageRecordProcessor<SignalChatFolder
 
   private fun containsInvalidServiceId(recipients: List<Recipient>): Boolean {
     return recipients.any { recipient ->
-      recipient.contact != null && ServiceId.parseOrNull(recipient.contact!!.serviceId) == null
+      recipient.contact != null && ServiceId.parseOrNull(recipient.contact!!.serviceId, recipient.contact!!.serviceIdBinary) == null
     }
   }
 }

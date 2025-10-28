@@ -86,7 +86,7 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
     /** Parses a ServiceId serialized as a string. Crashes if the ServiceId is invalid. */
     @JvmStatic
     @Throws(IllegalArgumentException::class)
-    fun parseOrThrow(raw: String): ServiceId = parseOrNull(raw) ?: throw IllegalArgumentException("Invalid ServiceId!")
+    fun parseOrThrow(raw: String?): ServiceId = parseOrNull(raw) ?: throw IllegalArgumentException("Invalid ServiceId!")
 
     /** Parses a ServiceId serialized as a byte array. Crashes if the ServiceId is invalid. */
     @JvmStatic
@@ -103,6 +103,19 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
     @Throws(IllegalArgumentException::class)
     fun parseOrUnknown(bytes: ByteString): ServiceId {
       return parseOrNull(bytes) ?: ACI.UNKNOWN
+    }
+
+    /** Parses a ServiceId serialized as either a byteString or string, with preference to the byteString if available. Returns null if invalid. */
+    @JvmStatic
+    fun parseOrNull(raw: String?, bytes: ByteString?): ServiceId? {
+      return parseOrNull(bytes) ?: parseOrNull(raw)
+    }
+
+    /** Parses a ServiceId serialized as either a byteString or string, with preference to the byteString if available. Throws if invalid. */
+    @JvmStatic
+    @Throws(IllegalArgumentException::class)
+    fun parseOrThrow(raw: String?, bytes: ByteString?): ServiceId {
+      return parseOrNull(bytes) ?: parseOrThrow(raw)
     }
   }
 
@@ -144,7 +157,7 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
       fun parseOrNull(raw: ByteArray?): ACI? = ServiceId.parseOrNull(raw).let { if (it is ACI) it else null }
 
       @JvmStatic
-      fun parseOrNull(bytes: ByteString): ACI? = parseOrNull(bytes.toByteArray())
+      fun parseOrNull(bytes: ByteString?): ACI? = parseOrNull(bytes?.toByteArray())
 
       @JvmStatic
       @Throws(IllegalArgumentException::class)
@@ -163,6 +176,19 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
 
       @JvmStatic
       fun parseOrUnknown(raw: String?): ACI = parseOrNull(raw) ?: UNKNOWN
+
+      /** Parses either a byteString or string as an ACI, with preference to the byteString if available. Returns null if invalid or missing. */
+      @JvmStatic
+      fun parseOrNull(raw: String?, bytes: ByteString?): ACI? {
+        return parseOrNull(bytes) ?: parseOrNull(raw)
+      }
+
+      /** Parses either a byteString or string as an ACI, with preference to the byteString if available. Throws if invalid or missing. */
+      @JvmStatic
+      @Throws(IllegalArgumentException::class)
+      fun parseOrThrow(raw: String?, bytes: ByteString?): ACI {
+        return parseOrNull(bytes) ?: parseOrThrow(raw)
+      }
     }
 
     override fun toString(): String = super.toString()
@@ -212,7 +238,7 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
 
       /** Parses a [ByteString] as a PNI, regardless if the `PNI:` prefix is present or not. Only use this if you are certain that what you're reading is a PNI. */
       @JvmStatic
-      fun parseOrNull(bytes: ByteString): PNI? = parseOrNull(bytes.toByteArray())
+      fun parseOrNull(bytes: ByteString?): PNI? = parseOrNull(bytes?.toByteArray())
 
       /** Parses a string as a PNI, regardless if the `PNI:` prefix is present or not. Only use this if you are certain that what you're reading is a PNI. */
       @JvmStatic
@@ -231,6 +257,24 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
 
       /** Parses a string as a PNI, expecting that the value has a `PNI:` prefix. If it does not have the prefix (or is otherwise invalid), this will return null. */
       fun parsePrefixedOrNull(raw: String?): PNI? = ServiceId.parseOrNull(raw).let { if (it is PNI) it else null }
+
+      /** Parses either a byteString or string as a PNI, with preference to the byteString. Expecting that the value has a `PNI:` prefix. If it does not have the prefix (or is otherwise invalid), this will return null. */
+      fun parsePrefixedOrNull(raw: String?, bytes: ByteString?): PNI? {
+        return parseOrNull(bytes).let { if (it is PNI) it else null } ?: parsePrefixedOrNull(raw)
+      }
+
+      /** Parses either a byteString or string as a PNI, with preference to the byteString. Only use this if you are certain what you're reading is a PNI. Returns null if invalid. */
+      @JvmStatic
+      fun parseOrNull(raw: String?, bytes: ByteString?): PNI? {
+        return parseOrNull(bytes) ?: parseOrNull(raw)
+      }
+
+      /** Parses either a byteString or string as a PNI, with preference to the byteString. Only use this if you are certain what you're reading is a PNI. Throws if missing or invalid. */
+      @JvmStatic
+      @Throws(IllegalArgumentException::class)
+      fun parseOrThrow(raw: String?, bytes: ByteString?): PNI {
+        return parseOrNull(bytes) ?: parseOrThrow(raw)
+      }
     }
 
     override fun toString(): String = super.toString()

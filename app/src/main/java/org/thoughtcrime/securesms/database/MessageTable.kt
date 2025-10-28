@@ -4888,7 +4888,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     writableDatabase.withinTransaction {
       for (readMessage in readMessages) {
-        val authorId: RecipientId = recipients.getOrInsertFromServiceId(ServiceId.parseOrThrow(readMessage.senderAci!!))
+        val authorId: RecipientId = recipients.getOrInsertFromServiceId(ServiceId.ACI.parseOrThrow(readMessage.senderAci, readMessage.senderAciBinary))
 
         val result: TimestampReadResult = setTimestampReadFromSyncMessageInternal(
           messageId = SyncMessageId(authorId, readMessage.timestamp!!),

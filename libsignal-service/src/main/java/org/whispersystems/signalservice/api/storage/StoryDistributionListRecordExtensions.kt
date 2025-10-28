@@ -11,7 +11,10 @@ import org.whispersystems.signalservice.internal.storage.protos.StoryDistributio
 
 val StoryDistributionListRecord.recipientServiceAddresses: List<SignalServiceAddress>
   get() {
-    return this.recipientServiceIds
-      .mapNotNull { ServiceId.parseOrNull(it) }
-      .map { SignalServiceAddress(it) }
+    val serviceIds = if (this.recipientServiceIdsBinary.isNotEmpty()) {
+      this.recipientServiceIdsBinary.mapNotNull { ServiceId.parseOrNull(it) }
+    } else {
+      this.recipientServiceIds.mapNotNull { ServiceId.parseOrNull(it) }
+    }
+    return serviceIds.map { SignalServiceAddress(it) }
   }

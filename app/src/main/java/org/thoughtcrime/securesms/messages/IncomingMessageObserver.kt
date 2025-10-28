@@ -334,7 +334,7 @@ class IncomingMessageObserver(
   }
 
   private fun processReceipt(envelope: Envelope) {
-    val serviceId = ServiceId.parseOrNull(envelope.sourceServiceId)
+    val serviceId = ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
     if (serviceId == null) {
       Log.w(TAG, "Invalid envelope sourceServiceId!")
       return

@@ -19,6 +19,7 @@ import org.whispersystems.signalservice.internal.push.ReceiptMessage
 import org.whispersystems.signalservice.internal.push.StoryMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.push.TypingMessage
+import org.whispersystems.signalservice.internal.util.Util
 
 /**
  * Validates an [Envelope] and its decrypted [Content] so that we know the message can be processed safely
@@ -36,7 +37,8 @@ object EnvelopeContentValidator {
       validatePlaintextContent(content)?.let { return it }
     }
 
-    if (envelope.sourceServiceId != null && envelope.sourceServiceId.isInvalidServiceId()) {
+    val sourceServiceId = ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
+    if (Util.anyNotNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary) && sourceServiceId.isNullOrInvalidServiceId()) {
       return Result.Invalid("Envelope had an invalid sourceServiceId!")
     }
 
@@ -83,7 +85,7 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Timestamps don't match! envelope: ${envelope.timestamp}, content: ${dataMessage.timestamp}")
     }
 
-    if (dataMessage.quote != null && dataMessage.quote.authorAci.isNullOrInvalidAci()) {
+    if (dataMessage.quote != null && ACI.parseOrNull(dataMessage.quote.authorAci, dataMessage.quote.authorAciBinary).isNullOrInvalidServiceId()) {
       return Result.Invalid("[DataMessage] Invalid ACI on quote!")
     }
 
@@ -95,7 +97,7 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Invalid AttachmentPointer on DataMessage.previewList.image!")
     }
 
-    if (dataMessage.bodyRanges.any { it.mentionAci != null && it.mentionAci.isNullOrInvalidAci() }) {
+    if (dataMessage.bodyRanges.any { Util.anyNotNull(it.mentionAci, it.mentionAciBinary) && ACI.parseOrNull(it.mentionAci, it.mentionAciBinary).isNullOrInvalidServiceId() }) {
       return Result.Invalid("[DataMessage] Invalid ACI on body range!")
     }
 
@@ -108,7 +110,7 @@ object EnvelopeContentValidator {
         return Result.Invalid("[DataMessage] Missing timestamp on DataMessage.reaction!")
       }
 
-      if (dataMessage.reaction.targetAuthorAci.isNullOrInvalidAci()) {
+      if (ACI.parseOrNull(dataMessage.reaction.targetAuthorAci, dataMessage.reaction.targetAuthorAciBinary).isNullOrInvalidServiceId()) {
         return Result.Invalid("[DataMessage] Invalid ACI on DataMessage.reaction!")
       }
     }
@@ -117,7 +119,7 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Missing timestamp on DataMessage.delete!")
     }
 
-    if (dataMessage.storyContext != null && dataMessage.storyContext.authorAci.isNullOrInvalidAci()) {
+    if (dataMessage.storyContext != null && ACI.parseOrNull(dataMessage.storyContext.authorAci, dataMessage.storyContext.authorAciBinary).isNullOrInvalidServiceId()) {
       return Result.Invalid("[DataMessage] Invalid ACI on DataMessage.storyContext!")
     }
 
@@ -166,14 +168,14 @@ object EnvelopeContentValidator {
 
   private fun validateSyncMessage(envelope: Envelope, syncMessage: SyncMessage, localAci: ACI): Result {
     // Source serviceId was already determined to be a valid serviceId in general
-    val sourceServiceId = ServiceId.parseOrThrow(envelope.sourceServiceId!!)
+    val sourceServiceId = ServiceId.parseOrThrow(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
 
     if (sourceServiceId != localAci) {
       return Result.Invalid("[SyncMessage] Source was not our own account!")
     }
 
     if (syncMessage.sent != null) {
-      val validAddress = syncMessage.sent.destinationServiceId.isValidServiceId()
+      val validAddress = ServiceId.parseOrNull(syncMessage.sent.destinationServiceId, syncMessage.sent.destinationServiceIdBinary) != null
       val hasDataGroup = syncMessage.sent.message?.groupV2 != null
       val hasStoryGroup = syncMessage.sent.storyMessage?.group != null
       val hasStoryManifest = syncMessage.sent.storyMessageRecipients.isNotEmpty()
@@ -196,7 +198,7 @@ object EnvelopeContentValidator {
       }
 
       for (status in syncMessage.sent.unidentifiedStatus) {
-        if (status.destinationServiceId.isNullOrInvalidServiceId()) {
+        if (ServiceId.parseOrNull(status.destinationServiceId, status.destinationServiceIdBinary).isNullOrInvalidServiceId()) {
           return Result.Invalid("[SyncMessage] Invalid ServiceId in SyncMessage.sent.unidentifiedStatusList!")
         }
       }
@@ -214,19 +216,19 @@ object EnvelopeContentValidator {
       }
     }
 
-    if (syncMessage.read.any { it.senderAci.isNullOrInvalidAci() }) {
+    if (syncMessage.read.any { ACI.parseOrNull(it.senderAci, it.senderAciBinary).isNullOrInvalidServiceId() }) {
       return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.readList!")
     }
 
-    if (syncMessage.viewed.any { it.senderAci.isNullOrInvalidAci() }) {
+    if (syncMessage.viewed.any { ACI.parseOrNull(it.senderAci, it.senderAciBinary).isNullOrInvalidServiceId() }) {
       return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.viewList!")
     }
 
-    if (syncMessage.viewOnceOpen != null && syncMessage.viewOnceOpen.senderAci.isNullOrInvalidAci()) {
+    if (syncMessage.viewOnceOpen != null && ACI.parseOrNull(syncMessage.viewOnceOpen.senderAci, syncMessage.viewOnceOpen.senderAciBinary).isNullOrInvalidServiceId()) {
       return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.viewOnceOpen!")
     }
 
-    if (syncMessage.verified != null && syncMessage.verified.destinationAci.isNullOrInvalidAci()) {
+    if (syncMessage.verified != null && ACI.parseOrNull(syncMessage.verified.destinationAci, syncMessage.verified.destinationAciBinary).isNullOrInvalidServiceId()) {
       return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.verified!")
     }
 
@@ -234,11 +236,11 @@ object EnvelopeContentValidator {
       return Result.Invalid("[SyncMessage] Missing packId in stickerPackOperationList!")
     }
 
-    if (syncMessage.blocked != null && syncMessage.blocked.acis.any { it.isNullOrInvalidAci() }) {
+    if (syncMessage.blocked != null && syncMessage.blocked.acis.any { it.isNullOrInvalidAci() } && syncMessage.blocked.acisBinary.any { it.isNullOrInvalidAci() }) {
       return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.blocked!")
     }
 
-    if (syncMessage.messageRequestResponse != null && syncMessage.messageRequestResponse.groupId == null && syncMessage.messageRequestResponse.threadAci.isNullOrInvalidAci()) {
+    if (syncMessage.messageRequestResponse != null && syncMessage.messageRequestResponse.groupId == null && ACI.parseOrNull(syncMessage.messageRequestResponse.threadAci, syncMessage.messageRequestResponse.threadAciBinary).isNullOrInvalidServiceId()) {
       return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.messageRequestResponse!")
     }
 
@@ -329,7 +331,7 @@ object EnvelopeContentValidator {
       return Result.Invalid("[EditMessage] Invalid AttachmentPointer on DataMessage.previewList.image!")
     }
 
-    if (dataMessage.bodyRanges.any { it.mentionAci != null && it.mentionAci.isNullOrInvalidAci() }) {
+    if (dataMessage.bodyRanges.any { Util.anyNotNull(it.mentionAci, it.mentionAciBinary) && ACI.parseOrNull(it.mentionAci, it.mentionAciBinary).isNullOrInvalidServiceId() }) {
       return Result.Invalid("[EditMessage] Invalid UUID on body range!")
     }
 
@@ -362,11 +364,6 @@ object EnvelopeContentValidator {
     return parsed == null || parsed.isUnknown
   }
 
-  private fun String.isInvalidServiceId(): Boolean {
-    val parsed = ServiceId.parseOrNull(this)
-    return parsed == null || parsed.isUnknown
-  }
-
   private fun String?.isNullOrInvalidAci(): Boolean {
     val parsed = ACI.parseOrNull(this)
     return parsed == null || parsed.isUnknown
@@ -380,6 +377,10 @@ object EnvelopeContentValidator {
   private fun ByteString?.isNullOrInvalidPni(): Boolean {
     val parsed = ServiceId.PNI.parseOrNull(this?.toByteArray())
     return parsed == null || parsed.isUnknown
+  }
+
+  private fun ServiceId?.isNullOrInvalidServiceId(): Boolean {
+    return this == null || this.isUnknown
   }
 
   private fun Content?.meetsStoryFlagCriteria(): Boolean {

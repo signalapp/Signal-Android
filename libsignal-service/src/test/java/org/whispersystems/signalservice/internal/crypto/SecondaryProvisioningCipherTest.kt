@@ -9,12 +9,14 @@ import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import okio.ByteString
+import okio.ByteString.Companion.toByteString
 import org.junit.Test
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.api.util.toByteArray
 import org.whispersystems.signalservice.internal.push.ProvisionEnvelope
 import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import org.whispersystems.signalservice.internal.push.ProvisioningVersion
@@ -29,6 +31,7 @@ class SecondaryProvisioningCipherTest {
     val primaryIdentityKeyPair = IdentityKeyPair.generate()
     val primaryProfileKey = generateProfileKey()
     val primaryProvisioningCipher = PrimaryProvisioningCipher(provisioningCipher.secondaryDevicePublicKey.publicKey)
+    val aci = UUID.randomUUID()
 
     val message = ProvisionMessage(
       aciIdentityKeyPublic = ByteString.of(*primaryIdentityKeyPair.publicKey.serialize()),
@@ -36,9 +39,10 @@ class SecondaryProvisioningCipherTest {
       provisioningCode = "code",
       provisioningVersion = ProvisioningVersion.CURRENT.value,
       number = "+14045555555",
-      aci = UUID.randomUUID().toString(),
+      aci = aci.toString(),
       profileKey = ByteString.of(*primaryProfileKey.serialize()),
-      readReceipts = true
+      readReceipts = true,
+      aciBinary = aci.toByteArray().toByteString()
     )
 
     val provisionMessage = ProvisionEnvelope.ADAPTER.decode(primaryProvisioningCipher.encrypt(message))
@@ -56,6 +60,7 @@ class SecondaryProvisioningCipherTest {
     assertThat(message.userAgent).isEqualTo(success.message.userAgent)
     assertThat(message.provisioningCode).isEqualTo(success.message.provisioningCode!!)
     assertThat(message.provisioningVersion).isEqualTo(success.message.provisioningVersion!!)
+    assertThat(message.aciBinary).isEqualTo(UuidUtil.parseOrThrow(success.message.aciBinary).toByteArray().toByteString())
   }
 
   companion object {
