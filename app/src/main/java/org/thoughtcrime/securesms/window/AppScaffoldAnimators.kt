@@ -11,18 +11,15 @@ import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.spring
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldPaneScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.coerceAtMost
 import androidx.compose.ui.unit.dp
 
 private const val SEEK_DAMPING_RATIO = Spring.DampingRatioNoBouncy
@@ -79,7 +76,7 @@ fun ThreePaneScaffoldPaneScope.animateFloat(
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.defaultListInitAnimationState(): AppScaffoldAnimationState {
-  val offset by animateDp(
+  val offset = animateDp(
     targetWhenHiding = {
       -AppScaffoldAnimationDefaults.InitAnimationOffset
     },
@@ -88,21 +85,22 @@ fun ThreePaneScaffoldPaneScope.defaultListInitAnimationState(): AppScaffoldAnima
     }
   )
 
-  val alpha by animateFloat {
+  val alpha = animateFloat {
     1f
   }
 
-  return AppScaffoldAnimationState(
-    AppScaffoldNavigator.NavigationState.ENTER,
-    alpha = alpha,
-    offset = offset
-  )
+  return remember {
+    AppScaffoldAnimationState(
+      alpha = alpha,
+      offset = offset
+    )
+  }
 }
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.defaultListSeekAnimationState(): AppScaffoldAnimationState {
-  val scale by animateFloat(
+  val scale = animateFloat(
     transitionSpec = {
       appScaffoldSeekSpring()
     },
@@ -110,7 +108,7 @@ fun ThreePaneScaffoldPaneScope.defaultListSeekAnimationState(): AppScaffoldAnima
     targetWhenHiding = { 1f }
   )
 
-  val offset by animateDp(
+  val offset = animateDp(
     transitionSpec = {
       appScaffoldSeekSpring()
     },
@@ -118,52 +116,51 @@ fun ThreePaneScaffoldPaneScope.defaultListSeekAnimationState(): AppScaffoldAnima
     targetWhenShowing = { 0.dp }
   )
 
-  return AppScaffoldAnimationState(
-    navigationState = AppScaffoldNavigator.NavigationState.SEEK,
-    offset = offset,
-    scale = scale.coerceAtLeast(0.9f),
-    parentModifier = Modifier.drawWithContent {
-      drawContent()
-
-      drawRect(Color(0f, 0f, 0f, 0.2f))
-    }
-  )
+  return remember {
+    AppScaffoldAnimationState(
+      offset = offset,
+      scale = scale,
+      scaleMinimum = 0.9f,
+      parentOverlayAlpha = mutableStateOf(0.2f)
+    )
+  }
 }
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.defaultListReleaseAnimationState(from: AppScaffoldAnimationState): AppScaffoldAnimationState {
-  val scale by animateFloat(
-    targetWhenHiding = { from.scale },
+  val initialScale = remember { from.contentScale }
+  val initialOffset = remember { from.contentOffset }
+
+  val scale = animateFloat(
+    targetWhenHiding = { initialScale },
     targetWhenShowing = { 1f }
   )
 
-  val offset by animateDp(
-    targetWhenHiding = { from.offset },
+  val offset = animateDp(
+    targetWhenHiding = { initialOffset },
     targetWhenShowing = { 0.dp }
   )
 
-  val alpha by animateFloat(
+  val alpha = animateFloat(
     targetWhenHiding = { 0.2f },
     targetWhenShowing = { 0f }
   )
 
-  return AppScaffoldAnimationState(
-    navigationState = AppScaffoldNavigator.NavigationState.RELEASE,
-    scale = scale,
-    offset = offset,
-    parentModifier = Modifier.drawWithContent {
-      drawContent()
-
-      drawRect(Color(0f, 0f, 0f, alpha))
-    }
-  )
+  return remember {
+    AppScaffoldAnimationState(
+      scale = scale,
+      scaleMinimum = from.scaleMinimum,
+      offset = offset,
+      parentOverlayAlpha = alpha
+    )
+  }
 }
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.defaultDetailInitAnimationState(): AppScaffoldAnimationState {
-  val offset by animateDp(
+  val offset = animateDp(
     targetWhenHiding = {
       AppScaffoldAnimationDefaults.InitAnimationOffset
     },
@@ -172,21 +169,22 @@ fun ThreePaneScaffoldPaneScope.defaultDetailInitAnimationState(): AppScaffoldAni
     }
   )
 
-  val alpha by animateFloat {
+  val alpha = animateFloat {
     1f
   }
 
-  return AppScaffoldAnimationState(
-    navigationState = AppScaffoldNavigator.NavigationState.ENTER,
-    alpha = alpha,
-    offset = offset
-  )
+  return remember {
+    AppScaffoldAnimationState(
+      alpha = alpha,
+      offset = offset
+    )
+  }
 }
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.defaultDetailSeekAnimationState(): AppScaffoldAnimationState {
-  val scale by animateFloat(
+  val scale = animateFloat(
     transitionSpec = {
       appScaffoldSeekSpring()
     },
@@ -194,7 +192,7 @@ fun ThreePaneScaffoldPaneScope.defaultDetailSeekAnimationState(): AppScaffoldAni
     targetWhenHiding = { 0.5f }
   )
 
-  val offset by animateDp(
+  val offset = animateDp(
     transitionSpec = {
       appScaffoldSeekSpring()
     },
@@ -202,30 +200,44 @@ fun ThreePaneScaffoldPaneScope.defaultDetailSeekAnimationState(): AppScaffoldAni
     targetWhenHiding = { 88.dp }
   )
 
-  val roundedCorners by animateDp(
+  val roundedCorners = animateDp(
     transitionSpec = {
       appScaffoldSeekSpring()
     }
   ) { 1000.dp }
 
-  return AppScaffoldAnimationState(
-    navigationState = AppScaffoldNavigator.NavigationState.SEEK,
-    scale = scale.coerceAtLeast(0.9f),
-    offset = offset,
-    clipShape = RoundedCornerShape(roundedCorners.coerceAtMost(42.dp))
-  )
+  return remember {
+    AppScaffoldAnimationState(
+      scale = scale,
+      scaleMinimum = 0.9f,
+      offset = offset,
+      corners = roundedCorners,
+      cornersMaximum = 42.dp
+    )
+  }
 }
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.defaultDetailReleaseAnimationState(from: AppScaffoldAnimationState): AppScaffoldAnimationState {
-  val alpha by animateFloat { 1f }
+  val scale = remember { from.contentScale }
+  val offset = remember { from.contentOffset }
+  val corners = remember { from.contentCorners }
 
-  return AppScaffoldAnimationState(
-    navigationState = AppScaffoldNavigator.NavigationState.RELEASE,
-    scale = from.scale,
-    offset = from.offset,
-    clipShape = from.clipShape,
-    alpha = alpha
-  )
+  val scaleState = remember { mutableStateOf(scale) }
+  val offsetState = remember { mutableStateOf(offset) }
+  val cornersState = remember { mutableStateOf(corners) }
+
+  val alpha = animateFloat { 1f }
+
+  return remember {
+    AppScaffoldAnimationState(
+      scale = scaleState,
+      scaleMinimum = from.scaleMinimum,
+      offset = offsetState,
+      corners = cornersState,
+      cornersMaximum = from.cornersMaximum,
+      alpha = alpha
+    )
+  }
 }

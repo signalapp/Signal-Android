@@ -38,7 +38,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
@@ -277,11 +279,19 @@ fun AppScaffold(
           exitTransition = ExitTransition.None,
           modifier = Modifier
             .zIndex(0f)
-            .then(animationState.parentModifier)
+            .drawWithContent {
+              with(animationState) {
+                applyParentValues()
+              }
+            }
         ) {
           Box(
             modifier = Modifier
-              .then(animationState.toModifier())
+              .graphicsLayer {
+                with(animationState) {
+                  applyChildValues()
+                }
+              }
               .clipToBounds()
               .layout { measurable, constraints ->
                 val width = max(minPaneWidth.roundToPx(), constraints.maxWidth)
@@ -320,11 +330,19 @@ fun AppScaffold(
           exitTransition = ExitTransition.None,
           modifier = Modifier
             .zIndex(1f)
-            .then(animationState.parentModifier)
+            .drawWithContent {
+              with(animationState) {
+                applyParentValues()
+              }
+            }
         ) {
           Box(
             modifier = Modifier
-              .then(animationState.toModifier())
+              .graphicsLayer {
+                with(animationState) {
+                  applyChildValues()
+                }
+              }
               .clipToBounds()
               .layout { measurable, constraints ->
                 val width = max(minPaneWidth.roundToPx(), constraints.maxWidth)

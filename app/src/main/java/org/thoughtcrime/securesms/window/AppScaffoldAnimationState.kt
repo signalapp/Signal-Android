@@ -7,17 +7,19 @@ package org.thoughtcrime.securesms.window
 
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldPaneScope
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Shape
+import androidx.compose.runtime.State
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.GraphicsLayerScope
+import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.coerceAtMost
 import androidx.compose.ui.unit.dp
 
 /**
@@ -30,28 +32,38 @@ object AppScaffoldAnimationDefaults {
   fun <T> tween() = tween<T>(durationMillis = 200, easing = TweenEasing)
 }
 
-/**
- * Produces modifier that can be composed into another modifier chain.
- * This object allows us to store "latest state" as we transition.
- *
- * @param parentModifier This modifier is applied to the [androidx.compose.material3.adaptive.layout.AnimatedPane] itself,
- *                       allowing additional customization like overlays without
- *                       the need for additional composables.
- */
 data class AppScaffoldAnimationState(
-  val navigationState: AppScaffoldNavigator.NavigationState,
-  val alpha: Float = 1f,
-  val scale: Float = 1f,
-  val offset: Dp = 0.dp,
-  val clipShape: Shape = RoundedCornerShape(0.dp),
-  val parentModifier: Modifier = Modifier.Companion
+  private val alpha: State<Float> = mutableStateOf(1f),
+  private val scale: State<Float> = mutableStateOf(1f),
+  val scaleMinimum: Float = 0f,
+  private val offset: State<Dp> = mutableStateOf(0.dp),
+  private val corners: State<Dp> = mutableStateOf(0.dp),
+  val cornersMaximum: Dp = 1000.dp,
+  private val parentOverlayAlpha: State<Float> = mutableStateOf(0f)
 ) {
-  fun toModifier(): Modifier {
-    return Modifier
-      .alpha(alpha)
-      .scale(scale)
-      .offset(offset)
-      .clip(clipShape)
+
+  private val unclampedScale by scale
+  private val unclampedCorners by corners
+
+  val contentAlpha by alpha
+  val contentScale by derivedStateOf { unclampedScale.coerceAtLeast(scaleMinimum) }
+  val contentOffset by offset
+  val contentCorners by derivedStateOf { unclampedCorners.coerceAtMost(cornersMaximum) }
+
+  fun ContentDrawScope.applyParentValues() {
+    drawContent()
+
+    drawRect(Color(0f, 0f, 0f, parentOverlayAlpha.value))
+  }
+
+  fun GraphicsLayerScope.applyChildValues() {
+    this.alpha = contentAlpha
+    this.scaleX = contentScale
+    this.scaleY = contentScale
+    this.translationX = contentOffset.toPx()
+    this.translationY = 0f
+    this.clip = true
+    this.shape = RoundedCornerShape(contentCorners)
   }
 }
 
@@ -67,13 +79,12 @@ class AppScaffoldAnimationStateFactory(
     val Default = AppScaffoldAnimationStateFactory()
 
     private val EMPTY_STATE = AppScaffoldAnimationState(
-      navigationState = AppScaffoldNavigator.NavigationState.ENTER,
-      alpha = 1f
+      alpha = mutableStateOf(1f)
     )
   }
 
-  private var latestListSeekState: AppScaffoldAnimationState = AppScaffoldAnimationState(AppScaffoldNavigator.NavigationState.SEEK)
-  private var latestDetailSeekState: AppScaffoldAnimationState = AppScaffoldAnimationState(AppScaffoldNavigator.NavigationState.SEEK)
+  private var latestListSeekState: AppScaffoldAnimationState = EMPTY_STATE
+  private var latestDetailSeekState: AppScaffoldAnimationState = EMPTY_STATE
 
   @Composable
   fun ThreePaneScaffoldPaneScope.getListAnimationState(navigationState: AppScaffoldNavigator.NavigationState): AppScaffoldAnimationState {
@@ -87,6 +98,7 @@ class AppScaffoldAnimationStateFactory(
       AppScaffoldNavigator.NavigationState.SEEK -> defaultListSeekAnimationState().also {
         latestListSeekState = it
       }
+
       AppScaffoldNavigator.NavigationState.RELEASE -> defaultListReleaseAnimationState(latestListSeekState)
     }
   }
@@ -103,6 +115,7 @@ class AppScaffoldAnimationStateFactory(
       AppScaffoldNavigator.NavigationState.SEEK -> defaultDetailSeekAnimationState().also {
         latestDetailSeekState = it
       }
+
       AppScaffoldNavigator.NavigationState.RELEASE -> defaultDetailReleaseAnimationState(latestDetailSeekState)
     }
   }
