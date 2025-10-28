@@ -67,8 +67,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -448,22 +446,30 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           mainNavigationViewModel.onPaneAnchorChanged(isFullScreenPane)
         }
 
-        LaunchedEffect(paneExpansionState, detailOnlyAnchor, listOnlyAnchor, wrappedNavigator) {
-          mainNavigationViewModel.detailLocation.collect {
-            if (paneExpansionState.currentAnchor == listOnlyAnchor) {
-              paneExpansionState.animateTo(detailOnlyAnchor)
+        LaunchedEffect(paneExpansionState.currentAnchor) {
+          when (paneExpansionState.currentAnchor) {
+            listOnlyAnchor -> {
+              mainNavigationViewModel.setFocusedPane(ThreePaneScaffoldRole.Secondary)
             }
+            detailOnlyAnchor -> {
+              mainNavigationViewModel.setFocusedPane(ThreePaneScaffoldRole.Primary)
+            }
+            else -> Unit
           }
         }
 
-        LaunchedEffect(paneExpansionState, detailOnlyAnchor, listOnlyAnchor, wrappedNavigator) {
-          val a = mainNavigationViewModel.mainNavigationState.map { it.currentListLocation }
-          val b = mainNavigationViewModel.tabClickEvents
+        val paneFocusRequest by mainNavigationViewModel.paneFocusRequests.collectAsStateWithLifecycle(null)
+        LaunchedEffect(paneFocusRequest) {
+          if (paneFocusRequest == null) {
+            return@LaunchedEffect
+          }
 
-          merge(a, b).collect {
-            if (paneExpansionState.currentAnchor == detailOnlyAnchor) {
-              paneExpansionState.animateTo(listOnlyAnchor)
-            }
+          if (paneFocusRequest == ThreePaneScaffoldRole.Secondary && paneExpansionState.currentAnchor == detailOnlyAnchor) {
+            paneExpansionState.animateTo(listOnlyAnchor)
+          }
+
+          if (paneFocusRequest == ThreePaneScaffoldRole.Primary && paneExpansionState.currentAnchor == listOnlyAnchor) {
+            paneExpansionState.animateTo(detailOnlyAnchor)
           }
         }
 

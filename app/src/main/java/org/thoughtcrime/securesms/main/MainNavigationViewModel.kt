@@ -81,12 +81,14 @@ class MainNavigationViewModel(
    * This is Rx because these are still accessed from Java.
    */
   private val internalTabClickEvents: MutableSharedFlow<MainNavigationListLocation> = MutableSharedFlow()
-  val tabClickEvents: SharedFlow<MainNavigationListLocation> = internalTabClickEvents
   val tabClickEventsObservable: Observable<MainNavigationListLocation> = internalTabClickEvents.asObservable()
 
   private var earlyNavigationListLocationRequested: MainNavigationListLocation? = null
   var earlyNavigationDetailLocationRequested: MainNavigationDetailLocation? = null
     private set
+
+  private val internalPaneFocusRequests = MutableSharedFlow<ThreePaneScaffoldRole?>()
+  val paneFocusRequests: SharedFlow<ThreePaneScaffoldRole?> = internalPaneFocusRequests
 
   private var earlyFocusedPaneRequested: ThreePaneScaffoldRole? = null
 
@@ -179,6 +181,10 @@ class MainNavigationViewModel(
 
     navigatorScope?.launch {
       navigator?.navigateTo(roleToGoTo)
+    }
+
+    viewModelScope.launch {
+      internalPaneFocusRequests.emit(roleToGoTo)
     }
   }
 
@@ -278,6 +284,7 @@ class MainNavigationViewModel(
     viewModelScope.launch {
       val currentTab = internalMainNavigationState.value.currentListLocation
       if (currentTab == destination) {
+        internalPaneFocusRequests.emit(ThreePaneScaffoldRole.Secondary)
         internalTabClickEvents.emit(destination)
       } else {
         setFocusedPane(ThreePaneScaffoldRole.Secondary)
