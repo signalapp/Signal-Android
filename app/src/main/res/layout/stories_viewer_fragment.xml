@@ -14,7 +14,7 @@
 
     <org.thoughtcrime.securesms.stories.viewer.reply.StoriesSharedElementCrossFaderView
         android:id="@+id/story_content_crossfader"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:alpha="0"
         android:clipChildren="false"
