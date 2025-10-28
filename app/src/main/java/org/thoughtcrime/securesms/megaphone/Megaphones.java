@@ -463,6 +463,7 @@ public final class Megaphones {
           controller.onMegaphoneSnooze(Event.TURN_ON_SIGNAL_BACKUPS);
         })
         .setSecondaryButton(R.string.TurnOnSignalBackups__not_now, (megaphone, controller) -> {
+          controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(R.string.TurnOnSignalBackups__toast_not_now));
           controller.onMegaphoneSnooze(Event.TURN_ON_SIGNAL_BACKUPS);
         })
         .build();
