@@ -14,6 +14,7 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.ExportOddities
+import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.database.getMembersForBackup
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionListItem
@@ -32,7 +33,8 @@ private val TAG = Log.tag(DistributionListArchiveExporter::class)
 class DistributionListArchiveExporter(
   private val cursor: Cursor,
   private val distributionListTables: DistributionListTables,
-  private val selfRecipientId: RecipientId
+  private val selfRecipientId: RecipientId,
+  private val exportState: ExportState
 ) : Iterator<ArchiveRecipient>, Closeable {
 
   override fun hasNext(): Boolean {
@@ -66,7 +68,7 @@ class DistributionListArchiveExporter(
         deletionTimestamp = record.deletedAtTimestamp
       )
     } else {
-      val members = record.members.toRemoteMemberList(selfRecipientId)
+      val members = record.members.toRemoteMemberList(selfRecipientId, exportState)
       DistributionListItem(
         distributionId = record.distributionId.asUuid().toByteArray().toByteString(),
         distributionList = DistributionList(
@@ -104,10 +106,11 @@ private fun DistributionListPrivacyMode.toBackupPrivacyMode(memberCount: Int): D
   }
 }
 
-private fun List<RecipientId>.toRemoteMemberList(selfRecipientId: RecipientId): List<Long> {
+private fun List<RecipientId>.toRemoteMemberList(selfRecipientId: RecipientId, exportState: ExportState): List<Long> {
   val filtered = this.filter { it != selfRecipientId }.map { it.toLong() }
   if (filtered.size != this.size) {
     Log.w(TAG, ExportOddities.distributionListHadSelfAsMember())
   }
-  return filtered
+
+  return filtered.filter { exportState.recipientIdToAci[it] != null || exportState.recipientIdToE164[it] != null }
 }

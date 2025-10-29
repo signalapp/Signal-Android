@@ -317,6 +317,11 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isGroupV2(record.type) && MessageTypes.isGroupUpdate(record.type) -> {
+          if (builder.authorId != selfRecipientId.toLong() && exportState.recipientIdToAci[builder.authorId] == null) {
+            Log.w(TAG, ExportSkips.groupUpdateHasInvalidAuthor(record.dateSent))
+            continue
+          }
+
           val update = record.toRemoteGroupUpdate() ?: continue
           if (update.groupChange!!.updates.isEmpty()) {
             Log.w(TAG, ExportSkips.groupUpdateHasNoUpdates(record.dateSent))
@@ -430,7 +435,7 @@ class ChatItemArchiveExporter(
 
       if (record.latestRevisionId == null) {
         builder.revisions = revisionMap.remove(record.id)?.repairRevisions(builder) ?: emptyList()
-        val chatItem = builder.build().validateChatItem(exportState) ?: continue
+        val chatItem = builder.build().validateChatItem(exportState, selfRecipientId) ?: continue
         buffer += chatItem
       } else {
         var previousEdits = revisionMap[record.latestRevisionId]
@@ -1340,6 +1345,10 @@ private fun ByteArray.toRemoteBodyRanges(dateSent: Long): List<BackupBodyRange> 
       null
     }
 
+    if (mention == null && style == null) {
+      return emptyList()
+    }
+
     BackupBodyRange(
       start = it.start,
       length = it.length,
@@ -1589,7 +1598,7 @@ private fun <T> ExecutorService.submitTyped(callable: Callable<T>): Future<T> {
   return this.submit(callable)
 }
 
-private fun ChatItem.validateChatItem(exportState: ExportState): ChatItem? {
+private fun ChatItem.validateChatItem(exportState: ExportState, selfRecipientId: RecipientId): ChatItem? {
   if (this.standardMessage == null &&
     this.contactMessage == null &&
     this.stickerMessage == null &&
@@ -1610,6 +1619,16 @@ private fun ChatItem.validateChatItem(exportState: ExportState): ChatItem? {
     return null
   }
 
+  if (this.updateMessage != null && this.updateMessage.canOnlyBeAuthoredBySelf() && this.authorId != selfRecipientId.toLong()) {
+    Log.w(TAG, ExportSkips.individualChatUpdateNotAuthoredBySelf(this.dateSent))
+    return null
+  }
+
+  if (this.incoming != null && exportState.recipientIdToAci[this.authorId] == null && exportState.recipientIdToE164[this.authorId] == null) {
+    Log.w(TAG, ExportSkips.incomingMessageAuthorDoesNotHaveAciOrE164(this.dateSent))
+    return null
+  }
+
   return this
 }
 
@@ -1619,6 +1638,13 @@ private fun ChatUpdateMessage.isOnlyForIndividualChats(): Boolean {
     this.simpleUpdate?.type == SimpleChatUpdate.Type.CHAT_SESSION_REFRESH ||
     this.simpleUpdate?.type == SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST ||
     this.simpleUpdate?.type == SimpleChatUpdate.Type.PAYMENTS_ACTIVATED
+}
+
+private fun ChatUpdateMessage.canOnlyBeAuthoredBySelf(): Boolean {
+  return this.simpleUpdate?.type == SimpleChatUpdate.Type.REPORTED_SPAM ||
+    this.simpleUpdate?.type == SimpleChatUpdate.Type.MESSAGE_REQUEST_ACCEPTED ||
+    this.simpleUpdate?.type == SimpleChatUpdate.Type.BLOCKED ||
+    this.simpleUpdate?.type == SimpleChatUpdate.Type.UNBLOCKED
 }
 
 private fun List<ChatItem>.repairRevisions(current: ChatItem.Builder): List<ChatItem> {

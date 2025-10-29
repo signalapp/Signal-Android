@@ -82,7 +82,7 @@ object RecipientArchiveProcessor {
       }
     }
 
-    db.distributionListTables.getAllForBackup(selfRecipientId).use { reader ->
+    db.distributionListTables.getAllForBackup(selfRecipientId, exportState).use { reader ->
       for (recipient in reader) {
         exportState.recipientIds.add(recipient.id)
         emitter.emit(Frame(recipient = recipient))
