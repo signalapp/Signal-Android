@@ -654,6 +654,12 @@ class ConversationViewModel(
     }
   }
 
+  fun setIsInActionMode(isInActionMode: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isInActionMode = isInActionMode)
+    }
+  }
+
   fun toggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) {
     viewModelScope.launch(Dispatchers.IO) {
       val voteCount = if (isChecked) {
@@ -678,8 +684,9 @@ class ConversationViewModel(
 
   data class BackPressedState(
     val isReactionDelegateShowing: Boolean = false,
-    val isSearchRequested: Boolean = false
+    val isSearchRequested: Boolean = false,
+    val isInActionMode: Boolean = false
   ) {
-    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing
+    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing || isInActionMode
   }
 }

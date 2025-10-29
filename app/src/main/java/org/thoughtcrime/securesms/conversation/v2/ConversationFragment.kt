@@ -934,6 +934,8 @@ class ConversationFragment :
   //endregion
 
   private fun startActionMode() {
+    viewModel.setIsInActionMode(true)
+
     actionModeTopBarView.isVisible = true
     actionModeTopBarView.onCloseClick = this::finishActionMode
     actionModeTopBarView.title = calculateSelectedItemCount()
@@ -958,6 +960,8 @@ class ConversationFragment :
   }
 
   private fun finishActionMode() {
+    viewModel.setIsInActionMode(false)
+
     actionModeTopBarView.isVisible = false
 
     adapter.clearSelection()
@@ -2497,6 +2501,8 @@ class ConversationFragment :
         reactionDelegate.hide()
       } else if (state.isSearchRequested) {
         searchMenuItem?.collapseActionView()
+      } else if (state.isInActionMode) {
+        finishActionMode()
       }
     }
   }
