@@ -94,7 +94,7 @@ private fun Poll(
   pollColors: PollColors = PollColorsType.Incoming.getColors(-1),
   fontSize: Int = 16
 ) {
-  val totalVotes = remember(poll.pollOptions) { poll.pollOptions.sumOf { it.voters.size } }
+  val totalVoters = remember(poll.pollOptions) { poll.pollOptions.map { it.voters.map { voter -> voter.id } }.flatten().toSet() }.count()
   val caption = when {
     poll.hasEnded -> R.string.Poll__final_results
     poll.allowMultipleVotes -> R.string.Poll__select_multiple
@@ -112,12 +112,12 @@ private fun Poll(
     )
 
     poll.pollOptions.forEach {
-      PollOption(it, totalVotes, poll.hasEnded, onToggleVote, pollColors, fontSize)
+      PollOption(it, totalVoters, poll.hasEnded, onToggleVote, pollColors, fontSize)
     }
 
     Spacer(Modifier.size(16.dp))
 
-    val hasVotes = totalVotes > 0
+    val hasVotes = totalVoters > 0
     Buttons.MediumTonal(
       colors = ButtonDefaults.buttonColors(
         containerColor = pollColors.buttonBackground,
@@ -147,7 +147,7 @@ private fun Poll(
 @Composable
 private fun PollOption(
   option: PollOption,
-  totalVotes: Int,
+  totalVoters: Int,
   hasEnded: Boolean,
   onToggleVote: (PollOption, Boolean) -> Unit = { _, _ -> },
   pollColors: PollColors,
@@ -155,8 +155,8 @@ private fun PollOption(
 ) {
   val context = LocalContext.current
   val haptics = LocalHapticFeedback.current
-  val progress = remember(option.voters.size, totalVotes) {
-    if (totalVotes > 0) (option.voters.size.toFloat() / totalVotes.toFloat()) else 0f
+  val progress = remember(option.voters.size, totalVoters) {
+    if (totalVoters > 0) (option.voters.size.toFloat() / totalVoters.toFloat()) else 0f
   }
   val progressValue by animateFloatAsState(targetValue = progress, animationSpec = tween(durationMillis = 250))
 
