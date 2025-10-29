@@ -16,7 +16,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
@@ -290,22 +289,6 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       }
     }
 
-    val callback = object : OnBackPressedCallback(toolbarViewModel.state.value.mode == MainToolbarMode.ACTION_MODE) {
-      override fun handleOnBackPressed() {
-        toolbarCallback.onCloseActionModeClick()
-      }
-    }
-
-    lifecycleScope.launch {
-      repeatOnLifecycle(Lifecycle.State.RESUMED) {
-        toolbarViewModel.state.collect { state ->
-          callback.isEnabled = state.mode == MainToolbarMode.ACTION_MODE
-        }
-      }
-    }
-
-    onBackPressedDispatcher.addCallback(this, callback)
-
     shareDataTimestampViewModel.setTimestampFromActivityCreation(savedInstanceState, intent)
 
     setContent {
@@ -323,13 +306,18 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         }
       }
 
+      val isActionModeActive = mainToolbarState.mode == MainToolbarMode.ACTION_MODE
       val isNavigationRailVisible = mainToolbarState.mode != MainToolbarMode.SEARCH
       val isNavigationBarVisible = mainToolbarState.mode == MainToolbarMode.FULL
-      val isBackHandlerEnabled = mainToolbarState.destination != MainNavigationListLocation.CHATS
+      val isBackHandlerEnabled = mainToolbarState.destination != MainNavigationListLocation.CHATS && !isActionModeActive
 
       BackHandler(enabled = isBackHandlerEnabled) {
         mainNavigationViewModel.setFocusedPane(ThreePaneScaffoldRole.Secondary)
         mainNavigationViewModel.goTo(MainNavigationListLocation.CHATS)
+      }
+
+      BackHandler(enabled = isActionModeActive) {
+        toolbarCallback.onCloseActionModeClick()
       }
 
       val focusManager = LocalFocusManager.current
