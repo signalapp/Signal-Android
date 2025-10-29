@@ -78,12 +78,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
   private boolean downIsOurs;
   private int     selected = -1;
   private int     customEmojiIndex;
-  private int     originalStatusBarColor;
-  private int     originalNavigationBarColor;
 
   private View             dropdownAnchor;
-  private View             toolbarShade;
-  private View             inputShade;
   private View             conversationItem;
   private View             backgroundView;
   private ConstraintLayout foregroundView;
@@ -121,8 +117,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
     super.onFinishInflate();
 
     dropdownAnchor   = findViewById(R.id.dropdown_anchor);
-    toolbarShade     = findViewById(R.id.toolbar_shade);
-    inputShade       = findViewById(R.id.input_shade);
     conversationItem = findViewById(R.id.conversation_item);
     backgroundView   = findViewById(R.id.conversation_reaction_scrubber_background);
     foregroundView   = findViewById(R.id.conversation_reaction_scrubber_foreground);
@@ -214,9 +208,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
                                @NonNull ConversationMessage conversationMessage,
                                @NonNull PointF lastSeenDownPoint,
                                boolean isMessageOnLeft) {
-    updateToolbarShade();
-    updateInputShade();
-
     contextMenu = new ConversationContextMenu(dropdownAnchor, getMenuActionItems(conversationMessage));
 
     conversationItem.setX(selectedConversationModel.getSnapshotMetrics().getSnapshotOffset());
@@ -397,18 +388,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
     return Math.max(reactionStartingPoint - reactionBarOffset - reactionBarHeight, spaceNeededBetweenTopOfScreenAndTopOfReactionBar);
   }
 
-  private void updateToolbarShade() {
-    LayoutParams layoutParams = (LayoutParams) toolbarShade.getLayoutParams();
-    layoutParams.height = 0;
-    toolbarShade.setLayoutParams(layoutParams);
-  }
-
-  private void updateInputShade() {
-    LayoutParams layoutParams = (LayoutParams) inputShade.getLayoutParams();
-    layoutParams.height = 0;
-    inputShade.setLayoutParams(layoutParams);
-  }
-
   /**
    * Returns true when the device is in a configuration where the navigation bar doesn't take up
    * space at the bottom of the screen.
@@ -447,9 +426,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
     animatorSet.addListener(new AnimationCompleteListener() {
       @Override public void onAnimationEnd(Animator animation) {
         animatorSet.removeListener(this);
-
-        toolbarShade.setVisibility(INVISIBLE);
-        inputShade.setVisibility(INVISIBLE);
 
         if (onHideListener != null) {
           onHideListener.onHide();
@@ -871,22 +847,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
     itemYAnim.setTarget(conversationItem);
     itemYAnim.setDuration(duration);
     animators.add(itemYAnim);
-
-    if (activity != null) {
-      ValueAnimator statusBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalStatusBarColor);
-      statusBarAnim.setDuration(duration);
-      statusBarAnim.addUpdateListener(animation -> {
-        WindowUtil.setStatusBarColor(activity.getWindow(), (int) animation.getAnimatedValue());
-      });
-      animators.add(statusBarAnim);
-
-      ValueAnimator navigationBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalNavigationBarColor);
-      navigationBarAnim.setDuration(duration);
-      navigationBarAnim.addUpdateListener(animation -> {
-        WindowUtil.setNavigationBarColor(activity, (int) animation.getAnimatedValue());
-      });
-      animators.add(navigationBarAnim);
-    }
 
     return animators;
   }

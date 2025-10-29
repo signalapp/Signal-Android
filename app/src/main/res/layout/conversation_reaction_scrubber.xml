@@ -21,21 +21,6 @@
         android:layout_gravity="left"
         tools:ignore="RtlHardcoded" />
 
-    <FrameLayout
-        android:id="@+id/toolbar_shade"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/reactions_screen_light_shade_color"
-        android:foreground="@color/reactions_screen_dark_shade_color" />
-
-    <FrameLayout
-        android:id="@+id/input_shade"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom"
-        android:background="@color/reactions_screen_light_shade_color"
-        android:foreground="@color/reactions_screen_dark_shade_color" />
-
     <View
         android:id="@+id/conversation_item"
         android:layout_width="wrap_content"

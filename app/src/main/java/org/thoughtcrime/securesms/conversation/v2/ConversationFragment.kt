@@ -45,8 +45,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.MainThread
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.ActionMode
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
@@ -135,6 +133,7 @@ import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
 import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.compose.ActionModeTopBarView
 import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
@@ -535,7 +534,6 @@ class ConversationFragment :
   private lateinit var optionsMenuCallback: ConversationOptionsMenuCallback
 
   private var animationsAllowed = false
-  private var actionMode: ActionMode? = null
   private var pinnedShortcutReceiver: BroadcastReceiver? = null
   private var searchMenuItem: MenuItem? = null
 
@@ -562,10 +560,6 @@ class ConversationFragment :
 
   private val motionEventRelay: MotionEventRelay by viewModels(ownerProducer = { requireActivity() })
 
-  private val actionModeCallback by lazy {
-    ActionModeCallback()
-  }
-
   private val container: InputAwareConstraintLayout
     get() = requireView() as InputAwareConstraintLayout
 
@@ -586,6 +580,9 @@ class ConversationFragment :
 
   private val searchNav: ConversationSearchBottomBar
     get() = binding.conversationSearchBottomBar.root
+
+  private val actionModeTopBarView: ActionModeTopBarView
+    get() = binding.actionModeTopBar
 
   private val scheduledMessagesStub: Stub<View> by lazy { Stub(binding.scheduledMessagesStub) }
 
@@ -929,12 +926,51 @@ class ConversationFragment :
   }
 
   override fun onFinishForwardAction() {
-    actionMode?.finish()
+    finishActionMode()
   }
 
   override fun onDismissForwardSheet() = Unit
 
   //endregion
+
+  private fun startActionMode() {
+    actionModeTopBarView.isVisible = true
+    actionModeTopBarView.onCloseClick = this::finishActionMode
+    actionModeTopBarView.title = calculateSelectedItemCount()
+
+    searchMenuItem?.collapseActionView()
+    binding.toolbar.isInvisible = true
+    if (scheduledMessagesStub.isVisible) {
+      reShowScheduleMessagesBar = true
+      scheduledMessagesStub.visibility = View.GONE
+    }
+
+    setCorrectActionModeMenuVisibility()
+    binding.conversationItemRecycler.invalidateItemDecorations()
+  }
+
+  private fun setActionModeTitle(title: String) {
+    actionModeTopBarView.title = title
+  }
+
+  private fun isActionModeStarted(): Boolean {
+    return actionModeTopBarView.isVisible
+  }
+
+  private fun finishActionMode() {
+    actionModeTopBarView.isVisible = false
+
+    adapter.clearSelection()
+    setBottomActionBarVisibility(false)
+
+    binding.toolbar.isInvisible = false
+    if (reShowScheduleMessagesBar) {
+      scheduledMessagesStub.visibility = View.VISIBLE
+      reShowScheduleMessagesBar = false
+    }
+
+    binding.conversationItemRecycler.invalidateItemDecorations()
+  }
 
   private fun createGroupSubtitleString(members: List<Recipient>): String {
     return members.joinToString(", ") { r -> if (r.isSelf) getString(R.string.ConversationTitleView_you) else r.getDisplayName(requireContext()) }
@@ -2164,12 +2200,10 @@ class ConversationFragment :
   private fun setCorrectActionModeMenuVisibility() {
     val selectedParts = adapter.selectedItems
 
-    if (actionMode != null && selectedParts.isEmpty()) {
-      actionMode?.finish()
+    if (isActionModeStarted() && selectedParts.isEmpty()) {
+      finishActionMode()
       return
     }
-
-    setBottomActionBarVisibility(true)
 
     val recipient = viewModel.recipientSnapshot ?: return
     val menuState = MenuState.getMenuState(
@@ -2186,7 +2220,7 @@ class ConversationFragment :
         ActionItem(R.drawable.symbol_reply_24, resources.getString(R.string.conversation_selection__menu_reply)) {
           maybeShowSwipeToReplyTooltip()
           handleReplyToMessage(getSelectedConversationMessage())
-          actionMode?.finish()
+          finishActionMode()
         }
       )
     }
@@ -2195,7 +2229,7 @@ class ConversationFragment :
       items.add(
         ActionItem(R.drawable.symbol_edit_24, resources.getString(R.string.conversation_selection__menu_edit)) {
           handleEditMessage(getSelectedConversationMessage())
-          actionMode?.finish()
+          finishActionMode()
         }
       )
     }
@@ -2212,7 +2246,7 @@ class ConversationFragment :
       items.add(
         ActionItem(R.drawable.symbol_save_android_24, getResources().getString(R.string.conversation_selection__menu_save)) {
           handleSaveAttachment(getSelectedConversationMessage().messageRecord as MmsMessageRecord)
-          actionMode?.finish()
+          finishActionMode()
         }
       )
     }
@@ -2221,7 +2255,7 @@ class ConversationFragment :
       items.add(
         ActionItem(R.drawable.symbol_copy_android_24, getResources().getString(R.string.conversation_selection__menu_copy)) {
           handleCopyMessage(selectedParts)
-          actionMode?.finish()
+          finishActionMode()
         }
       )
     }
@@ -2230,7 +2264,7 @@ class ConversationFragment :
       items.add(
         ActionItem(R.drawable.symbol_info_24, getResources().getString(R.string.conversation_selection__menu_message_details)) {
           handleDisplayDetails(getSelectedConversationMessage())
-          actionMode?.finish()
+          finishActionMode()
         }
       )
     }
@@ -2239,12 +2273,15 @@ class ConversationFragment :
       items.add(
         ActionItem(R.drawable.symbol_trash_24, getResources().getString(R.string.conversation_selection__menu_delete)) {
           handleDeleteMessages(selectedParts)
-          actionMode?.finish()
+          finishActionMode()
         }
       )
     }
 
     bottomActionBar.setItems(items)
+    bottomActionBar.doAfterNextLayout {
+      setBottomActionBarVisibility(true)
+    }
   }
 
   private fun setBottomActionBarVisibility(isVisible: Boolean) {
@@ -2266,12 +2303,13 @@ class ConversationFragment :
 
       bottomActionBar.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
         override fun onPreDraw(): Boolean {
-          if (bottomActionBar.height == 0 && bottomActionBar.visible) {
+          if (bottomActionBar.measuredHeight == 0 && bottomActionBar.visible) {
             return false
           }
+
           bottomActionBar.viewTreeObserver.removeOnPreDrawListener(this)
 
-          val bottomPadding = bottomActionBar.height + ((bottomActionBar.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin ?: 18.dp)
+          val bottomPadding = bottomActionBar.measuredHeight + ((bottomActionBar.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin ?: 18.dp)
           ViewUtil.setPaddingBottom(binding.conversationItemRecycler, bottomPadding)
           binding.conversationItemRecycler.scrollBy(0, -(bottomPadding - additionalScrollOffset))
           animationsAllowed = true
@@ -2540,8 +2578,7 @@ class ConversationFragment :
   private fun handleEnterMultiselect(conversationMessage: ConversationMessage) {
     val parts = conversationMessage.multiselectCollection.toSet()
     parts.forEach { adapter.toggleSelection(it) }
-    binding.conversationItemRecycler.invalidateItemDecorations()
-    actionMode = (requireActivity() as AppCompatActivity).startSupportActionMode(actionModeCallback)
+    startActionMode()
   }
 
   private fun handleViewPaymentDetails(conversationMessage: ConversationMessage) {
@@ -2621,7 +2658,7 @@ class ConversationFragment :
     override fun isSwipeAvailable(conversationMessage: ConversationMessage): Boolean {
       val recipient = viewModel.recipientSnapshot ?: return false
 
-      return actionMode == null &&
+      return !isActionModeStarted() &&
         MenuState.canReplyToMessage(
           recipient,
           MenuState.isActionMessage(conversationMessage.messageRecord),
@@ -2833,7 +2870,7 @@ class ConversationFragment :
     }
 
     override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
-      if (actionMode == null) {
+      if (!isActionModeStarted()) {
         return
       }
 
@@ -2845,9 +2882,9 @@ class ConversationFragment :
       adapter.removeFromSelection(expired)
 
       if (adapter.selectedItems.isEmpty()) {
-        actionMode?.finish()
+        finishActionMode()
       } else {
-        actionMode?.setTitle(calculateSelectedItemCount())
+        setActionModeTitle(calculateSelectedItemCount())
       }
     }
 
@@ -3311,22 +3348,22 @@ class ConversationFragment :
     }
 
     override fun onItemClick(item: MultiselectPart) {
-      if (actionMode != null) {
+      if (isActionModeStarted()) {
         adapter.toggleSelection(item)
         binding.conversationItemRecycler.invalidateItemDecorations()
 
         if (adapter.selectedItems.isEmpty()) {
-          actionMode?.finish()
+          finishActionMode()
         } else {
           setCorrectActionModeMenuVisibility()
-          actionMode?.title = calculateSelectedItemCount()
+          setActionModeTitle(calculateSelectedItemCount())
         }
       }
     }
 
     override fun onItemLongClick(itemView: View, item: MultiselectPart) {
       Log.d(TAG, "onItemLongClick")
-      if (actionMode != null) {
+      if (isActionModeStarted()) {
         return
       }
 
@@ -3466,9 +3503,7 @@ class ConversationFragment :
       } else {
         clearFocusedItem()
         adapter.toggleSelection(item)
-        binding.conversationItemRecycler.invalidateItemDecorations()
-
-        actionMode = (requireActivity() as AppCompatActivity).startSupportActionMode(actionModeCallback)
+        startActionMode()
       }
     }
 
@@ -3836,40 +3871,6 @@ class ConversationFragment :
         ConversationReactionOverlay.Action.DELETE -> handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
         ConversationReactionOverlay.Action.END_POLL -> handleEndPoll(conversationMessage.messageRecord.getPoll()?.id)
       }
-    }
-  }
-
-  inner class ActionModeCallback : ActionMode.Callback {
-    override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
-      mode.title = calculateSelectedItemCount()
-
-      searchMenuItem?.collapseActionView()
-      binding.toolbar.isInvisible = true
-      if (scheduledMessagesStub.isVisible) {
-        reShowScheduleMessagesBar = true
-        scheduledMessagesStub.visibility = View.GONE
-      }
-
-      setCorrectActionModeMenuVisibility()
-      return true
-    }
-
-    override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean = false
-
-    override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean = false
-
-    override fun onDestroyActionMode(mode: ActionMode) {
-      adapter.clearSelection()
-      setBottomActionBarVisibility(false)
-
-      binding.toolbar.isInvisible = false
-      if (reShowScheduleMessagesBar) {
-        scheduledMessagesStub.visibility = View.VISIBLE
-        reShowScheduleMessagesBar = false
-      }
-
-      binding.conversationItemRecycler.invalidateItemDecorations()
-      actionMode = null
     }
   }
   // endregion Conversation Callbacks

@@ -139,6 +139,16 @@
 
     </org.thoughtcrime.securesms.util.views.DarkOverflowToolbar>
 
+    <org.thoughtcrime.securesms.components.compose.ActionModeTopBarView
+        android:id="@+id/action_mode_top_bar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintHeight_min="@dimen/signal_m3_toolbar_height"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toTopOf="@id/status_bar_guideline" />
+
     <FrameLayout
         android:id="@+id/conversation_banner_frame"
         android:layout_width="0dp"
@@ -348,7 +358,7 @@
 
     <org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
         android:id="@+id/conversation_bottom_action_bar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"

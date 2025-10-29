@@ -61,6 +61,7 @@ import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.contentDescription
@@ -76,9 +77,9 @@ import org.signal.core.ui.compose.circularReveal
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
+import org.thoughtcrime.securesms.components.compose.ActionModeTopBar
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSmall
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
-import org.thoughtcrime.securesms.dependencies.GooglePlayBillingDependencies.context
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 
@@ -226,23 +227,10 @@ private fun ActionModeToolbar(
   state: MainToolbarState,
   callback: MainToolbarCallback
 ) {
-  TopAppBar(
-    colors = TopAppBarDefaults.topAppBarColors(
-      containerColor = state.toolbarColor ?: MaterialTheme.colorScheme.surface
-    ),
-    navigationIcon = {
-      IconButtons.IconButton(onClick = {
-        callback.onCloseActionModeClick()
-      }) {
-        Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_x_24),
-          contentDescription = stringResource(R.string.CallScreenTopBar__go_back)
-        )
-      }
-    },
-    title = {
-      Text(text = context.resources.getQuantityString(R.plurals.ConversationListFragment_s_selected, state.actionModeCount, state.actionModeCount))
-    }
+  ActionModeTopBar(
+    title = pluralStringResource(R.plurals.ConversationListFragment_s_selected, state.actionModeCount, state.actionModeCount),
+    onCloseClick = callback::onCloseActionModeClick,
+    toolbarColor = state.toolbarColor
   )
 }
 
