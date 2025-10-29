@@ -42,6 +42,7 @@ import androidx.navigation.toRoute
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.conversation.ConversationArgs
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
@@ -83,6 +84,10 @@ fun NavGraphBuilder.chatNavGraphBuilder(
       if (transition.currentState && !transition.isRunning) {
         chatNavGraphState.clearBitmap()
       }
+    }
+
+    LaunchedEffect(shouldDisplayFragment) {
+      (context as? MainNavigator.NavigatorProvider)?.onFirstRender()
     }
 
     if (bitmap != null) {
