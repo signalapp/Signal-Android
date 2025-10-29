@@ -59,7 +59,7 @@ import org.thoughtcrime.securesms.main.MainNavigationBar
 import org.thoughtcrime.securesms.main.MainNavigationRail
 import org.thoughtcrime.securesms.main.MainNavigationState
 import org.thoughtcrime.securesms.util.RemoteConfig
-import java.lang.Integer.max
+import kotlin.math.max
 
 enum class Navigation {
   RAIL,
