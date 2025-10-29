@@ -1132,7 +1132,7 @@ object RemoteConfig {
 
   /** Whether to allow different WindowSizeClasses to be used to determine screen layout */
   val largeScreenUi: Boolean by remoteBoolean(
-    key = "android.largeScreenUI",
+    key = "android.largeScreenUI.2",
     hotSwappable = false,
     defaultValue = false
   )
