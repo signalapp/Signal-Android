@@ -165,10 +165,6 @@ class RestoreAttachmentThumbnailJob private constructor(
         Log.w(TAG, "[$attachmentId-thumbnail] No permission!")
         return false
       }
-      if (exception.code == 555) {
-        Log.w(TAG, "[$attachmentId-thumbnail] Syntetic failure!")
-        return false
-      }
     }
     return exception is IOException
   }
