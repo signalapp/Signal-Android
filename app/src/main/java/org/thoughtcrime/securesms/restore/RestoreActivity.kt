@@ -29,6 +29,9 @@ import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.RestoreDirections
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.isWantingManualRemoteRestore
+import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -74,21 +77,27 @@ class RestoreActivity : BaseActivity() {
     when (navTarget) {
       NavTarget.NEW_LANDING -> {
         if (sharedViewModel.hasNoRestoreMethods()) {
-          Log.i(TAG, "No restore methods available, skipping")
-          sharedViewModel.skipRestore()
-
-          val nextIntent = sharedViewModel.getNextIntent()
-
-          if (nextIntent != null) {
-            Log.d(TAG, "Launching ${nextIntent.component}")
-            startActivity(nextIntent)
+          if (SignalStore.registration.restoreDecisionState.isWantingManualRemoteRestore) {
+            Log.i(TAG, "User has no available restore methods but previously wanted a remote restore, navigating immediately.")
+            startActivity(RemoteRestoreActivity.getIntent(this, isOnlyOption = true))
           } else {
-            startActivity(MainActivity.clearTop(this))
+            Log.i(TAG, "No restore methods available, skipping")
+            sharedViewModel.skipRestore()
+
+            val nextIntent = sharedViewModel.getNextIntent()
+
+            if (nextIntent != null) {
+              Log.d(TAG, "Launching ${nextIntent.component}")
+              startActivity(nextIntent)
+            } else {
+              startActivity(MainActivity.clearTop(this))
+            }
           }
 
           supportFinishAfterTransition()
         }
       }
+
       NavTarget.LOCAL_RESTORE -> navController.safeNavigate(RestoreDirections.goDirectlyToChooseLocalBackup())
       NavTarget.TRANSFER -> navController.safeNavigate(RestoreDirections.goDirectlyToDeviceTransfer())
     }
