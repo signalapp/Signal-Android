@@ -14,6 +14,7 @@ import org.signal.core.util.EventTimer
 import org.signal.core.util.Hex
 import org.signal.core.util.ParallelEventTimer
 import org.signal.core.util.StringUtil
+import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.emptyIfNull
 import org.signal.core.util.isNotNullOrBlank
@@ -99,6 +100,7 @@ import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.mb
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.Closeable
@@ -139,6 +141,7 @@ class ChatItemArchiveExporter(
 
   companion object {
     val EXPIRATION_CUTOFF = 1.days
+    private val MAX_BUFFER_MEMORY_SIZE = 15.mb
   }
 
   /** Timer for more macro-level events, like fetching extra data vs transforming the data. */
@@ -463,11 +466,17 @@ class ChatItemArchiveExporter(
   private fun readNextMessageRecordBatch(pastIds: Set<Long>): LinkedHashMap<Long, BackupMessageRecord> {
     return cursorGenerator(lastSeenReceivedTime, batchSize).use { cursor ->
       val records: LinkedHashMap<Long, BackupMessageRecord> = LinkedHashMap(batchSize)
-      while (cursor.moveToNext()) {
+      var estimatedRecordsMemorySize = 0
+      while (cursor.moveToNext() && estimatedRecordsMemorySize < MAX_BUFFER_MEMORY_SIZE) {
         cursor.toBackupMessageRecord(pastIds, backupStartTime)?.let { record ->
           records[record.id] = record
           lastSeenReceivedTime = record.dateReceived
+          estimatedRecordsMemorySize += record.estimatedSizeInBytes
         }
+      }
+
+      if (estimatedRecordsMemorySize > MAX_BUFFER_MEMORY_SIZE) {
+        Log.d(TAG, "[readNextMessageRecordBatch] recordsSize = ${records.size} recordsMemSize: ${estimatedRecordsMemorySize.bytes.toUnitString(spaced = false)}")
       }
       records
     }
@@ -1679,6 +1688,7 @@ private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Lo
 
   val expiresIn = this.requireLong(MessageTable.EXPIRES_IN)
   val expireStarted = this.requireLong(MessageTable.EXPIRE_STARTED)
+  val messageExtras = this.requireBlob(MessageTable.MESSAGE_EXTRAS)
 
   return BackupMessageRecord(
     id = id,
@@ -1713,9 +1723,10 @@ private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Lo
     networkFailureRecipientIds = this.requireString(MessageTable.NETWORK_FAILURES).parseNetworkFailures(),
     identityMismatchRecipientIds = this.requireString(MessageTable.MISMATCHED_IDENTITIES).parseIdentityMismatches(),
     baseType = this.requireLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK,
-    messageExtras = this.requireBlob(MessageTable.MESSAGE_EXTRAS).parseMessageExtras(),
+    messageExtras = messageExtras.parseMessageExtras(),
     viewOnce = this.requireBoolean(MessageTable.VIEW_ONCE),
-    parentStoryId = this.requireLong(MessageTable.PARENT_STORY_ID)
+    parentStoryId = this.requireLong(MessageTable.PARENT_STORY_ID),
+    messageExtrasSize = messageExtras?.size ?: 0
   )
 }
 
@@ -1754,8 +1765,17 @@ private class BackupMessageRecord(
   val identityMismatchRecipientIds: Set<Long>,
   val baseType: Long,
   val messageExtras: MessageExtras?,
-  val viewOnce: Boolean
-)
+  val viewOnce: Boolean,
+  private val messageExtrasSize: Int
+) {
+  val estimatedSizeInBytes: Int = (body?.length ?: 0) +
+    (linkPreview?.length ?: 0) +
+    (sharedContacts?.length ?: 0) +
+    (quoteBody?.length ?: 0) +
+    (quoteBodyRanges?.size ?: 0) +
+    messageExtrasSize +
+    ((17 + networkFailureRecipientIds.size + identityMismatchRecipientIds.size) * 8)
+}
 
 private data class ExtraMessageData(
   val mentionsById: Map<Long, List<Mention>>,
