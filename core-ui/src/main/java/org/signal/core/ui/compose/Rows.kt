@@ -53,6 +53,8 @@ import org.signal.core.ui.compose.Rows.TextAndLabel
 
 object Rows {
 
+  const val DISABLED_ALPHA = 0.4f
+
   /**
    * Link row that positions [text] and optional [label] in a [TextAndLabel] to the side of an [icon] on the right.
    */
@@ -554,7 +556,7 @@ object Rows {
   ) {
     Column(
       modifier = modifier
-        .alpha(if (enabled) 1f else 0.4f)
+        .alpha(if (enabled) 1f else DISABLED_ALPHA)
         .weight(1f)
     ) {
       if (text != null) {

@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -23,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
@@ -35,6 +37,7 @@ import org.thoughtcrime.securesms.R
 fun TextWithBetaLabel(
   text: String,
   textStyle: TextStyle = TextStyle.Default,
+  enabled: Boolean = true,
   modifier: Modifier = Modifier
 ) {
   FlowRow(
@@ -45,7 +48,9 @@ fun TextWithBetaLabel(
     Text(
       text = text,
       style = textStyle,
-      modifier = Modifier.align(Alignment.CenterVertically)
+      modifier = Modifier
+        .align(Alignment.CenterVertically)
+        .alpha(if (enabled) 1f else Rows.DISABLED_ALPHA)
     )
     Text(
       text = stringResource(R.string.Beta__beta_title).uppercase(),
@@ -56,6 +61,7 @@ fun TextWithBetaLabel(
         .padding(vertical = 6.dp)
         .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(28.dp))
         .padding(horizontal = 12.dp, vertical = 4.dp)
+        .alpha(if (enabled) 1f else Rows.DISABLED_ALPHA)
         .align(Alignment.CenterVertically)
     )
   }
@@ -93,6 +99,14 @@ fun BetaHeader(modifier: Modifier = Modifier) {
 fun BetaLabelPreview() {
   Previews.Preview {
     TextWithBetaLabel("Signal Backups")
+  }
+}
+
+@DayNightPreviews
+@Composable
+fun BetaLabelDisabledPreview() {
+  Previews.Preview {
+    TextWithBetaLabel("Signal Backups", enabled = false)
   }
 }
 
