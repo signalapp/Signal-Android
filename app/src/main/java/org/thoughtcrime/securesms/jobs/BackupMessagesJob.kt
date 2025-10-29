@@ -487,8 +487,10 @@ class BackupMessagesJob private constructor(
    */
   private fun Set<ArchiveAttachmentInfo>.toThumbnailMediaEntries(mediaRootBackupKey: MediaRootBackupKey): Set<BackupMediaSnapshotTable.MediaEntry> {
     return this
+      .asSequence()
       .filter { MediaUtil.isImageOrVideoType(it.contentType) }
       .filterNot { it.forQuote }
+      .filterNot { it.isWallpaper }
       .map {
         BackupMediaSnapshotTable.MediaEntry(
           mediaId = it.thumbnailMediaName.toMediaId(mediaRootBackupKey).encode(),
