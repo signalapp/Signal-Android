@@ -89,6 +89,7 @@ import org.thoughtcrime.securesms.banner.BannerManager;
 import org.thoughtcrime.securesms.banner.banners.CdsPermanentErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.CdsTemporaryErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner;
+import org.thoughtcrime.securesms.banner.banners.DeprecatedSdkBanner;
 import org.thoughtcrime.securesms.banner.banners.DozeBanner;
 import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner;
 import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner;
@@ -712,6 +713,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   private void initializeBanners() {
     List<Banner<?>> bannerRepositories = List.of(
+        new DeprecatedSdkBanner(),
         new DeprecatedBuildBanner(),
         new UnauthorizedBanner(requireContext()),
         new ServiceOutageBanner(requireContext()),
