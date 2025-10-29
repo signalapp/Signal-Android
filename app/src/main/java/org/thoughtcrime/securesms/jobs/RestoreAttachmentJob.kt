@@ -468,6 +468,8 @@ class RestoreAttachmentJob private constructor(
       SignalDatabase.attachments.clearIncrementalMacsForAttachmentAndAnyDuplicates(attachmentId, attachment.remoteKey, attachment.dataHash)
       markFailed(attachmentId)
     }
+
+    attachmentFile.delete()
   }
 
   private fun markFailed(attachmentId: AttachmentId) {
