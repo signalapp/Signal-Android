@@ -586,7 +586,8 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowBackupSchedulePermissionMegaphone(@NonNull Context context) {
-    return SignalStore.account().isPrimaryDevice() && Build.VERSION.SDK_INT >= 31 && SignalStore.settings().isBackupEnabled() && !ServiceUtil.getAlarmManager(context).canScheduleExactAlarms();
+    boolean backupsEnabled = SignalStore.settings().isBackupEnabled() || SignalStore.backup().getAreBackupsEnabled();
+    return SignalStore.account().isPrimaryDevice() && Build.VERSION.SDK_INT >= 31 && backupsEnabled && !ServiceUtil.getAlarmManager(context).canScheduleExactAlarms();
   }
 
   /**
