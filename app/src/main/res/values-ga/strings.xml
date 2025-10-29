@@ -8984,11 +8984,11 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Eochair athshlánaithe</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Cód 64 digit is ea d\'eochair athshlánaithe a bheith de dhíth ort chun do chúltaca a aischur.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Cód 64 digit is ea d\'eochair athshlánaithe agus beidh an eochair sin de dhíth ort chun do chúltaca a aischur.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Store your recovery key somewhere safe like a secure password manager, and don’t share it with anyone.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Stóráil d\'eochair athshlánaithe in áit shlán shábháilte, amhail bainisteoir pasfhocal, agus ná chomhroinn le duine ar bith í.</string>
     <!-- Screen body part 3 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">If you lose it, you won’t be able to recover your messages.</string>
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Má chailleann tú í, ní bheidh tú in ann do theachtaireachtaí a athshlánú.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Féach ar an eochair athshlánaithe</string>
 
@@ -9397,13 +9397,13 @@
         <item quantity="other">%1$d Vóta</item>
     </plurals>
     <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
-    <string name="Poll__poll_winner">Winner</string>
+    <string name="Poll__poll_winner">Buaiteoir</string>
     <!-- Text that when pressed will end the poll   -->
     <string name="Poll__end_poll">Cuir deireadh leis an suirbhé</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
     <string name="Poll__see_all">Féach ar gach rud</string>
     <!-- Dialog title when a poll fails to end -->
-    <string name="Poll__couldnt_end_poll">Couldn\'t end poll</string>
+    <string name="Poll__couldnt_end_poll">Níorbh fhéidir deireadh a chur leis an suirbhé</string>
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">Seiceáil do nasc agus triail arís.</string>
     <!-- Header when creating a new poll -->
@@ -9429,73 +9429,73 @@
 
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
-    <string name="CallQualityIssue__audio_issue">Audio issue</string>
+    <string name="CallQualityIssue__audio_issue">Fadhb leis an bhfuaim</string>
     <!-- Label for general video issue category -->
-    <string name="CallQualityIssue__video_issue">Video issue</string>
+    <string name="CallQualityIssue__video_issue">Fadhb leis an bhfíseán</string>
     <!-- Label for call dropped issue -->
-    <string name="CallQualityIssue__call_droppped">Call dropped</string>
+    <string name="CallQualityIssue__call_droppped">Dhícheangail an glao</string>
     <!-- Label for other/custom issues not covered by predefined categories -->
     <string name="CallQualityIssue__something_else">Rud éigin eile</string>
     <!-- Label for audio stuttering/choppy audio issue -->
-    <string name="CallQualityIssue__audio_stuttering">Audio stuttering</string>
+    <string name="CallQualityIssue__audio_stuttering">Stadaireacht fuaime</string>
     <!-- Label for audio cutting out/dropping issue -->
-    <string name="CallQualityIssue__audio_cut_out">Audio cut out</string>
+    <string name="CallQualityIssue__audio_cut_out">Stop fuaime</string>
     <!-- Label for echo heard by the user -->
-    <string name="CallQualityIssue__i_heard_echo">I heard echo</string>
+    <string name="CallQualityIssue__i_heard_echo">Chuala mé macalla</string>
     <!-- Label for echo heard by other call participants -->
-    <string name="CallQualityIssue__others_heard_echo">Others heard echo</string>
+    <string name="CallQualityIssue__others_heard_echo">Chuala daoine eile macalla</string>
     <!-- Label for poor video quality issue -->
-    <string name="CallQualityIssue__poor_video_quality">Poor video quality</string>
+    <string name="CallQualityIssue__poor_video_quality">Droch-chaighdeán físe</string>
     <!-- Label for low video resolution issue -->
-    <string name="CallQualityIssue__low_resolution">Low resolution</string>
+    <string name="CallQualityIssue__low_resolution">Ísealtaifeach</string>
     <!-- Label for camera malfunction issue -->
-    <string name="CallQualityIssue__camera_did_not_work">Camera didn\'t work</string>
+    <string name="CallQualityIssue__camera_did_not_work">Níor oibrigh an ceamara</string>
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
     <string name="CallQualitySomethingElseScreen__title">Rud éigin eile</string>
     <!-- Label for text field where user describes their call quality issue -->
-    <string name="CallQualitySomethingElseScreen__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Déan cur síos ar an bhfadhb</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
-    <string name="CallQualitySomethingElseScreen__privacy_notice">Please include any details relevant to the issue. Anything you share here will be kept private and will only be used to help improve calls in Signal.</string>
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Cuir aon sonraí a bhaineann leis an bhfadhb san áireamh. Coinneofar aon rud a chomhroinneann tú anseo príobháideach agus ní úsáidfear é ach chun cabhrú le glaonna in Signal a fheabhsú.</string>
     <!-- Button to save the call quality issue description -->
     <string name="CallQualitySomethingElseScreen__save">Sábháil</string>
     <!-- Content description for the back navigation button -->
-    <string name="CallQualitySomethingElseScreen__back">Ar Ais</string>
+    <string name="CallQualitySomethingElseScreen__back">Ar ais</string>
 
     <!-- CallQualitySheet -->
     <!-- Title asking user how their call was -->
-    <string name="CallQualitySheet__how_was_your_call">How was your call?</string>
+    <string name="CallQualitySheet__how_was_your_call">Cén chaoi a raibh do ghlao?</string>
     <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
-    <string name="CallQualitySheet__how_was_your_call_subtitle">This helps us improve calls in Signal. No personally identifiable information will be stored.</string>
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Cabhraíonn sé seo linn glaonna in Signal a fheabhsú. Ní stórálfar aon fhaisnéis phearsanta inaitheanta.</string>
     <!-- Button label indicating the call had issues -->
-    <string name="CallQualitySheet__had_issues">Had issues</string>
+    <string name="CallQualitySheet__had_issues">Bhí fadhbanna ann</string>
     <!-- Button label indicating the call was great -->
-    <string name="CallQualitySheet__great">Great</string>
+    <string name="CallQualitySheet__great">Iontach</string>
     <!-- Title asking what issues the user experienced -->
-    <string name="CallQualitySheet__what_issues_did_you_have">What issues did you have?</string>
+    <string name="CallQualitySheet__what_issues_did_you_have">Cad iad na fadhbanna a bhí agat?</string>
     <!-- Instruction to select all applicable issues -->
-    <string name="CallQualitySheet__select_all_that_apply">Select all that apply</string>
+    <string name="CallQualitySheet__select_all_that_apply">Roghnaigh gach ceann is infheidhme</string>
     <!-- Placeholder text for describing a custom issue -->
-    <string name="CallQualitySheet__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySheet__describe_your_issue">Déan cur síos ar an bhfadhb</string>
     <!-- Button to continue to the next step -->
     <string name="CallQualitySheet__continue">Ar aghaidh</string>
     <!-- Title asking user to help improve Signal -->
-    <string name="CallQualitySheet__help_us_improve">Help us improve</string>
+    <string name="CallQualitySheet__help_us_improve">Cabhraigh linn feabhsú</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Sending us your diagnostics info helps us improve call quality. You can </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Má sheolann tú d\'fhaisnéis dhiagnóiseach chugainn, cabhrófar linn caighdeán na nglaonna a fheabhsú. Is féidir leat </string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">view your debug log</string>
+    <string name="CallQualitySheet__view_your_debug_log">féachaint ar do loga dífhabhtaithe</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> sula gcuireann tú an fhaisnéis isteach</string>
     <!-- Toggle label for sharing debug log -->
-    <string name="CallQualitySheet__share_debug_log">Share debug log</string>
+    <string name="CallQualitySheet__share_debug_log">Comhroinn an loga dífhabhtaithe</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
-    <string name="CallQualitySheet__debug_log_privacy_notice">Debug logs contain low level app information and do not reveal any of your message contents.</string>
+    <string name="CallQualitySheet__debug_log_privacy_notice">Bíonn faisnéis íseal-leibhéil aipe i logaí dífhabhtaithe agus ní nochtar inneachar aon cheann de do theachtaireachtaí iontu.</string>
     <!-- Button to submit the call quality feedback -->
     <string name="CallQualitySheet__submit">Seol isteach é</string>
     <!-- Displayed as a snackbar after submitting feedback -->
-    <string name="CallQualitySheet__thanks_for_your_feedback">Thanks for your feedback!</string>
+    <string name="CallQualitySheet__thanks_for_your_feedback">Go raibh maith agat as d\'aiseolas!</string>
 
     <!-- EOF -->
 </resources>

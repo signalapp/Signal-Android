@@ -9168,9 +9168,9 @@
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">مفتاح الاستعادة هو عبارة عن كود مُكوَّن من 64 رمزًا، وتحتاجه لاستعادة نسختك الاحتياطية.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Store your recovery key somewhere safe like a secure password manager, and don’t share it with anyone.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">احتفِظ بمفتاح الاستعادة الخاص بك في مكانٍ آمن مثل تطبيق إدارة كلمات المرور، ولا تشاركه مع أي أحد.</string>
     <!-- Screen body part 3 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">If you lose it, you won’t be able to recover your messages.</string>
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">إذا فقدته، فلن تتمكَّن من استعادة رسائلك.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">عرض مفتاح الاستعادة</string>
 
@@ -9584,13 +9584,13 @@
         <item quantity="other">%1$d صوت</item>
     </plurals>
     <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
-    <string name="Poll__poll_winner">Winner</string>
+    <string name="Poll__poll_winner">الفائز</string>
     <!-- Text that when pressed will end the poll   -->
     <string name="Poll__end_poll">إنهاء الاستطلاع</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
     <string name="Poll__see_all">مشاهدة الكل</string>
     <!-- Dialog title when a poll fails to end -->
-    <string name="Poll__couldnt_end_poll">Couldn\'t end poll</string>
+    <string name="Poll__couldnt_end_poll">تعذَّر إنهاء الاستطلاع.</string>
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">تحقّق من اتصالك بالشبكة ثم حاوِل مرّة أخرى.</string>
     <!-- Header when creating a new poll -->
@@ -9616,35 +9616,35 @@
 
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
-    <string name="CallQualityIssue__audio_issue">Audio issue</string>
+    <string name="CallQualityIssue__audio_issue">مشكلة في الصوت</string>
     <!-- Label for general video issue category -->
-    <string name="CallQualityIssue__video_issue">Video issue</string>
+    <string name="CallQualityIssue__video_issue">مشكلة في الفيديو</string>
     <!-- Label for call dropped issue -->
-    <string name="CallQualityIssue__call_droppped">Call dropped</string>
+    <string name="CallQualityIssue__call_droppped">انقطعت المكالمة</string>
     <!-- Label for other/custom issues not covered by predefined categories -->
     <string name="CallQualityIssue__something_else">شيء آخر</string>
     <!-- Label for audio stuttering/choppy audio issue -->
-    <string name="CallQualityIssue__audio_stuttering">Audio stuttering</string>
+    <string name="CallQualityIssue__audio_stuttering">تقطَّع الصوت</string>
     <!-- Label for audio cutting out/dropping issue -->
-    <string name="CallQualityIssue__audio_cut_out">Audio cut out</string>
+    <string name="CallQualityIssue__audio_cut_out">انقطاع الصوت</string>
     <!-- Label for echo heard by the user -->
-    <string name="CallQualityIssue__i_heard_echo">I heard echo</string>
+    <string name="CallQualityIssue__i_heard_echo">أسمع صدى</string>
     <!-- Label for echo heard by other call participants -->
-    <string name="CallQualityIssue__others_heard_echo">Others heard echo</string>
+    <string name="CallQualityIssue__others_heard_echo">سمع الآخرون صدى</string>
     <!-- Label for poor video quality issue -->
-    <string name="CallQualityIssue__poor_video_quality">Poor video quality</string>
+    <string name="CallQualityIssue__poor_video_quality">جودة الفيديو رديئة</string>
     <!-- Label for low video resolution issue -->
-    <string name="CallQualityIssue__low_resolution">Low resolution</string>
+    <string name="CallQualityIssue__low_resolution">دقة منخفضة</string>
     <!-- Label for camera malfunction issue -->
-    <string name="CallQualityIssue__camera_did_not_work">Camera didn\'t work</string>
+    <string name="CallQualityIssue__camera_did_not_work">لم تعمل الكاميرا</string>
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
     <string name="CallQualitySomethingElseScreen__title">شيء آخر</string>
     <!-- Label for text field where user describes their call quality issue -->
-    <string name="CallQualitySomethingElseScreen__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">صِف مشكلتك</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
-    <string name="CallQualitySomethingElseScreen__privacy_notice">Please include any details relevant to the issue. Anything you share here will be kept private and will only be used to help improve calls in Signal.</string>
+    <string name="CallQualitySomethingElseScreen__privacy_notice">يُرجى مشاركة كافة التفاصيل المتعلقة بالمشكلة. ستظل جميع المعلومات التي تشاركها هنا سرية، وسَتُستخدَم لتحسين مكالمات سيجنال فقط.</string>
     <!-- Button to save the call quality issue description -->
     <string name="CallQualitySomethingElseScreen__save">حفظ</string>
     <!-- Content description for the back navigation button -->
@@ -9652,37 +9652,37 @@
 
     <!-- CallQualitySheet -->
     <!-- Title asking user how their call was -->
-    <string name="CallQualitySheet__how_was_your_call">How was your call?</string>
+    <string name="CallQualitySheet__how_was_your_call">كيف كانت مكالمتك؟</string>
     <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
-    <string name="CallQualitySheet__how_was_your_call_subtitle">This helps us improve calls in Signal. No personally identifiable information will be stored.</string>
+    <string name="CallQualitySheet__how_was_your_call_subtitle">يساعدنا هذا على تحسين مكالمات سيجنال. لن يتم تخزين أي معلومات تعريف شخصية.</string>
     <!-- Button label indicating the call had issues -->
-    <string name="CallQualitySheet__had_issues">Had issues</string>
+    <string name="CallQualitySheet__had_issues">واجهت مشاكل</string>
     <!-- Button label indicating the call was great -->
-    <string name="CallQualitySheet__great">Great</string>
+    <string name="CallQualitySheet__great">رائع</string>
     <!-- Title asking what issues the user experienced -->
-    <string name="CallQualitySheet__what_issues_did_you_have">What issues did you have?</string>
+    <string name="CallQualitySheet__what_issues_did_you_have">ما هي المشاكل التي واجهتك؟</string>
     <!-- Instruction to select all applicable issues -->
-    <string name="CallQualitySheet__select_all_that_apply">Select all that apply</string>
+    <string name="CallQualitySheet__select_all_that_apply">حدِّد كل ما ينطبق</string>
     <!-- Placeholder text for describing a custom issue -->
-    <string name="CallQualitySheet__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySheet__describe_your_issue">صِف مشكلتك</string>
     <!-- Button to continue to the next step -->
     <string name="CallQualitySheet__continue">متابعة</string>
     <!-- Title asking user to help improve Signal -->
-    <string name="CallQualitySheet__help_us_improve">Help us improve</string>
+    <string name="CallQualitySheet__help_us_improve">ساعدنا على التحسُّن</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Sending us your diagnostics info helps us improve call quality. You can </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">تساعدنا مشاركتك لمعلومات التشخيص الخاصة بك على تحسين جودة المكالمات. يُمكنك </string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">view your debug log</string>
+    <string name="CallQualitySheet__view_your_debug_log">إلقاء نظرة على سِجل الأخطاء الخاص بك</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> قبل الإرسال</string>
     <!-- Toggle label for sharing debug log -->
-    <string name="CallQualitySheet__share_debug_log">Share debug log</string>
+    <string name="CallQualitySheet__share_debug_log">مشاركة سجل الأخطاء</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
     <string name="CallQualitySheet__debug_log_privacy_notice">تحتوي سجلات الأخطاء على معلومات التطبيق منخفضة المستوى ولا تكشف عن أي من محتويات رسالتك.</string>
     <!-- Button to submit the call quality feedback -->
     <string name="CallQualitySheet__submit">تقديم</string>
     <!-- Displayed as a snackbar after submitting feedback -->
-    <string name="CallQualitySheet__thanks_for_your_feedback">Thanks for your feedback!</string>
+    <string name="CallQualitySheet__thanks_for_your_feedback">شكرًا على ملاحظاتك!</string>
 
     <!-- EOF -->
 </resources>

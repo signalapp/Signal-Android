@@ -8258,9 +8258,9 @@
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Kunci pemulihan adalah kode 64 karakter yang diperlukan untuk memulihkan data cadangan.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Store your recovery key somewhere safe like a secure password manager, and don’t share it with anyone.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Simpan kunci pemulihan di tempat yang aman seperti pengelola kata sandi tepercaya dan jangan bagikan dengan siapa pun.</string>
     <!-- Screen body part 3 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">If you lose it, you won’t be able to recover your messages.</string>
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Jika Anda kehilangan kunci pemulihan, arsip pesan tak bisa dipulihkan.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Lihat kunci pemulihan</string>
 
@@ -8649,13 +8649,13 @@
         <item quantity="other">%1$d suara</item>
     </plurals>
     <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
-    <string name="Poll__poll_winner">Winner</string>
+    <string name="Poll__poll_winner">Pemenang</string>
     <!-- Text that when pressed will end the poll   -->
     <string name="Poll__end_poll">Akhiri polling</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
     <string name="Poll__see_all">Lihat semua</string>
     <!-- Dialog title when a poll fails to end -->
-    <string name="Poll__couldnt_end_poll">Couldn\'t end poll</string>
+    <string name="Poll__couldnt_end_poll">Tidak dapat mengakhiri polling</string>
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">Periksa koneksi Anda dan coba lagi.</string>
     <!-- Header when creating a new poll -->
@@ -8681,35 +8681,35 @@
 
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
-    <string name="CallQualityIssue__audio_issue">Audio issue</string>
+    <string name="CallQualityIssue__audio_issue">Masalah audio</string>
     <!-- Label for general video issue category -->
-    <string name="CallQualityIssue__video_issue">Video issue</string>
+    <string name="CallQualityIssue__video_issue">Masalah video</string>
     <!-- Label for call dropped issue -->
-    <string name="CallQualityIssue__call_droppped">Call dropped</string>
+    <string name="CallQualityIssue__call_droppped">Panggilan terputus</string>
     <!-- Label for other/custom issues not covered by predefined categories -->
     <string name="CallQualityIssue__something_else">Lainnya</string>
     <!-- Label for audio stuttering/choppy audio issue -->
-    <string name="CallQualityIssue__audio_stuttering">Audio stuttering</string>
+    <string name="CallQualityIssue__audio_stuttering">Audio putus-putus</string>
     <!-- Label for audio cutting out/dropping issue -->
-    <string name="CallQualityIssue__audio_cut_out">Audio cut out</string>
+    <string name="CallQualityIssue__audio_cut_out">Audio terpotong</string>
     <!-- Label for echo heard by the user -->
-    <string name="CallQualityIssue__i_heard_echo">I heard echo</string>
+    <string name="CallQualityIssue__i_heard_echo">Saya mendengar gema</string>
     <!-- Label for echo heard by other call participants -->
-    <string name="CallQualityIssue__others_heard_echo">Others heard echo</string>
+    <string name="CallQualityIssue__others_heard_echo">Orang lain mendengar gema</string>
     <!-- Label for poor video quality issue -->
-    <string name="CallQualityIssue__poor_video_quality">Poor video quality</string>
+    <string name="CallQualityIssue__poor_video_quality">Kualitas video buruk</string>
     <!-- Label for low video resolution issue -->
-    <string name="CallQualityIssue__low_resolution">Low resolution</string>
+    <string name="CallQualityIssue__low_resolution">Resolusi rendah</string>
     <!-- Label for camera malfunction issue -->
-    <string name="CallQualityIssue__camera_did_not_work">Camera didn\'t work</string>
+    <string name="CallQualityIssue__camera_did_not_work">Kamera tidak berfungsi</string>
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
     <string name="CallQualitySomethingElseScreen__title">Lainnya</string>
     <!-- Label for text field where user describes their call quality issue -->
-    <string name="CallQualitySomethingElseScreen__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Jelaskan masalah yang Anda alami</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
-    <string name="CallQualitySomethingElseScreen__privacy_notice">Please include any details relevant to the issue. Anything you share here will be kept private and will only be used to help improve calls in Signal.</string>
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Harap sertakan detail apa pun yang terkait dengan masalah ini. Informasi apa pun yang Anda bagikan akan dijaga kerahasiaannya dan hanya akan digunakan untuk meningkatkan kualitas panggilan di Signal.</string>
     <!-- Button to save the call quality issue description -->
     <string name="CallQualitySomethingElseScreen__save">Simpan</string>
     <!-- Content description for the back navigation button -->
@@ -8717,37 +8717,37 @@
 
     <!-- CallQualitySheet -->
     <!-- Title asking user how their call was -->
-    <string name="CallQualitySheet__how_was_your_call">How was your call?</string>
+    <string name="CallQualitySheet__how_was_your_call">Bagaimana kualitas panggilan Anda?</string>
     <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
-    <string name="CallQualitySheet__how_was_your_call_subtitle">This helps us improve calls in Signal. No personally identifiable information will be stored.</string>
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Ini membantu kami meningkatkan kualitas panggilan di Signal. Tidak ada informasi identifikasi pribadi yang akan disimpan.</string>
     <!-- Button label indicating the call had issues -->
-    <string name="CallQualitySheet__had_issues">Had issues</string>
+    <string name="CallQualitySheet__had_issues">Ada masalah</string>
     <!-- Button label indicating the call was great -->
-    <string name="CallQualitySheet__great">Great</string>
+    <string name="CallQualitySheet__great">Bagus</string>
     <!-- Title asking what issues the user experienced -->
-    <string name="CallQualitySheet__what_issues_did_you_have">What issues did you have?</string>
+    <string name="CallQualitySheet__what_issues_did_you_have">Masalah apa yang Anda alami?</string>
     <!-- Instruction to select all applicable issues -->
-    <string name="CallQualitySheet__select_all_that_apply">Select all that apply</string>
+    <string name="CallQualitySheet__select_all_that_apply">Pilih semua yang berlaku</string>
     <!-- Placeholder text for describing a custom issue -->
-    <string name="CallQualitySheet__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySheet__describe_your_issue">Jelaskan masalah yang Anda alami</string>
     <!-- Button to continue to the next step -->
     <string name="CallQualitySheet__continue">Lanjutkan</string>
     <!-- Title asking user to help improve Signal -->
-    <string name="CallQualitySheet__help_us_improve">Help us improve</string>
+    <string name="CallQualitySheet__help_us_improve">Bantu kami meningkatkan kualitas</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Sending us your diagnostics info helps us improve call quality. You can </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Kirimkan info diagnostik untuk membantu kami meningkatkan kualitas panggilan. Anda dapat </string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">view your debug log</string>
+    <string name="CallQualitySheet__view_your_debug_log">melihat catatan debug</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> sebelum mengirim</string>
     <!-- Toggle label for sharing debug log -->
-    <string name="CallQualitySheet__share_debug_log">Share debug log</string>
+    <string name="CallQualitySheet__share_debug_log">Bagikan catatan debug</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
     <string name="CallQualitySheet__debug_log_privacy_notice">Catatan debug berisi informasi aplikasi tingkat rendah dan tidak mengungkapkan isi pesan Anda.</string>
     <!-- Button to submit the call quality feedback -->
     <string name="CallQualitySheet__submit">Kirimkan</string>
     <!-- Displayed as a snackbar after submitting feedback -->
-    <string name="CallQualitySheet__thanks_for_your_feedback">Thanks for your feedback!</string>
+    <string name="CallQualitySheet__thanks_for_your_feedback">Terima kasih atas masukannya!</string>
 
     <!-- EOF -->
 </resources>

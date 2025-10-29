@@ -6416,7 +6416,7 @@
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Meldingen doorlaten</string>
     <!-- Description of what the user should be doing with this screen -->
-    <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Voeg mensen en groepen toe waarvan je meldingen wilt ontvangen terwijl dit meldingsprofiel actief is</string>
+    <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Voeg mensen en groepen toe waarvan je meldingen wilt ontvangen wanneer dit meldingsprofiel actief is</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">Personen of groepen toevoegen</string>
     <!-- Title for exceptions section of add people to notification profile screen in create flow -->
@@ -8440,9 +8440,9 @@
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Je herstelsleutel is een code van 64 tekens die je nodig hebt om je back-upgegevens terug te zetten.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Store your recovery key somewhere safe like a secure password manager, and don’t share it with anyone.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Bewaar je herstelsleutel op een veilige manier, bijvoorbeeld in een beveiligde wachtwoordmanager, en deel deze niet met anderen.</string>
     <!-- Screen body part 3 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">If you lose it, you won’t be able to recover your messages.</string>
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Als je de herstelsleutel kwijtraakt, kun je je berichten niet meer herstellen.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Herstelsleutel weergeven</string>
 
@@ -8836,15 +8836,15 @@
         <item quantity="other">%1$d stemmen</item>
     </plurals>
     <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
-    <string name="Poll__poll_winner">Winner</string>
+    <string name="Poll__poll_winner">Meeste stemmen</string>
     <!-- Text that when pressed will end the poll   -->
     <string name="Poll__end_poll">Peiling beëindigen</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
     <string name="Poll__see_all">Alles weergeven</string>
     <!-- Dialog title when a poll fails to end -->
-    <string name="Poll__couldnt_end_poll">Couldn\'t end poll</string>
+    <string name="Poll__couldnt_end_poll">Peiling kon niet worden beëindigd</string>
     <!-- Dialog body when a poll fails to end and to try again -->
-    <string name="Poll__check_connection">Controleer of je internetverbinding en probeer opnieuw.</string>
+    <string name="Poll__check_connection">Controleer je internetverbinding en probeer het opnieuw.</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">Nieuwe peiling</string>
     <!-- Section text to enter in a question for a poll  -->
@@ -8868,35 +8868,35 @@
 
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
-    <string name="CallQualityIssue__audio_issue">Audio issue</string>
+    <string name="CallQualityIssue__audio_issue">Audioprobleem</string>
     <!-- Label for general video issue category -->
-    <string name="CallQualityIssue__video_issue">Video issue</string>
+    <string name="CallQualityIssue__video_issue">Videoprobleem</string>
     <!-- Label for call dropped issue -->
-    <string name="CallQualityIssue__call_droppped">Call dropped</string>
+    <string name="CallQualityIssue__call_droppped">Oproep werd verbroken</string>
     <!-- Label for other/custom issues not covered by predefined categories -->
     <string name="CallQualityIssue__something_else">Iets anders</string>
     <!-- Label for audio stuttering/choppy audio issue -->
-    <string name="CallQualityIssue__audio_stuttering">Audio stuttering</string>
+    <string name="CallQualityIssue__audio_stuttering">Audio haperde</string>
     <!-- Label for audio cutting out/dropping issue -->
-    <string name="CallQualityIssue__audio_cut_out">Audio cut out</string>
+    <string name="CallQualityIssue__audio_cut_out">Audio viel weg</string>
     <!-- Label for echo heard by the user -->
-    <string name="CallQualityIssue__i_heard_echo">I heard echo</string>
+    <string name="CallQualityIssue__i_heard_echo">Ik hoorde een echo</string>
     <!-- Label for echo heard by other call participants -->
-    <string name="CallQualityIssue__others_heard_echo">Others heard echo</string>
+    <string name="CallQualityIssue__others_heard_echo">Anderen hoorden een echo</string>
     <!-- Label for poor video quality issue -->
-    <string name="CallQualityIssue__poor_video_quality">Poor video quality</string>
+    <string name="CallQualityIssue__poor_video_quality">Slechte videokwaliteit</string>
     <!-- Label for low video resolution issue -->
-    <string name="CallQualityIssue__low_resolution">Low resolution</string>
+    <string name="CallQualityIssue__low_resolution">Lage resolutie</string>
     <!-- Label for camera malfunction issue -->
-    <string name="CallQualityIssue__camera_did_not_work">Camera didn\'t work</string>
+    <string name="CallQualityIssue__camera_did_not_work">Camera werkte niet</string>
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
     <string name="CallQualitySomethingElseScreen__title">Iets anders</string>
     <!-- Label for text field where user describes their call quality issue -->
-    <string name="CallQualitySomethingElseScreen__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Beschrijf het probleem</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
-    <string name="CallQualitySomethingElseScreen__privacy_notice">Please include any details relevant to the issue. Anything you share here will be kept private and will only be used to help improve calls in Signal.</string>
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Vermeld alle details die relevant zijn voor het probleem. Alles wat je hier deelt, blijft vertrouwelijk en wordt uitsluitend gebruikt om oproepen in Signal te verbeteren.</string>
     <!-- Button to save the call quality issue description -->
     <string name="CallQualitySomethingElseScreen__save">Opslaan</string>
     <!-- Content description for the back navigation button -->
@@ -8904,37 +8904,37 @@
 
     <!-- CallQualitySheet -->
     <!-- Title asking user how their call was -->
-    <string name="CallQualitySheet__how_was_your_call">How was your call?</string>
+    <string name="CallQualitySheet__how_was_your_call">Hoe ging je oproep?</string>
     <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
-    <string name="CallQualitySheet__how_was_your_call_subtitle">This helps us improve calls in Signal. No personally identifiable information will be stored.</string>
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Dit helpt ons om oproepen in Signal te verbeteren. Er worden geen persoonsgegevens opgeslagen.</string>
     <!-- Button label indicating the call had issues -->
-    <string name="CallQualitySheet__had_issues">Had issues</string>
+    <string name="CallQualitySheet__had_issues">Ik had problemen</string>
     <!-- Button label indicating the call was great -->
-    <string name="CallQualitySheet__great">Great</string>
+    <string name="CallQualitySheet__great">Goed</string>
     <!-- Title asking what issues the user experienced -->
-    <string name="CallQualitySheet__what_issues_did_you_have">What issues did you have?</string>
+    <string name="CallQualitySheet__what_issues_did_you_have">Wat ging er niet goed?</string>
     <!-- Instruction to select all applicable issues -->
-    <string name="CallQualitySheet__select_all_that_apply">Select all that apply</string>
+    <string name="CallQualitySheet__select_all_that_apply">Selecteer alles wat van toepassing is</string>
     <!-- Placeholder text for describing a custom issue -->
-    <string name="CallQualitySheet__describe_your_issue">Describe your issue</string>
+    <string name="CallQualitySheet__describe_your_issue">Beschrijf het probleem</string>
     <!-- Button to continue to the next step -->
     <string name="CallQualitySheet__continue">Doorgaan</string>
     <!-- Title asking user to help improve Signal -->
-    <string name="CallQualitySheet__help_us_improve">Help us improve</string>
+    <string name="CallQualitySheet__help_us_improve">Help ons te verbeteren</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Sending us your diagnostics info helps us improve call quality. You can </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Als je je diagnostische gegevens deelt, kunnen we de oproepkwaliteit verbeteren. Je kunt </string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">view your debug log</string>
+    <string name="CallQualitySheet__view_your_debug_log">je foutopsporingslog bekijken</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> voordat je het indient</string>
     <!-- Toggle label for sharing debug log -->
-    <string name="CallQualitySheet__share_debug_log">Share debug log</string>
+    <string name="CallQualitySheet__share_debug_log">Foutopsporingslog delen</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
-    <string name="CallQualitySheet__debug_log_privacy_notice">Debug logs contain low level app information and do not reveal any of your message contents.</string>
+    <string name="CallQualitySheet__debug_log_privacy_notice">Foutopsporingslogs bevatten app-informatie op een laag niveau en geven geen informatie over de inhoud van je berichten.</string>
     <!-- Button to submit the call quality feedback -->
-    <string name="CallQualitySheet__submit">Uploaden</string>
+    <string name="CallQualitySheet__submit">Indienen</string>
     <!-- Displayed as a snackbar after submitting feedback -->
-    <string name="CallQualitySheet__thanks_for_your_feedback">Thanks for your feedback!</string>
+    <string name="CallQualitySheet__thanks_for_your_feedback">Bedankt voor je feedback!</string>
 
     <!-- EOF -->
 </resources>

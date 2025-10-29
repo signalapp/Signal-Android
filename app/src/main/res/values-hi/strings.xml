@@ -3711,8 +3711,8 @@
     <string name="EditAboutFragment_be_kind">विनम्र रहें</string>
     <string name="EditAboutFragment_coffee_lover">कॉफ़ी पसंद है</string>
     <string name="EditAboutFragment_free_to_chat">चैट करने के लिए हाज़िर</string>
-    <string name="EditAboutFragment_taking_a_break">ब्रेक लेना है</string>
-    <string name="EditAboutFragment_working_on_something_new">किसी नई चीज़ पर काम करना है</string>
+    <string name="EditAboutFragment_taking_a_break">ब्रेक पर हैं</string>
+    <string name="EditAboutFragment_working_on_something_new">किसी नई चीज़ पर काम कर रहे हैं</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">ग्रुप एडिट करें</string>
@@ -8624,7 +8624,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">अभी रीस्टोर नहीं करना है?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">अगर आपने अभी रीस्टोर नहीं किया, तो आपके पास बाद में रीस्टोर करने का विकल्प नहीं रहेगा। अभी रीस्टोर नहीं करने बाद, अगर आपने बाद में बैकअप फिर से चालू किया, तो आपके पुराने बैकअप को नई चैट हिस्ट्री से बदल दिया जाएगा।</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">अगर आपने अभी रीस्टोर नहीं किया, तो आपके पास बाद में रीस्टोर करने का विकल्प नहीं रहेगा। अगर आपने अभी रीस्टोर नहीं किया और बाद में बैकअप फिर से चालू किया, तो आपके पुराने बैकअप को नई चैट हिस्ट्री से बदल दिया जाएगा।</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">रीस्टोर करना छोड़ें</string>
 
