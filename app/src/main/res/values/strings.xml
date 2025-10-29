@@ -7767,7 +7767,7 @@
     <string name="TurnOnSignalBackups__turn_on">Turn on</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Not now</string>
-    <!-- Text for a "toast" that pops up at the bottom of the user's screen after they respond "not now" to a prompt asking them to enable backups -->
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
     <string name="TurnOnSignalBackups__toast_not_now">You can enable backups in \"Settings\"</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
