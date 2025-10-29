@@ -824,6 +824,7 @@ message Poll {
   bool allowMultiple = 2;
   repeated PollOption options = 3; // At least two
   bool hasEnded = 4;
+  repeated Reaction reactions = 5;
 }
 
 message ChatUpdateMessage {

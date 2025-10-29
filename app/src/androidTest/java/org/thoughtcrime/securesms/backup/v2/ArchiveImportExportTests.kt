@@ -212,6 +212,11 @@ class ArchiveImportExportTests {
   }
 
 //  @Test
+  fun chatItemPoll() {
+    runTests { it.startsWith("chat_item_poll_") }
+  }
+
+//  @Test
   fun notificationProfiles() {
     runTests { it.startsWith("notification_profile_") }
   }

@@ -607,7 +607,7 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   /**
    * Maps message ids to its associated poll (if it exists)
    */
-  fun getPollsForMessages(messageIds: Collection<Long>): Map<Long, PollRecord> {
+  fun getPollsForMessages(messageIds: Collection<Long>, includePending: Boolean = true): Map<Long, PollRecord> {
     if (messageIds.isEmpty() || !Recipient.isSelfSet) {
       return emptyMap()
     }
@@ -625,9 +625,9 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         val (pendingAdds, pendingRemoves) = getPendingVotes(pollId)
         val pollOptions = getPollOptions(pollId).map { option ->
           val voters = pollVotes[option.key] ?: emptyList()
-          val voteState = if (pendingAdds.contains(option.key)) {
+          val voteState = if (includePending && pendingAdds.contains(option.key)) {
             VoteState.PENDING_ADD
-          } else if (pendingRemoves.contains(option.key)) {
+          } else if (includePending && pendingRemoves.contains(option.key)) {
             VoteState.PENDING_REMOVE
           } else if (voters.any { it.id == self }) {
             VoteState.ADDED

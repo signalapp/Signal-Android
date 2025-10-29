@@ -693,6 +693,7 @@ class ChatItemArchiveImporter(
       this.stickerMessage != null -> this.stickerMessage.reactions
       this.viewOnceMessage != null -> this.viewOnceMessage.reactions
       this.directStoryReplyMessage != null -> this.directStoryReplyMessage.reactions
+      this.poll != null -> this.poll.reactions
       else -> emptyList()
     }
 

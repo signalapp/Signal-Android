@@ -120,6 +120,8 @@ import kotlin.time.Duration.Companion.seconds
 object DataMessageProcessor {
 
   private const val BODY_RANGE_PROCESSING_LIMIT = 250
+  private const val POLL_CHARACTER_LIMIT = 100
+  private const val POLL_OPTIONS_LIMIT = 10
 
   fun process(
     context: Context,
@@ -1076,6 +1078,16 @@ object DataMessageProcessor {
     val groupRecord = SignalDatabase.groups.getGroup(groupId).orNull()
     if (groupRecord == null || !groupRecord.members.contains(senderRecipient.id)) {
       warn(envelope.timestamp!!, "[handlePollCreate] Poll author is not in the group. author $senderRecipient")
+      return null
+    }
+
+    if (poll.question == null || poll.question!!.isEmpty() || poll.question!!.length > POLL_CHARACTER_LIMIT) {
+      warn(envelope.timestamp!!, "[handlePollCreate] Poll question is invalid.")
+      return null
+    }
+
+    if (poll.options.isEmpty() || poll.options.size > POLL_OPTIONS_LIMIT || poll.options.any { it.isEmpty() || it.length > POLL_CHARACTER_LIMIT }) {
+      warn(envelope.timestamp!!, "[handlePollCreate] Poll option is invalid.")
       return null
     }
 

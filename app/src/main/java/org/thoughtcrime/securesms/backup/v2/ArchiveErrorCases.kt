@@ -123,6 +123,14 @@ object ExportSkips {
     return log(sentTimestamp, "Poll terminate update was empty.")
   }
 
+  fun invalidPollQuestion(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Poll question was invalid.")
+  }
+
+  fun invalidPollOption(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Poll option was invalid.")
+  }
+
   fun individualChatUpdateInWrongTypeOfChat(sentTimestamp: Long): String {
     return log(sentTimestamp, "A chat update that only makes sense for individual chats was found in a different kind of chat.")
   }

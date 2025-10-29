@@ -117,6 +117,8 @@ private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
 private val MAX_INLINED_BODY_SIZE = 128.kibiBytes.bytes.toInt()
 private val MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER = 2.kibiBytes.bytes.toInt()
 private val MAX_INLINED_QUOTE_BODY_SIZE = 2.kibiBytes.bytes.toInt()
+private const val MAX_POLL_CHARACTER_LENGTH = 100
+private const val MAX_POLL_OPTIONS = 10
 
 /**
  * An iterator for chat items with a clever performance twist: rather than do the extra queries one at a time (for reactions,
@@ -386,7 +388,15 @@ class ChatItemArchiveExporter(
 
         extraData.pollsById[record.id] != null -> {
           val poll = extraData.pollsById[record.id]!!
-          builder.poll = poll.toRemotePollMessage()
+          if (poll.question.isEmpty() || poll.question.length > MAX_POLL_CHARACTER_LENGTH) {
+            Log.w(TAG, ExportSkips.invalidPollQuestion(record.dateSent))
+            continue
+          }
+          if (poll.pollOptions.isEmpty() || poll.pollOptions.size > MAX_POLL_OPTIONS || poll.pollOptions.any { it.text.isEmpty() || it.text.length > MAX_POLL_CHARACTER_LENGTH }) {
+            Log.w(TAG, ExportSkips.invalidPollOption(record.dateSent))
+            continue
+          }
+          builder.poll = poll.toRemotePollMessage(reactionRecords = extraData.reactionsById[record.id])
           transformTimer.emit("poll")
         }
 
@@ -492,7 +502,7 @@ class ChatItemArchiveExporter(
 
     val pollsFuture = executor.submitTyped {
       extraDataTimer.timeEvent("polls") {
-        db.pollTable.getPollsForMessages(messageIds)
+        db.pollTable.getPollsForMessages(messageIds = messageIds, includePending = false)
       }
     }
 
@@ -1167,7 +1177,7 @@ private fun BackupMessageRecord.toRemoteGiftBadgeUpdate(): BackupGiftBadge? {
   )
 }
 
-private fun PollRecord.toRemotePollMessage(): Poll {
+private fun PollRecord.toRemotePollMessage(reactionRecords: List<ReactionRecord>?): Poll {
   return Poll(
     question = this.question,
     allowMultiple = this.allowMultipleVotes,
@@ -1182,7 +1192,8 @@ private fun PollRecord.toRemotePollMessage(): Poll {
           )
         }
       )
-    }
+    },
+    reactions = reactionRecords?.toRemote() ?: emptyList()
   )
 }
 
