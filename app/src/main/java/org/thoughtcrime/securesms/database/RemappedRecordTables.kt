@@ -112,6 +112,10 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
       .run()
   }
 
+  fun clearCache() {
+    RemappedRecords.getInstance().resetCache()
+  }
+
   private fun trimInvalidRecipientEntries(db: SQLiteDatabase) {
     val count = db.delete(Recipients.TABLE_NAME)
       .where("$OLD_ID IN (SELECT $ID FROM ${RecipientTable.TABLE_NAME})")
