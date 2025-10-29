@@ -1129,20 +1129,25 @@ object BackupRepository {
     forwardSecrecyToken: BackupForwardSecrecyToken,
     cancellationSignal: () -> Boolean = { false }
   ): ImportResult {
-    val frameReader = if (backupKey == null) {
-      PlainTextBackupReader(inputStreamFactory(), length)
-    } else {
-      EncryptedBackupReader.createForSignalBackup(
-        key = backupKey,
-        aci = selfData.aci,
-        forwardSecrecyToken = forwardSecrecyToken,
-        length = length,
-        dataStream = inputStreamFactory
-      )
-    }
+    try {
+      val frameReader = if (backupKey == null) {
+        PlainTextBackupReader(inputStreamFactory(), length)
+      } else {
+        EncryptedBackupReader.createForSignalBackup(
+          key = backupKey,
+          aci = selfData.aci,
+          forwardSecrecyToken = forwardSecrecyToken,
+          length = length,
+          dataStream = inputStreamFactory
+        )
+      }
 
-    return frameReader.use { reader ->
-      import(reader, selfData, cancellationSignal)
+      return frameReader.use { reader ->
+        import(reader, selfData, cancellationSignal)
+      }
+    } catch (e: IOException) {
+      Log.w(TAG, "Unable to restore signal backup", e)
+      return ImportResult.Failure
     }
   }
 
