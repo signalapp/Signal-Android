@@ -46,7 +46,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   /**
    * Enable or disable the large screen UI.
    */
-  var largeScreenUi by booleanValue(LARGE_SCREEN_UI, true).falseForExternalUsers()
+  var largeScreenUi by booleanValue(LARGE_SCREEN_UI, true).defaultForExternalUsers()
 
   /**
    * Force split-pane mode on compact landscape
