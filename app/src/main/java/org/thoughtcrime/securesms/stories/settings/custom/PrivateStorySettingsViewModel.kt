@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.thoughtcrime.securesms.database.model.DistributionListId
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class PrivateStorySettingsViewModel(private val distributionListId: DistributionListId, private val repository: PrivateStorySettingsRepository) : ViewModel() {
@@ -38,8 +38,8 @@ class PrivateStorySettingsViewModel(private val distributionListId: Distribution
     return store.state.privateStory?.name ?: ""
   }
 
-  fun remove(recipient: Recipient) {
-    disposables += repository.removeMember(store.state.privateStory!!, recipient.id)
+  fun remove(recipientId: RecipientId) {
+    disposables += repository.removeMember(store.state.privateStory!!, recipientId)
       .subscribe {
         refresh()
       }

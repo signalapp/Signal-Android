@@ -2,6 +2,22 @@ package org.thoughtcrime.securesms.stories.settings.custom
 
 import android.view.View
 import android.widget.TextView
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Rows
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
@@ -110,5 +126,33 @@ object PrivateStoryItem {
       itemView.setOnClickListener { model.onClick(model) }
       label.text = if (model.privateStoryItemData.isUnknown) context.getString(R.string.MessageRecord_unknown) else model.privateStoryItemData.name
     }
+  }
+
+  @Composable
+  fun AddViewer(onClick: () -> Unit) {
+    Rows.TextRow(
+      text = {
+        Text(text = stringResource(R.string.PrivateStorySettingsFragment__add_viewer))
+      },
+      icon = {
+        Icon(
+          imageVector = ImageVector.vectorResource(R.drawable.symbol_plus_24),
+          contentDescription = null,
+          modifier = Modifier
+            .size(40.dp)
+            .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = CircleShape)
+            .padding(10.dp)
+        )
+      },
+      onClick = onClick
+    )
+  }
+}
+
+@PreviewLightDark
+@Composable
+private fun AddViewerPreview() {
+  Previews.Preview {
+    PrivateStoryItem.AddViewer {}
   }
 }

@@ -203,7 +203,8 @@ object Dialogs {
     onDismissRequest: () -> Unit = {}
   ) {
     Dialog(
-      onDismissRequest = onDismissRequest
+      onDismissRequest = onDismissRequest,
+      properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
     ) {
       Surface(
         modifier = Modifier.size(100.dp),
