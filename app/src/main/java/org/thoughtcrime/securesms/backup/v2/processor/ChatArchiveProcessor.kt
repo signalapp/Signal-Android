@@ -24,7 +24,7 @@ object ChatArchiveProcessor {
   val TAG = Log.tag(ChatArchiveProcessor::class.java)
 
   fun export(db: SignalDatabase, exportState: ExportState, emitter: BackupFrameEmitter) {
-    db.threadTable.getThreadsForBackup(db, includeImageWallpapers = true).use { reader ->
+    db.threadTable.getThreadsForBackup(db, exportState, includeImageWallpapers = true).use { reader ->
       for (chat in reader) {
         if (exportState.recipientIds.contains(chat.recipientId)) {
           exportState.threadIds.add(chat.id)

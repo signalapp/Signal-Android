@@ -17,8 +17,10 @@ import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
+import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -220,6 +222,10 @@ fun RemoteAvatarColor.toLocal(): AvatarColor {
     RemoteAvatarColor.A200 -> AvatarColor.A200
     RemoteAvatarColor.A210 -> AvatarColor.A210
   }
+}
+
+fun ChatColors.Id.isValid(exportState: ExportState): Boolean {
+  return this !is ChatColors.Id.Custom || this.longValue in exportState.customChatColorIds
 }
 
 private fun DatabaseAttachment.toRemoteAttachmentType(): AttachmentType {

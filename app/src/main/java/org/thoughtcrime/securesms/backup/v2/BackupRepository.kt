@@ -981,7 +981,7 @@ object BackupRepository {
         // We're using a snapshot, so the transaction is more for perf than correctness
         dbSnapshot.rawWritableDatabase.withinTransaction {
           progressEmitter?.onAccount()
-          AccountDataArchiveProcessor.export(dbSnapshot, signalStoreSnapshot) { frame ->
+          AccountDataArchiveProcessor.export(dbSnapshot, signalStoreSnapshot, exportState) { frame ->
             writer.write(frame)
             extraFrameOperation?.invoke(frame)
             eventTimer.emit("account")
@@ -2429,6 +2429,7 @@ class ExportState(
   val threadIdToRecipientId: MutableMap<Long, Long> = hashMapOf()
   val recipientIdToAci: MutableMap<Long, ByteString> = hashMapOf()
   val aciToRecipientId: MutableMap<String, Long> = hashMapOf()
+  val customChatColorIds: MutableSet<Long> = hashSetOf()
 }
 
 class ImportState(val mediaRootBackupKey: MediaRootBackupKey) {

@@ -12,6 +12,7 @@ import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.database.restoreSelfFromBackup
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.ChatStyle
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.backup.v2.util.ChatStyleConverter
+import org.thoughtcrime.securesms.backup.v2.util.isValid
 import org.thoughtcrime.securesms.backup.v2.util.parseChatWallpaper
 import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.backup.v2.util.toLocalAttachment
@@ -54,7 +56,7 @@ object AccountDataArchiveProcessor {
 
   private val TAG = Log.tag(AccountDataArchiveProcessor::class)
 
-  fun export(db: SignalDatabase, signalStore: SignalStore, emitter: BackupFrameEmitter) {
+  fun export(db: SignalDatabase, signalStore: SignalStore, exportState: ExportState, emitter: BackupFrameEmitter) {
     val context = AppDependencies.application
 
     val selfId = db.recipientTable.getByAci(signalStore.accountValues.aci!!).get()
@@ -104,13 +106,13 @@ object AccountDataArchiveProcessor {
             displayBadgesOnProfile = signalStore.inAppPaymentValues.getDisplayBadgesOnProfile(),
             hasSeenGroupStoryEducationSheet = signalStore.storyValues.userHasSeenGroupStoryEducationSheet,
             hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding(),
-            customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors(),
+            customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors().also { colors -> exportState.customChatColorIds.addAll(colors.map { it.id }) },
             optimizeOnDeviceStorage = signalStore.backupValues.optimizeStorage,
             backupTier = signalStore.backupValues.backupTier.toRemoteBackupTier(),
             defaultChatStyle = ChatStyleConverter.constructRemoteChatStyle(
               db = db,
               chatColors = chatColors,
-              chatColorId = chatColors?.id ?: ChatColors.Id.NotSet,
+              chatColorId = chatColors?.id?.takeIf { it.isValid(exportState) } ?: ChatColors.Id.NotSet,
               chatWallpaper = chatWallpaper
             )
           ),
