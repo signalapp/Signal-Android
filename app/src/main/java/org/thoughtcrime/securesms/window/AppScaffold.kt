@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -343,7 +344,9 @@ fun AppScaffold(
       },
       paneExpansionDragHandle = paneExpansionDragHandle,
       paneExpansionState = paneExpansionState,
-      modifier = Modifier.padding(paddingValues)
+      modifier = Modifier
+        .padding(paddingValues)
+        .consumeWindowInsets(contentWindowInsets)
     )
   }
 }
