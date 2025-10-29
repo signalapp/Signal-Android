@@ -63,13 +63,13 @@ data class MainContentLayoutData(
 
   companion object {
     /**
-     * Uses the WindowSizeClass to build out a MainContentLayoutData.
+     * Uses the [WindowSizeClass] and [MainToolbarMode] to build out a MainContentLayoutData.
      */
     @Composable
-    fun rememberContentLayoutData(): MainContentLayoutData {
+    fun rememberContentLayoutData(mode: MainToolbarMode): MainContentLayoutData {
       val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
 
-      return remember(windowSizeClass) {
+      return remember(windowSizeClass, mode) {
         MainContentLayoutData(
           shape = when {
             !windowSizeClass.isSplitPane() -> RectangleShape
@@ -86,7 +86,15 @@ data class MainContentLayoutData(
             windowSizeClass.isExtended() -> 24.dp
             else -> 13.dp
           },
-          listPaddingStart = 0.dp,
+          listPaddingStart = when {
+            !windowSizeClass.isSplitPane() -> 0.dp
+            else -> {
+              when (mode) {
+                MainToolbarMode.SEARCH -> 24.dp
+                else -> 0.dp
+              }
+            }
+          },
           detailPaddingEnd = when {
             !windowSizeClass.isSplitPane() -> 0.dp
             windowSizeClass.isExtended() -> 24.dp
