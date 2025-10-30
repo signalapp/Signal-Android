@@ -2283,9 +2283,7 @@ class ConversationFragment :
     }
 
     bottomActionBar.setItems(items)
-    bottomActionBar.doAfterNextLayout {
-      setBottomActionBarVisibility(true)
-    }
+    setBottomActionBarVisibility(true)
   }
 
   private fun setBottomActionBarVisibility(isVisible: Boolean) {
@@ -2300,24 +2298,21 @@ class ConversationFragment :
 
     val additionalScrollOffset = 54.dp
     if (isVisible) {
-      ViewUtil.animateIn(bottomActionBar, bottomActionBar.enterAnimation)
-      container.hideInput()
-      inputPanel.setHideForSelection(true)
+      bottomActionBar.visibility = View.INVISIBLE
       animationsAllowed = false
 
-      bottomActionBar.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
-        override fun onPreDraw(): Boolean {
-          if (bottomActionBar.measuredHeight == 0 && bottomActionBar.visible) {
-            return false
-          }
+      bottomActionBar.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+        override fun onGlobalLayout() {
+          bottomActionBar.viewTreeObserver.removeOnGlobalLayoutListener(this)
 
-          bottomActionBar.viewTreeObserver.removeOnPreDrawListener(this)
+          ViewUtil.animateIn(bottomActionBar, bottomActionBar.enterAnimation)
+          container.hideInput()
+          inputPanel.setHideForSelection(true)
 
           val bottomPadding = bottomActionBar.measuredHeight + ((bottomActionBar.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin ?: 18.dp)
           ViewUtil.setPaddingBottom(binding.conversationItemRecycler, bottomPadding)
           binding.conversationItemRecycler.scrollBy(0, -(bottomPadding - additionalScrollOffset))
           animationsAllowed = true
-          return false
         }
       })
     } else {
