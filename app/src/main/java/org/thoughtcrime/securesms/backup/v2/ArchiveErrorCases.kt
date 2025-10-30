@@ -47,6 +47,10 @@ object ExportSkips {
     return log(sentTimestamp, "Group update record is parseable, but has no updates.")
   }
 
+  fun groupUpdateHasInvalidAuthor(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Group update has an invalid author.")
+  }
+
   fun directStoryReplyHasNoBody(sentTimestamp: Long): String {
     return log(sentTimestamp, "Direct story reply has no body.")
   }
