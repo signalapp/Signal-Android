@@ -1148,7 +1148,7 @@
     <string name="ExpiredBuildReminder_update_now">ယခု Update လုပ်ပါ။</string>
 
     <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="DeprecatedSdkBanner_body">Signal no longer works on this device. To use Signal again, update your device to a newer version of Android or switch to a newer device.</string>
+    <string name="DeprecatedSdkBanner_body">Signal သည် ဤစက်တွင် အလုပ်လုပ်တော့မည် မဟုတ်ပါ။ Signal ကို ထပ်သုံးရန် သင့်စက်ကို နောက်ဆုံးထွက် Android ဗားရှင်းသို့ အပ်ဒိတ်လုပ်ပါ သို့မဟုတ် ပိုသစ်သော စက်သို့ ပြောင်းပါ။</string>
 
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Signal ကို အပ်ဒိတ်လုပ်ပါ။</string>
@@ -5791,7 +5791,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
-    <string name="RecipientSearchBar__search_name_or_number">Name, username or number</string>
+    <string name="RecipientSearchBar__search_name_or_number">အမည်၊ သုံးစွဲသူအမည် သို့မဟုတ် နံပါတ်</string>
     <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
     <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Switch to numeric keyboard</string>
     <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->

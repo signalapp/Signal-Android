@@ -5791,7 +5791,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
-    <string name="RecipientSearchBar__search_name_or_number">Name, username or number</string>
+    <string name="RecipientSearchBar__search_name_or_number">ئىسىم، ئىشلەتكۈچى نامى ياكى تېلېفون نومۇرى</string>
     <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
     <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Switch to numeric keyboard</string>
     <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
