@@ -11,6 +11,8 @@ import org.signal.core.util.Base64
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
+import org.signal.libsignal.usernames.BaseUsernameException
+import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
@@ -249,6 +251,19 @@ private fun DatabaseAttachment.toRemoteAttachmentType(): AttachmentType {
   }
 
   return AttachmentType.INVALID
+}
+
+fun String.isValidUsername(): Boolean {
+  if (this.isBlank()) {
+    return false
+  }
+
+  return try {
+    Username(this)
+    true
+  } catch (e: BaseUsernameException) {
+    false
+  }
 }
 
 private enum class AttachmentType {

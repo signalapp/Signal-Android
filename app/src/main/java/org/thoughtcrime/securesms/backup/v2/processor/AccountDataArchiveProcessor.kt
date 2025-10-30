@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.backup.v2.util.ChatStyleConverter
 import org.thoughtcrime.securesms.backup.v2.util.isValid
+import org.thoughtcrime.securesms.backup.v2.util.isValidUsername
 import org.thoughtcrime.securesms.backup.v2.util.parseChatWallpaper
 import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.backup.v2.util.toLocalAttachment
@@ -78,7 +79,7 @@ object AccountDataArchiveProcessor {
           familyName = selfRecord.signalProfileName.familyName,
           avatarUrlPath = selfRecord.signalProfileAvatar ?: "",
           svrPin = SignalStore.svr.pin ?: "",
-          username = selfRecord.username?.takeIf { it.isNotBlank() },
+          username = selfRecord.username?.takeIf { it.isValidUsername() },
           usernameLink = if (selfRecord.username.isNotNullOrBlank() && signalStore.accountValues.usernameLink != null) {
             AccountData.UsernameLink(
               entropy = signalStore.accountValues.usernameLink?.entropy?.toByteString() ?: EMPTY,
