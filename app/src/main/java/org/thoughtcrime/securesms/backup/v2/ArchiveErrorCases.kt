@@ -139,6 +139,14 @@ object ExportSkips {
     return log(sentTimestamp, "A chat update that only makes sense for individual chats was found in a different kind of chat.")
   }
 
+  fun individualChatUpdateNotAuthoredBySelf(sentTimestamp: Long): String {
+    return log(sentTimestamp, "A chat update that only makes sense to be authored by self has a different author.")
+  }
+
+  fun incomingMessageAuthorDoesNotHaveAciOrE164(sentTimestamp: Long): String {
+    return log(sentTimestamp, "An incoming message author did not have an aci or e164.")
+  }
+
   fun callWithMissingRecipient(sentTimestamp: Long): String {
     return log(sentTimestamp, "A call had a ringer with no matching exported Recipient.")
   }

@@ -265,22 +265,22 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isReportedSpam(record.type) -> {
-          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.REPORTED_SPAM).takeIf { builder.authorId == selfRecipientId.toLong() }
+          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.REPORTED_SPAM)
           transformTimer.emit("simple-update")
         }
 
         MessageTypes.isMessageRequestAccepted(record.type) -> {
-          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.MESSAGE_REQUEST_ACCEPTED).takeIf { builder.authorId == selfRecipientId.toLong() }
+          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.MESSAGE_REQUEST_ACCEPTED)
           transformTimer.emit("simple-update")
         }
 
         MessageTypes.isBlocked(record.type) -> {
-          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.BLOCKED).takeIf { builder.authorId == selfRecipientId.toLong() }
+          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.BLOCKED)
           transformTimer.emit("simple-update")
         }
 
         MessageTypes.isUnblocked(record.type) -> {
-          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.UNBLOCKED).takeIf { builder.authorId == selfRecipientId.toLong() }
+          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.UNBLOCKED)
           transformTimer.emit("simple-update")
         }
 

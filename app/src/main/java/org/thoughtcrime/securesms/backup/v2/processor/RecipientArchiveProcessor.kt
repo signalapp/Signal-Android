@@ -68,6 +68,9 @@ object RecipientArchiveProcessor {
             exportState.recipientIdToAci[recipient.id] = it
             exportState.aciToRecipientId[ServiceId.ACI.parseOrThrow(it).toString()] = recipient.id
           }
+          recipient.contact?.e164?.let {
+            exportState.recipientIdToE164[recipient.id] = it
+          }
 
           emitter.emit(Frame(recipient = recipient))
         }
