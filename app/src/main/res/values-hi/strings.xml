@@ -4148,7 +4148,7 @@
 
     <!-- Displayed on a welcome screen for payments -->
     <string name="PaymentsHomeFragment_introducing_payments">भुगतान का परिचय</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">एक नई गोपनीयता केंद्रित डिजिटल मुद्रा, MobileCoin भेजने और प्राप्त करने के लिए Signal का उपयोग करें। शुरू करने के लिए सक्रीय करें।</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin भेजने और पाने के लिए Signal का इस्तेमाल करें। यह एक डिजिटल करंसी है, जिसमें प्राइवेसी का खास ध्यान रखा जाता है। शुरू करने के लिए ऐक्टिवेट करें।</string>
     <string name="PaymentsHomeFragment__activate_payments">पेमेंट की सुविधा ऐक्टिवेट करें</string>
     <string name="PaymentsHomeFragment__activating_payments">पेमेंट की सुविधा ऐक्टिवेट हो रही है…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">पेमेंट खाता रीस्टोर करें</string>
@@ -5258,9 +5258,9 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">MobileCoin के बारे में</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin एक नई निजता केंद्रित डिजिटल मुद्रा है।</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin एक डिजिटल करंसी है, जिसमें प्राइवेसी का खास ध्यान रखा जाता है।</string>
     <string name="payment_info_card_adding_funds">फ़ंड जोड़ना</string>
-    <string name="payment_info_card_you_can_add_funds_for_use_in">Signal में इस्तेमाल करने के लिए, अपने वॉलेट पते पर MobileCoin भेजकर फ़ंड जोड़ सकते हैं।</string>
+    <string name="payment_info_card_you_can_add_funds_for_use_in">Signal में इस्तेमाल करने के लिए, अपने वॉलेट पते पर MobileCoin भेजकर फ़ंड जोड़े जा सकते हैं।</string>
     <string name="payment_info_card_cashing_out">कैश भुनाना</string>
     <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin की सुविधा वाले किसी एक्सचेंज पर किसी भी समय MobileCoin को भुनाया जा सकता है। आपको बस एक्सचेंज में अपने अकाउंट में ट्रांसफ़र करना होगा।</string>
     <string name="payment_info_card_hide_this_card">इस कार्ड को छिपाना है?</string>
@@ -6149,7 +6149,7 @@
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">आपके सहयोग के लिए शुक्रिया!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">आपको Signal की ओर से एक डोनर बैज मिला है। अपना सहयोग दर्शाने के लिए इसे अपनी प्रोफ़ाइल पर प्रदर्शित करें।</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">आपको Signal की ओर से एक डोनर बैज मिला है। अपना सहयोग दिखाने के लिए इसे अपनी प्रोफ़ाइल पर डिसप्ले करें।</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">आप भी</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">बन सकते/सकती हैं मासिक सस्टेनर।</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">प्रोफ़ाइल पर दिखाएं</string>
@@ -6175,7 +6175,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">देने के अन्य तरीके</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">किसी दोस्त के लिए दान दें</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">किसी दोस्त के बदले डोनेट करें</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">दान की पुष्टि नहीं की जा सकी</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -6252,7 +6252,7 @@
     <string name="Subscription__get_a_s_badge">एक %1$s बैज पाएँ</string>
 
     <!-- *PaymentInProgressFragment strings -->
-    <string name="InAppPaymentInProgressFragment__processing_donation">दान संसाधित किया जा रहा है…</string>
+    <string name="InAppPaymentInProgressFragment__processing_donation">डोनेशन प्रोसेस किया जा रहा है…</string>
     <string name="InAppPaymentInProgressFragment__processing_payment">भुगतान प्रोसेस किया जा रहा है…</string>
 
     <!--InAppDonations -->
@@ -6884,7 +6884,7 @@
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">इंटरनेट कनेक्शन मौजूद नहीं है</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
-    <string name="StorySlateView__couldnt_load_content">कंटेंट लोड नहीं हो पाया</string>
+    <string name="StorySlateView__couldnt_load_content">कॉन्टेंट लोड नहीं हो पाया</string>
     <!-- Toasted when the user externally shares to a text story successfully -->
     <string name="TextStoryPostCreationFragment__sent_story">भेजी गई स्टोरी</string>
     <!-- Toasted when the user external share to a text story fails -->
@@ -6917,7 +6917,7 @@
         <item quantity="other">%1$s · %2$d दिनों की अवधि</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__donate_for_a_friend">किसी दोस्त के लिए दान दें</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">किसी दोस्त के बदले डोनेट करें</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
         <item quantity="one">Signal इस्तेमाल करनेवाले किसी दोस्त या परिवार के सदस्य के लिए दान देकर Signal को सहयोग दें। उन्हें %1$d दिन के लिए अपनी प्रोफ़ाइल पर दर्शाने के लिए एक बैज मिलेगा</item>
@@ -7178,7 +7178,7 @@
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">जारी रखें</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">आपके द्वारा आर्थिक सहायता प्राप्त निजी संदेश सेवा। न कोई विज्ञापन, न ट्रैकिंग, न ही समझौता। Signal को सहयोग देने के लिए अभी दान दें।</string>
+    <string name="DonateToSignalFragment__private_messaging">आपके द्वारा आर्थिक सहायता प्राप्त निजी संदेश सेवा। न कोई विज्ञापन, न ट्रैकिंग, न ही समझौता। Signal को सहयोग करने के लिए अभी डोनेट करें।</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">आपका दान लंबित है</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7203,7 +7203,7 @@
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signal को %1$s/माह का दान दें</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signal को %1$s/माह डोनेट करें</string>
     <!-- Sheet summary when subscribing -->
     <string name="GatewaySelectorBottomSheet__get_a_s_badge">एक %1$s बैज पाएँ</string>
     <!-- Sheet title when giving a one-time donation -->
@@ -7216,9 +7216,9 @@
     <!-- Button label for paying with a bank transfer -->
     <string name="GatewaySelectorBottomSheet__bank_transfer">बैंक ट्रांसफर</string>
     <!-- Button label for paying with a credit card -->
-    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">डेबिट कार्ड के लिए क्रेडिट</string>
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">क्रेडिट या डेबिट कार्ड</string>
     <!-- Sheet summary when giving donating for a friend -->
-    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">किसी दोस्त के लिए दान दें</string>
+    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">किसी दोस्त के बदले डोनेट करें</string>
     <!-- Button label for paying with iDEAL -->
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
@@ -8049,7 +8049,7 @@
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">डेबिट कार्ड के लिए क्रेडिट</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">क्रेडिट या डेबिट कार्ड</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
