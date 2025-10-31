@@ -166,7 +166,7 @@ import org.thoughtcrime.securesms.window.AppPaneDragHandle
 import org.thoughtcrime.securesms.window.AppScaffold
 import org.thoughtcrime.securesms.window.AppScaffoldAnimationStateFactory
 import org.thoughtcrime.securesms.window.AppScaffoldNavigator
-import org.thoughtcrime.securesms.window.Navigation
+import org.thoughtcrime.securesms.window.NavigationType
 import org.thoughtcrime.securesms.window.isSplitPane
 import org.thoughtcrime.securesms.window.rememberThreePaneScaffoldNavigatorDelegate
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
@@ -349,14 +349,14 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       MainContainer {
         val wrappedNavigator = rememberNavigator(windowSizeClass, contentLayoutData, maxWidth)
         val listPaneWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
-        val navigation = Navigation.rememberNavigation()
+        val navigationType = NavigationType.rememberNavigationType()
 
         val anchors = remember(contentLayoutData, mainToolbarState) {
           val halfPartitionWidth = contentLayoutData.partitionWidth / 2
 
           val detailOffset = when {
             mainToolbarState.mode == MainToolbarMode.SEARCH -> 0.dp
-            navigation == Navigation.BAR -> 0.dp
+            navigationType == NavigationType.BAR -> 0.dp
             else -> 80.dp
           }
 

@@ -40,7 +40,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.window.Navigation
+import org.thoughtcrime.securesms.window.NavigationType
 import kotlin.math.roundToInt
 
 private val ACTION_BUTTON_SIZE = 56.dp
@@ -63,24 +63,24 @@ fun MainFloatingActionButtons(
   destination: MainNavigationListLocation,
   callback: MainFloatingActionButtonsCallback,
   modifier: Modifier = Modifier,
-  navigation: Navigation = Navigation.rememberNavigation()
+  navigationType: NavigationType = NavigationType.rememberNavigationType()
 ) {
   val boxHeightDp = (ACTION_BUTTON_SIZE * 2 + ACTION_BUTTON_SPACING)
   val boxHeightPx = with(LocalDensity.current) {
     boxHeightDp.toPx().roundToInt()
   }
 
-  val primaryButtonAlignment = remember(navigation) {
-    when (navigation) {
-      Navigation.RAIL -> Alignment.TopCenter
-      Navigation.BAR -> Alignment.BottomCenter
+  val primaryButtonAlignment = remember(navigationType) {
+    when (navigationType) {
+      NavigationType.RAIL -> Alignment.TopCenter
+      NavigationType.BAR -> Alignment.BottomCenter
     }
   }
 
-  val shadowElevation: Dp = remember(navigation) {
-    when (navigation) {
-      Navigation.RAIL -> 0.dp
-      Navigation.BAR -> 4.dp
+  val shadowElevation: Dp = remember(navigationType) {
+    when (navigationType) {
+      NavigationType.RAIL -> 0.dp
+      NavigationType.BAR -> 4.dp
     }
   }
 
@@ -117,20 +117,20 @@ private fun BoxScope.SecondaryActionButton(
   elevation: Dp,
   onCameraClick: (MainNavigationListLocation) -> Unit
 ) {
-  val navigation = Navigation.rememberNavigation()
-  val secondaryButtonAlignment = remember(navigation) {
-    when (navigation) {
-      Navigation.RAIL -> Alignment.BottomCenter
-      Navigation.BAR -> Alignment.TopCenter
+  val navigationType = NavigationType.rememberNavigationType()
+  val secondaryButtonAlignment = remember(navigationType) {
+    when (navigationType) {
+      NavigationType.RAIL -> Alignment.BottomCenter
+      NavigationType.BAR -> Alignment.TopCenter
     }
   }
 
-  val offsetYProvider: (Int) -> Int = remember(navigation) {
-    when (navigation) {
-      Navigation.RAIL -> {
+  val offsetYProvider: (Int) -> Int = remember(navigationType) {
+    when (navigationType) {
+      NavigationType.RAIL -> {
         { it - boxHeightPx }
       }
-      Navigation.BAR -> {
+      NavigationType.BAR -> {
         { boxHeightPx - it }
       }
     }
@@ -146,9 +146,9 @@ private fun BoxScope.SecondaryActionButton(
 
     CameraButton(
       colors = IconButtonDefaults.filledTonalIconButtonColors().copy(
-        containerColor = when (navigation) {
-          Navigation.RAIL -> MaterialTheme.colorScheme.surface
-          Navigation.BAR -> SignalTheme.colors.colorSurface2
+        containerColor = when (navigationType) {
+          NavigationType.RAIL -> MaterialTheme.colorScheme.surface
+          NavigationType.BAR -> SignalTheme.colors.colorSurface2
         },
         contentColor = MaterialTheme.colorScheme.onSurface
       ),
@@ -266,7 +266,7 @@ private fun MainFloatingActionButtonsNavigationRailPreview() {
     MainFloatingActionButtons(
       destination = currentDestination,
       callback = callback,
-      navigation = Navigation.RAIL
+      navigationType = NavigationType.RAIL
     )
   }
 }
@@ -295,7 +295,7 @@ private fun MainFloatingActionButtonsNavigationBarPreview() {
     MainFloatingActionButtons(
       destination = currentDestination,
       callback = callback,
-      navigation = Navigation.BAR
+      navigationType = NavigationType.BAR
     )
   }
 }

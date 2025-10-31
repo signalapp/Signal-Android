@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones
+import org.thoughtcrime.securesms.window.NavigationType
 import org.thoughtcrime.securesms.window.isSplitPane
 
 data class SnackbarState(
@@ -78,13 +79,14 @@ fun MainBottomChrome(
   modifier: Modifier = Modifier
 ) {
   val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+  val navigationType = NavigationType.rememberNavigationType()
 
   Column(
     modifier = modifier
       .fillMaxWidth()
       .animateContentSize()
   ) {
-    if (state.mainToolbarMode == MainToolbarMode.FULL && !windowSizeClass.isSplitPane()) {
+    if (state.mainToolbarMode == MainToolbarMode.FULL && navigationType != NavigationType.RAIL) {
       Box(
         contentAlignment = Alignment.CenterEnd,
         modifier = Modifier.fillMaxWidth()

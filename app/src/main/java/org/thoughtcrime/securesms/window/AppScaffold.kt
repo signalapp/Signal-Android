@@ -52,13 +52,13 @@ import org.thoughtcrime.securesms.main.MainNavigationRail
 import org.thoughtcrime.securesms.main.MainNavigationState
 import kotlin.math.max
 
-enum class Navigation {
+enum class NavigationType {
   RAIL,
   BAR;
 
   companion object {
     @Composable
-    fun rememberNavigation(): Navigation {
+    fun rememberNavigationType(): NavigationType {
       val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
       return remember(windowSizeClass) {
@@ -246,7 +246,7 @@ private fun ListAndNavigation(
   contentWindowInsets: WindowInsets,
   modifier: Modifier = Modifier
 ) {
-  val navigation = Navigation.rememberNavigation()
+  val navigationType = NavigationType.rememberNavigationType()
 
   Scaffold(
     containerColor = Color.Transparent,
@@ -259,7 +259,7 @@ private fun ListAndNavigation(
       modifier = Modifier
         .padding(paddingValues)
     ) {
-      if (navigation == Navigation.RAIL) {
+      if (navigationType == NavigationType.RAIL) {
         navRailContent()
       }
 
@@ -268,7 +268,7 @@ private fun ListAndNavigation(
           listContent()
         }
 
-        if (navigation == Navigation.BAR) {
+        if (navigationType == NavigationType.BAR) {
           bottomNavContent()
         }
       }
