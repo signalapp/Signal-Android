@@ -883,7 +883,7 @@ class AttachmentTable(
    */
   fun getThumbnailsThatNeedArchiveUpload(): List<AttachmentId> {
     return readableDatabase
-      .select(ID)
+      .select("$TABLE_NAME.$ID")
       .from("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
       .where(
         """
