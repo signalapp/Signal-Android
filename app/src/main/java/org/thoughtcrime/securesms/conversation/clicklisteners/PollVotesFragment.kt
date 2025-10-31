@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -39,6 +41,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
@@ -52,12 +55,14 @@ import org.thoughtcrime.securesms.conversation.clicklisteners.PollVotesFragment.
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.polls.Voter
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Fragment that shows the results for a given poll.
  */
-class PollVotesFragment : ComposeDialogFragment() {
+class PollVotesFragment : ComposeDialogFragment(), RecipientBottomSheetDialogFragment.Callback {
 
   companion object {
     const val MAX_INITIAL_VOTER_COUNT = 5
@@ -103,11 +108,20 @@ class PollVotesFragment : ComposeDialogFragment() {
             onEndPoll = {
               setFragmentResult(RESULT_KEY, bundleOf(RESULT_KEY to true))
               dismissAllowingStateLoss()
+            },
+            onRecipientClick = { id ->
+              RecipientBottomSheetDialogFragment.show(childFragmentManager, id, null)
             }
           )
         }
       }
     }
+  }
+
+  override fun onRecipientBottomSheetDismissed() = Unit
+
+  override fun onMessageClicked() {
+    dismissAllowingStateLoss()
   }
 }
 
@@ -115,55 +129,53 @@ class PollVotesFragment : ComposeDialogFragment() {
 private fun PollResultsScreen(
   state: PollVotesState,
   onEndPoll: () -> Unit = {},
+  onRecipientClick: (RecipientId) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
-  LazyColumn(
-    modifier = modifier
-      .fillMaxWidth()
-  ) {
-    item {
-      Spacer(Modifier.size(16.dp))
-      Text(
-        text = stringResource(R.string.Poll__question),
-        style = MaterialTheme.typography.titleSmall,
-        modifier = Modifier.horizontalGutters()
-      )
-      TextField(
-        value = state.poll!!.question,
-        onValueChange = {},
-        modifier = Modifier.padding(top = 12.dp, bottom = 24.dp).horizontalGutters().fillMaxWidth(),
-        colors = TextFieldDefaults.colors(
-          disabledTextColor = MaterialTheme.colorScheme.onSurface,
-          disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-          disabledIndicatorColor = Color.Transparent
-        ),
-        shape = RoundedCornerShape(8.dp),
-        enabled = false
-      )
-    }
+  Box(modifier = Modifier.fillMaxSize()) {
+    LazyColumn(
+      modifier = modifier
+        .fillMaxWidth()
+    ) {
+      item {
+        Spacer(Modifier.size(16.dp))
+        Text(
+          text = stringResource(R.string.Poll__question),
+          style = MaterialTheme.typography.titleSmall,
+          modifier = Modifier.horizontalGutters()
+        )
+        TextField(
+          value = state.poll!!.question,
+          onValueChange = {},
+          modifier = Modifier.padding(top = 12.dp, bottom = 24.dp).horizontalGutters().fillMaxWidth(),
+          colors = TextFieldDefaults.colors(
+            disabledTextColor = MaterialTheme.colorScheme.onSurface,
+            disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            disabledIndicatorColor = Color.Transparent
+          ),
+          shape = RoundedCornerShape(8.dp),
+          enabled = false
+        )
+      }
 
-    itemsIndexed(state.pollOptions) { index, option ->
-      PollOptionSection(option, state.poll!!.hasEnded)
-      if (index != state.pollOptions.lastIndex) {
-        Dividers.Default()
+      itemsIndexed(state.pollOptions) { index, option ->
+        PollOptionSection(option, onRecipientClick)
+        if (index != state.pollOptions.lastIndex) {
+          Dividers.Default()
+        } else if (!state.poll!!.hasEnded) {
+          Spacer(Modifier.size(72.dp))
+        }
       }
     }
-
     if (state.isAuthor && !state.poll!!.hasEnded) {
-      item {
-        Row(
-          modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onEndPoll)
-            .padding(vertical = 16.dp)
-            .horizontalGutters()
-        ) {
-          Icon(
-            imageVector = ImageVector.vectorResource(id = R.drawable.symbol_stop_24),
-            contentDescription = stringResource(R.string.Poll__end_poll),
-            tint = MaterialTheme.colorScheme.onSurface
-          )
-          Text(text = stringResource(id = R.string.Poll__end_poll), modifier = Modifier.padding(start = 24.dp), style = MaterialTheme.typography.bodyLarge)
+      Row(
+        modifier = Modifier
+          .background(MaterialTheme.colorScheme.surface)
+          .padding(16.dp)
+          .align(Alignment.BottomCenter)
+      ) {
+        Buttons.MediumTonal(onClick = onEndPoll, modifier = Modifier.fillMaxWidth()) {
+          Text(text = stringResource(id = R.string.Poll__end_poll))
         }
       }
     }
@@ -173,7 +185,7 @@ private fun PollResultsScreen(
 @Composable
 private fun PollOptionSection(
   option: PollOptionModel,
-  hasEnded: Boolean
+  onRecipientClick: (RecipientId) -> Unit
 ) {
   var expand by remember { mutableStateOf(false) }
   val context = LocalContext.current
@@ -182,7 +194,7 @@ private fun PollOptionSection(
     verticalAlignment = Alignment.CenterVertically
   ) {
     Text(text = option.pollOption.text, modifier = Modifier.weight(1f), style = MaterialTheme.typography.titleSmall)
-    if (option.hasMostVotes && hasEnded) {
+    if (option.hasMostVotes) {
       Icon(
         imageVector = ImageVector.vectorResource(R.drawable.symbol_favorite_fill_16),
         contentDescription = stringResource(R.string.Poll__poll_winner),
@@ -205,7 +217,11 @@ private fun PollOptionSection(
     option.voters.subList(0, MAX_INITIAL_VOTER_COUNT).forEach { recipient ->
       Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(vertical = 12.dp).horizontalGutters()
+        modifier = Modifier
+          .fillMaxWidth()
+          .clickable(onClick = { onRecipientClick(recipient.id) })
+          .padding(vertical = 12.dp)
+          .horizontalGutters()
       ) {
         AvatarImage(recipient = recipient, modifier = Modifier.padding(end = 16.dp).size(40.dp))
         Text(text = if (recipient.isSelf) stringResource(id = R.string.Recipient_you) else recipient.getShortDisplayName(context))
@@ -228,7 +244,11 @@ private fun PollOptionSection(
     option.voters.forEach { recipient ->
       Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(vertical = 12.dp).horizontalGutters()
+        modifier = Modifier
+          .fillMaxWidth()
+          .clickable(onClick = { onRecipientClick(recipient.id) })
+          .padding(vertical = 12.dp)
+          .horizontalGutters()
       ) {
         AvatarImage(recipient = recipient, modifier = Modifier.padding(end = 16.dp).size(40.dp))
         Text(text = if (recipient.isSelf) stringResource(id = R.string.Recipient_you) else recipient.getShortDisplayName(context))

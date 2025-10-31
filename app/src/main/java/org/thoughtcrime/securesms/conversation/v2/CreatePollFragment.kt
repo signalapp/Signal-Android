@@ -34,6 +34,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
@@ -132,6 +134,8 @@ private fun CreatePollScreen(
   onSend: (String, Boolean, List<String>) -> Unit = { _, _, _ -> },
   onShowErrorSnackbar: (Boolean, Boolean) -> Unit = { _, _ -> }
 ) {
+  val focusRequester = remember { FocusRequester() }
+
   // Parts of poll
   var question by remember { mutableStateOf("") }
   val options = remember { mutableStateListOf("", "") }
@@ -177,6 +181,10 @@ private fun CreatePollScreen(
     }
   }
 
+  LaunchedEffect(Unit) {
+    focusRequester.requestFocus()
+  }
+
   Box(
     modifier = Modifier
       .padding(paddingValues)
@@ -212,7 +220,8 @@ private fun CreatePollScreen(
             ),
             modifier = Modifier
               .fillMaxWidth()
-              .onFocusChanged { focusState -> if (focusState.isFocused) focusedOption = -1 },
+              .onFocusChanged { focusState -> if (focusState.isFocused) focusedOption = -1 }
+              .focusRequester(focusRequester),
             countdownThreshold = CreatePollFragment.CHARACTER_COUNTDOWN_THRESHOLD
           )
 

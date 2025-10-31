@@ -127,7 +127,7 @@ private fun Poll(
       ),
       onClick = onViewVotes,
       enabled = hasVotes,
-      modifier = Modifier.align(Alignment.CenterHorizontally)
+      modifier = Modifier.align(Alignment.CenterHorizontally).fillMaxWidth().padding(horizontal = 16.dp)
     ) {
       Text(
         text = if (!hasVotes) {

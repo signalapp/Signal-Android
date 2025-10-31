@@ -1500,6 +1500,8 @@ class StoryViewerPageFragment :
     viewModel.setIsDisplayingRecipientBottomSheet(false)
   }
 
+  override fun onMessageClicked() = Unit
+
   interface Callback {
     fun onGoToPreviousStory(recipientId: RecipientId)
     fun onFinishedPosts(recipientId: RecipientId)
