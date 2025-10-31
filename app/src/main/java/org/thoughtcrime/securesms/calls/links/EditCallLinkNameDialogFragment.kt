@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -47,7 +48,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsViewModel
 import org.thoughtcrime.securesms.compose.ComposeDialogFragment
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
-import org.thoughtcrime.securesms.window.WindowSizeClass
+import org.thoughtcrime.securesms.window.isSplitPane
 
 class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
 
@@ -109,7 +110,7 @@ fun EditCallLinkNameScreen(
     onNavigationClick = {
       backPressedDispatcherOwner?.onBackPressedDispatcher?.onBackPressed()
     },
-    showNavigationIcon = !WindowSizeClass.rememberWindowSizeClass().isSplitPane()
+    showNavigationIcon = !currentWindowAdaptiveInfo().windowSizeClass.isSplitPane()
   )
 }
 

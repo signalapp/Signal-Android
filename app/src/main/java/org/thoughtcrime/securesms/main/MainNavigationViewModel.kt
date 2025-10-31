@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.window.AppScaffoldNavigator
-import org.thoughtcrime.securesms.window.WindowSizeClass
+import org.thoughtcrime.securesms.window.isLargeScreenSupportEnabled
 import java.util.Optional
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
@@ -198,7 +198,7 @@ class MainNavigationViewModel(
   override fun goTo(location: MainNavigationDetailLocation) {
     lockPaneToSecondary = false
 
-    if (!WindowSizeClass.isLargeScreenSupportEnabled()) {
+    if (!isLargeScreenSupportEnabled()) {
       goToLegacyDetailLocation?.invoke(location)
       return
     }

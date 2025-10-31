@@ -33,6 +33,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -68,7 +69,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode
 import org.thoughtcrime.securesms.window.AppScaffold
-import org.thoughtcrime.securesms.window.WindowSizeClass
+import org.thoughtcrime.securesms.window.detailPaneMaxContentWidth
+import org.thoughtcrime.securesms.window.isSplitPane
 import org.thoughtcrime.securesms.window.rememberAppScaffoldNavigator
 import java.text.NumberFormat
 
@@ -162,8 +164,8 @@ private fun CreateGroupScreenUi(
   uiState: CreateGroupUiState,
   callbacks: UiCallbacks
 ) {
-  val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
-  val isSplitPane = windowSizeClass.isSplitPane(forceSplitPaneOnCompactLandscape = uiState.forceSplitPaneOnCompactLandscape)
+  val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+  val isSplitPane = windowSizeClass.isSplitPane(forceSplitPane = uiState.forceSplitPane)
   val snackbarHostState = remember { SnackbarHostState() }
 
   val titleText = if (uiState.newSelections.isNotEmpty()) {
@@ -352,7 +354,7 @@ private fun CreateGroupScreenPreview() {
   Previews.Preview {
     CreateGroupScreenUi(
       uiState = CreateGroupUiState(
-        forceSplitPaneOnCompactLandscape = false,
+        forceSplitPane = false,
         selectionLimits = SelectionLimits.NO_LIMITS
       ),
       callbacks = UiCallbacks.Empty

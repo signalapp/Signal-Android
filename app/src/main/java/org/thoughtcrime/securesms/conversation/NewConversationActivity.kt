@@ -26,6 +26,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -64,7 +65,8 @@ import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.window.AppScaffold
-import org.thoughtcrime.securesms.window.WindowSizeClass
+import org.thoughtcrime.securesms.window.detailPaneMaxContentWidth
+import org.thoughtcrime.securesms.window.isSplitPane
 import org.thoughtcrime.securesms.window.rememberAppScaffoldNavigator
 
 /**
@@ -200,8 +202,8 @@ private fun NewConversationScreenUi(
   uiState: NewConversationUiState,
   callbacks: UiCallbacks
 ) {
-  val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
-  val isSplitPane = windowSizeClass.isSplitPane(forceSplitPaneOnCompactLandscape = uiState.forceSplitPaneOnCompactLandscape)
+  val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+  val isSplitPane = windowSizeClass.isSplitPane(forceSplitPane = uiState.forceSplitPaneOnCompactLandscape)
   val snackbarHostState = remember { SnackbarHostState() }
 
   AppScaffold(

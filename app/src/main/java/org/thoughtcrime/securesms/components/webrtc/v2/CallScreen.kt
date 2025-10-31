@@ -37,6 +37,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -63,6 +64,8 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
+import androidx.window.core.layout.WindowHeightSizeClass
+import androidx.window.core.layout.WindowWidthSizeClass
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.BottomSheets
@@ -76,7 +79,6 @@ import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.window.WindowSizeClass
 import kotlin.math.max
 import kotlin.math.round
 import kotlin.time.Duration.Companion.seconds
@@ -484,7 +486,7 @@ private fun TinyLocalVideoRenderer(
 
   if (LocalInspectionMode.current) {
     Text(
-      "Test ${WindowSizeClass.rememberWindowSizeClass()}",
+      "Test ${currentWindowAdaptiveInfo().windowSizeClass}",
       modifier = modifier
         .padding(padding)
         .height(height)
@@ -553,27 +555,28 @@ private fun SmallMoveableLocalVideoRenderer(
 @Composable
 private fun rememberTinyPortraitSize(): SelfPictureInPictureDimensions {
   val smallWidth = dimensionResource(R.dimen.call_screen_overflow_item_size)
-  val windowClass = WindowSizeClass.rememberWindowSizeClass()
+  val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+  val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-  val smallSize = when (windowClass) {
-    WindowSizeClass.COMPACT_PORTRAIT -> DpSize(40.dp, smallWidth)
-    WindowSizeClass.COMPACT_LANDSCAPE -> DpSize(smallWidth, 40.dp)
-    WindowSizeClass.EXTENDED_PORTRAIT, WindowSizeClass.EXTENDED_LANDSCAPE -> DpSize(124.dp, 217.dp)
+  val smallSize = when {
+    windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT && !isLandscape -> DpSize(40.dp, smallWidth)
+    windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT && isLandscape -> DpSize(smallWidth, 40.dp)
+    windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.EXPANDED -> DpSize(124.dp, 217.dp)
     else -> DpSize(smallWidth, smallWidth)
   }
 
-  val expandedSize = when (windowClass) {
-    WindowSizeClass.COMPACT_PORTRAIT -> DpSize(180.dp, 320.dp)
-    WindowSizeClass.COMPACT_LANDSCAPE -> DpSize(320.dp, 180.dp)
+  val expandedSize = when {
+    windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT && !isLandscape -> DpSize(180.dp, 320.dp)
+    windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT && isLandscape -> DpSize(320.dp, 180.dp)
     else -> DpSize(smallWidth, smallWidth)
   }
 
-  val padding = when (windowClass) {
-    WindowSizeClass.COMPACT_PORTRAIT -> PaddingValues(vertical = 16.dp)
+  val padding = when {
+    windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT && !isLandscape -> PaddingValues(vertical = 16.dp)
     else -> PaddingValues(16.dp)
   }
 
-  return remember(windowClass) {
+  return remember(windowSizeClass) {
     SelfPictureInPictureDimensions(smallSize, expandedSize, padding)
   }
 }

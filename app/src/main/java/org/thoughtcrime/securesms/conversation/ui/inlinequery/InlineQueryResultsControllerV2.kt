@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.window.core.layout.WindowHeightSizeClass
+import androidx.window.core.layout.WindowSizeClass
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -15,7 +17,6 @@ import org.thoughtcrime.securesms.components.ComposeText
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragmentV2
 import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
 import org.thoughtcrime.securesms.util.doOnEachLayout
-import org.thoughtcrime.securesms.window.WindowSizeClass
 
 /**
  * Controller for inline search results.
@@ -71,7 +72,7 @@ class InlineQueryResultsControllerV2(
   }
 
   fun onWindowSizeClassChanged(windowSizeClass: WindowSizeClass) {
-    this.shouldHideForWindowSizeClass = windowSizeClass == WindowSizeClass.COMPACT_LANDSCAPE
+    this.shouldHideForWindowSizeClass = windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT
 
     if (shouldHideForWindowSizeClass) {
       dismiss()

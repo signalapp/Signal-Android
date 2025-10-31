@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -20,7 +21,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import kotlinx.parcelize.Parcelize
-import org.thoughtcrime.securesms.window.WindowSizeClass
+import org.thoughtcrime.securesms.window.isSplitPane
 
 @Parcelize
 data class VerticalInsets(
@@ -41,7 +42,7 @@ fun rememberVerticalInsets(): State<VerticalInsets> {
   val navigationBarPadding = navigationBarInsets.asPaddingValues()
   val density = LocalDensity.current
 
-  val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+  val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
   val insets = rememberSaveable { mutableStateOf(VerticalInsets.Zero) }
   val updated = remember(statusBarInsets, navigationBarInsets, windowSizeClass) {

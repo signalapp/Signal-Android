@@ -361,8 +361,9 @@ import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
-import org.thoughtcrime.securesms.window.WindowSizeClass
-import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
+import org.thoughtcrime.securesms.window.getWindowSizeClass
+import org.thoughtcrime.securesms.window.isLargeScreenSupportEnabled
+import org.thoughtcrime.securesms.window.isSplitPane
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -615,8 +616,8 @@ class ConversationFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     binding.toolbar.isBackInvokedCallbackEnabled = false
 
-    binding.root.setApplyRootInsets(!WindowSizeClass.isLargeScreenSupportEnabled())
-    binding.root.setUseWindowTypes(!WindowSizeClass.isLargeScreenSupportEnabled())
+    binding.root.setApplyRootInsets(!isLargeScreenSupportEnabled())
+    binding.root.setUseWindowTypes(!isLargeScreenSupportEnabled())
 
     disposables.bindTo(viewLifecycleOwner)
 
@@ -699,7 +700,7 @@ class ConversationFragment :
   override fun onResume() {
     super.onResume()
 
-    if (!WindowSizeClass.isLargeScreenSupportEnabled()) {
+    if (!isLargeScreenSupportEnabled()) {
       WindowUtil.setLightNavigationBarFromTheme(requireActivity())
       WindowUtil.setLightStatusBarFromTheme(requireActivity())
     }
@@ -1455,7 +1456,7 @@ class ConversationFragment :
   }
 
   private fun presentNavigationIconForNormal() {
-    if (WindowSizeClass.isLargeScreenSupportEnabled()) {
+    if (isLargeScreenSupportEnabled()) {
       lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.RESUMED) {
           mainNavigationViewModel.isFullScreenPane.collect { isFullScreenPane ->
@@ -3483,7 +3484,7 @@ class ConversationFragment :
                   getVoiceNoteMediaController().resumePlayback(selectedConversationModel.audioUri, messageRecord.id)
                 }
 
-                if (!WindowSizeClass.isLargeScreenSupportEnabled()) {
+                if (!isLargeScreenSupportEnabled()) {
                   WindowUtil.setLightStatusBarFromTheme(requireActivity())
                   WindowUtil.setLightNavigationBarFromTheme(requireActivity())
                 }

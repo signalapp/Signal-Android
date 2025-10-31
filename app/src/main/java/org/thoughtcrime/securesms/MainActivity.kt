@@ -37,6 +37,7 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.PaneExpansionAnchor
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
 import androidx.compose.material3.adaptive.layout.rememberPaneExpansionState
@@ -62,6 +63,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
+import androidx.window.core.layout.WindowSizeClass
+import androidx.window.core.layout.WindowWidthSizeClass
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -163,7 +166,8 @@ import org.thoughtcrime.securesms.window.AppPaneDragHandle
 import org.thoughtcrime.securesms.window.AppScaffold
 import org.thoughtcrime.securesms.window.AppScaffoldAnimationStateFactory
 import org.thoughtcrime.securesms.window.AppScaffoldNavigator
-import org.thoughtcrime.securesms.window.WindowSizeClass
+import org.thoughtcrime.securesms.window.Navigation
+import org.thoughtcrime.securesms.window.isSplitPane
 import org.thoughtcrime.securesms.window.rememberThreePaneScaffoldNavigatorDelegate
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 
@@ -339,17 +343,23 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         )
       }
 
-      val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+      val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
       val contentLayoutData = MainContentLayoutData.rememberContentLayoutData(mainToolbarState.mode)
 
       MainContainer {
         val wrappedNavigator = rememberNavigator(windowSizeClass, contentLayoutData, maxWidth)
         val listPaneWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
+        val navigation = Navigation.rememberNavigation()
 
         val anchors = remember(contentLayoutData, mainToolbarState) {
           val halfPartitionWidth = contentLayoutData.partitionWidth / 2
 
-          val detailOffset = if (mainToolbarState.mode == MainToolbarMode.SEARCH) 0.dp else 80.dp
+          val detailOffset = when {
+            mainToolbarState.mode == MainToolbarMode.SEARCH -> 0.dp
+            navigation == Navigation.BAR -> 0.dp
+            else -> 80.dp
+          }
+
           val detailOnlyAnchor = PaneExpansionAnchor.Offset.fromStart(detailOffset + contentLayoutData.listPaddingStart + halfPartitionWidth)
           val detailAndListAnchor = PaneExpansionAnchor.Offset.fromStart(listPaneWidth + halfPartitionWidth)
           val listOnlyAnchor = PaneExpansionAnchor.Offset.fromEnd(contentLayoutData.detailPaddingEnd - halfPartitionWidth)
@@ -519,7 +529,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
             }
           },
           secondaryContent = {
-            val listContainerColor = if (windowSizeClass.isMedium()) {
+            val listContainerColor = if (windowSizeClass.isSplitPane() && windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.MEDIUM) {
               SignalTheme.colors.colorSurface1
             } else {
               MaterialTheme.colorScheme.surface
@@ -699,10 +709,10 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
   @Composable
   private fun MainContainer(content: @Composable BoxWithConstraintsScope.() -> Unit) {
-    val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
     SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(this)) {
-      val backgroundColor = if (windowSizeClass.isCompact()) {
+      val backgroundColor = if (!windowSizeClass.isSplitPane()) {
         MaterialTheme.colorScheme.surface
       } else {
         SignalTheme.colors.colorSurface1

@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.Dp
+import androidx.window.core.layout.WindowSizeClass
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
@@ -94,9 +95,9 @@ open class AppScaffoldNavigator<T> @RememberInComposition constructor(private va
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun rememberAppScaffoldNavigator(
-  windowSizeClass: WindowSizeClass = WindowSizeClass.rememberWindowSizeClass(),
+  windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
   isSplitPane: Boolean = windowSizeClass.isSplitPane(
-    forceSplitPaneOnCompactLandscape = if (LocalInspectionMode.current) false else SignalStore.internal.forceSplitPaneOnCompactLandscape
+    forceSplitPane = if (LocalInspectionMode.current) false else SignalStore.internal.forceSplitPane
   ),
   horizontalPartitionSpacerSize: Dp = windowSizeClass.horizontalPartitionDefaultSpacerSize,
   defaultPanePreferredWidth: Dp = windowSizeClass.listPaneDefaultPreferredWidth

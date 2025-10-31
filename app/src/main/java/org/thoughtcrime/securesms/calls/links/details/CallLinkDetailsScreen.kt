@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -55,7 +56,7 @@ import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
 import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Util
-import org.thoughtcrime.securesms.window.WindowSizeClass
+import org.thoughtcrime.securesms.window.isSplitPane
 import java.time.Instant
 
 @Composable
@@ -84,7 +85,7 @@ fun CallLinkDetailsScreen(
     state = state,
     showAlreadyInACall = showAlreadyInACall,
     callback = callback,
-    showNavigationIcon = !WindowSizeClass.rememberWindowSizeClass().isSplitPane()
+    showNavigationIcon = !currentWindowAdaptiveInfo().windowSizeClass.isSplitPane()
   )
 }
 

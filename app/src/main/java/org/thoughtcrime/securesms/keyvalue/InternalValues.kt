@@ -51,7 +51,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   /**
    * Force split-pane mode on compact landscape
    */
-  var forceSplitPaneOnCompactLandscape by booleanValue(FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE, false).falseForExternalUsers()
+  var forceSplitPane by booleanValue(FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE, false).falseForExternalUsers()
 
   /**
    * Members will not be added directly to a GV2 even if they could be.

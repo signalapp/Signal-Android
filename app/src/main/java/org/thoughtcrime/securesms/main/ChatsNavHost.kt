@@ -39,6 +39,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import androidx.window.core.layout.WindowSizeClass
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -49,7 +50,8 @@ import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
 import org.thoughtcrime.securesms.serialization.JsonSerializableNavType
 import org.thoughtcrime.securesms.window.AppScaffoldAnimationDefaults
 import org.thoughtcrime.securesms.window.AppScaffoldAnimationState
-import org.thoughtcrime.securesms.window.WindowSizeClass
+import org.thoughtcrime.securesms.window.isLargeScreenSupportEnabled
+import org.thoughtcrime.securesms.window.isSplitPane
 import kotlin.reflect.typeOf
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -205,7 +207,7 @@ class ChatNavGraphState private constructor(
   private var hasWrittenToGraphicsLayer: Boolean by mutableStateOf(false)
 
   suspend fun writeGraphicsLayerToBitmap() {
-    if (WindowSizeClass.isLargeScreenSupportEnabled() && !windowSizeClass.isSplitPane() && hasWrittenToGraphicsLayer) {
+    if (isLargeScreenSupportEnabled() && !windowSizeClass.isSplitPane() && hasWrittenToGraphicsLayer) {
       chatBitmap = graphicsLayer.toImageBitmap()
     }
   }

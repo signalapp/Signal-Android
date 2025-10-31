@@ -32,5 +32,5 @@ data class InternalSettingsState(
   val hevcEncoding: Boolean,
   val newCallingUi: Boolean,
   val largeScreenUi: Boolean,
-  val forceSplitPaneOnCompactLandscape: Boolean
+  val forceSplitPane: Boolean
 )

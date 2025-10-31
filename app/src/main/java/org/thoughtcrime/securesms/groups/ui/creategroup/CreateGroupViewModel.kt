@@ -168,7 +168,7 @@ class CreateGroupViewModel : ViewModel() {
 }
 
 data class CreateGroupUiState(
-  val forceSplitPaneOnCompactLandscape: Boolean = SignalStore.internal.forceSplitPaneOnCompactLandscape,
+  val forceSplitPane: Boolean = SignalStore.internal.forceSplitPane,
   val searchQuery: String = "",
   val selectionLimits: SelectionLimits = RemoteConfig.groupLimits.excludingSelf(),
   val newSelections: List<SelectedContact> = emptyList(),

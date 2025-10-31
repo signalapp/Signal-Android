@@ -34,12 +34,13 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
-import org.thoughtcrime.securesms.window.WindowSizeClass;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Locale;
+
+import static org.thoughtcrime.securesms.window.WindowSizeClassExtensionsKt.getWindowSizeClass;
 
 public class LogSectionSystemInfo implements LogSection {
 
@@ -62,7 +63,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Screen            : ").append(getScreenResolution(context)).append(", ")
                                       .append(ScreenDensity.get(context)).append(", ")
                                       .append(getScreenRefreshRate(context)).append("\n");
-    builder.append("WindowSizeClass   : ").append(WindowSizeClass.Companion.getWindowSizeClass(context.getResources())).append("\n");
+    builder.append("WindowSizeClass   : ").append(getWindowSizeClass(context.getResources())).append("\n");
     builder.append("Font Scale        : ").append(context.getResources().getConfiguration().fontScale).append("\n");
     builder.append("Animation Scale   : ").append(ContextUtil.getAnimationScale(context)).append("\n");
     builder.append("Android           : ").append(Build.VERSION.RELEASE).append(", API ")

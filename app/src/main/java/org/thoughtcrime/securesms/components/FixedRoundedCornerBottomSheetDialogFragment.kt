@@ -19,8 +19,9 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.WindowUtil
-import org.thoughtcrime.securesms.window.WindowSizeClass
-import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
+import org.thoughtcrime.securesms.window.getWindowSizeClass
+import org.thoughtcrime.securesms.window.isLargeScreenSupportEnabled
+import org.thoughtcrime.securesms.window.isSplitPane
 import com.google.android.material.R as MaterialR
 
 /**
@@ -32,7 +33,7 @@ abstract class FixedRoundedCornerBottomSheetDialogFragment : BottomSheetDialogFr
    * Sheet corner radius in DP
    */
   protected val cornerRadius: Int by lazy {
-    if (WindowSizeClass.isLargeScreenSupportEnabled() && resources.getWindowSizeClass().isSplitPane()) {
+    if (isLargeScreenSupportEnabled() && resources.getWindowSizeClass().isSplitPane()) {
       32
     } else {
       18

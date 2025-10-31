@@ -16,7 +16,8 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
-import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
+import org.thoughtcrime.securesms.window.getWindowSizeClass
+import org.thoughtcrime.securesms.window.isSplitPane
 
 /**
  * When the user searches for a conversation and then enters a message, we should clear
@@ -35,7 +36,7 @@ fun Fragment.listenToEventBusWhileResumed(
     detailLocation
       .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.RESUMED)
       .collectLatest {
-        if (resources.getWindowSizeClass().isCompact()) {
+        if (!resources.getWindowSizeClass().isSplitPane()) {
           when (it) {
             is MainNavigationDetailLocation.Chats.Conversation -> unsubscribe()
             MainNavigationDetailLocation.Empty -> subscribe()

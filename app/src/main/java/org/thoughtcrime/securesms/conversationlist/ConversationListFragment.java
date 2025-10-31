@@ -53,6 +53,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.window.core.layout.WindowHeightSizeClass;
 
 import com.airbnb.lottie.SimpleColorFilter;
 import com.annimon.stream.Stream;
@@ -159,7 +160,6 @@ import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
-import org.thoughtcrime.securesms.window.WindowSizeClass;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.lang.ref.WeakReference;
@@ -178,6 +178,9 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.Unit;
+
+import static org.thoughtcrime.securesms.window.WindowSizeClassExtensionsKt.getWindowSizeClass;
+import static org.thoughtcrime.securesms.window.WindowSizeClassExtensionsKt.isSplitPane;
 
 
 public class ConversationListFragment extends MainFragment implements ConversationListAdapter.OnConversationClickListener,
@@ -311,7 +314,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     searchAdapter = contactSearchMediator.getAdapter();
 
-    if (WindowSizeClass.Companion.getWindowSizeClass(getResources()).isCompact()) {
+    if (getWindowSizeClass(getResources()).getWindowHeightSizeClass() == WindowHeightSizeClass.COMPACT) {
       ViewUtil.setBottomMargin(bottomActionBar, ViewUtil.getNavigationBarHeight(bottomActionBar));
     }
 
@@ -411,7 +414,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                                      }
                                                    }));
 
-    if (WindowSizeClass.Companion.getWindowSizeClass(getResources()).isSplitPane()) {
+    if (isSplitPane(getWindowSizeClass(getResources()))) {
       lifecycleDisposable.add(mainNavigationViewModel.getObservableActiveChatThreadId()
                                                      .subscribeOn(AndroidSchedulers.mainThread())
                                                      .subscribe(defaultAdapter::setActiveThreadId));

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components
 
 import android.content.Context
+import android.content.res.Configuration
 import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.main.VerticalInsets
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
 import kotlin.math.roundToInt
 
 /**
@@ -241,7 +241,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   }
 
   private fun isLandscape(): Boolean {
-    return resources.getWindowSizeClass().isLandscape()
+    return resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
   }
 
   private val Guideline?.guidelineEnd: Int

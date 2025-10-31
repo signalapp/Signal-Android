@@ -185,11 +185,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       switchPref(
         isEnabled = state.largeScreenUi,
-        title = DSLSettingsText.from("Force split pane UI on landscape phones."),
+        title = DSLSettingsText.from("Force split pane UI on phones."),
         summary = DSLSettingsText.from("This setting requires split pane UI to be enabled."),
-        isChecked = state.forceSplitPaneOnCompactLandscape,
+        isChecked = state.forceSplitPane,
         onClick = {
-          viewModel.setForceSplitPaneOnCompactLandscape(!state.forceSplitPaneOnCompactLandscape)
+          viewModel.setForceSplitPane(!state.forceSplitPane)
         }
       )
 
