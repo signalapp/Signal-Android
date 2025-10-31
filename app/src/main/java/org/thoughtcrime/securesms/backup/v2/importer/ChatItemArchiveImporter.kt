@@ -77,6 +77,7 @@ import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.whispersystems.signalservice.api.payments.Money
@@ -195,10 +196,13 @@ class ChatItemArchiveImporter(
       val originalId = messageId
       val latestRevisionId = originalId + chatItem.revisions.size
       val sortedRevisions = chatItem.revisions.sortedBy { it.dateSent }.map { it.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId) }
+      val areAnyRevisionsRead = !Environment.IS_INSTRUMENTATION && ((messageInsert.contentValues.getAsInteger(MessageTable.READ) ?: 0) > 0 || sortedRevisions.any { (it.contentValues.getAsInteger(MessageTable.READ) ?: 0) > 0 })
       for (revision in sortedRevisions) {
         val revisionNumber = messageId - originalId
         if (revisionNumber > 0) {
           revision.contentValues.put(MessageTable.ORIGINAL_MESSAGE_ID, originalId)
+        } else if (areAnyRevisionsRead) {
+          revision.contentValues.put(MessageTable.READ, 1)
         }
         revision.contentValues.put(MessageTable.LATEST_REVISION_ID, latestRevisionId)
         revision.contentValues.put(MessageTable.REVISION_NUMBER, revisionNumber)
