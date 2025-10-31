@@ -32,7 +32,7 @@ jobs:
       run: echo "y" | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "ndk;${{ env.NDK_VERSION }}"
 
     - name: Validate Gradle Wrapper
-      uses: gradle/wrapper-validation-action@v1
+      uses: gradle/actions/wrapper-validation@v5
 
     - name: Cache base apk
       id: cache-base
