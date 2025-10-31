@@ -6,14 +6,12 @@
 package org.thoughtcrime.securesms.video.videoconverter.mediadatasource
 
 import android.media.MediaDataSource
-import androidx.annotation.RequiresApi
 import java.io.IOException
 import java.io.InputStream
 
 /**
  * Extend this class in order to be able to use the system media framework with any arbitrary [InputStream] of bytes.
  */
-@RequiresApi(23)
 abstract class InputStreamMediaDataSource : MediaDataSource() {
   @Throws(IOException::class)
   override fun readAt(position: Long, bytes: ByteArray?, offset: Int, length: Int): Int {

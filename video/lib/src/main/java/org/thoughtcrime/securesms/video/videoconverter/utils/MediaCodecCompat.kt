@@ -10,7 +10,6 @@ import android.media.MediaCodecInfo.CodecProfileLevel
 import android.media.MediaCodecList
 import android.media.MediaFormat
 import android.os.Build
-import androidx.annotation.RequiresApi
 import org.signal.core.util.logging.Log
 import java.io.IOException
 
@@ -77,9 +76,7 @@ object MediaCodecCompat {
           // dolby vision profile 04/08: Base layer is H.265 Main10 High Profile, Rec709/HLG/HDR10
           mediaFormat.setString(MediaFormat.KEY_MIME, MediaFormat.MIMETYPE_VIDEO_HEVC)
           mediaFormat.setInteger(MediaFormat.KEY_PROFILE, CodecProfileLevel.HEVCProfileMain10)
-          if (Build.VERSION.SDK_INT >= 23) {
-            mediaFormat.setBaseCodecLevelFromDolbyVisionLevel()
-          }
+          mediaFormat.setBaseCodecLevelFromDolbyVisionLevel()
           return findDecoder(mediaFormat)
         }
 
@@ -87,9 +84,7 @@ object MediaCodecCompat {
           // dolby vision profile 09: Base layer is H.264 High/Progressive/Constrained Profile, Rec 709
           mediaFormat.setString(MediaFormat.KEY_MIME, MediaFormat.MIMETYPE_VIDEO_AVC)
           mediaFormat.setInteger(MediaFormat.KEY_PROFILE, CodecProfileLevel.AVCProfileHigh)
-          if (Build.VERSION.SDK_INT >= 23) {
-            mediaFormat.setBaseCodecLevelFromDolbyVisionLevel()
-          }
+          mediaFormat.setBaseCodecLevelFromDolbyVisionLevel()
           return findDecoder(mediaFormat)
         }
 
@@ -100,7 +95,6 @@ object MediaCodecCompat {
     }
   }
 
-  @RequiresApi(23)
   private fun MediaFormat.setBaseCodecLevelFromDolbyVisionLevel(): Boolean {
     val mimeType = this.getString(MediaFormat.KEY_MIME) ?: return false
     try {

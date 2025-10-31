@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.jobs
 
-import android.os.Build
 import org.signal.core.util.logging.Log
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -263,7 +262,7 @@ class ArchiveThumbnailUploadJob private constructor(
 
       return if (MediaUtil.isImageType(attachment.contentType)) {
         compress(uri, attachment.contentType ?: "")
-      } else if (Build.VERSION.SDK_INT >= 23 && MediaUtil.isVideoType(attachment.contentType)) {
+      } else if (MediaUtil.isVideoType(attachment.contentType)) {
         MediaUtil.getVideoThumbnail(context, attachment.uri)?.let {
           compress(uri, attachment.contentType ?: "")
         }

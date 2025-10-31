@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.net.Uri;
-import android.os.Build;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -56,7 +55,7 @@ public class VideoSlide extends Slide {
 
   @Override
   public boolean hasPlayOverlay() {
-    return !(isVideoGif() && GiphyMp4PlaybackPolicy.autoplay()) || Build.VERSION.SDK_INT < 23;
+    return !(isVideoGif() && GiphyMp4PlaybackPolicy.autoplay());
   }
 
   @Override

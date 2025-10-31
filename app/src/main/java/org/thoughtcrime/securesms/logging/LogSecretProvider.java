@@ -1,12 +1,11 @@
 package org.thoughtcrime.securesms.logging;
 
 import android.content.Context;
-import android.os.Build;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.KeyStoreHelper;
 import org.signal.core.util.Base64;
+import org.thoughtcrime.securesms.crypto.KeyStoreHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
@@ -32,12 +31,8 @@ public class LogSecretProvider {
   }
 
   private static byte[] parseEncryptedSecret(String secret) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.SealedData.fromString(secret);
-      return KeyStoreHelper.unseal(encryptedSecret);
-    } else {
-      throw new AssertionError("OS downgrade not supported. KeyStore sealed data exists on platform < M!");
-    }
+    KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.SealedData.fromString(secret);
+    return KeyStoreHelper.unseal(encryptedSecret);
   }
 
   private static byte[] createAndStoreSecret(@NonNull Context context) {
@@ -45,12 +40,8 @@ public class LogSecretProvider {
     byte[]       secret = new byte[32];
     random.nextBytes(secret);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.seal(secret);
-      TextSecurePreferences.setLogEncryptedSecret(context, encryptedSecret.serialize());
-    } else {
-      TextSecurePreferences.setLogUnencryptedSecret(context, Base64.encodeWithPadding(secret));
-    }
+    KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.seal(secret);
+    TextSecurePreferences.setLogEncryptedSecret(context, encryptedSecret.serialize());
 
     return secret;
   }

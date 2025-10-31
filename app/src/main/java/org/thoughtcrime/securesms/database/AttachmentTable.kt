@@ -22,7 +22,6 @@ import android.database.Cursor
 import android.media.MediaDataSource
 import android.os.Parcelable
 import android.text.TextUtils
-import androidx.annotation.RequiresApi
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.core.content.contentValuesOf
@@ -2150,7 +2149,6 @@ class AttachmentTable(
       .run()
   }
 
-  @RequiresApi(23)
   fun mediaDataSourceFor(attachmentId: AttachmentId, allowReadingFromTempFile: Boolean): MediaDataSource? {
     val dataInfo = getDataFileInfo(attachmentId)
     if (dataInfo != null) {

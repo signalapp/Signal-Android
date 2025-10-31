@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationWelcomeV3Binding
-import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.fragments.WelcomePermissions
 import org.thoughtcrime.securesms.registration.ui.RegistrationCheckpoint
@@ -75,23 +74,21 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
       }
     }
 
-    if (Permissions.isRuntimePermissionsRequired()) {
-      parentFragmentManager.setFragmentResultListener(GrantPermissionsFragment.REQUEST_KEY, viewLifecycleOwner) { requestKey, bundle ->
-        if (requestKey == GrantPermissionsFragment.REQUEST_KEY) {
-          when (val userSelection = bundle.getSerializableCompat(GrantPermissionsFragment.REQUEST_KEY, WelcomeUserSelection::class.java)) {
-            WelcomeUserSelection.RESTORE_WITH_OLD_PHONE,
-            WelcomeUserSelection.RESTORE_WITH_NO_PHONE -> navigateToNextScreenViaRestore(userSelection)
-            WelcomeUserSelection.CONTINUE -> navigateToNextScreenViaContinue()
-            WelcomeUserSelection.LINK -> navigateToLinkDevice()
-            null -> Unit
-          }
+    parentFragmentManager.setFragmentResultListener(GrantPermissionsFragment.REQUEST_KEY, viewLifecycleOwner) { requestKey, bundle ->
+      if (requestKey == GrantPermissionsFragment.REQUEST_KEY) {
+        when (val userSelection = bundle.getSerializableCompat(GrantPermissionsFragment.REQUEST_KEY, WelcomeUserSelection::class.java)) {
+          WelcomeUserSelection.RESTORE_WITH_OLD_PHONE,
+          WelcomeUserSelection.RESTORE_WITH_NO_PHONE -> navigateToNextScreenViaRestore(userSelection)
+          WelcomeUserSelection.CONTINUE -> navigateToNextScreenViaContinue()
+          WelcomeUserSelection.LINK -> navigateToLinkDevice()
+          null -> Unit
         }
       }
     }
   }
 
   private fun onLinkDeviceClicked() {
-    if (Permissions.isRuntimePermissionsRequired() && !hasAllPermissions()) {
+    if (!hasAllPermissions()) {
       findNavController().safeNavigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(WelcomeUserSelection.LINK))
     } else {
       navigateToLinkDevice()
@@ -108,7 +105,7 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
   }
 
   private fun onContinueClicked() {
-    if (Permissions.isRuntimePermissionsRequired() && !hasAllPermissions()) {
+    if (!hasAllPermissions()) {
       findNavController().safeNavigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(WelcomeUserSelection.CONTINUE))
     } else {
       navigateToNextScreenViaContinue()
@@ -129,7 +126,7 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
   }
 
   private fun afterRestoreOrTransferClicked(userSelection: WelcomeUserSelection) {
-    if (Permissions.isRuntimePermissionsRequired() && !hasAllPermissions()) {
+    if (!hasAllPermissions()) {
       findNavController().safeNavigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(userSelection))
     } else {
       navigateToNextScreenViaRestore(userSelection)

@@ -10,7 +10,6 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
@@ -155,7 +154,6 @@ public class BlobProvider {
                                                                                    position));
   }
 
-  @RequiresApi(23)
   public synchronized @NonNull MediaDataSource getMediaDataSource(@NonNull Context context, @NonNull Uri uri) throws IOException {
     waitUntilInitialized();
     return getBlobRepresentation(context,
