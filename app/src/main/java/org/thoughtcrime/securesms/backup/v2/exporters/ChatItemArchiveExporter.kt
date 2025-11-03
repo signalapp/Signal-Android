@@ -1469,7 +1469,11 @@ private fun List<GroupReceiptTable.GroupReceiptInfo>?.toRemoteSendStatus(message
           )
         }
         it.status == GroupReceiptTable.STATUS_UNKNOWN -> {
-          statusBuilder.pending = SendStatus.Pending()
+          if (MessageTypes.isPendingMessageType(messageRecord.type)) {
+            statusBuilder.pending = SendStatus.Pending()
+          } else {
+            statusBuilder.skipped = SendStatus.Skipped()
+          }
         }
         it.status == GroupReceiptTable.STATUS_UNDELIVERED -> {
           statusBuilder.sent = SendStatus.Sent(
