@@ -73,17 +73,35 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
   Log.d(TAG, "Creating index took ${System.currentTimeMillis() - startTime} ms")
 
   // Unfortunately we have some bad legacy data where the from_recipient_id is a group.
-  // This cleans it up. Reminder, this is only a snapshot of the data.
+  // This cleans it up by setting from to self, so long as it doesn't create a conflict.
+  // For any rows that *would* cause a conflict, we delete them in the second query.
+  // Reminder, this is only a snapshot of the data.
   val cleanupStartTime = System.currentTimeMillis()
   db.rawWritableDatabase.execSQL(
     """
-      UPDATE ${MessageTable.TABLE_NAME}
+      UPDATE ${MessageTable.TABLE_NAME} AS m
       SET ${MessageTable.FROM_RECIPIENT_ID} = ${selfRecipientId.toLong()}
-      WHERE ${MessageTable.FROM_RECIPIENT_ID} IN (
+      WHERE m.${MessageTable.FROM_RECIPIENT_ID} IN (
         SELECT ${GroupTable.RECIPIENT_ID}
         FROM ${GroupTable.TABLE_NAME}
       )
+      AND NOT EXISTS (
+        SELECT 1
+        FROM ${MessageTable.TABLE_NAME} AS x
+        WHERE x.${MessageTable.THREAD_ID} = m.${MessageTable.THREAD_ID}
+          AND x.${MessageTable.DATE_SENT} = m.${MessageTable.DATE_SENT}
+          AND x.${MessageTable.FROM_RECIPIENT_ID} = ${selfRecipientId.toLong()}
+      )
     """
+  )
+  db.rawWritableDatabase.execSQL(
+    """
+    DELETE FROM ${MessageTable.TABLE_NAME}
+    WHERE ${MessageTable.FROM_RECIPIENT_ID} IN (
+      SELECT ${GroupTable.RECIPIENT_ID}
+      FROM ${GroupTable.TABLE_NAME}
+    )
+  """
   )
   Log.d(TAG, "Cleanup took ${System.currentTimeMillis() - cleanupStartTime} ms")
 
