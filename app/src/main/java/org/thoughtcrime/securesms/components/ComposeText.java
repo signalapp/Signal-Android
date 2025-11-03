@@ -227,6 +227,7 @@ public class ComposeText extends EmojiEditText {
 
     if (SignalStore.settings().isEnterKeySends()) {
       editorInfo.imeOptions &= ~EditorInfo.IME_FLAG_NO_ENTER_ACTION;
+      editorInfo.inputType &= ~EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE;
     }
 
     if (mediaListener == null) {
