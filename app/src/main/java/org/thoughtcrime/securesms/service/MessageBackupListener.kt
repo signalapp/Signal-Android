@@ -10,7 +10,9 @@ import androidx.annotation.VisibleForTesting
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.toMillis
+import org.thoughtcrime.securesms.util.toOffset
 import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.Random
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
@@ -62,11 +64,11 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
     }
 
     @VisibleForTesting
-    fun setNextBackupTimeToIntervalFromNow(now: LocalDateTime = LocalDateTime.now(), maxJitterSeconds: Int = BACKUP_JITTER_WINDOW_SECONDS, randomSource: Random = Random()): Long {
+    fun setNextBackupTimeToIntervalFromNow(zoneId: ZoneId = ZoneId.systemDefault(), now: LocalDateTime = LocalDateTime.now(zoneId), maxJitterSeconds: Int = BACKUP_JITTER_WINDOW_SECONDS, randomSource: Random = Random()): Long {
       val hour = SignalStore.settings.signalBackupHour
       val minute = SignalStore.settings.signalBackupMinute
       val next = getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, maxJitterSeconds, randomSource)
-      val nextTime = next.toMillis()
+      val nextTime = next.toMillis(zoneId.toOffset())
       SignalStore.backup.nextBackupTime = nextTime
       return nextTime
     }
