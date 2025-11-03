@@ -1120,12 +1120,6 @@ class ConversationFragment :
     val keyboardEvents = KeyboardEvents()
     container.addInputListener(keyboardEvents)
     container.addKeyboardStateListener(keyboardEvents)
-    requireActivity()
-      .onBackPressedDispatcher
-      .addCallback(
-        viewLifecycleOwner,
-        keyboardEvents
-      )
 
     childFragmentManager.setFragmentResultListener(AttachmentKeyboardFragment.RESULT_KEY, viewLifecycleOwner, AttachmentKeyboardFragmentListener())
     motionEventRelay.setDrain(MotionEventRelayDrain(this))
@@ -2505,6 +2499,8 @@ class ConversationFragment :
         searchMenuItem?.collapseActionView()
       } else if (state.isInActionMode) {
         finishActionMode()
+      } else if (state.isMediaKeyboardShowing) {
+        container.hideInput()
       }
     }
   }
@@ -4509,21 +4505,17 @@ class ConversationFragment :
   }
 
   private inner class KeyboardEvents :
-    OnBackPressedCallback(false),
     InputAwareConstraintLayout.Listener,
     InsetAwareConstraintLayout.KeyboardStateListener {
-    override fun handleOnBackPressed() {
-      container.hideInput()
-    }
 
     override fun onInputShown() {
       binding.navBar.setBackgroundColor(ThemeUtil.getThemedColor(requireContext(), R.attr.mediaKeyboardBottomBarBackgroundColor))
-      isEnabled = true
+      viewModel.setIsMediaKeyboardShowing(true)
     }
 
     override fun onInputHidden() {
       setNavBarBackgroundColor(viewModel.wallpaperSnapshot)
-      isEnabled = false
+      viewModel.setIsMediaKeyboardShowing(false)
     }
 
     override fun onKeyboardShown() {

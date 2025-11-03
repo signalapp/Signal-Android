@@ -660,6 +660,12 @@ class ConversationViewModel(
     }
   }
 
+  fun setIsMediaKeyboardShowing(isMediaKeyboardShowing: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isMediaKeyboardShowing = isMediaKeyboardShowing)
+    }
+  }
+
   fun toggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) {
     viewModelScope.launch(Dispatchers.IO) {
       val voteCount = if (isChecked) {
@@ -685,8 +691,9 @@ class ConversationViewModel(
   data class BackPressedState(
     val isReactionDelegateShowing: Boolean = false,
     val isSearchRequested: Boolean = false,
-    val isInActionMode: Boolean = false
+    val isInActionMode: Boolean = false,
+    val isMediaKeyboardShowing: Boolean = false
   ) {
-    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing || isInActionMode
+    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing || isInActionMode || isMediaKeyboardShowing
   }
 }
