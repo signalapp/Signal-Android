@@ -430,6 +430,14 @@ public class PushServiceSocket {
     downloadFromCdn(destination, cdnNumber, headers, cdnPath, maxSizeBytes, listener);
   }
 
+  public byte[] retrieveBackupForwardSecrecyMetadataBytes(int cdnNumber, Map<String, String> headers, String cdnPath, int maxSizeBytes)
+      throws MissingConfigurationException, IOException
+  {
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    downloadFromCdn(outputStream, 0, cdnNumber, headers, cdnPath, maxSizeBytes, null);
+    return outputStream.toByteArray();
+  }
+
   public void retrieveAttachment(int cdnNumber, Map<String, String> headers, SignalServiceAttachmentRemoteId remoteId, File destination, long maxSizeBytes, ProgressListener listener)
       throws IOException, MissingConfigurationException
   {

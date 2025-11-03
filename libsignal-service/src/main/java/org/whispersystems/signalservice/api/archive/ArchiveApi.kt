@@ -163,6 +163,15 @@ class ArchiveApi(
    * return 0 for used space since that is stored under the media key/credential.
    *
    * Will return a [NetworkResult.StatusCodeError] with status code 404 if you haven't uploaded a backup yet.
+   *
+   * GET /v1/archives
+   * - 200: Success
+   * - 400: Bad arguments. The request may have been made on an authenticated channel.
+   * - 401: The provided backup auth credential presentation could not be verified or the public key signature was invalid or there is no backup associated with
+   *        the backup-id in the presentation or the credential was of the wrong type (messages/media)
+   * - 403: Forbidden
+   * - 404: No backup
+   * - 429: Rate limited
    */
   fun getBackupInfo(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<ArchiveGetBackupInfoResponse> {
     return getCredentialPresentation(aci, archiveServiceAccess)

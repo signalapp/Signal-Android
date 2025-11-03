@@ -122,6 +122,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
             Log.i(TAG, "Restore successful", true)
             SignalStore.registration.restoreDecisionState = RestoreDecisionState.Completed
 
+            SignalStore.backup.backupSecretRestoreRequired = false
             StorageServiceRestore.restore()
 
             store.update { it.copy(importState = ImportState.Restored) }

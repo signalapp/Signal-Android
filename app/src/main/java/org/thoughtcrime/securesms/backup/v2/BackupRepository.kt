@@ -164,6 +164,7 @@ import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
+import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
@@ -2392,6 +2393,26 @@ object BackupRepository {
       attachmentDetails = SignalDatabase.attachments.debugAttachmentStatsForBackupProto(),
       usingPaidTier = SignalStore.backup.backupTier == MessageBackupTier.PAID
     ).encodeByteString()
+  }
+
+  fun getRemoteBackupForwardSecrecyMetadata(): NetworkResult<ByteArray?> {
+    return initBackupAndFetchAuth()
+      .then { credential -> SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), credential.messageBackupAccess) }
+      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
+      .then { pair ->
+        val (cdnCredentials, info) = pair
+        val headers = cdnCredentials.toMutableMap().apply {
+          this["range"] = "bytes=0-${EncryptedBackupReader.BACKUP_SECRET_METADATA_UPPERBOUND - 1}"
+        }
+
+        AppDependencies.signalServiceMessageReceiver.retrieveBackupForwardSecretMetadataBytes(
+          info.cdn!!,
+          headers,
+          "backups/${info.backupDir}/${info.backupName}",
+          EncryptedBackupReader.BACKUP_SECRET_METADATA_UPPERBOUND
+        )
+      }
+      .map { bytes -> EncryptedBackupReader.readForwardSecrecyMetadata(ByteArrayInputStream(bytes)) }
   }
 
   interface ExportProgressListener {

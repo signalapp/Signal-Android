@@ -202,6 +202,10 @@ public class SignalServiceMessageReceiver {
     socket.retrieveBackup(cdnNumber, headers, cdnPath, destination, 1_000_000_000L, listener);
   }
 
+  public NetworkResult<byte[]> retrieveBackupForwardSecretMetadataBytes(int cdnNumber, Map<String, String> headers, String cdnPath, int maxSizeBytes) {
+    return NetworkResult.fromFetch(() -> socket.retrieveBackupForwardSecrecyMetadataBytes(cdnNumber, headers, cdnPath, maxSizeBytes));
+  }
+
   /**
    * Retrieves a link+sync backup file. The data is written to @{code destination}.
    */

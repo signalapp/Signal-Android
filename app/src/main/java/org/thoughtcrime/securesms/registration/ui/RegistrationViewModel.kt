@@ -914,6 +914,10 @@ class RegistrationViewModel : ViewModel() {
       SignalStore.registration.restoreDecisionState = RestoreDecisionState.NewAccount
     }
 
+    if (remoteResult.reRegistration) {
+      SignalStore.backup.backupSecretRestoreRequired = true
+    }
+
     if (reglockEnabled || SignalStore.account.restoredAccountEntropyPool) {
       SignalStore.onboarding.clearAll()
 

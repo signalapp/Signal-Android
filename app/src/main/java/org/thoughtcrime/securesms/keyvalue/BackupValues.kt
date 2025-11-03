@@ -92,6 +92,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_HAS_VERIFIED_BEFORE = "backup.has_verified_before"
 
     private const val KEY_NEXT_BACKUP_SECRET_DATA = "backup.next_backup_secret_data"
+    private const val KEY_BACKUP_SECRET_RESTORE_REQUIRED = "backup.backup_secret_restore_required"
 
     private const val KEY_RESTORING_VIA_QR = "backup.restore_via_qr"
 
@@ -392,6 +393,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   /** The value from the last successful SVRB operation that must be passed to the next SVRB operation. */
   var nextBackupSecretData by nullableBlobValue(KEY_NEXT_BACKUP_SECRET_DATA, null)
+
+  /** True if user re-registered but did not restore SVRB secrets during registration, and should on backup. */
+  var backupSecretRestoreRequired by booleanValue(KEY_BACKUP_SECRET_RESTORE_REQUIRED, false)
 
   /** True if attempting to restore backup from quick restore/QR code */
   var restoringViaQr by booleanValue(KEY_RESTORING_VIA_QR, false)
