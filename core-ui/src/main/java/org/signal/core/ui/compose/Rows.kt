@@ -363,9 +363,9 @@ object Rows {
    */
   @Composable
   fun TextRow(
-    text: String,
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
+    text: String? = null,
     label: String? = null,
     icon: Painter? = null,
     foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
@@ -374,7 +374,7 @@ object Rows {
     enabled: Boolean = true
   ) {
     TextRow(
-      text = remember(text) { AnnotatedString(text) },
+      text = remember(text) { text?.let { AnnotatedString(text) } },
       label = remember(label) { label?.let { AnnotatedString(label) } },
       icon = icon,
       modifier = modifier,
@@ -391,9 +391,9 @@ object Rows {
    */
   @Composable
   fun TextRow(
-    text: AnnotatedString,
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
+    text: AnnotatedString? = null,
     label: AnnotatedString? = null,
     icon: Painter? = null,
     foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
@@ -434,10 +434,10 @@ object Rows {
    */
   @Composable
   fun TextRow(
-    text: String,
     icon: ImageVector?,
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
+    text: String? = null,
     label: String? = null,
     foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
     iconTint: Color = foregroundTint,
