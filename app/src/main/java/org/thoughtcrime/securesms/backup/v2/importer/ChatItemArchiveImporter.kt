@@ -750,14 +750,14 @@ class ChatItemArchiveImporter(
 
   private fun ChatItem.getMessageType(): Long {
     var type: Long = if (this.outgoing != null) {
-      if (this.outgoing.sendStatus.any { it.failed?.reason == SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH }) {
+      if (this.outgoing.sendStatus.any { it.pending != null }) {
+        MessageTypes.BASE_SENDING_TYPE
+      } else if (this.outgoing.sendStatus.any { it.failed?.reason == SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH }) {
         MessageTypes.BASE_SENT_FAILED_TYPE
       } else if (this.outgoing.sendStatus.any { it.failed?.reason == SendStatus.Failed.FailureReason.UNKNOWN }) {
         MessageTypes.BASE_SENT_FAILED_TYPE
       } else if (this.outgoing.sendStatus.any { it.failed?.reason == SendStatus.Failed.FailureReason.NETWORK }) {
         MessageTypes.BASE_SENT_FAILED_TYPE
-      } else if (this.outgoing.sendStatus.any { it.pending != null }) {
-        MessageTypes.BASE_SENDING_TYPE
       } else if (this.outgoing.sendStatus.all { it.skipped != null }) {
         MessageTypes.BASE_SENDING_SKIPPED_TYPE
       } else {
