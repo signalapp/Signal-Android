@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState.RestoreStatus
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.BackupUpgradeAvailabilityChecker
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupStateObserver
@@ -98,6 +99,12 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         _state.update {
           it.copy(isPaidTierPricingAvailable = paidType is NetworkResult.Success)
         }
+      }
+    }
+
+    viewModelScope.launch {
+      _state.update {
+        it.copy(isGooglePlayServicesAvailable = BackupUpgradeAvailabilityChecker.isUpgradeAvailable(AppDependencies.application))
       }
     }
 

@@ -507,6 +507,7 @@ private fun RemoteBackupsSettingsContent(
               backupState = state.backupState,
               onBackupTypeActionButtonClicked = contentCallbacks::onBackupTypeActionClick,
               isPaidTierPricingAvailable = state.isPaidTierPricingAvailable,
+              isGooglePlayServicesAvailable = state.isGooglePlayServicesAvailable,
               buttonsEnabled = backupDeleteState.isIdle()
             )
           }
@@ -994,6 +995,7 @@ private fun LazyListScope.appendBackupDetailsItems(
 private fun BackupCard(
   backupState: BackupState.WithTypeAndRenewalTime,
   isPaidTierPricingAvailable: Boolean,
+  isGooglePlayServicesAvailable: Boolean,
   buttonsEnabled: Boolean,
   onBackupTypeActionButtonClicked: (MessageBackupTier) -> Unit = {}
 ) {
@@ -1085,7 +1087,7 @@ private fun BackupCard(
       )
     }
 
-    if (backupState.isActive() && isPaidTierPricingAvailable) {
+    if (backupState.isActive() && isPaidTierPricingAvailable && isGooglePlayServicesAvailable) {
       val buttonText = when (messageBackupsType) {
         is MessageBackupsType.Paid -> stringResource(R.string.RemoteBackupsSettingsFragment__manage_or_cancel)
         is MessageBackupsType.Free -> stringResource(R.string.RemoteBackupsSettingsFragment__upgrade)
@@ -1857,6 +1859,7 @@ private fun BackupCardPreview() {
             price = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD"))
           ),
           isPaidTierPricingAvailable = true,
+          isGooglePlayServicesAvailable = true,
           buttonsEnabled = true
         )
       }
@@ -1872,6 +1875,7 @@ private fun BackupCardPreview() {
             renewalTime = 1727193018.seconds
           ),
           isPaidTierPricingAvailable = true,
+          isGooglePlayServicesAvailable = true,
           buttonsEnabled = true
         )
       }
@@ -1887,6 +1891,7 @@ private fun BackupCardPreview() {
             renewalTime = 1727193018.seconds
           ),
           isPaidTierPricingAvailable = true,
+          isGooglePlayServicesAvailable = true,
           buttonsEnabled = true
         )
       }
@@ -1903,6 +1908,7 @@ private fun BackupCardPreview() {
             price = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD"))
           ),
           isPaidTierPricingAvailable = true,
+          isGooglePlayServicesAvailable = true,
           buttonsEnabled = true
         )
       }
@@ -1915,6 +1921,7 @@ private fun BackupCardPreview() {
             )
           ),
           isPaidTierPricingAvailable = true,
+          isGooglePlayServicesAvailable = true,
           buttonsEnabled = true
         )
       }
@@ -1927,6 +1934,7 @@ private fun BackupCardPreview() {
             )
           ),
           isPaidTierPricingAvailable = false,
+          isGooglePlayServicesAvailable = true,
           buttonsEnabled = true
         )
       }
