@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import android.content.Context
+import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.annotation.UiContext
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -92,6 +94,10 @@ fun MessageBackupsKeyRecordScreen(
   val snackbarHostState = remember { SnackbarHostState() }
   val backupKeyString = remember(backupKey) {
     backupKey.chunked(4).joinToString("  ")
+  }
+
+  if (mode is MessageBackupsKeyRecordMode.Next) {
+    RecordScreenBackHandler()
   }
 
   Scaffolds.Settings(
@@ -334,6 +340,38 @@ private fun BackupKeySaveErrorDialog(
       message = message,
       dismiss = stringResource(android.R.string.ok),
       onDismiss = onDismiss
+    )
+  }
+}
+
+@Composable
+private fun RecordScreenBackHandler() {
+  var displayWarningDialog by remember { mutableStateOf(false) }
+  var didConfirmDialog by remember { mutableStateOf(false) }
+  val backPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+
+  BackHandler(enabled = !didConfirmDialog) {
+    displayWarningDialog = true
+  }
+
+  LaunchedEffect(didConfirmDialog, backPressedDispatcher) {
+    if (didConfirmDialog) {
+      backPressedDispatcher?.onBackPressed()
+    }
+  }
+
+  if (displayWarningDialog) {
+    Dialogs.SimpleAlertDialog(
+      title = stringResource(R.string.MessageBackupsKeyRecordScreen__exit_backup_setup),
+      body = stringResource(R.string.MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups),
+      confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__exit_backup_setup_confirm),
+      dismiss = stringResource(android.R.string.cancel),
+      onConfirm = {
+        didConfirmDialog = true
+      },
+      onDismiss = {
+        displayWarningDialog = false
+      }
     )
   }
 }
