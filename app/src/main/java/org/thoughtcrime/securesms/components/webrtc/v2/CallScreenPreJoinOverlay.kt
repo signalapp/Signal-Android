@@ -59,9 +59,10 @@ fun CallScreenPreJoinOverlay(
 ) {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
-    modifier = modifier
+    modifier = Modifier
       .fillMaxSize()
       .background(color = Color(0f, 0f, 0f, 0.4f))
+      .then(modifier)
   ) {
     CallScreenTopAppBar(
       onNavigationClick = onNavigationClick,

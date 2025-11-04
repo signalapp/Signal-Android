@@ -31,6 +31,14 @@ annotation class FoldablePreviews
 @Preview(name = "tablet landscape (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = "spec:width=1280dp,height=840dp,orientation=landscape")
 annotation class TabletPreviews
 
+@Preview(name = "phone portrait (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=360dp,height=640dp,orientation=portrait")
+@Preview(name = "phone landscape (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=640dp,height=360dp,orientation=landscape")
+@Preview(name = "foldable portrait (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=600dp,height=1024dp,orientation=portrait")
+@Preview(name = "foldable landscape (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=1024dp,height=600dp,orientation=landscape")
+@Preview(name = "tablet portrait (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=840dp,height=1280dp,orientation=portrait")
+@Preview(name = "tablet landscape (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=1280dp,height=840dp,orientation=landscape")
+annotation class AllNightPreviews
+
 @PhonePreviews
 @FoldablePreviews
 @TabletPreviews
