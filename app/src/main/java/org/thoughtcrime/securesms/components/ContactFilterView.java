@@ -148,11 +148,6 @@ public final class ContactFilterView extends FrameLayout {
     ViewUtil.focusAndShowKeyboard(searchText);
   }
 
-  public void setText(String text) {
-    searchText.setText(text);
-    searchText.setSelection(text.length());
-  }
-
   public void clear() {
     searchText.setText("");
     notifyListener();
