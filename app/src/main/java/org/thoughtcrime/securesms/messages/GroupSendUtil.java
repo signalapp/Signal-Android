@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.api.CancelationException;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.LegacyGroupEvents;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.SenderKeyGroupEvents;
@@ -446,7 +445,20 @@ public final class GroupSendUtil {
     }
 
     if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-      throw new CancelationException();
+      Log.i(TAG, "Send canceled. Adding canceled results for " + legacyTargets.size() + " remaining legacy targets.");
+      for (Recipient recipient : legacyTargets) {
+        allResults.add(SendMessageResult.canceledFailure(recipients.getAddress(recipient.getId())));
+      }
+
+      if (unregisteredTargets.size() > 0) {
+        List<SendMessageResult> unregisteredResults = unregisteredTargets.stream()
+                                                                         .filter(Recipient::getHasServiceId)
+                                                                         .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireServiceId(), t.getE164().orElse(null))))
+                                                                         .collect(Collectors.toList());
+        allResults.addAll(unregisteredResults);
+      }
+
+      return allResults;
     }
 
     boolean onlyTargetIsSelfWithLinkedDevice = legacyTargets.isEmpty() && senderKeyTargets.isEmpty() && SignalStore.account().isMultiDevice();

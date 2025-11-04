@@ -1954,7 +1954,7 @@ public class SignalServiceMessageSender {
 
     for (int i = 0; i < RETRY_COUNT; i++) {
       if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-        throw new CancelationException();
+        return SendMessageResult.canceledFailure(recipient);
       }
 
       try {
@@ -1976,7 +1976,7 @@ public class SignalServiceMessageSender {
         }
 
         if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-          throw new CancelationException();
+          return SendMessageResult.canceledFailure(recipient);
         }
 
         try {
@@ -2015,7 +2015,7 @@ public class SignalServiceMessageSender {
         }
 
         if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-          throw new CancelationException();
+          return SendMessageResult.canceledFailure(recipient);
         }
 
         SendMessageResponse response = socket.sendMessage(messages, sealedSenderAccess, story);
@@ -2100,7 +2100,11 @@ public class SignalServiceMessageSender {
       if (cause instanceof IOException) {
         throw (IOException) cause;
       } else if (cause instanceof InterruptedException) {
-        throw new CancelationException(e);
+        List<SendMessageResult> canceledResults = new ArrayList<>(recipients.size());
+        for (SignalServiceAddress recipient : recipients) {
+          canceledResults.add(SendMessageResult.canceledFailure(recipient));
+        }
+        return canceledResults;
       } else {
         throw e;
       }
@@ -2175,7 +2179,7 @@ public class SignalServiceMessageSender {
     Single<SendMessageResult> sendWithFallback = messagesSingle
         .flatMap(messages -> {
           if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-            return Single.error(new CancelationException());
+            return Single.just(new kotlin.Pair<>(messages, new NetworkResult.NetworkError<SendMessageResponse>(new IOException("Canceled"))));
           }
 
           return Single.fromCallable(() -> messageApi.sendMessage(messages, sealedSenderAccess, story))
@@ -2202,7 +2206,7 @@ public class SignalServiceMessageSender {
             return Single.just(result);
           } catch (IOException throwable) {
             if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-              return Single.error(new CancelationException());
+              return Single.just(SendMessageResult.canceledFailure(recipient));
             }
 
             if (throwable instanceof AuthorizationFailedException ||
@@ -2248,7 +2252,7 @@ public class SignalServiceMessageSender {
 
     return sendWithFallback.onErrorResumeNext(t -> {
       if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-        return Single.error(new CancelationException());
+        return Single.just(SendMessageResult.canceledFailure(recipient));
       }
 
       if (retryCount >= RETRY_COUNT) {

@@ -20,33 +20,38 @@ public class SendMessageResult {
   private final ProofRequiredException proofRequiredFailure;
   private final RateLimitException     rateLimitFailure;
   private final boolean                invalidPreKeyFailure;
+  private final boolean                canceledFailure;
 
   public static SendMessageResult success(SignalServiceAddress address, List<Integer> devices, boolean unidentified, boolean needsSync, long duration, Optional<Content> content) {
-    return new SendMessageResult(address, new Success(unidentified, needsSync, duration, content, devices), false, false, null, null, null, false);
+    return new SendMessageResult(address, new Success(unidentified, needsSync, duration, content, devices), false, false, null, null, null, false, false);
   }
 
   public static SendMessageResult networkFailure(SignalServiceAddress address) {
-    return new SendMessageResult(address, null, true, false, null, null, null, false);
+    return new SendMessageResult(address, null, true, false, null, null, null, false, false);
   }
 
   public static SendMessageResult unregisteredFailure(SignalServiceAddress address) {
-    return new SendMessageResult(address, null, false, true, null, null, null, false);
+    return new SendMessageResult(address, null, false, true, null, null, null, false, false);
   }
 
   public static SendMessageResult identityFailure(SignalServiceAddress address, IdentityKey identityKey) {
-    return new SendMessageResult(address, null, false, false, new IdentityFailure(identityKey), null, null, false);
+    return new SendMessageResult(address, null, false, false, new IdentityFailure(identityKey), null, null, false, false);
   }
 
   public static SendMessageResult proofRequiredFailure(SignalServiceAddress address, ProofRequiredException proofRequiredException) {
-    return new SendMessageResult(address, null, false, false, null, proofRequiredException, null, false);
+    return new SendMessageResult(address, null, false, false, null, proofRequiredException, null, false, false);
   }
 
   public static SendMessageResult rateLimitFailure(SignalServiceAddress address, RateLimitException rateLimitException) {
-    return new SendMessageResult(address, null, false, false, null, null, rateLimitException, false);
+    return new SendMessageResult(address, null, false, false, null, null, rateLimitException, false, false);
   }
 
   public static SendMessageResult invalidPreKeyFailure(SignalServiceAddress address) {
-    return new SendMessageResult(address, null, false, false, null, null, null, true);
+    return new SendMessageResult(address, null, false, false, null, null, null, true, false);
+  }
+
+  public static SendMessageResult canceledFailure(SignalServiceAddress address) {
+    return new SendMessageResult(address, null, false, false, null, null, null, false, true);
   }
 
   public SignalServiceAddress getAddress() {
@@ -85,6 +90,10 @@ public class SendMessageResult {
     return invalidPreKeyFailure;
   }
 
+  public boolean isCanceledFailure() {
+    return canceledFailure;
+  }
+
   private SendMessageResult(SignalServiceAddress address,
                             Success success,
                             boolean networkFailure,
@@ -92,7 +101,8 @@ public class SendMessageResult {
                             IdentityFailure identityFailure,
                             ProofRequiredException proofRequiredFailure,
                             RateLimitException rateLimitFailure,
-                            boolean invalidPreKeyFailure)
+                            boolean invalidPreKeyFailure,
+                            boolean canceledFailure)
   {
     this.address              = address;
     this.success              = success;
@@ -102,6 +112,7 @@ public class SendMessageResult {
     this.proofRequiredFailure = proofRequiredFailure;
     this.rateLimitFailure     = rateLimitFailure;
     this.invalidPreKeyFailure = invalidPreKeyFailure;
+    this.canceledFailure      = canceledFailure;
   }
 
   public static class Success {
