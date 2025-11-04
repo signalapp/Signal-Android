@@ -46,6 +46,7 @@ fun CallParticipantsPager(
         1 -> {
           CallParticipantRenderer(
             callParticipant = callParticipantsPagerState.focusedParticipant,
+            renderInPip = callParticipantsPagerState.isRenderInPip,
             modifier = Modifier.fillMaxSize()
           )
         }

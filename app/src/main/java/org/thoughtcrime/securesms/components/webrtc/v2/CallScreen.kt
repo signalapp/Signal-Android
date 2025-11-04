@@ -56,6 +56,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
@@ -73,12 +74,14 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.TriggerAlignedPopupState
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.webrtc.CallParticipantView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.ringrtc.CameraState
 import kotlin.math.max
 import kotlin.math.round
 import kotlin.time.Duration.Companion.seconds
@@ -170,7 +173,6 @@ fun CallScreen(
     val maxSheetHeight = round(constraints.maxHeight * 0.66f)
     val maxOffset = maxHeight - maxSheetHeight
 
-    var offset by remember { mutableFloatStateOf(0f) }
     var peekHeight by remember { mutableFloatStateOf(88f) }
 
     BottomSheetScaffold(
@@ -192,7 +194,7 @@ fun CallScreen(
             .padding(top = SHEET_TOP_PADDING.dp, bottom = SHEET_BOTTOM_PADDING.dp)
             .height(DimensionUnit.PIXELS.toDp(maxSheetHeight).dp)
             .onGloballyPositioned {
-              offset = scaffoldState.bottomSheetState.requireOffset()
+              val offset = it.positionInRoot().y
               val current = maxHeight - offset - DimensionUnit.DP.toPixels(peekHeight)
               val maximum = maxHeight - maxOffset - DimensionUnit.DP.toPixels(peekHeight)
 
@@ -242,6 +244,7 @@ fun CallScreen(
         onPipClick = onLocalPictureInPictureClicked,
         onControlsToggled = onControlsToggled,
         callScreenController = callScreenController,
+        onToggleCameraDirection = callScreenControlsListener::onCameraDirectionChanged,
         modifier = if (isPortrait) {
           Modifier.padding(bottom = padding)
         } else Modifier
@@ -282,7 +285,9 @@ fun CallScreen(
           callStatus = callScreenState.callStatus,
           onNavigationClick = onNavigationClick,
           onCallInfoClick = onCallInfoClick,
+          onCameraToggleClick = callScreenControlsListener::onCameraDirectionChanged,
           isLocalVideoEnabled = localParticipant.isVideoEnabled,
+          isMoreThanOneCameraAvailable = localParticipant.isMoreThanOneCameraAvailable,
           modifier = Modifier.padding(bottom = padding)
         )
       }
@@ -331,6 +336,7 @@ private fun BoxScope.Viewport(
   callScreenController: CallScreenController,
   onPipClick: () -> Unit,
   onControlsToggled: (Boolean) -> Unit,
+  onToggleCameraDirection: () -> Unit,
   modifier: Modifier = Modifier
 ) {
   if (webRtcCallState.isPreJoinOrNetworkUnavailable) {
@@ -448,6 +454,7 @@ private fun BoxScope.Viewport(
       localParticipant = localParticipant,
       localRenderState = localRenderState,
       onClick = onPipClick,
+      onToggleCameraDirection = onToggleCameraDirection,
       modifier = modifier
     )
   }
@@ -463,6 +470,8 @@ private fun LargeLocalVideoRenderer(
 ) {
   CallParticipantRenderer(
     callParticipant = localParticipant,
+    isLocalParticipant = true,
+    renderInPip = false,
     modifier = modifier
       .fillMaxSize()
   )
@@ -499,6 +508,9 @@ private fun TinyLocalVideoRenderer(
 
   CallParticipantRenderer(
     callParticipant = localParticipant,
+    isLocalParticipant = true,
+    renderInPip = true,
+    selfPipMode = CallParticipantView.SelfPipMode.MINI_SELF_PIP,
     modifier = modifier
       .padding(padding)
       .height(height)
@@ -516,6 +528,7 @@ private fun SmallMoveableLocalVideoRenderer(
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
   onClick: () -> Unit,
+  onToggleCameraDirection: () -> Unit,
   modifier: Modifier = Modifier
 ) {
   val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
@@ -542,6 +555,14 @@ private fun SmallMoveableLocalVideoRenderer(
   ) {
     CallParticipantRenderer(
       callParticipant = localParticipant,
+      isLocalParticipant = true,
+      renderInPip = true,
+      selfPipMode = if (localRenderState == WebRtcLocalRenderState.EXPANDED) {
+        CallParticipantView.SelfPipMode.EXPANDED_SELF_PIP
+      } else {
+        CallParticipantView.SelfPipMode.NORMAL_SELF_PIP
+      },
+      onToggleCameraDirection = onToggleCameraDirection,
       modifier = Modifier
         .fillMaxSize()
         .clip(MaterialTheme.shapes.medium)
@@ -631,7 +652,7 @@ private fun CallScreenPreview() {
   Previews.Preview {
     CallScreen(
       callRecipient = Recipient(systemContactName = "Test User"),
-      webRtcCallState = WebRtcViewModel.State.CALL_CONNECTED,
+      webRtcCallState = WebRtcViewModel.State.CALL_PRE_JOIN,
       isRemoteVideoOffer = false,
       isInPipMode = false,
       callScreenState = CallScreenState(
@@ -653,7 +674,11 @@ private fun CallScreenPreview() {
           isResolving = false,
           isSelf = true
         ),
-        isVideoEnabled = true
+        isVideoEnabled = true,
+        cameraState = CameraState(
+          CameraState.Direction.FRONT,
+          2
+        )
       ),
       localRenderState = WebRtcLocalRenderState.SMALL_RECTANGLE,
       callScreenDialogType = CallScreenDialogType.NONE,
