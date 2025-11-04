@@ -8869,6 +8869,10 @@
     <string name="Poll__couldnt_end_poll">Couldn\'t end poll</string>
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">Check your connection and try again.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">End poll?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">Group members will no longer be able to vote in this poll.</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">New poll</string>
     <!-- Section text to enter in a question for a poll  -->

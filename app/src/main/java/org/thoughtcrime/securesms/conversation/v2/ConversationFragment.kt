@@ -2663,19 +2663,26 @@ class ConversationFragment :
       return
     }
 
-    val endPoll = viewModel.endPoll(pollId)
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(getString(R.string.Poll__end_poll_title))
+      .setMessage(getString(R.string.Poll__end_poll_body))
+      .setPositiveButton(R.string.Poll__end_poll) { _, _ ->
+        val endPoll = viewModel.endPoll(pollId)
 
-    disposables += endPoll
-      .subscribeBy(
-        onError = {
-          Log.w(TAG, "Error received during poll end!", it)
-          MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.Poll__couldnt_end_poll)
-            .setMessage(getString(R.string.Poll__check_connection))
-            .setPositiveButton(android.R.string.ok) { dialog: DialogInterface?, which: Int -> dialog!!.dismiss() }
-            .show()
-        }
-      )
+        disposables += endPoll
+          .subscribeBy(
+            onError = {
+              Log.w(TAG, "Error received during poll end!", it)
+              MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.Poll__couldnt_end_poll)
+                .setMessage(getString(R.string.Poll__check_connection))
+                .setPositiveButton(android.R.string.ok) { dialog: DialogInterface?, which: Int -> dialog!!.dismiss() }
+                .show()
+            }
+          )
+      }
+      .setNegativeButton(android.R.string.cancel) { _, _ -> }
+      .show()
   }
 
   private inner class SwipeAvailabilityProvider : ConversationItemSwipeCallback.SwipeAvailabilityProvider {
