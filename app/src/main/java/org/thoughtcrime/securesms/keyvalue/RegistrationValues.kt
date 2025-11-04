@@ -44,7 +44,12 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
 
   @Synchronized
   fun clearRegistrationComplete() {
-    onFirstEverAppLaunch()
+    store
+      .beginWrite()
+      .putBoolean(HAS_UPLOADED_PROFILE, false)
+      .putBoolean(REGISTRATION_COMPLETE, false)
+      .putBoolean(PIN_REQUIRED, true)
+      .commit()
   }
 
   @Synchronized
@@ -86,8 +91,8 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
   var restoreDecisionState: RestoreDecisionState
     get() = store.getBlob(RESTORE_DECISION_STATE, null)?.let { RestoreDecisionState.ADAPTER.decode(it) } ?: RestoreDecisionState.Skipped
     set(newValue) {
-      if (isRegistrationComplete) {
-        Log.w(TAG, "Registration was completed, cannot change initial restore decision state")
+      if (isRegistrationComplete || restoreDecisionState.isTerminal) {
+        Log.w(TAG, "Cannot change initial restore decision state. complete: $isRegistrationComplete terminal: ${restoreDecisionState.isTerminal}")
       } else {
         Log.v(TAG, "Restore decision set: $newValue", Throwable())
         store.beginWrite()

@@ -65,7 +65,6 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.core.util.AppUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.BaseActivity
@@ -248,7 +247,11 @@ class RemoteRestoreActivity : BaseActivity() {
       .setTitle(R.string.RestoreActivity__no_longer_registered_title)
       .setMessage(R.string.RestoreActivity__no_longer_registered_message)
       .setCancelable(false)
-      .setPositiveButton(android.R.string.ok) { _, _ -> AppUtil.clearData(this) }
+      .setPositiveButton(android.R.string.ok) { _, _ ->
+        viewModel.skipRestore()
+        startActivity(MainActivity.clearTop(this))
+        supportFinishAfterTransition()
+      }
       .show()
   }
 

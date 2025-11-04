@@ -23,11 +23,4 @@ public final class AppUtil {
     context.startActivity(defaultIntent);
     Runtime.getRuntime().exit(0);
   }
-
-  /**
-   * Clears all app data, will cause the app to stop running.
-   */
-  public static void clearData(@NonNull Context context) {
-    ContextCompat.getSystemService(context, ActivityManager.class).clearApplicationUserData();
-  }
 }
