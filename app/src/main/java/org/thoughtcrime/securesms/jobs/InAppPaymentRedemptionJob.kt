@@ -253,7 +253,7 @@ class InAppPaymentRedemptionJob private constructor(
       )
     }
 
-    Log.i(TAG, "InAppPayment with ID $inAppPaymentId was successfully redeemed. Response code: ${serviceResponse.status}, Will notify: ${jobData.isFromAuthCheck}")
+    Log.i(TAG, "InAppPayment with ID $inAppPaymentId was successfully redeemed. Response code: ${serviceResponse.status}, Will notify: ${jobData.isFromAuthCheck}", true)
 
     SignalDatabase.inAppPayments.update(
       inAppPayment = inAppPayment.copy(
