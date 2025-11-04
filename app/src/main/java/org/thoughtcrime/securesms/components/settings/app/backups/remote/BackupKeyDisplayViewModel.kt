@@ -14,19 +14,30 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.concurrent.SignalDispatchers
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.StagedBackupKeyRotations
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.AccountEntropyPool
+import org.whispersystems.signalservice.api.NetworkResult
 
 class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
+
+  companion object {
+    private val TAG = Log.tag(BackupKeyDisplayViewModel::class.java)
+  }
+
   private val internalUiState = MutableStateFlow(BackupKeyDisplayUiState())
   val uiState: StateFlow<BackupKeyDisplayUiState> = internalUiState.asStateFlow()
 
   override fun updateBackupKeySaveState(newState: BackupKeySaveState?) {
     internalUiState.update { it.copy(keySaveState = newState) }
+  }
+
+  init {
+    getKeyRotationLimit()
   }
 
   fun rotateBackupKey() {
@@ -61,6 +72,21 @@ class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler
     }
   }
 
+  fun getKeyRotationLimit() {
+    viewModelScope.launch(SignalDispatchers.IO) {
+      val result = BackupRepository.getKeyRotationLimit()
+      if (result is NetworkResult.Success) {
+        internalUiState.update {
+          it.copy(
+            canRotateKey = result.result.hasPermitsRemaining ?: true
+          )
+        }
+      } else {
+        Log.w(TAG, "Error while getting rotation limit: $result. Default to allowing key rotations.")
+      }
+    }
+  }
+
   fun turnOffOptimizedStorageAndDownloadMedia() {
     SignalStore.backup.optimizeStorage = false
     // TODO - flag to notify when complete.
@@ -73,7 +99,8 @@ data class BackupKeyDisplayUiState(
   val keySaveState: BackupKeySaveState? = null,
   val isOptimizedStorageEnabled: Boolean = SignalStore.backup.optimizeStorage,
   val rotationState: BackupKeyRotationState = BackupKeyRotationState.NOT_STARTED,
-  val stagedKeyRotations: StagedBackupKeyRotations? = null
+  val stagedKeyRotations: StagedBackupKeyRotations? = null,
+  val canRotateKey: Boolean = true
 )
 
 enum class BackupKeyRotationState {

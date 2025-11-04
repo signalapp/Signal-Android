@@ -392,6 +392,18 @@ class ArchiveApi(
       }
   }
 
+  /**
+   * Determine whether the backup-id can currently be rotated
+   *
+   * GET /v1/archives/backupid/limits
+   * - 200: Successfully retrieved backup-id rotation limits
+   * - 403: Invalid account authentication
+   */
+  fun getKeyRotationLimit(): NetworkResult<ArchiveKeyRotationLimitResponse> {
+    val request = WebSocketRequestMessage.get("/v1/archives/backupid/limits")
+    return NetworkResult.fromWebSocketRequest(authWebSocket, request, ArchiveKeyRotationLimitResponse::class)
+  }
+
   private fun getCredentialPresentation(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<CredentialPresentationData> {
     return NetworkResult.fromLocal {
       val zkCredential = getZkCredential(aci, archiveServiceAccess)

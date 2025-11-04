@@ -324,6 +324,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     setFragmentResultListener(BackupKeyDisplayFragment.AEP_ROTATION_KEY) { _, bundle ->
       val didRotate = bundle.getBoolean(BackupKeyDisplayFragment.AEP_ROTATION_KEY, false)
       if (didRotate) {
+        viewModel.getKeyRotationLimit()
         viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.AEP_KEY_ROTATED)
       }
     }
@@ -654,6 +655,16 @@ private fun RemoteBackupsSettingsContent(
         onConfirm = {},
         onDismiss = contentCallbacks::onDialogDismissed,
         onDeny = contentCallbacks::onFreeTierBackupSizeLearnMore
+      )
+    }
+
+    RemoteBackupsSettingsState.Dialog.KEY_ROTATION_LIMIT_REACHED -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.MessageBackupsKeyRecordScreen__limit_reached_title),
+        body = stringResource(R.string.MessageBackupsKeyRecordScreen__limit_reached_body),
+        confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__ok),
+        onConfirm = {},
+        onDismiss = contentCallbacks::onDialogDismissed
       )
     }
   }

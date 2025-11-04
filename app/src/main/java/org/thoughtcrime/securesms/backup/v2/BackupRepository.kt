@@ -142,6 +142,7 @@ import org.whispersystems.signalservice.api.ApplicationErrorAction
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.StatusCodeErrorAction
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
+import org.whispersystems.signalservice.api.archive.ArchiveKeyRotationLimitResponse
 import org.whispersystems.signalservice.api.archive.ArchiveMediaRequest
 import org.whispersystems.signalservice.api.archive.ArchiveMediaResponse
 import org.whispersystems.signalservice.api.archive.ArchiveServiceAccess
@@ -2061,6 +2062,10 @@ object BackupRepository {
   fun getSvrBAuth(): NetworkResult<AuthCredentials> {
     return initBackupAndFetchAuth()
       .then { SignalNetwork.archive.getSvrBAuthorization(SignalStore.account.requireAci(), it.messageBackupAccess) }
+  }
+
+  fun getKeyRotationLimit(): NetworkResult<ArchiveKeyRotationLimitResponse> {
+    return SignalNetwork.archive.getKeyRotationLimit()
   }
 
   /**

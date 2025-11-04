@@ -75,7 +75,7 @@ class BackupKeyDisplayFragment : ComposeFragment() {
       displayWarningDialog = true
     }
 
-    val mode = remember(state.rotationState) {
+    val mode = remember(state.rotationState, state.canRotateKey) {
       if (state.rotationState == BackupKeyRotationState.NOT_STARTED) {
         MessageBackupsKeyRecordMode.CreateNewKey(
           onCreateNewKeyClick = {
@@ -85,7 +85,8 @@ class BackupKeyDisplayFragment : ComposeFragment() {
             viewModel.turnOffOptimizedStorageAndDownloadMedia()
             findNavController().popBackStack()
           },
-          isOptimizedStorageEnabled = state.isOptimizedStorageEnabled
+          isOptimizedStorageEnabled = state.isOptimizedStorageEnabled,
+          canRotateKey = state.canRotateKey
         )
       } else {
         MessageBackupsKeyRecordMode.Next(

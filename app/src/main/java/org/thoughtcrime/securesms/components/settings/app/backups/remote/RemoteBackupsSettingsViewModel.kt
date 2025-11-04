@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.withContext
 import org.signal.core.util.bytes
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.core.util.throttleLatest
@@ -230,6 +231,22 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   fun requestSnackbar(snackbar: RemoteBackupsSettingsState.Snackbar) {
     _state.update { it.copy(snackbar = snackbar) }
+  }
+
+  fun getKeyRotationLimit() {
+    viewModelScope.launch(SignalDispatchers.IO) {
+      val result = BackupRepository.getKeyRotationLimit()
+      val canRotateKey = if (result is NetworkResult.Success) {
+        result.result.hasPermitsRemaining!!
+      } else {
+        Log.w(TAG, "Error while getting rotation limit: $result. Default to allowing key rotations.")
+        true
+      }
+
+      if (!canRotateKey) {
+        requestDialog(RemoteBackupsSettingsState.Dialog.KEY_ROTATION_LIMIT_REACHED)
+      }
+    }
   }
 
   fun refresh() {
