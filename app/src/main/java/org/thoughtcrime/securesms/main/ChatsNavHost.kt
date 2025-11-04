@@ -44,6 +44,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.MainNavigator
+import org.thoughtcrime.securesms.compose.FragmentBackHandler
+import org.thoughtcrime.securesms.compose.FragmentBackPressedState
 import org.thoughtcrime.securesms.conversation.ConversationArgs
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
@@ -106,6 +108,9 @@ fun NavGraphBuilder.chatNavGraphBuilder(
       )
     }
 
+    val backPressedState = remember { FragmentBackPressedState() }
+    FragmentBackHandler(backPressedState)
+
     AndroidFragment(
       clazz = ConversationFragment::class.java,
       fragmentState = fragmentState,
@@ -126,6 +131,8 @@ fun NavGraphBuilder.chatNavGraphBuilder(
           }
         }
       }
+
+      backPressedState.attach(fragment)
 
       fragment.viewLifecycleOwner.lifecycleScope.launch {
         fragment.repeatOnLifecycle(Lifecycle.State.STARTED) {

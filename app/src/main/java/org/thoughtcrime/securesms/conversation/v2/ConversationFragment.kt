@@ -86,11 +86,13 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
@@ -153,6 +155,8 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView
+import org.thoughtcrime.securesms.compose.FragmentBackPressedInfo
+import org.thoughtcrime.securesms.compose.FragmentBackPressedInfoProvider
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey.RecipientSearchKey
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
@@ -393,7 +397,8 @@ class ConversationFragment :
   SafetyNumberBottomSheet.Callbacks,
   EnableCallNotificationSettingsDialog.Callback,
   MultiselectForwardBottomSheet.Callback,
-  DoubleTapEditEducationSheet.Callback {
+  DoubleTapEditEducationSheet.Callback,
+  FragmentBackPressedInfoProvider {
 
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
@@ -935,6 +940,18 @@ class ConversationFragment :
 
   override fun onDismissForwardSheet() = Unit
 
+  override fun getFragmentBackPressedInfo(): Flow<FragmentBackPressedInfo> {
+    return viewModel.backPressedState.map {
+      if (it.shouldHandleBackPressed()) {
+        FragmentBackPressedInfo.Enabled({
+          BackPressedCallback().handleOnBackPressed()
+        })
+      } else {
+        FragmentBackPressedInfo.Disabled
+      }
+    }
+  }
+
   //endregion
 
   private fun startActionMode() {
@@ -1034,13 +1051,15 @@ class ConversationFragment :
     activity?.supportStartPostponedEnterTransition()
     internalDidFirstFrameRender.update { true }
 
-    val backPressedDelegate = BackPressedDelegate()
-    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backPressedDelegate)
+    if (requireActivity() is ConversationActivity) {
+      val backPressedCallback = BackPressedCallback()
+      requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backPressedCallback)
 
-    lifecycleScope.launch {
-      repeatOnLifecycle(Lifecycle.State.RESUMED) {
-        viewModel.backPressedState.collectLatest {
-          backPressedDelegate.isEnabled = it.shouldHandleBackPressed()
+      lifecycleScope.launch {
+        repeatOnLifecycle(Lifecycle.State.RESUMED) {
+          viewModel.backPressedState.collectLatest {
+            backPressedCallback.isEnabled = it.shouldHandleBackPressed()
+          }
         }
       }
     }
@@ -2489,7 +2508,7 @@ class ConversationFragment :
       }
   }
 
-  private inner class BackPressedDelegate : OnBackPressedCallback(false) {
+  private inner class BackPressedCallback : OnBackPressedCallback(false) {
     override fun handleOnBackPressed() {
       Log.d(TAG, "onBackPressed()")
       val state = viewModel.backPressedState.value
