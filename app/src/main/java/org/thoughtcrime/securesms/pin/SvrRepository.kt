@@ -44,7 +44,6 @@ object SvrRepository {
 
   val TAG = Log.tag(SvrRepository::class.java)
 
-  private val svr2LegacyLegacy: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE_LEGACY_LEGACY)
   private val svr2Legacy: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE_LEGACY)
   private val svr2: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
   private val svr3: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork)
@@ -53,7 +52,7 @@ object SvrRepository {
   private val readImplementations: List<SecureValueRecovery> = if (Svr3Migration.shouldReadFromSvr3) {
     listOf(svr3, svr2)
   } else {
-    listOf(svr2, svr2Legacy, svr2LegacyLegacy)
+    listOf(svr2, svr2Legacy)
   }
 
   /** An ordered list of SVR implementations to write to. They should be in priority order, with the most important one listed first. */
@@ -66,7 +65,6 @@ object SvrRepository {
       if (Svr3Migration.shouldWriteToSvr2) {
         implementations += svr2
         implementations += svr2Legacy
-        implementations += svr2LegacyLegacy
       }
       return implementations
     }
@@ -104,8 +102,7 @@ object SvrRepository {
       } else {
         listOf(
           svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) },
-          svr2Legacy to { restoreMasterKeyPreRegistrationFromV2(svr2Legacy, credentials.svr2, userPin) },
-          svr2LegacyLegacy to { restoreMasterKeyPreRegistrationFromV2(svr2LegacyLegacy, credentials.svr2, userPin) }
+          svr2Legacy to { restoreMasterKeyPreRegistrationFromV2(svr2Legacy, credentials.svr2, userPin) }
         )
       }
 
@@ -139,6 +136,10 @@ object SvrRepository {
 
           RestoreResponse.Missing -> {
             Log.w(TAG, "[restoreMasterKeyPreRegistration] No data found for $implementation | Continuing to next implementation.", true)
+          }
+
+          RestoreResponse.EnclaveNotFound -> {
+            Log.w(TAG, "[restoreMasterKeyPreRegistration] Enclave no longer exists: $implementation | Continuing to next implementation.", true)
           }
         }
       }
@@ -217,6 +218,10 @@ object SvrRepository {
 
           RestoreResponse.Missing -> {
             Log.w(TAG, "[restoreMasterKeyPostRegistration] No data found for: $implementation | Continuing to next implementation.", true)
+          }
+
+          RestoreResponse.EnclaveNotFound -> {
+            Log.w(TAG, "[restoreMasterKeyPostRegistration] Enclave no longer exists: $implementation | Continuing to next implementation.", true)
           }
         }
       }
