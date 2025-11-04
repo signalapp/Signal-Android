@@ -15,6 +15,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
+import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob
@@ -26,6 +27,7 @@ import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.registration.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
+import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.NetworkResultUtil
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
@@ -357,11 +359,20 @@ object SvrRepository {
     }
   }
 
+  /**
+   * @param rotateAep If true, this will rotate the AEP as part of the process of opting out. Only do this if the user has not enabled backups! If the user
+   *    has backups enabled, you should guide them through rotating the AEP first, and then call this with [rotateAep] = false.
+   */
   @JvmStatic
   @WorkerThread
-  fun optOutOfPin() {
+  fun optOutOfPin(rotateAep: Boolean) {
     operationLock.withLock {
       SignalStore.svr.optOut()
+
+      if (rotateAep) {
+        SignalStore.account.rotateAccountEntropyPool(AccountEntropyPool.generate())
+        AppDependencies.jobManager.add(MultiDeviceKeysUpdateJob())
+      }
 
       AppDependencies.megaphoneRepository.markFinished(Megaphones.Event.PINS_FOR_ALL)
 

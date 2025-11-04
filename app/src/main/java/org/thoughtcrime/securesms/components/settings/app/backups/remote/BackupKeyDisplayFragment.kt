@@ -20,6 +20,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import org.signal.core.ui.compose.Dialogs
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRecordMode
@@ -42,6 +43,7 @@ class BackupKeyDisplayFragment : ComposeFragment() {
   }
 
   private val viewModel: BackupKeyDisplayViewModel by viewModel { BackupKeyDisplayViewModel() }
+  private val args: BackupKeyDisplayFragmentArgs by navArgs()
 
   @Composable
   override fun FragmentContent() {
@@ -52,6 +54,12 @@ class BackupKeyDisplayFragment : ComposeFragment() {
     LaunchedEffect(Unit) {
       navController.setLifecycleOwner(this@BackupKeyDisplayFragment)
       navController.enableOnBackPressed(true)
+    }
+
+    LaunchedEffect(args.startWithKeyRotation, state.rotationState) {
+      if (args.startWithKeyRotation && state.rotationState == BackupKeyRotationState.NOT_STARTED) {
+        viewModel.rotateBackupKey()
+      }
     }
 
     LaunchedEffect(state.rotationState) {

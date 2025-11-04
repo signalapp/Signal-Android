@@ -18,11 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -33,11 +35,13 @@ import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.Snackbars
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyDisplayFragment
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 import org.thoughtcrime.securesms.payments.backup.PaymentsRecoveryStartFragmentArgs.Builder
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.pin.PinOptOutDialog
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * Fragment which allows user to enable or disable their PIN
@@ -56,7 +60,7 @@ class AdvancedPinSettingsFragment : ComposeFragment() {
       repeatOnLifecycle(Lifecycle.State.RESUMED) {
         viewModel.event.collectLatest {
           when (it) {
-            AdvancedPinSettingsViewModel.Event.SHOW_OPT_OUT_DIALOG -> PinOptOutDialog.show(requireContext()) {
+            AdvancedPinSettingsViewModel.Event.SHOW_BACKUPS_DISABLED_OPT_OUT_DIALOG -> PinOptOutDialog.show(requireContext(), true) {
               viewModel.onPinOptOutSuccess()
               displayOptOutSnackbar()
             }
@@ -70,8 +74,18 @@ class AdvancedPinSettingsFragment : ComposeFragment() {
 
               startActivity(intent)
             }
+            AdvancedPinSettingsViewModel.Event.SHOW_PIN_DISABLED_SNACKBAR -> {
+              displayOptOutSnackbar()
+            }
           }
         }
+      }
+    }
+
+    setFragmentResultListener(BackupKeyDisplayFragment.AEP_ROTATION_KEY) { key, bundle ->
+      val didRotate = bundle.getBoolean(BackupKeyDisplayFragment.AEP_ROTATION_KEY, false)
+      if (didRotate) {
+        viewModel.onAepRotatedForPinDisable()
       }
     }
   }
@@ -109,7 +123,22 @@ class AdvancedPinSettingsFragment : ComposeFragment() {
           viewModel.dismissDialog()
         }
       )
-      else -> Unit
+      AdvancedPinSettingsViewModel.Dialog.ROTATE_AEP -> RotateAepDialog(
+        onConfirm = {
+          viewModel.dismissDialog()
+          val bundle = Bundle()
+          bundle.putBoolean("start_with_key_rotation", true)
+          findNavController().safeNavigate(
+            AdvancedPinSettingsFragmentDirections
+              .actionAdvancedPinSettingsFragmentToBackupKeyDisplayFragment()
+              .setStartWithKeyRotation(true)
+          )
+        },
+        onDismiss = {
+          viewModel.dismissDialog()
+        }
+      )
+      AdvancedPinSettingsViewModel.Dialog.NONE -> Unit
     }
   }
 
@@ -191,6 +220,21 @@ private fun RecordPaymentsRecoveryPhraseDialog(
   )
 }
 
+@Composable
+private fun RotateAepDialog(
+  onConfirm: () -> Unit,
+  onDismiss: () -> Unit
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.AdvancedPinSettingsFragment_rotate_aep_dialog_title),
+    body = stringResource(R.string.AdvancedPinSettingsFragment_rotate_aep_dialog_body),
+    confirm = stringResource(R.string.AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button),
+    onConfirm = onConfirm,
+    dismiss = stringResource(android.R.string.cancel),
+    onDismiss = onDismiss
+  )
+}
+
 @DayNightPreviews
 @Composable
 private fun AdvancedPinSettingsFragmentContentEnabledPreview() {
@@ -224,5 +268,13 @@ private fun PinsAreRequiredForRegistrationLockDialogPreview() {
 private fun RecordPaymentsRecoveryPhraseDialogPreview() {
   Previews.Preview {
     RecordPaymentsRecoveryPhraseDialog({}, {})
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun RotateAepDialogPreview() {
+  Previews.Preview {
+    RotateAepDialog({}, {})
   }
 }
