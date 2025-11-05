@@ -1214,7 +1214,7 @@
     <string name="ExpiredBuildReminder_update_now">Zaktualizuj teraz</string>
 
     <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="DeprecatedSdkBanner_body">Sygnał nie działa już na tym urządzeniu. Aby ponownie korzystać z usługi Signal, zaktualizuj swoje urządzenie do nowszej wersji systemu Android lub użyj nowszego urządzenia.</string>
+    <string name="DeprecatedSdkBanner_body">Sygnał nie działa już na tym urządzeniu. Aby dalej korzystać z aplikacji Signal, zaktualizuj system Android na tym urządzeniu do nowszej wersji lub zmień urządzenie na nowsze.</string>
 
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Zaktualizuj Signal</string>
@@ -6213,11 +6213,11 @@
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
     <string name="RecipientSearchBar__search_name_or_number">Imię, nazwa użytkownika lub numer</string>
     <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
-    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Switch to numeric keyboard</string>
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Przełącz na klawiaturę numeryczną</string>
     <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
-    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Switch to alphanumeric keyboard</string>
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Przełącz na klawiaturę alfanumeryczną</string>
     <!-- Accessibility label for the button to clear the search filter. -->
-    <string name="RecipientSearchBar_accessibility_clear_search">Reset search filter</string>
+    <string name="RecipientSearchBar_accessibility_clear_search">Resetuj filtr wyszukiwania</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8108,7 +8108,7 @@
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Nie teraz</string>
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
-    <string name="TurnOnSignalBackups__toast_not_now">You can enable backups in \"Settings\"</string>
+    <string name="TurnOnSignalBackups__toast_not_now">Możesz włączyć kopie zapasowe w sekcji „Ustawienia”</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Zweryfikuj kod odzyskiwania</string>

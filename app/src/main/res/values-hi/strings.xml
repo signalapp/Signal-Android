@@ -1170,7 +1170,7 @@
     <string name="ExpiredBuildReminder_update_now">अभी अपडेट करें</string>
 
     <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="DeprecatedSdkBanner_body">Signal अब इस डिवाइस पर काम नहीं करता। Signal का फिर से इस्तेमाल करने के लिए अपने डिवाइस को ऐंड्रॉयड के एक अधिक नए वर्ज़न में अपडेट करें या फिर किसी नए डिवाइस पर स्विच करें।</string>
+    <string name="DeprecatedSdkBanner_body">Signal अब इस डिवाइस पर काम नहीं करता। Signal का फिर से इस्तेमाल करने के लिए, अपने डिवाइस को Android के नए वर्ज़न पर अपडेट करें या किसी नए डिवाइस का इस्तेमाल करें।</string>
 
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Signal अपडेट करें</string>
@@ -2260,7 +2260,7 @@
     <string name="PinRestoreEntryFragment_incorrect_pin">पिन सही नहीं है</string>
     <string name="PinRestoreEntryFragment_skip_pin_entry">बिना पिन डाले आगे बढ़ना है?</string>
     <string name="PinRestoreEntryFragment_need_help">क्या आपको कोई मदद चाहिए?</string>
-    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">आपका पिन एक %1$d+ अंकों का कोड होता है, जिसे आपने बनाया था। यह न्यूमेरिक या अल्फ़ान्यूमेरिक हो सकता है।\n\nअगर आपको अपना पिन याद नहीं है, तो आपके पास नया पिन बनाने का विकल्प मौजूद है। रजिस्टर करके अपना अकाउंट इस्तेमाल किया जा सकता है, लेकिन सेव की गईं कुछ सेटिंग खो सकती हैं, जैसे कि आपकी प्रोफ़ाइल से जुड़ी जानकारी।</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">आपका पिन %1$d+ अंकों का एक कोड होता है, जिसे आपने ही बनाया था। यह न्यूमेरिक या अल्फ़ान्यूमेरिक हो सकता है।\n\nअगर आपको अपना पिन याद नहीं है, तो आपके पास नया पिन बनाने का विकल्प मौजूद है। रजिस्टर करके अपना अकाउंट इस्तेमाल किया जा सकता है, लेकिन सेव की गईं कुछ सेटिंग खो सकती हैं, जैसे कि आपकी प्रोफ़ाइल से जुड़ी जानकारी।</string>
     <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">अगर आपको अपना पिन याद नहीं है, तो आपके पास नया पिन बनाने का विकल्प मौजूद है। रजिस्टर करके अपना अकाउंट इस्तेमाल किया जा सकता है, लेकिन कुछ सेव की गई सेटिंग खो सकती है, जैसे कि आपकी प्रोफ़ाइल से जुड़ी जानकारी।</string>
     <string name="PinRestoreEntryFragment_create_new_pin">नया पिन बनाएं</string>
     <string name="PinRestoreEntryFragment_contact_support">सपोर्ट टीम से संपर्क करें</string>
@@ -5933,11 +5933,11 @@
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
     <string name="RecipientSearchBar__search_name_or_number">नाम, यूज़रनेम या नंबर</string>
     <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
-    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Switch to numeric keyboard</string>
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">न्यूमेरिक कीबोर्ड पर जाएं</string>
     <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
-    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Switch to alphanumeric keyboard</string>
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">अल्फ़ान्यूमेरिक कीबोर्ड पर जाएं</string>
     <!-- Accessibility label for the button to clear the search filter. -->
-    <string name="RecipientSearchBar_accessibility_clear_search">Reset search filter</string>
+    <string name="RecipientSearchBar_accessibility_clear_search">सर्च फ़िल्टर रीसेट करें</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -7764,7 +7764,7 @@
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">अभी नहीं</string>
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
-    <string name="TurnOnSignalBackups__toast_not_now">You can enable backups in \"Settings\"</string>
+    <string name="TurnOnSignalBackups__toast_not_now">\'सेटिंग\' में जाकर बैकअप चालू किया जा सकता है</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">अपनी \'रिकवरी की\' वेरिफ़ाई करें</string>

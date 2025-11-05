@@ -1128,7 +1128,7 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">Transferir historial de mensajes</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfiere todos tus mensajes de texto, así como tus archivos multimedia de los últimos 45 días</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfiere todos tus mensajes de texto y tus últimos 45 días de archivos multimedia</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Transfiere tus mensajes de texto y archivos multimedia</string>
     <!-- Option in bottom sheet to not transfer message history -->
@@ -1170,7 +1170,7 @@
     <string name="ExpiredBuildReminder_update_now">Actualizar ahora</string>
 
     <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="DeprecatedSdkBanner_body">Signal ya no funciona en este dispositivo. Para volver a usar Signal, actualiza tu dispositivo a una versión más nueva de Android o cámbialo por un dispositivo más nuevo.</string>
+    <string name="DeprecatedSdkBanner_body">Signal ya no funciona en este dispositivo. Para volver a usar Signal, debes actualizar tu dispositivo a una versión más nueva de Android o cambiarlo por un dispositivo más nuevo.</string>
 
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Actualizar Signal</string>
@@ -5395,7 +5395,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Copia de seguridad incompleta</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">No se ha podido recuperar tu suscripción a las copias de seguridad</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">No se ha podido validar tu suscripción a las copias de seguridad</string>
     <!-- String alerting user that backup storage limit has been reached -->
     <string name="AppSettingsFragment__backup_storage_limit_reached">Se ha alcanzado el límite de almacenamiento de la copia de seguridad</string>
     <!-- String displayed telling user to invite their friends to Signal -->
@@ -5933,11 +5933,11 @@
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
     <string name="RecipientSearchBar__search_name_or_number">Nombre, alias o número</string>
     <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
-    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Switch to numeric keyboard</string>
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Cambiar al teclado numérico</string>
     <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
-    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Switch to alphanumeric keyboard</string>
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Cambiar al teclado alfanumérico</string>
     <!-- Accessibility label for the button to clear the search filter. -->
-    <string name="RecipientSearchBar_accessibility_clear_search">Reset search filter</string>
+    <string name="RecipientSearchBar_accessibility_clear_search">Restablecer filtro de búsqueda</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -7764,7 +7764,7 @@
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Ahora no</string>
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
-    <string name="TurnOnSignalBackups__toast_not_now">You can enable backups in \"Settings\"</string>
+    <string name="TurnOnSignalBackups__toast_not_now">Puedes activar las copias de seguridad en Ajustes</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Verifica tu clave de recuperación</string>
@@ -7971,7 +7971,7 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Error en la copia de seguridad</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">No se ha podido recuperar tu suscripción a las copias de seguridad</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">No se ha podido validar tu suscripción a las copias de seguridad</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Se ha producido un error y no se ha podido completar tu copia de seguridad. Asegúrate de estar usando la última versión de Signal y vuelve a intentarlo. Si el problema persiste, ponte en contacto con el equipo de asistencia.</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
@@ -7979,7 +7979,7 @@
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Buscar actualizaciones</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Se ha intentado recuperar tu suscripción desde demasiados dispositivos este mes. Es posible que:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Se ha intentado validar tu suscripción desde demasiados dispositivos este mes. Es posible que:</string>
     <!-- Backup redemption error sheet bullet point 1 -->
     <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Hayas vuelto a registrar tu cuenta de Signal demasiadas veces.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
@@ -8629,7 +8629,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">¿Omitir restauración?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Si omites la restauración ahora, no podrás hacerlo más tarde. Si vuelves a habilitar las copias de seguridad después de omitir la restauración, tu copia de seguridad actual se reemplazará por tu nuevo historial de mensajes.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Si no restauras tu copia de seguridad ahora, no podrás hacerlo más adelante. Si decides omitir la restauración y luego vuelves a habilitar las copias de seguridad, Signal eliminará tu copia de seguridad actual y creará una nueva que no incluirá tus mensajes anteriores.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Omitir restauración</string>
 

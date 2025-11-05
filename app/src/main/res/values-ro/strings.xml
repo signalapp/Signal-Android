@@ -6073,11 +6073,11 @@
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
     <string name="RecipientSearchBar__search_name_or_number">Nume, nume de utilizator sau număr de telefon</string>
     <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
-    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Switch to numeric keyboard</string>
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Treci la tastatura numerică</string>
     <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
-    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Switch to alphanumeric keyboard</string>
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Treci la tastatura alfanumerică</string>
     <!-- Accessibility label for the button to clear the search filter. -->
-    <string name="RecipientSearchBar_accessibility_clear_search">Reset search filter</string>
+    <string name="RecipientSearchBar_accessibility_clear_search">Resetează filtrul de căutare</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -7936,7 +7936,7 @@
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Nu acum</string>
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
-    <string name="TurnOnSignalBackups__toast_not_now">You can enable backups in \"Settings\"</string>
+    <string name="TurnOnSignalBackups__toast_not_now">Poți activa copiile de rezervă din „Setări”</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Verifică-ți cheia de recuperare</string>

@@ -5933,11 +5933,11 @@
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
     <string name="RecipientSearchBar__search_name_or_number">Аты, пайдаланушы аты немесе нөмірі</string>
     <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
-    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Switch to numeric keyboard</string>
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Сандық пернетақтаға ауысу</string>
     <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
-    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Switch to alphanumeric keyboard</string>
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Әріптік-сандық пернетақтаға ауысу</string>
     <!-- Accessibility label for the button to clear the search filter. -->
-    <string name="RecipientSearchBar_accessibility_clear_search">Reset search filter</string>
+    <string name="RecipientSearchBar_accessibility_clear_search">Іздеу сүзгісін қалпына келтіру</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -7764,7 +7764,7 @@
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Кейін</string>
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
-    <string name="TurnOnSignalBackups__toast_not_now">You can enable backups in \"Settings\"</string>
+    <string name="TurnOnSignalBackups__toast_not_now">Сақтық көшірмелерді \"Параметрлер\" бөлімінде қосуға болады</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Қалпына келтіру кілтін растау</string>
