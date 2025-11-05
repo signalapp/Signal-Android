@@ -958,9 +958,9 @@ object BackupRepository {
       val signalStoreSnapshot: SignalStore = createSignalStoreSnapshot(keyValueDbName)
       eventTimer.emit("store-db-snapshot")
 
-      val exportState = ExportState(backupTime = currentTime, forTransfer = forTransfer)
       val selfAci = signalStoreSnapshot.accountValues.aci!!
       val selfRecipientId = dbSnapshot.recipientTable.getByAci(selfAci).get().toLong().let { RecipientId.from(it) }
+      val exportState = ExportState(backupTime = currentTime, forTransfer = forTransfer, selfRecipientId = selfRecipientId)
 
       var frameCount = 0L
 
@@ -2446,7 +2446,8 @@ data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
 
 class ExportState(
   val backupTime: Long,
-  val forTransfer: Boolean
+  val forTransfer: Boolean,
+  val selfRecipientId: RecipientId
 ) {
   val recipientIds: MutableSet<Long> = hashSetOf()
   val threadIds: MutableSet<Long> = hashSetOf()

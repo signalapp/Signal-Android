@@ -39,7 +39,7 @@ object NotificationProfileArchiveProcessor {
     db.notificationProfileTables
       .getProfiles()
       .forEach { profile ->
-        val frame = profile.toBackupFrame(includeRecipient = { id -> exportState.recipientIds.contains(id.toLong()) })
+        val frame = profile.toBackupFrame(includeRecipient = { id -> exportState.recipientIds.contains(id.toLong()) && id != exportState.selfRecipientId })
         emitter.emit(frame)
       }
   }
