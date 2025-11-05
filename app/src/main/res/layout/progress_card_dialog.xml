@@ -8,6 +8,7 @@
         android:id="@+id/progress_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="@color/signal_colorSurface1"
         app:cardCornerRadius="18dp" />
 
 </FrameLayout>

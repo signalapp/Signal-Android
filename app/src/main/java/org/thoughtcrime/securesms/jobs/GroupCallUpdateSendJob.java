@@ -173,7 +173,8 @@ public class GroupCallUpdateSendJob extends BaseJob {
                                                                                              false,
                                                                                              ContentHint.DEFAULT,
                                                                                              dataMessage,
-                                                                                             false);
+                                                                                             false,
+                                                                                             null);
 
     if (includesSelf) {
       results.add(AppDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));

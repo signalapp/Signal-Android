@@ -22,6 +22,8 @@ import android.graphics.PorterDuffColorFilter
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Browser
 import android.provider.ContactsContract
 import android.provider.Settings
@@ -134,6 +136,7 @@ import org.thoughtcrime.securesms.components.HidingLinearLayout
 import org.thoughtcrime.securesms.components.InputAwareConstraintLayout
 import org.thoughtcrime.securesms.components.InputPanel
 import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
+import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
 import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -402,6 +405,8 @@ class ConversationFragment :
 
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
+    private val POLL_SPINNER_DELAY = 500.milliseconds
+
     private const val ACTION_PINNED_SHORTCUT = "action_pinned_shortcut"
     private const val SAVED_STATE_IS_SEARCH_REQUESTED = "is_search_requested"
     private const val EMOJI_SEARCH_FRAGMENT_TAG = "EmojiSearchFragment"
@@ -525,6 +530,7 @@ class ConversationFragment :
   private val doubleTapToEditDebouncer = DoubleClickDebouncer(200)
   private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY) }
   private val nicknameEditActivityLauncher = registerForActivityResult(NicknameActivity.Contract()) {}
+  private val handler = Handler(Looper.getMainLooper())
 
   private lateinit var layoutManager: ConversationLayoutManager
   private lateinit var markReadHelper: MarkReadHelper
@@ -559,6 +565,7 @@ class ConversationFragment :
   private var dataObserver: DataObserver? = null
   private var menuProvider: ConversationOptionsMenu.Provider? = null
   private var scrollListener: ScrollListener? = null
+  private var progressDialog: ProgressCardDialogFragment? = null
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -2670,6 +2677,13 @@ class ConversationFragment :
         val endPoll = viewModel.endPoll(pollId)
 
         disposables += endPoll
+          .doOnSubscribe {
+            handler.postDelayed({ showSpinner() }, POLL_SPINNER_DELAY.inWholeMilliseconds)
+          }
+          .doFinally {
+            handler.removeCallbacksAndMessages(null)
+            hideSpinner()
+          }
           .subscribeBy(
             onError = {
               Log.w(TAG, "Error received during poll end!", it)
@@ -2683,6 +2697,16 @@ class ConversationFragment :
       }
       .setNegativeButton(android.R.string.cancel) { _, _ -> }
       .show()
+  }
+
+  private fun showSpinner() {
+    progressDialog = ProgressCardDialogFragment.create(getString(R.string.Poll__waiting_for_network))
+    progressDialog?.show(parentFragmentManager, null)
+  }
+
+  private fun hideSpinner() {
+    progressDialog?.dismissAllowingStateLoss()
+    progressDialog = null
   }
 
   private inner class SwipeAvailabilityProvider : ConversationItemSwipeCallback.SwipeAvailabilityProvider {

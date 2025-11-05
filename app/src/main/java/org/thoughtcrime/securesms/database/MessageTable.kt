@@ -2159,6 +2159,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun markAsSentFailed(messageId: Long) {
+    // When a poll terminate fails, we ignore attempts to mark it as failed because we know that it was previously successfully sent to at least one person
+    val messageType = getMessageType(messageId)
+    if (MessageTypes.isPollTerminate(messageType)) {
+      Log.i(TAG, "Ignoring sent failed for poll terminate $messageId")
+      return
+    }
     val threadId = getThreadIdForMessage(messageId)
     updateMailboxBitmask(messageId, MessageTypes.BASE_TYPE_MASK, MessageTypes.BASE_SENT_FAILED_TYPE, Optional.of(threadId))
     AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
@@ -3713,6 +3719,15 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .readToSingleLong()
 
     return MessageTypes.isSentType(type)
+  }
+
+  fun getMessageType(messageId: Long): Long {
+    return readableDatabase
+      .select(TYPE)
+      .from(TABLE_NAME)
+      .where("$ID = ?", messageId)
+      .run()
+      .readToSingleLong()
   }
 
   fun getProfileChangeDetailsRecords(threadId: Long, afterTimestamp: Long): List<MessageRecord> {

@@ -132,10 +132,11 @@ public final class GroupSendUtil {
                                                                     boolean isRecipientUpdate,
                                                                     ContentHint contentHint,
                                                                     @NonNull SignalServiceDataMessage message,
-                                                                    boolean urgent)
+                                                                    boolean urgent,
+                                                                    CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, isRecipientUpdate, false, DataSendOperation.unresendable(message, contentHint, urgent), null);
+    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, isRecipientUpdate, false, DataSendOperation.unresendable(message, contentHint, urgent), cancelationSignal);
   }
 
   /**
@@ -391,6 +392,11 @@ public final class GroupSendUtil {
         final MessageSendLogTables messageLogDatabase  = SignalDatabase.messageLog();
         final AtomicLong           entryId             = new AtomicLong(-1);
         final boolean              includeInMessageLog = sendOperation.shouldIncludeInMessageLog();
+
+        if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+          Log.i(TAG, "Send canceled before any sends took place. Returning an empty list.");
+          return Collections.emptyList();
+        }
 
         List<SendMessageResult> results = sendOperation.sendWithSenderKey(messageSender, distributionId, targets, access, groupSendEndorsements, isRecipientUpdate, partialResults -> {
           if (!includeInMessageLog) {
