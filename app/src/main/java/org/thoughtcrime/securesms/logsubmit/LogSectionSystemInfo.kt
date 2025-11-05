@@ -11,11 +11,9 @@ import org.signal.core.util.FontUtil.canRenderEmojiAtFontSize
 import org.signal.core.util.bytes
 import org.signal.core.util.roundedString
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.dependencies.AppDependencies.signalServiceNetworkAccess
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.emoji.EmojiFiles.Version.Companion.readVersion
-import org.thoughtcrime.securesms.keyvalue.SignalStore.Companion.account
-import org.thoughtcrime.securesms.keyvalue.SignalStore.Companion.misc
-import org.thoughtcrime.securesms.keyvalue.SignalStore.Companion.registration
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor
 import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics.isHavingDelayedNotifications
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
@@ -32,6 +30,7 @@ import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.VersionTracker.getDaysSinceFirstInstalled
 import org.thoughtcrime.securesms.window.getWindowSizeClass
 import java.util.Locale
+import kotlin.time.Duration.Companion.milliseconds
 
 class LogSectionSystemInfo : LogSection {
 
@@ -57,22 +56,23 @@ class LogSectionSystemInfo : LogSection {
       Memclass          : ${getMemoryClass(context)}
       MemInfo           : ${getMemoryInfo(context)}
       OS Host           : ${Build.HOST}
-      RecipientId       : ${if (registration.isRegistrationComplete) self().id else "N/A"}
+      RecipientId       : ${if (SignalStore.registration.isRegistrationComplete) self().id else "N/A"}
       ACI               : ${getCensoredAci()}
-      Device ID         : ${account.deviceId}
-      Censored          : ${signalServiceNetworkAccess.isCensored()}
+      Device ID         : ${SignalStore.account.deviceId}
+      Censored          : ${AppDependencies.signalServiceNetworkAccess.isCensored()}
       Network Status    : ${NetworkUtil.getNetworkStatus(context)}
       Play Services     : ${getPlayServicesString(context)}
-      FCM               : ${account.fcmEnabled}
+      FCM               : ${SignalStore.account.fcmEnabled}
       Locale            : ${Locale.getDefault()}
-      Linked Devices    : ${account.isMultiDevice}
+      Linked Devices    : ${SignalStore.account.isMultiDevice}
       First Version     : ${TextSecurePreferences.getFirstInstallVersion(context)}
       Days Installed    : ${getDaysSinceFirstInstalled(context)}
+      Last Registration : ${getTimeRegistered()}
       Build Variant     : ${BuildConfig.BUILD_DISTRIBUTION_TYPE}${BuildConfig.BUILD_ENVIRONMENT_TYPE}${BuildConfig.BUILD_VARIANT_TYPE}
       Emoji Version     : ${getEmojiVersionString(context)}
       RenderBigEmoji    : ${canRenderEmojiAtFontSize(1024f)}
       DontKeepActivities: ${getDontKeepActivities(context)}
-      Server Time Offset: ${misc.lastKnownServerTimeOffset} ms (last updated: ${misc.lastKnownServerTimeOffsetUpdateTime})
+      Server Time Offset: ${SignalStore.misc.lastKnownServerTimeOffset} ms (last updated: ${SignalStore.misc.lastKnownServerTimeOffsetUpdateTime})
       Telecom           : $telecomSupported
       User-Agent        : ${StandardUserAgentInterceptor.USER_AGENT}
       SlowNotifications : ${isHavingDelayedNotifications()}
@@ -164,7 +164,7 @@ class LogSectionSystemInfo : LogSection {
   }
 
   private fun getCensoredAci(): String {
-    val aci = account.aci
+    val aci = SignalStore.account.aci
 
     if (aci != null) {
       val aciString = aci.toString()
@@ -183,5 +183,14 @@ class LogSectionSystemInfo : LogSection {
     } else {
       "true"
     }
+  }
+
+  private fun getTimeRegistered(): String {
+    if (SignalStore.account.registeredAtTimestamp <= 0) {
+      return "Unknown"
+    }
+
+    val timeSince = (System.currentTimeMillis() - SignalStore.account.registeredAtTimestamp).milliseconds.toString()
+    return "${SignalStore.account.registeredAtTimestamp} ($timeSince ago)"
   }
 }
