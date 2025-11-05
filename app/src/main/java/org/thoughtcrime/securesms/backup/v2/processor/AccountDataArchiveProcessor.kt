@@ -71,6 +71,16 @@ object AccountDataArchiveProcessor {
 
     val backupSubscriberRecord = db.inAppPaymentSubscriberTable.getBackupsSubscriber()
 
+    val screenLockTimeoutSeconds = signalStore.settingsValues.screenLockTimeout
+    val screenLockTimeoutMinutes = if (screenLockTimeoutSeconds > 0) {
+      (screenLockTimeoutSeconds / 60).toInt()
+    } else {
+      null
+    }
+
+    val mobileAutoDownload = TextSecurePreferences.getMobileMediaDownloadAllowed(context)
+    val wifiAutoDownload = TextSecurePreferences.getWifiMediaDownloadAllowed(context)
+
     emitter.emit(
       Frame(
         account = AccountData(
@@ -110,6 +120,16 @@ object AccountDataArchiveProcessor {
             customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors().also { colors -> exportState.customChatColorIds.addAll(colors.map { it.id }) },
             optimizeOnDeviceStorage = signalStore.backupValues.optimizeStorage,
             backupTier = signalStore.backupValues.backupTier.toRemoteBackupTier(),
+            showSealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
+            defaultSentMediaQuality = signalStore.settingsValues.sentMediaQuality.toRemoteSentMediaQuality(),
+            autoDownloadSettings = AccountData.AutoDownloadSettings(
+              images = getRemoteAutoDownloadOption("image", mobileAutoDownload, wifiAutoDownload),
+              audio = getRemoteAutoDownloadOption("audio", mobileAutoDownload, wifiAutoDownload),
+              video = getRemoteAutoDownloadOption("video", mobileAutoDownload, wifiAutoDownload),
+              documents = getRemoteAutoDownloadOption("documents", mobileAutoDownload, wifiAutoDownload)
+            ),
+            screenLockTimeoutMinutes = screenLockTimeoutMinutes,
+            pinReminders = signalStore.pinValues.arePinRemindersEnabled(),
             defaultChatStyle = ChatStyleConverter.constructRemoteChatStyle(
               db = db,
               chatColors = chatColors,
@@ -118,7 +138,13 @@ object AccountDataArchiveProcessor {
             )
           ),
           donationSubscriberData = donationSubscriber?.toSubscriberData(signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled()),
-          backupsSubscriberData = backupSubscriberRecord?.toIAPSubscriberData()
+          backupsSubscriberData = backupSubscriberRecord?.toIAPSubscriberData(),
+          androidSpecificSettings = AccountData.AndroidSpecificSettings(
+            useSystemEmoji = signalStore.settingsValues.isPreferSystemEmoji,
+            screenshotSecurity = TextSecurePreferences.isScreenSecurityEnabled(context)
+          ),
+          bioText = selfRecord.about ?: "",
+          bioEmoji = selfRecord.aboutEmoji ?: ""
         )
       )
     )
@@ -137,6 +163,15 @@ object AccountDataArchiveProcessor {
 
     if (settings != null) {
       importSettings(context, settings, importState)
+    }
+
+    if (accountData.androidSpecificSettings != null) {
+      SignalStore.settings.isPreferSystemEmoji = accountData.androidSpecificSettings.useSystemEmoji
+      TextSecurePreferences.setScreenSecurityEnabled(context, accountData.androidSpecificSettings.screenshotSecurity)
+    }
+
+    if (accountData.bioText.isNotBlank() || accountData.bioEmoji.isNotBlank()) {
+      SignalDatabase.recipients.setAbout(selfId, accountData.bioText.takeIf { it.isNotBlank() }, accountData.bioEmoji.takeIf { it.isNotBlank() })
     }
 
     if (accountData.donationSubscriberData != null) {
@@ -219,6 +254,26 @@ object AccountDataArchiveProcessor {
     SignalStore.story.viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
     SignalStore.backup.optimizeStorage = settings.optimizeOnDeviceStorage
     SignalStore.backup.backupTier = settings.backupTier?.toLocalBackupTier()
+    SignalStore.settings.sentMediaQuality = settings.defaultSentMediaQuality.toLocalSentMediaQuality()
+
+    if (settings.autoDownloadSettings != null) {
+      val mobileDownloadSet = settings.autoDownloadSettings.toLocalAutoDownloadSet(AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI_AND_CELLULAR)
+      val wifiDownloadSet = settings.autoDownloadSettings.toLocalAutoDownloadSet(AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI)
+
+      TextSecurePreferences.getSharedPreferences(context).edit().apply {
+        putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF, mobileDownloadSet)
+        putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_WIFI_PREF, wifiDownloadSet)
+        apply()
+      }
+    }
+
+    if (settings.screenLockTimeoutMinutes != null) {
+      SignalStore.settings.screenLockTimeout = settings.screenLockTimeoutMinutes.toLong() * 60
+    }
+
+    if (settings.pinReminders != null) {
+      SignalStore.pin.setPinRemindersEnabled(settings.pinReminders)
+    }
 
     settings.customChatColors
       .mapNotNull { chatColor ->
@@ -378,5 +433,46 @@ object AccountDataArchiveProcessor {
       BackupLevel.PAID.value.toLong() -> MessageBackupTier.PAID
       else -> null
     }
+  }
+
+  private fun org.thoughtcrime.securesms.mms.SentMediaQuality.toRemoteSentMediaQuality(): AccountData.SentMediaQuality {
+    return when (this) {
+      org.thoughtcrime.securesms.mms.SentMediaQuality.STANDARD -> AccountData.SentMediaQuality.STANDARD
+      org.thoughtcrime.securesms.mms.SentMediaQuality.HIGH -> AccountData.SentMediaQuality.HIGH
+    }
+  }
+
+  private fun AccountData.SentMediaQuality?.toLocalSentMediaQuality(): org.thoughtcrime.securesms.mms.SentMediaQuality {
+    return when (this) {
+      AccountData.SentMediaQuality.HIGH -> org.thoughtcrime.securesms.mms.SentMediaQuality.HIGH
+      AccountData.SentMediaQuality.STANDARD -> org.thoughtcrime.securesms.mms.SentMediaQuality.STANDARD
+      AccountData.SentMediaQuality.UNKNOWN_QUALITY -> org.thoughtcrime.securesms.mms.SentMediaQuality.STANDARD
+      null -> org.thoughtcrime.securesms.mms.SentMediaQuality.STANDARD
+    }
+  }
+
+  private fun getRemoteAutoDownloadOption(mediaType: String, mobileSet: Set<String>, wifiSet: Set<String>): AccountData.AutoDownloadSettings.AutoDownloadOption {
+    return when {
+      mobileSet.contains(mediaType) -> AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI_AND_CELLULAR
+      wifiSet.contains(mediaType) -> AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI
+      else -> AccountData.AutoDownloadSettings.AutoDownloadOption.NEVER
+    }
+  }
+
+  private fun AccountData.AutoDownloadSettings.toLocalAutoDownloadSet(option: AccountData.AutoDownloadSettings.AutoDownloadOption): Set<String> {
+    val out = mutableSetOf<String>()
+    if (this.images == option) {
+      out += "image"
+    }
+    if (this.audio == option) {
+      out += "audio"
+    }
+    if (this.video == option) {
+      out += "video"
+    }
+    if (this.documents == option) {
+      out += "documents"
+    }
+    return out
   }
 }

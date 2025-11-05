@@ -891,7 +891,7 @@ public class TextSecurePreferences {
     AppDependencies.getGroupsV2Authorization().clear();
   }
 
-  private static SharedPreferences getSharedPreferences(Context context) {
+  public static SharedPreferences getSharedPreferences(Context context) {
     if (preferences == null) {
       preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
