@@ -10,7 +10,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
@@ -54,7 +53,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -721,20 +719,12 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         SignalTheme.colors.colorSurface1
       }
 
-      val modifier = when {
-        windowSizeClass.isSplitPane() -> {
-          Modifier
-            .systemBarsPadding()
-            .displayCutoutPadding()
-        }
-
-        LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE -> {
-          Modifier
-            .navigationBarsPadding()
-            .displayCutoutPadding()
-        }
-
-        else -> Modifier
+      val modifier = if (windowSizeClass.isSplitPane()) {
+        Modifier
+          .systemBarsPadding()
+          .displayCutoutPadding()
+      } else {
+        Modifier
       }
 
       BoxWithConstraints(
