@@ -50,5 +50,6 @@ fun WindowSizeClass.isSplitPane(
     return true
   }
 
-  return windowWidthSizeClass.isAtLeast(WindowWidthSizeClass.MEDIUM)
+  return windowWidthSizeClass.isAtLeast(WindowWidthSizeClass.MEDIUM) &&
+    windowHeightSizeClass.isAtLeast(WindowHeightSizeClass.MEDIUM)
 }
