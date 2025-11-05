@@ -48,8 +48,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     val startingAction: NavDirections? = if (intent?.categories?.contains(NOTIFICATION_CATEGORY) == true) {
       AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
     } else {
-      val appSettingsRoute: AppSettingsRoute? = intent?.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)
-      when (appSettingsRoute) {
+      when (val appSettingsRoute: AppSettingsRoute? = intent?.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)) {
         AppSettingsRoute.Empty -> null
         AppSettingsRoute.BackupsRoute.Local -> AppSettingsFragmentDirections.actionDirectToBackupsPreferenceFragment()
         is AppSettingsRoute.HelpRoute.Settings -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
@@ -78,7 +77,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
         AppSettingsRoute.BackupsRoute.Backups -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment()
         AppSettingsRoute.Invite -> AppSettingsFragmentDirections.actionDirectToInviteFragment()
         AppSettingsRoute.DataAndStorageRoute.DataAndStorage -> AppSettingsFragmentDirections.actionDirectToStoragePreferenceFragment()
-        else -> error("Unsupported start location: ${appSettingsRoute?.javaClass?.name}")
+        else -> AppSettingsFragmentDirections.actionAppSettingsFragmentToGenericErrorFragment()
       }
     }
 

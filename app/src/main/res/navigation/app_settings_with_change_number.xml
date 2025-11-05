@@ -154,6 +154,13 @@
                 app:argType="integer"
                 app:nullable="false" />
         </action>
+        <action
+            android:id="@+id/action_appSettingsFragment_to_GenericErrorFragment"
+            app:destination="@id/GenericErrorFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <activity
@@ -1175,4 +1182,8 @@
     <include app:graph="@navigation/username_link_settings" />
     <include app:graph="@navigation/story_privacy_settings" />
 
+    <fragment
+        android:id="@+id/GenericErrorFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.GenericErrorFragment"
+        android:label="compose_error_fragment" />
 </navigation>

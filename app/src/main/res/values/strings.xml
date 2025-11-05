@@ -8976,5 +8976,9 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Thanks for your feedback!</string>
 
+    <!-- GenericErrorFragment -->
+    <string name="compose_error_message">Something went wrong</string>
+    <string name="compose_error_close">Close</string>
+
     <!-- EOF -->
 </resources>

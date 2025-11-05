@@ -228,4 +228,9 @@ sealed interface AppSettingsRoute : Parcelable {
     data object AccountLocked : ChangeNumberRoute
     data object PinDiffers : ChangeNumberRoute
   }
+
+  @Parcelize
+  sealed interface ErrorRoute : AppSettingsRoute {
+    data object ComposeError : ErrorRoute
+  }
 }
