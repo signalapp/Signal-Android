@@ -75,8 +75,10 @@ import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
+import org.thoughtcrime.securesms.components.webrtc.controls.RaiseHandSnackbar
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.events.CallParticipant
+import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -249,11 +251,6 @@ fun CallScreen(
         } else Modifier
       )
 
-      CallScreenReactionsContainer(
-        reactions = reactions,
-        modifier = Modifier.padding(bottom = padding)
-      )
-
       val onCallInfoClick: () -> Unit = {
         scope.launch {
           if (scaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) {
@@ -291,25 +288,44 @@ fun CallScreen(
         )
       }
 
-      raiseHandSnackbar(Modifier.fillMaxWidth())
-
-      AnimatedCallStateUpdate(
-        callControlsChange = callScreenState.callControlsChange,
+      // This content lives "above" the controls sheet and includes raised hands, status updates, etc.
+      Box(
         modifier = Modifier
-          .align(Alignment.BottomCenter)
+          .fillMaxSize()
           .padding(bottom = padding)
-          .padding(bottom = 20.dp)
-      )
+      ) {
+        Column(
+          modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 20.dp)
+        ) {
+          CallScreenReactionsContainer(
+            reactions = reactions,
+            modifier = Modifier.weight(1f)
+          )
 
-      val state = remember(callScreenState.pendingParticipantsState) {
-        callScreenState.pendingParticipantsState
-      }
+          raiseHandSnackbar(
+            Modifier
+          )
+        }
 
-      if (state != null) {
-        PendingParticipants(
-          pendingParticipantsState = state,
-          pendingParticipantsListener = pendingParticipantsListener
+        AnimatedCallStateUpdate(
+          callControlsChange = callScreenState.callControlsChange,
+          modifier = Modifier
+            .align(Alignment.BottomCenter)
+            .padding(bottom = 20.dp)
         )
+
+        val state = remember(callScreenState.pendingParticipantsState) {
+          callScreenState.pendingParticipantsState
+        }
+
+        if (state != null) {
+          PendingParticipants(
+            pendingParticipantsState = state,
+            pendingParticipantsListener = pendingParticipantsListener
+          )
+        }
       }
     }
   }
@@ -649,7 +665,7 @@ private fun CallScreenPreview() {
   Previews.Preview {
     CallScreen(
       callRecipient = Recipient(systemContactName = "Test User"),
-      webRtcCallState = WebRtcViewModel.State.CALL_PRE_JOIN,
+      webRtcCallState = WebRtcViewModel.State.CALL_CONNECTED,
       isRemoteVideoOffer = false,
       isInPipMode = false,
       callScreenState = CallScreenState(
@@ -682,7 +698,24 @@ private fun CallScreenPreview() {
       callInfoView = {
         Text(text = "Call Info View Preview", modifier = Modifier.alpha(it))
       },
-      raiseHandSnackbar = {},
+      raiseHandSnackbar = {
+        RaiseHandSnackbar.View(
+          raisedHandsState = listOf(
+            GroupCallRaiseHandEvent(
+              sender = CallParticipant(
+                recipient = Recipient(
+                  isResolving = false,
+                  systemContactName = "Miles Morales"
+                )
+              ),
+              timestampMillis = System.currentTimeMillis()
+            )
+          ),
+          speechEvent = null,
+          showCallInfoListener = {},
+          modifier = it
+        )
+      },
       onNavigationClick = {},
       onLocalPictureInPictureClicked = {},
       overflowParticipants = participants,
