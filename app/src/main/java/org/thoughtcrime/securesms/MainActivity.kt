@@ -31,11 +31,17 @@ import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.add
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
@@ -719,12 +725,19 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         SignalTheme.colors.colorSurface1
       }
 
-      val modifier = if (windowSizeClass.isSplitPane()) {
-        Modifier
-          .systemBarsPadding()
-          .displayCutoutPadding()
-      } else {
-        Modifier
+      val modifier = when {
+        windowSizeClass.isSplitPane() -> {
+          Modifier
+            .systemBarsPadding()
+            .displayCutoutPadding()
+        }
+
+        else ->
+          Modifier
+            .windowInsetsPadding(
+              WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal)
+                .add(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal))
+            )
       }
 
       BoxWithConstraints(

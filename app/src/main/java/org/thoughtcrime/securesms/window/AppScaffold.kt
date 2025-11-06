@@ -13,14 +13,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -102,11 +101,10 @@ fun AppScaffold(
   paneExpansionState: PaneExpansionState = rememberPaneExpansionState(),
   paneExpansionDragHandle: (@Composable ThreePaneScaffoldScope.(PaneExpansionState) -> Unit)? = null,
   snackbarHost: @Composable () -> Unit = {},
-  contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
+  contentWindowInsets: WindowInsets = WindowInsets.systemBars,
   animatorFactory: AppScaffoldAnimationStateFactory = AppScaffoldAnimationStateFactory.Default
 ) {
   val isForcedCompact = !LocalInspectionMode.current && !isLargeScreenSupportEnabled()
-  val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
   if (isForcedCompact) {
     ListAndNavigation(
@@ -229,9 +227,7 @@ fun AppScaffold(
       },
       paneExpansionDragHandle = paneExpansionDragHandle,
       paneExpansionState = paneExpansionState,
-      modifier = Modifier
-        .padding(paddingValues)
-        .consumeWindowInsets(contentWindowInsets)
+      modifier = Modifier.padding(paddingValues)
     )
   }
 }
