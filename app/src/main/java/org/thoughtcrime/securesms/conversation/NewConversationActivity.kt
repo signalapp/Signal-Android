@@ -308,14 +308,16 @@ private fun NewConversationRecipientPicker(
     searchQuery = uiState.searchQuery,
     isRefreshing = uiState.isRefreshingContacts,
     shouldResetContactsList = uiState.shouldResetContactsList,
-    callbacks = RecipientPickerCallbacks(
-      listActions = callbacks,
-      refresh = callbacks,
-      contextMenu = callbacks,
-      newConversation = callbacks,
-      findByUsername = callbacks,
-      findByPhoneNumber = callbacks
-    ),
+    callbacks = remember(callbacks) {
+      RecipientPickerCallbacks(
+        listActions = callbacks,
+        refresh = callbacks,
+        contextMenu = callbacks,
+        newConversation = callbacks,
+        findByUsername = callbacks,
+        findByPhoneNumber = callbacks
+      )
+    },
     modifier = modifier.fillMaxSize()
   )
 }

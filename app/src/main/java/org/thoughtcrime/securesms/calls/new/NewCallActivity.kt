@@ -1,140 +1,253 @@
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.calls.new
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import androidx.core.app.ActivityCompat
-import androidx.core.view.MenuProvider
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.signal.core.util.concurrent.SimpleTask
-import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.ContactSelectionActivity
-import org.thoughtcrime.securesms.ContactSelectionListFragment
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import org.signal.core.ui.compose.AllDevicePreviews
+import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.DropdownMenus
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.theme.SignalTheme
+import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
+import org.thoughtcrime.securesms.calls.new.NewCallUiState.CallType
+import org.thoughtcrime.securesms.calls.new.NewCallUiState.UserMessage
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
-import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
-import org.thoughtcrime.securesms.contacts.paged.ChatType
-import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.recipients.RecipientRepository
+import org.thoughtcrime.securesms.conversation.RecipientPicker
+import org.thoughtcrime.securesms.conversation.RecipientPickerCallbacks
+import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
+import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
-import java.util.Optional
-import java.util.function.Consumer
 
-class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment.NewCallCallback {
-
-  override fun onCreate(icicle: Bundle?, ready: Boolean) {
-    super.onCreate(icicle, ready)
-    requireNotNull(supportActionBar)
-    supportActionBar?.setTitle(R.string.NewCallActivity__new_call)
-    supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    addMenuProvider(NewCallMenuProvider())
-  }
-
-  override fun onSelectionChanged() = Unit
-
-  override fun onBeforeContactSelected(isFromUnknownSearchKey: Boolean, recipientId: Optional<RecipientId?>, number: String?, chatType: Optional<ChatType>, callback: Consumer<Boolean?>) {
-    if (recipientId.isPresent) {
-      launch(Recipient.resolved(recipientId.get()))
-    } else {
-      Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.")
-      if (SignalStore.account.isRegistered) {
-        Log.i(TAG, "[onContactSelected] Doing contact refresh.")
-
-        val progress = SimpleProgressDialog.show(this)
-
-        SimpleTask.run(lifecycle, { RecipientRepository.lookupNewE164(number!!) }, { result ->
-          progress.dismiss()
-
-          when (result) {
-            is RecipientRepository.LookupResult.Success -> {
-              val resolved = Recipient.resolved(result.recipientId)
-              if (resolved.isRegistered && resolved.hasServiceId) {
-                launch(resolved)
-              }
-            }
-
-            is RecipientRepository.LookupResult.NotFound,
-            is RecipientRepository.LookupResult.InvalidEntry -> {
-              MaterialAlertDialogBuilder(this)
-                .setMessage(getString(R.string.NewConversationActivity__s_is_not_a_signal_user, number))
-                .setPositiveButton(android.R.string.ok, null)
-                .show()
-            }
-
-            else -> {
-              MaterialAlertDialogBuilder(this)
-                .setMessage(R.string.NetworkFailure__network_error_check_your_connection_and_try_again)
-                .setPositiveButton(android.R.string.ok, null)
-                .show()
-            }
-          }
-        })
-      }
-    }
-    callback.accept(true)
-  }
-
-  private fun launch(recipient: Recipient) {
-    if (recipient.isGroup) {
-      CommunicationActions.startVideoCall(this, recipient) {
-        YouAreAlreadyInACallSnackbar.show(findViewById(android.R.id.content))
-      }
-    } else {
-      CommunicationActions.startVoiceCall(this, recipient) {
-        YouAreAlreadyInACallSnackbar.show(findViewById(android.R.id.content))
-      }
-    }
-  }
-
+/**
+ * Allows the user to start a new call by selecting a recipient.
+ */
+class NewCallActivity : PassphraseRequiredActivity() {
   companion object {
-
-    private val TAG = Log.tag(NewCallActivity::class.java)
-
+    @JvmStatic
     fun createIntent(context: Context): Intent {
       return Intent(context, NewCallActivity::class.java)
-        .putExtra(
-          ContactSelectionArguments.DISPLAY_MODE,
-          ContactSelectionDisplayMode.none()
-            .withPush()
-            .withActiveGroups()
-            .withGroupMembers()
-            .build()
+    }
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    enableEdgeToEdge()
+    super.onCreate(savedInstanceState, ready)
+
+    val navigateBack = onBackPressedDispatcher::onBackPressed
+
+    setContent {
+      SignalTheme {
+        NewCallScreen(
+          closeScreen = navigateBack
         )
-    }
-  }
-
-  override fun onInvite() {
-    startActivity(AppSettingsActivity.invite(this))
-  }
-
-  private fun handleManualRefresh() {
-    if (!contactsFragment.isRefreshing) {
-      contactsFragment.isRefreshing = true
-      onRefresh()
-    }
-  }
-
-  private inner class NewCallMenuProvider : MenuProvider {
-    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-      menuInflater.inflate(R.menu.new_call_menu, menu)
-    }
-
-    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-      when (menuItem.itemId) {
-        android.R.id.home -> ActivityCompat.finishAfterTransition(this@NewCallActivity)
-        R.id.menu_refresh -> handleManualRefresh()
-        R.id.menu_invite -> startActivity(AppSettingsActivity.invite(this@NewCallActivity))
       }
-
-      return true
     }
+  }
+}
+
+@Composable
+private fun NewCallScreen(
+  viewModel: NewCallViewModel = viewModel { NewCallViewModel() },
+  closeScreen: () -> Unit
+) {
+  val context = LocalContext.current as FragmentActivity
+
+  val callbacks = remember {
+    object : UiCallbacks {
+      override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
+      override fun onRecipientSelected(selection: RecipientSelection) = viewModel.startCall(selection)
+      override fun onInviteToSignal() = context.startActivity(AppSettingsActivity.invite(context))
+      override fun onRefresh() = viewModel.refresh()
+      override fun onUserMessageDismissed(userMessage: UserMessage) = viewModel.clearUserMessage()
+      override fun onBackPressed() = closeScreen()
+    }
+  }
+
+  val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+  LaunchedEffect(uiState.pendingCall) {
+    val pendingCall = uiState.pendingCall ?: return@LaunchedEffect
+    when (pendingCall) {
+      is CallType.Video -> CommunicationActions.startVideoCall(context, pendingCall.recipient, viewModel::showUserAlreadyInACall)
+      is CallType.Voice -> CommunicationActions.startVoiceCall(context, pendingCall.recipient, viewModel::showUserAlreadyInACall)
+    }
+    viewModel.clearPendingCall()
+  }
+
+  NewCallScreenUi(
+    uiState = uiState,
+    callbacks = callbacks
+  )
+}
+
+private interface UiCallbacks :
+  RecipientPickerCallbacks.ListActions,
+  RecipientPickerCallbacks.Refresh,
+  RecipientPickerCallbacks.NewCall {
+
+  override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = true
+  override fun onPendingRecipientSelectionsConsumed() = Unit
+  fun onUserMessageDismissed(userMessage: UserMessage)
+  fun onBackPressed()
+
+  object Empty : UiCallbacks {
+    override fun onSearchQueryChanged(query: String) = Unit
+    override fun onRecipientSelected(selection: RecipientSelection) = Unit
+    override fun onInviteToSignal() = Unit
+    override fun onRefresh() = Unit
+    override fun onUserMessageDismissed(userMessage: UserMessage) = Unit
+    override fun onBackPressed() = Unit
+  }
+}
+
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3AdaptiveApi::class)
+@Composable
+private fun NewCallScreenUi(
+  uiState: NewCallUiState,
+  callbacks: UiCallbacks
+) {
+  val snackbarHostState = remember { SnackbarHostState() }
+
+  RecipientPickerScaffold(
+    title = stringResource(R.string.NewCallActivity__new_call),
+    forceSplitPane = uiState.forceSplitPane,
+    onNavigateUpClick = callbacks::onBackPressed,
+    topAppBarActions = { TopAppBarActions(callbacks) },
+    snackbarHostState = snackbarHostState,
+    primaryContent = {
+      RecipientPicker(
+        searchQuery = uiState.searchQuery,
+        displayModes = setOf(RecipientPicker.DisplayMode.PUSH, RecipientPicker.DisplayMode.ACTIVE_GROUPS, RecipientPicker.DisplayMode.GROUP_MEMBERS),
+        isRefreshing = uiState.isRefreshingContacts,
+        callbacks = remember(callbacks) {
+          RecipientPickerCallbacks(
+            listActions = callbacks,
+            refresh = callbacks,
+            newCall = callbacks
+          )
+        },
+        modifier = Modifier.fillMaxSize()
+      )
+
+      UserMessagesHost(
+        userMessage = uiState.userMessage,
+        onDismiss = callbacks::onUserMessageDismissed,
+        snackbarHostState = snackbarHostState
+      )
+
+      if (uiState.isLookingUpRecipient) {
+        Dialogs.IndeterminateProgressDialog()
+      }
+    }
+  )
+}
+
+@Composable
+private fun TopAppBarActions(callbacks: UiCallbacks) {
+  val menuController = remember { DropdownMenus.MenuController() }
+  IconButton(
+    onClick = { menuController.show() },
+    modifier = Modifier.padding(horizontal = 8.dp)
+  ) {
+    Icon(
+      imageVector = ImageVector.vectorResource(R.drawable.symbol_more_vertical),
+      contentDescription = stringResource(R.string.NewConversationActivity__accessibility_open_top_bar_menu)
+    )
+  }
+
+  DropdownMenus.Menu(
+    controller = menuController,
+    offsetX = 24.dp,
+    modifier = Modifier
+  ) {
+    DropdownMenus.Item(
+      text = { Text(text = stringResource(R.string.new_conversation_activity__refresh)) },
+      onClick = {
+        callbacks.onRefresh()
+        menuController.hide()
+      }
+    )
+
+    DropdownMenus.Item(
+      text = { Text(text = stringResource(R.string.text_secure_normal__invite_friends)) },
+      onClick = {
+        callbacks.onInviteToSignal()
+        menuController.hide()
+      }
+    )
+  }
+}
+
+@Composable
+private fun UserMessagesHost(
+  userMessage: UserMessage?,
+  onDismiss: (UserMessage) -> Unit,
+  snackbarHostState: SnackbarHostState
+) {
+  val context = LocalContext.current
+
+  when (userMessage) {
+    null -> {}
+
+    is UserMessage.Info.NetworkError -> Dialogs.SimpleMessageDialog(
+      message = stringResource(R.string.NetworkFailure__network_error_check_your_connection_and_try_again),
+      dismiss = stringResource(android.R.string.ok),
+      onDismiss = { onDismiss(userMessage) }
+    )
+
+    is UserMessage.Info.RecipientNotSignalUser -> Dialogs.SimpleMessageDialog(
+      message = stringResource(R.string.NewConversationActivity__s_is_not_a_signal_user, userMessage.phone.displayText),
+      dismiss = stringResource(android.R.string.ok),
+      onDismiss = { onDismiss(userMessage) }
+    )
+
+    is UserMessage.Info.UserAlreadyInAnotherCall -> LaunchedEffect(userMessage) {
+      snackbarHostState.showSnackbar(
+        message = context.getString(R.string.CommunicationActions__you_are_already_in_a_call)
+      )
+      onDismiss(userMessage)
+    }
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun NewCallScreenPreview() {
+  Previews.Preview {
+    NewCallScreenUi(
+      uiState = NewCallUiState(
+        forceSplitPane = false
+      ),
+      callbacks = UiCallbacks.Empty
+    )
   }
 }

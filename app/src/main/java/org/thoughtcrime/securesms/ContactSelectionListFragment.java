@@ -154,7 +154,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     }
 
     if (context instanceof NewCallCallback) {
-      newCallCallback = (NewCallCallback) context;
+      setNewCallCallback((NewCallCallback) context);
     }
 
     if (getParentFragment() instanceof ScrollCallback) {
@@ -204,6 +204,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
   public void setFindByCallback(@Nullable FindByCallback callback) {
     this.findByCallback = callback;
+  }
+
+  public void setNewCallCallback(@Nullable NewCallCallback callback) {
+    this.newCallCallback = callback;
   }
 
   public void setScrollCallback(@Nullable ScrollCallback callback) {
@@ -340,7 +344,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
         new ContactSearchAdapter.DisplayOptions(
             isMulti,
             ContactSearchAdapter.DisplaySecondaryInformation.ALWAYS,
-            newCallCallback != null,
+            fragmentArgs.getShowCallButtons(),
             false
         ),
         this::mapStateToConfiguration,

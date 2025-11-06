@@ -203,11 +203,13 @@ private fun CreateGroupRecipientPicker(
       isRefreshing = false,
       listBottomPadding = 64.dp,
       clipListToPadding = false,
-      callbacks = RecipientPickerCallbacks(
-        listActions = callbacks,
-        findByUsername = callbacks,
-        findByPhoneNumber = callbacks
-      ),
+      callbacks = remember(callbacks) {
+        RecipientPickerCallbacks(
+          listActions = callbacks,
+          findByUsername = callbacks,
+          findByPhoneNumber = callbacks
+        )
+      },
       modifier = modifier.fillMaxSize()
     )
 

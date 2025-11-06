@@ -142,6 +142,7 @@ private fun RecipientSearchResultsList(
     enableCreateNewGroup = callbacks.newConversation != null,
     enableFindByUsername = callbacks.findByUsername != null,
     enableFindByPhoneNumber = callbacks.findByPhoneNumber != null,
+    showCallButtons = callbacks.newCall != null,
     selectionLimits = selectionLimits,
     recyclerPadBottom = with(LocalDensity.current) { bottomPadding?.toPx()?.toInt() ?: ContactSelectionArguments.Defaults.RECYCLER_PADDING_BOTTOM },
     recyclerChildClipping = clipListToPadding
@@ -226,6 +227,12 @@ private fun ContactSelectionListFragment.setUpCallbacks(
     })
   } else {
     fragment.setNewConversationCallback(null)
+  }
+
+  if (callbacks.newCall != null) {
+    fragment.setNewCallCallback { callbacks.newCall.onInviteToSignal() }
+  } else {
+    fragment.setNewCallCallback(null)
   }
 
   if (callbacks.findByUsername != null || callbacks.findByPhoneNumber != null) {
@@ -371,11 +378,12 @@ private fun RecipientPickerPreview() {
   )
 }
 
-data class RecipientPickerCallbacks(
+class RecipientPickerCallbacks(
   val listActions: ListActions,
   val refresh: Refresh? = null,
   val contextMenu: ContextMenu? = null,
   val newConversation: NewConversation? = null,
+  val newCall: NewCall? = null,
   val findByUsername: FindByUsername? = null,
   val findByPhoneNumber: FindByPhoneNumber? = null
 ) {
@@ -415,6 +423,10 @@ data class RecipientPickerCallbacks(
 
   interface NewConversation {
     fun onCreateNewGroup()
+    fun onInviteToSignal()
+  }
+
+  interface NewCall {
     fun onInviteToSignal()
   }
 

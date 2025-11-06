@@ -23,6 +23,7 @@ data class ContactSelectionArguments(
   val currentSelection: Set<RecipientId> = Defaults.CURRENT_SELECTION,
   val canSelectSelf: Boolean = Defaults.canSelectSelf(selectionLimits),
   val displayChips: Boolean = Defaults.DISPLAY_CHIPS,
+  val showCallButtons: Boolean = Defaults.SHOW_CALL_BUTTONS,
   val recyclerPadBottom: Int = Defaults.RECYCLER_PADDING_BOTTOM,
   val recyclerChildClipping: Boolean = Defaults.RECYCLER_CHILD_CLIPPING
 ) {
@@ -40,6 +41,7 @@ data class ContactSelectionArguments(
       putParcelableArrayList(CURRENT_SELECTION, ArrayList(currentSelection))
       putBoolean(CAN_SELECT_SELF, canSelectSelf)
       putBoolean(DISPLAY_CHIPS, displayChips)
+      putBoolean(SHOW_CALL_BUTTONS, showCallButtons)
       putInt(RV_PADDING_BOTTOM, recyclerPadBottom)
       putBoolean(RV_CLIP, recyclerChildClipping)
     }
@@ -57,6 +59,7 @@ data class ContactSelectionArguments(
     const val CURRENT_SELECTION = "current_selection"
     const val CAN_SELECT_SELF = "can_select_self"
     const val DISPLAY_CHIPS = "display_chips"
+    const val SHOW_CALL_BUTTONS = "show_call_buttons"
     const val RV_PADDING_BOTTOM = "recycler_view_padding_bottom"
     const val RV_CLIP = "recycler_view_clipping"
 
@@ -81,6 +84,7 @@ data class ContactSelectionArguments(
         currentSelection = currentSelection.toSet(),
         canSelectSelf = bundle.getBoolean(CAN_SELECT_SELF, intent.getBooleanExtra(CAN_SELECT_SELF, Defaults.canSelectSelf(selectionLimits))),
         displayChips = bundle.getBoolean(DISPLAY_CHIPS, intent.getBooleanExtra(DISPLAY_CHIPS, Defaults.DISPLAY_CHIPS)),
+        showCallButtons = bundle.getBoolean(SHOW_CALL_BUTTONS, intent.getBooleanExtra(SHOW_CALL_BUTTONS, Defaults.SHOW_CALL_BUTTONS)),
         recyclerPadBottom = bundle.getInt(RV_PADDING_BOTTOM, intent.getIntExtra(RV_PADDING_BOTTOM, Defaults.RECYCLER_PADDING_BOTTOM)),
         recyclerChildClipping = bundle.getBoolean(RV_CLIP, intent.getBooleanExtra(RV_CLIP, Defaults.RECYCLER_CHILD_CLIPPING))
       )
@@ -98,6 +102,7 @@ data class ContactSelectionArguments(
     val SELECTION_LIMITS: SelectionLimits? = null
     val CURRENT_SELECTION: Set<RecipientId> = emptySet()
     const val DISPLAY_CHIPS = true
+    const val SHOW_CALL_BUTTONS = false
     const val RECYCLER_PADDING_BOTTOM = -1
     const val RECYCLER_CHILD_CLIPPING = true
 

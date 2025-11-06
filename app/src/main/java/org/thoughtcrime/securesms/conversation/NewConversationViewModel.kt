@@ -147,6 +147,10 @@ class NewConversationViewModel : ViewModel() {
   }
 
   fun refresh() {
+    if (internalUiState.value.isRefreshingContacts) {
+      return
+    }
+
     viewModelScope.launch {
       internalUiState.update { it.copy(isRefreshingContacts = true) }
 
