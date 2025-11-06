@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.conversation
+package org.thoughtcrime.securesms.recipients.ui
 
 import android.view.View
 import android.view.ViewGroup
@@ -49,13 +49,12 @@ import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
-import org.thoughtcrime.securesms.conversation.RecipientPicker.DisplayMode.Companion.flag
-import org.thoughtcrime.securesms.conversation.RecipientPickerCallbacks.ContextMenu
+import org.thoughtcrime.securesms.conversation.RecipientSearchBar
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
+import org.thoughtcrime.securesms.recipients.ui.RecipientPicker.DisplayMode.Companion.flag
 import java.util.Optional
 import java.util.function.Consumer
 
@@ -297,7 +296,7 @@ private suspend fun showItemContextMenu(
   anchorView: View,
   contactSearchKey: ContactSearchKey,
   recyclerView: RecyclerView,
-  callbacks: ContextMenu
+  callbacks: RecipientPickerCallbacks.ContextMenu
 ) {
   val context = anchorView.context
   val recipient = withContext(Dispatchers.IO) {
@@ -441,7 +440,7 @@ class RecipientPickerCallbacks(
 
 object RecipientPicker {
   /**
-   * Enum wrapper for [ContactSelectionDisplayMode].
+   * Enum wrapper for [org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode].
    */
   enum class DisplayMode(val flag: Int) {
     PUSH(flag = ContactSelectionDisplayMode.FLAG_PUSH),
