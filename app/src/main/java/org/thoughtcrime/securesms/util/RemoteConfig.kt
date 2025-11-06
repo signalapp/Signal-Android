@@ -1186,7 +1186,7 @@ object RemoteConfig {
   @get:JvmName("useBinaryId")
   val useBinaryId: Boolean by remoteBoolean(
     key = "android.useBinaryServiceId",
-    defaultValue = false,
+    defaultValue = Environment.IS_STAGING,
     hotSwappable = false
   )
 

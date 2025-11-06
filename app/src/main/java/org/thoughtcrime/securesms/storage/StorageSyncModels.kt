@@ -7,6 +7,7 @@ import org.signal.core.util.isNullOrEmpty
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
@@ -133,7 +134,7 @@ object StorageSyncModels {
       RecipientType.INDIVIDUAL -> {
         AccountRecord.PinnedConversation(
           contact = AccountRecord.PinnedConversation.Contact(
-            serviceId = settings.serviceId?.toString() ?: "",
+            serviceId = settings.serviceId?.toString().takeIf { BuildConfig.USE_STRING_ID } ?: "",
             e164 = settings.e164 ?: "",
             serviceIdBinary = settings.serviceId?.toByteString().takeIf { RemoteConfig.useBinaryId } ?: ByteString.EMPTY
           )
@@ -188,9 +189,9 @@ object StorageSyncModels {
     }
 
     return SignalContactRecord.newBuilder(recipient.syncExtras.storageProto).apply {
-      aci = recipient.aci?.toString() ?: ""
+      aci = recipient.aci?.toString().takeIf { BuildConfig.USE_STRING_ID } ?: ""
       e164 = recipient.e164 ?: ""
-      pni = recipient.pni?.toStringWithoutPrefix() ?: ""
+      pni = recipient.pni?.toStringWithoutPrefix().takeIf { BuildConfig.USE_STRING_ID } ?: ""
       profileKey = recipient.profileKey?.toByteString() ?: ByteString.EMPTY
       givenName = recipient.signalProfileName.givenName
       familyName = recipient.signalProfileName.familyName
@@ -294,10 +295,14 @@ object StorageSyncModels {
     return SignalStoryDistributionListRecord.newBuilder(recipient.syncExtras.storageProto).apply {
       identifier = UuidUtil.toByteArray(record.distributionId.asUuid()).toByteString()
       name = record.name
-      recipientServiceIds = record.getMembersToSync()
-        .map { Recipient.resolved(it) }
-        .filter { it.hasServiceId }
-        .map { it.requireServiceId().toString() }
+      recipientServiceIds = if (BuildConfig.USE_STRING_ID) {
+        record.getMembersToSync()
+          .map { Recipient.resolved(it) }
+          .filter { it.hasServiceId }
+          .map { it.requireServiceId().toString() }
+      } else {
+        emptyList()
+      }
       recipientServiceIdsBinary = if (RemoteConfig.useBinaryId) {
         record.getMembersToSync()
           .map { Recipient.resolved(it) }
@@ -507,7 +512,7 @@ object StorageSyncModels {
           RecipientType.INDIVIDUAL -> {
             RemoteRecipient(
               contact = RemoteRecipient.Contact(
-                serviceId = recipient.serviceId?.toString() ?: "",
+                serviceId = recipient.serviceId?.toString().takeIf { BuildConfig.USE_STRING_ID } ?: "",
                 e164 = recipient.e164 ?: "",
                 serviceIdBinary = recipient.serviceId?.toByteString().takeIf { RemoteConfig.useBinaryId } ?: ByteString.EMPTY
               )
