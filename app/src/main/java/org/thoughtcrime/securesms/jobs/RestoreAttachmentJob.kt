@@ -458,16 +458,22 @@ class RestoreAttachmentJob private constructor(
       when (e.code) {
         404 -> {
           if (forceTransitTier) {
-            Log.w(TAG, "[$attachmentId] Completely failed to restore an attachment! Failed downloading from both the archive and transit CDN.")
-            maybePostFailedToDownloadFromArchiveAndTransitNotification()
+            Log.w(TAG, "[$attachmentId] Completely failed to restore an attachment! Failed downloading from both the archive and transit CDN. hasPlaintextHash: ${attachment.dataHash != null}")
+            if (attachment.dataHash != null) {
+              maybePostFailedToDownloadFromArchiveAndTransitNotification()
+            }
           } else if (SignalStore.backup.backsUpMedia && attachment.remoteLocation.isNotNullOrBlank()) {
-            Log.w(TAG, "[$attachmentId] Failed to download attachment from the archive CDN! Retrying download from transit CDN.")
-            maybePostFailedToDownloadFromArchiveNotification()
+            Log.w(TAG, "[$attachmentId] Failed to download attachment from the archive CDN! Retrying download from transit CDN. hasPlaintextHash: ${attachment.dataHash != null}")
+            if (attachment.dataHash != null) {
+              maybePostFailedToDownloadFromArchiveNotification()
+            }
 
             return retrieveAttachment(messageId, attachmentId, attachment, forceTransitTier = true)
           } else if (SignalStore.backup.backsUpMedia) {
-            Log.w(TAG, "[$attachmentId] Completely failed to restore an attachment! Failed to download from archive CDN, and there's not transit CDN info.")
-            maybePostFailedToDownloadFromArchiveAndTransitNotification()
+            Log.w(TAG, "[$attachmentId] Completely failed to restore an attachment! Failed to download from archive CDN, and there's not transit CDN info. hasPlaintextHash: ${attachment.dataHash != null}")
+            if (attachment.dataHash != null) {
+              maybePostFailedToDownloadFromArchiveAndTransitNotification()
+            }
           } else if (attachment.remoteLocation.isNotNullOrBlank()) {
             Log.w(TAG, "[$attachmentId] Failed to restore an attachment for a free tier user. Likely just older than 45 days.")
           }
