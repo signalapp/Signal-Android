@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobLogger.format
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.DiskSpaceNotLowConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.StickersNotDownloadingConstraint
@@ -204,6 +205,7 @@ class RestoreAttachmentJob private constructor(
         } else {
           addConstraint(RestoreAttachmentConstraint.KEY)
           addConstraint(BatteryNotLowConstraint.KEY)
+          addConstraint(DiskSpaceNotLowConstraint.KEY)
         }
 
         if (stickerPackId != null && SignalDatabase.stickers.isPackInstalled(stickerPackId)) {

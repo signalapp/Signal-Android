@@ -7,8 +7,6 @@ package org.thoughtcrime.securesms.backup.v2
 
 import android.app.PendingIntent
 import android.database.Cursor
-import android.os.Environment
-import android.os.StatFs
 import androidx.annotation.CheckResult
 import androidx.annotation.Discouraged
 import androidx.annotation.WorkerThread
@@ -22,7 +20,6 @@ import okio.ByteString.Companion.toByteString
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decodeBase64OrThrow
-import org.signal.core.util.ByteSize
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.DiskUtil
 import org.signal.core.util.EventTimer
@@ -359,16 +356,6 @@ object BackupRepository {
     } else {
       return messageBackupAccessResult
     }
-  }
-
-  /**
-   * Gets the free storage space in the device's data partition.
-   */
-  fun getFreeStorageSpace(): ByteSize {
-    val statFs = StatFs(Environment.getDataDirectory().absolutePath)
-    val free = (statFs.availableBlocksLong) * statFs.blockSizeLong
-
-    return free.bytes
   }
 
   /**
