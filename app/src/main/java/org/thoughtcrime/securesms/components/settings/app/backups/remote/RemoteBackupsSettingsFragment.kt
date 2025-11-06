@@ -922,7 +922,9 @@ private fun LazyListScope.appendBackupDetailsItems(
     }
   }
 
-  if (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None || backupProgress.state == ArchiveUploadProgressState.State.UserCanceled) {
+
+  val isRestoringDatabase = backupRestoreState is BackupRestoreState.Restoring && backupRestoreState.state.restoreState == RestoreState.RESTORING_DB
+  if (!isRestoringDatabase && (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None || backupProgress.state == ArchiveUploadProgressState.State.UserCanceled)) {
     item {
       LastBackupRow(
         lastBackupTimestamp = state.lastBackupTimestamp,
@@ -931,7 +933,7 @@ private fun LazyListScope.appendBackupDetailsItems(
         onBackupNowClick = contentCallbacks::onBackupNowClick
       )
     }
-  } else {
+  } else if (backupProgress != null) {
     item {
       InProgressBackupRow(
         archiveUploadProgressState = backupProgress,
