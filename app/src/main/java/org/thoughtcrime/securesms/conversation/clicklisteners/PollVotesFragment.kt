@@ -24,9 +24,8 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -132,6 +131,7 @@ private fun PollResultsScreen(
   onRecipientClick: (RecipientId) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
+  val expandedOptions = remember { mutableStateListOf<Int>() }
   Box(modifier = Modifier.fillMaxSize()) {
     LazyColumn(
       modifier = modifier
@@ -147,7 +147,10 @@ private fun PollResultsScreen(
         TextField(
           value = state.poll!!.question,
           onValueChange = {},
-          modifier = Modifier.padding(top = 12.dp, bottom = 24.dp).horizontalGutters().fillMaxWidth(),
+          modifier = Modifier
+            .padding(top = 12.dp, bottom = 24.dp)
+            .horizontalGutters()
+            .fillMaxWidth(),
           colors = TextFieldDefaults.colors(
             disabledTextColor = MaterialTheme.colorScheme.onSurface,
             disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -159,7 +162,12 @@ private fun PollResultsScreen(
       }
 
       itemsIndexed(state.pollOptions) { index, option ->
-        PollOptionSection(option, onRecipientClick)
+        PollOptionSection(
+          option = option,
+          onRecipientClick = onRecipientClick,
+          index = index,
+          isExpanded = expandedOptions.contains(index)
+        ) { expandedOptions.add(it) }
         if (index != state.pollOptions.lastIndex) {
           Dividers.Default()
         } else if (!state.poll!!.hasEnded) {
@@ -185,12 +193,16 @@ private fun PollResultsScreen(
 @Composable
 private fun PollOptionSection(
   option: PollOptionModel,
-  onRecipientClick: (RecipientId) -> Unit
+  onRecipientClick: (RecipientId) -> Unit,
+  index: Int,
+  isExpanded: Boolean,
+  onExpand: (Int) -> Unit
 ) {
-  var expand by remember { mutableStateOf(false) }
   val context = LocalContext.current
   Row(
-    modifier = Modifier.padding(vertical = 12.dp).horizontalGutters(),
+    modifier = Modifier
+      .padding(vertical = 12.dp)
+      .horizontalGutters(),
     verticalAlignment = Alignment.CenterVertically
   ) {
     Text(text = option.pollOption.text, modifier = Modifier.weight(1f), style = MaterialTheme.typography.titleSmall)
@@ -213,7 +225,7 @@ private fun PollOptionSection(
       color = MaterialTheme.colorScheme.onSurfaceVariant,
       modifier = Modifier.horizontalGutters()
     )
-  } else if (!expand && option.voters.size > MAX_INITIAL_VOTER_COUNT) {
+  } else if (!isExpanded && option.voters.size > MAX_INITIAL_VOTER_COUNT) {
     option.voters.subList(0, MAX_INITIAL_VOTER_COUNT).forEach { recipient ->
       Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -223,20 +235,32 @@ private fun PollOptionSection(
           .padding(vertical = 12.dp)
           .horizontalGutters()
       ) {
-        AvatarImage(recipient = recipient, modifier = Modifier.padding(end = 16.dp).size(40.dp))
+        AvatarImage(
+          recipient = recipient,
+          modifier = Modifier
+            .padding(end = 16.dp)
+            .size(40.dp)
+        )
         Text(text = if (recipient.isSelf) stringResource(id = R.string.Recipient_you) else recipient.getShortDisplayName(context))
       }
     }
 
     Row(
       verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier.padding(vertical = 12.dp).horizontalGutters().clickable { expand = true }
+      modifier = Modifier
+        .clickable { onExpand(index) }
+        .padding(vertical = 12.dp)
+        .horizontalGutters()
+        .fillMaxWidth()
     ) {
       Image(
         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
         imageVector = ImageVector.vectorResource(id = R.drawable.symbol_chevron_down_24),
         contentDescription = stringResource(R.string.Poll__see_all),
-        modifier = Modifier.size(40.dp).background(color = MaterialTheme.colorScheme.surfaceVariant, shape = CircleShape).padding(8.dp)
+        modifier = Modifier
+          .size(40.dp)
+          .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = CircleShape)
+          .padding(8.dp)
       )
       Text(text = stringResource(R.string.Poll__see_all), modifier = Modifier.padding(start = 16.dp), style = MaterialTheme.typography.bodyLarge)
     }
@@ -250,7 +274,12 @@ private fun PollOptionSection(
           .padding(vertical = 12.dp)
           .horizontalGutters()
       ) {
-        AvatarImage(recipient = recipient, modifier = Modifier.padding(end = 16.dp).size(40.dp))
+        AvatarImage(
+          recipient = recipient,
+          modifier = Modifier
+            .padding(end = 16.dp)
+            .size(40.dp)
+        )
         Text(text = if (recipient.isSelf) stringResource(id = R.string.Recipient_you) else recipient.getShortDisplayName(context))
       }
     }
