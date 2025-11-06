@@ -11,7 +11,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -53,6 +52,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.IconButtons.IconButton
+import org.signal.core.ui.compose.LargeFontPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.thoughtcrime.securesms.R
@@ -269,9 +269,10 @@ private fun SearchBar(
     shape = RoundedCornerShape(32.dp),
     modifier = modifier
       .background(MaterialTheme.colorScheme.background)
-      .padding(bottom = 18.dp, start = 16.dp, end = 16.dp)
+      .padding(bottom = 18.dp)
+      .padding(horizontal = 16.dp)
       .fillMaxWidth()
-      .height(54.dp)
+      .defaultMinSize(minHeight = 54.dp)
       .focusRequester(focusRequester),
     visualTransformation = VisualTransformation.None,
     colors = TextFieldDefaults.colors(
@@ -313,6 +314,27 @@ private fun LoadingScreenPreview() {
     CountryCodeSelectScreen(
       state = CountryCodeState(
         countryList = emptyList()
+      ),
+      title = "Your country"
+    )
+  }
+}
+
+@LargeFontPreviews
+@Composable
+private fun LargeFontScreenPreview() {
+  Previews.Preview {
+    CountryCodeSelectScreen(
+      state = CountryCodeState(
+        countryList = mutableListOf(
+          Country("\uD83C\uDDFA\uD83C\uDDF8", "United States", 1, "US"),
+          Country("\uD83C\uDDE8\uD83C\uDDE6", "Canada", 2, "CA"),
+          Country("\uD83C\uDDF2\uD83C\uDDFD", "Mexico", 3, "MX")
+        ),
+        commonCountryList = mutableListOf(
+          Country("\uD83C\uDDFA\uD83C\uDDF8", "United States", 4, "US"),
+          Country("\uD83C\uDDE8\uD83C\uDDE6", "Canada", 5, "CA")
+        )
       ),
       title = "Your country"
     )
