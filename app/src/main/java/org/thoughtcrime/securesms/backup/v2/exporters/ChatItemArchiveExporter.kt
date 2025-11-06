@@ -1254,9 +1254,10 @@ private fun List<DatabaseAttachment>.toRemoteQuoteAttachments(): List<Quote.Quot
 }
 
 private fun DatabaseAttachment.toRemoteMessageAttachment(flagOverride: MessageAttachment.Flag? = null, contentTypeOverride: String? = null): MessageAttachment {
+  val pointer = this.toRemoteFilePointer(contentTypeOverride)
   return MessageAttachment(
-    pointer = this.toRemoteFilePointer(contentTypeOverride),
-    wasDownloaded = this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE,
+    pointer = pointer,
+    wasDownloaded = (this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE) && pointer.locatorInfo?.plaintextHash != null,
     flag = if (flagOverride != null) {
       flagOverride
     } else if (this.voiceNote) {
