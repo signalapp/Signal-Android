@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientRepository
+import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.IOException
 import kotlin.time.Duration.Companion.seconds
@@ -43,8 +44,9 @@ class CreateGroupViewModel : ViewModel() {
     internalUiState.update { it.copy(searchQuery = query) }
   }
 
-  suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean {
-    return if (id != null) true else recipientExists(phone!!)
+  suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = when (selection) {
+    is RecipientSelection.WithId, is RecipientSelection.WithIdAndPhone -> true
+    is RecipientSelection.WithPhone -> recipientExists(selection.phone)
   }
 
   private suspend fun recipientExists(phone: PhoneNumber): Boolean {

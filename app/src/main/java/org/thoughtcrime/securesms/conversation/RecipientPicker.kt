@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 import java.util.Optional
 import java.util.function.Consumer
 
@@ -244,13 +245,20 @@ private fun ContactSelectionListFragment.setUpCallbacks(
       chatType: Optional<ChatType?>,
       resultConsumer: Consumer<Boolean?>
     ) {
-      val recipientId = recipientId.orNull()
+      val id = recipientId.orNull()
       val phone = number?.let(::PhoneNumber)
 
+      val selection = when {
+        id != null && phone != null -> RecipientSelection.WithIdAndPhone(id, phone)
+        id != null -> RecipientSelection.WithId(id)
+        phone != null -> RecipientSelection.WithPhone(phone)
+        else -> error("Either RecipientId or PhoneNumber must be non-null")
+      }
+
       coroutineScope.launch {
-        val shouldAllowSelection = callbacks.listActions.shouldAllowSelection(recipientId, phone)
+        val shouldAllowSelection = callbacks.listActions.shouldAllowSelection(selection)
         if (shouldAllowSelection) {
-          callbacks.listActions.onRecipientSelected(recipientId, phone)
+          callbacks.listActions.onRecipientSelected(selection)
         }
         resultConsumer.accept(shouldAllowSelection)
       }
@@ -378,16 +386,16 @@ data class RecipientPickerCallbacks(
      * This is called before [onRecipientSelected] to provide a chance to prevent the selection.
      */
     fun onSearchQueryChanged(query: String)
-    suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean
-    fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?)
+    suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean
+    fun onRecipientSelected(selection: RecipientSelection)
     fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) = Unit
     fun onPendingRecipientSelectionsConsumed()
     fun onContactsListReset() = Unit
 
     object Empty : ListActions {
       override fun onSearchQueryChanged(query: String) = Unit
-      override suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean = true
-      override fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?) = Unit
+      override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = true
+      override fun onRecipientSelected(selection: RecipientSelection) = Unit
       override fun onPendingRecipientSelectionsConsumed() = Unit
       override fun onContactsListReset() = Unit
     }

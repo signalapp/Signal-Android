@@ -24,16 +24,12 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -52,11 +48,9 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.compose.ScreenTitlePane
 import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.conversation.RecipientPicker
 import org.thoughtcrime.securesms.conversation.RecipientPickerCallbacks
@@ -64,14 +58,10 @@ import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.NavTarget
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.UserMessage
 import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity
-import org.thoughtcrime.securesms.recipients.PhoneNumber
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
+import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode
-import org.thoughtcrime.securesms.window.AppScaffold
-import org.thoughtcrime.securesms.window.detailPaneMaxContentWidth
-import org.thoughtcrime.securesms.window.isSplitPane
-import org.thoughtcrime.securesms.window.rememberAppScaffoldNavigator
 import java.text.NumberFormat
 
 /**
@@ -128,7 +118,7 @@ private fun CreateGroupScreen(
       override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
       override fun onFindByUsername() = findByLauncher.launch(FindByMode.USERNAME)
       override fun onFindByPhoneNumber() = findByLauncher.launch(FindByMode.PHONE_NUMBER)
-      override suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean = viewModel.shouldAllowSelection(id, phone)
+      override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = viewModel.shouldAllowSelection(selection)
       override fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) = viewModel.onSelectionChanged(newSelections, totalMembersCount)
       override fun onPendingRecipientSelectionsConsumed() = viewModel.clearPendingRecipientSelections()
       override fun onNextClicked(): Unit = viewModel.continueToGroupDetails()
@@ -164,11 +154,7 @@ private fun CreateGroupScreenUi(
   uiState: CreateGroupUiState,
   callbacks: UiCallbacks
 ) {
-  val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-  val isSplitPane = windowSizeClass.isSplitPane(forceSplitPane = uiState.forceSplitPane)
-  val snackbarHostState = remember { SnackbarHostState() }
-
-  val titleText = if (uiState.newSelections.isNotEmpty()) {
+  val title = if (uiState.newSelections.isNotEmpty()) {
     pluralStringResource(
       id = R.plurals.CreateGroupActivity__s_members,
       count = uiState.totalMembersCount,
@@ -178,61 +164,28 @@ private fun CreateGroupScreenUi(
     stringResource(R.string.CreateGroupActivity__select_members)
   }
 
-  AppScaffold(
-    topBarContent = {
-      Scaffolds.DefaultTopAppBar(
-        title = if (!isSplitPane) titleText else "",
-        titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
-        navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
-        navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
-        onNavigationClick = callbacks::onBackPressed
-      )
-    },
-
-    secondaryContent = {
-      if (isSplitPane) {
-        ScreenTitlePane(
-          title = titleText,
-          modifier = Modifier.fillMaxSize()
-        )
-      } else {
-        CreateGroupRecipientPicker(
-          uiState = uiState,
-          callbacks = callbacks
-        )
-      }
-    },
-
+  RecipientPickerScaffold(
+    title = title,
+    forceSplitPane = uiState.forceSplitPane,
+    onNavigateUpClick = callbacks::onBackPressed,
+    topAppBarActions = {},
+    snackbarHostState = remember { SnackbarHostState() },
     primaryContent = {
-      Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-      ) {
-        CreateGroupRecipientPicker(
-          uiState = uiState,
-          callbacks = callbacks,
-          modifier = Modifier.widthIn(max = windowSizeClass.detailPaneMaxContentWidth)
-        )
+      CreateGroupRecipientPicker(
+        uiState = uiState,
+        callbacks = callbacks
+      )
+
+      UserMessagesHost(
+        userMessage = uiState.userMessage,
+        onDismiss = callbacks::onUserMessageDismissed
+      )
+
+      if (uiState.isLookingUpRecipient) {
+        Dialogs.IndeterminateProgressDialog()
       }
-    },
-
-    snackbarHost = {
-      SnackbarHost(snackbarHostState)
-    },
-
-    navigator = rememberAppScaffoldNavigator(
-      isSplitPane = isSplitPane
-    )
+    }
   )
-
-  UserMessagesHost(
-    userMessage = uiState.userMessage,
-    onDismiss = callbacks::onUserMessageDismissed
-  )
-
-  if (uiState.isLookingUpRecipient) {
-    Dialogs.IndeterminateProgressDialog()
-  }
 }
 
 @Composable
@@ -296,7 +249,7 @@ private interface UiCallbacks :
   RecipientPickerCallbacks.FindByUsername,
   RecipientPickerCallbacks.FindByPhoneNumber {
 
-  override fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?) = Unit
+  override fun onRecipientSelected(selection: RecipientSelection) = Unit
   fun onNextClicked()
   fun onUserMessageDismissed(userMessage: UserMessage)
   fun onBackPressed()
@@ -306,7 +259,7 @@ private interface UiCallbacks :
     override fun onSearchQueryChanged(query: String) = Unit
     override fun onFindByUsername() = Unit
     override fun onFindByPhoneNumber() = Unit
-    override suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean = true
+    override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = true
     override fun onPendingRecipientSelectionsConsumed() = Unit
     override fun onNextClicked() = Unit
     override fun onUserMessageDismissed(userMessage: UserMessage) = Unit

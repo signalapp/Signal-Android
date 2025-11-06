@@ -14,25 +14,17 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -49,25 +41,20 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.compose.ScreenTitlePane
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.conversation.NewConversationUiState.UserMessage
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
-import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
+import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.window.AppScaffold
-import org.thoughtcrime.securesms.window.detailPaneMaxContentWidth
-import org.thoughtcrime.securesms.window.isSplitPane
-import org.thoughtcrime.securesms.window.rememberAppScaffoldNavigator
 
 /**
  * Allows the user to start a new conversation by selecting a recipient.
@@ -121,7 +108,7 @@ private fun NewConversationScreen(
     contract = FindByActivity.Contract(),
     onResult = { recipientId ->
       if (recipientId != null) {
-        viewModel.openConversation(recipientId)
+        viewModel.openConversation(selection = RecipientSelection.WithId(recipientId))
       }
     }
   )
@@ -133,10 +120,9 @@ private fun NewConversationScreen(
       override fun onCreateNewGroup() = createGroupLauncher.launch(CreateGroupActivity.createIntent(context))
       override fun onFindByUsername() = findByLauncher.launch(FindByMode.USERNAME)
       override fun onFindByPhoneNumber() = findByLauncher.launch(FindByMode.PHONE_NUMBER)
-      override suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean = true
-      override fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?) = viewModel.openConversation(id, phone)
-      override fun onPendingRecipientSelectionsConsumed() = Unit
-      override fun onMessage(id: RecipientId) = viewModel.openConversation(id)
+      override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = true
+      override fun onRecipientSelected(selection: RecipientSelection) = viewModel.openConversation(selection)
+      override fun onMessage(id: RecipientId) = viewModel.openConversation(RecipientSelection.WithId(id))
       override fun onVoiceCall(recipient: Recipient) = CommunicationActions.startVoiceCall(context, recipient, viewModel::showUserAlreadyInACall)
       override fun onVideoCall(recipient: Recipient) = CommunicationActions.startVideoCall(context, recipient, viewModel::showUserAlreadyInACall)
 
@@ -196,75 +182,38 @@ private suspend fun openConversation(
   onComplete()
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 private fun NewConversationScreenUi(
   uiState: NewConversationUiState,
   callbacks: UiCallbacks
 ) {
-  val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-  val isSplitPane = windowSizeClass.isSplitPane(forceSplitPane = uiState.forceSplitPaneOnCompactLandscape)
   val snackbarHostState = remember { SnackbarHostState() }
 
-  AppScaffold(
-    topBarContent = {
-      Scaffolds.DefaultTopAppBar(
-        title = if (!isSplitPane) stringResource(R.string.NewConversationActivity__new_message) else "",
-        titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
-        navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
-        navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
-        onNavigationClick = callbacks::onBackPressed,
-        actions = { TopAppBarActions(callbacks) }
-      )
-    },
-
-    secondaryContent = {
-      if (isSplitPane) {
-        ScreenTitlePane(
-          title = stringResource(R.string.NewConversationActivity__new_message),
-          modifier = Modifier.fillMaxSize()
-        )
-      } else {
-        NewConversationRecipientPicker(
-          uiState = uiState,
-          callbacks = callbacks
-        )
-      }
-    },
-
+  RecipientPickerScaffold(
+    title = stringResource(R.string.NewConversationActivity__new_message),
+    forceSplitPane = uiState.forceSplitPaneOnCompactLandscape,
+    onNavigateUpClick = callbacks::onBackPressed,
+    topAppBarActions = { TopAppBarActions(callbacks) },
+    snackbarHostState = snackbarHostState,
     primaryContent = {
-      Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-      ) {
-        NewConversationRecipientPicker(
-          uiState = uiState,
-          callbacks = callbacks,
-          modifier = Modifier.widthIn(max = windowSizeClass.detailPaneMaxContentWidth)
-        )
+      NewConversationRecipientPicker(
+        uiState = uiState,
+        callbacks = callbacks
+      )
+
+      UserMessagesHost(
+        userMessage = uiState.userMessage,
+        onDismiss = callbacks::onUserMessageDismissed,
+        onRemoveConfirmed = callbacks::onRemoveConfirmed,
+        onBlockConfirmed = callbacks::onBlockConfirmed,
+        snackbarHostState = snackbarHostState
+      )
+
+      if (uiState.isLookingUpRecipient) {
+        Dialogs.IndeterminateProgressDialog()
       }
-    },
-
-    snackbarHost = {
-      SnackbarHost(snackbarHostState)
-    },
-
-    navigator = rememberAppScaffoldNavigator(
-      isSplitPane = isSplitPane
-    )
+    }
   )
-
-  UserMessagesHost(
-    userMessage = uiState.userMessage,
-    onDismiss = callbacks::onUserMessageDismissed,
-    onRemoveConfirmed = callbacks::onRemoveConfirmed,
-    onBlockConfirmed = callbacks::onBlockConfirmed,
-    snackbarHostState = snackbarHostState
-  )
-
-  if (uiState.isLookingUpRecipient) {
-    Dialogs.IndeterminateProgressDialog()
-  }
 }
 
 @Composable
@@ -323,6 +272,7 @@ private interface UiCallbacks :
   fun onRemoveConfirmed(recipient: Recipient)
   fun onBlockConfirmed(recipient: Recipient)
   fun onUserMessageDismissed(userMessage: UserMessage)
+  override fun onPendingRecipientSelectionsConsumed() = Unit
   fun onBackPressed()
 
   object Empty : UiCallbacks {
@@ -330,8 +280,8 @@ private interface UiCallbacks :
     override fun onCreateNewGroup() = Unit
     override fun onFindByUsername() = Unit
     override fun onFindByPhoneNumber() = Unit
-    override suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean = true
-    override fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?) = Unit
+    override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = true
+    override fun onRecipientSelected(selection: RecipientSelection) = Unit
     override fun onPendingRecipientSelectionsConsumed() = Unit
     override fun onMessage(id: RecipientId) = Unit
     override fun onVoiceCall(recipient: Recipient) = Unit
@@ -404,7 +354,7 @@ private fun UserMessagesHost(
     )
 
     is UserMessage.Info.RecipientNotSignalUser -> Dialogs.SimpleMessageDialog(
-      message = stringResource(R.string.NewConversationActivity__s_is_not_a_signal_user, userMessage.phone!!.displayText),
+      message = stringResource(R.string.NewConversationActivity__s_is_not_a_signal_user, userMessage.phone.displayText),
       dismiss = stringResource(android.R.string.ok),
       onDismiss = { onDismiss(userMessage) }
     )

@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientRepository
+import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 
 class NewConversationViewModel : ViewModel() {
   companion object {
@@ -41,20 +42,22 @@ class NewConversationViewModel : ViewModel() {
     internalUiState.update { it.copy(searchQuery = query) }
   }
 
-  fun openConversation(recipientId: RecipientId) {
+  private fun openConversation(recipientId: RecipientId) {
     internalUiState.update { it.copy(pendingDestination = recipientId) }
   }
 
-  fun openConversation(id: RecipientId?, phone: PhoneNumber?) {
-    when {
-      id != null -> openConversation(recipientId = id)
-
-      SignalStore.account.isRegistered -> {
-        Log.d(TAG, "[openConversation] Missing recipientId: attempting to look up.")
-        resolveAndOpenConversation(phone!!)
+  fun openConversation(selection: RecipientSelection) {
+    when (selection) {
+      is RecipientSelection.WithId -> openConversation(recipientId = selection.id)
+      is RecipientSelection.WithIdAndPhone -> openConversation(recipientId = selection.id)
+      is RecipientSelection.WithPhone -> {
+        if (SignalStore.account.isRegistered) {
+          Log.d(TAG, "[openConversation] Missing recipientId: attempting to look up.")
+          resolveAndOpenConversation(selection.phone)
+        } else {
+          Log.w(TAG, "[openConversation] Cannot look up recipient: account not registered.")
+        }
       }
-
-      else -> Log.w(TAG, "[openConversation] Cannot look up recipient: account not registered.")
     }
   }
 
