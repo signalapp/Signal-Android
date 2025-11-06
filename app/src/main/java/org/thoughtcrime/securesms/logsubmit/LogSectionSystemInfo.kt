@@ -7,6 +7,8 @@ import android.provider.Settings
 import android.util.DisplayMetrics
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
+import org.signal.core.util.BidiUtil
+import org.signal.core.util.DiskUtil
 import org.signal.core.util.FontUtil.canRenderEmojiAtFontSize
 import org.signal.core.util.bytes
 import org.signal.core.util.roundedString
@@ -55,6 +57,7 @@ class LogSectionSystemInfo : LogSection {
       Memory            : ${getMemoryUsage()}
       Memclass          : ${getMemoryClass(context)}
       MemInfo           : ${getMemoryInfo(context)}
+      Disk Space        : ${getDiskSpaceInfo(context)}
       OS Host           : ${Build.HOST}
       RecipientId       : ${if (SignalStore.registration.isRegistrationComplete) self().id else "N/A"}
       ACI               : ${getCensoredAci()}
@@ -126,6 +129,14 @@ class LogSectionSystemInfo : LogSection {
   private fun getMemoryInfo(context: Context): String {
     val info = DeviceProperties.getMemoryInfo(context)
     return "availMem: ${info.availMem.bytes.inMebiBytes.roundedString(2)} MiB, totalMem: ${info.totalMem.bytes.inMebiBytes.roundedString(2)} MiB, threshold: ${info.threshold.bytes.inMebiBytes.roundedString(2)} MiB, lowMemory: ${info.lowMemory}"
+  }
+
+  private fun getDiskSpaceInfo(context: Context): String {
+    val totalSpace = DiskUtil.getTotalDiskSize(context)
+    val freeSpace = DiskUtil.getAvailableSpace(context)
+    val usedSpace = totalSpace - freeSpace
+
+    return BidiUtil.stripAllDirectionalCharacters("${usedSpace.toUnitString()} / ${totalSpace.toUnitString()} (${freeSpace.toUnitString()} free)")
   }
 
   private fun getScreenResolution(context: Context): String {

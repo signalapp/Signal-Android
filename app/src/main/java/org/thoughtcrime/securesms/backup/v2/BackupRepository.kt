@@ -24,6 +24,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.ByteSize
 import org.signal.core.util.CursorUtil
+import org.signal.core.util.DiskUtil
 import org.signal.core.util.EventTimer
 import org.signal.core.util.PendingIntentFlags.cancelCurrent
 import org.signal.core.util.Stopwatch
@@ -375,7 +376,7 @@ object BackupRepository {
    * Caller from the attachment / thumbnail download jobs.
    */
   fun checkForOutOfStorageError(tag: String): Boolean {
-    val availableSpace = getFreeStorageSpace()
+    val availableSpace = DiskUtil.getAvailableSpace(AppDependencies.application)
     val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize().bytes
 
     return if (availableSpace < remainingAttachmentSize) {

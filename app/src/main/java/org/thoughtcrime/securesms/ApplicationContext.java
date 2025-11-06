@@ -30,6 +30,7 @@ import com.google.android.gms.security.ProviderInstaller;
 import org.conscrypt.ConscryptSignal;
 import org.greenrobot.eventbus.EventBus;
 import org.signal.aesgcmprovider.AesGcmProvider;
+import org.signal.core.util.DiskUtil;
 import org.signal.core.util.MemoryTracker;
 import org.signal.core.util.concurrent.AnrDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -299,7 +300,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
   }
 
   public void checkFreeDiskSpace() {
-    long availableBytes = BackupRepository.INSTANCE.getFreeStorageSpace().getBytes();
+    long availableBytes = DiskUtil.getAvailableSpace(getApplicationContext()).getBytes();
     SignalStore.backup().setSpaceAvailableOnDiskBytes(availableBytes);
   }
 
