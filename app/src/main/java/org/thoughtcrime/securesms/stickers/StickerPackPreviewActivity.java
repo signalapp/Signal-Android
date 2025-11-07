@@ -20,7 +20,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment;
@@ -37,6 +36,7 @@ import org.whispersystems.signalservice.api.util.OptionalUtil;
 import java.util.Collections;
 import java.util.Optional;
 
+import kotlin.Pair;
 
 /**
  * Shows the contents of a pack and allows the user to install it (if not installed) or remove it
@@ -92,8 +92,8 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
       return;
     }
 
-    String packId  = stickerParams.get().first();
-    String packKey = stickerParams.get().second();
+    String packId  = stickerParams.get().getFirst();
+    String packKey = stickerParams.get().getSecond();
 
     initToolbar();
     initView();

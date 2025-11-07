@@ -6,7 +6,6 @@
 
 package org.whispersystems.signalservice.internal.util;
 
-import org.signal.libsignal.protocol.util.Pair;
 import org.whispersystems.signalservice.api.push.TrustStore;
 
 import java.io.IOException;
@@ -23,6 +22,8 @@ import java.util.List;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
+
+import kotlin.Pair;
 
 /**
  * Trust manager that defers to a system X509 trust manager, and
@@ -87,8 +88,8 @@ public class BlacklistingTrustManager implements X509TrustManager {
 
     for (X509Certificate certificate : chain) {
       for (Pair<String, BigInteger> blacklistedSerial : BLACKLIST) {
-        if (certificate.getIssuerDN().getName().equals(blacklistedSerial.first()) &&
-            certificate.getSerialNumber().equals(blacklistedSerial.second()))
+        if (certificate.getIssuerDN().getName().equals(blacklistedSerial.getFirst()) &&
+            certificate.getSerialNumber().equals(blacklistedSerial.getSecond()))
         {
           throw new CertificateException("Blacklisted Serial: " + certificate.getSerialNumber());
         }

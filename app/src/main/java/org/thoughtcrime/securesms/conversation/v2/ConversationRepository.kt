@@ -414,7 +414,7 @@ class ConversationRepository(
       if (details == null) {
         -1
       } else {
-        SignalDatabase.messages.getMessagePositionInConversation(threadId, details.second(), details.first())
+        SignalDatabase.messages.getMessagePositionInConversation(threadId, details.second, details.first)
       }
     }.subscribeOn(Schedulers.io())
   }

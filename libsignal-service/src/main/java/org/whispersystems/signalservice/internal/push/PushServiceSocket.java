@@ -13,7 +13,6 @@ import com.squareup.wire.Message;
 import org.signal.core.util.Base64;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
-import org.signal.libsignal.protocol.util.Pair;
 import org.signal.storageservice.protos.groups.AvatarUploadAttributes;
 import org.signal.storageservice.protos.groups.Group;
 import org.signal.storageservice.protos.groups.GroupChange;
@@ -133,6 +132,8 @@ import javax.annotation.Nullable;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+
+import kotlin.Pair;
 
 import okhttp3.Call;
 import okhttp3.ConnectionPool;
@@ -1396,7 +1397,7 @@ public class PushServiceSocket {
 
     if (headers != null) {
       for (Pair<String, String> header : headers) {
-        builder.addHeader(header.first(), header.second());
+        builder.addHeader(header.getFirst(), header.getSecond());
       }
     }
 

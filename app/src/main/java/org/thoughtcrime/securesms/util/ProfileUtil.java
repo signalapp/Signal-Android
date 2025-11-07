@@ -11,7 +11,6 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
@@ -56,6 +55,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import kotlin.Pair;
 
 import io.reactivex.rxjava3.core.Single;
 
@@ -112,7 +113,7 @@ public final class ProfileUtil {
       throws IOException
   {
     Pair<Recipient, ServiceResponse<ProfileAndCredential>> response = retrieveProfile(context, recipient, requestType, allowUnidentifiedAccess).blockingGet();
-    return new ProfileService.ProfileResponseProcessor(response.second()).getResultOrThrow();
+    return new ProfileService.ProfileResponseProcessor(response.getSecond()).getResultOrThrow();
   }
 
   @WorkerThread

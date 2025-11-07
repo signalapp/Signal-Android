@@ -36,7 +36,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 
-import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
@@ -52,6 +51,8 @@ import org.signal.core.util.concurrent.SimpleTask;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import kotlin.Pair;
 
 /**
  * Activity for displaying media attachments in-app
@@ -276,7 +277,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
                                                        ? MediaOverviewPageFragment.GridMode.FOLLOW_MODEL
                                                        : MediaOverviewPageFragment.GridMode.FIXED_DETAIL;
 
-      return MediaOverviewPageFragment.newInstance(threadId, pages.get(position).first(), gridMode);
+      return MediaOverviewPageFragment.newInstance(threadId, pages.get(position).getFirst(), gridMode);
     }
 
     @Override
@@ -286,7 +287,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
 
     @Override
     public CharSequence getPageTitle(int position) {
-      return pages.get(position).second();
+      return pages.get(position).getSecond();
     }
   }
 }

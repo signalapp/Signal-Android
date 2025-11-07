@@ -1,7 +1,6 @@
 package org.whispersystems.signalservice.api.services;
 
 import org.signal.libsignal.protocol.logging.Log;
-import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
@@ -27,6 +26,8 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Lock;
+
+import kotlin.Pair;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 
@@ -384,7 +385,7 @@ public class DonationsService {
   private <T> ServiceResponse<T> wrapInServiceResponse(Producer<T> producer) {
     try {
       Pair<T, Integer> responseAndCode = producer.produce();
-      return ServiceResponse.forResult(responseAndCode.first(), responseAndCode.second(), null);
+      return ServiceResponse.forResult(responseAndCode.getFirst(), responseAndCode.getSecond(), null);
     } catch (NonSuccessfulResponseCodeException e) {
       Log.w(TAG, "Bad response code from server.", e);
       return ServiceResponse.forApplicationError(e, e.code, e.getStringBody());
