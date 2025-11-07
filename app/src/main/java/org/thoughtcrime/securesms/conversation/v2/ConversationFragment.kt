@@ -420,7 +420,7 @@ class ConversationFragment :
     ConversationIntents.readArgsFromBundle(requireArguments())
   }
 
-  private val conversationRecipientRepository: ConversationRecipientRepository by lazy {
+  private val conversationRecipientRepository: ConversationRecipientRepository by viewModel {
     ConversationRecipientRepository(args.threadId)
   }
 
@@ -513,6 +513,7 @@ class ConversationFragment :
   private val inlineQueryController: InlineQueryResultsControllerV2 by lazy {
     InlineQueryResultsControllerV2(
       this,
+      args.threadId,
       inlineQueryViewModel,
       inputPanel,
       (requireView() as ViewGroup),

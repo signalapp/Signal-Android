@@ -8,6 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.CreationExtras
 
 /**
@@ -42,9 +43,11 @@ inline fun <reified VM : ViewModel> ComponentActivity.viewModel(
 
 @MainThread
 inline fun <reified VM : ViewModel> Fragment.viewModel(
+  noinline ownerProducer: () -> ViewModelStoreOwner = { this },
   noinline create: (CreationExtras) -> VM
 ): Lazy<VM> {
   return viewModels(
+    ownerProducer = ownerProducer,
     factoryProducer = ViewModelFactory.factoryProducer(create)
   )
 }

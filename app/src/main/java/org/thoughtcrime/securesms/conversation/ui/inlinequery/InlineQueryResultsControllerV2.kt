@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.util.doOnEachLayout
  */
 class InlineQueryResultsControllerV2(
   private val parentFragment: Fragment,
+  private val threadId: Long,
   private val viewModel: InlineQueryViewModelV2,
   private val anchor: View,
   private val container: ViewGroup,
@@ -110,7 +111,7 @@ class InlineQueryResultsControllerV2(
     if (mentionFragment == null) {
       mentionFragment = parentFragment.childFragmentManager.findFragmentByTag(MENTION_TAG) as? MentionsPickerFragmentV2
       if (mentionFragment == null) {
-        mentionFragment = MentionsPickerFragmentV2()
+        mentionFragment = MentionsPickerFragmentV2.create(threadId)
         parentFragment.childFragmentManager.commit {
           replace(R.id.mention_fragment_container, mentionFragment!!)
           runOnCommit { mentionFragment!!.updateList(results.results) }
