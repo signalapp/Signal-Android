@@ -31,7 +31,7 @@ fun WindowWidthSizeClass.isAtLeast(other: WindowWidthSizeClass): Boolean {
  * Global check for large screen support, can be inlined after production release.
  */
 fun isLargeScreenSupportEnabled(): Boolean {
-  return RemoteConfig.largeScreenUi && SignalStore.internal.largeScreenUi
+  return RemoteConfig.largeScreenUi
 }
 
 @OptIn(ExperimentalWindowCoreApi::class)

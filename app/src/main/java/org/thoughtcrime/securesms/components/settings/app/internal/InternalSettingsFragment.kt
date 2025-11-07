@@ -174,19 +174,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       sectionHeaderPref(DSLSettingsText.from("App UI"))
 
       switchPref(
-        title = DSLSettingsText.from("Enable new split pane UI."),
-        summary = DSLSettingsText.from("Warning: Some bugs and non functional buttons are expected. App will restart."),
-        isChecked = state.largeScreenUi,
-        onClick = {
-          viewModel.setUseLargeScreenUi(!state.largeScreenUi)
-          AppUtil.restart(requireContext())
-        }
-      )
-
-      switchPref(
-        isEnabled = state.largeScreenUi,
         title = DSLSettingsText.from("Force split pane UI on phones."),
-        summary = DSLSettingsText.from("This setting requires split pane UI to be enabled."),
         isChecked = state.forceSplitPane,
         onClick = {
           viewModel.setForceSplitPane(!state.forceSplitPane)
