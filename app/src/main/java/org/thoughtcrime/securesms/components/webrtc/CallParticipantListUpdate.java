@@ -69,11 +69,11 @@ public final class CallParticipantListUpdate {
                                                                       @NonNull List<CallParticipant> newList)
   {
     Set<CallParticipantListUpdate.Wrapper> oldParticipants = Stream.of(oldList)
-                                                                  .filter(p -> p.getCallParticipantId().getDemuxId() != CallParticipantId.DEFAULT_ID)
+                                                                  .filter(p -> p.getCallParticipantId().demuxId != CallParticipantId.DEFAULT_ID)
                                                                   .map(CallParticipantListUpdate::createWrapper)
                                                                   .collect(Collectors.toSet());
     Set<CallParticipantListUpdate.Wrapper> newParticipants = Stream.of(newList)
-                                                                  .filter(p -> p.getCallParticipantId().getDemuxId() != CallParticipantId.DEFAULT_ID)
+                                                                  .filter(p -> p.getCallParticipantId().demuxId != CallParticipantId.DEFAULT_ID)
                                                                   .map(CallParticipantListUpdate::createWrapper)
                                                                   .collect(Collectors.toSet());
     Set<CallParticipantListUpdate.Wrapper> added           = SetUtil.difference(newParticipants, oldParticipants);

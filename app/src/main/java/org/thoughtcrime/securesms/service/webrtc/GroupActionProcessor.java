@@ -204,7 +204,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
       BroadcastVideoSink               videoSink = entry.getValue().getVideoSink();
       BroadcastVideoSink.RequestedSize maxSize   = videoSink.getMaxRequestingSize();
 
-      resolutionRequests.add(new GroupCall.VideoRequest(entry.getKey().getDemuxId(), maxSize.getWidth(), maxSize.getHeight(), null));
+      resolutionRequests.add(new GroupCall.VideoRequest(entry.getKey().demuxId, maxSize.getWidth(), maxSize.getHeight(), null));
       videoSink.setCurrentlyRequestedMaxSize(maxSize);
     }
 
