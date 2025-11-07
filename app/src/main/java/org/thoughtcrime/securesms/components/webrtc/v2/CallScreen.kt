@@ -354,11 +354,14 @@ private fun BoxScope.Viewport(
   onToggleCameraDirection: () -> Unit,
   modifier: Modifier = Modifier
 ) {
-  if (webRtcCallState.isPreJoinOrNetworkUnavailable) {
+  val isEmptyOngoingCall = webRtcCallState.inOngoingCall && callParticipantsPagerState.callParticipants.isEmpty()
+  if (webRtcCallState.isPreJoinOrNetworkUnavailable || isEmptyOngoingCall) {
     LargeLocalVideoRenderer(
       localParticipant = localParticipant,
       modifier = modifier
     )
+
+    return
   }
 
   val isLargeGroupCall = overflowParticipants.size > 1
