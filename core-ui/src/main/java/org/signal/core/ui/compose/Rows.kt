@@ -195,7 +195,8 @@ object Rows {
       enabled = enabled,
       onClick = {
         displayDialog = true
-      }
+      },
+      modifier = Modifier.alpha(if (enabled) 1f else DISABLED_ALPHA)
     )
 
     if (displayDialog) {

@@ -60,6 +60,7 @@ import org.signal.core.ui.compose.Dialogs.PermissionRationaleDialog
 import org.signal.core.ui.compose.Dialogs.SimpleAlertDialog
 import org.signal.core.ui.compose.Dialogs.SimpleMessageDialog
 import org.signal.core.ui.compose.theme.SignalTheme
+import kotlin.math.max
 
 object Dialogs {
 
@@ -398,7 +399,7 @@ object Dialogs {
           LazyColumn(
             modifier = Modifier.padding(top = 24.dp, bottom = 16.dp),
             state = rememberLazyListState(
-              initialFirstVisibleItemIndex = selectedIndex
+              initialFirstVisibleItemIndex = max(selectedIndex, 0)
             )
           ) {
             items(
