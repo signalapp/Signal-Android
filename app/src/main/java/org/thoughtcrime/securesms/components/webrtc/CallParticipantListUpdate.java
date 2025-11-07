@@ -83,11 +83,11 @@ public final class CallParticipantListUpdate {
   }
 
   @VisibleForTesting
-  static Wrapper createWrapper(@NonNull CallParticipant callParticipant) {
+  public static Wrapper createWrapper(@NonNull CallParticipant callParticipant) {
     return new Wrapper(callParticipant);
   }
 
-  static final class Wrapper {
+  public static final class Wrapper {
     private final CallParticipant callParticipant;
 
     private Wrapper(@NonNull CallParticipant callParticipant) {

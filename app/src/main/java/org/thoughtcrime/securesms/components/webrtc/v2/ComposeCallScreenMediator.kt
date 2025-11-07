@@ -62,6 +62,8 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   private val controlsVisibilityListener = MutableStateFlow<CallControlsVisibilityListener>(CallControlsVisibilityListener.Empty)
   private val pendingParticipantsViewListener = MutableStateFlow<PendingParticipantsListener>(PendingParticipantsListener.Empty)
 
+  private val callParticipantUpdatePopupController = CallParticipantUpdatePopupController()
+
   init {
     WindowUtil.clearTranslucentNavigationBar(activity.window)
     WindowUtil.clearTranslucentStatusBar(activity.window)
@@ -165,7 +167,8 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           onNavigationClick = { activity.onBackPressedDispatcher.onBackPressed() },
           onLocalPictureInPictureClicked = viewModel::onLocalPictureInPictureClicked,
           onControlsToggled = onControlsToggled,
-          onCallScreenDialogDismissed = { callScreenViewModel.dialog.update { CallScreenDialogType.NONE } }
+          onCallScreenDialogDismissed = { callScreenViewModel.dialog.update { CallScreenDialogType.NONE } },
+          callParticipantUpdatePopupController = callParticipantUpdatePopupController
         )
       }
     }
@@ -288,7 +291,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   }
 
   override fun onParticipantListUpdate(callParticipantListUpdate: CallParticipantListUpdate) {
-    callScreenViewModel.callParticipantListUpdate.update { callParticipantListUpdate }
+    callParticipantUpdatePopupController.update(callParticipantListUpdate)
   }
 
   override fun enableParticipantUpdatePopup(enabled: Boolean) {
@@ -347,8 +350,6 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
     )
 
     private var callControlsChangeJob: Job? = null
-
-    val callParticipantListUpdate = MutableStateFlow(CallParticipantListUpdate.computeDeltaUpdate(emptyList(), emptyList()))
 
     fun emitControllerEvent(controllerEvent: CallScreenController.Event) {
       viewModelScope.launch { callScreenControllerEvents.emit(controllerEvent) }

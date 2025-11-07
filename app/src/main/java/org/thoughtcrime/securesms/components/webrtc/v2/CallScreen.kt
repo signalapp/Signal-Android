@@ -114,6 +114,7 @@ fun CallScreen(
   additionalActionsListener: AdditionalActionsListener = AdditionalActionsListener.Empty,
   callParticipantsPagerState: CallParticipantsPagerState,
   pendingParticipantsListener: PendingParticipantsListener = PendingParticipantsListener.Empty,
+  callParticipantUpdatePopupController: CallParticipantUpdatePopupController,
   overflowParticipants: List<CallParticipant>,
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
@@ -324,6 +325,13 @@ fun CallScreen(
           PendingParticipants(
             pendingParticipantsState = state,
             pendingParticipantsListener = pendingParticipantsListener
+          )
+        }
+
+        if (callScreenState.isParticipantUpdatePopupEnabled) {
+          CallParticipantUpdatePopup(
+            controller = callParticipantUpdatePopupController,
+            modifier = Modifier.statusBarsPadding().fillMaxWidth()
           )
         }
       }
@@ -730,7 +738,8 @@ private fun CallScreenPreview() {
       onLocalPictureInPictureClicked = {},
       overflowParticipants = participants,
       onControlsToggled = {},
-      reactions = emptyList()
+      reactions = emptyList(),
+      callParticipantUpdatePopupController = remember { CallParticipantUpdatePopupController() }
     )
   }
 }
