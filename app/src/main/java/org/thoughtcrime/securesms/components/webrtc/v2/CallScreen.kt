@@ -462,6 +462,7 @@ private fun BoxScope.Viewport(
               spacerOffset.y.toDp()
             }
           ),
+        onToggleCameraDirection = onToggleCameraDirection,
         onClick = onPipClick
       )
     }
@@ -503,7 +504,8 @@ private fun TinyLocalVideoRenderer(
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
   modifier: Modifier = Modifier,
-  onClick: () -> Unit
+  onClick: () -> Unit,
+  onToggleCameraDirection: () -> Unit
 ) {
   val (smallSize, expandedSize, padding) = rememberTinyPortraitSize()
   val size = if (localRenderState == WebRtcLocalRenderState.EXPANDED) expandedSize else smallSize
@@ -528,7 +530,12 @@ private fun TinyLocalVideoRenderer(
     callParticipant = localParticipant,
     isLocalParticipant = true,
     renderInPip = true,
-    selfPipMode = CallParticipantView.SelfPipMode.MINI_SELF_PIP,
+    onToggleCameraDirection = onToggleCameraDirection,
+    selfPipMode = if (localRenderState == WebRtcLocalRenderState.EXPANDED) {
+      CallParticipantView.SelfPipMode.EXPANDED_SELF_PIP
+    } else {
+      CallParticipantView.SelfPipMode.MINI_SELF_PIP
+    },
     modifier = modifier
       .padding(padding)
       .height(height)
