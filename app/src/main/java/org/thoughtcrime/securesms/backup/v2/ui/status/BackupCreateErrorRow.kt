@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.backup.v2.ui.status
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -19,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.AnnotatedString.Builder
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -32,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.signal.core.ui.R as CoreUiR
 
 private val YELLOW_DOT = Color(0xFFFFCC00)
@@ -41,27 +44,18 @@ private val YELLOW_DOT = Color(0xFFFFCC00)
  */
 @Composable
 fun BackupCreateErrorRow(
-  showCouldNotComplete: Boolean,
-  showBackupFailed: Boolean,
+  error: BackupValues.BackupCreationError,
   onLearnMoreClick: () -> Unit = {}
 ) {
-  if (showBackupFailed) {
-    val inlineContentMap = mapOf(
-      "yellow_bullet" to InlineTextContent(
-        Placeholder(20.sp, 12.sp, PlaceholderVerticalAlign.TextCenter)
-      ) {
-        Box(
-          modifier = Modifier
-            .size(12.dp)
-            .background(color = YELLOW_DOT, shape = CircleShape)
-        )
+  when (error) {
+    BackupValues.BackupCreationError.TRANSIENT -> {
+      BackupAlertText {
+        append(stringResource(R.string.BackupStatusRow__your_last_backup))
       }
-    )
+    }
 
-    BackupAlertText(
-      text = buildAnnotatedString {
-        appendInlineContent("yellow_bullet")
-        append(" ")
+    BackupValues.BackupCreationError.VALIDATION -> {
+      BackupAlertText {
         append(stringResource(R.string.BackupStatusRow__your_last_backup_latest_version))
         append(" ")
         withLink(
@@ -74,11 +68,29 @@ fun BackupCreateErrorRow(
         ) {
           append(stringResource(R.string.BackupStatusRow__learn_more))
         }
-      },
-      inlineContent = inlineContentMap
-    )
-  } else if (showCouldNotComplete) {
-    val inlineContentMap = mapOf(
+      }
+    }
+
+    BackupValues.BackupCreationError.BACKUP_FILE_TOO_LARGE -> {
+      BackupAlertText {
+        append(stringResource(R.string.BackupStatusRow__backup_file_too_large))
+      }
+    }
+  }
+}
+
+@Composable
+private fun BackupAlertText(stringBuilder: @Composable Builder.() -> Unit) {
+  Text(
+    text = buildAnnotatedString {
+      appendInlineContent("yellow_bullet")
+      append(" ")
+      stringBuilder()
+    },
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
+    style = MaterialTheme.typography.bodyMedium,
+    modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter)),
+    inlineContent = mapOf(
       "yellow_bullet" to InlineTextContent(
         Placeholder(20.sp, 12.sp, PlaceholderVerticalAlign.TextCenter)
       ) {
@@ -89,26 +101,6 @@ fun BackupCreateErrorRow(
         )
       }
     )
-
-    BackupAlertText(
-      text = buildAnnotatedString {
-        appendInlineContent("yellow_bullet")
-        append(" ")
-        append(stringResource(R.string.BackupStatusRow__your_last_backup))
-      },
-      inlineContent = inlineContentMap
-    )
-  }
-}
-
-@Composable
-private fun BackupAlertText(text: AnnotatedString, inlineContent: Map<String, InlineTextContent>) {
-  Text(
-    text = text,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
-    style = MaterialTheme.typography.bodyMedium,
-    modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter)),
-    inlineContent = inlineContent
   )
 }
 
@@ -116,14 +108,12 @@ private fun BackupAlertText(text: AnnotatedString, inlineContent: Map<String, In
 @Composable
 fun BackupStatusRowCouldNotCompleteBackupPreview() {
   Previews.Preview {
-    BackupCreateErrorRow(showCouldNotComplete = true, showBackupFailed = false)
-  }
-}
-
-@DayNightPreviews
-@Composable
-fun BackupStatusRowBackupFailedPreview() {
-  Previews.Preview {
-    BackupCreateErrorRow(showCouldNotComplete = false, showBackupFailed = true)
+    Column {
+      for (error in BackupValues.BackupCreationError.entries) {
+        Text(error.name)
+        BackupCreateErrorRow(error = error, onLearnMoreClick = {})
+        Spacer(modifier = Modifier.size(8.dp))
+      }
+    }
   }
 }

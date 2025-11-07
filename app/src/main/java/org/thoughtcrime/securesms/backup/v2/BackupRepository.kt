@@ -116,6 +116,7 @@ import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob
 import org.thoughtcrime.securesms.jobs.Svr2MirrorJob
 import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
+import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.BackupValues.ArchiveServiceCredentials
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -389,8 +390,8 @@ object BackupRepository {
     CancelRestoreMediaJob.enqueue()
   }
 
-  fun markBackupFailure() {
-    SignalStore.backup.markMessageBackupFailure()
+  fun markBackupCreationFailed(error: BackupValues.BackupCreationError) {
+    SignalStore.backup.markBackupCreationFailed(error)
     ArchiveUploadProgress.onMainBackupFileUploadFailure()
 
     if (!SignalStore.backup.hasBackupBeenUploaded) {
@@ -416,7 +417,7 @@ object BackupRepository {
   }
 
   fun clearBackupFailure() {
-    SignalStore.backup.clearMessageBackupFailure()
+    SignalStore.backup.clearBackupCreationFailed()
     ServiceUtil.getNotificationManager(AppDependencies.application).cancel(NotificationIds.INITIAL_BACKUP_FAILED)
   }
 
@@ -467,7 +468,7 @@ object BackupRepository {
    */
   @JvmStatic
   fun shouldDisplayBackupFailedIndicator(): Boolean {
-    if (shouldNotDisplayBackupFailedMessaging() || !SignalStore.backup.hasBackupFailure) {
+    if (shouldNotDisplayBackupFailedMessaging() || !SignalStore.backup.hasBackupCreationError) {
       return false
     }
 
@@ -480,30 +481,6 @@ object BackupRepository {
   @JvmStatic
   fun shouldDisplayBackupAlreadyRedeemedIndicator(): Boolean {
     return !(shouldNotDisplayBackupFailedMessaging() || !SignalStore.backup.hasBackupAlreadyRedeemedError)
-  }
-
-  /**
-   * Whether the "Backup Failed" row should be displayed in settings.
-   * Shown when the initial backup creation has failed
-   */
-  fun shouldDisplayBackupFailedSettingsRow(): Boolean {
-    if (shouldNotDisplayBackupFailedMessaging()) {
-      return false
-    }
-
-    return !SignalStore.backup.hasBackupBeenUploaded && SignalStore.backup.hasBackupFailure
-  }
-
-  /**
-   * Whether the "Could not complete backup" row should be displayed in settings.
-   * Shown when a new backup could not be created but there is an existing one already
-   */
-  fun shouldDisplayCouldNotCompleteBackupSettingsRow(): Boolean {
-    if (shouldNotDisplayBackupFailedMessaging()) {
-      return false
-    }
-
-    return SignalStore.backup.hasBackupBeenUploaded && SignalStore.backup.hasBackupFailure
   }
 
   /**
@@ -554,7 +531,7 @@ object BackupRepository {
       return false
     }
 
-    return (!SignalStore.backup.hasBackupBeenUploaded || SignalStore.backup.hasValidationError) && SignalStore.backup.hasBackupFailure && System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime
+    return SignalStore.backup.hasBackupCreationError && SignalStore.backup.backupCreationError != BackupValues.BackupCreationError.TRANSIENT && System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime
   }
 
   /**
@@ -675,7 +652,7 @@ object BackupRepository {
     }
   }
 
-  private fun shouldNotDisplayBackupFailedMessaging(): Boolean {
+  fun shouldNotDisplayBackupFailedMessaging(): Boolean {
     return !SignalStore.account.isRegistered || !SignalStore.backup.areBackupsEnabled
   }
 

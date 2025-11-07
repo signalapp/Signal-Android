@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraint
 import org.thoughtcrime.securesms.jobs.protos.BackupMessagesJobData
+import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
@@ -120,6 +121,8 @@ class BackupMessagesJob private constructor(
     }
   }
 
+  private var backupErrorHandled = false
+
   constructor() : this(
     syncTime = 0L,
     dataFile = "",
@@ -145,9 +148,9 @@ class BackupMessagesJob private constructor(
   }
 
   override fun onFailure() {
-    if (!isCanceled) {
+    if (!isCanceled && !backupErrorHandled) {
       Log.w(TAG, "Failed to backup user messages. Marking failure state.", true)
-      BackupRepository.markBackupFailure()
+      BackupRepository.markBackupCreationFailed(BackupValues.BackupCreationError.TRANSIENT)
     }
   }
 
@@ -294,13 +297,15 @@ class BackupMessagesJob private constructor(
             Log.i(TAG, "Backup file is too large! Size: ${tempBackupFile.length()} bytes", result.getCause(), true)
             tempBackupFile.delete()
             this.dataFile = ""
-            // TODO [backup] Need to show the user an error
+            BackupRepository.markBackupCreationFailed(BackupValues.BackupCreationError.BACKUP_FILE_TOO_LARGE)
+            backupErrorHandled = true
+            return Result.failure()
           }
           else -> {
             Log.i(TAG, "Status code failure", result.getCause(), true)
+            return Result.retry(defaultBackoff())
           }
         }
-        return Result.retry(defaultBackoff())
       }
 
       is NetworkResult.ApplicationError -> throw result.throwable
@@ -458,7 +463,6 @@ class BackupMessagesJob private constructor(
 
     when (val result = ArchiveValidator.validateSignalBackup(tempBackupFile, backupKey, forwardSecrecyToken)) {
       ArchiveValidator.ValidationResult.Success -> {
-        SignalStore.backup.hasValidationError = false
         Log.d(TAG, "Successfully passed validation.", true)
       }
 
@@ -471,8 +475,8 @@ class BackupMessagesJob private constructor(
         Log.w(TAG, "The backup file fails validation! Message: ${result.exception.message}, Details: ${result.messageDetails}", true)
         tempBackupFile.delete()
         this.dataFile = ""
-        SignalStore.backup.hasValidationError = true
-        ArchiveUploadProgress.onValidationFailure()
+        BackupRepository.markBackupCreationFailed(BackupValues.BackupCreationError.VALIDATION)
+        backupErrorHandled = true
         return BackupFileResult.Failure
       }
 
@@ -481,8 +485,8 @@ class BackupMessagesJob private constructor(
         tempBackupFile.delete()
         this.dataFile = ""
         AppDependencies.jobManager.add(E164FormattingJob())
-        SignalStore.backup.hasValidationError = true
-        ArchiveUploadProgress.onValidationFailure()
+        BackupRepository.markBackupCreationFailed(BackupValues.BackupCreationError.VALIDATION)
+        backupErrorHandled = true
         return BackupFileResult.Failure
       }
     }

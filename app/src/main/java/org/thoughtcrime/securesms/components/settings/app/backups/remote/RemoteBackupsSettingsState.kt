@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.components.settings.app.backups.remote
 import org.signal.core.util.ByteSize
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
+import org.thoughtcrime.securesms.keyvalue.BackupValues
 
 /**
  * @param includeDebuglog The state for whether or not we should include a debuglog in the backup. If `null`, hide the setting.
@@ -30,8 +31,7 @@ data class RemoteBackupsSettingsState(
   val includeDebuglog: Boolean? = null,
   val canBackupMessagesJobRun: Boolean = false,
   val backupMediaDetails: BackupMediaDetails? = null,
-  val showBackupCreateFailedError: Boolean = false,
-  val showBackupCreateCouldNotCompleteError: Boolean = false,
+  val backupCreationError: BackupValues.BackupCreationError? = null,
   val freeTierMediaRetentionDays: Int = -1,
   val isGooglePlayServicesAvailable: Boolean = false
 ) {

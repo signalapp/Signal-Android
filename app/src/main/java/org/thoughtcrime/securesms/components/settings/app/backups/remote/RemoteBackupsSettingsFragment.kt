@@ -539,11 +539,10 @@ private fun RemoteBackupsSettingsContent(
           contentCallbacks = contentCallbacks
         )
       } else {
-        if (state.showBackupCreateFailedError || state.showBackupCreateCouldNotCompleteError) {
+        if (state.backupCreationError != null) {
           item {
             BackupCreateErrorRow(
-              showCouldNotComplete = state.showBackupCreateCouldNotCompleteError,
-              showBackupFailed = state.showBackupCreateFailedError,
+              error = state.backupCreationError,
               onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
             )
           }
@@ -888,11 +887,10 @@ private fun LazyListScope.appendBackupDetailsItems(
     }
   }
 
-  if (state.showBackupCreateFailedError || state.showBackupCreateCouldNotCompleteError) {
+  if (state.backupCreationError != null) {
     item {
       BackupCreateErrorRow(
-        showCouldNotComplete = state.showBackupCreateCouldNotCompleteError,
-        showBackupFailed = state.showBackupCreateFailedError,
+        error = state.backupCreationError,
         onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
       )
     }

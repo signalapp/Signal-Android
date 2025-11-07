@@ -207,10 +207,6 @@ object ArchiveUploadProgress {
     resetState()
   }
 
-  fun onValidationFailure() {
-    resetState()
-  }
-
   fun onMainBackupFileUploadFailure() {
     resetState()
   }
