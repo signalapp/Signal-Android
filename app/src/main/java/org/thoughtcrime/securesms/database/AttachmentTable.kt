@@ -1655,20 +1655,32 @@ class AttachmentTable(
 
       val dataFilePath = hashMatch?.file?.absolutePath ?: fileWriteResult.file.absolutePath
 
-      if (archiveRestore && existingPlaceholder.dataHash != null) {
+      val updateCount = if (archiveRestore && existingPlaceholder.dataHash != null) {
         // Can update all rows with the same mediaName as data_file column will likely be null
         db.update(TABLE_NAME)
           .values(values)
           .where("$ID = ? OR ($REMOTE_KEY = ? AND $DATA_HASH_END = ?)", attachmentId.id, existingPlaceholder.remoteKey, existingPlaceholder.dataHash!!)
           .run()
       } else {
+        // Update the current attachment, any attachments with the same data file (deduplication), and any attachments with the
+        // same UUID (e.g. edited messages)
+        val whereClause: String
+        val whereArgs: Array<String>
+        if (existingPlaceholder.uuid != null) {
+          whereClause = "$ID = ? OR $DATA_FILE = ? OR ($ATTACHMENT_UUID = ? AND $REMOTE_LOCATION = ?)"
+          whereArgs = SqlUtil.buildArgs(attachmentId.id, dataFilePath, existingPlaceholder.uuid.toString(), existingPlaceholder.remoteLocation)
+        } else {
+          whereClause = "$ID = ? OR $DATA_FILE = ?"
+          whereArgs = SqlUtil.buildArgs(attachmentId.id, dataFilePath)
+        }
+
         db.update(TABLE_NAME)
           .values(values)
-          .where("$ID = ? OR $DATA_FILE = ?", attachmentId.id, dataFilePath)
+          .where(whereClause, whereArgs)
           .run()
       }
 
-      Log.i(TAG, "[finalizeAttachmentAfterDownload] Finalized downloaded data for $attachmentId. (MessageId: $mmsId, $attachmentId)")
+      Log.i(TAG, "[finalizeAttachmentAfterDownload] Updated $updateCount attachment row(s) for $attachmentId. (MessageId: $mmsId)")
 
       hashMatch != null
     }
@@ -2675,6 +2687,7 @@ class AttachmentTable(
             true
           )
         }
+
         MediaUtil.isVideoType(contentType) -> {
           val videoThumbnail = MediaUtil.getVideoThumbnail(context, uri.uri)
           if (videoThumbnail != null) {
@@ -2691,6 +2704,7 @@ class AttachmentTable(
             null
           }
         }
+
         else -> {
           Log.w(TAG, "[generateQuoteThumbnail] Unsupported content type for thumbnail generation: $contentType")
           null
@@ -3137,6 +3151,7 @@ class AttachmentTable(
       ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0
     """
   }
+
   private fun getAttachment(cursor: Cursor): DatabaseAttachment {
     val contentType = cursor.requireString(CONTENT_TYPE)
 
