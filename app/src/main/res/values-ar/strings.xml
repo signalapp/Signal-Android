@@ -61,7 +61,7 @@
     <string name="ApplicationPreferencesActivity_record_phrase">تسجيل عبارة</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">قبل تعطيل رقم التعريف الشخصي (PIN) لديك، يجب عليك تسجيل عبارة استعادة المدفوعات للتأكُّد من إمكانية استعادة حساب المدفوعات الخاص بك.</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Create a new recovery key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">إنشاء مفتاح استعادة جديد</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
@@ -9524,7 +9524,7 @@
     <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
     <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">You’ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days. If you believe someone may be able to access your backup, you can choose to “Turn off and delete backup.”</string>
     <!-- Button to acknowledge and dismiss dialog   -->
-    <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
+    <string name="MessageBackupsKeyRecordScreen__ok">حسنًا</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">إغلاق البحث</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -9624,11 +9624,11 @@
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">تحقّق من اتصالك بالشبكة ثم حاوِل مرّة أخرى.</string>
     <!-- Dialog title when you go to end a poll -->
-    <string name="Poll__end_poll_title">End poll?</string>
+    <string name="Poll__end_poll_title">هل ترغبُ بإنهاء الاستطلاع؟</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Group members will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">لن يستطيع أعضاء المجموعة التصويت في هذا الاستطلاع بعد الآن.</string>
     <!-- Body used in dialog when we are waiting for network -->
-    <string name="Poll__waiting_for_network">Waiting for network…</string>
+    <string name="Poll__waiting_for_network">جارٍ انتظار الشبكة…</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">استطلاع جديد</string>
     <!-- Section text to enter in a question for a poll  -->

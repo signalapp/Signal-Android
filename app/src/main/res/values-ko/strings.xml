@@ -61,7 +61,7 @@
     <string name="ApplicationPreferencesActivity_record_phrase">녹음 문구</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN을 사용 중지하기 전에 결제 계정을 복구할 수 있도록 결제 복구 문구를 기록해야 합니다.</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Create a new recovery key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">새 복구 키 만들기</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
@@ -8604,7 +8604,7 @@
     <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
     <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">You’ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days. If you believe someone may be able to access your backup, you can choose to “Turn off and delete backup.”</string>
     <!-- Button to acknowledge and dismiss dialog   -->
-    <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
+    <string name="MessageBackupsKeyRecordScreen__ok">확인</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">검색 닫기</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8689,11 +8689,11 @@
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">연결을 확인하고 다시 시도하세요.</string>
     <!-- Dialog title when you go to end a poll -->
-    <string name="Poll__end_poll_title">End poll?</string>
+    <string name="Poll__end_poll_title">설문조사를 종료하시겠어요?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Group members will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">그룹 구성원이 더 이상 이 설문조사에서 투표할 수 없습니다.</string>
     <!-- Body used in dialog when we are waiting for network -->
-    <string name="Poll__waiting_for_network">Waiting for network…</string>
+    <string name="Poll__waiting_for_network">네트워크를 기다리는 중…</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">새 설문조사</string>
     <!-- Section text to enter in a question for a poll  -->

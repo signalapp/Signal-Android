@@ -61,7 +61,7 @@
     <string name="ApplicationPreferencesActivity_record_phrase">Zaznamenajte frázu</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Pred deaktiváciou kódu PIN musíte zaznamenať frázu na obnovenie platieb, aby ste sa ubezpečili, že môžete svoj platobný účet obnoviť.</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Create a new recovery key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Vytvorenie nového kľúča na obnovenie</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
@@ -9250,11 +9250,11 @@
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">Skontrolujte svoje pripojenie a skúste to znova.</string>
     <!-- Dialog title when you go to end a poll -->
-    <string name="Poll__end_poll_title">End poll?</string>
+    <string name="Poll__end_poll_title">Ukončiť anketu?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Group members will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Členovia skupiny už nebudú môcť v tejto ankete hlasovať.</string>
     <!-- Body used in dialog when we are waiting for network -->
-    <string name="Poll__waiting_for_network">Waiting for network…</string>
+    <string name="Poll__waiting_for_network">Čaká sa na pripojenie k sieti…</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">Nová anketa</string>
     <!-- Section text to enter in a question for a poll  -->

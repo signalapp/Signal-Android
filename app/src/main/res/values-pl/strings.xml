@@ -61,7 +61,7 @@
     <string name="ApplicationPreferencesActivity_record_phrase">Ustaw frazę</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Zanim wyłączysz PIN, musisz ustawić frazę odzyskiwania, czyli klucz do portfela płatności. Dzięki temu możesz mieć pewność, że gdy zajdzie taka potrzeba, odzyskasz swoje konto płatności.</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Create a new recovery key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Utwórz nowy kod odzyskiwania</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
@@ -9250,11 +9250,11 @@
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">Sprawdź połączenie z internetem i spróbuj ponownie.</string>
     <!-- Dialog title when you go to end a poll -->
-    <string name="Poll__end_poll_title">End poll?</string>
+    <string name="Poll__end_poll_title">Zakończyć ankietę?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Group members will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Inne osoby w grupie nie będą już mogły głosować w tej ankiecie.</string>
     <!-- Body used in dialog when we are waiting for network -->
-    <string name="Poll__waiting_for_network">Waiting for network…</string>
+    <string name="Poll__waiting_for_network">Oczekiwanie na sieć…</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">Nowa ankieta</string>
     <!-- Section text to enter in a question for a poll  -->

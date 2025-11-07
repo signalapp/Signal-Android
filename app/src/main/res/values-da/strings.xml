@@ -61,7 +61,7 @@
     <string name="ApplicationPreferencesActivity_record_phrase">Registrer sætning</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Før du kan deaktivere din pinkode, skal du notere din gendannelsessætning til betaling for at sikre, at du kan gendanne din betalingskonto.</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Create a new recovery key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Opret en ny gendannelsesnøgle</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
@@ -8876,11 +8876,11 @@
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">Tjek din forbindelse, og prøv igen.</string>
     <!-- Dialog title when you go to end a poll -->
-    <string name="Poll__end_poll_title">End poll?</string>
+    <string name="Poll__end_poll_title">Vil du afslutte afstemningen?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Group members will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Gruppemedlemmer vil ikke længere kunne stemme i denne afstemning.</string>
     <!-- Body used in dialog when we are waiting for network -->
-    <string name="Poll__waiting_for_network">Waiting for network…</string>
+    <string name="Poll__waiting_for_network">Venter på netværk…</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">Ny afstemning</string>
     <!-- Section text to enter in a question for a poll  -->

@@ -61,7 +61,7 @@
     <string name="ApplicationPreferencesActivity_record_phrase">Gravar frase</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desativar seu PIN, certifique-se de salvar sua frase de recuperação de pagamentos para garantir que você possa recuperar sua conta.</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Create a new recovery key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Crie uma nova chave de recuperação</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
@@ -8876,11 +8876,11 @@
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">Verifique a sua conexão e tente novamente.</string>
     <!-- Dialog title when you go to end a poll -->
-    <string name="Poll__end_poll_title">End poll?</string>
+    <string name="Poll__end_poll_title">Encerrar enquete?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Group members will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Os membros do grupo não poderão mais votar nesta enquete.</string>
     <!-- Body used in dialog when we are waiting for network -->
-    <string name="Poll__waiting_for_network">Waiting for network…</string>
+    <string name="Poll__waiting_for_network">Esperando pela rede…</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">Nova enquete</string>
     <!-- Section text to enter in a question for a poll  -->
