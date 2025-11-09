@@ -14,6 +14,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -33,6 +34,7 @@ import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
+import org.thoughtcrime.securesms.util.CodeEntryController
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.IOException
@@ -59,6 +61,10 @@ class ChangeNumberViewModel : ViewModel() {
 
   private val initialLocalNumber = SignalStore.account.e164
   private val password = SignalStore.account.servicePassword!!
+
+  // Compose code entry state
+  private val codeEntryController = CodeEntryController()
+  val codeState: StateFlow<List<String>> get() = codeEntryController.codeState
 
   val uiState = store.asLiveData()
   val liveOldNumberState = store.map { it.oldPhoneNumber }.asLiveData()
@@ -561,4 +567,6 @@ class ChangeNumberViewModel : ViewModel() {
   enum class ContinueStatus {
     CAN_CONTINUE, INVALID_NUMBER, OLD_NUMBER_DOESNT_MATCH
   }
+
+  fun autofillCode(code: String) = codeEntryController.autofillCode(code)
 }

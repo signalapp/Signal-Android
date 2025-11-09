@@ -10,8 +10,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -84,9 +87,21 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
       popBackStack()
     }
 
-    binding.code.setOnCompleteListener {
-      sharedViewModel.verifyCodeWithoutRegistrationLock(requireContext(), it)
+    // --- Compose migration for code entry ---
+    binding.codeCompose.apply {
+      setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+      setContent {
+        val codeState by fragmentViewModel.codeState.collectAsStateWithLifecycle()
+        org.thoughtcrime.securesms.components.registration.VerificationCodeViewCompose(
+          codeLength = 6,
+          onCodeComplete = { code ->
+            sharedViewModel.verifyCodeWithoutRegistrationLock(requireContext(), code)
+          },
+          codeState = codeState,
+        )
+      }
     }
+    // --- End Compose migration ---
 
     binding.havingTroubleButton.setOnClickListener {
       bottomSheet.showSafely(childFragmentManager, BOTTOM_SHEET_TAG)
@@ -106,12 +121,13 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
       }
     }
 
+    // Keyboard integration for Compose code entry
     binding.keyboard.setOnKeyPressListener { key ->
       if (!autopilotCodeEntryActive) {
         if (key >= 0) {
-          binding.code.append(key)
+          fragmentViewModel.appendDigit(key.toString())
         } else {
-          binding.code.delete()
+          fragmentViewModel.deleteLastDigit()
         }
       }
     }
@@ -158,7 +174,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
         binding.callMeCountDown.visibility = View.VISIBLE
         binding.resendSmsCountDown.visibility = View.VISIBLE
         binding.wrongNumber.visibility = View.VISIBLE
-        binding.code.clear()
+        fragmentViewModel.clearAllDigits()
         binding.keyboard.displayKeyboard()
         fragmentViewModel.allViewsResetCompleted()
       } else if (it.showKeyboard) {
@@ -185,6 +201,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     when (result) {
       is RegistrationSessionCheckResult.Success,
       is RegistrationSessionCreationResult.Success -> throw IllegalStateException("Session error handler called on successful response!")
+
       is RegistrationSessionCreationResult.AttemptsExhausted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_service))
       is RegistrationSessionCreationResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
 
@@ -221,12 +238,14 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
           presentRemoteErrorDialog(getString(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later))
         }
       }
+
       is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
       is VerificationCodeRequestResult.ExternalServiceFailure -> presentSmsGenericError(result)
       is VerificationCodeRequestResult.RequestVerificationCodeRateLimited -> {
         Log.i(TAG, result.log())
         handleRequestVerificationCodeRateLimited(result)
       }
+
       is VerificationCodeRequestResult.SubmitVerificationCodeRateLimited -> presentSubmitVerificationCodeRateLimited()
       is VerificationCodeRequestResult.TokenNotAccepted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human)) { _, _ -> moveToCaptcha() }
       else -> presentGenericError(result)
@@ -385,34 +404,23 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     ThreadUtil.postToMain { sharedViewModel.setInProgress(false) }
   }
 
+  @Suppress("unused")
   @Subscribe(threadMode = ThreadMode.MAIN)
   fun onVerificationCodeReceived(event: ReceivedSmsEvent) {
     Log.i(TAG, "Received verification code via EventBus.")
-    binding.code.clear()
 
-    if (event.code.isBlank() || event.code.length != ReceivedSmsEvent.CODE_LENGTH) {
-      Log.i(TAG, "Received invalid code of length ${event.code.length}. Ignoring.")
+    val code = event.code.trim()
+
+    if (code.isBlank() || code.length != ReceivedSmsEvent.CODE_LENGTH || !code.all { it.isDigit() }) {
+      Log.i(TAG, "Received invalid code of length ${code.length}. Ignoring.")
       return
     }
 
-    val finalIndex = ReceivedSmsEvent.CODE_LENGTH - 1
     autopilotCodeEntryActive = true
-    try {
-      event.code
-        .map { it.digitToInt() }
-        .forEachIndexed { i, digit ->
-          binding.code.postDelayed({
-            binding.code.append(digit)
-            if (i == finalIndex) {
-              autopilotCodeEntryActive = false
-            }
-          }, i * 200L)
-        }
-      Log.i(TAG, "Finished auto-filling code.")
-    } catch (notADigit: IllegalArgumentException) {
-      Log.w(TAG, "Failed to convert code into digits.", notADigit)
-      autopilotCodeEntryActive = false
-    }
+    fragmentViewModel.autofillCode(code)
+    // Autofill logic is now handled in the ViewModel
+    autopilotCodeEntryActive = false
+    Log.i(TAG, "Finished auto-filling code.")
   }
 
   private inner class PhoneStateCallback : SignalStrengthPhoneStateListener.Callback {
