@@ -166,7 +166,8 @@ class BackupStateObserver(
     }
 
     val price = latestPayment.data.amount!!.toFiatMoney()
-    val isPending = SignalDatabase.inAppPayments.hasPendingBackupRedemption()
+    val isKeepAlive = latestPayment.data.redemption?.keepAlive == true
+    val isPending = latestPayment.state == InAppPaymentTable.State.PENDING && !isKeepAlive
     if (isPending) {
       Log.d(TAG, "[getDatabaseBackupState] We have a pending subscription.")
       return BackupState.Pending(price = price)
@@ -242,7 +243,8 @@ class BackupStateObserver(
    * Utilizes everything we can to resolve the most accurate backup state available, including database and network.
    */
   private suspend fun getNetworkBackupState(lastPurchase: InAppPaymentTable.InAppPayment?): BackupState {
-    if (lastPurchase?.state == InAppPaymentTable.State.PENDING) {
+    val isKeepAlive = lastPurchase?.data?.redemption?.keepAlive == true
+    if (lastPurchase?.state == InAppPaymentTable.State.PENDING && !isKeepAlive) {
       Log.d(TAG, "[getNetworkBackupState] We have a pending subscription.")
       return BackupState.Pending(
         price = lastPurchase.data.amount!!.toFiatMoney()
