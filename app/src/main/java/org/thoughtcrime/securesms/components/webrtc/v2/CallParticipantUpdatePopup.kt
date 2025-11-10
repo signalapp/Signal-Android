@@ -12,6 +12,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,6 +37,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
@@ -81,11 +83,19 @@ fun CallParticipantUpdatePopup(
       .fillMaxWidth()
   ) {
     LaunchedEffect(controller.displayState, controller.participants) {
-      delay(controller.displayDuration)
-      controller.hide()
+      if (controller.displayState != DisplayState.NONE) {
+        delay(controller.displayDuration)
+        controller.hide()
+      }
     }
 
-    PopupContent(controller.displayState, participants = controller.participants)
+    PopupContent(
+      displayState = controller.displayState,
+      participants = controller.participants,
+      onClick = {
+        controller.hide()
+      }
+    )
   }
 }
 
@@ -95,7 +105,8 @@ fun CallParticipantUpdatePopup(
 @Composable
 private fun PopupContent(
   displayState: DisplayState,
-  participants: Set<CallParticipantListUpdate.Wrapper>
+  participants: Set<CallParticipantListUpdate.Wrapper>,
+  onClick: () -> Unit
 ) {
   val context = LocalContext.current
 
@@ -143,6 +154,10 @@ private fun PopupContent(
       .background(
         color = colorResource(R.color.signal_light_colorSecondaryContainer),
         shape = RoundedCornerShape(percent = 50)
+      )
+      .clickable(
+        onClick = onClick,
+        role = Role.Button
       )
   ) {
     Box(
@@ -250,7 +265,8 @@ private fun PopupContentPreview() {
   Previews.Preview {
     PopupContent(
       displayState = DisplayState.ADD,
-      participants = participants.take(1).map { CallParticipantListUpdate.createWrapper(it) }.toSet()
+      participants = participants.take(1).map { CallParticipantListUpdate.createWrapper(it) }.toSet(),
+      onClick = {}
     )
   }
 }

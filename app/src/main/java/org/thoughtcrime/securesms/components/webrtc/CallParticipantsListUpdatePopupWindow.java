@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CallParticipantsListUpdatePopupWindow extends PopupWindow implements DefaultLifecycleObserver {
 
-  private static final long DURATION = TimeUnit.SECONDS.toMillis(10);
+  private static final long DURATION = TimeUnit.SECONDS.toMillis(5);
 
   private final ViewGroup       parent;
   private final AvatarImageView avatarImageView;
@@ -55,6 +55,7 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow implement
     this.handler             = new Handler(Looper.getMainLooper());
 
     setOnDismissListener(this::showPending);
+    getContentView().setOnClickListener(v -> dismiss());
     setAnimationStyle(R.style.PopupAnimation);
   }
 
