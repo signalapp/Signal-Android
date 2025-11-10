@@ -62,6 +62,8 @@ object ReceiptImageRenderer {
           .from(context)
           .inflate(R.layout.donation_receipt_png, null)
 
+        view.layoutDirection = context.resources.configuration.layoutDirection
+
         view.findViewById<TextView>(R.id.date).text = today
         view.findViewById<TextView>(R.id.amount).text = amount
         view.findViewById<TextView>(R.id.donation_type).text = type
