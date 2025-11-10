@@ -6,7 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.util.Pair;
+import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -224,10 +224,10 @@ public class FullBackupImporter extends FullBackupBase {
     ContentValues contentValues = new ContentValues();
 
     try {
-      inputStream.readAttachmentTo(output.second, attachment.length);
+      inputStream.readAttachmentTo(output.getSecond(), attachment.length);
 
       contentValues.put(dataFileColumnName, dataFile.getAbsolutePath());
-      contentValues.put(dataRandomColumnName, output.first);
+      contentValues.put(dataRandomColumnName, output.getFirst());
     } catch (BackupRecordInputStream.BadMacException e) {
       Log.w(TAG, "Bad MAC for attachment " + attachment.attachmentId + "! Can't restore it.", e);
       dataFile.delete();
@@ -249,12 +249,12 @@ public class FullBackupImporter extends FullBackupBase {
 
     Pair<byte[], OutputStream> output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
 
-    inputStream.readAttachmentTo(output.second, sticker.length);
+    inputStream.readAttachmentTo(output.getSecond(), sticker.length);
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(StickerTable.FILE_PATH, dataFile.getAbsolutePath());
     contentValues.put(StickerTable.FILE_LENGTH, sticker.length);
-    contentValues.put(StickerTable.FILE_RANDOM, output.first);
+    contentValues.put(StickerTable.FILE_RANDOM, output.getFirst());
 
     db.update(StickerTable.TABLE_NAME, contentValues,
               StickerTable.ID + " = ?",

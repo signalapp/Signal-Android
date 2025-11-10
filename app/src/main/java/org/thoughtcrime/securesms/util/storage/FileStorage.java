@@ -94,7 +94,7 @@ public final class FileStorage {
 
   private static @NonNull OutputStream getOutputStream(@NonNull Context context, File outputFile) throws IOException {
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
-    return ModernEncryptingPartOutputStream.createFor(attachmentSecret, outputFile, true).second;
+    return ModernEncryptingPartOutputStream.createFor(attachmentSecret, outputFile, true).getSecond();
   }
 
   private static @NonNull InputStream getInputStream(@NonNull Context context, File inputFile) throws IOException {

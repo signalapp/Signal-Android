@@ -14,7 +14,7 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Pair;
+import kotlin.Pair;
 import android.webkit.MimeTypeMap;
 
 import androidx.annotation.NonNull;
@@ -279,9 +279,9 @@ public class MediaUtil {
       }
     }
     if (dimens == null) {
-      dimens = new Pair<>(0, 0);
+      dimens = new Pair(0, 0);
     }
-    Log.d(TAG, "Dimensions for [" + uri + "] are " + dimens.first + " x " + dimens.second);
+    Log.d(TAG, "Dimensions for [" + uri + "] are " + dimens.getFirst() + " x " + dimens.getSecond());
     return dimens;
   }
 

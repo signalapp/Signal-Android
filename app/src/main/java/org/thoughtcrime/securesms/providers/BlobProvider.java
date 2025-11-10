@@ -397,7 +397,7 @@ public class BlobProvider {
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
     String           directory        = getDirectory(blobSpec.getStorageType());
     File             outputFile       = new File(getOrCreateDirectory(context, directory), buildFileName(blobSpec.id));
-    OutputStream     outputStream     = ModernEncryptingPartOutputStream.createFor(attachmentSecret, outputFile, true).second;
+    OutputStream     outputStream     = ModernEncryptingPartOutputStream.createFor(attachmentSecret, outputFile, true).getSecond();
 
     final Uri uri = buildUri(blobSpec);
 

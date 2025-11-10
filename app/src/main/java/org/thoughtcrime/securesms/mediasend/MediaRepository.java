@@ -9,7 +9,7 @@ import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video;
 import android.provider.OpenableColumns;
-import android.util.Pair;
+import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -364,8 +364,8 @@ public class MediaRepository {
 
     if (width == 0 || height == 0) {
       Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, media.getContentType(), media.getUri());
-      width  = dimens.first;
-      height = dimens.second;
+      width  = dimens.getFirst();
+      height = dimens.getSecond();
     }
 
     return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), null, null);
@@ -390,8 +390,8 @@ public class MediaRepository {
 
     if (width == 0 || height == 0) {
       Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, media.getContentType(), media.getUri());
-      width  = dimens.first;
-      height = dimens.second;
+      width  = dimens.getFirst();
+      height = dimens.getSecond();
     }
 
     return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), null, null);
