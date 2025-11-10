@@ -88,7 +88,7 @@ class LinkPreviewViewModelV2(
       }
 
       val link: Optional<Link> = LinkPreviewUtil.findValidPreviewUrls(text).findFirst()
-      if (link.isPresent && link.get().url.equals(activeUrl)) {
+      if (link.isPresent && link.get().url == activeUrl) {
         return@publish
       }
 
@@ -100,7 +100,7 @@ class LinkPreviewViewModelV2(
         return@publish
       }
 
-      setLinkPreviewState(LinkPreviewState.forLoading())
+      setLinkPreviewState(LinkPreviewState.forLoading(link.get()))
 
       val activeUrl = link.get().url
       this.activeUrl = activeUrl

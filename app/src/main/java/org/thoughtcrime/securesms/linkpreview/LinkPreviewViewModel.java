@@ -124,7 +124,7 @@ public class LinkPreviewViewModel extends ViewModel {
       Optional<Link> link = LinkPreviewUtil.findValidPreviewUrls(text)
                                            .findFirst();
 
-      if (link.isPresent() && link.get().getUrl().equals(activeUrl)) {
+      if (link.isPresent() && link.get().url.equals(activeUrl)) {
         return;
       }
 
@@ -139,9 +139,9 @@ public class LinkPreviewViewModel extends ViewModel {
         return;
       }
 
-      linkPreviewState.setValue(LinkPreviewState.forLoading());
+      linkPreviewState.setValue(LinkPreviewState.forLoading(link.get()));
 
-      activeUrl     = link.get().getUrl();
+      activeUrl     = link.get().url;
       activeRequest = enabled ? performRequest(activeUrl) : createPlaceholder(activeUrl);
     });
   }
@@ -186,11 +186,11 @@ public class LinkPreviewViewModel extends ViewModel {
       return true;
     }
 
-    if (text.endsWith(link.getUrl()) && cursorStart == link.getPosition() + link.getUrl().length()) {
+    if (text.endsWith(link.url) && cursorStart == link.position + link.url.length()) {
       return true;
     }
 
-    return cursorStart < link.getPosition() || cursorStart > link.getPosition() + link.getUrl().length();
+    return cursorStart < link.position || cursorStart > link.position + link.url.length();
   }
 
   private @Nullable RequestController createPlaceholder(String url) {
