@@ -387,9 +387,16 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         }
 
         LaunchedEffect(windowSizeClass) {
-          val anchor = anchors[paneAnchorIndex]
+          val index = when {
+            paneAnchorIndex < 0 -> 1
+            paneAnchorIndex > anchors.lastIndex -> anchors.lastIndex
+            else -> paneAnchorIndex
+          }
 
-          paneExpansionState.animateTo(anchor)
+          if (index in anchors.indices) {
+            val anchor = anchors[index]
+            paneExpansionState.animateTo(anchor)
+          }
         }
 
         val chatNavGraphState = ChatNavGraphState.remember(windowSizeClass)
