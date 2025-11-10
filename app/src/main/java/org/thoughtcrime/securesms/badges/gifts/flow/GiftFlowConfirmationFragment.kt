@@ -6,8 +6,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.util.Debouncer
+import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.math.BigDecimal
@@ -57,13 +58,11 @@ class GiftFlowConfirmationFragment :
   EmojiSearchFragment.Callback,
   InAppPaymentCheckoutDelegate.Callback {
 
-  private val viewModel: GiftFlowViewModel by viewModels(
-    ownerProducer = { requireActivity() }
-  )
+  private val viewModel: GiftFlowViewModel by activityViewModel {
+    GiftFlowViewModel()
+  }
 
-  private val keyboardPagerViewModel: KeyboardPagerViewModel by viewModels(
-    ownerProducer = { requireActivity() }
-  )
+  private val keyboardPagerViewModel: KeyboardPagerViewModel by activityViewModels()
 
   private lateinit var inputAwareLayout: InputAwareLayout
   private lateinit var emojiKeyboard: MediaKeyboard
