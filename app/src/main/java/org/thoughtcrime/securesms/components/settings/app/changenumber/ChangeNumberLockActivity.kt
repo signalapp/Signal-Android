@@ -15,6 +15,9 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.AccountConsistencyWorkerJob
+import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
@@ -55,16 +58,21 @@ class ChangeNumberLockActivity : PassphraseRequiredActivity() {
 
     setContentView(R.layout.activity_change_number_lock)
 
-    checkWhoAmI()
+    reattemptChange()
+  }
+
+  private fun reattemptChange() {
+    val metadata = SignalStore.misc.pendingChangeNumberMetadata
+    if (metadata != null && metadata.newE164 != "") {
+      viewModel.reattemptChangeLocalNumber(::onChangeStatusConfirmed, ::onFailedToGetChangeNumberStatus)
+    } else {
+      onMissingChangeNumberMetadata()
+    }
   }
 
   override fun onResume() {
     super.onResume()
     dynamicTheme.onResume(this)
-  }
-
-  private fun checkWhoAmI() {
-    viewModel.checkWhoAmI(::onChangeStatusConfirmed, ::onFailedToGetChangeNumberStatus)
   }
 
   private fun onChangeStatusConfirmed() {
@@ -87,8 +95,34 @@ class ChangeNumberLockActivity : PassphraseRequiredActivity() {
     MaterialAlertDialogBuilder(this)
       .setTitle(R.string.ChangeNumberLockActivity__change_status_unconfirmed)
       .setMessage(getString(R.string.ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request, error.javaClass.simpleName))
-      .setPositiveButton(R.string.ChangeNumberLockActivity__retry) { _, _ -> checkWhoAmI() }
+      .setPositiveButton(R.string.ChangeNumberLockActivity__retry) { _, _ -> reattemptChange() }
       .setNegativeButton(R.string.ChangeNumberLockActivity__leave) { _, _ -> finish() }
+      .setNeutralButton(R.string.ChangeNumberLockActivity__submit_debug_log) { _, _ ->
+        startActivity(Intent(this, SubmitDebugLogActivity::class.java))
+        finish()
+      }
+      .setCancelable(false)
+      .show()
+  }
+
+  private fun onMissingChangeNumberMetadata() {
+    Log.w(TAG, "Change number metadata is missing, gonna let it ride but this shouldn't happen")
+
+    MaterialAlertDialogBuilder(this)
+      .setTitle(R.string.ChangeNumberLockActivity__change_status_unconfirmed)
+      .setMessage(getString(R.string.ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request, "MissingMetadata"))
+      .setPositiveButton(android.R.string.ok) { _, _ ->
+        SignalStore.misc.unlockChangeNumber()
+
+        AppDependencies
+          .jobManager
+          .startChain(PreKeysSyncJob.create())
+          .then(AccountConsistencyWorkerJob())
+          .enqueue()
+
+        startActivity(MainActivity.clearTop(this))
+        finish()
+      }
       .setNeutralButton(R.string.ChangeNumberLockActivity__submit_debug_log) { _, _ ->
         startActivity(Intent(this, SubmitDebugLogActivity::class.java))
         finish()

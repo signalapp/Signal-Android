@@ -259,11 +259,13 @@ message SignalStoreList {
 }
 
 message PendingChangeNumberMetadata {
-    bytes previousPni                = 1;
-    bytes pniIdentityKeyPair         = 2;
-    int32 pniRegistrationId          = 3;
-    int32 pniSignedPreKeyId          = 4;
-    int32 pniLastResortKyberPreKeyId = 5;
+    bytes  previousPni                = 1;
+    bytes  pniIdentityKeyPair         = 2;
+    int32  pniRegistrationId          = 3;
+    int32  pniSignedPreKeyId          = 4;
+    int32  pniLastResortKyberPreKeyId = 5;
+    string previousE164               = 6;
+    string newE164                    = 7;
 }
 
 message MessageExportState {

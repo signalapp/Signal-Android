@@ -18,6 +18,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.changeNumberSuccess
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.data.network.Challenge
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
@@ -39,7 +40,7 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
     toolbar.setTitle(R.string.ChangeNumberVerifyFragment__change_number)
     toolbar.setNavigationOnClickListener {
-      findNavController().navigateUp()
+      navigateUp()
       viewModel.resetLocalSessionState()
     }
 
@@ -49,6 +50,16 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
     viewModel.uiState.observe(viewLifecycleOwner, ::onStateUpdate)
 
     requestCode()
+  }
+
+  private fun navigateUp() {
+    if (SignalStore.misc.isChangeNumberLocked) {
+      Log.d(TAG, "Change number locked, navigateUp")
+      startActivity(ChangeNumberLockActivity.createIntent(requireContext()))
+    } else {
+      Log.d(TAG, "navigateUp")
+      findNavController().navigateUp()
+    }
   }
 
   private fun onStateUpdate(state: ChangeNumberState) {
@@ -140,7 +151,7 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
     MaterialAlertDialogBuilder(requireContext()).apply {
       setMessage(message)
       setPositiveButton(android.R.string.ok) { _, _ ->
-        findNavController().navigateUp()
+        navigateUp()
         viewModel.resetLocalSessionState()
       }
       show()
