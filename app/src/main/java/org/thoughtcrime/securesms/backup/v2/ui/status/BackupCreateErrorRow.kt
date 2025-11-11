@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString.Builder
@@ -35,6 +36,9 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.BackupValues
+import org.thoughtcrime.securesms.util.DateUtils
+import java.util.Locale
+import kotlin.time.Duration.Companion.days
 import org.signal.core.ui.R as CoreUiR
 
 private val YELLOW_DOT = Color(0xFFFFCC00)
@@ -45,8 +49,12 @@ private val YELLOW_DOT = Color(0xFFFFCC00)
 @Composable
 fun BackupCreateErrorRow(
   error: BackupValues.BackupCreationError,
+  lastMessageCutoffTime: Long = 0,
   onLearnMoreClick: () -> Unit = {}
 ) {
+  val context = LocalContext.current
+  val locale = Locale.getDefault()
+
   when (error) {
     BackupValues.BackupCreationError.TRANSIENT -> {
       BackupAlertText {
@@ -73,7 +81,11 @@ fun BackupCreateErrorRow(
 
     BackupValues.BackupCreationError.BACKUP_FILE_TOO_LARGE -> {
       BackupAlertText {
-        append(stringResource(R.string.BackupStatusRow__backup_file_too_large))
+        if (lastMessageCutoffTime > 0) {
+          append(stringResource(R.string.BackupStatusRow__not_backing_up_old_messages, DateUtils.getDayPrecisionTimeString(context, locale, lastMessageCutoffTime)))
+        } else {
+          append(stringResource(R.string.BackupStatusRow__backup_file_too_large))
+        }
       }
     }
   }
@@ -114,6 +126,10 @@ fun BackupStatusRowCouldNotCompleteBackupPreview() {
         BackupCreateErrorRow(error = error, onLearnMoreClick = {})
         Spacer(modifier = Modifier.size(8.dp))
       }
+
+      Text(BackupValues.BackupCreationError.BACKUP_FILE_TOO_LARGE.name + " with cutoff duration")
+      BackupCreateErrorRow(error = BackupValues.BackupCreationError.BACKUP_FILE_TOO_LARGE, lastMessageCutoffTime = System.currentTimeMillis() - 365.days.inWholeMilliseconds, onLearnMoreClick = {})
+      Spacer(modifier = Modifier.size(8.dp))
     }
   }
 }

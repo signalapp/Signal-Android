@@ -96,6 +96,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
     private const val KEY_RESTORING_VIA_QR = "backup.restore_via_qr"
 
+    private const val KEY_MESSAGE_CUTOFF_DURATION = "backup.message_cutoff_duration"
+    private const val KEY_LAST_USED_MESSAGE_CUTOFF_TIME = "backup.last_used_message_cutoff_time"
+
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
 
     private val lock = ReentrantLock()
@@ -259,8 +262,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
         if (storedValue != value) {
           clearNotEnoughRemoteStorageSpace()
-          clearBackupCreationFailed()
           clearMessageBackupFailureSheetWatermark()
+          backupCreationError = null
         }
 
         deletionState = DeletionState.NONE
@@ -303,7 +306,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var hasBackupBeenUploaded: Boolean by booleanValue(KEY_BACKUP_UPLOADED, false)
 
   val hasBackupCreationError: Boolean get() = backupCreationError != null
-  val backupCreationError: BackupCreationError? by enumValue(KEY_BACKUP_CREATION_ERROR, null, BackupCreationError.serializer)
+  var backupCreationError: BackupCreationError? by enumValue(KEY_BACKUP_CREATION_ERROR, null, BackupCreationError.serializer)
   val nextBackupFailureSnoozeTime: Duration get() = getLong(KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_TIME, 0L).milliseconds
   val nextBackupFailureSheetSnoozeTime: Duration get() = getLong(KEY_BACKUP_FAIL_SHEET_SNOOZE_TIME, getNextBackupFailureSheetSnoozeTime(lastBackupTime.milliseconds).inWholeMilliseconds).milliseconds
 
@@ -418,6 +421,20 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         .putInteger(KEY_ARCHIVE_ATTACHMENT_RECONCILIATION_ATTEMPTS, value)
         .apply()
     }
+
+  /**
+   * If set, this represents how far back we should backup messages. For instance, if the returned value is 1 year in milliseconds, you should back up
+   * every message within the last year. If unset, back up all messages. We only cutoff old messages for users whose backup is over the
+   * size limit, which is *extraordinarily* rare, so this value is almost always null.
+   */
+  var messageCuttoffDuration: Duration? by durationValue(KEY_MESSAGE_CUTOFF_DURATION, null)
+
+  /**
+   * The last threshold we used for backing up messages. Messages sent before this time were not included in the backup.
+   * A value of 0 indicates that we included all messages. We only cutoff old messages for users whose backup is over the
+   * size limit, which is *extraordinarily* rare, so this value is almost always 0.
+   */
+  var lastUsedMessageCutoffTime: Long by longValue(KEY_LAST_USED_MESSAGE_CUTOFF_TIME, 0)
 
   /**
    * When we are told by the server that we are out of storage space, we should show

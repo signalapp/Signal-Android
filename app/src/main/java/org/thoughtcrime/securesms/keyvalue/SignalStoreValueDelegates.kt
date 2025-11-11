@@ -5,6 +5,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.signal.core.util.LongSerializer
 import kotlin.reflect.KProperty
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.nanoseconds
 
 internal fun SignalStoreValues.longValue(key: String, default: Long): SignalStoreValueDelegate<Long> {
   return LongValue(key, default, this.store)
@@ -44,6 +46,10 @@ internal fun <M> SignalStoreValues.protoValue(key: String, adapter: ProtoAdapter
 
 internal fun <M> SignalStoreValues.protoValue(key: String, default: M, adapter: ProtoAdapter<M>, onSet: ((M) -> Unit)? = null): SignalStoreValueDelegate<M> {
   return KeyValueProtoWithDefaultValue(key, default, adapter, this.store, onSet)
+}
+
+internal fun SignalStoreValues.durationValue(key: String, default: Duration?): SignalStoreValueDelegate<Duration?> {
+  return DurationValue(key, default, this.store)
 }
 
 internal fun <T> SignalStoreValueDelegate<T>.withPrecondition(precondition: () -> Boolean): SignalStoreValueDelegate<T> {
@@ -156,6 +162,20 @@ private class NullableBlobValue(private val key: String, default: ByteArray?, st
 
   override fun setValue(values: KeyValueStore, value: ByteArray?) {
     values.beginWrite().putBlob(key, value).apply()
+  }
+}
+
+private class DurationValue(private val key: String, default: Duration?, store: KeyValueStore) : SignalStoreValueDelegate<Duration?>(store, default) {
+  companion object {
+    private const val UNSET: Long = -1
+  }
+
+  override fun getValue(values: KeyValueStore): Duration? {
+    return values.getLong(key, default?.inWholeNanoseconds ?: UNSET).takeUnless { it == UNSET }?.nanoseconds
+  }
+
+  override fun setValue(values: KeyValueStore, value: Duration?) {
+    values.beginWrite().putLong(key, value?.inWholeNanoseconds ?: UNSET).apply()
   }
 }
 

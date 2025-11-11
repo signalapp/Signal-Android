@@ -543,6 +543,7 @@ private fun RemoteBackupsSettingsContent(
           item {
             BackupCreateErrorRow(
               error = state.backupCreationError,
+              lastMessageCutoffTime = state.lastMessageCutoffTime,
               onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
             )
           }
@@ -891,6 +892,7 @@ private fun LazyListScope.appendBackupDetailsItems(
     item {
       BackupCreateErrorRow(
         error = state.backupCreationError,
+        lastMessageCutoffTime = state.lastMessageCutoffTime,
         onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
       )
     }

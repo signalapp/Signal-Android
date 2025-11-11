@@ -24,7 +24,7 @@ import kotlin.time.Duration.Companion.days
 
 private val TAG = "MessageTableArchiveExtensions"
 
-fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, selfRecipientId: RecipientId, exportState: ExportState): ChatItemArchiveExporter {
+fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, selfRecipientId: RecipientId, messageInclusionCutoffTime: Long, exportState: ExportState): ChatItemArchiveExporter {
   // We create a covering index for the query to drastically speed up perf here.
   // Remember that we're working on a temporary snapshot of the database, so we can create an index and not worry about cleaning it up.
   val startTime = System.currentTimeMillis()
@@ -105,6 +105,12 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
   )
   Log.d(TAG, "Cleanup took ${System.currentTimeMillis() - cleanupStartTime} ms")
 
+  val cutoffQuery = if (messageInclusionCutoffTime > 0) {
+    " AND $DATE_RECEIVED >= $messageInclusionCutoffTime"
+  } else {
+    ""
+  }
+
   return ChatItemArchiveExporter(
     db = db,
     selfRecipientId = selfRecipientId,
@@ -152,7 +158,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
           PARENT_STORY_ID
         )
         .from("${MessageTable.TABLE_NAME} INDEXED BY $dateReceivedIndex")
-        .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime")
+        .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime $cutoffQuery")
         .limit(count)
         .orderBy("$DATE_RECEIVED ASC")
         .run()

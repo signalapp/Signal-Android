@@ -77,7 +77,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
       canRestoreUsingCellular = SignalStore.backup.restoreWithCellular,
       includeDebuglog = SignalStore.internal.includeDebuglogInBackup.takeIf { RemoteConfig.internalUser },
-      backupCreationError = SignalStore.backup.backupCreationError
+      backupCreationError = SignalStore.backup.backupCreationError,
+      lastMessageCutoffTime = SignalStore.backup.lastUsedMessageCutoffTime
     )
   )
 
@@ -348,7 +349,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         canRestoreUsingCellular = SignalStore.backup.restoreWithCellular,
         isOutOfStorageSpace = BackupRepository.shouldDisplayOutOfRemoteStorageSpaceUx(),
         hasRedemptionError = lastPurchase?.data?.error?.data_ == "409",
-        backupCreationError = SignalStore.backup.backupCreationError
+        backupCreationError = SignalStore.backup.backupCreationError,
+        lastMessageCutoffTime = SignalStore.backup.lastUsedMessageCutoffTime
       )
     }
   }

@@ -417,7 +417,7 @@ object BackupRepository {
   }
 
   fun clearBackupFailure() {
-    SignalStore.backup.clearBackupCreationFailed()
+    SignalStore.backup.backupCreationError = null
     ServiceUtil.getNotificationManager(AppDependencies.application).cancel(NotificationIds.INITIAL_BACKUP_FAILED)
   }
 
@@ -767,7 +767,8 @@ object BackupRepository {
       progressEmitter = localBackupProgressEmitter,
       cancellationSignal = cancellationSignal,
       forTransfer = false,
-      extraFrameOperation = null
+      extraFrameOperation = null,
+      messageInclusionCutoffTime = 0
     ) { dbSnapshot ->
       val localArchivableAttachments = dbSnapshot
         .attachmentTable
@@ -801,6 +802,7 @@ object BackupRepository {
     forwardSecrecyToken: BackupForwardSecrecyToken,
     forwardSecrecyMetadata: ByteArray,
     currentTime: Long,
+    messageInclusionCutoffTime: Long = 0,
     progressEmitter: ExportProgressListener? = null,
     cancellationSignal: () -> Boolean = { false },
     extraFrameOperation: ((Frame) -> Unit)?
@@ -822,7 +824,8 @@ object BackupRepository {
       progressEmitter = progressEmitter,
       cancellationSignal = cancellationSignal,
       extraFrameOperation = extraFrameOperation,
-      endingExportOperation = null
+      endingExportOperation = null,
+      messageInclusionCutoffTime = messageInclusionCutoffTime
     )
   }
 
@@ -852,7 +855,8 @@ object BackupRepository {
       progressEmitter = progressEmitter,
       cancellationSignal = cancellationSignal,
       extraFrameOperation = null,
-      endingExportOperation = null
+      endingExportOperation = null,
+      messageInclusionCutoffTime = 0
     )
   }
 
@@ -887,7 +891,8 @@ object BackupRepository {
       progressEmitter = progressEmitter,
       cancellationSignal = cancellationSignal,
       extraFrameOperation = null,
-      endingExportOperation = null
+      endingExportOperation = null,
+      messageInclusionCutoffTime = 0
     )
   }
 
@@ -907,6 +912,7 @@ object BackupRepository {
     isLocal: Boolean,
     writer: BackupExportWriter,
     forTransfer: Boolean,
+    messageInclusionCutoffTime: Long,
     progressEmitter: ExportProgressListener?,
     cancellationSignal: () -> Boolean,
     extraFrameOperation: ((Frame) -> Unit)?,
@@ -1033,7 +1039,7 @@ object BackupRepository {
           val approximateMessageCount = dbSnapshot.messageTable.getApproximateExportableMessageCount(exportState.threadIds)
           val frameCountStart = frameCount
           progressEmitter?.onMessage(0, approximateMessageCount)
-          ChatItemArchiveProcessor.export(dbSnapshot, exportState, selfRecipientId, cancellationSignal) { frame ->
+          ChatItemArchiveProcessor.export(dbSnapshot, exportState, selfRecipientId, messageInclusionCutoffTime, cancellationSignal) { frame ->
             writer.write(frame)
             extraFrameOperation?.invoke(frame)
             eventTimer.emit("message")
