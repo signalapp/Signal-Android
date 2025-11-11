@@ -151,6 +151,10 @@ object ExportSkips {
     return log(sentTimestamp, "A call had a ringer with no matching exported Recipient.")
   }
 
+  fun duplicateRecipientId(recipientId: Long): String {
+    return log(0, "Tried to export multiple recipients with RecipientId::$recipientId")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }
@@ -216,6 +220,10 @@ object ExportOddities {
 
   fun bodyGreaterThanMaxLength(sentTimestamp: Long, length: Int): String {
     return log(sentTimestamp, "The body length was greater than the max allowed ($length bytes). Trimming to fit.")
+  }
+
+  fun releaseChannelRecipientMissing(): String {
+    return log(0, "No release channel recipient was found.")
   }
 
   private fun log(sentTimestamp: Long, message: String): String {

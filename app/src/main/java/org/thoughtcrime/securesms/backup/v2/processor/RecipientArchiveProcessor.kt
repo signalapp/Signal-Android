@@ -8,6 +8,8 @@ package org.thoughtcrime.securesms.backup.v2.processor
 import org.signal.core.util.logging.Log
 import org.signal.core.util.update
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
+import org.thoughtcrime.securesms.backup.v2.ExportOddities
+import org.thoughtcrime.securesms.backup.v2.ExportSkips
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.database.getAllForBackup
@@ -37,12 +39,7 @@ object RecipientArchiveProcessor {
 
   val TAG = Log.tag(RecipientArchiveProcessor::class.java)
 
-  fun export(db: SignalDatabase, signalStore: SignalStore, exportState: ExportState, selfRecipientId: RecipientId, selfAci: ServiceId.ACI, emitter: BackupFrameEmitter) {
-    exportState.recipientIds.add(selfRecipientId.toLong())
-    exportState.contactRecipientIds.add(selfRecipientId.toLong())
-    exportState.recipientIdToAci[selfRecipientId.toLong()] = selfAci.toByteString()
-    exportState.aciToRecipientId[selfAci.toString()] = selfRecipientId.toLong()
-
+  fun export(db: SignalDatabase, signalStore: SignalStore, exportState: ExportState, selfAci: ServiceId.ACI, emitter: BackupFrameEmitter) {
     val releaseChannelId = signalStore.releaseChannelValues.releaseChannelRecipientId
     if (releaseChannelId != null) {
       exportState.recipientIds.add(releaseChannelId.toLong())
@@ -56,13 +53,19 @@ object RecipientArchiveProcessor {
         )
       )
     } else {
-      Log.w(TAG, "Missing release channel id on export!")
+      Log.w(TAG, ExportOddities.releaseChannelRecipientMissing())
     }
 
-    db.recipientTable.getContactsForBackup(selfRecipientId.toLong()).use { reader ->
+    db.recipientTable.getContactsForBackup(exportState.selfRecipientId.toLong()).use { reader ->
       for (recipient in reader) {
         if (recipient != null) {
-          exportState.recipientIds.add(recipient.id)
+          val successfullyAdded = exportState.recipientIds.add(recipient.id)
+
+          if (!successfullyAdded) {
+            Log.w(TAG, ExportSkips.duplicateRecipientId(recipient.id))
+            continue
+          }
+
           exportState.contactRecipientIds.add(recipient.id)
           recipient.contact?.aci?.let {
             exportState.recipientIdToAci[recipient.id] = it
@@ -77,6 +80,11 @@ object RecipientArchiveProcessor {
       }
     }
 
+    exportState.recipientIds.add(exportState.selfRecipientId.toLong())
+    exportState.contactRecipientIds.add(exportState.selfRecipientId.toLong())
+    exportState.recipientIdToAci[exportState.selfRecipientId.toLong()] = selfAci.toByteString()
+    exportState.aciToRecipientId[selfAci.toString()] = exportState.selfRecipientId.toLong()
+
     db.recipientTable.getGroupsForBackup(selfAci).use { reader ->
       for (recipient in reader) {
         exportState.recipientIds.add(recipient.id)
@@ -85,7 +93,7 @@ object RecipientArchiveProcessor {
       }
     }
 
-    db.distributionListTables.getAllForBackup(selfRecipientId, exportState).use { reader ->
+    db.distributionListTables.getAllForBackup(exportState.selfRecipientId, exportState).use { reader ->
       for (recipient in reader) {
         exportState.recipientIds.add(recipient.id)
         emitter.emit(Frame(recipient = recipient))

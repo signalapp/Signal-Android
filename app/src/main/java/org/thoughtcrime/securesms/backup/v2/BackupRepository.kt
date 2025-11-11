@@ -966,7 +966,7 @@ object BackupRepository {
           }
 
           progressEmitter?.onRecipient()
-          RecipientArchiveProcessor.export(dbSnapshot, signalStoreSnapshot, exportState, selfRecipientId, selfAci) {
+          RecipientArchiveProcessor.export(dbSnapshot, signalStoreSnapshot, exportState, selfAci) {
             writer.write(it)
             extraFrameOperation?.invoke(it)
             eventTimer.emit("recipient")
