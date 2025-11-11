@@ -790,6 +790,7 @@ public final class ConversationUpdateItem extends FrameLayout
       handler.post(timerUpdateRunnable);
     } else {
       latestFrame = 0;
+      updateBodyWithTimer();
       handler.removeCallbacks(timerUpdateRunnable);
     }
   }
