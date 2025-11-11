@@ -454,7 +454,7 @@ public final class Megaphones {
   public static @NonNull Megaphone buildTurnOnSignalBackupsMegaphone() {
     return new Megaphone.Builder(Event.TURN_ON_SIGNAL_BACKUPS, Megaphone.Style.BASIC)
         .setImage(R.drawable.backups_megaphone_image)
-        .setTitle(R.string.TurnOnSignalBackups__title)
+        .setTitle(R.string.TurnOnSignalBackups__title_beta)
         .setBody(R.string.TurnOnSignalBackups__body)
         .setActionButton(R.string.TurnOnSignalBackups__turn_on, (megaphone, controller) -> {
           Intent intent = AppSettingsActivity.remoteBackups(controller.getMegaphoneActivity());
@@ -560,7 +560,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowTurnOnBackupsMegaphone(@NonNull Context context) {
-    if (!Environment.IS_STAGING) {
+    if (!RemoteConfig.backupsBetaMegaphone()) {
       return false;
     }
 
