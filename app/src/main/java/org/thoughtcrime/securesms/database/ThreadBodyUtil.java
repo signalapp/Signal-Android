@@ -74,8 +74,8 @@ public final class ThreadBodyUtil {
     } else if (MessageRecordUtil.hasPoll(record)) {
       return new ThreadBody(context.getString(R.string.Poll__poll_question, record.getPoll().getQuestion()));
     } else if (MessageRecordUtil.hasPollTerminate(record)) {
-      String creator = record.getFromRecipient().isSelf() ? context.getResources().getString(R.string.MessageRecord_you) : record.getFromRecipient().getDisplayName(context);
-      return new ThreadBody(context.getString(R.string.Poll__poll_end, creator, record.getMessageExtras().pollTerminate.question));
+      return record.getFromRecipient().isSelf() ? new ThreadBody(context.getString(R.string.Poll__you_poll_end, record.getMessageExtras().pollTerminate.question))
+                                                : new ThreadBody(context.getString(R.string.Poll__poll_end, record.getFromRecipient().getDisplayName(context), record.getMessageExtras().pollTerminate.question));
     }
 
     boolean hasImage = false;
