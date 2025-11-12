@@ -13,6 +13,7 @@ import android.content.pm.PackageManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import okio.IOException
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
@@ -445,22 +446,32 @@ class BackupMessagesJob private constructor(
     val attachmentInfoBuffer: MutableSet<ArchiveAttachmentInfo> = mutableSetOf()
     val messageInclusionCutoffTime = SignalStore.backup.messageCuttoffDuration?.let { currentTime - it.inWholeMilliseconds } ?: 0
 
-    BackupRepository.exportForSignalBackup(
-      outputStream = outputStream,
-      messageBackupKey = backupKey,
-      forwardSecrecyMetadata = forwardSecrecyMetadata,
-      forwardSecrecyToken = forwardSecrecyToken,
-      progressEmitter = ArchiveUploadProgress.ArchiveBackupProgressListener,
-      append = { tempBackupFile.appendBytes(it) },
-      cancellationSignal = { this.isCanceled },
-      currentTime = currentTime,
-      messageInclusionCutoffTime = messageInclusionCutoffTime
-    ) { frame ->
-      attachmentInfoBuffer += frame.getAllReferencedArchiveAttachmentInfos()
-      if (attachmentInfoBuffer.size > ATTACHMENT_SNAPSHOT_BUFFER_SIZE) {
-        SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(attachmentInfoBuffer.toFullSizeMediaEntries(mediaRootBackupKey))
-        SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(attachmentInfoBuffer.toThumbnailMediaEntries(mediaRootBackupKey))
-        attachmentInfoBuffer.clear()
+    try {
+      BackupRepository.exportForSignalBackup(
+        outputStream = outputStream,
+        messageBackupKey = backupKey,
+        forwardSecrecyMetadata = forwardSecrecyMetadata,
+        forwardSecrecyToken = forwardSecrecyToken,
+        progressEmitter = ArchiveUploadProgress.ArchiveBackupProgressListener,
+        append = { tempBackupFile.appendBytes(it) },
+        cancellationSignal = { this.isCanceled },
+        currentTime = currentTime,
+        messageInclusionCutoffTime = messageInclusionCutoffTime
+      ) { frame ->
+        attachmentInfoBuffer += frame.getAllReferencedArchiveAttachmentInfos()
+        if (attachmentInfoBuffer.size > ATTACHMENT_SNAPSHOT_BUFFER_SIZE) {
+          SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(attachmentInfoBuffer.toFullSizeMediaEntries(mediaRootBackupKey))
+          SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(attachmentInfoBuffer.toThumbnailMediaEntries(mediaRootBackupKey))
+          attachmentInfoBuffer.clear()
+        }
+      }
+    } catch (e: IOException) {
+      if (e.message?.contains("ENOSPC") == true) {
+        Log.w(TAG, "Not enough space to make a backup!", e, true)
+        tempBackupFile.delete()
+        this.dataFile = ""
+        BackupRepository.markBackupCreationFailed(BackupValues.BackupCreationError.NOT_ENOUGH_DISK_SPACE)
+        return BackupFileResult.Failure
       }
     }
 

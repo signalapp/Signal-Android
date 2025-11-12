@@ -602,11 +602,14 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     /** A temporary failure, usually cause by poor network. */
     TRANSIENT(1),
 
-    /** The validation of the backup file failed. This likely cannot be fixed without an app update.  */
+    /** The validation of the backup file failed. This likely cannot be fixed without an app update. */
     VALIDATION(2),
 
-    /** The backup file itself is too large. The only resolution would be for the user to delete some number of messages.  */
-    BACKUP_FILE_TOO_LARGE(3);
+    /** The backup file itself is too large. The only resolution would be for the user to delete some number of messages. */
+    BACKUP_FILE_TOO_LARGE(3),
+
+    /** We do not have enough space on the device to create the backup file. */
+    NOT_ENOUGH_DISK_SPACE(4);
 
     companion object {
 

@@ -88,6 +88,12 @@ fun BackupCreateErrorRow(
         }
       }
     }
+
+    BackupValues.BackupCreationError.NOT_ENOUGH_DISK_SPACE -> {
+      BackupAlertText {
+        append(stringResource(R.string.BackupStatusRow__not_enough_disk_space, DateUtils.getDayPrecisionTimeString(context, locale, lastMessageCutoffTime)))
+      }
+    }
   }
 }
 
