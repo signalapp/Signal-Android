@@ -273,7 +273,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
 import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
-import org.thoughtcrime.securesms.main.VerticalInsets
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
@@ -623,15 +622,10 @@ class ConversationFragment :
     SignalLocalMetrics.ConversationOpen.start()
   }
 
-  fun applyRootInsets(insets: VerticalInsets) {
-    binding.root.applyInsets(insets)
-  }
-
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     binding.toolbar.isBackInvokedCallbackEnabled = false
 
-    binding.root.setApplyRootInsets(!isLargeScreenSupportEnabled())
-    binding.root.setUseWindowTypes(!isLargeScreenSupportEnabled())
+    binding.root.setUseWindowTypes(args.conversationScreenType == ConversationScreenType.NORMAL && !resources.getWindowSizeClass().isSplitPane())
 
     disposables.bindTo(viewLifecycleOwner)
 
@@ -2821,6 +2815,11 @@ class ConversationFragment :
     invalidateOptionsMenu()
   }
 
+  private fun scrollToBottom() {
+    layoutManager.scrollToPositionWithOffset(0, 0)
+    scrollListener?.onScrolled(binding.conversationItemRecycler, 0, 0)
+  }
+
   /**
    * Controls animation and visibility of the scrollDateHeader.
    */
@@ -2920,8 +2919,7 @@ class ConversationFragment :
   private inner class DataObserver : RecyclerView.AdapterDataObserver() {
     override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
       if (positionStart == 0 && shouldScrollToBottom()) {
-        layoutManager.scrollToPositionWithOffset(0, 0)
-        scrollListener?.onScrolled(binding.conversationItemRecycler, 0, 0)
+        scrollToBottom()
       }
     }
 
@@ -4538,6 +4536,7 @@ class ConversationFragment :
               toast(R.string.AttachmentManager_cant_open_media_selection, Toast.LENGTH_LONG)
             }
           }
+
           AttachmentKeyboardButton.POLL -> {
             CreatePollFragment.show(childFragmentManager)
             childFragmentManager.setFragmentResultListener(CreatePollFragment.REQUEST_KEY, requireActivity()) { _, bundle ->
