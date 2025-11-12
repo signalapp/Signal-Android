@@ -63,9 +63,9 @@
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">建立新嘅恢復金鑰</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">你一定要建立同記低新嘅恢復金鑰，先可以停用 PIN 碼。</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Create key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">建立金鑰</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -2064,6 +2064,8 @@
     <string name="MessageRecord_unsupported_feature">%1$s 傳送咗一個訊息俾你。呢個訊息用咗 Signal 嘅全新功能，所以冇辦法處理或者顯示出嚟。</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s 摺咗個投票：「%2$s」</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">接受</string>
@@ -3269,7 +3271,7 @@
     <string name="WebRtcCallScreen__answer_without_video">接聽，但唔騷我個樣</string>
 
     <!-- CallScreen -->
-    <string name="CallScreen__change_camera_direction">Change camera direction</string>
+    <string name="CallScreen__change_camera_direction">轉換鏡頭方向</string>
 
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
@@ -3328,9 +3330,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"「%1$s」唔係 Signal 用戶。請檢查用戶名稱，然後再試過啦。"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">您唔使加自己入個谷度</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">谷嘅人數已經到頂</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal 嘅谷最多可以有 %1$d 位成員。</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">夠晒建議嘅成員人數喇</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal 谷頂櫳 %1$d 位成員就佮佮冚㗎嘞。再加多啲成員嘅話，收發訊息就可能會有延遲。</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d 位成員</item>
     </plurals>
@@ -5968,7 +5970,6 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">更新唔到個人資料</string>
 
 
-
     <string name="SelectFeaturedBadgeFragment__select_a_badge">揀個襟章</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">您要揀一個襟章</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">更新唔到個人資料</string>
@@ -7594,6 +7595,8 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">啟用「Signal 安全備份」</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">當你換新手機或者重新安裝 Signal 嗰陣，就唔會冇哂啲訊息。</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7871,6 +7874,12 @@
     <string name="BackupStatusRow__your_last_backup">完成唔到你上次嘅備份。請確保你部手機已經連咗 Wi-Fi，然後㩒「即刻備份」再試。</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">完成唔到你上次嘅備份。請確保你用緊最新版本嘅 Signal，然後再試。</string>
+    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">了解詳情</string>
 
@@ -8328,11 +8337,11 @@
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">只有當其他人知道你嘅金鑰嗰陣，先要建立新嘅金鑰。你一定要重新上載備份，包括媒體。如果你用緊「優化儲存空間」功能，咁就一定要先下載已卸載嘅媒體。</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Exit backup setup?</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">係咪退出備份設定？</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
-    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">You have not finished setting up backups, and no backup has been created. You can enable backups in Settings.</string>
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">你仲未攪掂設定備份，亦都未建立任何備份。你可以喺「設定」度啟用備份。</string>
     <!-- Dialog confirmation button to exit backup setup -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Exit backup setup</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">退出備份設定</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8596,13 +8605,13 @@
     <string name="NoBackupToRestore_skip_restore">跳過還原</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Recovery key limit reached</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">恢復金鑰嘅配額頂晒櫳喇</string>
     <!-- Dialog body when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">You successfully created a new recovery key, but to prevent abuse the number of new keys you can create is limited. You will not be able to create another key for 7 days. Store your recovery key somewhere safe and secure.</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">你成功建立咗新嘅恢復金鑰，但為咗唔好濫用，你可以建立嘅新金鑰數量係有限嘅。你呢 7 日內唔可以建立另一個金鑰。請將恢復金鑰儲存喺安全嘅地方。</string>
     <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Can’t create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">建立唔到新金鑰</string>
     <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">You’ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days. If you believe someone may be able to access your backup, you can choose to “Turn off and delete backup.”</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">你已經用晒可以建立新金鑰嘅配額。你可以喺 7 日之後建立新嘅恢復金鑰。如果你覺得有其他人攞到你嘅備份，可以揀「閂咗同刪除備份」。</string>
     <!-- Button to acknowledge and dismiss dialog   -->
     <string name="MessageBackupsKeyRecordScreen__ok">確定</string>
     <!-- Accessibility label for close search button in MainToolbar -->
@@ -8664,6 +8673,8 @@
     <string name="Poll__poll_question">投票：%1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s 摺咗個投票：「%2$s」</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s 投咗票：「%2$s」</string>
     <!-- Option in settings to configure notifications for polls -->
@@ -8689,11 +8700,11 @@
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">請檢查你嘅連線，然後再試多次。</string>
     <!-- Dialog title when you go to end a poll -->
-    <string name="Poll__end_poll_title">係咪結束投票？</string>
+    <string name="Poll__end_poll_title">係咪要結束人個投票？</string>
     <!-- Dialog body when you go to end a poll -->
     <string name="Poll__end_poll_body">群組成員唔可以再參與呢次投票。</string>
     <!-- Body used in dialog when we are waiting for network -->
-    <string name="Poll__waiting_for_network">等緊個網絡…</string>
+    <string name="Poll__waiting_for_network">等緊個網絡……</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">新嘅投票</string>
     <!-- Section text to enter in a question for a poll  -->

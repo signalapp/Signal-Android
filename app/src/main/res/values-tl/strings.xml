@@ -63,9 +63,9 @@
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Gumawa ng bagong recovery key</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Kailangan mong gumawa at i-record ang panibagong recovery key mo bago mo ma-disable ang iyong PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Create key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Gumawa ng key</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -2124,6 +2124,8 @@
     <string name="MessageRecord_unsupported_feature">Nag-send ng message si %1$s that can\'t be processed or displayed dahil gumagamit siya ng bagong Signal feature.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">Tinapos ni %1$s ang poll na: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Tanggapin</string>
@@ -3370,7 +3372,7 @@
     <string name="WebRtcCallScreen__answer_without_video">Answer without video</string>
 
     <!-- CallScreen -->
-    <string name="CallScreen__change_camera_direction">Change camera direction</string>
+    <string name="CallScreen__change_camera_direction">Baguhin ang direksyon ng camera</string>
 
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
@@ -3429,9 +3431,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"Hindi gumagamit ng Signal si \"%1$s\" . Pakisuri ang username at subukang muli."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Hindi mo kailangang i-add ang iyong sarili sa group</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Maximum group size reached</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Ang Signal groups ay may maximum na %1$d members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Recommended member limit reached</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal groups perform best with %1$d members or fewer. Ang pagdagdag ng mas maraming members ay maaaring magdulot ng delay sa pag-send at pag-receive ng messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d member</item>
         <item quantity="other">%1$d members</item>
@@ -6114,7 +6116,6 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
 
 
-
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Pumili ng badge</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Kailangan mong pumili ng badge</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
@@ -7766,6 +7767,8 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">I-on ang Signal Secure Backups</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Hindi ka mawawalan ng anumang message kapag may bago kang bagong phone o nagre-install ng Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8046,6 +8049,12 @@
     <string name="BackupStatusRow__your_last_backup">Hindi makumpleto ang huling backup mo. Siguraduhing connected sa Wi-Fi ang phone mo at i-tap ang \"Back up now\" para subukan ulit.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Hindi makumpleto ang huling backup mo. Siguraduhing gamit mo ang latest version ng Signal at subukan ulit.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Matuto pa</string>
 
@@ -8510,11 +8519,11 @@
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Kinakailangan lang ang paggawa ng bagong key kung may ibang nakakaalam ng iyong key. Kailangan mong i-upload ulit ang iyong backup, kasama ang media. Kung gumagamit ka ng \"Optimize storage\" kailangan mo munang mag-download ng na-offload na media.</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Exit backup setup?</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Umalis sa pag-setup ng backup?</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
-    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">You have not finished setting up backups, and no backup has been created. You can enable backups in Settings.</string>
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Hindi mo pa natapos ang pag-set up ng backups, at walang backup na nagawa. Maaari mong i-enable ang backups sa Settings.</string>
     <!-- Dialog confirmation button to exit backup setup -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Exit backup setup</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Umalis sa setup ng backup</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8780,13 +8789,13 @@
     <string name="NoBackupToRestore_skip_restore">I-skip ang restore</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Recovery key limit reached</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Naabot na ang limitasyon ng recovery key</string>
     <!-- Dialog body when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">You successfully created a new recovery key, but to prevent abuse the number of new keys you can create is limited. You will not be able to create another key for 7 days. Store your recovery key somewhere safe and secure.</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Matagumpay kang nakagawa ng bagong recovery key, ngunit para maiwasan ang pag-abuso nito, limitado na ang bilang ng bagong keys na maaari mong gawin. Hindi ka makakagawa ng panibagong key sa loob ng 7 araw. Ingatan ang recovery key mo sa isang ligtas na lugar.</string>
     <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Can’t create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Hindi makagawa ng bagong key</string>
     <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">You’ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days. If you believe someone may be able to access your backup, you can choose to “Turn off and delete backup.”</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Naubos mo na ang bilang ng bagong keys na maaari mong gawin. Maaari kang gumawa ng bagong recovery key matapos ang 7 araw. Kung sa tingin mo ay may ibang naka-access ng backup mo, maaari mong piliin ang \"I-off at burahin ang backup.\"</string>
     <!-- Button to acknowledge and dismiss dialog   -->
     <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
     <!-- Accessibility label for close search button in MainToolbar -->
@@ -8850,6 +8859,8 @@
     <string name="Poll__poll_question">Poll: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">Tinapos ni %1$s ang poll na: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">Si %1$s ay bumoto sa poll na: \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->
@@ -8876,9 +8887,9 @@
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">I-check ang iyong connection at subukan ulit.</string>
     <!-- Dialog title when you go to end a poll -->
-    <string name="Poll__end_poll_title">End poll?</string>
+    <string name="Poll__end_poll_title">Gusto mo bang tapusin ang poll?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Group members will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Ang mga miyembro ng grupo ay hindi na makakaboto sa poll na ito.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Naghihintay ng network connection…</string>
     <!-- Header when creating a new poll -->

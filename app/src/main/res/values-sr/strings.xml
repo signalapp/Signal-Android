@@ -63,9 +63,9 @@
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Креирајте нови кључ за опоравак</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Пре деактивирања PIN-а морате да креирате и сачувате нови кључ за опоравак.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Create key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Креирај кључ</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -2124,6 +2124,8 @@
     <string name="MessageRecord_unsupported_feature">%1$s вам је послао/ла поруку која не може бити обрађена нити приказана јер користи нову функционалност Signal-а.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s је прекинуо/-ла анкету „%2$s“</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Прихватам</string>
@@ -3370,7 +3372,7 @@
     <string name="WebRtcCallScreen__answer_without_video">Јави се без видео приказа</string>
 
     <!-- CallScreen -->
-    <string name="CallScreen__change_camera_direction">Change camera direction</string>
+    <string name="CallScreen__change_camera_direction">Промените смер камере</string>
 
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
@@ -3429,9 +3431,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s није корисник Signal-а. Проверите корисничко име и пробајте поново."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Не морате да додајете себе у групу</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Достигнута је максимална величина групе</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Максималан број чланова које Signal групе могу имати је %1$d.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Достигнуто је ограничење препорученог броја чланова</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal групе најбоље функционишу када број чланова не прелази %1$d. Ако додате још чланова, може доћи до кашњења у слању и примању порука.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">Чланова: %1$d</item>
         <item quantity="other">Чланова: %1$d</item>
@@ -6114,7 +6116,6 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Ажурирање профила није успело</string>
 
 
-
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Одаберите значку</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Морате одабрати значку</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ажурирање профила није успело</string>
@@ -7766,6 +7767,8 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Укључите безбедне резервне копије Signal-а</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Нека вам се сачувају поруке када набављате нови телефон или поново инсталирате Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8046,6 +8049,12 @@
     <string name="BackupStatusRow__your_last_backup">Последње креирање резервне копије није успело. Проверите да ли је ваш телефон повезан на Wi-Fi и додирните „Направи резервну копију“ да пробате поново.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Последње креирање резервне копије није успело. Проверите да ли користите најновију верзију Signal-а и пробајте поново.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Сазнајте више</string>
 
@@ -8510,11 +8519,11 @@
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Креирање новог кључа је потребно само ако неко други зна ваш кључ. Мораћете поново да отпремите резервну копију, укључујући медије. Ако користите оптимизацију чувања мораћете прво да преузмете уклоњене медије.</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Exit backup setup?</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Желите ли да изађете из подешавања резервних копија?</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
-    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">You have not finished setting up backups, and no backup has been created. You can enable backups in Settings.</string>
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Подешавање резервних копија није довршено и резервна копија није креирана. Прављење резервних копија можете дозволити у подешавањима.</string>
     <!-- Dialog confirmation button to exit backup setup -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Exit backup setup</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Изађи из подешавања резервне копије</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8780,13 +8789,13 @@
     <string name="NoBackupToRestore_skip_restore">Прескочи враћање</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Recovery key limit reached</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Достигли сте максимални број кључева за опоравак</string>
     <!-- Dialog body when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">You successfully created a new recovery key, but to prevent abuse the number of new keys you can create is limited. You will not be able to create another key for 7 days. Store your recovery key somewhere safe and secure.</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Успешно сте креирали нови кључ за опоравак, али да би се спречила злоупотреба, број нових кључева које можете да креирате је ограничен. У наредних 7 дана нећете моћи да креирате нови кључ за опоравак. Забележите кључ за опоравак на сигурном месту.</string>
     <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Can’t create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Креирање новог кључа није могуће</string>
     <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">You’ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days. If you believe someone may be able to access your backup, you can choose to “Turn off and delete backup.”</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Дозвољени број нових кључева је истрошен. Моћи ћете да креирате нови кључ за опоравак за 7 дана. Ако верујете да неко може да приступи вашој резервној копији, можете да изаберете \"Искључи и избриши резервну копију\".</string>
     <!-- Button to acknowledge and dismiss dialog   -->
     <string name="MessageBackupsKeyRecordScreen__ok">У реду</string>
     <!-- Accessibility label for close search button in MainToolbar -->
@@ -8850,6 +8859,8 @@
     <string name="Poll__poll_question">Анкета: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s је прекинуо/-ла анкету „%2$s“</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s је гласао/-ла у анкети „%2$s“</string>
     <!-- Option in settings to configure notifications for polls -->

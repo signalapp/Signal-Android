@@ -63,9 +63,9 @@
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">إنشاء مفتاح استعادة جديد</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">عليك إنشاء وتسجيل مفتاح استعادة جديد قبل أن تتمكّن من إيقاف تشغيل رقم التعريف الشخصي الخاص بك.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Create key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">إنشاء مفتاح</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -2364,6 +2364,8 @@
     <string name="MessageRecord_unsupported_feature">أرسَلَ %1$s لك رسالة لا يمكن معالجتها ولا عرضها لأنها تستخدم ميزة سيجنال جديدة.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s أنهى الاستطلاع: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">موافقة</string>
@@ -3774,7 +3776,7 @@
     <string name="WebRtcCallScreen__answer_without_video">أجب بدون فيديو</string>
 
     <!-- CallScreen -->
-    <string name="CallScreen__change_camera_direction">Change camera direction</string>
+    <string name="CallScreen__change_camera_direction">قُم بتغيير اتجاه الكاميرا</string>
 
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
@@ -3833,9 +3835,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ليس مُستخدم لِسيجنال. يُرجى التحقُّق من اسم المُستخدم والمحاولة مُجدَّدًا."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">لستَ بحاجة إلى إضافة نفسك إلى المجموعة</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">وصلت المجموعة إلى الحد الأقصى.</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">أقصى حد للأعضاء في مجموعات سيجنال هو %1$d عضوًا.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">تمَّ الوصول إلى حد الأعضاء المُوصى به</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">تعمل مجموعات سيجنال بشكلٍ أفضل مع %1$d عضو (أعضاء) أو أقل. ستؤدي إضافة المزيد من الأعضاء إلى تأخُّر في إرسال الرسائل واستلامها.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="zero">%1$d عضو</item>
         <item quantity="one">%1$d عضو</item>
@@ -6698,7 +6700,6 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">فشل تحديث الحساب الشخصي</string>
 
 
-
     <string name="SelectFeaturedBadgeFragment__select_a_badge">اختر شارة</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">يجب عليك تحديد شارة</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">فشل تحديث الملف الشخصي</string>
@@ -8454,6 +8455,8 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">فعِّل النُسخ الاحتياطية الآمنة لسيجنال</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">لا تُفوِّت رسالة عندما تستخدم هاتفًا جديدًا أو تعيد تثبيت سيجنال.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8746,6 +8749,12 @@
     <string name="BackupStatusRow__your_last_backup">تعذَّر إتمام عملية النسخ الاحتياطي الأخيرة. تأكَّد من أن هاتفك مُتصل بشبكة الواي فاي وانقر على \"إنشاء نسخة احتياطية الآن\" للمحاولة من جديد.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">تعذَّر إتمام عملية النسخ الاحتياطي الأخيرة. تأكَّد من أنك تستخدم آخر إصدار لسيجنال وحاوِل من جديد.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">اعرف المزيد</string>
 
@@ -9238,11 +9247,11 @@
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">لا يُعتبَر إنشاء مفتاح نسخ احتياطي جديد ضروريًا إلّا إذا كان شخص آخر يعرف مفتاحك. سَيتعين عليك تحميل نسختك الاحتياطية من جديد، بما في ذلك ملفات الوسائط. إذا كُنتَ تستخدم خاصية \"تحسين الخزين\"، سَيتعين عليك تنزيل ملفات الوسائط المُفرَّغة أولًا.</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Exit backup setup?</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">هل ترغبُ بمغادرة تثبيت النسخة الاحتياطية؟</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
-    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">You have not finished setting up backups, and no backup has been created. You can enable backups in Settings.</string>
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">لم تُنه إعداد النسخ الاحتياطية، ولم يتم إنشاء أي نسخة احتياطية. يمكنك تفعيل النسخ الاحتياطية في الإعدادات.</string>
     <!-- Dialog confirmation button to exit backup setup -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Exit backup setup</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">مغادرة تثبيت النسخة الاحتياطية</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -9516,13 +9525,13 @@
     <string name="NoBackupToRestore_skip_restore">تخطِّي الاستعادة</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Recovery key limit reached</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">بلغتَ الحد الأقصى من مفاتيح الاستعادة المسموح بها</string>
     <!-- Dialog body when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">You successfully created a new recovery key, but to prevent abuse the number of new keys you can create is limited. You will not be able to create another key for 7 days. Store your recovery key somewhere safe and secure.</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">نجحتَ في إنشاء مفتاح استرداد جديد، ولكن لمنع إساءة الاستخدام، فإن عدد المفاتيح الجديدة التي يمكنك إنشاؤها محدود. لن تتمكن من إنشاء مفتاح آخر لمدة 7 أيام. احتفِظ بمفتاح الاستعادة الخاص بك في مكانٍ آمن.</string>
     <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Can’t create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">تعذَّر إنشاء مفتاح جديد</string>
     <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">You’ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days. If you believe someone may be able to access your backup, you can choose to “Turn off and delete backup.”</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">استنفدت عدد المفاتيح التي يمكنك إنشاؤها. سيصبح بإمكانك إنشاء مفتاح استعادة جديد في 7 أيام. إذا كُنتَ تعتقد أن أحدًا ما لديه الوصول إلى نسختك الاحتياطية، يمكنك اختيار \"إيقاف تشغيل النسخة الاحتياطية وحذفها.\"</string>
     <!-- Button to acknowledge and dismiss dialog   -->
     <string name="MessageBackupsKeyRecordScreen__ok">حسنًا</string>
     <!-- Accessibility label for close search button in MainToolbar -->
@@ -9594,6 +9603,8 @@
     <string name="Poll__poll_question">استطلاع: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s أنهى الاستطلاع: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s صوت في الاستطلاع: \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->

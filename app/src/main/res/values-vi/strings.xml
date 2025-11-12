@@ -63,9 +63,9 @@
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Tạo mã khóa khôi phục mới</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Bạn phải tạo và lưu mã khóa khôi phục để có thể tắt mã PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Create key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Tạo mã khóa</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -2064,6 +2064,8 @@
     <string name="MessageRecord_unsupported_feature">%1$s đã gửi cho bạn một tin nhắn nhưng không thể xử lý hoặc hiển thị vì sử dụng tính năng Signal mới.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s đã kết thúc hỏi ý kiến: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Chấp nhận</string>
@@ -3269,7 +3271,7 @@
     <string name="WebRtcCallScreen__answer_without_video">Trả lời thoại</string>
 
     <!-- CallScreen -->
-    <string name="CallScreen__change_camera_direction">Change camera direction</string>
+    <string name="CallScreen__change_camera_direction">Đổi hướng camera</string>
 
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
@@ -3328,9 +3330,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s không phải người dùng Signal. Hãy kiểm tra tên người dùng và thử lại."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Bạn không cần tự thêm mình vào nhóm</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Đã đạt kích cỡ nhóm tối đa</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Nhóm Signal có thể có tối đa %1$d thành viên.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Đã đạt giới hạn thành viên được giới thiệu</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Nhóm Signal hoạt động tốt nhất với %1$d thành viên hoặc ít hơn. Thêm nhiều thành viên hơn có thể trì hoãn việc gửi và nhận tin nhắn.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d thành viên</item>
     </plurals>
@@ -5968,7 +5970,6 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Không thể cập nhật hồ sơ cá nhân</string>
 
 
-
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Chọn một huy hiệu</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Bạn phải chọn một huy hiệu</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Không thể cập nhật hồ sơ cá nhân</string>
@@ -7594,6 +7595,8 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Bật Sao lưu bảo mật Signal</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Không bao giờ bị mất tin nhắn khi bạn có điện thoại mới hoặc cài đặt lại Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7871,6 +7874,12 @@
     <string name="BackupStatusRow__your_last_backup">Quá trình sao lưu gần nhất của bạn không thể hoàn tất. Đảm bảo thiết bị của bạn đã kết nối Wi-Fi và nhấn \"Sao lưu ngay\" để thử lại.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Quá trình sao lưu gần nhất của bạn không thể hoàn tất. Đảm bảo bạn đang sử dụng phiên bản mới nhất của Signal và thử lại.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Tìm hiểu thêm</string>
 
@@ -8328,11 +8337,11 @@
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Việc tạo mã khóa mới chỉ cần thiết nếu có người khác biết mã khóa của bạn. Bạn sẽ cần tải lên bản sao lưu của mình, bao gồm cả tập tin đa phương tiện. Nếu bạn đang sử dụng tính năng \"Tối ưu hóa lưu trữ\", bạn cần tải xuống tập tin đa phương tiện đã được offload trước.</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Exit backup setup?</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Thoát thiết lập?</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
-    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">You have not finished setting up backups, and no backup has been created. You can enable backups in Settings.</string>
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Bạn chưa hoàn tất thiết lập sao lưu và chưa tạo được bản sao lưu. Bạn có thể bật sao lưu trong Cài đặt.</string>
     <!-- Dialog confirmation button to exit backup setup -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Exit backup setup</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Thoát thiết lập</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8596,13 +8605,13 @@
     <string name="NoBackupToRestore_skip_restore">Bỏ qua</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Recovery key limit reached</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Đạt giới hạn mã khóa khôi phục</string>
     <!-- Dialog body when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">You successfully created a new recovery key, but to prevent abuse the number of new keys you can create is limited. You will not be able to create another key for 7 days. Store your recovery key somewhere safe and secure.</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Bạn đã tạo mã khóa khôi phục thành công, nhưng để tránh hành vi lạm dụng, chúng tôi giới hạn số lượng mã khóa mới có thể tạo. Bạn sẽ không thể tạo thêm mã khóa trong 7 ngày. Hãy lưu mã khóa khôi phục của bạn ở nơi an toàn và bảo mật.</string>
     <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Can’t create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Không thể tạo mã khóa mới</string>
     <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">You’ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days. If you believe someone may be able to access your backup, you can choose to “Turn off and delete backup.”</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Bạn đã đạt giới hạn số mã khóa mới có thể tạo. Bạn sẽ không thể tạo mã khóa khôi phục mới trong 7 ngày. Nếu bạn nghĩ có người có thể truy cập bản sao lưu của mình, bạn có thể chọn “Tắt và xóa bản sao lưu”.</string>
     <!-- Button to acknowledge and dismiss dialog   -->
     <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
     <!-- Accessibility label for close search button in MainToolbar -->
@@ -8664,6 +8673,8 @@
     <string name="Poll__poll_question">Hỏi ý kiến: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s đã kết thúc hỏi ý kiến: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s đã bình chọn trong cuộc hỏi ý kiến: \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->

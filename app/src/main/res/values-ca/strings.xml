@@ -63,9 +63,9 @@
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Crear una nova clau de recuperació</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Has de crear i registrar una nova clau de recuperació abans de poder desactivar el teu PIN.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Create key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Crea una clau</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -2124,6 +2124,8 @@
     <string name="MessageRecord_unsupported_feature">%1$s us ha enviat un missatge que no es pot processar o mostrar perquè usa una funció nova del Signal.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s ha finalitzat l\'enquesta: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Ho accepto</string>
@@ -3370,7 +3372,7 @@
     <string name="WebRtcCallScreen__answer_without_video">Respon sense vídeo</string>
 
     <!-- CallScreen -->
-    <string name="CallScreen__change_camera_direction">Change camera direction</string>
+    <string name="CallScreen__change_camera_direction">Canviar de càmera</string>
 
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
@@ -3429,9 +3431,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no és un usuari del Signal. Si us plau, comproveu-ne l\'àlies i torneu-ho a provar."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No cal que us afegiu al grup.</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">S\'ha assolit la mida màxima del grup.</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Els grups del Signal poden tenir un màxim de %1$d membres.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">S\'ha assolit el límit màxim de membres recomanat.</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Els grups del Singal funcionen millor amb %1$d membres o menys. Afegir-hi més membres causarà retards d\'enviament i recepció de missatges.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d membre</item>
         <item quantity="other">%1$d membres</item>
@@ -6114,7 +6116,6 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
 
 
-
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Selecciona una insígnia</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Has de seleccionar una insígnia</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
@@ -7766,6 +7767,8 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Activar Còpies de seguretat segures de Signal</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">No perdis mai cap missatge quan et canviïs el telèfon o tornis a instal·lar Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8046,6 +8049,12 @@
     <string name="BackupStatusRow__your_last_backup">La teva darrera còpia de seguretat no s\'ha pogut completar. Assegura\'t que el teu telèfon estigui connectat a una xarxa wifi i toca \"Fer una còpia de seguretat ara\" per tornar-ho a provar.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">La teva darrera còpia de seguretat no s\'ha pogut completar. Assegura\'t d\'estar utilitzant la darrera versió de Signal i torna-ho a provar.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Més informació</string>
 
@@ -8510,11 +8519,11 @@
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Només és necessari crear una clau nova si algú altre coneix la teva clau actual. Hauràs de tornar a carregar la teva còpia de seguretat, inclosos els arxius multimèdia. Si estàs utilitzant l\'opció \"Optimitzar emmagatzematge\", abans hauràs de descarregar els arxius multimèdia arxivats.</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Exit backup setup?</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Sortir dels ajustos de les còpies de seguretat?</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
-    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">You have not finished setting up backups, and no backup has been created. You can enable backups in Settings.</string>
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">No has acabat de configurar les còpies de seguretat i no s\'ha creat cap còpia de seguretat. Pots activar les còpies de seguretat a Ajustos.</string>
     <!-- Dialog confirmation button to exit backup setup -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Exit backup setup</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Sortir dels ajustos de les còpies de seguretat</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8780,13 +8789,13 @@
     <string name="NoBackupToRestore_skip_restore">Ometre la restauració</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Recovery key limit reached</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">S\'ha assolit el límit de claus de recuperació</string>
     <!-- Dialog body when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">You successfully created a new recovery key, but to prevent abuse the number of new keys you can create is limited. You will not be able to create another key for 7 days. Store your recovery key somewhere safe and secure.</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Has creat correctament una nova clau de recuperació, però per evitar abusos, el nombre de claus noves que pots crear és limitat. No podràs crear una altra clau fins d\'aquí a 7 dies. Guarda la teva clau de recuperació en un lloc segur.</string>
     <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Can’t create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">No es pot crear una clau nova</string>
     <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">You’ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days. If you believe someone may be able to access your backup, you can choose to “Turn off and delete backup.”</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Has esgotat el nombre de claus noves que pots crear. Podràs crear una nova clau de recuperació en 7 dies. Si creus que algú pot accedir a les teves còpies de seguretat, pots triar “Desactivar i eliminar les còpies de seguretat”.</string>
     <!-- Button to acknowledge and dismiss dialog   -->
     <string name="MessageBackupsKeyRecordScreen__ok">D\'acord</string>
     <!-- Accessibility label for close search button in MainToolbar -->
@@ -8850,6 +8859,8 @@
     <string name="Poll__poll_question">Enquesta: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s ha finalitzat l\'enquesta: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s ha votat a l\'enquesta \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->

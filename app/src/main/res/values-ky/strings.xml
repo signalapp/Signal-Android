@@ -63,9 +63,9 @@
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Жаңы калыбына келтирүү ачкычын түзүү</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">You must create and record a new recovery key before you can disable your PIN.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">PIN кодуңузду өчүрөрдөн мурун жаңы калыбына келтирүүчү ачкыч түзүп, жаздырышыңыз керек.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Create key</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Түзүү</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -2064,6 +2064,8 @@
     <string name="MessageRecord_unsupported_feature">%1$s сизге билдирүү жөнөттү, бирок аны иштетүүгө же көрсөтүүгө болбойт, анткени ал жаңы Signal функциясын колдонот.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s \"%2$s\" деген добуш берүүнү токтотту</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Кабыл алуу</string>
@@ -3269,7 +3271,7 @@
     <string name="WebRtcCallScreen__answer_without_video">Видеосуз жооп берүү</string>
 
     <!-- CallScreen -->
-    <string name="CallScreen__change_camera_direction">Change camera direction</string>
+    <string name="CallScreen__change_camera_direction">Камеранын багытын өзгөртүү</string>
 
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
@@ -3328,9 +3330,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal колдонуучусу эмес. Колдонуучу атын текшерип, кайталап көрүңүз."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Өзүңүздү топко кошпой деле койсоңуз болот</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Топ толуп калды</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal топторунда %1$d чейин гана мүчө болот.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Мүчөлөрдүн саны эң жогорку чекке жетти</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Мүчөлөрдүн саны %1$d же андан азыраак болгондо, Signal топтору жакшы иштейт. Дагы мүчө кошулса, билдирүүлөр кечигип жөнөтүлүп, кечигип алынышы мүмкүн.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d мүчө</item>
     </plurals>
@@ -5968,7 +5970,6 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Профиль жаңыртылбай калды</string>
 
 
-
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Төшбелги тандоо</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Төшбелги тандашыңыз керек</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Профиль жаңыртылбай калды</string>
@@ -7594,6 +7595,8 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Signal\'дын Коопсуз камдык көчүрмөлөрүн иштетүү</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Алардын баарын жаңы телефонуңузга же жаңы Signal\'га өткөрүп аласыз.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7871,6 +7874,12 @@
     <string name="BackupStatusRow__your_last_backup">Акыркы камдык көчүрмөңүз толук жүктөлгөн жок. Телефонуңуздун Wi-Fi\'га туташып турганын текшерип, \"Камдык көчүрмөнү сактоо\" дегенди басып кайталап көрүңүз.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Акыркы камдык көчүрмөңүз толук жүктөлгөн жок. Signal\'дын акыркы версиясын орнотуп, кайталап көрүңүз.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Кененирээк маалымат</string>
 
@@ -8328,11 +8337,11 @@
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Жаңы ачкыч учурдагы ачкычыңызды бирөө билип алса гана керек болот. Ал үчүн камдык көчүрмөлөрүңүздү жана медиа файлдарыңызды кайра жүктөп беришиңиз керек. \"Сактагычты оптималдаштыруу\" деген параметр иштеп турса, алгач, буга чейин жүктөлгөн медиа файлдарды жүктөп алышыңыз керек.</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Exit backup setup?</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Камдык көчүрмөлөрдү орнотууну токтотосузбу?</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
-    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">You have not finished setting up backups, and no backup has been created. You can enable backups in Settings.</string>
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Камдык көчүрмөлөр аягына чейин орнотулбагандыктан, түзүлгөн жок. Камдык көчүрмөлөрдү \"Параметрлерде\" иштете аласыз.</string>
     <!-- Dialog confirmation button to exit backup setup -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Exit backup setup</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Ооба</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8596,13 +8605,13 @@
     <string name="NoBackupToRestore_skip_restore">Өткөрүп жиберүү</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Recovery key limit reached</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Калыбына келтирүү ачкычын түзүү чегине жеттиңиз</string>
     <!-- Dialog body when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">You successfully created a new recovery key, but to prevent abuse the number of new keys you can create is limited. You will not be able to create another key for 7 days. Store your recovery key somewhere safe and secure.</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Калыбына келтирүүчү жаңы ачкыч түздүңүз, бирок шылуундукка жол бербөө үчүн жаңы ачкычтарды түзүү санын чектеп койдук. Дагы бир ачкыч түзгүңүз келсе, 7 күн күтүшүңүз керек. Калыбына келтирүүчү ачкычтарды эч ким көрбөгөн коопсуз жерге сактаңыз.</string>
     <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Can’t create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Жаңы ачкыч түзүлгөн жок</string>
     <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">You’ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days. If you believe someone may be able to access your backup, you can choose to “Turn off and delete backup.”</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Жаңы ачкыч түзгөнгө өтө көп жолу аракет кылдыңыз. Эми аны 7 күндөн кийин гана түзө аласыз. Эгер камдык көчүрмөлөрүңүз кимдир бирөөгө жеткиликтүү болуп калды деп ойлосоңуз, \"Өчүрүп, камдык көчүрмөлөрдү жок кылуу\" дегенди басыңыз.</string>
     <!-- Button to acknowledge and dismiss dialog   -->
     <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
     <!-- Accessibility label for close search button in MainToolbar -->
@@ -8664,6 +8673,8 @@
     <string name="Poll__poll_question">Добуш бергиле: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s \"%2$s\" деген добуш берүүнү токтотту</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s \"%2$s\" деген суроого добуш берди</string>
     <!-- Option in settings to configure notifications for polls -->
@@ -8689,9 +8700,9 @@
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">Байланышыңызды текшерип, кайталап көрүңүз.</string>
     <!-- Dialog title when you go to end a poll -->
-    <string name="Poll__end_poll_title">End poll?</string>
+    <string name="Poll__end_poll_title">Добуш берүүнү бүтүрөсүзбү?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Group members will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Топтун мүчөлөрү бул сурамжылоодо добуш бере алышпайт.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Интернет байланышы күтүлүүдө…</string>
     <!-- Header when creating a new poll -->
