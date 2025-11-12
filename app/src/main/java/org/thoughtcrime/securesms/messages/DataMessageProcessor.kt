@@ -1296,7 +1296,7 @@ object DataMessageProcessor {
     val authorId = Recipient.externalPush(ACI.parseOrThrow(quote.authorAci, quote.authorAciBinary)).id
     var quotedMessage = SignalDatabase.messages.getMessageFor(quote.id!!, authorId) as? MmsMessageRecord
 
-    if (quotedMessage != null && isSenderValid(quotedMessage, timestamp, senderRecipient, threadRecipient) && !quotedMessage.isRemoteDelete) {
+    if (quotedMessage != null && isSenderValid(quotedMessage, timestamp, senderRecipient, threadRecipient) && !quotedMessage.isRemoteDelete && !quotedMessage.isUnsupported) {
       log(timestamp, "Found matching message record...")
 
       var thumbnailAttachment: Attachment? = null
