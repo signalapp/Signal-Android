@@ -1176,7 +1176,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("polls")
   val polls: Boolean by remoteBoolean(
-    key = "android.polls",
+    key = "android.polls.2",
     defaultValue = false,
     hotSwappable = true
   )

@@ -1259,6 +1259,7 @@ public class SignalServiceMessageSender {
                                                    .question(pollCreate.getQuestion())
                                                    .allowMultiple(pollCreate.getAllowMultiple())
                                                    .options(pollCreate.getOptions()).build());
+      builder.requiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.POLLS.getValue(), builder.requiredProtocolVersion));
     }
 
     if (message.getPollVote().isPresent()) {
