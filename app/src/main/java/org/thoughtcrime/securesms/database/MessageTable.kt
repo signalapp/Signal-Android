@@ -2228,6 +2228,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       reactions.deleteReactions(MessageId(messageId))
       deleteGroupStoryReplies(messageId)
       disassociateStoryQuotes(messageId)
+      polls.deletePoll(messageId)
       disassociatePollFromPollTerminate(polls.getPollTerminateMessageId(messageId))
 
       val threadId = getThreadIdForMessage(messageId)

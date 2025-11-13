@@ -8845,7 +8845,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select One</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">Poll · Select one or more</string>
     <!-- Caption in poll message once a poll has ended  -->

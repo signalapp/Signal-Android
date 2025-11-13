@@ -700,6 +700,13 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       .readToSingleBoolean()
   }
 
+  fun deletePoll(messageId: Long) {
+    writableDatabase
+      .delete(PollTable.TABLE_NAME)
+      .where("${PollTable.MESSAGE_ID} = ?", messageId)
+      .run()
+  }
+
   private fun isPending(pollId: Long, optionId: Long, voterId: Long): Boolean {
     return readableDatabase
       .exists(PollVoteTable.TABLE_NAME)

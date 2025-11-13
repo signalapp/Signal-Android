@@ -244,7 +244,7 @@ private fun PollOption(
     }
 
     Column {
-      Row(verticalAlignment = Alignment.Bottom) {
+      Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
           text = option.text,
           style = MaterialTheme.typography.bodyLarge.copy(fontSize = fontSize.sp),
