@@ -2834,6 +2834,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       contentValues.put(NOTIFIED, notified.toInt())
     }
 
+    val updateThread = retrieved.storyType === StoryType.NONE && !silent
+
     val (messageId, insertedAttachments) = insertMediaMessage(
       threadId = threadId,
       body = retrieved.body,
@@ -2845,7 +2847,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       messageRanges = retrieved.messageRanges,
       contentValues = contentValues,
       insertListener = null,
-      updateThread = retrieved.storyType === StoryType.NONE && !silent,
+      updateThread = updateThread,
       unarchive = true,
       poll = retrieved.poll,
       pollTerminate = retrieved.messageExtras?.pollTerminate
@@ -2882,7 +2884,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val isNotStoryGroupReply = retrieved.parentStoryId == null || !retrieved.parentStoryId.isGroupReply()
 
-    if (!MessageTypes.isPaymentsActivated(type) &&
+    if (!updateThread &&
+      !MessageTypes.isPaymentsActivated(type) &&
       !MessageTypes.isPaymentsRequestToActivate(type) &&
       !MessageTypes.isReportedSpam(type) &&
       !MessageTypes.isMessageRequestAccepted(type) &&
