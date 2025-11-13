@@ -123,9 +123,9 @@ public class AddMembersActivity extends PushContactSelectionActivity implements 
       if (result instanceof RecipientRepository.LookupResult.Success) {
         enableDone();
         callback.accept(true);
-      } else if (result instanceof RecipientRepository.LookupResult.NotFound || result instanceof RecipientRepository.LookupResult.InvalidEntry) {
+      } else if (result instanceof RecipientRepository.PhoneLookupResult.NotFound || result instanceof RecipientRepository.PhoneLookupResult.InvalidPhone) {
         new MaterialAlertDialogBuilder(this)
-            .setMessage(getString(R.string.NewConversationActivity__s_is_not_a_signal_user, number))
+            .setMessage(getString(R.string.RecipientLookup_error__s_is_not_a_signal_user, number))
             .setPositiveButton(android.R.string.ok, null)
             .show();
         callback.accept(false);

@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.calls.new.NewCallUiState.CallType
-import org.thoughtcrime.securesms.calls.new.NewCallUiState.UserMessage.Info
+import org.thoughtcrime.securesms.calls.new.NewCallUiState.UserMessage
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -65,33 +65,17 @@ class NewCallViewModel : ViewModel() {
     }
     internalUiState.update { it.copy(isLookingUpRecipient = true) }
 
-    val lookupResult = withContext(Dispatchers.IO) {
-      RecipientRepository.lookupNewE164(inputE164 = phone.value)
-    }
-
-    when (lookupResult) {
-      is RecipientRepository.LookupResult.Success -> {
-        val recipient = withContext(Dispatchers.IO) {
-          Recipient.resolved(lookupResult.recipientId)
-        }
+    when (val lookupResult = RecipientRepository.lookup(phone)) {
+      is RecipientRepository.PhoneLookupResult.Found -> {
         internalUiState.update { it.copy(isLookingUpRecipient = false) }
-        openCall(recipient)
+        openCall(recipient = lookupResult.recipient)
       }
 
-      is RecipientRepository.LookupResult.NotFound, is RecipientRepository.LookupResult.InvalidEntry -> {
+      is RecipientRepository.LookupResult.Failure -> {
         internalUiState.update {
           it.copy(
             isLookingUpRecipient = false,
-            userMessage = Info.RecipientNotSignalUser(phone)
-          )
-        }
-      }
-
-      is RecipientRepository.LookupResult.NetworkError -> {
-        internalUiState.update {
-          it.copy(
-            isLookingUpRecipient = false,
-            userMessage = Info.NetworkError
+            userMessage = UserMessage.RecipientLookupFailed(failure = lookupResult)
           )
         }
       }
@@ -120,7 +104,7 @@ class NewCallViewModel : ViewModel() {
   }
 
   fun showUserAlreadyInACall() {
-    internalUiState.update { it.copy(userMessage = Info.UserAlreadyInAnotherCall) }
+    internalUiState.update { it.copy(userMessage = UserMessage.UserAlreadyInAnotherCall) }
   }
 
   fun refresh() {
@@ -153,11 +137,8 @@ data class NewCallUiState(
   val userMessage: UserMessage? = null
 ) {
   sealed interface UserMessage {
-    sealed interface Info : UserMessage {
-      data class RecipientNotSignalUser(val phone: PhoneNumber) : Info
-      data object UserAlreadyInAnotherCall : Info
-      data object NetworkError : Info
-    }
+    data object UserAlreadyInAnotherCall : UserMessage
+    data class RecipientLookupFailed(val failure: RecipientRepository.LookupResult.Failure) : UserMessage
   }
 
   sealed interface CallType {

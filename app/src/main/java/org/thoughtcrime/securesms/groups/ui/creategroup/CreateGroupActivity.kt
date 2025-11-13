@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.NavTarget
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.UserMessage
 import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity
+import org.thoughtcrime.securesms.recipients.ui.RecipientLookupFailureMessage
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerCallbacks
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
@@ -275,31 +276,15 @@ private fun UserMessagesHost(
   userMessage: UserMessage?,
   onDismiss: (UserMessage) -> Unit
 ) {
-  val context: Context = LocalContext.current
   when (userMessage) {
     null -> {}
 
-    is UserMessage.Info.NetworkError -> Dialogs.SimpleMessageDialog(
-      message = stringResource(R.string.NetworkFailure__network_error_check_your_connection_and_try_again),
-      dismiss = stringResource(android.R.string.ok),
-      onDismiss = { onDismiss(userMessage) }
-    )
-
-    is UserMessage.Info.RecipientNotSignalUser -> Dialogs.SimpleMessageDialog(
-      message = stringResource(R.string.NewConversationActivity__s_is_not_a_signal_user, userMessage.phone.displayText),
-      dismiss = stringResource(android.R.string.ok),
-      onDismiss = { onDismiss(userMessage) }
-    )
-
-    is UserMessage.Info.RecipientsNotSignalUsers -> Dialogs.SimpleMessageDialog(
-      message = pluralStringResource(
-        id = R.plurals.CreateGroupActivity_not_signal_users,
-        count = userMessage.recipients.size,
-        userMessage.recipients.joinToString(", ") { it.getDisplayName(context) }
-      ),
-      dismiss = stringResource(android.R.string.ok),
-      onDismiss = { onDismiss(userMessage) }
-    )
+    is UserMessage.RecipientLookupFailed -> {
+      RecipientLookupFailureMessage(
+        failure = userMessage.failure,
+        onDismissed = { onDismiss(userMessage) }
+      )
+    }
   }
 }
 

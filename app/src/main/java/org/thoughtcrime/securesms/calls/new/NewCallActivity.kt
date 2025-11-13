@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.new.NewCallUiState.CallType
 import org.thoughtcrime.securesms.calls.new.NewCallUiState.UserMessage
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.recipients.ui.RecipientLookupFailureMessage
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerCallbacks
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
@@ -218,19 +219,14 @@ private fun UserMessagesHost(
   when (userMessage) {
     null -> {}
 
-    is UserMessage.Info.NetworkError -> Dialogs.SimpleMessageDialog(
-      message = stringResource(R.string.NetworkFailure__network_error_check_your_connection_and_try_again),
-      dismiss = stringResource(android.R.string.ok),
-      onDismiss = { onDismiss(userMessage) }
-    )
+    is UserMessage.RecipientLookupFailed -> {
+      RecipientLookupFailureMessage(
+        failure = userMessage.failure,
+        onDismissed = { onDismiss(userMessage) }
+      )
+    }
 
-    is UserMessage.Info.RecipientNotSignalUser -> Dialogs.SimpleMessageDialog(
-      message = stringResource(R.string.NewConversationActivity__s_is_not_a_signal_user, userMessage.phone.displayText),
-      dismiss = stringResource(android.R.string.ok),
-      onDismiss = { onDismiss(userMessage) }
-    )
-
-    is UserMessage.Info.UserAlreadyInAnotherCall -> LaunchedEffect(userMessage) {
+    is UserMessage.UserAlreadyInAnotherCall -> LaunchedEffect(userMessage) {
       snackbarHostState.showSnackbar(
         message = context.getString(R.string.CommunicationActions__you_are_already_in_a_call)
       )

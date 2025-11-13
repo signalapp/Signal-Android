@@ -452,7 +452,7 @@ public class CommunicationActions {
         startConversation(activity, recipient, null);
       } else {
         new MaterialAlertDialogBuilder(activity)
-            .setMessage(activity.getString(R.string.NewConversationActivity__s_is_not_a_signal_user, e164))
+            .setMessage(activity.getString(R.string.RecipientLookup_error__s_is_not_a_signal_user, e164))
             .setPositiveButton(android.R.string.ok, null)
             .show();
       }

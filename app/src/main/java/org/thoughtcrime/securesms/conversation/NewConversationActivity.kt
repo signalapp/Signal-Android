@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.conversation.NewConversationUiState.UserMessag
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.ui.RecipientLookupFailureMessage
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerCallbacks
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
@@ -351,17 +352,12 @@ private fun UserMessagesHost(
       onDismiss(userMessage)
     }
 
-    is UserMessage.Info.NetworkError -> Dialogs.SimpleMessageDialog(
-      message = stringResource(R.string.NetworkFailure__network_error_check_your_connection_and_try_again),
-      dismiss = stringResource(android.R.string.ok),
-      onDismiss = { onDismiss(userMessage) }
-    )
-
-    is UserMessage.Info.RecipientNotSignalUser -> Dialogs.SimpleMessageDialog(
-      message = stringResource(R.string.NewConversationActivity__s_is_not_a_signal_user, userMessage.phone.displayText),
-      dismiss = stringResource(android.R.string.ok),
-      onDismiss = { onDismiss(userMessage) }
-    )
+    is UserMessage.Info.RecipientLookupFailed -> {
+      RecipientLookupFailureMessage(
+        failure = userMessage.failure,
+        onDismissed = { onDismiss(userMessage) }
+      )
+    }
 
     is UserMessage.Info.UserAlreadyInAnotherCall -> LaunchedEffect(userMessage) {
       snackbarHostState.showSnackbar(
