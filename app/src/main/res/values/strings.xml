@@ -2445,6 +2445,12 @@
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
 
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal Call</string>
     <string name="WebRtcCallView__signal_video_call">Signal Video Call</string>

@@ -166,6 +166,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           },
           onNavigationClick = { activity.onBackPressedDispatcher.onBackPressed() },
           onLocalPictureInPictureClicked = viewModel::onLocalPictureInPictureClicked,
+          onLocalPictureInPictureFocusClicked = viewModel::onLocalPictureInPictureFocusClicked,
           onControlsToggled = onControlsToggled,
           onCallScreenDialogDismissed = { callScreenViewModel.dialog.update { CallScreenDialogType.NONE } },
           callParticipantUpdatePopupController = callParticipantUpdatePopupController
