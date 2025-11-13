@@ -4268,7 +4268,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return readableDatabase
       .select("DISTINCT $THREAD_ID")
       .from(TABLE_NAME)
-      .where("($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_INBOX_TYPE} AND ($TYPE & ?) != 0", MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST)
+      .where("($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_INBOX_TYPE} AND ($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK}) = ${MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST}")
       .run()
       .readToList { it.requireLong(THREAD_ID) }
   }
