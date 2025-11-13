@@ -47,12 +47,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.IconButtons.IconButton
+import org.signal.core.ui.compose.LargeFontPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.thoughtcrime.securesms.R
@@ -272,7 +272,7 @@ private fun SearchBar(
       .padding(bottom = 18.dp)
       .padding(horizontal = 16.dp)
       .fillMaxWidth()
-      .defaultMinSize(54.dp)
+      .defaultMinSize(minHeight = 54.dp)
       .focusRequester(focusRequester),
     visualTransformation = VisualTransformation.None,
     colors = TextFieldDefaults.colors(
@@ -320,11 +320,7 @@ private fun LoadingScreenPreview() {
   }
 }
 
-@Preview(
-  name = "large font",
-  group = "font scales",
-  fontScale = 2f
-)
+@LargeFontPreviews
 @Composable
 private fun LargeFontScreenPreview() {
   Previews.Preview {

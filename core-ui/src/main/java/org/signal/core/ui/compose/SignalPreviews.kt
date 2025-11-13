@@ -43,3 +43,6 @@ annotation class AllNightPreviews
 @FoldablePreviews
 @TabletPreviews
 annotation class AllDevicePreviews
+
+@Preview(name = "large font", fontScale = 2f)
+annotation class LargeFontPreviews
