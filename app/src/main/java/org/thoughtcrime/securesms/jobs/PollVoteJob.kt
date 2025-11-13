@@ -164,7 +164,7 @@ class PollVoteJob(
       SignalDatabase.recipients.markUnregistered(unregistered)
     }
 
-    if (groupResult.completed.isNotEmpty()) {
+    if (groupResult.completed.isNotEmpty() || destinations.isEmpty()) {
       if (isRemoval) {
         SignalDatabase.polls.markPendingAsRemoved(
           pollId = poll.id,
