@@ -65,6 +65,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -1998,7 +1999,7 @@ private fun LastBackupRowPreview() {
 
 @DayNightPreviews
 @Composable
-private fun InProgressRowPreview() {
+private fun InProgressRowPendingPreview() {
   Previews.Preview {
     Column {
       InProgressBackupRow(archiveUploadProgressState = ArchiveUploadProgressState(), isPaidTier = true)
@@ -2009,13 +2010,29 @@ private fun InProgressRowPreview() {
         ),
         isPaidTier = true
       )
-      InProgressBackupRow(
-        archiveUploadProgressState = ArchiveUploadProgressState(
-          state = ArchiveUploadProgressState.State.Export,
-          backupPhase = ArchiveUploadProgressState.BackupPhase.Account
-        ),
-        isPaidTier = true
-      )
+    }
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun InProgressRowAccountPreview() {
+  Previews.Preview {
+    InProgressBackupRow(
+      archiveUploadProgressState = ArchiveUploadProgressState(
+        state = ArchiveUploadProgressState.State.Export,
+        backupPhase = ArchiveUploadProgressState.BackupPhase.Account
+      ),
+      isPaidTier = true
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun InProgressRowMessagePreview() {
+  Previews.Preview {
+    Column {
       InProgressBackupRow(
         archiveUploadProgressState = ArchiveUploadProgressState(
           state = ArchiveUploadProgressState.State.Export,
@@ -2043,12 +2060,21 @@ private fun InProgressRowPreview() {
         ),
         isPaidTier = true
       )
+    }
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun InProgressRowUploadPreview() {
+  Previews.Preview {
+    Column {
       InProgressBackupRow(
         archiveUploadProgressState = ArchiveUploadProgressState(
           state = ArchiveUploadProgressState.State.UploadBackupFile,
           backupPhase = ArchiveUploadProgressState.BackupPhase.BackupPhaseNone,
           backupFileUploadedBytes = 10.mebiBytes.inWholeBytes,
-          backupFileTotalBytes = 50.mebiBytes.inWholeBytes,
+          backupFileTotalBytes = 50.mebiBytes.inWholeBytes + 100_000,
           mediaUploadedBytes = 0,
           mediaTotalBytes = 0
         ),
@@ -2059,7 +2085,7 @@ private fun InProgressRowPreview() {
           state = ArchiveUploadProgressState.State.UploadBackupFile,
           backupPhase = ArchiveUploadProgressState.BackupPhase.BackupPhaseNone,
           backupFileUploadedBytes = 10.mebiBytes.inWholeBytes,
-          backupFileTotalBytes = 50.mebiBytes.inWholeBytes,
+          backupFileTotalBytes = 50.mebiBytes.inWholeBytes + 1000,
           mediaUploadedBytes = 0,
           mediaTotalBytes = 0
         ),
