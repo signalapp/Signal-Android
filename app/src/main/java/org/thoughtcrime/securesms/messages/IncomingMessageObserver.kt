@@ -265,17 +265,13 @@ class IncomingMessageObserver(
     }
   }
 
-  fun terminateAsync() {
-    Log.w(TAG, "Termination Enqueued! ${this.hashCode()}", Throwable())
+  fun terminate() {
+    Log.w(TAG, "Termination! ${this.hashCode()}", Throwable())
     INSTANCE_COUNT.decrementAndGet()
     networkConnectionListener.unregister()
     webSocketStateDisposable.dispose()
-    SignalExecutors.BOUNDED.execute {
-      Log.w(TAG, "Beginning termination. ${this.hashCode()}")
-      terminated = true
-      Log.w(TAG, "Disconnecting auth socket as part of termination")
-      authWebSocket.disconnect()
-    }
+    terminated = true
+    authWebSocket.disconnect()
   }
 
   @VisibleForTesting
