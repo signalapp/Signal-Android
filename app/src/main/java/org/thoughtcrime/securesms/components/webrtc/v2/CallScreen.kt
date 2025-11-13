@@ -16,7 +16,6 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -38,7 +37,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
@@ -46,9 +44,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalConfiguration
@@ -337,7 +333,7 @@ fun CallScreen(
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun BoxScope.Viewport(
+private fun Viewport(
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
   webRtcCallState: WebRtcViewModel.State,
@@ -377,66 +373,62 @@ private fun BoxScope.Viewport(
       }
     }
 
-    var spacerOffset by remember { mutableStateOf(Offset.Zero) }
+    BlurContainer(
+      isBlurred = localRenderState == WebRtcLocalRenderState.FOCUSED,
+      modifier = modifier.fillMaxWidth()
+    ) {
+      Row(modifier = Modifier.fillMaxSize()) {
+        Column(
+          modifier = Modifier.weight(1f)
+        ) {
+          CallParticipantsPager(
+            callParticipantsPagerState = callParticipantsPagerState,
+            pagerState = callScreenController.callParticipantsVerticalPagerState,
+            modifier = Modifier
+              .fillMaxWidth()
+              .weight(1f)
+              .clickable(
+                onClick = {
+                  scope.launch {
+                    callScreenController.handleEvent(CallScreenController.Event.TOGGLE_CONTROLS)
+                  }
+                },
+                enabled = !callControlsState.skipHiddenState
+              )
+          )
 
-    Row(modifier = modifier.fillMaxWidth()) {
-      Column(
-        modifier = Modifier.weight(1f)
-      ) {
-        CallParticipantsPager(
-          callParticipantsPagerState = callParticipantsPagerState,
-          pagerState = callScreenController.callParticipantsVerticalPagerState,
-          modifier = Modifier
-            .fillMaxWidth()
-            .weight(1f)
-            .clickable(
-              onClick = {
-                scope.launch {
-                  callScreenController.handleEvent(CallScreenController.Event.TOGGLE_CONTROLS)
-                }
-              },
-              enabled = !callControlsState.skipHiddenState
-            )
-        )
+          if (isPortrait && isLargeGroupCall) {
+            Row {
+              CallParticipantsOverflow(
+                overflowParticipants = overflowParticipants,
+                modifier = Modifier
+                  .padding(top = 16.dp, start = 16.dp, bottom = 16.dp)
+                  .height(OVERFLOW_ITEM_SIZE)
+                  .weight(1f)
+              )
 
-        if (isPortrait && isLargeGroupCall) {
-          Row {
+              Spacer(
+                modifier = Modifier
+                  .padding(top = 16.dp, bottom = 16.dp, end = 16.dp)
+                  .size(OVERFLOW_ITEM_SIZE)
+              )
+            }
+          }
+        }
+
+        if (!isPortrait && isLargeGroupCall) {
+          Column {
             CallParticipantsOverflow(
               overflowParticipants = overflowParticipants,
               modifier = Modifier
-                .padding(top = 16.dp, start = 16.dp, bottom = 16.dp)
-                .height(OVERFLOW_ITEM_SIZE)
+                .width(OVERFLOW_ITEM_SIZE + 32.dp)
                 .weight(1f)
             )
 
             Spacer(
-              modifier = Modifier
-                .onPlaced { coordinates ->
-                  spacerOffset = coordinates.localToRoot(Offset.Zero)
-                }
-                .padding(top = 16.dp, bottom = 16.dp, end = 16.dp)
-                .size(OVERFLOW_ITEM_SIZE)
+              modifier = Modifier.size(OVERFLOW_ITEM_SIZE)
             )
           }
-        }
-      }
-
-      if (!isPortrait && isLargeGroupCall) {
-        Column {
-          CallParticipantsOverflow(
-            overflowParticipants = overflowParticipants,
-            modifier = Modifier
-              .width(OVERFLOW_ITEM_SIZE + 32.dp)
-              .weight(1f)
-          )
-
-          Spacer(
-            modifier = Modifier
-              .onPlaced { coordinates ->
-                spacerOffset = coordinates.localToRoot(Offset.Zero)
-              }
-              .size(OVERFLOW_ITEM_SIZE)
-          )
         }
       }
     }
