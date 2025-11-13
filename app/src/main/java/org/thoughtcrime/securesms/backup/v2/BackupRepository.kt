@@ -2151,9 +2151,13 @@ object BackupRepository {
     try {
       DataRestoreConstraint.isRestoringData = true
       return withContext(Dispatchers.IO) {
-        return@withContext BackupProgressService.start(context, context.getString(R.string.BackupProgressService_title)).use {
+        val result = BackupProgressService.start(context, context.getString(R.string.BackupProgressService_title)).use {
           restoreRemoteBackup(controller = it, cancellationSignal = { !isActive })
         }
+        if (result !is RemoteRestoreResult.Success) {
+          ArchiveRestoreProgress.onRestoreFailed()
+        }
+        return@withContext result
       }
     } finally {
       DataRestoreConstraint.isRestoringData = false

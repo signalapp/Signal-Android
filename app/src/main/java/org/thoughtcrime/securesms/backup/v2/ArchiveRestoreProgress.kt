@@ -91,6 +91,12 @@ object ArchiveRestoreProgress {
     update()
   }
 
+  fun onRestoreFailed() {
+    Log.i(TAG, "onRestoreFailed")
+    SignalStore.backup.restoreState = RestoreState.NONE
+    update()
+  }
+
   fun onStartMediaRestore() {
     Log.i(TAG, "onStartMediaRestore")
     SignalStore.backup.restoreState = RestoreState.CALCULATING_MEDIA
