@@ -376,14 +376,21 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
         val (detailOnlyAnchor, detailAndListAnchor, listOnlyAnchor) = anchors
 
+        val initialAnchorIndex = remember {
+          val index = SignalStore.misc.preferredMainActivityAnchorIndex
+          if (index >= 0) index else 1
+        }
+
         val paneExpansionState = rememberPaneExpansionState(
           key = wrappedNavigator.scaffoldValue.paneExpansionStateKey,
           anchors = anchors,
-          initialAnchoredIndex = 1
+          initialAnchoredIndex = initialAnchorIndex
         )
 
         val paneAnchorIndex = rememberSaveable(paneExpansionState.currentAnchor) {
-          anchors.indexOf(paneExpansionState.currentAnchor)
+          val index = anchors.indexOf(paneExpansionState.currentAnchor)
+          SignalStore.misc.preferredMainActivityAnchorIndex = index
+          index
         }
 
         LaunchedEffect(windowSizeClass) {
