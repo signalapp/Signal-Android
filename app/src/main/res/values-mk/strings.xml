@@ -3431,9 +3431,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" не е корисник на Signal. Ве молиме проверете го корисничкото име и обидете се повторно."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Нема потреба да се додадете во групата</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Достигната е максимална големина на групата</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Групите на Signal можат да имаат максимум %1$s членови.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Препорачаното ограничување на членови е достигнато</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal групите најдобро функционираат со %1$s членови или помалку. Ако додадете повеќе членови може да настане застој при примање и испраќање на пораки.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d член</item>
         <item quantity="other">%1$d членови</item>
@@ -8840,7 +8840,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Анкета · Изберете еден одговор</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">Анкета · Изберете еден одговор или повеќе</string>
     <!-- Caption in poll message once a poll has ended  -->

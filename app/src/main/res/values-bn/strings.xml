@@ -3431,9 +3431,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" কোনো Signal ব্যবহারকারী নয়। দয়া করে ব্যবহারকারীর নামটি পরীক্ষা করুন এবং আবার চেষ্টা করুন।"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">আপনার নিজেকে এই গ্রুপটিতে যোগ করার দরকার নেই</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">গ্রুপের সদস্য সর্বোচ্চ সংখ্যায় পৌঁছেছে</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal গ্রুপে সর্বোচ্চ %1$s জন সদস্য থাকতে পারবে।</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">সুপারিশকৃত সদস্য সর্বোচ্চ সীমায় পৌঁছেছে</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal গ্রুপ %1$s বা তার কম সদস্য সংখ্যায় সবচেয়ে ভালো কাজ করে। আরও সদস্য যোগ করলে মেসেজ পাঠানো ও গ্রহণে বিলম্ব হবে।</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d জন সদস্য</item>
         <item quantity="other">%1$d জন সদস্য</item>
@@ -8840,7 +8840,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">জরিপ · একটি বেছে নিন</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">জরিপ · এক বা একাধিক বেছে নিন</string>
     <!-- Caption in poll message once a poll has ended  -->

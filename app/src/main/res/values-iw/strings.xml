@@ -3633,9 +3633,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s לא משתמש/ת Signal. יש לבדוק את שם המשתמש ולנסות שוב."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">אתה לא צריך להוסיף את עצמך אל הקבוצה</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">גודל קבוצה מרבי הושג</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">קבוצות Signal יכולות להכיל מרב של %1$s חברי קבוצה.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">מגבלה מומלצת של חברי קבוצה הושגה</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">קבוצות Signal מתפקדות בצורה הטובה ביותר עם %1$s חברי קבוצה או פחות. הוספת חברי קבוצה נוספים תגרום לעיכובים בשליחה ובקבלה של הודעות.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">חבר קבוצה %1$d</item>
         <item quantity="two">%1$d חברי קבוצה</item>
@@ -8712,10 +8712,10 @@
     <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">ממתינים לחיבור אינטרנט…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
-        <item quantity="one">מעבדים %1$s מתוך הודעה %2$s (%%%3$d)</item>
-        <item quantity="two">מעבדים %1$s מתוך %2$s~ הודעות (%%%3$d)</item>
-        <item quantity="many">מעבדים %1$s מתוך %2$s~ הודעות (%%%3$d)</item>
-        <item quantity="other">מעבדים %1$s מתוך %2$s~ הודעות (%%%3$d)</item>
+        <item quantity="one">מעבדים %1$s מתוך הודעה %2$s (%3$d%%)</item>
+        <item quantity="two">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
+        <item quantity="many">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
+        <item quantity="other">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">יש לך %1$s של נתוני גיבוי שאינם נמצאים במכשיר זה. בלי מנוי בתשלום, לא ניתן להוריד מדיה.</string>
@@ -9212,7 +9212,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">סקר · יש לבחור 1</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">סקר · יש לבחור 1 או יותר</string>
     <!-- Caption in poll message once a poll has ended  -->

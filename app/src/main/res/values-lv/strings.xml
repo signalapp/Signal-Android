@@ -3532,9 +3532,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" nav Signal lietotājs. Lūdzu, pārbaudiet, vai lietotājvārds uzrakstīts pareizi."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Jums nav jāpievieno sevi grupai</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Sasniegts maks. grupas lielums</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Dalībnieku skaits Signal grupās nedrīkst pārsniegt %1$s.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Ieteicamais dalībnieku limits sasniegts</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal grupas vislabāk darbojas, ja dalībnieku skaits nepārsniedz %1$s vai ir mazāks. Ja pievienosiet vairāk dalībnieku, ziņu sūtīšana un saņemšana aizkavēsies.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="zero">%1$d dalībnieks</item>
         <item quantity="one">%1$d dalībnieks</item>
@@ -9026,7 +9026,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Aptauja · Izvēlieties vienu atbildi</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">Aptauja · Izvēlieties vienu vai vairākas atbildes</string>
     <!-- Caption in poll message once a poll has ended  -->

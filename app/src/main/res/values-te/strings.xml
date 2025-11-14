@@ -3431,9 +3431,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal యూజర్ కాదు. దయచేసి వినియోగదారు పేరును తనిఖీ చేసి, మళ్లీ ప్రయత్నించండి."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">మిమ్మల్ని మీరు గుంపుకు చేర్చాల్సిన అవసరం లేదు</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">గరిష్ట సమూహ పరిమాణం చేరుకుంది</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal గ్రూపులు గరిష్టంగా %1$s మంది సభ్యులను కలిగి ఉంటాయి.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">సిఫార్సు చేసిన సభ్యుల పరిమితి చేరుకుంది</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal సమూహాలు %1$s లేదా అంతకంటే తక్కువ సభ్యులతో ఉత్తమంగా పనిచేస్తాయి. ఎక్కువ మంది సభ్యులను జోడించడం వల్ల సందేశాలు పంపడం మరియు స్వీకరించడం ఆలస్యం అవుతుంది.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d సభ్యుడు</item>
         <item quantity="other">%1$d సభ్యులు</item>
@@ -8840,7 +8840,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">పోల్ · ఒకదాన్ని ఎంచుకోండి</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">పోల్ · ఒకటి లేదా అంతకంటే ఎక్కువ ఎంచుకోండి</string>
     <!-- Caption in poll message once a poll has ended  -->

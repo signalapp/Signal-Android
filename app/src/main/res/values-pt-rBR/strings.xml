@@ -3431,9 +3431,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" não é um usuário do Signal. Verifique o nome de usuário e tente novamente."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Você não precisa se adicionar ao grupo</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">O grupo chegou ao tamanho máximo</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Os grupos do Signal podem ter no máximo %1$s membros.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">O limite recomendado de membros foi alcançado</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Os grupos do Signal têm melhor desempenho com %1$s membros ou menos. Adicionar mais membros causará atrasos no envio e recebimento de mensagens.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d membro</item>
         <item quantity="other">%1$d membros</item>
@@ -8840,7 +8840,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Enquete · Selecione uma opção</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">Enquete · Selecione quantas opções quiser</string>
     <!-- Caption in poll message once a poll has ended  -->

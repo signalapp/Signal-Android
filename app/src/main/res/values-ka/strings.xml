@@ -2125,7 +2125,7 @@
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s-მ(ა) გამოკითხვა დაასრულა: \"%2$s\"</string>
     <!-- Update message shown when you end the poll. %1$s is the poll question. -->
-    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
+    <string name="MessageRecord_you_ended_the_poll">შენ დაასრულე გამოკითხვა: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">დასტური</string>
@@ -3431,9 +3431,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s არაა Signal-ის მომხმარებელი. გთხოვთ, გადაამოწმო მომხმარებლის სახელი და თავიდან სცადო."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ჯგუფში საკუთარი თავის დამატება არ გჭირდება</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">ჯგუფის მაქსიმალური ტევადობა მიღწეულია</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal-ის ჯგუფებს მაქსიმუმ %1$s წევრის ყოლა შეუძლიათ.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">წევრთა რეკომენდირებული ლიმიტი მიღწეულია</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal-ის ჯგუფები საუკეთესოდ მუშაობენ %1$s ან ნაკლები წევრით. მეტი წევრის დამატება გამოიწვევს შეტყობინებების გაგზავნისა და მიღების დაგვიანებას.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d წევრი</item>
         <item quantity="other">%1$d წევრი</item>
@@ -7768,7 +7768,7 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">ჩართე Signal-ის უსაფრთხო სათადარიგო ასლები</string>
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title_beta">სცადე Signal-ის უსაფრთხო სათადარიგო ასლები</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">არასდროს დაკარგო შეტყობინებები, როდესაც ახალ მობილურს იყიდი ან Signal-ს თავიდან დააყენებ.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8050,11 +8050,11 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">შენი ბოლო სათადარიგო ასლის შექმნა ვერ მოხერხდა. დარწმუნდი, რომ Signal-ის უახლეს ვერსიაზე ხარ და თავიდან სცადე.</string>
     <!-- Text displayed when a backup file exceeds the storage limit -->
-    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <string name="BackupStatusRow__backup_file_too_large">შენი წერილების რიცხვი მეხსიერების ლიმიტს აღემატება. რამდენიმე წერილი წაშალე და თავიდან სცადე.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
-    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s-მდე გაგზავნილი და მიღებული წერილების სათადარიგო ასლები არ იქმნება.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">შენი სათადარიგო ასლის შექმნა ვერ მოხერხდა, რადგან დისკზე ადგილი არ გყოფნის. გაათავისუფლე ადგილი შენს მოწყობილობაზე და თავიდან სცადე.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">გაიგე მეტი</string>
 
@@ -8840,7 +8840,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">გამოკითხვა · აირჩიე ერთი</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">გამოკითხვა · აირჩიე ერთი ან მეტი</string>
     <!-- Caption in poll message once a poll has ended  -->
@@ -8860,7 +8860,7 @@
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s-მ(ა) გამოკითხვა დაასრულა: \"%2$s\"</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
-    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
+    <string name="Poll__you_poll_end">შენ დაასრულე გამოკითხვა: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s-მ(ა) გამოკითხვაში მონიშნა: \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->

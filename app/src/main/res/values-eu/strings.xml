@@ -3431,9 +3431,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ez da Signal erabiltzaile bat. Mesedez, egiaztatu erabiltzaile-izena eta saia zaitez berriro."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Ez daukazu zertan zeure burua taldera gehitu</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Taldearen gehienezko tamainara iritsi da</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal taldeek izan dezaketen gehienezko kide kopurua %1$s da.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Gomendatutako kide kopuru mugara iritsi da</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal taldeen errendimendurik onena %1$s kide edo gutxiago dutenean lortzen da. Kide gehiago gehitzeak atzerapenak sortuko ditu mezuak bidaltzerakoan eta jasotzerakoan.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">Kide %1$d</item>
         <item quantity="other">%1$d kide</item>
@@ -8840,7 +8840,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Galdeketa · Hautatu bat</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">Galdeketa · Hautatu bat edo gehiago</string>
     <!-- Caption in poll message once a poll has ended  -->

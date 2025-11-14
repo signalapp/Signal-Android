@@ -2065,7 +2065,7 @@
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s بېلەت تاشلاشنى ئاخىرلاشتۇردى: «%2$s»</string>
     <!-- Update message shown when you end the poll. %1$s is the poll question. -->
-    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
+    <string name="MessageRecord_you_ended_the_poll">«%1$s»: راي سىنىقىنى ئاخىرلاشتۇردىڭىز</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">قوبۇل قىل</string>
@@ -3330,9 +3330,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s بولسا Signal ئىشلەتكۈچى ئەمەس. ئىشلەتكۈچى نامىنى تەكشۈرۈپ قايتا سىناڭ."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ئۆزىڭىزنى گۇرۇپپىغا قوشۇشىڭىز ھاجەتسىز</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">گۇرۇپپىنىڭ ئادەم سانى چېكىگە يەتتى</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal  گۇرۇپپىسى %1$s ئەزانى سىغدۇرالايدۇ.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">تەۋسىيە ئەزا چېكىگە يەتتى</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">ئەزا سانى %1$s ياكى ئاز بولغاندا Signal گۇرۇپپىسىنىڭ ئىقتىدارى ئەڭ ياخشى. تېخىمۇ كۆپ ئەزا قوشۇلسا ئۇچۇر يوللاش ۋە تاپشۇرۇۋېلىش سەل كېچىكىدۇ.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d ئەزا</item>
     </plurals>
@@ -7596,7 +7596,7 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Signal بىخەتەر زاپاسلانمىللىرىنى قوزغىتىڭ</string>
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title_beta">Signal بىخەتەر زاپاسلانمىللىرنى سىناپ بېقىڭ</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">يېڭى تېلېفون ئالغاندا ياكى سىگنالنى قايتا قاچىلىغاندا ھەرقانداق ئۇچۇرنى يۈتتۈرۈپ قويمايسىز.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7875,11 +7875,11 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">ئاخىرقى زاپاسلىشىڭىزنى تاماملىيالمىدى. سىگنالنىڭ ئەڭ يېڭى نەشرىنى ئشلەتكەنلىكىڭىزنى جەزملەشتۈرۈڭ ۋە قايتا سىناڭ.</string>
     <!-- Text displayed when a backup file exceeds the storage limit -->
-    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <string name="BackupStatusRow__backup_file_too_large">سىزدە بار ئۇچۇرلارنىڭ سانى ساقلاش چېكىدىن ئېشىپ كەتكەن. بەزى ئۇچۇرلارنى ئۆچۈرۈپ قايتا سىناڭ.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
-    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s دىن بۇرۇن ئەۋەتىلگەن ياكى تاپشۇرۇۋېلىنغان ئۇچۇرلار زاپاسلانمىغان.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">دىسكىدىكى بوشلۇقىڭىز ئاز قالغاچقا زاپاسلاشنى تاماملىغىلى بولمىدى. ئۈسكۈنىڭىزدىكى بوشلۇقنى بىكارلاپ قايتا سىناڭ.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">تەپسىلاتى</string>
 
@@ -8654,7 +8654,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">راي سىناش · بىرنى تاللاڭ</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">راي سىناش · بىر ياكى بىرقانچىنى تاللاڭ</string>
     <!-- Caption in poll message once a poll has ended  -->
@@ -8674,7 +8674,7 @@
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s بېلەت تاشلاشنى ئاخىرلاشتۇردى: «%2$s»</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
-    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
+    <string name="Poll__you_poll_end">«%1$s»: راي سىنىقىنى ئاخىرلاشتۇردىڭىز</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">«%2$s»غا: %1$s بېلەت تاشلىدى</string>
     <!-- Option in settings to configure notifications for polls -->

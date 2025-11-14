@@ -3835,9 +3835,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ليس مُستخدم لِسيجنال. يُرجى التحقُّق من اسم المُستخدم والمحاولة مُجدَّدًا."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">لستَ بحاجة إلى إضافة نفسك إلى المجموعة</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">وصلت المجموعة إلى الحد الأقصى.</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">أقصى حد للأعضاء في مجموعات سيجنال هو %1$s عضوًا.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">تمَّ الوصول إلى حد الأعضاء المُوصى به</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">تعمل مجموعات سيجنال بشكلٍ أفضل مع %1$s عضو (أعضاء) أو أقل. ستؤدي إضافة المزيد من الأعضاء إلى تأخُّر في إرسال الرسائل واستلامها.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="zero">%1$d عضو</item>
         <item quantity="one">%1$d عضو</item>
@@ -9584,7 +9584,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">استطلاع · اختر خيارًا واحدًا</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">استطلاع · اختر واحدًا أو أكثر</string>
     <!-- Caption in poll message once a poll has ended  -->

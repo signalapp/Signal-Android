@@ -3532,9 +3532,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" nu este un utilizator Signal. Verifică numele de utilizator și încearcă din nou."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nu este nevoie să te adăugi pe tine la grup</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Mărimea maximă a grupului a fost atinsă</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Grupurile Signal pot avea un maximum de %1$s membri.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">A fost atinsă limita de membri recomandată</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Grupurile Signal se comportă cel mai bine cu %1$s de membri sau mai puțin. Adăugarea mai multor membri va provoca întârzieri la trimiterea și primirea mesajelor.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d membru</item>
         <item quantity="few">%1$d membri</item>
@@ -9026,7 +9026,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Sondaj · Selectează unul</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">Sondaj · Selectează unul sau mai multe</string>
     <!-- Caption in poll message once a poll has ended  -->

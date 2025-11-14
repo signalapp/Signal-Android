@@ -3633,9 +3633,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s не карыстальнік Signal. Праверце імя карыстальніка і паўтарыце спробу."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Вам не трэба дадаваць сябе ў групу</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Дасягнуты максімальны памер групы</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Групы Signal могуць мець максімум %1$s удзельнікаў.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Дасягнуты ліміт рэкамендаваных удзельнікаў</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Групы Signal працуюць лепш за ўсё з %1$s удзельнікамі ці менш. Калі дадаць больш удзельнікаў, гэта справакуе затрымку падчас адпраўкі і атрымання паведамленняў.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d удзельнік</item>
         <item quantity="few">%1$d удзельнікі</item>
@@ -9212,7 +9212,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Апытанне · Выберыце адзін</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">Апытанне · Выберыце адзін ці больш</string>
     <!-- Caption in poll message once a poll has ended  -->

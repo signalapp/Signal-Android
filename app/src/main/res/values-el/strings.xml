@@ -3431,9 +3431,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"Ο/Η \"%1$s\" δεν είναι χρήστης του Signal. Παρακαλώ επιβεβαίωσε το όνομα χρήστη και ξαναδοκίμασε."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Δεν χρειάζεται να προσθέσεις τον εαυτό σου στην ομάδα</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Έφτασες το μέγιστο όριο μεγέθους ομάδας</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Οι ομάδες του Signal μπορούν να έχουν μέχρι %1$s μέλη.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Έφτασες το προτεινόμενο όριο μελών</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Οι ομάδες του Signal λειτουργούν καλύτερα με %1$s μέλη ή λιγότερα. Αν προσθέσεις παραπάνω μέλη, θα υπάρξουν καθυστερήσεις στην αποστολή και λήψη μηνυμάτων.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d μέλος</item>
         <item quantity="other">%1$d μέλη</item>
@@ -8840,7 +8840,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Δημοσκόπηση · Επίλεξε μία</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">Δημοσκόπηση · Επίλεξε μία η περισσότερες</string>
     <!-- Caption in poll message once a poll has ended  -->

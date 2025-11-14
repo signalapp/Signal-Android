@@ -3330,9 +3330,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" bukan pengguna Signal. Cek kembali dan coba lagi."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Anda tidak perlu menambahkan diri sendiri ke grup</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Batas maksimal grup sudah terpenuhi</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal groups can have a maximum of %1$s members.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Grup Signal memiliki batas maksimum %1$s anggota.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Jumlah rekomendasi anggota telah tercapai</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal groups perform best with %1$s members or fewer. Adding more members will cause delays sending and receiving messages.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Performa grup Signal akan lebih baik dengan jumlah %1$s anggota atau kurang. Menambah anggota lebih banyak akan menyebabkan pengiriman dan penerimaan pesan menjadi lambat.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d anggota</item>
     </plurals>
@@ -8654,7 +8654,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Polling · Pilih Satu</string>
+    <string name="Poll__select_one">Poll · Select one</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">Polling · Pilih satu atau beberapa</string>
     <!-- Caption in poll message once a poll has ended  -->
