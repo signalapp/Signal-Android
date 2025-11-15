@@ -7,6 +7,8 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
@@ -32,6 +34,7 @@ import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewMod
 import org.thoughtcrime.securesms.databinding.V2MediaAddMessageDialogFragmentBinding
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
@@ -74,6 +77,33 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
 
   private val disposables = CompositeDisposable()
 
+  // When the user presses IME action SEND or Enter, request the MediaReviewFragment to perform send.
+  val sendEditorActionListener = TextView.OnEditorActionListener { _, actionId, _ ->
+    if (actionId == EditorInfo.IME_ACTION_SEND) {
+      viewModel.sendCommand(HudCommand.PerformSend)
+      dismissAllowingStateLoss()
+      true
+    } else {
+      false
+    }
+  }
+
+  // When the user presses IME action SEND or Enter, request the MediaReviewFragment to perform send.
+  val sendKeyListener = View.OnKeyListener { _, keyCode, keyEvent ->
+    if (keyEvent.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+      // Only treat Enter as send if the user enabled that preference, or Ctrl is pressed — match ConversationFragment.
+      if (SignalStore.settings.isEnterKeySends || keyEvent.isCtrlPressed) {
+        viewModel.sendCommand(HudCommand.PerformSend)
+        dismissAllowingStateLoss()
+        true
+      } else {
+        false
+      }
+    } else {
+      false
+    }
+  }
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     val themeWrapper = ContextThemeWrapper(inflater.context, R.style.TextSecure_DarkTheme)
     val themedInflater = LayoutInflater.from(themeWrapper)
@@ -95,6 +125,9 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     binding.content.addAMessageInput.setText(requireArguments().getCharSequence(ARG_INITIAL_TEXT))
     binding.content.addAMessageInput.addTextChangedListener { viewModel.setMessage(it) }
     binding.content.addAMessageInput.filters += ByteLimitInputFilter(MessageUtil.MAX_TOTAL_BODY_SIZE_BYTES)
+
+    binding.content.addAMessageInput.setOnEditorActionListener(sendEditorActionListener)
+    binding.content.addAMessageInput.setOnKeyListener(sendKeyListener)
 
     binding.content.emojiToggle.setOnClickListener { onEmojiToggleClicked() }
     if (requireArguments().getBoolean(ARG_INITIAL_EMOJI_TOGGLE) && view is KeyboardAwareLinearLayout) {
