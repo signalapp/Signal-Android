@@ -41,7 +41,7 @@ import androidx.core.os.bundleOf
 import androidx.core.widget.TextViewCompat
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.compose.Previews
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.AvatarPreviewActivity
@@ -407,7 +407,7 @@ private fun AboutRow(
 @Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ContentPreviewDefault() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Content(
         model = AboutModel(
@@ -437,7 +437,7 @@ private fun ContentPreviewDefault() {
 @Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ContentPreviewWithUserSetDisplayName() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Content(
         model = AboutModel(
@@ -467,7 +467,7 @@ private fun ContentPreviewWithUserSetDisplayName() {
 @Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ContentPreviewForSelf() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Content(
         model = AboutModel(
@@ -497,7 +497,7 @@ private fun ContentPreviewForSelf() {
 @Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ContentPreviewInContactsNotProfileSharing() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Content(
         model = AboutModel(
@@ -527,7 +527,7 @@ private fun ContentPreviewInContactsNotProfileSharing() {
 @Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ContentPreviewGroupsInCommonNoE164() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Content(
         model = AboutModel(
@@ -557,7 +557,7 @@ private fun ContentPreviewGroupsInCommonNoE164() {
 @Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ContentPreviewNotAConnection() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Content(
         model = AboutModel(
@@ -586,7 +586,7 @@ private fun ContentPreviewNotAConnection() {
 @DayNightPreviews
 @Composable
 private fun ContentPreviewNotAConnectionNoGroups() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Content(
         model = AboutModel(
@@ -616,7 +616,7 @@ private fun ContentPreviewNotAConnectionNoGroups() {
 @Preview(name = "Dark Theme", group = "about row", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun AboutRowPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       AboutRow(
         startIcon = ImageVector.vectorResource(R.drawable.symbol_person_24),

@@ -24,7 +24,9 @@ object Previews {
     val dir = if (forceRtl) LayoutDirection.Rtl else LocalLayoutDirection.current
 
     CompositionLocalProvider(LocalLayoutDirection provides dir) {
-      SignalTheme {
+      SignalTheme(
+        incognitoKeyboardEnabled = false
+      ) {
         Surface {
           content()
         }
@@ -40,7 +42,7 @@ object Previews {
     val dir = if (forceRtl) LayoutDirection.Rtl else LocalLayoutDirection.current
 
     CompositionLocalProvider(LocalLayoutDirection provides dir) {
-      SignalTheme {
+      SignalTheme(incognitoKeyboardEnabled = false) {
         Surface {
           Box(modifier = Modifier.background(color = SignalTheme.colors.colorSurface1)) {
             content()

@@ -18,7 +18,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.theme.SignalTheme
 
 /**
  * Thin divider lines for separating content.
@@ -55,7 +54,7 @@ object Dividers {
 @DayNightPreviews
 @Composable
 private fun DefaultPreview() {
-  SignalTheme {
+  Previews.Preview {
     Dividers.Default()
   }
 }
@@ -63,7 +62,7 @@ private fun DefaultPreview() {
 @DayNightPreviews
 @Composable
 private fun VerticalPreview() {
-  SignalTheme {
+  Previews.Preview {
     Dividers.Vertical(modifier = Modifier.height(20.dp))
   }
 }

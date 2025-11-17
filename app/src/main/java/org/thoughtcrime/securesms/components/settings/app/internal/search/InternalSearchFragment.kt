@@ -30,7 +30,7 @@ import androidx.fragment.app.viewModels
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
@@ -110,7 +110,7 @@ fun ResultItem(result: InternalSearchResult, modifier: Modifier = Modifier) {
 @DayNightPreviews
 @Composable
 fun InternalSearchScreenPreview() {
-  SignalTheme {
+  Previews.Preview {
     InternalSearchFragmentScreen(
       query = "",
       results = persistentListOf(

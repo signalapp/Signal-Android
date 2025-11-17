@@ -50,8 +50,8 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.appearance.appicon.util.AppIconPreset
@@ -309,7 +309,7 @@ fun CaveatWarning(onClick: () -> Unit, modifier: Modifier = Modifier) {
 @DayNightPreviews
 @Composable
 private fun MainScreenPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       IconSelectionScreen(AppIconPreset.DEFAULT, onItemConfirmed = {}, onWarningClick = {})
     }

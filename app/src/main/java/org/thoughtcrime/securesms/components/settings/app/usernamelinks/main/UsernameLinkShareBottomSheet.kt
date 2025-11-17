@@ -31,7 +31,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
 import org.signal.core.ui.compose.BottomSheets
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.requests.CallLinkIncomingRequestSheet
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
@@ -148,7 +148,7 @@ private fun ButtonRow(icon: Painter, text: String, modifier: Modifier = Modifier
 @Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ContentPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Content(
         usernameLink = "https://signal.me#eufzLWmFFUYAOqnVJ4Zlt0KqXf87r59FC1hZ3r7WipjKvgzMBg7DBlY5DB5hQTjsw0"
@@ -161,7 +161,7 @@ private fun ContentPreview() {
 @Preview(name = "Dark Theme", group = "button row", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ButtonRowPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       ButtonRow(icon = painterResource(R.drawable.symbol_share_android_24), text = "Share")
     }

@@ -45,10 +45,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.map
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.ringrtc.GroupCall
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent

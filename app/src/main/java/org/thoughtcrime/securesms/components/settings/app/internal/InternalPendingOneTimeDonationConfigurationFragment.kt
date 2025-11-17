@@ -27,9 +27,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueCodeSelector
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueTypeSelector
@@ -80,7 +80,7 @@ class InternalPendingOneTimeDonationConfigurationFragment : ComposeFragment() {
 @Preview
 @Composable
 private fun ContentPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Content(
         state = PendingOneTimeDonation.Builder().error(DonationErrorValue()).build(),

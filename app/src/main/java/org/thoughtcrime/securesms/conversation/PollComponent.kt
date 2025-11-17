@@ -49,9 +49,9 @@ import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.RoundCheckbox
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
@@ -206,6 +206,7 @@ private fun PollOption(
               )
             }
           }
+
           VoteState.PENDING_REMOVE -> {
             CircularProgressIndicator(
               modifier = Modifier.padding(top = 4.dp, end = 8.dp).size(24.dp),
@@ -213,6 +214,7 @@ private fun PollOption(
               color = pollColors.checkbox
             )
           }
+
           VoteState.ADDED,
           VoteState.REMOVED,
           VoteState.NONE -> {

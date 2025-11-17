@@ -64,7 +64,6 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.BaseActivity
@@ -78,6 +77,7 @@ import org.thoughtcrime.securesms.components.contactsupport.ContactSupportCallba
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportDialog
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportViewModel
 import org.thoughtcrime.securesms.components.contactsupport.SendSupportEmailEffect
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreen

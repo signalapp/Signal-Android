@@ -14,7 +14,6 @@ import androidx.compose.material3.SnackbarVisuals
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import org.signal.core.ui.compose.theme.LocalSnackbarColors
-import org.signal.core.ui.compose.theme.SignalTheme
 
 /**
  * Properly themed Snackbars. Since these use internal color state, we need to
@@ -46,7 +45,7 @@ object Snackbars {
 @DayNightPreviews
 @Composable
 private fun SnackbarPreview() {
-  SignalTheme {
+  Previews.Preview {
     Snackbars.Default(snackbarData = SampleSnackbarData)
   }
 }

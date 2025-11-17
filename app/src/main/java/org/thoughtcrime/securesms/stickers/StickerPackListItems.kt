@@ -279,7 +279,7 @@ private fun StickerPackInfo(
 
 @DayNightPreviews
 @Composable
-private fun StickerPackSectionHeaderPreview() = SignalTheme {
+private fun StickerPackSectionHeaderPreview() = Previews.Preview {
   StickerPackSectionHeader(
     text = "Signal artist series"
   )
@@ -287,7 +287,7 @@ private fun StickerPackSectionHeaderPreview() = SignalTheme {
 
 @DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewBlessed() = SignalTheme {
+private fun AvailableStickerPackRowPreviewBlessed() = Previews.Preview {
   AvailableStickerPackRow(
     pack = StickerPreviewDataFactory.availablePack(
       title = "Swoon / Faces",
@@ -300,7 +300,7 @@ private fun AvailableStickerPackRowPreviewBlessed() = SignalTheme {
 
 @DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewNotBlessed() = SignalTheme {
+private fun AvailableStickerPackRowPreviewNotBlessed() = Previews.Preview {
   AvailableStickerPackRow(
     pack = StickerPreviewDataFactory.availablePack(
       title = "Day by Day",
@@ -314,7 +314,7 @@ private fun AvailableStickerPackRowPreviewNotBlessed() = SignalTheme {
 
 @DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewDownloading() = SignalTheme {
+private fun AvailableStickerPackRowPreviewDownloading() = Previews.Preview {
   AvailableStickerPackRow(
     pack = StickerPreviewDataFactory.availablePack(
       title = "Bandit the Cat",
@@ -328,7 +328,7 @@ private fun AvailableStickerPackRowPreviewDownloading() = SignalTheme {
 
 @DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewDownloaded() = SignalTheme {
+private fun AvailableStickerPackRowPreviewDownloaded() = Previews.Preview {
   AvailableStickerPackRow(
     pack = StickerPreviewDataFactory.availablePack(
       title = "Bandit the Cat",
@@ -342,7 +342,7 @@ private fun AvailableStickerPackRowPreviewDownloaded() = SignalTheme {
 
 @DayNightPreviews
 @Composable
-private fun InstalledStickerPackRowPreview() = SignalTheme {
+private fun InstalledStickerPackRowPreview() = Previews.Preview {
   InstalledStickerPackRow(
     multiSelectEnabled = false,
     menuController = DropdownMenus.MenuController(),
@@ -356,7 +356,7 @@ private fun InstalledStickerPackRowPreview() = SignalTheme {
 
 @DayNightPreviews
 @Composable
-private fun InstalledStickerPackRowSelectModePreview() = SignalTheme {
+private fun InstalledStickerPackRowSelectModePreview() = Previews.Preview {
   InstalledStickerPackRow(
     multiSelectEnabled = true,
     menuController = DropdownMenus.MenuController(),

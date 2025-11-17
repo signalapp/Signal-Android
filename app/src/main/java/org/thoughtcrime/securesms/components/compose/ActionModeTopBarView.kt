@@ -16,7 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.AbstractComposeView
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 
 /**

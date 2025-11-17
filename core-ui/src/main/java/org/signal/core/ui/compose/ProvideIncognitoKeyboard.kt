@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.compose
+package org.signal.core.ui.compose
 
 import android.os.Build
 import android.view.inputmethod.EditorInfo
@@ -16,7 +16,7 @@ import androidx.compose.ui.platform.PlatformTextInputMethodRequest
  * When [enabled]=true, this function sets the [EditorInfo.IME_FLAG_NO_PERSONALIZED_LEARNING] flag for all text fields within its content to enable the
  * incognito keyboard.
  *
- * This workaround is needed until it's possible to configure granular IME options for a [TextField].
+ * This workaround is needed until it's possible to configure granular IME options for a [androidx.compose.material3.TextField].
  * https://issuetracker.google.com/issues/359257538
  */
 @OptIn(ExperimentalComposeUiApi::class)

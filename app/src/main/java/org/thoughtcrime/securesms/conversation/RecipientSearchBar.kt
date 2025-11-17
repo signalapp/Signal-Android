@@ -22,11 +22,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
@@ -34,17 +32,15 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.IconButtons.IconButton
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.compose.ProvideIncognitoKeyboard
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 /**
  * A search input field for finding recipients.
  *
  * Replaces [org.thoughtcrime.securesms.components.ContactFilterView].
  */
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class, ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecipientSearchBar(
   hint: String = stringResource(R.string.RecipientSearchBar__search_name_or_number),
@@ -63,50 +59,46 @@ fun RecipientSearchBar(
     )
   }
 
-  ProvideIncognitoKeyboard(
-    enabled = TextSecurePreferences.isIncognitoKeyboardEnabled(LocalContext.current)
-  ) {
-    SearchBar(
-      state = state,
-      inputField = {
-        TextField(
-          value = query,
-          onValueChange = onQueryChange,
-          placeholder = { Text(hint) },
-          singleLine = true,
-          shape = SearchBarDefaults.inputFieldShape,
-          colors = TextFieldDefaults.colors(
-            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-            disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-            focusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
-          ),
-          keyboardOptions = keyboardOptions,
-          keyboardActions = KeyboardActions(
-            onSearch = { onSearch(query) }
-          ),
-          trailingIcon = {
-            val modifier = Modifier.padding(end = 4.dp)
-            if (query.isNotEmpty()) {
-              ClearQueryButton(
-                onClearQuery = { onQueryChange("") },
-                modifier = modifier
-              )
-            } else {
-              KeyboardToggleButton(
-                keyboardType = keyboardOptions.keyboardType,
-                onKeyboardTypeChange = { keyboardOptions = keyboardOptions.copy(keyboardType = it) },
-                modifier = modifier
-              )
-            }
+  SearchBar(
+    state = state,
+    inputField = {
+      TextField(
+        value = query,
+        onValueChange = onQueryChange,
+        placeholder = { Text(hint) },
+        singleLine = true,
+        shape = SearchBarDefaults.inputFieldShape,
+        colors = TextFieldDefaults.colors(
+          unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+          focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+          disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+          focusedIndicatorColor = Color.Transparent,
+          disabledIndicatorColor = Color.Transparent,
+          unfocusedIndicatorColor = Color.Transparent
+        ),
+        keyboardOptions = keyboardOptions,
+        keyboardActions = KeyboardActions(
+          onSearch = { onSearch(query) }
+        ),
+        trailingIcon = {
+          val modifier = Modifier.padding(end = 4.dp)
+          if (query.isNotEmpty()) {
+            ClearQueryButton(
+              onClearQuery = { onQueryChange("") },
+              modifier = modifier
+            )
+          } else {
+            KeyboardToggleButton(
+              keyboardType = keyboardOptions.keyboardType,
+              onKeyboardTypeChange = { keyboardOptions = keyboardOptions.copy(keyboardType = it) },
+              modifier = modifier
+            )
           }
-        )
-      },
-      modifier = modifier
-    )
-  }
+        }
+      )
+    },
+    modifier = modifier
+  )
 }
 
 @Composable
@@ -161,7 +153,7 @@ private fun ClearQueryButton(
 
 @Composable
 @DayNightPreviews
-private fun RecipientSearchBarPreview() = SignalTheme {
+private fun RecipientSearchBarPreview() = Previews.Preview {
   RecipientSearchBar(
     query = "",
     onQueryChange = {},

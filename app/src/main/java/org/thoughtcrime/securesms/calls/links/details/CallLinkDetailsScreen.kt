@@ -34,10 +34,10 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.Snackbars
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.R
@@ -344,7 +344,7 @@ private fun CallLinkDetailsScreenPreview() {
     )
   }
 
-  SignalTheme {
+  Previews.Preview {
     CallLinkDetailsScreen(
       CallLinkDetailsState(
         false,

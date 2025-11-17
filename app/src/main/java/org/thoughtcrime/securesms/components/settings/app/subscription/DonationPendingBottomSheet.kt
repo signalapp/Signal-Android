@@ -29,8 +29,8 @@ import androidx.navigation.fragment.navArgs
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Texts
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -81,7 +81,7 @@ class DonationPendingBottomSheet : ComposeBottomSheetDialogFragment() {
 @DayNightPreviews
 @Composable
 fun DonationPendingBottomSheetContentPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       DonationPendingBottomSheetContent(
         badge = Badge(

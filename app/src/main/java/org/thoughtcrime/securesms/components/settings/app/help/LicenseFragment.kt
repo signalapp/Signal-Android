@@ -23,8 +23,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -75,7 +75,7 @@ fun LicenseScreen(licenseTextLines: List<String>, modifier: Modifier = Modifier)
 @DayNightPreviews
 @Composable
 fun LicenseFragmentPreview() {
-  SignalTheme {
+  Previews.Preview {
     LicenseScreen(listOf("Lorem ipsum", "Delor"))
   }
 }

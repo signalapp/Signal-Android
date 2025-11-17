@@ -13,9 +13,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.remember
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentActivity
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationRouter
