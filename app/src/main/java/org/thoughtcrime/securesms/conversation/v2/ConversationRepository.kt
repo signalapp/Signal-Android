@@ -239,7 +239,7 @@ class ConversationRepository(
       val results = sendEndPoll(threadRecipient, message, eligibleTargets)
       val sendResults = GroupSendJobHelper.getCompletedSends(eligibleTargets, results)
 
-      if (sendResults.completed.isNotEmpty()) {
+      if (sendResults.completed.isNotEmpty() || possibleTargets.isEmpty()) {
         val allocatedThreadId = SignalDatabase.threads.getOrCreateValidThreadId(threadRecipient, messageRecord.threadId, message.distributionType)
         val outgoingMessage = applyUniversalExpireTimerIfNecessary(applicationContext, threadRecipient, message, allocatedThreadId)
         val insertResult = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, allocatedThreadId, false, null)
