@@ -2324,14 +2324,17 @@ class ConversationFragment :
 
     val additionalScrollOffset = 54.dp
     if (isVisible) {
-      bottomActionBar.visibility = View.INVISIBLE
+      ViewUtil.animateIn(bottomActionBar, bottomActionBar.enterAnimation)
       animationsAllowed = false
 
       bottomActionBar.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
         override fun onGlobalLayout() {
+          if (bottomActionBar.measuredHeight == 0) {
+            return
+          }
+
           bottomActionBar.viewTreeObserver.removeOnGlobalLayoutListener(this)
 
-          ViewUtil.animateIn(bottomActionBar, bottomActionBar.enterAnimation)
           container.hideInput()
           inputPanel.setHideForSelection(true)
 
