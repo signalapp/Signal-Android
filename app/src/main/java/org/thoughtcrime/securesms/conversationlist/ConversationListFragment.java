@@ -1193,6 +1193,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   @Override
   public boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view) {
+    if (list == null) {
+      Log.w(TAG, "List is null, ignoring long click.");
+      return true;
+    }
+
     if (mainToolbarViewModel.isInActionMode()) {
       onConversationClick(conversation);
       return true;
