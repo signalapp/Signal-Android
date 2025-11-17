@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -73,6 +74,15 @@ class SignalBottomActionBar(context: Context, attributeSet: AttributeSet?) : Lin
     if (w != oldw) {
       present(items)
     }
+  }
+
+  override fun onApplyWindowInsets(insets: WindowInsets?): WindowInsets? {
+    if (insets != null) {
+      val navigationBarInset = insets.systemWindowInsetBottom
+      val layoutParams = layoutParams as? MarginLayoutParams
+      layoutParams?.bottomMargin = navigationBarInset
+    }
+    return super.onApplyWindowInsets(insets)
   }
 
   private fun present(items: List<ActionItem>) {
