@@ -165,11 +165,13 @@ private fun PollOption(
       .padding(start = 12.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
       .clickable(
         onClick = {
-          val added = option.voteState == VoteState.PENDING_ADD || option.voteState == VoteState.ADDED
-          if (VibrateUtil.isHapticFeedbackEnabled(context)) {
-            haptics.performHapticFeedback(if (added) HapticFeedbackType.ToggleOff else HapticFeedbackType.ToggleOn)
+          if (!hasEnded) {
+            val added = option.voteState == VoteState.PENDING_ADD || option.voteState == VoteState.ADDED
+            if (VibrateUtil.isHapticFeedbackEnabled(context)) {
+              haptics.performHapticFeedback(if (added) HapticFeedbackType.ToggleOff else HapticFeedbackType.ToggleOn)
+            }
+            onToggleVote(option, !added)
           }
-          onToggleVote(option, !added)
         },
         interactionSource = remember { MutableInteractionSource() },
         indication = null,
@@ -216,7 +218,12 @@ private fun PollOption(
           VoteState.NONE -> {
             RoundCheckbox(
               checked = voteState == VoteState.ADDED,
-              onCheckedChange = {},
+              onCheckedChange = { checked ->
+                if (VibrateUtil.isHapticFeedbackEnabled(context)) {
+                  haptics.performHapticFeedback(if (checked) HapticFeedbackType.ToggleOn else HapticFeedbackType.ToggleOff)
+                }
+                onToggleVote(option, checked)
+              },
               modifier = Modifier.padding(top = 4.dp, end = 8.dp).height(24.dp),
               outlineColor = pollColors.checkbox,
               checkedColor = pollColors.checkboxBackground
