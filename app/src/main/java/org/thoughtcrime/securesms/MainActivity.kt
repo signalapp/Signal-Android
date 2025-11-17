@@ -325,9 +325,10 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       }
 
       val isActionModeActive = mainToolbarState.mode == MainToolbarMode.ACTION_MODE
+      val isSearchModeActive = mainToolbarState.mode == MainToolbarMode.SEARCH
       val isNavigationRailVisible = mainToolbarState.mode != MainToolbarMode.SEARCH
       val isNavigationBarVisible = mainToolbarState.mode == MainToolbarMode.FULL
-      val isBackHandlerEnabled = mainToolbarState.destination != MainNavigationListLocation.CHATS && !isActionModeActive
+      val isBackHandlerEnabled = mainToolbarState.destination != MainNavigationListLocation.CHATS && !isActionModeActive && !isSearchModeActive
 
       BackHandler(enabled = isBackHandlerEnabled) {
         mainNavigationViewModel.setFocusedPane(ThreePaneScaffoldRole.Secondary)
@@ -336,6 +337,10 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
       BackHandler(enabled = isActionModeActive) {
         toolbarCallback.onCloseActionModeClick()
+      }
+
+      BackHandler(enabled = isSearchModeActive) {
+        toolbarCallback.onCloseSearchClick()
       }
 
       val focusManager = LocalFocusManager.current
@@ -383,21 +388,14 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
         val (detailOnlyAnchor, detailAndListAnchor, listOnlyAnchor) = anchors
 
-        val initialAnchorIndex = remember {
-          val index = SignalStore.misc.preferredMainActivityAnchorIndex
-          if (index >= 0) index else 1
-        }
-
         val paneExpansionState = rememberPaneExpansionState(
           key = wrappedNavigator.scaffoldValue.paneExpansionStateKey,
           anchors = anchors,
-          initialAnchoredIndex = initialAnchorIndex
+          initialAnchoredIndex = 1
         )
 
         val paneAnchorIndex = rememberSaveable(paneExpansionState.currentAnchor) {
-          val index = anchors.indexOf(paneExpansionState.currentAnchor)
-          SignalStore.misc.preferredMainActivityAnchorIndex = index
-          index
+          anchors.indexOf(paneExpansionState.currentAnchor)
         }
 
         LaunchedEffect(windowSizeClass) {
