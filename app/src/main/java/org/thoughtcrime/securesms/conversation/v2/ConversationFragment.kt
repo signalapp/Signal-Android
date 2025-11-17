@@ -413,6 +413,9 @@ class ConversationFragment :
     private const val SCROLL_HEADER_ANIMATION_DURATION: Long = 100L
     private const val SCROLL_HEADER_CLOSE_DELAY: Long = SCROLL_HEADER_ANIMATION_DURATION * 4
     private const val IS_SCROLLED_TO_BOTTOM_THRESHOLD: Int = 2
+
+    private const val ATTACHMENT_KEYBOARD_FRAGMENT_CREATOR_ID = 1
+    private const val MEDIA_KEYBOARD_FRAGMENT_CREATOR_ID = 2
   }
 
   private val args: ConversationArgs by lazy {
@@ -4514,7 +4517,7 @@ class ConversationFragment :
   }
 
   private object AttachmentKeyboardFragmentCreator : InputAwareConstraintLayout.FragmentCreator {
-    override val id: Int = 1
+    override val id: Int = ATTACHMENT_KEYBOARD_FRAGMENT_CREATOR_ID
     override fun create(): Fragment = AttachmentKeyboardFragment()
   }
 
@@ -4553,7 +4556,7 @@ class ConversationFragment :
   }
 
   private object MediaKeyboardFragmentCreator : InputAwareConstraintLayout.FragmentCreator {
-    override val id: Int = 2
+    override val id: Int = MEDIA_KEYBOARD_FRAGMENT_CREATOR_ID
     override fun create(): Fragment = KeyboardPagerFragment().apply {
       arguments = bundleOf(KeyboardPagerFragment.ARG_SET_NAV_COLOR to false)
     }
@@ -4563,8 +4566,23 @@ class ConversationFragment :
     InputAwareConstraintLayout.Listener,
     InsetAwareConstraintLayout.KeyboardStateListener {
 
-    override fun onInputShown() {
-      binding.navBar.setBackgroundColor(ThemeUtil.getThemedColor(requireContext(), R.attr.mediaKeyboardBottomBarBackgroundColor))
+    override fun onInputShown(fragmentCreatorId: Int) {
+      when (fragmentCreatorId) {
+        ATTACHMENT_KEYBOARD_FRAGMENT_CREATOR_ID -> {
+          if (viewModel.recipientSnapshot?.wallpaper != null) {
+            binding.navBar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.wallpaper_compose_background))
+          } else {
+            binding.navBar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.signal_background_primary))
+          }
+        }
+        MEDIA_KEYBOARD_FRAGMENT_CREATOR_ID -> {
+          binding.navBar.setBackgroundColor(ThemeUtil.getThemedColor(requireContext(), R.attr.mediaKeyboardBottomBarBackgroundColor))
+        }
+        else -> {
+          Log.w(TAG, "Not setting navbar coloring for unknown creator id $fragmentCreatorId")
+        }
+      }
+
       viewModel.setIsMediaKeyboardShowing(true)
     }
 
