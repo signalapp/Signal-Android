@@ -277,7 +277,7 @@ private fun PollOption(
             .fillMaxHeight()
             .background(
               color = pollColors.progress,
-              shape = if (progress == 1f) RoundedCornerShape(18.dp) else RoundedCornerShape(topStart = 18.dp, bottomStart = 18.dp)
+              shape = RoundedCornerShape(18.dp)
             )
         )
       }
@@ -323,7 +323,7 @@ private sealed interface PollColorsType {
         text = MaterialTheme.colorScheme.onSurface,
         caption = MaterialTheme.colorScheme.onSurfaceVariant,
         progress = MaterialTheme.colorScheme.primary,
-        progressBackground = SignalTheme.colors.colorTransparentInverse3,
+        progressBackground = if (DynamicTheme.isDarkTheme(LocalContext.current)) SignalTheme.colors.colorTransparent2 else SignalTheme.colors.colorTransparentInverse3,
         checkbox = MaterialTheme.colorScheme.outline,
         checkboxBackground = MaterialTheme.colorScheme.primary,
         button = MaterialTheme.colorScheme.onPrimaryContainer,
