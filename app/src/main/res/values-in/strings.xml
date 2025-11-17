@@ -3332,7 +3332,7 @@
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Batas maksimal grup sudah terpenuhi</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Grup Signal memiliki batas maksimum %1$s anggota.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Jumlah rekomendasi anggota telah tercapai</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Performa grup Signal akan lebih baik dengan jumlah %1$s anggota atau kurang. Menambah anggota lebih banyak akan menyebabkan pengiriman dan penerimaan pesan menjadi lambat.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Performa grup Signal akan optimal dengan jumlah anggota %1$s atau kurang. Jika lebih dari itu, pengiriman dan penerimaan pesan bisa menjadi lambat.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d anggota</item>
     </plurals>

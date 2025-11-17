@@ -2065,7 +2065,7 @@
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$sသည် \"%2$s\" စစ်တမ်းကို အဆုံးသတ်ခဲ့သည်</string>
     <!-- Update message shown when you end the poll. %1$s is the poll question. -->
-    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
+    <string name="MessageRecord_you_ended_the_poll">သင်သည် \"%1$s\"စစ်တမ်းကို အဆုံးသတ်လိုက်သည်-</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">လက်ခံသည်</string>
@@ -3332,7 +3332,7 @@
     <string name="ContactSelectionListFragment_maximum_group_size_reached">အများဆုံးဆံ့နိုင်သော အဖွဲ့ဝင် အရေအတွက် ပြည့်ပါပြီ</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal အဖွဲ့များထဲတွင် အဖွဲ့ဝင် အများဆုံး %1$s ဦးဆံ့ပါသည်။</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">အကြံပြုထားသော အဖွဲ့ဝင် အရေအတွက် အကန့်သတ် ပြည့်ပါပြီ</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal အဖွဲ့များသည် အဖွဲ့ဝင် %1$s ဦးထက် နည်းလျှင် အကောင်းဆုံး လုပ်ဆောင်နိုင်ပါသည်။​ ဒီထက်ပို၍ အဖွဲ့ဝင်များပေါင်းမိခဲ့လျှင် မက်ဆေ့ချ်များ ပေးပို့လက်ခံရာတွင် နှောင့်နှေးစေပါသည်။</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal အဖွဲ့များသည် အဖွဲ့ဝင် %1$s ဦးနှင့် အောက်ဆိုလျှင် အကောင်းဆုံး လုပ်ဆောင်နိုင်ပါသည်။ ယင်းထက်ပို၍ အဖွဲ့ဝင်များ ထပ်ပေါင်းလျှင် မက်ဆေ့ချ်များ ပေးပို့လက်ခံရာတွင် နှောင့်နှေးစေနိုင်ပါသည်။</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$dအဖွဲ့ဝင်များ</item>
     </plurals>
@@ -7596,7 +7596,7 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Signal လုံခြုံရေးဘက်ခ်အပ်ကို ဖွင့်ပါ</string>
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title_beta">Signal လုံခြုံရေးဘက်ခ်အပ်ကို စမ်းကြည့်ပါ</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">ဖုန်းအသစ်တစ်ခုရသောအခါ သို့မဟုတ် Signal ကို ပြန်လည်ထည့်သွင်းသည့်အခါ မက်ဆေ့ချ်ဘယ်သောအခါမျှ မဆုံးရှုံးပါ။</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7875,11 +7875,11 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">သင်၏နောက်ဆုံး ဘက်ခ်အပ်ကို မပြီးမြောက်နိုင်ပါ။ Signal ၏ နောက်ဆုံးဗားရှင်းကို သင်အသုံးပြုနေကြောင်း သေချာစေပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Text displayed when a backup file exceeds the storage limit -->
-    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <string name="BackupStatusRow__backup_file_too_large">သင့်လက်ရှိ မက်ဆေ့ချ်အရေအတွက်သည် သိုလှောင်မှုကန့်သတ်ချက်ထက် ကျော်လွန်နေပါသည်။ မက်ဆေ့ချ်အချို့ကိုဖျက်ပြီး ထပ်စမ်းကြည့်ပါ။</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
-    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s မတိုင်မီ ပေးပို့ သို့မဟုတ် လက်ခံထားသော မက်ဆေ့ချ်များကို ဘက်ခ်အပ်မလုပ်ထားပါ။</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">ဒစ်ခ်တွင် နေရာလွတ်နည်းပါးနေသောကြောင့် သင့်ဘက်ခ်အပ်ကို မပြီးမြောက်နိုင်ပါ။ သင့်စက်ပေါ်တွင် နေရာလွတ်ထားပေးပြီး ထပ်စမ်းကြည့်ပါ။</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">ပိုမိုလေ့လာရန်</string>
 
@@ -8674,7 +8674,7 @@
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s သည် \"%2$s\" စစ်တမ်းကို အဆုံးသတ်ခဲ့သည်</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
-    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
+    <string name="Poll__you_poll_end">သင်သည် \"%1$s\"စစ်တမ်းကို အဆုံးသတ်လိုက်သည်-</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s သည် \"%2$s\" စစ်တမ်းတွင် မဲပေးခဲ့သည်</string>
     <!-- Option in settings to configure notifications for polls -->

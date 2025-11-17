@@ -2125,7 +2125,7 @@
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s പോൾ അവസാനിപ്പിച്ചു: \"%2$s\"</string>
     <!-- Update message shown when you end the poll. %1$s is the poll question. -->
-    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
+    <string name="MessageRecord_you_ended_the_poll">നിങ്ങൾ പോൾ അവസാനിപ്പിച്ചു: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">സ്വീകരിക്കുക</string>
@@ -3431,7 +3431,7 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ഒരു Signal ഉപയോക്താവല്ല. ഉപയോക്തൃനാമം പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">നിങ്ങൾ സ്വയം ഗ്രൂപ്പിലേക്ക് ചേർക്കേണ്ടതില്ല</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">പരമാവധി ഗ്രൂപ്പ് വലുപ്പം എത്തി</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal ഗ്രൂപ്പുകൾക്ക് പരമാവധി %1$s അംഗങ്ങൾ വരെ ആകാം</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal ഗ്രൂപ്പുകൾക്ക് പരമാവധി %1$s അംഗങ്ങൾ വരെ ആകാം.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">ശുപാർശ ചെയ്യുന്ന അംഗ പരിധി എത്തി</string>
     <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal ഗ്രൂപ്പുകൾ %1$s അംഗങ്ങളോ അതിൽ കുറവോ ഉപയോഗിച്ച് മികച്ച രീതിയിൽ പ്രവർത്തിക്കുന്നു. കൂടുതൽ അംഗങ്ങളെ ചേർക്കുന്നത് സന്ദേശങ്ങൾ അയയ്‌ക്കുന്നതിനും സ്വീകരിക്കുന്നതിനും കാലതാമസമുണ്ടാക്കും.</string>
     <plurals name="ContactSelectionListFragment_d_members">
@@ -7768,7 +7768,7 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Signal സുരക്ഷിത ബാക്കപ്പുകൾ ഓണാക്കുക</string>
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title_beta">Signal സുരക്ഷിത ബാക്കപ്പുകൾ പരീക്ഷിക്കുക</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">നിങ്ങൾക്ക് ഒരു പുതിയ ഫോൺ ലഭിക്കുമ്പോഴോ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോഴോ ഒരിക്കലും ഒരു സന്ദേശം നഷ്‌ടപ്പെടുത്തരുത്.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8050,11 +8050,11 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">നിങ്ങളുടെ അവസാന ബാക്കപ്പ് പൂർത്തിയാക്കാനായില്ല. Signal-ന്റെ ഏറ്റവും പുതിയ പതിപ്പാണ് നിങ്ങൾ ഉപയോഗിക്കുന്നതെന്ന് ഉറപ്പാക്കിയതിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Text displayed when a backup file exceeds the storage limit -->
-    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <string name="BackupStatusRow__backup_file_too_large">നിങ്ങളുടെ കൈവശമുള്ള സന്ദേശങ്ങളുടെ എണ്ണം സംഭരണ പരിധി കവിയുന്നു. ചില സന്ദേശങ്ങൾ ഇല്ലാതാക്കി വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
-    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s-ന് മുമ്പ് അയച്ചതോ സ്വീകരിച്ചതോ ആയ സന്ദേശങ്ങളുടെ ബാക്കപ്പ് എടുക്കുന്നില്ല.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">ഡിസ്കിൽ സ്‌പേസ് കുറവായതിനാൽ നിങ്ങളുടെ ബാക്കപ്പ് പൂർത്തിയാക്കാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ ഉപകരണത്തിൽ സ്‌പേസ് സൃഷ്ടിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">കൂടുതലറിയുക</string>
 
@@ -8860,7 +8860,7 @@
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s പോൾ അവസാനിപ്പിച്ചു: \"%2$s\"</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
-    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
+    <string name="Poll__you_poll_end">നിങ്ങൾ പോൾ അവസാനിപ്പിച്ചു: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s വോട്ടെടുപ്പിൽ വോട്ട് ചെയ്തു: \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->

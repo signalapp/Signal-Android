@@ -96,7 +96,7 @@
     <string name="AttachmentKeyboard_location">Lokalizacja</string>
     <!-- Text for a button that will allow users to create a poll -->
     <string name="AttachmentKeyboard_poll">Ankieta</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Aby wyświetlać Twoje zdjęcia i filmy, Signal potrzebuje odpowiedniego uprawnienia.</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Aby wyświetlać Twoje zdjęcia i filmy, Signal potrzebuje odpowiedniego uprawnienia</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Zezwól na dostęp</string>
     <string name="AttachmentKeyboard_payment">Płatność</string>
@@ -126,7 +126,7 @@
     <!-- Dialog description that will explain the steps needed to give location permission -->
     <string name="AttachmentManager_signal_to_send_location">Aby wysłać swoją lokalizację:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Zezwól aplikacji Signal na wysyłanie Twojej lokalizacji.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">Zezwól aplikacji Signal na wysyłanie lokalizacji.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
     <string name="AttachmentManager_signal_needs_location_access">Aby wysłać Twoją lokalizację, Signal potrzebuje do niej dostępu.</string>
     <!-- Dialog title asking users for gallery storage permission -->
@@ -214,7 +214,7 @@
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Zablokować i opuścić grupę %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">Zablokować tę osobę: %1$s?</string>
+    <string name="BlockUnblockDialog_block_s">Zablokować ten czat: %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nie będziesz już otrzymywać wiadomości ani powiadomień z tej grupy, a jej członkowie nie będą mogli ponownie Cię do niej dodać.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Członkowie grupy nie będą mogli ponownie Cię do niej dodać.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Członkowie grupy będą mogli ponownie Cię do niej dodać.</string>
@@ -271,7 +271,7 @@
     <!-- Unknown people row icon content description -->
     <string name="CallInfoView__more_information">Więcej informacji</string>
     <!-- Unknown people row info dialog message -->
-    <string name="CallInfoView__before_joining_a_call">Zanim dołączysz do rozmowy, wyświetlą się tylko imiona osób, które masz w kontaktach telefonu, osób, z którymi jesteś w jakiejś grupie, lub osób, z którymi zdarzyło Ci się wymienić wiadomości prywatne. Wszystkie imiona oraz zdjęcia wyświetlą się, gdy dołączysz do rozmowy.</string>
+    <string name="CallInfoView__before_joining_a_call">Zanim dołączysz do rozmowy, wyświetlą Ci się tylko imiona osób, które masz w kontaktach telefonu, osób, z którymi jesteś w jakiejś grupie, lub osób, z którymi zdarzyło Ci się wymienić wiadomości prywatne. Wszystkie imiona oraz zdjęcia wyświetlą się, gdy dołączysz do rozmowy.</string>
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">Rozumiem</string>
 
@@ -363,8 +363,8 @@
     <string name="CommunicationActions_call">Zadzwoń</string>
     <string name="CommunicationActions_insecure_call">Połączenie bez zabezpieczeń</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Mogą obowiązywać opłaty według cennika operatora sieci. Numer, na który dzwonisz, nie jest zarejestrowany w aplikacji Signal. Połączenie zostanie wykonane przez sieć komórkową, a nie przez internet.</string>
-    <string name="CommunicationActions_cant_join_call">Nie można dołączyć do połączenia</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Link do połączenia jest niekatualny.</string>
+    <string name="CommunicationActions_cant_join_call">Nie można dołączyć do rozmowy</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Link do połączenia jest nieaktualny.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_invalid_link">Nieprawidłowy link</string>
     <!-- Message on dialog when call link url cannot be parsed -->
@@ -438,7 +438,7 @@
     <string name="ConversationItem_this_message_was_deleted">Wiadomość została usunięta.</string>
     <string name="ConversationItem_you_deleted_this_message">Wiadomość została przez Ciebie usunięta.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
-    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Nie udało się pobrać wiadomości. Zapytaj, czy %1$s  może ją wysłać ponownie.</string>
+    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Nie udało się pobrać wiadomości. Zapytaj, czy %1$s może ją wysłać ponownie.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Nie udało się pobrać obrazu. Zapytaj, czy %1$s może go wysłać ponownie.</string>
     <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -470,17 +470,17 @@
     <string name="ConversationActivity_group_members">Członkowie grupy</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Wiadomość można edytować tylko w ciągu %1$d godziny od jej wysłania.</item>
-        <item quantity="few">Wiadomość można edytować tylko w ciągu %1$d godzin od jej wysłania.</item>
-        <item quantity="many">Wiadomość można edytować tylko w ciągu %1$d godzin od jej wysłania.</item>
-        <item quantity="other">Wiadomość można edytować tylko w ciągu %1$d godziny od jej wysłania.</item>
+        <item quantity="one">Wiadomość można edytować tylko w ciągu godziny od wysłania.</item>
+        <item quantity="few">Wiadomość można edytować tylko w ciągu %1$d godzin od wysłania.</item>
+        <item quantity="many">Wiadomość można edytować tylko w ciągu %1$d godzin od wysłania.</item>
+        <item quantity="other">Wiadomość można edytować tylko w ciągu %1$d godziny od wysłania.</item>
     </plurals>
     <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
     <plurals name="ConversationActivity_edit_message_too_many_edits">
-        <item quantity="one">Tę wiadomość można edytować tylko %1$d raz.</item>
-        <item quantity="few">Tę wiadomość można edytować tylko %1$d razy.</item>
-        <item quantity="many">Tę wiadomość można edytować tylko %1$d razy.</item>
-        <item quantity="other">Tę wiadomość można edytować tylko %1$d raza.</item>
+        <item quantity="one">Wiadomość można edytować tylko %1$d raz.</item>
+        <item quantity="few">Wiadomość można edytować tylko %1$d razy.</item>
+        <item quantity="many">Wiadomość można edytować tylko %1$d razy.</item>
+        <item quantity="other">Wiadomość można edytować tylko %1$d raza.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Nieprawidłowy adresat</string>
@@ -560,7 +560,7 @@
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal nie obsługuje już wiadomości SMS.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal nie obsługuje już wiadomości SMS. Ty i %1$s możecie kontynuować rozmowę tutaj, jeśli zaprosisz tę osobę do aplikacji Signal.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal nie obsługuje już wiadomości SMS. Ty i %1$s możecie dalej komunikować się tutaj, jeśli zaprosisz tę osobę do aplikacji Signal.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Ta osoba nie jest już użytkownikiem Signal. Zaproś ją z powrotem do aplikacji Signal, aby komunikować się dalej tutaj.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -623,14 +623,14 @@
     <string name="ConversationFragment_delete">Usuń</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Usuń wszędzie</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Wiadomość zostanie usunięta u wszystkich osób uczestniczących w czacie, pod warunkiem że mają najnowszą wersję aplikacji Signal. Wyświetli się u nich informacja, że wiadomość została przez Ciebie usunięta.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Wiadomość zostanie usunięta u wszystkich osób na tym czacie, pod warunkiem że mają najnowszą wersję aplikacji Signal. Wyświetli się u nich informacja, że wiadomość została przez Ciebie usunięta.</string>
     <string name="ConversationFragment_quoted_message_not_found">Nie znaleziono oryginalnej wiadomości</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Oryginalna wiadomość nie jest już dostępna</string>
     <string name="ConversationFragment_failed_to_open_message">Nie udało się otworzyć wiadomości</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Aby szybko odpowiedzieć na wiadomość, przesuń po niej palcem w prawo</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Aby szybko odpowiedzieć na wiadomość, przesuń po niej palcem w lewo</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Multimedia jednorazowe są usuwane po wysłaniu</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">Wiadomość została już przez Ciebie wyświetlona.</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">Wiadomość została już wyświetlona</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">W tym czacie możesz robić notatki dla siebie. Jeśli z Twoim kontem są połączone inne urządzenia, nowe notatki będą na nich synchronizowane.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d członków grupy nazywa się tak samo.</string>
     <string name="ConversationFragment__tap_to_review">Dotknij, aby to sprawdzić</string>
@@ -650,7 +650,7 @@
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Anuluj</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Zablokowane osoby</string>
+    <string name="ConversationFragment__blocked">Prośba zablokowana</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
     <string name="ConversationFragment__update_build">Zaktualizuj Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
@@ -660,7 +660,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Otwórz Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">Już niezweryfikowane</string>
+    <string name="ConversationFragment__no_longer_verified">Już niezweryfikowane kontakty</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
     <string name="ConversationFragment_safety_tips">Wskazówki dotyczące bezpieczeństwa</string>
     <!-- Menu option to report spam in a conversation -->
@@ -701,7 +701,7 @@
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
     <string name="SafetyTips_subtitle_individual">Zachowaj ostrożność, gdy akceptujesz prośbę o kontakt od nieznajomej osoby. Oto na co należy uważać:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Uważnie przyjrzyj się tej prośbie. W grupie nie ma żadnego Twojego kontaktu ani osób, z którymi masz już czaty. Oto na co należy uważać: </string>
+    <string name="SafetyTips_subtitle_group">Uważnie przyjrzyj się tej prośbie. W grupie nie ma żadnego Twojego kontaktu ani osób, z którymi masz już czaty. Oto na co należy uważać:</string>
     <!-- Button text to move to the previous tip-->
     <string name="SafetyTips_previous_tip">Poprzednia wskazówka</string>
     <!-- Button text to move to the next tip -->
@@ -715,17 +715,17 @@
     <!-- Message of tip 1 -->
     <string name="SafetyTips_tip1_message">Jeśli ktoś, kogo nie znasz, wysyła Ci wiadomości o kryptowalutach (takich jak Bitcoin) lub okazjach finansowych, uważaj – prawdopodobnie jest to spam.</string>
     <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Wiadomości ogólnikowe lub nie na temat</string>
+    <string name="SafetyTips_tip2_title">Wiadomości ogólnikowe lub wyrwane z kontekstu</string>
     <!-- Message of tip 2 -->
     <string name="SafetyTips_tip2_message">Spamerzy często zaczynają od prostej, angażującej wiadomości, takiej jak „cześć”. Jeśli odpiszesz, mogą Cię wciągnąć w dalszą rozmowę.</string>
     <!-- Title of tip 3 -->
     <string name="SafetyTips_tip3_title">Wiadomości z linkami</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Uważaj na wiadomości od nieznanych Ci osób zawierające linki do stron internetowych. Nigdy nie otwieraj linków przesłanych przez osoby, do których nie masz zaufania.</string>
+    <string name="SafetyTips_tip3_message">Uważaj na wiadomości od nieznajomych, które zawierają linki do stron internetowych. Nigdy nie otwieraj linków przesłanych przez osoby, do których nie masz zaufania.</string>
     <!-- Title of tip 4 -->
     <string name="SafetyTips_tip4_title">Fałszywe konta firm i instytucji</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Zachowaj ostrożność, jeśli rzekomo kontaktuje się z Tobą organizacja rządowa lub firma. Wiadomości, których nadawcami mieliby być kurierzy, instytucje podatkowe itd., mogą być spamem.</string>
+    <string name="SafetyTips_tip4_message">Zachowaj ostrożność, jeśli rzekomo kontaktuje się z Tobą urząd lub firma. Wiadomości, których nadawcami mieliby być kurierzy, instytucje podatkowe itp., mogą być spamem.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s Signal podaje osoba, do której należy dane konto.</string>
@@ -775,14 +775,14 @@
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Czat zarchiwizowany</item>
         <item quantity="few">%1$d czaty zarchiwizowane</item>
-        <item quantity="many">%1$d czatów zarchiwizowanych</item>
+        <item quantity="many">%1$d czatów zarchiwizowane</item>
         <item quantity="other">%1$d czatu zarchiwizowane</item>
     </plurals>
     <string name="ConversationListFragment_undo">Cofnij</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
         <item quantity="one">Czat przeniesiony do skrzynki odbiorczej</item>
         <item quantity="few">%1$d czaty przeniesione do skrzynki odbiorczej</item>
-        <item quantity="many">%1$d czatów przeniesionych do skrzynki odbiorczej</item>
+        <item quantity="many">%1$d czatów przeniesione do skrzynki odbiorczej</item>
         <item quantity="other">%1$d czatu przeniesione do skrzynki odbiorczej</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
@@ -803,7 +803,7 @@
     <string name="ConversationListFragment_unmute">Wyłącz wyciszenie</string>
     <string name="ConversationListFragment_select">Zaznacz</string>
     <string name="ConversationListFragment_archive">Zarchiwizuj</string>
-    <string name="ConversationListFragment_unarchive">Przywróć z archiwum</string>
+    <string name="ConversationListFragment_unarchive">Przywróć</string>
     <string name="ConversationListFragment_delete">Usuń</string>
     <string name="ConversationListFragment_select_all">Zaznacz wszystkie</string>
     <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
@@ -5247,7 +5247,7 @@
     <!-- Title for exit device transfer confirmation dialog -->
     <string name="OldDeviceTransferInstructions__confirm_exit_title">Anulować zmianę urządzenia?</string>
     <!-- Message for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__confirm_exit_message">Żadne dane nie zostały jeszcze przeniesione na nowe urządzenie.</string>
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">Na nowe urządzenie nie zostały jeszcze przeniesione żadne dane.</string>
     <!-- Confirm button for exit device transfer confirmation dialog -->
     <string name="OldDeviceTransferInstructions__stop_transfer">Przerwij przenoszenie</string>
     <!-- Negative/cancel button for exit device transfer confirmation dialog -->
@@ -8131,7 +8131,7 @@
     <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">Nie teraz</string>
     <!-- Snackbar text shown when the recovery key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Kod odzyskiwania jest poprawny. Przechowuj kod w bezpiecznym miejscu.</string>
+    <string name="VerifyBackupKey__backup_key_correct">Kod odzyskiwania jest poprawny. Przechowuj go w bezpiecznym miejscu.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Przypomnimy Ci kolejny raz za tydzień.</string>
 
@@ -8437,29 +8437,29 @@
 
     <!-- GooglePlayServicesAvailability -->
     <!-- Dialog title when Google Play services are missing from the device -->
-    <string name="GooglePlayServicesAvailability__service_missing_title">Brak usług Google Play</string>
+    <string name="GooglePlayServicesAvailability__service_missing_title">Nie masz zainstalowanych Usług Google Play</string>
     <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
-    <string name="GooglePlayServicesAvailability__service_missing_message">Aby subskrybować bezpieczne kopie zapasowe Signal, musisz zainstalować na swoim telefonie usługi Google Play.</string>
+    <string name="GooglePlayServicesAvailability__service_missing_message">Aby subskrybować bezpieczne kopie zapasowe Signal, musisz zainstalować na swoim telefonie Usługi Google Play.</string>
     <!-- Dialog button text to install Google Play services -->
-    <string name="GooglePlayServicesAvailability__install_play_services">Zainstaluj usługi Play</string>
+    <string name="GooglePlayServicesAvailability__install_play_services">Zainstaluj Usługi Google Play</string>
     <!-- Dialog title when Google Play services are currently updating -->
     <string name="GooglePlayServicesAvailability__service_updating_title">Usługi Google Play są aktualizowane</string>
     <!-- Dialog message asking user to wait while Google Play services finish updating -->
-    <string name="GooglePlayServicesAvailability__service_updating_message">Aby zasubskrybować bezpieczne kopie zapasowe Signal, poczekaj, aż usługi Google Play się zaktualizują.</string>
+    <string name="GooglePlayServicesAvailability__service_updating_message">Zanim zasubskrybujesz bezpieczne kopie zapasowe Signal, poczekaj, aż Usługi Google Play się zaktualizują.</string>
     <!-- Dialog title when Google Play services need to be updated -->
-    <string name="GooglePlayServicesAvailability__service_update_required_title">Zaktualizuj usługi Google Play</string>
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Zaktualizuj Usługi Google Play</string>
     <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
-    <string name="GooglePlayServicesAvailability__service_update_required_message">Aby subskrybować bezpieczne kopie zapasowe Signal, zaktualizuj usługi Google Play na swoim telefonie.</string>
+    <string name="GooglePlayServicesAvailability__service_update_required_message">Aby zasubskrybować bezpieczne kopie zapasowe Signal, zaktualizuj Usługi Google Play na swoim telefonie.</string>
     <!-- Dialog button text to update Google Play services -->
     <string name="GooglePlayServicesAvailability__update">Zaktualizuj</string>
     <!-- Dialog title when Google Play services are disabled -->
     <string name="GooglePlayServicesAvailability__service_disabled_title">Płatne subskrypcje wymagają Google Play</string>
     <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
-    <string name="GooglePlayServicesAvailability__service_disabled_message">Aby subskrybować bezpieczne kopie zapasowe Signal, włącz usługi Google Play na swoim telefonie i zaloguj się do sklepu Google Play. </string>
+    <string name="GooglePlayServicesAvailability__service_disabled_message">Aby zasubskrybować bezpieczne kopie zapasowe Signal, włącz na swoim telefonie Usługi Google Play i zaloguj się do sklepu Google Play. </string>
     <!-- Dialog button text to learn more about enabling Google Play services -->
     <string name="GooglePlayServicesAvailability__learn_more">Dowiedz się więcej</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
-    <string name="GooglePlayServicesAvailability__service_invalid_message">Nie możesz subskrybować bezpiecznych kopii zapasowych Signal, ponieważ Twój telefon nie obsługuje usług Google Play. Aby otrzymać pomoc, skontaktuj się z producentem telefonu.</string>
+    <string name="GooglePlayServicesAvailability__service_invalid_message">Nie możesz subskrybować bezpiecznych kopii zapasowych Signal, ponieważ Twój telefon nie obsługuje Usług Google Play. Aby otrzymać pomoc, skontaktuj się z producentem telefonu.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -8508,7 +8508,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Te multimedia nie są już dostępne.</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Aby utworzyć kopię zapasową wszystkich multimediów, włącz usługę bezpiecznych kopii zapasowych Signal i wybierz tryb płatny.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Aby tworzyć kopie zapasowe wszystkich multimediów, włącz usługę bezpiecznych kopii zapasowych Signal i wybierz tryb płatny.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Kontynuuj</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8597,7 +8597,7 @@
         <item quantity="one">Kopia zapasowa zawiera wszystkie wiadomości tekstowe, a także multimedia z ostatniego dnia. Rozmiar kopii będzie się zmieniać w miarę zapisywania w niej nowych multimediów i wygasania tych starszych.</item>
         <item quantity="few">Kopia zapasowa zawiera wszystkie wiadomości tekstowe, a także multimedia z ostatnich %1$d dni. Rozmiar kopii będzie się zmieniać w miarę zapisywania w niej nowych multimediów i wygasania tych starszych.</item>
         <item quantity="many">Kopia zapasowa zawiera wszystkie wiadomości tekstowe, a także multimedia z ostatnich %1$d dni. Rozmiar kopii będzie się zmieniać w miarę zapisywania w niej nowych multimediów i wygasania tych starszych.</item>
-        <item quantity="other">Kopia zapasowa zawiera wszystkie wiadomości tekstowe, a także multimedia z ostatnich %1$d dnia. Rozmiar kopii będzie się zmieniać w miarę zapisywania w niej nowych multimediów i wygasania tych starszych.</item>
+        <item quantity="other">Kopia zapasowa zawiera wszystkie wiadomości tekstowe, a także multimedia z ostatnich %1$d dni. Rozmiar kopii będzie się zmieniać w miarę zapisywania w niej nowych multimediów i wygasania tych starszych.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Kopia zapasowa usunięta i wyłączona.</string>
@@ -8939,9 +8939,9 @@
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Anuluj subskrypcję</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Za darmo</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">Tryb bezpłatny</string>
     <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
-    <string name="MessageBackupsTypeSelectionScreen__paid">Usługa płatna</string>
+    <string name="MessageBackupsTypeSelectionScreen__paid">Tryb płatny</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s miesięcznie</string>
     <!-- Title for free tier -->
@@ -8973,7 +8973,7 @@
     <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
     <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Nie można rozpocząć subskrypcji</string>
     <!-- Dialog body text explaining Google Services requirement for backup subscription -->
-    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Aby subskrybować bezpieczne kopie zapasowe Signal, musisz włączyć usługi Google Play na swoim telefonie i zalogować się do sklepu Google Play.</string>
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Aby subskrybować bezpieczne kopie zapasowe Signal, musisz włączyć na swoim telefonie Usługi Google Play i zalogować się do sklepu Google Play.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -9039,7 +9039,7 @@
     <!-- Recovery key text field hint -->
     <string name="EnterBackupKey_backup_key">Kod odzyskiwania</string>
     <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Bez kodu odzyskiwania składającego się z 64 znaków nie odzyskasz kopii zapasowej. Jeśli nie masz swojego kodu, nie będziemy w stanie przywrócić kopii zapasowej Twojego konta Signal.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Bez kodu odzyskiwania składającego się z 64 znaków nie odzyskasz kopii zapasowej. Jeśli nie masz swojego kodu, nie możemy przywrócić kopii zapasowej Twojego konta Signal.</string>
     <!-- Recovery key not known bottom sheet info paragraph 2 -->
     <string name="EnterBackupKey_no_key_paragraph_2">Jeśli masz dostęp do swojego starego urządzenia, kod odzyskiwania znajdziesz w sekcji Ustawienia &gt; Kopie zapasowe. Następnie wybierz opcję „Wyświetl kod odzyskiwania”.</string>
     <!-- Recovery key not known bottom sheet button to learn more about it -->

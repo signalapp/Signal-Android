@@ -2125,7 +2125,7 @@
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s نے پول ختم کر دیا: \"%2$s\"</string>
     <!-- Update message shown when you end the poll. %1$s is the poll question. -->
-    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
+    <string name="MessageRecord_you_ended_the_poll">آپ نے رائے شماری ختم کر دی: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">قبول کریں</string>
@@ -7768,7 +7768,7 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Signal کے محفوظ بیک اپس کو فعال کریں</string>
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title_beta">Signal محفوظ بیک اپس کو آزمائیں</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">اپنا نیا فون لینے یا Signal کو دوبارہ انسٹال کرنے پر اپنے کسی بھی میسج سے کبھی محروم نہ ہوں۔</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8050,11 +8050,11 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">آپ کا آخری بیک اپ مکمل نہیں ہو سکا۔ یقینی بنائیں کہ آپ Signal کا جدید ورژن استعمال کر رہے ہیں اور دوبارہ کوشش کریں۔</string>
     <!-- Text displayed when a backup file exceeds the storage limit -->
-    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <string name="BackupStatusRow__backup_file_too_large">آپ کے پاس موجود میسجز کی تعداد اسٹوریج کی حد سے زیادہ ہے۔ کچھ میسجز حذف کریں اور دوبارہ کوشش کریں۔</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
-    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s سے پہلے بھیجے گئے یا موصول کیے گئے میسجز کو بیک اپ نہیں کیا جا رہا۔</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">آپ کا بیک اپ مکمل نہیں ہو سکا کیونکہ آپ کی ڈسک میں جگہ کم ہے۔ اپنی ڈیوائس میں جگہ خالی کریں اور دوبارہ کوشش کریں۔</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">مزید جانیں</string>
 
@@ -8860,7 +8860,7 @@
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s نے پول ختم کر دیا: \"%2$s\"</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
-    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
+    <string name="Poll__you_poll_end">آپ نے رائے شماری ختم کر دی: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s نے پول میں ووٹ دیا: \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->

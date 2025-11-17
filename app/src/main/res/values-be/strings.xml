@@ -105,7 +105,7 @@
     <!-- Option in menu to select more photos that Signal will have access to -->
     <string name="AttachmentKeyboard_select_more_photos">Выбраць больш фота</string>
     <!-- Option in menu to go to settings -->
-    <string name="AttachmentKeyboard_go_to_settings">Перайсці ў «Налады»</string>
+    <string name="AttachmentKeyboard_go_to_settings">Перайсці ў налады</string>
     <!-- Text explaining that Signal has limited access to photos -->
     <string name="AttachmentKeyboard_signal_has_limited_access">Signal мае абмежаваны доступ да фота ці відэа</string>
     <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
@@ -855,7 +855,7 @@
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
     <string name="RelinkDevicesReminderFragment__relink_your_devices">Звяжыце свае прылады нанова</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Дададзеныя вамі прылады былі адвязаны, калі ваша прылада была знята з рэгістрацыі. Перайдзіце ў «Налады», каб нанова звязаць тую ці іншую прыладу.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Дададзеныя вамі прылады былі адвязаны, калі ваша прылада была знята з рэгістрацыі. Перайдзіце ў налады, каб нанова звязаць тую ці іншую прыладу.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Адкрыць налады</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -2245,7 +2245,7 @@
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s завяршыў(-ла) апытанне: «%2$s»</string>
     <!-- Update message shown when you end the poll. %1$s is the poll question. -->
-    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
+    <string name="MessageRecord_you_ended_the_poll">Вы завяршылі апытанне: «%1$s»</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Прыняць</string>
@@ -8112,7 +8112,7 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Уключыць функцыю «Бяспечнае рэзервовае капіраванне Signal»</string>
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title_beta">Паспрабуйце бяспечнае рэзервовае капіраванне Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Не губляйце аніводнага паведамлення, калі вы набываеце новы тэлефон або нанова ўсталёўваеце Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8400,11 +8400,11 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Не атрымалася выканаць апошняе рэзервовае капіраванне. Пераканайцеся, што вы маеце апошнюю версію Signal, і паўтарыце спробу.</string>
     <!-- Text displayed when a backup file exceeds the storage limit -->
-    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <string name="BackupStatusRow__backup_file_too_large">Колькасць паведамленняў, што вы маеце, перавышае ліміт сховішча. Выдаліце некалькі паведамленняў і паўтарыце спробу.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
-    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <string name="BackupStatusRow__not_backing_up_old_messages">Для паведамленняў, адпраўленых або атрыманых да %1$s, рэзервовыя копіі не ствараюцца.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Немагчыма стварыць рэзервовую копію, бо не хапае месца ў сховішчы. Вызваліце месца на прыладзе і паўтарыце спробу.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Даведацца больш</string>
 
@@ -9232,7 +9232,7 @@
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s завяршыў(-ла) апытанне: «%2$s»</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
-    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
+    <string name="Poll__you_poll_end">Вы завяршылі апытанне: «%1$s»</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s аддаў(-ла) голас у апытанні: «%2$s»</string>
     <!-- Option in settings to configure notifications for polls -->
