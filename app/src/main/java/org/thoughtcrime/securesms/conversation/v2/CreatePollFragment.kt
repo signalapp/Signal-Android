@@ -288,7 +288,7 @@ private fun CreatePollScreen(
       ),
       onClick = {
         if (isEnabled) {
-          onSend(question, allowMultiple, options.filter { it.isNotBlank() })
+          onSend(question.trim(), allowMultiple, options.filter { it.isNotBlank() }.map { it.trim() })
         } else {
           onShowErrorSnackbar(question.isNotBlank(), hasMinimumOptions)
         }
