@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 class SignalBottomActionBar(context: Context, attributeSet: AttributeSet?) : LinearLayout(context, attributeSet) {
 
   val items: MutableList<ActionItem> = mutableListOf()
+  private var defaultBottomMargin: Int = 0
 
   val enterAnimation: Animation by lazy {
     AnimationUtils.loadAnimation(context, R.anim.slide_fade_from_bottom).apply {
@@ -62,6 +63,12 @@ class SignalBottomActionBar(context: Context, attributeSet: AttributeSet?) : Lin
     elevation = 20f
   }
 
+  override fun onAttachedToWindow() {
+    super.onAttachedToWindow()
+
+    defaultBottomMargin = (layoutParams as? MarginLayoutParams)?.bottomMargin ?: 0
+  }
+
   fun setItems(items: List<ActionItem>) {
     this.items.clear()
     this.items.addAll(items)
@@ -80,7 +87,7 @@ class SignalBottomActionBar(context: Context, attributeSet: AttributeSet?) : Lin
     if (insets != null) {
       val navigationBarInset = insets.systemWindowInsetBottom
       val layoutParams = layoutParams as? MarginLayoutParams
-      layoutParams?.bottomMargin = navigationBarInset
+      layoutParams?.bottomMargin = defaultBottomMargin + navigationBarInset
     }
     return super.onApplyWindowInsets(insets)
   }
