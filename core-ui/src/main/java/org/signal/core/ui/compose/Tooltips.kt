@@ -42,6 +42,7 @@ object Tooltips {
     TooltipBox(
       positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Below),
       state = tooltipState,
+      enableUserInput = false,
       tooltip = {
         PlainTooltip(
           shape = TooltipDefaults.plainTooltipContainerShape,
