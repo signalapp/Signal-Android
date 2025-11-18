@@ -275,7 +275,6 @@ private interface UiCallbacks :
   fun onRemoveConfirmed(recipient: Recipient)
   fun onBlockConfirmed(recipient: Recipient)
   fun onUserMessageDismissed(userMessage: UserMessage)
-  override fun onPendingRecipientSelectionsConsumed() = Unit
   fun onBackPressed()
 
   object Empty : UiCallbacks {
@@ -285,7 +284,6 @@ private interface UiCallbacks :
     override fun onFindByPhoneNumber() = Unit
     override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = true
     override fun onRecipientSelected(selection: RecipientSelection) = Unit
-    override fun onPendingRecipientSelectionsConsumed() = Unit
     override fun onMessage(id: RecipientId) = Unit
     override fun onVoiceCall(recipient: Recipient) = Unit
     override fun onVideoCall(recipient: Recipient) = Unit

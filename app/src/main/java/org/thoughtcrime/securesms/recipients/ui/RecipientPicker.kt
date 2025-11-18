@@ -70,6 +70,7 @@ fun RecipientPicker(
   selectionLimits: SelectionLimits? = ContactSelectionArguments.Defaults.SELECTION_LIMITS,
   isRefreshing: Boolean,
   focusAndShowKeyboard: Boolean = LocalConfiguration.current.screenHeightDp.dp > 600.dp,
+  preselectedRecipients: Set<RecipientId> = emptySet(),
   pendingRecipientSelections: Set<RecipientId> = emptySet(),
   shouldResetContactsList: Boolean = false,
   listBottomPadding: Dp? = null,
@@ -109,6 +110,7 @@ fun RecipientPicker(
       selectionLimits = selectionLimits,
       searchQuery = searchQuery,
       isRefreshing = isRefreshing,
+      preselectedRecipients = preselectedRecipients,
       pendingRecipientSelections = pendingRecipientSelections,
       shouldResetContactsList = shouldResetContactsList,
       bottomPadding = listBottomPadding,
@@ -127,6 +129,7 @@ private fun RecipientSearchResultsList(
   displayModes: Set<RecipientPicker.DisplayMode>,
   searchQuery: String,
   isRefreshing: Boolean,
+  preselectedRecipients: Set<RecipientId>,
   pendingRecipientSelections: Set<RecipientId>,
   shouldResetContactsList: Boolean,
   selectionLimits: SelectionLimits? = ContactSelectionArguments.Defaults.SELECTION_LIMITS,
@@ -142,6 +145,7 @@ private fun RecipientSearchResultsList(
     enableFindByUsername = callbacks.findByUsername != null,
     enableFindByPhoneNumber = callbacks.findByPhoneNumber != null,
     showCallButtons = callbacks.newCall != null,
+    currentSelection = preselectedRecipients,
     selectionLimits = selectionLimits,
     recyclerPadBottom = with(LocalDensity.current) { bottomPadding?.toPx()?.toInt() ?: ContactSelectionArguments.Defaults.RECYCLER_PADDING_BOTTOM },
     recyclerChildClipping = clipListToPadding
@@ -396,7 +400,7 @@ class RecipientPickerCallbacks(
     suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean
     fun onRecipientSelected(selection: RecipientSelection)
     fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) = Unit
-    fun onPendingRecipientSelectionsConsumed()
+    fun onPendingRecipientSelectionsConsumed() = Unit
     fun onContactsListReset() = Unit
 
     object Empty : ListActions {

@@ -116,7 +116,6 @@ private interface UiCallbacks :
   RecipientPickerCallbacks.NewCall {
 
   override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = true
-  override fun onPendingRecipientSelectionsConsumed() = Unit
   fun onUserMessageDismissed(userMessage: UserMessage)
   fun onBackPressed()
 

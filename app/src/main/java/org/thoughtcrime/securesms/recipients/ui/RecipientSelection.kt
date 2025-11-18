@@ -9,7 +9,15 @@ import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 sealed interface RecipientSelection {
-  data class WithId(val id: RecipientId) : RecipientSelection
-  data class WithPhone(val phone: PhoneNumber) : RecipientSelection
-  data class WithIdAndPhone(val id: RecipientId, val phone: PhoneNumber) : RecipientSelection
+  sealed interface HasId : RecipientSelection {
+    val id: RecipientId
+  }
+
+  sealed interface HasPhone : RecipientSelection {
+    val phone: PhoneNumber
+  }
+
+  data class WithId(override val id: RecipientId) : HasId
+  data class WithPhone(override val phone: PhoneNumber) : HasPhone
+  data class WithIdAndPhone(override val id: RecipientId, override val phone: PhoneNumber) : HasId, HasPhone
 }

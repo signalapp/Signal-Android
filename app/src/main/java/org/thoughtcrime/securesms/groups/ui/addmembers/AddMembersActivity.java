@@ -39,7 +39,6 @@ import java.util.function.Consumer;
 public class AddMembersActivity extends PushContactSelectionActivity implements ContactSelectionListFragment.FindByCallback {
 
   public static final String GROUP_ID           = "group_id";
-  public static final String ANNOUNCEMENT_GROUP = "announcement_group";
 
   private View                               done;
   private AddMembersViewModel                viewModel;
@@ -50,12 +49,9 @@ public class AddMembersActivity extends PushContactSelectionActivity implements 
                                              int displayModeFlags,
                                              int selectionWarning,
                                              int selectionLimit,
-                                             boolean isAnnouncementGroup,
                                              @NonNull List<RecipientId> membersWithoutSelf)  {
     Intent intent = new Intent(context, AddMembersActivity.class);
-
     intent.putExtra(GROUP_ID, groupId.toString());
-    intent.putExtra(ANNOUNCEMENT_GROUP, isAnnouncementGroup);
     intent.putExtra(ContactSelectionArguments.DISPLAY_MODE, displayModeFlags);
     intent.putExtra(ContactSelectionArguments.SELECTION_LIMITS, new SelectionLimits(selectionWarning, selectionLimit));
     intent.putParcelableArrayListExtra(ContactSelectionArguments.CURRENT_SELECTION, new ArrayList<>(membersWithoutSelf));
@@ -182,10 +178,6 @@ public class AddMembersActivity extends PushContactSelectionActivity implements 
 
   private GroupId getGroupId() {
     return GroupId.parseOrThrow(getIntent().getStringExtra(GROUP_ID));
-  }
-
-  private boolean isAnnouncementGroup() {
-    return getIntent().getBooleanExtra(ANNOUNCEMENT_GROUP, false);
   }
 
   private void displayAlertMessage(@NonNull AddMembersViewModel.AddMemberDialogMessageState state) {

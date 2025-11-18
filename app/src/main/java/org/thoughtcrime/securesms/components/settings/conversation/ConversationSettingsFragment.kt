@@ -955,9 +955,8 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         requireContext(),
         addMembersToGroup.groupId,
         ContactSelectionDisplayMode.FLAG_PUSH,
-        addMembersToGroup.selectionWarning,
-        addMembersToGroup.selectionLimit,
-        addMembersToGroup.isAnnouncementGroup,
+        addMembersToGroup.selectionLimits.recommendedLimit,
+        addMembersToGroup.selectionLimits.hardLimit,
         addMembersToGroup.groupMembersWithoutSelf
       ),
       REQUEST_CODE_ADD_MEMBERS_TO_GROUP

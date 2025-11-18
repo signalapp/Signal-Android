@@ -37,8 +37,8 @@ class CreateGroupViewModel : ViewModel() {
   }
 
   suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = when (selection) {
-    is RecipientSelection.WithId, is RecipientSelection.WithIdAndPhone -> true
-    is RecipientSelection.WithPhone -> recipientExists(selection.phone)
+    is RecipientSelection.HasId -> true
+    is RecipientSelection.HasPhone -> recipientExists(selection.phone)
   }
 
   private suspend fun recipientExists(phone: PhoneNumber): Boolean {
