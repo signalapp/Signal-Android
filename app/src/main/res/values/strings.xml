@@ -1397,17 +1397,11 @@
     <string name="AddMembersActivity__done">Done</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">This person can\'t be added to legacy groups.</string>
 
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
-    <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
-    </plurals>
-
     <!-- Confirmation text when adding one member to a group. %1$s is the member's name, %2$s is the group name. -->
-    <string name="AddMembersActivityV2__add_member_to_s">Add \"%1$s\" to \"%2$s\"?</string>
+    <string name="AddMembersActivity__add_member_to_s">Add \"%1$s\" to \"%2$s\"?</string>
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
-    <plurals name="AddMembersActivityV2__add_d_members_to_s">
+    <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Add %1$d member to \"%2$s\"?</item>
         <item quantity="other">Add %1$d members to \"%2$s\"?</item>
     </plurals>
@@ -5219,11 +5213,6 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Skip</string>
-
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d member</item>
-        <item quantity="other">%1$d members</item>
-    </plurals>
 
     <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
     <plurals name="CreateGroupActivity__s_members">

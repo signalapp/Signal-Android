@@ -64,7 +64,7 @@ import java.text.NumberFormat
 /**
  * Allows members to be added to an existing Signal group by selecting from a list of recipients.
  */
-class AddMembersActivityV2 : PassphraseRequiredActivity() {
+class AddMembersActivity : PassphraseRequiredActivity() {
   companion object {
     private const val EXTRA_GROUP_ID = "group_id"
     private const val EXTRA_SELECTION_LIMITS = "selection_limits"
@@ -74,7 +74,7 @@ class AddMembersActivityV2 : PassphraseRequiredActivity() {
       context: Context,
       event: ConversationSettingsEvent.AddMembersToGroup
     ): Intent {
-      return Intent(context, AddMembersActivityV2::class.java).apply {
+      return Intent(context, AddMembersActivity::class.java).apply {
         putExtra(EXTRA_GROUP_ID, event.groupId)
         putExtra(EXTRA_SELECTION_LIMITS, event.selectionLimits)
         putParcelableArrayListExtra(EXTRA_PRESELECTED_RECIPIENTS, ArrayList(event.groupMembersWithoutSelf))
@@ -90,7 +90,7 @@ class AddMembersActivityV2 : PassphraseRequiredActivity() {
       SignalTheme {
         AddMembersScreen(
           viewModel = viewModel {
-            AddMembersViewModelV2(
+            AddMembersViewModel(
               groupId = intent.getParcelableExtraCompat(EXTRA_GROUP_ID, GroupId::class.java)!!,
               existingMembersMinusSelf = intent.getParcelableArrayListExtraCompat(EXTRA_PRESELECTED_RECIPIENTS, RecipientId::class.java)!!.toSet(),
               selectionLimits = intent.getParcelableExtraCompat(EXTRA_SELECTION_LIMITS, SelectionLimits::class.java)!!
@@ -109,7 +109,7 @@ class AddMembersActivityV2 : PassphraseRequiredActivity() {
 
 @Composable
 private fun AddMembersScreen(
-  viewModel: AddMembersViewModelV2,
+  viewModel: AddMembersViewModel,
   activityIntent: Intent,
   closeScreen: (result: ActivityResult) -> Unit
 ) {
@@ -294,7 +294,7 @@ private fun GroupAddConfirmationDialog(
   val bodyText: String = when (message) {
     is UserMessage.ConfirmAddMember -> {
       stringResource(
-        id = R.string.AddMembersActivityV2__add_member_to_s,
+        id = R.string.AddMembersActivity__add_member_to_s,
         message.recipient.getDisplayName(context),
         message.group.getDisplayTitle(context)
       )
@@ -302,7 +302,7 @@ private fun GroupAddConfirmationDialog(
 
     is UserMessage.ConfirmAddMembers -> {
       pluralStringResource(
-        id = R.plurals.AddMembersActivityV2__add_d_members_to_s,
+        id = R.plurals.AddMembersActivity__add_d_members_to_s,
         message.recipientIds.size,
         message.recipientIds.size,
         message.group.getDisplayTitle(context)

@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.recipients.RecipientRepository
 import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 import kotlin.collections.plus
 
-class AddMembersViewModelV2(
+class AddMembersViewModel(
   private val groupId: GroupId,
   existingMembersMinusSelf: Set<RecipientId>,
   selectionLimits: SelectionLimits
