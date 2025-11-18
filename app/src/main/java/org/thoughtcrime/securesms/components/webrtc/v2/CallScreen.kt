@@ -18,14 +18,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.BottomSheetScaffold
@@ -48,7 +45,6 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -61,10 +57,12 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.components.webrtc.controls.RaiseHandSnackbar
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.events.CallParticipant
+import org.thoughtcrime.securesms.events.CallParticipantId
 import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.CameraState
 import kotlin.math.max
 import kotlin.math.round
@@ -73,7 +71,6 @@ import kotlin.time.Duration.Companion.seconds
 private const val DRAG_HANDLE_HEIGHT = 22
 private const val SHEET_TOP_PADDING = 9
 private const val SHEET_BOTTOM_PADDING = 16
-private val OVERFLOW_ITEM_SIZE = 90.dp
 
 /**
  * In-App calling screen displaying controls, info, and participant camera feeds.
@@ -400,17 +397,12 @@ private fun Viewport(
           if (isPortrait && isLargeGroupCall) {
             Row {
               CallParticipantsOverflow(
+                lineType = LayoutStrategyLineType.ROW,
                 overflowParticipants = overflowParticipants,
                 modifier = Modifier
-                  .padding(top = 16.dp, start = 16.dp, bottom = 16.dp)
-                  .height(OVERFLOW_ITEM_SIZE)
+                  .padding(vertical = 16.dp)
+                  .height(CallScreenMetrics.SmallRendererSize)
                   .weight(1f)
-              )
-
-              Spacer(
-                modifier = Modifier
-                  .padding(top = 16.dp, bottom = 16.dp, end = 16.dp)
-                  .size(OVERFLOW_ITEM_SIZE)
               )
             }
           }
@@ -419,14 +411,12 @@ private fun Viewport(
         if (!isPortrait && isLargeGroupCall) {
           Column {
             CallParticipantsOverflow(
+              lineType = LayoutStrategyLineType.COLUMN,
               overflowParticipants = overflowParticipants,
               modifier = Modifier
-                .width(OVERFLOW_ITEM_SIZE + 32.dp)
+                .padding(horizontal = 16.dp)
+                .width(CallScreenMetrics.SmallRendererSize)
                 .weight(1f)
-            )
-
-            Spacer(
-              modifier = Modifier.size(OVERFLOW_ITEM_SIZE)
             )
           }
         }
@@ -500,6 +490,7 @@ private fun CallScreenPreview() {
   val participants = remember {
     (1..10).map {
       CallParticipant(
+        callParticipantId = CallParticipantId(0, RecipientId.from(it.toLong())),
         recipient = Recipient(
           isResolving = false,
           chatColorsValue = ChatColorsPalette.UNKNOWN_CONTACT
@@ -572,9 +563,3 @@ private fun CallScreenPreview() {
     )
   }
 }
-
-data class SelfPictureInPictureDimensions(
-  val small: DpSize,
-  val expanded: DpSize,
-  val paddingValues: PaddingValues
-)

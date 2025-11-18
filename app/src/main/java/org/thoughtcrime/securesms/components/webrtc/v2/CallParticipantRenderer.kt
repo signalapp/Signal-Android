@@ -10,9 +10,11 @@ import android.widget.FrameLayout
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.viewinterop.AndroidView
 import org.thoughtcrime.securesms.R
@@ -35,12 +37,21 @@ fun CallParticipantRenderer(
   onToggleCameraDirection: () -> Unit = {}
 ) {
   if (LocalInspectionMode.current) {
-    Box(modifier.background(color = Color.Red))
+    Box(
+      contentAlignment = Alignment.Center,
+      modifier = modifier.background(color = MaterialTheme.colorScheme.secondaryContainer)
+    ) {
+      Text(
+        text = "${callParticipant.callParticipantId.recipientId.toLong()}",
+        style = MaterialTheme.typography.titleLarge
+      )
+    }
   } else {
     AndroidView(
       factory = { LayoutInflater.from(it).inflate(R.layout.call_participant_item, FrameLayout(it), false) as CallParticipantView },
-      modifier = modifier.fillMaxSize().background(color = Color.Red),
-      onRelease = { it.releaseRenderer() }
+      modifier = modifier.fillMaxSize(),
+      onRelease = { it.releaseRenderer() },
+      onReset = {} // Allows reuse in lazy lists
     ) { view ->
       view.setCallParticipant(callParticipant)
       view.setMirror(isLocalParticipant && callParticipant.cameraState.activeDirection == CameraState.Direction.FRONT)
