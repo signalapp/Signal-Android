@@ -420,6 +420,10 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   private void updateBodyWithTimer() {
+    if (displayBody == null) {
+      return;
+    }
+
     SpannableStringBuilder builder = new SpannableStringBuilder(displayBody);
 
     if (latestFrame != 0) {
