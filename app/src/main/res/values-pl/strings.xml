@@ -2245,7 +2245,7 @@
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s zamyka ankietę: „%2$s”</string>
     <!-- Update message shown when you end the poll. %1$s is the poll question. -->
-    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
+    <string name="MessageRecord_you_ended_the_poll">Zamykasz ankietę „%1$s”</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Zaakceptuj</string>
@@ -3633,9 +3633,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s nie jest nazwą użytkownika aplikacji Signal. Podaj poprawną nazwę użytkownika i spróbuj ponownie."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nie musisz dodawać do grupy siebie</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Osiągnięto maksymalną liczebność grupy</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Grupy Signal mogą mieć maksymalnie %1$s członków.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Maksymalna liczba osób w grupie Signal to %1$s.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Osiągnięto zalecaną liczebność grupy</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Grupy Signal działają najlepiej, gdy mają nie więcej niż %1$s członków. Dodanie kolejnych osób spowoduje opóźnienia w wysyłaniu i odbieraniu wiadomości.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Grupy Signal działają najlepiej, gdy ich liczebność nie przekracza %1$s osób. Dodanie kolejnych członków spowoduje opóźnienia w wysyłaniu i odbieraniu wiadomości.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d osoba</item>
         <item quantity="few">%1$d osoby</item>
@@ -8112,7 +8112,7 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Włącz bezpieczne kopie zapasowe Signal</string>
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title_beta">Wypróbuj bezpieczne kopie zapasowe Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Dzięki temu nie stracisz wiadomości nawet po zmianie telefonu czy ponownej instalacji aplikacji Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8400,11 +8400,11 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Nie udało się dokończyć tworzenia ostatniej kopii zapasowej. Sprawdź, czy masz najnowszą wersję aplikacji Signal, i spróbuj ponownie.</string>
     <!-- Text displayed when a backup file exceeds the storage limit -->
-    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <string name="BackupStatusRow__backup_file_too_large">Liczba wiadomości przekracza limit miejsca w pamięci. Usuń część z nich i spróbuj ponownie.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
-    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <string name="BackupStatusRow__not_backing_up_old_messages">Wiadomości wysłane lub odebrane przed %1$s nie są uwzględniane w kopii zapasowej.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Kopia zapasowa nie została utworzona z powodu braku miejsca na urządzeniu. Zwolnij miejsce i spróbuj ponownie.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Dowiedz się więcej</string>
 
@@ -9232,7 +9232,7 @@
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s zamyka ankietę: „%2$s”</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
-    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
+    <string name="Poll__you_poll_end">Zamykasz ankietę „%1$s”</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s głosuje w ankiecie: „%2$s”</string>
     <!-- Option in settings to configure notifications for polls -->

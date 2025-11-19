@@ -2125,7 +2125,7 @@
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s a arrêté le sondage : \"%2$s\"</string>
     <!-- Update message shown when you end the poll. %1$s is the poll question. -->
-    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
+    <string name="MessageRecord_you_ended_the_poll">Vous avez arrêté le sondage \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Accepter</string>
@@ -3433,7 +3433,7 @@
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Le groupe a atteint sa taille maximale</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Les groupes Signal peuvent accueillir jusqu\'à %1$s membres.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Votre groupe a atteint la taille maximale recommandée</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Pour un fonctionnement optimal, les groupes Signal peuvent accueillir jusqu\'à %1$s membres. Si vous dépassez cette limite, l\'envoi et la réception des messages risquent de s\'en trouver ralentis.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Pour un fonctionnement optimal, les groupes Signal peuvent accueillir jusqu\'à %1$s membres. Si vous dépassez cette limite, l\'envoi et la réception de messages risquent de s\'en trouver ralentis.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d membre</item>
         <item quantity="other">%1$d membres</item>
@@ -5406,7 +5406,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Impossible de terminer la sauvegarde</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Impossible de récupérer votre abonnement de sauvegarde</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Impossible de récupérer votre abonnement aux sauvegardes</string>
     <!-- String alerting user that backup storage limit has been reached -->
     <string name="AppSettingsFragment__backup_storage_limit_reached">Espace de sauvegarde saturé</string>
     <!-- String displayed telling user to invite their friends to Signal -->
@@ -6297,7 +6297,7 @@
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
     <string name="DonationsError__something_went_wrong">Une erreur s\'est produite</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
-    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Impossible d\'afficher votre abonnement de sauvegarde. Veuillez contacter l\'assistance.</string>
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Impossible d\'afficher votre abonnement aux sauvegardes. Veuillez contacter l\'assistance.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Validation du macaron impossible.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -7768,7 +7768,7 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Activez les sauvegardes sécurisées Signal</string>
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title_beta">Essayez les sauvegardes sécurisées Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Besoin de changer de téléphone ou de réinstaller Signal ? Vos contenus restent à portée de main.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7905,7 +7905,7 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Expiration de votre abonnement de sauvegarde</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Expiration de votre abonnement aux sauvegardes</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
         <item quantity="one">Votre mode de paiement actuel ne nous permet pas de traiter votre paiement et de renouveler votre forfait de sauvegarde. Vous disposez d\'un délai d\'%1$d jour pour récupérer les médias de votre sauvegarde. Passé ce délai, ils seront tous supprimés.</item>
@@ -7926,11 +7926,11 @@
     <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
     <string name="BackupAlertBottomSheet__to_free_up_space_offload">Pour libérer de l\'espace, déplacez les applications inutilisées ou les médias volumineux vers la sauvegarde, ou supprimez-les.</string>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Impossible de renouveler votre abonnement de sauvegarde</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Impossible de renouveler votre abonnement aux sauvegardes</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Vérifiez que votre mode de paiement est à jour. Appuyez sur \"Gérer l\'abonnement\", puis sur \"Modes de paiement\" et sur \"Mettre à jour\".</string>
     <!-- Sheet title for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Expiration de votre abonnement de sauvegarde</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Expiration de votre abonnement aux sauvegardes</string>
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Impossible de renouveler votre abonnement avec votre mode de paiement actuel. Pour continuer de sauvegarder vos médias, vous devez disposer d\'un abonnement actif.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
@@ -7983,7 +7983,7 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Échec de la sauvegarde</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Impossible de récupérer votre abonnement de sauvegarde</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Impossible de récupérer votre abonnement aux sauvegardes</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Une erreur nous empêche de terminer la sauvegarde. Avant de réessayer, vérifiez que vous avez bien installé la dernière version de Signal. Si le problème persiste, contactez l\'assistance.</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
@@ -8050,11 +8050,11 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Impossible de terminer votre dernière sauvegarde. Avant de réessayer, vérifiez que vous avez bien installé la dernière version de Signal.</string>
     <!-- Text displayed when a backup file exceeds the storage limit -->
-    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <string name="BackupStatusRow__backup_file_too_large">Le nombre de messages sauvegardés dépasse la limite de stockage. Veuillez supprimer certains messages, puis réessayer.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
-    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <string name="BackupStatusRow__not_backing_up_old_messages">Les messages reçus ou envoyés avant le %1$s ne sont pas sauvegardés.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Impossible de terminer votre sauvegarde, car l\'espace de stockage est insuffisant. Libérez de l\'espace sur votre appareil, puis réessayez.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">En savoir plus</string>
 
@@ -8860,7 +8860,7 @@
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s a arrêté le sondage : \"%2$s\"</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
-    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
+    <string name="Poll__you_poll_end">Vous avez arrêté le sondage \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s a répondu au sondage : \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->

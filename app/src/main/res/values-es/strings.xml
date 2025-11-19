@@ -1173,7 +1173,7 @@
 
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Esta versión de Signal ha caducado. Actualízala ahora para seguir enviando y recibiendo mensajes.</string>
-    <string name="ExpiredBuildReminder_update_now">Actualizar ahora</string>
+    <string name="ExpiredBuildReminder_update_now">Actualizar ahora</string>
 
     <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
     <string name="DeprecatedSdkBanner_body">Signal ya no es compatible con este dispositivo. Para volver a usar Signal, debes actualizar tu dispositivo a una versión más nueva de Android o cambiarlo por un dispositivo más nuevo.</string>
@@ -2125,7 +2125,7 @@
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s ha finalizado la encuesta \"%2$s\"</string>
     <!-- Update message shown when you end the poll. %1$s is the poll question. -->
-    <string name="MessageRecord_you_ended_the_poll">You ended the poll: \"%1$s\"</string>
+    <string name="MessageRecord_you_ended_the_poll">Has finalizado la encuesta \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Aceptar</string>
@@ -2238,7 +2238,7 @@
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">No se puede escanear un código QR sin acceso a la cámara</string>
 
     <!-- OutdatedBuildReminder -->
-    <string name="OutdatedBuildReminder_update_now">Actualizar ahora</string>
+    <string name="OutdatedBuildReminder_update_now">Actualizar ahora</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Esta versión de Signal caduca hoy. Actualiza a la versión más reciente.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
         <item quantity="one">Esta versión de Signal caduca mañana. Actualiza a la versión más reciente.</item>
@@ -4215,7 +4215,7 @@
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Cancelar</string>
     <!-- Alert dialog button to update now -->
-    <string name="PaymentsHomeFragment__update_now">Actualizar ahora</string>
+    <string name="PaymentsHomeFragment__update_now">Actualizar ahora</string>
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
@@ -7768,7 +7768,7 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Activar Copias Seguras de Signal</string>
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Try Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title_beta">Prueba las Copias Seguras de Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">No perderás ningún mensaje si cambias de teléfono o vuelves a instalar Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8050,11 +8050,11 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">No se ha podido completar tu última copia de seguridad. Asegúrate de estar usando la última versión de Signal y vuelve a intentarlo.</string>
     <!-- Text displayed when a backup file exceeds the storage limit -->
-    <string name="BackupStatusRow__backup_file_too_large">The number of messages you have exceeds the storage limit. Delete some messages and try again.</string>
+    <string name="BackupStatusRow__backup_file_too_large">El número de mensajes que tienes supera el límite de almacenamiento. Elimina algunos mensajes y vuelve a intentarlo.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
-    <string name="BackupStatusRow__not_backing_up_old_messages">Messages sent or received before %1$s are not being backed up.</string>
+    <string name="BackupStatusRow__not_backing_up_old_messages">No se está haciendo copia de seguridad de los mensajes que has enviado o recibido antes del %1$s.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on disk space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">No se ha podido completar tu copia de seguridad porque tienes poco espacio de almacenamiento. Libera espacio en tu dispositivo y vuelve a intentarlo.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Más información</string>
 
@@ -8860,7 +8860,7 @@
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
     <string name="Poll__poll_end">%1$s ha finalizado la encuesta \"%2$s\"</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
-    <string name="Poll__you_poll_end">You ended the poll: \"%1$s\"</string>
+    <string name="Poll__you_poll_end">Has finalizado la encuesta \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
     <string name="Poll__poll_voted">%1$s ha votado en la encuesta \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->
