@@ -53,12 +53,12 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">암호 문구 사용을 비활성화하시겠어요?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal이 잠금 해제되어 메시지 알림이 표시됩니다.</string>
     <string name="ApplicationPreferencesActivity_disable">사용 안 함</string>
-    <string name="ApplicationPreferencesActivity_error_connecting_to_server">서버에 연결할 수 없습니다!</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">서버에 연결할 수 없습니다</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">등록 잠금을 위해 PIN이 필요합니다. PIN을 비활성화하려면 먼저 등록 잠금을 비활성화하세요.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN이 생성되었습니다.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN 사용이 비활성화되었습니다.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">결제 복구 문구 기록</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">녹음 문구</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">문구 기록</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN을 사용 중지하기 전에 결제 계정을 복구할 수 있도록 결제 복구 문구를 기록해야 합니다.</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">새 복구 키 만들기</string>
@@ -86,7 +86,7 @@
     <string name="DraftDatabase_Draft_audio_snippet">(오디오)</string>
     <string name="DraftDatabase_Draft_video_snippet">(동영상)</string>
     <string name="DraftDatabase_Draft_location_snippet">(위치)</string>
-    <string name="DraftDatabase_Draft_quote_snippet">(회신)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(답장)</string>
     <string name="DraftDatabase_Draft_voice_note">(음성 메시지)</string>
 
     <!-- AttachmentKeyboard -->
@@ -117,9 +117,9 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">미디어를 선택할 수 있는 앱이 없습니다.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal에서 사진, 동영상 또는 오디오를 첨부하려면 저장 공간 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal에서 연락처 정보를 첨부하려면 연락처 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal에서 위치 정보를 첨부하려면 위치 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'위치\' 항목을 허용해 주세요.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal에서 사진, 동영상 또는 오디오를 첨부하려면 저장 공간 접근 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal에서 연락처 정보를 첨부하려면 연락처 접근 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal에서 위치 정보를 첨부하려면 위치 접근 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'위치\' 항목을 허용해 주세요.</string>
 
     <!-- Dialog title asking users for location permission -->
     <string name="AttachmentManager_signal_allow_access_location">내 위치를 사용하도록 허용</string>
@@ -154,7 +154,7 @@
     <string name="UploadAttachmentToArchiveJob_uploading_media">미디어를 백업하는 중…</string>
 
     <!-- BackgroundMessageRetriever -->
-    <string name="BackgroundMessageRetriever_checking_for_messages">새로운 메시지를 확인 중입니다…</string>
+    <string name="BackgroundMessageRetriever_checking_for_messages">메시지 확인 중…</string>
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
@@ -215,19 +215,19 @@
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s을(를) 차단하고 나갈까요?</string>
     <string name="BlockUnblockDialog_block_s">%1$s을(를) 차단할까요?</string>
-    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">이제 이 그룹에서 메시지나 업데이트를 받을 수 없습니다. 그리고 멤버가 당신을 이 그룹에 추가할 수도 없습니다.</string>
-    <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">그룹 멤버가 당신을 이 그룹에 추가할 수 없습니다,</string>
-    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">그룹 멤버는 당신을 그룹에 다시 초대 가능합니다.</string>
+    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">이제 이 그룹에서 메시지나 업데이트를 받을 수 없으며, 다른 멤버가 다시 나를 그룹에 초대할 수 없습니다.</string>
+    <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">그룹 멤버가 다시 나를 그룹에 초대할 수 없습니다.</string>
+    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">그룹 멤버가 나를 다시 초대할 수 있습니다.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">서로 메시지를 보내고 전화를 걸 수 있으며 이름과 사진이 공유됩니다.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">서로 메시지를 보내고 전화를 걸 수 있으며, 나의 이름과 사진이 공유됩니다.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">이제 서로 메시지를 할 수 있습니다.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">이제 서로 메시지를 주고받을 수 있습니다.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">차단한 사용자는 나에게 전화를 걸거나 메세지를 보낼 수 없습니다.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">차단한 사용자는 나에게 메시지를 보낼 수 없습니다.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal의 업데이트와 새로운 소식을 차단합니다.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal의 업데이트와 새로운 소식을 다시 받기</string>
+    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal의 업데이트와 새로운 소식 다시 받기</string>
     <string name="BlockUnblockDialog_unblock_s">%1$s을(를) 차단 해제할까요?</string>
     <string name="BlockUnblockDialog_block">차단</string>
     <string name="BlockUnblockDialog_block_and_leave">차단하고 나가기</string>
@@ -331,15 +331,15 @@
     <!-- Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
     <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">검열 우회를 끄시겠어요?</string>
     <!-- Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
-    <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">이제 더 나은 사용을 위해 Signal 서비스에 바로 연결 할 수 있습니다.</string>
+    <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">이제 Signal 서비스에 직접 연결하여 편리하게 이용하실 수 있어요.</string>
     <!-- Action to prompt the user to disable circumvention since it is no longer needed -->
     <string name="CensorshipCircumventionMegaphone_turn_off">끄기</string>
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
-    <string name="CensorshipCircumventionMegaphone_no_thanks">괜찮습니다</string>
+    <string name="CensorshipCircumventionMegaphone_no_thanks">괜찮아요</string>
 
     <!-- ClientDeprecatedActivity -->
-    <string name="ClientDeprecatedActivity_update_signal">시그널 최신 버전으로 업데이트</string>
-    <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">이 버전의 앱은 더 이상 지원되지 않습니다. 메시지를 주고받을려면, 가장 최근 버전으로 업데이트해주세요</string>
+    <string name="ClientDeprecatedActivity_update_signal">Signal 업데이트</string>
+    <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">이 앱 버전은 더 이상 지원되지 않습니다. 메시지를 주고받으려면 최신 버전으로 업데이트해 주세요.</string>
     <string name="ClientDeprecatedActivity_update">업데이트</string>
     <string name="ClientDeprecatedActivity_dont_update">업데이트하지 않음</string>
     <string name="ClientDeprecatedActivity_warning">경고</string>
@@ -349,11 +349,11 @@
     <string name="CommunicationActions_no_browser_found">웹 브라우저를 찾을 수 없습니다.</string>
     <string name="CommunicationActions_send_email">이메일 보내기</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">이미 셀룰러 데이터 통화를 사용하고 있습니다.</string>
-    <string name="CommunicationActions_start_voice_call">음성 통화를 시작하시겠습니까?</string>
+    <string name="CommunicationActions_start_voice_call">음성 통화를 시작하시겠어요?</string>
     <string name="CommunicationActions_cancel">취소</string>
     <string name="CommunicationActions_call">전화</string>
     <string name="CommunicationActions_insecure_call">안전하지 않은 통화</string>
-    <string name="CommunicationActions_carrier_charges_may_apply">통신사 요금이 부과될 수 있습니다. 당신이 전화하려는 번호는 Signal에 등록되지 않았습니다. 이 전화는 인터넷이 아닌 당신의 모바일 통신사를 통해 연결될 겁니다.</string>
+    <string name="CommunicationActions_carrier_charges_may_apply">통신사 요금이 부과될 수 있습니다. 현재 통화하려는 번호는 Signal에 등록되어 있지 않아, 인터넷이 아닌 모바일 통신사를 통해 연결됩니다.</string>
     <string name="CommunicationActions_cant_join_call">통화에 참여할 수 없습니다.</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">이 통화 링크는 더 이상 유효하지 않습니다.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
@@ -402,17 +402,17 @@
     <string name="ContactShareEditActivity_type_mobile">휴대 전화</string>
     <string name="ContactShareEditActivity_type_work">직장</string>
     <string name="ContactShareEditActivity_type_missing">기타</string>
-    <string name="ContactShareEditActivity_invalid_contact">선택한 연락처가 잘못됨</string>
+    <string name="ContactShareEditActivity_invalid_contact">선택한 연락처가 유효하지 않습니다</string>
     <!-- Content descrption for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">이름 수정</string>
     <!-- Content description for user avatar in edit activity -->
     <string name="ContactShareEditActivity__avatar">아바타</string>
 
     <!-- ConversationItem -->
-    <string name="ConversationItem_error_not_sent_tap_for_details">메시지가 보내지지 않았습니다. 탭하여 세부정보를 확인하세요.</string>
-    <string name="ConversationItem_error_partially_not_delivered">일부만 전송됨, 탭하여 확인</string>
+    <string name="ConversationItem_error_not_sent_tap_for_details">전송되지 않음. 자세히 보려면 탭하세요</string>
+    <string name="ConversationItem_error_partially_not_delivered">일부만 전송됨. 자세히 보려면 탭하세요</string>
     <string name="ConversationItem_error_network_not_delivered">보내기 실패</string>
-    <string name="ConversationItem_group_action_left">%1$s 님이 그룹에서 탈퇴했습니다.</string>
+    <string name="ConversationItem_group_action_left">%1$s 님이 그룹에서 나갔습니다.</string>
     <string name="ConversationItem_send_paused">전송 일시 중지됨</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">비보안 SMS로 바꾸시겠습니까?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">비보안 MMS로 바꾸시겠습니까?</string>
@@ -566,7 +566,7 @@
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="other">선택한 메시지를 삭제하시겠습니까?</item>
     </plurals>
-    <string name="ConversationFragment_save_to_sd_card">저장 공간에 저장하시겠습니까?</string>
+    <string name="ConversationFragment_save_to_sd_card">저장 공간에 저장하시겠어요?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="other">미디어 %1$d개를 저장 공간에 저장하게 되면, 기기에 설치된 다른 앱이 접근할 수 있습니다.\n\n계속하시겠습니까?</item>
     </plurals>
@@ -910,7 +910,7 @@
     <string name="BackupsPreferenceFragment__d_so_far">지금까지 %1$d…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% 진행중…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal에서 백업을 저장하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal에서 백업을 저장하려면 저장 공간 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
     <string name="BackupsPreferenceFragment__set_backup_time">백업 시간 설정</string>
 
@@ -922,7 +922,7 @@
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">사진을 촬영하려면 카메라 권한이 필요합니다.</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">갤러리를 보려면 저장 권한이 필요합니다.</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">갤러리를 보려면 저장 공간 권한이 필요합니다.</string>
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">지금</string>
@@ -1672,7 +1672,7 @@
     <string name="MediaOverviewActivity_Newest">최근 순서</string>
     <string name="MediaOverviewActivity_Oldest">오래된 순서</string>
     <string name="MediaOverviewActivity_Storage_used">사용된 저장 공간</string>
-    <string name="MediaOverviewActivity_All_storage_use">저장된 모든 파일</string>
+    <string name="MediaOverviewActivity_All_storage_use">저장 공간 사용 상태</string>
     <string name="MediaOverviewActivity_Grid_view_description">눈금 보기</string>
     <string name="MediaOverviewActivity_List_view_description">목록 보기</string>
     <string name="MediaOverviewActivity_Selected_description">선택됨</string>
@@ -3871,7 +3871,7 @@
     <string name="preferences__mmsc_password">MMSC 비밀번호</string>
     <string name="preferences__sms_delivery_reports">SMS 전송 확인</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS 메시지를 보낼 때마다 전송 확인 요청</string>
-    <string name="preferences__data_and_storage">데이터와 저장소</string>
+    <string name="preferences__data_and_storage">데이터와 저장 공간</string>
     <string name="preferences__storage">저장 공간</string>
     <string name="preferences__payments">결제</string>
     <!-- Privacy settings payments section description -->
@@ -3938,7 +3938,7 @@
     <string name="preferences_storage__videos">동영상</string>
     <string name="preferences_storage__files">파일</string>
     <string name="preferences_storage__audio">오디오</string>
-    <string name="preferences_storage__review_storage">저장 공간 검토</string>
+    <string name="preferences_storage__review_storage">저장 공간 검토하기</string>
     <string name="preferences_storage__delete_older_messages">오래된 메시지를 삭제하시겠습니까?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
     <string name="preferences_storage__delete_message_history">메시지 기록을 삭제하시겠습니까?</string>
@@ -3974,7 +3974,7 @@
     <string name="preferences_app_protection__payments">결제</string>
     <string name="preferences_chats__chats">대화</string>
     <string name="preferences_app_updates__title">앱 업데이트</string>
-    <string name="preferences_data_and_storage__manage_storage">저장공간 관리하기</string>
+    <string name="preferences_data_and_storage__manage_storage">저장 공간 관리하기</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">통화에 더 적은 양의 데이터 사용하기</string>
     <string name="preferences_data_and_storage__never">없음</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi 및 모바일 데이터</string>
@@ -4585,7 +4585,7 @@
     <string name="Permissions_not_now">나중에</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal 데이터베이스 이전 중</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">암호 백업</string>
-    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">백업은 외부 저장 공간에 보관되며 암호로 암호화됩니다. 백업에서 복원하려면 다음에 표시되는 암호가 필요합니다.</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">백업은 외부 저장 공간에 보관되며 암호 문구로 암호화됩니다. 백업에서 복원하려면 다음에 표시되는 암호 문구가 필요합니다.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">백업을 복원하려면 이 비밀번호가 필요합니다.</string>
     <string name="backup_enable_dialog__folder">폴더</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">암호를 적었습니다. 비밀번호를 잊었을 때 백업을 복구할 수 없다는 점에 동의합니다.</string>

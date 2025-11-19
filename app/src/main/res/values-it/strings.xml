@@ -8050,7 +8050,7 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Non è stato possibile completare il tuo ultimo backup. Assicurati di avere l\'ultima versione di Signal installata e prova di nuovo.</string>
     <!-- Text displayed when a backup file exceeds the storage limit -->
-    <string name="BackupStatusRow__backup_file_too_large">Hai un numero di messaggi che supera il limite dello spazio di archiviazione. Elimina prima qualche messaggio e riprova.</string>
+    <string name="BackupStatusRow__backup_file_too_large">Il numero di messaggi sul tuo telefono supera il limite dello spazio di archiviazione. Elimina qualche messaggio e riprova.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">I messaggi inviati o ricevuti prima del %1$s non verranno salvati nel backup.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->

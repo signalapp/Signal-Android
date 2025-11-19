@@ -269,7 +269,7 @@
     <!-- Unknown people row info dialog message -->
     <string name="CallInfoView__before_joining_a_call">Avant de rejoindre un appel, seuls les noms de certaines personnes s’affichent : contacts de votre téléphone, utilisateurs faisant partie des mêmes groupes que vous ou avec qui vous avez discuté en privé. Les noms et les photos de tous les participants ne s’affichent qu’une fois que vous avez rejoint l’appel.</string>
     <!-- Unknown people row info dialog action to close the dialog -->
-    <string name="CallInfoView__got_it">J’ai compris</string>
+    <string name="CallInfoView__got_it">J\'ai compris</string>
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
