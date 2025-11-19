@@ -77,6 +77,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     super.onAttachedToWindow()
 
     ViewCompat.setOnApplyWindowInsetsListener(this, windowInsetsListener)
+    post { ViewCompat.requestApplyInsets(this) }
   }
 
   override fun onDetachedFromWindow() {
