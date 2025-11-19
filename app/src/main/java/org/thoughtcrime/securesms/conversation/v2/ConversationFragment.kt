@@ -1238,7 +1238,9 @@ class ConversationFragment :
         .state
         .distinctUntilChanged { previous, next -> previous.voiceNoteDraft == next.voiceNoteDraft }
         .subscribe {
-          inputPanel.voiceNoteDraft = it.voiceNoteDraft
+          if (!voiceMessageRecordingDelegate.hasActiveSession()) {
+            inputPanel.voiceNoteDraft = it.voiceNoteDraft
+          }
           updateToggleButtonState()
         }
     )
@@ -4377,9 +4379,6 @@ class ConversationFragment :
     }
 
     override fun onRecorderCanceled(byUser: Boolean) {
-      if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
-        updateToggleButtonState()
-      }
       voiceMessageRecordingDelegate.onRecorderCanceled(byUser)
     }
 

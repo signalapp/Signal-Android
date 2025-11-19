@@ -551,6 +551,19 @@ public class BlobProvider {
     {
       return writeBlobSpecToDiskAsync(context, buildBlobSpec(StorageType.ATTACHMENT_DRAFT));
     }
+
+    /**
+     * Builds the URI for a draft attachment without waiting for the data to be written.
+     * This is useful for getting a URI reference while data is still being written asynchronously.
+     * The URI can be used to check file size and save periodic snapshots.
+     * <p>
+     * It is the caller's responsibility to eventually call {@link BlobProvider#delete(Context, Uri)}
+     * when the blob is no longer in use.
+     */
+    @WorkerThread
+    public Uri buildUriForDraftAttachment() {
+      return buildUri(buildBlobSpec(StorageType.ATTACHMENT_DRAFT));
+    }
   }
 
   private synchronized void waitUntilInitialized() {
