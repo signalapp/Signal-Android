@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.v2.ArchiveDatabaseExecutor
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -97,7 +98,9 @@ class UploadAttachmentToArchiveJob private constructor(
 
     if (transferStatus == AttachmentTable.ArchiveTransferState.NONE) {
       Log.d(TAG, "[$attachmentId] Updating archive transfer state to ${AttachmentTable.ArchiveTransferState.UPLOAD_IN_PROGRESS}")
-      SignalDatabase.attachments.setArchiveTransferStateUnlessPermanentFailure(attachmentId, AttachmentTable.ArchiveTransferState.UPLOAD_IN_PROGRESS)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveTransferStateUnlessPermanentFailure(attachmentId, AttachmentTable.ArchiveTransferState.UPLOAD_IN_PROGRESS)
+      }
     }
   }
 
@@ -109,13 +112,17 @@ class UploadAttachmentToArchiveJob private constructor(
 
     if (SignalStore.account.isLinkedDevice) {
       Log.w(TAG, "[$attachmentId] Linked devices don't backup media. Skipping.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
       return Result.success()
     }
 
     if (!SignalStore.backup.backsUpMedia) {
       Log.w(TAG, "[$attachmentId] This user does not back up media. Skipping.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
       return Result.success()
     }
 
@@ -149,25 +156,33 @@ class UploadAttachmentToArchiveJob private constructor(
 
     if (SignalDatabase.messages.isStory(attachment.mmsId)) {
       Log.i(TAG, "[$attachmentId] Attachment is a story. Resetting transfer state to none and skipping.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
       return Result.success()
     }
 
     if (SignalDatabase.messages.isViewOnce(attachment.mmsId)) {
       Log.i(TAG, "[$attachmentId] Attachment is a view-once. Resetting transfer state to none and skipping.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
       return Result.success()
     }
 
     if (SignalDatabase.messages.willMessageExpireBeforeCutoff(attachment.mmsId)) {
       Log.i(TAG, "[$attachmentId] Message will expire within 24 hours. Resetting transfer state to none and skipping.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
       return Result.success()
     }
 
     if (attachment.contentType == MediaUtil.LONG_TEXT) {
       Log.i(TAG, "[$attachmentId] Attachment is long text. Resetting transfer state to none and skipping.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
       return Result.success()
     }
 
@@ -226,7 +241,9 @@ class UploadAttachmentToArchiveJob private constructor(
       )
     } catch (e: FileNotFoundException) {
       Log.w(TAG, "[$attachmentId] No file exists for this attachment! Marking as a permanent failure.", e)
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+      ArchiveDatabaseExecutor.runBlocking {
+        setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+      }
       return Result.failure()
     } catch (e: IOException) {
       Log.w(TAG, "[$attachmentId] Failed while reading the stream.", e)
@@ -249,7 +266,9 @@ class UploadAttachmentToArchiveJob private constructor(
                 .use { it.readLength() }
               if (actualLength != attachment.size) {
                 Log.w(TAG, "[$attachmentId] Length was incorrect! Will update. Previous: ${attachment.size}, Newly-Calculated: $actualLength", result.exception)
-                SignalDatabase.attachments.updateAttachmentLength(attachmentId, actualLength)
+                ArchiveDatabaseExecutor.runBlocking {
+                  SignalDatabase.attachments.updateAttachmentLength(attachmentId, actualLength)
+                }
               } else {
                 Log.i(TAG, "[$attachmentId] Length was correct. No action needed. Will retry.")
               }
@@ -272,7 +291,9 @@ class UploadAttachmentToArchiveJob private constructor(
       }
 
       Log.d(TAG, "[$attachmentId] Upload complete!")
-      SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachment.attachmentId, uploadResult)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachment.attachmentId, uploadResult)
+      }
     }
 
     if (!isCanceled) {
@@ -287,10 +308,14 @@ class UploadAttachmentToArchiveJob private constructor(
   override fun onFailure() {
     if (this.isCanceled) {
       Log.w(TAG, "[$attachmentId] Job was canceled, updating archive transfer state to ${AttachmentTable.ArchiveTransferState.NONE}.")
-      SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
     } else {
       Log.w(TAG, "[$attachmentId] Job failed, updating archive transfer state to ${AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE} (if not already a permanent failure).")
-      SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      }
     }
   }
 
@@ -331,6 +356,13 @@ class UploadAttachmentToArchiveJob private constructor(
           }
         }
       }
+    }
+  }
+
+  private fun setArchiveTransferStateWithDelayedNotification(attachmentId: AttachmentId, transferState: AttachmentTable.ArchiveTransferState) {
+    ArchiveDatabaseExecutor.runBlocking {
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, transferState, notify = false)
+      ArchiveDatabaseExecutor.throttledNotifyAttachmentObservers()
     }
   }
 

@@ -10,6 +10,7 @@ import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
+import org.thoughtcrime.securesms.backup.v2.ArchiveDatabaseExecutor
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.hadIntegrityCheckPerformed
 import org.thoughtcrime.securesms.backup.v2.requireThumbnailMediaName
@@ -99,7 +100,9 @@ class ArchiveThumbnailUploadJob private constructor(
     val transferStatus = SignalDatabase.attachments.getArchiveThumbnailTransferState(attachmentId) ?: return
 
     if (transferStatus == AttachmentTable.ArchiveTransferState.NONE) {
-      SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.UPLOAD_IN_PROGRESS)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.UPLOAD_IN_PROGRESS)
+      }
     }
   }
 
@@ -117,31 +120,41 @@ class ArchiveThumbnailUploadJob private constructor(
 
     if (!MediaUtil.isImageOrVideoType(attachment.contentType)) {
       Log.w(TAG, "$attachmentId isn't visual media (contentType = ${attachment.contentType}). Skipping.")
-      SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
       return Result.success()
     }
 
     if (attachment.quote) {
       Log.w(TAG, "$attachmentId is a quote. Skipping.")
-      SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
       return Result.success()
     }
 
     if (attachment.dataHash == null || attachment.remoteKey == null) {
       Log.w(TAG, "$attachmentId is missing necessary ingredients for a mediaName!")
-      SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
       return Result.success()
     }
 
     if (!attachment.hadIntegrityCheckPerformed()) {
       Log.w(TAG, "$attachmentId has no integrity check! Cannot proceed.")
-      SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
       return Result.success()
     }
 
     if (SignalDatabase.messages.isStory(attachment.mmsId)) {
       Log.w(TAG, "$attachmentId is a story. Skipping.")
-      SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
       return Result.success()
     }
 
@@ -150,12 +163,16 @@ class ArchiveThumbnailUploadJob private constructor(
     val thumbnailResult = generateThumbnailIfPossible(attachment)
     if (thumbnailResult == null) {
       Log.w(TAG, "Unable to generate a thumbnail result for $attachmentId")
-      SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+      }
       return Result.success()
     }
 
     if (isCanceled) {
-      SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      }
       return Result.failure()
     }
 
@@ -172,7 +189,9 @@ class ArchiveThumbnailUploadJob private constructor(
       }
 
     if (isCanceled) {
-      SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      }
       return Result.failure()
     }
 
@@ -199,7 +218,9 @@ class ArchiveThumbnailUploadJob private constructor(
     }
 
     if (isCanceled) {
-      SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      }
       return Result.failure()
     }
 
@@ -220,15 +241,17 @@ class ArchiveThumbnailUploadJob private constructor(
     return when (val result = BackupRepository.copyThumbnailToArchive(attachmentPointer, attachment)) {
       is NetworkResult.Success -> {
         // save attachment thumbnail
-        SignalDatabase.attachments.finalizeAttachmentThumbnailAfterUpload(
-          attachmentId = attachmentId,
-          attachmentPlaintextHash = attachment.dataHash,
-          attachmentRemoteKey = attachment.remoteKey,
-          data = thumbnailResult.data
-        )
+        ArchiveDatabaseExecutor.runBlocking {
+          SignalDatabase.attachments.finalizeAttachmentThumbnailAfterUpload(
+            attachmentId = attachmentId,
+            attachmentPlaintextHash = attachment.dataHash,
+            attachmentRemoteKey = attachment.remoteKey,
+            data = thumbnailResult.data
+          )
 
-        Log.d(TAG, "Successfully archived thumbnail for $attachmentId")
-        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
+          Log.d(TAG, "Successfully archived thumbnail for $attachmentId")
+          SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
+        }
         Result.success()
       }
 
@@ -249,10 +272,14 @@ class ArchiveThumbnailUploadJob private constructor(
   override fun onFailure() {
     if (this.isCanceled) {
       Log.w(TAG, "[$attachmentId] Job was canceled, updating archive thumbnail transfer state to ${AttachmentTable.ArchiveTransferState.NONE}.")
-      SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      }
     } else {
       Log.w(TAG, "[$attachmentId] Job failed, updating archive thumbnail transfer state to ${AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE} (if not already a permanent failure).")
-      SignalDatabase.attachments.setArchiveThumbnailTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveThumbnailTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      }
     }
   }
 

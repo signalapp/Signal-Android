@@ -15,8 +15,6 @@ import androidx.core.content.ContextCompat
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.PendingIntentFlags
-import org.signal.core.util.ThreadUtil
-import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMacException
@@ -25,6 +23,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
+import org.thoughtcrime.securesms.backup.v2.ArchiveDatabaseExecutor
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.createArchiveAttachmentPointer
@@ -53,7 +52,6 @@ import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
-import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -63,9 +61,6 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.RangeException
 import java.io.File
 import java.io.IOException
-import java.util.concurrent.ExecutionException
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.jvm.optionals.getOrNull
 import kotlin.math.abs
@@ -74,7 +69,6 @@ import kotlin.math.pow
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.Duration.Companion.seconds
 
 /**
  * Download attachment from locations as specified in their record.
@@ -128,23 +122,6 @@ class RestoreAttachmentJob private constructor(
   companion object {
     const val KEY = "RestoreAttachmentJob"
     private val TAG = Log.tag(RestoreAttachmentJob::class.java)
-
-    /**
-     * During media restore, we tend to hammer the database from a lot of different threads at once. This can block writes for more urgent things, like message
-     * sends. To reduce the impact, we put all of our database writes on a single-thread executor.
-     */
-    private val DB_EXECUTOR = Executors.newSingleThreadExecutor(SignalExecutors.NumberedThreadFactory("restore-db", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD))
-
-    /**
-     * By default, downloading an attachment wants to notify a bunch of database observation listeners. This slams the observer so hard that other people using
-     * it will experience massive delays in notifications. To avoid this, we turn off notifications for downloads, and then use this notifier to push some
-     * out every so often.
-     */
-    val DATABASE_OBSERVER_NOTIFIER = ThrottledDebouncer(5.seconds.inWholeMilliseconds)
-    val NOTIFY_DATABASE_OBSERVERS = {
-      AppDependencies.databaseObserver.notifyConversationListListeners()
-      AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
-    }
 
     /**
      * Create a restore job for the initial large batch of media on a fresh restore.
@@ -230,7 +207,7 @@ class RestoreAttachmentJob private constructor(
   }
 
   override fun onAdded() {
-    DB_EXECUTOR.runBlocking {
+    ArchiveDatabaseExecutor.runBlocking {
       SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS)
     }
   }
@@ -287,9 +264,9 @@ class RestoreAttachmentJob private constructor(
 
         dataStream?.use { input ->
           Log.i(TAG, "[$attachmentId] Attachment is sticker, restoring from local storage")
-          DB_EXECUTOR.runBlocking {
+          ArchiveDatabaseExecutor.runBlocking {
             SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, input, if (manual) System.currentTimeMillis().milliseconds else null, notify = false)
-            DATABASE_OBSERVER_NOTIFIER.publish(NOTIFY_DATABASE_OBSERVERS)
+            ArchiveDatabaseExecutor.throttledNotifyAttachmentAndChatListObservers()
           }
           return
         }
@@ -316,7 +293,7 @@ class RestoreAttachmentJob private constructor(
 
   override fun onFailure() {
     if (isCanceled) {
-      DB_EXECUTOR.runBlocking {
+      ArchiveDatabaseExecutor.runBlocking {
         SignalDatabase.attachments.setTransferState(messageId, attachmentId, AttachmentTable.TRANSFER_RESTORE_OFFLOADED)
       }
     } else {
@@ -359,7 +336,7 @@ class RestoreAttachmentJob private constructor(
     forceTransitTier: Boolean = false
   ) {
     val maxReceiveSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
-    val attachmentFile: File = DB_EXECUTOR.runBlocking {
+    val attachmentFile: File = ArchiveDatabaseExecutor.runBlocking {
       SignalDatabase.attachments.getOrCreateTransferFile(attachmentId)
     }
     var useArchiveCdn = false
@@ -435,11 +412,11 @@ class RestoreAttachmentJob private constructor(
             archiveRestore = true,
             notify = false
           )
-        DATABASE_OBSERVER_NOTIFIER.publish(NOTIFY_DATABASE_OBSERVERS)
+        ArchiveDatabaseExecutor.throttledNotifyAttachmentAndChatListObservers()
       }
 
       if (useArchiveCdn && attachment.archiveCdn == null) {
-        DB_EXECUTOR.runBlocking {
+        ArchiveDatabaseExecutor.runBlocking {
           SignalDatabase.attachments.setArchiveCdn(attachmentId, pointer.cdnNumber)
         }
       }
@@ -510,7 +487,7 @@ class RestoreAttachmentJob private constructor(
       }
     } catch (e: org.signal.libsignal.protocol.incrementalmac.InvalidMacException) {
       Log.w(TAG, "[$attachmentId] Detected an invalid incremental mac. Clearing and marking as a temporary failure, requiring the user to manually try again.")
-      DB_EXECUTOR.runBlocking {
+      ArchiveDatabaseExecutor.runBlocking {
         SignalDatabase.attachments.clearIncrementalMacsForAttachmentAndAnyDuplicates(attachmentId, attachment.remoteKey, attachment.dataHash)
       }
       markFailed(attachmentId)
@@ -520,13 +497,13 @@ class RestoreAttachmentJob private constructor(
   }
 
   private fun markFailed(attachmentId: AttachmentId) {
-    DB_EXECUTOR.runBlocking {
+    ArchiveDatabaseExecutor.runBlocking {
       SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_PROGRESS_FAILED)
     }
   }
 
   private fun markPermanentlyFailed(attachmentId: AttachmentId) {
-    DB_EXECUTOR.runBlocking {
+    ArchiveDatabaseExecutor.runBlocking {
       SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE)
     }
   }
@@ -569,14 +546,6 @@ class RestoreAttachmentJob private constructor(
       .build()
 
     NotificationManagerCompat.from(context).notify(NotificationIds.INTERNAL_ERROR, notification)
-  }
-
-  private fun <T> ExecutorService.runBlocking(block: () -> T): T {
-    return try {
-      this.submit(block).get()
-    } catch (e: ExecutionException) {
-      throw e.cause ?: e
-    }
   }
 
   class Factory : Job.Factory<RestoreAttachmentJob?> {

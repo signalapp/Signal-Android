@@ -924,7 +924,7 @@ class AttachmentTable(
   /**
    * Sets the archive transfer state for the given attachment and all other attachments that share the same data file.
    */
-  fun setArchiveTransferState(id: AttachmentId, state: ArchiveTransferState) {
+  fun setArchiveTransferState(id: AttachmentId, state: ArchiveTransferState, notify: Boolean = true) {
     writableDatabase.withinTransaction {
       val dataFile: String = readableDatabase
         .select(DATA_FILE)
@@ -940,14 +940,16 @@ class AttachmentTable(
         .run()
     }
 
-    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
+    if (notify) {
+      AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
+    }
   }
 
   /**
    * Sets the archive transfer state for the given attachment id, remote key, and plain text hash tuple and all other attachments that
    * share the same data file.
    */
-  fun setArchiveTransferState(id: AttachmentId, remoteKey: String, plaintextHash: String, state: ArchiveTransferState): Boolean {
+  fun setArchiveTransferState(id: AttachmentId, remoteKey: String, plaintextHash: String, state: ArchiveTransferState, notify: Boolean = true): Boolean {
     writableDatabase.withinTransaction {
       val dataFile: String = readableDatabase
         .select(DATA_FILE)
@@ -963,7 +965,9 @@ class AttachmentTable(
         .run()
     }
 
-    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
+    if (notify) {
+      AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
+    }
 
     return true
   }
