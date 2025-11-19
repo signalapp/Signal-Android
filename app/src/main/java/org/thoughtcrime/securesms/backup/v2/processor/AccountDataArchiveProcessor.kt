@@ -37,11 +37,13 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode
+import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.webrtc.CallDataMode
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId.AppleIAPOriginalTransactionId
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId.GooglePlayBillingPurchaseToken
@@ -120,7 +122,6 @@ object AccountDataArchiveProcessor {
             customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors().also { colors -> exportState.customChatColorIds.addAll(colors.map { it.id }) },
             optimizeOnDeviceStorage = signalStore.backupValues.optimizeStorage,
             backupTier = signalStore.backupValues.backupTier.toRemoteBackupTier(),
-            showSealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
             defaultSentMediaQuality = signalStore.settingsValues.sentMediaQuality.toRemoteSentMediaQuality(),
             autoDownloadSettings = AccountData.AutoDownloadSettings(
               images = getRemoteAutoDownloadOption("image", mobileAutoDownload, wifiAutoDownload),
@@ -130,6 +131,8 @@ object AccountDataArchiveProcessor {
             ),
             screenLockTimeoutMinutes = screenLockTimeoutMinutes,
             pinReminders = signalStore.pinValues.arePinRemindersEnabled(),
+            appTheme = signalStore.settingsValues.theme.toRemoteAppTheme(),
+            callsUseLessDataSetting = signalStore.settingsValues.callDataMode.toRemoteCallsUseLessDataSetting(),
             defaultChatStyle = ChatStyleConverter.constructRemoteChatStyle(
               db = db,
               chatColors = chatColors,
@@ -141,7 +144,8 @@ object AccountDataArchiveProcessor {
           backupsSubscriberData = backupSubscriberRecord?.toIAPSubscriberData(),
           androidSpecificSettings = AccountData.AndroidSpecificSettings(
             useSystemEmoji = signalStore.settingsValues.isPreferSystemEmoji,
-            screenshotSecurity = TextSecurePreferences.isScreenSecurityEnabled(context)
+            screenshotSecurity = TextSecurePreferences.isScreenSecurityEnabled(context),
+            navigationBarSize = signalStore.settingsValues.useCompactNavigationBar.toRemoteNavigationBarSize()
           ),
           bioText = selfRecord.about ?: "",
           bioEmoji = selfRecord.aboutEmoji ?: ""
@@ -168,6 +172,7 @@ object AccountDataArchiveProcessor {
     if (accountData.androidSpecificSettings != null) {
       SignalStore.settings.isPreferSystemEmoji = accountData.androidSpecificSettings.useSystemEmoji
       TextSecurePreferences.setScreenSecurityEnabled(context, accountData.androidSpecificSettings.screenshotSecurity)
+      SignalStore.settings.setUseCompactNavigationBar(accountData.androidSpecificSettings.navigationBarSize.toLocalNavigationBarSize())
     }
 
     if (accountData.bioText.isNotBlank() || accountData.bioEmoji.isNotBlank()) {
@@ -255,6 +260,8 @@ object AccountDataArchiveProcessor {
     SignalStore.backup.optimizeStorage = settings.optimizeOnDeviceStorage
     SignalStore.backup.backupTier = settings.backupTier?.toLocalBackupTier()
     SignalStore.settings.sentMediaQuality = settings.defaultSentMediaQuality.toLocalSentMediaQuality()
+    SignalStore.settings.setTheme(settings.appTheme.toLocalTheme())
+    SignalStore.settings.setCallDataMode(settings.callsUseLessDataSetting.toLocalCallDataMode())
 
     if (settings.autoDownloadSettings != null) {
       val mobileDownloadSet = settings.autoDownloadSettings.toLocalAutoDownloadSet(AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI_AND_CELLULAR)
@@ -474,5 +481,55 @@ object AccountDataArchiveProcessor {
       out += "documents"
     }
     return out
+  }
+
+  private fun Boolean.toRemoteNavigationBarSize(): AccountData.AndroidSpecificSettings.NavigationBarSize {
+    return if (this) {
+      AccountData.AndroidSpecificSettings.NavigationBarSize.COMPACT
+    } else {
+      AccountData.AndroidSpecificSettings.NavigationBarSize.NORMAL
+    }
+  }
+
+  private fun AccountData.AndroidSpecificSettings.NavigationBarSize.toLocalNavigationBarSize(): Boolean {
+    return when (this) {
+      AccountData.AndroidSpecificSettings.NavigationBarSize.COMPACT -> true
+      AccountData.AndroidSpecificSettings.NavigationBarSize.NORMAL -> false
+      AccountData.AndroidSpecificSettings.NavigationBarSize.UNKNOWN_BAR_SIZE -> false
+    }
+  }
+
+  private fun SettingsValues.Theme.toRemoteAppTheme(): AccountData.AppTheme {
+    return when (this) {
+      SettingsValues.Theme.SYSTEM -> AccountData.AppTheme.SYSTEM
+      SettingsValues.Theme.LIGHT -> AccountData.AppTheme.LIGHT
+      SettingsValues.Theme.DARK -> AccountData.AppTheme.DARK
+    }
+  }
+
+  private fun AccountData.AppTheme.toLocalTheme(): SettingsValues.Theme {
+    return when (this) {
+      AccountData.AppTheme.SYSTEM -> SettingsValues.Theme.SYSTEM
+      AccountData.AppTheme.LIGHT -> SettingsValues.Theme.LIGHT
+      AccountData.AppTheme.DARK -> SettingsValues.Theme.DARK
+      AccountData.AppTheme.UNKNOWN_APP_THEME -> SettingsValues.Theme.SYSTEM
+    }
+  }
+
+  private fun CallDataMode.toRemoteCallsUseLessDataSetting(): AccountData.CallsUseLessDataSetting {
+    return when (this) {
+      CallDataMode.LOW_ALWAYS -> AccountData.CallsUseLessDataSetting.WIFI_AND_MOBILE_DATA
+      CallDataMode.HIGH_ON_WIFI -> AccountData.CallsUseLessDataSetting.MOBILE_DATA_ONLY
+      CallDataMode.HIGH_ALWAYS -> AccountData.CallsUseLessDataSetting.NEVER
+    }
+  }
+
+  private fun AccountData.CallsUseLessDataSetting.toLocalCallDataMode(): CallDataMode {
+    return when (this) {
+      AccountData.CallsUseLessDataSetting.WIFI_AND_MOBILE_DATA -> CallDataMode.LOW_ALWAYS
+      AccountData.CallsUseLessDataSetting.MOBILE_DATA_ONLY -> CallDataMode.HIGH_ON_WIFI
+      AccountData.CallsUseLessDataSetting.NEVER -> CallDataMode.HIGH_ALWAYS
+      AccountData.CallsUseLessDataSetting.UNKNOWN_CALL_DATA_SETTING -> CallDataMode.HIGH_ALWAYS
+    }
   }
 }
