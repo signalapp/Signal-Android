@@ -60,7 +60,7 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
     /** Parses a ServiceId serialized as a byte array. Returns null if the ServiceId is invalid. */
     @JvmStatic
     fun parseOrNull(raw: ByteArray?): ServiceId? {
-      if (raw == null) {
+      if (raw == null || raw.isEmpty()) {
         return null
       }
 
@@ -222,7 +222,7 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
       /** Parse a byte array as a PNI, regardless if it has the type prefix byte present or not. Only use this if you are certain what you're reading is a PNI. */
       @JvmStatic
       fun parseOrNull(raw: ByteArray?): PNI? {
-        return if (raw == null) {
+        return if (raw == null || raw.isEmpty()) {
           null
         } else if (raw.size == 17) {
           ServiceId.parseOrNull(raw).let { if (it is PNI) it else null }
