@@ -1397,7 +1397,7 @@
     <string name="AddMembersActivity__done">Done</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">This person can\'t be added to legacy groups.</string>
 
-    <!-- Confirmation text when adding one member to a group. %1$s is the member's name, %2$s is the group name. -->
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
     <string name="AddMembersActivity__add_member_to_s">Add \"%1$s\" to \"%2$s\"?</string>
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->

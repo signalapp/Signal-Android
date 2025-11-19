@@ -1508,14 +1508,19 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Déanta</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ní féidir an duine seo a chur le grúpaí ar cuireadh grúpaí eile ina n-ionad.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Add \"%1$s\" to \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">An bhfuil fonn ort \"%1$s\" a chur le \"%2$s\"?</item>
-        <item quantity="two">An bhfuil fonn ort %3$d bhall a chur le \"%2$s\"?</item>
-        <item quantity="few">An bhfuil fonn ort %3$d bhall a chur le \"%2$s\"?</item>
-        <item quantity="many">An bhfuil fonn ort %3$d mball a chur le \"%2$s\"?</item>
-        <item quantity="other">An bhfuil fonn ort %3$d ball a chur le \"%2$s\"?</item>
+        <item quantity="one">An bhfuil fonn ort \"{2}\" a chur le \"%2$s\"?</item>
+        <item quantity="two">An bhfuil fonn ort %1$d bhall a chur le \"%2$s\"?</item>
+        <item quantity="few">An bhfuil fonn ort %1$d bhall a chur le \"%2$s\"?</item>
+        <item quantity="many">An bhfuil fonn ort %1$d mball a chur le \"%2$s\"?</item>
+        <item quantity="other">An bhfuil fonn ort %1$d ball a chur le \"%2$s\"?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Cuir leis</string>
     <string name="AddMembersActivity__add_members">Cuir baill leis</string>
 
@@ -2660,6 +2665,12 @@
     <string name="WebRtcCallActivity__to_start_call">Chun tús a chur le glao nó chun dul isteach i nglao:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">Chun d\'fhíseán a chumasú:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Glao Signal</string>
@@ -5585,14 +5596,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Léim thairis seo</string>
 
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d bhall</item>
-        <item quantity="two">%1$d bhall</item>
-        <item quantity="few">%1$d bhall</item>
-        <item quantity="many">%1$d mball</item>
-        <item quantity="other">%1$d ball</item>
-    </plurals>
-
     <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
     <plurals name="CreateGroupActivity__s_members">
         <item quantity="one">%1$s bhall</item>
@@ -6349,16 +6352,16 @@
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Theip ar chur baic</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">Ní úsáideoir Signal é/í %1$s</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s is not a Signal user</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
     <string name="NewConversationActivity__accessibility_open_top_bar_menu">Oscail an roghchlár</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">Ní úsáideoir Signal %1$s duine amháin</item>
-        <item quantity="two">Ní úsáideoirí Signal iad %1$s de na daoine</item>
-        <item quantity="few">Ní úsáideoirí Signal iad %1$s de na daoine</item>
-        <item quantity="many">Ní úsáideoirí Signal iad %1$s de na daoine</item>
-        <item quantity="other">Ní úsáideoirí Signal iad %1$s de na daoine</item>
+    <plurals name="RecipientLookup_error__not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="two">%1$s are not Signal users</item>
+        <item quantity="few">%1$s are not Signal users</item>
+        <item quantity="many">%1$s are not Signal users</item>
+        <item quantity="other">%1$s are not Signal users</item>
     </plurals>
 
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
@@ -8574,12 +8577,12 @@
     <string name="BackupStatusRow__your_last_backup">Níorbh fhéidir do chúltaca deiridh a chur i gcrích. Cinntigh go bhfuil do ghuthán nasctha le Wi-Fi agus tapáil \"Cúltacaigh anois\" lena thriail arís.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Níorbh fhéidir do chúltaca deiridh a chur i gcrích. Cinntigh go bhfuil an leagan Signal is déanaí agat agus triail arís.</string>
-    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
     <string name="BackupStatusRow__backup_file_too_large">Sáraíonn líon na dteachtaireachtaí atá agat an teorainn stórála. Scrios roinnt teachtaireachtaí agus triail arís.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">Níl cúltacú á dhéanamh ar theachtaireachtaí a seoladh nó a fuarthas roimh %1$s.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Níorbh fhéidir do chúltaca a chríochnú toisc nach leor an spás diosca. Saor spás ar do ghléas agus triail arís.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Tuilleadh faisnéise</string>
 

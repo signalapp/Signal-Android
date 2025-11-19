@@ -1394,11 +1394,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">انجام شد</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">این فرد نمی‌تواند به گروه‌های قدیمی اضافه شود.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Add \"%1$s\" to \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">«%1$s» به «%2$s» افزوده شود؟</item>
-        <item quantity="other">%3$d عضو به «%2$s» افزوده شوند؟</item>
+        <item quantity="one">«{2}» به «%2$s» افزوده شود؟</item>
+        <item quantity="other">%1$d عضو به «%2$s» افزوده شوند؟</item>
     </plurals>
+
     <string name="AddMembersActivity__add">افزودن</string>
     <string name="AddMembersActivity__add_members">افزودن اعضا</string>
 
@@ -2441,6 +2446,12 @@
     <string name="WebRtcCallActivity__to_start_call">برای شروع یا پیوستن به تماس:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">برای فعال کردن ویدیو:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">تماس سیگنال</string>
@@ -5198,11 +5209,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">رد کردن</string>
 
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d عضو</item>
-        <item quantity="other">%1$d عضو</item>
-    </plurals>
-
     <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
     <plurals name="CreateGroupActivity__s_members">
         <item quantity="one">%1$s عضو</item>
@@ -5932,13 +5938,13 @@
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">مسدود نشد</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s کاربر سیگنال نیست</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s is not a Signal user</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
     <string name="NewConversationActivity__accessibility_open_top_bar_menu">باز کردن منو</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s کاربر سیگنال نیست</item>
-        <item quantity="other">%1$s کاربر سیگنال نیستند</item>
+    <plurals name="RecipientLookup_error__not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="other">%1$s are not Signal users</item>
     </plurals>
 
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
@@ -8049,12 +8055,12 @@
     <string name="BackupStatusRow__your_last_backup">آخرین پشتیبان‌گیری شما انجام نشد. مطمئن شوید که تلفن شما به Wi-Fi متصل است و با ضربه زدن روی «اکنون پشتیبان‌گیری شود»، دوباره امتحان کنید.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">آخرین پشتیبان‌گیری شما انجام نشد. مطمئن شوید که از جدیدترین نسخه سیگنال استفاده می‌کنید و سپس دوباره امتحان کنید.</string>
-    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
     <string name="BackupStatusRow__backup_file_too_large">تعداد پیام‌های شما از حد مجاز حافظه بیشتر شده است. چند پیام را حذف کنید و دوباره امتحان کنید.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">پیام‌های ارسالی یا دریافتی قبل از %1$s پشتیبان‌گیری نمی‌شوند.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">به دلیل کمبود فضای دیسک، پشتیبان‌گیری انجام نشد. فضا در دستگاه خود آزاد کنید و دوباره امتحان کنید.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">اطلاعات بیشتر</string>
 

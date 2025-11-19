@@ -1394,11 +1394,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Tapos na</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Hindi ma-add sa legacy groups ang user na ito.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Add \"%1$s\" to \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Gusto mo bang i-add si \"%1$s\" sa \"%2$s\"?</item>
-        <item quantity="other">Gusto mo bang i-add ang %3$d members sa \"%2$s\"?</item>
+        <item quantity="one">Gusto mo bang i-add si \"{2}\" sa \"%2$s\"?</item>
+        <item quantity="other">Gusto mo bang i-add ang %1$d members sa \"%2$s\"?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Mag-add</string>
     <string name="AddMembersActivity__add_members">Magdagdag ng mga kasapi</string>
 
@@ -2441,6 +2446,12 @@
     <string name="WebRtcCallActivity__to_start_call">Para magsimula ng o sumali sa call:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">Para i-enable ang video mo:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Tawag sa Signal</string>
@@ -5198,11 +5209,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Laktawan</string>
 
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d member</item>
-        <item quantity="other">%1$d members</item>
-    </plurals>
-
     <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
     <plurals name="CreateGroupActivity__s_members">
         <item quantity="one">%1$s member</item>
@@ -5932,13 +5938,13 @@
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Failed ang pag-block</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">Hindi Signal user si %1$s</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s is not a Signal user</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
     <string name="NewConversationActivity__accessibility_open_top_bar_menu">Buksan ang menu</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">Si %1$s ay hindi isang Signal user</item>
-        <item quantity="other">Sila %1$s ay hindi Signal users</item>
+    <plurals name="RecipientLookup_error__not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="other">%1$s are not Signal users</item>
     </plurals>
 
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
@@ -8049,12 +8055,12 @@
     <string name="BackupStatusRow__your_last_backup">Hindi makumpleto ang huling backup mo. Siguraduhing connected sa Wi-Fi ang phone mo at i-tap ang \"Back up now\" para subukan ulit.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Hindi makumpleto ang huling backup mo. Siguraduhing gamit mo ang latest version ng Signal at subukan ulit.</string>
-    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
     <string name="BackupStatusRow__backup_file_too_large">Lagpas sa storage limit mo ang bilang ng messages na mayroon ka. Burahin ang ibang messages at subukan ulit.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">Hindi naka-back up ang messages na ipinadala o natanggap bago %1$s.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Hindi makumpleto ang backup mo dahil kulang ang disk space mo. Magbawas ng files sa device mo at subukan ulit.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Matuto pa</string>
 

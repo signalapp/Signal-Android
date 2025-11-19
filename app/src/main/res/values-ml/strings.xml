@@ -1394,11 +1394,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">ചെയ്‌തു</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ഈ വ്യക്തിയെ ലെഗസി ഗ്രൂപ്പുകളിൽ ചേർക്കാൻ കഴിയില്ല.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Add \"%1$s\" to \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">\"%2$s\" ലേക്ക് \"%1$s\" എന്നയാളെ ചേർക്കണോ?</item>
-        <item quantity="other">\"%2$s\" -ലേക്ക് %3$d അംഗങ്ങളെ ചേർക്കണോ?</item>
+        <item quantity="one">\"%2$s\" ലേക്ക് \"{2}\" എന്നയാളെ ചേർക്കണോ?</item>
+        <item quantity="other">\"%2$s\" -ലേക്ക് %1$d അംഗങ്ങളെ ചേർക്കണോ?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">ചേർക്കുക</string>
     <string name="AddMembersActivity__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
 
@@ -2441,6 +2446,12 @@
     <string name="WebRtcCallActivity__to_start_call">ഒരു കോൾ ആരംഭിക്കുന്നതിനോ ചേരുന്നതിനോ:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">നിങ്ങളുടെ വീഡിയോ പ്രവർത്തനക്ഷമമാക്കാൻ:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal കോൾ</string>
@@ -5198,11 +5209,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">ഒഴിവാക്കുക</string>
 
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d അംഗം</item>
-        <item quantity="other">%1$d അംഗങ്ങൾ</item>
-    </plurals>
-
     <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
     <plurals name="CreateGroupActivity__s_members">
         <item quantity="one">%1$s അംഗം</item>
@@ -5932,13 +5938,13 @@
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">തടയൽ പരാജയപ്പെട്ടു</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s ഒരു Signal ഉപയോക്താവല്ല</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s is not a Signal user</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
     <string name="NewConversationActivity__accessibility_open_top_bar_menu">മെനു തുറക്കുക</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s ഒരു Signal ഉപയോക്താവല്ല</item>
-        <item quantity="other">%1$s Signal ഉപയോക്താക്കളല്ല</item>
+    <plurals name="RecipientLookup_error__not_signal_users">
+        <item quantity="one">%1$s is not a Signal user</item>
+        <item quantity="other">%1$s are not Signal users</item>
     </plurals>
 
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
@@ -8049,12 +8055,12 @@
     <string name="BackupStatusRow__your_last_backup">നിങ്ങളുടെ അവസാന ബാക്കപ്പ് പൂർത്തിയാക്കാനായില്ല. നിങ്ങളുടെ ഫോൺ Wi-Fi-യിലേക്ക് കണക്‌റ്റ് ചെയ്‌തിട്ടുണ്ടെന്ന് ഉറപ്പുവരുത്തി വീണ്ടും ശ്രമിക്കാൻ \"ഇപ്പോൾ ബാക്കപ്പ് ചെയ്യുക\" ടാപ്പ് ചെയ്യുക.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">നിങ്ങളുടെ അവസാന ബാക്കപ്പ് പൂർത്തിയാക്കാനായില്ല. Signal-ന്റെ ഏറ്റവും പുതിയ പതിപ്പാണ് നിങ്ങൾ ഉപയോഗിക്കുന്നതെന്ന് ഉറപ്പാക്കിയതിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
-    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
     <string name="BackupStatusRow__backup_file_too_large">നിങ്ങളുടെ കൈവശമുള്ള സന്ദേശങ്ങളുടെ എണ്ണം സംഭരണ പരിധി കവിയുന്നു. ചില സന്ദേശങ്ങൾ ഇല്ലാതാക്കി വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">%1$s-ന് മുമ്പ് അയച്ചതോ സ്വീകരിച്ചതോ ആയ സന്ദേശങ്ങളുടെ ബാക്കപ്പ് എടുക്കുന്നില്ല.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">ഡിസ്കിൽ സ്‌പേസ് കുറവായതിനാൽ നിങ്ങളുടെ ബാക്കപ്പ് പൂർത്തിയാക്കാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ ഉപകരണത്തിൽ സ്‌പേസ് സൃഷ്ടിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">കൂടുതലറിയുക</string>
 

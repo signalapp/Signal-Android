@@ -1356,10 +1356,15 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">بولدى</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">بۇ ئادەمنى كونا گۇرۇپپىلارغا قوشقىلى بولمايدۇ.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Add \"%1$s\" to \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="other">«%2$s» غا %3$d ئەزانى قوشامسىز؟</item>
+        <item quantity="other">«%2$s» غا %1$d ئەزانى قوشامسىز؟</item>
     </plurals>
+
     <string name="AddMembersActivity__add">قوشۇش</string>
     <string name="AddMembersActivity__add_members">ئەزا قوشۇش</string>
 
@@ -2368,6 +2373,12 @@
     <string name="WebRtcCallActivity__to_start_call">چاقىرىق باشلاش ياكى قوشۇلۇش ئۈچۈن:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">ۋىدېيونى قوزغىتىش ئۈچۈن:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">‫Signal چاقىرىقى</string>
@@ -5069,10 +5080,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">ئاتلا</string>
 
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="other">‏%1$d ئەزا</item>
-    </plurals>
-
     <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
     <plurals name="CreateGroupActivity__s_members">
         <item quantity="other">‏%1$s ئەزا</item>
@@ -5793,12 +5800,12 @@
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">چەكلەش مەغلۇپ بولدى</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s بولسا Signal ئىشلەتكۈچى ئەمەس</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s is not a Signal user</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
     <string name="NewConversationActivity__accessibility_open_top_bar_menu">تىزىملىكنى ئېچىش</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="other">%1$s سىگنال ئىشلەتكۈچىسى ئەمەس</item>
+    <plurals name="RecipientLookup_error__not_signal_users">
+        <item quantity="other">%1$s are not Signal users</item>
     </plurals>
 
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
@@ -7874,12 +7881,12 @@
     <string name="BackupStatusRow__your_last_backup">ئاخىرقى زاپاسلىشىڭىزنى تاماملىيالمىدى. تېلېفونىڭىزنىڭ Wi-Fi غا ئۇلانغانلىقىنى جەزملەشتۈرۈڭ ۋە «ھازىر زاپاسلاش» نى چېكىپ قايتا سىناڭ.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">ئاخىرقى زاپاسلىشىڭىزنى تاماملىيالمىدى. سىگنالنىڭ ئەڭ يېڭى نەشرىنى ئشلەتكەنلىكىڭىزنى جەزملەشتۈرۈڭ ۋە قايتا سىناڭ.</string>
-    <!-- Text displayed when a backup file exceeds the storage limit -->
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
     <string name="BackupStatusRow__backup_file_too_large">سىزدە بار ئۇچۇرلارنىڭ سانى ساقلاش چېكىدىن ئېشىپ كەتكەن. بەزى ئۇچۇرلارنى ئۆچۈرۈپ قايتا سىناڭ.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">%1$s دىن بۇرۇن ئەۋەتىلگەن ياكى تاپشۇرۇۋېلىنغان ئۇچۇرلار زاپاسلانمىغان.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">دىسكىدىكى بوشلۇقىڭىز ئاز قالغاچقا زاپاسلاشنى تاماملىغىلى بولمىدى. ئۈسكۈنىڭىزدىكى بوشلۇقنى بىكارلاپ قايتا سىناڭ.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">تەپسىلاتى</string>
 
