@@ -22,6 +22,10 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.BitmapUtil
 import java.util.concurrent.ExecutionException
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
+
+private const val IMAGE_LOAD_TIMEOUT_SECONDS = 2L
 
 fun Drawable?.toLargeBitmap(context: Context): Bitmap? {
   if (this == null) {
@@ -48,10 +52,12 @@ fun Recipient.getContactDrawable(context: Context): Drawable? {
           context.resources.getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
           context.resources.getDimensionPixelSize(android.R.dimen.notification_large_icon_height)
         )
-        .get()
+        .get(IMAGE_LOAD_TIMEOUT_SECONDS, TimeUnit.SECONDS)
     } catch (e: InterruptedException) {
       FallbackAvatarDrawable(context, fallbackAvatar).circleCrop()
     } catch (e: ExecutionException) {
+      FallbackAvatarDrawable(context, fallbackAvatar).circleCrop()
+    } catch (e: TimeoutException) {
       FallbackAvatarDrawable(context, fallbackAvatar).circleCrop()
     }
   } else {
@@ -66,10 +72,12 @@ fun Uri.toBitmap(context: Context, dimension: Int): Bitmap {
       .load(DecryptableUri(this))
       .diskCacheStrategy(DiskCacheStrategy.NONE)
       .submit(dimension, dimension)
-      .get()
+      .get(2, TimeUnit.SECONDS)
   } catch (e: InterruptedException) {
     Bitmap.createBitmap(dimension, dimension, Bitmap.Config.RGB_565)
   } catch (e: ExecutionException) {
+    Bitmap.createBitmap(dimension, dimension, Bitmap.Config.RGB_565)
+  } catch (e: TimeoutException) {
     Bitmap.createBitmap(dimension, dimension, Bitmap.Config.RGB_565)
   }
 }
