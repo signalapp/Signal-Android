@@ -403,7 +403,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (hasSameContents(this.slide, slide)) {
-      Log.i(TAG, "Not re-loading slide " + slide.asAttachment().getUri());
+      Log.i(TAG, "Not re-loading slide " + slide.asAttachment().getDisplayUri());
       return new SettableFuture<>(false);
     }
 

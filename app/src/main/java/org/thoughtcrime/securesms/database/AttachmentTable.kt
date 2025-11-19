@@ -869,6 +869,7 @@ class AttachmentTable(
         """
         ${buildAttachmentsThatNeedUploadQuery("$ARCHIVE_THUMBNAIL_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})")} AND
         $QUOTE = 0 AND
+        $STICKER_ID = -1 AND
         ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
         $CONTENT_TYPE != 'image/svg+xml' AND
         $MESSAGE_ID != $WALLPAPER_MESSAGE_ID
@@ -888,6 +889,7 @@ class AttachmentTable(
         """
         ${buildAttachmentsThatNeedUploadQuery("$ARCHIVE_THUMBNAIL_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})")} AND
         $QUOTE = 0 AND
+        $STICKER_ID = -1 AND
         ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
         $CONTENT_TYPE != 'image/svg+xml' AND
         $MESSAGE_ID != $WALLPAPER_MESSAGE_ID
@@ -1122,11 +1124,15 @@ class AttachmentTable(
         $TABLE_NAME.$OFFLOAD_RESTORED_AT < ${now - 7.days.inWholeMilliseconds} AND
         $TABLE_NAME.$TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
         $TABLE_NAME.$ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND
+        $TABLE_NAME.$DATA_FILE IS NOT NULL AND
+        $TABLE_NAME.$STICKER_ID = -1 AND
+        $TABLE_NAME.$REMOTE_KEY IS NOT NULL AND
+        $TABLE_NAME.$DATA_HASH_END IS NOT NULL AND
         (
           $TABLE_NAME.$THUMBNAIL_FILE IS NOT NULL OR 
-          NOT ($TABLE_NAME.$CONTENT_TYPE like 'image/%' OR $TABLE_NAME.$CONTENT_TYPE like 'video/%')
-        ) AND
-        $TABLE_NAME.$DATA_FILE IS NOT NULL
+          NOT ($TABLE_NAME.$CONTENT_TYPE LIKE 'image/%' OR $TABLE_NAME.$CONTENT_TYPE LIKE 'video/%') OR
+          $TABLE_NAME.$CONTENT_TYPE = 'image/svg+xml'
+        )
       )
       AND
       (
@@ -1134,7 +1140,7 @@ class AttachmentTable(
       )
     """
 
-    writableDatabase
+    val count = writableDatabase
       .update(TABLE_NAME)
       .values(
         TRANSFER_STATE to TRANSFER_RESTORE_OFFLOADED,
@@ -1142,11 +1148,12 @@ class AttachmentTable(
         DATA_RANDOM to null,
         TRANSFORM_PROPERTIES to null,
         DATA_HASH_START to null,
-        DATA_HASH_END to null,
         OFFLOAD_RESTORED_AT to 0
       )
       .where("$ID in ($subSelect)")
       .run()
+
+    Log.i(TAG, "Marked $count attachments as optimized")
   }
 
   /**

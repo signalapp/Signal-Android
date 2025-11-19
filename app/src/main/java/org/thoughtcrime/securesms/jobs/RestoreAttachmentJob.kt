@@ -164,7 +164,7 @@ class RestoreAttachmentJob private constructor(
         messageId = attachment.mmsId,
         attachmentId = attachment.attachmentId,
         manual = true,
-        queue = Queues.MANUAL_RESTORE.random(),
+        queue = Queues.random(Queues.MANUAL_RESTORE, attachment.dataHash?.hashCode() ?: attachment.remoteKey?.hashCode()),
         priority = Parameters.PRIORITY_DEFAULT
       )
 
@@ -410,7 +410,7 @@ class RestoreAttachmentJob private constructor(
             inputStream = input,
             offloadRestoredAt = if (manual) System.currentTimeMillis().milliseconds else null,
             archiveRestore = true,
-            notify = false
+            notify = manual
           )
         ArchiveDatabaseExecutor.throttledNotifyAttachmentAndChatListObservers()
       }

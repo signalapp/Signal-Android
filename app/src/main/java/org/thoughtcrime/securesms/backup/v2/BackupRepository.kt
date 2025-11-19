@@ -589,6 +589,10 @@ object BackupRepository {
 
   @JvmStatic
   fun maybeFixAnyDanglingUploadProgress() {
+    if (SignalStore.account.isLinkedDevice) {
+      return
+    }
+
     if (SignalStore.backup.archiveUploadState?.backupPhase == ArchiveUploadProgressState.BackupPhase.Message && AppDependencies.jobManager.find { it.factoryKey == BackupMessagesJob.KEY }.isEmpty()) {
       SignalStore.backup.archiveUploadState = null
       BackupMessagesJob.enqueue()

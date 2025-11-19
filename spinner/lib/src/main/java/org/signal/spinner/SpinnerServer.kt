@@ -15,7 +15,6 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.tracing.Tracer
 import org.signal.spinner.Spinner.DatabaseConfig
 import java.io.ByteArrayInputStream
-import java.lang.IllegalArgumentException
 import java.security.NoSuchAlgorithmException
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -79,7 +78,7 @@ internal class SpinnerServer(
         else -> {
           val plugin = plugins[session.uri]
           if (plugin != null && session.method == Method.GET) {
-            getPlugin(dbParam, plugin)
+            getPlugin(dbParam, plugin, session.parameters)
           } else {
             newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_HTML, "Not found")
           }
@@ -280,19 +279,28 @@ internal class SpinnerServer(
     )
   }
 
-  private fun getPlugin(dbName: String, plugin: Plugin): Response {
-    return renderTemplate(
-      "plugin",
-      PluginPageModel(
-        environment = environment,
-        deviceInfo = deviceInfo.resolve(),
-        database = dbName,
-        databases = databases.keys.toList(),
-        plugins = plugins.values.toList(),
-        activePlugin = plugin,
-        pluginResult = plugin.get()
-      )
-    )
+  private fun getPlugin(dbName: String, plugin: Plugin, parameters: Map<String, List<String>>): Response {
+    val pluginResult = plugin.get(parameters)
+
+    when (pluginResult) {
+      is PluginResult.RawFileResult -> {
+        return newFixedLengthResponse(Response.Status.OK, pluginResult.mimeType, pluginResult.data, pluginResult.length)
+      }
+      else -> {
+        return renderTemplate(
+          "plugin",
+          PluginPageModel(
+            environment = environment,
+            deviceInfo = deviceInfo.resolve(),
+            database = dbName,
+            databases = databases.keys.toList(),
+            plugins = plugins.values.toList(),
+            activePlugin = plugin,
+            pluginResult = plugin.get(parameters)
+          )
+        )
+      }
+    }
   }
 
   private fun internalError(throwable: Throwable): Response {
