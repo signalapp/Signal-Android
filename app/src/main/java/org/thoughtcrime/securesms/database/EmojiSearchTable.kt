@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.text.TextUtils
 import androidx.core.content.contentValuesOf
+import org.signal.core.util.exists
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireNonNullString
@@ -102,6 +103,10 @@ class EmojiSearchTable(context: Context, databaseHelper: SignalDatabase) : Datab
       db.insert(localizedSearchIndex)
       db.insert(englishSearchIndex)
     }
+  }
+
+  fun hasSearchIndexData(): Boolean {
+    return readableDatabase.exists(TABLE_NAME).run()
   }
 
   private fun SQLiteDatabase.insert(searchIndex: List<EmojiSearchData>) {
