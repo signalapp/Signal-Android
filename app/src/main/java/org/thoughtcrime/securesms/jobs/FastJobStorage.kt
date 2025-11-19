@@ -362,7 +362,6 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
           compareByDescending<MinimalJobSpec> { it.globalPriority }
             .thenByDescending { it.queuePriority }
             .thenBy { it.createTime }
-            .thenBy { it.id }
         )
         ?.let { placeJobInEligibleList(it) }
     }
