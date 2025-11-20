@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
@@ -94,7 +95,7 @@ object Dialogs {
     tonalElevation: Dp = Defaults.TonalElevation,
     properties: DialogProperties = DialogProperties()
   ) {
-    androidx.compose.material3.AlertDialog(
+    AlertDialog(
       onDismissRequest = onDismissRequest,
       confirmButton = confirmButton,
       modifier = modifier,
@@ -551,11 +552,19 @@ object Dialogs {
     negative: String,
     onPositive: () -> Unit,
     onNegative: () -> Unit,
-    onNeutral: () -> Unit
+    onNeutral: () -> Unit,
+    properties: DialogProperties = DialogProperties()
   ) {
     Dialog(
       onDismissRequest = onNegative,
-      properties = DialogProperties(usePlatformDefaultWidth = false)
+      properties = DialogProperties(
+        usePlatformDefaultWidth = false,
+        dismissOnBackPress = properties.dismissOnBackPress,
+        dismissOnClickOutside = properties.dismissOnClickOutside,
+        securePolicy = properties.securePolicy,
+        decorFitsSystemWindows = properties.decorFitsSystemWindows,
+        windowTitle = properties.windowTitle
+      )
     ) {
       Surface(
         modifier = Modifier

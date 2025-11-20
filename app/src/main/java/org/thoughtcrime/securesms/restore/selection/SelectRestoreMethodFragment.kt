@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -69,7 +70,8 @@ class SelectRestoreMethodFragment : ComposeFragment() {
             }
           },
           onDismiss = { showSkipRestoreWarning = false },
-          confirmColor = MaterialTheme.colorScheme.error
+          confirmColor = MaterialTheme.colorScheme.error,
+          properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
         )
       }
     }

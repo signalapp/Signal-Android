@@ -44,6 +44,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -227,7 +228,8 @@ class RemoteRestoreActivity : BaseActivity() {
                 }
               },
               onDismiss = { showSkipRestoreWarning = false },
-              confirmColor = MaterialTheme.colorScheme.error
+              confirmColor = MaterialTheme.colorScheme.error,
+              properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
             )
           }
         }
@@ -682,7 +684,8 @@ fun TierRestoreFailedDialog(
       negative = stringResource(android.R.string.cancel),
       onPositive = onRetryRestore,
       onNeutral = onContactSupport,
-      onNegative = onCancel
+      onNegative = onCancel,
+      properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
     )
   } else {
     Dialogs.SimpleAlertDialog(
