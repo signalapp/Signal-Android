@@ -40,7 +40,7 @@ fun Resources.getWindowSizeClass(): WindowSizeClass {
 }
 
 /**
- * Split Pane is enabled as long as the width size class is MEDIUM or greater
+ * Determines whether the UI should display in split-pane mode based on available screen space.
  */
 @JvmOverloads
 fun WindowSizeClass.isSplitPane(

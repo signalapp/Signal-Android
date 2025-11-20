@@ -42,7 +42,6 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import androidx.window.core.layout.WindowHeightSizeClass
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.main.MainFloatingActionButtonsCallback
@@ -61,7 +60,7 @@ enum class NavigationType {
       val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
       return remember(windowSizeClass) {
-        if (windowSizeClass.isSplitPane() && windowSizeClass.windowHeightSizeClass.isAtLeast(WindowHeightSizeClass.MEDIUM)) {
+        if (windowSizeClass.isSplitPane()) {
           RAIL
         } else {
           BAR

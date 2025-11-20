@@ -72,7 +72,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.window.core.layout.WindowSizeClass
-import androidx.window.core.layout.WindowWidthSizeClass
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
@@ -555,7 +554,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
             }
           },
           secondaryContent = {
-            val listContainerColor = if (windowSizeClass.isSplitPane() && windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.MEDIUM) {
+            val listContainerColor = if (windowSizeClass.isSplitPane()) {
               SignalTheme.colors.colorSurface1
             } else {
               MaterialTheme.colorScheme.surface
