@@ -21,9 +21,7 @@ import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
@@ -34,7 +32,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -185,6 +182,35 @@ private fun CreateGroupScreenUi(
       if (uiState.isLookingUpRecipient) {
         Dialogs.IndeterminateProgressDialog()
       }
+    },
+    floatingActionButton = {
+      AnimatedContent(
+        targetState = uiState.newSelections.isNotEmpty(),
+        transitionSpec = {
+          ContentTransform(
+            targetContentEnter = EnterTransition.None,
+            initialContentExit = ExitTransition.None
+          ) using SizeTransform(sizeAnimationSpec = { _, _ -> tween(300) })
+        }
+      ) { hasSelectedContacts ->
+        if (hasSelectedContacts) {
+          FilledTonalIconButton(
+            onClick = callbacks::onNextClicked,
+            content = {
+              Icon(
+                imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_end_24),
+                contentDescription = stringResource(R.string.CreateGroupActivity__accessibility_next)
+              )
+            }
+          )
+        } else {
+          Buttons.MediumTonal(
+            onClick = callbacks::onNextClicked
+          ) {
+            Text(text = stringResource(R.string.CreateGroupActivity__skip))
+          }
+        }
+      }
     }
   )
 }
@@ -195,56 +221,23 @@ private fun CreateGroupRecipientPicker(
   callbacks: UiCallbacks,
   modifier: Modifier = Modifier
 ) {
-  Box(modifier = modifier) {
-    RecipientPicker(
-      searchQuery = uiState.searchQuery,
-      displayModes = setOf(RecipientPicker.DisplayMode.PUSH),
-      selectionLimits = uiState.selectionLimits,
-      pendingRecipientSelections = uiState.pendingRecipientSelections,
-      isRefreshing = false,
-      listBottomPadding = 64.dp,
-      clipListToPadding = false,
-      callbacks = remember(callbacks) {
-        RecipientPickerCallbacks(
-          listActions = callbacks,
-          findByUsername = callbacks,
-          findByPhoneNumber = callbacks
-        )
-      },
-      modifier = modifier.fillMaxSize()
-    )
-
-    AnimatedContent(
-      targetState = uiState.newSelections.isNotEmpty(),
-      transitionSpec = {
-        ContentTransform(
-          targetContentEnter = EnterTransition.None,
-          initialContentExit = ExitTransition.None
-        ) using SizeTransform(sizeAnimationSpec = { _, _ -> tween(300) })
-      },
-      modifier = Modifier
-        .align(Alignment.BottomEnd)
-        .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-    ) { hasSelectedContacts ->
-      if (hasSelectedContacts) {
-        FilledTonalIconButton(
-          onClick = callbacks::onNextClicked,
-          content = {
-            Icon(
-              imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_end_24),
-              contentDescription = stringResource(R.string.CreateGroupActivity__accessibility_next)
-            )
-          }
-        )
-      } else {
-        Buttons.MediumTonal(
-          onClick = callbacks::onNextClicked
-        ) {
-          Text(text = stringResource(R.string.CreateGroupActivity__skip))
-        }
-      }
-    }
-  }
+  RecipientPicker(
+    searchQuery = uiState.searchQuery,
+    displayModes = setOf(RecipientPicker.DisplayMode.PUSH),
+    selectionLimits = uiState.selectionLimits,
+    pendingRecipientSelections = uiState.pendingRecipientSelections,
+    isRefreshing = false,
+    listBottomPadding = 64.dp,
+    clipListToPadding = false,
+    callbacks = remember(callbacks) {
+      RecipientPickerCallbacks(
+        listActions = callbacks,
+        findByUsername = callbacks,
+        findByPhoneNumber = callbacks
+      )
+    },
+    modifier = modifier.fillMaxSize()
+  )
 }
 
 private interface UiCallbacks :

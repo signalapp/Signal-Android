@@ -16,9 +16,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -26,7 +24,6 @@ import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
@@ -187,6 +184,14 @@ private fun AddMembersScreenUi(
       if (uiState.isLookingUpRecipient) {
         Dialogs.IndeterminateProgressDialog()
       }
+    },
+    floatingActionButton = {
+      Buttons.MediumTonal(
+        enabled = uiState.newSelections.isNotEmpty(),
+        onClick = callbacks::onDoneClicked
+      ) {
+        Text(text = stringResource(R.string.AddMembersActivity__done))
+      }
     }
   )
 }
@@ -197,37 +202,22 @@ private fun AddMembersRecipientPicker(
   callbacks: UiCallbacks,
   modifier: Modifier = Modifier
 ) {
-  Box(modifier = modifier) {
-    RecipientPicker(
-      searchQuery = uiState.searchQuery,
-      displayModes = setOf(RecipientPicker.DisplayMode.PUSH),
-      selectionLimits = uiState.selectionLimits,
-      preselectedRecipients = uiState.existingMembersMinusSelf,
-      pendingRecipientSelections = uiState.pendingRecipientSelections,
-      isRefreshing = false,
-      listBottomPadding = 64.dp,
-      clipListToPadding = false,
-      callbacks = RecipientPickerCallbacks(
-        listActions = callbacks,
-        findByUsername = callbacks,
-        findByPhoneNumber = callbacks
-      ),
-      modifier = modifier.fillMaxSize()
-    )
-
-    Box(
-      modifier = Modifier
-        .align(Alignment.BottomEnd)
-        .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-    ) {
-      Buttons.MediumTonal(
-        enabled = uiState.newSelections.isNotEmpty(),
-        onClick = callbacks::onDoneClicked
-      ) {
-        Text(text = stringResource(R.string.AddMembersActivity__done))
-      }
-    }
-  }
+  RecipientPicker(
+    searchQuery = uiState.searchQuery,
+    displayModes = setOf(RecipientPicker.DisplayMode.PUSH),
+    selectionLimits = uiState.selectionLimits,
+    preselectedRecipients = uiState.existingMembersMinusSelf,
+    pendingRecipientSelections = uiState.pendingRecipientSelections,
+    isRefreshing = false,
+    listBottomPadding = 64.dp,
+    clipListToPadding = false,
+    callbacks = RecipientPickerCallbacks(
+      listActions = callbacks,
+      findByUsername = callbacks,
+      findByPhoneNumber = callbacks
+    ),
+    modifier = modifier.fillMaxSize()
+  )
 }
 
 private interface UiCallbacks :
