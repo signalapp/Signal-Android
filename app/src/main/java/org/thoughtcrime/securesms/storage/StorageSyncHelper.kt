@@ -177,10 +177,11 @@ object StorageSyncHelper {
       }
 
       hasBackup = SignalStore.backup.areBackupsEnabled && SignalStore.backup.hasBackupBeenUploaded
-      if (SignalStore.backup.areBackupsEnabled && SignalStore.backup.backupTier != null) {
-        backupTier = getBackupLevelValue(SignalStore.backup.backupTier!!)
-      } else if (SignalStore.backup.backupTierInternalOverride != null) {
-        backupTier = getBackupLevelValue(SignalStore.backup.backupTierInternalOverride!!)
+      backupTier = when {
+        SignalStore.account.isLinkedDevice -> null
+        SignalStore.backup.areBackupsEnabled && SignalStore.backup.backupTier != null -> getBackupLevelValue(SignalStore.backup.backupTier!!)
+        SignalStore.backup.backupTierInternalOverride != null -> getBackupLevelValue(SignalStore.backup.backupTierInternalOverride!!)
+        else -> null
       }
 
       notificationProfileManualOverride = getNotificationProfileManualOverride()
