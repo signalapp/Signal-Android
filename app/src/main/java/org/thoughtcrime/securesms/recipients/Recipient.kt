@@ -370,8 +370,17 @@ class Recipient(
       }
     }
 
-  /** The badge to feature on a recipient's avatar, if any. */
-  val featuredBadge: Badge? = badges.firstOrNull()
+  /**
+   * The badge to feature on a recipient's avatar, if any.
+   * This value respects the local user's [SignalStore.inAppPayments.getDisplayBadgesOnProfile()] preference.
+   */
+  val featuredBadge: Badge? get() {
+    return if (isSelf && !SignalStore.inAppPayments.getDisplayBadgesOnProfile()) {
+      null
+    } else {
+      badges.firstOrNull()
+    }
+  }
 
   /** A string combining the about emoji + text for displaying various places. */
   val combinedAboutAndEmoji: String? by lazy { listOf(aboutEmoji, about).filter { it.isNotNullOrBlank() }.joinToString(separator = " ").nullIfBlank() }
