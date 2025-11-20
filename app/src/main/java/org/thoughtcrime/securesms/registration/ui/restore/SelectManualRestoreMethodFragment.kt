@@ -81,6 +81,7 @@ class SelectManualRestoreMethodFragment : ComposeFragment() {
   private fun startRestoreMethod(method: RestoreMethod) {
     when (method) {
       RestoreMethod.FROM_SIGNAL_BACKUPS -> {
+        sharedViewModel.clearPreviousRegistrationState()
         sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = true)
         findNavController().safeNavigate(SelectManualRestoreMethodFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.COLLECT_FOR_MANUAL_SIGNAL_BACKUPS_RESTORE))
       }

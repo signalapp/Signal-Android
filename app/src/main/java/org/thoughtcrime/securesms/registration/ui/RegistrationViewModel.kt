@@ -248,6 +248,18 @@ class RegistrationViewModel : ViewModel() {
     }
   }
 
+  fun clearPreviousRegistrationState() {
+    store.update {
+      it.copy(
+        sessionId = null,
+        captchaToken = null,
+        challengesRequested = emptyList(),
+        challengeInProgress = false,
+        fcmToken = null
+      )
+    }
+  }
+
   fun onBackupSuccessfullyRestored() {
     val recoveryPassword = SignalStore.svr.recoveryPassword
     store.update {
