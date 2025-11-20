@@ -63,7 +63,7 @@
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Cipta kunci pemulihan baharu</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Anda mesti mencipta dan merekodkan kunci pemulihan baharu sebelum anda boleh menyahdayakan PIN anda.</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Anda perlu mencipta dan merekodkan kunci pemulihan baharu sebelum anda boleh menyahdayakan PIN anda.</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Cipta kunci</string>
 
@@ -1358,7 +1358,7 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Orang ini tidak boleh ditambah kepada kumpulan legasi.</string>
 
     <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
-    <string name="AddMembersActivity__add_member_to_s">Add \"%1$s\" to \"%2$s\"?</string>
+    <string name="AddMembersActivity__add_member_to_s">Tambah \"%1$s\" kepada \"%2$s\"?</string>
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -5800,12 +5800,12 @@
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Gagal menyekat</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s is not a Signal user</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s bukan pengguna Signal</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
     <string name="NewConversationActivity__accessibility_open_top_bar_menu">Buka menu</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="RecipientLookup_error__not_signal_users">
-        <item quantity="other">%1$s are not Signal users</item>
+        <item quantity="other">%1$s bukan pengguna Signal</item>
     </plurals>
 
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
@@ -8344,11 +8344,11 @@
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Mencipta kunci baharu hanya perlu dilakukan jika ada orang lain yang mengetahui kunci anda. Anda perlu memuat naik semula sandaran anda, termasuk media. Jika anda menggunakan \"Optimumkan storan\", anda perlu memuat turun media yang telah dialih keluar terlebih dahulu.</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Keluar daripada persediaan sandaran?</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Keluar daripada tetapan sandaran?</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
-    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Anda belum selesai menyediakan sandaran dan tiada sandaran telah dibuat. Anda boleh mendayakan sandaran dalam Tetapan.</string>
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Anda belum selesai menetapkan sandaran, dan tiada sandaran telah dibuat. Anda boleh mendayakan sandaran dalam Tetapan.</string>
     <!-- Dialog confirmation button to exit backup setup -->
-    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Keluar daripada persediaan sandaran</string>
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Keluar daripada tetapan sandaran</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8618,7 +8618,7 @@
     <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
     <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Tidak boleh mencipta kunci baharu</string>
     <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Anda telah kehabisan bilangan kunci baharu yang boleh anda buat. Anda akan dapat membuat kunci pemulihan baharu dalam masa 7 hari. Jika anda percaya seseorang mungkin boleh mengakses sandaran anda, anda boleh memilih untuk \"Matikan dan padamkan sandaran.\"</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Anda telah kehabisan bilangan kunci baharu yang boleh dibuat. Anda akan dapat membuat kunci pemulihan baharu dalam masa 7 hari. Jika anda percaya seseorang mungkin boleh mengakses sandaran anda, anda boleh memilih untuk \"Matikan dan padamkan sandaran.\"</string>
     <!-- Button to acknowledge and dismiss dialog   -->
     <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
     <!-- Accessibility label for close search button in MainToolbar -->
@@ -8661,7 +8661,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select one</string>
+    <string name="Poll__select_one">Undian · Pilih Satu</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">Undian · Pilih satu atau lebih</string>
     <!-- Caption in poll message once a poll has ended  -->
