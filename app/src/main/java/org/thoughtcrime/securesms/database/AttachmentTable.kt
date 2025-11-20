@@ -1112,7 +1112,7 @@ class AttachmentTable(
    * Marking offloaded only clears the strong references to the on disk file and clears other local file data like hashes.
    * Another operation must run to actually delete the data from disk. See [deleteAbandonedAttachmentFiles].
    */
-  fun markEligibleAttachmentsAsOptimized() {
+  fun markEligibleAttachmentsAsOptimized(minimumAge: Duration = 30.days) {
     val now = System.currentTimeMillis()
 
     val subSelect = """
@@ -1136,7 +1136,7 @@ class AttachmentTable(
       )
       AND
       (
-        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < ${now - 30.days.inWholeMilliseconds}
+        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < ${now - minimumAge.inWholeMilliseconds}
       )
     """
 
