@@ -48,7 +48,7 @@ import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 /**
  * Allows the user to add a recipient to a group.
  */
-class AddToGroupsActivityV2 : PassphraseRequiredActivity() {
+class AddToGroupsActivity : PassphraseRequiredActivity() {
   companion object {
     private const val EXTRA_RECIPIENT_ID = "recipient_id"
     private const val EXTRA_SELECTION_LIMITS = "selection_limits"
@@ -62,7 +62,7 @@ class AddToGroupsActivityV2 : PassphraseRequiredActivity() {
       existingGroupMemberships: List<RecipientId>,
       selectionLimits: SelectionLimits? = null
     ): Intent {
-      return Intent(context, AddToGroupsActivityV2::class.java).apply {
+      return Intent(context, AddToGroupsActivity::class.java).apply {
         putExtra(EXTRA_RECIPIENT_ID, recipientId)
         putExtra(EXTRA_SELECTION_LIMITS, selectionLimits)
         putParcelableArrayListExtra(EXTRA_PRESELECTED_GROUPS, ArrayList(existingGroupMemberships))
@@ -80,7 +80,7 @@ class AddToGroupsActivityV2 : PassphraseRequiredActivity() {
       SignalTheme {
         AddToGroupsScreen(
           viewModel = viewModel {
-            AddToGroupsViewModelV2(
+            AddToGroupsViewModel(
               recipientId = intent.getParcelableExtraCompat(EXTRA_RECIPIENT_ID, RecipientId::class.java)!!,
               selectionLimits = intent.getParcelableExtraCompat(EXTRA_SELECTION_LIMITS, SelectionLimits::class.java),
               existingGroupMemberships = intent.getParcelableArrayListExtraCompat(EXTRA_PRESELECTED_GROUPS, RecipientId::class.java)!!.toSet()
@@ -95,7 +95,7 @@ class AddToGroupsActivityV2 : PassphraseRequiredActivity() {
 
 @Composable
 private fun AddToGroupsScreen(
-  viewModel: AddToGroupsViewModelV2,
+  viewModel: AddToGroupsViewModel,
   closeScreen: () -> Unit
 ) {
   val callbacks = remember {

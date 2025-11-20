@@ -1059,12 +1059,8 @@
         android:exported="false"
         android:theme="@style/Signal.DayNight.NoActionBar" />
 
-    <activity android:name=".groups.ui.addtogroup.AddToGroupsActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:exported="false"/>
-
     <activity
-            android:name=".groups.ui.addtogroup.AddToGroupsActivityV2"
+            android:name=".groups.ui.addtogroup.AddToGroupsActivity"
             android:exported="false"
             android:theme="@style/Signal.DayNight.NoActionBar" />
 

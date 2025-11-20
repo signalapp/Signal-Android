@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
@@ -25,15 +24,11 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
-class AddToGroupsViewModelV2(
+class AddToGroupsViewModel(
   private val recipientId: RecipientId,
   private val existingGroupMemberships: Set<RecipientId>,
   selectionLimits: SelectionLimits?
 ) : ViewModel() {
-
-  companion object {
-    private val TAG = Log.tag(AddToGroupsViewModelV2::class)
-  }
 
   private val internalUiState = MutableStateFlow(
     AddToGroupsUiState(
