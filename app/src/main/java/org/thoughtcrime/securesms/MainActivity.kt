@@ -934,6 +934,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     handleSignalMeIntent(intent)
     handleCallLinkInIntent(intent)
     handleDonateReturnIntent(intent)
+    handleQuickRestoreIntent(intent)
   }
 
   @SuppressLint("NewApi")
@@ -990,6 +991,14 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     }
   }
 
+  private fun handleQuickRestoreIntent(intent: Intent) {
+    intent.data?.let { data ->
+      CommunicationActions.handlePotentialQuickRestoreUrl(this, data.toString()) {
+        onCameraClick(MainNavigationListLocation.CHATS, isForQuickRestore = true)
+      }
+    }
+  }
+
   private fun updateNotificationProfileStatus(notificationProfiles: List<NotificationProfile>) {
     val activeProfile = NotificationProfiles.getActiveProfile(notificationProfiles)
     if (activeProfile != null) {
@@ -1025,6 +1034,39 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
     if (!SignalStore.notificationProfile.hasSeenTooltip && Util.hasItems(notificationProfiles)) {
       toolbarViewModel.setShowNotificationProfilesTooltip(true)
+    }
+  }
+
+  private fun onCameraClick(destination: MainNavigationListLocation, isForQuickRestore: Boolean) {
+    val onGranted = {
+      val intent = if (isForQuickRestore) {
+        MediaSelectionActivity.cameraForQuickRestore(context = this@MainActivity)
+      } else {
+        MediaSelectionActivity.camera(
+          context = this@MainActivity,
+          isStory = destination == MainNavigationListLocation.STORIES
+        )
+      }
+      startActivity(intent)
+    }
+
+    if (CameraXUtil.isSupported()) {
+      onGranted()
+    } else {
+      Permissions.with(this@MainActivity)
+        .request(Manifest.permission.CAMERA)
+        .ifNecessary()
+        .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.symbol_camera_24)
+        .withPermanentDenialDialog(
+          getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos),
+          null,
+          R.string.CameraXFragment_allow_access_camera,
+          R.string.CameraXFragment_to_capture_photos_videos,
+          supportFragmentManager
+        )
+        .onAllGranted(onGranted)
+        .onAnyDenied { Toast.makeText(this@MainActivity, R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
+        .execute()
     }
   }
 
@@ -1125,33 +1167,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     }
 
     override fun onCameraClick(destination: MainNavigationListLocation) {
-      val onGranted = {
-        startActivity(
-          MediaSelectionActivity.camera(
-            context = this@MainActivity,
-            isStory = destination == MainNavigationListLocation.STORIES
-          )
-        )
-      }
-
-      if (CameraXUtil.isSupported()) {
-        onGranted()
-      } else {
-        Permissions.with(this@MainActivity)
-          .request(Manifest.permission.CAMERA)
-          .ifNecessary()
-          .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.symbol_camera_24)
-          .withPermanentDenialDialog(
-            getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos),
-            null,
-            R.string.CameraXFragment_allow_access_camera,
-            R.string.CameraXFragment_to_capture_photos_videos,
-            supportFragmentManager
-          )
-          .onAllGranted(onGranted)
-          .onAnyDenied { Toast.makeText(this@MainActivity, R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
-          .execute()
-      }
+      onCameraClick(destination, false)
     }
 
     override fun onMegaphoneVisible(megaphone: Megaphone) {
