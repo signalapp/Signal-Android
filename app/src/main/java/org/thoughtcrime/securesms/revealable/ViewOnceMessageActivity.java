@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.video.VideoPlayer;
+import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -71,6 +72,8 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActivity implemen
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     super.onCreate(savedInstanceState, ready);
     setContentView(R.layout.view_once_message_activity);
+
+    TemporaryScreenshotSecurity.bind(this);
 
     this.image       = findViewById(R.id.view_once_image);
     this.video       = findViewById(R.id.view_once_video);
