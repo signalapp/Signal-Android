@@ -737,7 +737,11 @@ class ConversationRepository(
     class DrawableResult(private val drawable: Drawable) : ContactPhotoResult {
       override fun transformToFinalBitmap(): Single<Bitmap> {
         return Single.create {
-          val bitmap = DrawableUtil.wrapBitmapForShortcutInfo(drawable.toBitmap(SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE))
+          val bitmap = if (Build.VERSION.SDK_INT <= 25) {
+            DrawableUtil.wrapBitmapForShortcutInfo(DrawableUtil.toBitmap(drawable, SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE))
+          } else {
+            DrawableUtil.wrapBitmapForShortcutInfo(drawable.toBitmap(SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE))
+          }
           it.setCancellable {
             bitmap.recycle()
           }
