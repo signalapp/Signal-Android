@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.webrtc.CallDataMode
@@ -51,6 +52,8 @@ import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.util.Currency
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Handles importing/exporting [AccountData] frames for an archive.
@@ -75,7 +78,7 @@ object AccountDataArchiveProcessor {
 
     val screenLockTimeoutSeconds = signalStore.settingsValues.screenLockTimeout
     val screenLockTimeoutMinutes = if (screenLockTimeoutSeconds > 0) {
-      (screenLockTimeoutSeconds / 60).toInt()
+      screenLockTimeoutSeconds.seconds.inWholeMinutes.toInt()
     } else {
       null
     }
@@ -146,7 +149,7 @@ object AccountDataArchiveProcessor {
             useSystemEmoji = signalStore.settingsValues.isPreferSystemEmoji,
             screenshotSecurity = TextSecurePreferences.isScreenSecurityEnabled(context),
             navigationBarSize = signalStore.settingsValues.useCompactNavigationBar.toRemoteNavigationBarSize()
-          ),
+          ).takeUnless { Environment.IS_INSTRUMENTATION && SignalStore.backup.importedEmptyAndroidSettings },
           bioText = selfRecord.about ?: "",
           bioEmoji = selfRecord.aboutEmoji ?: ""
         )
@@ -172,7 +175,9 @@ object AccountDataArchiveProcessor {
     if (accountData.androidSpecificSettings != null) {
       SignalStore.settings.isPreferSystemEmoji = accountData.androidSpecificSettings.useSystemEmoji
       TextSecurePreferences.setScreenSecurityEnabled(context, accountData.androidSpecificSettings.screenshotSecurity)
-      SignalStore.settings.setUseCompactNavigationBar(accountData.androidSpecificSettings.navigationBarSize.toLocalNavigationBarSize())
+      SignalStore.settings.useCompactNavigationBar = accountData.androidSpecificSettings.navigationBarSize.toLocalNavigationBarSize()
+    } else if (Environment.IS_INSTRUMENTATION) {
+      SignalStore.backup.importedEmptyAndroidSettings = true
     }
 
     if (accountData.bioText.isNotBlank() || accountData.bioEmoji.isNotBlank()) {
@@ -275,7 +280,7 @@ object AccountDataArchiveProcessor {
     }
 
     if (settings.screenLockTimeoutMinutes != null) {
-      SignalStore.settings.screenLockTimeout = settings.screenLockTimeoutMinutes.toLong() * 60
+      SignalStore.settings.screenLockTimeout = settings.screenLockTimeoutMinutes.minutes.inWholeSeconds
     }
 
     if (settings.pinReminders != null) {

@@ -62,6 +62,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_RESTORE_OVER_CELLULAR = "backup.restore.useCellular"
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
     private const val KEY_BACKUPS_INITIALIZED = "backup.initialized"
+    private const val KEY_IMPORTED_EMPTY_ANDROID_SETTINGS = "backup.importedEmptyAndroidSettings"
 
     const val KEY_ARCHIVE_UPLOAD_STATE = "backup.archiveUploadState"
 
@@ -421,6 +422,11 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         .putInteger(KEY_ARCHIVE_ATTACHMENT_RECONCILIATION_ATTEMPTS, value)
         .apply()
     }
+
+  /**
+   * An annoying workaround to making tests pass when importing empty androidSpecificSettings.
+   */
+  var importedEmptyAndroidSettings by booleanValue(KEY_IMPORTED_EMPTY_ANDROID_SETTINGS, false)
 
   /**
    * If set, this represents how far back we should backup messages. For instance, if the returned value is 1 year in milliseconds, you should back up
