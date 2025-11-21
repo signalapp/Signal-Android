@@ -11,8 +11,11 @@ import android.os.Build
 import android.os.StatFs
 import android.os.storage.StorageManager
 import androidx.annotation.RequiresApi
+import org.signal.core.util.logging.Log
 
 object DiskUtil {
+
+  private val TAG = Log.tag(DiskUtil::class)
 
   /**
    * Gets the remaining storage usable by the application.
@@ -48,7 +51,12 @@ object DiskUtil {
     val storageStatsManager = context.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
     val appStorageUuid = storageManager.getUuidForPath(context.filesDir)
 
-    return storageStatsManager.getFreeBytes(appStorageUuid)
+    return try {
+      storageStatsManager.getFreeBytes(appStorageUuid)
+    } catch (e: Throwable) {
+      Log.w(TAG, "Hit a weird platform bug! Falling back to legacy.", e)
+      getAvailableStorageBytesLegacy(context)
+    }
   }
 
   private fun getAvailableStorageBytesLegacy(context: Context): Long {
@@ -62,7 +70,12 @@ object DiskUtil {
     val storageStatsManager = context.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
     val appStorageUuid = storageManager.getUuidForPath(context.filesDir)
 
-    return storageStatsManager.getTotalBytes(appStorageUuid)
+    return try {
+      storageStatsManager.getTotalBytes(appStorageUuid)
+    } catch (e: Throwable) {
+      Log.w(TAG, "Hit a weird platform bug! Falling back to legacy.", e)
+      getTotalDiskSizeLegacy(context)
+    }
   }
 
   private fun getTotalDiskSizeLegacy(context: Context): Long {
