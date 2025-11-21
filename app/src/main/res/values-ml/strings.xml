@@ -1396,7 +1396,7 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ഈ വ്യക്തിയെ ലെഗസി ഗ്രൂപ്പുകളിൽ ചേർക്കാൻ കഴിയില്ല.</string>
 
     <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
-    <string name="AddMembersActivity__add_member_to_s">\"%1$s\"-നെ \"%2$s\"-ലേക്ക് ചേർക്കുക?</string>
+    <string name="AddMembersActivity__add_member_to_s">\"%1$s\"-നെ \"%2$s\"-ലേക്ക് ചേർക്കണോ?</string>
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -2449,9 +2449,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">ലോക്കൽ വീഡിയോ ചുരുക്കുക</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">ലോക്കൽ വീഡിയോ വികസിപ്പിക്കുക</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal കോൾ</string>
@@ -8060,7 +8060,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">%1$s-ന് മുമ്പ് അയച്ചതോ സ്വീകരിച്ചതോ ആയ സന്ദേശങ്ങളുടെ ബാക്കപ്പ് എടുക്കുന്നില്ല.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">സ്റ്റോറേജ് സ്‌പെയ്‌സ് കുറവായതിനാൽ നിങ്ങളുടെ ബാക്കപ്പ് പൂർത്തിയാക്കാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ ഉപകരണത്തിൽ സ്‌പെയ്‌സ് സൃഷ്ടിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">കൂടുതലറിയുക</string>
 
