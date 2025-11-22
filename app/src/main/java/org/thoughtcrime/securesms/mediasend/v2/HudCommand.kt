@@ -16,4 +16,7 @@ sealed class HudCommand {
   object CloseEmojiSearch : HudCommand()
   data class EmojiInsert(val emoji: String?) : HudCommand()
   data class EmojiKeyEvent(val keyEvent: KeyEvent?) : HudCommand()
+
+  // Request that the hosting MediaReviewFragment perform a send (same logic as the send button).
+  object PerformSend : HudCommand()
 }
