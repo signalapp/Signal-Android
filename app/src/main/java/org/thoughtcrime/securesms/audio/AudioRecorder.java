@@ -171,13 +171,14 @@ public class AudioRecorder {
    */
   @Nullable
   public VoiceNoteDraft getCurrentRecordingSnapshot() {
-    if (recordingUri == null) {
+    Uri currentUri = recordingUri;
+    if (currentUri == null) {
       return null;
     }
 
     try {
-      long size = MediaUtil.getMediaSize(context, recordingUri);
-      return new VoiceNoteDraft(recordingUri, size);
+      long size = MediaUtil.getMediaSize(context, currentUri);
+      return new VoiceNoteDraft(currentUri, size);
     } catch (IOException e) {
       Log.w(TAG, "Error getting current recording snapshot", e);
       return null;
