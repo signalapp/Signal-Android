@@ -1396,7 +1396,7 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ਇਸ ਵਿਅਕਤੀ ਨੂੰ ਲੈਗਸੀ ਗਰੁੱਪਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।</string>
 
     <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
-    <string name="AddMembersActivity__add_member_to_s">“%1$s” ਨੂੰ “%2$s” ‘ਚ ਜੋੜਨਾ ਹੈ?</string>
+    <string name="AddMembersActivity__add_member_to_s">ਕੀ “%1$s” ਨੂੰ “%2$s” ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨਾ ਹੈ?</string>
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -2449,9 +2449,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">ਲੋਕਲ ਵੀਡੀਓ ਨੂੰ ਛੋਟਾ ਕਰੋ</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">ਲੋਕਲ ਵੀਡੀਓ ਨੂੰ ਵੱਡਾ ਕਰੋ</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal ਕਾਲ</string>
@@ -5943,7 +5943,7 @@
     <string name="NewConversationActivity__accessibility_open_top_bar_menu">ਮੀਨੂ ਖੋਲ੍ਹੋ</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="RecipientLookup_error__not_signal_users">
-        <item quantity="one">%1$s Signal ਦੇ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹੈ</item>
+        <item quantity="one">%1$s Signal ਦੇ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹਨ</item>
         <item quantity="other">%1$s Signal ਦੇ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹਨ</item>
     </plurals>
 
@@ -8060,7 +8060,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">%1$s ਤੋਂ ਪਹਿਲਾਂ ਭੇਜੇ ਗਏ ਜਾਂ ਪ੍ਰਾਪਤ ਹੋਏ ਸੁਨੇਹਿਆਂ ਦਾ ਬੈਕਅੱਪ ਨਹੀਂ ਲਿਆ ਜਾ ਰਿਹਾ ਹੈ।</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">ਤੁਹਾਡਾ ਬੈਕਅੱਪ ਪੂਰਾ ਨਹੀਂ ਹੋਇਆ ਕਿਉਂਕਿ ਤੁਹਾਡੇ ਕੋਲ ਸਟੋਰੇਜ ਲਈ ਥਾਂ ਘੱਟ ਹੈ। ਆਪਣੇ ਡਿਵਾਈਸ ਵਿੱਚ ਥਾਂ ਖਾਲੀ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">ਹੋਰ ਜਾਣੋ</string>
 

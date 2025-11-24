@@ -414,8 +414,8 @@
     <string name="ConversationItem_error_network_not_delivered">보내기 실패</string>
     <string name="ConversationItem_group_action_left">%1$s 님이 그룹에서 나갔습니다.</string>
     <string name="ConversationItem_send_paused">전송 일시 중지됨</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">비보안 SMS로 바꾸시겠습니까?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">비보안 MMS로 바꾸시겠습니까?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">비보안 SMS로 바꾸시겠어요?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">비보안 MMS로 바꾸시겠어요?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">수신자가 이제 Signal 사용자가 아니므로 메시지가 암호화되지 <b>않습니다</b>.\n\n비보안 메시지를 보내시겠습니까?</string>
     <string name="ConversationItem_unable_to_open_media">미디어를 열 수 있는 앱이 없습니다.</string>
     <string name="ConversationItem_copied_text">%1$s 복사됨</string>
@@ -456,8 +456,8 @@
     <string name="ConversationActivity_compose_message">메시지 작성</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">죄송합니다. 파일 첨부 설정 중 오류가 발생했습니다.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">수신자가 올바른 SMS 또는 이메일 주소가 아닙니다!</string>
-    <string name="ConversationActivity_message_is_empty_exclamation">메시지가 비어 있습니다!</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">수신자의 SMS 또는 이메일 주소가 올바르지 않습니다</string>
+    <string name="ConversationActivity_message_is_empty_exclamation">메시지가 비어 있어요</string>
     <string name="ConversationActivity_group_members">그룹 멤버</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
@@ -468,7 +468,7 @@
         <item quantity="other">이 메시지는 오직 %1$d 님만 수정할 수 있습니다.</item>
     </plurals>
 
-    <string name="ConversationActivity_invalid_recipient">잘못된 수신자입니다!</string>
+    <string name="ConversationActivity_invalid_recipient">잘못된 수신자입니다</string>
     <string name="ConversationActivity_added_to_home_screen">홈 화면에 추가됨</string>
     <string name="ConversationActivity_calls_not_supported">지원되지 않는 전화</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">해당 기기에서는 전화를 지원하지 않는 것 같습니다.</string>
@@ -480,10 +480,10 @@
     <string name="ConversationActivity_transport_signal">Signal 메시지</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">문자 보내기</string>
-    <string name="ConversationActivity_lets_switch_to_signal">Signal로 대화해요! %1$s</string>
+    <string name="ConversationActivity_lets_switch_to_signal">Signal로 같이 옮겨요! %1$s</string>
     <string name="ConversationActivity_specify_recipient">연락처를 선택해 주세요.</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">첨부 파일이 전송 메시지의 사이즈 제한을 초과합니다.</string>
-    <string name="ConversationActivity_unable_to_record_audio">오디오를 녹음할 수 없습니다!</string>
+    <string name="ConversationActivity_unable_to_record_audio">오디오를 녹음할 수 없어요</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">더 이상 이 그룹의 멤버가 아니기 때문에 이 그룹에 메시지를 보내실 수 없습니다.</string>
     <string name="ConversationActivity_only_s_can_send_messages">%1$s만 메시지를 전송할 수 있습니다.</string>
     <string name="ConversationActivity_admins">관리자</string>
@@ -518,7 +518,7 @@
     <string name="ConversationActivity_no_results">결과 없음</string>
 
     <string name="ConversationActivity_sticker_pack_installed">스티커 팩 설치됨</string>
-    <string name="ConversationActivity_new_say_it_with_stickers">새 기능! 스티커를 사용해서 대화해 보세요.</string>
+    <string name="ConversationActivity_new_say_it_with_stickers">[NEW] 스티커를 사용해서 대화해 보세요.</string>
 
     <string name="ConversationActivity_cancel">취소</string>
     <string name="ConversationActivity_delete_conversation">대화를 삭제할까요?</string>
@@ -827,7 +827,7 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">내가 메시지를 보내는 사용자 또는 기존 대화 기록이 있는 사용자를 제외하고는 아무도 Signal에서 나를 볼 수 없습니다.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">백업으로 복원하시겠습니까?</string>
+    <string name="ChooseBackupFragment__restore_from_backup">백업으로 복원하시겠어요?</string>
     <string name="ChooseBackupFragment__restore_your_messages_and_media">로컬 백업에서 메시지와 미디어를 복원합니다. 지금 복원하지 않으면 이후에는 복원할 수 없습니다.</string>
     <string name="ChooseBackupFragment__icon_content_description">백업 아이콘에서 복원</string>
     <string name="ChooseBackupFragment__choose_backup">백업 선택하기</string>
@@ -1133,7 +1133,7 @@
     <string name="DeviceListActivity_try_again">다시 시도해 주세요.</string>
     <string name="DeviceListActivity_unlinking_device">기기 연결 해제 중…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">기기 연결 해제 중</string>
-    <string name="DeviceListActivity_network_failed">네트워크 연결에 실패했습니다!</string>
+    <string name="DeviceListActivity_network_failed">네트워크 연결 실패</string>
 
     <!-- DeviceListItem -->
     <string name="DeviceListItem_unnamed_device">이름 없는 기기</string>
@@ -1168,7 +1168,7 @@
     <string name="PendingGroupJoinRequestsReminder_view">보기</string>
 
     <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">영구적으로 Signal 연결에 실패했습니다!</string>
+    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 연결에 실패했어요</string>
     <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal은 Google Play Services에 등록될 수 없습니다. Signal 메시지와 전화는 비활성화되었습니다. Signal 설정 - 고급 메뉴에서 다시 등록해 주세요.</string>
 
 
@@ -1178,12 +1178,12 @@
     <!-- GiphyFragmentPageAdapter -->
 
     <!-- AddToGroupActivity -->
-    <string name="AddToGroupActivity_add_member">멤버를 추가하시겠습니까?</string>
+    <string name="AddToGroupActivity_add_member">멤버를 추가하시겠어요?</string>
     <string name="AddToGroupActivity_add_s_to_s">%1$s을 %2$s에 추가하시겠습니까?</string>
     <string name="AddToGroupActivity_s_added_to_s">%1$s 님이 \'%2$s\'에 추가되었습니다.</string>
     <string name="AddToGroupActivity_add_to_group">그룹에 추가하기</string>
     <string name="AddToGroupActivity_add_to_groups">그룹에 추가하기</string>
-    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">이 사용자를 기존 그룹에 추가할 수 없습니다.</string>
+    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">이 사용자를 레거시 그룹에 추가할 수 없습니다.</string>
     <string name="AddToGroupActivity_add">추가</string>
     <string name="AddToGroupActivity_add_to_a_group">그룹에 추가</string>
 
@@ -1246,7 +1246,7 @@
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-        <item quantity="other">%1$d명의 멤버를 새 그룹에 다시 추가할 수 없습니다. 지금 추가하시겠습니까?</item>
+        <item quantity="other">멤버 %1$d명을 새 그룹에 다시 추가하지 못했습니다. 지금 추가할까요?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
         <item quantity="other">멤버 추가하기</item>
@@ -1255,7 +1255,7 @@
 
     <!-- GroupsV1MigrationSuggestionsDialog -->
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
-        <item quantity="other">멤버를 추가하시겠습니까?</item>
+        <item quantity="other">멤버를 추가하시겠어요?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
         <item quantity="other">이 멤버들은 업그레이드될 때 새 그룹에 자동으로 추가될 수 없습니다.</item>
@@ -1271,7 +1271,7 @@
     </plurals>
 
     <!-- LeaveGroupDialog -->
-    <string name="LeaveGroupDialog_leave_group">그룹을 탈퇴하시겠습니까?</string>
+    <string name="LeaveGroupDialog_leave_group">그룹을 나가시겠어요?</string>
     <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">이 그룹에서 메시지를 보내거나 받을 수 없게 됩니다.</string>
     <string name="LeaveGroupDialog_leave">나가기</string>
     <string name="LeaveGroupDialog_choose_new_admin">새 관리자 선택</string>
@@ -1355,7 +1355,7 @@
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">확인</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">이 사용자를 기존 그룹에 추가할 수 없습니다.</string>
+    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">이 사용자를 레거시 그룹에 추가할 수 없습니다.</string>
 
     <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
     <string name="AddMembersActivity__add_member_to_s">%1$s을 %2$s에 추가하시겠습니까?</string>
@@ -1388,8 +1388,8 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal 그룹을 지원하지 않는 연락처를 선택했으므로 이 그룹은 MMS가 됩니다. 사용자 정의 MMS 그룹 이름과 사진은 나에게만 표시됩니다. 암호화 메시지에 집중하기 위해 MMS 그룹에 대한 지원을 곧 중단합니다.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_who_can_add_new_members">누가 새로운 멤버들을 추가시킬 수 있습니까?</string>
-    <string name="ManageGroupActivity_who_can_edit_this_groups_info">누가 이 그룹의 정보를 수정할 수 있습니까?</string>
+    <string name="ManageGroupActivity_who_can_add_new_members">누가 새로운 멤버를 추가할 수 있나요?</string>
+    <string name="ManageGroupActivity_who_can_edit_this_groups_info">누가 이 그룹의 정보를 수정할 수 있나요?</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="other">%1$d 멤버가 추가됨</item>
@@ -1404,12 +1404,12 @@
     <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">네트워크 오류로 인해 그룹을 업데이트하지 못했습니다. 나중에 다시 시도하세요.</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">이름과 그림 수정하기</string>
-    <string name="ManageGroupActivity_legacy_group">구형 그룹</string>
+    <string name="ManageGroupActivity_legacy_group">레거시 그룹</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
-    <string name="ManageGroupActivity_legacy_group_learn_more">구형 그룹입니다. 그룹 관리자와 같은 기능은 새 그룹에서만 사용할 수 있습니다.</string>
+    <string name="ManageGroupActivity_legacy_group_learn_more">레거시 그룹입니다. 그룹 관리자와 같은 기능은 새 그룹에서만 사용할 수 있습니다.</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
-    <string name="ManageGroupActivity_legacy_group_upgrade">구형 그룹입니다. @멘션 및 관리자와 같은 새로운 기능에 액세스하려면</string>
-    <string name="ManageGroupActivity_legacy_group_too_large">이 구형 그룹의 규모가 너무 커서 새 그룹으로 업그레이드할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
+    <string name="ManageGroupActivity_legacy_group_upgrade">레거시 그룹입니다. @멘션 및 관리자와 같은 새로운 기능에 액세스하려면</string>
+    <string name="ManageGroupActivity_legacy_group_too_large">레거시 그룹의 규모가 너무 커서 새 그룹으로 업그레이드할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
     <string name="ManageGroupActivity_upgrade_this_group">그룹을 업그레이드하세요.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">안전하지 않은 MMS 그룹입니다. 비공개로 대화하려면 연락처를 Signal에 초대하세요.</string>
     <string name="ManageGroupActivity_invite_now">지금 초대하기</string>
@@ -1636,7 +1636,7 @@
 
     <string name="InviteActivity_cancel">취소</string>
     <string name="InviteActivity_sending">보내는 중…</string>
-    <string name="InviteActivity_invitations_sent">초대를 보냈습니다!</string>
+    <string name="InviteActivity_invitations_sent">초대를 보냈어요!</string>
     <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
     <string name="InviteActivity_send_sms">SMS 보내기 (%1$d)</string>
     <plurals name="InviteActivity_send_sms_invites">
@@ -1786,7 +1786,7 @@
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s 님이 그룹을 업데이트했습니다.</string>
-    <string name="MessageRecord_s_joined_signal">%1$s 님이 온라인입니다!</string>
+    <string name="MessageRecord_s_joined_signal">%1$s 님이 Signal에 가입했어요!</string>
     <string name="MessageRecord_you_disabled_disappearing_messages">사라지는 메시지 기능을 비활성화했습니다.</string>
     <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 님이 사라지는 메시지 기능을 비활성화했습니다.</string>
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">사라지는 메시지 시간을 %1$s(으)로 설정했습니다.</string>
@@ -2089,7 +2089,7 @@
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s의 업데이트와 메시지를 받아보시겠어요? 차단을 해제할 때까지 모든 업데이트를 차단합니다.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">이 그룹과 대화를 계속하고 멤버들에게 이름과 사진을 공유하시겠어요?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">이 레거시 그룹은 더 이상 사용할 수 없습니다. 새 그룹을 만들어 @멘션 및 관리자와 같은 새로운 기능을 활성화하세요.</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">이 구형 그룹의 규모가 너무 커서 더 이상 사용할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
+    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">레거시 그룹의 규모가 너무 커서 더 이상 사용할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s 님과 대화를 계속하고 이름과 사진을 공유하시겠어요?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">그룹에 가입하고 멤버들과 이름과 사진을 공유하시겠습니까? 귀하가 수락할 때까지 귀하가 자신의 메시지를 본 것을 알지 못합니다.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">이 그룹에 참가하여 그룹 멤버에게 내 이름과 사진을 공유하시겠어요? 수락하기 전까지는 멤버의 메시지가 표시되지 않습니다.</string>
@@ -2150,9 +2150,9 @@
     <string name="MessageRequestBottomView_join">참가</string>
 
     <!-- PassphraseChangeActivity -->
-    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호가 일치하지 않습니다!</string>
-    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호가 잘못되었습니다!</string>
-    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">새 암호를 입력하세요!</string>
+    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호 문구가 일치하지 않습니다.</string>
+    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호 문구를 잘못 입력했습니다.</string>
+    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">새 암호 문구를 입력하세요.</string>
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">기기를 연결하시겠습니까?</string>
@@ -2164,7 +2164,7 @@
     </string>
     <string name="DeviceProvisioningActivity_content_progress_title">기기 연결</string>
     <string name="DeviceProvisioningActivity_content_progress_content">새 기기 연결 중…</string>
-    <string name="DeviceProvisioningActivity_content_progress_success">기기가 승인되었습니다!</string>
+    <string name="DeviceProvisioningActivity_content_progress_success">기기가 승인되었습니다.</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">기기를 찾을 수 없습니다.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">네트워크 오류가 발생했습니다.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">잘못된 QR 코드입니다.</string>
@@ -2188,7 +2188,7 @@
     <string name="PassphrasePromptActivity_enter_passphrase">암호 입력</string>
     <string name="PassphrasePromptActivity_watermark_content_description">Signal 아이콘</string>
     <string name="PassphrasePromptActivity_ok_button_content_description">암호 제출</string>
-    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">잘못된 암호입니다!</string>
+    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">암호 문구를 잘못 입력했습니다.</string>
     <string name="PassphrasePromptActivity_unlock_signal">Signal 잠금 해제</string>
     <!-- This is the subject line for the email that is sent to support -->
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - 잠금 화면</string>
@@ -2283,7 +2283,7 @@
     <string name="RedPhone_recipient_unavailable">응답 없음</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
     <string name="RedPhone_network_failed">네트워크 연결에 실패했습니다! 네트워크 연결을 확인하고 다시 시도하세요.</string>
-    <string name="RedPhone_number_not_registered">전화번호가 Signal에 등록되지 않았습니다!</string>
+    <string name="RedPhone_number_not_registered">등록되지 않은 번호입니다.</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">지금 거신 전화번호는 보안 전화를 지원하지 않습니다.</string>
     <string name="RedPhone_got_it">확인</string>
 
@@ -2895,7 +2895,7 @@
     <string name="ThreadRecord_you_activated_payments">결제를 활성화했습니다.</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
     <string name="ThreadRecord_can_accept_payments">%1$s 님이 이제 결제를 수락할 수 있습니다.</string>
-    <string name="ThreadRecord_s_is_on_signal">%1$s 님이 온라인입니다!</string>
+    <string name="ThreadRecord_s_is_on_signal">%1$s 님이 Signal에 가입했어요!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">사라지는 메시지 기능이 비활성화됨</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">사라지는 메시지 시간을 %1$s(으)로 설정했습니다.</string>
     <string name="ThreadRecord_safety_number_changed">안전 번호가 변경됨</string>
@@ -2998,7 +2998,7 @@
     <string name="UsernameEditFragment_continue">계속</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-        <item quantity="other">Signal에 연락처가 %1$d개 있습니다!</item>
+        <item quantity="other">%1$d개의 연락처가 Signal을 이용 중이에요!</item>
     </plurals>
 
     <!-- UsernameShareBottomSheet -->
@@ -3152,8 +3152,8 @@
     <string name="NotificationChannel_new_linked_device">새 연결된 기기</string>
 
     <!-- QuickResponseService -->
-    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal가 잠겨 있는 경우 빠른 답장을 사용할 수 없습니다!</string>
-    <string name="QuickResponseService_problem_sending_message">메시지를 보내는 중에 오류가 발생했습니다!</string>
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal가 잠겨 있는 경우 빠른 답장을 사용할 수 없어요.</string>
+    <string name="QuickResponseService_problem_sending_message">메시지 전송 중에 오류가 발생했어요.</string>
 
     <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
     <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">저장 공간에 저장할 수 없습니다!</string>
@@ -4515,7 +4515,7 @@
     <string name="KbsReminderDialog__to_help_you_memorize_your_pin">주기적으로 번호를 입력하면 외우는 데 도움이 됩니다. 가끔씩만 여쭤보겠습니다.</string>
     <string name="KbsReminderDialog__skip">건너뛰기</string>
     <string name="KbsReminderDialog__submit">제출</string>
-    <string name="KbsReminderDialog__forgot_pin">번호를 잊으셨나요?</string>
+    <string name="KbsReminderDialog__forgot_pin"> PIN을 잊으셨나요?</string>
     <string name="KbsReminderDialog__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
 
     <!-- AccountLockedFragment -->
@@ -4533,10 +4533,10 @@
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
     <string name="RegistrationLockFragment__switch_keyboard">키보드 전환</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
-    <string name="RegistrationLockFragment__forgot_pin">번호를 잊으셨나요?</string>
+    <string name="RegistrationLockFragment__forgot_pin">PIN을 잊으셨나요?</string>
     <string name="RegistrationLockFragment__incorrect_pin">잘못된 번호</string>
-    <string name="RegistrationLockFragment__forgot_your_pin">번호를 잊으셨나요?</string>
-    <string name="RegistrationLockFragment__not_many_tries_left">얼마 남지 않았습니다!</string>
+    <string name="RegistrationLockFragment__forgot_your_pin">PIN을 잊으셨나요?</string>
+    <string name="RegistrationLockFragment__not_many_tries_left">시도할 수 있는 횟수가 얼마 남지 않았어요.</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal 등록 - Android용 PIN 설정에 도움이 필요합니다 (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -4953,11 +4953,11 @@
 
     <!-- GroupsLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsLearnMore_legacy_vs_new_groups">구형 그룹과 새로운 그룹의 차이점</string>
-    <string name="GroupsLearnMore_what_are_legacy_groups">구형 그룹은 무엇인가요?</string>
-    <string name="GroupsLearnMore_paragraph_1">구형 그룹은 관리자나 더욱 자세한 그룹 관리 같은 새로운 그룹 기능들을 이용할 수 없습니다.</string>
-    <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">구형 그룹을 업그레이드할 수 있나요?</string>
-    <string name="GroupsLearnMore_paragraph_2">구형 그룹은 아직 새 그룹으로 업그레이드할 수 없지만 최신 버전의 Signal을 사용하는 경우 동일한 멤버로 새 그룹을 만들 수 있습니다.</string>
-    <string name="GroupsLearnMore_paragraph_3">Signal은 향후 구형 그룹을 업그레이드하는 방법을 제공할 예정입니다.</string>
+    <string name="GroupsLearnMore_what_are_legacy_groups">레거시 그룹은 무엇인가요?</string>
+    <string name="GroupsLearnMore_paragraph_1">레거시 그룹은 관리자 기능이나 상세 그룹 관리 같은 새로운 그룹 기능을 이용할 수 없습니다.</string>
+    <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">레거시 그룹을 업그레이드할 수 있나요?</string>
+    <string name="GroupsLearnMore_paragraph_2">레거시 그룹은 아직 새 그룹으로 업그레이드할 수 없습니다. 하지만 모든 멤버가 최신 버전의 Signal을 사용 중이라면 동일한 멤버로 새 그룹을 만들 수 있습니다.</string>
+    <string name="GroupsLearnMore_paragraph_3">Signal은 앞으로 레거시 그룹을 업그레이드할 수 있는 방법을 제공할 예정입니다.</string>
 
     <!-- GroupLinkBottomSheetDialogFragment -->
     <string name="GroupLinkBottomSheet_share_hint_requiring_approval">이 링크가 있는 사용자는 누구나 그룹의 이름과 사진을 보고 가입을 요청할 수 있습니다. 사용자가 신뢰하는 사용자들과 공유하세요.</string>
@@ -5295,7 +5295,7 @@
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">계정</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">시간이 지남에 따라 질문 빈도가 줄어듭니다.</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">사용할수록 확인 요청 횟수가 줄어듭니다.</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Signal에 전화번호를 다시 등록하려면 Signal PIN이 필요합니다.</string>
     <string name="AccountSettingsFragment__change_phone_number">전화번호 변경</string>
     <!-- Account setting that allows user to request and export their signal account data -->
@@ -6018,7 +6018,7 @@
     <!-- Third small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">가능하다면 지금 Signal에 기부하여 Signal이 누구나 안심하고 사용할 수 있는 즐거운 앱으로 남을 수 있도록 도와주세요.</string>
 
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">여러분의 지지와 성원에 감사드립니다!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Signal과 함께해 주셔서 감사합니다.</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">Signal에서 기부자 배지를 받았습니다! 프로필에 표시하여 Signal에 대한 지지를 보여주세요.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">다른 기여 방법</string>
@@ -6804,7 +6804,7 @@
     <!-- Title for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s 님이 귀하를 대신해 기부했습니다.</string>
     <!-- Title for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__thanks_for_your_support">지원해 주셔서 감사합니다!</string>
+    <string name="ViewSentGiftBottomSheet__thanks_for_your_support">따뜻한 응원에 감사드려요!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s 님이 귀하를 대신하여 Signal에 기부했습니다! 프로필에서 Signal에 대한 지지를 표현해 주세요.</string>
     <!-- Description for sheet shown when opening a sent gift -->

@@ -1358,7 +1358,7 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ไม่สามารถเพิ่มบุคคลนี้เข้ากลุ่มแบบเก่า</string>
 
     <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
-    <string name="AddMembersActivity__add_member_to_s">เพิ่ม \"%1$s\" เข้า \"%2$s\" หรือไม่?</string>
+    <string name="AddMembersActivity__add_member_to_s">เพิ่ม \"%1$s\" เข้า \"%2$s\" หรือไม่</string>
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -2376,9 +2376,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">ย่อหน้าต่างวิดีโอ</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">ขยายหน้าต่างวิดีโอ</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">โทร Signal</string>
@@ -7886,7 +7886,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">ระบบจะไม่สำรองข้อความที่คุณส่งหรือได้รับก่อนวันที่ %1$s</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">การสำรองข้อมูลของคุณไม่เสร็จสมบูรณ์เนื่องจากคุณอาจมีพื้นที่จัดเก็บไม่เพียงพอ โปรดเพิ่มพื้นที่จัดเก็บบนอุปกรณ์แล้วลองอีกครั้ง</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">เรียนรู้เพิ่มเติม</string>
 

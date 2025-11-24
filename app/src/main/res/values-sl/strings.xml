@@ -1472,7 +1472,7 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Uporabnik_ca ne more biti dodan_a v staro skupino.</string>
 
     <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
-    <string name="AddMembersActivity__add_member_to_s">Želite dodati uporabnika_co \"%1$s\" v skupino \"%2$s\"?</string>
+    <string name="AddMembersActivity__add_member_to_s">Želite dodati uporabnika_co »%1$s« v skupino »%2$s«?</string>
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -2595,9 +2595,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Skrči lokalni video</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Razširi lokalni video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal klic</string>
@@ -6214,7 +6214,7 @@
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Blokiranje ni uspelo</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s ni uporabnik_ca Signala</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s ni uporabnik Signala</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
     <string name="NewConversationActivity__accessibility_open_top_bar_menu">Odpri meni</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
@@ -8408,7 +8408,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">Sporočila, poslana ali prejeta pred %1$s ne bodo varnostno kopirana.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Varnostnega kopiranja ni bilo mogoče dokončati, ker vam primanjkuje prostora za shranjevanje. Sprostite prostor v napravi in poskusite znova.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Preberite več</string>
 

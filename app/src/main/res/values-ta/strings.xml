@@ -2449,9 +2449,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">உள்ளக வீடியோவைச் சுருக்குக</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">உள்ளக வீடியோவை விரிவாக்குக</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal அழைப்பு</string>
@@ -8060,7 +8060,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">%1$s தேதிக்கு முன்னதாக அனுப்பப்பட்ட அல்லது பெறப்பட்ட மெசேஜ்கள் காப்புப்பிரதி எடுக்கப்படவில்லை.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">உங்களிடம் சேமிப்பகம் குறைவாக இருப்பதால் உங்கள் காப்புப்பிரதியை முடிக்க முடியவில்லை. உங்கள் சாதனத்தில் இடத்தைக் காலி செய்து மீண்டும் முயலவும்.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">மேலும் அறிக</string>
 

@@ -2449,9 +2449,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">સ્થાનિક વીડિયોને સંકુચિત કરો</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">સ્થાનિક વીડિયોને વિસ્તૃત કરો</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal કૉલ</string>
@@ -5943,8 +5943,8 @@
     <string name="NewConversationActivity__accessibility_open_top_bar_menu">મેનૂ ખોલો</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="RecipientLookup_error__not_signal_users">
-        <item quantity="one">%1$s Signal ઉપયોગકર્તા નથી</item>
-        <item quantity="other">%1$s Signal ઉપયોગકર્તાઓ નથી</item>
+        <item quantity="one">%1$s Signal વપરાશકર્તા નથી</item>
+        <item quantity="other">%1$s Signal વપરાશકર્તાઓ નથી</item>
     </plurals>
 
     <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
@@ -8060,7 +8060,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">%1$s પહેલાં મોકલેલા કે મેળવેલા મેસેજનું બેકઅપ લેવામાં આવતું નથી.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">તમારી સ્ટોરેજ જગ્યા ઓછી હોવાથી તમારું બેકઅપ પૂર્ણ થઈ શક્યું નથી. તમારા ડિવાઇસ પર જગ્યા ખાલી કરો અને ફરી પ્રયાસ કરો.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">વધુ જાણો</string>
 

@@ -2449,9 +2449,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">స్థానిక వీడియోను కుదించండి</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">స్థానిక వీడియోను విస్తరించండి</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal కాల్</string>
@@ -8060,7 +8060,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">%1$s ముందు పంపిన లేదా అందుకున్న సందేశాలు బ్యాకప్ చేయబడటం లేదు.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">మీ నిల్వ స్థలం తక్కువగా ఉన్నందున మీ బ్యాకప్‌ను పూర్తి చేయడం సాధ్యం కాలేదు. మీ పరికరంలో స్థలాన్ని ఖాళీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">మరింత తెలుసుకోండి</string>
 

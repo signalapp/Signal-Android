@@ -624,7 +624,7 @@
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">अनुरोध ब्लॉक करना है?</string>
     <!-- Dialog message for block group link join requests -->
-    <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s इस ग्रुप लिंक के ज़रिए न तो ग्रुप में जुड़ पाएंगे और न ही जुड़ने का अनुरोध कर पाएंगे। इन्हें फिर भी मैन्युअल तरीके से ग्रुप में जोड़ा जा सकता है।</string>
+    <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s इस ग्रुप लिंक के ज़रिए न तो ग्रुप में जुड़ पाएंगे और न ही जुड़ने का अनुरोध कर पाएंगे। उन्हें सिर्फ़ मैन्युअल तरीके से ग्रुप में जोड़ा जा सकता है।</string>
     <!-- Dialog confirm block request button -->
     <string name="ConversationFragment__block_request_button">अनुरोध ब्लॉक करें</string>
     <!-- Dialog cancel block request button -->
@@ -1246,7 +1246,7 @@
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">नए ग्रुप क्या होते हैं?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">नए ग्रुप में @मेंशन और ग्रुप ऐडमिन जैसी सुविधाएं मौजूद हैं। आने वाले दिनों में इनमें और भी फ़ीचर जोड़े जाएंगे।</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">अपग्रेड करने से पहले के सभी संदेश इतिहास और मीडिया को रख लिया गया है।</string>
-    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">इस ग्रुप में फिर से जुड़ने के लिए इनवाइट स्वीकार करना ज़रूरी है। स्वीकार करने तक आपको ग्रुप के मैसेज नहीं मिलेंगे।</string>
+    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">इस ग्रुप में वापस आने के लिए आपको नया इनवाइट स्वीकार करना पड़ेगा। इनवाइट स्वीकार करने तक आपको ग्रुप के मैसेज नहीं मिलेंगे।</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">इस ग्रुप में फिर से जुड़ने के लिए, इस सदस्य को इनवाइट स्वीकार करना होगा। स्वीकार करने तक उसे ग्रुप के मैसेज नहीं मिलेंगे:</item>
         <item quantity="other">इस ग्रुप में फिर से जुड़ने के लिए, इन सदस्यों को इनवाइट स्वीकार करना होगा। स्वीकार करने तक उन्हें ग्रुप के मैसेज नहीं मिलेंगे:</item>
@@ -1310,7 +1310,7 @@
     <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">इसके बाद, आपके पास इस ग्रुप में मैसेज भेजने या पाने की सुविधा मौजूद नहीं रहेगी।</string>
     <string name="LeaveGroupDialog_leave">छोड़ें</string>
     <string name="LeaveGroupDialog_choose_new_admin">नया ऐडमिन चुनें</string>
-    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">ग्रुप छोड़ने से पहले, आपको इस ग्रुप के लिए कम से कम कोई एक ऐडमिन चुनना होगा।</string>
+    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">ग्रुप छोड़ने से पहले, आपको इस ग्रुप के लिए कम से कम एक ऐडमिन चुनना होगा।</string>
     <string name="LeaveGroupDialog_choose_admin">ऐडमिन चुनें</string>
 
     <!-- LinkPreviewView -->
@@ -1929,11 +1929,11 @@
     <!-- GV2 invitation acceptance -->
     <string name="MessageRecord_you_accepted_invite">आपने ग्रुप में शामिल होने का इनवाइट स्वीकार कर लिया है।</string>
     <string name="MessageRecord_s_accepted_invite">%1$s ने ग्रुप में शामिल होने का इनवाइट स्वीकार कर लिया है।</string>
-    <string name="MessageRecord_you_added_invited_member_s">आपने इनवाइट भेजे गए सदस्य %1$s को जोड़ा है।</string>
-    <string name="MessageRecord_s_added_invited_member_s">%1$s ने इनवाइट भेजे गए सदस्य %2$s को जोड़ा है।</string>
+    <string name="MessageRecord_you_added_invited_member_s">आपने इनवाइट किए गए सदस्य %1$s को जोड़ा है।</string>
+    <string name="MessageRecord_s_added_invited_member_s">%1$s ने इनवाइट किए गए सदस्य %2$s को जोड़ा है।</string>
 
     <!-- GV2 title change -->
-    <string name="MessageRecord_you_changed_the_group_name_to_s">आपने ग्रुप का नाम बदल कर \'%1$s\' कर दिया है।</string>
+    <string name="MessageRecord_you_changed_the_group_name_to_s">आपने ग्रुप का नाम बदलकर \'%1$s\' कर दिया है।</string>
     <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ने ग्रुप का नाम बदल कर \'%2$s\' कर दिया है।</string>
     <string name="MessageRecord_the_group_name_has_changed_to_s">ग्रुप का नाम बदल कर \'%1$s\' हो गया है।</string>
 
@@ -2004,7 +2004,7 @@
     <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s को ग्रुप में जुड़ने के आपके अनुरोध को स्वीकार किया।</string>
     <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ने %2$s की मदद से ग्रुप में जुड़ने के अनुरोध को स्वीकार किया।</string>
     <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">आपने %1$s की मदद से ग्रुप में जुड़ने का निवेदन स्वीकार किया।</string>
-    <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">आपका ग्रुप से जुड़ने का अनुरोध स्वीकार किया गया।</string>
+    <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">ग्रुप से जुड़ने का आपका अनुरोध स्वीकार कर लिया गया है।</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s के ज़रिए ग्रुप से जुड़ने का अनुरोध स्वीकार किया गया।</string>
 
     <!-- GV2 group link deny -->
@@ -3528,7 +3528,7 @@
     <string name="ConversationUpdateItem_block_request">अनुरोध ब्लॉक करें</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">कोई साझा ग्रुप मौजूद नहीं है</string>
-    <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">इस ग्रुप में आपका कोई कॉन्टैक्ट मौजूद नहीं है। सावधानी के साथ अनुरोधों समीक्षा करें।</string>
+    <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">इस ग्रुप में आपका कोई कॉन्टैक्ट मौजूद नहीं है। सावधानी के साथ अनुरोधों की समीक्षा करें।</string>
     <string name="ConversationUpdateItem_view">देखें</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">उन्हें मैसेज भेजने पर, %1$s में मैसेज अपने-आप गायब हो जाएगा।</string>
     <!-- Update item button text to show to boost a feature -->
@@ -5809,7 +5809,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">सस्टेनर बनें</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal आप जैसे लोगों द्वारा संचालित है। दान करें और एक बैज पाएं।</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal आपके सहयोग से चलता है। आर्थिक योगदान दें और बैज पाएं।</string>
     <string name="BecomeASustainerMegaphone__not_now">अभी नहीं</string>
     <string name="BecomeASustainerMegaphone__donate">दान करें</string>
 
