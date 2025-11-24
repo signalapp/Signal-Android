@@ -56,7 +56,7 @@ class VoiceMessageRecordingDelegate(
 
   fun onRecorderLocked() {
     voiceRecorderWakeLock.acquire()
-    fragment.requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+    fragment.requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
   }
 
   fun onRecorderFinished() {
