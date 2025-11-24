@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.util.visible
 /**
  * An indicator shown for each participant in a call which shows the state of their audio.
  */
-class AudioIndicatorView(context: Context, attrs: AttributeSet) : FrameLayout(context, attrs) {
+class AudioIndicatorView(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
   companion object {
     private const val SIDE_BAR_SHRINK_FACTOR = 0.75f

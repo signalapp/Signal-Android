@@ -29,6 +29,7 @@ import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SheetValue
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -55,6 +56,7 @@ import org.signal.core.ui.compose.TriggerAlignedPopupState
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.components.webrtc.controls.RaiseHandSnackbar
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipantId
@@ -163,6 +165,7 @@ fun CallScreen(
       scaffoldState = callScreenController.scaffoldState,
       sheetDragHandle = null,
       sheetPeekHeight = peekHeight.dp,
+      sheetContainerColor = SignalTheme.colors.colorSurface1,
       sheetMaxWidth = 540.dp,
       sheetContent = {
         BottomSheets.Handle(modifier = Modifier.align(Alignment.CenterHorizontally))
@@ -189,7 +192,9 @@ fun CallScreen(
           val callInfoAlpha = max(0f, peekPercentage)
 
           if (callInfoAlpha > 0f) {
-            callInfoView(callInfoAlpha)
+            Surface {
+              callInfoView(callInfoAlpha)
+            }
           }
 
           if (callControlsAlpha > 0f) {
@@ -348,10 +353,12 @@ private fun Viewport(
 ) {
   val isEmptyOngoingCall = webRtcCallState.inOngoingCall && callParticipantsPagerState.callParticipants.isEmpty()
   if (webRtcCallState.isPreJoinOrNetworkUnavailable || isEmptyOngoingCall) {
-    LargeLocalVideoRenderer(
-      localParticipant = localParticipant,
-      modifier = modifier
-    )
+    if (localParticipant.isVideoEnabled) {
+      LargeLocalVideoRenderer(
+        localParticipant = localParticipant,
+        modifier = modifier
+      )
+    }
 
     return
   }
@@ -446,7 +453,6 @@ private fun LargeLocalVideoRenderer(
 ) {
   CallParticipantRenderer(
     callParticipant = localParticipant,
-    isLocalParticipant = true,
     renderInPip = false,
     modifier = modifier
       .fillMaxSize()

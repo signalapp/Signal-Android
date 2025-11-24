@@ -47,7 +47,6 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.webrtc.CallParticipantView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.events.CallParticipant
 
@@ -95,14 +94,16 @@ fun MoveableLocalVideoRenderer(
     state.animateTo(targetSize)
 
     val selfPipMode = when (localRenderState) {
-      WebRtcLocalRenderState.EXPANDED, WebRtcLocalRenderState.FOCUSED -> {
-        CallParticipantView.SelfPipMode.EXPANDED_SELF_PIP
+      WebRtcLocalRenderState.EXPANDED -> {
+        SelfPipMode.EXPANDED_SELF_PIP
+      } WebRtcLocalRenderState.FOCUSED -> {
+        SelfPipMode.FOCUSED_SELF_PIP
       }
       WebRtcLocalRenderState.SMALLER_RECTANGLE -> {
-        CallParticipantView.SelfPipMode.MINI_SELF_PIP
+        SelfPipMode.MINI_SELF_PIP
       }
       else -> {
-        CallParticipantView.SelfPipMode.NORMAL_SELF_PIP
+        SelfPipMode.NORMAL_SELF_PIP
       }
     }
 
@@ -117,7 +118,6 @@ fun MoveableLocalVideoRenderer(
     ) {
       CallParticipantRenderer(
         callParticipant = localParticipant,
-        isLocalParticipant = true,
         renderInPip = true,
         selfPipMode = selfPipMode,
         onToggleCameraDirection = onToggleCameraDirectionClick,
