@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
-import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationRouter
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -154,7 +153,6 @@ class DefaultCallLinkDetailsCallback(
     viewModel.setDisplayRevocationDialog(false)
     activity.lifecycleScope.launch {
       if (viewModel.delete()) {
-        router.goTo(MainNavigationListLocation.CALLS)
         router.goTo(MainNavigationDetailLocation.Empty)
       }
     }

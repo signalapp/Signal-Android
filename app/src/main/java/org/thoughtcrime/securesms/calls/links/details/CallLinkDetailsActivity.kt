@@ -65,6 +65,10 @@ class CallLinkDetailsActivity : FragmentActivity() {
           }.show(supportFragmentManager, null)
         }
 
+        is MainNavigationDetailLocation.Empty -> {
+          finishAfterTransition()
+        }
+
         else -> error("Unsupported route $location")
       }
     }
