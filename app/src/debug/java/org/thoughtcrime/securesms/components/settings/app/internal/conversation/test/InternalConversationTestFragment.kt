@@ -350,5 +350,9 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
     override fun onToggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) {
       Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
     }
+
+    override fun onViewPinnedMessage(messageId: Long) {
+      Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
+    }
   }
 }

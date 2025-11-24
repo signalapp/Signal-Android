@@ -685,6 +685,17 @@ public final class ConversationUpdateItem extends FrameLayout
           passthroughClickListener.onClick(v);
         }
       });
+    } else if (MessageRecordUtil.hasPinnedMessageUpdate(conversationMessage.getMessageRecord())) {
+      actionButton.setText(R.string.PinnedMessage__go_to_message);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        // TODO(michelle): Handle when a message gets deleted
+        if (batchSelected.isEmpty() && eventListener != null && MessageRecordUtil.hasPinnedMessageUpdate(conversationMessage.getMessageRecord())) {
+          eventListener.onViewPinnedMessage(conversationMessage.getMessageRecord().getMessageExtras().pinnedMessage.pinnedMessageId);
+        } else {
+          passthroughClickListener.onClick(v);
+        }
+      });
     } else {
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);

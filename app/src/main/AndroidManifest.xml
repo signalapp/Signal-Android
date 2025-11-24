@@ -1269,6 +1269,10 @@
         android:exported="false"/>
 
     <receiver
+        android:name=".service.PinnedMessageManager$PinnedMessagesAlarm"
+        android:exported="false"/>
+
+    <receiver
         android:name=".service.PendingRetryReceiptManager$PendingRetryReceiptAlarm"
         android:exported="false"/>
 

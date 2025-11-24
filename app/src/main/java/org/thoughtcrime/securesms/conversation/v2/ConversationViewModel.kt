@@ -76,6 +76,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.PollVoteJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
+import org.thoughtcrime.securesms.jobs.UnpinMessageJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -207,6 +208,9 @@ class ConversationViewModel(
   private val internalBackPressedState = MutableStateFlow(BackPressedState())
   val backPressedState: StateFlow<BackPressedState> = internalBackPressedState
 
+  private val internalPinnedMessages = MutableStateFlow<List<ConversationMessage>>(emptyList())
+  val pinnedMessages: StateFlow<List<ConversationMessage>> = internalPinnedMessages
+
   init {
     disposables += recipient
       .subscribeBy {
@@ -237,6 +241,8 @@ class ConversationViewModel(
         _conversationThreadState.onNext(it)
       })
 
+    getPinnedMessages()
+
     disposables += conversationThreadState.flatMapObservable { threadState ->
       Observable.create<Unit> { emitter ->
         val controller = threadState.items.controller
@@ -248,6 +254,7 @@ class ConversationViewModel(
         }
         val conversationObserver = DatabaseObserver.Observer {
           controller.onDataInvalidated()
+          getPinnedMessages()
         }
 
         AppDependencies.databaseObserver.registerMessageUpdateObserver(messageUpdateObserver)
@@ -336,6 +343,32 @@ class ConversationViewModel(
         recipients.manuallyUpdateShowAvatar(recipient.id, false)
       }
       pagingController.onDataItemChanged(ConversationElementKey.threadHeader)
+    }
+  }
+
+  private fun getPinnedMessages() {
+    viewModelScope.launch(Dispatchers.IO) {
+      val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
+      internalPinnedMessages.value = repository.getPinnedMessages(threadId).map {
+        ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(AppDependencies.application, it, threadRecipient!!)
+      }
+    }
+  }
+
+  fun pinMessage(messageRecord: MessageRecord, duration: Duration, threadRecipient: Recipient): Completable {
+    return repository
+      .pinMessage(messageRecord, duration, threadRecipient)
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun unpinMessage(messageId: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      val unpinJob = UnpinMessageJob.create(messageId = messageId)
+      if (unpinJob != null) {
+        AppDependencies.jobManager.add(unpinJob)
+      } else {
+        Log.w(TAG, "Unable to create unpin job, ignoring.")
+      }
     }
   }
 

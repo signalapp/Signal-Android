@@ -55,6 +55,7 @@ public class ConversationItemFooter extends ConstraintLayout {
   private ExpirationTimerView         timerView;
   private ImageView                   insecureIndicatorView;
   private DeliveryStatusView          deliveryStatusView;
+  private ImageView                   pinnedView;
   private boolean                     onlyShowSendingStatus;
   private TextView                    audioDuration;
   private LottieAnimationView         revealDot;
@@ -98,6 +99,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     timerView                   = findViewById(R.id.footer_expiration_timer);
     insecureIndicatorView       = findViewById(R.id.footer_insecure_indicator);
     deliveryStatusView          = findViewById(R.id.footer_delivery_status);
+    pinnedView                  = findViewById(R.id.footer_pinned);
     audioDuration               = findViewById(R.id.footer_audio_duration);
     revealDot                   = findViewById(R.id.footer_revealed_dot);
     playbackSpeedToggleTextView = findViewById(R.id.footer_audio_playback_speed_toggle);
@@ -143,6 +145,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     presentInsecureIndicator(messageRecord);
     presentDeliveryStatus(messageRecord);
     presentAudioDuration(messageRecord);
+    presentPinnedIcon(messageRecord);
   }
 
   public void setAudioDuration(long totalDurationMillis, long currentPostionMillis) {
@@ -174,6 +177,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     timerView.setColorFilter(color, PorterDuff.Mode.SRC_IN);
     insecureIndicatorView.setColorFilter(color);
     deliveryStatusView.setTint(color);
+    pinnedView.setColorFilter(color, PorterDuff.Mode.SRC_IN);
   }
 
   public void setRevealDotColor(int color) {
@@ -425,6 +429,14 @@ public class ConversationItemFooter extends ConstraintLayout {
       }
     } else {
       hideAudioDurationViews();
+    }
+  }
+
+  private void presentPinnedIcon(@NonNull MessageRecord messageRecord) {
+    if (messageRecord.getPinnedUntil() > 0) {
+      pinnedView.setVisibility(View.VISIBLE);
+    } else {
+      pinnedView.setVisibility(View.GONE);
     }
   }
 

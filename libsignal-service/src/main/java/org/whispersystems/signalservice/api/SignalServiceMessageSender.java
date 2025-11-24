@@ -1279,6 +1279,31 @@ public class SignalServiceMessageSender {
                                                          .build());
     }
 
+    if (message.getPinnedMessage().isPresent()) {
+      SignalServiceDataMessage.PinnedMessage pinnedMessage = message.getPinnedMessage().get();
+      if (Boolean.TRUE.equals(pinnedMessage.getForever())) {
+        builder.pinMessage(new DataMessage.PinMessage.Builder()
+                               .targetAuthorAciBinary(pinnedMessage.getTargetAuthor().toByteString())
+                               .targetSentTimestamp(pinnedMessage.getTargetSentTimestamp())
+                               .pinDurationForever(true)
+                               .build());
+      } else {
+        builder.pinMessage(new DataMessage.PinMessage.Builder()
+                               .targetAuthorAciBinary(pinnedMessage.getTargetAuthor().toByteString())
+                               .targetSentTimestamp(pinnedMessage.getTargetSentTimestamp())
+                               .pinDurationSeconds(pinnedMessage.getPinDurationInSeconds())
+                               .build());
+      }
+    }
+
+    if (message.getUnpinnedMessage().isPresent()) {
+      SignalServiceDataMessage.UnpinnedMessage unpinnedMessage = message.getUnpinnedMessage().get();
+      builder.unpinMessage(new DataMessage.UnpinMessage.Builder()
+                               .targetAuthorAciBinary(unpinnedMessage.getTargetAuthor().toByteString())
+                               .targetSentTimestamp(unpinnedMessage.getTargetSentTimestamp())
+                               .build());
+    }
+
     builder.timestamp(message.getTimestamp());
 
     return builder;

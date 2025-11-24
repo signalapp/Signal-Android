@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.service.DeletedCallEventManager
 import org.thoughtcrime.securesms.service.ExpiringMessageManager
 import org.thoughtcrime.securesms.service.ExpiringStoriesManager
 import org.thoughtcrime.securesms.service.PendingRetryReceiptManager
+import org.thoughtcrime.securesms.service.PinnedMessageManager
 import org.thoughtcrime.securesms.service.ScheduledMessageManager
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
@@ -211,6 +212,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideScheduledMessageManager(): ScheduledMessageManager {
+    return mockk(relaxed = true)
+  }
+
+  override fun providePinnedMessageManager(): PinnedMessageManager {
     return mockk(relaxed = true)
   }
 

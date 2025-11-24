@@ -723,6 +723,14 @@ public final class ConversationReactionOverlay extends FrameLayout {
       items.add(new ActionItem(R.drawable.symbol_stop_24, getResources().getString(R.string.conversation_selection__menu_end_poll), () -> handleActionItemClicked(Action.END_POLL)));
     }
 
+    if (menuState.shouldShowPinMessage()) {
+      items.add(new ActionItem(R.drawable.symbol_pin_24, getResources().getString(R.string.conversation_selection__menu_pin_message), () -> handleActionItemClicked(Action.PIN_MESSAGE)));
+    }
+
+    if (menuState.showShowUnpinMessage()) {
+      items.add(new ActionItem(R.drawable.symbol_pin_slash_24, getResources().getString(R.string.conversation_selection__menu_unpin_message), () -> handleActionItemClicked(Action.UNPIN_MESSAGE)));
+    }
+
     backgroundView.setVisibility(menuState.shouldShowReactions() ? View.VISIBLE : View.INVISIBLE);
     foregroundView.setVisibility(menuState.shouldShowReactions() ? View.VISIBLE : View.INVISIBLE);
 
@@ -908,6 +916,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
     PAYMENT_DETAILS,
     VIEW_INFO,
     DELETE,
-    END_POLL
+    END_POLL,
+    PIN_MESSAGE,
+    UNPIN_MESSAGE
   }
 }

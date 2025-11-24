@@ -252,3 +252,9 @@ message PollVoteJobData {
   bool isRemoval = 5;
   uint64 optionId = 6;
 }
+
+message UnpinJobData {
+  uint64 messageId = 1;
+  repeated uint64 recipients = 2;
+  uint32 initialRecipientCount = 3;
+}

@@ -111,6 +111,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
+import org.thoughtcrime.securesms.database.model.databaseprotos.PinnedMessage
 import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
@@ -140,6 +141,7 @@ import org.thoughtcrime.securesms.stories.Stories.isFeatureEnabled
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.isStory
@@ -155,6 +157,7 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper), MessageTypes, RecipientIdDatabaseReference, ThreadIdDatabaseReference {
 
@@ -217,12 +220,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val MESSAGE_EXTRAS = "message_extras"
     const val VOTES_UNREAD = "votes_unread"
     const val VOTES_LAST_SEEN = "votes_last_seen"
+    const val PINNED_UNTIL = "pinned_until"
+    const val PINNING_MESSAGE_ID = "pinning_message_id"
+    const val PINNED_AT = "pinned_at"
 
     const val QUOTE_NOT_PRESENT_ID = 0L
     const val QUOTE_TARGET_MISSING_ID = -1L
 
     const val ADDRESSABLE_MESSAGE_LIMIT = 5
     const val PARENT_STORY_MISSING_ID = -1L
+
+    const val PIN_FOREVER = Long.MAX_VALUE
 
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
@@ -281,7 +289,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $MESSAGE_EXTRAS BLOB DEFAULT NULL,
         $EXPIRE_TIMER_VERSION INTEGER DEFAULT 1 NOT NULL,
         $VOTES_UNREAD INTEGER DEFAULT 0,
-        $VOTES_LAST_SEEN INTEGER DEFAULT 0
+        $VOTES_LAST_SEEN INTEGER DEFAULT 0,
+        $PINNED_UNTIL INTEGER DEFAULT 0,
+        $PINNING_MESSAGE_ID INTEGER DEFAULT 0,
+        $PINNED_AT INTEGER DEFAULT 0
       )
     """
 
@@ -312,7 +323,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       "CREATE INDEX IF NOT EXISTS $INDEX_THREAD_COUNT ON $TABLE_NAME ($THREAD_ID) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL",
       // This index is created specifically for getting the number of unread messages in a thread and therefore needs to be kept in sync with that query
       "CREATE INDEX IF NOT EXISTS $INDEX_THREAD_UNREAD_COUNT ON $TABLE_NAME ($THREAD_ID) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $ORIGINAL_MESSAGE_ID IS NULL AND $READ = 0",
-      "CREATE INDEX IF NOT EXISTS message_votes_unread_index ON $TABLE_NAME ($VOTES_UNREAD)"
+      "CREATE INDEX IF NOT EXISTS message_votes_unread_index ON $TABLE_NAME ($VOTES_UNREAD)",
+      "CREATE INDEX IF NOT EXISTS message_pinned_until_index ON $TABLE_NAME ($PINNED_UNTIL)",
+      "CREATE INDEX IF NOT EXISTS message_pinned_at_index ON $TABLE_NAME ($PINNED_AT)"
     )
 
     private val MMS_PROJECTION_BASE = arrayOf(
@@ -367,7 +380,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       REVISION_NUMBER,
       MESSAGE_EXTRAS,
       VOTES_UNREAD,
-      VOTES_LAST_SEEN
+      VOTES_LAST_SEEN,
+      PINNED_UNTIL
     )
 
     private val MMS_PROJECTION: Array<String> = MMS_PROJECTION_BASE + "NULL AS ${AttachmentTable.ATTACHMENT_JSON_ALIAS}"
@@ -2027,7 +2041,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
-  private fun rawQueryWithAttachments(where: String, arguments: Array<String>?, reverse: Boolean = false, limit: Long = 0): Cursor {
+  /**
+   * Note: [reverse] and [orderBy] are mutually exclusive. If you want the order to be reversed, explicitly use 'ASC' or 'DESC'
+   */
+  private fun rawQueryWithAttachments(where: String, arguments: Array<String>?, reverse: Boolean = false, limit: Long = 0, orderBy: String = ""): Cursor {
     val database = databaseHelper.signalReadableDatabase
     var rawQueryString = """
       SELECT 
@@ -2040,7 +2057,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $TABLE_NAME.$ID
     """.toSingleLine()
 
-    if (reverse) {
+    if (orderBy.isNotEmpty()) {
+      rawQueryString += " ORDER BY $orderBy"
+    } else if (reverse) {
       rawQueryString += " ORDER BY $TABLE_NAME.$ID DESC"
     }
 
@@ -2065,6 +2084,27 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun getMessageRecordOrNull(messageId: Long): MessageRecord? {
     rawQueryWithAttachments(RAW_ID_WHERE, buildArgs(messageId)).use { cursor ->
       return MmsReader(cursor).firstOrNull()
+    }
+  }
+
+  fun getPinnedMessages(threadId: Long, orderByPinned: Boolean): List<MmsMessageRecord> {
+    val cursor = rawQueryWithAttachments(
+      where = "$THREAD_ID = ? AND $PINNED_UNTIL > 0",
+      arguments = buildArgs(threadId),
+      reverse = true,
+      orderBy = if (orderByPinned) "$PINNED_AT ASC" else ""
+    )
+
+    return mmsReaderFor(cursor).use { reader ->
+      reader.mapNotNull {
+        if (!it.isMms) {
+          null
+        } else if (it.isPaymentNotification) {
+          SignalDatabase.payments.updateMessageWithPayment(it) as MmsMessageRecord
+        } else {
+          it as MmsMessageRecord
+        }
+      }
     }
   }
 
@@ -2695,6 +2735,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           expiresIn = expiresIn,
           messageExtras = messageExtras
         )
+      } else if (MessageTypes.isPinnedMessageUpdate(outboxType) && messageExtras != null) {
+        OutgoingMessage.pinMessage(
+          threadRecipient = threadRecipient,
+          sentTimeMillis = timestamp,
+          expiresIn = expiresIn,
+          messageExtras = messageExtras
+        )
       } else {
         val giftBadge: GiftBadge? = if (body != null && MessageTypes.isGiftBadge(outboxType)) {
           GiftBadge.ADAPTER.decode(Base64.decode(body))
@@ -2850,7 +2897,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       updateThread = updateThread,
       unarchive = true,
       poll = retrieved.poll,
-      pollTerminate = retrieved.messageExtras?.pollTerminate
+      pollTerminate = retrieved.messageExtras?.pollTerminate,
+      pinnedMessage = retrieved.messageExtras?.pinnedMessage
     )
 
     if (messageId < 0) {
@@ -3181,6 +3229,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       hasSpecialType = true
     }
 
+    if (message.messageExtras?.pinnedMessage != null) {
+      if (hasSpecialType) {
+        throw MmsException("Cannot insert message with multiple special types.")
+      }
+      type = type or MessageTypes.SPECIAL_TYPE_PINNED_MESSAGE
+      hasSpecialType = true
+    }
+
     val earlyDeliveryReceipts: Map<RecipientId, Receipt> = earlyDeliveryReceiptCache.remove(message.sentTimeMillis)
 
     if (earlyDeliveryReceipts.isNotEmpty()) {
@@ -3296,7 +3352,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       updateThread = false,
       unarchive = false,
       poll = message.poll,
-      pollTerminate = message.messageExtras?.pollTerminate
+      pollTerminate = message.messageExtras?.pollTerminate,
+      pinnedMessage = message.messageExtras?.pinnedMessage
     )
 
     if (messageId < 0) {
@@ -3405,7 +3462,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     updateThread: Boolean,
     unarchive: Boolean,
     poll: Poll? = null,
-    pollTerminate: PollTerminate? = null
+    pollTerminate: PollTerminate? = null,
+    pinnedMessage: PinnedMessage?
   ): kotlin.Pair<Long, Map<Attachment, AttachmentId>?> {
     val mentionsSelf = mentions.any { Recipient.resolved(it.recipientId).isSelf }
     val allAttachments: MutableList<Attachment> = mutableListOf()
@@ -3471,6 +3529,31 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         }
       }
 
+      if (pinnedMessage != null) {
+        val pinnedUntil = if (pinnedMessage.pinDurationInSeconds == PIN_FOREVER) {
+          PIN_FOREVER
+        } else {
+          System.currentTimeMillis() + pinnedMessage.pinDurationInSeconds.seconds.inWholeMilliseconds
+        }
+        val rows = db
+          .update(TABLE_NAME)
+          .values(
+            PINNED_UNTIL to pinnedUntil,
+            PINNING_MESSAGE_ID to messageId,
+            PINNED_AT to System.currentTimeMillis()
+          )
+          .where("$ID = ?", pinnedMessage.pinnedMessageId)
+          .run()
+
+        if (rows <= 0) {
+          Log.w(TAG, "Failed to pin a message.")
+        } else {
+          enforcePinSizeLimit(threadId, RemoteConfig.pinLimit)
+        }
+
+        AppDependencies.databaseObserver.notifyConversationListeners(threadId)
+      }
+
       messageId to insertedAttachments
     }
 
@@ -3485,6 +3568,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     if (updateThread) {
       threads.setLastScrolled(contentValuesThreadId, 0)
       threads.update(threadId, unarchive)
+    }
+
+    if (pinnedMessage != null && pinnedMessage.pinDurationInSeconds != PIN_FOREVER) {
+      AppDependencies.pinnedMessageManager.scheduleIfNecessary()
     }
 
     return messageId to insertedAttachments
@@ -3542,6 +3629,31 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     notifyConversationListeners(threadIds)
     notifyConversationListListeners()
     return rowsDeleted
+  }
+
+  /**
+   * Unpins the oldest pins if the thread exceeds the [limit]
+   */
+  private fun enforcePinSizeLimit(threadId: Long, limit: Int) {
+    val pinnedList = readableDatabase
+      .select(PINNED_AT)
+      .from(TABLE_NAME)
+      .where("$THREAD_ID = ? AND $PINNED_UNTIL > 0", threadId)
+      .orderBy("$PINNED_AT DESC")
+      .run()
+      .readToList { cursor -> cursor.requireLong(PINNED_AT) }
+
+    if (pinnedList.size > limit) {
+      val oldestPin = pinnedList[limit]
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(
+          PINNED_UNTIL to 0,
+          PINNED_AT to 0
+        )
+        .where("$PINNED_AT > 0 AND $PINNED_AT <= ?", oldestPin)
+        .run()
+    }
   }
 
   fun deleteMessage(messageId: Long): Boolean {
@@ -5084,6 +5196,33 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
+  fun getOldestExpiringPinnedMessageTimestamp(): MessageRecord? {
+    val cursor = readableDatabase
+      .select(*MMS_PROJECTION)
+      .from(TABLE_NAME)
+      .where("$PINNED_UNTIL > 0 AND $PINNED_UNTIL != ?", PIN_FOREVER)
+      .orderBy("$PINNED_UNTIL ASC, $ID ASC")
+      .limit(1)
+      .run()
+
+    return mmsReaderFor(cursor).use { reader ->
+      reader.firstOrNull()
+    }
+  }
+
+  fun getPinnedMessagesBefore(time: Long): List<MessageRecord> {
+    val cursor = readableDatabase
+      .select(*MMS_PROJECTION)
+      .from(TABLE_NAME)
+      .where("$PINNED_UNTIL > 0 AND $PINNED_UNTIL <= ?", time)
+      .orderBy("$PINNED_UNTIL ASC, $ID ASC")
+      .run()
+
+    return mmsReaderFor(cursor).use { reader ->
+      reader.filterNotNull()
+    }
+  }
+
   fun getMessagesForNotificationState(stickyThreads: Collection<StickyThread>): Cursor {
     val stickyQuery = StringBuilder()
 
@@ -5306,6 +5445,15 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
+  fun unpinMessage(messageId: Long, threadId: Long) {
+    writableDatabase.update(TABLE_NAME)
+      .values(PINNED_UNTIL to 0)
+      .where("$ID = ?", messageId)
+      .run()
+
+    notifyConversationListeners(threadId)
+  }
+
   @Throws(IOException::class)
   protected fun <D : Document<I>?, I> removeFromDocument(messageId: Long, column: String, item: I, clazz: Class<D>) {
     writableDatabase.withinTransaction { db ->
@@ -5463,6 +5611,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       MessageType.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT or MessageTypes.BASE_INBOX_TYPE
       MessageType.END_SESSION -> MessageTypes.END_SESSION_BIT or MessageTypes.BASE_INBOX_TYPE
       MessageType.POLL_TERMINATE -> MessageTypes.SPECIAL_TYPE_POLL_TERMINATE or MessageTypes.BASE_INBOX_TYPE
+      MessageType.PINNED_MESSAGE -> MessageTypes.SPECIAL_TYPE_PINNED_MESSAGE or MessageTypes.BASE_INBOX_TYPE
       MessageType.GROUP_UPDATE -> {
         val isOnlyGroupLeave = this.groupContext?.let { GroupV2UpdateMessageUtil.isJustAGroupLeave(it) } ?: false
 
@@ -6005,6 +6154,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val originalMessageId: MessageId? = cursor.requireLong(ORIGINAL_MESSAGE_ID).let { if (it == 0L) null else MessageId(it) }
       val editCount = cursor.requireInt(REVISION_NUMBER)
       val isRead = cursor.requireBoolean(READ)
+      val pinnedUntil = cursor.requireLong(PINNED_UNTIL)
       val messageExtraBytes = cursor.requireBlob(MESSAGE_EXTRAS)
       val messageExtras = messageExtraBytes?.let { MessageExtras.ADAPTER.decode(it) }
 
@@ -6099,6 +6249,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         originalMessageId,
         editCount,
         isRead,
+        pinnedUntil,
         messageExtras
       )
     }

@@ -188,6 +188,7 @@ import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.MenuState
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.MessageStyler.getStyling
+import org.thoughtcrime.securesms.conversation.PinnedMessagesBottomSheet
 import org.thoughtcrime.securesms.conversation.ReenableScheduledMessagesDialogFragment
 import org.thoughtcrime.securesms.conversation.ScheduleMessageContextMenu
 import org.thoughtcrime.securesms.conversation.ScheduleMessageDialogCallback
@@ -377,6 +378,7 @@ import java.time.ZoneId
 import java.util.Locale
 import java.util.Optional
 import java.util.concurrent.ExecutionException
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
@@ -1180,6 +1182,16 @@ class ConversationFragment :
     }
 
     lifecycleScope.launch {
+      viewModel
+        .pinnedMessages
+        .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+        .flowOn(Dispatchers.Main)
+        .collect {
+          presentPinnedMessage(it)
+        }
+    }
+
+    lifecycleScope.launch {
       lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
         val recipient = viewModel.recipientSnapshot
         if (recipient != null) {
@@ -1320,6 +1332,14 @@ class ConversationFragment :
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { r: InlineQueryReplacement -> composeText.replaceText(r) }
       .addTo(disposables)
+  }
+
+  private fun presentPinnedMessage(pinnedMessages: List<ConversationMessage>) {
+    if (pinnedMessages.isNotEmpty()) {
+      binding.conversationBanner.showPinnedMessageStub(pinnedMessages)
+    } else {
+      binding.conversationBanner.hidePinnedMessageStub()
+    }
   }
 
   private fun presentTypingIndicator() {
@@ -1654,6 +1674,55 @@ class ConversationFragment :
         binding.conversationGroupCallJoin.setText(if (it.hasCapacity) R.string.ConversationActivity_join else R.string.ConversationActivity_full)
         invalidateOptionsMenu()
       }
+  }
+
+  private fun handlePinMessage(conversationMessage: ConversationMessage) {
+    if (viewModel.pinnedMessages.value.size >= RemoteConfig.pinLimit) {
+      MaterialAlertDialogBuilder(requireContext())
+        .setTitle(resources.getString(R.string.ConversationFragment__replace_title))
+        .setMessage(resources.getString(R.string.ConversationFragment__replace_body))
+        .setPositiveButton(R.string.ConversationFragment__replace) { _, _ ->
+          showPinForDialog(conversationMessage)
+        }
+        .setNegativeButton(R.string.ConversationFragment__cancel) { dialog, _ -> dialog.dismiss() }
+        .show()
+    } else {
+      showPinForDialog(conversationMessage)
+    }
+  }
+
+  private fun showPinForDialog(conversationMessage: ConversationMessage) {
+    var selection = 1
+    val labels = resources.getStringArray(R.array.ConversationFragment__pinned_for_labels)
+    val values = resources.getIntArray(R.array.ConversationFragment__pinned_for_values)
+
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(resources.getString(R.string.ConversationFragment__keep_pinned))
+      .setSingleChoiceItems(labels, selection) { dialog, which ->
+        selection = which
+      }
+      .setPositiveButton(android.R.string.ok) { dialog, _ ->
+        if (conversationMessage.messageRecord.expiresIn > 0 && SignalStore.uiHints.shouldDisplayPinnedSheet()) {
+          PinDisappearingMessageBottomSheet.show(childFragmentManager)
+          SignalStore.uiHints.incrementSeenPinnedSheetCount()
+        }
+        disposables += viewModel
+          .pinMessage(
+            messageRecord = conversationMessage.messageRecord,
+            duration = if (values[selection] == -1) kotlin.time.Duration.INFINITE else values[selection].days,
+            threadRecipient = conversationMessage.threadRecipient
+          )
+          .subscribe()
+        dialog.dismiss()
+      }
+      .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+        dialog.dismiss()
+      }
+      .show()
+  }
+
+  private fun handleUnpinMessage(messageId: Long) {
+    viewModel.unpinMessage(messageId)
   }
 
   private fun handleVideoCall() {
@@ -2712,6 +2781,15 @@ class ConversationFragment :
     progressDialog = null
   }
 
+  private fun viewPinnedMessage(messageId: Long) {
+    disposables += viewModel
+      .moveToMessage(messageId)
+      .subscribeBy(
+        onSuccess = { moveToPosition(it) },
+        onError = { Toast.makeText(requireContext(), R.string.PinnedMessage__not_found, Toast.LENGTH_LONG).show() }
+      )
+  }
+
   private inner class SwipeAvailabilityProvider : ConversationItemSwipeCallback.SwipeAvailabilityProvider {
     override fun isSwipeAvailable(conversationMessage: ConversationMessage): Boolean {
       val recipient = viewModel.recipientSnapshot ?: return false
@@ -3241,6 +3319,10 @@ class ConversationFragment :
 
     override fun onToggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) {
       viewModel.toggleVote(poll, pollOption, isChecked)
+    }
+
+    override fun onViewPinnedMessage(messageId: Long) {
+      viewPinnedMessage(messageId)
     }
 
     override fun onJoinGroupCallClicked() {
@@ -3936,6 +4018,8 @@ class ConversationFragment :
         ConversationReactionOverlay.Action.VIEW_INFO -> handleDisplayDetails(conversationMessage)
         ConversationReactionOverlay.Action.DELETE -> handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
         ConversationReactionOverlay.Action.END_POLL -> handleEndPoll(conversationMessage.messageRecord.getPoll()?.id)
+        ConversationReactionOverlay.Action.PIN_MESSAGE -> handlePinMessage(conversationMessage)
+        ConversationReactionOverlay.Action.UNPIN_MESSAGE -> handleUnpinMessage(conversationMessage.messageRecord.id)
       }
     }
   }
@@ -4135,6 +4219,22 @@ class ConversationFragment :
 
     override fun onDismissReview() {
       viewModel.onDismissReview()
+    }
+
+    override fun onUnpinMessage(messageId: Long) {
+      handleUnpinMessage(messageId)
+    }
+
+    override fun onGoToMessage(messageId: Long) {
+      viewPinnedMessage(messageId)
+    }
+
+    override fun onViewAllMessages() {
+      PinnedMessagesBottomSheet.show(
+        childFragmentManager,
+        args.threadId,
+        viewModel.recipientSnapshot?.id!!
+      )
     }
   }
 

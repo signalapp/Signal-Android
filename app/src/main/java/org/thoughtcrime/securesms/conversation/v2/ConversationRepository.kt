@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
+import org.thoughtcrime.securesms.database.model.databaseprotos.PinnedMessage
 import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.AppDependencies.databaseObserver
@@ -298,6 +299,38 @@ class ConversationRepository(
       groupMessage,
       false
     ) { System.currentTimeMillis() - sentTime > POLL_TERMINATE_TIMEOUT.inWholeMilliseconds }
+  }
+
+  fun getPinnedMessages(threadId: Long): List<MmsMessageRecord> {
+    return SignalDatabase.messages.getPinnedMessages(threadId = threadId, orderByPinned = true)
+  }
+
+  fun pinMessage(messageRecord: MessageRecord, duration: Duration, threadRecipient: Recipient): Completable {
+    return Completable.create { emitter ->
+      val message = OutgoingMessage.pinMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = System.currentTimeMillis(),
+        expiresIn = threadRecipient.expiresInSeconds.seconds.inWholeMilliseconds,
+        messageExtras = MessageExtras(
+          pinnedMessage = PinnedMessage(
+            pinnedMessageId = messageRecord.id,
+            targetAuthorAci = messageRecord.fromRecipient.requireAci().toByteString(),
+            targetTimestamp = messageRecord.dateSent,
+            pinDurationInSeconds = if (duration.isInfinite()) MessageTable.PIN_FOREVER else duration.inWholeSeconds
+          )
+        )
+      )
+
+      Log.i(TAG, "Sending pin create to ${message.threadRecipient.id}, thread: ${messageRecord.threadId}")
+
+      MessageSender.send(
+        AppDependencies.application,
+        message,
+        messageRecord.threadId,
+        MessageSender.SendType.SIGNAL,
+        null
+      ) { emitter.onComplete() }
+    }.subscribeOn(Schedulers.io())
   }
 
   private fun applyUniversalExpireTimerIfNecessary(context: Context, recipient: Recipient, outgoingMessage: OutgoingMessage, threadId: Long): OutgoingMessage {

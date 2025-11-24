@@ -286,6 +286,7 @@ public final class PushGroupSendJob extends PushSendJob {
       List<BodyRange>                                  bodyRanges         = getBodyRanges(message);
       Optional<SignalServiceDataMessage.PollCreate>    pollCreate         = getPollCreate(message);
       Optional<SignalServiceDataMessage.PollTerminate> pollTerminate      = getPollTerminate(message);
+      SignalServiceDataMessage.PinnedMessage           pinnedMessage      = getPinnedMessage(message);
       List<Attachment>                                 attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>                    attachmentPointers = getAttachmentPointersFor(attachments);
       boolean isRecipientUpdate = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
@@ -368,7 +369,8 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                       .withMentions(mentions)
                                                                       .withBodyRanges(bodyRanges)
                                                                       .withPollCreate(pollCreate.orElse(null))
-                                                                      .withPollTerminate(pollTerminate.orElse(null));
+                                                                      .withPollTerminate(pollTerminate.orElse(null))
+                                                                      .withPinnedMessage(pinnedMessage);
 
         if (message.getParentStoryId() != null) {
           try {

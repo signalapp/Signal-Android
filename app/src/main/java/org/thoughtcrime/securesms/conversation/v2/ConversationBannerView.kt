@@ -21,11 +21,14 @@ import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.BannerManager
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView
+import org.thoughtcrime.securesms.compose.SignalTheme
+import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.views.Stub
@@ -50,6 +53,7 @@ class ConversationBannerView @JvmOverloads constructor(
   private val bannerStub: Stub<ComposeView> by lazy { ViewUtil.findStubById(this, R.id.banner_stub) }
   private val reviewBannerStub: Stub<ReviewBannerView> by lazy { ViewUtil.findStubById(this, R.id.review_banner_stub) }
   private val voiceNotePlayerStub: Stub<View> by lazy { ViewUtil.findStubById(this, R.id.voice_note_player_stub) }
+  private val pinnedMessageStub: Stub<ComposeView> by lazy { ViewUtil.findStubById(this, R.id.pinned_message_stub) }
 
   var listener: Listener? = null
 
@@ -129,6 +133,29 @@ class ConversationBannerView @JvmOverloads constructor(
     hide(voiceNotePlayerStub)
   }
 
+  fun showPinnedMessageStub(messages: List<ConversationMessage>) {
+    show(
+      stub = pinnedMessageStub
+    ) {
+      this.apply {
+        setContent {
+          SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(context)) {
+            PinnedMessagesBanner(
+              messages = messages,
+              onUnpinMessage = { messageId -> listener?.onUnpinMessage(messageId) },
+              onGoToMessage = { messageId -> listener?.onGoToMessage(messageId) },
+              onViewAllMessages = { listener?.onViewAllMessages() }
+            )
+          }
+        }
+      }
+    }
+  }
+
+  fun hidePinnedMessageStub() {
+    hide(pinnedMessageStub)
+  }
+
   private fun <V : View> show(stub: Stub<V>, bind: V.() -> Unit = {}) {
     TransitionManager.beginDelayedTransition(this, Slide(Gravity.TOP))
     stub.get().bind()
@@ -177,5 +204,8 @@ class ConversationBannerView @JvmOverloads constructor(
     fun onRequestReviewIndividual(recipientId: RecipientId)
     fun onReviewGroupMembers(groupId: GroupId.V2)
     fun onDismissReview()
+    fun onUnpinMessage(messageId: Long)
+    fun onGoToMessage(messageId: Long)
+    fun onViewAllMessages()
   }
 }

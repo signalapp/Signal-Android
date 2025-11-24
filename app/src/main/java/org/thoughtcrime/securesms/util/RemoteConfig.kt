@@ -1205,5 +1205,29 @@ object RemoteConfig {
     defaultValue = false,
     hotSwappable = true
   )
+
+  @JvmStatic
+  @get:JvmName("pinLimit")
+  val pinLimit: Int by remoteInt(
+    key = "global.pinnedMessageLimit",
+    defaultValue = 3,
+    hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("receivePinnedMessages")
+  val receivePinnedMessages: Boolean by remoteBoolean(
+    key = "android.receivePinnedMessages",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("sendPinnedMessages")
+  val sendPinnedMessages: Boolean by remoteBoolean(
+    key = "android.sendPinnedMessages",
+    defaultValue = false,
+    hotSwappable = true
+  )
   // endregion
 }

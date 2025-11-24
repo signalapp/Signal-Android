@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.contactshare.ContactModelMapper
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.crypto.SecurityEvent
 import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.NoSuchMessageException
@@ -42,6 +43,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
+import org.thoughtcrime.securesms.database.model.databaseprotos.PinnedMessage
 import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.database.model.toBodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -178,6 +180,8 @@ object DataMessageProcessor {
       message.pollCreate != null -> insertResult = handlePollCreate(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime)
       message.pollTerminate != null -> insertResult = handlePollTerminate(context, envelope, metadata, message, senderRecipient, earlyMessageCacheEntry, threadRecipient, groupId, receivedTime)
       message.pollVote != null -> messageId = handlePollVote(context, envelope, message, senderRecipient, earlyMessageCacheEntry)
+      message.pinMessage != null -> insertResult = handlePinMessage(envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, earlyMessageCacheEntry)
+      message.unpinMessage != null -> messageId = handleUnpinMessage(envelope, message, senderRecipient, threadRecipient, earlyMessageCacheEntry)
     }
 
     messageId = messageId ?: insertResult?.messageId?.let { MessageId(it) }
@@ -1245,6 +1249,150 @@ object DataMessageProcessor {
     AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
 
     return messageId
+  }
+
+  fun handlePinMessage(
+    envelope: Envelope,
+    metadata: EnvelopeMetadata,
+    message: DataMessage,
+    senderRecipient: Recipient,
+    threadRecipient: Recipient,
+    groupId: GroupId.V2?,
+    receivedTime: Long,
+    earlyMessageCacheEntry: EarlyMessageCacheEntry? = null
+  ): InsertResult? {
+    if (!RemoteConfig.receivePinnedMessages) {
+      log(envelope.timestamp!!, "Pinned message not allowed due to remote config.")
+      return null
+    }
+
+    val pinMessage = message.pinMessage!!
+    log(envelope.timestamp!!, "[handlePinMessage] Pin message for " + pinMessage.targetSentTimestamp)
+
+    handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
+
+    val targetAuthorServiceId: ServiceId = ACI.parseOrThrow(pinMessage.targetAuthorAciBinary!!)
+    if (targetAuthorServiceId.isUnknown) {
+      warn(envelope.timestamp!!, "[handlePinMessage] Unknown target author! Ignoring the message.")
+      return null
+    }
+
+    val targetAuthor = Recipient.externalPush(targetAuthorServiceId)
+
+    val targetMessage: MmsMessageRecord? = SignalDatabase.messages.getMessageFor(pinMessage.targetSentTimestamp!!, targetAuthor.id) as? MmsMessageRecord
+    if (targetMessage == null) {
+      warn(envelope.timestamp!!, "[handlePinMessage] Could not find matching message! Putting it in the early message cache. timestamp: ${pinMessage.targetSentTimestamp}")
+      if (earlyMessageCacheEntry != null) {
+        AppDependencies.earlyMessageCache.store(targetAuthor.id, pinMessage.targetSentTimestamp!!, earlyMessageCacheEntry)
+        PushProcessEarlyMessagesJob.enqueue()
+      }
+      return null
+    }
+
+    if (targetMessage.isRemoteDelete) {
+      warn(envelope.timestamp!!, "[handlePinMessage] Found a matching message, but it's flagged as remotely deleted. timestamp: ${pinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
+    if (targetThread == null) {
+      warn(envelope.timestamp!!, "[handlePinMessage] Could not find a thread for the message! timestamp: ${pinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    val groupRecord = SignalDatabase.groups.getGroup(threadRecipient.id).orNull()
+    if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {
+      warn(envelope.timestamp!!, "[handlePinMessage] Sender is not in the group! timestamp: ${pinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    if (groupRecord == null && senderRecipient.id != threadRecipient.id && Recipient.self().id != senderRecipient.id) {
+      warn(envelope.timestamp!!, "[handlePinMessage] Sender is not a part of the 1:1 thread! timestamp: ${pinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    val duration = if (pinMessage.pinDurationForever == true) MessageTable.PIN_FOREVER else pinMessage.pinDurationSeconds!!.toLong()
+    val pinnedMessage = IncomingMessage(
+      type = MessageType.PINNED_MESSAGE,
+      from = senderRecipient.id,
+      sentTimeMillis = envelope.timestamp!!,
+      serverTimeMillis = envelope.serverTimestamp!!,
+      receivedTimeMillis = receivedTime,
+      expiresIn = message.expireTimerDuration.inWholeMilliseconds,
+      groupId = groupId,
+      isUnidentified = metadata.sealedSender,
+      serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
+      messageExtras = MessageExtras(pinnedMessage = PinnedMessage(pinnedMessageId = targetMessage.id, targetAuthorAci = pinMessage.targetAuthorAciBinary!!, targetTimestamp = pinMessage.targetSentTimestamp!!, pinDurationInSeconds = duration))
+    )
+
+    val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(pinnedMessage).orNull()
+
+    return if (insertResult != null) {
+      log(envelope.timestamp!!, "Inserted a pinned message update at ${insertResult.messageId}")
+      insertResult
+    } else {
+      null
+    }
+  }
+
+  fun handleUnpinMessage(
+    envelope: Envelope,
+    message: DataMessage,
+    senderRecipient: Recipient,
+    threadRecipient: Recipient,
+    earlyMessageCacheEntry: EarlyMessageCacheEntry? = null
+  ): MessageId? {
+    if (!RemoteConfig.receivePinnedMessages) {
+      log(envelope.timestamp!!, "Unpinning message is not allowed due to remote config.")
+      return null
+    }
+
+    val unpinMessage = message.unpinMessage!!
+    log(envelope.timestamp!!, "[handleUnpinMessage] Unpin message for ${unpinMessage.targetSentTimestamp}")
+
+    val targetAuthorServiceId: ServiceId = ACI.parseOrThrow(unpinMessage.targetAuthorAciBinary!!)
+    if (targetAuthorServiceId.isUnknown) {
+      warn(envelope.timestamp!!, "[handleUnpinMessage] Unknown target author! Ignoring the message.")
+      return null
+    }
+
+    val targetAuthor = Recipient.externalPush(targetAuthorServiceId)
+
+    val targetMessage: MmsMessageRecord? = SignalDatabase.messages.getMessageFor(unpinMessage.targetSentTimestamp!!, targetAuthor.id) as? MmsMessageRecord
+    if (targetMessage == null) {
+      warn(envelope.timestamp!!, "[handleUnpinMessage] Could not find matching message! Putting it in the early message cache. timestamp: ${unpinMessage.targetSentTimestamp}")
+      if (earlyMessageCacheEntry != null) {
+        AppDependencies.earlyMessageCache.store(targetAuthor.id, unpinMessage.targetSentTimestamp!!, earlyMessageCacheEntry)
+        PushProcessEarlyMessagesJob.enqueue()
+      }
+      return null
+    }
+
+    if (targetMessage.isRemoteDelete) {
+      warn(envelope.timestamp!!, "[handleUnpinMessage] Found a matching message, but it's flagged as remotely deleted. timestamp: ${unpinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
+    if (targetThread == null) {
+      warn(envelope.timestamp!!, "[handleUnpinMessage] Could not find a thread for the message! timestamp: ${unpinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    val groupRecord = SignalDatabase.groups.getGroup(threadRecipient.id).orNull()
+    if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {
+      warn(envelope.timestamp!!, "[handleUnpinMessage] Sender is not in the group! timestamp: ${unpinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    if (groupRecord == null && senderRecipient.id != threadRecipient.id && Recipient.self().id != senderRecipient.id) {
+      warn(envelope.timestamp!!, "[handleUnpinMessage] Sender is not a part of the 1:1 thread! timestamp: ${unpinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    SignalDatabase.messages.unpinMessage(targetMessage.id, targetMessage.threadId)
+
+    return MessageId(targetMessage.id)
   }
 
   fun notifyTypingStoppedFromIncomingMessage(context: Context, senderRecipient: Recipient, threadRecipientId: RecipientId, device: Int) {

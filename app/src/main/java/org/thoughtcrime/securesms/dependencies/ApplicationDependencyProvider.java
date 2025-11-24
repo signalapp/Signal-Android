@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.service.DeletedCallEventManager;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.ExpiringStoriesManager;
 import org.thoughtcrime.securesms.service.PendingRetryReceiptManager;
+import org.thoughtcrime.securesms.service.PinnedMessageManager;
 import org.thoughtcrime.securesms.service.ScheduledMessageManager;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager;
@@ -269,6 +270,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull ScheduledMessageManager provideScheduledMessageManager() {
     return new ScheduledMessageManager(context);
+  }
+
+  @Override
+  public @NonNull PinnedMessageManager providePinnedMessageManager() {
+    return new PinnedMessageManager(context);
   }
 
   @Override
