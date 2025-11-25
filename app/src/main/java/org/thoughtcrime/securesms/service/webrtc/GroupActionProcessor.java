@@ -8,6 +8,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
+import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -284,7 +285,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleGroupCallEnded(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull GroupCall.GroupCallEndReason groupCallEndReason) {
+  protected @NonNull WebRtcServiceState handleGroupCallEnded(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull CallManager.CallEndReason groupCallEndReason) {
     Log.i(tag, "handleGroupCallEnded(): reason: " + groupCallEndReason);
 
     GroupCall groupCall = currentState.getCallInfoState().getGroupCall();
@@ -299,7 +300,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
       return groupCallFailure(currentState, "Unable to disconnect from group call", e);
     }
 
-    if (groupCallEndReason != GroupCall.GroupCallEndReason.DEVICE_EXPLICITLY_DISCONNECTED) {
+    if (groupCallEndReason != CallManager.CallEndReason.DEVICE_EXPLICITLY_DISCONNECTED) {
       Log.i(tag, "Group call ended unexpectedly, reinitializing and dropping back to lobby");
       Recipient  currentRecipient = currentState.getCallInfoState().getCallRecipient();
       VideoState videoState       = currentState.getVideoState();

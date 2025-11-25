@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.service.webrtc
 
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallException
+import org.signal.ringrtc.CallManager
 import org.signal.ringrtc.GroupCall
 import org.signal.ringrtc.PeekInfo
 import org.thoughtcrime.securesms.components.webrtc.CallLinkProfileKeySender
@@ -68,12 +69,12 @@ class CallLinkConnectedActionProcessor(
       .build()
   }
 
-  override fun handleGroupCallEnded(currentState: WebRtcServiceState, groupCallHash: Int, groupCallEndReason: GroupCall.GroupCallEndReason): WebRtcServiceState {
+  override fun handleGroupCallEnded(currentState: WebRtcServiceState, groupCallHash: Int, groupCallEndReason: CallManager.CallEndReason): WebRtcServiceState {
     val serviceState = super.handleGroupCallEnded(currentState, groupCallHash, groupCallEndReason)
 
     val callLinkDisconnectReason = when (groupCallEndReason) {
-      GroupCall.GroupCallEndReason.DENIED_REQUEST_TO_JOIN_CALL -> CallLinkDisconnectReason.DeniedRequestToJoinCall()
-      GroupCall.GroupCallEndReason.REMOVED_FROM_CALL -> CallLinkDisconnectReason.RemovedFromCall()
+      CallManager.CallEndReason.DENIED_REQUEST_TO_JOIN_CALL -> CallLinkDisconnectReason.DeniedRequestToJoinCall()
+      CallManager.CallEndReason.REMOVED_FROM_CALL -> CallLinkDisconnectReason.RemovedFromCall()
       else -> null
     }
 
