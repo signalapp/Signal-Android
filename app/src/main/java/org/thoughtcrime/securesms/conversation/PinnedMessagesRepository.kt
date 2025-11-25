@@ -7,6 +7,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory
 import org.thoughtcrime.securesms.conversation.v2.data.AttachmentHelper
 import org.thoughtcrime.securesms.conversation.v2.data.ReactionHelper
+import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -22,6 +23,11 @@ class PinnedMessagesRepository {
 
   fun getPinnedMessage(application: Application, threadId: Long): Observable<List<ConversationMessage>> {
     return Observable.create { emitter ->
+      val databaseObserver: DatabaseObserver = AppDependencies.databaseObserver
+      val observer = DatabaseObserver.Observer { emitter.onNext(getPinnedMessages(application, threadId)) }
+      databaseObserver.registerConversationObserver(threadId, observer)
+      emitter.setCancellable { databaseObserver.unregisterObserver(observer) }
+
       emitter.onNext(getPinnedMessages(application, threadId))
     }.subscribeOn(Schedulers.io())
   }

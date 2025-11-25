@@ -820,6 +820,22 @@ class ConversationFragment :
       .addTo(disposables)
   }
 
+  override fun unpin(conversationMessage: ConversationMessage) {
+    handleUnpinMessage(conversationMessage.messageRecord.id)
+  }
+
+  override fun copy(conversationMessage: ConversationMessage) {
+    handleCopyMessage(conversationMessage.multiselectCollection.toSet())
+  }
+
+  override fun delete(conversationMessage: ConversationMessage) {
+    handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
+  }
+
+  override fun save(conversationMessage: ConversationMessage) {
+    handleSaveAttachment(conversationMessage.messageRecord as MmsMessageRecord)
+  }
+
   override fun onReactWithAnyEmojiDialogDismissed() {
     reactionDelegate.hide()
   }

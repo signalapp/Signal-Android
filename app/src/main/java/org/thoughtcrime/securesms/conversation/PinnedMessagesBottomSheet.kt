@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -81,7 +82,6 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
     val list: RecyclerView = view.findViewById<RecyclerView>(R.id.pinned_list).apply {
       layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
       adapter = messageAdapter
-      itemAnimator = null
 
       doOnNextLayout {
         // Adding this without waiting for a layout pass would result in an indeterminate amount of padding added to the top of the view
@@ -96,9 +96,12 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
         dismiss()
       }
 
-      messageAdapter.submitList(messages) {
-        if (!list.canScrollVertically(1)) {
-          list.layoutManager?.scrollToPosition(0)
+      val currentMessages = messageAdapter.currentList
+      if (currentMessages != messages) {
+        messageAdapter.submitList(messages) {
+          if (!list.canScrollVertically(1)) {
+            list.layoutManager?.scrollToPosition(0)
+          }
         }
       }
       recyclerViewColorizer.setChatColors(conversationRecipient.chatColors)
@@ -111,11 +114,17 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
 
     initializeGiphyMp4(view.findViewById(R.id.video_container)!!, list)
 
-    // TODO(michelle): Check with design about a confirmation dialog here
     val unpinAll = view.findViewById<TextView>(R.id.unpin_all)
     unpinAll.setOnClickListener {
-      viewModel.unpinMessage()
-      dismissAllowingStateLoss()
+      MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.PinnedMessage__unpin_title)
+        .setMessage(getString(R.string.PinnedMessage__unpin_body))
+        .setPositiveButton(R.string.PinnedMessage__unpin) { dialog, which ->
+          viewModel.unpinMessage()
+          dismissAllowingStateLoss()
+        }
+        .setNegativeButton(android.R.string.cancel) { dialog, which -> dialog.dismiss() }
+        .show()
     }
     unpinAll.visible = requireArguments().getBoolean(KEY_CAN_UNPIN)
   }
@@ -144,7 +153,6 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
     return getCallback().getConversationAdapterListener()
   }
 
-  // TODO(michelle): Allow for more interactions from the pinned messages sheet
   private inner class ConversationAdapterListener : ConversationAdapter.ItemClickListener by getAdapterListener() {
     override fun onItemClick(item: MultiselectPart) {
       dismiss()
@@ -152,8 +160,27 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
     }
 
     override fun onItemLongClick(itemView: View, item: MultiselectPart) {
-      dismiss()
-      getCallback().jumpToMessage(item.getMessageRecord())
+      PinnedContextMenu.show(
+        context = itemView.context,
+        anchorView = itemView,
+        rootView = itemView.rootView as ViewGroup,
+        message = item.conversationMessage.messageRecord as MmsMessageRecord,
+        canUnpin = requireArguments().getBoolean(KEY_CAN_UNPIN),
+        onUnpin = {
+          dismiss()
+          getCallback().unpin(item.conversationMessage)
+        },
+        onCopy = {
+          getCallback().copy(item.conversationMessage)
+        },
+        onDelete = {
+          dismiss()
+          getCallback().delete(item.conversationMessage)
+        },
+        onSave = {
+          getCallback().save(item.conversationMessage)
+        }
+      )
     }
 
     override fun onQuoteClicked(messageRecord: MmsMessageRecord) {

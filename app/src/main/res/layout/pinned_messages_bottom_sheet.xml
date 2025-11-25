@@ -19,6 +19,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <TextView
+        android:id="@+id/pinned_message_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/anchor"
+        android:layout_marginVertical="16dp"
+        android:text="@string/PinnedMessage__pinned_messages"
+        android:textAppearance="@style/Signal.Text.TitleMedium" />
+
     <FrameLayout
         android:id="@+id/video_container"
         android:layout_width="0dp"
@@ -34,23 +45,21 @@
         android:layout_height="wrap_content"
         android:paddingBottom="40dp"
         android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/anchor"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/unpin_all"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/pinned_message_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:paddingVertical="8dp"
-        android:background="@color/signal_colorSurface"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/PinnedMessage__unpin_all_messages"
-        android:textAppearance="@style/Signal.Text.LabelLarge"
-        android:textColor="@color/conversation_ultramarine"
-        android:textAlignment="center"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/unpin_all" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/unpin_all"
+            style="@style/Signal.Widget.Button.Large.Tonal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="32dp"
+            android:text="@string/PinnedMessage__unpin_all_messages" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

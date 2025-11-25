@@ -9062,6 +9062,14 @@
     <string name="PinnedMessage__got_it">Got it</string>
     <!-- Content description of disappearing timer icon -->
     <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Unpin</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
 
     <!-- EOF -->
 </resources>
