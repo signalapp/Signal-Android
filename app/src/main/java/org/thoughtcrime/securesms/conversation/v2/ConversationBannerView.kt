@@ -133,7 +133,7 @@ class ConversationBannerView @JvmOverloads constructor(
     hide(voiceNotePlayerStub)
   }
 
-  fun showPinnedMessageStub(messages: List<ConversationMessage>) {
+  fun showPinnedMessageStub(messages: List<ConversationMessage>, canUnpin: Boolean) {
     show(
       stub = pinnedMessageStub
     ) {
@@ -142,6 +142,7 @@ class ConversationBannerView @JvmOverloads constructor(
           SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(context)) {
             PinnedMessagesBanner(
               messages = messages,
+              canUnpin = canUnpin,
               onUnpinMessage = { messageId -> listener?.onUnpinMessage(messageId) },
               onGoToMessage = { messageId -> listener?.onGoToMessage(messageId) },
               onViewAllMessages = { listener?.onViewAllMessages() }

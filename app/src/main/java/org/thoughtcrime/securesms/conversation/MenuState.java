@@ -102,7 +102,8 @@ public final class MenuState {
   public static MenuState getMenuState(@NonNull Recipient conversationRecipient,
                                        @NonNull Set<MultiselectPart> selectedParts,
                                        boolean shouldShowMessageRequest,
-                                       boolean isNonAdminInAnnouncementGroup)
+                                       boolean isNonAdminInAnnouncementGroup,
+                                       boolean canEditGroupInfo)
   {
     
     Builder builder          = new Builder();
@@ -170,11 +171,11 @@ public final class MenuState {
         hasPollTerminate = true;
       }
 
-      if (RemoteConfig.sendPinnedMessages() && !messageRecord.isPending() && messageRecord.getPinnedUntil() == 0 && !conversationRecipient.isReleaseNotes()) {  // TODO(michelle): Also check against group permissions
+      if (RemoteConfig.sendPinnedMessages() && !messageRecord.isPending() && messageRecord.getPinnedUntil() == 0 && !conversationRecipient.isReleaseNotes() && canEditGroupInfo) {
         canPinMessage = true;
       }
 
-      if (RemoteConfig.sendPinnedMessages() && messageRecord.getPinnedUntil() != 0 && !conversationRecipient.isReleaseNotes()) {  // TODO(michelle): Also check against group permissions
+      if (RemoteConfig.sendPinnedMessages() && messageRecord.getPinnedUntil() != 0 && !conversationRecipient.isReleaseNotes() && canEditGroupInfo) {
         canUnpinMessage = true;
       }
     }

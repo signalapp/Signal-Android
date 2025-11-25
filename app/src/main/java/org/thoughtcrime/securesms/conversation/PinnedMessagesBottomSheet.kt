@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.fragments.findListener
+import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 
 /**
@@ -110,12 +111,13 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
 
     initializeGiphyMp4(view.findViewById(R.id.video_container)!!, list)
 
-    // TODO(michelle): Hide if not allowed to unpin / Check with design about a confirmation dialog here
+    // TODO(michelle): Check with design about a confirmation dialog here
     val unpinAll = view.findViewById<TextView>(R.id.unpin_all)
     unpinAll.setOnClickListener {
       viewModel.unpinMessage()
       dismissAllowingStateLoss()
     }
+    unpinAll.visible = requireArguments().getBoolean(KEY_CAN_UNPIN)
   }
 
   private fun initializeGiphyMp4(videoContainer: ViewGroup, list: RecyclerView): GiphyMp4ProjectionRecycler {
@@ -271,12 +273,14 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
 
     private const val KEY_THREAD_ID = "thread_id"
     private const val KEY_CONVERSATION_RECIPIENT_ID = "conversation_recipient_id"
+    private const val KEY_CAN_UNPIN = "can_unpin"
 
     @JvmStatic
-    fun show(fragmentManager: FragmentManager, threadId: Long, conversationRecipientId: RecipientId) {
+    fun show(fragmentManager: FragmentManager, threadId: Long, conversationRecipientId: RecipientId, canUnpin: Boolean) {
       val args = Bundle().apply {
         putLong(KEY_THREAD_ID, threadId)
         putString(KEY_CONVERSATION_RECIPIENT_ID, conversationRecipientId.serialize())
+        putBoolean(KEY_CAN_UNPIN, canUnpin)
       }
 
       val fragment = PinnedMessagesBottomSheet().apply {

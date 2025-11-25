@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
@@ -348,7 +349,9 @@ public final class PushGroupSendJob extends PushSendJob {
       } else {
         Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroup(groupRecipient.requireGroupId());
 
-        if (groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().isAdmin(Recipient.self())) {
+        if (pinnedMessage != null && groupRecord.isPresent() && groupRecord.get().getAttributesAccessControl() == GroupAccessControl.ONLY_ADMINS && !groupRecord.get().isAdmin(Recipient.self())) {
+          throw new UndeliverableMessageException("Non-admins cannot pin messages in this group!");
+        } else if (pinnedMessage == null && groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().isAdmin(Recipient.self())) {
           throw new UndeliverableMessageException("Non-admins cannot send messages in announcement groups!");
         }
 

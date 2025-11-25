@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -10,6 +11,7 @@ import org.thoughtcrime.securesms.jobs.protos.UnpinJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.GroupSendUtil
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.GroupUtil
@@ -95,6 +97,14 @@ class UnpinMessageJob(
     if (targetAuthor == null || !targetAuthor.hasServiceId) {
       Log.w(TAG, "Unable to find target author")
       return Result.failure()
+    }
+
+    if (conversationRecipient.isPushV2Group) {
+      val groupRecord = SignalDatabase.groups.getGroup(conversationRecipient.id)
+      if (groupRecord.isPresent && groupRecord.get().attributesAccessControl == GroupAccessControl.ONLY_ADMINS && !groupRecord.get().isAdmin(self())) {
+        Log.w(TAG, "Non-admins cannot send unpin messages to group.")
+        return Result.failure()
+      }
     }
 
     val targetSentTimestamp = message.dateSent

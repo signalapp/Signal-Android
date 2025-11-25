@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.database.model.toBodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
+import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
@@ -1305,6 +1306,10 @@ object DataMessageProcessor {
       warn(envelope.timestamp!!, "[handlePinMessage] Sender is not in the group! timestamp: ${pinMessage.targetSentTimestamp}")
       return null
     }
+    if (groupRecord != null && groupRecord.attributesAccessControl == GroupAccessControl.ONLY_ADMINS && !groupRecord.isAdmin(senderRecipient)) {
+      warn(envelope.timestamp!!, "[handlePinMessage] Sender needs to be an admin! timestamp: ${pinMessage.targetSentTimestamp}")
+      return null
+    }
 
     if (groupRecord == null && senderRecipient.id != threadRecipient.id && Recipient.self().id != senderRecipient.id) {
       warn(envelope.timestamp!!, "[handlePinMessage] Sender is not a part of the 1:1 thread! timestamp: ${pinMessage.targetSentTimestamp}")
@@ -1382,6 +1387,10 @@ object DataMessageProcessor {
     val groupRecord = SignalDatabase.groups.getGroup(threadRecipient.id).orNull()
     if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {
       warn(envelope.timestamp!!, "[handleUnpinMessage] Sender is not in the group! timestamp: ${unpinMessage.targetSentTimestamp}")
+      return null
+    }
+    if (groupRecord != null && groupRecord.attributesAccessControl == GroupAccessControl.ONLY_ADMINS && !groupRecord.isAdmin(senderRecipient)) {
+      warn(envelope.timestamp!!, "[handleUnpinMessage] Sender needs to be an admin! timestamp: ${unpinMessage.targetSentTimestamp}")
       return null
     }
 

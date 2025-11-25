@@ -69,6 +69,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
   private SelectedConversationModel selectedConversationModel;
   private OverlayState              overlayState = OverlayState.HIDDEN;
   private boolean                   isNonAdminInAnnouncementGroup;
+  private boolean                   canEditGroupInfo;
 
   private boolean downIsOurs;
   private int     selected = -1;
@@ -144,7 +145,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
                    @NonNull ConversationMessage conversationMessage,
                    @NonNull PointF lastSeenDownPoint,
                    boolean isNonAdminInAnnouncementGroup,
-                   @NonNull SelectedConversationModel selectedConversationModel)
+                   @NonNull SelectedConversationModel selectedConversationModel,
+                   boolean canEditGroupInfo)
   {
     if (overlayState != OverlayState.HIDDEN) {
       return;
@@ -154,6 +156,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     this.conversationRecipient         = conversationRecipient;
     this.selectedConversationModel     = selectedConversationModel;
     this.isNonAdminInAnnouncementGroup = isNonAdminInAnnouncementGroup;
+    this.canEditGroupInfo              = canEditGroupInfo;
     overlayState                       = OverlayState.UNINITAILIZED;
     selected                           = -1;
 
@@ -674,7 +677,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private @NonNull List<ActionItem> getMenuActionItems(@NonNull ConversationMessage conversationMessage) {
-    MenuState menuState = MenuState.getMenuState(conversationRecipient, conversationMessage.getMultiselectCollection().toSet(), false, isNonAdminInAnnouncementGroup);
+    MenuState menuState = MenuState.getMenuState(conversationRecipient, conversationMessage.getMultiselectCollection().toSet(), false, isNonAdminInAnnouncementGroup, canEditGroupInfo);
 
     List<ActionItem> items = new ArrayList<>();
 

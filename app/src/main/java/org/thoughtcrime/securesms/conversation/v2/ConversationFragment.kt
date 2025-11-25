@@ -1336,7 +1336,7 @@ class ConversationFragment :
 
   private fun presentPinnedMessage(pinnedMessages: List<ConversationMessage>) {
     if (pinnedMessages.isNotEmpty()) {
-      binding.conversationBanner.showPinnedMessageStub(pinnedMessages)
+      binding.conversationBanner.showPinnedMessageStub(messages = pinnedMessages, canUnpin = conversationGroupViewModel.canEditGroupInfo())
     } else {
       binding.conversationBanner.hidePinnedMessageStub()
     }
@@ -2311,7 +2311,8 @@ class ConversationFragment :
       recipient,
       selectedParts,
       viewModel.hasMessageRequestState,
-      conversationGroupViewModel.isNonAdminInAnnouncementGroup()
+      conversationGroupViewModel.isNonAdminInAnnouncementGroup(),
+      conversationGroupViewModel.canEditGroupInfo()
     )
 
     val items = arrayListOf<ActionItem>()
@@ -2458,7 +2459,7 @@ class ConversationFragment :
   ) {
     reactionDelegate.setOnActionSelectedListener(onActionSelectedListener)
     reactionDelegate.setOnHideListener(onHideListener)
-    reactionDelegate.show(requireActivity(), viewModel.recipientSnapshot!!, conversationMessage, conversationGroupViewModel.isNonAdminInAnnouncementGroup(), selectedConversationModel)
+    reactionDelegate.show(requireActivity(), viewModel.recipientSnapshot!!, conversationMessage, conversationGroupViewModel.isNonAdminInAnnouncementGroup(), selectedConversationModel, conversationGroupViewModel.canEditGroupInfo())
     viewModel.setIsReactionDelegateShowing(true)
     composeText.clearFocus()
   }
@@ -4232,8 +4233,9 @@ class ConversationFragment :
     override fun onViewAllMessages() {
       PinnedMessagesBottomSheet.show(
         childFragmentManager,
-        args.threadId,
-        viewModel.recipientSnapshot?.id!!
+        threadId = args.threadId,
+        conversationRecipientId = viewModel.recipientSnapshot?.id!!,
+        canUnpin = conversationGroupViewModel.canEditGroupInfo()
       )
     }
   }
