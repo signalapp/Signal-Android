@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.conversation;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -16,7 +15,6 @@ import android.util.AttributeSet;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
@@ -45,10 +43,8 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +64,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
   private final Boundary verticalScrubBoundary   = new Boundary();
   private final PointF   deadzoneTouchPoint      = new PointF();
 
-  private Activity                  activity;
   private Recipient                 conversationRecipient;
   private MessageRecord             messageRecord;
   private SelectedConversationModel selectedConversationModel;
@@ -195,8 +190,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
     conversationItem.setScaleY(ConversationItem.LONG_PRESS_SCALE_FACTOR);
 
     setVisibility(View.INVISIBLE);
-
-    this.activity = activity;
 
     ViewKt.doOnLayout(this, v -> {
       showAfterLayout(activity, conversationMessage, lastSeenDownPoint, isMessageOnLeft);
