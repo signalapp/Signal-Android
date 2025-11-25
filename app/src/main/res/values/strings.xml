@@ -1227,11 +1227,11 @@
     <string name="AddToGroupActivity_add_member">Add member?</string>
     <string name="AddToGroupActivity_add_s_to_s">Add \"%1$s\" to \"%2$s\"?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" added to \"%2$s\".</string>
-    <string name="AddToGroupActivity_add_to_group">Add to group</string>
     <string name="AddToGroupActivity_add_to_groups">Add to groups</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">This person can\'t be added to legacy groups.</string>
     <string name="AddToGroupActivity_add">Add</string>
     <string name="AddToGroupActivity_add_to_a_group">Add to a group</string>
+    <string name="AddToGroupActivity_search">Search</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Choose new admin</string>

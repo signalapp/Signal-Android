@@ -28,6 +28,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.fragment.compose.rememberFragmentState
@@ -55,8 +56,11 @@ import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker.DisplayMode.Companion.flag
+import org.thoughtcrime.securesms.recipients.ui.RecipientPicker.KeyboardType
 import java.util.Optional
 import java.util.function.Consumer
+
+private typealias AndroidKeyboardType = androidx.compose.ui.text.input.KeyboardType
 
 /**
  * Provides a recipient search and selection UI.
@@ -65,7 +69,9 @@ import java.util.function.Consumer
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun RecipientPicker(
+  searchBarHint: String = stringResource(R.string.RecipientSearchBar__search_name_or_number),
   searchQuery: String,
+  enabledKeyboardTypes: List<KeyboardType> = listOf(KeyboardType.Text, KeyboardType.Phone),
   displayModes: Set<RecipientPicker.DisplayMode> = setOf(RecipientPicker.DisplayMode.ALL),
   selectionLimits: SelectionLimits? = ContactSelectionArguments.Defaults.SELECTION_LIMITS,
   includeRecents: Boolean = ContactSelectionArguments.Defaults.INCLUDE_RECENTS,
@@ -97,9 +103,11 @@ fun RecipientPicker(
     }
 
     RecipientSearchBar(
+      hint = searchBarHint,
       query = searchQuery,
       onQueryChange = { filter -> callbacks.listActions.onSearchQueryChanged(query = filter) },
       onSearch = {},
+      enabledKeyboardTypes = enabledKeyboardTypes,
       modifier = Modifier
         .focusRequester(focusRequester)
         .fillMaxWidth()
@@ -468,5 +476,12 @@ object RecipientPicker {
       val Set<DisplayMode>.flag: Int
         get() = fold(initial = 0) { acc, displayMode -> acc or displayMode.flag }
     }
+  }
+
+  enum class KeyboardType(
+    val wrappedType: AndroidKeyboardType
+  ) {
+    Text(wrappedType = AndroidKeyboardType.Text),
+    Phone(wrappedType = AndroidKeyboardType.Phone)
   }
 }
