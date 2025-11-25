@@ -489,7 +489,7 @@ private fun CallQualityScreenPreview() {
 @PreviewLightDark
 @Composable
 private fun HowWasYourCallPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     Column {
       HowWasYourCall(
         onGreatClick = {},
@@ -503,7 +503,7 @@ private fun HowWasYourCallPreview() {
 @PreviewLightDark
 @Composable
 private fun WhatIssuesDidYouHavePreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     var userSelection by remember { mutableStateOf<Set<CallQualityIssue>>(emptySet()) }
 
     Column {
@@ -524,7 +524,7 @@ private fun WhatIssuesDidYouHavePreview() {
 @PreviewLightDark
 @Composable
 private fun HelpUsImprovePreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     Column {
       HelpUsImprove(
         isShareDebugLogSelected = true,

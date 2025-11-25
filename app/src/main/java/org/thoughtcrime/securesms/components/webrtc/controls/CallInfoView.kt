@@ -630,7 +630,7 @@ private fun ThreeUnknownAvatars() {
 @NightPreview
 @Composable
 private fun UnknownMembersRowPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     Column {
       UnknownMembersRow(unknownMemberCount = 1, allCallMembersAreUnknown = true)
       UnknownMembersRow(unknownMemberCount = 1, allCallMembersAreUnknown = false)

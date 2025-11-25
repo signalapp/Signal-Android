@@ -137,7 +137,7 @@ private fun CreateBackupBottomSheetContent(
 @DayNightPreviews
 @Composable
 private fun CreateBackupBottomSheetContentPaidPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     CreateBackupBottomSheetContent(
       isPaidTier = true,
       onBackupNowClick = {}
@@ -148,7 +148,7 @@ private fun CreateBackupBottomSheetContentPaidPreview() {
 @DayNightPreviews
 @Composable
 private fun CreateBackupBottomSheetContentFreePreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     CreateBackupBottomSheetContent(
       isPaidTier = false,
       onBackupNowClick = {}

@@ -77,7 +77,7 @@ class PermissionDeniedBottomSheet private constructor() : ComposeBottomSheetDial
 @DayNightPreviews
 @Composable
 private fun PermissionDeniedSheetContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     PermissionDeniedSheetContent(
       titleRes = R.string.AttachmentManager_signal_allow_access_location,
       subtitleRes = R.string.AttachmentManager_signal_to_send_location,

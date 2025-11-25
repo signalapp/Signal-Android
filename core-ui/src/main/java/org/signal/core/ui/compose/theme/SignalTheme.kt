@@ -190,7 +190,7 @@ private val darkSnackbarColors = SnackbarColors(
 @Composable
 fun SignalTheme(
   isDarkMode: Boolean = LocalConfiguration.current.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES,
-  incognitoKeyboardEnabled: Boolean,
+  incognitoKeyboardEnabled: Boolean = false,
   content: @Composable () -> Unit
 ) {
   val extendedColors = if (isDarkMode) darkExtendedColors else lightExtendedColors

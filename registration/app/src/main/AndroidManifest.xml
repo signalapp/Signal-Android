@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <application
+    android:name=".RegistrationApplication"
+    android:allowBackup="true"
+    android:icon="@android:drawable/sym_def_app_icon"
+    android:label="Registration Sample"
+    android:theme="@android:style/Theme.Material.NoActionBar"
+    android:supportsRtl="true">
+    <activity
+      android:name=".MainActivity"
+      android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+  </application>
+
+</manifest>

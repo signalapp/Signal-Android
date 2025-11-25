@@ -56,6 +56,8 @@ dependencies {
   implementation(libs.google.libphonenumber)
   implementation(libs.rxjava3.rxjava)
   implementation(libs.rxjava3.rxkotlin)
+  implementation(libs.kotlinx.serialization.json)
+  implementation(libs.libsignal.client)
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)

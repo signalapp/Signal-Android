@@ -32,4 +32,5 @@ dependencies {
   debugApi(libs.androidx.compose.ui.tooling.core)
   api(libs.androidx.fragment.compose)
   implementation(libs.kotlinx.serialization.json)
+  api(libs.google.zxing.core)
 }

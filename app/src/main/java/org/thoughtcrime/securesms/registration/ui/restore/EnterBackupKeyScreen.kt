@@ -325,7 +325,7 @@ private fun NoBackupKeyBottomSheet(
 @DayNightPreviews
 @Composable
 private fun NoBackupKeyBottomSheetPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     NoBackupKeyBottomSheet(
       showSecondParagraph = true
     )
@@ -335,7 +335,7 @@ private fun NoBackupKeyBottomSheetPreview() {
 @DayNightPreviews
 @Composable
 private fun NoBackupKeyBottomSheetNoSecondParagraphPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     NoBackupKeyBottomSheet(
       showSecondParagraph = false
     )

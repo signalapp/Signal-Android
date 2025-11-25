@@ -104,7 +104,7 @@ private fun Sheet(
 @Composable
 @DayNightPreviews
 private fun SheetPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     Sheet()
   }
 }

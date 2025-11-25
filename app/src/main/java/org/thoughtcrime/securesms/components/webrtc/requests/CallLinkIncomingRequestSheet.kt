@@ -106,7 +106,7 @@ class CallLinkIncomingRequestSheet : ComposeBottomSheetDialogFragment() {
 @NightPreview
 @Composable
 private fun CallLinkIncomingRequestSheetContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     CallLinkIncomingRequestSheetContent(
       state = CallLinkIncomingRequestState(
         name = "Miles Morales",
