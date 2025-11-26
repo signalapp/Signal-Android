@@ -2270,6 +2270,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       disassociateStoryQuotes(messageId)
       polls.deletePoll(messageId)
       disassociatePollFromPollTerminate(polls.getPollTerminateMessageId(messageId))
+      disassociatePinnedMessage(messageId)
 
       val threadId = getThreadIdForMessage(messageId)
       threads.update(threadId, false)
@@ -2820,7 +2821,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       retrieved.type == MessageType.IDENTITY_VERIFIED ||
       retrieved.type == MessageType.IDENTITY_UPDATE
 
-    val read = silent || retrieved.type == MessageType.EXPIRATION_UPDATE
+    val read = silent || retrieved.type == MessageType.EXPIRATION_UPDATE || MessageTypes.isPinnedMessageUpdate(type)
 
     val contentValues = contentValuesOf(
       DATE_SENT to retrieved.sentTimeMillis,
@@ -3669,6 +3670,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     groupReceipts.deleteRowsForMessage(messageId)
     mentions.deleteMentionsForMessage(messageId)
     disassociatePollFromPollTerminate(polls.getPollTerminateMessageId(messageId))
+    disassociatePinnedMessage(messageId)
 
     writableDatabase
       .delete(TABLE_NAME)
@@ -3759,6 +3761,62 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           .update(TABLE_NAME)
           .values(MESSAGE_EXTRAS to updatedMessageExtras.encode())
           .where("$ID = ?", messageId)
+          .run()
+      }
+    }
+  }
+
+  /**
+   * When a message gets deleted, clear the pinned record and remove any references
+   */
+  fun disassociatePinnedMessage(messageId: Long) {
+    if (messageId == -1L) {
+      return
+    }
+
+    writableDatabase.withinTransaction { db ->
+      // Clear pinned message info
+      val updated = db.update(TABLE_NAME)
+        .values(
+          PINNED_AT to 0,
+          PINNED_UNTIL to 0
+        )
+        .where("$ID = ? AND $PINNED_UNTIL > 0", messageId)
+        .run() > 0
+
+      if (!updated) {
+        return@withinTransaction
+      }
+
+      // Find the pinned message chat update
+      val pinningMessageId = db
+        .select(PINNING_MESSAGE_ID)
+        .from(TABLE_NAME)
+        .where("$ID = ?", messageId)
+        .run()
+        .readToSingleInt(-1)
+
+      if (pinningMessageId == -1) {
+        return@withinTransaction
+      }
+
+      // Disassociate chat update from pinned message
+      val messageExtras = db
+        .select(MESSAGE_EXTRAS)
+        .from(TABLE_NAME)
+        .where("$ID = ?", pinningMessageId)
+        .run()
+        .readToSingleObject { cursor ->
+          val messageExtraBytes = cursor.requireBlob(MESSAGE_EXTRAS)
+          messageExtraBytes?.let { MessageExtras.ADAPTER.decode(it) }
+        }
+
+      if (messageExtras?.pinnedMessage != null) {
+        val updatedMessageExtras = messageExtras.newBuilder().pinnedMessage(pinnedMessage = messageExtras.pinnedMessage.copy(pinnedMessageId = -1)).build()
+        db
+          .update(TABLE_NAME)
+          .values(MESSAGE_EXTRAS to updatedMessageExtras.encode())
+          .where("$ID = ?", pinningMessageId)
           .run()
       }
     }
