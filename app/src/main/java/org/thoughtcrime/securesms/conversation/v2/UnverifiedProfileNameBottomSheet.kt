@@ -32,8 +32,8 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
@@ -156,7 +156,7 @@ fun InfoRow(text: String) {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ProfileNameSheetPreview() {
   Previews.BottomSheetPreview {

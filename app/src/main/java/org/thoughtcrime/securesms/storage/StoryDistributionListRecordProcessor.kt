@@ -99,6 +99,7 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
       deletedAtTimestamp = remote.proto.deletedAtTimestamp
       allowsReplies = remote.proto.allowsReplies
       isBlockList = remote.proto.isBlockList
+      recipientServiceIdsBinary = remote.proto.recipientServiceIdsBinary
     }.build().toSignalStoryDistributionListRecord(StorageId.forStoryDistributionList(keyGenerator.generate()))
 
     val matchesRemote = doParamsMatch(remote, merged)

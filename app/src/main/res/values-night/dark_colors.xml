@@ -135,9 +135,8 @@
 
     <color name="reactions_pill_text_color">@color/signal_colorOnSurfaceVariant</color>
     <color name="reactions_pill_selected_text_color">@color/core_grey_15</color>
-    <color name="reactions_screen_dark_shade_color">@color/transparent_black_70</color>
-    <color name="reactions_screen_light_shade_color">#df5e5e5e</color>
-    <color name="reactions_status_bar_shade">#191919</color>
+    <color name="reactions_screen_dark_shade_color">#D91B1C1F</color>
+    <color name="reactions_screen_light_shade_color">@color/transparent_white_10</color>
 
     <color name="recipient_bottom_sheet_button_strip_background_color">@color/signal_colorSecondaryContainer</color>
 

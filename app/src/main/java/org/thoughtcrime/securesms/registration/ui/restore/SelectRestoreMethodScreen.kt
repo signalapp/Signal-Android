@@ -13,8 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import org.signal.core.ui.compose.SignalPreview
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreen
 
@@ -53,10 +53,10 @@ fun SelectRestoreMethodScreen(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SelectRestoreMethodScreenPreview() {
-  SignalTheme {
+  Previews.Preview {
     SelectRestoreMethodScreen(listOf(RestoreMethod.FROM_SIGNAL_BACKUPS, RestoreMethod.FROM_OLD_DEVICE, RestoreMethod.FROM_LOCAL_BACKUP_V1))
   }
 }

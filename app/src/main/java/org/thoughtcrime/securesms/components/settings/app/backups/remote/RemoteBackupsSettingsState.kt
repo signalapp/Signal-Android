@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.components.settings.app.backups.remote
 import org.signal.core.util.ByteSize
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
+import org.thoughtcrime.securesms.keyvalue.BackupValues
 
 /**
  * @param includeDebuglog The state for whether or not we should include a debuglog in the backup. If `null`, hide the setting.
@@ -30,9 +31,10 @@ data class RemoteBackupsSettingsState(
   val includeDebuglog: Boolean? = null,
   val canBackupMessagesJobRun: Boolean = false,
   val backupMediaDetails: BackupMediaDetails? = null,
-  val showBackupCreateFailedError: Boolean = false,
-  val showBackupCreateCouldNotCompleteError: Boolean = false,
-  val freeTierMediaRetentionDays: Int = -1
+  val backupCreationError: BackupValues.BackupCreationError? = null,
+  val lastMessageCutoffTime: Long = 0,
+  val freeTierMediaRetentionDays: Int = -1,
+  val isGooglePlayServicesAvailable: Boolean = false
 ) {
 
   data class BackupMediaDetails(
@@ -52,7 +54,8 @@ data class RemoteBackupsSettingsState(
     SKIP_MEDIA_RESTORE_PROTECTION,
     CANCEL_MEDIA_RESTORE_PROTECTION,
     RESTORE_OVER_CELLULAR_PROTECTION,
-    FREE_TIER_MEDIA_EXPLAINER
+    FREE_TIER_MEDIA_EXPLAINER,
+    KEY_ROTATION_LIMIT_REACHED
   }
 
   enum class Snackbar {

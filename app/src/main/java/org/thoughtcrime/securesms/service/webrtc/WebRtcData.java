@@ -8,6 +8,7 @@ import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.UUID;
 
@@ -66,17 +67,27 @@ public class WebRtcData {
    * Additional metadata for a received call.
    */
   public static class ReceivedOfferMetadata {
-    private final @NonNull byte[]  remoteIdentityKey;
-    private final          long    serverReceivedTimestamp;
-    private final          long    serverDeliveredTimestamp;
+    private final @NonNull  ServiceId destinationServiceId;
+    private final @Nullable byte[]    remoteIdentityKey;
+    private final           long      serverReceivedTimestamp;
+    private final           long      serverDeliveredTimestamp;
 
-    public ReceivedOfferMetadata(@NonNull byte[] remoteIdentityKey, long serverReceivedTimestamp, long serverDeliveredTimestamp) {
+    public ReceivedOfferMetadata(@NonNull ServiceId destinationServiceId,
+                                 @Nullable byte[] remoteIdentityKey,
+                                 long serverReceivedTimestamp,
+                                 long serverDeliveredTimestamp)
+    {
+      this.destinationServiceId     = destinationServiceId;
       this.remoteIdentityKey        = remoteIdentityKey;
       this.serverReceivedTimestamp  = serverReceivedTimestamp;
       this.serverDeliveredTimestamp = serverDeliveredTimestamp;
     }
 
-    @NonNull byte[] getRemoteIdentityKey() {
+    @NonNull ServiceId getDestinationServiceId() {
+      return destinationServiceId;
+    }
+
+    @Nullable byte[] getRemoteIdentityKey() {
       return remoteIdentityKey;
     }
 

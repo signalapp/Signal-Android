@@ -14,7 +14,6 @@ import org.signal.libsignal.protocol.InvalidRegistrationIdException;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SessionBuilder;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
-import org.signal.libsignal.protocol.UsePqRatchet;
 import org.signal.libsignal.protocol.groups.GroupSessionBuilder;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage;
@@ -185,7 +184,8 @@ public class SignalServiceMessageSender {
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
   private final BooleanSupplier useRestFallback;
-  private final UsePqRatchet    usePqRatchet;
+  private final boolean         useBinaryId;
+  private final boolean         useStringId;
 
   public SignalServiceMessageSender(PushServiceSocket pushServiceSocket,
                                     SignalServiceDataStore store,
@@ -197,7 +197,8 @@ public class SignalServiceMessageSender {
                                     ExecutorService executor,
                                     long maxEnvelopeSize,
                                     BooleanSupplier useRestFallback,
-                                    UsePqRatchet usePqRatchet)
+                                    boolean useBinaryId,
+                                    boolean useStringId)
   {
     CredentialsProvider credentialsProvider = pushServiceSocket.getCredentialsProvider();
 
@@ -215,7 +216,8 @@ public class SignalServiceMessageSender {
     this.scheduler        = Schedulers.from(executor, false, false);
     this.keysApi          = keysApi;
     this.useRestFallback  = useRestFallback;
-    this.usePqRatchet     = usePqRatchet;
+    this.useBinaryId      = useBinaryId;
+    this.useStringId      = useStringId;
   }
 
   /**
@@ -1060,18 +1062,27 @@ public class SignalServiceMessageSender {
       DataMessage.Quote.Builder quoteBuilder = new DataMessage.Quote.Builder()
                                                                 .id(message.getQuote().get().getId())
                                                                 .text(message.getQuote().get().getText())
-                                                                .authorAci(message.getQuote().get().getAuthor().toString())
+                                                                .authorAci(useStringId ? message.getQuote().get().getAuthor().toString() : null)
+                                                                .authorAciBinary(useBinaryId ? message.getQuote().get().getAuthor().toByteString() : null)
                                                                 .type(message.getQuote().get().getType().getProtoType());
 
       List<SignalServiceDataMessage.Mention> mentions = message.getQuote().get().getMentions();
       if (mentions != null && !mentions.isEmpty()) {
         List<BodyRange> bodyRanges = new ArrayList<>(quoteBuilder.bodyRanges);
         for (SignalServiceDataMessage.Mention mention : mentions) {
-          bodyRanges.add(new BodyRange.Builder()
-                                      .start(mention.getStart())
-                                      .length(mention.getLength())
-                                      .mentionAci(mention.getServiceId().toString())
-                                      .build());
+          if (useStringId) {
+            bodyRanges.add(new BodyRange.Builder()
+                               .start(mention.getStart())
+                               .length(mention.getLength())
+                               .mentionAci(mention.getServiceId().toString())
+                               .build());
+          } else {
+            bodyRanges.add(new BodyRange.Builder()
+                               .start(mention.getStart())
+                               .length(mention.getLength())
+                               .mentionAciBinary(mention.getServiceId().toByteString())
+                               .build());
+          }
         }
         quoteBuilder.bodyRanges(bodyRanges);
 
@@ -1128,11 +1139,19 @@ public class SignalServiceMessageSender {
     if (message.getMentions().isPresent()) {
       List<BodyRange> bodyRanges = new ArrayList<>(builder.bodyRanges);
       for (SignalServiceDataMessage.Mention mention : message.getMentions().get()) {
-        bodyRanges.add(new BodyRange.Builder()
-                                    .start(mention.getStart())
-                                    .length(mention.getLength())
-                                    .mentionAci(mention.getServiceId().toString())
-                                    .build());
+        if (useStringId) {
+          bodyRanges.add(new BodyRange.Builder()
+                             .start(mention.getStart())
+                             .length(mention.getLength())
+                             .mentionAci(mention.getServiceId().toString())
+                             .build());
+        } else {
+          bodyRanges.add(new BodyRange.Builder()
+                             .start(mention.getStart())
+                             .length(mention.getLength())
+                             .mentionAciBinary(mention.getServiceId().toByteString())
+                             .build());
+        }
       }
       builder.bodyRanges(bodyRanges);
       builder.requiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS.getValue(), builder.requiredProtocolVersion));
@@ -1168,7 +1187,8 @@ public class SignalServiceMessageSender {
                                                                              .emoji(message.getReaction().get().getEmoji())
                                                                              .remove(message.getReaction().get().isRemove())
                                                                              .targetSentTimestamp(message.getReaction().get().getTargetSentTimestamp())
-                                                                             .targetAuthorAci(message.getReaction().get().getTargetAuthor().toString());
+                                                                             .targetAuthorAci(useStringId ? message.getReaction().get().getTargetAuthor().toString() : null)
+                                                                             .targetAuthorAciBinary(useBinaryId ? message.getReaction().get().getTargetAuthor().toByteString() : null);
 
       builder.reaction(reactionBuilder.build());
       builder.requiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.REACTIONS.getValue(), builder.requiredProtocolVersion));
@@ -1212,7 +1232,8 @@ public class SignalServiceMessageSender {
       SignalServiceDataMessage.StoryContext storyContext = message.getStoryContext().get();
 
       builder.storyContext(new DataMessage.StoryContext.Builder()
-                                                       .authorAci(storyContext.getAuthorServiceId().toString())
+                                                       .authorAci(useStringId ? storyContext.getAuthorServiceId().toString() : null)
+                                                       .authorAciBinary(useBinaryId ? storyContext.getAuthorServiceId().toByteString() : null)
                                                        .sentTimestamp(storyContext.getSentTimestamp())
                                                        .build());
     }
@@ -1229,6 +1250,33 @@ public class SignalServiceMessageSender {
       List<BodyRange> bodyRanges = new ArrayList<>(builder.bodyRanges);
       bodyRanges.addAll(message.getBodyRanges().get());
       builder.bodyRanges(bodyRanges);
+    }
+
+    if (message.getPollCreate().isPresent()) {
+      SignalServiceDataMessage.PollCreate pollCreate = message.getPollCreate().get();
+
+      builder.pollCreate(new DataMessage.PollCreate.Builder()
+                                                   .question(pollCreate.getQuestion())
+                                                   .allowMultiple(pollCreate.getAllowMultiple())
+                                                   .options(pollCreate.getOptions()).build());
+      builder.requiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.POLLS.getValue(), builder.requiredProtocolVersion));
+    }
+
+    if (message.getPollVote().isPresent()) {
+      SignalServiceDataMessage.PollVote pollVote = message.getPollVote().get();
+      builder.pollVote(new DataMessage.PollVote.Builder()
+                                               .targetSentTimestamp(pollVote.getTargetSentTimestamp())
+                                               .targetAuthorAciBinary(pollVote.getTargetAuthor().toByteString())
+                                               .voteCount(pollVote.getVoteCount())
+                                               .optionIndexes(pollVote.getOptionIndexes())
+                                               .build());
+    }
+
+    if (message.getPollTerminate().isPresent()) {
+      SignalServiceDataMessage.PollTerminate pollTerminate = message.getPollTerminate().get();
+      builder.pollTerminate(new DataMessage.PollTerminate.Builder()
+                                                         .targetSentTimestamp(pollTerminate.getTargetSentTimestamp())
+                                                         .build());
     }
 
     builder.timestamp(message.getTimestamp());
@@ -1376,7 +1424,8 @@ public class SignalServiceMessageSender {
         }
 
         unidentifiedDeliveryStatuses.add(new SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder()
-                                                                                        .destinationServiceId(result.getAddress().getServiceId().toString())
+                                                                                        .destinationServiceId(useStringId ? result.getAddress().getServiceId().toString() : null)
+                                                                                        .destinationServiceIdBinary(useBinaryId ? result.getAddress().getServiceId().toByteString() : null)
                                                                                         .unidentified(false)
                                                                                         .destinationPniIdentityKey(identity)
                                                                                         .build());
@@ -1385,7 +1434,8 @@ public class SignalServiceMessageSender {
     sentMessage.unidentifiedStatus(unidentifiedDeliveryStatuses);
 
     if (recipient.isPresent()) {
-      sentMessage.destinationServiceId(recipient.get().getServiceId().toString());
+      sentMessage.destinationServiceId(useStringId ? recipient.get().getServiceId().toString() : null);
+      sentMessage.destinationServiceIdBinary(useBinaryId ? recipient.get().getServiceId().toByteString() : null);
       if (recipient.get().getNumber().isPresent()) {
         sentMessage.destinationE164(recipient.get().getNumber().get());
       }
@@ -1424,7 +1474,8 @@ public class SignalServiceMessageSender {
   private SyncMessage.Sent.StoryMessageRecipient createStoryMessageRecipient(SignalServiceStoryMessageRecipient storyMessageRecipient) {
     return new SyncMessage.Sent.StoryMessageRecipient.Builder()
                                                      .distributionListIds(storyMessageRecipient.getDistributionListIds())
-                                                     .destinationServiceId(storyMessageRecipient.getSignalServiceAddress().getIdentifier())
+                                                     .destinationServiceId(useStringId ? storyMessageRecipient.getSignalServiceAddress().getIdentifier() : null)
+                                                     .destinationServiceIdBinary(useBinaryId ? storyMessageRecipient.getSignalServiceAddress().getServiceId().toByteString() : null)
                                                      .isAllowedToReply(storyMessageRecipient.isAllowedToReply())
                                                      .build();
   }
@@ -1437,7 +1488,8 @@ public class SignalServiceMessageSender {
         readMessages.stream()
                     .map(readMessage -> new SyncMessage.Read.Builder()
                                                             .timestamp(readMessage.getTimestamp())
-                                                            .senderAci(readMessage.getSender().toString())
+                                                            .senderAci(useStringId ? readMessage.getSenderAci().toString() : null)
+                                                            .senderAciBinary(useBinaryId ? readMessage.getSenderAci().toByteString() : null)
                                                             .build())
                     .collect(Collectors.toList())
     );
@@ -1453,7 +1505,8 @@ public class SignalServiceMessageSender {
         readMessages.stream()
                     .map(readMessage -> new SyncMessage.Viewed.Builder()
                                                               .timestamp(readMessage.getTimestamp())
-                                                              .senderAci(readMessage.getSender().toString())
+                                                              .senderAci(useStringId ? readMessage.getSender().toString() : null)
+                                                              .senderAciBinary(useBinaryId ? readMessage.getSender().toByteString() : null)
                                                               .build())
                     .collect(Collectors.toList())
     );
@@ -1467,7 +1520,8 @@ public class SignalServiceMessageSender {
 
     builder.viewOnceOpen(new SyncMessage.ViewOnceOpen.Builder()
                                                      .timestamp(readMessage.getTimestamp())
-                                                     .senderAci(readMessage.getSender().toString())
+                                                     .senderAci(useStringId ? readMessage.getSender().toString() : null)
+                                                     .senderAciBinary(useBinaryId ? readMessage.getSender().toByteString() : null)
                                                      .build());
 
     return container.syncMessage(builder.build()).build();
@@ -1478,7 +1532,8 @@ public class SignalServiceMessageSender {
     SyncMessage.Builder         syncMessage    = createSyncMessageBuilder();
     SyncMessage.Blocked.Builder blockedMessage = new SyncMessage.Blocked.Builder();
 
-    blockedMessage.acis(blocked.individuals.stream().filter(a -> a.getAci() != null).map(a -> a.getAci().toString()).collect(Collectors.toList()));
+    blockedMessage.acis(useStringId ? blocked.individuals.stream().filter(a -> a.getAci() != null).map(a -> a.getAci().toString()).collect(Collectors.toList()) : Collections.emptyList());
+    blockedMessage.acisBinary(useBinaryId ? blocked.individuals.stream().filter(a -> a.getAci() != null).map(a -> a.getAci().toByteString()).collect(Collectors.toList()) : Collections.emptyList());
     blockedMessage.numbers(blocked.individuals.stream().filter(a -> a.getE164() != null).map(a -> a.getE164()).collect(Collectors.toList()));
     blockedMessage.groupIds(blocked.groupIds.stream().map(ByteString::of).collect(Collectors.toList()));
 
@@ -1577,7 +1632,8 @@ public class SignalServiceMessageSender {
     }
 
     if (message.getPerson().isPresent()) {
-      responseMessage.threadAci(message.getPerson().get().toString());
+      responseMessage.threadAci(useStringId ? message.getPerson().get().toString() : null);
+      responseMessage.threadAciBinary(useBinaryId ? message.getPerson().get().toByteString() : null);
     }
 
     switch (message.getType()) {
@@ -1674,7 +1730,8 @@ public class SignalServiceMessageSender {
 
     verifiedMessageBuilder.nullMessage(ByteString.of(nullMessage));
     verifiedMessageBuilder.identityKey(ByteString.of(verifiedMessage.getIdentityKey().serialize()));
-    verifiedMessageBuilder.destinationAci(verifiedMessage.getDestination().getServiceId().toString());
+    verifiedMessageBuilder.destinationAci(useStringId ? verifiedMessage.getDestination().getServiceId().toString() : null);
+    verifiedMessageBuilder.destinationAciBinary(useBinaryId ? verifiedMessage.getDestination().getServiceId().toByteString() : null);
 
 
     switch (verifiedMessage.getVerified()) {
@@ -1917,7 +1974,7 @@ public class SignalServiceMessageSender {
 
     for (int i = 0; i < RETRY_COUNT; i++) {
       if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-        throw new CancelationException();
+        return SendMessageResult.canceledFailure(recipient);
       }
 
       try {
@@ -1939,7 +1996,7 @@ public class SignalServiceMessageSender {
         }
 
         if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-          throw new CancelationException();
+          return SendMessageResult.canceledFailure(recipient);
         }
 
         try {
@@ -1978,7 +2035,7 @@ public class SignalServiceMessageSender {
         }
 
         if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-          throw new CancelationException();
+          return SendMessageResult.canceledFailure(recipient);
         }
 
         SendMessageResponse response = socket.sendMessage(messages, sealedSenderAccess, story);
@@ -2063,7 +2120,11 @@ public class SignalServiceMessageSender {
       if (cause instanceof IOException) {
         throw (IOException) cause;
       } else if (cause instanceof InterruptedException) {
-        throw new CancelationException(e);
+        List<SendMessageResult> canceledResults = new ArrayList<>(recipients.size());
+        for (SignalServiceAddress recipient : recipients) {
+          canceledResults.add(SendMessageResult.canceledFailure(recipient));
+        }
+        return canceledResults;
       } else {
         throw e;
       }
@@ -2138,7 +2199,7 @@ public class SignalServiceMessageSender {
     Single<SendMessageResult> sendWithFallback = messagesSingle
         .flatMap(messages -> {
           if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-            return Single.error(new CancelationException());
+            return Single.just(new kotlin.Pair<>(messages, new NetworkResult.NetworkError<SendMessageResponse>(new IOException("Canceled"))));
           }
 
           return Single.fromCallable(() -> messageApi.sendMessage(messages, sealedSenderAccess, story))
@@ -2165,7 +2226,7 @@ public class SignalServiceMessageSender {
             return Single.just(result);
           } catch (IOException throwable) {
             if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-              return Single.error(new CancelationException());
+              return Single.just(SendMessageResult.canceledFailure(recipient));
             }
 
             if (throwable instanceof AuthorizationFailedException ||
@@ -2211,7 +2272,7 @@ public class SignalServiceMessageSender {
 
     return sendWithFallback.onErrorResumeNext(t -> {
       if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-        return Single.error(new CancelationException());
+        return Single.just(SendMessageResult.canceledFailure(recipient));
       }
 
       if (retryCount >= RETRY_COUNT) {
@@ -2712,7 +2773,7 @@ public class SignalServiceMessageSender {
           try {
             SignalProtocolAddress preKeyAddress  = new SignalProtocolAddress(recipient.getIdentifier(), preKey.getDeviceId());
             SignalSessionBuilder  sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(aciStore, preKeyAddress));
-            sessionBuilder.process(preKey, usePqRatchet);
+            sessionBuilder.process(preKey);
           } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
             throw new UntrustedIdentityException("Untrusted identity key!", recipient.getIdentifier(), preKey.getIdentityKey());
           }
@@ -2764,7 +2825,7 @@ public class SignalServiceMessageSender {
 
         try {
           SignalSessionBuilder sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(aciStore, new SignalProtocolAddress(recipient.getIdentifier(), missingDeviceId)));
-          sessionBuilder.process(preKey, usePqRatchet);
+          sessionBuilder.process(preKey);
         } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
           throw new UntrustedIdentityException("Untrusted identity key!", recipient.getIdentifier(), preKey.getIdentityKey());
         }

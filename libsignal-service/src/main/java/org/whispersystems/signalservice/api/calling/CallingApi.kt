@@ -18,7 +18,6 @@ import org.whispersystems.signalservice.internal.push.CreateCallLinkAuthResponse
 import org.whispersystems.signalservice.internal.push.GetCallingRelaysResponse
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
-import org.signal.libsignal.protocol.util.Pair as LibSignalPair
 
 /**
  * Provide calling specific network apis.
@@ -73,7 +72,7 @@ class CallingApi(
     requestId: Long,
     url: String,
     httpMethod: String,
-    headers: List<LibSignalPair<String, String>>?,
+    headers: List<Pair<String, String>>?,
     body: ByteArray?
   ): NetworkResult<CallingResponse> {
     return when (val result = NetworkResult.fromFetch { pushServiceSocket.makeCallingRequest(requestId, url, httpMethod, headers, body) }) {

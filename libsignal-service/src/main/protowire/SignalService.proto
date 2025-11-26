@@ -40,7 +40,11 @@ message Envelope {
   optional bool story = 16;  // indicates that the content is a story.
   optional bytes report_spam_token = 17; // token sent when reporting spam
   reserved 18;  // internal server use
-  // next: 19
+  optional bytes sourceServiceIdBinary = 19; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
+  optional bytes destinationServiceIdBinary = 20; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
+  optional bytes serverGuidBinary = 21; // 16-byte UUID
+  optional bytes updatedPniBinary = 22; // 16-byte UUID
+  // next: 22
 }
 
 message Content {
@@ -177,6 +181,7 @@ message DataMessage {
     enum Type {
       NORMAL = 0;
       GIFT_BADGE = 1;
+      POLL = 2;
     }
 
     message QuotedAttachment {
@@ -192,6 +197,7 @@ message DataMessage {
     repeated QuotedAttachment attachments = 4;
     repeated BodyRange bodyRanges = 6;
     optional Type type = 7;
+    optional bytes authorAciBinary = 8; // 16-byte UUID
   }
 
   message Contact {
@@ -276,6 +282,7 @@ message DataMessage {
     reserved /* targetAuthorE164 */ 3;
     optional string targetAuthorAci = 4;
     optional uint64 targetSentTimestamp = 5;
+    optional bytes targetAuthorAciBinary = 6; // 16-byte UUID
   }
 
   message Delete {
@@ -289,6 +296,7 @@ message DataMessage {
   message StoryContext {
     optional string authorAci = 1;
     optional uint64 sentTimestamp = 2;
+    optional bytes authorAciBinary = 3; // 16-byte UUID
   }
 
   enum ProtocolVersion {
@@ -302,11 +310,29 @@ message DataMessage {
     CDN_SELECTOR_ATTACHMENTS = 5;
     MENTIONS = 6;
     PAYMENTS = 7;
-    CURRENT = 7;
+    POLLS = 8;
+    CURRENT = 8;
   }
 
   message GiftBadge {
     optional bytes receiptCredentialPresentation = 1;
+  }
+
+  message PollCreate {
+    optional string question = 1;
+    optional bool allowMultiple = 2;
+    repeated string options = 3;
+  }
+
+  message PollTerminate {
+    optional uint64 targetSentTimestamp = 1;
+  }
+
+  message PollVote {
+    optional bytes targetAuthorAciBinary = 1;
+    optional uint64 targetSentTimestamp = 2;
+    repeated uint32 optionIndexes = 3;  // must be in the range [0, options.length) from the PollCreate
+    optional uint32 voteCount = 4;  // increment this by 1 each time you vote on a given poll
   }
 
   optional string body = 1;
@@ -331,7 +357,10 @@ message DataMessage {
   optional Payment payment = 20;
   optional StoryContext storyContext = 21;
   optional GiftBadge giftBadge = 22;
-  // NEXT ID: 24
+  optional PollCreate pollCreate = 24;
+  optional PollTerminate pollTerminate = 25;
+  optional PollVote pollVote = 26;
+  // NEXT ID: 27
 }
 
 message NullMessage {
@@ -420,6 +449,7 @@ message Verified {
   optional bytes identityKey = 2;
   optional State state = 3;
   optional bytes nullMessage = 4;
+  optional bytes destinationAciBinary = 6; // 16-byte UUID
 }
 
 message SyncMessage {
@@ -430,6 +460,7 @@ message SyncMessage {
       optional bool unidentified = 2;
       reserved /*destinationPni */ 4;
       optional bytes destinationPniIdentityKey = 5; // Only set for PNI destinations
+      optional bytes destinationServiceIdBinary = 6; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
     }
 
     message StoryMessageRecipient {
@@ -437,6 +468,7 @@ message SyncMessage {
       repeated string distributionListIds = 2;
       optional bool isAllowedToReply = 3;
       reserved /*destinationPni */ 4;
+      optional bytes destinationServiceIdBinary = 5; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
     }
 
     optional string destinationE164 = 1;
@@ -450,7 +482,8 @@ message SyncMessage {
     repeated StoryMessageRecipient storyMessageRecipients = 9;
     optional EditMessage editMessage = 10;
     reserved /*destinationPni */ 11;
-    // Next ID: 12
+    optional bytes destinationServiceIdBinary = 12; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
+    // Next ID: 13
   }
 
   message Contacts {
@@ -462,6 +495,7 @@ message SyncMessage {
     repeated string numbers = 1;
     repeated string acis = 3;
     repeated bytes groupIds = 2;
+    repeated bytes acisBinary = 4; // 16-byte UUID
   }
 
   message Request {
@@ -482,12 +516,14 @@ message SyncMessage {
     reserved /*senderE164*/ 1;
     optional string senderAci = 3;
     optional uint64 timestamp = 2;
+    optional bytes senderAciBinary = 4; // 16-byte UUID
   }
 
   message Viewed {
     reserved /*senderE164*/ 1;
     optional string senderAci = 3;
     optional uint64 timestamp = 2;
+    optional bytes senderAciBinary = 4; // 16-byte UUID
   }
 
   message Configuration {
@@ -514,6 +550,7 @@ message SyncMessage {
     reserved /*senderE164*/ 1;
     optional string senderAci = 3;
     optional uint64 timestamp = 2;
+    optional bytes senderAciBinary = 4; // 16-byte UUID
   }
 
   message FetchLatest {
@@ -554,6 +591,7 @@ message SyncMessage {
     optional string threadAci = 2;
     optional bytes groupId = 3;
     optional Type type = 4;
+    optional bytes threadAciBinary = 5; // 16-byte UUID
   }
 
   message OutgoingPayment {
@@ -801,6 +839,7 @@ message ContactDetails {
 
   optional string number = 1;
   optional string aci = 9;
+  optional bytes aciBinary = 13; // 16-byte UUID
   optional string name = 2;
   optional Avatar avatar = 3;
   reserved /* color */ 4;
@@ -811,7 +850,7 @@ message ContactDetails {
   optional uint32 expireTimerVersion = 12;
   optional uint32 inboxPosition = 10;
   reserved /* archived */ 11;
-  // NEXT ID: 13
+  // NEXT ID: 14
 }
 
 message PaymentAddress {
@@ -858,6 +897,7 @@ message BodyRange {
   oneof associatedValue {
     string mentionAci = 3;
     Style style = 4;
+    bytes mentionAciBinary = 5; // 16-byte UUID
   }
 }
 
@@ -865,6 +905,7 @@ message AddressableMessage {
   oneof author {
     string authorServiceId = 1;
     string authorE164 = 2;
+    bytes authorServiceIdBinary = 4; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
   }
   optional uint64 sentTimestamp = 3;
 }
@@ -874,5 +915,6 @@ message ConversationIdentifier {
     string threadServiceId = 1;
     bytes threadGroupId = 2;
     string threadE164 = 3;
+    bytes threadServiceIdBinary = 4; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
   }
 }

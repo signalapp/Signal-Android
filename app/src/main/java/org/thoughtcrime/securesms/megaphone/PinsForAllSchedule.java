@@ -49,6 +49,10 @@ class PinsForAllSchedule implements MegaphoneSchedule {
       return false;
     }
 
+    if (SignalStore.account().isLinkedDevice()) {
+      return false;
+    }
+
     if (pinCreationFailedDuringRegistration()) {
       return true;
     }

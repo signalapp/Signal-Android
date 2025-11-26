@@ -17,10 +17,10 @@ import androidx.compose.ui.res.vectorResource
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.appearance.navbar.ChooseNavigationBarStyleFragment
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -175,7 +175,7 @@ private fun AppearanceSettingsScreen(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AppearanceSettingsScreenPreview() {
   Previews.Preview {

@@ -26,6 +26,7 @@ public final class MenuState {
   private final boolean reactions;
   private final boolean paymentDetails;
   private final boolean edit;
+  private final boolean pollTerminate;
 
   private MenuState(@NonNull Builder builder) {
     forward        = builder.forward;
@@ -38,6 +39,7 @@ public final class MenuState {
     reactions      = builder.reactions;
     paymentDetails = builder.paymentDetails;
     edit           = builder.edit;
+    pollTerminate  = builder.pollTerminate;
   }
 
   public boolean shouldShowForwardAction() {
@@ -80,23 +82,29 @@ public final class MenuState {
     return edit;
   }
 
+  public boolean shouldShowPollTerminateAction() {
+    return pollTerminate;
+  }
+
   public static MenuState getMenuState(@NonNull Recipient conversationRecipient,
                                        @NonNull Set<MultiselectPart> selectedParts,
                                        boolean shouldShowMessageRequest,
                                        boolean isNonAdminInAnnouncementGroup)
   {
     
-    Builder builder         = new Builder();
-    boolean actionMessage   = false;
-    boolean hasText         = false;
-    boolean sharedContact   = false;
-    boolean viewOnce        = false;
-    boolean remoteDelete    = false;
-    boolean hasInMemory     = false;
-    boolean hasPendingMedia = false;
-    boolean mediaIsSelected = false;
-    boolean hasGift         = false;
+    Builder builder          = new Builder();
+    boolean actionMessage    = false;
+    boolean hasText          = false;
+    boolean sharedContact    = false;
+    boolean viewOnce         = false;
+    boolean remoteDelete     = false;
+    boolean hasInMemory      = false;
+    boolean hasPendingMedia  = false;
+    boolean mediaIsSelected  = false;
+    boolean hasGift          = false;
     boolean hasPayment       = false;
+    boolean hasPoll          = false;
+    boolean hasPollTerminate = false;
 
     for (MultiselectPart part : selectedParts) {
       MessageRecord messageRecord = part.getMessageRecord();
@@ -138,14 +146,24 @@ public final class MenuState {
       if (messageRecord.isPaymentNotification() || messageRecord.isPaymentTombstone()) {
         hasPayment = true;
       }
+
+      if (MessageRecordUtil.hasPoll(messageRecord)) {
+        hasPoll = true;
+      }
+
+      if (MessageRecordUtil.hasPoll(messageRecord) && !MessageRecordUtil.getPoll(messageRecord).getHasEnded() && messageRecord.isOutgoing()) {
+        hasPollTerminate = true;
+      }
     }
 
-    boolean shouldShowForwardAction = !actionMessage   &&
-                                      !viewOnce        &&
-                                      !remoteDelete    &&
-                                      !hasPendingMedia &&
-                                      !hasGift         &&
-                                      !hasPayment      &&
+    boolean shouldShowForwardAction = !actionMessage    &&
+                                      !viewOnce         &&
+                                      !remoteDelete     &&
+                                      !hasPendingMedia  &&
+                                      !hasGift          &&
+                                      !hasPayment       &&
+                                      !hasPoll          &&
+                                      !hasPollTerminate &&
                                       selectedParts.size() <= MAX_FORWARDABLE_COUNT;
 
     int uniqueRecords = selectedParts.stream()
@@ -159,7 +177,8 @@ public final class MenuState {
              .shouldShowDetailsAction(false)
              .shouldShowSaveAttachmentAction(false)
              .shouldShowResendAction(false)
-             .shouldShowEdit(false);
+             .shouldShowEdit(false)
+             .shouldShowPollTerminate(false);
     } else {
       MultiselectPart multiSelectRecord = selectedParts.iterator().next();
 
@@ -182,13 +201,15 @@ public final class MenuState {
       builder.shouldShowEdit(!actionMessage &&
                              hasText &&
                              !multiSelectRecord.getConversationMessage().getOriginalMessage().isFailed() &&
+                             !hasPoll &&
                              MessageConstraintsUtil.isValidEditMessageSend(multiSelectRecord.getConversationMessage().getOriginalMessage(), System.currentTimeMillis()));
     }
 
-    return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText && !hasGift && !hasPayment)
+    return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText && !hasGift && !hasPayment && !hasPoll)
                   .shouldShowDeleteAction(!hasInMemory && onlyContainsCompleteMessages(selectedParts))
                   .shouldShowReactions(!conversationRecipient.isReleaseNotes())
                   .shouldShowPaymentDetails(hasPayment)
+                  .shouldShowPollTerminate(hasPollTerminate)
                   .build();
   }
 
@@ -233,6 +254,7 @@ public final class MenuState {
     private boolean reactions;
     private boolean paymentDetails;
     private boolean edit;
+    private boolean pollTerminate;
 
     @NonNull Builder shouldShowForwardAction(boolean forward) {
       this.forward = forward;
@@ -281,6 +303,11 @@ public final class MenuState {
 
     @NonNull Builder shouldShowEdit(boolean edit) {
       this.edit = edit;
+      return this;
+    }
+
+    @NonNull Builder shouldShowPollTerminate(boolean pollTerminate) {
+      this.pollTerminate = pollTerminate;
       return this;
     }
 

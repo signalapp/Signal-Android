@@ -78,15 +78,6 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
 
     phoneStateListener = SignalStrengthPhoneStateListener(this, PhoneStateCallback())
 
-    requireActivity().onBackPressedDispatcher.addCallback(
-      viewLifecycleOwner,
-      object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-          navigateUp()
-        }
-      }
-    )
-
     binding.codeEntryLayout.wrongNumber.setOnClickListener {
       navigateUp()
     }

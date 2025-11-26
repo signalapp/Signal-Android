@@ -60,6 +60,13 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
     long    timeSinceCheck = System.currentTimeMillis() - SignalStore.emoji().getLastSearchIndexCheck();
     boolean needsCheck     = false;
 
+    if (SignalStore.emoji().hasSearchIndex() && !SignalDatabase.emojiSearch().hasSearchIndexData()) {
+      Log.w(TAG, "Emoji search data missing with metadata, clearing version to redownload.");
+      SignalStore.emoji().clearSearchIndexVersion();
+      scheduleImmediately();
+      return;
+    }
+
     if (SignalStore.emoji().hasSearchIndex()) {
       needsCheck = timeSinceCheck > INTERVAL_WITH_INDEX;
     } else {

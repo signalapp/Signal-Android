@@ -13,6 +13,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
+import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientRepository
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
@@ -71,19 +72,18 @@ class FindByViewModel(
     }
   }
 
-  @WorkerThread
-  private fun performPhoneLookup(): FindByResult {
+  private suspend fun performPhoneLookup(): FindByResult {
     val stateSnapshot = state.value
     val countryCode = stateSnapshot.selectedCountry.countryCode
     val nationalNumber = stateSnapshot.userEntry.removePrefix(countryCode.toString())
 
     val e164 = "+$countryCode$nationalNumber"
 
-    return when (val result = RecipientRepository.lookupNewE164(e164)) {
-      RecipientRepository.LookupResult.InvalidEntry -> FindByResult.InvalidEntry
-      RecipientRepository.LookupResult.NetworkError -> FindByResult.NetworkError
-      is RecipientRepository.LookupResult.NotFound -> FindByResult.NotFound(result.recipientId)
-      is RecipientRepository.LookupResult.Success -> FindByResult.Success(result.recipientId)
+    return when (val result = RecipientRepository.lookup(PhoneNumber(e164))) {
+      is RecipientRepository.PhoneLookupResult.InvalidPhone -> FindByResult.InvalidEntry
+      is RecipientRepository.PhoneLookupResult.NotFound -> FindByResult.NotFound()
+      is RecipientRepository.PhoneLookupResult.Found -> FindByResult.Success(result.recipient.id)
+      is RecipientRepository.LookupResult.NetworkError -> FindByResult.NetworkError
     }
   }
 

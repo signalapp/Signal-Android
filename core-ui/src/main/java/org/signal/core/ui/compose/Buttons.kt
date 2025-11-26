@@ -20,8 +20,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -233,7 +231,10 @@ private fun SampleBox(
   darkMode: Boolean,
   content: @Composable BoxScope.() -> Unit
 ) {
-  SignalTheme(isDarkMode = darkMode) {
+  SignalTheme(
+    isDarkMode = darkMode,
+    incognitoKeyboardEnabled = false
+  ) {
     Surface {
       Box(modifier = Modifier.padding(8.dp)) {
         content()
@@ -394,7 +395,7 @@ private fun ActionButtonSample(
       label = "Share"
     ) {
       Icon(
-        imageVector = Icons.Default.Share,
+        painter = painterResource(android.R.drawable.ic_menu_camera),
         tint = MaterialTheme.colorScheme.onSecondaryContainer,
         contentDescription = null
       )

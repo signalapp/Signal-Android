@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">பதிவு செலுத்துதல் மீட்பு சொற்றொடர்</string>
     <string name="ApplicationPreferencesActivity_record_phrase">பதிவு சொற்றொடர்</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">உங்களால் முடியும் முன் முடக்கு உங்கள் பின், உங்கள் கொடுப்பனவுகளை மீட்டெடுக்க முடியும் என்பதை உறுதிப்படுத்த உங்கள் கொடுப்பனவு மீட்பு சொற்றொடரை நீங்கள் பதிவு செய்ய வேண்டும் கணக்கு.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">புதிய மீட்பு குறியீட்டை உருவாக்கவும்</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">உங்கள் பின்-ஐ முடக்குவதற்கு முன், புதிய மீட்புக் குறியீட்டை உருவாக்கிப் பதிவு செய்ய வேண்டும்.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">குறியீட்டை உருவாக்குக</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">கோப்பு</string>
     <string name="AttachmentKeyboard_contact">தொடர்பு</string>
     <string name="AttachmentKeyboard_location">இடம்</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">வாக்கெடுப்பு</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">புகைப்படங்கள் மற்றும் காணொளிகளை காட்ட சிக்னலுக்கு அனுமதி தேவை</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">அணுகலை அனுமதிக்கவும்</string>
@@ -864,7 +872,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">உங்கள் காப்புப்பிரதியின் அளவைப் பொறுத்து, இதற்கு நீண்ட நேரம் ஆகலாம். காப்புப்பிரதி எடுக்கப்படும்போது நீங்கள் வழக்கம் போல் உங்கள் தொலைபேசியைப் பயன்படுத்தலாம்.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">நீங்கள் மெசேஜ்களை அனுப்பிப் பெறும்போது உங்கள் காப்புப்பிரதியில் ஊடகம் சேர்க்கப்படுகிறது.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">மீடியாவை மீட்டமைக்க முடியவில்லை</string>
@@ -1167,6 +1175,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal லின் இந்த பதிப்பு காலாவதியானது. செய்திகளை அனுப்ப மற்றும் பெற பயன்பாட்டைப் புதுப்பிக்கவும்.</string>
     <string name="ExpiredBuildReminder_update_now">இப்பொழுது மேம்படுத்து</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">இந்த டிவைஸில் இனியும் Signal வேலை செய்யாது. மீண்டும் சிக்னலைப் பயன்படுத்த, உங்கள் டிவைஸை Android இன் புதிய பதிப்பிற்குப் புதுப்பிக்கவும் அல்லது புதிய டிவைஸிற்கு மாறவும்.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Signal லைப் புதுப்பிக்கவும்</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1383,11 +1394,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">முடிந்தது</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">\"%1$s\" ஐ \"%2$s\" இல் சேர்க்கவா?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">\"%2$s\"இல் \"%1$s\" ஐச் சேர்க்கலாமா?</item>
-        <item quantity="other">\"%2$s\"இல் %3$d உறுப்பினர்களைச் சேர்க்கலாமா?</item>
+        <item quantity="one">\"%2$s\"இல் \"{2}\" ஐச் சேர்க்கலாமா?</item>
+        <item quantity="other">\"%2$s\"இல் %1$d உறுப்பினர்களைச் சேர்க்கலாமா?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">சேர்க்கவும்</string>
     <string name="AddMembersActivity__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
 
@@ -1491,6 +1507,10 @@
     <string name="RemoteRestoreActivity__not_now">இப்போது வேண்டாம்</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">உங்கள் ஊடகமானது பின்னணியில் மீட்டெடுக்கப்படும். இப்போது மீட்டெடுக்க வேண்டாம் என்பதை நீங்கள் தேர்வுசெய்தால், பின்னர் நீங்கள் மீட்டெடுக்கவே முடியாது.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">இந்தச் சாதனம் இனி பதிவுசெய்யப்பட்டிருக்காது</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">உங்கள் சிக்னல் கணக்கை வேறு சாதனத்தில் பதிவு செய்ததால் இவ்வாறு நிகழலாம்.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">என் பெயர் குறிப்புகளை எனக்கு அறிவி</string>
@@ -2107,6 +2127,10 @@
     <string name="MessageRecord_you_unblocked_this_group">நீங்கள் இந்தக் குழுவை தடைநீக்கம் செய்துள்ளீர்கள்</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s உங்களுக்கு ஒரு செய்தியை அனுப்பியது, இது புதிய Signal அம்சத்தைப் பயன்படுத்துவதால் செயலாக்கவோ அல்லது காட்டவோ முடியாது.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s என்பவர் இதற்கான வாக்கெடுப்பை முடித்தார்: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">நீங்கள் இந்த வாக்கெடுப்பை முடித்துவிட்டீர்கள்: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">ஒப்புக்கொள்</string>
@@ -2422,6 +2446,12 @@
     <string name="WebRtcCallActivity__to_start_call">ஒரு அழைப்பைத் தொடங்க அல்லது அழைப்பில் இணைய:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">உங்கள் வீடியோவைச் செயல்படுத்த:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">உள்ளக வீடியோவைச் சுருக்குக</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">உள்ளக வீடியோவை விரிவாக்குக</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal அழைப்பு</string>
@@ -2914,6 +2944,8 @@
     <string name="SubmitDebugLogActivity_success">வெற்றி!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">இந்த URL link நகலெடுத்து உங்கள் வெளியீட்டு அறிக்கை அல்லது ஆதரவு மின்னஞ்சலில் <b>%1$s</b> சேர்க்கவும்</string>
     <string name="SubmitDebugLogActivity_share">பகிர்</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">நெருக்கமான</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">இது பதிவு பொதுவில் வெளியிடப்படும் நிகழ்நிலைபங்களிப்பாளர்கள் பார்க்க. பதிவேற்றுவதற்கு முன் அதை நீங்கள் ஆராயலாம்.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">நீங்கள் சமர்ப்பி என்பதைக் கிளிக் செய்யும் போது, ​​உங்கள் பதிவு 30 நாட்களுக்கு ஒரு தனித்துவமான, வெளியிடப்படாத இணைப்பு மூலம் ஆன்லைனில் வெளியிடப்படும். நீங்கள் முதலில் அதை உள்நிலையில் சேமிக்கலாம்.</string>
@@ -3172,6 +3204,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">உங்கள் பேமெண்ட்டிற்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">உங்கள் ஸ்டிக்கருக்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
     <string name="MessageNotifier_this_message_was_deleted">இந்த மெசேஜ் நீக்கப்பட்டது.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">\"%3$s\" வாக்கெடுப்பில் %1$s%2$s வாக்களித்துள்ளனர்</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">இணைந்த சிக்னல் Signal அறிவிப்புகளை முடக்குவதா? அமைப்புகள் மற்றும் அறிவிப்புகளுக்குச் சென்று அவற்றை Signal settings சிக்னலில் மீண்டும் இயக்கலாம்.</string>
 
@@ -3348,6 +3382,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">வீடியோ இல்லாமல் பதில்</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">கேமரா திசையை மாற்றுக</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">ஆடியோ வெளியீடு</string>
@@ -3405,9 +3442,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s சிக்னல் பயனர் அல்ல. தயவுசெய்து பயனர் பெயரைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">உங்களை நீங்களே குழுவில் சேர்க்க தேவையில்லை</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">அதிகபட்ச குழு அளவு எட்டப்பட்டுள்ளது</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">சிக்னல் குழுக்கள் அதிகபட்சம் %1$d உறுப்பினர்களைக் கொண்டிருக்கலாம்.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">சிக்னல் குழுக்கள் அதிகபட்சம் %1$s உறுப்பினர்களைக் கொண்டிருக்கலாம்.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">குழு உறுப்பினர் அளவு பரிந்துரைக்கப்பட்ட வரம்பை எட்டியுள்ளது</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">சிக்னல் குழுக்கள் %1$d உறுப்பினர்கள் அல்லது குறைவானவர்களுடன் சிறப்பாக செயல்படுகின்றன. அதிகமான உறுப்பினர்களைச் சேர்ப்பது செய்திகளை அனுப்புவதையும் பெறுவதையும் தாமதப்படுத்தும்.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">சிக்னல் குழுக்கள் %1$s உறுப்பினர்கள் அல்லது குறைவானவர்களுடன் சிறப்பாக செயல்படுகின்றன. அதிகமான உறுப்பினர்களைச் சேர்ப்பது செய்திகளை அனுப்புவதையும் பெறுவதையும் தாமதப்படுத்தும்.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d உறுப்பினர்</item>
         <item quantity="other">%1$d உறுப்பினர்கள்</item>
@@ -4417,6 +4454,8 @@
     <string name="conversation_selection__menu_multi_select">தேர்வு</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">பேமெண்ட் விவரங்கள்</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">வாக்கெடுப்பை முடி</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5169,10 +5208,14 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">தவிர்</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d உறுப்பினர்</item>
-        <item quantity="other">%1$d உறுப்பினர்கள்</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$s உறுப்பினர்</item>
+        <item quantity="other">%1$s உறுப்பினர்கள்</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">அடுத்து</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">பகிர்</string>
@@ -5894,24 +5937,24 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s தடைசெய்யப்பட்டார்</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">தடைசெய்ய முடியவில்லை</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">%1$s ஐ அகற்ற முடியவில்லை</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">இந்த நபர் உங்கள் சாதனத்தின் தொடர்புகளில் சேமிக்கப்பட்டுள்ளார். உங்கள் தொடர்புகளில் இருந்து அவர்களை நீக்கிவிட்டு மீண்டும் முயற்சிக்கவும்.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">தொடர்பைக் காண்க</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s ஒரு சிக்னல் பயனர் அல்ல</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s ஒரு சிக்னல் பயனர் அல்ல</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s ஒரு சிக்னல் பயனர் அல்ல</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">மெனுவைத் திறக்கவும்</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s Signal பயனர் அல்ல</item>
         <item quantity="other">%1$s Signal பயனர்கள் அல்ல</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">தேடல் பெயர் அல்லது எண்</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">பெயர், பயனர் பெயர் அல்லது எண்</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">எண்ணியல் கீபோர்டுக்கு மாறுக</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">எண்ணெழுத்து கீபோர்டுக்கு மாறுக</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">தேடல் வடிகட்டியை மீட்டமைத்திடுக</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6077,7 +6120,6 @@
     <string name="BadgesOverviewFragment__featured_badge">சிறப்பு பேட்ஜ்</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">சுயவிவரத்தில் பேட்ஜ்களை வெளியிடலாம்</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">சுயவிவரத்தைப் புதுப்பிக்க இயலவில்லை</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">பேட்ஜைத் தேர்ந்தெடுக்கவும்</string>
@@ -7731,12 +7773,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">சிக்னலின் பாதுகாப்பான காப்புப்பிரதிகளை ஆன் செய்யுங்கள்</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">சிக்னலின் பாதுகாப்பு காப்புப்பிரதி அம்சத்தைப் பயன்படுத்திப் பாருங்கள்</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">புதிய தொலைபேசியைப் பெறும்போது அல்லது சிக்னலை மீண்டும் நிறுவும் போது எந்த செய்தியையும் தவறவிடாதீர்கள்.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">இயக்கு</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">இப்போது வேண்டாம்</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">\"அமைப்புகள்\" என்பதில் காப்புப்பிரதிகளை நீங்கள் செயல்படுத்தலாம்</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">உங்கள் மீட்புக் குறியீட்டைச் சரிபார்க்கவும்</string>
@@ -8009,6 +8055,12 @@
     <string name="BackupStatusRow__your_last_backup">உங்களின் கடைசிக் காப்புப்பிரதி முழுமையடைவில்லை. உங்கள் ஃபோன் வைஃபையுடன் இணைக்கப்பட்டுள்ளதை உறுதிசெய்து, மீண்டும் முயல, \"இப்போதே காப்புப் பிரதி எடு\" என்பதை அழுத்துங்கள்.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">உங்களின் கடைசிக் காப்புப்பிரதி முழுமையடைவில்லை. சிக்னலின் அண்மைய பதிப்பில் இருப்பதை உறுதிசெய்து, மீண்டும் முயலுங்கள்.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">உங்களிடம் உள்ள மெசேஜ்களின் எண்ணிக்கை சேமிப்பக வரம்பை மீறுகிறது. சில மெசேஜ்களை நீக்கிவிட்டு மீண்டும் முயற்சிக்கவும்.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s தேதிக்கு முன்னதாக அனுப்பப்பட்ட அல்லது பெறப்பட்ட மெசேஜ்கள் காப்புப்பிரதி எடுக்கப்படவில்லை.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">உங்களிடம் சேமிப்பகம் குறைவாக இருப்பதால் உங்கள் காப்புப்பிரதியை முடிக்க முடியவில்லை. உங்கள் சாதனத்தில் இடத்தைக் காலி செய்து மீண்டும் முயலவும்.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">மேலும் அறிக</string>
 
@@ -8139,7 +8191,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/மாதம், %2$s புதுப்பிக்கிறது</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">%1$s அன்று புதுப்பிக்கப்படும்</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">கடைசி காப்புப்பிரதி %1$s அன்று நடந்தது</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8189,11 +8241,11 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">அணைத்துவிட்டு, காப்புப்பிரதியை அழித்தல்</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">காப்புப்பிரதி அளவு</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="one">உங்கள் காப்புப்பிரதியானது உங்கள் உரை செய்திகள் அனைத்தையும் கடைசி %1$d நாளின் ஊடகங்களையும் உள்ளடக்கியதாகும். புதிய ஊடகங்கள் பெறப்படுவதால் பழைய ஊடகங்கள் காலாவதியாகும்போது அளவு மாறும்.</item>
+        <item quantity="other">உங்கள் காப்புப்பிரதியானது உங்கள் உரை செய்திகள் அனைத்தையும் கடைசி %1$d நாளின் ஊடகங்களையும் உள்ளடக்கியதாகும். புதிய ஊடகங்கள் பெறப்படுவதால் பழைய ஊடகங்கள் காலாவதியாகும்போது அளவு மாறும்.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">காப்புப்பிரதி அழிக்கப்பட்டு, அணைக்கப்பட்டது.</string>
@@ -8339,7 +8391,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">பதிவேற்றுகிறது: %2$s இல் %1$s(%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">பதிவேற்றுகிறது: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">விவரங்கள்</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8413,13 +8465,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">உங்களின் மீட்புக் குறியீடு</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">மீட்புக் குறியீடு</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">உங்கள் மீட்பு குறியீடானது 64 இலக்கக் குறியீடாகும், இது சிக்னலை நீங்கள் மீண்டும் நிறுவும்போது உங்கள் காப்புப் பிரதியை மீட்டமைக்க உதவுகிறது.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">உங்கள் காப்புப்பிரதியை நீங்கள் மீட்டெடுக்க தேவைப்படக்கூடிய உங்கள் மீட்புக் குறியீடானது 64 எழுத்துக்கள் கொண்ட குறியீடாகும்.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">உங்கள் குறியீட்டை மறந்துவிட்டால், உங்கள் காப்புப்பிரதியை மீட்டெடுக்க முடியாது. உங்கள் காப்புப்பிரதியை மீட்டெடுக்க சிக்னல் உங்களுக்கு உதவாது.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">உங்கள் மீட்புக் குறியீட்டைப் பாதுகாப்பான கடவுச்சொல் மேலாளர் போன்ற பாதுகாப்பான இடத்தில் சேமித்து வைக்கவும், அதனை யாருடனும் பகிர்ந்து கொள்ள வேண்டாம்.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">நீங்கள் அதை இழந்துவிட்டால், உங்கள் மெசேஜ்களை மீட்டெடுக்க முடியாது.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">அடுத்து</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">மீட்புக் குறியீட்டை காண்க</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8470,6 +8524,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">புதிய மீட்பு குறியீட்டை உருவாக்கவும்</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">உங்கள் குறியீட்டை வேறு யாராவது அறிந்துகொண்டால் மட்டுமே புதிய குறியீட்டை உருவாக்குவது அவசியம். மீடியா உட்பட உங்கள் காப்புப்பிரதியை மீண்டும் பதிவேற்ற வேண்டும். நீங்கள் \"சேமிப்பகத்தை மேம்படுத்துதல்\" அம்சத்தைப் பயன்படுத்தினால், முதலில் ஆஃப்லோட் செய்யப்பட்ட மீடியாவை பதிவிறக்கம் செய்ய வேண்டும்.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">காப்புப்பிரதி அமைவிலிருந்து வெளியேறவா?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">நீங்கள் காப்புப்பிரதிகளை அமைப்பதை நிறைவு செய்யவில்லை, மேலும் காப்புப்பிரதி எதுவும் உருவாக்கப்படவில்லை. அமைப்புகளில் காப்புப்பிரதிகளை நீங்கள் செயல்படுத்தலாம்.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">காப்புப்பிரதி அமைவிலிருந்து வெளியேறுக</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8596,6 +8656,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">உங்களின் பழைய ஃபோனிலிருந்து</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">உங்களின் பழைய Android சாதானத்திலிருந்து நேரடியாக இடமாற்றம் செய்யவும்</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">மீட்டமைப்பதைத் தவிர்ப்பதா?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">நீங்கள் இப்போது மீட்டெடுக்கவில்லை எனில், பின்னர் மீட்டெடுக்க முடியாது. மீட்டெடுப்பதைத் தவிர்த்த பிறகு நீங்கள் காப்புப்பிரதிகளை மீண்டும் செயல்படுத்தினால், உங்கள் தற்போதைய காப்புப்பிரதி உங்கள் புதிய செய்தி வரலாற்றுடன் மாற்றப்படும்.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">மீட்டமைப்பதைத் தவிர்</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">உள் காப்புப்பிரதியை மீட்டமை</string>
@@ -8636,6 +8702,10 @@
     <string name="EnterBackupKey_backup_not_found">காப்புப்பிரதி கிடைக்கவில்லை</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">நீங்கள் உள்ளீடு செய்த மீட்பு குறியீடு சரியானது, ஆனால் அதனுடன் தொடர்புடைய காப்புப் பிரதி எதுவும் இல்லை. நீங்கள் பழைய தொலைபேசியை இன்னும் வைத்திருந்தால், காப்புப் பிரதிகள் இயக்கப்பட்டிருப்பதை உறுதிசெய்து, காப்புப் பிரதி நிறைவு செய்யப்பட்டது என்பதை உறுதிப்படுத்தி, மீண்டும் முயலுங்கள்.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">நீங்கள் மீட்புக் குறியீட்டைத் தவறாக உள்ளிட்டிருக்கலாம், அல்லது உங்கள் பழைய சாதனத்தில் குறைந்தது ஒரு காப்புப்பிரதியை முடிக்காமல் இருக்கலாம்.\n\nசிக்னல் பாதுகாப்பு காப்புப்பிரதிகளைச் செயல்படுததும்போது நீங்கள் சேமித்த அதே பேசி எண் மற்றும் மீட்புக் குறியீட்டுடன் நீங்கள் பதிவு செய்கிறீர்கள் என்பதை உறுதிப்படுத்திக் கொள்ளவும், மேலும் உங்கள் பழைய சாதனம் காப்புப்பிரதியை முடித்துவிட்டது என்பதை உறுதிப்படுத்துங்கள்.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">மீட்புக் குறியீட்டிற்கான முயற்சிகளின் வரம்பு முடிந்துவிட்டது. உங்கள் பாதுகாப்புக்காக, நீங்கள் செய்யக்கூடிய முயற்சிகளுக்கான எண்ணிக்கை குறைவாகவே உள்ளது. ஒரு மணி நேரம் காத்திருந்து, மீண்டும் முயலுங்கள்.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">மீட்டமைப்பதைத் தவிர்</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8724,6 +8794,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">மீட்டமைப்பதைத் தவிர்</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">மீட்புக் குறியீட்டு வரம்பை அடைந்தது</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">நீங்கள் வெற்றிகரமாக ஒரு புதிய மீட்புக் குறியீட்டை உருவாக்கியுள்ளீர்கள், ஆனால், தவறான பயன்படுத்துதலைத் தடுக்க நீங்கள் உருவாக்கக்கூடிய புதிய குறியீடுகளின் எண்ணிக்கை குறைவாக உள்ளது. 7 நாட்களுக்கு உங்களால் மற்றொரு குறியீட்டை உருவாக்க முடியாது. உங்கள் மீட்புக் குறியீட்டை எங்காவது பாதுகாப்பாகவும் பத்திரமாகவும் சேமிக்கவும்.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">புதிய குறியீட்டை உருவாக்க முடியவில்லை</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">நீங்கள் உருவாக்கக்கூடிய புதிய குறியீடுகளுக்கான அனுமதிக்கப்பட்ட எண்ணிக்கையை உபயோகித்துவிட்டீர்கள். 7 நாட்களில் உங்களால் புதிய மீட்புக் குறியீட்டை உருவாக்க முடியும். உங்கள் காப்புப்பிரதியை யாரேனும் அணுகக்கூடும் என்று சந்தேகித்தால், நீங்கள் \"ஆஃப் செய்து காப்புப்பிரதியை அழித்திடுக\" என்பதைத் தேர்வு செய்யலாம்.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">சரி</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">தேடலை அழி</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8763,6 +8843,151 @@
         <item quantity="one">%1$dநாளுக்கான காப்புப்பிரதியை நீங்கள் நிறைவு செய்யவில்லை. இப்போதே காப்புப்பிரதியை உருவாக்கவும்.</item>
         <item quantity="other">%1$dநாட்களுக்கான காப்புப்பிரதியை நீங்கள் நிறைவு செய்யவில்லை. இப்போதே காப்புப்பிரதியை உருவாக்கவும்.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">வாக்கெடுப்பு · ஒன்றைத் தேர்ந்தெடுக்கவும்</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">வாக்கெடுப்பு · ஒன்று அல்லது அதற்கு மேற்பட்டவற்றைத் தேர்ந்தெடுக்கவும்</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">வாக்கெடுப்பு · இறுதி முடிவுகள்</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">வாக்குகள் இல்லை</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">வாக்குகளைக் காண்க</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">வாக்கெடுப்பைக் காண்க</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">வாக்கெடுப்பு கிடைக்கவில்லை</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">முடிவுகளைக் காண்க</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">வாக்கெடுப்பு:%1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s என்பவர் இதற்கான வாக்கெடுப்பை முடித்தார்: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">நீங்கள் இந்த வாக்கெடுப்பை முடித்துவிட்டீர்கள்: \"%1$s\"</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s வாக்காளர் இதற்கான வாக்கெடுப்பில் வாக்களித்தார்: \"%2$s\"</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">வாக்கெடுப்புகள்</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">வாக்கெடுப்பு முடிவுகள்</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">வாக்கெடுப்பு விவரங்கள்</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">கேள்வி</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="one">%1$dவாக்கு</item>
+        <item quantity="other">%1$dவாக்குகள்</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">வெற்றியாளர்</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">வாக்கெடுப்பை முடி</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">அனைத்தையும் காட்டு</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">வாக்கெடுப்பை முடிக்க முடியவில்லை</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">வாக்கெடுப்பை முடிக்கவா?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">குழு உறுப்பினர்கள் இனி இந்த வாக்கெடுப்பில் வாக்களிக்க முடியாது.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">நெட்வொர்க்கிற்காக காத்திருக்கிறது…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">புதிய வாக்கெடுப்பு</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">கேள்வி</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">ஒரு கேள்வியைக் கேளுங்கள்</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">விருப்பங்கள்</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">%1$d விருப்பம்</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">ஹேண்டிலை இழுத்து விடுதல்</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">பல வாக்குகளை அனுமதி</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">ஒரு கேள்வியையும், குறைந்தபட்சம் 2 பதில் விருப்பங்களையும் சேருங்கள்</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">குறைந்தபட்சம் 2 பதில் விருப்பங்களைச் சேருங்கள்</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">ஒரு கேள்வியைச் சேருங்கள்</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">ஆடியோ சிக்கல்</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">வீடியோ சிக்கல்</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">அழைப்பு துண்டிக்கப்பட்டது</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">வேறு ஏதேனும்</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">ஆடியோ தடுமாற்றம்</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">ஆடியோ துண்டிப்பு</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">நான் எதிரொலியைக் கேட்டேன்</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">மற்றவர்கள் எதிரொலியைக் கேட்டனர்</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">மோசமான வீடியோ தரம்</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">வீடியோ தெளிவுத்திறன்</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">கேமரா வேலை செய்யவில்லை</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">வேறு ஏதேனும்</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">உங்களின் சிக்கல் குறித்து விவரித்திடுங்கள்</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">சிக்கலுடன் தொடர்புடைய எந்த விவரங்களையும் சேர்த்திடுங்கள். நீங்கள் இங்கு பகிரும் அனைத்தும் தனிப்பட்டதாக வைக்கப்படும் மற்றும் சிக்னலில் அழைப்புகளை மேம்படுத்தும் நோக்கத்திற்கு மட்டுமே பயன்படுத்தப்படும்.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">சேமி</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">மீண்டும்</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">உங்கள் அழைப்பு அனுபவம் எப்படி இருந்தது?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">இது சிக்னலில் அழைப்புகளின் தரத்தை மேம்படுத்த எங்களுக்கு உதவும். தனிப்பட்ட முறையில் அடையாளம் காணக்கூடிய தகவல்கள் எதுவும் சேமிக்கப்படாது.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">சிக்கல் இருந்தது</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">சிறப்பு</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">நீங்கள் என்ன சிக்கலை எதிர்கொண்டீர்கள்?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">பொருந்தும் அனைத்தையும் தேர்வுசெய்யவும்</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">உங்களின் சிக்கல் குறித்து விவரித்திடுங்கள்</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">தொடர்க</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">மேம்படுத்த எங்களுக்கு உதவுங்கள்</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">உங்கள் பகுப்பாய்வுத் தகவலை எங்களுக்கு அனுப்புவது, அழைப்பின் தரத்தை மேம்படுத்த எங்களுக்கு உதவுகிறது. நீங்கள் </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">உங்கள் பிழைத்திருத்தப் பதிவை காண்க</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> என்பதன் மூலம் சமர்ப்பிப்பதற்கு முன் பிழைத்திருத்தப் பதிவைக் காணலாம்</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">பிழைத்திருத்தப் பதிவைப் பகிருங்கள்</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">பிழைத்திருத்தப் பதிவுகள் செயலியின் அடிப்படைத் தொழில்நுட்பத் தகவல்களைக் கொண்டுள்ளன, மேலும் அவை உங்கள் மெசேஜ் உள்ளடக்கங்கள் எதையும் வெளிப்படுத்தாது.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">சமர்ப்பி</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">நீங்கள் வழங்கிய கருத்துக்கு நன்றி!</string>
 
     <!-- EOF -->
 </resources>

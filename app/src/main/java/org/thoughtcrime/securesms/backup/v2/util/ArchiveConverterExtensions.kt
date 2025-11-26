@@ -11,14 +11,18 @@ import org.signal.core.util.Base64
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
+import org.signal.libsignal.usernames.BaseUsernameException
+import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
+import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -222,6 +226,10 @@ fun RemoteAvatarColor.toLocal(): AvatarColor {
   }
 }
 
+fun ChatColors.Id.isValid(exportState: ExportState): Boolean {
+  return this !is ChatColors.Id.Custom || this.longValue in exportState.customChatColorIds
+}
+
 private fun DatabaseAttachment.toRemoteAttachmentType(): AttachmentType {
   if (this.remoteKey.isNullOrBlank()) {
     return AttachmentType.INVALID
@@ -243,6 +251,19 @@ private fun DatabaseAttachment.toRemoteAttachmentType(): AttachmentType {
   }
 
   return AttachmentType.INVALID
+}
+
+fun String.isValidUsername(): Boolean {
+  if (this.isBlank()) {
+    return false
+  }
+
+  return try {
+    Username(this)
+    true
+  } catch (e: BaseUsernameException) {
+    false
+  }
 }
 
 private enum class AttachmentType {

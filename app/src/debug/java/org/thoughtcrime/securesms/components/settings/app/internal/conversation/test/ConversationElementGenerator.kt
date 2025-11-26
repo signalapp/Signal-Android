@@ -115,6 +115,7 @@ class ConversationElementGenerator {
       null,
       null,
       null,
+      null,
       -1,
       null,
       null,

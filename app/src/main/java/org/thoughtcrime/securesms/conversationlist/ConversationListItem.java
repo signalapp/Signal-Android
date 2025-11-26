@@ -680,12 +680,16 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       } else {
         return emphasisAdded(context, context.getString(R.string.ThreadRecord_safety_number_changed), defaultTint);
       }
+    } else if (MessageTypes.isPollTerminate(thread.getType())) {
+      return emphasisAdded(context, thread.getBody(), Glyph.POLL, defaultTint);
     } else {
       ThreadTable.Extra extra = thread.getExtra();
       if (extra != null && extra.isViewOnce()) {
         return emphasisAdded(context, getViewOnceDescription(context, thread.getContentType()), defaultTint);
       } else if (extra != null && extra.isRemoteDelete()) {
         return emphasisAdded(context, context.getString(thread.isOutgoing() ? R.string.ThreadRecord_you_deleted_this_message : R.string.ThreadRecord_this_message_was_deleted), defaultTint);
+      } else if (extra != null && extra.isPoll()) {
+        return emphasisAdded(context, thread.getBody(), Glyph.POLL, defaultTint);
       } else {
         SpannableStringBuilder sourceBody = new SpannableStringBuilder(thread.getBody());
         MessageStyler.style(thread.getDate(), thread.getBodyRanges(), sourceBody);

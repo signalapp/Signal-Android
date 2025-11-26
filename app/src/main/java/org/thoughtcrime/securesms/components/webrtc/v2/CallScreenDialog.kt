@@ -7,8 +7,8 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import org.signal.core.ui.compose.DarkPreview
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 
@@ -49,7 +49,7 @@ private fun DeniedRequestToJoinCallDialog(onDialogDismissed: () -> Unit = {}) {
   )
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun RemovedFromCallLinkDialogPreview() {
   Previews.Preview {
@@ -57,7 +57,7 @@ private fun RemovedFromCallLinkDialogPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun DeniedRequestToJoinCallDialogPreview() {
   Previews.Preview {

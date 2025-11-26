@@ -352,6 +352,8 @@ class AttachmentDownloadJob private constructor(
       SignalDatabase.attachments.clearIncrementalMacsForAttachmentAndAnyDuplicates(attachmentId, attachment.remoteKey, attachment.dataHash)
       markFailed(messageId, attachmentId)
     }
+
+    attachmentFile.delete()
   }
 
   @Throws(InvalidAttachmentException::class)

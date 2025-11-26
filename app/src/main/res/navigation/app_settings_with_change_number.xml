@@ -209,7 +209,15 @@
     <fragment
         android:id="@+id/advancedPinSettingsFragment"
         android:name="org.thoughtcrime.securesms.preferences.AdvancedPinSettingsFragment"
-        android:label="advanced_pin_settings_fragment" />
+        android:label="advanced_pin_settings_fragment">
+        <action
+            android:id="@+id/action_advancedPinSettingsFragment_to_backupKeyDisplayFragment"
+            app:destination="@id/backupKeyDisplayFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
 
     <fragment
         android:id="@+id/deleteAccountFragment"
@@ -1156,7 +1164,13 @@
 
     <fragment
         android:id="@+id/backupKeyDisplayFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyDisplayFragment" />
+        android:name="org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyDisplayFragment">
+
+        <argument
+            android:name="start_with_key_rotation"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
 
     <include app:graph="@navigation/username_link_settings" />
     <include app:graph="@navigation/story_privacy_settings" />

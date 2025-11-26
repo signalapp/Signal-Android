@@ -50,7 +50,10 @@ class SignalServiceDataMessage private constructor(
   val payment: Optional<Payment>,
   val storyContext: Optional<StoryContext>,
   val giftBadge: Optional<GiftBadge>,
-  val bodyRanges: Optional<List<BodyRange>>
+  val bodyRanges: Optional<List<BodyRange>>,
+  val pollCreate: Optional<PollCreate>,
+  val pollVote: Optional<PollVote>,
+  val pollTerminate: Optional<PollTerminate>
 ) {
   val isActivatePaymentsRequest: Boolean = payment.map { it.isActivationRequest }.orElse(false)
   val isPaymentsActivated: Boolean = payment.map { it.isActivation }.orElse(false)
@@ -68,7 +71,10 @@ class SignalServiceDataMessage private constructor(
       this.mentions.isPresent ||
       this.sticker.isPresent ||
       this.reaction.isPresent ||
-      this.remoteDelete.isPresent
+      this.remoteDelete.isPresent ||
+      this.pollCreate.isPresent ||
+      this.pollVote.isPresent ||
+      this.pollTerminate.isPresent
 
   val isGroupV2Update: Boolean = groupContext.isPresent && groupContext.get().hasSignedGroupChange() && !hasRenderableContent
   val isEmptyGroupV2Message: Boolean = isGroupV2Message && !isGroupV2Update && !hasRenderableContent
@@ -97,6 +103,9 @@ class SignalServiceDataMessage private constructor(
     private var storyContext: StoryContext? = null
     private var giftBadge: GiftBadge? = null
     private var bodyRanges: MutableList<BodyRange> = LinkedList<BodyRange>()
+    private var pollCreate: PollCreate? = null
+    private var pollVote: PollVote? = null
+    private var pollTerminate: PollTerminate? = null
 
     fun withTimestamp(timestamp: Long): Builder {
       this.timestamp = timestamp
@@ -220,6 +229,21 @@ class SignalServiceDataMessage private constructor(
       return this
     }
 
+    fun withPollCreate(pollCreate: PollCreate?): Builder {
+      this.pollCreate = pollCreate
+      return this
+    }
+
+    fun withPollVote(pollVote: PollVote?): Builder {
+      this.pollVote = pollVote
+      return this
+    }
+
+    fun withPollTerminate(pollTerminate: PollTerminate?): Builder {
+      this.pollTerminate = pollTerminate
+      return this
+    }
+
     fun build(): SignalServiceDataMessage {
       if (timestamp == 0L) {
         timestamp = System.currentTimeMillis()
@@ -248,7 +272,10 @@ class SignalServiceDataMessage private constructor(
         payment = payment.asOptional(),
         storyContext = storyContext.asOptional(),
         giftBadge = giftBadge.asOptional(),
-        bodyRanges = bodyRanges.asOptional()
+        bodyRanges = bodyRanges.asOptional(),
+        pollCreate = pollCreate.asOptional(),
+        pollVote = pollVote.asOptional(),
+        pollTerminate = pollTerminate.asOptional()
       )
     }
   }
@@ -264,7 +291,8 @@ class SignalServiceDataMessage private constructor(
   ) {
     enum class Type(val protoType: QuoteProto.Type) {
       NORMAL(QuoteProto.Type.NORMAL),
-      GIFT_BADGE(QuoteProto.Type.GIFT_BADGE);
+      GIFT_BADGE(QuoteProto.Type.GIFT_BADGE),
+      POLL(QuoteProto.Type.POLL);
 
       companion object {
         @JvmStatic
@@ -291,6 +319,9 @@ class SignalServiceDataMessage private constructor(
   }
   data class StoryContext(val authorServiceId: ServiceId, val sentTimestamp: Long)
   data class GiftBadge(val receiptCredentialPresentation: ReceiptCredentialPresentation)
+  data class PollCreate(val question: String, val allowMultiple: Boolean, val options: List<String>)
+  data class PollVote(val targetAuthor: ServiceId, val targetSentTimestamp: Long, val optionIndexes: List<Int>, val voteCount: Int)
+  data class PollTerminate(val targetSentTimestamp: Long)
 
   companion object {
     @JvmStatic

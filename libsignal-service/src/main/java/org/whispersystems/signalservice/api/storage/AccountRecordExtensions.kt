@@ -8,7 +8,6 @@ package org.whispersystems.signalservice.api.storage
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.isNotEmpty
-import org.signal.core.util.isNotNullOrBlank
 import org.whispersystems.signalservice.api.payments.PaymentsConstants
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
@@ -58,6 +57,6 @@ fun AccountRecord.Builder.safeSetBackupsSubscriber(subscriberId: ByteString, iap
 }
 
 fun AccountRecord.PinnedConversation.Contact.toSignalServiceAddress(): SignalServiceAddress {
-  val serviceId = ServiceId.parseOrNull(this.serviceId)
+  val serviceId = ServiceId.parseOrNull(this.serviceId, this.serviceIdBinary)
   return SignalServiceAddress(serviceId, this.e164)
 }

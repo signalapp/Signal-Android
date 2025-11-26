@@ -25,8 +25,8 @@ import androidx.compose.ui.unit.sp
 import androidx.core.os.bundleOf
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 
@@ -74,7 +74,7 @@ class PermissionDeniedBottomSheet private constructor() : ComposeBottomSheetDial
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun PermissionDeniedSheetContentPreview() {
   Previews.BottomSheetPreview {

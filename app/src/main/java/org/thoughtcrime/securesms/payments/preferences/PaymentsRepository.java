@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.payments.preferences;
 
-import android.util.Pair;
+import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
@@ -41,7 +41,7 @@ public class PaymentsRepository {
     LiveData<MobileCoinLedgerWrapper>               ledger        = SignalStore.payments().liveMobileCoinLedger();
 
     //noinspection NullableProblems
-    this.recentPayments         = LiveDataUtil.mapAsync(LiveDataUtil.combineLatest(localPayments, ledger, Pair::create), p -> reconcile(p.first, p.second));
+    this.recentPayments         = LiveDataUtil.mapAsync(LiveDataUtil.combineLatest(localPayments, ledger, (a, b) -> new Pair<>(a, b)), p -> reconcile(p.getFirst(), p.getSecond()));
     this.recentSentPayments     = LiveDataUtil.mapAsync(this.recentPayments, p -> filterPayments(p, Direction.SENT));
     this.recentReceivedPayments = LiveDataUtil.mapAsync(this.recentPayments, p -> filterPayments(p, Direction.RECEIVED));
   }

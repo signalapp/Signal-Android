@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Salvesta maksete kontroll-lause</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Salvesta lause</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Enne kui saad oma PIN-koodi desaktiveerida, pead salvestama oma maksete kontroll-lause, tagamaks, et saad oma maksekonto taastada.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Loo uus varukoopia võti</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Enne PIN-koodi väljalülitamist pead looma ja salvestama uue varukoopia võtme.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Loo võti</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">Fail</string>
     <string name="AttachmentKeyboard_contact">Kontakt</string>
     <string name="AttachmentKeyboard_location">Asukoht</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">Küsitlus</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal vajab sinu fotode ja videote näitamiseks luba</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Luba ligipääs</string>
@@ -864,7 +872,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Olenevalt varukoopia suurusest võib selleks kuluda palju aega. Varundamise ajal saad oma telefoni tavapäraselt kasutada.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">Meediasisu lisatakse sinu varukoopiasse sõnumite saatmise ja vastuvõtmise ajal.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Meediat ei saa taastada</string>
@@ -1167,6 +1175,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">See Signali versioon on aegunud. Sõnumite saatmiseks ja vastuvõtmiseks uuenda kohe.</string>
     <string name="ExpiredBuildReminder_update_now">Uuenda kohe</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal ei tööta enam selles seadmes. Selleks, et Signalit edasi kasutada, uuenda oma seadme Androidi versiooni või võta kasutusele uuem seade.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Uuenda Signalit</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1383,11 +1394,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Tehtud</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Seda isikut pole võimalik vanadesse gruppidesse lisada.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Lisad \"%1$s\" gruppi \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Kas lisada kasutaja %1$s gruppi %2$s?</item>
-        <item quantity="other">Kas lisada %3$d kasutajat gruppi %2$s?</item>
+        <item quantity="one">Kas lisada kasutaja {2} gruppi %2$s?</item>
+        <item quantity="other">Kas lisada %1$d kasutajat gruppi %2$s?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Lisa</string>
     <string name="AddMembersActivity__add_members">Lisa liikmed</string>
 
@@ -1491,6 +1507,10 @@
     <string name="RemoteRestoreActivity__not_now">Mitte praegu</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Sinu meedia taastamine toimub taustal. Kui sa nüüd ei taasta, ei ole võimalik ka hiljem taastada.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">See seade ei ole enam registreeritud</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">Tõenäoliselt on see seepärast, et sa registreerisid oma Signali konto teises seadmes.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Teavita mind mainimise korral</string>
@@ -2107,6 +2127,10 @@
     <string name="MessageRecord_you_unblocked_this_group">Sa eemaldasid sellelt grupilt blokeeringu</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s saatis sulle sõnumi, mida ei saa töödelda või kuvada, sest see kasutab Signali uut funktsionaalsust.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s lõpetas küsitluse: „%2$s“</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">Sa lõpetasid küsitluse „%1$s“</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Nõustun</string>
@@ -2422,6 +2446,12 @@
     <string name="WebRtcCallActivity__to_start_call">Kõne alustamiseks või sellega liitumiseks toimi järgmiselt.</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">Oma video lubamiseks toimi järgmiselt.</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signali kõne</string>
@@ -2914,6 +2944,8 @@
     <string name="SubmitDebugLogActivity_success">Õnnestus!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopeeri see aadress ja lisa oma probleemiteatesse või toe e-kirja:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Jaga</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">Sulge</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">See logi postitatakse internetti avalikult, et kaaspanustajad saaksid seda näha. Võid selle enne üleslaadimist üle vaadata.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Kui klõpsad \"Saada\", postitatakse sinu logi 30 päevaks veebi unikaalsele avaldamata URL-aadressile. Soovi korral võid selle enne kohalikult salvestada.</string>
@@ -3172,6 +3204,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">Reaktsioon %1$s sinu maksele</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reaktsioon %1$s sinu kleebisele</string>
     <string name="MessageNotifier_this_message_was_deleted">See sõnum kustutati.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s vastas küsitlusele „%3$s“</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kas lülitada Signaliga liitumise teavitused välja? Neid saab uuesti lubada, valides Signal &gt; Seaded &gt; Teavitused.</string>
 
@@ -3348,6 +3382,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Vasta ilma videota</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">Kaamera suuna vahetus</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Audio-väljund</string>
@@ -3405,9 +3442,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"„%1$s“ ei ole Signali kasutaja. Palun kontrolli kasutajanime ja proovi uuesti."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Sa ei pea ennast gruppi lisama</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimaalne grupisuurus täitunud</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signali grupis võib olla maksimaalselt %1$d liiget.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signali grupis võib olla maksimaalselt %1$s liiget.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Jõuti soovitatava liikmete arvu piirini</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signali grupid toimivad kõige paremini %1$d või vähema liikmega. Rohkem liikmete lisamine põhjustab viivitusi sõnumite saatmises ja saamises.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signali grupid toimivad kõige paremini %1$s või vähema liikmega. Rohkem liikmete lisamine põhjustab viivitusi sõnumite saatmises ja saamises.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d liige</item>
         <item quantity="other">%1$d liiget</item>
@@ -4417,6 +4454,8 @@
     <string name="conversation_selection__menu_multi_select">Vali</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Makse andmed</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">Lõpeta küsitlus</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5169,10 +5208,14 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Jäta vahele</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d liige</item>
-        <item quantity="other">%1$d liiget</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$s liige</item>
+        <item quantity="other">%1$s liiget</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">Edasi</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Jaga</string>
@@ -5894,24 +5937,24 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s on blokeeritud</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Blokeerimine nurjus</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Kasutajat %1$s ei saa eemaldada</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">See isik on salvestatud sinu seadme kontaktide hulka. Kustuta ta oma kontaktide hulgast ja proovi uuesti.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Vaata kontakti</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s ei ole Signali kasutaja</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s ei ole Signali kasutaja</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s ei ole Signali kasutaja</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Ava menüü</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s ei ole Signali kasutaja</item>
         <item quantity="other">%1$s ei ole Signali kasutajad</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Otsi nime või numbri järgi</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Nimi, kasutajanimi või number</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Lülitu numbrilisele klaviatuurile</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Lülitu tähtnumbrilisele klaviatuurile</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Lähtesta otsingufilter</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6077,7 +6120,6 @@
     <string name="BadgesOverviewFragment__featured_badge">Esiletõstetud märk</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Kuva profiilil märke</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Profiili uuendamine nurjus</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Vali märk</string>
@@ -7731,12 +7773,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Lülita Signali turvalised varukoopiad sisse</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Proovi Signali turvalisi varukoopiaid</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Nii ei kaota sa ühtki sõnumit, kui uue telefoni saad või Signali uuesti paigaldad.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Lülita sisse</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Mitte praegu</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">Varukoopiad saad lubada menüüs „Sätted“.</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Kinnita oma varukoopia võti</string>
@@ -8009,6 +8055,12 @@
     <string name="BackupStatusRow__your_last_backup">Sinu viimast varukoopiat ei saanud lõpule viia. Veendu, et sinu telefon on Wi-Figa ühendatud ning toksa „Varunda nüüd“, et uuesti proovida.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Sinu viimast varukoopiat ei saanud lõpule viia. Veendu, et sul on uusim Signali versioon ja proovi uuesti.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">Sinu sõnumite arv ületab salvestuslimiidi. Kustuta mõned sõnumid ja proovi uuesti.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Enne %1$s saadetud või vastuvõetud sõnumeid ei varundata.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Rohkem teavet</string>
 
@@ -8139,7 +8191,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/kuu, uueneb %2$s</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">Uueneb %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Viimane varukoopia: %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8189,11 +8241,11 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Lülita välja ja kustuta varukoopia</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Varukoopia suurus</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="one">Sinu varukoopia sisaldab kõiki su tekstisõnumeid ja viimase %1$d päeva meediafaile. Suurus muutub uue meedia vastuvõtmisel ja vana meediafaili aegumisel.</item>
+        <item quantity="other">Sinu varukoopia sisaldab kõiki su tekstisõnumeid ja viimase %1$d päeva meediafaile. Suurus muutub uue meedia vastuvõtmisel ja vana meediafaili aegumisel.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Varukoopia kustutati ja varundamine lülitati välja.</string>
@@ -8339,7 +8391,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Allalaadimine: %1$s kogumahust %2$s (%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Üleslaadimine: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Üksikasjad</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8413,13 +8465,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Sinu varukoopia võti</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Varukoopia võti</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Sinu varukoopia võti on 64-kohaline kood, mille abil saad varukoopia taastada, kui Signali uuesti paigaldad.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Sinu varukoopia võti on 64-kohaline kood, mida on vaja varukoopia taastamiseks.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Kui oma võtme unustad, ei ole sul võimalik oma varukoopiat taastada. Signal ei saa sul aidata varukoopiat taastada.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Hoia oma varukoopia võtit turvalises kohas ning ära jaga seda teistega.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Kui selle kaotad, ei ole sul võimalik oma sõnumeid taastada.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Edasi</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Vaata varukoopia võtit</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8470,6 +8524,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Loo uus varukoopia võti</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Uue võtme loomine on vajalik ainult siis, kui keegi teine sinu võtit teab. Pead oma varukoopia, sealhulgas meedia, uuesti üles laadima. Kui kasutad valikut „Salvestusruumi optimeerimine”, pead kõigepealt seadmevälisesse varukoopiasse teisaldatud meedia alla laadima.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Kas väljuda varundamise sätetest?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Sa ei lõpetanud varukoopiate seadistamist ning varukoopiaid ei ole loodud. Varukoopiad saad lubada menüüs Sätted.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Välju varundamise sätetest</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8596,6 +8656,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Sinu vanast telefonist</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Edasta otse oma vanast Android-seadmest</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Kas jätta taastamine vahele?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Kui sa nüüd ei taasta, siis sa ei saa ka hiljem taastada. Kui lubad varundamise uuesti pärast taastamise vahelejätmist, asendatakse sinu praegune varukoopia uue sõnumijalooga.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Jäta taastamine vahele</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Taasta kohalik varukoopia</string>
@@ -8636,6 +8702,10 @@
     <string name="EnterBackupKey_backup_not_found">Varukoopiat ei leitud</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Sinu sisestatud varukoopia võti on õige, kuid sellega ei ole seotud ühtegi varukoopiat. Kui sul on vana telefon endiselt olemas, veendu, et varundamine on lubatud ja lõpule viidud, ning proovi uuesti.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Võib-olla sisestasid varukoopia võtme valesti või pole sa oma vanas seadmes vähemalt ühte varukoopiat teinud.\n\nVeendu, et kasutad registreerimisel sama telefoninumbrit ja varukoopia võtit, mille salvestasid Signali turvalisi varukoopiaid seadistades ning kinnita et su vanas seadmes on varukoopia tehtud.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Varukoopia võtme sisestamise katsete arv on otsa saanud. Sinu turvalisuse huvides on katsete arv piiratud. Oota üks tund ja proovi uuesti.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Jäta taastamine vahele</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8724,6 +8794,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Jäta taastamine vahele</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Varukoopia võtmete limiit on täis</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Lõid edukalt uue varukoopia võtme, kuid pettuste vältimiseks on uute loodavate võtmete arv piiratud. 7 päeva jooksul ei ole võimalik uut võtit luua. Hoia oma varukoopia võtit turvalises kohas.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Uut võtit ei saa luua</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Oled juba loonud maksimaalse arvu uusi võtmeid. Uue varukoopia võtme saad luua 7 päeva pärast. Kui arvad, et kellelgi võib olla juurdepääs sinu varukoopiale, saad valida „Lülita varundamine välja ja kustuta varukoopia”.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Sulge otsing</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8763,6 +8843,151 @@
         <item quantity="one">Sa pole %1$d päeva jooksul varukoopiat teinud. Loo varukoopia nüüd.</item>
         <item quantity="other">Sa pole %1$d päeva jooksul varukoopiat teinud. Loo varukoopia nüüd.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">Küsitlus · Vali üks</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">Küsitlus · Vali üks või rohkem</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">Küsitlus · Tulemused</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">Vastuseid pole</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">Vaata vastuseid</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">Vaata küsitlust</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">Küsitlust ei leitud</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">Vaata tulemusi</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">Küsitlus: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s lõpetas küsitluse: „%2$s“</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">Sa lõpetasid küsitluse „%1$s“</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s vastas küsitlusele: „%2$s“</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">Küsitlused</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">Küsitluse tulemused</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">Küsitluse andmed</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">Küsimus</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="one">%1$d hääl</item>
+        <item quantity="other">%1$d häält</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">Võitja</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">Lõpeta küsitlus</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">Näita kõiki</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">Küsitlust ei saanud lõpetada</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">Kontrolli oma ühendust ja proovi uuesti.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">Kas lõpetada küsitlus?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">Grupi liikmed ei saa enam selles küsitluses hääletada.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">Võrguühenduse ootel …</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">Uus küsitlus</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">Küsimus</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">Esita küsimus</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">Valikud</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">Valik %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">Lohistamise link</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">Luba mitu vastust</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">Lisa küsimus ja vähemalt 2 valikut</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">Lisa vähemalt 2 valikut</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">Lisa küsimus</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">Heliprobleem</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">Videoprobleem</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">Kõne katkes</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">Midagi muud</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">Katkendlik heli</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">Heli kadus</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">Kuulsin kaja</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">Teised kuulsid kaja</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">Halb videokvaliteet</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">Udune pilt</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">Kaamera ei töötanud</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">Midagi muud</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Kirjelda probleemi</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Palun lisa kõik probleemiga seotud üksikasjad. Kogu infot, mida siin jagad, hoitakse privaatsena ja seda kasutatakse ainult Signali kõnede täiustamiseks.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">Salvesta</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">Tagasi</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">Kuidas su kõne läks?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">See aitab meil Signalis kõnesid paremaks muuta. Me ei salvesta sinu isikuandmeid.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">Oli probleeme</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">Suurepäraselt</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">Mis probleemid sul tekkisid?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">Vali kõik sobivad</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">Kirjelda probleemi</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">Jätka</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">Aita meil paremaks muutuda</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Diagnostikainfo saatmine aitab meil kõnede kvaliteeti parandada. Saad </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">vaadata oma silumislogi</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> enne meile info saatmist</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">Jaga silumislogi</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">Silumislogid sisaldavad üldistatud teavet rakenduse kohta ega avalda sinu sõnumite sisu.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">Saada</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">Täname tagasiside eest!</string>
 
     <!-- EOF -->
 </resources>

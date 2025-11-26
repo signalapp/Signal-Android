@@ -35,7 +35,7 @@ private fun AccountData.getAllReferencedArchiveAttachmentInfos(): Set<ArchiveAtt
 }
 
 private fun Chat.getAllReferencedArchiveAttachmentInfos(): Set<ArchiveAttachmentInfo> {
-  val info = this.style?.wallpaperPhoto?.toArchiveAttachmentInfo()
+  val info = this.style?.wallpaperPhoto?.toArchiveAttachmentInfo(isWallpaper = true)
 
   return if (info != null) {
     setOf(info)
@@ -73,7 +73,7 @@ private fun ChatItem.getAllReferencedArchiveAttachmentInfos(): Set<ArchiveAttach
   return out ?: emptySet()
 }
 
-private fun FilePointer.toArchiveAttachmentInfo(forQuote: Boolean = false): ArchiveAttachmentInfo? {
+private fun FilePointer.toArchiveAttachmentInfo(forQuote: Boolean = false, isWallpaper: Boolean = false): ArchiveAttachmentInfo? {
   if (this.locatorInfo?.key == null) {
     return null
   }
@@ -87,7 +87,8 @@ private fun FilePointer.toArchiveAttachmentInfo(forQuote: Boolean = false): Arch
     remoteKey = this.locatorInfo.key,
     cdn = this.locatorInfo.mediaTierCdnNumber ?: Cdn.CDN_0.cdnNumber,
     contentType = this.contentType,
-    forQuote = forQuote
+    forQuote = forQuote,
+    isWallpaper = isWallpaper
   )
 }
 
@@ -96,7 +97,8 @@ data class ArchiveAttachmentInfo(
   val remoteKey: ByteString,
   val cdn: Int,
   val contentType: String?,
-  val forQuote: Boolean
+  val forQuote: Boolean,
+  val isWallpaper: Boolean = false
 ) {
   val fullSizeMediaName: MediaName get() = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash.toByteArray(), remoteKey.toByteArray())
   val thumbnailMediaName: MediaName get() = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash.toByteArray(), remoteKey.toByteArray())

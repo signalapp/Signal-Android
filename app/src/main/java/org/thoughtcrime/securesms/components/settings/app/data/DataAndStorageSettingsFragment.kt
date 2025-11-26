@@ -17,11 +17,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.R
@@ -249,7 +249,7 @@ private fun DataAndStorageSettingsScreen(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DataAndStorageSettingsScreenPreview() {
   Previews.Preview {

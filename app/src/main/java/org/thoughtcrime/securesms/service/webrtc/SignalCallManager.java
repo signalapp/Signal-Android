@@ -16,7 +16,6 @@ import com.annimon.stream.Stream;
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.GenericServerPublicParams;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
@@ -115,6 +114,7 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.jvm.functions.Function1;
 import kotlin.text.Charsets;
+import kotlin.Pair;
 
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.GroupCallState.IDLE;
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.CALL_INCOMING;

@@ -19,8 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueCodeSelector
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueTypeSelector
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -48,7 +48,7 @@ class InternalTerminalDonationConfigurationFragment : ComposeFragment() {
 @Preview
 @Composable
 private fun InternalTerminalDonationConfigurationContentPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       InternalTerminalDonationConfigurationContent(
         onAddClick = {}

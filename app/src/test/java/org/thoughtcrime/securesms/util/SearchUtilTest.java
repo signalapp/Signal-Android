@@ -1,12 +1,13 @@
 package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
-import org.signal.libsignal.protocol.util.Pair;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+
+import kotlin.Pair;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

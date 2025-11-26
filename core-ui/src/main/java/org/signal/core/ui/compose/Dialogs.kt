@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
@@ -60,6 +61,7 @@ import org.signal.core.ui.compose.Dialogs.PermissionRationaleDialog
 import org.signal.core.ui.compose.Dialogs.SimpleAlertDialog
 import org.signal.core.ui.compose.Dialogs.SimpleMessageDialog
 import org.signal.core.ui.compose.theme.SignalTheme
+import kotlin.math.max
 
 object Dialogs {
 
@@ -93,7 +95,7 @@ object Dialogs {
     tonalElevation: Dp = Defaults.TonalElevation,
     properties: DialogProperties = DialogProperties()
   ) {
-    androidx.compose.material3.AlertDialog(
+    AlertDialog(
       onDismissRequest = onDismissRequest,
       confirmButton = confirmButton,
       modifier = modifier,
@@ -202,21 +204,25 @@ object Dialogs {
   fun IndeterminateProgressDialog(
     onDismissRequest: () -> Unit = {}
   ) {
-    BaseAlertDialog(
+    Dialog(
       onDismissRequest = onDismissRequest,
-      confirmButton = {},
-      dismissButton = {},
-      text = {
+      properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+    ) {
+      Surface(
+        modifier = Modifier.size(100.dp),
+        shape = Defaults.shape,
+        color = Defaults.containerColor,
+        tonalElevation = Defaults.TonalElevation
+      ) {
         CircularProgressIndicator(
           modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
+            .padding(24.dp)
             .testTag("dialog-circular-progress-indicator")
         )
-      },
-      modifier = Modifier
-        .size(100.dp)
-    )
+      }
+    }
   }
 
   /**
@@ -394,7 +400,7 @@ object Dialogs {
           LazyColumn(
             modifier = Modifier.padding(top = 24.dp, bottom = 16.dp),
             state = rememberLazyListState(
-              initialFirstVisibleItemIndex = selectedIndex
+              initialFirstVisibleItemIndex = max(selectedIndex, 0)
             )
           ) {
             items(
@@ -513,7 +519,9 @@ object Dialogs {
 
           FlowRow(
             horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(bottom = 16.dp)
           ) {
             TextButton(onClick = onDismissRequest) {
               Text(text = stringResource(R.string.cancel))
@@ -544,11 +552,19 @@ object Dialogs {
     negative: String,
     onPositive: () -> Unit,
     onNegative: () -> Unit,
-    onNeutral: () -> Unit
+    onNeutral: () -> Unit,
+    properties: DialogProperties = DialogProperties()
   ) {
     Dialog(
       onDismissRequest = onNegative,
-      properties = DialogProperties(usePlatformDefaultWidth = false)
+      properties = DialogProperties(
+        usePlatformDefaultWidth = false,
+        dismissOnBackPress = properties.dismissOnBackPress,
+        dismissOnClickOutside = properties.dismissOnClickOutside,
+        securePolicy = properties.securePolicy,
+        decorFitsSystemWindows = properties.decorFitsSystemWindows,
+        windowTitle = properties.windowTitle
+      )
     ) {
       Surface(
         modifier = Modifier
@@ -599,7 +615,7 @@ object Dialogs {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun PermissionRationaleDialogPreview() {
   Previews.Preview {
@@ -614,7 +630,7 @@ private fun PermissionRationaleDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AlertDialogPreview() {
   Previews.Preview {
@@ -629,7 +645,7 @@ private fun AlertDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AdvancedAlertDialogPreview() {
   Previews.Preview {
@@ -646,7 +662,7 @@ private fun AdvancedAlertDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MessageDialogPreview() {
   Previews.Preview {
@@ -658,7 +674,7 @@ private fun MessageDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun IndeterminateProgressDialogPreview() {
   Previews.Preview {
@@ -666,7 +682,7 @@ private fun IndeterminateProgressDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun IndeterminateProgressDialogMessagePreview() {
   Previews.Preview {
@@ -674,7 +690,7 @@ private fun IndeterminateProgressDialogMessagePreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun IndeterminateProgressDialogCancellablePreview() {
   Previews.Preview {
@@ -682,7 +698,7 @@ private fun IndeterminateProgressDialogCancellablePreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RadioListDialogPreview() {
   Previews.Preview {

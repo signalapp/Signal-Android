@@ -2,7 +2,6 @@ package org.whispersystems.signalservice.internal.websocket;
 
 import org.jetbrains.annotations.NotNull;
 import org.signal.libsignal.protocol.logging.Log;
-import org.signal.libsignal.protocol.util.Pair;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
@@ -36,6 +35,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+
+import kotlin.Pair;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -128,13 +129,13 @@ public class OkHttpWebSocketConnection extends WebSocketListener implements WebS
 
     if (client == null) {
       Pair<SignalServiceUrl, String> connectionInfo = getConnectionInfo();
-      SignalServiceUrl               serviceUrl     = connectionInfo.first();
-      String                         wsUri          = connectionInfo.second();
+      SignalServiceUrl               serviceUrl     = connectionInfo.getFirst();
+      String                         wsUri          = connectionInfo.getSecond();
 
       Pair<SSLSocketFactory, X509TrustManager> socketFactory = createTlsSocketFactory(trustStore);
 
-      OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder().sslSocketFactory(new Tls12SocketFactory(socketFactory.first()),
-                                                                                       socketFactory.second())
+      OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder().sslSocketFactory(new Tls12SocketFactory(socketFactory.getFirst()),
+                                                                                       socketFactory.getSecond())
                                                                      .connectionSpecs(serviceUrl.getConnectionSpecs().orElse(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)))
                                                                      .readTimeout(KEEPALIVE_FREQUENCY_SECONDS + 10, TimeUnit.SECONDS)
                                                                      .dns(dns.orElse(Dns.SYSTEM))

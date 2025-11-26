@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
+import org.thoughtcrime.securesms.conversation.NewConversationActivity;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Rfc5724Uri;
@@ -41,8 +42,7 @@ public class SystemContactsEntrypointActivity extends Activity {
     final Intent nextIntent;
 
     if (TextUtils.isEmpty(destination.destination)) {
-      nextIntent = new Intent(this, NewConversationActivity.class);
-      nextIntent.putExtra(Intent.EXTRA_TEXT, destination.getBody());
+      nextIntent = NewConversationActivity.createIntent(this, destination.getBody());
       Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
     } else {
       Recipient recipient = Recipient.external(destination.getDestination());
@@ -54,8 +54,7 @@ public class SystemContactsEntrypointActivity extends Activity {
                                         .withDraftText(destination.getBody())
                                         .build();
       } else {
-        nextIntent = new Intent(this, NewConversationActivity.class);
-        nextIntent.putExtra(Intent.EXTRA_TEXT, destination.getBody());
+        nextIntent = NewConversationActivity.createIntent(this, destination.getBody());
         Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
       }
     }

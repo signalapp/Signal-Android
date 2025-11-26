@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.messages.protocol
 
 import org.signal.libsignal.protocol.InvalidKeyIdException
+import org.signal.libsignal.protocol.ReusedBaseKeyException
+import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.thoughtcrime.securesms.database.KyberPreKeyTable.KyberPreKey
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -25,7 +27,13 @@ class BufferedKyberPreKeyStore(private val selfServiceId: ServiceId) : SignalSer
   private var hasLoadedAll: Boolean = false
 
   /** The kyber prekeys that have been marked as removed (if they're not last resort). */
-  private val removedIfNotLastResort: MutableSet<Int> = mutableSetOf()
+  private val removedIfNotLastResort: MutableSet<Triple<Int, Int, ECPublicKey>> = mutableSetOf()
+
+  /** Tuples of last-resort key data we've already seen. */
+  private val lastResortKeyTuples: MutableSet<Triple<Int, Int, ECPublicKey>> = mutableSetOf()
+
+  /** A separate list of tuples to flush so we don't try to flush the same one multiple times */
+  private val unFlushedLastResortKeyTuples: MutableSet<Triple<Int, Int, ECPublicKey>> = mutableSetOf()
 
   @kotlin.jvm.Throws(InvalidKeyIdException::class)
   override fun loadKyberPreKey(kyberPreKeyId: Int): KyberPreKeyRecord {
@@ -63,16 +71,21 @@ class BufferedKyberPreKeyStore(private val selfServiceId: ServiceId) : SignalSer
     return store.containsKey(kyberPreKeyId)
   }
 
-  override fun markKyberPreKeyUsed(kyberPreKeyId: Int) {
+  override fun markKyberPreKeyUsed(kyberPreKeyId: Int, signedPreKeyId: Int, publicKey: ECPublicKey) {
     loadKyberPreKey(kyberPreKeyId)
 
     store[kyberPreKeyId]?.let {
       if (!it.lastResort) {
         store.remove(kyberPreKeyId)
+        removedIfNotLastResort += Triple(kyberPreKeyId, signedPreKeyId, publicKey)
+      } else {
+        if (!lastResortKeyTuples.add(Triple(kyberPreKeyId, signedPreKeyId, publicKey))) {
+          throw ReusedBaseKeyException()
+        }
+
+        unFlushedLastResortKeyTuples += Triple(kyberPreKeyId, signedPreKeyId, publicKey)
       }
     }
-
-    removedIfNotLastResort += kyberPreKeyId
   }
 
   override fun removeKyberPreKey(kyberPreKeyId: Int) {
@@ -88,8 +101,13 @@ class BufferedKyberPreKeyStore(private val selfServiceId: ServiceId) : SignalSer
   }
 
   fun flushToDisk(persistentStore: SignalServiceAccountDataStore) {
-    for (id in removedIfNotLastResort) {
-      persistentStore.markKyberPreKeyUsed(id)
+    val tuples = removedIfNotLastResort + unFlushedLastResortKeyTuples
+    unFlushedLastResortKeyTuples.clear()
+
+    for ((key, signedKey, publicKey) in tuples) {
+      persistentStore.markKyberPreKeyUsed(key, signedKey, publicKey)
     }
+
+    unFlushedLastResortKeyTuples.clear()
   }
 }

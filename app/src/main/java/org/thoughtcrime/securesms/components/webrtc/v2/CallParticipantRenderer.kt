@@ -5,22 +5,21 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
-import androidx.compose.foundation.layout.BoxWithConstraints
+import android.view.LayoutInflater
+import android.widget.FrameLayout
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.viewinterop.AndroidView
-import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
-import org.thoughtcrime.securesms.components.webrtc.TextureViewRenderer
-import org.thoughtcrime.securesms.compose.GlideImage
-import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
+import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.webrtc.CallParticipantView
 import org.thoughtcrime.securesms.events.CallParticipant
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.ringrtc.CameraState
 import org.webrtc.RendererCommon
 
@@ -30,59 +29,47 @@ import org.webrtc.RendererCommon
 @Composable
 fun CallParticipantRenderer(
   callParticipant: CallParticipant,
+  renderInPip: Boolean,
   modifier: Modifier = Modifier,
-  force: Boolean = false
+  isLocalParticipant: Boolean = false,
+  isRaiseHandAllowed: Boolean = false,
+  selfPipMode: CallParticipantView.SelfPipMode = CallParticipantView.SelfPipMode.NOT_SELF_PIP,
+  onToggleCameraDirection: () -> Unit = {}
 ) {
-  BoxWithConstraints(
-    modifier = modifier
-  ) {
-    val maxWidth = constraints.maxWidth
-    val maxHeight = constraints.maxHeight
-
-    val density = LocalDensity.current
-    val size = with(density) {
-      DpSize(
-        width = maxWidth.toDp(),
-        height = maxHeight.toDp()
+  if (LocalInspectionMode.current) {
+    Box(
+      contentAlignment = Alignment.Center,
+      modifier = modifier.background(color = MaterialTheme.colorScheme.secondaryContainer)
+    ) {
+      Text(
+        text = "${callParticipant.callParticipantId.recipientId.toLong()}",
+        style = MaterialTheme.typography.titleLarge
       )
     }
-
-    val localRecipient = if (LocalInspectionMode.current) {
-      Recipient()
-    } else {
-      callParticipant.recipient
-    }
-
-    val model = remember {
-      ProfileContactPhoto(localRecipient)
-    }
-
-    val context = LocalContext.current
-    val fallback = remember {
-      FallbackAvatarDrawable(context, localRecipient.getFallbackAvatar())
-    }
-
-    GlideImage(
-      model = model,
-      imageSize = size,
-      fallback = fallback,
-      modifier = Modifier.fillMaxSize()
-    )
-
-    if (force || callParticipant.isVideoEnabled) {
-      AndroidView(
-        factory = ::TextureViewRenderer,
-        modifier = Modifier.fillMaxSize(),
-        onRelease = { it.release() }
-      ) { renderer ->
-        renderer.setMirror(callParticipant.cameraDirection == CameraState.Direction.FRONT)
-        renderer.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL)
-
-        callParticipant.videoSink.lockableEglBase.performWithValidEglBase {
-          renderer.init(it)
+  } else {
+    AndroidView(
+      factory = { LayoutInflater.from(it).inflate(R.layout.call_participant_item, FrameLayout(it), false) as CallParticipantView },
+      modifier = modifier.fillMaxSize(),
+      onRelease = { it.releaseRenderer() },
+      onReset = {} // Allows reuse in lazy lists
+    ) { view ->
+      view.setCallParticipant(callParticipant)
+      view.setMirror(isLocalParticipant && callParticipant.cameraState.activeDirection == CameraState.Direction.FRONT)
+      view.setScalingType(
+        if (callParticipant.isScreenSharing && !isLocalParticipant) {
+          RendererCommon.ScalingType.SCALE_ASPECT_FIT
+        } else {
+          RendererCommon.ScalingType.SCALE_ASPECT_FILL
         }
+      )
+      view.setRenderInPip(renderInPip)
+      view.setRaiseHandAllowed(isRaiseHandAllowed)
 
-        renderer.attachBroadcastVideoSink(callParticipant.videoSink)
+      if (selfPipMode != CallParticipantView.SelfPipMode.NOT_SELF_PIP) {
+        view.setSelfPipMode(selfPipMode, callParticipant.cameraState.cameraCount > 1)
+        view.setCameraToggleOnClickListener { onToggleCameraDirection() }
+      } else {
+        view.setCameraToggleOnClickListener(null)
       }
     }
   }

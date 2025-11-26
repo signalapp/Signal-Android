@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">記錄付款回復短語</string>
     <string name="ApplicationPreferencesActivity_record_phrase">紀錄短語</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">在停用PIN碼之前，你必須記錄你的付款回復詞語以確保可以回復你的付款帳戶。</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">建立新的恢復金鑰</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">你必須先建立並記下新的恢復金鑰，才能停用 PIN 碼。</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">建立金鑰</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">檔案</string>
     <string name="AttachmentKeyboard_contact">聯絡人</string>
     <string name="AttachmentKeyboard_location">位置</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">投票</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal 需要獲取權限以顯示你的相片和影片</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">允許存取</string>
@@ -844,7 +852,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">視備份的大小而定，這可能需要一段較長的時間。備份期間，你可以如常使用手機。</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">當你發送和接收訊息時，媒體會加入備份。</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">無法還原媒體</string>
@@ -1145,6 +1153,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">此版本的 Signal 已過期。立即更新以傳送和接收訊息。</string>
     <string name="ExpiredBuildReminder_update_now">立即更新</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal 不再適用於此裝置。若要再次使用 Signal，請將你的裝置更新至較新版本的 Android，或切換至較新的裝置。</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">更新 Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1345,10 +1356,15 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">完成</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">無法將此人新增到舊群組中。</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">新增「%1$s」到「%2$s」嗎？</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="other">新增 %3$d 個成員到「%2$s」嗎？</item>
+        <item quantity="other">新增 %1$d 個成員到「%2$s」嗎？</item>
     </plurals>
+
     <string name="AddMembersActivity__add">新增</string>
     <string name="AddMembersActivity__add_members">新增成員</string>
 
@@ -1451,6 +1467,10 @@
     <string name="RemoteRestoreActivity__not_now">現在不要</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">媒體將在背景還原。 若你選擇現在不還原，之後將無法還原。</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">此裝置已取消註冊</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">通常是因為你已在另一部裝置上註冊了你的 Signal 帳戶。</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">通知我提及。</string>
@@ -2047,6 +2067,10 @@
     <string name="MessageRecord_you_unblocked_this_group">你已解除封鎖此群組</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s 傳送了一則無法處理或顯示的訊息，因為它使用了新的 Signal 功能。</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s 結束了投票：「%2$s」</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">你結束了投票：「%1$s」</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">接受</string>
@@ -2349,6 +2373,12 @@
     <string name="WebRtcCallActivity__to_start_call">要開始或加入通話：</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">要啟用你的視訊：</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">縮小本機影片</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">放大本機影片</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal 語音通話</string>
@@ -2821,6 +2851,8 @@
     <string name="SubmitDebugLogActivity_success">成功！</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">複製網址及將之加入你的錯誤報告或支援email:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">分享</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">關閉</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">此日誌將在網上公開發布，供貢獻者查看。 你可以在上傳前檢查它。</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">當你點擊提交時，你的日誌將在一個唯一的、未發布的 URL 上在線發布 30 天。你可以先將其保存在本地。</string>
@@ -3076,6 +3108,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">對你的付款傳送了 %1$s 回應。</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">對你的貼圖作出了 %1$s 反應。</string>
     <string name="MessageNotifier_this_message_was_deleted">此訊息已被刪除。</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s 已對「%3$s」投票</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">關閉聯絡人上線 Signal 的通知嗎？你可以在 Signal &gt; 設定 &gt; 通知中再次啟用。</string>
 
@@ -3247,6 +3281,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">接聽但不開啟視訊</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">切換鏡頭方向</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">聲音輸出</string>
@@ -3304,9 +3341,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\"不是 Signal 使用者。請檢查使用者名稱並再試一次。"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">你無需將自己新增到群組中</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">已達群組人數上限</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal 群組最多可以有%1$d個成員。</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal 群組最多可以有%1$s個成員。</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">已達到推薦成員數上限</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal 群組在%1$d個成員數或更少的情況下表現最佳。 新增更多成員將導致傳送和接收訊息的延遲。</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal 群組在不多於 %1$s 個成員時效能最佳。新增更多成員將導致傳送和接收訊息時有所延遲。</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d 個成員</item>
     </plurals>
@@ -4302,6 +4339,8 @@
     <string name="conversation_selection__menu_multi_select">選擇</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">付款詳情</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">結束投票</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5040,9 +5079,13 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">略過</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="other">%1$d 個成員</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="other">%1$s 個成員</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">下一步</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">分享</string>
@@ -5756,23 +5799,23 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s 已被封鎖</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">封鎖失敗</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">無法移除 %1$s</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">已將此人儲存到你裝置的聯絡人中。從你的聯絡人中刪除他們，然後再試一次。</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">檢視聯絡人</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s 不是 Signal 用戶</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s 不是 Signal 用戶</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s 不是 Signal 用戶</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">開啟選單</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="other">%1$s 不是 Signal 用戶</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">搜尋姓名或電話號碼</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">名稱、用戶名稱或電話號碼</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">切換至數字鍵盤</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">切換至字母數字鍵盤</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">重設搜尋篩選器</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -5932,7 +5975,6 @@
     <string name="BadgesOverviewFragment__featured_badge">特色徽章</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">在個人資料上顯示徽章</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">無法更新個人資料</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">選擇徽章</string>
@@ -7560,12 +7602,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">開啟 Signal 安全備份</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">試用 Signal 安全備份</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">當你使用新手機或重新安裝 Signal 時，絕不會遺失訊息。</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">開啟</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">現在不要</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">你可以在「設定」中啟用備份</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">驗證你的恢復金鑰</string>
@@ -7835,6 +7881,12 @@
     <string name="BackupStatusRow__your_last_backup">無法完成你上次的備份。確保你的手機已連接到 Wi-Fi，然後點按「立即備份」再試一次。</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">無法完成你上次的備份。確保你已使用最新版本的 Signal，然後重試。</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">你的訊息數量超過儲存空間上限。刪除一些訊息然後再試。</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">以下日期之前傳送或接收的訊息未被備份：%1$s。</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">因為儲存空間不足，你的備份無法完成。在你的裝置釋放空間然後再試。</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">了解更多</string>
 
@@ -7962,7 +8014,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/月 · %2$s 續訂</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">續約 %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">上次備份 %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8012,10 +8064,10 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">關閉並刪除備份</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">備份大小</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="other">你的備份包括所有文字訊息和最近 %1$d 天的媒體。隨著新媒體加入和舊媒體到期，備份大小會因而改變。</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">已刪除並關閉備份。</string>
@@ -8158,7 +8210,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">正在上載：%2$s 中的 %1$s (%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">正在上傳：%1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">細節</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8232,13 +8284,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">你的恢復金鑰</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">恢復金鑰</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">你的恢復金鑰是一組 64 個字元的代碼，可讓你在重新安裝 Signal 時還原備份。</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">你的恢復金鑰是一組 64 個字元的代碼，你需要使用此代碼來還原你的備份。</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">如果你忘記了金鑰，你將會無法還原備份。Signal 無法幫助你還原備份。</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">將恢復金鑰存放在安全可靠的地方，例如安全的密碼管理器，並且不要與任何人分享。</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">如果你將其遺失，將會無法恢復訊息。</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">下一步</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">檢視恢復金鑰</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8289,6 +8343,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">建立新的恢復金鑰</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">只有當其他人知道你的金鑰時，才需要建立新的金鑰。你必須重新上載備份，包括媒體。如果你使用「最佳化儲存」，則必須先下載已卸載的媒體。</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">要退出備份設定嗎？</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">你尚未完成設定備份，也未建立任何備份。你可以在「設定」中啟用備份。</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">退出備份設定</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8413,6 +8473,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">從你的舊手機</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">直接從舊的 Android 手機轉移</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">要跳過還原嗎？</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">若你現在跳過還原，之後將無法還原。如果你在跳過還原後重新啟用備份功能，當前的備份將會被新的訊息紀錄取代。</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">跳過還原</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">還原本機備份</string>
@@ -8453,6 +8519,10 @@
     <string name="EnterBackupKey_backup_not_found">找不到備份</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">你輸入的恢復金鑰是正確的，但沒有與其關聯的備份。如果你還有舊手機，請確定備份已啟用並已完成備份，然後再試一次。</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">你可能輸入了錯誤的恢復金鑰，或者尚未在舊裝置上完成至少一次備份。\n\n確保你使用在啟用「Signal 安全備份」時儲存的電話號碼和恢復金鑰進行註冊，並確認舊裝置已完成備份。</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">你已用完恢復金鑰的嘗試次數。為安全計，你可嘗試的次數是有限的。請等待一小時後再重試。</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">跳過還原</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8541,6 +8611,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">跳過還原</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">已達恢復金鑰上限</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">你已成功建立新的恢復金鑰，但為了防止濫用，你可建立的新金鑰數量是有限的。你不能在 7 天內建立另一個金鑰。將你的恢復金鑰存放在安全的地方。</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">未能建立新金鑰</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">你已用盡可建立的新金鑰數量。你可以在 7 天後建立新的恢復金鑰。如果你認為別人可能存取你的備份，可以選擇「關閉並刪除備份」。</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">確定</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">關閉搜尋</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8578,6 +8658,150 @@
     <plurals name="Notification_you_have_not_completed_a_backup">
         <item quantity="other">你已有 %1$d 天未完成備份。請立即建立備份。</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">投票 · 選擇一項</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">投票 · 選擇一項或更多</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">投票 · 最終結果</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">沒有投票</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">檢視投票</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">檢視投票</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">找不到投票</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">檢視結果</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">投票：%1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s 結束了投票：「%2$s」</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">你結束了投票：「%1$s」</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s 已投票：「%2$s」</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">投票</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">投票結果</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">投票詳情</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">問題</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="other">%1$d 個投票</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">優勝者</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">結束投票</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">查看全部</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">無法結束投票</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">請檢查你的網路連接並再試一次。</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">要結束投票嗎？</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">群組成員將無法再參與此投票。</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">等待網絡…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">新的投票</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">問題</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">提出問題</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">選項</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">選項 %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">拖放橫桿</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">允許多次投票</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">新增一個問題和至少 2 個選項</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">新增至少 2 個選項</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">新增問題</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">音訊問題</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">視訊問題</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">通話中斷</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">其他</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">音訊斷續現象</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">音訊切斷</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">我聽到回音</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">其他人聽到回音</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">影像畫質不佳</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">低解析度</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">相機無法運作</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">其他</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">描述你的問題</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">請提供與問題相關的任何詳細資訊。你在此分享的任何內容都將保密，並僅用於協助改善 Signal 中的通話。</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">儲存</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">返回</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">通話順利嗎？</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">這有助於我們改善 Signal 中的通話。個人識別資訊將不會被儲存。</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">遇到問題</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">非常好</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">你遇到了什麼問題？</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">請選擇所有適用的項目</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">描述你的問題</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">繼續</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">幫助我們改進</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">將診斷資訊傳送給我們有助於我們改善通話品質。你可在提交前 </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">檢視你的除錯日誌</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> 。</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">分享除錯日誌</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">除錯日誌包含低階應用程式資訊，不會顯示任何訊息內容。</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">提交</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">感謝你的意見！</string>
 
     <!-- EOF -->
 </resources>

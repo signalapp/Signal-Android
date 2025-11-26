@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">પેમેન્ટ રિકવરી કરવા માટે વાક્ય રૅકોર્ડ કરો</string>
     <string name="ApplicationPreferencesActivity_record_phrase">વાક્ય રૅકોર્ડ કરો</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">તમે તમારો પિન અક્ષમ કરી શકો તે પહેલાં, તમે તમારા પેમેન્ટ એકાઉન્ટને રિકવરી કરી શકો છો તેની ખાતરી કરવા માટે તમારે તમારા પેમેન્ટ રિકવરી વાક્યને રેકોર્ડ કરવું આવશ્યક છે.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">નવી રિકવરી કી બનાવો</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">તમારો પિન અક્ષમ કરો તે પહેલાં તમારે એક નવી રિકવરી કી બનાવવી અને રેકોર્ડ કરવી આવશ્યક છે.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">કી બનાવો</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">ફાઇલ</string>
     <string name="AttachmentKeyboard_contact">સંપર્ક</string>
     <string name="AttachmentKeyboard_location">સ્થળ</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">મતદાન</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">તમારા ફોટા અને વીડિયો બતાવવા માટે Signalને પરવાનગીની જરૂર છે</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">ઍક્સેસ આપો</string>
@@ -864,7 +872,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">તમારા બેકઅપની સાઇઝના આધારે, આમાં લાંબો સમય લાગી શકે છે. જ્યારે બેકઅપ લેવામાં આવે ત્યારે તમે સામાન્ય રીતે કરતાં હોવ તેમ તમે તમારા ફોનનો ઉપયોગ કરી શકો છો.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">જેમ જેમ તમે મેસેજ મોકલો અને પ્રાપ્ત કરો છો તેમ તેમ તમારા બેકઅપમાં મીડિયા ઉમેરવામાં આવે છે.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">મીડિયા રિસ્ટોર કરી શકતા નથી</string>
@@ -1167,6 +1175,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal નું આ વર્ઝન સમાપ્ત થઈ ગયું છે. મેસેજ મોકલવા અને મેળવવા કરવા માટે અત્યારે અપડેટ કરો.</string>
     <string name="ExpiredBuildReminder_update_now">અત્યારે અપડેટ કરો</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal હવે આ ડિવાઇસ પર કામ કરતું નથી. Signalનો ફરીથી ઉપયોગ કરવા માટે, તમારા ડિવાઇસને Android ના નવા વર્ઝન પર અપડેટ કરો અથવા નવા ડિવાઇસ પર સ્વિચ કરો.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Signalને અપડેટ કરો</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1383,11 +1394,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">થઈ ગયું</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">આ વ્યક્તિને જૂના ગ્રુપમાં ઉમેરી શકાતા નથી.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">\"%1$s\" ને \"%2$s\" માં ઉમેરીએ?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">\"%1$s\" સભ્યને \"%2$s\" માં ઉમેરવા છે?</item>
-        <item quantity="other">%3$d સભ્યોને \"%2$s\" માં ઉમેરવા છે?</item>
+        <item quantity="one">\"{2}\" સભ્યને \"%2$s\" માં ઉમેરવા છે?</item>
+        <item quantity="other">%1$d સભ્યોને \"%2$s\" માં ઉમેરવા છે?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">ઉમેરો</string>
     <string name="AddMembersActivity__add_members">સભ્યો ઉમેરો</string>
 
@@ -1491,6 +1507,10 @@
     <string name="RemoteRestoreActivity__not_now">અત્યારે નહીં</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">તમારા મીડિયા બેકગ્રાઉન્ડમાં રિસ્ટોર થશે. જો તમે હમણાં રિસ્ટોર ન કરવાનું પસંદ કરો છો, તો તમે પછીથી રિસ્ટોર કરી શકશો નહીં.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">આ ડિવાઇસ હવે રજીસ્ટર થયેલું નથી</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">આ કદાચ એટલા માટે છે કારણ કે તમે તમારું Signal એકાઉન્ટ કોઈ અલગ ડિવાઇસ પર રજીસ્ટર કરાવ્યું છે.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">મને ઉલ્લેખો માટે સૂચિત કરો</string>
@@ -2107,6 +2127,10 @@
     <string name="MessageRecord_you_unblocked_this_group">તમે આ ગ્રૂપને અનબ્લૉક કર્યું</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s એ તમને એક મેસેજ મોકલ્યો છે કે જે પ્રોસીડ અથવા ડિસ્પ્લે કરી શકાતો નથી કારણ કે તે નવી Signal સુવિધાનો ઉપયોગ કરે છે.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$sએ મતદાન: \"%2$s\" સમાપ્ત કર્યું</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">તમે મતદાન: \"%1$s\" સમાપ્ત કર્યું</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">સ્વીકાર</string>
@@ -2422,6 +2446,12 @@
     <string name="WebRtcCallActivity__to_start_call">કૉલ શરૂ કરવા અથવા તેમાં જોડાવા માટે:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">તમારો વીડિયો ચાલુ કરવા:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">સ્થાનિક વીડિયોને સંકુચિત કરો</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">સ્થાનિક વીડિયોને વિસ્તૃત કરો</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal કૉલ</string>
@@ -2914,6 +2944,8 @@
     <string name="SubmitDebugLogActivity_success">સફળતા!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">આ URL ને કૉપી કરો અને તેને તમારા ઇશ્યૂ રિપોર્ટ અથવા સપોર્ટ ઇમેઇલમાં ઉમેરો:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">શેર કરો</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">બંધ</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">યોગદાનકર્તાઓને જોવા માટે આ લૉગ જાહેરમાં ઓનલાઇન પોસ્ટ કરવામાં આવશે. તમે અપલોડ કરતા પહેલા તેની તપાસ કરી શકો છો.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">તમે સબમિટ પર ક્લિક કરશો ત્યારે લૉગ 30 દિવસ માટે ઓનલાઇન એક અનન્ય, અપ્રકાશિત URL પર પોસ્ટ થશે. તમે પહેલાં તેને સ્થાનિક રીતે સેવ કરી શકો છો.</string>
@@ -3172,6 +3204,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">તમારી ચુકવણી પર %1$s પ્રતિક્રિયા આપી.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">તમારા સ્ટીકર પર %1$s પ્રતિક્રિયા આપી.</string>
     <string name="MessageNotifier_this_message_was_deleted">આ મેસેજ ડિલીટ કર્યો.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$sએ \"%3$s\" મતદાનમાં મતદાન કર્યું</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Signal નોટિફિકેશનમાં જોડાયેલા સંપર્કને બંધ કરીએ? તમે તેમને ફરી સક્ષમ કરી શકો છો Signal &gt; સેટિંગ્સ &gt; સૂચનાઓ.</string>
 
@@ -3348,6 +3382,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">વિડિયો વગર જવાબ આપો</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">કૅમેરાની દિશા બદલો</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">ઓડિયો આઉટપુટ</string>
@@ -3405,9 +3442,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal ઉપયોગકર્તા નથી. કૃપા કરીને યુઝરનેમ તપાસો અને ફરીથી પ્રયાસ કરો."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">તમારે તમારી જાતને ગ્રુપમાં ઉમેરવાની જરૂર નથી</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">મહત્તમ ગ્રુપ કદ પહોંચી ગયું</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal ગ્રુપમાં મહત્તમ %1$d સભ્યો હોઈ શકે છે.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal ગ્રૂપમાં મહત્તમ %1$s સભ્યો હોઈ શકે છે.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">ભલામણ કરેલ સભ્ય મર્યાદા પૂરી થઈ ગઈ</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal ગ્રુપ %1$d અથવા ઓછા સભ્યો સાથે શ્રેષ્ઠ પ્રદર્શન કરે છે. વધુ સભ્યો ઉમેરવાથી મેસેજ મોકલવામાં અને પ્રાપ્ત કરવામાં વિલંબ થશે.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal ગ્રૂપ %1$s અથવા ઓછા સભ્યો સાથે શ્રેષ્ઠ પ્રદર્શન કરે છે. વધુ સભ્યો ઉમેરવાથી મેસેજ મોકલવામાં અને પ્રાપ્ત કરવામાં વિલંબ થશે.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d સભ્યો</item>
         <item quantity="other">%1$d સભ્યો</item>
@@ -4417,6 +4454,8 @@
     <string name="conversation_selection__menu_multi_select">પસંદ કરો</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">પેમેન્ટની વિગતો</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">મતદાન સમાપ્ત કરો</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5169,10 +5208,14 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">અવગણો</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d સભ્યો</item>
-        <item quantity="other">%1$d સભ્યો</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$s સભ્ય</item>
+        <item quantity="other">%1$s સભ્યો</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">આગળ</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">શેર કરો</string>
@@ -5894,24 +5937,24 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$sને બ્લૉક કરવામાં આવ્યા છે</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">બ્લોક કરવાનું નિષ્ફળ થયું</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">%1$sને દૂર ન કરી શક્યા</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">આ વ્યક્તિ તમારા ડિવાઇસના સંપર્કોમાં સેવ કરેલ છે. તેમને તમારા સંપર્કોમાંથી ડિલીટ કરો અને ફરી પ્રયાસ કરો.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">સંપર્ક જુઓ</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s હવે Signal વપરાશકર્તા નથી</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s હવે Signal વપરાશકર્તા નથી</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s હવે Signal વપરાશકર્તા નથી</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">મેનૂ ખોલો</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s Signal ઉપયોગકર્તા નથી</item>
-        <item quantity="other">%1$s Signal ઉપયોગકર્તાઓ નથી</item>
+    <plurals name="RecipientLookup_error__not_signal_users">
+        <item quantity="one">%1$s Signal વપરાશકર્તા નથી</item>
+        <item quantity="other">%1$s Signal વપરાશકર્તાઓ નથી</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">નામ અથવા નંબર સર્ચ કરો</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">નામ, યુઝરનેમ અથવા નંબર</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">આંકડાકીય કીબોર્ડ પર સ્વિચ કરો</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">આલ્ફાન્યૂમેરિક કીબોર્ડ પર સ્વિચ કરો</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">શોધ ફિલ્ટર ફરીથી સેટ કરો</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6077,7 +6120,6 @@
     <string name="BadgesOverviewFragment__featured_badge">ફીચર્ડ બૅજ</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">પ્રોફાઇલ પર બૅજ દર્શાવો</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">પ્રોફાઇલ અપડેટ કરવામાં નિષ્ફળ</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">એક બૅજ પસંદ કરો</string>
@@ -7731,12 +7773,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Signal સુરક્ષિત બેકઅપ ચાલુ કરો</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Signal સુરક્ષિત બેકઅપ અજમાવો</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">જ્યારે તમે નવો ફોન મેળવો અથવા Signalને ફરીથી ઇન્સ્ટોલ કરો ત્યારે ક્યારેય કોઈ મેસેજ ગુમાવશો નહીં.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">ચાલુ કરો</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">અત્યારે નહીં</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">તમે \"સેટિંગ્સ\" માં બેકઅપ સક્ષમ કરી શકો છો</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">તમારી રિકવરી કી ચકાસો</string>
@@ -8009,6 +8055,12 @@
     <string name="BackupStatusRow__your_last_backup">તમારું છેલ્લું બેકઅપ પૂર્ણ કરી શકાયું નથી. ખાતરી કરો કે તમારો ફોન વાઇ-ફાઇથી કનેક્ટ થયેલો છે અને \"હમણાં બેકઅપ લો\" પર ટેપ કરો.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">તમારું છેલ્લું બેકઅપ પૂર્ણ કરી શકાયું નથી. ખાતરી કરો કે તમે Signalનું લેટેસ્ટ વર્ઝન વાપરો છો અને ફરી પ્રયાસ કરો.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">તમારા મેસેજની સંખ્યા સ્ટોરેજ મર્યાદા કરતાં વધી ગઈ છે. કેટલાક મેસેજ ડિલીટ કરો અને ફરી પ્રયાસ કરો.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s પહેલાં મોકલેલા કે મેળવેલા મેસેજનું બેકઅપ લેવામાં આવતું નથી.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">તમારી સ્ટોરેજ જગ્યા ઓછી હોવાથી તમારું બેકઅપ પૂર્ણ થઈ શક્યું નથી. તમારા ડિવાઇસ પર જગ્યા ખાલી કરો અને ફરી પ્રયાસ કરો.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">વધુ જાણો</string>
 
@@ -8139,7 +8191,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/મહિને, %2$sના રોજ રિન્યૂ થશે</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">%1$sના રોજ રિન્યૂ થશે</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">છેલ્લું બેકઅપ %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8189,11 +8241,11 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">બેકઅપ બંધ કરો અને ડિલીટ કરો</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">બેકઅપની સાઇઝ</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="one">તમારા બેકઅપમાં તમારા બધા ટેક્સ્ટ મેસેજ અને તમારા છેલ્લા %1$d દિવસના મીડિયાનો સમાવેશ થાય છે. નવા મીડિયા પ્રાપ્ત થાય અને જૂના મીડિયાની સમયસીમા સમાપ્ત થાય તેમ સાઇઝ બદલાશે.</item>
+        <item quantity="other">તમારા બેકઅપમાં તમારા બધા ટેક્સ્ટ મેસેજ અને તમારા છેલ્લા %1$d દિવસના મીડિયાનો સમાવેશ થાય છે. નવા મીડિયા પ્રાપ્ત થાય અને જૂના મીડિયાની સમયસીમા સમાપ્ત થાય તેમ સાઇઝ બદલાશે.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">બેકઅપ ડિલીટ કર્યું અને બંધ કર્યું.</string>
@@ -8339,7 +8391,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">%2$sમાંથી %1$s (%3$d%%) અપલોડ થાય છે</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">અપલોડ થાય છે: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">વિગતો</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8413,13 +8465,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">તમારી રિકવરી કી</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">રિકવરી કી</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">તમારી રિકવરી કી એ 64-અક્ષરનો કોડ છે જે તમને Signalને ફરીથી ઇન્સ્ટોલ કરવા પર તમારા બેકઅપને રિસ્ટોર કરવા દે છે.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">તમારી રિકવરી કી એ 64-અક્ષરનો કોડ છે જેની તમારે તમારા બેકઅપને રિસ્ટોર કરવા માટે જરૂર પડશે.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">જો તમે તમારી કી ભૂલી જાઓ, તો તમે તમારા બેકઅપને રિસ્ટોર કરી શકશો નહીં. Signal તમને તમારા બેકઅપને રિસ્ટોર કરવામાં મદદ કરી શકશે નહીં.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">તમારી રિકવરી કીને પાસવર્ડ મેનેજર જેવી સુરક્ષિત જગ્યાએ રાખો અને તેને કોઈની સાથે શેર કરશો નહીં.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">જો તમે તેને ગુમાવી દો, તો તમે તમારા મેસેજને રિકવર કરી શકશો નહીં.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">આગળ</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">રિકવરી કી જુઓ</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8470,6 +8524,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">નવી રિકવરી કી બનાવો</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">જો કોઈ બીજાને તમારી કી ખબર પડી ગઈ હોય તો જ નવી કી બનાવવી જરૂરી છે. તમારે મીડિયા સહિત તમારો બેકઅપ ફરીથી અપલોડ કરવો પડશે. જો તમે \"સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\"નો ઉપયોગ કરી રહ્યા હો, તો તમારે પહેલા ઓફલોડ થયેલા મીડિયા ડાઉનલોડ કરવા પડશે.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">બેકઅપ સેટઅપમાંથી બહાર નીકળવું છે?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">તમે બેકઅપ સેટ કરવાનું પૂર્ણ કર્યું નથી અને કોઈ બેકઅપ બનાવવામાં આવ્યો નથી. તમે સેટિંગ્સમાં બેકઅપ સક્ષમ કરી શકો છો.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">બેકઅપ સેટઅપમાંથી બહાર નીકળો</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8596,6 +8656,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">તમારા જૂના ફોનમાંથી</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">તમારા જૂના Android પરથી સીધા જ ટ્રાન્સફર કરો</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">રિસ્ટોર કરવાનું સ્કિપ કરવું છે?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">જો તમે હમણાં રિસ્ટોર કરવાનું સ્કિપ કરો છો, તો તમે પછીથી રિસ્ટોર કરી શકશો નહીં. જો તમે રિસ્ટોર છોડી દીધા પછી બેકઅપ ફરીથી સક્ષમ કરો છો, તો તમારા વર્તમાન બેકઅપને તમારા નવી મેસેજિંગ હિસ્ટ્રીથી બદલવામાં આવશે.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">લોકલ બેકઅપ રિસ્ટોર કરો</string>
@@ -8636,6 +8702,10 @@
     <string name="EnterBackupKey_backup_not_found">બેકઅપ મળ્યું નથી</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">તમે દાખલ કરેલી રિકવરી કી સાચી છે, પરંતુ તેની સાથે કોઈ બેકઅપ સંકળાયેલ નથી. જો તમારી પાસે હજી પણ તમારો જૂનો ફોન હોય, તો ખાતરી કરો કે બેકઅપ સક્ષમ કરેલ છે અને બેકઅપ પૂર્ણ થઈ ગયું છે પછી ફરી પ્રયાસ કરો.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">તમે તમારી રિકવરી કી ખોટી રીતે દાખલ કરી હશે અથવા તમે તમારા જૂના ડિવાઇસ પર ઓછામાં ઓછું એક બેકઅપ પૂર્ણ કર્યું નથી.\n\nખાતરી કરો કે તમે Signal સુરક્ષિત બેકઅપ સક્ષમ કરતી વખતે સેવ કરેલા ફોન નંબર અને રિકવરી કી સાથે જ રજીસ્ટર કરાવી રહ્યા છો, અને ખાતરી કરો કે તમારા જૂના ડિવાઇસે બેકઅપ પૂર્ણ કરી લીધું છે.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">તમારા રિકવરી કી પ્રયાસો પૂરા થઈ ગયા છે. તમારી સુરક્ષા માટે, તમે કરી શકો તે પ્રયાસોની સંખ્યા મર્યાદિત છે. એક કલાક રાહ જુઓ અને ફરી પ્રયાસ કરો.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8724,6 +8794,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">રિકવરી કીની મર્યાદા સુધી પહોંચી ગયા</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">તમે સફળતાપૂર્વક નવી રિકવરી કી બનાવી છે, પરંતુ દુરુપયોગ અટકાવવા માટે તમે બનાવી શકો તે નવી કીની સંખ્યા મર્યાદિત છે. તમે 7 દિવસ સુધી બીજી કી બનાવી શકશો નહીં. તમારી રિકવરી કીને ક્યાંક સલામત અને સુરક્ષિત જગ્યાએ સ્ટોર કરો.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">નવી કી બનાવી શકતા નથી</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">તમારી નવી કી બનાવી શકવાની મર્યાદા પૂરી થઈ ગઈ છે. તમે 7 દિવસમાં નવી રિકવરી કી બનાવી શકશો. જો તમને લાગે કે કોઈ તમારા બેકઅપને ઍક્સેસ કરી શકે છે, તો તમે \"બેકઅપ બંધ કરો અને ડિલીટ કરો\" પસંદ કરી શકો છો.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">ઓકે</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">શોધ બંધ કરો</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8763,6 +8843,151 @@
         <item quantity="one">તમે %1$d દિવસથી બેકઅપ પૂર્ણ કર્યું નથી. હમણાં જ બેકઅપ બનાવો.</item>
         <item quantity="other">તમે %1$d દિવસથી બેકઅપ પૂર્ણ કર્યું નથી. હમણાં જ બેકઅપ બનાવો.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">મતદાન · એક પસંદ કરો</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">મતદાન · એક કે વધુ પસંદ કરો</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">મતદાન · અંતિમ પરિણામો</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">કોઈ મત નથી</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">મત જુઓ</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">મતદાન જુઓ</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">મતદાન મળ્યું નથી</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">પરિણામો જુઓ</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">મતદાન: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$sએ મતદાન: \"%2$s\" સમાપ્ત કર્યું</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">તમે મતદાન: \"%1$s\" સમાપ્ત કર્યું</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$sએ મતદાન: \"%2$s\"માં મત આપ્યો</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">મતદાન</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">મતદાનના પરિણામો</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">મતદાન વિગતો</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">પ્રશ્ન</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="one">%1$d મત</item>
+        <item quantity="other">%1$d મત</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">વિજેતા</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">મતદાન સમાપ્ત કરો</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">બધુ જુઓ</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">મતદાન સમાપ્ત કરી શકાયું નથી</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">તમારું કનેક્શન તપાસો અને ફરીથી પ્રયત્ન કરો.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">મતદાન સમાપ્ત કરવું છે?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">ગ્રૂપના સભ્યો હવે આ મતદાનમાં મત આપી શકશે નહીં.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">નેટવર્કની રાહ જોઈ રહ્યાં છીએ…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">નવું મતદાન</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">પ્રશ્ન</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">પ્રશ્ન પૂછો</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">વિકલ્પો</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">વિકલ્પ %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">ખેંચી અને છોડવાનું હેન્ડલ</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">એકથી વધુ મતોની મંજૂરી આપો</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">એક પ્રશ્ન અને ઓછામાં ઓછા 2 વિકલ્પો ઉમેરો</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">ઓછામાં ઓછા 2 વિકલ્પો ઉમેરો</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">પ્રશ્ન ઉમેરો</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">ઓડિયો સમસ્યા</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">વીડિયો સમસ્યા</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">કૉલ ડ્રોપ થયો</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">બીજું કંઈક</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">ઓડિયો સ્ટટરિંગ</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">ઓડિયો કટ આઉટ</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">મને પડઘો સંભળાતો હતો</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">બીજા લોકોએ પડઘો સાંભળ્યો</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">નબળી વીડિયો ગુણવત્તા</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">ઓછું રિઝોલ્યુશન</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">કેમેરા કામ કરતો ન હતો</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">બીજું કંઈક</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">તમારી સમસ્યાનું વર્ણન કરો</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">કૃપા કરીને સમસ્યાને લગતી કોઈ પણ વિગતો શામેલ કરો. તમે અહીં જે કંઈ પણ શેર કરશો તે ખાનગી રાખવામાં આવશે અને તેનો ઉપયોગ ફક્ત Signalમાં કૉલને બહેતર બનાવવામાં મદદ માટે કરવામાં આવશે.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">સેવ કરો</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">પાછળ</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">તમારો કૉલ કેવો રહ્યો?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">આ અમને Signalમાં કૉલને બહેતર બનાવવામાં મદદ કરે છે. કોઈ વ્યક્તિગત રીતે ઓળખી શકાય તેવી માહિતી સંગ્રહિત કરવામાં આવશે નહીં.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">સમસ્યાઓ હતી</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">ખૂબ સરસ</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">તમને કઈ સમસ્યાઓ હતી?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">લાગુ પડતું બધું પસંદ કરો</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">તમારી સમસ્યાનું વર્ણન કરો</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">ચાલુ રાખો</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">અમને બહેતર બનાવવામાં મદદ કરો</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">અમને તમારી ડાયગ્નોસ્ટિક્સ માહિતી મોકલવાથી અમને કૉલની ગુણવત્તા સુધારવામાં મદદ મળે છે. તમે </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">તમારો ડીબગ લૉગ જોઈ શકો છો</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> સબમિટ કરતા પહેલાં</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">ડીબગ લૉગ શેર કરો</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">ડીબગ લૉગમાં ઓછા સ્તરની ઍપ માહિતી હોય છે અને તે તમારા મેસેજનું કોઈ પણ કન્ટેન્ટ જાહેર કરતું નથી.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">સબમિટ કરો</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">તમારા પ્રતિભાવ બદલ આભાર!</string>
 
     <!-- EOF -->
 </resources>

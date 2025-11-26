@@ -70,7 +70,8 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
       .forEach {
         val job = RestoreAttachmentJob.forOffloadedRestore(
           messageId = it.mmsId,
-          attachmentId = it.attachmentId
+          attachmentId = it.attachmentId,
+          queueHash = it.plaintextHash?.contentHashCode() ?: it.remoteKey?.contentHashCode()
         )
 
         // Intentionally enqueues one at a time for safer attachment transfer state management

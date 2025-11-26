@@ -95,7 +95,8 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
           restoreFullAttachmentJobs += RestoreAttachmentJob.forInitialRestore(
             messageId = attachment.mmsId,
             attachmentId = attachment.attachmentId,
-            stickerPackId = attachment.stickerPackId
+            stickerPackId = attachment.stickerPackId,
+            queueHash = attachment.plaintextHash?.contentHashCode() ?: attachment.remoteKey?.contentHashCode()
           )
         } else {
           restoreThumbnailJobs += RestoreAttachmentThumbnailJob(

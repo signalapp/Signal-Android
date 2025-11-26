@@ -11,6 +11,10 @@ import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository.cancelActiveSubscriptionIfNecessarySync
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository.cancelActiveSubscriptionSync
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository.getActiveSubscriptionSync
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository.rotateSubscriberIdSync
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
@@ -25,6 +29,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.subscription.Subscription
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
@@ -51,7 +56,7 @@ object RecurringInAppPaymentRepository {
   @CheckResult
   fun getActiveSubscription(type: InAppPaymentSubscriberRecord.Type): Single<ActiveSubscription> {
     return Single.fromCallable {
-      getActiveSubscriptionSync(type).getOrThrow()
+      getActiveSubscriptionSync(type).successOrThrow()
     }.subscribeOn(Schedulers.io())
   }
 
@@ -77,26 +82,23 @@ object RecurringInAppPaymentRepository {
    * Gets the active subscription if it exists for the given [InAppPaymentSubscriberRecord.Type]
    */
   @WorkerThread
-  fun getActiveSubscriptionSync(type: InAppPaymentSubscriberRecord.Type): Result<ActiveSubscription> {
+  fun getActiveSubscriptionSync(type: InAppPaymentSubscriberRecord.Type): NetworkResult<ActiveSubscription> {
     if (type == InAppPaymentSubscriberRecord.Type.BACKUP && SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID) {
       Log.d(TAG, "Returning mock paid subscription.")
-      return Result.success(MOCK_PAID_SUBSCRIPTION)
+      return NetworkResult.Success(MOCK_PAID_SUBSCRIPTION)
     }
 
     val response = InAppPaymentsRepository.getSubscriber(type)?.let {
       donationsService.getSubscription(it.subscriberId)
-    } ?: return Result.success(ActiveSubscription.EMPTY)
+    } ?: return NetworkResult.Success(ActiveSubscription.EMPTY)
 
-    return try {
-      val result = response.resultOrThrow
+    response.result.ifPresent { result ->
       if (result.isActive && result.activeSubscription.endOfCurrentPeriod > SignalStore.inAppPayments.getLastEndOfPeriod()) {
         InAppPaymentKeepAliveJob.enqueueAndTrackTime(System.currentTimeMillis().milliseconds)
       }
-
-      Result.success(result)
-    } catch (e: Exception) {
-      Result.failure(e)
     }
+
+    return response.toNetworkResult()
   }
 
   /**

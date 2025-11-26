@@ -138,6 +138,10 @@ public class ConversationMessage {
            getBottomButton() == null;
   }
 
+  public boolean isPoll() {
+    return MessageRecordUtil.isPoll(messageRecord);
+  }
+
   public long getConversationTimestamp() {
     if (originalMessage != null) {
       return originalMessage.getDateSent();

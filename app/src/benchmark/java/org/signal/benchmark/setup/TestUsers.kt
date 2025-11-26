@@ -4,8 +4,8 @@ import android.app.Application
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import kotlinx.coroutines.runBlocking
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -96,7 +96,7 @@ object TestUsers {
         SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true))
         SignalDatabase.recipients.setProfileSharing(recipientId, true)
         SignalDatabase.recipients.markRegistered(recipientId, aci)
-        val otherIdentity = IdentityKeyUtil.generateIdentityKeyPair()
+        val otherIdentity = IdentityKeyPair.generate()
         AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(aci.toString(), 1), otherIdentity.publicKey)
 
         others += recipientId

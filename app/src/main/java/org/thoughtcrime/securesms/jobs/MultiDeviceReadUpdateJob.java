@@ -20,11 +20,11 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
@@ -116,7 +116,12 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
     for (SerializableSyncMessageId messageId : messageIds) {
       Recipient recipient = Recipient.resolved(RecipientId.from(messageId.recipientId));
       if (!recipient.isGroup() && !recipient.isDistributionList() && recipient.isMaybeRegistered() && (recipient.getHasServiceId() || recipient.getHasE164())) {
-        readMessages.add(new ReadMessage(RecipientUtil.getOrFetchServiceId(context, recipient), messageId.timestamp));
+        ServiceId senderAci = RecipientUtil.getOrFetchServiceId(context, recipient);
+        if (senderAci instanceof ServiceId.ACI) {
+          readMessages.add(new ReadMessage((ServiceId.ACI) senderAci, messageId.timestamp));
+        } else {
+          Log.w(TAG, "Failed to add ReadMessage for sender without an ACI! { recipientId: " + messageId.recipientId + ", timestamp: " + messageId.timestamp + " }");
+        }
       }
     }
 

@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ថតឃ្លាសង្គ្រោះការទូទាត់</string>
     <string name="ApplicationPreferencesActivity_record_phrase">ថតឃ្លា</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">មុនពេលអ្នកអាចបិទលេខកូដ PIN របស់អ្នក អ្នកត្រូវរក្សាទុកឃ្លាស្តារការទូទាត់របស់អ្នក ដើម្បីប្រាកដថាអ្នកអាចស្តារគណនីទូទាត់របស់អ្នកបាន។</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">បង្កើតសោស្តារថ្មី</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">អ្នកត្រូវតែបង្កើត និងកត់ត្រាសោស្តារថ្មី មុនពេលអ្នកអាចបិទលេខកូដសម្ងាត់របស់អ្នក។</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">បង្កើតសោ</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">ឯកសារ</string>
     <string name="AttachmentKeyboard_contact">ទំនាក់ទំនង</string>
     <string name="AttachmentKeyboard_location">ទីតាំង</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">ការស្ទង់មតិ</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal ត្រូវការការអនុញ្ញាតដើម្បីបង្ហាញរូបថត និងវីដេអូរបស់អ្នក</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">អនុញ្ញាតចូលប្រើប្រាស់</string>
@@ -844,7 +852,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">វាអាចចំណាយពេលយូរ អាស្រ័យលើទំហំនៃការបម្រុងទុករបស់អ្នក។ អ្នកអាចប្រើទូរសព្ទរបស់អ្នកបានធម្មតា ពេលកំពុងធ្វើការបម្រុងទុក។</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">មេឌៀត្រូវបានបន្ថែមទៅក្នុងការបម្រុងទុករបស់អ្នកនៅពេលអ្នកផ្ញើ និងទទួលសារ។</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">មិនអាចស្តារមេឌៀឡើងវិញបានទេ</string>
@@ -1145,6 +1153,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">កំណែ Signal នេះបានផុតកំណត់។ ធ្វើបច្ចុប្បន្នភាពឥឡូវ ដើម្បីផ្ញើ និងទទួលសារ។</string>
     <string name="ExpiredBuildReminder_update_now">ធ្វើបច្ចុប្បន្នភាពឥឡូវនេះ</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal លែងដំណើរការលើឧបករណ៍នេះទៀតហើយ។ ដើម្បីប្រើ Signal ឡើងវិញ សូមដំឡើងកំណែឧបករណ៍របស់អ្នកទៅជា Android កំណែថ្មីជាងនេះ ឬប្តូរទៅឧបករណ៍ថ្មីជាងនេះ។</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">ដំឡើងកំណែ Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1345,10 +1356,15 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">បញ្ចប់</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">បុគ្គលនេះ មិនអាចបន្ថែមចូលក្រុមមុនបានទេ។</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">បន្ថែម \"%1$s\" ទៅ \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="other">បញ្ចូលសមាជិក %3$d នាក់ទៅ \"%2$s\"?</item>
+        <item quantity="other">បញ្ចូលសមាជិក %1$d នាក់ទៅ \"%2$s\"?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">បន្ថែម</string>
     <string name="AddMembersActivity__add_members">បន្ថែមសមាជិក</string>
 
@@ -1451,6 +1467,10 @@
     <string name="RemoteRestoreActivity__not_now">ឥឡូវកុំទាន់</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">មេឌៀរបស់អ្នកនឹងស្ដារនៅផ្ទៃខាងក្រោយ។ ប្រសិនបើអ្នកជ្រើសរើសមិនស្តារឥឡូវនេះទេ អ្នកនឹងមិនអាចស្តារនៅពេលក្រោយបានឡើយ។</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">ឧបករណ៍នេះមិនត្រូវបានចុះឈ្មោះទៀតទេ</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">នេះទំនងជាដោយសារតែអ្នកបានចុះឈ្មោះគណនី Signal របស់អ្នកនៅលើឧបករណ៍ផ្សេង។</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">ជូនដំណឹងខ្ញុំសម្រាប់ការហៅឈ្មោះ</string>
@@ -2047,6 +2067,10 @@
     <string name="MessageRecord_you_unblocked_this_group">អ្នកឈប់ទប់ស្កាត់ក្រុមនេះហើយ</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s បានផ្ញើសារមួយ ដែលមិនអាចដំណើរការ ឬបង្ហាញបាន ព្រោះវាប្រើប្រាស់មុខងារថ្មីរបស់ Signal។</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s បានបញ្ចប់ការស្ទង់មតិ៖ \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">អ្នកបានបញ្ចប់ការស្ទង់មតិ៖ \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">យល់ព្រម</string>
@@ -2349,6 +2373,12 @@
     <string name="WebRtcCallActivity__to_start_call">ដើម្បីចាប់ផ្តើម ឬចូលរួមការហៅ៖</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">ដើម្បីបើកវីដេអូរបស់អ្នក៖</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">បង្រួមវីដេអូក្នុងឧបករណ៍</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">ពង្រីកវីដេអូក្នុងឧបករណ៍</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">ការហៅ Signal</string>
@@ -2821,6 +2851,8 @@
     <string name="SubmitDebugLogActivity_success">ជោគជ័យ!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ចម្លងអាសយដ្ឋាន URL នេះ និងបន្ថែមវាទៅរបាយការណ៍បញ្ហា ឬអ៊ីម៉ែលគាំទ្រ:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">ចែករំលែក</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">បិទ</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">កំណត់ត្រានេះ នឹងបិទផ្សាយជាសាធារណៈតាមអនឡាញ បង្ហាញដល់អ្នករួមចំណែក។ អ្នកអាចពិនិត្យមុនពេលផ្ទុក។</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">នៅពេលអ្នកចុច \"ដាក់បញ្ជូន\" នោះកំណត់ហេតុរបស់អ្នកនឹងត្រូវបានបង្ហោះលើអនឡាញរយៈពេល 30 ថ្ងៃនៅ URL មួយដែលខុសប្លែកពីគេ និងមិនទាន់បានផ្សព្វផ្សាយ។ អ្នកអាចរក្សាទុកវានៅក្នុងឧបករណ៍សិន។</string>
@@ -3076,6 +3108,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">បានប្រតិកម្ម %1$s ទៅនឹងការបង់ប្រាក់របស់អ្នក។</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">បានប្រតិកម្ម %1$s ទៅនឹងស្ទីគ័ររបស់អ្នក។</string>
     <string name="MessageNotifier_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s បានបោះឆ្នោតនៅក្នុងការស្ទង់មតិ \"%3$s\"</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">បិទសារជូនដំណឹងលេខទំនាក់ទំនងចូលរួម Signal? អ្នកអាចបើកវាម្តងទៀតក្នុង Signal &gt; ការកំណត់ &gt; សារជូនដំណឹង។</string>
 
@@ -3247,6 +3281,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">ឆ្លើយដោយគ្មានវីដេអូ</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">ប្តូរទិសដៅកាមេរ៉ា</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">ការបញ្ចេញសំឡេង</string>
@@ -3304,9 +3341,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s មិនមែនជាអ្នកប្រើ Signal ទេ។ សូមពិនិត្យឈ្មោះអ្នកប្រើ រួចព្យាយាមម្តងទៀត។"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">អ្នកមិនចាំបាច់បន្ថែមខ្លួនឯងចូលក្នុងក្រុមទេ</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">បានឈានដល់ទំហំក្រុមអតិបរមា</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">ក្រុម Signal អាចមានសមាជិកអតិបរមាចំនួន %1$d ។</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">ក្រុម Signal អាចមានសមាជិកអតិបរមាចំនួន %1$s ។</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">បានឈានដល់ដែនកំណត់សមាជិកដែលបានណែនាំ</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">ក្រុម Signal ដំណើរការល្អបំផុតជាមួយសមាជិក %1$d នាក់ ឬតិចជាងនេះ។ ការបន្ថែមសមាជិកច្រើន នឹងបណ្តាលឱ្យមានការពន្យារពេលការផ្ញើ និងទទួលសារ។</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">ក្រុម Signal ដំណើរការល្អបំផុតជាមួយសមាជិក %1$s នាក់ ឬតិចជាងនេះ។ ការបន្ថែមសមាជិកច្រើន នឹងបណ្តាលឱ្យមានការពន្យារពេលការផ្ញើ និងទទួលសារ។</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">សមាជិក %1$d នាក់</item>
     </plurals>
@@ -4302,6 +4339,8 @@
     <string name="conversation_selection__menu_multi_select">ជ្រើសរើស</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">ព័ត៌មានលម្អិតអំពីការបង់ប្រាក់</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">បញ្ចប់ការស្ទង់មតិ</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5040,9 +5079,13 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">រំលង</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="other">%1$d សមាជិក</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="other">សមាជិក %1$s នាក់</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">បន្ទាប់</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">ចែករំលែក</string>
@@ -5756,23 +5799,23 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s ត្រូវបានទប់ស្កាត់</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">ការទប់ស្កាត់មិនបានជោគជ័យទេ</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">មិនអាចដក %1$s ចេញបានទេ</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">បុគ្គលនេះត្រូវបានរក្សាទុកទៅក្នុងឈ្មោះទំនាក់ទំនងរបស់ឧបករណ៍អ្នក។ លុបគេចេញពីឈ្មោះទំនាក់ទំនងរបស់អ្នក ហើយព្យាយាមម្តងទៀត។</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">មើលឈ្មោះទំនាក់ទំនង</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s មិនមែនជាអ្នកប្រើ Signal ទេ</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s មិនមែនជាអ្នកប្រើ Signal ទេ</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s មិនមែនជាអ្នកប្រើ Signal ទេ</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">បើកម៉ឺនុយ</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="other">%1$s មិនមែនជាអ្នកប្រើ Signal ទេ</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">ស្វែងរកឈ្មោះ ឬលេខទូរស័ព្ទ</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">ឈ្មោះ ឈ្មោះអ្នកប្រើ ឬលេខ</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">ប្តូរទៅក្តារចុចលេខ</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">ប្តូរទៅក្តារចុចអក្សរក្រមលេខ</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">កំណត់តម្រងស្វែងរកឡើងវិញ</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -5932,7 +5975,6 @@
     <string name="BadgesOverviewFragment__featured_badge">ស្លាកពិសេស</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">បង្ហាញស្លាកលើប្រូហ្វាល់</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">បរាជ័យធ្វើបច្ចុប្បន្នភាពគណនី</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">ជ្រើសរើសស្លាកមួយ</string>
@@ -7560,12 +7602,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">បើកការបម្រុងទុកសុវត្ថិភាព Signal</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">សាកល្បងការបម្រុងទុកសុវត្ថិភាព Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">មិនបាត់បង់សារនៅពេលអ្នកមានទូរសព្ទថ្មី ឬដំឡើង Signal ឡើងវិញ។</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">បើក</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">ឥឡូវកុំទាន់</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">អ្នកអាចបើកការបម្រុងទុកនៅក្នុង \"ការកំណត់\"</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">បញ្ជាក់សោស្តាររបស់អ្នក</string>
@@ -7835,6 +7881,12 @@
     <string name="BackupStatusRow__your_last_backup">ការបម្រុងទុកចុងក្រោយរបស់អ្នកមិនអាចបញ្ចប់បានទេ។ ត្រូវប្រាកដថាទូរសព្ទរបស់អ្នកបានភ្ជាប់ Wi-Fi រួចចុច \"បម្រុងទុកឥឡូវនេះ\" ដើម្បីព្យាយាមម្តងទៀត។</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">ការបម្រុងទុកចុងក្រោយរបស់អ្នកមិនអាចបញ្ចប់បានទេ។ ត្រូវប្រាកដថាអ្នកកំពុងតែប្រើកំណែចុងក្រោយបំផុតរបស់ Signal រួចព្យាយាមម្តងទៀត។</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">ចំនួនសារដែលអ្នកមានលើសពីដែនកំណត់ផ្ទុកហើយ។ លុបសារមួយចំនួន ហើយព្យាយាមម្តងទៀត។</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">សារដែលបានផ្ញើ ឬទទួលមុន %1$s មិនត្រូវបានបម្រុងទុកទេ។</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">ការបម្រុងទុករបស់អ្នកមិនអាចបញ្ចប់បានទេ ដោយសារអ្នកមានទំហំផ្ទុកតិច។ បង្កើនទំហំផ្ទុកនៅលើឧបករណ៍របស់អ្នក ហើយព្យាយាមម្តងទៀត។</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">ស្វែងយល់បន្ថែម</string>
 
@@ -7962,7 +8014,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/ខែ, បន្ត %2$s</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">បន្ត %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">ការបម្រុងទុកចុងក្រោយ៖ %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8012,10 +8064,10 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">បិទ និងលុបការបម្រុងទុក</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">ទំហំបម្រុងទុក</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="other">ការបម្រុងទុករបស់អ្នករួមបញ្ចូលសារជាអក្សរទាំងអស់របស់អ្នក និងមេឌៀ %1$d ថ្ងៃចុងក្រោយរបស់អ្នក។ ទំហំនឹងផ្លាស់ប្តូរនៅពេលមេឌៀថ្មីត្រូវបានទទួល ហើយមេឌៀចាស់ផុតកំណត់។</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">ការបម្រុងទុកត្រូវបានលុប និងបិទ។</string>
@@ -8158,7 +8210,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">កំពុងបង្ហោះ៖ %1$s លើ %2$s (%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">កំពុងបង្ហោះ៖ %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">ព័ត៌មានលម្អិត</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8232,13 +8284,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">សោស្តាររបស់អ្នក</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">សោស្តារ</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">សោស្តាររបស់អ្នកគឺជាលេខកូដមាន 64 តួអក្សរដែលអាចឱ្យអ្នកស្តារការបម្រុងទុករបស់អ្នកមកវិញនៅពេលអ្នកដំឡើង Signal ឡើងវិញ។</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">សោស្តាររបស់អ្នកគឺជាលេខកូដ 64 តួអក្សរដែលអ្នកត្រូវការដើម្បីស្ដារការបម្រុងទុករបស់អ្នក។</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">ប្រសិនបើអ្នកភ្លេចសោរបស់អ្នក អ្នកនឹងមិនអាចស្ដារការបម្រុងទុករបស់អ្នកបានទេ។ Signal មិនអាចជួយអ្នកក្នុងការស្តារការបម្រុងទុករបស់អ្នកបានទេ។</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">រក្សាទុកសោស្តាររបស់អ្នកនៅកន្លែងណាដែលមានសុវត្ថិភាព ដូចជាមុខងារគ្រប់គ្រងពាក្យសម្ងាត់ដែលមានសុវត្ថិភាព ហើយកុំចែករំលែកវាជាមួយអ្នកផ្សេង។</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">ប្រសិនបើអ្នកបាត់បង់វា អ្នកនឹងមិនអាចស្តារសាររបស់អ្នកមកវិញបានទេ។</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">បន្ទាប់</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">មើលសោស្តារ</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8289,6 +8343,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">បង្កើតសោស្តារថ្មី</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">ការបង្កើតសោថ្មីគឺចាំបាច់លុះត្រាតែមានអ្នកផ្សេងស្គាល់សោរបស់អ្នក។ អ្នកនឹងត្រូវផ្ទុកឡើងវិញនូវការបម្រុងទុករបស់អ្នក រួមទាំងមេឌៀផងដែរ។ ប្រសិនបើអ្នកកំពុងប្រើ \"បង្កើនប្រសិទ្ធភាពការផ្ទុក\" អ្នកនឹងត្រូវទាញយកមេឌៀដែលមិនបានផ្ទុកជាមុនសិន។</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">ចាកចេញពីការរៀបចំការបម្រុងទុក?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">អ្នកមិនទាន់បានបញ្ចប់ការរៀបចំការបម្រុងទុកទេ ហើយគ្មានការបម្រុងទុកណាមួយត្រូវបានបង្កើតឡើងទេ។ អ្នកអាចបើកការបម្រុងទុកនៅក្នុងការកំណត់។</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">ចាកចេញពីការរៀបចំការបម្រុងទុក</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8413,6 +8473,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">ពីទូរសព្ទចាស់របស់អ្នក</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">ផ្ទេរដោយផ្ទាល់ពីឧបករណ៍ Android ចាស់របស់អ្នក</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">រំលងការស្តារឡើងវិញ?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">ប្រសិនបើអ្នករំលងការស្ដារឥឡូវនេះ អ្នកនឹងមិនអាចស្ដារនៅពេលក្រោយបានទេ។ ប្រសិនបើអ្នកបើកការបម្រុងទុកឡើងវិញបន្ទាប់ពីរំលងការស្ដារ ការបម្រុងទុកបច្ចុប្បន្នរបស់អ្នកនឹងត្រូវបានជំនួសដោយប្រវត្តិសារថ្មីរបស់អ្នក។</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">រំលងការស្តារឡើងវិញ</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">ស្តារការបម្រុងទុកក្នុងឧបករណ៍</string>
@@ -8453,6 +8519,10 @@
     <string name="EnterBackupKey_backup_not_found">រកមិនឃើញការបម្រុងទុកទេ</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">សោស្តារដែលអ្នកបានបញ្ចូលគឺត្រឹមត្រូវហើយ ប៉ុន្តែមិនមានការបម្រុងទុកដែលពាក់ព័ន្ធនឹងវាទេ។ ប្រសិនបើអ្នកនៅតែមានទូរសព្ទចាស់របស់អ្នក សូមប្រាកដថាការបម្រុងទុកត្រូវបានបើក ហើយថាការបម្រុងទុកត្រូវបានបញ្ចប់សព្វគ្រប់ រួចព្យាយាមម្តងទៀត។</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">អ្នកប្រហែលជាបានបញ្ចូលសោស្តាររបស់អ្នកដោយមិនត្រឹមត្រូវ ឬអ្នកមិនទាន់បានបញ្ចប់ការបម្រុងទុកយ៉ាងហោចណាស់មួយនៅលើឧបករណ៍ចាស់របស់អ្នក។\n\nត្រូវប្រាកដថាអ្នកកំពុងចុះឈ្មោះដោយប្រើលេខទូរសព្ទដូចគ្នា និងសោស្តារដែលអ្នកបានរក្សាទុកនៅពេលបើកការបម្រុងទុកសុវត្ថិភាព Signal ហើយបញ្ជាក់ថាឧបករណ៍ចាស់របស់អ្នកបានបញ្ចប់ការបម្រុងទុក។</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">ការព្យាយាមចំពោះសោស្តាររបស់អ្នកបានអស់ហើយ។ ដើម្បីសុវត្ថិភាពរបស់អ្នក ចំនួននៃការព្យាយាមដែលអ្នកអាចធ្វើបានមានកំណត់។ សូមរង់ចាំមួយម៉ោង ហើយព្យាយាមម្តងទៀត។</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">រំលងការស្តារឡើងវិញ</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8541,6 +8611,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">រំលងការស្តារឡើងវិញ</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">សោស្តារបានដល់ចំនួនកំណត់ហើយ</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">អ្នកបានបង្កើតសោស្តារថ្មីដោយជោគជ័យ ប៉ុន្តែដើម្បីការពារការរំលោភបំពាន ចំនួនសោថ្មីដែលអ្នកអាចបង្កើតបានគឺមានកំណត់។ អ្នកនឹងមិនអាចបង្កើតសោមួយផ្សេងទៀតបានទេសម្រាប់រយៈពេល 7 ថ្ងៃ។ រក្សាទុកសោស្តាររបស់អ្នកនៅកន្លែងណាដែលមានសុវត្ថិភាព។</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">មិនអាចបង្កើតសោថ្មីបានទេ</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">ចំនួនសោថ្មីដែលអ្នកអាចបង្កើតបានគឺអស់ហើយ។ អ្នកនឹងអាចបង្កើតសោស្តារថ្មីក្នុងរយៈពេល 7 ថ្ងៃ។ ប្រសិនបើអ្នកជឿថានរណាម្នាក់អាចនឹងចូលប្រើការបម្រុងទុករបស់អ្នក អ្នកអាចជ្រើសរើស “បិទ និងលុបការបម្រុងទុក”។</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">យល់ព្រម</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">បិទការស្វែងរក</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8578,6 +8658,150 @@
     <plurals name="Notification_you_have_not_completed_a_backup">
         <item quantity="other">អ្នកមិនបានបញ្ចប់ការបម្រុងទុករយៈពេល %1$d ថ្ងៃហើយ។ បង្កើតការបម្រុងទុកឥឡូវនេះ។</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">ការស្ទង់មតិ · ជ្រើសរើសមួយ</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">ការស្ទង់មតិ · ជ្រើសរើសមួយ ឬច្រើន</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">ការស្ទង់មតិ · លទ្ធផលចុងក្រោយ</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">គ្មានការបោះឆ្នោតទេ</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">មើលការបោះឆ្នោត</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">មើលការស្ទង់មតិ</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">រកមិនឃើញការស្ទង់មតិទេ</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">មើលលទ្ធផល</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">ការស្ទង់មតិ៖ %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s បានបញ្ចប់ការស្ទង់មតិ៖ \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">អ្នកបានបញ្ចប់ការស្ទង់មតិ៖ \"%1$s\"</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s បានបោះឆ្នោតនៅក្នុងការស្ទង់មតិ៖ \"%2$s\"</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">ការស្ទង់មតិ</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">លទ្ធផលស្ទង់មតិ</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">ព័ត៌មានលម្អិតអំពីការស្ទង់មតិ</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">សំណួរ</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="other">%1$d សំឡេង</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">អ្នកឈ្នះ</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">បញ្ចប់ការស្ទង់មតិ</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">មើលទាំងអស់</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">មិនអាចបញ្ចប់ការស្ទង់មតិបានទេ</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">បញ្ចប់ការស្ទង់មតិ?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">សមាជិកក្រុមនឹងមិនអាចបោះឆ្នោតនៅក្នុងការស្ទង់មតិនេះទៀតទេ។</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">កំពុងរង់ចាំបណ្តាញ…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">ការស្ទង់មតិថ្មី</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">សំណួរ</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">សួរសំណួរ</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">ជម្រើស</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">ជម្រើស %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">មុខងារទាញរៀបលំដាប់លំដោយ</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">អនុញ្ញាតការបោះឆ្នោតជាច្រើន</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">បញ្ចូលសំណួរ និងជម្រើសយ៉ាងហោចណាស់ 2</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">បញ្ចូលជម្រើសយ៉ាងហោចណាស់ 2</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">បញ្ចូលសំណួរ</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">បញ្ហាសំឡេង</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">បញ្ហាវីដេអូ</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">ការហៅទូរសព្ទត្រូវបានដាក់ចុះ</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">អ្វីផ្សេងទៀត</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">សំឡេងរអាក់រអួល</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">សំឡេងត្រូវបានកាត់ចេញ</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">ខ្ញុំឮសំឡេងបន្ទរ</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">អ្នកផ្សេងបានឮសំឡេងបន្ទរ</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">គុណភាពវីដេអូអន់</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">គុណភាពបង្ហាញទាប</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">កាមេរ៉ាមិនដំណើរការទេ</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">អ្វីផ្សេងទៀត</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">ពណ៌នាអំពីបញ្ហារបស់អ្នក</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">សូមបញ្ចូលព័ត៌មានលម្អិតដែលទាក់ទងនឹងបញ្ហា។ អ្វីក៏ដោយដែលអ្នកចែករំលែកនៅទីនេះនឹងត្រូវបានរក្សាទុកជាឯកជន ហើយនឹងត្រូវបានប្រើដើម្បីជួយកែលម្អការហៅទូរសព្ទនៅក្នុង Signal ប៉ុណ្ណោះ។</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">រក្សាទុក</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">ត្រឡប់ក្រោយ</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">តើការហៅទូរសព្ទរបស់អ្នកយ៉ាងម៉េចដែរ?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">វាជួយយើងកែលម្អការហៅទូរសព្ទនៅក្នុង Signal។ គ្មានព័ត៌មានដែលអាចកំណត់អត្តសញ្ញាណផ្ទាល់ខ្លួនបាននឹងត្រូវបានរក្សាទុកទេ។</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">មានបញ្ហា</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">អស្ចារ្យ</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">តើអ្នកមានបញ្ហាអ្វីខ្លះ?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">ជ្រើសរើសទាំងអស់ដែលពាក់ព័ន្ធ</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">ពណ៌នាអំពីបញ្ហារបស់អ្នក</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">បន្ត</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">ជួយយើងកែលម្អ</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">ការផ្ញើព័ត៌មានវិនិច្ឆយរបស់អ្នកមកយើងជួយយើងកែលម្អគុណភាពនៃការហៅទូរសព្ទ។ អ្នកអាច </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">មើលកំណត់ត្រាបញ្ហារបស់អ្នក</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> មុនពេលដាក់បញ្ជូន</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">ចែករំលែកកំណត់ត្រាបញ្ហា</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">កំណត់ត្រាបញ្ហាមានព័ត៌មានកម្មវិធីកម្រិតទាប ហើយមិនបង្ហាញខ្លឹមសារនៃសារណាមួយរបស់អ្នកទេ។</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">ដាក់បញ្ជូន</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">សូមអរគុណចំពោះមតិកែលម្អរបស់អ្នក!</string>
 
     <!-- EOF -->
 </resources>

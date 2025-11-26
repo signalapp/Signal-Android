@@ -5,12 +5,16 @@
 
 package org.thoughtcrime.securesms.main
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameScreen
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsScreen
 import org.thoughtcrime.securesms.serialization.JsonSerializableNavType
@@ -27,6 +31,8 @@ fun NavGraphBuilder.callNavGraphBuilder(navHostController: NavHostController) {
       typeOf<CallLinkRoomId>() to JsonSerializableNavType(CallLinkRoomId.serializer())
     )
   ) {
+    informNavigatorWeAreReady()
+
     val route = it.toRoute<MainNavigationDetailLocation.Calls.CallLinks.CallLinkDetails>()
 
     CallLinkDetailsScreen(roomId = route.callLinkRoomId)
@@ -37,11 +43,21 @@ fun NavGraphBuilder.callNavGraphBuilder(navHostController: NavHostController) {
       typeOf<CallLinkRoomId>() to JsonSerializableNavType(CallLinkRoomId.serializer())
     )
   ) {
+    informNavigatorWeAreReady()
+
     val route = it.toRoute<MainNavigationDetailLocation.Calls.CallLinks.EditCallLinkName>()
     val parent = navHostController.previousBackStackEntry ?: return@composable
 
     CompositionLocalProvider(LocalViewModelStoreOwner provides parent) {
       EditCallLinkNameScreen(roomId = route.callLinkRoomId)
     }
+  }
+}
+
+@Composable
+private fun informNavigatorWeAreReady() {
+  val navigator = LocalContext.current as? MainNavigator.NavigatorProvider
+  LaunchedEffect(navigator) {
+    navigator?.onFirstRender()
   }
 }

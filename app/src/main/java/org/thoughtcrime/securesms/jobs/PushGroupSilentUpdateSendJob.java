@@ -180,7 +180,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
                                                                         .asGroupMessage(group)
                                                                         .build();
 
-    List<SendMessageResult> results = GroupSendUtil.sendUnresendableDataMessage(context, groupId, destinations, false, ContentHint.IMPLICIT, groupDataMessage, false);
+    List<SendMessageResult> results = GroupSendUtil.sendUnresendableDataMessage(context, groupId, destinations, false, ContentHint.IMPLICIT, groupDataMessage, false, null);
 
     GroupSendJobHelper.SendResult groupResult = GroupSendJobHelper.getCompletedSends(destinations, results);
 

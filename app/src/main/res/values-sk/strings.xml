@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Zaznamenajte frázu obnovy platieb</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Zaznamenajte frázu</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Pred deaktiváciou kódu PIN musíte zaznamenať frázu na obnovenie platieb, aby ste sa ubezpečili, že môžete svoj platobný účet obnoviť.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Vytvorte nový kľúč na obnovenie</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Pred vypnutím PIN kódu musíte vytvoriť a zaznamenať nový kľúč na obnovenie.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Vytvoriť kľúč</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">Súbor</string>
     <string name="AttachmentKeyboard_contact">Kontakt</string>
     <string name="AttachmentKeyboard_location">Poloha</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">Anketa</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Na zobrazenie vašich fotiek a videí potrebuje Signal povolenie</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Povoliť prístup</string>
@@ -904,7 +912,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">V závislosti od veľkosti zálohy to môže trvať dlhšie. Počas zálohovania môžete telefón používať ako obvykle.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">Médiá sa pridávajú do zálohy pri odosielaní a prijímaní správ.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Médiá nie je možné obnoviť</string>
@@ -1211,6 +1219,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Táto verzia Signalu vypršala. Pre odosielanie a príjem ďalších správ ju aktualizujte.</string>
     <string name="ExpiredBuildReminder_update_now">Aktualizovať teraz</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal už na tomto zariadení nefunguje. Ak chcete znova používať Signal, aktualizujte svoje zariadenie na novšiu verziu Androidu alebo prejdite na novšie zariadenie.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Aktualizujte Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1459,13 +1470,18 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Hotovo</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Táto osoba nemôže byť pridaná do zastaraných skupín.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Pridať používateľa \"%1$s\" do \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Pridať používateľa „%1$s“ do „%2$s“?</item>
-        <item quantity="few">Pridať %3$d členov do „%2$s“?</item>
-        <item quantity="many">Pridať %3$d člena do „%2$s“?</item>
-        <item quantity="other">Pridať %3$d členov do „%2$s“?</item>
+        <item quantity="one">Pridať používateľa „{2}“ do „%2$s“?</item>
+        <item quantity="few">Pridať %1$d členov do „%2$s“?</item>
+        <item quantity="many">Pridať %1$d člena do „%2$s“?</item>
+        <item quantity="other">Pridať %1$d členov do „%2$s“?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Pridať</string>
     <string name="AddMembersActivity__add_members">Pridať členov</string>
 
@@ -1571,6 +1587,10 @@
     <string name="RemoteRestoreActivity__not_now">Teraz nie</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Vaše médiá sa obnovia na pozadí. Ak sa rozhodnete nevykonať obnovu teraz, neskôr to nebude možné.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">Toto zariadenie už nie je registrované</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">Dôvodom je pravdepodobne to, že ste svoj účet Signal zaregistrovali na inom zariadení.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozorni ma na Spomenutia</string>
@@ -2227,6 +2247,10 @@
     <string name="MessageRecord_you_unblocked_this_group">Túto skupinu ste odblokovali</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s vám poslal/a správu, ktorú nemožno spracovať alebo zobraziť, pretože používa novú funkciu Signalu.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">Používateľ %1$s ukončil anketu: „%2$s“</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">Ukončili ste anketu: „%1$s“</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Potvrdiť</string>
@@ -2568,6 +2592,12 @@
     <string name="WebRtcCallActivity__to_start_call">Ak chcete začať hovor alebo sa k nemu pripojiť:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">Ak chcete zapnúť video:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Zmenšiť lokálne video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Zväčšiť lokálne video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal hovor</string>
@@ -3100,6 +3130,8 @@
     <string name="SubmitDebugLogActivity_success">Operácia úspešne dokončená!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopírujte túto URL adresu a pridajte ju k hláseniu o chybe alebo e-mailu určenému tímu podpory:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Zdieľať</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">Zatvoriť</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Tento denník bude zverejnený online, aby si ho mohli prispievatelia vidieť. Pred nahraním to môžete skontrolovať.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Keď kliknete na Odoslať, váš záznam bude zverejnený online na 30 dní na jedinečnej, nepublikovanej adrese URL. Najprv ho môžete uložiť lokálne.</string>
@@ -3364,6 +3396,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">Reagoval/a %1$s na vašu platbu.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoval/a %1$s na vašu nálepku.</string>
     <string name="MessageNotifier_this_message_was_deleted">Táto správa bola vymazaná.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s Používateľ %2$s hlasoval v ankete „%3$s“</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vypnúť upozornenia na to, že kontakt začal používať Signal? Môžete ich znova zapnúť v Signal &gt; Nastavenia &gt; Upozornenia.</string>
 
@@ -3550,6 +3584,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Prijať bez videa</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">Zmena smeru kamery</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Audio výstup</string>
@@ -3607,9 +3644,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"„%1$s“ nie je používateľ Signalu. Skontrolujte používateľské meno a skúste to znova."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nie je potrebné pridávať samého seba do skupiny</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Dosiahnutá maximálna veľkosť skupiny</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal skupiny môžu mať maximálne %1$d členov.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal skupiny môžu mať maximálne %1$s členov.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Dosiahli ste odporúčaný limit počtu členov</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal skupiny najlepšie fungujú s %1$d členmi alebo menej. Pridanie ďalších členov spôsobí oneskorenia v posielaní a prijímaní správ.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal skupiny fungujú najlepšie so %1$s alebo menej členmi. Pridanie ďalších členov spôsobí oneskorenia v posielaní a prijímaní správ.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d člen</item>
         <item quantity="few">%1$d členovia</item>
@@ -4647,6 +4684,8 @@
     <string name="conversation_selection__menu_multi_select">Vybrať</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Platobné údaje</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">Ukončiť anketu</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5427,12 +5466,16 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Preskočiť</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d člen</item>
-        <item quantity="few">%1$d členov</item>
-        <item quantity="many">%1$d členov</item>
-        <item quantity="other">%1$d členov</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$s člen</item>
+        <item quantity="few">%1$s členovia</item>
+        <item quantity="many">%1$s člena</item>
+        <item quantity="other">%1$s členov</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">Ďalej</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Zdieľať</string>
@@ -6170,26 +6213,26 @@
     <string name="NewConversationActivity__s_has_been_blocked">Používateľ %1$s bol zablokovaný</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Blokovanie zlyhalo</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Používateľa %1$s nie je možné odstrániť</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Táto osoba je uložená v kontaktoch vášho zariadenia. Odstráňte ju zo svojich kontaktov a skúste to znova.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Zobraziť kontakt</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s nepoužíva Signal</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s nepoužíva Signal</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s nepoužíva Signal</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Otvoriť ponuku</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s nepoužíva Signal</item>
         <item quantity="few">%1$s nepoužívajú Signal</item>
         <item quantity="many">%1$s nepoužívajú Signal</item>
         <item quantity="other">%1$s nepoužívajú Signal</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Vyhľadajte meno, alebo číslo</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Meno, používateľské meno alebo číslo</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Prepnúť na numerickú klávesnicu</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Prepnúť na alfanumerickú klávesnicu</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Obnoviť filter vyhľadávania</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6367,7 +6410,6 @@
     <string name="BadgesOverviewFragment__featured_badge">Zobrazený odznak</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Zobraziť odznaky v profile</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Aktualizácia profilu zlyhala</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Vyberte odznak</string>
@@ -8073,12 +8115,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Zapnite bezpečné Zálohy Signal</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Vyskúšajte Bezpečné zálohy Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Odteraz už pri výmene telefónu alebo opätovnom nainštalovaní Signalu neprídete ani o jednu správu.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Zapnúť</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Teraz nie</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">Zálohovanie môžete povoliť v časti „Nastavenia“</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Overte kľúč na obnovenie</string>
@@ -8357,6 +8403,12 @@
     <string name="BackupStatusRow__your_last_backup">Vašu poslednú zálohu sa nepodarilo dokončiť. Uistite sa, že váš telefón je pripojený k sieti Wi-Fi a skúste to znova ťuknutím na možnosť „Zálohovať teraz“.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Vašu poslednú zálohu sa nepodarilo dokončiť. Uistite sa, že používate najnovšiu verziu Signalu a skúste to znova.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">Počet vašich správ presahuje limit úložného priestoru. Vymažte niektoré správy a skúste to znova.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Správy odoslané alebo prijaté pred %1$s sa nezálohujú.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Zálohovanie sa nepodarilo dokončiť z dôvodu nedostatku úložného priestoru. Uvoľnite miesto na zariadení a skúste to znova.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Zistiť viac</string>
 
@@ -8493,7 +8545,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/mesiac, obnovenie %2$s</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">Obnoví sa %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Posledná záloha %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8543,13 +8595,13 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Vypnúť a vymazať zálohu</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Veľkosť zálohy</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="few">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="many">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="one">Vaša záloha zahŕňa všetky vaše textové správy a médiá za posledný %1$d deň. Veľkosť sa zmení po prijatí nových médií a po vypršaní platnosti starých médií.</item>
+        <item quantity="few">Vaša záloha zahŕňa všetky vaše textové správy a médiá za posledné %1$d dni. Veľkosť sa zmení po prijatí nových médií a po vypršaní platnosti starých médií.</item>
+        <item quantity="many">Vaša záloha zahŕňa všetky vaše textové správy a médiá za posledného %1$d dňa. Veľkosť sa zmení po prijatí nových médií a po vypršaní platnosti starých médií.</item>
+        <item quantity="other">Vaša záloha zahŕňa všetky vaše textové správy a médiá za posledných %1$d dní. Veľkosť sa zmení po prijatí nových médií a po vypršaní platnosti starých médií.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Záloha bola vymazaná a zálohovanie vypnuté.</string>
@@ -8701,7 +8753,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Nahráva sa: %1$s z %2$s (%3$d %%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Nahráva sa: %1$d %%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Podrobnosti</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8775,13 +8827,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Váš kľúč na obnovenie</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Kľúč na obnovenie</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Váš kľúč na obnovenie je 64-miestny kód, ktorý vám umožňuje obnoviť zálohu, keď znovu nainštalujete Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Váš kľúč na obnovenie je 64-miestny kód, ktorý budete potrebovať na obnovenie zálohy.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ak zabudnete svoj kľúč, nebudete môcť obnoviť zálohu. Signal vám nemôže pomôcť obnoviť zálohu.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Uschovajte si kľúč na obnovenie na bezpečnom mieste, napríklad v zabezpečenom správcovi hesiel, a s nikým ho nezdieľajte.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Ak ho stratíte, nebudete môcť obnoviť svoje správy.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Ďalej</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Zobraziť kľúč na obnovenie</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8832,6 +8886,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Vytvorenie nového kľúča na obnovenie</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Nový kľúč je potrebné vytvoriť iba v prípade, že ho pozná niekto iný. Budete musieť znova nahrať zálohu vrátane médií. Ak používate funkciu „Optimalizovať úložisko“, budete si musieť najprv stiahnuť presunuté médiá.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Ukončiť nastavenie zálohovania?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Nedokončili ste nastavenie zálohovania a nebola vytvorená žiadna záloha. Zálohovanie môžete povoliť v Nastaveniach.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Ukončiť nastavenie zálohovania</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8962,6 +9022,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Z vášho starého telefónu</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Vykonajte prenos priamo zo svojho starého Android zariadenia</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Preskočiť obnovenie?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Ak nevykonáte obnovu teraz, neskôr to nebude možné. Ak po preskočení obnovy znova povolíte zálohovanie, vaša aktuálna záloha bude nahradená novou históriou správ.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Preskočiť obnovenie</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Obnoviť lokálnu zálohu</string>
@@ -9002,6 +9068,10 @@
     <string name="EnterBackupKey_backup_not_found">Záloha sa nenašla</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Zadaný kľúč na obnovenie je správny, ale nie je s ním spojená žiadna záloha. Ak ešte máte svoj starý telefón, uistite sa, že bolo povolené a dokončené zálohovanie. Potom to skúste znova.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Možno ste zadali nesprávny kľúč na obnovenie alebo ste nevytvorili aspoň jednu zálohu na starom zariadení.\n\nUistite sa, že sa registrujete pomocou rovnakého telefónneho čísla a kľúča na obnovenie, ktorý ste si uložili pri povolení bezpečných záloh Signal, a overte si, či sa na vašom starom zariadení dokončila záloha.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Vyčerpali ste počet pokusov o zadanie kľúča na obnovenie. Z bezpečnostných dôvodov je počet pokusov, ktoré môžete vykonať, obmedzený. Skúste to znova o hodinu.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Preskočiť obnovenie</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -9090,6 +9160,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Preskočiť obnovenie</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Bol dosiahnutý limit kľúčov na obnovenie</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Úspešne ste vytvorili nový kľúč na obnovenie. Za účelom predídenia zneužitiu je však počet nových kľúčov, ktoré môžete vytvoriť, obmedzený. Ďalší kľúč si nebudete môcť vytvoriť 7 dní. Uschovajte si kľúč na obnovenie na bezpečnom mieste.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Nie je možné vytvoriť nový kľúč</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Vyčerpali ste počet nových kľúčov, ktoré môžete vytvoriť. Nový kľúč na obnovenie si budete môcť vytvoriť o 7 dní. Ak sa domnievate, že niekto by mohol mať prístup k vašej zálohe, môžete zvoliť možnosť „Vypnúť a vymazať zálohu“.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Zavrieť vyhľadávanie</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -9133,6 +9213,153 @@
         <item quantity="many">Nevytvorili ste zálohu už %1$d dňa. Vytvorte ju hneď teraz.</item>
         <item quantity="other">Nevytvorili ste zálohu už %1$d dní. Vytvorte ju hneď teraz.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">Anketa · Vyberte jednu možnosť</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">Anketa · Vyberte jednu alebo viacero možností</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">Anketa · Konečné výsledky</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">Žiadne hlasy</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">Zobraziť hlasy</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">Zobraziť anketu</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">Anketa sa nenašla</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">Zobraziť výsledky</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">Anketa: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">Používateľ %1$s ukončil anketu: „%2$s“</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">Ukončili ste anketu: „%1$s“</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">Používateľ %1$s hlasoval v ankete: „%2$s“</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">Ankety</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">Výsledky ankety</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">Podrobnosti o ankete</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">Otázka</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="one">%1$d hlas</item>
+        <item quantity="few">%1$d hlasy</item>
+        <item quantity="many">%1$d hlasu</item>
+        <item quantity="other">%1$d hlasov</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">Víťaz</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">Ukončiť anketu</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">Zobraziť všetky</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">Anketu sa nepodarilo ukončiť</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">Skontrolujte svoje pripojenie a skúste to znova.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">Ukončiť anketu?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">Členovia skupiny už nebudú môcť v tejto ankete hlasovať.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">Čaká sa na pripojenie k sieti…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">Nová anketa</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">Otázka</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">Položte otázku</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">Možnosti</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">Možnosť %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">Ikona presunutia</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">Povoliť viacero hlasov</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">Pridajte otázku a aspoň 2 možnosti</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">Pridajte aspoň 2 možnosti</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">Pridajte otázku</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">Problém so zvukom</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">Problém s videom</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">Hovor prerušený</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">Niečo iné</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">Zasekávanie zvuku</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">Výpadok zvuku</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">Počul/a som ozvenu</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">Iní počuli ozvenu</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">Slabá kvalita videa</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">Nízke rozlíšenie</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">Kamera nefungovala</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">Niečo iné</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Popíšte problém</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Popíšte svoj problém čo najdetailnejšie. Všetky vami poskytnuté informácie zostanú súkromné a budú použité len na účely zlepšenia kvality hovorov v Signale.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">Uložiť</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">Späť</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">Aká bola kvalita vášho hovoru?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Vaša spätná väzba nám pomáha zlepšiť kvalitu hovorov v Signale. Vaše osobné údaje nebudú uložené.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">Mal/a som problémy</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">Výborná</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">O aký problém išlo?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">Vyberte všetky relevantné možnosti</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">Popíšte problém</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">Pokračovať</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">Pomôžte nám zlepšovať sa</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Odoslaním diagnostických informácií nám pomáhate zlepšiť kvalitu hovorov. Pred odoslaním </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">si môžete zobraziť</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> protokol ladenia</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">Zdieľať protokol ladenia</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">Protokoly ladenia obsahujú informácie o aplikácii na nízkej úrovni a neodhaľujú obsah správ.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">Potvrdiť</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">Ďakujeme za vašu spätnú väzbu!</string>
 
     <!-- EOF -->
 </resources>

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.crypto;
 
 
 import android.content.Context;
-import android.os.Build;
 
 import androidx.annotation.NonNull;
 
@@ -60,25 +59,17 @@ public class AttachmentSecretProvider {
   {
     AttachmentSecret attachmentSecret = AttachmentSecret.fromString(unencryptedSecret);
 
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-      return attachmentSecret;
-    } else {
-      KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.seal(attachmentSecret.serialize().getBytes());
+    KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.seal(attachmentSecret.serialize().getBytes());
 
-      TextSecurePreferences.setAttachmentEncryptedSecret(context, encryptedSecret.serialize());
-      TextSecurePreferences.setAttachmentUnencryptedSecret(context, null);
+    TextSecurePreferences.setAttachmentEncryptedSecret(context, encryptedSecret.serialize());
+    TextSecurePreferences.setAttachmentUnencryptedSecret(context, null);
 
-      return attachmentSecret;
-    }
+    return attachmentSecret;
   }
 
   private AttachmentSecret getEncryptedAttachmentSecret(@NonNull String serializedEncryptedSecret) {
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-      throw new AssertionError("OS downgrade not supported. KeyStore sealed data exists on platform < M!");
-    } else {
-      KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.SealedData.fromString(serializedEncryptedSecret);
-      return AttachmentSecret.fromString(new String(KeyStoreHelper.unseal(encryptedSecret)));
-    }
+    KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.SealedData.fromString(serializedEncryptedSecret);
+    return AttachmentSecret.fromString(new String(KeyStoreHelper.unseal(encryptedSecret)));
   }
 
   private AttachmentSecret createAndStoreAttachmentSecret(@NonNull Context context) {
@@ -93,12 +84,7 @@ public class AttachmentSecretProvider {
   }
 
   private void storeAttachmentSecret(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.seal(attachmentSecret.serialize().getBytes());
-      TextSecurePreferences.setAttachmentEncryptedSecret(context, encryptedSecret.serialize());
-    } else {
-      TextSecurePreferences.setAttachmentUnencryptedSecret(context, attachmentSecret.serialize());
-    }
+    KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.seal(attachmentSecret.serialize().getBytes());
+    TextSecurePreferences.setAttachmentEncryptedSecret(context, encryptedSecret.serialize());
   }
-
 }

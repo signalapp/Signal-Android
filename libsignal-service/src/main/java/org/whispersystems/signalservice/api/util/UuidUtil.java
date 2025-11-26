@@ -78,6 +78,11 @@ public final class UuidUtil {
     return parseOrNull(bytes.toByteArray());
   }
 
+  public static @Nullable String getStringUUID(@Nullable String stringId, @Nullable ByteString bytes) {
+    UUID uuid = parseOrNull(bytes);
+    return (uuid != null) ? uuid.toString() : stringId;
+  }
+
   public static UUID fromByteStringOrUnknown(ByteString bytes) {
     UUID uuid = fromByteStringOrNull(bytes);
     return uuid != null ? uuid : UNKNOWN_UUID;
@@ -88,7 +93,7 @@ public final class UuidUtil {
   }
 
   public static UUID parseOrNull(ByteString byteString) {
-    return parseOrNull(byteString.toByteArray());
+    return byteString != null ? parseOrNull(byteString.toByteArray()): null;
   }
 
   public static List<UUID> fromByteStrings(Collection<ByteString> byteStringCollection) {

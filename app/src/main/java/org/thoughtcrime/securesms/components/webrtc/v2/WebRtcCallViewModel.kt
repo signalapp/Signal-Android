@@ -264,6 +264,12 @@ class WebRtcCallViewModel : ViewModel() {
     }
   }
 
+  fun onLocalPictureInPictureFocusClicked() {
+    participantsState.update {
+      CallParticipantsState.setFocusLocalParticipant(it, it.localRenderState != WebRtcLocalRenderState.FOCUSED)
+    }
+  }
+
   fun onDismissedVideoTooltip() {
     canDisplayTooltipIfNeeded = false
   }

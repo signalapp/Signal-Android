@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Записване на фраза за възстановяване на плащания</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Записване на фраза</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Преди да можете да деактивирате своя PIN, трябва да запишете фразата си за възстановяване на плащания, за да можете да възстановите своя акаунт за плащания.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Създаване на нов ключ за възстановяване</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Трябва да създадете и да запишете нов ключ за възстановяване, преди да можете да деактивирате своя ПИН код.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Създаване на нов ключ</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">Файл</string>
     <string name="AttachmentKeyboard_contact">Контакт</string>
     <string name="AttachmentKeyboard_location">Местоположение</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">Анкета</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal има нужда от разрешение, за да показва вашите снимки и видеа</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Разрешаване на достъп</string>
@@ -864,7 +872,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">В зависимост от размера на вашето резервно копие това може да отнеме доста време. Докато резервното копиране се извършва, можете да използвате телефона си както обикновено.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">Мултимедията се добавя към резервното копие, когато изпращате и получавате съобщения.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Не може да се възстанови мултимедията</string>
@@ -1167,6 +1175,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Тази версия на Signal е изтекла. Обновете сега, за да можете да получавате и изпращате съобщения.</string>
     <string name="ExpiredBuildReminder_update_now">Обнови сега</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal вече не работи на това устройство. За да използвате Signal отново, актуализирайте устройството си до по-нова версия на Android или преминете към по-ново устройство.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Актуализиране на Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1383,11 +1394,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Готово</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Този човек не може да бъде добавен в стари групи.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Добавяне на „%1$s“ към „%2$s“?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Добавяне на %1$s към „%2$s“?</item>
-        <item quantity="other">Добавяне на %3$d членове към „%2$s“?</item>
+        <item quantity="one">Добавяне на {2} към „%2$s“?</item>
+        <item quantity="other">Добавяне на %1$d членове към „%2$s“?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Добави</string>
     <string name="AddMembersActivity__add_members">Добави членове</string>
 
@@ -1491,6 +1507,10 @@
     <string name="RemoteRestoreActivity__not_now">Не сега</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Мултимедията ще се възстановява във фонов режим. Ако изберете да не възстановите сега, няма да можете да възстановите по-късно.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">Това устройство вече не е регистрирано</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">Вероятно причината е, че сте регистрирали своя акаунт за Signal на друго устройство.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Уведоми ме за споменавания</string>
@@ -2107,6 +2127,10 @@
     <string name="MessageRecord_you_unblocked_this_group">Отблокирахте тази група</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s ви изпрати съобщение, което не може да бъде обработено или показано, тъй като използва нова функция на Signal.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s приключи анкетата: „%2$s“</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">Приключихте анкетата: „%1$s“</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Приемам</string>
@@ -2422,6 +2446,12 @@
     <string name="WebRtcCallActivity__to_start_call">За да започнете или да се присъедините към разговор:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">За да активирате вашето видео:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Свиване на локалното видео</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Разширяване на локалното видео</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Повикване в Signal</string>
@@ -2914,6 +2944,8 @@
     <string name="SubmitDebugLogActivity_success">Успех!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Копирайте този URL адрес и го добавете към вашия доклад за проблем или имейл за поддръжка:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Споделяне</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">Затвори</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Тези записки ще бъдат публикувани онлайн за разглеждане от доброволци. Може да го прегледате, преди да го качите.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Когато кликнете „Изпрати“, вашият регистър ще бъде качен онлайн за 30 дни на уникален, непубликуван URL адрес. Може преди това да го запазите локално.</string>
@@ -3172,6 +3204,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">Реагира с %1$s на вашето плащане.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Реагира с %1$s на вашия стикер.</string>
     <string name="MessageNotifier_this_message_was_deleted">Това съобщение беше изтрито.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s гласува в анкетата „%3$s“</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Да се изключат ли известията за присъединения на контакти към Signal? Можете да ги активирате отново в Signal &gt; Настройки &gt; Известия.</string>
 
@@ -3348,6 +3382,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Отговори без видео</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">Промяна на посока на камерата</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Аудио изход</string>
@@ -3405,9 +3442,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" не е потребител на Signal. Моля, проверете потребителското име и опитайте отново."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Не е нужно да се добавяте към групата</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Достигнат е максималният размер на групата</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Групите в Signal могат да имат максимум %1$d членове.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Групите в Signal могат да имат максимум %1$s членове.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Достигнат е лимитът за препоръчани членове</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Групи в Signal се представят най-добре с %1$d членове или по-малко. Добавянето на повече членове ще доведе до забавяне на изпращането и получаването на съобщения.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Групи в Signal работят най-добре с/ъс %1$s или по-малко членове. Добавянето на повече членове ще доведе до забавяне на изпращането и получаването на съобщения.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d член</item>
         <item quantity="other">%1$d членове</item>
@@ -4417,6 +4454,8 @@
     <string name="conversation_selection__menu_multi_select">Изберете</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Подробности за плащане</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">Приключване на анкетата</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5169,10 +5208,14 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Пропусни</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d член</item>
-        <item quantity="other">%1$d членове</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$s член</item>
+        <item quantity="other">%1$s членове</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">Напред</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Споделяне</string>
@@ -5894,24 +5937,24 @@
     <string name="NewConversationActivity__s_has_been_blocked">Контактът „%1$s“ е блокиран</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Неуспешно блокиране</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Неуспешно премахване на %1$s</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Този човек е запазен в „Контакти“ на устройството ви. Изтрийте го от „Контакти“ и опитайте отново.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Вижте контакта</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s не е потребител на Signal</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s не е потребител на Signal</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s не е потребител на Signal</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Отваряне на менюто</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s не е потребител на Signal</item>
         <item quantity="other">%1$s не са потребители на Signal</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Търси по име или номер</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Име, потребителско име или номер</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Превключване на клавиатура с цифри</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Превключване на клавиатура с букви и цифри</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Нулиране на филтъра за търсене</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">. %1$s</string>
@@ -6077,7 +6120,6 @@
     <string name="BadgesOverviewFragment__featured_badge">Представена значка</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Показване на значки в профила</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Неуспешно актуализиране на профила</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Изберете значка</string>
@@ -7731,12 +7773,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Включете „Сигурни резервни копия на Signal“</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Опитайте „Сигурни резервни копия на Signal“</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Никога не губете съобщения, когато вземете нов телефон или преинсталирате Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Включване</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Не сега</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">Можете да активирате резервните копия в „Настройки“</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Потвърдете своя ключ за възстановяване</string>
@@ -8009,6 +8055,12 @@
     <string name="BackupStatusRow__your_last_backup">Последното ви резервно копиране не можа да бъде завършено. Уверете се, че телефонът ви е свързан към Wi-Fi и докоснете „Резервно копиране сега“, за да опитате отново.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Последното ви резервно копиране не можа да бъде завършено. Уверете се, че използвате най-новата версия на Signal, и опитайте отново.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">Броят на съобщенията, които имате, надвишава ограничението за съхранение. Изтрийте някои съобщения и опитайте отново.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Съобщенията, изпратени или получени преди %1$s, не се архивират.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Вашето резервно копие не може да бъде завършено, защото няма достатъчно пространство за съхранение. Освободете място на устройството си и опитайте отново.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Научете повече</string>
 
@@ -8139,7 +8191,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/месец, подновява се на %2$s</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">Подновява се на %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Последно резервно копие %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8189,11 +8241,11 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Изключване и изтриване на резервното копие</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Размер на резервно копие</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="one">Вашето резервно копие включва всичките ви текстови съобщения и мултимедията от последния %1$d ден. Размерът ще се променя с получаването на нова мултимедия и изтичането на срока на старата.</item>
+        <item quantity="other">Вашето резервно копие включва всичките ви текстови съобщения и мултимедията от последните %1$d дни. Размерът ще се променя с получаването на нова мултимедия и изтичането на срока на старата.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Резервното копие е изтрито и функцията е изключена.</string>
@@ -8339,7 +8391,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Качване: %1$s от %2$s (%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Качване: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Подробности</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8413,13 +8465,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Вашият ключ за възстановяване</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Ключ за възстановяване</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Вашият ключ за възстановяване е код от 64 знака, който ви позволява да възстановите резервното копие, когато инсталирате Signal отново.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Вашият ключ за възстановяване е код от 64 знака, който ще ви е необходим за възстановяване на резервното ви копие.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ако забравите своя ключ, няма да можете да възстановите резервното си копие. Signal не може да ви помогне да възстановите резервното си копие.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Съхранявайте своя ключ за възстановяване на сигурно място като защитен мениджър на пароли и не го споделяйте с никого.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Ако го изгубите, няма да можете да възстановите съобщенията си.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Напред</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Преглед на ключа за възстановяване</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8470,6 +8524,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Създаване на нов ключ за възстановяване</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Създаването на нов ключ е необходимо само ако някой друг знае какъв е вашият ключ. Ще трябва да качите резервното копие отново, включително мултимедията. Ако използвате „Оптимизиране на хранилището“, първо ще трябва да изтеглите премахнатата мултимедия.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Излизане от настройката на резервно копие?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Не сте завършили настройката на резервни копия, не е създадено резервно копие. Можете да активирате резервните копия в „Настройки“.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Излизане от настройката на резервно копие</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8596,6 +8656,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">От стария ви телефон</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Директен трансфер от стария ви Android</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Пропускане на възстановяването?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Ако пропуснете възстановяването сега, няма да можете да възстановите по-нататък. Ако отново активирате архивирането, след като сте пропуснали възстановяването, текущото резервно копие ще бъде заменено с новата история на съобщенията.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Пропускане на възстановяването</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Възстановяване на локално резервно копие</string>
@@ -8636,6 +8702,10 @@
     <string name="EnterBackupKey_backup_not_found">Не е открито резервно копие</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Ключът за възстановяване, който сте въвели, е правилен, но няма резервно копие, свързано с него. Ако все още пазите стария си телефон, се уверете, че архивирането е активирано и че има завършено резервно копие, и опитайте отново.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Възможно е да сте въвели неправилно своя ключ за възстановяване или да не сте извършили поне едно архивиране на старото си устройство.\n\nУверете се, че се регистрирате със същите телефонен номер и ключ за възстановяване, които сте запазили при активирането на „Сигурни резервни копия на Signal“, и се уверете, че на старото ви устройство е направено резервно копие.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Изчерпани са опитите за ключ за възстановяване. За ваша сигурност броят на опитите, които можете да направите, е ограничен. Изчакайте един час и опитайте отново.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Пропуснете възстановяването</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8724,6 +8794,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Пропуснете възстановяването</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Достигнато ограничение на ключовете за възстановяване</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Успешно сте създали нов ключ за възстановяване, но за да се предотврати злоупотреба, броят на новите ключове, които можете да създавате, е ограничен. Няма да можете да създадете нов ключ следващите 7 дни. Съхранявайте своя ключ за възстановяване на сигурно място.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Не може да се създаде нов ключ</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Изразходвали сте броя нови ключове, които можете да създадете. Ще можете да създадете нов ключ за възстановяване след 7 дни. Ако смятате, че някой може да има достъп до резервното ви копие, можете да изберете „Изключване и изтриване на резервното копие“.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">ОК</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Затваряне на търсачката</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8763,6 +8843,151 @@
         <item quantity="one">Не сте правили резервно копиране от %1$d ден. Направете резервно копие сега.</item>
         <item quantity="other">Не сте правили резервно копиране от %1$d дни. Направете резервно копие сега.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">Анкета · Изберете едно</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">Анкета · Изберете едно или повече</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">Анкета · Окончателни резултати</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">Няма гласове</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">Преглед на гласовете</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">Преглед на анкетата</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">Анкетата не е намерена</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">Преглед на резултатите</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">Анкета: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s приключи анкетата: „%2$s“</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">Приключихте анкетата: „%1$s“</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s гласува в анкетата: „%2$s“</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">Анкети</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">Резултати от анкетата</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">Подробности за анкетата</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">Въпрос</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="one">%1$d глас</item>
+        <item quantity="other">%1$d гласа</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">Победител</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">Приключване на анкетата</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">Вижте всички</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">Неуспешно приключване на анкетата</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">Проверете връзката си и опитайте отново.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">Приключване на анкетата?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">Членовете на групата вече няма да могат да гласуват в тази анкета.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">Изчакване на мрежа…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">Нова анкета</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">Въпрос</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">Задайте въпрос</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">Опции</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">Опция %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">Дръжка за плъзгане и пускане</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">Разрешаване на множество гласове</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">Добавете въпрос и поне 2 опции</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">Добавете поне 2 опции</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">Добавяне на въпрос</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">Проблем със звука</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">Проблем с видеото</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">Обаждането прекъсна</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">Нещо друго</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">Звукът сечеше</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">Прекъсване на звука</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">Чувах ехо</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">Други чуваха ехо</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">Лошо качество на видеото</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">Ниска резолюция</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">Камерата не работеше</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">Нещо друго</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Опишете вашия проблем</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Моля, включете всички подробности, свързани с проблема. Всичко, което споделяте тук, ще бъде запазено поверително и ще се използва единствено, за да помогне в подобряването на обажданията в Signal.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">Запазване</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">Обратно</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">Как беше обаждането ви?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Това ни помага да подобряваме обажданията в Signal. Няма да се съхранява лична идентифицираща информация.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">Имаше проблеми</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">Добре</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">Какви проблеми срещнахте?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">Изберете всичко, което е приложимо</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">Опишете вашия проблем</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">Продължаване</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">Помогнете ни да станем по-добри</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Като ни изпращате вашата диагностична информация, вие ни помагате да подобряваме качеството на обажданията. Можете да </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">прегледате своя доклад за дебъг</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> преди да го изпратите</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">Споделяне на доклад за дебъг</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">Докладите за дебъг съдържат информация за приложенията от ниско ниво и не разкриват никакво съдържание от съобщенията ви.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">Изпрати</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">Благодарим за обратната връзка!</string>
 
     <!-- EOF -->
 </resources>

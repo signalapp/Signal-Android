@@ -9,14 +9,13 @@ import android.os.Build;
 import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.util.CursorUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.util.concurrent.TimeUnit;
@@ -31,8 +30,6 @@ public final class DoNotDisturbUtil {
   @WorkerThread
   @SuppressLint("SwitchIntDef")
   public static boolean shouldDisturbUserWithCall(@NonNull Context context) {
-    if (Build.VERSION.SDK_INT <= 23) return true;
-
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
 
     switch (notificationManager.getCurrentInterruptionFilter()) {
@@ -47,8 +44,6 @@ public final class DoNotDisturbUtil {
   @WorkerThread
   @SuppressLint("SwitchIntDef")
   public static boolean shouldDisturbUserWithCall(@NonNull Context context, @NonNull Recipient recipient) {
-    if (Build.VERSION.SDK_INT <= 23) return true;
-
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
 
     switch (notificationManager.getCurrentInterruptionFilter()) {
@@ -65,7 +60,6 @@ public final class DoNotDisturbUtil {
     }
   }
 
-  @RequiresApi(23)
   private static boolean handlePriority(@NonNull Context context, @NonNull NotificationManager notificationManager, @NonNull Recipient recipient) {
     if (Build.VERSION.SDK_INT < 28 && !notificationManager.isNotificationPolicyAccessGranted()) {
       Log.w(TAG, "Notification Policy is not granted");

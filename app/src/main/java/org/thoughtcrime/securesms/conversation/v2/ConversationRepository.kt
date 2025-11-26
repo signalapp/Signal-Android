@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.RequestReviewState.GroupReviewState
 import org.thoughtcrime.securesms.conversation.v2.RequestReviewState.IndividualReviewState
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationDataSource
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
@@ -61,23 +62,35 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
+import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies.databaseObserver
+import org.thoughtcrime.securesms.dependencies.AppDependencies.expiringMessageManager
+import org.thoughtcrime.securesms.groups.GroupNotAMemberException
+import org.thoughtcrime.securesms.jobs.GroupSendJobHelper
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
+import org.thoughtcrime.securesms.keyvalue.SignalStore.Companion.settings
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
+import org.thoughtcrime.securesms.messages.GroupSendUtil
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewRecipient
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
+import org.thoughtcrime.securesms.transport.UndeliverableMessageException
 import org.thoughtcrime.securesms.util.DrawableUtil
+import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
@@ -87,9 +100,15 @@ import org.thoughtcrime.securesms.util.hasSharedContact
 import org.thoughtcrime.securesms.util.hasTextSlide
 import org.thoughtcrime.securesms.util.isViewOnceMessage
 import org.thoughtcrime.securesms.util.requireTextSlide
+import org.whispersystems.signalservice.api.crypto.ContentHint
+import org.whispersystems.signalservice.api.messages.SendMessageResult
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Companion.newBuilder
 import java.io.IOException
+import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 class ConversationRepository(
@@ -99,6 +118,7 @@ class ConversationRepository(
 
   companion object {
     private val TAG = Log.tag(ConversationRepository::class.java)
+    private val POLL_TERMINATE_TIMEOUT = 6000.milliseconds
   }
 
   private val applicationContext = localContext.applicationContext
@@ -162,6 +182,134 @@ class ConversationRepository(
         emoji
       )
     }.subscribeOn(Schedulers.io())
+  }
+
+  fun sendPoll(threadRecipient: Recipient, poll: Poll): Completable {
+    return Completable.create { emitter ->
+
+      val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(threadRecipient)
+      val message = OutgoingMessage.pollMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = System.currentTimeMillis(),
+        expiresIn = threadRecipient.expiresInSeconds.seconds.inWholeMilliseconds,
+        poll = poll.copy(authorId = Recipient.self().id.toLong()),
+        question = poll.question
+      )
+
+      Log.i(TAG, "Sending poll create to " + message.threadRecipient.id + ", thread: " + threadId)
+
+      MessageSender.sendPollAction(
+        AppDependencies.application,
+        message,
+        threadId,
+        MessageSender.SendType.SIGNAL,
+        null,
+        { emitter.onComplete() }
+      )
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun endPoll(pollId: Long): Completable {
+    return Completable.create { emitter ->
+      val poll = SignalDatabase.polls.getPollFromId(pollId)
+      val messageRecord = SignalDatabase.messages.getMessageRecord(poll!!.messageId)
+      val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(messageRecord.threadId)!!
+      val pollSentTimestamp = messageRecord.dateSent
+
+      if (threadRecipient.groupId.getOrNull()?.isV2 != true) {
+        Log.w(TAG, "Missing group id")
+        emitter.tryOnError(Exception("Poll terminate failed"))
+      }
+
+      val groupId = threadRecipient.requireGroupId().requireV2()
+      val message = OutgoingMessage.pollTerminateMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = System.currentTimeMillis(),
+        expiresIn = threadRecipient.expiresInSeconds.seconds.inWholeMilliseconds,
+        messageExtras = MessageExtras(pollTerminate = PollTerminate(question = poll.question, messageId = poll.messageId, targetTimestamp = pollSentTimestamp))
+      )
+
+      Log.i(TAG, "Sending poll terminate to " + message.threadRecipient.id + ", thread: " + messageRecord.threadId)
+
+      val possibleTargets: List<Recipient> = SignalDatabase.groups.getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)
+        .map { it.resolve() }
+        .distinctBy { it.id }
+
+      val eligibleTargets: List<Recipient> = RecipientUtil.getEligibleForSending(possibleTargets)
+      val results = sendEndPoll(threadRecipient, message, eligibleTargets)
+      val sendResults = GroupSendJobHelper.getCompletedSends(eligibleTargets, results)
+
+      if (sendResults.completed.isNotEmpty() || possibleTargets.isEmpty()) {
+        val allocatedThreadId = SignalDatabase.threads.getOrCreateValidThreadId(threadRecipient, messageRecord.threadId, message.distributionType)
+        val outgoingMessage = applyUniversalExpireTimerIfNecessary(applicationContext, threadRecipient, message, allocatedThreadId)
+        val insertResult = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, allocatedThreadId, false, null)
+        val messageId = insertResult.messageId
+
+        SignalDatabase.threads.update(threadId = allocatedThreadId, unarchive = true, syncThreadDelete = true)
+        databaseObserver.notifyMessageUpdateObservers(MessageId(poll.messageId))
+        databaseObserver.notifyMessageInsertObservers(messageRecord.threadId, MessageId(messageId))
+        if (outgoingMessage.expiresIn > 0) {
+          SignalDatabase.messages.markExpireStarted(messageId)
+          expiringMessageManager.scheduleDeletion(messageId, true, message.expiresIn)
+        }
+
+        if (sendResults.skipped.isNotEmpty()) {
+          val messageRecord = SignalDatabase.messages.getMessageRecord(messageId)
+          val filterRecipientIds = (sendResults.skipped - sendResults.completed.map { it.id }).toSet()
+          Log.i(TAG, "Some recipients skipped when sending end poll. Resending to $filterRecipientIds")
+          MessageSender.resendGroupMessage(applicationContext, messageRecord, filterRecipientIds)
+        } else {
+          SignalDatabase.messages.markAsSent(messageId, true)
+        }
+        emitter.onComplete()
+      } else {
+        emitter.tryOnError(Exception("Poll terminate failed"))
+      }
+    }.subscribeOn(Schedulers.io())
+  }
+
+  @Throws(IOException::class, GroupNotAMemberException::class, UndeliverableMessageException::class)
+  fun sendEndPoll(group: Recipient, message: OutgoingMessage, destinations: List<Recipient>): List<SendMessageResult?> {
+    val groupId = group.requireGroupId().requireV2()
+    val groupRecord: GroupRecord? = SignalDatabase.groups.getGroup(group.requireGroupId()).getOrNull()
+
+    if (groupRecord != null && groupRecord.isAnnouncementGroup && !groupRecord.isAdmin(Recipient.self())) {
+      throw UndeliverableMessageException("Non-admins cannot send messages in announcement groups!")
+    }
+
+    val builder = newBuilder()
+
+    GroupUtil.setDataMessageGroupContext(AppDependencies.application, builder, groupId)
+
+    val sentTime = System.currentTimeMillis()
+    val groupMessage = builder
+      .withTimestamp(sentTime)
+      .withExpiration((message.expiresIn / 1000).toInt())
+      .withProfileKey(ProfileKeyUtil.getSelfProfileKey().serialize())
+      .withPollTerminate(SignalServiceDataMessage.PollTerminate(message.messageExtras!!.pollTerminate!!.targetTimestamp))
+      .build()
+
+    return GroupSendUtil.sendUnresendableDataMessage(
+      applicationContext,
+      groupId,
+      destinations,
+      false,
+      ContentHint.DEFAULT,
+      groupMessage,
+      false
+    ) { System.currentTimeMillis() - sentTime > POLL_TERMINATE_TIMEOUT.inWholeMilliseconds }
+  }
+
+  private fun applyUniversalExpireTimerIfNecessary(context: Context, recipient: Recipient, outgoingMessage: OutgoingMessage, threadId: Long): OutgoingMessage {
+    if (!outgoingMessage.isExpirationUpdate && outgoingMessage.expiresIn == 0L) {
+      val expireTimerVersion = RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId)
+
+      if (expireTimerVersion != null) {
+        return outgoingMessage.withExpiry(settings.universalExpireTimer.seconds.inWholeMilliseconds, expireTimerVersion)
+      }
+    }
+
+    return outgoingMessage
   }
 
   fun sendMessage(
@@ -266,8 +414,15 @@ class ConversationRepository(
       if (details == null) {
         -1
       } else {
-        SignalDatabase.messages.getMessagePositionInConversation(threadId, details.second(), details.first())
+        SignalDatabase.messages.getMessagePositionInConversation(threadId, details.second, details.first)
       }
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun getMessagePosition(threadId: Long, messageId: Long): Single<Int> {
+    return Single.fromCallable {
+      val message = SignalDatabase.messages.getMessageRecord(messageId)
+      SignalDatabase.messages.getMessagePositionInConversation(threadId, message.dateReceived, message.fromRecipient.id)
     }.subscribeOn(Schedulers.io())
   }
 
@@ -582,7 +737,11 @@ class ConversationRepository(
     class DrawableResult(private val drawable: Drawable) : ContactPhotoResult {
       override fun transformToFinalBitmap(): Single<Bitmap> {
         return Single.create {
-          val bitmap = DrawableUtil.wrapBitmapForShortcutInfo(drawable.toBitmap(SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE))
+          val bitmap = if (Build.VERSION.SDK_INT <= 25) {
+            DrawableUtil.wrapBitmapForShortcutInfo(DrawableUtil.toBitmap(drawable, SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE))
+          } else {
+            DrawableUtil.wrapBitmapForShortcutInfo(drawable.toBitmap(SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE))
+          }
           it.setCancellable {
             bitmap.recycle()
           }

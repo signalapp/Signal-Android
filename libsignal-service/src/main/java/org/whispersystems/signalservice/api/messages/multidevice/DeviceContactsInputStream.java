@@ -16,6 +16,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.ContactDetails;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -42,11 +43,11 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
 
     ContactDetails details = ContactDetails.ADAPTER.decode(detailsSerialized);
 
-    if (!SignalServiceAddress.isValidAddress(details.aci, details.number)) {
+    if (ACI.parseOrNull(details.aci, details.aciBinary) == null) {
       throw new IOException("Missing contact address!");
     }
 
-    Optional<ACI>                 aci                = Optional.ofNullable(ACI.parseOrNull(details.aci));
+    Optional<ACI>                 aci                = Optional.ofNullable(ACI.parseOrNull(details.aci, details.aciBinary));
     Optional<String>              e164               = Optional.ofNullable(details.number);
     Optional<String>              name               = Optional.ofNullable(details.name);
     Optional<DeviceContactAvatar> avatar             = Optional.empty();

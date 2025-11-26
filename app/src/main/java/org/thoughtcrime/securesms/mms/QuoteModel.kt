@@ -26,7 +26,8 @@ class QuoteModel(
   enum class Type(val code: Int, val dataMessageType: SignalServiceDataMessage.Quote.Type) {
 
     NORMAL(0, SignalServiceDataMessage.Quote.Type.NORMAL),
-    GIFT_BADGE(1, SignalServiceDataMessage.Quote.Type.GIFT_BADGE);
+    GIFT_BADGE(1, SignalServiceDataMessage.Quote.Type.GIFT_BADGE),
+    POLL(2, SignalServiceDataMessage.Quote.Type.POLL);
 
     companion object {
       @JvmStatic
@@ -50,10 +51,11 @@ class QuoteModel(
       }
 
       fun fromProto(type: DataMessage.Quote.Type?): Type {
-        return if (type == DataMessage.Quote.Type.GIFT_BADGE) {
-          GIFT_BADGE
-        } else {
-          NORMAL
+        return when (type) {
+          DataMessage.Quote.Type.NORMAL -> NORMAL
+          DataMessage.Quote.Type.GIFT_BADGE -> GIFT_BADGE
+          DataMessage.Quote.Type.POLL -> POLL
+          null -> NORMAL
         }
       }
     }

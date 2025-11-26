@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.theme.SignalTheme
 
 object BottomSheets {
   /**
@@ -37,7 +36,7 @@ object BottomSheets {
 @Preview
 @Composable
 private fun HandlePreview() {
-  SignalTheme(isDarkMode = false) {
+  Previews.Preview {
     BottomSheets.Handle()
   }
 }

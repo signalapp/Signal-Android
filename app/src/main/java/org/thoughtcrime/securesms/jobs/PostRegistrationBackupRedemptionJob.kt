@@ -92,7 +92,7 @@ class PostRegistrationBackupRedemptionJob : CoroutineJob {
     }
 
     info("Attempting to grab price information for records...")
-    val subscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()?.activeSubscription
+    val subscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).successOrNull()?.activeSubscription
 
     val emptyPrice = FiatMoney(BigDecimal.ZERO, Currency.getInstance(Locale.getDefault()))
     val price: FiatMoney = if (subscription != null) {

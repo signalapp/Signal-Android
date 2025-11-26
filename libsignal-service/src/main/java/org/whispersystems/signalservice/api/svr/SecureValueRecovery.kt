@@ -103,6 +103,9 @@ interface SecureValueRecovery {
     /** The PIN was incorrect. Includes the number of attempts the user has remaining. */
     data class PinMismatch(val triesRemaining: Int) : RestoreResponse()
 
+    /** The enclave no longer exists */
+    data object EnclaveNotFound : RestoreResponse()
+
     /** There as a network error. Not a bad response, but rather interference or some other inability to make a network request. */
     data class NetworkError(val exception: IOException) : RestoreResponse()
 

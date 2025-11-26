@@ -5,7 +5,6 @@ package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
@@ -46,7 +45,6 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import androidx.core.app.TaskStackBuilder
@@ -64,7 +62,9 @@ import com.google.accompanist.permissions.rememberPermissionState
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineScope
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -347,11 +347,10 @@ private fun ResetDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
   )
 }
 
-@Preview(name = "Light Theme", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark Theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@DayNightPreviews
 @Composable
 private fun AppBarPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Column {
         TopAppBarContent(activeTab = ActiveTab.Code)
@@ -361,11 +360,10 @@ private fun AppBarPreview() {
   }
 }
 
-@Preview(name = "Light Theme", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark Theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@DayNightPreviews
 @Composable
 private fun MainScreenPreview() {
-  SignalTheme {
+  Previews.Preview {
     MainScreen(
       state = UsernameLinkSettingsState(
         activeTab = ActiveTab.Code,
@@ -378,11 +376,10 @@ private fun MainScreenPreview() {
   }
 }
 
-@Preview(name = "Light Theme", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark Theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@DayNightPreviews
 @Composable
 private fun ResetDialogPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       ResetDialog(onConfirm = {}, onDismiss = {})
     }

@@ -31,8 +31,8 @@ class ReRegisterWithPinViewModel : ViewModel() {
   }
 
   fun toggleKeyboardType() {
-    store.update { previousState ->
-      previousState.copy(pinKeyboardType = previousState.pinKeyboardType.other)
+    store.update {
+      it.copy(pinKeyboardType = it.pinKeyboardType.other)
     }
   }
 }

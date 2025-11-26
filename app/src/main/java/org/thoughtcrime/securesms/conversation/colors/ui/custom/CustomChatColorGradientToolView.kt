@@ -14,7 +14,6 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.core.content.ContextCompat
-import androidx.core.view.GestureDetectorCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ViewUtil
 import kotlin.math.abs
@@ -104,7 +103,7 @@ class CustomChatColorGradientToolView @JvmOverloads constructor(
   }
 
   private val gestureListener = GestureListener()
-  private val gestureDetectorCompat = GestureDetectorCompat(context, gestureListener)
+  private val gestureDetector = GestureDetector(context, gestureListener)
 
   fun setTopColor(@ColorInt color: Int) {
     topColorPaint.color = color
@@ -155,7 +154,7 @@ class CustomChatColorGradientToolView @JvmOverloads constructor(
       listener?.onGestureStarted()
     }
 
-    return gestureDetectorCompat.onTouchEvent(event)
+    return gestureDetector.onTouchEvent(event)
   }
 
   override fun onDraw(canvas: Canvas) {
@@ -269,7 +268,7 @@ class CustomChatColorGradientToolView @JvmOverloads constructor(
     override fun onDown(e: MotionEvent): Boolean {
       activePointerId = e.getPointerId(0)
 
-      val touchPoint = PointF(e.getX(activePointerId), e.getY(activePointerId))
+      val touchPoint = PointF(e.getX(0), e.getY(0))
       val distanceFromTop = touchPoint.distance(top)
 
       if (distanceFromTop <= thumbRadius) {
@@ -292,7 +291,12 @@ class CustomChatColorGradientToolView @JvmOverloads constructor(
       distanceX: Float,
       distanceY: Float
     ): Boolean {
-      val a = PointF(e2.getX(activePointerId) - center.x, e2.getY(activePointerId) - center.y)
+      val pointerIndex = e2.findPointerIndex(activePointerId)
+      if (pointerIndex == -1) {
+        return true
+      }
+
+      val a = PointF(e2.getX(pointerIndex) - center.x, e2.getY(pointerIndex) - center.y)
       val b = PointF(center.x, 0f)
       val dot = a.dotProduct(b)
       val det = a.determinate(b)

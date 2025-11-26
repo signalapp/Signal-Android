@@ -66,7 +66,6 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.L
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.SharedMediaPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.Utils.formatMutedUntil
-import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.groups.GroupId
@@ -953,12 +952,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     startActivityForResult(
       AddMembersActivity.createIntent(
         requireContext(),
-        addMembersToGroup.groupId,
-        ContactSelectionDisplayMode.FLAG_PUSH,
-        addMembersToGroup.selectionWarning,
-        addMembersToGroup.selectionLimit,
-        addMembersToGroup.isAnnouncementGroup,
-        addMembersToGroup.groupMembersWithoutSelf
+        addMembersToGroup
       ),
       REQUEST_CODE_ADD_MEMBERS_TO_GROUP
     )

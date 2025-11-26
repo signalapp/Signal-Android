@@ -164,8 +164,13 @@ class InAppPaymentRecurringContextJob private constructor(
     val subscription = activeSubscription.activeSubscription
 
     if (subscription == null) {
-      warning("Subscription is null. Retrying later.")
-      throw InAppPaymentRetryException()
+      if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+        warning("Backup subscription is null.")
+        throw Exception()
+      } else {
+        warning("${inAppPayment.type} Subscription is null. Retrying later.")
+        throw InAppPaymentRetryException()
+      }
     }
 
     handlePossibleFailedPayment(inAppPayment, activeSubscription, subscription)

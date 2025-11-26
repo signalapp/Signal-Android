@@ -18,7 +18,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
@@ -45,6 +44,8 @@ import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 
 import java.util.Objects;
+
+import kotlin.Pair;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -83,8 +84,8 @@ final class RecipientDialogViewModel extends ViewModel {
       LiveData<GroupTable.MemberLevel> recipientMemberLevel = Transformations.switchMap(recipient, source::getMemberLevel);
 
       adminActionStatus = LiveDataUtil.combineLatest(localStatus, recipientMemberLevel, (statuses, memberLevel) -> {
-        boolean localAdmin     = statuses.first();
-        boolean isLinkActive   = statuses.second();
+        boolean localAdmin     = statuses.getFirst();
+        boolean isLinkActive   = statuses.getSecond();
         boolean inGroup        = memberLevel.isInGroup();
         boolean recipientAdmin = memberLevel == GroupTable.MemberLevel.ADMINISTRATOR;
 

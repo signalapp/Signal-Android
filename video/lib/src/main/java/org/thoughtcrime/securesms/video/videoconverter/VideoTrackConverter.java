@@ -14,7 +14,6 @@ import android.view.Surface;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.video.interfaces.MediaInput;
@@ -78,7 +77,6 @@ final class VideoTrackConverter {
 
     private Muxer mMuxer;
 
-    @RequiresApi(23)
     static @Nullable VideoTrackConverter create(
             final @NonNull MediaInput input,
             final long timeFrom,
@@ -97,7 +95,6 @@ final class VideoTrackConverter {
     }
 
 
-    @RequiresApi(23)
     private VideoTrackConverter(
             final @NonNull MediaExtractor videoExtractor,
             final int videoInputTrack,

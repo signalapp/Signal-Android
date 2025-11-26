@@ -11,7 +11,7 @@ import android.graphics.YuvImage;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.util.Pair;
+import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -271,7 +271,7 @@ public class BitmapUtil {
 
   public static Pair<Integer, Integer> getDimensions(InputStream inputStream) throws BitmapDecodingException {
     BitmapFactory.Options options = getImageDimensions(inputStream);
-    return new Pair<>(options.outWidth, options.outHeight);
+    return new Pair(options.outWidth, options.outHeight);
   }
 
   public static ByteArrayInputStream toCompressedJpeg(Bitmap bitmap) {

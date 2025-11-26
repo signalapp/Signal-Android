@@ -21,7 +21,7 @@ class BioRecipientState(
   val username: String = recipient.username.orElse("")
   val featuredBadge: Badge? = recipient.featuredBadge
   val profileName: ProfileName = recipient.profileName
-  val e164: String = recipient.requireE164()
+  val e164: String = recipient.e164.orElse("")
   val combinedAboutAndEmoji: String? = recipient.combinedAboutAndEmoji
 
   override fun equals(other: Any?): Boolean {

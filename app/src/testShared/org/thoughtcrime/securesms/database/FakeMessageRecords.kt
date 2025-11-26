@@ -197,6 +197,7 @@ object FakeMessageRecords {
       giftBadge,
       payment,
       call,
+      null,
       -1,
       null,
       null,

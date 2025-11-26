@@ -25,6 +25,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.dp
 import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice
 
@@ -173,9 +174,10 @@ private fun rememberCallScreenSheetState(
   ) {
     SheetState(
       skipPartiallyExpanded = false,
-      density = density,
       initialValue = initialValue,
       confirmValueChange = confirmValueChange,
+      positionalThreshold = { with(density) { 56.dp.toPx() } },
+      velocityThreshold = { with(density) { 125.dp.toPx() } },
       skipHiddenState = skipHiddenState
     )
   }
@@ -202,7 +204,8 @@ private fun saveSheetState(
 
       SheetState(
         skipPartiallyExpanded = false,
-        density = density,
+        positionalThreshold = { with(density) { 56.dp.toPx() } },
+        velocityThreshold = { with(density) { 125.dp.toPx() } },
         initialValue = value,
         confirmValueChange = confirmValueChange,
         skipHiddenState = skipHiddenState

@@ -25,7 +25,7 @@ data class Media(
   val bucketId: String?,
   val caption: String?,
   val transformProperties: TransformProperties?,
-  val fileName: String?
+  var fileName: String?
 ) : Parcelable {
   companion object {
     const val ALL_MEDIA_BUCKET_ID: String = "org.thoughtcrime.securesms.ALL_MEDIA"

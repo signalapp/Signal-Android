@@ -620,7 +620,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     }
 
     val privacyMode: DistributionListPrivacyMode = when {
-      insert.proto.isBlockList && insert.proto.recipientServiceIds.isEmpty() -> DistributionListPrivacyMode.ALL
+      insert.proto.isBlockList && insert.proto.recipientServiceIds.isEmpty() && insert.proto.recipientServiceIdsBinary.isEmpty() -> DistributionListPrivacyMode.ALL
       insert.proto.isBlockList -> DistributionListPrivacyMode.ALL_EXCEPT
       else -> DistributionListPrivacyMode.ONLY_WITH
     }
@@ -666,7 +666,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     }
 
     val privacyMode: DistributionListPrivacyMode = when {
-      update.new.proto.isBlockList && update.new.proto.recipientServiceIds.isEmpty() -> DistributionListPrivacyMode.ALL
+      update.new.proto.isBlockList && update.new.proto.recipientServiceIds.isEmpty() && update.new.proto.recipientServiceIdsBinary.isEmpty() -> DistributionListPrivacyMode.ALL
       update.new.proto.isBlockList -> DistributionListPrivacyMode.ALL_EXCEPT
       else -> DistributionListPrivacyMode.ONLY_WITH
     }

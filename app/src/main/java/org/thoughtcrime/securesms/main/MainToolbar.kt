@@ -61,25 +61,25 @@ import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.compose.Tooltips
 import org.signal.core.ui.compose.circularReveal
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
+import org.thoughtcrime.securesms.components.compose.ActionModeTopBar
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSmall
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
-import org.thoughtcrime.securesms.dependencies.GooglePlayBillingDependencies.context
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 
@@ -188,7 +188,11 @@ fun MainToolbar(
             maxWidth.toPx()
           }
 
-          PrimaryToolbar(state, callback) {
+          PrimaryToolbar(
+            state = state,
+            callback = callback,
+            enabled = state.mode != MainToolbarMode.SEARCH
+          ) {
             revealOffset = Offset(it / maxWidth, 0.5f)
           }
 
@@ -227,23 +231,10 @@ private fun ActionModeToolbar(
   state: MainToolbarState,
   callback: MainToolbarCallback
 ) {
-  TopAppBar(
-    colors = TopAppBarDefaults.topAppBarColors(
-      containerColor = state.toolbarColor ?: MaterialTheme.colorScheme.surface
-    ),
-    navigationIcon = {
-      IconButtons.IconButton(onClick = {
-        callback.onCloseActionModeClick()
-      }) {
-        Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_x_24),
-          contentDescription = stringResource(R.string.CallScreenTopBar__go_back)
-        )
-      }
-    },
-    title = {
-      Text(text = context.resources.getQuantityString(R.plurals.ConversationListFragment_s_selected, state.actionModeCount, state.actionModeCount))
-    }
+  ActionModeTopBar(
+    title = pluralStringResource(R.plurals.ConversationListFragment_s_selected, state.actionModeCount, state.actionModeCount),
+    onCloseClick = callback::onCloseActionModeClick,
+    toolbarColor = state.toolbarColor
   )
 }
 
@@ -351,6 +342,7 @@ private fun ArchiveToolbar(
 private fun PrimaryToolbar(
   state: MainToolbarState,
   callback: MainToolbarCallback,
+  enabled: Boolean = true,
   onSearchButtonPositioned: (Float) -> Unit
 ) {
   TopAppBar(
@@ -378,6 +370,7 @@ private fun PrimaryToolbar(
           modifier = Modifier
             .fillMaxSize()
             .clickable(
+              enabled = enabled,
               onClick = callback::onSettingsClick,
               interactionSource = interactionSource,
               indication = ripple(radius = 14.dp)
@@ -538,8 +531,7 @@ private fun StoryDropDownItems(callback: MainToolbarCallback, onOptionSelected: 
   DropdownMenus.Item(
     text = {
       Text(
-        text = stringResource(R.string.StoriesLandingFragment__story_privacy),
-        style = MaterialTheme.typography.bodyLarge
+        text = stringResource(R.string.StoriesLandingFragment__story_privacy)
       )
     },
     onClick = {
@@ -554,8 +546,7 @@ private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCa
   DropdownMenus.Item(
     text = {
       Text(
-        text = stringResource(R.string.CallLogFragment__clear_call_history),
-        style = MaterialTheme.typography.bodyLarge
+        text = stringResource(R.string.CallLogFragment__clear_call_history)
       )
     },
     onClick = {
@@ -568,8 +559,7 @@ private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCa
     DropdownMenus.Item(
       text = {
         Text(
-          text = stringResource(R.string.CallLogFragment__filter_missed_calls),
-          style = MaterialTheme.typography.bodyLarge
+          text = stringResource(R.string.CallLogFragment__filter_missed_calls)
         )
       },
       onClick = {
@@ -581,8 +571,7 @@ private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCa
     DropdownMenus.Item(
       text = {
         Text(
-          text = stringResource(R.string.CallLogFragment__clear_filter),
-          style = MaterialTheme.typography.bodyLarge
+          text = stringResource(R.string.CallLogFragment__clear_filter)
         )
       },
       onClick = {
@@ -595,8 +584,7 @@ private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCa
   DropdownMenus.Item(
     text = {
       Text(
-        text = stringResource(R.string.text_secure_normal__menu_settings),
-        style = MaterialTheme.typography.bodyLarge
+        text = stringResource(R.string.text_secure_normal__menu_settings)
       )
     },
     onClick = {
@@ -608,8 +596,7 @@ private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCa
   DropdownMenus.Item(
     text = {
       Text(
-        text = stringResource(R.string.ConversationListFragment__notification_profile),
-        style = MaterialTheme.typography.bodyLarge
+        text = stringResource(R.string.ConversationListFragment__notification_profile)
       )
     },
     onClick = {
@@ -624,8 +611,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
   DropdownMenus.Item(
     text = {
       Text(
-        text = stringResource(R.string.text_secure_normal__menu_new_group),
-        style = MaterialTheme.typography.bodyLarge
+        text = stringResource(R.string.text_secure_normal__menu_new_group)
       )
     },
     onClick = {
@@ -638,8 +624,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
     DropdownMenus.Item(
       text = {
         Text(
-          text = stringResource(R.string.text_secure_normal__menu_clear_passphrase),
-          style = MaterialTheme.typography.bodyLarge
+          text = stringResource(R.string.text_secure_normal__menu_clear_passphrase)
         )
       },
       onClick = {
@@ -652,8 +637,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
   DropdownMenus.Item(
     text = {
       Text(
-        text = stringResource(R.string.text_secure_normal__mark_all_as_read),
-        style = MaterialTheme.typography.bodyLarge
+        text = stringResource(R.string.text_secure_normal__mark_all_as_read)
       )
     },
     onClick = {
@@ -665,8 +649,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
   DropdownMenus.Item(
     text = {
       Text(
-        text = stringResource(R.string.text_secure_normal__invite_friends),
-        style = MaterialTheme.typography.bodyLarge
+        text = stringResource(R.string.text_secure_normal__invite_friends)
       )
     },
     onClick = {
@@ -679,8 +662,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
     DropdownMenus.Item(
       text = {
         Text(
-          text = stringResource(R.string.text_secure_normal__filter_unread_chats),
-          style = MaterialTheme.typography.bodyLarge
+          text = stringResource(R.string.text_secure_normal__filter_unread_chats)
         )
       },
       onClick = {
@@ -692,8 +674,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
     DropdownMenus.Item(
       text = {
         Text(
-          text = stringResource(R.string.text_secure_normal__clear_unread_filter),
-          style = MaterialTheme.typography.bodyLarge
+          text = stringResource(R.string.text_secure_normal__clear_unread_filter)
         )
       },
       onClick = {
@@ -706,8 +687,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
   DropdownMenus.Item(
     text = {
       Text(
-        text = stringResource(R.string.text_secure_normal__menu_settings),
-        style = MaterialTheme.typography.bodyLarge
+        text = stringResource(R.string.text_secure_normal__menu_settings)
       )
     },
     onClick = {
@@ -719,8 +699,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
   DropdownMenus.Item(
     text = {
       Text(
-        text = stringResource(R.string.ConversationListFragment__notification_profile),
-        style = MaterialTheme.typography.bodyLarge
+        text = stringResource(R.string.ConversationListFragment__notification_profile)
       )
     },
     onClick = {
@@ -730,8 +709,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
   )
 }
 
-@Preview
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun FullMainToolbarPreview() {
   Previews.Preview {
@@ -760,7 +738,7 @@ private fun FullMainToolbarPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SearchToolbarPreview() {
   Previews.Preview {
@@ -774,7 +752,7 @@ private fun SearchToolbarPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ArchiveToolbarPreview() {
   Previews.Preview {
@@ -787,7 +765,7 @@ private fun ArchiveToolbarPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun TooltipOverflowButtonPreview() {
   Previews.Preview {

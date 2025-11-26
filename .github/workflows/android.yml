@@ -28,7 +28,7 @@ jobs:
         cache: gradle
 
     - name: Validate Gradle Wrapper
-      uses: gradle/wrapper-validation-action@v3
+      uses: gradle/actions/wrapper-validation@v5
 
     - name: Build with Gradle
       run: ./gradlew qa

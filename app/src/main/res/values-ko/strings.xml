@@ -29,7 +29,7 @@
     <string name="yes">네</string>
     <string name="no">아니요</string>
     <string name="delete">삭제</string>
-    <string name="please_wait">잠시만 기다려 주세요…</string>
+    <string name="please_wait">잠시만 기다려 주세요.</string>
     <string name="save">저장</string>
     <string name="note_to_self">개인 메모</string>
 
@@ -49,17 +49,23 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal 업데이트 중…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">암호를 설정하지 않았습니다!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">암호 사용을 비활성화하시겠습니까?</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">아직 암호 문구가 설정되지 않았어요.</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">암호 문구 사용을 비활성화하시겠어요?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal이 잠금 해제되어 메시지 알림이 표시됩니다.</string>
     <string name="ApplicationPreferencesActivity_disable">사용 안 함</string>
-    <string name="ApplicationPreferencesActivity_error_connecting_to_server">서버에 연결할 수 없습니다!</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">서버에 연결할 수 없습니다</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">등록 잠금을 위해 PIN이 필요합니다. PIN을 비활성화하려면 먼저 등록 잠금을 비활성화하세요.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN이 생성되었습니다.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN 사용이 비활성화 되었습니다.</string>
+    <string name="ApplicationPreferencesActivity_pin_disabled">PIN 사용이 비활성화되었습니다.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">결제 복구 문구 기록</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">녹음 문구</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">문구 기록</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN을 사용 중지하기 전에 결제 계정을 복구할 수 있도록 결제 복구 문구를 기록해야 합니다.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">새 복구 키 만들기</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">PIN을 비활성화하려면 먼저 새 복구 키를 만들고 기록해 두어야 합니다.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">키 만들기</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -80,7 +86,7 @@
     <string name="DraftDatabase_Draft_audio_snippet">(오디오)</string>
     <string name="DraftDatabase_Draft_video_snippet">(동영상)</string>
     <string name="DraftDatabase_Draft_location_snippet">(위치)</string>
-    <string name="DraftDatabase_Draft_quote_snippet">(회신)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(답장)</string>
     <string name="DraftDatabase_Draft_voice_note">(음성 메시지)</string>
 
     <!-- AttachmentKeyboard -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">파일</string>
     <string name="AttachmentKeyboard_contact">연락처</string>
     <string name="AttachmentKeyboard_location">위치</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">설문조사</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">사진과 동영상을 표시하려면 Signal에 권한이 필요합니다.</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">권한 허용</string>
@@ -109,9 +117,9 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">미디어를 선택할 수 있는 앱이 없습니다.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal에서 사진, 동영상 또는 오디오를 첨부하려면 저장 공간 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal에서 연락처 정보를 첨부하려면 연락처 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal에서 위치 정보를 첨부하려면 위치 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'위치\' 항목을 허용해 주세요.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal에서 사진, 동영상 또는 오디오를 첨부하려면 저장 공간 접근 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal에서 연락처 정보를 첨부하려면 연락처 접근 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal에서 위치 정보를 첨부하려면 위치 접근 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'위치\' 항목을 허용해 주세요.</string>
 
     <!-- Dialog title asking users for location permission -->
     <string name="AttachmentManager_signal_allow_access_location">내 위치를 사용하도록 허용</string>
@@ -146,7 +154,7 @@
     <string name="UploadAttachmentToArchiveJob_uploading_media">미디어를 백업하는 중…</string>
 
     <!-- BackgroundMessageRetriever -->
-    <string name="BackgroundMessageRetriever_checking_for_messages">새로운 메시지를 확인 중입니다…</string>
+    <string name="BackgroundMessageRetriever_checking_for_messages">메시지 확인 중…</string>
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
@@ -207,19 +215,19 @@
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s을(를) 차단하고 나갈까요?</string>
     <string name="BlockUnblockDialog_block_s">%1$s을(를) 차단할까요?</string>
-    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">이제 이 그룹에서 메시지나 업데이트를 받을 수 없습니다. 그리고 멤버가 당신을 이 그룹에 추가할 수도 없습니다.</string>
-    <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">그룹 멤버가 당신을 이 그룹에 추가할 수 없습니다,</string>
-    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">그룹 멤버는 당신을 그룹에 다시 초대 가능합니다.</string>
+    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">이제 이 그룹에서 메시지나 업데이트를 받을 수 없으며, 다른 멤버가 다시 나를 그룹에 초대할 수 없습니다.</string>
+    <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">그룹 멤버가 다시 나를 그룹에 초대할 수 없습니다.</string>
+    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">그룹 멤버가 나를 다시 초대할 수 있습니다.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">서로 메시지를 보내고 전화를 걸 수 있으며 이름과 사진이 공유됩니다.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">서로 메시지를 보내고 전화를 걸 수 있으며, 나의 이름과 사진이 공유됩니다.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">이제 서로 메시지를 할 수 있습니다.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">이제 서로 메시지를 주고받을 수 있습니다.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">차단한 사용자는 나에게 전화를 걸거나 메세지를 보낼 수 없습니다.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">차단한 사용자는 나에게 메시지를 보낼 수 없습니다.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal의 업데이트와 새로운 소식을 차단합니다.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal의 업데이트와 새로운 소식을 다시 받기</string>
+    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal의 업데이트와 새로운 소식 다시 받기</string>
     <string name="BlockUnblockDialog_unblock_s">%1$s을(를) 차단 해제할까요?</string>
     <string name="BlockUnblockDialog_block">차단</string>
     <string name="BlockUnblockDialog_block_and_leave">차단하고 나가기</string>
@@ -323,15 +331,15 @@
     <!-- Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
     <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">검열 우회를 끄시겠어요?</string>
     <!-- Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
-    <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">이제 더 나은 사용을 위해 Signal 서비스에 바로 연결 할 수 있습니다.</string>
+    <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">이제 Signal 서비스에 직접 연결하여 편리하게 이용하실 수 있어요.</string>
     <!-- Action to prompt the user to disable circumvention since it is no longer needed -->
     <string name="CensorshipCircumventionMegaphone_turn_off">끄기</string>
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
-    <string name="CensorshipCircumventionMegaphone_no_thanks">괜찮습니다</string>
+    <string name="CensorshipCircumventionMegaphone_no_thanks">괜찮아요</string>
 
     <!-- ClientDeprecatedActivity -->
-    <string name="ClientDeprecatedActivity_update_signal">시그널 최신 버전으로 업데이트</string>
-    <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">이 버전의 앱은 더 이상 지원되지 않습니다. 메시지를 주고받을려면, 가장 최근 버전으로 업데이트해주세요</string>
+    <string name="ClientDeprecatedActivity_update_signal">Signal 업데이트</string>
+    <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">이 앱 버전은 더 이상 지원되지 않습니다. 메시지를 주고받으려면 최신 버전으로 업데이트해 주세요.</string>
     <string name="ClientDeprecatedActivity_update">업데이트</string>
     <string name="ClientDeprecatedActivity_dont_update">업데이트하지 않음</string>
     <string name="ClientDeprecatedActivity_warning">경고</string>
@@ -341,11 +349,11 @@
     <string name="CommunicationActions_no_browser_found">웹 브라우저를 찾을 수 없습니다.</string>
     <string name="CommunicationActions_send_email">이메일 보내기</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">이미 셀룰러 데이터 통화를 사용하고 있습니다.</string>
-    <string name="CommunicationActions_start_voice_call">음성 통화를 시작하시겠습니까?</string>
+    <string name="CommunicationActions_start_voice_call">음성 통화를 시작하시겠어요?</string>
     <string name="CommunicationActions_cancel">취소</string>
     <string name="CommunicationActions_call">전화</string>
     <string name="CommunicationActions_insecure_call">안전하지 않은 통화</string>
-    <string name="CommunicationActions_carrier_charges_may_apply">통신사 요금이 부과될 수 있습니다. 당신이 전화하려는 번호는 Signal에 등록되지 않았습니다. 이 전화는 인터넷이 아닌 당신의 모바일 통신사를 통해 연결될 겁니다.</string>
+    <string name="CommunicationActions_carrier_charges_may_apply">통신사 요금이 부과될 수 있습니다. 현재 통화하려는 번호는 Signal에 등록되어 있지 않아, 인터넷이 아닌 모바일 통신사를 통해 연결됩니다.</string>
     <string name="CommunicationActions_cant_join_call">통화에 참여할 수 없습니다.</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">이 통화 링크는 더 이상 유효하지 않습니다.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
@@ -394,20 +402,20 @@
     <string name="ContactShareEditActivity_type_mobile">휴대 전화</string>
     <string name="ContactShareEditActivity_type_work">직장</string>
     <string name="ContactShareEditActivity_type_missing">기타</string>
-    <string name="ContactShareEditActivity_invalid_contact">선택한 연락처가 잘못됨</string>
+    <string name="ContactShareEditActivity_invalid_contact">선택한 연락처가 유효하지 않습니다</string>
     <!-- Content descrption for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">이름 수정</string>
     <!-- Content description for user avatar in edit activity -->
     <string name="ContactShareEditActivity__avatar">아바타</string>
 
     <!-- ConversationItem -->
-    <string name="ConversationItem_error_not_sent_tap_for_details">메시지가 보내지지 않았습니다. 탭하여 세부정보를 확인하세요.</string>
-    <string name="ConversationItem_error_partially_not_delivered">일부만 전송됨, 탭하여 확인</string>
+    <string name="ConversationItem_error_not_sent_tap_for_details">전송되지 않음. 자세히 보려면 탭하세요</string>
+    <string name="ConversationItem_error_partially_not_delivered">일부만 전송됨. 자세히 보려면 탭하세요</string>
     <string name="ConversationItem_error_network_not_delivered">보내기 실패</string>
-    <string name="ConversationItem_group_action_left">%1$s 님이 그룹에서 탈퇴했습니다.</string>
+    <string name="ConversationItem_group_action_left">%1$s 님이 그룹에서 나갔습니다.</string>
     <string name="ConversationItem_send_paused">전송 일시 중지됨</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">비보안 SMS로 바꾸시겠습니까?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">비보안 MMS로 바꾸시겠습니까?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">비보안 SMS로 바꾸시겠어요?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">비보안 MMS로 바꾸시겠어요?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">수신자가 이제 Signal 사용자가 아니므로 메시지가 암호화되지 <b>않습니다</b>.\n\n비보안 메시지를 보내시겠습니까?</string>
     <string name="ConversationItem_unable_to_open_media">미디어를 열 수 있는 앱이 없습니다.</string>
     <string name="ConversationItem_copied_text">%1$s 복사됨</string>
@@ -448,8 +456,8 @@
     <string name="ConversationActivity_compose_message">메시지 작성</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">죄송합니다. 파일 첨부 설정 중 오류가 발생했습니다.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">수신자가 올바른 SMS 또는 이메일 주소가 아닙니다!</string>
-    <string name="ConversationActivity_message_is_empty_exclamation">메시지가 비어 있습니다!</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">수신자의 SMS 또는 이메일 주소가 올바르지 않습니다</string>
+    <string name="ConversationActivity_message_is_empty_exclamation">메시지가 비어 있어요</string>
     <string name="ConversationActivity_group_members">그룹 멤버</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
@@ -460,7 +468,7 @@
         <item quantity="other">이 메시지는 오직 %1$d 님만 수정할 수 있습니다.</item>
     </plurals>
 
-    <string name="ConversationActivity_invalid_recipient">잘못된 수신자입니다!</string>
+    <string name="ConversationActivity_invalid_recipient">잘못된 수신자입니다</string>
     <string name="ConversationActivity_added_to_home_screen">홈 화면에 추가됨</string>
     <string name="ConversationActivity_calls_not_supported">지원되지 않는 전화</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">해당 기기에서는 전화를 지원하지 않는 것 같습니다.</string>
@@ -472,10 +480,10 @@
     <string name="ConversationActivity_transport_signal">Signal 메시지</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">문자 보내기</string>
-    <string name="ConversationActivity_lets_switch_to_signal">Signal로 대화해요! %1$s</string>
+    <string name="ConversationActivity_lets_switch_to_signal">Signal로 같이 옮겨요! %1$s</string>
     <string name="ConversationActivity_specify_recipient">연락처를 선택해 주세요.</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">첨부 파일이 전송 메시지의 사이즈 제한을 초과합니다.</string>
-    <string name="ConversationActivity_unable_to_record_audio">오디오를 녹음할 수 없습니다!</string>
+    <string name="ConversationActivity_unable_to_record_audio">오디오를 녹음할 수 없어요</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">더 이상 이 그룹의 멤버가 아니기 때문에 이 그룹에 메시지를 보내실 수 없습니다.</string>
     <string name="ConversationActivity_only_s_can_send_messages">%1$s만 메시지를 전송할 수 있습니다.</string>
     <string name="ConversationActivity_admins">관리자</string>
@@ -510,7 +518,7 @@
     <string name="ConversationActivity_no_results">결과 없음</string>
 
     <string name="ConversationActivity_sticker_pack_installed">스티커 팩 설치됨</string>
-    <string name="ConversationActivity_new_say_it_with_stickers">새 기능! 스티커를 사용해서 대화해 보세요.</string>
+    <string name="ConversationActivity_new_say_it_with_stickers">[NEW] 스티커를 사용해서 대화해 보세요.</string>
 
     <string name="ConversationActivity_cancel">취소</string>
     <string name="ConversationActivity_delete_conversation">대화를 삭제할까요?</string>
@@ -558,7 +566,7 @@
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="other">선택한 메시지를 삭제하시겠습니까?</item>
     </plurals>
-    <string name="ConversationFragment_save_to_sd_card">저장 공간에 저장하시겠습니까?</string>
+    <string name="ConversationFragment_save_to_sd_card">저장 공간에 저장하시겠어요?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="other">미디어 %1$d개를 저장 공간에 저장하게 되면, 기기에 설치된 다른 앱이 접근할 수 있습니다.\n\n계속하시겠습니까?</item>
     </plurals>
@@ -600,7 +608,7 @@
     <string name="ConversationFragment__review_banner_body">이 사람의 이름이 연락처의 다른 사람과 이름이 같습니다.</string>
     <string name="ConversationFragment_contact_us">문의하기</string>
     <string name="ConversationFragment_verify">검증</string>
-    <string name="ConversationFragment_not_now">나중에</string>
+    <string name="ConversationFragment_not_now">나중에 하기</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">%1$s과/와의 안전 번호가 변경됐습니다.</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%1$s과/와의 안전 번호가 변경됐습니다. 이는 상대방이 Signal을 재설치했거나 사용 기기를 변경했기 때문일 가능성이 높습니다. 새로운 안전 번호를 인증하려면 \"인증\" 버튼을 탭하십시오. 이 절차는 선택적입니다.</string>
     <!-- Dialog title for block group link join requests -->
@@ -819,7 +827,7 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">내가 메시지를 보내는 사용자 또는 기존 대화 기록이 있는 사용자를 제외하고는 아무도 Signal에서 나를 볼 수 없습니다.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">백업으로 복원하시겠습니까?</string>
+    <string name="ChooseBackupFragment__restore_from_backup">백업으로 복원하시겠어요?</string>
     <string name="ChooseBackupFragment__restore_your_messages_and_media">로컬 백업에서 메시지와 미디어를 복원합니다. 지금 복원하지 않으면 이후에는 복원할 수 없습니다.</string>
     <string name="ChooseBackupFragment__icon_content_description">백업 아이콘에서 복원</string>
     <string name="ChooseBackupFragment__choose_backup">백업 선택하기</string>
@@ -830,7 +838,7 @@
     <string name="RestoreBackupFragment__restore_complete">복구가 완료되었습니다.</string>
     <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">백업을 계속하려면, 폴더를 선택해 주세요. 새로운 백업들은 그 위치에 저장될 것 입니다.</string>
     <string name="RestoreBackupFragment__choose_folder">폴더 선택</string>
-    <string name="RestoreBackupFragment__not_now">나중에</string>
+    <string name="RestoreBackupFragment__not_now">나중에 하기</string>
     <!-- Couldn\'t find the selected backup -->
     <string name="RestoreBackupFragment__backup_not_found">백업을 찾을 수 없습니다.</string>
     <!-- Couldn\'t read the selected backup -->
@@ -844,7 +852,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">백업 용량에 따라 시간이 더 오래 걸릴 수 있습니다. 백업하는 동안 평상시처럼 휴대폰을 사용하셔도 됩니다.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">메시지를 주고받는 동안 미디어가 백업에 추가됩니다.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">미디어를 복원할 수 없음</string>
@@ -902,7 +910,7 @@
     <string name="BackupsPreferenceFragment__d_so_far">지금까지 %1$d…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% 진행중…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal에서 백업을 저장하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal에서 백업을 저장하려면 저장 공간 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
     <string name="BackupsPreferenceFragment__set_backup_time">백업 시간 설정</string>
 
@@ -914,7 +922,7 @@
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">사진을 촬영하려면 카메라 권한이 필요합니다.</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">갤러리를 보려면 저장 권한이 필요합니다.</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">갤러리를 보려면 저장 공간 권한이 필요합니다.</string>
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">지금</string>
@@ -981,7 +989,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">데스크톱 또는 iPad에서 이 Signal 계정을 사용합니다.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">데스크톱 또는 iPad에서 이 Signal 계정 사용하기</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">새 기기 연결</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -1125,7 +1133,7 @@
     <string name="DeviceListActivity_try_again">다시 시도해 주세요.</string>
     <string name="DeviceListActivity_unlinking_device">기기 연결 해제 중…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">기기 연결 해제 중</string>
-    <string name="DeviceListActivity_network_failed">네트워크 연결에 실패했습니다!</string>
+    <string name="DeviceListActivity_network_failed">네트워크 연결 실패</string>
 
     <!-- DeviceListItem -->
     <string name="DeviceListItem_unnamed_device">이름 없는 기기</string>
@@ -1145,6 +1153,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal 버전이 만료되었습니다. 메시지를 송수신 하기 위해 지금 업데이트 하십시오.</string>
     <string name="ExpiredBuildReminder_update_now">지금 업데이트하세요.</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal이 이 기기에서는 더 이상 작동하지 않습니다. Signal을 다시 사용하려면 기기를 최신 Android 버전으로 업데이트하거나 최신 기기로 업데이트하세요.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">시그널 최신 버전으로 업데이트</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1157,7 +1168,7 @@
     <string name="PendingGroupJoinRequestsReminder_view">보기</string>
 
     <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">영구적으로 Signal 연결에 실패했습니다!</string>
+    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 연결에 실패했어요</string>
     <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal은 Google Play Services에 등록될 수 없습니다. Signal 메시지와 전화는 비활성화되었습니다. Signal 설정 - 고급 메뉴에서 다시 등록해 주세요.</string>
 
 
@@ -1167,12 +1178,12 @@
     <!-- GiphyFragmentPageAdapter -->
 
     <!-- AddToGroupActivity -->
-    <string name="AddToGroupActivity_add_member">멤버를 추가하시겠습니까?</string>
+    <string name="AddToGroupActivity_add_member">멤버를 추가하시겠어요?</string>
     <string name="AddToGroupActivity_add_s_to_s">%1$s을 %2$s에 추가하시겠습니까?</string>
     <string name="AddToGroupActivity_s_added_to_s">%1$s 님이 \'%2$s\'에 추가되었습니다.</string>
     <string name="AddToGroupActivity_add_to_group">그룹에 추가하기</string>
     <string name="AddToGroupActivity_add_to_groups">그룹에 추가하기</string>
-    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">이 사용자를 기존 그룹에 추가할 수 없습니다.</string>
+    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">이 사용자를 레거시 그룹에 추가할 수 없습니다.</string>
     <string name="AddToGroupActivity_add">추가</string>
     <string name="AddToGroupActivity_add_to_a_group">그룹에 추가</string>
 
@@ -1235,7 +1246,7 @@
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-        <item quantity="other">%1$d명의 멤버를 새 그룹에 다시 추가할 수 없습니다. 지금 추가하시겠습니까?</item>
+        <item quantity="other">멤버 %1$d명을 새 그룹에 다시 추가하지 못했습니다. 지금 추가할까요?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
         <item quantity="other">멤버 추가하기</item>
@@ -1244,7 +1255,7 @@
 
     <!-- GroupsV1MigrationSuggestionsDialog -->
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
-        <item quantity="other">멤버를 추가하시겠습니까?</item>
+        <item quantity="other">멤버를 추가하시겠어요?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
         <item quantity="other">이 멤버들은 업그레이드될 때 새 그룹에 자동으로 추가될 수 없습니다.</item>
@@ -1260,7 +1271,7 @@
     </plurals>
 
     <!-- LeaveGroupDialog -->
-    <string name="LeaveGroupDialog_leave_group">그룹을 탈퇴하시겠습니까?</string>
+    <string name="LeaveGroupDialog_leave_group">그룹을 나가시겠어요?</string>
     <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">이 그룹에서 메시지를 보내거나 받을 수 없게 됩니다.</string>
     <string name="LeaveGroupDialog_leave">나가기</string>
     <string name="LeaveGroupDialog_choose_new_admin">새 관리자 선택</string>
@@ -1344,11 +1355,16 @@
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">확인</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">이 사용자를 기존 그룹에 추가할 수 없습니다.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">이 사용자를 레거시 그룹에 추가할 수 없습니다.</string>
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">%1$s을 %2$s에 추가하시겠습니까?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="other">구성원 %3$d명을 \'%2$s\'에 추가하시겠습니까?</item>
+        <item quantity="other">구성원 %1$d명을 \'%2$s\'에 추가하시겠습니까?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">추가</string>
     <string name="AddMembersActivity__add_members">멤버 추가</string>
 
@@ -1372,8 +1388,8 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal 그룹을 지원하지 않는 연락처를 선택했으므로 이 그룹은 MMS가 됩니다. 사용자 정의 MMS 그룹 이름과 사진은 나에게만 표시됩니다. 암호화 메시지에 집중하기 위해 MMS 그룹에 대한 지원을 곧 중단합니다.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_who_can_add_new_members">누가 새로운 멤버들을 추가시킬 수 있습니까?</string>
-    <string name="ManageGroupActivity_who_can_edit_this_groups_info">누가 이 그룹의 정보를 수정할 수 있습니까?</string>
+    <string name="ManageGroupActivity_who_can_add_new_members">누가 새로운 멤버를 추가할 수 있나요?</string>
+    <string name="ManageGroupActivity_who_can_edit_this_groups_info">누가 이 그룹의 정보를 수정할 수 있나요?</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="other">%1$d 멤버가 추가됨</item>
@@ -1388,12 +1404,12 @@
     <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">네트워크 오류로 인해 그룹을 업데이트하지 못했습니다. 나중에 다시 시도하세요.</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">이름과 그림 수정하기</string>
-    <string name="ManageGroupActivity_legacy_group">구형 그룹</string>
+    <string name="ManageGroupActivity_legacy_group">레거시 그룹</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
-    <string name="ManageGroupActivity_legacy_group_learn_more">구형 그룹입니다. 그룹 관리자와 같은 기능은 새 그룹에서만 사용할 수 있습니다.</string>
+    <string name="ManageGroupActivity_legacy_group_learn_more">레거시 그룹입니다. 그룹 관리자와 같은 기능은 새 그룹에서만 사용할 수 있습니다.</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
-    <string name="ManageGroupActivity_legacy_group_upgrade">구형 그룹입니다. @멘션 및 관리자와 같은 새로운 기능에 액세스하려면</string>
-    <string name="ManageGroupActivity_legacy_group_too_large">이 구형 그룹의 규모가 너무 커서 새 그룹으로 업그레이드할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
+    <string name="ManageGroupActivity_legacy_group_upgrade">레거시 그룹입니다. @멘션 및 관리자와 같은 새로운 기능에 액세스하려면</string>
+    <string name="ManageGroupActivity_legacy_group_too_large">레거시 그룹의 규모가 너무 커서 새 그룹으로 업그레이드할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
     <string name="ManageGroupActivity_upgrade_this_group">그룹을 업그레이드하세요.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">안전하지 않은 MMS 그룹입니다. 비공개로 대화하려면 연락처를 Signal에 초대하세요.</string>
     <string name="ManageGroupActivity_invite_now">지금 초대하기</string>
@@ -1451,6 +1467,10 @@
     <string name="RemoteRestoreActivity__not_now">나중에</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">미디어가 백그라운드에서 복원됩니다. 지금 복원하지 않도록 선택하면 나중에 복원할 수 없습니다.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">이 기기는 더 이상 등록된 상태가 아님</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">이 문제는 다른 기기에 Signal 계정을 등록했기 때문일 가능성이 높습니다.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">멘션 알림</string>
@@ -1616,7 +1636,7 @@
 
     <string name="InviteActivity_cancel">취소</string>
     <string name="InviteActivity_sending">보내는 중…</string>
-    <string name="InviteActivity_invitations_sent">초대를 보냈습니다!</string>
+    <string name="InviteActivity_invitations_sent">초대를 보냈어요!</string>
     <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
     <string name="InviteActivity_send_sms">SMS 보내기 (%1$d)</string>
     <plurals name="InviteActivity_send_sms_invites">
@@ -1657,7 +1677,7 @@
     <string name="MediaOverviewActivity_Newest">최근 순서</string>
     <string name="MediaOverviewActivity_Oldest">오래된 순서</string>
     <string name="MediaOverviewActivity_Storage_used">사용된 저장 공간</string>
-    <string name="MediaOverviewActivity_All_storage_use">저장된 모든 파일</string>
+    <string name="MediaOverviewActivity_All_storage_use">저장 공간 사용 상태</string>
     <string name="MediaOverviewActivity_Grid_view_description">눈금 보기</string>
     <string name="MediaOverviewActivity_List_view_description">목록 보기</string>
     <string name="MediaOverviewActivity_Selected_description">선택됨</string>
@@ -1717,7 +1737,7 @@
     <string name="NotificationBarManager__cancel_call">전화 취소</string>
 
     <!-- NotificationsMegaphone -->
-    <string name="NotificationsMegaphone_turn_on_notifications">알림을 켜시겠습니까?</string>
+    <string name="NotificationsMegaphone_turn_on_notifications">알림을 켜시겠어요?</string>
     <string name="NotificationsMegaphone_never_miss_a_message">내 연락처와 그룹의 메시지를 놓치지 마세요.</string>
     <string name="NotificationsMegaphone_turn_on">켜기</string>
     <string name="NotificationsMegaphone_not_now">나중에</string>
@@ -1766,7 +1786,7 @@
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s 님이 그룹을 업데이트했습니다.</string>
-    <string name="MessageRecord_s_joined_signal">%1$s 님이 온라인입니다!</string>
+    <string name="MessageRecord_s_joined_signal">%1$s 님이 Signal에 가입했어요!</string>
     <string name="MessageRecord_you_disabled_disappearing_messages">사라지는 메시지 기능을 비활성화했습니다.</string>
     <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 님이 사라지는 메시지 기능을 비활성화했습니다.</string>
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">사라지는 메시지 시간을 %1$s(으)로 설정했습니다.</string>
@@ -2047,6 +2067,10 @@
     <string name="MessageRecord_you_unblocked_this_group">이 그룹에 대한 차단을 해제했습니다</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s 님이 처리하거나 표시할 수 없는 메시지를 보냈습니다. 이는 메시지에서 새로운 Signal 기능을 사용하기 때문입니다.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s 님이 \"%2$s\" 설문조사를 종료했습니다.</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">설문조사 종료: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">수락</string>
@@ -2065,7 +2089,7 @@
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s의 업데이트와 메시지를 받아보시겠어요? 차단을 해제할 때까지 모든 업데이트를 차단합니다.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">이 그룹과 대화를 계속하고 멤버들에게 이름과 사진을 공유하시겠어요?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">이 레거시 그룹은 더 이상 사용할 수 없습니다. 새 그룹을 만들어 @멘션 및 관리자와 같은 새로운 기능을 활성화하세요.</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">이 구형 그룹의 규모가 너무 커서 더 이상 사용할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
+    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">레거시 그룹의 규모가 너무 커서 더 이상 사용할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s 님과 대화를 계속하고 이름과 사진을 공유하시겠어요?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">그룹에 가입하고 멤버들과 이름과 사진을 공유하시겠습니까? 귀하가 수락할 때까지 귀하가 자신의 메시지를 본 것을 알지 못합니다.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">이 그룹에 참가하여 그룹 멤버에게 내 이름과 사진을 공유하시겠어요? 수락하기 전까지는 멤버의 메시지가 표시되지 않습니다.</string>
@@ -2126,9 +2150,9 @@
     <string name="MessageRequestBottomView_join">참가</string>
 
     <!-- PassphraseChangeActivity -->
-    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호가 일치하지 않습니다!</string>
-    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호가 잘못되었습니다!</string>
-    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">새 암호를 입력하세요!</string>
+    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호 문구가 일치하지 않습니다.</string>
+    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호 문구를 잘못 입력했습니다.</string>
+    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">새 암호 문구를 입력하세요.</string>
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">기기를 연결하시겠습니까?</string>
@@ -2140,7 +2164,7 @@
     </string>
     <string name="DeviceProvisioningActivity_content_progress_title">기기 연결</string>
     <string name="DeviceProvisioningActivity_content_progress_content">새 기기 연결 중…</string>
-    <string name="DeviceProvisioningActivity_content_progress_success">기기가 승인되었습니다!</string>
+    <string name="DeviceProvisioningActivity_content_progress_success">기기가 승인되었습니다.</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">기기를 찾을 수 없습니다.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">네트워크 오류가 발생했습니다.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">잘못된 QR 코드입니다.</string>
@@ -2164,7 +2188,7 @@
     <string name="PassphrasePromptActivity_enter_passphrase">암호 입력</string>
     <string name="PassphrasePromptActivity_watermark_content_description">Signal 아이콘</string>
     <string name="PassphrasePromptActivity_ok_button_content_description">암호 제출</string>
-    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">잘못된 암호입니다!</string>
+    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">암호 문구를 잘못 입력했습니다.</string>
     <string name="PassphrasePromptActivity_unlock_signal">Signal 잠금 해제</string>
     <!-- This is the subject line for the email that is sent to support -->
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - 잠금 화면</string>
@@ -2219,7 +2243,7 @@
     <!-- RatingManager -->
     <string name="RatingManager_rate_this_app">앱 평가</string>
     <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">앱이 마음에 들면 평가해 주세요.</string>
-    <string name="RatingManager_rate_now">지금 평가해 주세요!</string>
+    <string name="RatingManager_rate_now">지금 평가하기</string>
     <string name="RatingManager_no_thanks">아니요</string>
     <string name="RatingManager_later">나중에</string>
 
@@ -2259,7 +2283,7 @@
     <string name="RedPhone_recipient_unavailable">응답 없음</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
     <string name="RedPhone_network_failed">네트워크 연결에 실패했습니다! 네트워크 연결을 확인하고 다시 시도하세요.</string>
-    <string name="RedPhone_number_not_registered">전화번호가 Signal에 등록되지 않았습니다!</string>
+    <string name="RedPhone_number_not_registered">등록되지 않은 번호입니다.</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">지금 거신 전화번호는 보안 전화를 지원하지 않습니다.</string>
     <string name="RedPhone_got_it">확인</string>
 
@@ -2350,6 +2374,12 @@
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">동영상 사용 방법:</string>
 
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal 전화</string>
     <string name="WebRtcCallView__signal_video_call">Signal 영상 통화</string>
@@ -2395,7 +2425,7 @@
         <item quantity="other">%1$s 님이 나와 %2$s 님, %3$s 님 외 %4$d명에게 전화를 걸었습니다.</item>
     </plurals>
 
-    <string name="WebRtcCallView__no_one_else_is_here">아무도 없음</string>
+    <string name="WebRtcCallView__no_one_else_is_here">참가한 사람이 없어요</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s 님이 통화 중입니다.</string>
     <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
     <string name="WebRtcCallView__s_are_in_this_call">%1$s이 이 통화에 있습니다</string>
@@ -2821,6 +2851,8 @@
     <string name="SubmitDebugLogActivity_success">성공!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">다음 URL을 복사하여 문제 보고서 또는 지원 이메일에 추가하세요. \n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">공유</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">닫기</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">이 로그는 기여자가 볼 수 있도록 온라인에 공개적으로 게시됩니다. 업로드하기 전에 검토할 수 있습니다.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">제출을 클릭하면 귀하의 로그는 특정한 비공개 URL에 30일 동안 올라갑니다. 먼저, 로컬에 저장해 두셔도 됩니다.</string>
@@ -2863,7 +2895,7 @@
     <string name="ThreadRecord_you_activated_payments">결제를 활성화했습니다.</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
     <string name="ThreadRecord_can_accept_payments">%1$s 님이 이제 결제를 수락할 수 있습니다.</string>
-    <string name="ThreadRecord_s_is_on_signal">%1$s 님이 온라인입니다!</string>
+    <string name="ThreadRecord_s_is_on_signal">%1$s 님이 Signal에 가입했어요!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">사라지는 메시지 기능이 비활성화됨</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">사라지는 메시지 시간을 %1$s(으)로 설정했습니다.</string>
     <string name="ThreadRecord_safety_number_changed">안전 번호가 변경됨</string>
@@ -2966,7 +2998,7 @@
     <string name="UsernameEditFragment_continue">계속</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-        <item quantity="other">Signal에 연락처가 %1$d개 있습니다!</item>
+        <item quantity="other">%1$d개의 연락처가 Signal을 이용 중이에요!</item>
     </plurals>
 
     <!-- UsernameShareBottomSheet -->
@@ -3076,8 +3108,10 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">내 결제에 %1$s 이모지로 반응했습니다.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">내 스티커에 %1$s 이모지로 반응했습니다.</string>
     <string name="MessageNotifier_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s 님이 \"%3$s\" 설문조사에 투표했습니다.</string>
 
-    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">연락처 인물이 Signal에 가입했다는 알림을 끄시겠습니까? Signal &gt; 설정 &gt; 알림에서 다시 활성화할 수 있습니다.</string>
+    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">연락처에 있는 사용자가 Signal에 가입할 때 발송되는 알림을 끄시겠어요? Signal &gt; 설정 &gt; 알림에서 다시 활성화하실 수 있습니다.</string>
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
@@ -3103,7 +3137,7 @@
     <string name="NotificationChannel_group_chats">대화</string>
     <string name="NotificationChannel_missing_display_name">알 수 없음</string>
     <string name="NotificationChannel_voice_notes">음성 노트</string>
-    <string name="NotificationChannel_contact_joined_signal">연락처가 Signal에 등록함</string>
+    <string name="NotificationChannel_contact_joined_signal">연락처에 있는 사용자가 Signal에 가입함</string>
     <!-- Toast shown when there is no application available to open the settings -->
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">알림 채널 설정을 열 수 있는 활동이 없습니다.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
@@ -3118,8 +3152,8 @@
     <string name="NotificationChannel_new_linked_device">새 연결된 기기</string>
 
     <!-- QuickResponseService -->
-    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal가 잠겨 있는 경우 빠른 답장을 사용할 수 없습니다!</string>
-    <string name="QuickResponseService_problem_sending_message">메시지를 보내는 중에 오류가 발생했습니다!</string>
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal가 잠겨 있는 경우 빠른 답장을 사용할 수 없어요.</string>
+    <string name="QuickResponseService_problem_sending_message">메시지 전송 중에 오류가 발생했어요.</string>
 
     <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
     <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">저장 공간에 저장할 수 없습니다!</string>
@@ -3247,6 +3281,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">카메라 끄고 통화</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">카메라 방향 전환</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">오디오 출력</string>
@@ -3304,9 +3341,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\'%1$s\' 님은 Signal 사용자가 아닙니다. 사용자 이름 확인 후 다시 시도해 주세요."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">나 자신을 그룹에 추가할 필요가 없습니다.</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">최대 그룹 규모에 도달했습니다.</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal 그룹에는 최대 %1$d명의 멤버가 있을 수 있습니다.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal 그룹에는 최대 %1$s명의 멤버가 있을 수 있습니다.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">권장 멤버 수 한도에 도달했습니다.</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal 그룹은 %1$d명 이하의 멤버가 있을 때 가장 잘 작동합니다. 멤버를 더 많이 추가하면 메시지 송수신이 지연됩니다.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal 그룹은 %1$s명 이하의 멤버가 있을 때 가장 잘 작동합니다. 멤버를 더 많이 추가하면 메시지 송수신이 지연됩니다.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">멤버 %1$d명</item>
     </plurals>
@@ -3754,7 +3791,7 @@
 
     <string name="arrays__name_and_message">이름 및 메시지</string>
     <string name="arrays__name_only">이름</string>
-    <string name="arrays__no_name_or_message">이름 또는 메시지 없음</string>
+    <string name="arrays__no_name_or_message">이름 또는 메시지 표시 안 함</string>
 
     <string name="arrays__images">이미지</string>
     <string name="arrays__audio">오디오</string>
@@ -3811,11 +3848,11 @@
     <string name="preferences__default">기본값</string>
     <string name="preferences__repeat_alerts">알림 반복</string>
     <string name="preferences__never">없음</string>
-    <string name="preferences__one_time">1번</string>
-    <string name="preferences__two_times">2번</string>
-    <string name="preferences__three_times">3번</string>
-    <string name="preferences__five_times">5번</string>
-    <string name="preferences__ten_times">10번</string>
+    <string name="preferences__one_time">1회</string>
+    <string name="preferences__two_times">2회</string>
+    <string name="preferences__three_times">3회</string>
+    <string name="preferences__five_times">5회</string>
+    <string name="preferences__ten_times">10회</string>
     <string name="preferences__vibrate">진동</string>
     <string name="preferences__green">초록색</string>
     <string name="preferences__red">빨간색</string>
@@ -3845,7 +3882,7 @@
     <string name="preferences__mmsc_password">MMSC 비밀번호</string>
     <string name="preferences__sms_delivery_reports">SMS 전송 확인</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS 메시지를 보낼 때마다 전송 확인 요청</string>
-    <string name="preferences__data_and_storage">데이터와 저장소</string>
+    <string name="preferences__data_and_storage">데이터와 저장 공간</string>
     <string name="preferences__storage">저장 공간</string>
     <string name="preferences__payments">결제</string>
     <!-- Privacy settings payments section description -->
@@ -3899,7 +3936,7 @@
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">읽은 메시지 기능이 꺼져 있다면, 다른 사람이 메시지를 읽었는지 확인할 수 없습니다.</string>
     <string name="preferences__typing_indicators">입력 안내</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">입력 안내 기능이 꺼져 있다면, 다른 사람이 메시지를 쓰고 있는지 확인할 수 없습니다.</string>
-    <string name="preferences__request_keyboard_to_disable">키보드가 사용자 맞춤 학습을 비활성화하기를 요청합니다.</string>
+    <string name="preferences__request_keyboard_to_disable">키보드가 입력 내용을 학습하지 않도록 설정합니다.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">이 설정은 보장되지 않으며 키보드에서 무시할 수 있습니다.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">모바일 데이터 사용 시</string>
@@ -3912,7 +3949,7 @@
     <string name="preferences_storage__videos">동영상</string>
     <string name="preferences_storage__files">파일</string>
     <string name="preferences_storage__audio">오디오</string>
-    <string name="preferences_storage__review_storage">저장 공간 검토</string>
+    <string name="preferences_storage__review_storage">저장 공간 검토하기</string>
     <string name="preferences_storage__delete_older_messages">오래된 메시지를 삭제하시겠습니까?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
     <string name="preferences_storage__delete_message_history">메시지 기록을 삭제하시겠습니까?</string>
@@ -3948,7 +3985,7 @@
     <string name="preferences_app_protection__payments">결제</string>
     <string name="preferences_chats__chats">대화</string>
     <string name="preferences_app_updates__title">앱 업데이트</string>
-    <string name="preferences_data_and_storage__manage_storage">저장공간 관리하기</string>
+    <string name="preferences_data_and_storage__manage_storage">저장 공간 관리하기</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">통화에 더 적은 양의 데이터 사용하기</string>
     <string name="preferences_data_and_storage__never">없음</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi 및 모바일 데이터</string>
@@ -4000,7 +4037,7 @@
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">보통</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">소형</string>
+    <string name="preferences_compact">작게</string>
 
 
     <string name="configurable_single_select__customize_option">옵션 설정하기</string>
@@ -4302,6 +4339,8 @@
     <string name="conversation_selection__menu_multi_select">선택</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">결제 세부 정보</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">설문조사 종료</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4476,7 +4515,7 @@
     <string name="KbsReminderDialog__to_help_you_memorize_your_pin">주기적으로 번호를 입력하면 외우는 데 도움이 됩니다. 가끔씩만 여쭤보겠습니다.</string>
     <string name="KbsReminderDialog__skip">건너뛰기</string>
     <string name="KbsReminderDialog__submit">제출</string>
-    <string name="KbsReminderDialog__forgot_pin">번호를 잊으셨나요?</string>
+    <string name="KbsReminderDialog__forgot_pin"> PIN을 잊으셨나요?</string>
     <string name="KbsReminderDialog__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
 
     <!-- AccountLockedFragment -->
@@ -4494,10 +4533,10 @@
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
     <string name="RegistrationLockFragment__switch_keyboard">키보드 전환</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
-    <string name="RegistrationLockFragment__forgot_pin">번호를 잊으셨나요?</string>
+    <string name="RegistrationLockFragment__forgot_pin">PIN을 잊으셨나요?</string>
     <string name="RegistrationLockFragment__incorrect_pin">잘못된 번호</string>
-    <string name="RegistrationLockFragment__forgot_your_pin">번호를 잊으셨나요?</string>
-    <string name="RegistrationLockFragment__not_many_tries_left">얼마 남지 않았습니다!</string>
+    <string name="RegistrationLockFragment__forgot_your_pin">PIN을 잊으셨나요?</string>
+    <string name="RegistrationLockFragment__not_many_tries_left">시도할 수 있는 횟수가 얼마 남지 않았어요.</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal 등록 - Android용 PIN 설정에 도움이 필요합니다 (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -4557,7 +4596,7 @@
     <string name="Permissions_not_now">나중에</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal 데이터베이스 이전 중</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">암호 백업</string>
-    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">백업은 외부 저장 공간에 보관되며 암호로 암호화됩니다. 백업에서 복원하려면 다음에 표시되는 암호가 필요합니다.</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">백업은 외부 저장 공간에 보관되며 암호 문구로 암호화됩니다. 백업에서 복원하려면 다음에 표시되는 암호 문구가 필요합니다.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">백업을 복원하려면 이 비밀번호가 필요합니다.</string>
     <string name="backup_enable_dialog__folder">폴더</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">암호를 적었습니다. 비밀번호를 잊었을 때 백업을 복구할 수 없다는 점에 동의합니다.</string>
@@ -4615,7 +4654,7 @@
     <string name="LocalBackupJobApi29_tap_to_manage_backups">탭하여 백업을 관리하세요.</string>
     <string name="RegistrationActivity_wrong_number">번호가 잘못되었나요?</string>
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
-    <string name="RegistrationActivity_call_me_instead_available_in">나한테 전화(%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">전화로 받기(%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">코드 다시 보내기(%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal 지원 팀에 문의</string>
@@ -4651,7 +4690,7 @@
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">취소</string>
     <string name="PhoneNumberPrivacy_everyone">모두</string>
-    <string name="PhoneNumberPrivacy_nobody">아무도</string>
+    <string name="PhoneNumberPrivacy_nobody">비공개</string>
     <string name="preferences_app_protection__screen_lock">화면 잠금</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">안드로이드 화면 잠금 또는 지문으로 Signal 잠금</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">다음 시간만큼 사용하지 않을 때 화면 잠금</string>
@@ -4683,7 +4722,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">정보</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">이 기능은 베타 기능이며 시간이 지남에 따라 개선될 예정입니다.</string>
+    <string name="Beta__this_is_beta">이 기능은 베타 단계이며, 앞으로 지속적으로 개선될 예정입니다.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal 잠금 해제</string>
@@ -4743,9 +4782,9 @@
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">계정 이전 또는 복원</string>
-    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">이전에 Signal 계정을 등록한 경우 계정 및 메시지를 이전하거나 복원할 수 있습니다.</string>
-    <string name="TransferOrRestoreFragment__transfer_from_android_device">Android 장치에서 전송</string>
-    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">이전 Android 장치에서 계정과 메시지를 전송하세요. 이전 장치에 액세스해야 합니다.</string>
+    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">이전에 Signal 계정을 등록한 경우 계정과 메시지를 이전하거나 복원할 수 있습니다.</string>
+    <string name="TransferOrRestoreFragment__transfer_from_android_device">Android 기기에서 이전</string>
+    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">이전 Android 기기에서 계정과 메시지를 옮겨옵니다. 단, 기존 기기에 접근이 필요합니다.</string>
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">이전 장치에 액세스해야 합니다.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">백업에서 복원</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">로컬 백업에서 메시지를 복원합니다. 지금 복원하지 않으면 나중에 복원할 수 없습니다.</string>
@@ -4766,7 +4805,7 @@
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
     <string name="NewDeviceTransferInstructions__tap_on_account">"계정을 탭하세요."</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"두 장치에서 \'계정 이전\'을 탭한 후 \'계속\'을 탭하세요."</string>
+    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"두 기기에서 \'계정 이전\'을 탭한 후 \'계속\'을 탭하세요."</string>
 
     <!-- NewDeviceTransferSetupFragment -->
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">이전 Android 장치에 연결 준비 중…</string>
@@ -4801,8 +4840,8 @@
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">다음 코드가 두 장치 모두에서 일치하는지 확인하세요. 그런 다음 계속을 탭하세요.</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">숫자가 일치하지 않음</string>
     <string name="DeviceTransferSetup__continue">계속</string>
-    <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">장치의 번호가 일치하지 않으면 잘못된 장치에 연결했을 수 있습니다. 이 문제를 해결하려면 전송을 중지하고 다시 시도하고 두 장치를 모두 가까이 두세요.</string>
-    <string name="DeviceTransferSetup__stop_transfer">전송 중지</string>
+    <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">기기 간의 번호가 다르면 다른 기기에 연결됐을 가능성이 있습니다. 이전을 잠시 중단한 뒤, 두 기기를 가까이 둔 상태에서 다시 시도해 주세요.</string>
+    <string name="DeviceTransferSetup__stop_transfer">이전 중지</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">이전 장치를 검색할 수 없음</string>
     <string name="DeviceTransferSetup__unable_to_discover_new_device">새 장치를 찾을 수 없음</string>
     <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">다음 권한 및 서비스가 활성화되어 있는지 확인하세요.</string>
@@ -4812,40 +4851,40 @@
     <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct 화면에서 기억된 모든 그룹을 제거하고 초대되거나 연결된 장치의 연결을 해제합니다.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">와이파이 다이렉트 화면</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">두 장치 모두에서 Wi-Fi를 껐다가 켜보세요.</string>
-    <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">두 장치가 모두 전송 모드인지 확인하세요.</string>
+    <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">두 기기가 모두 이전 모드인지 확인하세요.</string>
     <string name="DeviceTransferSetup__go_to_support_page">지원 페이지로 이동</string>
     <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">다시 시도해 주세요.</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">다른 장치를 기다리는 중</string>
-    <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">다른 장치에서 계속을 탭하여 이전을 시작하세요.</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">다른 기기에서 \'계속\'을 탭하여 이전을 시작하세요.</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">다른 장치에서 계속을 탭하세요…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">최신 버전의 Signal에서 전송할 수 없음</string>
+    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">최신 버전의 Signal에서 이전할 수 없음</string>
     <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
     <string name="NewDeviceTransfer__failure_foreign_key">전송한 데이터의 형식이 잘못되었습니다.</string>
 
     <!-- DeviceTransferFragment -->
-    <string name="DeviceTransfer__transferring_data">데이터 전송 중</string>
-    <string name="DeviceTransfer__keep_both_devices_near_each_other">두 장치를 서로 가까이 두세요. 장치를 끄지 말고 Signal을 켜두세요. 전송은 종단 간 암호화됩니다.</string>
+    <string name="DeviceTransfer__transferring_data">데이터 이전 중</string>
+    <string name="DeviceTransfer__keep_both_devices_near_each_other">두 기기를 서로 가까이 둔 채로 유지해 주세요. 기기를 끄지 말고 Signal을 계속 열어 두세요. 이전 과정은 종단간 암호화로 보호됩니다.</string>
     <string name="DeviceTransfer__d_messages_so_far">지금까지 %1$d개의 메시지…</string>
     <!-- Filled in with total percentage of messages transferred -->
     <string name="DeviceTransfer__s_of_messages_so_far">현재까지 메시지 %1$s%% 전송 완료</string>
     <string name="DeviceTransfer__cancel">취소</string>
     <string name="DeviceTransfer__try_again">다시 시도해 주세요.</string>
-    <string name="DeviceTransfer__stop_transfer">전송 중지</string>
-    <string name="DeviceTransfer__all_transfer_progress_will_be_lost">모든 전송 진행 상황이 손실됩니다.</string>
-    <string name="DeviceTransfer__transfer_failed">전송 실패</string>
-    <string name="DeviceTransfer__unable_to_transfer">전송할 수 없음</string>
+    <string name="DeviceTransfer__stop_transfer">이전 중지</string>
+    <string name="DeviceTransfer__all_transfer_progress_will_be_lost">모든 진행 상황이 손실됩니다.</string>
+    <string name="DeviceTransfer__transfer_failed">이전 실패</string>
+    <string name="DeviceTransfer__unable_to_transfer">이전할 수 없음</string>
 
     <!-- OldDeviceTransferInstructionsFragment -->
-    <string name="OldDeviceTransferInstructions__transfer_account">계정 이동</string>
+    <string name="OldDeviceTransferInstructions__transfer_account">계정 이전</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">새 Android 장치에서 Signal을 다운로드하세요.</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
     <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"계정 이전 또는 복원을 탭하세요."</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"메시지가 표시되면 \'Android 장치에서 전송\'을 선택한 다음 \'계속\'을 선택하세요. 두 장치를 모두 가까이에 두세요."</string>
+    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"메시지가 표시되면 \'Android 기기에서 이전\'을 선택한 다음 \'계속\'을 선택하세요. 두 기기를 서로 가까이에 두세요."</string>
     <string name="OldDeviceTransferInstructions__continue">계속</string>
     <!-- Title for exit device transfer confirmation dialog -->
     <string name="OldDeviceTransferInstructions__confirm_exit_title">기기 전송을 중지하시겠습니까?</string>
@@ -4858,12 +4897,12 @@
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">새 장치로 이동</string>
-    <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Signal 데이터가 새 장치로 전송되었습니다. 이전 절차를 완료하려면 새 장치에서 계속 등록해야 합니다.</string>
+    <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Signal 데이터가 새 기기로 이전되었습니다. 이전 절차를 완료하려면 새 기기에서 등록을 완료해 주세요.</string>
     <string name="OldDeviceTransferComplete__close">닫기</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">전송 성공</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">전송 완료</string>
+    <string name="NewDeviceTransferComplete__transfer_successful">이전 성공</string>
+    <string name="NewDeviceTransferComplete__transfer_complete">이전 완료</string>
     <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">이전 절차를 완료하려면 등록을 계속해야 합니다.</string>
     <string name="NewDeviceTransferComplete__continue_registration">계속 등록</string>
 
@@ -4878,7 +4917,7 @@
 
     <!-- OldDeviceTransferLockedDialog -->
     <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">새 장치에서 등록 완료</string>
-    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal 계정이 새 장치로 이전되었지만 계속하려면 등록을 완료해야 합니다. 이 장치에서 신호가 비활성화됩니다.</string>
+    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal 계정이 새 기기로 이전되었으나, 계속 사용하려면 새 기기에서 등록을 완료해야 합니다. 이 기기에서는 Signal이 더 이상 활성화되지 않습니다.</string>
     <string name="OldDeviceTransferLockedDialog__done">확인</string>
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">이 장치를 취소하고 활성화하세요.</string>
 
@@ -4914,11 +4953,11 @@
 
     <!-- GroupsLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsLearnMore_legacy_vs_new_groups">구형 그룹과 새로운 그룹의 차이점</string>
-    <string name="GroupsLearnMore_what_are_legacy_groups">구형 그룹은 무엇인가요?</string>
-    <string name="GroupsLearnMore_paragraph_1">구형 그룹은 관리자나 더욱 자세한 그룹 관리 같은 새로운 그룹 기능들을 이용할 수 없습니다.</string>
-    <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">구형 그룹을 업그레이드할 수 있나요?</string>
-    <string name="GroupsLearnMore_paragraph_2">구형 그룹은 아직 새 그룹으로 업그레이드할 수 없지만 최신 버전의 Signal을 사용하는 경우 동일한 멤버로 새 그룹을 만들 수 있습니다.</string>
-    <string name="GroupsLearnMore_paragraph_3">Signal은 향후 구형 그룹을 업그레이드하는 방법을 제공할 예정입니다.</string>
+    <string name="GroupsLearnMore_what_are_legacy_groups">레거시 그룹은 무엇인가요?</string>
+    <string name="GroupsLearnMore_paragraph_1">레거시 그룹은 관리자 기능이나 상세 그룹 관리 같은 새로운 그룹 기능을 이용할 수 없습니다.</string>
+    <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">레거시 그룹을 업그레이드할 수 있나요?</string>
+    <string name="GroupsLearnMore_paragraph_2">레거시 그룹은 아직 새 그룹으로 업그레이드할 수 없습니다. 하지만 모든 멤버가 최신 버전의 Signal을 사용 중이라면 동일한 멤버로 새 그룹을 만들 수 있습니다.</string>
+    <string name="GroupsLearnMore_paragraph_3">Signal은 앞으로 레거시 그룹을 업그레이드할 수 있는 방법을 제공할 예정입니다.</string>
 
     <!-- GroupLinkBottomSheetDialogFragment -->
     <string name="GroupLinkBottomSheet_share_hint_requiring_approval">이 링크가 있는 사용자는 누구나 그룹의 이름과 사진을 보고 가입을 요청할 수 있습니다. 사용자가 신뢰하는 사용자들과 공유하세요.</string>
@@ -5040,9 +5079,13 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">건너뛰기</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="other">멤버 %1$d명</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="other">멤버 %1$s명</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">다음</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">공유</string>
@@ -5075,7 +5118,7 @@
     <string name="ChatWallpaperFragment__reset_all_colors">모든 색상 재설정</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">기본 배경 화면 재설정</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">모든 배경 초기화하기</string>
-    <string name="ChatWallpaperFragment__reset_wallpapers">배경들을 초기화</string>
+    <string name="ChatWallpaperFragment__reset_wallpapers">배경 초기화</string>
     <string name="ChatWallpaperFragment__reset_wallpaper">배경 초기화</string>
     <string name="ChatWallpaperFragment__reset_wallpaper_question">배경을 초기화할까요?</string>
 
@@ -5086,7 +5129,7 @@
     <!-- ChatWallpaperPreviewActivity -->
     <string name="ChatWallpaperPreviewActivity__preview">미리보기</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">배경 설정하기</string>
-    <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">더 많은 배경들을 미리보기하기 위해 화면을 쓸어보세요</string>
+    <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">더 많은 배경을 미리보기하려면 스와이프하세요</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">모든 대화에 배경 화면 설정</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s에 배경 설정하기</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">갤러리를 보려면 저장 권한이 필요합니다.</string>
@@ -5127,9 +5170,9 @@
     <string name="DeactivateWalletFragment__your_balance">잔액</string>
     <string name="DeactivateWalletFragment__its_recommended_that_you">결제를 비활성화하기 전에 다른 지갑 주소로 자금을 이체하는 것이 좋습니다. 지금 자금을 이체하지 않기로 선택할 경우 결제를 다시 활성화하면 자금이 Signal에 연결된 지갑에 남아 있게 됩니다.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">잔액 이체</string>
-    <string name="DeactivateWalletFragment__deactivate_without_transferring">전송하지 않고 비활성화</string>
+    <string name="DeactivateWalletFragment__deactivate_without_transferring">이전하지 않고 비활성화</string>
     <string name="DeactivateWalletFragment__deactivate">비활성화</string>
-    <string name="DeactivateWalletFragment__deactivate_without_transferring_question">이전하지 않고 비활성화하시겠습니까?</string>
+    <string name="DeactivateWalletFragment__deactivate_without_transferring_question">이전하지 않고 비활성화하시겠어요?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">결제를 다시 활성화하기로 선택할 경우 잔액이 Signal에 연결된 지갑에 남아 있게 됩니다.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">지갑을 비활성화하는 동안 오류가 발생했습니다.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
@@ -5234,7 +5277,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Signal 안전한 백업 구독을 갱신하세요</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Signal 안전 백업 구독을 갱신하세요</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">백업을 완료할 수 없음</string>
     <!-- String alerting user that backup redemption -->
@@ -5252,7 +5295,7 @@
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">계정</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">시간이 지남에 따라 질문 빈도가 줄어듭니다.</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">사용할수록 확인 요청 횟수가 줄어듭니다.</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Signal에 전화번호를 다시 등록하려면 Signal PIN이 필요합니다.</string>
     <string name="AccountSettingsFragment__change_phone_number">전화번호 변경</string>
     <!-- Account setting that allows user to request and export their signal account data -->
@@ -5485,8 +5528,8 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">메시지</string>
     <string name="NotificationsSettingsFragment__calls">전화</string>
-    <string name="NotificationsSettingsFragment__notify_when">다음의 경우 알림…</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">연락처가 Signal에 합류했습니다.</string>
+    <string name="NotificationsSettingsFragment__notify_when">다음 경우에 알림</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">연락처에 있는 사용자가 Signal에 가입한 경우</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">알림 프로필</string>
     <!-- Notification preference option header -->
@@ -5756,23 +5799,23 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s 님을 차단했습니다.</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">차단 실패</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">%1$s 님을 제거할 수 없습니다.</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">이 사용자가 내 장치 연락처에 저장되어 있습니다. 연락처에서 해당 사용자를 삭제하고 다시 시도하세요.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">연락처 보기</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s 님은 Signal 사용자가 아닙니다.</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s 님은 Signal 사용자가 아닙니다.</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s 님은 Signal 사용자가 아닙니다.</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">메뉴 열기</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="other">%1$s번은 Signal 사용자가 아닙니다</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">이름 또는 번호 검색</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">이름, 사용자 이름 또는 전화번호</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">숫자 키보드로 전환</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">영숫자 키보드로 전환</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">검색 필터 초기화</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -5934,7 +5977,6 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">프로필을 업데이트하지 못했습니다.</string>
 
 
-
     <string name="SelectFeaturedBadgeFragment__select_a_badge">배지 선택</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">배지를 선택해야 합니다.</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">프로필을 업데이트하지 못했습니다.</string>
@@ -5976,7 +6018,7 @@
     <!-- Third small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">가능하다면 지금 Signal에 기부하여 Signal이 누구나 안심하고 사용할 수 있는 즐거운 앱으로 남을 수 있도록 도와주세요.</string>
 
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">여러분의 지지와 성원에 감사드립니다!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Signal과 함께해 주셔서 감사합니다.</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">Signal에서 기부자 배지를 받았습니다! 프로필에 표시하여 Signal에 대한 지지를 보여주세요.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">다른 기여 방법</string>
@@ -6504,7 +6546,7 @@
     <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
     <string name="StoryViewerPageFragment_any_reaction_content_description">반응 더 보기</string>
     <!-- Displayed when a story has no views -->
-    <string name="StoryViewsFragment__no_views_yet">아직 아무도 조회 안 함</string>
+    <string name="StoryViewsFragment__no_views_yet">아직 조회한 사람이 없어요</string>
     <!-- Displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">내 스토리를 본 사람을 확인하려면 수신 확인을 활성화하세요.</string>
     <!-- Button label displayed when user has disabled receipts -->
@@ -6762,7 +6804,7 @@
     <!-- Title for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s 님이 귀하를 대신해 기부했습니다.</string>
     <!-- Title for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__thanks_for_your_support">지원해 주셔서 감사합니다!</string>
+    <string name="ViewSentGiftBottomSheet__thanks_for_your_support">따뜻한 응원에 감사드려요!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s 님이 귀하를 대신하여 Signal에 기부했습니다! 프로필에서 Signal에 대한 지지를 표현해 주세요.</string>
     <!-- Description for sheet shown when opening a sent gift -->
@@ -7441,7 +7483,7 @@
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">보통</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">소형</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">작게</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">수정 기록</string>
@@ -7559,13 +7601,17 @@
     <string name="PendingParticipantsBottomSheet__deny_all">모두 거부</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Signal 안전한 백업 켜기</string>
+    <string name="TurnOnSignalBackups__title">Signal 안전 백업 켜기</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Signal 안전 백업 사용해 보기</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">새 휴대폰을 구매하거나 Signal을 다시 설치하는 경우에도 메시지를 손실할 염려가 없습니다.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">켜기</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">나중에</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">\'설정\'에서 백업을 활성화할 수 있습니다.</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">복구 키 확인</string>
@@ -7721,7 +7767,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">귀하의 결제 수단을 사용하여 구독을 갱신하지 못했습니다. 미디어 백업을 계속하려면 유효한 구독이 필요합니다.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">무료 Signal 안전한 백업 플랜을 계속 이용할 수 있습니다.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Signal 안전 백업 무료 플랜을 계속 이용할 수 있습니다.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">백업을 완료할 수 없음</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7835,6 +7881,12 @@
     <string name="BackupStatusRow__your_last_backup">마지막 백업을 완료하지 못했습니다. 휴대폰이 Wi-Fi에 연결되어 있는지 확인하고 \'지금 백업\'을 탭하여 다시 시도하세요.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">마지막 백업을 완료하지 못했습니다. 최신 버전 Signal을 사용 중인지 확인하고 다시 시도하세요.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">보유한 메시지 수가 저장 용량 한도를 초과했습니다. 일부 메시지를 삭제하고 다시 시도하세요.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s 이전에 주고받은 메시지는 백업되지 않습니다.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">자세히 알아보기</string>
 
@@ -7962,7 +8014,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">월 %1$s, %2$s 갱신</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">%1$s 갱신</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">마지막 백업 %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -7982,7 +8034,7 @@
     <!-- Displayed on the title bar for Signal Secure Backups -->
     <string name="RemoteBackupsSettingsFragment__secure_backups">안전한 백업</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal 안전한 백업</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal 안전 백업</string>
     <!-- Displayed as a label when remote backups are off -->
     <string name="RemoteBackupsSettingsFragment__off">꺼짐</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8012,10 +8064,10 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">백업 끄기 및 삭제</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">백업 크기</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="other">백업에는 모든 문자 메시지와 지난 %1$d일간의 미디어가 포함됩니다. 새 미디어가 수신되고 이전 미디어가 만료되면 크기가 변경됩니다.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">백업을 삭제하고 껐습니다.</string>
@@ -8106,10 +8158,10 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">백업 용량에 따라 시간이 더 오래 걸릴 수 있습니다. 다운로드 작업을 수행하는 동안 휴대폰을 평소처럼 사용할 수 있습니다.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">이 기기에서 구독 정보를 찾지 못했습니다. Signal 안전한 백업을 계속 사용하려면 갱신하세요.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">이 기기에서 구독 정보를 찾지 못했습니다. Signal 안전 백업을 계속 사용하려면 갱신하세요.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="other">이 기기의 구독은 다음 %1$d일 동안 유지됩니다. Signal 안전한 백업을 계속 사용하려면 갱신하세요.</item>
+        <item quantity="other">이 기기의 구독은 다음 %1$d일 동안 유지됩니다. Signal 안전 백업을 계속 사용하려면 갱신하세요.</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">다시 구독</string>
@@ -8158,7 +8210,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">업로드 중: %1$s/%2$s(%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">업로드 중: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">세부 정보</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8222,7 +8274,7 @@
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">엔드투엔드 암호화</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
-    <string name="MessageBackupsEducationScreen__optional_always">항상 선택 가능</string>
+    <string name="MessageBackupsEducationScreen__optional_always">필수가 아닌 선택 사항</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">언제나 백업 삭제 가능</string>
     <!-- Action button label to proceed with backups activation -->
@@ -8232,13 +8284,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">내 복구 키</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">복구 키</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">복구 키는 Signal을 다시 설치할 경우 백업을 복원하는 데 사용할 수 있는 64자리 코드입니다.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">복구 키는 백업을 복구하는 데 필요한 64자 코드입니다.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">키를 잊어버리면 백업을 복원할 수 없습니다. Signal은 백업을 복원하도록 도와드릴 수 없습니다.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">안전한 암호 관리자와 같은 안전한 곳에 복구 키를 보관하고 다른 사람과 공유하지 마세요.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">키를 분실하면 메시지를 복구할 수 없습니다.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">다음</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">복구 키 보기</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8254,7 +8308,7 @@
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">복구 키는 안전하다고 신뢰할 수 있는 암호 관리자에만 저장하세요. Signal은 사용자에게 어떤 암호 관리자를 사용해야 할지 추천하지 않습니다.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal 안전한 백업</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal 안전 백업</string>
     <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">암호 관리자에 저장함</string>
     <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
@@ -8289,6 +8343,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">새 복구 키 만들기</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">새 키를 생성하는 건 다른 사람이 귀하의 키를 알고 있는 경우에만 필요합니다. 새 키를 생성하면 미디어를 비롯해 백업 파일을 다시 업로드해야 하며, \'저장 공간 최적화\'를 사용 중이라면 오프로드된 미디어를 먼저 다운로드해야 합니다.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">백업 설정을 종료하시겠습니까?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">백업 설정을 완료하지 않았으며 백업이 생성되지 않았습니다. 설정에서 백업을 활성화할 수 있습니다.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">백업 설정 종료</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8400,7 +8460,7 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Signal 계정과 메시지 기록을 이 기기로 가져옵니다.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal 안전한 백업에서</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal 안전 백업 사용</string>
     <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">무료 또는 유료 Signal 백업 플랜</string>
     <!-- Option title for restoring via a local backup folder -->
@@ -8413,6 +8473,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">이전 휴대폰에서 전송</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">이전 Android에서 바로 전송</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">복원을 건너뛰시겠어요?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">지금 복원을 건너뛰면 나중에 복원할 수 없습니다. 복원을 건너뛴 후 백업을 다시 활성화하면, 현재 백업이 새 메시지 기록으로 바뀝니다.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">복원 건너뛰기</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">로컬 백업 복원</string>
@@ -8438,7 +8504,7 @@
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_title">잘못된 복구 키</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Signal 안전한 백업을 활성화할 때 저장한 것과 동일한 전화번호와 64자 복구 키를 사용하여 등록하고 있는지 확인하세요. 이 키 없이는 백업을 복구할 수 없습니다.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Signal 안전 백업을 활성화할 때 저장한 것과 동일한 전화번호와 64자 복구 키를 사용하여 등록하고 있는지 확인하세요. 이 키 없이는 백업을 복구할 수 없습니다.</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">다시 시도</string>
     <!-- Dialog negative button text to get help with recovery key -->
@@ -8453,6 +8519,10 @@
     <string name="EnterBackupKey_backup_not_found">백업을 찾을 수 없음</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">올바른 복구 키를 입력했지만, 이와 연결된 백업이 없습니다. 아직 이전 휴대폰을 가지고 있다면 백업이 활성화 상태이고 백업이 완료됐는지 확인한 후 다시 시도하세요.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">복구 키를 잘못 입력했거나 이전 기기에서 백업을 한 번 이상 완료하지 않았을 수 있습니다.\n\nSignal 안전 백업을 활성화할 때 저장한 것과 동일한 휴대폰 번호와 복구 키로 등록하고 있는지 확인하고, 이전 기기의 백업이 완료되었는지 확인하세요.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">복구 키 시도 횟수를 초과했습니다. 보안을 위해 시도할 수 있는 횟수는 제한되어 있습니다. 1시간 동안 기다렸다가 다시 시도해 주세요.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">복원 건너뛰기</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8531,7 +8601,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">복원할 백업이 없음</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">iPhone에서 Android로 바꾸는 경우 메시지와 미디어를 전송하려면 이전 장치에서 Signal 안전한 백업을 활성화해야만 합니다.</string>
+    <string name="NoBackupToRestore_subtitle">iPhone에서 Android로 바꾸는 경우 메시지와 미디어를 이전하려면 기존 장치에서 Signal 안전 백업을 활성화해야 합니다.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">이전 장치에서 Signal을 엽니다</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
@@ -8541,6 +8611,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">복원 건너뛰기</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">복구 키 한도 도달</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">새 복구 키를 만들었습니다. 하지만 남용을 방지하기 위해 만들 수 있는 새 키의 개수가 제한되어 있으므로 7일 동안은 다른 키를 만들 수 없습니다. 복구 키를 안전한 곳에 보관하세요.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">새 키를 만들 수 없음</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">생성할 수 있는 새 키의 개수를 모두 소진했습니다. 새 복구 키는 7일 후에 만들 수 있습니다. 다른 사람이 백업에 액세스할 수 있는 것 같다면, \"백업 끄기 및 삭제\"를 선택하세요.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">확인</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">검색 닫기</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8578,6 +8658,150 @@
     <plurals name="Notification_you_have_not_completed_a_backup">
         <item quantity="other">%1$d일 동안 백업을 완료하지 않았습니다. 지금 백업을 만드세요.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">설문조사 · 하나 선택</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">설문조사 · 하나 이상 선택</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">설문조사 · 최종 결과</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">투표 없음</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">투표 결과 보기</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">설문조사 보기</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">설문조사를 찾을 수 없습니다.</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">결과 보기</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">설문조사: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s 님이 \"%2$s\" 설문조사를 종료했습니다.</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">설문조사 종료: \"%1$s\"</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s 님이 \"%2$s\" 설문조사에 투표했습니다.</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">설문조사</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">설문조사 결과</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">설문조사 세부 정보</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">질문</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="other">%1$d표</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">승자</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">설문조사 종료</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">모두 보기</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">투표를 종료할 수 없음</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">연결을 확인하고 다시 시도하세요.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">설문조사를 종료하시겠어요?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">그룹 구성원이 더 이상 이 설문조사에서 투표할 수 없습니다.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">네트워크를 기다리는 중…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">새 설문조사</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">질문</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">질문하기</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">옵션</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">옵션 %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">끌어다 놓기 핸들</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">복수 투표 허용</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">질문과 옵션을 2개 이상 추가하세요.</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">옵션을 2개 이상 추가하세요.</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">질문을 추가하세요</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">오디오 문제</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">화상 문제</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">통화 끊김</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">기타</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">오디오 끊김 현상</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">오디오 잘림</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">소리가 울림</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">다른 사람들이 소리가 울린다고 함</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">화상 품질이 낮음</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">낮은 해상도</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">카메라 작동 오류</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">기타</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">어떤 문제가 있었는지 알려주세요</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">문제와 관련된 모든 세부 정보를 포함해 주세요. 여기에서 공유하는 모든 내용은 비공개로 유지되며 Signal의 통화를 개선하는 데에만 사용됩니다.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">저장</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">뒤로</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">통화는 어땠나요?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">귀하의 피드백은 Signal의 통화를 개선하는 데 도움이 됩니다. 개인 식별 정보는 저장되지 않습니다.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">문제가 있었음</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">좋았음</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">어떤 문제가 있었나요?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">해당되는 항목 모두 선택</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">어떤 문제가 있었는지 알려주세요</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">계속</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">더 나은 서비스를 제공할 수 있도록 도와주세요</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">진단 정보를 보내주시면 통화 품질을 개선하는 데 도움이 됩니다. </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">디버그 로그를 확인한 후</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> 로그를 제출해 주세요</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">디버그 로그 공유</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">디버그 로그에는 낮은 수준의 앱 정보가 포함되어 있으며, 메시지 내용은 공개되지 않습니다.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">제출</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">피드백을 보내주셔서 감사합니다!</string>
 
     <!-- EOF -->
 </resources>

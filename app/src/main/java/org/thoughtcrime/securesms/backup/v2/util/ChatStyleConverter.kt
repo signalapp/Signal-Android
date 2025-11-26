@@ -232,7 +232,7 @@ private fun Int.toRemoteWallpaperPreset(): ChatStyle.WallpaperPreset? {
   }
 }
 
-private fun Wallpaper.LinearGradient.toRemoteWallpaperPreset(): ChatStyle.WallpaperPreset {
+private fun Wallpaper.LinearGradient.toRemoteWallpaperPreset(): ChatStyle.WallpaperPreset? {
   val colorArray = colors.toIntArray()
   return when {
     colorArray contentEquals GradientChatWallpaper.SUNSET.colors -> ChatStyle.WallpaperPreset.GRADIENT_SUNSET
@@ -244,7 +244,10 @@ private fun Wallpaper.LinearGradient.toRemoteWallpaperPreset(): ChatStyle.Wallpa
     colorArray contentEquals GradientChatWallpaper.BLISS.colors -> ChatStyle.WallpaperPreset.GRADIENT_BLISS
     colorArray contentEquals GradientChatWallpaper.SKY.colors -> ChatStyle.WallpaperPreset.GRADIENT_SKY
     colorArray contentEquals GradientChatWallpaper.PEACH.colors -> ChatStyle.WallpaperPreset.GRADIENT_PEACH
-    else -> ChatStyle.WallpaperPreset.UNKNOWN_WALLPAPER_PRESET
+    else -> {
+      Log.w(TAG, "No matching remote wallpaper preset for $this")
+      null
+    }
   }
 }
 

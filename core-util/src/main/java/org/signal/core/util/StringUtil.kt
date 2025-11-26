@@ -1,6 +1,8 @@
 package org.signal.core.util
 
 import android.text.SpannableStringBuilder
+import okio.ByteString
+import okio.ByteString.Companion.toByteString
 import okio.utf8Size
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -249,5 +251,9 @@ object StringUtil {
     }
 
     return true
+  }
+
+  fun String?.toByteString(): ByteString? {
+    return this?.toByteArray()?.toByteString()
   }
 }

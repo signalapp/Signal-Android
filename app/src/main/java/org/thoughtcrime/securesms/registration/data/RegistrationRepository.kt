@@ -171,6 +171,11 @@ object RegistrationRepository {
   suspend fun registerAccountLocally(context: Context, data: LocalRegistrationMetadata) =
     withContext(Dispatchers.IO) {
       Log.v(TAG, "registerAccountLocally()")
+      if (data.linkedDeviceInfo != null) {
+        SignalStore.account.deviceId = data.linkedDeviceInfo.deviceId
+        SignalStore.account.deviceName = data.linkedDeviceInfo.deviceName
+      }
+
       val aciIdentityKeyPair = data.getAciIdentityKeyPair()
       val pniIdentityKeyPair = data.getPniIdentityKeyPair()
       SignalStore.account.restoreAciIdentityKeyFromBackup(aciIdentityKeyPair.publicKey.serialize(), aciIdentityKeyPair.privateKey.serialize())
@@ -219,9 +224,6 @@ object RegistrationRepository {
       saveOwnIdentityKey(selfId, pni, pniProtocolStore, now)
 
       if (data.linkedDeviceInfo != null) {
-        SignalStore.account.deviceId = data.linkedDeviceInfo.deviceId
-        SignalStore.account.deviceName = data.linkedDeviceInfo.deviceName
-
         if (data.linkedDeviceInfo.accountEntropyPool != null) {
           SignalStore.account.setAccountEntropyPoolFromPrimaryDevice(AccountEntropyPool(data.linkedDeviceInfo.accountEntropyPool))
         }
@@ -254,7 +256,6 @@ object RegistrationRepository {
         RotateSignedPreKeyListener.schedule(context)
       } else {
         SignalStore.account.isMultiDevice = true
-        SignalStore.registration.hasUploadedProfile = true
         jobManager.runJobBlocking(RefreshOwnProfileJob(), 30.seconds)
 
         jobManager.add(RotateCertificateJob())

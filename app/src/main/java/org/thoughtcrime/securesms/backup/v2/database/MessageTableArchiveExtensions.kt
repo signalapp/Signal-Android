@@ -24,7 +24,7 @@ import kotlin.time.Duration.Companion.days
 
 private val TAG = "MessageTableArchiveExtensions"
 
-fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, selfRecipientId: RecipientId, exportState: ExportState): ChatItemArchiveExporter {
+fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, selfRecipientId: RecipientId, messageInclusionCutoffTime: Long, exportState: ExportState): ChatItemArchiveExporter {
   // We create a covering index for the query to drastically speed up perf here.
   // Remember that we're working on a temporary snapshot of the database, so we can create an index and not worry about cleaning it up.
   val startTime = System.currentTimeMillis()
@@ -73,19 +73,43 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
   Log.d(TAG, "Creating index took ${System.currentTimeMillis() - startTime} ms")
 
   // Unfortunately we have some bad legacy data where the from_recipient_id is a group.
-  // This cleans it up. Reminder, this is only a snapshot of the data.
+  // This cleans it up by setting from to self, so long as it doesn't create a conflict.
+  // For any rows that *would* cause a conflict, we delete them in the second query.
+  // Reminder, this is only a snapshot of the data.
   val cleanupStartTime = System.currentTimeMillis()
   db.rawWritableDatabase.execSQL(
     """
-      UPDATE ${MessageTable.TABLE_NAME}
+      UPDATE ${MessageTable.TABLE_NAME} AS m
       SET ${MessageTable.FROM_RECIPIENT_ID} = ${selfRecipientId.toLong()}
-      WHERE ${MessageTable.FROM_RECIPIENT_ID} IN (
+      WHERE m.${MessageTable.FROM_RECIPIENT_ID} IN (
         SELECT ${GroupTable.RECIPIENT_ID}
         FROM ${GroupTable.TABLE_NAME}
       )
+      AND NOT EXISTS (
+        SELECT 1
+        FROM ${MessageTable.TABLE_NAME} AS x
+        WHERE x.${MessageTable.THREAD_ID} = m.${MessageTable.THREAD_ID}
+          AND x.${MessageTable.DATE_SENT} = m.${MessageTable.DATE_SENT}
+          AND x.${MessageTable.FROM_RECIPIENT_ID} = ${selfRecipientId.toLong()}
+      )
     """
   )
+  db.rawWritableDatabase.execSQL(
+    """
+    DELETE FROM ${MessageTable.TABLE_NAME}
+    WHERE ${MessageTable.FROM_RECIPIENT_ID} IN (
+      SELECT ${GroupTable.RECIPIENT_ID}
+      FROM ${GroupTable.TABLE_NAME}
+    )
+  """
+  )
   Log.d(TAG, "Cleanup took ${System.currentTimeMillis() - cleanupStartTime} ms")
+
+  val cutoffQuery = if (messageInclusionCutoffTime > 0) {
+    " AND $DATE_RECEIVED >= $messageInclusionCutoffTime"
+  } else {
+    ""
+  }
 
   return ChatItemArchiveExporter(
     db = db,
@@ -134,7 +158,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
           PARENT_STORY_ID
         )
         .from("${MessageTable.TABLE_NAME} INDEXED BY $dateReceivedIndex")
-        .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime")
+        .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime $cutoffQuery")
         .limit(count)
         .orderBy("$DATE_RECEIVED ASC")
         .run()

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.logsubmit
 
 import android.content.Context
-import android.os.Build
 import org.signal.core.util.MemoryTracker
 import org.signal.core.util.bytes
 import org.signal.core.util.kibiBytes
@@ -28,20 +27,18 @@ class LogSectionMemory : LogSection {
       Low Memory?         : ${nativeMemory.lowMemory}
     """.trimIndent()
 
-    if (Build.VERSION.SDK_INT >= 23) {
-      val detailedMemory = MemoryTracker.getDetailedMemoryStats()
+    val detailedMemory = MemoryTracker.getDetailedMemoryStats()
 
-      base += "\n\n"
-      base += """
-        -- Detailed Memory (API 23+)
-        App JVM Heap Usage   : ${detailedMemory.appJavaHeapUsageKb?.kbDisplay()}
-        App Native Heap Usage: ${detailedMemory.appNativeHeapUsageKb?.kbDisplay()}
-        Code Usage           : ${detailedMemory.codeUsageKb?.kbDisplay()}
-        Graphics Usage       : ${detailedMemory.graphicsUsageKb?.kbDisplay()}
-        Stack Usage          : ${detailedMemory.stackUsageKb?.kbDisplay()}
-        Other Usage          : ${detailedMemory.appOtherUsageKb?.kbDisplay()}
-      """.trimIndent()
-    }
+    base += "\n\n"
+    base += """
+      -- Detailed Memory (API 23+)
+      App JVM Heap Usage   : ${detailedMemory.appJavaHeapUsageKb?.kbDisplay()}
+      App Native Heap Usage: ${detailedMemory.appNativeHeapUsageKb?.kbDisplay()}
+      Code Usage           : ${detailedMemory.codeUsageKb?.kbDisplay()}
+      Graphics Usage       : ${detailedMemory.graphicsUsageKb?.kbDisplay()}
+      Stack Usage          : ${detailedMemory.stackUsageKb?.kbDisplay()}
+      Other Usage          : ${detailedMemory.appOtherUsageKb?.kbDisplay()}
+    """.trimIndent()
 
     return base
   }

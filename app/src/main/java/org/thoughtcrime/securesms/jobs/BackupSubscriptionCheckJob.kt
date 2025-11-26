@@ -118,6 +118,12 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()
     Log.i(TAG, "Retrieved purchase result from Billing api: $purchase", true)
 
+    if (purchase !is BillingPurchaseResult.Success && purchase !is BillingPurchaseResult.None) {
+      Log.w(TAG, "Possible error when grabbing purchase from billing API. Clearing mismatch and exiting.")
+      SignalStore.backup.subscriptionStateMismatchDetected = false
+      return Result.success()
+    }
+
     val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged
     val product: BillingProduct? = AppDependencies.billingApi.queryProduct()
 
@@ -135,7 +141,22 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
         return Result.success()
       }
 
-      val activeSubscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()
+      val activeSubscriptionResult = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
+      val activeSubscription: ActiveSubscription? = when (activeSubscriptionResult) {
+        is NetworkResult.ApplicationError<ActiveSubscription>, is NetworkResult.NetworkError<ActiveSubscription> -> {
+          Log.w(TAG, "Encountered an app-level or network-level error. Failing.", activeSubscriptionResult.getCause(), true)
+          return Result.failure()
+        }
+        is NetworkResult.StatusCodeError<ActiveSubscription> -> {
+          Log.w(TAG, "Encountered a status-code error.", activeSubscriptionResult.getCause(), true)
+          null
+        }
+        is NetworkResult.Success<ActiveSubscription> -> {
+          Log.i(TAG, "Successfully retrieved the user's active subscription object.", true)
+          activeSubscriptionResult.result
+        }
+      }
+
       val hasActiveSignalSubscription = activeSubscription?.isActive == true
 
       checkForFailedOrCanceledSubscriptionState(activeSubscription)
@@ -228,7 +249,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
    * the "download your data" notifier sheet.
    */
   private fun checkForFailedOrCanceledSubscriptionState(activeSubscription: ActiveSubscription?) {
-    if (activeSubscription?.willCancelAtPeriodEnd() == true && activeSubscription?.activeSubscription != null) {
+    if (activeSubscription?.willCancelAtPeriodEnd() == true && activeSubscription.activeSubscription != null) {
       Log.i(TAG, "Subscription either has a payment failure or has been canceled.")
 
       val response = SignalNetwork.account.whoAmI()
@@ -237,6 +258,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
         if (backupExpiration != null) {
           Log.i(TAG, "Marking subscription failed or canceled.")
           SignalStore.backup.setDownloadNotifierToTriggerAtHalfwayPoint(backupExpiration)
+          InAppPaymentsRepository.updateBackupInAppPaymentWithCancelation(activeSubscription)
           BackupStateObserver.notifyBackupStateChanged()
         } else {
           Log.w(TAG, "Failed to mark, no entitlement was found on WhoAmIResponse")
@@ -246,6 +268,8 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       if (response.getCause() != null) {
         Log.w(TAG, "Failed to get WhoAmI from service.", response.getCause())
       }
+    } else if (activeSubscription != null) {
+      InAppPaymentsRepository.clearCancelation(activeSubscription)
     }
   }
 

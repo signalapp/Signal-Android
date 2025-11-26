@@ -40,11 +40,11 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Rows.TextAndLabel
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.internal.storage.InternalStorageServicePlaygroundViewModel.OneOffEvent
@@ -355,7 +355,7 @@ private fun RunButton(onClick: () -> Unit) {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun ScreenPreview() {
   Previews.Preview {
@@ -368,7 +368,7 @@ fun ScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun ViewScreenPreview() {
   val storageRecords = listOf(

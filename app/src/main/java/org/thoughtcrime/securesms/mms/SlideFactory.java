@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.OpenableColumns;
 import android.text.TextUtils;
-import android.util.Pair;
+import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -77,8 +77,8 @@ public final class SlideFactory {
 
         if (width == 0 || height == 0) {
           Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, mimeType, uri);
-          width  = dimens.first;
-          height = dimens.second;
+          width  = dimens.getFirst();
+          height = dimens.getSecond();
         }
 
         if (mediaType == null) {
@@ -125,8 +125,8 @@ public final class SlideFactory {
 
     if (width == 0 || height == 0) {
       Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, mimeType, uri);
-      width  = dimens.first;
-      height = dimens.second;
+      width  = dimens.getFirst();
+      height = dimens.getSecond();
     }
 
     if (mediaType == null) {

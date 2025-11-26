@@ -11,7 +11,6 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.GroupReceiptTable;
 import org.thoughtcrime.securesms.database.GroupReceiptTable.GroupReceiptInfo;
@@ -37,6 +36,7 @@ import org.thoughtcrime.securesms.messages.StorySendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
+import org.thoughtcrime.securesms.polls.Poll;
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -72,6 +72,8 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import kotlin.Pair;
 
 import okio.ByteString;
 import okio.Utf8;
@@ -275,15 +277,17 @@ public final class PushGroupSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
-      GroupId.Push                               groupId            = groupRecipient.requireGroupId().requirePush();
-      Optional<byte[]>                           profileKey         = getProfileKey(groupRecipient);
-      Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
-      List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
-      List<SignalServicePreview>                 previews           = getPreviewsFor(message);
-      List<SignalServiceDataMessage.Mention>     mentions           = getMentionsFor(message.getMentions());
-      List<BodyRange>                            bodyRanges         = getBodyRanges(message);
-      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
-      List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
+      GroupId.Push                                     groupId            = groupRecipient.requireGroupId().requirePush();
+      Optional<byte[]>                                 profileKey         = getProfileKey(groupRecipient);
+      Optional<SignalServiceDataMessage.Sticker>       sticker            = getStickerFor(message);
+      List<SharedContact>                              sharedContacts     = getSharedContactsFor(message);
+      List<SignalServicePreview>                       previews           = getPreviewsFor(message);
+      List<SignalServiceDataMessage.Mention>           mentions           = getMentionsFor(message.getMentions());
+      List<BodyRange>                                  bodyRanges         = getBodyRanges(message);
+      Optional<SignalServiceDataMessage.PollCreate>    pollCreate         = getPollCreate(message);
+      Optional<SignalServiceDataMessage.PollTerminate> pollTerminate      = getPollTerminate(message);
+      List<Attachment>                                 attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<SignalServiceAttachment>                    attachmentPointers = getAttachmentPointersFor(attachments);
       boolean isRecipientUpdate = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
                                         .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
 
@@ -362,7 +366,9 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                       .withSharedContacts(sharedContacts)
                                                                       .withPreviews(previews)
                                                                       .withMentions(mentions)
-                                                                      .withBodyRanges(bodyRanges);
+                                                                      .withBodyRanges(bodyRanges)
+                                                                      .withPollCreate(pollCreate.orElse(null))
+                                                                      .withPollTerminate(pollTerminate.orElse(null));
 
         if (message.getParentStoryId() != null) {
           try {
@@ -407,6 +413,23 @@ public final class PushGroupSendJob extends PushSendJob {
     }
   }
 
+  private Optional<SignalServiceDataMessage.PollCreate> getPollCreate(OutgoingMessage message) {
+    Poll poll = message.getPoll();
+    if (poll == null) {
+      return Optional.empty();
+    }
+
+    return Optional.of(new SignalServiceDataMessage.PollCreate(poll.getQuestion(), poll.getAllowMultipleVotes(), poll.getPollOptions()));
+  }
+
+  private Optional<SignalServiceDataMessage.PollTerminate> getPollTerminate(OutgoingMessage message) {
+    if (message.getMessageExtras() == null || message.getMessageExtras().pollTerminate == null) {
+      return Optional.empty();
+    }
+
+    return Optional.of(new SignalServiceDataMessage.PollTerminate(message.getMessageExtras().pollTerminate.targetTimestamp));
+  }
+
   public static long getMessageId(@Nullable byte[] serializedData) {
     JsonJobData data = JsonJobData.deserialize(serializedData);
     return data.getLong(KEY_MESSAGE_ID);
@@ -433,7 +456,7 @@ public final class PushGroupSendJob extends PushSendJob {
     ProofRequiredException           proofRequired             = Stream.of(results).filter(r -> r.getProofRequiredFailure() != null).findLast().map(SendMessageResult::getProofRequiredFailure).orElse(null);
     List<SendMessageResult>          successes                 = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
     List<Pair<RecipientId, Boolean>> successUnidentifiedStatus = Stream.of(successes).map(result -> new Pair<>(accessList.requireIdByAddress(result.getAddress()), result.getSuccess().isUnidentified())).toList();
-    Set<RecipientId>                 successIds                = Stream.of(successUnidentifiedStatus).map(Pair::first).collect(Collectors.toSet());
+    Set<RecipientId>                 successIds                = Stream.of(successUnidentifiedStatus).map(Pair::getFirst).collect(Collectors.toSet());
     Set<NetworkFailure>              resolvedNetworkFailures   = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId())).collect(Collectors.toSet());
     Set<IdentityKeyMismatch>         resolvedIdentityFailures  = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId())).collect(Collectors.toSet());
     List<RecipientId>                unregisteredRecipients    = Stream.of(results).filter(SendMessageResult::isUnregisteredFailure).map(result -> RecipientId.from(result.getAddress())).toList();

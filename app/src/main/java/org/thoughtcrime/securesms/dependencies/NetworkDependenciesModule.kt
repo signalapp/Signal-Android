@@ -252,7 +252,7 @@ class NetworkDependenciesModule(
 
   fun closeConnections() {
     Log.i(TAG, "Closing connections.")
-    incomingMessageObserver.terminateAsync()
+    incomingMessageObserver.terminate()
     if (_signalServiceMessageSender.isInitialized()) {
       signalServiceMessageSender.cancelInFlightRequests()
     }

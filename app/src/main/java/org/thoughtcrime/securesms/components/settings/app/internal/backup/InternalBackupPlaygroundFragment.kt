@@ -59,10 +59,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.TextFields.TextField
 import org.signal.core.util.Base64
@@ -82,6 +82,7 @@ import org.thoughtcrime.securesms.jobs.ArchiveAttachmentReconciliationJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailBackfillJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
+import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Util
 
@@ -561,10 +562,10 @@ fun Screen(
       )
 
       Rows.TextRow(
-        text = "Mark backup failure",
+        text = "Mark backup validation failure",
         label = "This will display the error sheet when returning to the chats list.",
         onClick = {
-          BackupRepository.markBackupFailure()
+          BackupRepository.markBackupCreationFailed(BackupValues.BackupCreationError.VALIDATION)
         }
       )
 
@@ -639,7 +640,7 @@ private fun ImportCredentialsDialog(onSubmit: (aci: String, backupKey: String) -
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun PreviewScreen() {
   Previews.Preview {
@@ -647,7 +648,7 @@ fun PreviewScreen() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun PreviewScreenExportInProgress() {
   Previews.Preview {
@@ -655,7 +656,7 @@ fun PreviewScreenExportInProgress() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun PreviewImportCredentialDialog() {
   Previews.Preview {

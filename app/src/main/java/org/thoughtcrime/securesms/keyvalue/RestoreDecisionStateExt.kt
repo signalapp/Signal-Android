@@ -37,7 +37,7 @@ val RestoreDecisionState.includeDeviceToDeviceTransfer: Boolean
     RestoreDecisionState.State.INTEND_TO_RESTORE -> {
       this.intendToRestoreData?.hasOldDevice == true
     }
-    else -> true
+    else -> false
   }
 
 /** Has a final decision been made regarding restoring. */

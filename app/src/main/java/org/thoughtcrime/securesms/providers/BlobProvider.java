@@ -10,7 +10,6 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
@@ -155,7 +154,6 @@ public class BlobProvider {
                                                                                    position));
   }
 
-  @RequiresApi(23)
   public synchronized @NonNull MediaDataSource getMediaDataSource(@NonNull Context context, @NonNull Uri uri) throws IOException {
     waitUntilInitialized();
     return getBlobRepresentation(context,
@@ -399,7 +397,7 @@ public class BlobProvider {
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
     String           directory        = getDirectory(blobSpec.getStorageType());
     File             outputFile       = new File(getOrCreateDirectory(context, directory), buildFileName(blobSpec.id));
-    OutputStream     outputStream     = ModernEncryptingPartOutputStream.createFor(attachmentSecret, outputFile, true).second;
+    OutputStream     outputStream     = ModernEncryptingPartOutputStream.createFor(attachmentSecret, outputFile, true).getSecond();
 
     final Uri uri = buildUri(blobSpec);
 
@@ -552,6 +550,19 @@ public class BlobProvider {
         throws IOException
     {
       return writeBlobSpecToDiskAsync(context, buildBlobSpec(StorageType.ATTACHMENT_DRAFT));
+    }
+
+    /**
+     * Builds the URI for a draft attachment without waiting for the data to be written.
+     * This is useful for getting a URI reference while data is still being written asynchronously.
+     * The URI can be used to check file size and save periodic snapshots.
+     * <p>
+     * It is the caller's responsibility to eventually call {@link BlobProvider#delete(Context, Uri)}
+     * when the blob is no longer in use.
+     */
+    @WorkerThread
+    public Uri buildUriForDraftAttachment() {
+      return buildUri(buildBlobSpec(StorageType.ATTACHMENT_DRAFT));
     }
   }
 

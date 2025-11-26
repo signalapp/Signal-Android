@@ -332,6 +332,9 @@ class InAppPaymentCheckoutDelegate(
       }
 
       when (error.type) {
+        InAppPaymentData.Error.Type.SETUP_CANCELLED -> {
+          Log.d(TAG, "User canceled payment setup.", true)
+        }
         else -> {
           Log.d(TAG, "Displaying donation error dialog.", true)
           errorDialog = DonationErrorDialogs.show(

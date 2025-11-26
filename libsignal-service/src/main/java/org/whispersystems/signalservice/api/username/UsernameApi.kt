@@ -31,7 +31,7 @@ class UsernameApi(private val unauthWebSocket: SignalWebSocket.UnauthenticatedWe
    */
   fun getAciByUsername(username: Username): RequestResult<ServiceId.ACI?, Nothing> {
     return runBlocking {
-      unauthWebSocket.runWithUnauthChatConnection { chatConnection ->
+      unauthWebSocket.runCatchingWithUnauthChatConnection { chatConnection ->
         UnauthUsernamesService(chatConnection).lookUpUsernameHash(username.hash)
       }.getOrError().map { it?.let { ServiceId.ACI.fromLibSignal(it) } }
     }

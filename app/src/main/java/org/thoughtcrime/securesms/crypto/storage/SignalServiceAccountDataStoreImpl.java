@@ -9,6 +9,7 @@ import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyIdException;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
+import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.protocol.groups.state.SenderKeyRecord;
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
@@ -214,8 +215,8 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   }
 
   @Override
-  public void markKyberPreKeyUsed(int kyberPreKeyId) {
-    kyberPreKeyStore.markKyberPreKeyUsed(kyberPreKeyId);
+  public void markKyberPreKeyUsed(int kyberPreKeyId, int signedKeyId, ECPublicKey publicKey) {
+    kyberPreKeyStore.markKyberPreKeyUsed(kyberPreKeyId, signedKeyId, publicKey);
   }
 
   @Override

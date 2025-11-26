@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">บันทึกวลีกู้คืนสำหรับการชำระเงิน</string>
     <string name="ApplicationPreferencesActivity_record_phrase">วลีกู้คืน</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ก่อนที่คุณจะปิดใช้งานรหัส PIN ของคุณได้ คุณต้องจดบันทึกวลีกู้คืนการชำระเงิน เพื่อให้แน่ใจว่าคุณสามารถกู้คืนบัญชีการชำระเงินของคุณได้</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">สร้างกุญแจกู้คืนใหม่</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">คุณจะต้องสร้างและบันทึกกุญแจกู้คืนใหม่ก่อนปิดใช้งาน PIN</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">สร้างกุญแจ</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">แฟ้ม</string>
     <string name="AttachmentKeyboard_contact">ผู้ติดต่อ</string>
     <string name="AttachmentKeyboard_location">ตำแหน่งที่ตั้ง</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">โพล</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal จำเป็นต้องได้รับสิทธิ์เข้าถึงเพื่อแสดงรูปและวิดีโอของคุณ</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">อนุญาตให้เข้าถึง</string>
@@ -844,7 +852,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">ขั้นตอนนี้อาจใช้เวลาค่อนข้างนาน ขึ้นอยู่กับขนาดของข้อมูลสำรอง โดยคุณสามารถใช้โทรศัพท์ได้ตามปกติในระหว่างที่ระบบกำลังสำรองข้อมูล</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">ไฟล์สื่อจะถูกเพิ่มลงในข้อมูลสำรองขณะที่คุณส่งและรับข้อความ</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">ไม่สามารถกู้คืนไฟล์สื่อได้</string>
@@ -1145,6 +1153,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal รุ่นนี้หมดอายุแล้ว ปรับรุ่นเดี๋ยวนี้เพื่อรับและส่งข้อความ</string>
     <string name="ExpiredBuildReminder_update_now">ปรับรุ่นเดี๋ยวนี้</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">อุปกรณ์นี้ไม่รองรับการใช้งาน Signal อีกต่อไป หากต้องการกลับไปใช้งาน Signal ตามปกติอีกครั้ง ให้อัปเดตอุปกรณ์ของคุณเป็น Android เวอร์ชันล่าสุดหรือเปลี่ยนไปใช้อุปกรณ์รุ่นที่ใหม่กว่า</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">อัปเดต Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1345,10 +1356,15 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">เสร็จสิ้น</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ไม่สามารถเพิ่มบุคคลนี้เข้ากลุ่มแบบเก่า</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">เพิ่ม \"%1$s\" เข้า \"%2$s\" หรือไม่</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="other">เพิ่มสมาชิก %3$d คนเข้า \"%2$s\" ใช่หรือไม่</item>
+        <item quantity="other">เพิ่มสมาชิก %1$d คนเข้า \"%2$s\" ใช่หรือไม่</item>
     </plurals>
+
     <string name="AddMembersActivity__add">เพิ่ม</string>
     <string name="AddMembersActivity__add_members">เพิ่มสมาชิก</string>
 
@@ -1451,6 +1467,10 @@
     <string name="RemoteRestoreActivity__not_now">ไว้ทีหลัง</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">โดยการกู้คืนไฟล์สื่อจะดำเนินการในพื้นหลัง หากเลือกไม่กู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">อุปกรณ์เครื่องนี้ไม่ได้ลงทะเบียนอีกต่อไป</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">นี่น่าจะเป็นเพราะคุณเคยลงทะเบียนบัญชี Signal นี้บนอุปกรณ์อื่นแล้ว</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">แจ้งให้ฉันรู้สำหรับการกล่าวถึง</string>
@@ -2047,6 +2067,10 @@
     <string name="MessageRecord_you_unblocked_this_group">คุณเลิกบล็อกกลุ่มนี้แล้ว</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s ได้ส่งข้อความหาคุณ แต่มันไม่สามารถถูกประมวลผลหรือแสดงผลได้ เพราะมันใช้ความสามารถของ Signal รุ่นใหม่</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s ปิดโพล: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">คุณปิดโพล: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">ตอบรับ</string>
@@ -2349,6 +2373,12 @@
     <string name="WebRtcCallActivity__to_start_call">วิธีการเริ่มต้นหรือเข้าร่วมการโทร:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">วิธีการเปิดใช้งานวิดีโอ:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">ย่อหน้าต่างวิดีโอ</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">ขยายหน้าต่างวิดีโอ</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">โทร Signal</string>
@@ -2821,6 +2851,8 @@
     <string name="SubmitDebugLogActivity_success">สำเร็จ!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">คัดลอก URL และเพิ่มมันในรายงานปัญหาหรืออีเมลปรึกษาปัญหา:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">แบ่งปัน</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">ปิด</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">บันทึกนี้จะถูกโพสต์แบบสาธารณะทางออนไลน์เพื่อให้ผู้สนับสนุนสามารถดูได้ คุณอาจจะตรวจสอบก่อนที่จะอัปโหลด</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">เมื่อคลิกส่ง ปูมของคุณจะได้รับการโพสต์ทางออนไลน์เป็นเวลา 30 วัน ผ่าน URL เฉพาะที่ไม่มีการเผยแพร่ คุณสามารถบันทึกไว้ในเครื่องก่อนได้</string>
@@ -3076,6 +3108,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">แสดงความรู้สึก %1$s ต่อการชำระเงินของคุณ</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">แสดงความรู้สึก %1$s ต่อสติกเกอร์ของคุณ</string>
     <string name="MessageNotifier_this_message_was_deleted">ข้อความนี้ถูกลบแล้ว</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s โหวตในโพล \"%3$s\"</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ปิดการแจ้งเตือนเมื่อผู้ติดต่อได้เข้าร่วม Signal? คุณสามารถเปิดมันได้อีกครั้งในSignal &gt; Settings &gt; Notifications.</string>
 
@@ -3247,6 +3281,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">ตอบรับโดยไม่ใช้วิดีโอ</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">เปลี่ยนทิศทางกล้อง</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">ช่องรับสัญญาณเสียง</string>
@@ -3304,9 +3341,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s ไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">คุณไม่จำเป็นต้องเพิ่มตัวเองเข้ากลุ่ม</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">จำนวนสมาชิกในกลุ่มถึงขีดจำกัดแล้ว</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">กลุ่ม Signal มีสมาชิกได้สูงสุด %1$d คน</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">กลุ่ม Signal มีสมาชิกได้สูงสุด %1$s คน</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">จำนวนสมาชิกถึงขีดจำกัดที่แนะนำแล้ว</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">กลุ่มของ Signal ทำงานได้ดีที่สุดเมื่อมีสมาชิกไม่เกิน %1$d คน การเพิ่มสมาชิกอีกจะทำให้การรับและส่งข้อความล่าช้า</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">กลุ่มของ Signal ทำงานได้ดีที่สุดเมื่อมีสมาชิกไม่เกิน %1$s คน การเพิ่มสมาชิกอีกจะทำให้การรับและส่งข้อความล่าช้า</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d สมาชิก</item>
     </plurals>
@@ -4302,6 +4339,8 @@
     <string name="conversation_selection__menu_multi_select">เลือก</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">รายละเอียดการชำระเงิน</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">ปิดโพล</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5040,9 +5079,13 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">ข้าม</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="other">สมาชิก %1$d คน</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="other">สมาชิก %1$s คน</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">ดำเนินการต่อ</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">แบ่งปัน</string>
@@ -5756,23 +5799,23 @@
     <string name="NewConversationActivity__s_has_been_blocked">บล็อก %1$s แล้ว</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">บล็อกไม่สำเร็จ</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">ลบ %1$s ไม่ได้</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">ผู้ใช้รายนี้อยู่ในรายชื่อผู้ติดต่อที่บันทึกไว้ในอุปกรณ์ของคุณ ลบผู้ใช้ออกจากรายชื่อผู้ติดต่อแล้วลองอีกครั้ง</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">ดูผู้ติดต่อ</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s ไม่ได้เป็นผู้ใช้ Signal</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s ไม่ได้เป็นผู้ใช้ Signal</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s ไม่ได้เป็นผู้ใช้ Signal</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">เปิดเมนู</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="other">%1$s ไม่ได้เป็นผู้ใช้ Signal</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">ค้นหาชื่อหรือหมายเลข</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">ชื่อ ชื่อผู้ใช้ หรือหมายเลขโทรศัพท์</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">สลับไปใช้แป้นพิมพ์ตัวเลข</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">สลับไปใช้แป้นพิมพ์ตัวอักษรและตัวเลข</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">รีเซ็ตตัวกรองการค้นหา</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -5932,7 +5975,6 @@
     <string name="BadgesOverviewFragment__featured_badge">โล่ติดโปรไฟล์</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">แสดงโล่บนโปรไฟล์</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">การอัปเดตโปรไฟล์ล้มเหลว</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">เลือกโล่</string>
@@ -7560,12 +7602,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">เปิดใช้งานการสำรองข้อมูลที่ปลอดภัยของ Signal</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">ลองใช้แพ็กเกจสำรองข้อมูลที่ปลอดภัยของ Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">ช่วยเก็บรักษาทุกข้อความแม้ในกรณีที่คุณเปลี่ยนโทรศัพท์เครื่องใหม่หรือติดตั้ง Signal อีกครั้ง</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">เปิดใช้งาน</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">ไว้ทีหลัง</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">คุณสามารถเปิดใช้งานการสำรองข้อมูลได้ใน \"การตั้งค่า\"</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">ตรวจยืนยันกุญแจกู้คืนของคุณ</string>
@@ -7835,6 +7881,12 @@
     <string name="BackupStatusRow__your_last_backup">การสำรองข้อมูลครั้งล่าสุดของคุณไม่เสร็จสมบูรณ์ โปรดตรวจสอบว่าโทรศัพท์เชื่อมต่อกับ Wi-Fi แล้วแตะ \"สำรองข้อมูลเดี๋ยวนี้\" เพื่อลองอีกครั้ง</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">การสำรองข้อมูลครั้งล่าสุดของคุณไม่เสร็จสมบูรณ์ โปรดตรวจสอบให้แน่ใจว่าคุณกำลังใช้งาน Signal เวอร์ชันล่าสุดแล้วลองอีกครั้ง</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">จำนวนข้อความของคุณมีขนาดใหญ่กว่าพื้นที่จัดเก็บ โปรดลบข้อความออกบางส่วนแล้วลองอีกครั้ง</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">ระบบจะไม่สำรองข้อความที่คุณส่งหรือได้รับก่อนวันที่ %1$s</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">การสำรองข้อมูลของคุณไม่เสร็จสมบูรณ์เนื่องจากคุณอาจมีพื้นที่จัดเก็บไม่เพียงพอ โปรดเพิ่มพื้นที่จัดเก็บบนอุปกรณ์แล้วลองอีกครั้ง</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">เรียนรู้เพิ่มเติม</string>
 
@@ -7962,7 +8014,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/เดือน ต่ออายุ %2$s</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">ต่ออายุ %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">สำรองข้อมูลล่าสุด %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8012,10 +8064,10 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ปิดใช้งานและลบข้อมูลสำรอง</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">ขนาดของข้อมูลสำรอง</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="other">ข้อมูลสำรองประกอบด้วยข้อความทั้งหมดของคุณรวมถึงไฟล์สื่อจาก %1$d วันที่ผ่านมา โดยขนาดของข้อมูลจะเปลี่ยนแปลงตามไฟล์สื่อใหม่ที่คุณได้รับและไฟล์สื่อเก่าที่หมดอายุ</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">ลบข้อมูลสำรองและปิดใช้งานแล้ว</string>
@@ -8158,7 +8210,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">กำลังอัปโหลด: %1$s จาก %2$s (%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">กำลังอัปโหลด: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">รายละเอียด</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8232,13 +8284,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">กุญแจกู้คืนของคุณ</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">กุญแจกู้คืน</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">กุญแจกู้คืนคือรหัส 64 ตัวที่จะทำให้คุณสามารถกู้คืนข้อมูลสำรองในกรณีที่ติดตั้ง Signal ใหม่อีกครั้ง</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">กุญแจกู้คืนคือรหัส 64 ตัวที่คุณต้องมีเพื่อใช้กู้คืนข้อมูลสำรอง</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">หากลืมกุญแจของตัวเอง คุณจะไม่สามารถกู้คืนข้อมูลสำรอง และ Signal จะไม่สามารถช่วยกู้ข้อมูลสำรองให้คุณได้</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">โปรดเก็บกุญแจกู้คืนของคุณไว้ในที่ปลอดภัย เช่น เก็บไว้กับตัวจัดการรหัสผ่านที่คุณเชื่อถือ รวมถึงไม่บอกรหัสนี้กับใคร</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">คุณจะไม่สามารถกู้คืนข้อความได้หากทำกุญแจหาย</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">ดำเนินการต่อ</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">ดูกุญแจกู้คืน</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8289,6 +8343,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">สร้างกุญแจกู้คืนใหม่</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">คุณมีความจำเป็นที่จะต้องสร้างกุญแจใหม่เฉพาะแค่ในกรณีที่มีบุคคลอื่นทราบกุญแจของคุณเท่านั้น โดยคุณจะต้องอัปโหลดข้อมูลสำรองซึ่งรวมถึงไฟล์สื่ออีกครั้ง และหากคุณกำลังใช้งานฟีเจอร์ \"เพิ่มประสิทธิภาพพื้นที่จัดเก็บ\" คุณจะต้องดาวน์โหลดไฟล์สื่อที่เคยออฟโหลดไว้ให้เสร็จก่อน</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">ออกจากการตั้งค่าการสำรองข้อมูลใช่หรือไม่</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">คุณยังดำเนินการตั้งค่าการสำรองข้อมูลไม่เสร็จสิ้น และระบบยังไม่ได้สร้างข้อมูลสำรอง คุณสามารถเปิดใช้งานการสำรองข้อมูลได้ในการตั้งค่า</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">ออกจากการตั้งค่าการสำรองข้อมูล</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8413,6 +8473,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">จากโทรศัพท์เครื่องเก่า</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">ถ่ายโอนโดยตรงจากโทรศัพท์ Android เครื่องเก่าของคุณ</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">ข้ามการกู้คืนใช่หรือไม่</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">หากข้ามการกู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง โดยเมื่อคุณเปิดใช้งานการสำรองข้อมูลอีกครั้งหลังจากเลือกข้ามการกู้คืน ข้อมูลสำรองที่มีอยู่จะถูกแทนที่ด้วยประวัติการส่งข้อความใหม่</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">ข้ามการกู้คืน</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">กู้คืนข้อมูลสำรองจากอุปกรณ์</string>
@@ -8453,6 +8519,10 @@
     <string name="EnterBackupKey_backup_not_found">ไม่พบข้อมูลสำรอง</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">กุญแจกู้คืนที่คุณใส่ถูกต้อง แต่ระบบไม่พบข้อมูลสำรองที่เชื่อมโยงกับกุญแจดังกล่าว หากคุณยังมีโทรศัพท์เครื่องเก่า โปรดตรวจสอบว่าการสำรองข้อมูลเปิดใช้งานอยู่และมีการดำเนินการสำรองข้อมูลเสร็จสมบูรณ์แล้ว จากนั้นโปรดลองใหม่อีกครั้ง</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">คุณอาจป้อนกุญแจกู้คืนไม่ถูกต้องหรืออุปกรณ์เครื่องเก่าของคุณอาจดำเนินการสำรองข้อมูลไม่เสร็จสมบูรณ์\n\nโปรดตรวจสอบให้แน่ใจว่าคุณกำลังลงทะเบียนโดยใช้หมายเลขโทรศัพท์และกุญแจกู้คืนเดียวกันกับที่บันทึกไว้ในตอนที่เปิดใช้งานการสำรองข้อมูลที่ปลอดภัยของ Signal และตรวจสอบว่าอุปกรณ์เครื่องเก่าของคุณดำเนินการสำรองข้อมูลเสร็จสมบูรณ์</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">คุณป้อนกุญแจกู้คืนเกินจำนวนครั้งที่กำหนดแล้ว การจำกัดจำนวนครั้งเป็นไปเพื่อความปลอดภัยของคุณ โปรดลองอีกครั้งในอีกหนึ่งชั่วโมง</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">ข้ามการกู้คืน</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8541,6 +8611,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">ข้ามการกู้คืน</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">สร้างกุญแจกู้คืนถึงจำนวนที่กำหนดแล้ว</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">คุณสร้างกุญแจกู้คืนใหม่สำเร็จแล้ว แต่โปรดทราบว่ามีการจำกัดจำนวนการสร้างกุญแจใหม่เพื่อป้องกันการใช้งานในทางที่ไม่ถูกต้อง โดยคุณจะไม่สามารถสร้างกุญแจใหม่ได้อีกจนกว่าจะครบ 7 วัน โปรดเก็บกุญแจกู้คืนของคุณไว้ในที่ปลอดภัย</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">ไม่สามารถสร้างกุญแจใหม่ได้</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">คุณสร้างกุญแจกู้คืนใหม่จนครบจำนวนที่กำหนดแล้ว โดยคุณจะสามารถสร้างกุญแจใหม่ได้ในอีก 7 วัน หากคิดว่าผู้อื่นอาจเข้าถึงข้อมูลสำรองของคุณได้ ให้เลือก “ปิดใช้งานและลบข้อมูลสำรอง”</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">ตกลง</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">ปิดกล่องค้นหา</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8578,6 +8658,150 @@
     <plurals name="Notification_you_have_not_completed_a_backup">
         <item quantity="other">คุณไม่ได้ดำเนินการสำรองข้อมูลเป็นเวลา %1$d วัน สร้างข้อมูลสำรองได้เลย</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">โพล · เลือกหนึ่งข้อ</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">โพล · เลือกคำตอบ (ตอบได้มากกว่าหนึ่งข้อ)</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">โพล · ผลสรุป</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">ยังไม่มีคะแนนโหวต</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">ดูผลโหวต</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">ดูโพล</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">ไม่พบโพล</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">ดูผลโพล</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">โพล: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s ปิดโพล: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">คุณปิดโพล: \"%1$s\"</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s โหวตในโพล: \"%2$s\"</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">โพล</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">ผลโพล</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">รายละเอียดโพล</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">คำถาม</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="other">รวม %1$d คะแนนโหวต</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">ชนะโหวต</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">ปิดโพล</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">ดูทั้งหมด</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">ไม่สามารถปิดโพลได้</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">กรุณาตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">ปิดโพลใช่หรือไม่</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">สมาชิกในกลุ่มจะไม่สามารถโหวตในโพลนี้ได้อีกต่อไป</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">กำลังรอการเชื่อมต่อเครือข่าย…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">โพลใหม่</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">คำถาม</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">ตั้งคำถาม</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">ตัวเลือก</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">ตัวเลือก %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">แถบเลื่อนสำหรับลากแล้ววาง</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">อนุญาตให้ตอบได้มากกว่าหนึ่งข้อ</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">ตั้งคำถามและใส่ตัวเลือกอย่างน้อย 2 รายการ</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">ใส่ตัวเลือกอย่างน้อย 2 รายการ</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">ตั้งคำถาม</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">ปัญหาด้านเสียง</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">ปัญหาด้านวิดีโอ</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">สายหลุด</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">อย่างอื่น</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">เสียงขาดหาย</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">ไม่มีเสียง</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">ฉันได้ยินเสียงสะท้อน</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">คนอื่นได้ยินเสียงสะท้อน</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">วิดีโอคุณภาพไม่ดี</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">ความละเอียดต่ำ</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">กล้องใช้งานไม่ได้</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">อย่างอื่น</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">อธิบายถึงปัญหาที่คุณพบ</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">โปรดแจ้งรายละเอียดต่างๆ ที่เกี่ยวข้องกับปัญหาที่คุณพบ ข้อมูลทั้งหมดของคุณจะถูกรวบรวมอย่างเป็นส่วนตัว รวมถึงจะถูกนำไปใช้เพื่อจุดประสงค์ในการปรับปรุงและพัฒนาการโทรของ Signal เท่านั้น</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">บันทึก</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">กลับ</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">การโทรของคุณเป็นอย่างไรบ้าง</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">นี่จะช่วยให้เราสามารถปรับปรุงพัฒนาการโทรบน Signal โดยเราจะไม่จัดเก็บข้อมูลส่วนบุคคลที่ใช้ระบุตัวตนได้</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">มีปัญหาขัดข้อง</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">ดีมาก</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">โปรดระบุปัญหาที่คุณพบ</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">เลือกทั้งหมดที่เกี่ยวข้อง</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">อธิบายถึงปัญหาที่คุณพบ</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">ดำเนินการต่อ</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">ช่วยเราปรับปรุงการใช้งาน</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">การส่งข้อมูลผลการวิเคราะห์ปัญหาของคุณจะช่วยให้เราสามารถพัฒนาคุณภาพการโทรให้ดียิ่งขึ้น โดยคุณสามารถ </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">ดูบันทึกดีบักของคุณ</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> ก่อนส่งข้อมูล</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">แชร์บันทึกดีบัก</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">ภายในบันทึกดีบักจะมีข้อมูลแอประดับพื้นฐานและจะไม่เปิดเผยเนื้อหาใดๆ ในข้อความของคุณ</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">ส่ง</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">ขอบคุณสำหรับความคิดเห็น</string>
 
     <!-- EOF -->
 </resources>

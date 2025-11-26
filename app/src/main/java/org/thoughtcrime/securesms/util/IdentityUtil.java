@@ -38,6 +38,7 @@ import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.Verified;
 
 import java.util.List;
@@ -185,7 +186,7 @@ public final class IdentityUtil {
   }
 
   public static void processVerifiedMessage(Context context, Verified verified) throws InvalidKeyException {
-    SignalServiceAddress          destination = new SignalServiceAddress(ServiceId.parseOrThrow(verified.destinationAci));
+    SignalServiceAddress          destination = new SignalServiceAddress(ServiceId.ACI.parseOrThrow(verified.destinationAci, verified.destinationAciBinary));
     IdentityKey                   identityKey = new IdentityKey(verified.identityKey.toByteArray(), 0);
     VerifiedMessage.VerifiedState state;
 

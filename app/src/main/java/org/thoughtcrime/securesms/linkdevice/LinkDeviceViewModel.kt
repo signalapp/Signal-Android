@@ -424,7 +424,7 @@ class LinkDeviceViewModel : ViewModel() {
 
   private fun Uri.supportsLinkAndSync(): Boolean {
     val capabilities = this.getQueryParameter("capabilities")?.split(",")?.toSet() ?: emptySet()
-    return "backup4" in capabilities || "backup5" in capabilities
+    return "backup5" in capabilities
   }
 
   fun onSyncErrorIgnored() = viewModelScope.launch(Dispatchers.IO) {

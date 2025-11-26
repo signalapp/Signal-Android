@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
@@ -40,11 +39,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -238,7 +237,6 @@ open class DefaultNotificationsSettingsCallbacks(
     viewModel.setMessageNotificationPrivacy(selection)
   }
 
-  @RequiresApi(23)
   override fun onTroubleshootNotificationsClick() {
     PromptBatterySaverDialogFragment.show(activity.supportFragmentManager)
   }
@@ -548,7 +546,7 @@ private fun getLedColor(ledColorString: String): Color {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun NotificationsSettingsScreenPreview() {
   Previews.Preview {
@@ -560,7 +558,7 @@ private fun NotificationsSettingsScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun NotificationsSettingsScreenAPI21Preview() {
   Previews.Preview {

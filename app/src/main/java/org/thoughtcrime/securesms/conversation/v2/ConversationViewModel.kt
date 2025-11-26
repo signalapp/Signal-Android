@@ -42,6 +42,7 @@ import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
+import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.banner.Banner
@@ -60,6 +61,7 @@ import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.MessageTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
@@ -72,6 +74,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.PollVoteJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -81,11 +84,15 @@ import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.polls.Poll
+import org.thoughtcrime.securesms.polls.PollOption
+import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
+import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -106,6 +113,10 @@ class ConversationViewModel(
   messageRequestRepository: MessageRequestRepository,
   private val scheduledMessagesRepository: ScheduledMessagesRepository
 ) : ViewModel() {
+
+  companion object {
+    private val TAG = Log.tag(ConversationViewModel::class.java)
+  }
 
   private val disposables = CompositeDisposable()
 
@@ -415,6 +426,11 @@ class ConversationViewModel(
     return repository.getNextMentionPosition(threadId)
   }
 
+  fun moveToMessage(messageId: Long): Single<Int> {
+    return repository.getMessagePosition(threadId, messageId)
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
   fun moveToMessage(dateReceived: Long, author: RecipientId): Single<Int> {
     return repository.getMessagePosition(threadId, dateReceived, author)
       .observeOn(AndroidSchedulers.mainThread())
@@ -492,6 +508,22 @@ class ConversationViewModel(
 
   private fun MessageRecord.oldReactionRecord(): ReactionRecord? {
     return reactions.firstOrNull { it.author == Recipient.self().id }
+  }
+
+  fun sendPoll(threadRecipient: Recipient, poll: Poll): Completable {
+    return repository
+      .sendPoll(threadRecipient, poll)
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun endPoll(pollId: Long): Completable {
+    return if (!NetworkUtil.isConnected(AppDependencies.application)) {
+      Completable.error(Exception("Connection required to end poll"))
+    } else {
+      repository
+        .endPoll(pollId)
+        .observeOn(AndroidSchedulers.mainThread())
+    }
   }
 
   fun sendMessage(
@@ -622,10 +654,46 @@ class ConversationViewModel(
     }
   }
 
+  fun setIsInActionMode(isInActionMode: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isInActionMode = isInActionMode)
+    }
+  }
+
+  fun setIsMediaKeyboardShowing(isMediaKeyboardShowing: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isMediaKeyboardShowing = isMediaKeyboardShowing)
+    }
+  }
+
+  fun toggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) {
+    viewModelScope.launch(Dispatchers.IO) {
+      val voteCount = if (isChecked) {
+        SignalDatabase.polls.insertVote(poll, pollOption)
+      } else {
+        SignalDatabase.polls.removeVote(poll, pollOption)
+      }
+      val pollVoteJob = PollVoteJob.create(
+        messageId = poll.messageId,
+        voteCount = voteCount,
+        isRemoval = !isChecked,
+        optionId = pollOption.id
+      )
+
+      if (pollVoteJob != null) {
+        AppDependencies.jobManager.add(pollVoteJob)
+      } else {
+        Log.w(TAG, "Unable to create poll vote job, ignoring.")
+      }
+    }
+  }
+
   data class BackPressedState(
     val isReactionDelegateShowing: Boolean = false,
-    val isSearchRequested: Boolean = false
+    val isSearchRequested: Boolean = false,
+    val isInActionMode: Boolean = false,
+    val isMediaKeyboardShowing: Boolean = false
   ) {
-    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing
+    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing || isInActionMode || isMediaKeyboardShowing
   }
 }

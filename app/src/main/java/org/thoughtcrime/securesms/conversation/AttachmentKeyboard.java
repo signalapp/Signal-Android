@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,6 +35,7 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
   private static final List<AttachmentKeyboardButton> DEFAULT_BUTTONS     = Arrays.asList(
       AttachmentKeyboardButton.GALLERY,
       AttachmentKeyboardButton.FILE,
+      AttachmentKeyboardButton.POLL,
       AttachmentKeyboardButton.CONTACT,
       AttachmentKeyboardButton.LOCATION,
       AttachmentKeyboardButton.PAYMENT
@@ -152,9 +154,9 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
 
   public void setWallpaperEnabled(boolean wallpaperEnabled) {
     if (wallpaperEnabled) {
-      container.setBackgroundColor(getContext().getResources().getColor(R.color.wallpaper_compose_background));
+      container.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.wallpaper_compose_background));
     } else {
-      container.setBackgroundColor(getContext().getResources().getColor(R.color.signal_background_primary));
+      container.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.signal_background_primary));
     }
   }
 

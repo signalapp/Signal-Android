@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.res.stringResource
 import com.google.android.gms.common.ConnectionResult
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 
@@ -190,7 +190,7 @@ private fun ServiceInvalidDialog(onDismissRequest: () -> Unit, onLearnMoreClick:
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ServiceMissingDialogPreview() {
   Previews.Preview {
@@ -198,7 +198,7 @@ private fun ServiceMissingDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ServiceUpdatingDialogPreview() {
   Previews.Preview {
@@ -206,7 +206,7 @@ private fun ServiceUpdatingDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ServiceVersionUpdateRequiredDialogPreview() {
   Previews.Preview {
@@ -214,7 +214,7 @@ private fun ServiceVersionUpdateRequiredDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ServiceDisabledDialogPreview() {
   Previews.Preview {
@@ -222,7 +222,7 @@ private fun ServiceDisabledDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ServiceInvalidDialogPreview() {
   Previews.Preview {

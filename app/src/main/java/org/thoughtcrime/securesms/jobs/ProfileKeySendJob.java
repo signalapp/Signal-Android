@@ -65,6 +65,19 @@ public class ProfileKeySendJob extends BaseJob {
    * @return The job that is created, or null if the threadId provided was invalid.
    */
   @WorkerThread
+  public static @Nullable ProfileKeySendJob create(@NonNull Recipient recipient, boolean queueLimits) {
+    return create(SignalDatabase.threads().getOrCreateThreadIdFor(recipient), queueLimits);
+  }
+
+  /**
+   * Suitable for a 1:1 conversation or a GV1 group only.
+   *
+   * @param queueLimits True if you only want one of these to be run per person after decryptions
+   *                    are drained, otherwise false.
+   *
+   * @return The job that is created, or null if the threadId provided was invalid.
+   */
+  @WorkerThread
   public static @Nullable ProfileKeySendJob create(long threadId, boolean queueLimits) {
     Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
 
@@ -172,7 +185,7 @@ public class ProfileKeySendJob extends BaseJob {
                                                                            .withTimestamp(System.currentTimeMillis())
                                                                            .withProfileKey(Recipient.self().resolve().getProfileKey());
 
-    List<SendMessageResult>    results       = GroupSendUtil.sendUnresendableDataMessage(context, null, destinations, false, ContentHint.IMPLICIT, dataMessage.build(), false);
+    List<SendMessageResult>    results       = GroupSendUtil.sendUnresendableDataMessage(context, null, destinations, false, ContentHint.IMPLICIT, dataMessage.build(), false, null);
     ProofRequiredException     proofRequired = Stream.of(results).filter(r -> r.getProofRequiredFailure() != null).findLast().map(SendMessageResult::getProofRequiredFailure).orElse(null);
 
     GroupSendJobHelper.SendResult groupResult = GroupSendJobHelper.getCompletedSends(destinations, results);

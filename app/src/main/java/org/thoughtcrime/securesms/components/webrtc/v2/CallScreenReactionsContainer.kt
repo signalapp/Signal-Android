@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -42,7 +41,7 @@ fun CallScreenReactionsContainer(
     view.isVerticalScrollBarEnabled = false
 
     view
-  }, modifier = modifier.fillMaxSize().padding(16.dp).padding(bottom = 16.dp)) {
+  }, modifier = modifier.padding(16.dp)) {
     adapter.submitList(reactions.toMutableList())
   }
 }

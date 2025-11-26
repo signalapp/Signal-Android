@@ -18,8 +18,8 @@ import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 
 /**
  * Applies Signal or System emoji to the given content based off user settings.
@@ -71,7 +71,7 @@ fun Emojifier(
 }
 
 @Composable
-@SignalPreview
+@DayNightPreviews
 private fun EmojifierPreview() {
   Previews.Preview {
     Emojifier(text = "This message has an emoji ❤\uFE0F")

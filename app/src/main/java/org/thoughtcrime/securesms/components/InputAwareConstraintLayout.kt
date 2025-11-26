@@ -72,7 +72,7 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
           removeKeyboardStateListener(this)
         }
 
-        override fun onInputShown() = Unit
+        override fun onInputShown(fragmentCreatorId: Int) = Unit
         override fun onKeyboardShown() = Unit
       }
 
@@ -125,7 +125,7 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
     overrideKeyboardGuidelineWithPreviousHeight()
     ViewUtil.hideKeyboard(context, imeTarget)
 
-    listeners.forEach { it.onInputShown() }
+    listeners.forEach { it.onInputShown(fragmentCreator.id) }
   }
 
   private fun hideInput(resetKeyboardGuideline: Boolean) {
@@ -159,7 +159,7 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
   }
 
   interface Listener {
-    fun onInputShown()
+    fun onInputShown(fragmentCreatorId: Int)
     fun onInputHidden()
   }
 

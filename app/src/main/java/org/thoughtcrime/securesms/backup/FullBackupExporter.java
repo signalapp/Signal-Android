@@ -29,10 +29,12 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable;
 import org.thoughtcrime.securesms.database.EmojiSearchTable;
 import org.thoughtcrime.securesms.database.GroupReceiptTable;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.KyberPreKeyTable;
+import org.thoughtcrime.securesms.database.LastResortKeyTupleTable;
 import org.thoughtcrime.securesms.database.MentionTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.OneTimePreKeyTable;
@@ -90,6 +92,7 @@ public class FullBackupExporter extends FullBackupBase {
       SignedPreKeyTable.TABLE_NAME,
       OneTimePreKeyTable.TABLE_NAME,
       KyberPreKeyTable.TABLE_NAME,
+      LastResortKeyTupleTable.TABLE_NAME,
       SessionTable.TABLE_NAME,
       SearchTable.FTS_TABLE_NAME,
       EmojiSearchTable.TABLE_NAME,
@@ -99,7 +102,8 @@ public class FullBackupExporter extends FullBackupBase {
       AvatarPickerDatabase.TABLE_NAME,
       RemappedRecordTables.Recipients.TABLE_NAME,
       RemappedRecordTables.Threads.TABLE_NAME,
-      RemoteMegaphoneTable.TABLE_NAME
+      RemoteMegaphoneTable.TABLE_NAME,
+      BackupMediaSnapshotTable.TABLE_NAME
   );
 
   public static BackupEvent export(@NonNull Context context,

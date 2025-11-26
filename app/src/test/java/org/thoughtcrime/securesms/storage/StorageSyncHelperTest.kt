@@ -162,6 +162,7 @@ class StorageSyncHelperTest {
     private fun contactBuilder(aci: ACI, e164: String, profileName: String): ContactRecord.Builder {
       return ContactRecord.Builder()
         .aci(aci.toString())
+        .aciBinary(aci.toByteString())
         .e164(e164)
         .givenName(profileName)
     }

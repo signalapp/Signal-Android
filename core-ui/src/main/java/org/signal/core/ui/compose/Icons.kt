@@ -5,7 +5,6 @@
 
 package org.signal.core.ui.compose
 
-import android.R
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,7 +16,6 @@ import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 
 object Icons {
   /**
@@ -45,12 +43,12 @@ object Icons {
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun BrushedForegroundPreview() {
   Previews.Preview {
     Icons.BrushedForeground(
-      painter = painterResource(id = R.drawable.ic_menu_camera),
+      painter = painterResource(id = android.R.drawable.ic_menu_camera),
       contentDescription = null,
       foregroundBrush = Brush.linearGradient(listOf(Color.Red, Color.Blue))
     )

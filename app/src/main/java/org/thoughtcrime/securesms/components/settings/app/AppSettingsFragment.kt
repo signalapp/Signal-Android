@@ -35,7 +35,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -47,12 +49,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
@@ -290,68 +292,70 @@ private fun AppSettingsContent(
           BackupFailureState.NONE -> Unit
         }
 
-        item {
-          Rows.TextRow(
-            text = stringResource(R.string.AccountSettingsFragment__account),
-            icon = painterResource(R.drawable.symbol_person_circle_24),
-            onClick = {
-              callbacks.navigate(AppSettingsRoute.AccountRoute.Account)
-            }
-          )
-        }
+        if (state.isPrimaryDevice) {
+          item {
+            Rows.TextRow(
+              text = stringResource(R.string.AccountSettingsFragment__account),
+              icon = painterResource(R.drawable.symbol_person_circle_24),
+              onClick = {
+                callbacks.navigate(AppSettingsRoute.AccountRoute.Account)
+              }
+            )
+          }
 
-        item {
-          Rows.TextRow(
-            text = stringResource(R.string.preferences__linked_devices),
-            icon = painterResource(R.drawable.symbol_devices_24),
-            onClick = {
-              callbacks.navigate(AppSettingsRoute.LinkDeviceRoute.LinkDevice)
-            },
-            enabled = isRegisteredAndUpToDate
-          )
-        }
+          item {
+            Rows.TextRow(
+              text = stringResource(R.string.preferences__linked_devices),
+              icon = painterResource(R.drawable.symbol_devices_24),
+              onClick = {
+                callbacks.navigate(AppSettingsRoute.LinkDeviceRoute.LinkDevice)
+              },
+              enabled = isRegisteredAndUpToDate
+            )
+          }
 
-        item {
-          val context = LocalContext.current
-          val donateUrl = stringResource(R.string.donate_url)
+          item {
+            val context = LocalContext.current
+            val donateUrl = stringResource(R.string.donate_url)
 
-          Rows.TextRow(
-            text = {
-              Text(
-                text = stringResource(R.string.preferences__donate_to_signal),
-                modifier = Modifier.weight(1f)
-              )
-
-              if (state.hasExpiredGiftBadge) {
-                Icon(
-                  painter = painterResource(R.drawable.symbol_info_fill_24),
-                  tint = colorResource(R.color.signal_accent_primary),
-                  contentDescription = null
+            Rows.TextRow(
+              text = {
+                Text(
+                  text = stringResource(R.string.preferences__donate_to_signal),
+                  modifier = Modifier.weight(1f)
                 )
-              }
-            },
-            icon = {
-              Icon(
-                painter = painterResource(R.drawable.symbol_heart_24),
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface
-              )
-            },
-            onClick = {
-              if (state.allowUserToGoToDonationManagementScreen) {
-                callbacks.navigate(AppSettingsRoute.DonationsRoute.Donations())
-              } else {
-                CommunicationActions.openBrowserLink(context, donateUrl)
-              }
-            },
-            onLongClick = {
-              callbacks.copyDonorBadgeSubscriberIdToClipboard()
-            }
-          )
-        }
 
-        item {
-          Dividers.Default()
+                if (state.hasExpiredGiftBadge) {
+                  Icon(
+                    painter = painterResource(R.drawable.symbol_info_fill_24),
+                    tint = colorResource(R.color.signal_accent_primary),
+                    contentDescription = null
+                  )
+                }
+              },
+              icon = {
+                Icon(
+                  painter = painterResource(R.drawable.symbol_heart_24),
+                  contentDescription = null,
+                  tint = MaterialTheme.colorScheme.onSurface
+                )
+              },
+              onClick = {
+                if (state.allowUserToGoToDonationManagementScreen) {
+                  callbacks.navigate(AppSettingsRoute.DonationsRoute.Donations())
+                } else {
+                  CommunicationActions.openBrowserLink(context, donateUrl)
+                }
+              },
+              onLongClick = {
+                callbacks.copyDonorBadgeSubscriberIdToClipboard()
+              }
+            )
+          }
+
+          item {
+            Dividers.Default()
+          }
         }
 
         item {
@@ -408,29 +412,32 @@ private fun AppSettingsContent(
           )
         }
 
-        item {
-          Rows.TextRow(
-            text = {
-              TextWithBetaLabel(
-                text = stringResource(R.string.preferences_chats__backups),
-                textStyle = MaterialTheme.typography.bodyLarge
-              )
-            },
-            icon = {
-              Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.symbol_backup_24),
-                contentDescription = stringResource(R.string.preferences_chats__backups),
-                tint = MaterialTheme.colorScheme.onSurface
-              )
-            },
-            onClick = {
-              callbacks.navigate(AppSettingsRoute.BackupsRoute.Backups)
-            },
-            onLongClick = {
-              callbacks.copyRemoteBackupsSubscriberIdToClipboard()
-            },
-            enabled = isRegisteredAndUpToDate
-          )
+        if (state.isPrimaryDevice) {
+          item {
+            Rows.TextRow(
+              text = {
+                TextWithBetaLabel(
+                  text = stringResource(R.string.preferences_chats__backups),
+                  textStyle = MaterialTheme.typography.bodyLarge,
+                  enabled = isRegisteredAndUpToDate
+                )
+              },
+              icon = {
+                Icon(
+                  imageVector = ImageVector.vectorResource(R.drawable.symbol_backup_24),
+                  contentDescription = stringResource(R.string.preferences_chats__backups),
+                  tint = MaterialTheme.colorScheme.onSurface
+                )
+              },
+              onClick = {
+                callbacks.navigate(AppSettingsRoute.BackupsRoute.Backups)
+              },
+              onLongClick = {
+                callbacks.copyRemoteBackupsSubscriberIdToClipboard()
+              },
+              enabled = isRegisteredAndUpToDate
+            )
+          }
         }
 
         item {
@@ -455,7 +462,7 @@ private fun AppSettingsContent(
           }
         }
 
-        if (state.showPayments) {
+        if (state.isPrimaryDevice && state.showPayments) {
           item {
             Dividers.Default()
           }
@@ -630,7 +637,10 @@ private fun BioRow(
 
       Text(
         text = prettyPhoneNumber,
-        color = MaterialTheme.colorScheme.onSurfaceVariant
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        style = TextStyle(
+          textDirection = TextDirection.ContentOrLtr
+        )
       )
 
       if (hasUsername) {
@@ -674,7 +684,7 @@ private fun BioRow(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AppSettingsContentPreview() {
   Previews.Preview {
@@ -692,6 +702,7 @@ private fun AppSettingsContentPreview() {
         )
       ),
       state = AppSettingsState(
+        isPrimaryDevice = true,
         unreadPaymentsCount = 5,
         hasExpiredGiftBadge = true,
         allowUserToGoToDonationManagementScreen = true,
@@ -710,7 +721,44 @@ private fun AppSettingsContentPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
+@Composable
+private fun AppSettingsContentUnregisteredPreview() {
+  Previews.Preview {
+    AppSettingsContent(
+      self = BioRecipientState(
+        Recipient(
+          systemContactName = "Miles Morales",
+          profileName = ProfileName.fromParts("Miles", "Morales ❤\uFE0F"),
+          isSelf = true,
+          e164Value = "+15555555555",
+          usernameValue = "miles.98",
+          aboutEmoji = "❤\uFE0F",
+          about = "About",
+          isResolving = false
+        )
+      ),
+      state = AppSettingsState(
+        isPrimaryDevice = true,
+        unreadPaymentsCount = 5,
+        hasExpiredGiftBadge = true,
+        allowUserToGoToDonationManagementScreen = true,
+        userUnregistered = true,
+        clientDeprecated = false,
+        showInternalPreferences = true,
+        showPayments = true,
+        showAppUpdates = true,
+        backupFailureState = BackupFailureState.OUT_OF_STORAGE_SPACE
+      ),
+      bannerManager = BannerManager(
+        banners = listOf(TestBanner())
+      ),
+      callbacks = EmptyCallbacks
+    )
+  }
+}
+
+@DayNightPreviews
 @Composable
 private fun BioRowPreview() {
   Previews.Preview {

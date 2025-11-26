@@ -20,8 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.DslBannerBinding
@@ -99,7 +99,7 @@ fun Banner(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BannerPreview() {
   Previews.Preview {

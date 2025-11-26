@@ -15,8 +15,8 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.Flow
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.compose.SignalTheme
 
 /**
  * A class that can be instantiated with a list of [Flow]s that produce [Banner]s, then applied to a [ComposeView], typically within a [Fragment].

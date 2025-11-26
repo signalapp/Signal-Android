@@ -659,7 +659,7 @@ open class MessageContentProcessor(private val context: Context) {
   private fun handleIndividualRetryReceipt(requester: Recipient, messageLogEntry: MessageLogEntry?, envelope: Envelope, metadata: EnvelopeMetadata, decryptionErrorMessage: DecryptionErrorMessage) {
     var archivedSession = false
 
-    if (ServiceId.parseOrNull(envelope.destinationServiceId) is ServiceId.PNI) {
+    if (ServiceId.parseOrNull(envelope.destinationServiceId, envelope.destinationServiceIdBinary) is ServiceId.PNI) {
       warn(envelope.timestamp!!, "[RetryReceipt-I] Destination is our PNI. Ignoring.")
       return
     }

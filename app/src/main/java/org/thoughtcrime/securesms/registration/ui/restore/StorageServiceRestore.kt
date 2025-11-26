@@ -51,7 +51,7 @@ object StorageServiceRestore {
       val isMissingProfileData = RegistrationRepository.isMissingProfileData()
 
       RegistrationUtil.maybeMarkRegistrationComplete()
-      if (!isMissingProfileData) {
+      if (!isMissingProfileData && SignalStore.account.isPrimaryDevice) {
         AppDependencies.jobManager.add(ProfileUploadJob())
       }
     }

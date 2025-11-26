@@ -22,10 +22,12 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
+import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.model.DistributionListId
@@ -47,7 +49,6 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.IOException
-import java.util.Arrays
 
 object RecipientTableCursorUtil {
 
@@ -60,21 +61,19 @@ object RecipientTableCursorUtil {
   fun getRecord(context: Context, cursor: Cursor, idColumnName: String): RecipientRecord {
     val profileKeyString = cursor.requireString(RecipientTable.PROFILE_KEY)
     val expiringProfileKeyCredentialString = cursor.requireString(RecipientTable.EXPIRING_PROFILE_KEY_CREDENTIAL)
-    var profileKey: ByteArray? = null
+    var profileKey: ProfileKey? = null
     var expiringProfileKeyCredential: ExpiringProfileKeyCredential? = null
 
     if (profileKeyString != null) {
-      try {
-        profileKey = Base64.decode(profileKeyString)
-      } catch (e: IOException) {
-        Log.w(TAG, e)
-      }
+      profileKey = ProfileKeyUtil.profileKeyOrNull(profileKeyString)
 
-      if (expiringProfileKeyCredentialString != null) {
+      if (profileKey == null) {
+        Log.w(TAG, "Profile key present in db but is invalid, ignoring on read")
+      } else if (expiringProfileKeyCredentialString != null) {
         try {
           val columnDataBytes = Base64.decode(expiringProfileKeyCredentialString)
           val columnData = ExpiringProfileKeyCredentialColumnData.ADAPTER.decode(columnDataBytes)
-          if (Arrays.equals(columnData.profileKey.toByteArray(), profileKey)) {
+          if (columnData.profileKey.toByteArray().contentEquals(profileKey.serialize())) {
             expiringProfileKeyCredential = ExpiringProfileKeyCredential(columnData.expiringProfileKeyCredential.toByteArray())
           } else {
             Log.i(TAG, "Out of date profile key credential data ignored on read")
@@ -135,7 +134,7 @@ object RecipientTableCursorUtil {
       expireMessages = cursor.requireInt(RecipientTable.MESSAGE_EXPIRATION_TIME),
       expireTimerVersion = cursor.requireInt(RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION),
       registered = RegisteredState.fromId(cursor.requireInt(RecipientTable.REGISTERED)),
-      profileKey = profileKey,
+      profileKey = profileKey?.serialize(),
       expiringProfileKeyCredential = expiringProfileKeyCredential,
       systemProfileName = ProfileName.fromParts(cursor.requireString(RecipientTable.SYSTEM_GIVEN_NAME), cursor.requireString(RecipientTable.SYSTEM_FAMILY_NAME)),
       systemDisplayName = cursor.requireString(RecipientTable.SYSTEM_JOINED_NAME),

@@ -21,6 +21,7 @@ import org.junit.Test
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache
+import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientRepository
@@ -95,7 +96,7 @@ class FindByViewModelTest {
 
     viewModel.onUserEntryChanged("")
     mockkStatic(RecipientRepository::class).apply {
-      every { RecipientRepository.lookupNewE164(any()) } returns RecipientRepository.LookupResult.InvalidEntry
+      every { RecipientRepository.lookupNewE164(any()) } returns RecipientRepository.PhoneLookupResult.InvalidPhone(invalidValue = "")
     }
 
     val result = viewModel.onNextClicked()
@@ -107,11 +108,13 @@ class FindByViewModelTest {
 
   @Test
   fun `Given valid phone lookup, when I click next, then I expect Success`() = runTest {
-    val recipientId = RecipientId.from(123L)
+    val recipient = mockk<Recipient> {
+      every { id } returns RecipientId.from(123L)
+    }
 
     mockkStatic(RecipientRepository::class).apply {
       every { RecipientRepository.lookupNewE164("+15551234") } returns
-        RecipientRepository.LookupResult.Success(recipientId)
+        RecipientRepository.PhoneLookupResult.Found(recipient, PhoneNumber("+15551234"))
     }
 
     viewModel = FindByViewModel(FindByMode.PHONE_NUMBER)
@@ -123,17 +126,15 @@ class FindByViewModelTest {
     val result = viewModel.onNextClicked()
 
     assertTrue(result is FindByResult.Success)
-    assertEquals((result as FindByResult.Success).recipientId, recipientId)
+    assertEquals((result as FindByResult.Success).recipientId, recipient.id)
 
     unmockkObject(RecipientRepository)
   }
 
   @Test
   fun `Given unknown phone lookup, when I click next, then I expect NotFound`() = runTest {
-    val recipientId = RecipientId.from(123L)
-
     mockkStatic(RecipientRepository::class).apply {
-      every { RecipientRepository.lookupNewE164(any()) } returns RecipientRepository.LookupResult.NotFound(recipientId)
+      every { RecipientRepository.lookupNewE164(any()) } returns RecipientRepository.PhoneLookupResult.NotFound(PhoneNumber("0000000000"))
     }
 
     viewModel = FindByViewModel(FindByMode.PHONE_NUMBER)
@@ -142,7 +143,7 @@ class FindByViewModelTest {
     val result = viewModel.onNextClicked()
 
     assertTrue(result is FindByResult.NotFound)
-    assertEquals((result as FindByResult.NotFound).recipientId, recipientId)
+    assertEquals(RecipientId.from(-1L), (result as FindByResult.NotFound).recipientId)
 
     unmockkObject(RecipientRepository)
   }

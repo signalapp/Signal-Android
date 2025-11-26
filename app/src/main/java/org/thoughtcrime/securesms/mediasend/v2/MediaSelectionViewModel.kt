@@ -275,10 +275,12 @@ class MediaSelectionViewModel(
   fun removeMedia(media: Set<Media>) {
     val snapshot = store.state
     val newMediaList = snapshot.selectedMedia - media
-    val oldFocusIndex = snapshot.selectedMedia.indexOf(media.first())
     val newFocus = when {
       newMediaList.isEmpty() -> null
-      media == snapshot.focusedMedia -> newMediaList[Util.clamp(oldFocusIndex, 0, newMediaList.size - 1)]
+      snapshot.focusedMedia in media -> {
+        val oldFocusIndex = snapshot.selectedMedia.indexOf(snapshot.focusedMedia)
+        newMediaList[Util.clamp(oldFocusIndex, 0, newMediaList.size - 1)]
+      }
       else -> snapshot.focusedMedia
     }
 
@@ -287,7 +289,7 @@ class MediaSelectionViewModel(
         selectedMedia = newMediaList,
         focusedMedia = newFocus,
         editorStateMap = it.editorStateMap - media.map { it.uri },
-        cameraFirstCapture = if (media == it.cameraFirstCapture) null else it.cameraFirstCapture
+        cameraFirstCapture = if (it.cameraFirstCapture in media) null else it.cameraFirstCapture
       )
     }
 

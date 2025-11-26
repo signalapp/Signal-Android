@@ -34,9 +34,9 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -192,7 +192,7 @@ private fun BottomSheetContent(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MessageBackupsKeyRecordScreenPreview() {
   Previews.Preview {
@@ -202,7 +202,7 @@ private fun MessageBackupsKeyRecordScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BottomSheetContentPreview() {
   Previews.BottomSheetPreview {

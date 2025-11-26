@@ -74,89 +74,7 @@ internal class BillingApiImpl(
   private val internalResults = MutableSharedFlow<BillingPurchaseResult>()
 
   private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
-    val result = when (billingResult.responseCode) {
-      BillingResponseCode.OK -> {
-        if (purchases == null) {
-          Log.d(TAG, "purchasesUpdatedListener: No purchases.", true)
-          BillingPurchaseResult.None
-        } else {
-          Log.d(TAG, "purchasesUpdatedListener: ${purchases.size} purchases.", true)
-          val newestPurchase = purchases.maxByOrNull { it.purchaseTime }
-          if (newestPurchase == null) {
-            Log.d(TAG, "purchasesUpdatedListener: no purchase.", true)
-            BillingPurchaseResult.None
-          } else {
-            Log.d(TAG, "purchasesUpdatedListener: successful purchase at ${newestPurchase.purchaseTime}", true)
-            BillingPurchaseResult.Success(
-              purchaseState = newestPurchase.purchaseState.toBillingPurchaseState(),
-              purchaseToken = newestPurchase.purchaseToken,
-              isAcknowledged = newestPurchase.isAcknowledged,
-              purchaseTime = newestPurchase.purchaseTime,
-              isAutoRenewing = newestPurchase.isAutoRenewing
-            )
-          }
-        }
-      }
-
-      BillingResponseCode.BILLING_UNAVAILABLE -> {
-        Log.d(TAG, "purchasesUpdatedListener: Billing unavailable.", true)
-        BillingPurchaseResult.BillingUnavailable
-      }
-
-      BillingResponseCode.USER_CANCELED -> {
-        Log.d(TAG, "purchasesUpdatedListener: User cancelled.", true)
-        BillingPurchaseResult.UserCancelled
-      }
-
-      BillingResponseCode.ERROR -> {
-        Log.d(TAG, "purchasesUpdatedListener: error.", true)
-        BillingPurchaseResult.GenericError
-      }
-
-      BillingResponseCode.NETWORK_ERROR -> {
-        Log.d(TAG, "purchasesUpdatedListener: Network error.", true)
-        BillingPurchaseResult.NetworkError
-      }
-
-      BillingResponseCode.DEVELOPER_ERROR -> {
-        Log.d(TAG, "purchasesUpdatedListener: Developer error.", true)
-        BillingPurchaseResult.GenericError
-      }
-
-      BillingResponseCode.FEATURE_NOT_SUPPORTED -> {
-        Log.d(TAG, "purchasesUpdatedListener: Feature not supported.", true)
-        BillingPurchaseResult.FeatureNotSupported
-      }
-
-      BillingResponseCode.ITEM_ALREADY_OWNED -> {
-        Log.d(TAG, "purchasesUpdatedListener: Already owned.", true)
-        BillingPurchaseResult.AlreadySubscribed
-      }
-
-      BillingResponseCode.ITEM_NOT_OWNED -> {
-        error("This shouldn't happen during the purchase process")
-      }
-
-      BillingResponseCode.ITEM_UNAVAILABLE -> {
-        Log.d(TAG, "purchasesUpdatedListener: Item is unavailable", true)
-        BillingPurchaseResult.TryAgainLater
-      }
-
-      BillingResponseCode.SERVICE_UNAVAILABLE -> {
-        Log.d(TAG, "purchasesUpdatedListener: Service is unavailable.", true)
-        BillingPurchaseResult.TryAgainLater
-      }
-
-      BillingResponseCode.SERVICE_DISCONNECTED -> {
-        Log.d(TAG, "purchasesUpdatedListener: Service is disconnected.", true)
-        BillingPurchaseResult.TryAgainLater
-      }
-
-      else -> {
-        Log.d(TAG, "purchasesUpdatedListener: No purchases.", true)
-        BillingPurchaseResult.None
-      }
-    }
+    val result = handlePurchaseResult(billingResult, purchases)
 
     coroutineScope.launch { internalResults.emit(result) }
   }
@@ -208,15 +126,7 @@ internal class BillingApiImpl(
       billingClient.queryPurchasesAsync(param)
     }
 
-    val purchase = result.purchasesList.maxByOrNull { it.purchaseTime } ?: return BillingPurchaseResult.None
-
-    return BillingPurchaseResult.Success(
-      purchaseState = purchase.purchaseState.toBillingPurchaseState(),
-      purchaseTime = purchase.purchaseTime,
-      purchaseToken = purchase.purchaseToken,
-      isAcknowledged = purchase.isAcknowledged,
-      isAutoRenewing = purchase.isAutoRenewing
-    )
+    return handlePurchaseResult(result.billingResult, result.purchasesList)
   }
 
   /**
@@ -365,6 +275,92 @@ internal class BillingApiImpl(
         BillingClient.ConnectionState.CLOSED -> {
           Log.w(TAG, "BillingClient was permanently closed. Cannot proceed.", true)
         }
+      }
+    }
+  }
+
+  private fun handlePurchaseResult(billingResult: BillingResult, purchases: List<Purchase>?): BillingPurchaseResult {
+    return when (billingResult.responseCode) {
+      BillingResponseCode.OK -> {
+        if (purchases == null) {
+          Log.d(TAG, "handlePurchaseResult: No purchases.", true)
+          BillingPurchaseResult.None
+        } else {
+          Log.d(TAG, "handlePurchaseResult: ${purchases.size} purchases.", true)
+          val newestPurchase = purchases.maxByOrNull { it.purchaseTime }
+          if (newestPurchase == null) {
+            Log.d(TAG, "handlePurchaseResult: no purchase.", true)
+            BillingPurchaseResult.None
+          } else {
+            Log.d(TAG, "handlePurchaseResult: successful purchase at ${newestPurchase.purchaseTime}", true)
+            BillingPurchaseResult.Success(
+              purchaseState = newestPurchase.purchaseState.toBillingPurchaseState(),
+              purchaseToken = newestPurchase.purchaseToken,
+              isAcknowledged = newestPurchase.isAcknowledged,
+              purchaseTime = newestPurchase.purchaseTime,
+              isAutoRenewing = newestPurchase.isAutoRenewing
+            )
+          }
+        }
+      }
+
+      BillingResponseCode.BILLING_UNAVAILABLE -> {
+        Log.d(TAG, "handlePurchaseResult: Billing unavailable.", true)
+        BillingPurchaseResult.BillingUnavailable
+      }
+
+      BillingResponseCode.USER_CANCELED -> {
+        Log.d(TAG, "handlePurchaseResult: User cancelled.", true)
+        BillingPurchaseResult.UserCancelled
+      }
+
+      BillingResponseCode.ERROR -> {
+        Log.d(TAG, "handlePurchaseResult: error.", true)
+        BillingPurchaseResult.GenericError
+      }
+
+      BillingResponseCode.NETWORK_ERROR -> {
+        Log.d(TAG, "handlePurchaseResult: Network error.", true)
+        BillingPurchaseResult.NetworkError
+      }
+
+      BillingResponseCode.DEVELOPER_ERROR -> {
+        Log.d(TAG, "handlePurchaseResult: Developer error.", true)
+        BillingPurchaseResult.GenericError
+      }
+
+      BillingResponseCode.FEATURE_NOT_SUPPORTED -> {
+        Log.d(TAG, "handlePurchaseResult: Feature not supported.", true)
+        BillingPurchaseResult.FeatureNotSupported
+      }
+
+      BillingResponseCode.ITEM_ALREADY_OWNED -> {
+        Log.d(TAG, "handlePurchaseResult: Already owned.", true)
+        BillingPurchaseResult.AlreadySubscribed
+      }
+
+      BillingResponseCode.ITEM_NOT_OWNED -> {
+        error("This shouldn't happen during the purchase process")
+      }
+
+      BillingResponseCode.ITEM_UNAVAILABLE -> {
+        Log.d(TAG, "handlePurchaseResult: Item is unavailable", true)
+        BillingPurchaseResult.TryAgainLater
+      }
+
+      BillingResponseCode.SERVICE_UNAVAILABLE -> {
+        Log.d(TAG, "handlePurchaseResult: Service is unavailable.", true)
+        BillingPurchaseResult.TryAgainLater
+      }
+
+      BillingResponseCode.SERVICE_DISCONNECTED -> {
+        Log.d(TAG, "handlePurchaseResult: Service is disconnected.", true)
+        BillingPurchaseResult.TryAgainLater
+      }
+
+      else -> {
+        Log.d(TAG, "handlePurchaseResult: No purchases.", true)
+        BillingPurchaseResult.None
       }
     }
   }

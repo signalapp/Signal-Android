@@ -12,15 +12,13 @@ import android.media.MediaDataSource;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Pair;
+import kotlin.Pair;
 import android.webkit.MimeTypeMap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 import androidx.exifinterface.media.ExifInterface;
 
@@ -281,9 +279,9 @@ public class MediaUtil {
       }
     }
     if (dimens == null) {
-      dimens = new Pair<>(0, 0);
+      dimens = new Pair(0, 0);
     }
-    Log.d(TAG, "Dimensions for [" + uri + "] are " + dimens.first + " x " + dimens.second);
+    Log.d(TAG, "Dimensions for [" + uri + "] are " + dimens.getFirst() + " x " + dimens.getSecond());
     return dimens;
   }
 
@@ -431,7 +429,7 @@ public class MediaUtil {
       return false;
     }
 
-    if (BlobProvider.isAuthority(uri) && MediaUtil.isVideo(BlobProvider.getMimeType(uri)) && Build.VERSION.SDK_INT >= 23) {
+    if (BlobProvider.isAuthority(uri) && MediaUtil.isVideo(BlobProvider.getMimeType(uri))) {
       return true;
     }
 
@@ -476,8 +474,7 @@ public class MediaUtil {
                MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString()))) {
       return ThumbnailUtils.createVideoThumbnail(uri.toString().replace("file://", ""),
                                                  MediaStore.Video.Thumbnails.MINI_KIND);
-    } else if (Build.VERSION.SDK_INT >= 23   &&
-               BlobProvider.isAuthority(uri) &&
+    } else if (BlobProvider.isAuthority(uri) &&
                MediaUtil.isVideo(BlobProvider.getMimeType(uri)))
     {
       try {
@@ -486,8 +483,7 @@ public class MediaUtil {
       } catch (IOException e) {
         Log.w(TAG, "Failed to extract frame for URI: " + uri, e);
       }
-    } else if (Build.VERSION.SDK_INT >= 23        &&
-               PartAuthority.isAttachmentUri(uri) &&
+    } else if (PartAuthority.isAttachmentUri(uri) &&
                MediaUtil.isVideoType(PartAuthority.getAttachmentContentType(context, uri)))
     {
       try {
@@ -502,7 +498,6 @@ public class MediaUtil {
     return null;
   }
 
-  @RequiresApi(23)
   private static @Nullable Bitmap extractFrame(@Nullable MediaDataSource dataSource, long timeUs) throws IOException {
     if (dataSource == null) {
       return null;

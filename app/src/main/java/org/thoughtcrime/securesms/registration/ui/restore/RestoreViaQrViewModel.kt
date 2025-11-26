@@ -16,10 +16,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
@@ -123,7 +123,7 @@ class RestoreViaQrViewModel : ViewModel() {
 
     return ProvisioningSocket.start<RegistrationProvisionMessage>(
       mode = ProvisioningSocket.Mode.REREG,
-      identityKeyPair = IdentityKeyUtil.generateIdentityKeyPair(),
+      identityKeyPair = IdentityKeyPair.generate(),
       configuration = AppDependencies.signalServiceNetworkAccess.getConfiguration(),
       handler = { id, t ->
         store.update {
@@ -165,6 +165,7 @@ class RestoreViaQrViewModel : ViewModel() {
 
         SignalStore.backup.lastBackupTime = result.message.backupTimestampMs ?: 0
         SignalStore.backup.isBackupTimestampRestored = true
+        SignalStore.backup.restoringViaQr = true
         SignalStore.backup.backupTier = when (result.message.tier) {
           RegistrationProvisionMessage.Tier.FREE -> MessageBackupTier.FREE
           RegistrationProvisionMessage.Tier.PAID -> MessageBackupTier.PAID

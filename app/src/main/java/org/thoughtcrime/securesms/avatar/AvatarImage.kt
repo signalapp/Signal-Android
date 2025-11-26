@@ -18,11 +18,27 @@ import androidx.compose.ui.viewinterop.AndroidView
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 
 @Composable
 fun AvatarImage(
   recipient: Recipient,
+  modifier: Modifier = Modifier,
+  useProfile: Boolean = true,
+  contentDescription: String? = null
+) {
+  AvatarImage(
+    recipientId = recipient.id,
+    modifier = modifier,
+    useProfile = useProfile,
+    contentDescription = contentDescription
+  )
+}
+
+@Composable
+fun AvatarImage(
+  recipientId: RecipientId,
   modifier: Modifier = Modifier,
   useProfile: Boolean = true,
   contentDescription: String? = null
@@ -34,7 +50,7 @@ fun AvatarImage(
     )
   } else {
     val context = LocalContext.current
-    val avatarImageState by rememberRecipientField(recipient) {
+    val avatarImageState by rememberRecipientField(recipientId) {
       AvatarImageState(
         getDisplayName(context),
         this,

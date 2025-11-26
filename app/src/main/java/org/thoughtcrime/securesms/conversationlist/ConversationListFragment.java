@@ -53,6 +53,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.window.core.layout.WindowHeightSizeClass;
 
 import com.airbnb.lottie.SimpleColorFilter;
 import com.annimon.stream.Stream;
@@ -89,6 +90,7 @@ import org.thoughtcrime.securesms.banner.BannerManager;
 import org.thoughtcrime.securesms.banner.banners.CdsPermanentErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.CdsTemporaryErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner;
+import org.thoughtcrime.securesms.banner.banners.DeprecatedSdkBanner;
 import org.thoughtcrime.securesms.banner.banners.DozeBanner;
 import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner;
 import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner;
@@ -114,7 +116,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState;
-import org.thoughtcrime.securesms.conversation.ConversationArgs;
 import org.thoughtcrime.securesms.conversation.ConversationUpdateTick;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource;
@@ -131,7 +132,6 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.main.MainNavigationDetailLocation;
 import org.thoughtcrime.securesms.main.MainNavigationListLocation;
 import org.thoughtcrime.securesms.main.MainNavigationViewModel;
 import org.thoughtcrime.securesms.main.MainToolbarMode;
@@ -160,7 +160,6 @@ import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
-import org.thoughtcrime.securesms.window.WindowSizeClass;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.lang.ref.WeakReference;
@@ -179,6 +178,9 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.Unit;
+
+import static org.thoughtcrime.securesms.window.WindowSizeClassExtensionsKt.getWindowSizeClass;
+import static org.thoughtcrime.securesms.window.WindowSizeClassExtensionsKt.isSplitPane;
 
 
 public class ConversationListFragment extends MainFragment implements ConversationListAdapter.OnConversationClickListener,
@@ -312,7 +314,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     searchAdapter = contactSearchMediator.getAdapter();
 
-    if (WindowSizeClass.Companion.getWindowSizeClass(getResources()).isCompact()) {
+    if (getWindowSizeClass(getResources()).getWindowHeightSizeClass() == WindowHeightSizeClass.COMPACT) {
       ViewUtil.setBottomMargin(bottomActionBar, ViewUtil.getNavigationBarHeight(bottomActionBar));
     }
 
@@ -400,7 +402,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), chatListBackHandler);
 
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
-    lifecycleDisposable.add(mainNavigationViewModel.getTabClickEvents().filter(tab -> tab == MainNavigationListLocation.CHATS)
+    lifecycleDisposable.add(mainNavigationViewModel.getTabClickEventsObservable().filter(tab -> tab == MainNavigationListLocation.CHATS)
                                                    .subscribe(unused -> {
                                                      Log.d(TAG, "Scroll to top please");
                                                      LinearLayoutManager layoutManager            = (LinearLayoutManager) list.getLayoutManager();
@@ -412,17 +414,10 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                                      }
                                                    }));
 
-    if (WindowSizeClass.Companion.getWindowSizeClass(getResources()).isSplitPane()) {
-      lifecycleDisposable.add(mainNavigationViewModel.getDetailLocationObservable()
+    if (isSplitPane(getWindowSizeClass(getResources()))) {
+      lifecycleDisposable.add(mainNavigationViewModel.getObservableActiveChatThreadId()
                                                      .subscribeOn(AndroidSchedulers.mainThread())
-                                                     .subscribe(location -> {
-                                                       if (location instanceof MainNavigationDetailLocation.Chats.Conversation) {
-                                                         ConversationArgs args   = ((MainNavigationDetailLocation.Chats.Conversation) location).getConversationArgs();
-                                                         long             threadId = args.threadId;
-
-                                                         defaultAdapter.setActiveThreadId(threadId);
-                                                       }
-                                                     }));
+                                                     .subscribe(defaultAdapter::setActiveThreadId));
     } else {
       defaultAdapter.setActiveThreadId(0);
     }
@@ -721,6 +716,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   private void initializeBanners() {
     List<Banner<?>> bannerRepositories = List.of(
+        new DeprecatedSdkBanner(),
         new DeprecatedBuildBanner(),
         new UnauthorizedBanner(requireContext()),
         new ServiceOutageBanner(requireContext()),
@@ -886,6 +882,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
           if (conversations.isEmpty()) {
             endActionModeIfActive();
           } else {
+            startActionModeIfNotActive();
             updateMultiSelectState();
           }
         })
@@ -1146,6 +1143,12 @@ public class ConversationListFragment extends MainFragment implements Conversati
     });
   }
 
+  private void startActionModeIfNotActive() {
+    if (!mainToolbarViewModel.isInActionMode()) {
+      startActionMode();
+    }
+  }
+
   private void startActionMode() {
     ViewUtil.animateIn(bottomActionBar, bottomActionBar.getEnterAnimation());
     requireCallback().onMultiSelectStarted();
@@ -1190,6 +1193,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   @Override
   public boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view) {
+    if (list == null) {
+      Log.w(TAG, "List is null, ignoring long click.");
+      return true;
+    }
+
     if (mainToolbarViewModel.isInActionMode()) {
       onConversationClick(conversation);
       return true;

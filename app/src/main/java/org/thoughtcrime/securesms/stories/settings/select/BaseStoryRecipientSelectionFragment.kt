@@ -154,13 +154,11 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     val arguments = ContactSelectionArguments(
       displayMode = ContactSelectionDisplayMode.FLAG_PUSH or ContactSelectionDisplayMode.FLAG_HIDE_NEW,
       isRefreshable = false,
-      displayRecents = false,
+      includeRecents = false,
       selectionLimits = SelectionLimits.NO_LIMITS,
       canSelectSelf = false,
-      currentSelection = emptyList(),
-      displaySelectionCount = false,
+      currentSelection = emptySet(),
       displayChips = true,
-      checkboxResource = checkboxResource,
       recyclerPadBottom = 76.dp,
       recyclerChildClipping = false
     )

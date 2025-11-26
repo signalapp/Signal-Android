@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Rekodkan frasa pemulihan pembayaran</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Rekodkan frasa</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Sebelum anda boleh menyahdayakan PIN anda, anda perlu merekodkan frasa pemulihan pembayaran anda untuk memastikan anda memulihkan akaun pembayaran anda.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Cipta kunci pemulihan baharu</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Anda perlu mencipta dan merekodkan kunci pemulihan baharu sebelum anda boleh menyahdayakan PIN anda.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Cipta kunci</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">Fail</string>
     <string name="AttachmentKeyboard_contact">Kenalan</string>
     <string name="AttachmentKeyboard_location">Lokasi</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">Undian</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal perlukan kebenaran anda untuk menunjukkan gambar dan video anda</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Benarkan Capaian</string>
@@ -844,7 +852,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Bergantung pada saiz sandaran anda, ini mungkin mengambil masa yang lama. Anda boleh menggunakan telefon anda seperti biasa semasa sandaran dilakukan.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">Media ditambahkan pada sandaran anda semasa anda menghantar dan menerima mesej.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Tidak dapat memulihkan media</string>
@@ -1145,6 +1153,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Versi Signal ini telah tamat tempoh. Kemas kini sekarang untuk menghantar dan menerima mesej.</string>
     <string name="ExpiredBuildReminder_update_now">Update sekarang</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal tidak lagi berfungsi pada peranti ini. Untuk menggunakan Signal sekali lagi, kemas kini peranti anda kepada versi Android yang lebih baru atau tukar kepada peranti yang lebih baru.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Kemas Kini Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1345,10 +1356,15 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Selesai</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Orang ini tidak boleh ditambah kepada kumpulan legasi.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Tambah \"%1$s\" kepada \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="other">Tambah %3$d ahli kepada \"%2$s\"?</item>
+        <item quantity="other">Tambah %1$d ahli kepada \"%2$s\"?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Tambah</string>
     <string name="AddMembersActivity__add_members">Tambah ahli</string>
 
@@ -1451,6 +1467,10 @@
     <string name="RemoteRestoreActivity__not_now">Bukan sekarang</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Media anda akan dipulihkan di latar belakang. Jika anda memilih untuk tidak memulihkan sekarang, anda tidak akan dapat memulihkannya kemudian.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">Peranti tidak lagi didaftarkan</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">Ini mungkin kerana anda mendaftarkan akaun Signal anda pada peranti lain.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Maklumkan saya untuk Sebutan</string>
@@ -2047,6 +2067,10 @@
     <string name="MessageRecord_you_unblocked_this_group">Anda nyahsekat kumpulan ini</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s telah menghantar mesej kepada anda yang tidak dapat diproses atau dipaparkan kerana ia menggunakan ciri Signal yang baharu.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s menamatkan undian: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">Anda menamatkan undian: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Terima</string>
@@ -2349,6 +2373,12 @@
     <string name="WebRtcCallActivity__to_start_call">Untuk memulakan atau menyertai panggilan:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">Untuk mendayakan video anda:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Panggilan Signal</string>
@@ -2821,6 +2851,8 @@
     <string name="SubmitDebugLogActivity_success">Berjaya!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Salin URL ini dan tambahkannya kepada laporan isu atau e-mel sokongan anda:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Kongsi</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">Tutup</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Log ini akan disiarkan secara terbuka dalam talian untuk dilihat oleh penyumbang. Anda boleh memeriksanya sebelum memuat naik.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Apabila anda klik Hantar, log anda akan disiarkan selama 30 hari pada URL unik, tidak diterbitkan. Anda boleh Simpan ia secara tempatan dahulu.</string>
@@ -3076,6 +3108,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">Beri reaksi %1$s kepada pembayaran anda.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Memberi reaksi %1$s kepada pelekat anda.</string>
     <string name="MessageNotifier_this_message_was_deleted">Mesej ini telah dipadam.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s mengundi dalam undian \"%3$s\"</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Matikan pemberitahuan kenalan telah menyertai Signal? Anda boleh mendayakannya lagi dalam Signal &gt; Tetapan &gt; Pemberitahuan.</string>
 
@@ -3247,6 +3281,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Jawab tanpa video</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">Tukar arah kamera</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Output audio</string>
@@ -3304,9 +3341,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" bukan pengguna Signal. Sila periksa nama pengguna dan cuba lagi."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Anda tidak perlu menambah diri anda ke kumpulan</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Saiz kumpulan maksimum telah dicapai</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Kumpulan Signal boleh mempunyai maksimum %1$d ahli.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Kumpulan Signal boleh mempunyai maksimum %1$s ahli.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Had ahli yang disyorkan telah dicapai</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Kumpulan Signal menunjukkan prestasi terbaik dengan %1$d ahli atau kurang. Menambah lebih banyak ahli akan menyebabkan kelewatan dalam penghantaran dan penerimaan mesej.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Kumpulan Signal menunjukkan prestasi terbaik dengan %1$s ahli atau kurang. Menambah lebih banyak ahli akan menyebabkan kelewatan dalam penghantaran dan penerimaan mesej.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d ahli</item>
     </plurals>
@@ -4302,6 +4339,8 @@
     <string name="conversation_selection__menu_multi_select">Pilih</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Butiran pembayaran</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">Tamatkan Undian</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5040,9 +5079,13 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Langkau</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="other">%1$d ahli</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="other">%1$s ahli</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">Seterusnya</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Kongsi</string>
@@ -5756,23 +5799,23 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s telah disekat</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Gagal menyekat</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Tidak dapat mengalih keluar %1$s</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Orang ini disimpan ke Kenalan dalam peranti anda. Padam mereka daripada Kenalan anda dan cuba lagi.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Lihat Kenalan</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s bukan pengguna Signal</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s bukan pengguna Signal</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s bukan pengguna Signal</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Buka menu</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="other">%1$s bukan pengguna Signal</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Cari nama atau nombor</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Nama, nama pengguna, atau nombor</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Tukar kepada papan kekunci angka</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Tukar kepada papan kekunci abjad angka</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Tetapkan semula penapis carian</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -5932,7 +5975,6 @@
     <string name="BadgesOverviewFragment__featured_badge">Pemberian lencana</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Pamerkan lencana pada profil</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Gagal mengemaskini profil</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Pilih satu lencana</string>
@@ -7560,12 +7602,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Hidupkan Sandaran Selamat Signal</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Cuba Sandaran Selamat Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Mesej tidak akan pernah hilang apabila anda mendapat telefon baharu atau memasang semula Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Hidupkan</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Bukan sekarang</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">Anda boleh mendayakan sandaran dalam \"Tetapan\"</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Sahkan kunci pemulihan anda</string>
@@ -7835,6 +7881,12 @@
     <string name="BackupStatusRow__your_last_backup">Sandaran terakhir anda tidak dapat diselesaikan. Pastikan telefon anda disambungkan ke Wi-Fi dan ketik \"Sandarkan sekarang\" untuk mencuba lagi.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Sandaran terakhir anda tidak dapat diselesaikan. Pastikan anda menggunakan versi terkini Signal dan cuba lagi.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">Bilangan mesej yang anda miliki melebihi had storan. Padamkan beberapa mesej dan cuba lagi.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Mesej yang dihantar atau diterima sebelum %1$s tidak disandarkan.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Ketahui lebih lanjut</string>
 
@@ -7962,7 +8014,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/bulan, diperbaharui pada %2$s</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">Memperbaharui %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Sandaran terakhir %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8012,10 +8064,10 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Matikan dan padamkan sandaran</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Saiz sandaran</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="other">Sandaran anda termasuk semua mesej teks anda dan media %1$d hari yang lalu. Saiz akan berubah apabila media baharu diterima dan media lama tamat tempoh.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Sandaran dipadamkan dan dimatikan.</string>
@@ -8158,7 +8210,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Memuat naik: %1$s daripada %2$s (%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Memuat naik: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Butiran</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8232,13 +8284,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Kunci pemulihan anda</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Kunci pemulihan</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Kunci pemulihan anda ialah kod 64 aksara yang boleh memulihkan sandaran apabila anda memasang semula Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Kunci pemulihan anda ialah kod 64 aksara yang anda perlukan untuk memulihkan sandaran anda.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Jika terlupa PIN, anda tidak akan dapat memulihkan sandaran. Signal tidak dapat membantu memulihkan sandaran anda.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Simpan kunci pemulihan anda di tempat yang selamat seperti pengurus kata laluan, dan jangan kongsikannya dengan sesiapa pun.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Jika hilang, mesej anda tidak dapat dipulihkan.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Seterusnya</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Lihat kunci pemulihan</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8289,6 +8343,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Cipta kunci pemulihan baharu</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Mencipta kunci baharu hanya perlu dilakukan jika ada orang lain yang mengetahui kunci anda. Anda perlu memuat naik semula sandaran anda, termasuk media. Jika anda menggunakan \"Optimumkan storan\", anda perlu memuat turun media yang telah dialih keluar terlebih dahulu.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Keluar daripada tetapan sandaran?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Anda belum selesai menetapkan sandaran, dan tiada sandaran telah dibuat. Anda boleh mendayakan sandaran dalam Tetapan.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Keluar daripada tetapan sandaran</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8413,6 +8473,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Dari telefon lama anda</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Pindahkan terus dari Android lama anda</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Langkau pemulihan?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Jika anda melangkau pemulihan sekarang, anda tidak akan dapat memulihkan kemudian. Jika anda mendayakan semula sandaran selepas melangkau pemulihan, sandaran semasa anda akan digantikan dengan sejarah pemesejan baharu anda.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Langkau pemulihan</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Pulihkan sandaran setempat</string>
@@ -8453,6 +8519,10 @@
     <string name="EnterBackupKey_backup_not_found">Sandaran tidak ditemui</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Kunci pemulihan yang anda masukkan adalah betul, tetapi tiada sandaran yang dikaitkan dengannya. Jika anda masih mempunyai telefon lama anda, pastikan sandaran diaktifkan dan satu telah selesai dibuat, kemudian cuba lagi.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Anda mungkin telah memasukkan kunci pemulihan anda dengan salah atau anda belum melengkapkan sekurang-kurangnya satu sandaran pada peranti lama anda.\n\nPastikan anda mendaftar dengan nombor telefon dan kunci pemulihan yang sama yang anda simpan semasa mendayakan Sandaran Selamat Signal dan sahkan bahawa peranti lama anda telah melengkapkan sandaran.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Anda telah kehabisan percubaan kunci pemulihan. Untuk keselamatan anda, bilangan percubaan yang boleh anda lakukan adalah terhad. Tunggu satu jam dan cuba lagi.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Langkau pemulihan</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8541,6 +8611,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Langkau pemulihan</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Had kunci pemulihan dicapai</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Anda berjaya mencipta kunci pemulihan baharu, tetapi untuk mengelakkan penyalahgunaan, bilangan kunci baharu yang boleh anda cipta adalah terhad. Anda tidak akan dapat membuat kunci lain selama 7 hari. Simpan kunci pemulihan anda di tempat yang selamat dan terjamin.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Tidak boleh mencipta kunci baharu</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Anda telah kehabisan bilangan kunci baharu yang boleh dibuat. Anda akan dapat membuat kunci pemulihan baharu dalam masa 7 hari. Jika anda percaya seseorang mungkin boleh mengakses sandaran anda, anda boleh memilih untuk \"Matikan dan padamkan sandaran.\"</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Tutup carian</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8578,6 +8658,150 @@
     <plurals name="Notification_you_have_not_completed_a_backup">
         <item quantity="other">Anda belum melengkapkan sandaran selama %1$d hari. Buat sandaran sekarang.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">Undian · Pilih Satu</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">Undian · Pilih satu atau lebih</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">Undian · Keputusan akhir</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">Tiada Undian</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">Lihat Undian</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">Lihat undian</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">Undian tidak ditemui</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">Lihat Keputusan</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">Undian: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s menamatkan undian: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">Anda menamatkan undian: \"%1$s\"</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s mengundi dalam undian: \"%2$s\"</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">Undian</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">Keputusan undian</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">Butiran Undian</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">Soalan</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="other">%1$d Undian</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">Pemenang</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">Tamatkan Undian</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">Lihat semua</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">Tidak dapat menamatkan undian</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">Periksa sambungan anda dan cuba lagi.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">Tamatkan undian?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">Ahli kumpulan tidak lagi dapat mengundi dalam undian ini.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">Menunggu rangkaian…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">Undian Baharu</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">Soalan</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">Tanya Soalan</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">Pilihan</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">Pilihan %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">Seret dan lepas untuk susun semula</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">Benarkan Berbilang Undian</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">Tambah soalan dan sekurang-kurangnya 2 pilihan</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">Tambah sekurang-kurangnya 2 pilihan</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">Tambah soalan</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">Isu audio</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">Isu video</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">Panggilan terputus</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">Sesuatu yang lain</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">Kegagapan audio</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">Audio dipotong</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">Saya mendengar gema</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">Yang lain mendengar gema</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">Kualiti video yang lemah</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">Resolusi rendah</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">Kamera tidak berfungsi</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">Sesuatu yang lain</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Nyatakan isu anda</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Sila sertakan sebarang butiran yang berkaitan dengan isu tersebut. Segala maklumat yang anda kongsi di sini akan dirahsiakan dan hanya digunakan untuk membantu menambah baik panggilan dalam Signal.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">Simpan</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">Kembali</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">Bagaimanakah panggilan anda?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Ini membantu kami menambah baik panggilan dalam Signal. Tiada maklumat pengenalan peribadi akan disimpan.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">Ada masalah</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">Bagus</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">Apakah isu yang anda hadapi?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">Pilih semua yang berkenaan</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">Nyatakan isu anda</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">Teruskan</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">Bantu kami menjadi lebih baik</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Menghantar maklumat diagnostik anda membantu kami menambah baik kualiti panggilan. Anda boleh </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">melihat log nyahpepijat anda</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> sebelum menghantar</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">Kongsi log nyahpepijat</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">Log nyahpepijat mengandungi maklumat aplikasi tahap rendah dan tidak mendedahkan sebarang kandungan mesej anda.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">Hantar</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">Terima kasih atas maklum balas anda!</string>
 
     <!-- EOF -->
 </resources>

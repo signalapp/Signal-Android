@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,7 +24,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.FragmentActivity
@@ -31,12 +31,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.Snackbars
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.R
@@ -45,7 +46,6 @@ import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
-import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationRouter
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -55,7 +55,7 @@ import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
 import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Util
-import org.thoughtcrime.securesms.window.WindowSizeClass
+import org.thoughtcrime.securesms.window.isSplitPane
 import java.time.Instant
 
 @Composable
@@ -84,7 +84,7 @@ fun CallLinkDetailsScreen(
     state = state,
     showAlreadyInACall = showAlreadyInACall,
     callback = callback,
-    showNavigationIcon = !WindowSizeClass.rememberWindowSizeClass().isSplitPane()
+    showNavigationIcon = !currentWindowAdaptiveInfo().windowSizeClass.isSplitPane()
   )
 }
 
@@ -153,7 +153,6 @@ class DefaultCallLinkDetailsCallback(
     viewModel.setDisplayRevocationDialog(false)
     activity.lifecycleScope.launch {
       if (viewModel.delete()) {
-        router.goTo(MainNavigationListLocation.CALLS)
         router.goTo(MainNavigationDetailLocation.Empty)
       }
     }
@@ -320,7 +319,7 @@ private fun FailureSnackbar(
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun CallLinkDetailsScreenPreview() {
   val callLink = remember {
@@ -343,7 +342,7 @@ private fun CallLinkDetailsScreenPreview() {
     )
   }
 
-  SignalTheme(false) {
+  Previews.Preview {
     CallLinkDetailsScreen(
       CallLinkDetailsState(
         false,
