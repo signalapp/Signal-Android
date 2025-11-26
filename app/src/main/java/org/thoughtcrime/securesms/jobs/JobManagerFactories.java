@@ -151,6 +151,7 @@ public final class JobManagerFactories {
       put(CallLinkPeekJob.KEY,                         new CallLinkPeekJob.Factory());
       put(CallLinkUpdateSendJob.KEY,                   new CallLinkUpdateSendJob.Factory());
       put(CallLogEventSendJob.KEY,                     new CallLogEventSendJob.Factory());
+      put(CallQualitySurveySubmissionJob.KEY,          new CallQualitySurveySubmissionJob.Factory());
       put(CallSyncEventJob.KEY,                        new CallSyncEventJob.Factory());
       put(CancelRestoreMediaJob.KEY,                   new CancelRestoreMediaJob.Factory());
       put(CheckRestoreMediaLeftJob.KEY,                new CheckRestoreMediaLeftJob.Factory());

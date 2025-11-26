@@ -1,25 +1,100 @@
-/*
- * Copyright 2025 Signal Messenger, LLC
- * SPDX-License-Identifier: AGPL-3.0-only
- */
+// Copyright 2025 Signal Messenger, LLC
+// SPDX-License-Identifier: AGPL-3.0-only
 
 syntax = "proto3";
 
-option java_package        = "org.signal.storageservice.protos.calls.quality";
 option java_multiple_files = true;
 
+package org.signal.storageservice.protos.calls.quality;
+
 message SubmitCallQualitySurveyRequest {
-  optional bool   user_satisfied                = 1;
-  repeated string call_quality_issues           = 2;
+  // Indicates whether the caller was generally satisfied with the quality of
+  // the call
+  bool user_satisfied = 1;
+
+  // A list of call quality issues selected by the caller
+  repeated string call_quality_issues = 2;
+
+  // A free-form description of any additional issues as written by the caller
   optional string additional_issues_description = 3;
-  optional string debug_log_url                 = 4;
-  optional int64  start_timestamp               = 5;
-  optional int64  end_timestamp                 = 6;
-  optional string call_type                     = 7;
-  optional bool   success                       = 8;
-  optional string call_end_reason               = 9;
-  optional float  rtt_median                    = 10;
-  optional float  jitter_median                 = 11;
-  optional float  packet_loss_fraction          = 12;
-  optional bytes  call_telemetry                = 13;
+
+  // A URL for a set of debug logs associated with the call if the caller chose
+  // to submit debug logs
+  optional string debug_log_url = 4;
+
+  // The time at which the call started in microseconds since the epoch (see
+  // https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#timestamp_type)
+  int64 start_timestamp = 5;
+
+  // The time at which the call ended in microseconds since the epoch (see
+  // https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#timestamp_type)
+  int64 end_timestamp = 6;
+
+  // The type of call; note that direct voice calls can become video calls and
+  // vice versa, and this field indicates which mode was selected at call
+  // initiation time. At the time of writing, expected call types are
+  // "direct_voice", "direct_video", "group", and "call_link".
+  string call_type = 7;
+
+  // Indicates whether the call completed without error or if it terminated
+  // abnormally
+  bool success = 8;
+
+  // A client-defined, but human-readable reason for call termination
+  string call_end_reason = 9;
+
+  // The median round-trip time, measured in milliseconds, for STUN/ICE packets
+  // (i.e. connection maintenance and establishment)
+  optional float connection_rtt_median = 10;
+
+  // The median round-trip time, measured in milliseconds, for RTP/RTCP packets
+  // for audio streams
+  optional float audio_rtt_median = 11;
+
+  // The median round-trip time, measured in milliseconds, for RTP/RTCP packets
+  // for video streams
+  optional float video_rtt_median = 12;
+
+  // The median jitter for audio streams, measured in milliseconds, for the
+  // duration of the call as measured by the client submitting the survey
+  optional float audio_recv_jitter_median = 13;
+
+  // The median jitter for video streams, measured in milliseconds, for the
+  // duration of the call as measured by the client submitting the survey
+  optional float video_recv_jitter_median = 14;
+
+  // The median jitter for audio streams, measured in milliseconds, for the
+  // duration of the call as measured by the remote endpoint in the call (either
+  // the peer of the client submitting the survey in a direct call or the SFU in
+  // a group call)
+  optional float audio_send_jitter_median = 15;
+
+  // The median jitter for video streams, measured in milliseconds, for the
+  // duration of the call as measured by the remote endpoint in the call (either
+  // the peer of the client submitting the survey in a direct call or the SFU in
+  // a group call)
+  optional float video_send_jitter_median = 16;
+
+  // The fraction of audio packets lost over the duration of the call as
+  // measured by the client submitting the survey
+  optional float audio_recv_packet_loss_fraction = 17;
+
+  // The fraction of video packets lost over the duration of the call as
+  // measured by the client submitting the survey
+  optional float video_recv_packet_loss_fraction = 18;
+
+  // The fraction of audio packets lost over the duration of the call as
+  // measured by the remote endpoint in the call (either the peer of the client
+  // submitting the survey in a direct call or the SFU in a group call)
+  optional float audio_send_packet_loss_fraction = 19;
+
+  // The fraction of video packets lost over the duration of the call as
+  // measured by the remote endpoint in the call (either the peer of the client
+  // submitting the survey in a direct call or the SFU in a group call)
+  optional float video_send_packet_loss_fraction = 20;
+
+  // Machine-generated telemetry from the call; this is a serialized protobuf
+  // entity generated (and, critically, explained to the user!) by the calling
+  // library
+  optional bytes call_telemetry = 21;
 }

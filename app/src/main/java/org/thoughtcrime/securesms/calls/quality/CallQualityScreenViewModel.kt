@@ -9,11 +9,20 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.CallQualitySurveySubmissionJob
 
-class CallQualityScreenViewModel : ViewModel() {
+class CallQualityScreenViewModel(
+  val initialRequest: SubmitCallQualitySurveyRequest
+) : ViewModel() {
 
   private val internalState = MutableStateFlow(CallQualitySheetState())
   val state: StateFlow<CallQualitySheetState> = internalState
+
+  fun setUserSatisfiedWithCall(userSatisfiedWithCall: Boolean) {
+    internalState.update { it.copy(isUserSatisfiedWithCall = userSatisfiedWithCall) }
+  }
 
   fun onCallQualityIssueSelectionChanged(selection: Set<CallQualityIssue>) {
     internalState.update { it.copy(selectedQualityIssues = selection) }
@@ -28,6 +37,19 @@ class CallQualityScreenViewModel : ViewModel() {
   }
 
   fun submit() {
-    // Enqueue job.
+    val stateSnapshot = state.value
+    val somethingElseDescription: String? = if (stateSnapshot.selectedQualityIssues.contains(CallQualityIssue.SOMETHING_ELSE)) {
+      stateSnapshot.somethingElseDescription.takeIf { it.isNotEmpty() }
+    } else {
+      null
+    }
+
+    val requestToSubmitToJob = initialRequest.newBuilder()
+      .user_satisfied(stateSnapshot.isUserSatisfiedWithCall)
+      .call_quality_issues(stateSnapshot.selectedQualityIssues.map { it.code })
+      .additional_issues_description(somethingElseDescription)
+      .build()
+
+    AppDependencies.jobManager.add(CallQualitySurveySubmissionJob(requestToSubmitToJob, stateSnapshot.isShareDebugLogSelected))
   }
 }

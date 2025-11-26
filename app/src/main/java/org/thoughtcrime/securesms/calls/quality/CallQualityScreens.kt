@@ -7,7 +7,14 @@ package org.thoughtcrime.securesms.calls.quality
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -73,9 +80,11 @@ fun CallQualitySheet(
   when (navEntry) {
     CallQualitySheetNavEntry.HowWasYourCall -> HowWasYourCall(
       onGreatClick = {
+        callback.onUserSatisfiedWithCall(true)
         navEntry = CallQualitySheetNavEntry.HelpUsImprove
       },
       onHadIssuesClick = {
+        callback.onUserSatisfiedWithCall(true)
         navEntry = CallQualitySheetNavEntry.WhatIssuesDidYouHave
       },
       onCancelClick = callback::dismiss
@@ -146,7 +155,6 @@ private fun WhatIssuesDidYouHave(
     SheetTitle(text = stringResource(R.string.CallQualitySheet__what_issues_did_you_have))
     SheetSubtitle(text = stringResource(R.string.CallQualitySheet__select_all_that_apply))
 
-    val qualityIssueDisplaySet = rememberQualityDisplaySet(selectedQualityIssues)
     val onCallQualityIssueClick: (CallQualityIssue) -> Unit = remember(selectedQualityIssues, onCallQualityIssueSelectionChanged) {
       { issue ->
         val isRemoving = issue in selectedQualityIssues
@@ -172,6 +180,9 @@ private fun WhatIssuesDidYouHave(
       }
     }
 
+    val isAudioExpanded = CallQualityIssue.AUDIO_ISSUE in selectedQualityIssues
+    val isVideoExpanded = CallQualityIssue.VIDEO_ISSUE in selectedQualityIssues
+
     FlowRow(
       modifier = Modifier
         .animateContentSize()
@@ -179,101 +190,203 @@ private fun WhatIssuesDidYouHave(
         .horizontalGutters(),
       horizontalArrangement = Arrangement.Center
     ) {
-      qualityIssueDisplaySet.forEach { issue ->
-        val isIssueSelected = issue in selectedQualityIssues
+      IssueChip(
+        issue = CallQualityIssue.AUDIO_ISSUE,
+        isSelected = isAudioExpanded,
+        onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_ISSUE) }
+      )
 
-        InputChip(
-          selected = isIssueSelected,
-          onClick = {
-            onCallQualityIssueClick(issue)
-          },
-          colors = InputChipDefaults.inputChipColors(
-            leadingIconColor = MaterialTheme.colorScheme.onSurface,
-            selectedLeadingIconColor = MaterialTheme.colorScheme.onSurface,
-            labelColor = MaterialTheme.colorScheme.onSurface
-          ),
-          leadingIcon = {
-            Icon(
-              imageVector = if (isIssueSelected) {
-                ImageVector.vectorResource(R.drawable.symbol_check_24)
-              } else {
-                ImageVector.vectorResource(issue.category.icon)
-              },
-              contentDescription = null
-            )
-          },
-          label = {
-            Text(text = stringResource(issue.label))
-          },
-          modifier = Modifier.padding(horizontal = 4.dp)
-        )
+      AnimatedIssueChip(
+        visible = isAudioExpanded,
+        issue = CallQualityIssue.AUDIO_STUTTERING,
+        isSelected = CallQualityIssue.AUDIO_STUTTERING in selectedQualityIssues,
+        onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_STUTTERING) }
+      )
+
+      AnimatedIssueChip(
+        visible = isAudioExpanded,
+        issue = CallQualityIssue.AUDIO_CUT_OUT,
+        isSelected = CallQualityIssue.AUDIO_CUT_OUT in selectedQualityIssues,
+        onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_CUT_OUT) }
+      )
+
+      AnimatedIssueChip(
+        visible = isAudioExpanded,
+        issue = CallQualityIssue.AUDIO_I_HEARD_ECHO,
+        isSelected = CallQualityIssue.AUDIO_I_HEARD_ECHO in selectedQualityIssues,
+        onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_I_HEARD_ECHO) }
+      )
+
+      AnimatedIssueChip(
+        visible = isAudioExpanded,
+        issue = CallQualityIssue.AUDIO_OTHERS_HEARD_ECHO,
+        isSelected = CallQualityIssue.AUDIO_OTHERS_HEARD_ECHO in selectedQualityIssues,
+        onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_OTHERS_HEARD_ECHO) }
+      )
+
+      IssueChip(
+        issue = CallQualityIssue.VIDEO_ISSUE,
+        isSelected = isVideoExpanded,
+        onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_ISSUE) }
+      )
+
+      AnimatedIssueChip(
+        visible = isVideoExpanded,
+        issue = CallQualityIssue.VIDEO_POOR_QUALITY,
+        isSelected = CallQualityIssue.VIDEO_POOR_QUALITY in selectedQualityIssues,
+        onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_POOR_QUALITY) }
+      )
+
+      AnimatedIssueChip(
+        visible = isVideoExpanded,
+        issue = CallQualityIssue.VIDEO_LOW_RESOLUTION,
+        isSelected = CallQualityIssue.VIDEO_LOW_RESOLUTION in selectedQualityIssues,
+        onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_LOW_RESOLUTION) }
+      )
+
+      AnimatedIssueChip(
+        visible = isVideoExpanded,
+        issue = CallQualityIssue.VIDEO_CAMERA_MALFUNCTION,
+        isSelected = CallQualityIssue.VIDEO_CAMERA_MALFUNCTION in selectedQualityIssues,
+        onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_CAMERA_MALFUNCTION) }
+      )
+
+      IssueChip(
+        issue = CallQualityIssue.CALL_DROPPED,
+        isSelected = CallQualityIssue.CALL_DROPPED in selectedQualityIssues,
+        onClick = { onCallQualityIssueClick(CallQualityIssue.CALL_DROPPED) }
+      )
+
+      IssueChip(
+        issue = CallQualityIssue.SOMETHING_ELSE,
+        isSelected = CallQualityIssue.SOMETHING_ELSE in selectedQualityIssues,
+        onClick = { onCallQualityIssueClick(CallQualityIssue.SOMETHING_ELSE) }
+      )
+    }
+
+    AnimatedVisibility(
+      visible = CallQualityIssue.SOMETHING_ELSE in selectedQualityIssues,
+      enter = fadeIn() + expandVertically(),
+      exit = fadeOut() + shrinkVertically()
+    ) {
+      val text = somethingElseDescription.ifEmpty {
+        stringResource(R.string.CallQualitySheet__describe_your_issue)
       }
 
-      if (CallQualityIssue.SOMETHING_ELSE in selectedQualityIssues) {
-        val text = somethingElseDescription.ifEmpty {
-          stringResource(R.string.CallQualitySheet__describe_your_issue)
-        }
-
-        val textColor = if (somethingElseDescription.isNotEmpty()) {
-          MaterialTheme.colorScheme.onSurface
-        } else {
-          MaterialTheme.colorScheme.onSurfaceVariant
-        }
-
-        val textUnderlineStrokeWidthPx = with(LocalDensity.current) {
-          1.dp.toPx()
-        }
-
-        val textUnderlineColor = MaterialTheme.colorScheme.outline
-
-        Text(
-          text = text,
-          color = textColor,
-          maxLines = 1,
-          overflow = TextOverflow.Ellipsis,
-          modifier = Modifier
-            .clickable(
-              role = Role.Button,
-              onClick = onDescribeYourIssueClick
-            )
-            .fillMaxWidth()
-            .padding(top = 24.dp)
-            .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp))
-            .drawWithContent {
-              drawContent()
-
-              val width = size.width
-              val height = size.height - textUnderlineStrokeWidthPx / 2f
-
-              drawLine(
-                color = textUnderlineColor,
-                start = Offset(x = 0f, y = height),
-                end = Offset(x = width, y = height),
-                strokeWidth = textUnderlineStrokeWidthPx
-              )
-            }
-            .padding(16.dp)
-        )
+      val textColor = if (somethingElseDescription.isNotEmpty()) {
+        MaterialTheme.colorScheme.onSurface
+      } else {
+        MaterialTheme.colorScheme.onSurfaceVariant
       }
 
-      Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
+      val textUnderlineStrokeWidthPx = with(LocalDensity.current) {
+        1.dp.toPx()
+      }
+
+      val textUnderlineColor = MaterialTheme.colorScheme.outline
+
+      Text(
+        text = text,
+        color = textColor,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
         modifier = Modifier
+          .clickable(
+            role = Role.Button,
+            onClick = onDescribeYourIssueClick
+          )
           .fillMaxWidth()
-          .padding(top = 32.dp, bottom = 24.dp)
-      ) {
-        CancelButton(
-          onClick = onCancelClick
-        )
+          .horizontalGutters()
+          .padding(top = 24.dp)
+          .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp))
+          .drawWithContent {
+            drawContent()
 
-        Buttons.LargeTonal(
-          onClick = onContinueClick
-        ) {
-          Text(text = stringResource(R.string.CallQualitySheet__continue))
-        }
+            val width = size.width
+            val height = size.height - textUnderlineStrokeWidthPx / 2f
+
+            drawLine(
+              color = textUnderlineColor,
+              start = Offset(x = 0f, y = height),
+              end = Offset(x = width, y = height),
+              strokeWidth = textUnderlineStrokeWidthPx
+            )
+          }
+          .padding(16.dp)
+      )
+    }
+
+    // Buttons - outside FlowRow, stable position
+    Row(
+      horizontalArrangement = Arrangement.SpaceBetween,
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier
+        .fillMaxWidth()
+        .horizontalGutters()
+        .padding(top = 32.dp, bottom = 24.dp)
+    ) {
+      CancelButton(
+        onClick = onCancelClick
+      )
+
+      Buttons.LargeTonal(
+        onClick = onContinueClick
+      ) {
+        Text(text = stringResource(R.string.CallQualitySheet__continue))
       }
     }
+  }
+}
+
+@Composable
+private fun IssueChip(
+  issue: CallQualityIssue,
+  isSelected: Boolean,
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  InputChip(
+    selected = isSelected,
+    onClick = onClick,
+    colors = InputChipDefaults.inputChipColors(
+      leadingIconColor = MaterialTheme.colorScheme.onSurface,
+      selectedLeadingIconColor = MaterialTheme.colorScheme.onSurface,
+      labelColor = MaterialTheme.colorScheme.onSurface
+    ),
+    leadingIcon = {
+      Icon(
+        imageVector = if (isSelected) {
+          ImageVector.vectorResource(R.drawable.symbol_check_24)
+        } else {
+          ImageVector.vectorResource(issue.category.icon)
+        },
+        contentDescription = null
+      )
+    },
+    label = {
+      Text(text = stringResource(issue.label))
+    },
+    modifier = modifier.padding(horizontal = 4.dp)
+  )
+}
+
+@Composable
+private fun AnimatedIssueChip(
+  visible: Boolean,
+  issue: CallQualityIssue,
+  isSelected: Boolean,
+  onClick: () -> Unit
+) {
+  AnimatedVisibility(
+    visible = visible,
+    enter = fadeIn() + expandHorizontally(),
+    exit = fadeOut() + shrinkHorizontally()
+  ) {
+    IssueChip(
+      issue = issue,
+      isSelected = isSelected,
+      onClick = onClick
+    )
   }
 }
 
@@ -549,33 +662,8 @@ private fun SomethingElseContentPreview() {
   }
 }
 
-@Composable
-private fun rememberQualityDisplaySet(userSelection: Set<CallQualityIssue>): Set<CallQualityIssue> {
-  return remember(userSelection) {
-    val displaySet = mutableSetOf<CallQualityIssue>()
-    displaySet.add(CallQualityIssue.AUDIO_ISSUE)
-    if (CallQualityIssue.AUDIO_ISSUE in userSelection) {
-      displaySet.add(CallQualityIssue.AUDIO_STUTTERING)
-      displaySet.add(CallQualityIssue.AUDIO_CUT_OUT)
-      displaySet.add(CallQualityIssue.AUDIO_I_HEARD_ECHO)
-      displaySet.add(CallQualityIssue.AUDIO_OTHERS_HEARD_ECHO)
-    }
-
-    displaySet.add(CallQualityIssue.VIDEO_ISSUE)
-    if (CallQualityIssue.VIDEO_ISSUE in userSelection) {
-      displaySet.add(CallQualityIssue.VIDEO_POOR_QUALITY)
-      displaySet.add(CallQualityIssue.VIDEO_LOW_RESOLUTION)
-      displaySet.add(CallQualityIssue.VIDEO_CAMERA_MALFUNCTION)
-    }
-
-    displaySet.add(CallQualityIssue.CALL_DROPPED)
-    displaySet.add(CallQualityIssue.SOMETHING_ELSE)
-
-    displaySet
-  }
-}
-
 data class CallQualitySheetState(
+  val isUserSatisfiedWithCall: Boolean = false,
   val selectedQualityIssues: Set<CallQualityIssue> = emptySet(),
   val somethingElseDescription: String = "",
   val isShareDebugLogSelected: Boolean = false
@@ -584,6 +672,7 @@ data class CallQualitySheetState(
 interface CallQualitySheetCallback {
   fun dismiss()
   fun viewDebugLog()
+  fun onUserSatisfiedWithCall(isUserSatisfiedWithCall: Boolean)
   fun describeYourIssue()
   fun onCallQualityIssueSelectionChanged(selection: Set<CallQualityIssue>)
   fun onShareDebugLogChanged(shareDebugLog: Boolean)
@@ -592,6 +681,7 @@ interface CallQualitySheetCallback {
   object Empty : CallQualitySheetCallback {
     override fun dismiss() = Unit
     override fun viewDebugLog() = Unit
+    override fun onUserSatisfiedWithCall(isUserSatisfiedWithCall: Boolean) = Unit
     override fun describeYourIssue() = Unit
     override fun onCallQualityIssueSelectionChanged(selection: Set<CallQualityIssue>) = Unit
     override fun onShareDebugLogChanged(shareDebugLog: Boolean) = Unit
@@ -615,18 +705,19 @@ enum class CallQualityIssueCategory(
 }
 
 enum class CallQualityIssue(
+  val code: String,
   val category: CallQualityIssueCategory,
   @param:StringRes val label: Int
 ) {
-  AUDIO_ISSUE(category = CallQualityIssueCategory.AUDIO, label = R.string.CallQualityIssue__audio_issue),
-  AUDIO_STUTTERING(category = CallQualityIssueCategory.AUDIO, label = R.string.CallQualityIssue__audio_stuttering),
-  AUDIO_CUT_OUT(category = CallQualityIssueCategory.AUDIO, label = R.string.CallQualityIssue__audio_cut_out),
-  AUDIO_I_HEARD_ECHO(category = CallQualityIssueCategory.AUDIO, label = R.string.CallQualityIssue__i_heard_echo),
-  AUDIO_OTHERS_HEARD_ECHO(category = CallQualityIssueCategory.AUDIO, label = R.string.CallQualityIssue__others_heard_echo),
-  VIDEO_ISSUE(category = CallQualityIssueCategory.VIDEO, label = R.string.CallQualityIssue__video_issue),
-  VIDEO_POOR_QUALITY(category = CallQualityIssueCategory.VIDEO, label = R.string.CallQualityIssue__poor_video_quality),
-  VIDEO_LOW_RESOLUTION(category = CallQualityIssueCategory.VIDEO, label = R.string.CallQualityIssue__low_resolution),
-  VIDEO_CAMERA_MALFUNCTION(category = CallQualityIssueCategory.VIDEO, label = R.string.CallQualityIssue__camera_did_not_work),
-  CALL_DROPPED(category = CallQualityIssueCategory.CALL_DROPPED, label = R.string.CallQualityIssue__call_droppped),
-  SOMETHING_ELSE(category = CallQualityIssueCategory.SOMETHING_ELSE, label = R.string.CallQualityIssue__something_else)
+  AUDIO_ISSUE(code = "audio", category = CallQualityIssueCategory.AUDIO, label = R.string.CallQualityIssue__audio_issue),
+  AUDIO_STUTTERING(code = "audio_stuttering", category = CallQualityIssueCategory.AUDIO, label = R.string.CallQualityIssue__audio_stuttering),
+  AUDIO_CUT_OUT(code = "audio_drop", category = CallQualityIssueCategory.AUDIO, label = R.string.CallQualityIssue__audio_cut_out),
+  AUDIO_I_HEARD_ECHO(code = "audio_remote_echo", category = CallQualityIssueCategory.AUDIO, label = R.string.CallQualityIssue__i_heard_echo),
+  AUDIO_OTHERS_HEARD_ECHO(code = "audio_local_echo", category = CallQualityIssueCategory.AUDIO, label = R.string.CallQualityIssue__others_heard_echo),
+  VIDEO_ISSUE(code = "video", category = CallQualityIssueCategory.VIDEO, label = R.string.CallQualityIssue__video_issue),
+  VIDEO_POOR_QUALITY(code = "video_low_quality", category = CallQualityIssueCategory.VIDEO, label = R.string.CallQualityIssue__poor_video_quality),
+  VIDEO_LOW_RESOLUTION(code = "video_low_resolution", category = CallQualityIssueCategory.VIDEO, label = R.string.CallQualityIssue__low_resolution),
+  VIDEO_CAMERA_MALFUNCTION(code = "video_no_camera", category = CallQualityIssueCategory.VIDEO, label = R.string.CallQualityIssue__camera_did_not_work),
+  CALL_DROPPED(code = "call_dropped", category = CallQualityIssueCategory.CALL_DROPPED, label = R.string.CallQualityIssue__call_droppped),
+  SOMETHING_ELSE(code = "other", category = CallQualityIssueCategory.SOMETHING_ELSE, label = R.string.CallQualityIssue__something_else)
 }

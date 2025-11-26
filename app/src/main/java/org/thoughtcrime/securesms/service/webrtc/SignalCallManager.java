@@ -35,6 +35,7 @@ import org.signal.ringrtc.NetworkRoute;
 import org.signal.ringrtc.PeekInfo;
 import org.signal.ringrtc.Remote;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
+import org.thoughtcrime.securesms.calls.quality.CallQuality;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.CallLinkTable;
@@ -69,7 +70,6 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.rx.RxStore;
@@ -611,7 +611,15 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
       Log.i(TAG, "onCallEnded(): call_id: " + remotePeer.getCallId() + ", state: " + remotePeer.getState() + ", reason: " + reason);
 
-      // TODO: Handle the call summary.
+      if (s.getCallInfoState().getGroupCall() != null) {
+        Log.i(TAG, "onCallEnded(): call_id: bypassing call summary handling for group call, this is handled in onEnded(groupCall, ...)");
+      } else {
+        boolean     isRemoteVideoEnabled = Objects.requireNonNull(s.getCallInfoState().getRemoteCallParticipant(s.getCallInfoState().getCallRecipient())).isVideoEnabled();
+        CameraState cameraState          = s.getLocalDeviceState().getCameraState();
+        boolean     isLocalVideoEnabled  = cameraState.isEnabled() && cameraState.getCameraCount() > 0;
+
+        CallQuality.handleOneToOneCallSummary(summary, isRemoteVideoEnabled || isLocalVideoEnabled);
+      }
 
       switch (reason) {
         case LOCAL_HANGUP:
@@ -1025,7 +1033,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onEnded(@NonNull GroupCall groupCall, @NonNull CallManager.CallEndReason reason, @NonNull CallSummary summary) {
-    // TODO: Handle the call summary.
+    CallQuality.handleGroupCallSummary(summary, groupCall.getKind());
     process((s, p) -> p.handleGroupCallEnded(s, groupCall.hashCode(), reason));
   }
 

@@ -37,6 +37,7 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
   val storyValues = StoryValues(store)
   val apkUpdateValues = ApkUpdateValues(store)
   val backupValues = BackupValues(store)
+  val callQualityValues = CallQualityValues(store)
 
   val plainTextValues = PlainTextSharedPrefsDataStore(context)
 
@@ -84,6 +85,7 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
       story.onFirstEverAppLaunch()
       apkUpdate.onFirstEverAppLaunch()
       backup.onFirstEverAppLaunch()
+      callQuality.onFirstEverAppLaunch()
     }
 
     @JvmStatic
@@ -115,7 +117,8 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
           releaseChannel.keysToIncludeInBackup +
           story.keysToIncludeInBackup +
           apkUpdate.keysToIncludeInBackup +
-          backup.keysToIncludeInBackup
+          backup.keysToIncludeInBackup +
+          callQuality.keysToIncludeInBackup
       }
 
     /**
@@ -265,6 +268,11 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     @get:JvmName("backup")
     val backup: BackupValues
       get() = instance!!.backupValues
+
+    @JvmStatic
+    @get:JvmName("callQuality")
+    val callQuality: CallQualityValues
+      get() = instance!!.callQualityValues
 
     val groupsV2AciAuthorizationCache: GroupsV2AuthorizationSignalStoreCache
       get() = GroupsV2AuthorizationSignalStoreCache.createAciCache(instance!!.store)

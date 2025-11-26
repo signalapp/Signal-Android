@@ -46,6 +46,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
 import androidx.compose.material3.adaptive.layout.PaneExpansionAnchor
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
 import androidx.compose.material3.adaptive.layout.rememberPaneExpansionState
@@ -92,6 +93,8 @@ import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
 import org.thoughtcrime.securesms.calls.log.CallLogFragment
 import org.thoughtcrime.securesms.calls.new.NewCallActivity
+import org.thoughtcrime.securesms.calls.quality.CallQuality
+import org.thoughtcrime.securesms.calls.quality.CallQualityBottomSheetFragment
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment
 import org.thoughtcrime.securesms.components.compose.ConnectivityWarningBottomSheet
@@ -130,6 +133,7 @@ import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationRail
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
+import org.thoughtcrime.securesms.main.MainSnackbar
 import org.thoughtcrime.securesms.main.MainToolbar
 import org.thoughtcrime.securesms.main.MainToolbarCallback
 import org.thoughtcrime.securesms.main.MainToolbarMode
@@ -303,6 +307,20 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
               BackupMediaRestoreService.start(this@MainActivity, resources.getString(R.string.BackupStatus__restoring_media))
             }
         }
+      }
+    }
+
+    supportFragmentManager.setFragmentResultListener(
+      CallQualityBottomSheetFragment.REQUEST_KEY,
+      this
+    ) { _, bundle ->
+      if (bundle.getBoolean(CallQualityBottomSheetFragment.REQUEST_KEY, false)) {
+        mainNavigationViewModel.setSnackbar(
+          SnackbarState(
+            message = getString(R.string.CallQualitySheet__thanks_for_your_feedback),
+            duration = SnackbarDuration.Short
+          )
+        )
       }
     }
 
@@ -526,6 +544,15 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           modifier = chatNavGraphState.writeContentToGraphicsLayer(),
           paneExpansionState = paneExpansionState,
           contentWindowInsets = WindowInsets(),
+          snackbarHost = {
+            if (wrappedNavigator.scaffoldValue.primary == PaneAdaptedValue.Expanded) {
+              MainSnackbar(
+                snackbarState = snackbar,
+                onDismissed = mainBottomChromeCallback::onSnackbarDismissed,
+                modifier = Modifier.navigationBarsPadding()
+              )
+            }
+          },
           bottomNavContent = {
             if (isNavigationBarVisible) {
               Column(
@@ -827,6 +854,10 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
     vitalsViewModel.checkSlowNotificationHeuristics()
     mainNavigationViewModel.refreshNavigationBarState()
+
+    CallQuality.consumeQualityRequest()?.let {
+      CallQualityBottomSheetFragment.create(it).show(supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+    }
   }
 
   override fun onStop() {

@@ -32,6 +32,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val WEB_SOCKET_SHADOWING_STATS: String = "internal.web_socket_shadowing_stats"
     const val ENCODE_HEVC: String = "internal.hevc_encoding"
     const val NEW_CALL_UI: String = "internal.new.call.ui"
+    const val CALL_QUALITY_SURVEYS: String = "internal.call_quality_surveys"
     const val FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE: String = "internal.force.split.pane.on.compact.landscape.ui"
     const val SHOW_ARCHIVE_STATE_HINT: String = "internal.show_archive_state_hint"
     const val INCLUDE_DEBUGLOG_IN_BACKUP: String = "internal.include_debuglog_in_backup"
@@ -169,6 +170,8 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   var hevcEncoding by booleanValue(ENCODE_HEVC, false).defaultForExternalUsers()
 
   var newCallingUi: Boolean by booleanValue(NEW_CALL_UI, false).defaultForExternalUsers()
+
+  var callQualitySurveys: Boolean by booleanValue(CALL_QUALITY_SURVEYS, false).defaultForExternalUsers()
 
   var lastScrollPosition: Int by integerValue(LAST_SCROLL_POSITION, 0).defaultForExternalUsers()
 

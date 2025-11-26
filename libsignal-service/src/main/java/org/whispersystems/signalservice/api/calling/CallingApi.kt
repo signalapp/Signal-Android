@@ -7,6 +7,7 @@ package org.whispersystems.signalservice.api.calling
 
 import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialRequest
 import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialResponse
+import org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo
@@ -17,6 +18,7 @@ import org.whispersystems.signalservice.internal.push.CreateCallLinkAuthRequest
 import org.whispersystems.signalservice.internal.push.CreateCallLinkAuthResponse
 import org.whispersystems.signalservice.internal.push.GetCallingRelaysResponse
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import org.whispersystems.signalservice.internal.putCustom
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 
 /**
@@ -24,8 +26,27 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessa
  */
 class CallingApi(
   private val auth: SignalWebSocket.AuthenticatedWebSocket,
+  private val unAuth: SignalWebSocket.UnauthenticatedWebSocket,
   private val pushServiceSocket: PushServiceSocket
 ) {
+
+  /**
+   * Submit call quality information (with the user's permission) to the server on an unauthenticated channel.
+   *
+   * PUT /v1/call_quality_survey
+   * - 204: The survey response was submitted successfully
+   * - 422: The survey response could not be parsed
+   * - 429: Too many attempts, try after Retry-After seconds.
+   */
+  fun submitCallQualitySurvey(request: SubmitCallQualitySurveyRequest): NetworkResult<Unit> {
+    val webSocketRequestMessage = WebSocketRequestMessage.putCustom(
+      path = "/v1/call_quality_survey",
+      body = request.encode(),
+      headers = mapOf("Content-Type" to "application/octet-stream")
+    )
+
+    return NetworkResult.fromWebSocketRequest(unAuth, webSocketRequestMessage)
+  }
 
   /**
    * Get 1:1 relay addresses in IpV4, Ipv6, and URL formats.

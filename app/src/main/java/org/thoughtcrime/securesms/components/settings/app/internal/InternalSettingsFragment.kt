@@ -580,10 +580,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
-      clickPref(
-        title = DSLSettingsText.from("Display Call Quality Survey UX"),
+      switchPref(
+        title = DSLSettingsText.from("Enable call quality surveys"),
+        isChecked = state.callQualitySurveys,
         onClick = {
-          CallQualityBottomSheetFragment().show(parentFragmentManager, null)
+          viewModel.setEnableCallQualitySurveys(!state.callQualitySurveys)
         }
       )
 
