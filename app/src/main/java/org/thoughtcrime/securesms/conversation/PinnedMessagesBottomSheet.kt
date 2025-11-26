@@ -76,7 +76,7 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
     val colorizer = Colorizer()
 
     messageAdapter = ConversationAdapter(requireContext(), viewLifecycleOwner, Glide.with(this), Locale.getDefault(), ConversationAdapterListener(), conversationRecipient.hasWallpaper, colorizer).apply {
-      setCondensedMode(ConversationItemDisplayMode.Condensed(scheduleMessageMode = false))
+      setCondensedMode(ConversationItemDisplayMode.Condensed(ConversationItemDisplayMode.MessageMode.PINNED))
     }
 
     val list: RecyclerView = view.findViewById<RecyclerView>(R.id.pinned_list).apply {

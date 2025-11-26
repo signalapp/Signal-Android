@@ -221,6 +221,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private           TextView                   storyReactionLabel;
   private           View                       quotedIndicator;
   private           View                       scheduledIndicator;
+  private           View                       goToPinnedIndicator;
 
   private @NonNull       Set<MultiselectPart>                    batchSelected = new HashSet<>();
   private final @NonNull Outliner                                outliner      = new Outliner();
@@ -359,6 +360,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.paymentViewStub           = new Stub<>(findViewById(R.id.payment_view_stub));
     this.scheduledIndicator        = findViewById(R.id.scheduled_indicator);
     this.pollView                  = new Stub<>(findViewById(R.id.poll));
+    this.goToPinnedIndicator       = findViewById(R.id.go_to_pinned_indicator);
 
     setOnClickListener(new ClickListener(null));
 
@@ -424,6 +426,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setStoryReactionLabel(messageRecord);
     setHasBeenQuoted(conversationMessage);
     setHasBeenScheduled(conversationMessage);
+    setHasBeenPinned(conversationMessage);
     setPoll(messageRecord, messageRecord.getToRecipient().getChatColors().asSingleColor());
 
     if (audioViewStub.resolved()) {
@@ -1260,7 +1263,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ViewUtil.setTopMargin(linkPreviewStub.get(), 0);
       } else {
-        linkPreviewStub.get().setLinkPreview(requestManager, linkPreview, true, !isContentCondensed(), displayMode.getScheduleMessageMode());
+        linkPreviewStub.get().setLinkPreview(requestManager, linkPreview, true, !isContentCondensed(), displayMode.getMessageMode() == ConversationItemDisplayMode.MessageMode.SCHEDULED);
         linkPreviewStub.get().setDownloadClickedListener(downloadClickListener);
         setLinkPreviewCorners(messageRecord, previousRecord, nextRecord, isGroupThread, false);
         ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -1917,6 +1920,17 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     } else {
       scheduledIndicator.setVisibility(View.GONE);
       scheduledIndicator.setOnClickListener(null);
+    }
+  }
+
+  private void setHasBeenPinned(@NonNull ConversationMessage message) {
+    if (goToPinnedIndicator == null) {
+      return;
+    }
+    if (message.getMessageRecord().getPinnedUntil() > 0 && displayMode.getMessageMode() == ConversationItemDisplayMode.MessageMode.PINNED) {
+      goToPinnedIndicator.setVisibility(View.VISIBLE);
+    } else {
+      goToPinnedIndicator.setVisibility(View.GONE);
     }
   }
 

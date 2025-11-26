@@ -75,7 +75,7 @@ fun PinnedMessagesBanner(
   val (glyph, body, showThumbnail) = getMessageMetadata(conversationMessage)
 
   Column {
-    HorizontalDivider()
+    HorizontalDivider(thickness = 1.dp)
     Row(
       verticalAlignment = Alignment.CenterVertically,
       modifier = Modifier
@@ -154,7 +154,7 @@ fun PinnedMessagesBanner(
             if (canUnpin) {
               DropdownMenus.ItemWithIcon(menuController, R.drawable.symbol_pin_slash_24, R.string.PinnedMessage__unpin_message) { onUnpinMessage(message.id) }
             }
-            DropdownMenus.ItemWithIcon(menuController, R.drawable.symbol_chat_24, R.string.PinnedMessage__go_to_message) { onGoToMessage(message.id) }
+            DropdownMenus.ItemWithIcon(menuController, R.drawable.symbol_chat_arrow_24, R.string.PinnedMessage__go_to_message) { onGoToMessage(message.id) }
             DropdownMenus.ItemWithIcon(menuController, R.drawable.symbol_list_bullet_24, R.string.PinnedMessage__view_all_messages) { onViewAllMessages() }
           }
         }
