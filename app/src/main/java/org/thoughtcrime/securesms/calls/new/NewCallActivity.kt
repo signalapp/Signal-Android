@@ -231,6 +231,13 @@ private fun UserMessagesHost(
       )
       onDismiss(userMessage)
     }
+
+    is UserMessage.ContactsRefreshFailed -> LaunchedEffect(userMessage) {
+      snackbarHostState.showSnackbar(
+        message = context.getString(R.string.ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection)
+      )
+      onDismiss(userMessage)
+    }
   }
 }
 

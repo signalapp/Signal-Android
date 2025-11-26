@@ -364,6 +364,13 @@ private fun UserMessagesHost(
       onDismiss(userMessage)
     }
 
+    is UserMessage.Info.ContactsRefreshFailed -> LaunchedEffect(userMessage) {
+      snackbarHostState.showSnackbar(
+        message = context.getString(R.string.ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection)
+      )
+      onDismiss(userMessage)
+    }
+
     is UserMessage.Prompt.ConfirmRemoveRecipient -> Dialogs.SimpleAlertDialog(
       title = stringResource(R.string.NewConversationActivity__remove_s, userMessage.recipient.getShortDisplayName(context)),
       body = stringResource(R.string.NewConversationActivity__you_wont_see_this_person),
