@@ -161,6 +161,15 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         }
       )
 
+      switchPref(
+        title = DSLSettingsText.from("Randomize receipt timing"),
+        summary = DSLSettingsText.from("Add random delay (0.3-5s) to receipts (delivery, read, viewed) to help prevent some timing correlation attacks"),
+        isChecked = state.receiptDeliveryDelay,
+        onClick = {
+          viewModel.setReceiptDeliveryDelayEnabled(!state.receiptDeliveryDelay)
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(R.string.PrivacySettingsFragment__disappearing_messages)

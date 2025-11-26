@@ -4,6 +4,7 @@ data class PrivacySettingsState(
   val blockedCount: Int,
   val readReceipts: Boolean,
   val typingIndicators: Boolean,
+  val receiptDeliveryDelay: Boolean,
   val screenLock: Boolean,
   val screenLockActivityTimeout: Long,
   val screenSecurity: Boolean,

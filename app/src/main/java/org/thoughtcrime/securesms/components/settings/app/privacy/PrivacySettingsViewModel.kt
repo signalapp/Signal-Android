@@ -37,6 +37,11 @@ class PrivacySettingsViewModel(
     refresh()
   }
 
+  fun setReceiptDeliveryDelayEnabled(enabled: Boolean) {
+    sharedPreferences.edit().putBoolean(TextSecurePreferences.RECEIPT_DELIVERY_DELAY_PREF, enabled).apply()
+    refresh()
+  }
+
   fun setScreenSecurityEnabled(enabled: Boolean) {
     sharedPreferences.edit().putBoolean(TextSecurePreferences.SCREEN_SECURITY_PREF, enabled).apply()
     refresh()
@@ -71,6 +76,7 @@ class PrivacySettingsViewModel(
       blockedCount = 0,
       readReceipts = TextSecurePreferences.isReadReceiptsEnabled(AppDependencies.application),
       typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(AppDependencies.application),
+      receiptDeliveryDelay = TextSecurePreferences.isReceiptDeliveryDelayEnabled(AppDependencies.application),
       screenLock = SignalStore.settings.screenLockEnabled,
       screenLockActivityTimeout = SignalStore.settings.screenLockTimeout,
       screenSecurity = TextSecurePreferences.isScreenSecurityEnabled(AppDependencies.application),
