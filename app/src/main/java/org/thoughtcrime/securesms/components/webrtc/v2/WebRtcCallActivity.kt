@@ -282,7 +282,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       requestNewSizesThrottle.clear()
     }
 
-    if (!isChangingConfigurations) {
+    if (!isChangingConfigurations && !isInMultiWindowMode) {
       AppDependencies.signalCallManager.setEnableVideo(false)
     }
 
