@@ -38,7 +38,6 @@ import com.bumptech.glide.RequestManager;
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
 import org.signal.core.util.ByteSize;
-import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -68,6 +67,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+
+import kotlin.Pair;
 
 final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
@@ -461,7 +462,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
     @Override
     public void onChanged(Pair<Recipient, Recipient> fromToPair) {
-      line1.setText(describe(fromToPair.first(), fromToPair.second()));
+      line1.setText(describe(fromToPair.getFirst(), fromToPair.getSecond()));
     }
 
     protected @Nullable String getMediaTitle() {

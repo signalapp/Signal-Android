@@ -16,11 +16,11 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
-import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.AliceClient
 import org.thoughtcrime.securesms.testing.BobClient
 import org.thoughtcrime.securesms.testing.Entry
+import org.thoughtcrime.securesms.testing.FakeClientHelpers
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.awaitFor
 import org.whispersystems.signalservice.internal.push.Envelope
@@ -54,8 +54,7 @@ class MessageProcessingPerformanceTest {
   @Before
   fun setup() {
     mockkStatic(SealedSenderAccessUtil::class)
-    // TODO reinstate this for libsignal 0.76.1
-//    every { SealedSenderAccessUtil.getCertificateValidator() } returns FakeClientHelpers.noOpCertificateValidator
+    every { SealedSenderAccessUtil.getCertificateValidator() } returns FakeClientHelpers.noOpCertificateValidator
 
     mockkObject(MessageContentProcessor)
     every { MessageContentProcessor.create(harness.application) } returns TimingMessageContentProcessor(harness.application)
@@ -94,13 +93,7 @@ class MessageProcessingPerformanceTest {
     val lastTimestamp = envelopes.last().timestamp ?: 0
 
     // Inject the envelopes into the websocket
-    Thread {
-      for (envelope in envelopes) {
-        Log.i(TIMING_TAG, "Retrieved envelope! ${envelope.timestamp}")
-        InstrumentationApplicationDependencyProvider.injectWebSocketMessage(envelope.toWebSocketPayload())
-      }
-      InstrumentationApplicationDependencyProvider.injectWebSocketMessage(webSocketTombstone())
-    }.start()
+    // TODO: mock websocket messages
 
     // Wait until they've all been fully decrypted + processed
     harness

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Signal Messenger, LLC
+ * Copyright 2025 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
@@ -8,9 +8,12 @@ package org.thoughtcrime.securesms.registration.data
 import android.app.backup.BackupManager
 import android.content.Context
 import androidx.annotation.VisibleForTesting
+import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationManagerCompat
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
@@ -32,15 +35,19 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.gcm.FcmUtil
+import org.thoughtcrime.securesms.jobmanager.runJobBlocking
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.pin.Svr3Migration
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
+import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -55,17 +62,21 @@ import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionC
 import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionResult
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
+import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection
+import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
+import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
@@ -73,6 +84,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
+import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
@@ -82,6 +94,8 @@ import java.util.Locale
 import java.util.Optional
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+import kotlin.coroutines.coroutineContext
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -100,14 +114,6 @@ object RegistrationRepository {
     withContext(Dispatchers.Default) {
       FcmUtil.getToken(context).orElse(null)
     }
-
-  /**
-   * Queries the local store for whether a PIN is set.
-   */
-  @JvmStatic
-  fun hasPin(): Boolean {
-    return SignalStore.svr.hasPin()
-  }
 
   /**
    * Queries, and creates if needed, the local registration ID.
@@ -165,6 +171,11 @@ object RegistrationRepository {
   suspend fun registerAccountLocally(context: Context, data: LocalRegistrationMetadata) =
     withContext(Dispatchers.IO) {
       Log.v(TAG, "registerAccountLocally()")
+      if (data.linkedDeviceInfo != null) {
+        SignalStore.account.deviceId = data.linkedDeviceInfo.deviceId
+        SignalStore.account.deviceName = data.linkedDeviceInfo.deviceName
+      }
+
       val aciIdentityKeyPair = data.getAciIdentityKeyPair()
       val pniIdentityKeyPair = data.getPniIdentityKeyPair()
       SignalStore.account.restoreAciIdentityKeyFromBackup(aciIdentityKeyPair.publicKey.serialize(), aciIdentityKeyPair.privateKey.serialize())
@@ -212,6 +223,16 @@ object RegistrationRepository {
       saveOwnIdentityKey(selfId, aci, aciProtocolStore, now)
       saveOwnIdentityKey(selfId, pni, pniProtocolStore, now)
 
+      if (data.linkedDeviceInfo != null) {
+        if (data.linkedDeviceInfo.accountEntropyPool != null) {
+          SignalStore.account.setAccountEntropyPoolFromPrimaryDevice(AccountEntropyPool(data.linkedDeviceInfo.accountEntropyPool))
+        }
+
+        if (data.linkedDeviceInfo.mediaRootBackupKey != null) {
+          SignalStore.backup.mediaRootBackupKey = MediaRootBackupKey(data.linkedDeviceInfo.mediaRootBackupKey.toByteArray())
+        }
+      }
+
       SignalStore.account.setServicePassword(data.servicePassword)
       SignalStore.account.setRegistered(true)
       TextSecurePreferences.setPromptedPushRegistration(context, true)
@@ -219,18 +240,27 @@ object RegistrationRepository {
       NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID)
 
       val masterKey = if (data.masterKey != null) MasterKey(data.masterKey.toByteArray()) else null
-      SvrRepository.onRegistrationComplete(masterKey, data.pin, hasPin, data.reglockEnabled)
+      SvrRepository.onRegistrationComplete(masterKey, data.pin, hasPin, data.reglockEnabled, SignalStore.account.restoredAccountEntropyPool)
 
       AppDependencies.resetNetwork()
       AppDependencies.startNetwork()
       PreKeysSyncJob.enqueue()
 
       val jobManager = AppDependencies.jobManager
-      jobManager.add(DirectoryRefreshJob(false))
-      jobManager.add(RotateCertificateJob())
 
-      DirectoryRefreshListener.schedule(context)
-      RotateSignedPreKeyListener.schedule(context)
+      if (data.linkedDeviceInfo == null) {
+        jobManager.add(DirectoryRefreshJob(false))
+        jobManager.add(RotateCertificateJob())
+
+        DirectoryRefreshListener.schedule(context)
+        RotateSignedPreKeyListener.schedule(context)
+      } else {
+        SignalStore.account.isMultiDevice = true
+        jobManager.runJobBlocking(RefreshOwnProfileJob(), 30.seconds)
+
+        jobManager.add(RotateCertificateJob())
+        RotateSignedPreKeyListener.schedule(context)
+      }
     }
 
   @JvmStatic
@@ -390,7 +420,7 @@ object RegistrationRepository {
   /**
    * Submit the necessary assets as a verified account so that the user can actually use the service.
    */
-  suspend fun registerAccount(context: Context, sessionId: String?, registrationData: RegistrationData, recoveryPassword: String?, pin: String? = null, masterKeyProducer: MasterKeyProducer? = null): RegisterAccountResult =
+  suspend fun registerAccount(context: Context, sessionId: String?, registrationData: RegistrationData, pin: String? = null, masterKeyProducer: MasterKeyProducer? = null): RegisterAccountResult =
     withContext(Dispatchers.IO) {
       Log.v(TAG, "registerAccount()")
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, registrationData.e164, SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.password).registrationApi
@@ -422,7 +452,7 @@ object RegistrationRepository {
         discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE,
         name = null,
         pniRegistrationId = registrationData.pniRegistrationId,
-        recoveryPassword = recoveryPassword
+        recoveryPassword = registrationData.recoveryPassword
       )
 
       SignalStore.account.generateAciIdentityKeyIfNecessary()
@@ -434,7 +464,7 @@ object RegistrationRepository {
       val aciPreKeyCollection = generateSignedAndLastResortPreKeys(aciIdentity, SignalStore.account.aciPreKeys)
       val pniPreKeyCollection = generateSignedAndLastResortPreKeys(pniIdentity, SignalStore.account.pniPreKeys)
 
-      val result: NetworkResult<AccountRegistrationResult> = api.registerAccount(sessionId, recoveryPassword, accountAttributes, aciPreKeyCollection, pniPreKeyCollection, registrationData.fcmToken, true)
+      val result: NetworkResult<AccountRegistrationResult> = api.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, aciPreKeyCollection, pniPreKeyCollection, registrationData.fcmToken, true)
         .map { accountRegistrationResponse: VerifyAccountResponse ->
           AccountRegistrationResult(
             uuid = accountRegistrationResponse.uuid,
@@ -451,6 +481,63 @@ object RegistrationRepository {
 
       return@withContext RegisterAccountResult.from(result)
     }
+
+  @WorkerThread
+  fun registerAsLinkedDevice(
+    context: Context,
+    deviceName: String,
+    message: ProvisionMessage,
+    registrationData: RegistrationData,
+    aciIdentityKeyPair: IdentityKeyPair,
+    pniIdentityKeyPair: IdentityKeyPair
+  ): NetworkResult<RegisterAsLinkedDeviceResponse> {
+    val aci = message.aciBinary?.let { ACI.parseOrThrow(it) } ?: ACI.parseOrThrow(message.aci)
+    val pni = message.pniBinary?.let { PNI.parseOrThrow(it) } ?: PNI.parseOrThrow(message.pni)
+
+    val universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
+    val unidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
+
+    val encryptedDeviceName = DeviceNameCipher.encryptDeviceName(deviceName.toByteArray(StandardCharsets.UTF_8), aciIdentityKeyPair)
+
+    val accountAttributes = AccountAttributes(
+      signalingKey = null,
+      registrationId = getRegistrationId(),
+      fetchesMessages = registrationData.fcmToken == null,
+      registrationLock = null,
+      unidentifiedAccessKey = unidentifiedAccessKey,
+      unrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
+      capabilities = AppCapabilities.getCapabilities(false),
+      discoverableByPhoneNumber = false,
+      name = Base64.encodeWithPadding(encryptedDeviceName),
+      pniRegistrationId = getPniRegistrationId(),
+      recoveryPassword = null
+    )
+
+    val aciPreKeys = generateSignedAndLastResortPreKeys(aciIdentityKeyPair, SignalStore.account.aciPreKeys)
+    val pniPreKeys = generateSignedAndLastResortPreKeys(pniIdentityKeyPair, SignalStore.account.pniPreKeys)
+
+    return AccountManagerFactory
+      .getInstance()
+      .createUnauthenticated(context, message.number!!, -1, registrationData.password)
+      .registrationApi
+      .registerAsSecondaryDevice(message.provisioningCode!!, accountAttributes, aciPreKeys, pniPreKeys, registrationData.fcmToken)
+      .map { respone ->
+        RegisterAsLinkedDeviceResponse(
+          deviceId = respone.deviceId.toInt(),
+          accountRegistrationResult = AccountRegistrationResult(
+            uuid = aci.toString(),
+            pni = pni.toString(),
+            storageCapable = false,
+            number = message.number!!,
+            masterKey = MasterKey(message.masterKey!!.toByteArray()),
+            pin = null,
+            aciPreKeyCollection = aciPreKeys,
+            pniPreKeyCollection = pniPreKeys,
+            reRegistration = true
+          )
+        )
+      }
+  }
 
   private suspend fun createSessionAndBlockForPushChallenge(accountManager: RegistrationApi, fcmToken: String, mcc: String?, mnc: String?): NetworkResult<RegistrationSessionMetadataResponse> =
     withContext(Dispatchers.IO) {
@@ -587,6 +674,55 @@ object RegistrationRepository {
       signedPreKey,
       lastResortKyberPreKey
     )
+  }
+
+  fun isMissingProfileData(): Boolean {
+    return Recipient.self().profileName.isEmpty || !AvatarHelper.hasAvatar(AppDependencies.application, Recipient.self().id)
+  }
+
+  suspend fun waitForLinkAndSyncBackupDetails(maxWaitTime: Duration = 60.seconds): TransferArchiveResponse? {
+    val startTime = System.currentTimeMillis()
+    var timeRemaining = maxWaitTime.inWholeMilliseconds
+
+    while (timeRemaining > 0 && coroutineContext.isActive) {
+      Log.d(TAG, "[waitForLinkAndSyncBackupDetails] Willing to wait for $timeRemaining ms...")
+
+      when (val result = SignalNetwork.linkDevice.waitForPrimaryDevice(timeout = 60.seconds)) {
+        is NetworkResult.Success -> {
+          Log.i(TAG, "[waitForLinkAndSyncBackupDetails] Transfer archive data provided by primary")
+          return result.result
+        }
+        is NetworkResult.ApplicationError -> {
+          Log.e(TAG, "[waitForLinkAndSyncBackupDetails] Application error!", result.throwable)
+          throw result.throwable
+        }
+        is NetworkResult.NetworkError -> {
+          Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Hit a network error while waiting for linking. Will try to wait again.", result.exception)
+        }
+        is NetworkResult.StatusCodeError -> {
+          when (result.code) {
+            400 -> {
+              Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Invalid timeout!")
+              return null
+            }
+            429 -> {
+              Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Hit a rate-limit. Will try to wait again after delay: ${result.retryAfter()}.")
+              result.retryAfter()?.let { retryAfter ->
+                delay(retryAfter)
+              }
+            }
+            else -> {
+              Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Hit an unknown status code of ${result.code}. Will try to wait again.")
+            }
+          }
+        }
+      }
+
+      timeRemaining = maxWaitTime.inWholeMilliseconds - (System.currentTimeMillis() - startTime)
+    }
+
+    Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Failed to get transfer archive data from primary")
+    return null
   }
 
   fun interface MasterKeyProducer {

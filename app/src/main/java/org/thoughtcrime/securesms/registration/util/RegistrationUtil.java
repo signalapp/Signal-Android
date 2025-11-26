@@ -36,8 +36,8 @@ public final class RegistrationUtil {
     if (!SignalStore.registration().isRegistrationComplete() &&
         SignalStore.account().isRegistered() &&
         !Recipient.self().getProfileName().isEmpty() &&
-        (SignalStore.svr().hasPin() || SignalStore.svr().hasOptedOut()) &&
-        (!RemoteConfig.restoreAfterRegistration() || RestoreDecisionStateUtil.isTerminal(SignalStore.registration().getRestoreDecisionState())))
+        (SignalStore.svr().hasPin() || SignalStore.svr().hasOptedOut() || SignalStore.account().isLinkedDevice()) &&
+        RestoreDecisionStateUtil.isTerminal(SignalStore.registration().getRestoreDecisionState()))
     {
       Log.i(TAG, "Marking registration completed.", new Throwable());
       SignalStore.registration().markRegistrationComplete();

@@ -92,6 +92,11 @@ public abstract class Slide {
     return attachment.fastPreflightId;
   }
 
+  @Nullable
+  public String getQuoteTargetContentType() {
+    return attachment.quoteTargetContentType;
+  }
+
   public long getFileSize() {
     return attachment.size;
   }
@@ -222,6 +227,7 @@ public abstract class Slide {
                              borderless,
                              gif,
                              quote,
+                             null,
                              caption,
                              stickerLocator,
                              blurHash,
@@ -245,12 +251,13 @@ public abstract class Slide {
            this.hasImage() == that.hasImage()                        &&
            this.hasVideo() == that.hasVideo()                        &&
            this.getTransferState() == that.getTransferState()        &&
-           Util.equals(this.getUri(), that.getUri());
+           Util.equals(this.getUri(), that.getUri())                 &&
+           Util.equals(this.getThumbnailUri(), that.getThumbnailUri());
   }
 
   @Override
   public int hashCode() {
     return Util.hashCode(getContentType(), hasAudio(), hasImage(),
-                         hasVideo(), getUri(), getTransferState());
+                         hasVideo(), getUri(), getTransferState(), getThumbnailUri());
   }
 }

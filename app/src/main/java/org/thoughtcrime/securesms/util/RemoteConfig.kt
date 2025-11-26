@@ -11,8 +11,6 @@ import org.signal.core.util.gibiBytes
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
-import org.signal.libsignal.protocol.UsePqRatchet
-import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -20,9 +18,13 @@ import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.util.RemoteConfig.Config
+import org.thoughtcrime.securesms.util.RemoteConfig.REMOTE_VALUES
+import org.thoughtcrime.securesms.util.RemoteConfig.asBoolean
+import org.thoughtcrime.securesms.util.RemoteConfig.asInteger
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteBoolean
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteValue
+import org.thoughtcrime.securesms.util.RemoteConfig.retryReceiptMaxCount
+import org.thoughtcrime.securesms.util.RemoteConfig.retryReceiptMaxCountResetAge
 import org.whispersystems.signalservice.api.NetworkResultUtil
 import java.io.IOException
 import java.util.TreeMap
@@ -59,6 +61,20 @@ object RemoteConfig {
 
   @VisibleForTesting
   val configsByKey: MutableMap<String, Config<*>> = mutableMapOf()
+
+  @JvmStatic
+  val libsignalConfigs: Map<String, String>
+    get() {
+      if (!initialized) {
+        Log.w(TAG, "Tried to read libsignalConfigs before initialization. Initializing now.")
+        initLock.withLock {
+          if (!initialized) {
+            init()
+          }
+        }
+      }
+      return computeLibsignalConfigs(REMOTE_VALUES)
+    }
 
   @GuardedBy("initLock")
   @Volatile
@@ -161,7 +177,7 @@ object RemoteConfig {
     val allKeys: Set<String> = remote.keys + localDisk.keys + localMemory.keys
 
     allKeys
-      .filter { remoteCapable.contains(it) }
+      .filter { remoteCapable.contains(it) || it.startsWith("android.libsignal.") }
       .forEach { key: String ->
         val remoteValue = remote[key]
         val diskValue = localDisk[key]
@@ -200,8 +216,14 @@ object RemoteConfig {
         }
       }
 
+    // Libsignal does not support sticky flags and is okay with any flag that is not known to the server being
+    // forgotten about.
+    val libsignalConfigsKnownToServer = remote.keys.filter { it.startsWith("android.libsignal.") }.toSet()
+
     allKeys
-      .filterNot { remoteCapable.contains(it) }
+      .filterNot { key ->
+        remoteCapable.contains(key) || libsignalConfigsKnownToServer.contains(key)
+      }
       .filterNot { key -> sticky.contains(key) && localDisk[key] == java.lang.Boolean.TRUE }
       .forEach { key: String ->
         newDisk.remove(key)
@@ -274,6 +296,28 @@ object RemoteConfig {
         listener.onFlagChange(value)
       }
     }
+  }
+
+  private fun computeLibsignalConfigs(config: Map<String, Any?>): Map<String, String> {
+    return config
+      .filterKeys { it.startsWith("android.libsignal.") }
+      .mapNotNull { (key, value) ->
+        val newKey = key.removePrefix("android.libsignal.")
+        when (value) {
+          is String -> newKey to value
+          // The server is currently synthesizing "true" / "false" values
+          // for RemoteConfigs that are otherwise empty string values.
+          // Libsignal expects that disabled values are simply absent from the
+          // map, so we map true to "true" and otherwise omit disabled values.
+          is Boolean -> if (value) newKey to "true" else null
+          else -> {
+            val type = value?.let { value::class.simpleName }
+            Log.w(TAG, "[libsignal] Unexpected type for $newKey! Was a $type")
+            newKey to value.toString()
+          }
+        }
+      }
+      .toMap()
   }
 
   @VisibleForTesting
@@ -875,7 +919,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("promptForDelayedNotificationLogs")
   val promptForDelayedNotificationLogs: String by remoteString(
-    key = RemoteConfig.PROMPT_FOR_NOTIFICATION_LOGS,
+    key = PROMPT_FOR_NOTIFICATION_LOGS,
     defaultValue = "*",
     hotSwappable = true
   )
@@ -993,20 +1037,6 @@ object RemoteConfig {
     inSeconds.seconds.inWholeMilliseconds
   }
 
-  /**
-   * Enable Message Backups UI
-   * Note: This feature is in active development and is not intended to currently function.
-   */
-  @JvmStatic
-  @get:JvmName("messageBackups")
-  val messageBackups: Boolean by remoteValue(
-    key = "android.messageBackups",
-    hotSwappable = false,
-    active = true
-  ) { value ->
-    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
-  }
-
   val backupFallbackArchiveCdn: Int by remoteInt(
     key = "global.backups.mediaTierFallbackCdnNumber",
     hotSwappable = true,
@@ -1023,28 +1053,6 @@ object RemoteConfig {
     value.asLong(8.kibiBytes.inWholeBytes).bytes
   }
 
-  /** Whether the chat web socket is backed by libsignal for direct connections  */
-  @JvmStatic
-  @get:JvmName("libSignalWebSocketEnabled")
-  val libSignalWebSocketEnabled: Boolean by remoteValue(
-    key = "android.libsignalWebSocketEnabled.8",
-    hotSwappable = false
-  ) { value ->
-    value.asBoolean(false) || Environment.IS_NIGHTLY
-  }
-
-  /** Whether the chat web socket is backed by libsignal for all connections, including proxied connections.
-   *  Note, this does *not* gate HTTP proxies, which are treated as direct connections.
-   *  This only has an effect if libSignalWebSocketEnabled is also enabled. */
-  @JvmStatic
-  @get:JvmName("libSignalWebSocketEnabledForProxies")
-  val libSignalWebSocketEnabledForProxies: Boolean by remoteValue(
-    key = "android.libSignalWebSocketEnabledForProxies.8",
-    hotSwappable = false
-  ) { value ->
-    value.asBoolean(false) || Environment.IS_NIGHTLY
-  }
-
   @JvmStatic
   @get:JvmName("libsignalEnforceMinTlsVersion")
   val libsignalEnforceMinTlsVersion by remoteBoolean(
@@ -1052,17 +1060,6 @@ object RemoteConfig {
     defaultValue = false,
     hotSwappable = false
   )
-
-  /** Whether or not to launch the restore activity after registration is complete, rather than before.  */
-  @JvmStatic
-  @get:JvmName("restoreAfterRegistration")
-  val restoreAfterRegistration: Boolean by remoteValue(
-    key = "android.registration.restorePostRegistration",
-    hotSwappable = false,
-    active = false
-  ) { value ->
-    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || BuildConfig.LINK_DEVICE_UX_ENABLED || value.asBoolean(false)
-  }
 
   @JvmStatic
   val backgroundMessageProcessInterval: Long by remoteValue(
@@ -1135,9 +1132,9 @@ object RemoteConfig {
 
   /** Whether to allow different WindowSizeClasses to be used to determine screen layout */
   val largeScreenUi: Boolean by remoteBoolean(
-    key = "android.largeScreenUI",
-    defaultValue = false,
-    hotSwappable = false
+    key = "android.largeScreenUI.2",
+    hotSwappable = false,
+    defaultValue = false
   )
 
   @JvmStatic
@@ -1167,15 +1164,46 @@ object RemoteConfig {
     durationUnit = DurationUnit.DAYS
   )
 
-  /** Whether or not to use the new post-quantum ratcheting. */
+  /** The maximum allowed envelope size for messages we send. */
   @JvmStatic
-  @get:JvmName("usePqRatchet")
-  val usePqRatchet: UsePqRatchet by remoteValue(
-    key = "android.usePqRatchet",
-    hotSwappable = false
-  ) { value ->
-    if (value.asBoolean(false)) UsePqRatchet.YES else UsePqRatchet.NO
-  }
+  @get:JvmName("maxEnvelopeSizeBytes")
+  val maxEnvelopeSizeBytes: Long by remoteLong(
+    key = "android.maxEnvelopeSizeBytes",
+    defaultValue = 256.kibiBytes.inWholeBytes,
+    hotSwappable = true
+  )
 
+  @JvmStatic
+  @get:JvmName("polls")
+  val polls: Boolean by remoteBoolean(
+    key = "android.polls.2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /** Whether or not to send over binary service ids (alongside string service ids). */
+  @JvmStatic
+  @get:JvmName("useBinaryId")
+  val useBinaryId: Boolean by remoteBoolean(
+    key = "android.useBinaryServiceId",
+    defaultValue = Environment.IS_STAGING,
+    hotSwappable = false
+  )
+
+  @JvmStatic
+  @get:JvmName("receivePolls")
+  val receivePolls: Boolean by remoteBoolean(
+    key = "android.receivePolls",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("backupsBetaMegaphone")
+  val backupsBetaMegaphone: Boolean by remoteBoolean(
+    key = "android.backupsBetaMegaphone",
+    defaultValue = false,
+    hotSwappable = true
+  )
   // endregion
 }

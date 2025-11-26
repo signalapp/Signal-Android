@@ -32,7 +32,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val WEB_SOCKET_SHADOWING_STATS: String = "internal.web_socket_shadowing_stats"
     const val ENCODE_HEVC: String = "internal.hevc_encoding"
     const val NEW_CALL_UI: String = "internal.new.call.ui"
-    const val LARGE_SCREEN_UI: String = "internal.large.screen.ui"
     const val FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE: String = "internal.force.split.pane.on.compact.landscape.ui"
     const val SHOW_ARCHIVE_STATE_HINT: String = "internal.show_archive_state_hint"
     const val INCLUDE_DEBUGLOG_IN_BACKUP: String = "internal.include_debuglog_in_backup"
@@ -44,14 +43,9 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
 
   /**
-   * Enable or disable the large screen UI.
-   */
-  var largeScreenUi by booleanValue(LARGE_SCREEN_UI, false).defaultForExternalUsers()
-
-  /**
    * Force split-pane mode on compact landscape
    */
-  var forceSplitPaneOnCompactLandscape by booleanValue(FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE, false).defaultForExternalUsers()
+  var forceSplitPane by booleanValue(FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE, false).falseForExternalUsers()
 
   /**
    * Members will not be added directly to a GV2 even if they could be.

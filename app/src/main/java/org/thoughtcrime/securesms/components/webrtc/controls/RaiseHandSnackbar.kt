@@ -27,7 +27,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,14 +45,15 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.map
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.ringrtc.GroupCall
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.GroupCallSpeechEvent
+import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
 import kotlin.time.Duration
@@ -69,9 +69,7 @@ object RaiseHandSnackbar {
 
   @Composable
   fun View(webRtcCallViewModel: WebRtcCallViewModel, showCallInfoListener: () -> Unit, modifier: Modifier = Modifier) {
-    var expansionState by remember { mutableStateOf(ExpansionState(shouldExpand = false, forced = false, collapseTimestamp = Duration.ZERO)) }
-
-    val raisedHandsState by remember {
+    val raisedHandsState: List<GroupCallRaiseHandEvent> by remember {
       webRtcCallViewModel.callParticipantsState
         .map { state ->
           val raisedHands = state.raisedHands.sortedBy {
@@ -90,12 +88,17 @@ object RaiseHandSnackbar {
         }
     }.collectAsState(initial = emptyList())
 
-    val speechEvent by webRtcCallViewModel.groupCallSpeechEvents.collectAsStateWithLifecycle()
+    val speechEvent: GroupCallSpeechEvent? by webRtcCallViewModel.groupCallSpeechEvents.collectAsStateWithLifecycle()
 
-    val state by remember {
-      derivedStateOf {
-        RaiseHandState(raisedHands = raisedHandsState, expansionState = expansionState, speechEvent = speechEvent)
-      }
+    View(raisedHandsState, speechEvent, showCallInfoListener, modifier)
+  }
+
+  @Composable
+  fun View(raisedHandsState: List<GroupCallRaiseHandEvent>, speechEvent: GroupCallSpeechEvent?, showCallInfoListener: () -> Unit, modifier: Modifier = Modifier) {
+    var expansionState by remember { mutableStateOf(ExpansionState(shouldExpand = false, forced = false, collapseTimestamp = Duration.ZERO)) }
+
+    val state = remember(raisedHandsState, speechEvent, expansionState) {
+      RaiseHandState(raisedHands = raisedHandsState, expansionState = expansionState, speechEvent = speechEvent)
     }
 
     LaunchedEffect(raisedHandsState, speechEvent) {
@@ -119,7 +122,7 @@ object RaiseHandSnackbar {
 @Composable
 private fun RaiseHandSnackbarPreview() {
   RaiseHand(
-    state = RaiseHandState(listOf(GroupCallRaiseHandEvent(CallParticipant.EMPTY, System.currentTimeMillis())))
+    state = RaiseHandState(listOf(GroupCallRaiseHandEvent(CallParticipant(recipient = Recipient(isResolving = false, systemContactName = "Miles Morales")), System.currentTimeMillis())))
   )
 }
 
@@ -133,19 +136,20 @@ private fun RaiseHand(
   AnimatedVisibility(
     visible = state.raisedHands.isNotEmpty(),
     enter = fadeIn() + expandIn(expandFrom = Alignment.CenterEnd),
-    exit = shrinkOut(shrinkTowards = Alignment.CenterEnd) + fadeOut()
+    exit = shrinkOut(shrinkTowards = Alignment.CenterEnd) + fadeOut(),
+    modifier = modifier
   ) {
     SignalTheme(
       isDarkMode = true
     ) {
       Surface(
-        modifier = modifier
+        modifier = Modifier
           .padding(horizontal = 16.dp)
           .clip(shape = RoundedCornerShape(16.dp, 16.dp, 16.dp, 16.dp))
           .background(SignalTheme.colors.colorSurface1)
           .animateContentSize()
       ) {
-        val boxModifier = modifier
+        val boxModifier = Modifier
           .padding(horizontal = 16.dp)
           .clickable(
             !state.isExpanded,

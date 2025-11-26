@@ -10,6 +10,7 @@
     android:layout_marginHorizontal="16dp"
     android:layout_marginStart="24dp"
     android:layout_marginEnd="24dp"
+    app:cardBackgroundColor="@color/signal_colorBackground"
     app:cardCornerRadius="18dp"
     app:cardElevation="0dp"
     app:strokeColor="@color/signal_colorOutline_38"

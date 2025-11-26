@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.v2.ArchiveDatabaseExecutor
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -50,6 +51,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       .setMaxAttempts(Parameters.UNLIMITED)
       .setQueue(UploadAttachmentToArchiveJob.QUEUES.random())
       .setQueuePriority(Parameters.PRIORITY_HIGH)
+      .setGlobalPriority(Parameters.PRIORITY_LOW)
       .build()
   )
 
@@ -64,14 +66,14 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
 
     if (transferStatus == AttachmentTable.ArchiveTransferState.NONE || transferStatus == AttachmentTable.ArchiveTransferState.UPLOAD_IN_PROGRESS) {
       Log.d(TAG, "[$attachmentId] Updating archive transfer state to ${AttachmentTable.ArchiveTransferState.COPY_PENDING}")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.COPY_PENDING)
+      setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.COPY_PENDING)
     }
   }
 
   override fun run(): Result {
     if (SignalStore.account.isLinkedDevice) {
       Log.w(TAG, "[$attachmentId] Linked devices don't backup media. Skipping.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
       return Result.success()
     }
 
@@ -99,19 +101,25 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
 
     if (SignalDatabase.messages.isStory(attachment.mmsId)) {
       Log.i(TAG, "[$attachmentId] Attachment is a story. Resetting transfer state to none and skipping.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
+    if (SignalDatabase.messages.isViewOnce(attachment.mmsId)) {
+      Log.i(TAG, "[$attachmentId] Attachment is view-once. Resetting transfer state to none and skipping.")
+      setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
       return Result.success()
     }
 
     if (SignalDatabase.messages.willMessageExpireBeforeCutoff(attachment.mmsId)) {
       Log.i(TAG, "[$attachmentId] Message will expire in less than 24 hours. Resetting transfer state to none and skipping.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
       return Result.success()
     }
 
     if (attachment.contentType == MediaUtil.LONG_TEXT) {
       Log.i(TAG, "[$attachmentId] Attachment is long text. Resetting transfer state to none and skipping.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
       return Result.success()
     }
 
@@ -139,13 +147,19 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
 
       is NetworkResult.StatusCodeError -> {
         when (archiveResult.code) {
+          400 -> {
+            Log.w(TAG, "[$attachmentId] Something is invalid about our request. Possibly the length. Scheduling a re-upload. Body: ${archiveResult.exception.stringBody}")
+            setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+            AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId, canReuseUpload = false))
+            Result.success()
+          }
           403 -> {
             Log.w(TAG, "[$attachmentId] Insufficient permissions to upload. Handled in parent handler.")
             Result.success()
           }
           410 -> {
             Log.w(TAG, "[$attachmentId] The attachment no longer exists on the transit tier. Scheduling a re-upload.")
-            SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+            setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
             AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId, canReuseUpload = false))
             Result.success()
           }
@@ -153,14 +167,14 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
             Log.w(TAG, "[$attachmentId] Insufficient storage space! Can't upload!")
             val remoteStorageQuota = getServerQuota() ?: return Result.retry(defaultBackoff()).logW(TAG, "[$attachmentId] Failed to fetch server quota! Retrying.")
 
-            if (SignalDatabase.attachments.getEstimatedArchiveMediaSize() > remoteStorageQuota.inWholeBytes) {
+            if (SignalDatabase.attachments.getPaidEstimatedArchiveMediaSize() > remoteStorageQuota.inWholeBytes) {
               BackupRepository.markOutOfRemoteStorageSpaceError()
               return Result.failure()
             }
 
             Log.i(TAG, "[$attachmentId] Remote storage is full, but our local state indicates that once we reconcile our storage, we should have enough. Enqueuing the reconciliation job and retrying.")
             SignalStore.backup.remoteStorageGarbageCollectionPending = true
-            AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob(forced = true))
+            ArchiveAttachmentReconciliationJob.enqueueIfRetryAllowed(forced = true)
 
             Result.retry(defaultBackoff())
           }
@@ -184,15 +198,19 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
 
     if (result.isSuccess) {
       Log.d(TAG, "[$attachmentId] Updating archive transfer state to ${AttachmentTable.ArchiveTransferState.FINISHED}")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveTransferState(attachmentId, attachment.remoteKey!!, attachment.dataHash!!, AttachmentTable.ArchiveTransferState.FINISHED, notify = false)
+        ArchiveDatabaseExecutor.throttledNotifyAttachmentObservers()
+      }
 
-      if (!isCanceled) {
+      if (!isCanceled && !attachment.quote) {
         ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
       } else {
         Log.d(TAG, "[$attachmentId] Refusing to enqueue thumb for canceled upload.")
       }
 
       ArchiveUploadProgress.onAttachmentFinished(attachmentId)
+      SignalStore.backup.archiveAttachmentReconciliationAttempts = 0
     }
 
     return result
@@ -200,20 +218,31 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
 
   private fun getServerQuota(): ByteSize? {
     return runBlocking {
-      BackupRepository.getPaidType().successOrThrow()?.storageAllowanceBytes?.bytes
+      BackupRepository.getPaidType().successOrThrow().storageAllowanceBytes?.bytes
     }
   }
 
   override fun onFailure() {
     if (this.isCanceled) {
       Log.w(TAG, "[$attachmentId] Job was canceled, updating archive transfer state to ${AttachmentTable.ArchiveTransferState.COPY_PENDING}.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.COPY_PENDING)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.COPY_PENDING)
+      }
     } else {
       Log.w(TAG, "[$attachmentId] Job failed, updating archive transfer state to ${AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE}.")
-      SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      }
     }
 
     ArchiveUploadProgress.onAttachmentFinished(attachmentId)
+  }
+
+  private fun setArchiveTransferStateWithDelayedNotification(attachmentId: AttachmentId, transferState: AttachmentTable.ArchiveTransferState) {
+    ArchiveDatabaseExecutor.runBlocking {
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, transferState, notify = false)
+      ArchiveDatabaseExecutor.throttledNotifyAttachmentObservers()
+    }
   }
 
   class Factory : Job.Factory<CopyAttachmentToArchiveJob> {

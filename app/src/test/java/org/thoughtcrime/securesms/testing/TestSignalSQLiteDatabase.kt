@@ -5,6 +5,8 @@ import android.database.Cursor
 import android.database.SQLException
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteQuery
+import io.mockk.every
+import io.mockk.mockk
 import net.zetetic.database.sqlcipher.SQLiteQueryBuilder
 import java.util.Locale
 import android.database.sqlite.SQLiteDatabase as AndroidSQLiteDatabase
@@ -200,6 +202,10 @@ class TestSignalSQLiteDatabase(private val database: SupportSQLiteDatabase) : Si
     return database.yieldIfContendedSafely()
   }
 
+  override fun close() {
+    database.close()
+  }
+
   override fun yieldIfContendedSafely(sleepAfterYieldDelayMillis: Long): Boolean {
     return database.yieldIfContendedSafely(sleepAfterYieldDelayMillis)
   }
@@ -224,7 +230,17 @@ class TestSignalSQLiteDatabase(private val database: SupportSQLiteDatabase) : Si
     }
 
   override fun compileStatement(sql: String): SQLCipherSQLiteStatement {
-    throw UnsupportedOperationException()
+    val statement = database.compileStatement(sql)
+    return mockk<SQLCipherSQLiteStatement> {
+      every { bindNull(any()) } answers { statement.bindNull(firstArg()) }
+      every { bindLong(any(), any()) } answers { statement.bindLong(firstArg(), secondArg()) }
+      every { bindDouble(any(), any()) } answers { statement.bindDouble(firstArg(), secondArg()) }
+      every { bindString(any(), any()) } answers { statement.bindString(firstArg(), secondArg()) }
+      every { bindBlob(any(), any()) } answers { statement.bindBlob(firstArg(), secondArg()) }
+      every { clearBindings() } answers { statement.clearBindings() }
+      every { executeUpdateDelete() } answers { statement.executeUpdateDelete() }
+      every { close() } answers { statement.close() }
+    }
   }
 
   override val isReadOnly: Boolean

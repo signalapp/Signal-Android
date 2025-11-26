@@ -15,4 +15,8 @@ class MockRandom(initialInts: List<Int>) : Random() {
   override fun nextInt(): Int {
     return nextInts.remove()
   }
+
+  override fun nextInt(bound: Int): Int {
+    return nextInts.remove() % bound
+  }
 }

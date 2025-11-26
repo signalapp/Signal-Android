@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:viewBindingIgnore="true">
 
     <LinearLayout
         android:id="@+id/background_holder"
@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <EditText
+            <org.thoughtcrime.securesms.components.NoAutofillEditText
                 android:id="@+id/search_view"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
@@ -29,7 +29,7 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
                 android:gravity="center_vertical"
-                android:hint="@string/ContactFilterView__search_name_or_number"
+                android:hint="@string/RecipientSearchBar__search_name_or_number"
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="6sp"
                 android:textAppearance="@style/TextSecure.TitleTextStyle"

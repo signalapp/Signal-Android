@@ -135,6 +135,10 @@ public class EmojiValues extends SignalStoreValues {
               .apply();
   }
 
+  public void clearSearchIndexVersion() {
+    getStore().beginWrite().remove(SEARCH_VERSION).apply();
+  }
+
   public @Nullable String getSearchLanguage() {
     return getString(SEARCH_LANGUAGE, null);
   }

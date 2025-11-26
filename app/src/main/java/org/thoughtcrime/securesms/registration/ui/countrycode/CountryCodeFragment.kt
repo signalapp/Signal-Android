@@ -1,10 +1,12 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
 package org.thoughtcrime.securesms.registration.ui.countrycode
 
 import android.os.Bundle
 import android.view.View
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
@@ -19,12 +21,13 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 
 /**
- * Country picker fragment used in registration V1
+ * Country picker fragment used in registration V3
  */
 class CountryCodeFragment : ComposeFragment() {
 
   companion object {
     private val TAG = Log.tag(CountryCodeFragment::class.java)
+    const val RESULT_KEY = "result_key"
     const val REQUEST_KEY_COUNTRY = "request_key_country"
     const val REQUEST_COUNTRY = "country"
     const val RESULT_COUNTRY = "country"
@@ -36,6 +39,8 @@ class CountryCodeFragment : ComposeFragment() {
   override fun FragmentContent() {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
+    val resultKey = arguments?.getString(RESULT_KEY) ?: REQUEST_KEY_COUNTRY
+
     CountryCodeSelectScreen(
       state = state,
       title = stringResource(R.string.CountryCodeFragment__your_country),
@@ -43,7 +48,7 @@ class CountryCodeFragment : ComposeFragment() {
       onDismissed = { findNavController().popBackStack() },
       onClick = { country ->
         setFragmentResult(
-          REQUEST_KEY_COUNTRY,
+          resultKey,
           bundleOf(
             RESULT_COUNTRY to country
           )

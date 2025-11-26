@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.api.CancelationException;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage.Action;
 
@@ -127,15 +126,11 @@ public class TypingSendJob extends BaseJob {
 
     SignalServiceTypingMessage typingMessage = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
 
-    try {
-      GroupSendUtil.sendTypingMessage(context,
-                                      recipient.getGroupId().map(GroupId::requireV2).orElse(null),
-                                      recipients,
-                                      typingMessage,
-                                      this::isCanceled);
-    } catch (CancelationException e) {
-      Log.w(TAG, "Canceled during send!");
-    }
+    GroupSendUtil.sendTypingMessage(context,
+                                    recipient.getGroupId().map(GroupId::requireV2).orElse(null),
+                                    recipients,
+                                    typingMessage,
+                                    this::isCanceled);
   }
 
   @Override

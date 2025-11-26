@@ -4,7 +4,6 @@ import android.media.MediaDataSource;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
@@ -22,7 +21,6 @@ import java.io.InputStream;
  * It is "modern" compared to the {@link ClassicEncryptedMediaDataSource}. And "modern" refers to
  * the presence of a random part of the key supplied in the constructor.
  */
-@RequiresApi(23)
 final class ModernEncryptedMediaDataSource extends InputStreamMediaDataSource {
 
   private final AttachmentSecret attachmentSecret;

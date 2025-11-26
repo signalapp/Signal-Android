@@ -2,11 +2,8 @@ package org.thoughtcrime.securesms.video;
 
 import android.media.MediaDataSource;
 
-import androidx.annotation.RequiresApi;
-
 import java.io.IOException;
 
-@RequiresApi(23)
 public class ByteArrayMediaDataSource extends MediaDataSource {
 
   private byte[] data;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Signal Messenger, LLC
+ * Copyright 2025 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
@@ -10,6 +10,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.registration.data.network.Challenge
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionResult
@@ -29,6 +30,7 @@ data class RegistrationState(
   val nationalNumber: String = "",
   val inProgress: Boolean = false,
   val isReRegister: Boolean = false,
+  val recoveryPassword: String? = null,
   val canSkipSms: Boolean = false,
   val svr2AuthCredentials: AuthCredentials? = null,
   val svr3AuthCredentials: Svr3Credentials? = null,
@@ -41,7 +43,6 @@ data class RegistrationState(
   val isAllowedToRequestCode: Boolean = false,
   val fcmToken: String? = null,
   val challengesRequested: List<Challenge> = emptyList(),
-  val challengesPresented: Set<Challenge> = emptySet(),
   val captchaToken: String? = null,
   val allowedToRequestCode: Boolean = false,
   val nextSmsTimestamp: Duration = 0.seconds,
@@ -49,14 +50,14 @@ data class RegistrationState(
   val nextVerificationAttempt: Duration = 0.seconds,
   val verified: Boolean = false,
   val smsListenerTimeout: Long = 0L,
+  val pinKeyboardType: PinKeyboardType = SignalStore.pin.keyboardType,
   val registrationCheckpoint: RegistrationCheckpoint = RegistrationCheckpoint.INITIALIZATION,
   val networkError: Throwable? = null,
   val sessionCreationError: RegistrationSessionResult? = null,
   val sessionStateError: VerificationCodeRequestResult? = null,
-  val registerAccountError: RegisterAccountResult? = null
+  val registerAccountError: RegisterAccountResult? = null,
+  val challengeInProgress: Boolean = false
 ) {
-  val challengesRemaining: List<Challenge> = challengesRequested.filterNot { it in challengesPresented }
-
   companion object {
     private val TAG = Log.tag(RegistrationState::class)
 
@@ -74,4 +75,20 @@ data class RegistrationState(
       }
     }
   }
+
+  fun toNavigationStateOnly(): NavigationState {
+    return NavigationState(challengesRequested, captchaToken, registrationCheckpoint, canSkipSms, challengeInProgress)
+  }
+
+  /**
+   * Subset of [RegistrationState] useful for deciding on navigation. Prevents other properties updating from re-triggering
+   * navigation decisions.
+   */
+  data class NavigationState(
+    val challengesRequested: List<Challenge>,
+    val captchaToken: String? = null,
+    val registrationCheckpoint: RegistrationCheckpoint,
+    val canSkipSms: Boolean,
+    val challengeInProgress: Boolean
+  )
 }

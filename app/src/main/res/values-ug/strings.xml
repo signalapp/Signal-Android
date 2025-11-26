@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">چىقىمنى ئەسلىگە كەلتۈرۈش جۈملىسىنى خاتىرىلەيدۇ</string>
     <string name="ApplicationPreferencesActivity_record_phrase">جۈملە خاتىرىلە</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">سىز PIN نى چەكلەشتىن ئىلگىرى، چىقىم قىلىش ھېساباتىڭىزنى ئەسلىگە كەلتۈرۈشكە كاپالەتلىك قىلىش ئۈچۈن چىقىمنى ئەسلىگە كەلتۈرۈش چۈملىسىنى خاتىرىلىشىڭىز زۆرۈر.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">يېڭى بىر ئەسلىگە كەلتۈرۈش ئاچقۇچى قۇرۇڭ</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">PIN نومۇرنى چەكلەشتىن بۇرۇن چوقۇم يېڭى بىر ئەسلىگە كەلتۈرۈش ئاچقۇچىنى قۇرۇشىڭىز ۋە خاتىرىلىشىڭىز كېرەك.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">ئاچقۇچ قۇرۇش</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">ھۆججەت</string>
     <string name="AttachmentKeyboard_contact">ئالاقەداش</string>
     <string name="AttachmentKeyboard_location">ئورنى</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">ئشلەتكۈچىلەرنىڭ رايىنى سىناش</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">رەسىم ۋە ۋىدېيولىرىڭىزنى كۆرسىتىش ئۈچۈن Signal ئىجازىتىڭىزگە ئېھتىياجلىق</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">ئىشلىتىشكە رۇخسەت</string>
@@ -547,15 +555,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">تېلېفوندا پاراڭلىشىۋاتقاندا ئاۋازلىق ئۇچۇرنى خاتىرىلىيەلمەيدۇ.</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">فورماتلانغان تېكىست يوللاش</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">بەزى كىشىلەر Signal نىڭ فورماتلانغان تېكىستنى قوللىمايدىغان نەشرىنى ئىشلىتىۋاتقان بولۇشى مۇمكىن. ئۇلار سىزنىڭ تېكىستكە كىرگۈزگەن فورمات ئۆزگەرتىشلىرىڭىزنى كۆرەلمەيدۇ.</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">يوللاش</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">بىكار قىلىش</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="other">%1$d ئوقۇلمىغان ئۇچۇر</item>
@@ -850,12 +849,10 @@
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__you_are_all_set">ھەممىسى تەييار بولدى. زاپاسلاشنى ھازىرلا باشلاڭ.</string>
-    <!-- Bottom sheet message -->
+    <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">زاپاسلايدىغان مەلۇماتلارنىڭ ھەجىمى سەۋەبىدىن ، بۇنىڭغا ئۇزۇن ۋاقىت كېتىشى مۇمكىن. زاپاسلاش ئېلىپ بېرىلۋاتقاندىمۇ تېلېفونىڭىزنى ئادەتتىكىدەكلا ئىشلىتەلەيسىز.</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">كېيىن زاپاسلاڭ</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">ھازىر زاپاسلا</string>
+    <!-- Bottom sheet free message -->
+    <string name="CreateBackupBottomSheet__free_tier">مېدىيا، ئۇچۇرلارنى ئەۋەتسىڭىز ۋە تاپشۇرۇۋالسىڭىز زاپاسلاشقا قوشۇلۇپ ماڭىدۇ.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">مېدىيانى ئەسلىگە كەلتۈرگىلى بولمىدى</string>
@@ -1116,6 +1113,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">ئۇچۇر تارىخىنى يۆتكەش</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">تېكىست ئۇچۇرلىرىڭىزنى ۋە يېقىنقى 45 كۈنلۈك مېدىيالىرىڭىزنى يۆتكەڭ</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">قىسقا ئۇچۇرلىرىڭىز ۋە مېدىيانى يۆتكەڭ</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">يۆتكىمەڭ</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1153,6 +1152,9 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">بۇ Signal نەشرىنىڭ ۋاقتى توشتى. ئۇچۇر يوللىيالىشىڭىز ۋە قوبۇل قىلالىشىڭىز ئۈچۈن ھازىرلا يېڭىلاڭ.</string>
     <string name="ExpiredBuildReminder_update_now">ھازىر يېڭىلاڭ</string>
+
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal بۇ ئۈسكۈنىدە ئەمدى ئىشلىمەيدۇ. Signalنى قايتا ئىشلىتىش ئۈچۈن، ئۈسكۈنىڭىزنى ئاندىرويىدنىڭ يېڭىراق نەشرىگە يېڭىلاڭ ياكى يېڭى ئۈسكۈنىگە ئالماشتۇرۇڭ.</string>
 
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Signal نى يېڭىلا</string>
@@ -1354,10 +1356,15 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">بولدى</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">بۇ ئادەمنى كونا گۇرۇپپىلارغا قوشقىلى بولمايدۇ.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">«%1$s»نى «%2$s» گە قوشامسىز؟</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="other">«%2$s» غا %3$d ئەزانى قوشامسىز؟</item>
+        <item quantity="other">«%2$s» غا %1$d ئەزانى قوشامسىز؟</item>
     </plurals>
+
     <string name="AddMembersActivity__add">قوشۇش</string>
     <string name="AddMembersActivity__add_members">ئەزا قوشۇش</string>
 
@@ -1459,7 +1466,11 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">ھازىر ئەمەس</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">ئەگەر ھازىر ئەسلىگە كەلتۈرمەسلىكنى تاللىسىڭىز ، كېيىن ئەسلىگە كەلتۈرەلمەيسىز. مېدىيا ئارقا سۇپىدا ئەسلىگە كېلىدۇ.</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">مېدىيا ئارقا سۇپىدا ئەسلىگە كېلىدۇ. ئەگەر ھازىر ئەسلىگە كەلتۈرمەسلىكنى تاللىسىڭىز ، كېيىن ئەسلىگە كەلتۈرەلمەيسىز.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">بۇ ئۈسكۈنە تىزىملاشتىن قالغان</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">بۇنىڭ سەۋەبى سىز Signal ھېساباتىڭىزنى باشقا بىر ئۈسكۈنىدە تىزىملاتقان بولۇشىڭىز مۇمكىن.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">ئاتالسام ئەسكەرتسۇن</string>
@@ -2054,6 +2065,12 @@
     <string name="MessageRecord_you_blocked_this_group">بۇ گۇرۇپپىنى چەكلىدىڭىز</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">بۇ گۇرۇپپىنى چەكلەشنى بىكار قىلدىڭىز</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s سىزگە ئەۋەتكەن ئۇچۇردا Signal نىڭ بىر يېڭى ئىقتىدارى قوللىنىلغاچقا، ئۇنى بىر تەرەپ قىلالمىدى ياكى كۆرسىتەلمىدى.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s بېلەت تاشلاشنى ئاخىرلاشتۇردى: «%2$s»</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">«%1$s»: راي سىنىقىنى ئاخىرلاشتۇردىڭىز</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">قوبۇل قىل</string>
@@ -2356,6 +2373,12 @@
     <string name="WebRtcCallActivity__to_start_call">چاقىرىق باشلاش ياكى قوشۇلۇش ئۈچۈن:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">ۋىدېيونى قوزغىتىش ئۈچۈن:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">يەرلىك سىننى تارايتىڭ</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">يەرلىك سىننى كېڭەيتىڭ</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">‫Signal چاقىرىقى</string>
@@ -2828,6 +2851,8 @@
     <string name="SubmitDebugLogActivity_success">مۇۋەپپەقىيەتلىك!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">بۇ URL نى كۆچۈرۈپ ۋە ئۇنى مەسىلە دوكلاتىڭىز ياكى ياردەم ئېلخېتىگە قوشۇڭ:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">ھەمبەھىرلە</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">تاقا</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">بۇ خاتىرە تۆھپىكارلارنىڭ كۆرۈشى ئۈچۈن توردا ئاشكارا ئېلان قىلىنىدۇ، يوللاشتىن ئىلگىرى مەزكۇر خاتىرەنى تەكشۈرۈپ ۋە تەھرىرلىيەلەيسىز.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">«تاپشۇرۇش» نى چەكسىڭىز، خاتىرىڭىز خاس، ئېلان قىلىنمىغان URL بىلەن توردا 30 كۈن ئېلان قىلىنىدۇ. ئۇنى ئاۋۋال يەرلىكتە ساقلىۋېلىش تەۋسىيە قىلىنىدۇ.</string>
@@ -3083,6 +3108,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">چىقىمىڭىزغا %1$s ئىنكاسىنى قايتۇردى.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">چاپلىقىڭىزغا قايتۇرغان ئىنكاس %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">بۇ ئۇچۇر ئۆچۈرۈلگەن</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">«%3$s»غا %2$s%1$s بېلەت تاشلىدى</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ئالاقەداشلار Signal غا قوشۇلغانلىق ئۇقتۇرۇشىنى تاقامسىز؟ سىز Signal &gt; تەڭشەكلەر&gt;ئۇقتۇرۇشتىن قايتا قوزغىتالايسىز.</string>
 
@@ -3254,6 +3281,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">سىنسىز جاۋاب</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">كامېرا يۆنىلىشىنى ئۆزگەرتىڭ</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">ئۈن چىقىرىش</string>
@@ -3311,9 +3341,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s بولسا Signal ئىشلەتكۈچى ئەمەس. ئىشلەتكۈچى نامىنى تەكشۈرۈپ قايتا سىناڭ."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ئۆزىڭىزنى گۇرۇپپىغا قوشۇشىڭىز ھاجەتسىز</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">گۇرۇپپىنىڭ ئادەم سانى چېكىگە يەتتى</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal  گۇرۇپپىسى %1$d ئەزانى سىغدۇرالايدۇ.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal  گۇرۇپپىسى %1$s ئەزانى سىغدۇرالايدۇ.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">تەۋسىيە ئەزا چېكىگە يەتتى</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">ئەزا سانى %1$d ياكى ئاز بولغاندا Signal گۇرۇپپىسىنىڭ ئىقتىدارى ئەڭ ياخشى. تېخىمۇ كۆپ ئەزا قوشۇلسا ئۇچۇر يوللاش ۋە تاپشۇرۇۋېلىش سەل كېچىكىدۇ.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">ئەزا سانى %1$s ياكى ئاز بولغاندا Signal گۇرۇپپىسىنىڭ ئىقتىدارى ئەڭ ياخشى. تېخىمۇ كۆپ ئەزا قوشۇلسا ئۇچۇر يوللاش ۋە تاپشۇرۇۋېلىش سەل كېچىكىدۇ.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d ئەزا</item>
     </plurals>
@@ -4309,6 +4339,8 @@
     <string name="conversation_selection__menu_multi_select">تاللا</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">پۇل تۆلەش تەپسىلاتلىرى</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">راي سىناشنى توختىتىش</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4690,7 +4722,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">ئۇچۇر</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">بۇ بىر سىناق ئىقتىدار بولۇپ ، بىز بۇ ئاساستا بۇنىڭغا ئۈزلۈكسىز ئىقتىدارلارنى قوشىمىز.</string>
+    <string name="Beta__this_is_beta">بۇ بىر سىناق ئىقتىدارى بولۇپ، ۋاقىتنىڭ ئۆتۈشىگە ئەگىشىپ ياخشىلىنىدۇ.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">سىگنال قۇلۇپىنى ئېچىڭ</string>
@@ -4854,6 +4886,14 @@
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"ئىككى ئۈسكۈنىنى يېقىن قويۇپ، ئەسكەرتىش كۆرۈلگەندە «Android ئۈسكۈنىدىن يۆتكەش» نى تاللاپ، ئاندىن «داۋاملاشتۇرۇش» تاللاڭ."</string>
     <string name="OldDeviceTransferInstructions__continue">داۋاملاشتۇر</string>
+    <!-- Title for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">ئۈسكۈنە يۆتكىلىشنى توختىتامسىز؟</string>
+    <!-- Message for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">يېڭى ئۈسكۈنىڭىزگە ھېچقانداق سانلىق مەلۇمات يۆتكەلمىدى.</string>
+    <!-- Confirm button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__stop_transfer">يۆتكەشنى توختات</string>
+    <!-- Negative/cancel button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__continue_transfer">يۆتكەشنى داۋاملاشتۇرۇڭ</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">يېڭى ئۈسكىنىڭىزگە بېرىڭ</string>
@@ -5039,9 +5079,13 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">ئاتلا</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="other">‏%1$d ئەزا</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="other">‏%1$s ئەزا</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">كېيىنكى</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">ھەمبەھىرلە</string>
@@ -5233,7 +5277,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">سىگنال زاپاسلاش مۇشتەرىلىكىڭىزنى يېڭىلاڭ</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Signal بىخەتەر زاپاسلاش مۇشتەرىلىكىڭىزنى يېڭىلاڭ</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">زاپاسلاشنى تاماملىيالمىدى</string>
     <!-- String alerting user that backup redemption -->
@@ -5755,23 +5799,23 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s چەكلەنگەن</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">چەكلەش مەغلۇپ بولدى</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">«%1$s» نى چىقىرىۋەتكىلى بولمىدى</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">بۇ كىشى ئۈسكۈنىڭىزدىكى ئالاقىداشلاردا ساقلانغان. ئۇلارنى ئالاقىداشتىن ئۆچۈرۈپ قايتا سىناڭ.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">ئالاقىداشلارنى كۆرۈش</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s بولسا Signal ئىشلەتكۈچى ئەمەس</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s بولسا Signal ئىشلەتكۈچى ئەمەس</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s بولسا Signal ئىشلەتكۈچى ئەمەس</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">تىزىملىكنى ئېچىش</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="other">%1$s سىگنال ئىشلەتكۈچىسى ئەمەس</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">ئسمى ياكى نۇمۇرىنى ئىزدەڭ</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">ئىسىم، ئىشلەتكۈچى نامى ياكى تېلېفون نومۇرى</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">رەقەملىك كۇنۇپكا تاختىسىغا ئالماشتۇرۇڭ</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">ئېلىپبە-رەقەملىك كۇنۇپكا تاختىسىغا ئالماشتۇرۇڭ</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">ئىزدەش سۈزگۈچىنى ئەسلىگە قايتۇرۇش</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">‏· %1$s</string>
@@ -5931,7 +5975,6 @@
     <string name="BadgesOverviewFragment__featured_badge">تاللانغان ئىزناك</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">ئىزناكلارنى ئارخىپىمدە كۆرسەت</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">ئارخىپ يېڭىلاش ئوڭۇشسىز بولدى</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">بىر ئىزناك تاللاڭ</string>
@@ -7444,15 +7487,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">تەھرىرلەش تارىخى</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">ئۇچۇرنى تەھرىرلەڭ</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">ئەگەر سىز ئۇچۇرنى تەھرىرلىسىڭىز، ئۇنى پەقەت Signalنىڭ ئەڭ يېڭى نەشرىنى ئىشلىتىۋاتقان كىشىلەرلا كۆرەلەيدۇ. ئۇلار سىزنىڭ ئۇچۇرنى تەھرىرلىگەنلىكىڭىزنى كۆرەلەيدۇ.</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">بىكار قىلىش</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">ئەۋەت</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -7567,25 +7601,29 @@
     <string name="PendingParticipantsBottomSheet__deny_all">ھەممىنى رەت قىلىڭ</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Signal زاپاسلانمىسىنى قوزغىتىڭ</string>
+    <string name="TurnOnSignalBackups__title">Signal بىخەتەر زاپاسلانمىللىرىنى قوزغىتىڭ</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Signal بىخەتەر زاپاسلانمىللىرنى سىناپ بېقىڭ</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">يېڭى تېلېفون ئالغاندا ياكى سىگنالنى قايتا قاچىلىغاندا ھەرقانداق ئۇچۇرنى يۈتتۈرۈپ قويمايسىز.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">ئېچىش</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">ھازىر ئەمەس</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">«تەڭشەك»تىن زاپاسلاشنى قوزغىتالايسىز</string>
 
-    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">زاپاسلاش ئاچقۇچىڭىزنى دەلىللەڭ</string>
-    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">ئاچقۇچنى ئەستە ساقلىشىڭىزغا ياردەم قىلىش ئۈچۈن ، بىز ئۇنى قەرەللىك سوراپ تۇرىمىز.</string>
-    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى تەكشۈرۈپ بېقىڭ</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">بىز بەزىدە ئاچقۇچىڭىزنىڭ ئېسىڭىزدە بار ياكى يوقلىقىنى جەزىملەشتۈرۈش ئۈچۈن دەلىللىشىڭىزنى سورايمىز</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
     <string name="VerifyBackupKey__verify">دەلىللەش</string>
-    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">ھازىر ئەمەس</string>
-    <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">زاپاسلاش ئاچقۇچى توغرا. ئاچقۇچىڭىزنى بىخەتەر ساقلاڭ.</string>
-    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">ئەسلىگە كەلتۈرۈش ئاچقۇچى توغرا. ئاچقۇچىڭىزنى بىخەتەر ساقلاڭ.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">بىز بىر ھەپتە ئىچىدە سىزدىن يەنە سورايمىز.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -7729,7 +7767,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">ھەق تۆلەش ئۇسۇلىڭىز بىلەن مۇشتەرىلىكىڭىزنى يېڭىلىغىلى بولمىدى. مېدىيا زاپاسلاشنى داۋاملاشتۇرۇش ئۈچۈن ئاكتىپ مۇشتەرى بولۇشىڭىز كېرەك.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">ھەقسىز Signal زاپاسلانمىسى پىلانىنى داۋاملىق زىيارەت قىلالايسىز.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Signal بىخەتەر زاپاسلانمىللىرى پىلانىڭىزنى داۋاملىق ھەقسىز زىيارەت قىلالايسىز.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">زاپاسلاشنى تاماملىيالمىدى</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7796,6 +7834,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">مېدىيارىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن %1$s بوشلۇق بىكارلاڭ.\n\n</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">مېدىيانى ئەسلىگە كەلتۈرىۋاتىدۇ</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">مېدىيانى ئەسلىگە كەلتۈرۈشنى بىكار قىلىش</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">مېدىيانى ئەسلىگە كەلتۈرۈش توختىتىپ قويۇلدى</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -7841,6 +7881,12 @@
     <string name="BackupStatusRow__your_last_backup">ئاخىرقى زاپاسلىشىڭىزنى تاماملىيالمىدى. تېلېفونىڭىزنىڭ Wi-Fi غا ئۇلانغانلىقىنى جەزملەشتۈرۈڭ ۋە «ھازىر زاپاسلاش» نى چېكىپ قايتا سىناڭ.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">ئاخىرقى زاپاسلىشىڭىزنى تاماملىيالمىدى. سىگنالنىڭ ئەڭ يېڭى نەشرىنى ئشلەتكەنلىكىڭىزنى جەزملەشتۈرۈڭ ۋە قايتا سىناڭ.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">سىزدە بار ئۇچۇرلارنىڭ سانى ساقلاش چېكىدىن ئېشىپ كەتكەن. بەزى ئۇچۇرلارنى ئۆچۈرۈپ قايتا سىناڭ.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s دىن بۇرۇن ئەۋەتىلگەن ياكى تاپشۇرۇۋېلىنغان ئۇچۇرلار زاپاسلانمىغان.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">ساقلاش بوشلۇقىڭىز ئاز قالغاچقا زاپاسلاشنى تاماملىغىلى بولمىدى. ئۈسكۈنىڭىزدىكى بوشلۇقنى بىكارلاپ قايتا سىناڭ.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">تەپسىلاتى</string>
 
@@ -7871,6 +7917,32 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">مۇشتەرىلىكنى ئۆزگەرتىش ياكى بىكار قىلىش</string>
 
+    <!-- GooglePlayServicesAvailability -->
+    <!-- Dialog title when Google Play services are missing from the device -->
+    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play مۇلازىمەتلىرى يوق</string>
+    <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
+    <string name="GooglePlayServicesAvailability__service_missing_message">Signal بىخەتەر زاپاسلانمىللىرىغا مۇشتەرى بولۇش ئۈچۈن، تېلېفونىڭىزغا Google Play مۇلازىمەتلىرىنى ئورنىتىشىڭىز كېرەك.</string>
+    <!-- Dialog button text to install Google Play services -->
+    <string name="GooglePlayServicesAvailability__install_play_services">Google Play مۇلازىمەتلىرىنى چۈشۈرۈڭ</string>
+    <!-- Dialog title when Google Play services are currently updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play مۇلازىمىتى يېڭىلىنىۋاتىدۇ</string>
+    <!-- Dialog message asking user to wait while Google Play services finish updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_message">Signal بىخەتەر زاپاسلانمىللىرىغا مۇشتەرى بولۇش ئۈچۈن، Google Play مۇلازىمەتلىرىنىڭ يېڭىلىنىشىنىڭ تاماملىنىشىنى ساقلاڭ.</string>
+    <!-- Dialog title when Google Play services need to be updated -->
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Google Play مۇلازىمەتلىرىنى يېڭىلاڭ</string>
+    <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
+    <string name="GooglePlayServicesAvailability__service_update_required_message">Signal بىخەتەر زاپاسلانمىللىرىغا مۇشتەرى بولۇش ئۈچۈن، تېلېفونىڭىزنىڭ Google Play مۇلازىمىتىنى يېڭىلاڭ.</string>
+    <!-- Dialog button text to update Google Play services -->
+    <string name="GooglePlayServicesAvailability__update">يېڭىلا</string>
+    <!-- Dialog title when Google Play services are disabled -->
+    <string name="GooglePlayServicesAvailability__service_disabled_title">ھەقلىق مۇشتەرىلىكلەر Google Playنى تەلەپ قىلىدۇ</string>
+    <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
+    <string name="GooglePlayServicesAvailability__service_disabled_message">Signal بىخەتەر زاپاسلانمىللىرىغا مۇشتەرى بولۇش ئۈچۈن، تېلېفونىڭىزداGoogle Play مۇلازىمەتلىرىنى قوزغىتىڭ ۋە Google Play Storeغا تىزىملىتىڭ. </string>
+    <!-- Dialog button text to learn more about enabling Google Play services -->
+    <string name="GooglePlayServicesAvailability__learn_more">تەپسىلاتى</string>
+    <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
+    <string name="GooglePlayServicesAvailability__service_invalid_message">تېلېفونىڭىزGoogle Play مۇلازىمىتىنى قوللىمىغاچقا، Signal بىخەتەر زاپاسلانمىللىرىغا مۇشتەرى بولالمايسىز. ياردەم ئۈچۈن تېلېفون ئىشلەپچىقارغۇچى بىلەن ئالاقىلىشىڭ.</string>
+
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">پاراڭ چېكى</string>
@@ -7891,13 +7963,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ئىشلىتىلمىگەن مېدىيا چۈشۈرۋېتىلىدۇ، ئەمما زاپاسلىغان ئورۇندىن خالىغان ۋاقىتتا چۈشۈرەلەيسىز.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">ساقلاشنى ئەلالاشتۇرۇش پەقەت سىگنال زاپاسلاشنىڭ ھەقلىق دەرىجىسى بىلەنلا ئىشلىتىلىدۇ. زاپاسلاش مۇشتەرىلىكىڭىز يەنىلا بىر تەرەپ قىلىنىۋاتىدۇ ، تېخى قوزغىتىلمىدى. كىيىنچە قايتا سىناڭ.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">ساقلاشنى ئەلالاشتۇرۇش، پەقەت Signal بىخەتەر زاپاسلانمىللىرىنىڭ ھەقلىق دەرىجىسى بىلەنلا ئىشلىتىلىدۇ. زاپاسلاش مۇشتەرىلىكىڭىز يەنىلا بىر تەرەپ قىلىنىۋاتىدۇ، تېخى قوزغىتىلمىدى. كېيىن قايتا سىناڭ.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">بۇ ئىقتىدارنى قوزغىتىش ئۈچۈن يېڭىلاڭ</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">ساقلاشنى ئەلالاشتۇرۇش پەقەت سىگنال زاپاسلاشنىڭ ھەقلىق دەرىجىسى بىلەنلا ئىشلىتىلىدۇ. زاپاسلاش پىلانىڭىزنى يېڭىلاپ بۇ ئىقتىدارنى ئىشلىتىشنى باشلاڭ.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">ساقلاشنى ئەلالاشتۇرۇش، پەقەت Signal بىخەتەر زاپاسلانمىللىرىنىڭ ھەقلىق دەرىجىسى بىلەنلا ئىشلىتىلىدۇ. زاپاسلاش پىلانىڭىزنى يېڭىلاپ بۇ ئىقتىدارنى ئىشلىتىشنى باشلاڭ.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">%1$s/ ئايلىقى مۇشتەرى بولۇڭ</string>
 
@@ -7915,7 +7987,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">بۇ مېدىيا ئەمدى مەۋجۇت ئەمەس</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">بارلىق مېدىيالىرىڭىزنى زاپاسلاشنى باشلاش ئۈچۈن ، سىگنال زاپاسلىشىنى قوزغىتىڭ ۋە ھەقلىق دەرىجىنى تاللاڭ.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">بارلىق مېدىيالىرىڭىزنى زاپاسلاشنى باشلاش ئۈچۈن، Signal بىخەتەر زاپاسلانمىللىرىنى قوزغىتىڭ ۋە ھەقلىق دەرىجىنى تاللاڭ.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">داۋاملاشتۇرۇش</string>
     <!-- Secondary action button on bottom sheet -->
@@ -7941,6 +8013,8 @@
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/ ئايلىقى ، %2$s يېڭىلىنىدۇ</string>
+    <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
+    <string name="BackupsSettingsFragment_renews_s">يېڭىلىنىش ۋاقتى %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">ئاخىرقى زاپاسلغان ۋاقىت %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -7957,8 +8031,12 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">يۈكلەشنى ئەمەلدىن قالدۇرۇش</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">بىخەتەر زاپاسلانمىلار</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal زاپاسلانمىسى</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal بىخەتەر زاپاسلانمىللىرى</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">تاقاق</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">دەلىللەش تەلەپ قىلىنىدى</string>
     <!-- Row label to launch payment history screen -->
@@ -7970,19 +8048,27 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">زاپاسلانما چوڭلۇقى</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">ھېسابلاۋاتىدۇ…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">زاپاسلاش چاستوتىسى</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">مېدىيا ۋە ئۇچۇرلىرىڭىز ھەر كۈنى زاپاسلىنىدۇ.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">كۆچمە ئېقىم ئىشلىتىپ زاپاسلاش</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">زاپاسلاش ئاچقۇچىنى كۆرۈڭ</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">زاپاسلاش كۇنۇپكىسىنى كۆرۈش ئۈچۈن ئېچىڭ</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كۆرۈش</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كۆرۈش ئۈچۈن قۇلۇپنى ئېچىڭ</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">ئاچقۇچىڭىزنى كۆرۈش ئۈچۈن ئۆزىڭىز ئىكەنلىكىڭىزنى جەزملەشتۈرۈڭ</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ئېتىپ زاپاسلانمىنى ئۆچۈرۈش</string>
+    <!-- Dialog title for explainer text to on how backup size works for free tier -->
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">زاپاسلانما چوڭلۇقى</string>
+    <!-- Dialog message for explainer text to on how backup size works for free tier -->
+    <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
+        <item quantity="other">زاپاسلاش، سىزنىڭ بارلىق قىسقا ئۇچۇرلىرىڭىزنى ۋە ئەڭ ئاخىرقى %1$d كۈنلۈك مېدىيانى ئۆز ئىچىگە ئالىدۇ. يېڭى تاراتقۇلارنىڭ قوبۇل قىلىنىشى ۋە كونا تاراتقۇلارنىڭ ۋاقتىنىڭ توشىشىغا ئەگىشىپ ھەجىمى ئۆزگىرىدۇ.</item>
+    </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">زاپاسلانما ئ‍ۆچۈرۈلدى ۋە ئېتىلدى.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
@@ -7994,7 +8080,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">زاپاسلاش بىر كېچىدىلا قۇرۇلىدۇ.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">يېڭى زاپاس ئاچقۇچ قۇرۇلدى</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">يېڭى ئەسلىگە كەلتۈرۈش ئاچقۇچى قۇرۇلدى</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">مۇشتەرىلىك قوزغىتىقسىز</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8072,10 +8158,10 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">زاپاسلايدىغان مەلۇماتلارنىڭ ھەجىمىگە قارىتا ، بۇنىڭغا ئۇزۇن ۋاقىت كېتىشى مۇمكىن. زاپاسلاش ئېلىپ بېرىلۋاتقاندىمۇ تېلېفونىڭىزنى ئادەتتىكىدەكلا ئىشلىتەلەيسىز.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">مۇشتەرىلىكىڭىز بۇ ئۈسكۈنىدە تېپىلمىدى. Signal زاپاسلانمىسىنى ئشلىتىش ئۈچۈن يېڭىلاڭ.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">مۇشتەرىلىكىڭىز بۇ ئۈسكۈنىدە تېپىلمىدى. Signal بىخەتەر زاپاسلانمىللىرىنى داۋاملىق ئشلىتىش ئۈچۈن يېڭىلاڭ.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="other">بۇ ئۈسكۈنىدىكى مۇشتەرىلىكىڭىز كېيىنكى %1$d كۈن ئىچىدە كۈچكە ئىگە. داۋاملىق سىگنال زاپاسلىشىنى ئىشلىتىشنى يېڭىلاڭ</item>
+        <item quantity="other">بۇ ئۈسكۈنىدىكى مۇشتەرىلىكىڭىز كېيىنكى %1$d كۈن ئىچىدە كۈچكە ئىگە. Signal بىخەتەر زاپاسلانمىللىرىنى داۋاملىق ئىشلىتىش ئۈچۈن يېڭىلاڭ</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">قايتىدىن مۇشتەرى بۇلۇش</string>
@@ -8123,6 +8209,8 @@
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">تور خاتالىقى كۆرۈلدى. تور ئۇلىنىشىڭىزنى تەكشۈرۈپ قايتا سىناڭ.</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">يۈكلەش: %2$s نىڭ %1$s تى (%%%3$d)</string>
+    <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_d">يۈكلىنىۋاتىدۇ:%%%1$d</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">تەپسىلاتى</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8196,36 +8284,38 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">زاپاسلاش ئاچقۇچىڭىز</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچى</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">سىزنىڭ زاپاسلاش ئاچقۇچىڭىز بولسا سىگنالنى قايتا قاچىلىغاندا ياردەم قىلىپ زاپاسلاشنى ئەسلىگە كەلتۈرىدىغان 64 خانىلىق كود.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىز، زاپاسلاشنى ئەسلىگە كەلتۈرۈش ئۈچۈن ئىشلىتىلىدىغان 64 خانىلىق كود.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">ئەگەر ئاچقۇچنى ئۇنتۇپ قالسىڭىز ، زاپاسلاشنى ئەسلىگە كەلتۈرەلمەيسىز. سىگنال زاپاسلاشنى ئەسلىگە كەلتۈرۈشىڭىزگە ياردەم قىلالمىدى.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى، بىخەتەر دەپ قارىغان پارول باشقۇرغۇچىدا ساقلاڭ ھەمدە باشقىلار بىلەن ئورتاقلاشماڭ.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">ئەگەر ئۇنى يوقىتىپ قويسىڭىز، ئۇچۇرلىرىڭىزنى ئەسلىگە كەلتۈرەلمەيسىز.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">كېيىنكى</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كۆرۈش</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">زاپاسلاش ئاچقۇچىڭىز خاتىرلەڭ</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى خاتىرىلەڭ</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">بۇ ئاچقۇچ ھېساباتىڭىز ۋە سانلىق مەلۇماتلىرىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن تەلەپ قىلىنىدۇ. بۇ ئاچقۇچنى بىخەتەر جايدا ساقلاڭ. ئەگەر ئۇنى يوقىتىپ قويسىڭىز ، ھېساباتىڭىزنى ئەسلىگە كەلتۈرەلمەيسىز.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">چاپلاش تاختىسىغا كۆچۈر</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">پارول باشقۇرغۇچىغا ساقلاڭ</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">پارول باشقۇرغۇچىغا ساقلامسىز؟</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">زاپاسلاش ئاچقۇچىڭىزنى پەقەت ۋە پەقەت بىخەتەر دەپ قارىغان پارول باشقۇرغۇچىدا ساقلاڭ. Signal قايسى پارول باشقۇرغۇچىنىڭ سىزگە ماس كېلىدىغانلىقى توغرىسىدا تەۋسىيە قىلمايدۇ.</string>
-    <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal زاپاسلانمىسى</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى پەقەت ۋە پەقەت بىخەتەر دەپ قارىغان پارول باشقۇرغۇچىدا ساقلاڭ. Signal قايسى پارول باشقۇرغۇچىنىڭ سىزگە ماس كېلىدىغانلىقى توغرىسىدا تەۋسىيە قىلمايدۇ.</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal بىخەتەر زاپاسلانمىللىرى</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">پارول باشقۇرغۇچىڭىزغا ساقلاندى</string>
-    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">پارول باشقۇرغۇچىغا ساقلىغىلى بولمايدۇ</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">سىزدە پارول باشقۇرغۇچى ئورنىتىلمىغان ، ياكى ئىشلىتىۋاتقان پارول باشقۇرغۇچىڭىزنى قوللىمايدۇ.</string>
-    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
     <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">سىز بۇرۇن Google پارول باشقۇرغۇچىدا Signalنىڭ مەخپىي نومۇرىنى ساقلىماسلىقنى تاللىغان. Google پارول باشقۇرغۇچ تەڭشىكىڭىزدىكى «رەت قىلىنغان تور بېكەت ۋە ئەپلەر» دىن Signal نى چىقىرىۋېتىپ قايتا سىناڭ.</string>
     <!-- Label for a button that navigates to the device settings -->
     <string name="MessageBackupsKeyRecordScreen__go_to_settings">تەڭشەكلەرگە يۆتكەل</string>
@@ -8246,42 +8336,48 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">مېدىيانى چۈشۈرۈڭ</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">يېڭى زاپاسلاش ئاچقۇچى قۇرۇش ئۈچۈن چوقۇم «ساقلاشنى ئەلالاشتۇرۇش» نى ئېتىۋېتىشىڭىز ھەمدە مېدىيانىڭ چۈشۈرۈلۈپ بولۇنۇشىنى ساقلىشىڭىز كېرەك. چۈشۈرۈش تاماملانغاندىن كېيىن يېڭى بىر ئاچقۇچ قۇرالايسىز.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">يېڭى ئەسلىگە كەلتۈرۈش ئاچقۇچى قۇرۇش ئۈچۈن چوقۇم «ساقلاشنى ئەلالاشتۇرۇش» نى ئېتىۋېتىشىڭىز ھەمدە مېدىيانىڭ چۈشۈرۈلۈپ بولۇنۇشىنى ساقلىشىڭىز كېرەك. چۈشۈرۈش تاماملانغاندىن كېيىن يېڭى بىر ئاچقۇچ قۇرالايسىز.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">تاقىۋېتىش ھەمدە چۈشۈرۈش</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">يېڭى بىر زاپاس ئاچقۇچ قۇرۇش</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">يېڭى بىر ئەسلىگە كەلتۈرۈش ئاچقۇچى قۇرۇڭ</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">يېڭى ئاچقۇچ قۇرۇش پەقەت ئاچقۇچنى باشقا بىرى بىلىپ قالغاندىلا زۆرۈر. مېدىيانى ئۆز ئىچىگە ئالغان زاپاسلاشنى قايتا يۈكلىشىڭىز كېرەك. ئەگەر «ساقلاشنى ئەلالاشتۇرۇش» نى ئىشلىتىۋاتقان بولسىڭىز ، ئالدى بىلەن چۈشۈرۈۋېتىلگەن مېدىيانى چۈشۈرۈشىڭىز كېرەك.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">زاپاسلاشنى قۇرۇشتىن چېكىنەمىسىز؟</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">زاپاسلاشنى قۇرۇشنى تاماملاپ بولالمىدىڭىز، ھېچقانداق زاپاسلاش قۇرۇلمىدى. «تەڭشەك»تىن زاپاسلاشنى قوزغىتالايسىز.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">زاپاسلاشنى قۇرۇشتىن چېكىنىش</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">ئاچقۇچ قۇرۇشنى بىكار قىلامىسز؟</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">جەزملەشتۈرمىسىڭىز ، يېڭى زاپاس ئاچقۇچىڭىز قۇرۇلمايدۇ.</string>
-    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">جەزملەشتۈرمىسىڭىز يېڭى ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىز قۇرۇلمايدۇ.</string>
+    <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">ئاچقۇچنى جەزملەشتۈرۈش</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">ئاچقۇچ قۇرۇشنى بىكار قىلىش</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">زاپاسلاش ئاچقۇچىڭىزنى جەزملەشتۈرۈڭ</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى جەزملەشتۈرۈڭ</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">بايام خاتىرىلىگەن زاپاسلاش ئاچقۇچىنى كىرگۈزۈڭ</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">بايام خاتىرىلىگەن ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كىرگۈزۈڭ</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">زاپاسلاش ئاچقۇچى</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچى</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">ناتوغرا زاپاسلاش ئاچقۇچى</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">ناتوغرا ئەسلىگە كەلتۈرۈش ئاچقۇچى</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">ئاچقۇچنى قايتا كۆرۈڭ</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">كېيىنكى</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">زاپاسلاش ئاچقۇچىڭىزنى كىرگۈزۈڭ</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى كىرگۈزۈڭ</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">زاپاسلاشنى قوزغاتقاندا ، خاتىرىلىگەن 64 خانىلىق كودنى كىرگۈزۈڭ.</string>
-    <!-- Button text when you forget your backup key -->
+    <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">ئاچقۇچنى ئۇنتۇپ قالدىڭىزمۇ؟</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
@@ -8299,10 +8395,14 @@
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/ ئايلىقى مۇشتەرى بولۇڭ</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">زاپاسلاش تىپىنى ئۆزگەرتىڭ</string>
+    <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">بۇ پىلان ھەققىدە تېخىمۇ كۆپ تەپسىلاتلار</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">مۇشتەرىلىكنى بىكار قىلىش</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">ھەقسىز</string>
+    <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
+    <string name="MessageBackupsTypeSelectionScreen__paid">ھەقلىق</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/ئايلىقى</string>
     <!-- Title for free tier -->
@@ -8325,6 +8425,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">نۆۋەتتىكى پىلان</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">پىلاننى يېڭىلىغىلى بولمىدى</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Signal بىخەتەر زاپاسلانمىلارغا مۇشتەرى بولۇش ئۈچۈن، تېلېفوندا چوقۇم Google مۇلازىمەتلىرىنى قوزغىتىپ، Google Play Storeغا تىزىملىتىشىڭىز كېرەك.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8355,9 +8459,9 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">ھېساباتنى ئەسلىگە كەلتۈرۈش ياكى يۆتكەش</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">سىگنال ھېساباتىڭىز ۋە ئۇچۇر تارىخىڭىزنى بۇ ئۈسكۈنىگە قاچىلاڭ.</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">سىگنال زاپاسلانمىسىدىن</string>
-    <!-- Option subtitle for restoring via signal backups -->
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal بىخەتەر زاپاسلانمىللىرىدىن</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">ھەقسىز ياكى ھەقلىق سىگنال زاپاسلاش پىلانىڭىز</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">بىر تال زاپاسلاش ھۆججەت قىسقۇچىدىن</string>
@@ -8369,46 +8473,56 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">كونا تېلېفونىڭىزدىن</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">كونا ئاندىرويىد ئۈسكۈنىڭىزدىن بىۋاسىتە يۆتكەڭ</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">ئەسلىگە كەلتۈرۈشتى ئاتلامسىز؟</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">ئەگەر ھازىر ئەسلىگە كەلتۈرۈشنى ئاتلىسىڭىز، كېيىن ئەسلىگە كەلتۈرەلمەيسىز. ئەگەر ئەسلىگە كەلتۈرۈشنى ئاتلاپ بولغاندىن كېيىن زاپاسلاشنى قايتا قوزغىتىپ قويسىڭىز، نۆۋەتتىكى زاپاسلاش يېڭى ئۇچۇرلىشىش تارىخىڭىز بىلەن ئالماشتۇرۇلىدۇ.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">ئەسلىگە كەلتۈرۈشتى ئاتلاڭ</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">يەرلىك زاپاسلاشنى ئەسلىگە كەلتۈرۈش</string>
     <!-- Screen subtitle for restore via local backup -->
     <string name="RestoreLocalBackup_subtitle">ئۈسكۈنىڭىزدە ساقلىغان زاپاسلاشتىن ئۇچۇرلىرىڭىزنى ئەسلىگە كەلتۈرۈڭ. ئەگەر ھازىر ئەسلىگە كەلتۈرمىسىڭىز ، كېيىن ئەسلىگە كەلتۈرەلمەيسىز.</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">زاپاسلاش ئاچقۇچىڭىزنى كىرگۈزۈڭ</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">زاپاسلاش ئاچقۇچىڭىز ھېساباتىڭىز ۋە سانلىق مەلۇماتلىرىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن تەلەپ قىلىنىدىغان 64 خانىلىق كود.</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">زاپاسلاش ئاچقۇچى يوقمۇ؟</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">زاپاسلاش ئاچقۇچى</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">زاپاسلاشلارنى 64 خانىلىق ئەسلىگە كەلتۈرۈش كودى بولمىسا ئەسلىگە كەلتۈرگىلى بولمايدۇ. ئەگەر زاپاسلاش ئاچقۇچىڭىزنى يوقىتىپ قويغان بولسىڭىز ، سىگنال ياردەملىشىپ زاپاسلاشنى ئەسلىگە كەلتۈرەلمەيدۇ.</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">ئەگەر كونا ئۈسكۈنىڭىز بولسا تەڭشەك &gt; زاپاسلىرى دىن زاپاسلاش ئاچقۇچىنى كۆرەلەيسىز. ئاندىن «زاپاسلاش ئاچقۇچىنى كۆرۈش» نى چېكىڭ.</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى كىرگۈزۈڭ</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىز ھېساباتىڭىز ۋە سانلىق مەلۇماتلىرىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن تەلەپ قىلىنىدىغان 64 خانىلىق كود.</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچى يوقمۇ؟</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچى</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">زاپاسلاشلارنى 64 خانىلىق ئەسلىگە كەلتۈرۈش كودى بولمىسا ئەسلىگە كەلتۈرگىلى بولمايدۇ. ئەگەر ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى يوقىتىپ قويغان بولسىڭىز، Signal ياردەملىشىپ زاپاسلاشنى ئەسلىگە كەلتۈرەلمەيدۇ.</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">ئەگەر كونا ئۈسكۈنىڭىز بولسا تەڭشەك &gt; زاپاسلار دىن ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كۆرەلەيسىز. ئاندىن « ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كۆرۈش» نى چېكىڭ.</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">تەپسىلاتى</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">ئەسلىگە كەلتۈرۈشتى ئاتلاڭ</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">ناتوغرا زاپاسلاش ئاچقۇچى</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">ناتوغرا ئەسلىگە كەلتۈرۈش ئاچقۇچى</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">سىگنال زاپاسلىشنى قوزغىغاندا ، تېلېفون نومۇرى ۋە 64 خانىلىق زاپاسلاش ئاچقۇچىنىڭ تىزىملاتقان ۋاقىتتىكى بىلەن ئوخشاشكىقىغا كاپالەتلىك قىلىڭ. بۇ ئاچقۇچ بولمىسا زاپاسلاشنى ئەسلىگە كەلتۈرگىلى بولمايدۇ.</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Signal بىخەتەر زاپاسلاشنى قوزغاتقاندا تېلېفون نومۇرى بىلەن 64 خانىلىق ئەسلىگە كەلتۈرۈش ئاچقۇچىنىڭ تىزىملاتقان ۋاقىتتىكى بىلەن ئوخشاشكىقىغا كاپالەتلىك قىلىڭ. بۇ ئاچقۇچ بولمىسا زاپاسلارنى ئەسلىگە كەلتۈرگىلى بولمايدۇ.</string>
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">قايتا سىناڭ</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">زاپاسلاش ئاچقۇچىغا ياردەم</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">ناتوغرا زاپاسلاش ئاچقۇچى</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">ئەسلىگە كەلتۈرۈش ئاچقۇچىغا ئائىت ياردەم</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">ناتوغرا ئەسلىگە كەلتۈرۈش ئاچقۇچى</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">بەك ئۇزۇن (%2$d/%1$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">ئىناۋەتسىز زاپاسلاش ئاچقۇچى</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">ئىناۋەتسىز ئەسلىگە كەلتۈرۈش ئاچقۇچى</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">زاپاسلاش تېپىلمىدى</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">سىز كىرگۈزگەن زاپاسلاش ئاچقۇچى توغرا ، ئەمما ئۇنىڭدا زاپاسلاشقا ئائىت مەلۇماتلار يوق. ئەگەر كونا تېلېفونىڭىز يەنىلا بولسا ، زاپاسلاشنىڭ قوزغىتىلغانلىقىنى ۋە بىر قېتىملىق زاپاسلاشنىڭ تاماملانغانلىقىنى جەزملەشتۈرۈڭ ھەمدە قايتا سىناڭ.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">سىز كىرگۈزگەن ئەسلىگە كەلتۈرۈش ئاچقۇچى توغرا، ئەمما ئۇنىڭدا زاپاسلاشقا ئائىت مەلۇماتلار يوق. ئەگەر كونا تېلېفونىڭىز يەنىلا بولسا، زاپاسلاشنىڭ قوزغىتىلغانلىقىنى ۋە بىر قېتىملىق زاپاسلاشنىڭ تاماملانغانلىقىنى جەزملەشتۈرۈڭ ھەمدە قايتا سىناڭ.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى خاتا كىرگۈزگەن بولۇشىڭىز مۇمكىن، ياكى كونا ئۈسكۈنىڭىزدە كەم دېگەندە بىر زاپاسلاشنى تاماملىمىغان بولۇشىڭىز مۇمكىن.\n\nSignal بىخەتەر زاپاسلانمىللىرىنى قوزغاتقاندا، ساقلىۋالغان تېلېفون نومۇرى ۋە ئەسلىگە كەلتۈرۈش ئاچقۇچىنىڭ تىزىملاتقان ۋاقىتتىكى بىلەن ئوخشاش بولۇشىغا كاپالەتلىك قىلىڭ ھەمدە كونا ئۈسكۈنىڭىزنىڭ بىر زاپاسلاشنى تاماملىغانلىقىنى جەزملەشتۈرۈڭ.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">ئەسلىگە كەلتۈرۈش ئاچقۇچى سىناقلىرىڭىز تۈگىدى. بىخەتەرلىكىڭىز ئۈچۈن، سىز قىلالايدىغان سىناقلارنىڭ سانى چەكلىك. بىر سائەت ساقلاپ قايتا سىناڭ.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">ئەسلىگە كەلتۈرۈشتى ئاتلاڭ</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8474,9 +8588,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">ھېساباتىڭىزنى باشقا ئۈسكۈنىڭىزگە يۆتكەشنى داۋاملاشتۇرۇڭ.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">ئەسلىگە كەلتۈرۈش تاماملاندى</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">باشقا ئۈسكىنىڭزدە تاماملاڭ</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">سىگنال ھېساباتىڭىز ۋە ئۇچۇرلىرىڭىز باشقا ئۈسكۈنىڭىزگە يۆتكىلىشكە باشلىدى. سىگنال ئەمدى بۇ ئۈسكۈنىدە ئىشلىمەيدۇ.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Signal ھېساباتىڭىز ۋە ئۇچۇرلىرىڭىز باشقا ئۈسكۈنىڭىزدە ئەسلىگە كەلتۈرۈلۈشكە تەييار. Signal ئەمدى بۇ ئۈسكۈنىدە ئىشلىمەيدۇ.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">يۆتكەش تاماملاندى</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
@@ -8487,7 +8601,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">ئەسلىگە كەلتۈرىدىغان زاپاسلاش يوق</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">سىز ئايفوندىن ئاندىرويىدقا يۆتكىلىۋاتقانلىقىڭىز ئۈچۈن ، ئۇچۇرلار ۋە مېدىيانى يۆتكەشنىڭ بىردىنبىر ئۇسۇلى كونا ئۈسكۈنىڭىزدە سىگنال زاپاسلانمىسىنى قوزغىتىش.</string>
+    <string name="NoBackupToRestore_subtitle">سىز ئايفوندىن ئاندىرويىدقا يۆتكىلىۋاتقانلىقىڭىز ئۈچۈن، ئۇچۇرلار ۋە مېدىيانى يۆتكەشنىڭ بىردىنبىر ئۇسۇلى كونا ئۈسكۈنىڭىزدە Signal بىخەتەر زاپاسلانمىللىرىنى قوزغىتىش.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">كونا ئۈسكۈنىڭىزدە سىگنالنى ئېچىڭ</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
@@ -8497,6 +8611,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">ئەسلىگە كەلتۈرۈشتى ئاتلاڭ</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">ئەسلىگە كەلتۈرۈش ئاچقۇچىنى ئۆزگەرتىش قېتىم سانى چېكىگە يەتتى</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">سىز مۇۋەپپەقىيەتلىك ھالدا يېڭى ئەسلىگە كەلتۈرۈش ئاچقۇچىنى قۇردىڭىز، ئەمما قالايمىقان ئىشلىتىشنىڭ ئالدىنى ئېلىش ئۈچۈن سىز قۇرالايدىغان يېڭى ئاچقۇچلارنىڭ سانى چەكلىك. 7 كۈن ئىچىدە يەنە بىر ئاچقۇچ قۇرالمايسىز. ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى بىخەتەر ۋە ئىشەنچىلىك جايدا ساقلاڭ.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">يېڭى ئاچقۇچ قۇرالمىدى</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">يېڭى ئاچقۇچلارنى قۇرۇشقا بېرىلگەن قېتىم سانىنى تۈگىتىپ بولدىڭىز. 7 كۈندىن كىيىن يېڭى بىر ئەسلىگە كەلتۈرۈش ئاچقۇچى قۇرالايسىز. ئەگەر باشقىلارنىڭ زاپىسىڭىزنى زىيارەت قىلالايدىغانلىقىنى جەزىملەشتۈرسىڭىز، «تاقاش ۋە زاپاسلاشنى ئۆچۈرۈش» نى تاللىسىڭىز بولىدۇ.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">بولىدۇ</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">ئىزدەشنى تاقاش</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8534,6 +8658,150 @@
     <plurals name="Notification_you_have_not_completed_a_backup">
         <item quantity="other">%1$d كۈن بىرتالمۇ زاپاسلاشنى تاماملىمىدىڭىز. ھازىرلا بىر زاپاسلاش قۇرۇڭ.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">راي سىناش · بىرنى تاللاڭ</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">راي سىناش · بىر ياكى بىرقانچىنى تاللاڭ</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">راي سىناش · ئاخىرقى نەتىجىلەر</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">بېلەت تاشلانمىدى</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">بېلەتلەرنى كۆرۈش</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">راي سىناشنى كۆرۈش</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">راي سىناش تېپىلمىدى</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">نەتىجىلەرنى كۆرۈش</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">راي سىناش: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s بېلەت تاشلاشنى ئاخىرلاشتۇردى: «%2$s»</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">«%1$s»: راي سىنىقىنى ئاخىرلاشتۇردىڭىز</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">«%2$s»غا: %1$s بېلەت تاشلىدى</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">راي سىناقلىرى</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">راي سىناش نەتىجىللىرى</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">راي سىناش تەپسىلاتلىرى</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">سوئال</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="other">%1$d بېلەتلەر</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">يەڭگۈچى</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">راي سىناشنى توختىتىش</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">ھەممىنى كۆرسەت</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">راي سىناشنى ئاخىرلاشتۇرالمىدى</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">تور ئۇلىنىشىڭىزنى تەكشۈرۈپ قايتا سىناڭ.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">راي سىناشنى ئاخىرلاشتۇرامسىز؟</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">گۇرۇپپا ئەزالىرى ئەمدى بۇ راي سىناشقا بېلەت تاشلىيالمايدۇ.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">تورغا ئۇلىنىشنى ساقلاۋاتىدۇ…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">يېڭى راي سىناش</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">سوئال</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">سۇئال سوراڭ</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">تاللاش</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">تاللاش %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">سۆرەش ۋە تاشلاش تۇتقۇچى</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">كۆپ بېلەت چۈشۈشكە يول قويۇش</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">بىر سۇئال ۋە كەم دېگەندە 2 تاللاش قوشۇش</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">كەم دېگەندە 2 تاللاش قوشۇش</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">بىر سۇئال قوشۇش</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">تېلفۇنلاشقاندىكى ئاۋاز مەسىلىسى</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">سىن مەسىلىسى</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">تېلېفون ئۈزۈلۈپ قالدى</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">باشقا يەنە</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">ئۈن كېكەشلەپ چىقىش</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">ئاۋاز ئۈزۈلۈپ قالدى</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">ئەكىس سادانى ئاڭلىدىم</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">باشقىلار ئەكىس سادانى ئاڭلاپتۇ</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">سىن سۈپىتىنىڭ ناچار بولۇشى</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">ئېنىقلىق دەرىجىسى تۆۋەن</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">كامېرا ئىشلىمىدى</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">باشقا يەنە</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">بايقىغان مەسىلىنى تەسۋىرلەڭ</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">مەسىلىگە مۇناسىۋەتلىك قانداق تەپسىلاتلار بولسا قوشۇپ قويۇڭ. بۇ يەردە ھەمبەھىرلىگەن ھەر قانداق مەزمۇن شەخسىي ھالەتتە ساقلىنىدۇ ھەمدە Signalدىكى تېلېفونلىشىش سۈپىتىنى ياردەملىشىپ ياخشىلاشقا ئىشلىتىلىدۇ.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">ساقلاش</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">قايت</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">تېلېفونلىشىش جەريانى قانداق بولدى؟</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">بۇ بىزنىڭ Signalدىكى تېلېفونلىشىش سۈپىتىنى ياخشىلىشىمىزغا ياردەم بېرىدۇ. شەخسىي سالاھىيەتكە باغلىنىشلىق ئۇچۇرلار ساقلانمايدۇ.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">مەسىلىلەرگە يولۇقتىۇم</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">ناھايىتى ياخشى</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">سىز قانداق مەسىلىلەرنى بايقىدىڭىز؟</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">ماس كەلگەننىڭ ھەممىسىنى تاللاڭ</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">بايقىغان مەسىلىنى تەسۋىرلەڭ</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">داۋاملاشتۇرۇش</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">بىزنىڭ تېخىمۇ ياخشىلىنىشىمىزغا ياردەم قىلىڭ</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">بىزگە دىئاگنوز ئۇچۇرىڭىزنى ئەۋەتىشىڭىز، تېلېفونلىشىش سۈپىتىنى ئۆستۈرۈشىمىزگە ياردەم بېرىدۇ. قىلالايدىغانلىرىڭىز بولسا </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">كاشىلا ھەل قىلىش خاتىرىڭىزنى كۆرۈش</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> يوللاشتىن بۇرۇن</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">كاشىلا ھەل قىلىش خاتىرىسىنى ئورتاقلىشىش</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">كاشىلا ھەل قىلىش خاتىرىلىرى تۆۋەن دەرىجىدىكى ئەپ ئۇچۇرلىرىنى ئۆز ئىچىگە ئالغان بولۇپ، پاراڭ مەزمۇنلىرىڭىزنىڭ ھېچقايسىسىنى ئاشكارىلىمايدۇ.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">تاپشۇر</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">ئىنكاسىڭىزغا رەھمەت!</string>
 
     <!-- EOF -->
 </resources>

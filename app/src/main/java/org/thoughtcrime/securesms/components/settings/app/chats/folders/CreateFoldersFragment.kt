@@ -21,8 +21,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -52,11 +50,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -360,9 +358,7 @@ fun CreateFolderScreen(
         }
       }
 
-      if (hasChanges) {
-        item { Spacer(modifier = Modifier.height(60.dp)) }
-      }
+      item { Spacer(modifier = Modifier.height(60.dp)) }
     }
 
     Buttons.MediumTonal(
@@ -404,6 +400,7 @@ fun CreateFolderScreen(
 private fun ShowUnreadSection(state: ChatFoldersSettingsState, onToggleShowUnread: (Boolean) -> Unit) {
   Row(
     modifier = Modifier
+      .clickable { onToggleShowUnread(!state.currentFolder.folderRecord.showUnread) }
       .padding(horizontal = 24.dp)
       .defaultMinSize(minHeight = 92.dp),
     verticalAlignment = Alignment.CenterVertically
@@ -431,6 +428,7 @@ private fun ShowMutedSection(state: ChatFoldersSettingsState, onToggleShowMuted:
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
+      .clickable { onToggleShowMuted(!state.currentFolder.folderRecord.showMutedChats) }
       .padding(horizontal = 24.dp)
       .defaultMinSize(minHeight = 56.dp)
   ) {
@@ -447,7 +445,7 @@ private fun ShowMutedSection(state: ChatFoldersSettingsState, onToggleShowMuted:
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun CreateFolderPreview() {
   val previewFolder = ChatFolder(ChatFolderRecord(id = 1, name = "WIP"))
@@ -455,13 +453,13 @@ private fun CreateFolderPreview() {
   Previews.Preview {
     CreateFolderScreen(
       state = ChatFoldersSettingsState(currentFolder = previewFolder),
-      focusRequester = FocusRequester(),
+      focusRequester = remember { FocusRequester() },
       isNewFolder = true
     )
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun EditFolderPreview() {
   val previewFolder = ChatFolder(ChatFolderRecord(id = 1, name = "Work"))
@@ -469,7 +467,7 @@ private fun EditFolderPreview() {
   Previews.Preview {
     CreateFolderScreen(
       state = ChatFoldersSettingsState(originalFolder = previewFolder),
-      focusRequester = FocusRequester(),
+      focusRequester = remember { FocusRequester() },
       isNewFolder = false
     )
   }
@@ -490,7 +488,7 @@ fun ChatRow(
   ) {
     if (LocalInspectionMode.current) {
       Icon(
-        imageVector = Icons.Default.Person,
+        imageVector = ImageVector.vectorResource(R.drawable.symbol_person_fill_24),
         contentDescription = null,
         modifier = Modifier
           .padding(start = 24.dp, end = 16.dp)

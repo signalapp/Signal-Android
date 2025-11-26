@@ -7,17 +7,18 @@ import androidx.navigation.NavDirections
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.core.util.getParcelableExtraCompat
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
-import org.thoughtcrime.securesms.components.settings.app.chats.folders.CreateFoldersFragmentArgs
-import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileScheduleFragmentArgs
+import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRoute
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.profiles.manage.UsernameEditMode
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CachedInflater
@@ -25,8 +26,7 @@ import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
-private const val START_LOCATION = "app.settings.start.location"
-private const val START_ARGUMENTS = "app.settings.start.arguments"
+private const val START_ROUTE = "app.settings.args.START_ROUTE"
 private const val NOTIFICATION_CATEGORY = "android.intent.category.NOTIFICATION_PREFERENCES"
 private const val STATE_WAS_CONFIGURATION_UPDATED = "app.settings.state.configuration.updated"
 private const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
@@ -48,42 +48,41 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     val startingAction: NavDirections? = if (intent?.categories?.contains(NOTIFICATION_CATEGORY) == true) {
       AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
     } else {
-      when (StartLocation.fromCode(intent?.getIntExtra(START_LOCATION, StartLocation.HOME.code))) {
-        StartLocation.HOME -> null
-        StartLocation.BACKUPS -> AppSettingsFragmentDirections.actionDirectToBackupsPreferenceFragment()
-        StartLocation.HELP -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
-          .setStartCategoryIndex(intent.getIntExtra(HelpFragment.START_CATEGORY_INDEX, 0))
-
-        StartLocation.PROXY -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
-        StartLocation.NOTIFICATIONS -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
-        StartLocation.CHANGE_NUMBER -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
-        StartLocation.SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToManageDonations().setDirectToCheckoutType(InAppPaymentType.RECURRING_DONATION)
-        StartLocation.BOOST -> AppSettingsFragmentDirections.actionDirectToManageDonations().setDirectToCheckoutType(InAppPaymentType.ONE_TIME_DONATION)
-        StartLocation.MANAGE_SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToManageDonations()
-        StartLocation.NOTIFICATION_PROFILES -> AppSettingsFragmentDirections.actionDirectToNotificationProfiles()
-        StartLocation.CREATE_NOTIFICATION_PROFILE -> AppSettingsFragmentDirections.actionDirectToCreateNotificationProfiles()
-        StartLocation.NOTIFICATION_PROFILE_DETAILS -> AppSettingsFragmentDirections.actionDirectToNotificationProfileDetails(
-          EditNotificationProfileScheduleFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).profileId
+      val appSettingsRoute: AppSettingsRoute? = intent?.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)
+      when (appSettingsRoute) {
+        AppSettingsRoute.Empty -> null
+        AppSettingsRoute.BackupsRoute.Local -> AppSettingsFragmentDirections.actionDirectToBackupsPreferenceFragment()
+        is AppSettingsRoute.HelpRoute.Settings -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
+          .setStartCategoryIndex(appSettingsRoute.startCategoryIndex)
+        AppSettingsRoute.DataAndStorageRoute.Proxy -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
+        AppSettingsRoute.NotificationsRoute.Notifications -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
+        AppSettingsRoute.ChangeNumberRoute.Start -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
+        is AppSettingsRoute.DonationsRoute.Donations -> AppSettingsFragmentDirections.actionDirectToManageDonations().setDirectToCheckoutType(appSettingsRoute.directToCheckoutType)
+        AppSettingsRoute.NotificationsRoute.NotificationProfiles -> AppSettingsFragmentDirections.actionDirectToNotificationProfiles()
+        is AppSettingsRoute.NotificationsRoute.EditProfile -> AppSettingsFragmentDirections.actionDirectToCreateNotificationProfiles()
+        is AppSettingsRoute.NotificationsRoute.ProfileDetails -> AppSettingsFragmentDirections.actionDirectToNotificationProfileDetails(
+          appSettingsRoute.profileId
         )
 
-        StartLocation.PRIVACY -> AppSettingsFragmentDirections.actionDirectToPrivacy()
-        StartLocation.LINKED_DEVICES -> AppSettingsFragmentDirections.actionDirectToDevices()
-        StartLocation.USERNAME_LINK -> AppSettingsFragmentDirections.actionDirectToUsernameLinkSettings()
-        StartLocation.RECOVER_USERNAME -> AppSettingsFragmentDirections.actionDirectToUsernameRecovery()
-        StartLocation.REMOTE_BACKUPS -> AppSettingsFragmentDirections.actionDirectToRemoteBackupsSettingsFragment()
-        StartLocation.CHAT_FOLDERS -> AppSettingsFragmentDirections.actionDirectToChatFoldersFragment()
-        StartLocation.CREATE_CHAT_FOLDER -> AppSettingsFragmentDirections.actionDirectToCreateFoldersFragment(
-          CreateFoldersFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).folderId,
-          CreateFoldersFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).threadIds
+        AppSettingsRoute.PrivacyRoute.Privacy -> AppSettingsFragmentDirections.actionDirectToPrivacy()
+        AppSettingsRoute.LinkDeviceRoute.LinkDevice -> AppSettingsFragmentDirections.actionDirectToDevices()
+        AppSettingsRoute.UsernameLinkRoute.UsernameLink -> AppSettingsFragmentDirections.actionDirectToUsernameLinkSettings()
+        is AppSettingsRoute.AccountRoute.Username -> AppSettingsFragmentDirections.actionDirectToUsernameRecovery()
+        is AppSettingsRoute.BackupsRoute.Remote -> AppSettingsFragmentDirections.actionDirectToRemoteBackupsSettingsFragment()
+        AppSettingsRoute.ChatFoldersRoute.ChatFolders -> AppSettingsFragmentDirections.actionDirectToChatFoldersFragment()
+        is AppSettingsRoute.ChatFoldersRoute.CreateChatFolders -> AppSettingsFragmentDirections.actionDirectToCreateFoldersFragment(
+          appSettingsRoute.folderId,
+          appSettingsRoute.threadIds
         )
 
-        StartLocation.BACKUPS_SETTINGS -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment()
-        StartLocation.INVITE -> AppSettingsFragmentDirections.actionDirectToInviteFragment()
-        StartLocation.MANAGE_STORAGE -> AppSettingsFragmentDirections.actionDirectToStoragePreferenceFragment()
+        AppSettingsRoute.BackupsRoute.Backups -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment()
+        AppSettingsRoute.Invite -> AppSettingsFragmentDirections.actionDirectToInviteFragment()
+        AppSettingsRoute.DataAndStorageRoute.DataAndStorage -> AppSettingsFragmentDirections.actionDirectToStoragePreferenceFragment()
+        else -> error("Unsupported start location: ${appSettingsRoute?.javaClass?.name}")
       }
     }
 
-    intent = intent.putExtra(START_LOCATION, StartLocation.HOME)
+    intent = intent.putExtra(START_ROUTE, AppSettingsRoute.Empty)
 
     if (startingAction == null && savedInstanceState != null) {
       wasConfigurationUpdated = savedInstanceState.getBoolean(STATE_WAS_CONFIGURATION_UPDATED)
@@ -148,123 +147,89 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     @JvmStatic
     @JvmOverloads
     fun home(context: Context, action: String? = null): Intent {
-      return getIntentForStartLocation(context, StartLocation.HOME)
+      return getIntentForStartLocation(context, AppSettingsRoute.Empty)
         .putExtra(EXTRA_PERFORM_ACTION_ON_CREATE, action)
     }
 
     @JvmStatic
-    fun backups(context: Context): Intent = getIntentForStartLocation(context, StartLocation.BACKUPS)
+    fun backups(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.BackupsRoute.Local)
 
     @JvmStatic
     fun help(context: Context, startCategoryIndex: Int = 0): Intent {
-      return getIntentForStartLocation(context, StartLocation.HELP)
+      return getIntentForStartLocation(context, AppSettingsRoute.HelpRoute.Settings(startCategoryIndex = startCategoryIndex))
         .putExtra(HelpFragment.START_CATEGORY_INDEX, startCategoryIndex)
     }
 
     @JvmStatic
-    fun proxy(context: Context): Intent = getIntentForStartLocation(context, StartLocation.PROXY)
+    fun proxy(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.DataAndStorageRoute.Proxy)
 
     @JvmStatic
-    fun notifications(context: Context): Intent = getIntentForStartLocation(context, StartLocation.NOTIFICATIONS)
+    fun notifications(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.NotificationsRoute.Notifications)
 
     @JvmStatic
-    fun changeNumber(context: Context): Intent = getIntentForStartLocation(context, StartLocation.CHANGE_NUMBER)
+    fun changeNumber(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.ChangeNumberRoute.Start)
 
     @JvmStatic
-    fun subscriptions(context: Context): Intent = getIntentForStartLocation(context, StartLocation.SUBSCRIPTIONS)
+    fun subscriptions(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.DonationsRoute.Donations(directToCheckoutType = InAppPaymentType.RECURRING_DONATION))
 
     @JvmStatic
-    fun boost(context: Context): Intent = getIntentForStartLocation(context, StartLocation.BOOST)
+    fun boost(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.DonationsRoute.Donations(directToCheckoutType = InAppPaymentType.ONE_TIME_DONATION))
 
     @JvmStatic
-    fun manageSubscriptions(context: Context): Intent = getIntentForStartLocation(context, StartLocation.MANAGE_SUBSCRIPTIONS)
+    fun manageSubscriptions(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.DonationsRoute.Donations())
 
-    fun manageStorage(context: Context): Intent = getIntentForStartLocation(context, StartLocation.MANAGE_STORAGE)
-
-    @JvmStatic
-    fun notificationProfiles(context: Context): Intent = getIntentForStartLocation(context, StartLocation.NOTIFICATION_PROFILES)
+    fun manageStorage(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.DataAndStorageRoute.DataAndStorage)
 
     @JvmStatic
-    fun createNotificationProfile(context: Context): Intent = getIntentForStartLocation(context, StartLocation.CREATE_NOTIFICATION_PROFILE)
+    fun notificationProfiles(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.NotificationsRoute.NotificationProfiles)
 
     @JvmStatic
-    fun privacy(context: Context): Intent = getIntentForStartLocation(context, StartLocation.PRIVACY)
+    fun createNotificationProfile(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.NotificationsRoute.EditProfile())
+
+    @JvmStatic
+    fun privacy(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.PrivacyRoute.Privacy)
 
     @JvmStatic
     fun notificationProfileDetails(context: Context, profileId: Long): Intent {
-      val arguments = EditNotificationProfileScheduleFragmentArgs.Builder(profileId, false)
-        .build()
-        .toBundle()
-
-      return getIntentForStartLocation(context, StartLocation.NOTIFICATION_PROFILE_DETAILS)
-        .putExtra(START_ARGUMENTS, arguments)
+      return getIntentForStartLocation(context, AppSettingsRoute.NotificationsRoute.ProfileDetails(profileId = profileId))
     }
 
     @JvmStatic
-    fun linkedDevices(context: Context): Intent = getIntentForStartLocation(context, StartLocation.LINKED_DEVICES)
+    fun linkedDevices(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.LinkDeviceRoute.LinkDevice)
 
     @JvmStatic
-    fun usernameLinkSettings(context: Context): Intent = getIntentForStartLocation(context, StartLocation.USERNAME_LINK)
+    fun usernameLinkSettings(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.UsernameLinkRoute.UsernameLink)
 
     @JvmStatic
-    fun usernameRecovery(context: Context): Intent = getIntentForStartLocation(context, StartLocation.RECOVER_USERNAME)
+    fun usernameRecovery(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.AccountRoute.Username(mode = UsernameEditMode.RECOVERY))
 
     @JvmStatic
-    fun remoteBackups(context: Context): Intent = getIntentForStartLocation(context, StartLocation.REMOTE_BACKUPS)
+    fun remoteBackups(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.BackupsRoute.Remote())
 
     @JvmStatic
-    fun chatFolders(context: Context): Intent = getIntentForStartLocation(context, StartLocation.CHAT_FOLDERS)
+    fun chatFolders(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.ChatFoldersRoute.ChatFolders)
 
     @JvmStatic
     fun createChatFolder(context: Context, id: Long = -1, threadIds: LongArray?): Intent {
-      val arguments = CreateFoldersFragmentArgs.Builder(id, threadIds ?: longArrayOf())
-        .build()
-        .toBundle()
-
-      return getIntentForStartLocation(context, StartLocation.CREATE_CHAT_FOLDER).putExtra(START_ARGUMENTS, arguments)
+      return getIntentForStartLocation(
+        context,
+        AppSettingsRoute.ChatFoldersRoute.CreateChatFolders(
+          folderId = id,
+          threadIds = threadIds ?: longArrayOf()
+        )
+      )
     }
 
     @JvmStatic
-    fun backupsSettings(context: Context): Intent = getIntentForStartLocation(context, StartLocation.BACKUPS_SETTINGS)
+    fun backupsSettings(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.BackupsRoute.Backups)
 
     @JvmStatic
-    fun invite(context: Context): Intent = getIntentForStartLocation(context, StartLocation.INVITE)
+    fun invite(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.Invite)
 
-    private fun getIntentForStartLocation(context: Context, startLocation: StartLocation): Intent {
+    private fun getIntentForStartLocation(context: Context, startRoute: AppSettingsRoute): Intent {
       return Intent(context, AppSettingsActivity::class.java)
         .putExtra(ARG_NAV_GRAPH, R.navigation.app_settings_with_change_number)
-        .putExtra(START_LOCATION, startLocation.code)
-    }
-  }
-
-  private enum class StartLocation(val code: Int) {
-    HOME(0),
-    BACKUPS(1),
-    HELP(2),
-    PROXY(3),
-    NOTIFICATIONS(4),
-    CHANGE_NUMBER(5),
-    SUBSCRIPTIONS(6),
-    BOOST(7),
-    MANAGE_SUBSCRIPTIONS(8),
-    NOTIFICATION_PROFILES(9),
-    CREATE_NOTIFICATION_PROFILE(10),
-    NOTIFICATION_PROFILE_DETAILS(11),
-    PRIVACY(12),
-    LINKED_DEVICES(13),
-    USERNAME_LINK(14),
-    RECOVER_USERNAME(15),
-    REMOTE_BACKUPS(16),
-    CHAT_FOLDERS(17),
-    CREATE_CHAT_FOLDER(18),
-    BACKUPS_SETTINGS(19),
-    INVITE(20),
-    MANAGE_STORAGE(21);
-
-    companion object {
-      fun fromCode(code: Int?): StartLocation {
-        return entries.find { code == it.code } ?: HOME
-      }
+        .putExtra(START_ROUTE, startRoute)
     }
   }
 }

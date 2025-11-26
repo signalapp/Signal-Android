@@ -83,7 +83,11 @@ class SecureValueRecoveryV2(
       DeleteResponse.Success
     } catch (e: NonSuccessfulResponseCodeException) {
       Log.w(TAG, "[Delete] Failed with a non-successful response code exception!", e)
-      DeleteResponse.ApplicationError(e)
+      if (e.code == 404) {
+        DeleteResponse.EnclaveNotFound
+      } else {
+        DeleteResponse.ApplicationError(e)
+      }
     } catch (e: IOException) {
       Log.w(TAG, "[Delete] Failed with a network exception!", e)
       DeleteResponse.NetworkError(e)
@@ -149,7 +153,11 @@ class SecureValueRecoveryV2(
       }
     } catch (e: NonSuccessfulResponseCodeException) {
       Log.w(TAG, "[Restore] Failed with a non-successful response code exception!", e)
-      RestoreResponse.ApplicationError(e)
+      if (e.code == 404) {
+        RestoreResponse.EnclaveNotFound
+      } else {
+        RestoreResponse.ApplicationError(e)
+      }
     } catch (e: IOException) {
       Log.w(TAG, "[Restore] Failed with a network exception!", e)
       RestoreResponse.NetworkError(e)
@@ -212,7 +220,11 @@ class SecureValueRecoveryV2(
         }
       } catch (e: NonSuccessfulResponseCodeException) {
         Log.w(TAG, "[Set] Failed with a non-successful response code exception!", e)
-        BackupResponse.ApplicationError(e)
+        if (e.code == 404) {
+          BackupResponse.EnclaveNotFound
+        } else {
+          BackupResponse.ApplicationError(e)
+        }
       } catch (e: IOException) {
         Log.w(TAG, "[Set] Failed with a network exception!", e)
         BackupResponse.NetworkError(e)

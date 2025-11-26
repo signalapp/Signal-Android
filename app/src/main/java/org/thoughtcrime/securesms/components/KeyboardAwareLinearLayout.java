@@ -135,7 +135,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
     rotation = getDeviceRotation();
-    if (Build.VERSION.SDK_INT >= 23 && getRootWindowInsets() != null) {
+    if (getRootWindowInsets() != null) {
       int          bottomInset;
       WindowInsets windowInsets = getRootWindowInsets();
 

@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.components.settings.app.chats
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -12,7 +14,6 @@ import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
-import org.thoughtcrime.securesms.util.livedata.Store
 
 class ChatsSettingsViewModel @JvmOverloads constructor(
   private val repository: ChatsSettingsRepository = ChatsSettingsRepository()
@@ -20,7 +21,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
 
   private val refreshDebouncer = ThrottledDebouncer(500L)
 
-  private val store: Store<ChatsSettingsState> = Store(
+  private val store = MutableStateFlow(
     ChatsSettingsState(
       generateLinkPreviews = SignalStore.settings.isLinkPreviewsEnabled,
       useAddressBook = SignalStore.settings.isPreferSystemContactPhotos,
@@ -34,7 +35,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
     )
   )
 
-  val state: LiveData<ChatsSettingsState> = store.stateLiveData
+  val state: StateFlow<ChatsSettingsState> = store
 
   fun setGenerateLinkPreviewsEnabled(enabled: Boolean) {
     store.update { it.copy(generateLinkPreviews = enabled) }
@@ -70,7 +71,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
       val count = ChatFoldersRepository.getFolderCount()
       val backupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application)
 
-      if (store.state.localBackupsEnabled != backupsEnabled) {
+      if (store.value.localBackupsEnabled != backupsEnabled) {
         store.update {
           it.copy(
             folderCount = count,

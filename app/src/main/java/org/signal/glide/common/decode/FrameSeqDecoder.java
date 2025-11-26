@@ -20,6 +20,7 @@ import org.signal.glide.common.executor.FrameDecoderExecutor;
 import org.signal.glide.common.io.Reader;
 import org.signal.glide.common.io.Writer;
 import org.signal.glide.common.loader.Loader;
+import org.signal.glide.load.resource.apng.decode.APNGDecoder;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -238,9 +239,10 @@ public abstract class FrameSeqDecoder<R extends Reader, W extends Writer> {
         return fullRect;
     }
 
-    private void initCanvasBounds(Rect rect) {
+    private void initCanvasBounds(Rect rect) throws IOException {
         fullRect = rect;
-        frameBuffer = ByteBuffer.allocate((rect.width() * rect.height() / (sampleSize * sampleSize) + 1) * 4);
+        int capacity = APNGDecoder.getSafeAllocationSize(fullRect.width(), fullRect.height(), sampleSize);
+        frameBuffer = ByteBuffer.allocate(capacity);
         if (mWriter == null) {
             mWriter = getWriter();
         }

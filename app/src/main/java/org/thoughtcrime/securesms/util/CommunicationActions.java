@@ -229,6 +229,9 @@ public class CommunicationActions {
   public static void openBrowserLink(@NonNull Context context, @NonNull String link) {
     try {
       Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+      if (!(context instanceof Activity)) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      }
       context.startActivity(intent);
     } catch (ActivityNotFoundException e) {
       Toast.makeText(context, R.string.CommunicationActions_no_browser_found, Toast.LENGTH_SHORT).show();
@@ -449,7 +452,7 @@ public class CommunicationActions {
         startConversation(activity, recipient, null);
       } else {
         new MaterialAlertDialogBuilder(activity)
-            .setMessage(activity.getString(R.string.NewConversationActivity__s_is_not_a_signal_user, e164))
+            .setMessage(activity.getString(R.string.RecipientLookup_error__s_is_not_a_signal_user, e164))
             .setPositiveButton(android.R.string.ok, null)
             .show();
       }

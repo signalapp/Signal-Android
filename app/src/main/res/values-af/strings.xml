@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Neem betalingherwinningsfrase op</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Neem frase op</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Voor jy jou PIN kan deaktiveer moet jy jou betalingsherwinfrase opneem om te verseker dat jy jou betalingsrekening kan herwin.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Skep \'n nuwe herwinsleutel</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Jy moet \'n nuwe herwinsleutel skep en aanteken voordat jy jou PIN kan deaktiveer.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Skep sleutel</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">Lêer</string>
     <string name="AttachmentKeyboard_contact">Kontak</string>
     <string name="AttachmentKeyboard_location">Ligging</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">Meningsopname</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal benodig toestemming om jou foto\'s en videos te wys</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Gee toegang</string>
@@ -552,15 +560,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">Kan nie stemboodskap tydens oproep opneem nie.</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Stuur tans geformateerde teks</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Sommige mense gebruik dalk \'n weergawe van Signal wat nie geformateerde teks ondersteun nie. Hulle sal nie die formateringveranderings kan sien wat jy aan jou boodskap gemaak het nie.</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">Stuur in elk geval</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">Kanselleer</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%1$d ongeleesde boodskap</item>
@@ -870,12 +869,10 @@
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__you_are_all_set">Jy is gereed. Begin jou rugsteun nou.</string>
-    <!-- Bottom sheet message -->
+    <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Na gelang van die grootte van jou rugsteun kan dit lank neem. Jy kan jou foon soos gewoonlik gebruik terwyl die rugsteun plaasvind.</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Rugsteun later</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">Rugsteun nou</string>
+    <!-- Bottom sheet free message -->
+    <string name="CreateBackupBottomSheet__free_tier">Media word by jou rugsteun gevoeg soos jy boodskappe stuur en ontvang.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Kan nie media herstel nie</string>
@@ -1138,6 +1135,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">Dra boodskapgeskiedenis oor</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Dra jou teksboodskappe en jou laaste 45 dae se media oor</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Dra jou teksboodskappe en media oor</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Moenie oordra nie</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1175,6 +1174,9 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Hierdie weergawe van Signal het verval. Werk dit nou by om boodskappe te kan stuur en ontvang</string>
     <string name="ExpiredBuildReminder_update_now">Werk nou by</string>
+
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal werk nie meer op hierdie toestel nie. Om Signal weer te gebruik, opdateer jou toestel met \'n nuwer weergawe van Android of skakel oor na \'n nuwer toestel.</string>
 
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Werk Signal by</string>
@@ -1392,11 +1394,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Klaar</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Hierdie persoon kan nie by legaatgroepe gevoeg word nie.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Voeg \"%1$s\" by \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Voeg \"%1$s\" by “%2$s” by?</item>
-        <item quantity="other">Voeg %3$d lede by “%2$s” by?</item>
+        <item quantity="one">Voeg \"{2}\" by “%2$s” by?</item>
+        <item quantity="other">Voeg %1$d lede by “%2$s” by?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Voeg toe</string>
     <string name="AddMembersActivity__add_members">Voeg lede toe</string>
 
@@ -1499,7 +1506,11 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Nie nou nie</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">As jy die keuse maak om dit nie nou te herstel nie, sal jy dit nie later kan doen nie. Jou media sal in die agtergrond herstel word.</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Jou media sal in die agtergrond herstel word. As jy die keuse maak om dit nie nou te herstel nie, sal jy dit nie later kan doen nie.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">Hierdie toestel is nie meer geregistreer nie</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">Dit is waarskynlik omdat jy jou Signal-rekening op \'n ander toestel geregistreer het.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Stel my in kennis van Vermeldings</string>
@@ -2114,6 +2125,12 @@
     <string name="MessageRecord_you_blocked_this_group">Jy het hierdie groep versper</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">Jy het hierdie groep ontsper</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s het vir jou \'n boodskap gestuur wat nie verwerk of vertoon kan word nie, omdat dit \'n gebruik maak van \'n nuwe Signal-funksie.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s het die meningsopname \"%2$s\" beëindig</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">Jy het die meningsopname \"%1$s\" beëindig</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Aanvaar</string>
@@ -2429,6 +2446,12 @@
     <string name="WebRtcCallActivity__to_start_call">Om \'n oproep te begin of by een aan te sluit:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">Om jou video te aktiveer:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Verklein plaaslike video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Vergroot plaaslike video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal-oproep</string>
@@ -2921,6 +2944,8 @@
     <string name="SubmitDebugLogActivity_success">Sukses!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer hierdie URL en voeg dit by jou probleemverslag of ondersteuning-e-pos:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Deel</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">Maak toe</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Hierdie log sal publiek aanlyn gepos word vir bydraers om te sien. Jy kan dit ondersoek voordat jy dit oplaai.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Wanneer jy op Dien in klik, sal jou log vir 30 dae aanlyn op \'n unieke, ongepubliseerde URL geplaas word. Jy kan dit eers plaaslik stoor.</string>
@@ -3179,6 +3204,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">Het %1$s op jou betaling gereageer.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Het %1$s op jou plakker gereageer.</string>
     <string name="MessageNotifier_this_message_was_deleted">Hierdie boodskap is geskrap.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s het gestem in die meningsopname \"%3$s\"</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Skakel kennisgewings af dat kontakte by Signal aangesluit het? Jy kan dit weer aanskakel in Signal &gt; Instellings &gt; Kennisgewings.</string>
 
@@ -3355,6 +3382,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Antwoord sonder video</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">Verander kamerarigting</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Oudio-uitset</string>
@@ -3412,9 +3442,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" is nie \'n Signal-gebruiker nie. Kontroleer asb. die gebruikersnaam en probeer weer."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Jy hoef nie jouself by die groep te voeg nie</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimum groepgrootte bereik.</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-groepe kan \'n maksimum van %1$d lede hê.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal-groepe kan \'n maksimum van %1$s lede hê.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Aanbevole ledebeperking is bereik</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-groepe werk die beste met %1$d of minder lede. Byvoeging van nog lede sal vertraging in die stuur en ontvang van boodskappe veroorsaak.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal-groepe werk die beste met %1$s of minder lede. Byvoeging van nog lede sal vertraging in die stuur en ontvang van boodskappe veroorsaak.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d lid</item>
         <item quantity="other">%1$d lede</item>
@@ -4424,6 +4454,8 @@
     <string name="conversation_selection__menu_multi_select">Kies</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Betalingsbesonderhede</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">Beëindig meningsopname</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4813,7 +4845,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">Inligting</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Hierdie is \'n beta-kenmerk waarby ons deurlopend funksionaliteit sal voeg.</string>
+    <string name="Beta__this_is_beta">Dit is \'n beta-kenmerk en sal mettertyd verbeter word.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Ontsluit Signal</string>
@@ -4977,6 +5009,14 @@
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Kies \"Dra oor van Android-toestel af\" wanneer jy gevra word, en dan, \"Gaan voort\". Hou die toestelle naby mekaar."</string>
     <string name="OldDeviceTransferInstructions__continue">Gaan voort</string>
+    <!-- Title for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">Stop oordrag van toestel?</string>
+    <!-- Message for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">Geen data is na jou nuwe toestel oorgedra nie.</string>
+    <!-- Confirm button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__stop_transfer">Stop oordrag</string>
+    <!-- Negative/cancel button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__continue_transfer">Gaan voort met oordrag</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Gaan na jou nuwe toestel</string>
@@ -5168,10 +5208,14 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Slaan oor</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d lid</item>
-        <item quantity="other">%1$d lede</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$s lid</item>
+        <item quantity="other">%1$s lede</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">Volgende</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Deel</string>
@@ -5364,7 +5408,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Hernu jou Signal-rugsteunintekening</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Hernu jou intekening op Signal se Veilige Rugsteun</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Kon nie rugsteun voltooi nie</string>
     <!-- String alerting user that backup redemption -->
@@ -5893,24 +5937,24 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s is versper</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Versperring het misluk</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Kan nie %1$s verwyder nie</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Hierdie persoon is in jou toestel se kontakte gestoor. Skrap hulle uit jou kontakte en probeer weer.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Bekyk kontak</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s is nie \'n Signal-gebruiker nie</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s is nie \'n Signal-gebruiker nie</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s is nie \'n Signal-gebruiker nie</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Maak kieslys oop</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s is nie \'n Signal-gebruiker nie</item>
         <item quantity="other">%1$s is nie Signal-gebruikers nie</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Soek vir naam of nommer</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Naam, gebruikersnaam of nommer</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Skakel oor na numeriese sleutelbord</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Skakel oor na alfanumeriese sleutelbord</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Stel soekfilter terug</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6076,7 +6120,6 @@
     <string name="BadgesOverviewFragment__featured_badge">Vertoonwapen</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Vertoon wapens op profiel</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Kon nie profiel bywerk nie</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Kies ’n wapen</string>
@@ -7613,15 +7656,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Wysigingsgeskiedenis</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Wysig boodskap</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Indien jy \'n boodskap wysig, sal dit slegs sigbaar wees vir mense wat op die jongste weergawes van Signal is. Hulle sal kan sien dat jy \'n boodskap gewysig het.</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Kanselleer</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Stuur</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -7738,25 +7772,29 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Weier almal</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Skakel Signal-rugsteun aan</string>
+    <string name="TurnOnSignalBackups__title">Skakel Signal se Veilige Rugsteun aan</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Probeer Signal se Veilige Rugsteun</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Moet nooit \'n boodskap verloor wanneer jy \'n nuwe foon kry of Signal herinstalleer nie.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Skakel aan</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Nie nou nie</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">Jy kan rugsteun in \"Instellings\" aktiveer</string>
 
-    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">Verifieer jou rugsteunsleutel</string>
-    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">Om jou te help om jou sleutel te onthou, sal ons jou af en toe daarvoor vra.</string>
-    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">Verifieer jou herwinsleutel</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">Ons sal jou af en toe vra om jou sleutel te verifieer om seker te maak jy onthou dit</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
     <string name="VerifyBackupKey__verify">Verifieer</string>
-    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">Nie nou nie</string>
-    <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Rugsteunsleutel korrek. Hou jou sleutel veilig.</string>
-    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">Herwinsleutel korrek. Hou jou sleutel veilig.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Ons sal jou weer oor \'n week vra.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -7902,7 +7940,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Jou intekening kon nie met jou betalingsmetode hernu word nie. Om voort te gaan met die rugsteun van media het jy \'n aktiewe intekening nodig.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Jy sal steeds toegang tot die gratis Signal-rugsteunplan hê.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Jy sal steeds toegang tot die gratis Signal se Veilige Rugsteun-plan hê.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Kon nie rugsteun voltooi nie</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7970,6 +8008,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Stel %1$s stoorruimte beskikbaar om jou media af te laai.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Besig om media te herstel</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">Besig om mediaherwinning te kanselleer</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">Mediaherstel is onderbreek</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8015,6 +8055,12 @@
     <string name="BackupStatusRow__your_last_backup">Jou laaste rugsteun kon nie voltooi word nie. Maak seker dat jou telefoon aan wi-fi gekoppel is en tik op \"Rugsteun nou\" om weer te probeer.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Jou laaste rugsteun kon nie voltooi word nie. Maak seker dat jy die jongste weergawe van Signal gebruik en probeer weer.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">Die getal boodskappe wat jy het, oorskry die stoorruimte-beperking. Skrap van die boodskappe en probeer weer.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Boodskappe wat voor %1$s gestuur of ontvang is, word nie gerugsteun nie.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Jou rugsteun kon nie voltooi word nie, want jy het min stoorruimte oor. Maak stoorruimte op jou toestel beskikbaar en probeer weer.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Vind meer uit</string>
 
@@ -8045,6 +8091,32 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Verander of kanselleer intekening</string>
 
+    <!-- GooglePlayServicesAvailability -->
+    <!-- Dialog title when Google Play services are missing from the device -->
+    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play-dienste ontbreek</string>
+    <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
+    <string name="GooglePlayServicesAvailability__service_missing_message">Om op Signal Veilige Rugsteun in te teken, moet jy Google Play-dienste op jou foon installeer.</string>
+    <!-- Dialog button text to install Google Play services -->
+    <string name="GooglePlayServicesAvailability__install_play_services">Installeer Play-dienste</string>
+    <!-- Dialog title when Google Play services are currently updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play-dienste opdateer tans</string>
+    <!-- Dialog message asking user to wait while Google Play services finish updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_message">Om op Signal Veilige Rugsteun in te teken, wag asseblief vir Google Play-dienste om klaar te opdateer.</string>
+    <!-- Dialog title when Google Play services need to be updated -->
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Opdateer Google Play-dienste</string>
+    <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
+    <string name="GooglePlayServicesAvailability__service_update_required_message">Om op Signal Veilige Rugsteun in te teken, moet jy Google Play-dienste op jou foon opdateer.</string>
+    <!-- Dialog button text to update Google Play services -->
+    <string name="GooglePlayServicesAvailability__update">Werk by</string>
+    <!-- Dialog title when Google Play services are disabled -->
+    <string name="GooglePlayServicesAvailability__service_disabled_title">Google Play is nodig vir betaalde intekeninge</string>
+    <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
+    <string name="GooglePlayServicesAvailability__service_disabled_message">Om op Signal Veilige Rugsteun in te teken, moet jy Google Play-dienste op jou foon aktiveer en by die Google Play-winkel aanmeld. </string>
+    <!-- Dialog button text to learn more about enabling Google Play services -->
+    <string name="GooglePlayServicesAvailability__learn_more">Vind meer uit</string>
+    <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
+    <string name="GooglePlayServicesAvailability__service_invalid_message">Jy kan nie op Signal Veilige Rugsteun inteken nie, want jou foon ondersteun nie Google Play-dienste nie. Kontak die foon se vervaardiger vir hulp.</string>
+
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">Kletsgetalbeperkings</string>
@@ -8065,13 +8137,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Ongebruikte media sal afgelaai word, maar kan enige tyd van jou rugsteun af teruggelaai word.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Stoorruimte-optimalisering kan slegs met die betaalde vlak van Signal-rugsteun gebruik word. Jou rugsteun-intekening word nog verwerk en is nog nie aktief nie. Probeer asseblief later weer.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Stoorruimte-optimalisering kan slegs met die betaalde vlak van Signal se Veilige Rugsteun gebruik word. Jou rugsteun-intekening word nog verwerk en is nog nie aktief nie. Probeer asseblief later weer.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Gradeer op om hierdie kenmerk te aktiveer</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Stoorruimte-optimalisering kan slegs gebruik word met die betaalde vlak van Signal-rugsteun. Gradeer jou rugsteunplan op om hierdie kenmerk te begin gebruik.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Stoorruimte-optimalisering kan slegs met die betaalde vlak van Signal se Veilige Rugsteun gebruik word. Gradeer jou rugsteunplan op om hierdie kenmerk te begin gebruik.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Teken in teen %1$s/maand</string>
 
@@ -8090,7 +8162,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Hierdie media is nie meer beskikbaar nie</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Om al jou media te begin rugsteun, aktiveer Signal-rugsteun en kies die betaalde vlak.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Om al jou media te begin rugsteun, aktiveer Signal se Veilige Rugsteun en kies die betaalde vlak.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Gaan voort</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8118,6 +8190,8 @@
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/maand, hernu %2$s</string>
+    <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
+    <string name="BackupsSettingsFragment_renews_s">Hernu %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Laaste rugsteun %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8134,8 +8208,12 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">Kanselleer oplaai</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Veilige Rugsteun</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal-rugsteun</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal se Veilige Rugsteun</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">Af</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Bevestiging word vereis</string>
     <!-- Row label to launch payment history screen -->
@@ -8147,19 +8225,28 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Rugsteungrootte</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">Besig om te bereken…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Gereeldheid van rugsteun</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Jou media en boodskappe word daagliks gerugsteun.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Rugsteun met behulp van mobiele data</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">Sien rugsteunsleutel</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Ontsluit om rugsteunsleutel te sien</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Bekyk herwinsleutel</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Ontsluit toestel om herwinsleutel te bekyk</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">Om jou sleutel te bekyk, bevestig dat dit jy is</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Skakel rugsteun af en skrap dit</string>
+    <!-- Dialog title for explainer text to on how backup size works for free tier -->
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Rugsteungrootte</string>
+    <!-- Dialog message for explainer text to on how backup size works for free tier -->
+    <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
+        <item quantity="one">Jou rugsteun sluit al jou teksboodskappe en jou laaste %1$d dag se media in. Die grootte sal verander soos nuwe media ontvang word en ou media verval.</item>
+        <item quantity="other">Jou rugsteun sluit al jou teksboodskappe en jou laaste %1$d dae se media in. Die grootte sal verander soos nuwe media ontvang word en ou media verval.</item>
+    </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Rugsteun geskrap en afgeskakel.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
@@ -8171,7 +8258,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Rugsteun sal oornag geskep word.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Nuwe rugsteunsleutel geskep</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Nuwe herwinsleutel geskep</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Intekening onaktief</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8249,11 +8336,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Na gelang van die grootte van jou rugsteun kan dit lank neem. Jy kan jou foon soos gewoonlik gebruik terwyl die aflaai plaasvind.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Jou intekening is nie op hierdie toestel gevind nie. Hernu om voort te gaan om Signal-rugsteun te gebruik.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Jou intekening is nie op hierdie toestel gevind nie. Hernu om voort te gaan om Signal se Veilige Rugsteun te gebruik.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Jou intekening op hierdie toestel is geldig vir die volgende %1$d dag. Hernu dit om voort te gaan om Signal-rugsteun te gebruik</item>
-        <item quantity="other">Jou intekening op hierdie toestel is geldig vir die volgende %1$d dae. Hernu dit om voort te gaan om Signal-rugsteun te gebruik</item>
+        <item quantity="one">Jou intekening op hierdie toestel is geldig vir die volgende %1$d dag. Hernu dit om voort te gaan om Signal se Veilige Rugsteun te gebruik</item>
+        <item quantity="other">Jou intekening op hierdie toestel is geldig vir die volgende %1$d dae. Hernu dit om voort te gaan om Signal se Veilige Rugsteun te gebruik</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Herintekening</string>
@@ -8303,6 +8390,8 @@
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">\'n Netwerkfout het voorgekom. Gaan asseblief jou internetverbinding na en probeer weer.</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Besig om op te laai: %1$s van %2$s (%3$d%%)</string>
+    <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Besig om op te laai: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Besonderhede</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8376,36 +8465,38 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Jou rugsteunsleutel</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Herwinsleutel</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Jou rugsteunsleutel is \'n 64-karakter-kode wat jou toelaat om jou rugsteun te herstel wanneer jy Signal herinstalleer.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Jou herwinsleutel is \'n 64-karakter-kode wat jy nodig het om jou rugsteun te herstel.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">As jy jou sleutel vergeet, sal jy nie jou rugsteun kan herstel nie. Signal kan jou nie help om jou rugsteun te herstel nie.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Bêre jou herwinsleutel êrens veilig soos \'n veilige wagwoordbestuurstelsel, en moet dit nie met enigiemand deel nie.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">As jy dit verloor, sal jy nie jou boodskappe kan herwin nie.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Volgende</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Bekyk herwinsleutel</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Maak \'n aantekening van jou rugsteunsleutel</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Maak \'n aantekening van jou herwinsleutel</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Hierdie sleutel is nodig om jou rekening en data te herstel. Bewaar hierdie sleutel iewers waar dit veilig is. As jy dit verloor, sal jy nie jou rekening kan herstel nie.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopieer na knipbord</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Stoor in wagwoordbestuurstelsel</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Stoor in wagwoordbestuurstelsel?</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Stoor slegs jou rugsteunsleutel in \'n wagwoordbestuurstelsel wat jy kan vertrou dat dit veilig is. Signal maak nie \'n aanbeveling oor watter wagwoordbestuurstelsel die regte een vir jou is nie.</string>
-    <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal-rugsteun</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Stoor slegs jou herwinsleutel in \'n wagwoordbestuurstelsel wat jy kan vertrou dat dit veilig is. Signal maak nie \'n aanbeveling oor watter wagwoordbestuurstelsel die regte een vir jou is nie.</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal se Veilige Rugsteun</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">In wagwoordbestuurstelsel gestoor</string>
-    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Kan nie in wagwoordbestuurstelsel stoor nie</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Jy het nie \'n wagwoordbestuurstelsel opgestel nie, of die wagwoordbestuurstelsel wat jy gebruik, word nie ondersteun nie.</string>
-    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
     <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Jy het voorheen die keuse gemaak om nie Signal-wagwoorde in Google se Wagwoordbestuurstelsel te stoor nie. Verwyder Signal uit \"Geweierde webwerwe en toepassings\" in jou instellings vir Google se Wagwoordbestuurstelsel en probeer weer.</string>
     <!-- Label for a button that navigates to the device settings -->
     <string name="MessageBackupsKeyRecordScreen__go_to_settings">Gaan na instellings</string>
@@ -8426,42 +8517,48 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">Laai media af</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Om \'n nuwe rugsteunsleutel te skep, moet jy \"Optimaliseer stoorruimte\" afskakel en wag totdat jou media afgelaai is. Wanneer die aflaai voltooi is, kan jy \'n nuwe sleutel skep.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Om \'n nuwe herwinsleutel te skep, moet jy \"Optimaliseer stoorruimte\" afskakel en wag totdat jou media afgelaai is. Wanneer die aflaai voltooi is, kan jy \'n nuwe sleutel skep.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Skakel af en laai af</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Skep \'n nuwe rugsteunsleutel</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Skep \'n nuwe herwinsleutel</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Dis slegs nodig om \'n nuwe sleutel te skep as iemand anders jou sleutel ken. Jy sal weer jou rugsteun moet oplaai, met inbegrip van media. As jy \"Optimaliseer stoorruimte\" gebruik, sal jy eers verwyderde media moet aflaai.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Verlaat rugsteunopstelling?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Jy het nog nie die opstelling van rugsteun voltooi nie, en geen rugsteun is geskep nie. Jy kan rugsteun in Instellings aktiveer.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Verlaat rugsteunopstelling</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Kanselleer skep van sleutel?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Jou nuwe rugsteunsleutel sal nie geskep word tensy jy dit bevestig nie.</string>
-    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Jou nuwe herwinsleutel sal nie geskep word tensy jy dit bevestig nie.</string>
+    <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">Bevestig sleutel</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">Kanselleer skep van sleutel</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Bevestig jou rugsteunsleutel</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Bevestig jou herwinsleutel</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Voer die rugsteunsleutel in wat jy pas aangeteken het</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Voer die herwinsleutel in wat jy pas aangeteken het</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Rugsteunsleutel</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Herwinsleutel</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Verkeerde rugsteunsleutel</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Verkeerde herwinsleutel</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Wys sleutel weer</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Volgende</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">Voer jou rugsteunsleutel in</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Voer jou herwinsleutel in</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Voer die 64-syferkode in wat jy aangeteken het toe jy rugsteun geaktiveer het.</string>
-    <!-- Button text when you forget your backup key -->
+    <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Sleutel vergeet?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
@@ -8479,10 +8576,14 @@
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Teken in teen %1$s/maand</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Verander rugsteuntipe</string>
+    <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">Meer oor hierdie plan</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Kanselleer Intekening</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Gratis</string>
+    <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
+    <string name="MessageBackupsTypeSelectionScreen__paid">Betaal</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/maand</string>
     <!-- Title for free tier -->
@@ -8507,6 +8608,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">Huidige plan</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Kan nie plan opgradeer nie</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Om op Signal Veilige Rugsteun in te teken, moet Google-dienste op jou foon geaktiveer wees en moet jy by die Google Play-winkel aangemeld wees.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8537,9 +8642,9 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Herwin of dra rekening oor</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Kry jou Signal-rekening en boodskapgeskiedenis op hierdie toestel.</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Vanaf Signal-rugsteun</string>
-    <!-- Option subtitle for restoring via signal backups -->
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Van Signal se Veilige Rugsteun</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Jou gratis of betaalde Signal-rugsteunplan</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">Vanaf \'n rugsteunvouer</string>
@@ -8551,46 +8656,56 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Vanaf jou ou foon</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Dra direk vanaf jou ou Android oor</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Slaan herstel oor?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">As jy nou herwinning oorslaan, sal jy nie later herwinning kan doen nie. As jy rugsteun weer aktiveer nadat jy herwinning oorgeslaan het, sal jou huidige rugsteun deur jou nuwe boodskapgeskiedenis vervang word.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Slaan herstel oor</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Herwin plaaslike rugsteun</string>
     <!-- Screen subtitle for restore via local backup -->
     <string name="RestoreLocalBackup_subtitle">Herwin jou boodskappe van \'n rugsteun wat jy op jou toestel gestoor het. As jy dit nie nou herwin nie, sal jy dit nie later kan herwin nie.</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Voer jou rugsteunsleutel in</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Jou rugsteunsleutel is \'n 64-syfer-kode wat nodig is om jou rekening en data te herwin.</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Geen rugsteunsleutel nie?</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Rugsteunsleutel</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Rugsteun kan nie sonder die 64-karakter-herwinningskode herwin word nie. As jy jou rugsteunsleutel verloor het, kan Signal jou nie help om jou rugsteun te herstel nie.</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Indien jy jou ou toestel het, kan jy jou rugsteunsleutel in Instellings &gt; Signal-rugsteun sien. Tik dan op Bekyk rugsteunsleutel.</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">Voer jou herwinsleutel in</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">Jou herwinsleutel is \'n 64-syfer-kode wat nodig is om jou rekening en data te herwin.</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">Geen herwinsleutel nie?</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">Herwinsleutel</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">Rugsteun kan nie sonder die 64-karakter-herwinningskode herwin word nie. As jy jou herwinsleutel verloor het, kan Signal jou nie help om jou rugsteun te herstel nie.</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">Indien jy jou ou toestel het, kan jy jou rugsteunsleutel in Instellings &gt; Rugsteun bekyk. Tik dan op Bekyk herwinsleutel.</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Vind meer uit</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Slaan oor en moenie herwin nie</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Verkeerde rugsteunsleutel</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Verkeerde herwinsleutel</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Maak seker jy registreer met dieselfde telefoonnommer en 64-karakter-rugsteunsleutel wat jy gestoor het toe jy Signal-rugsteun geaktiveer het. Rugsteun kan nie sonder hierdie sleutel herwin word nie.</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Maak seker jy registreer met dieselfde telefoonnommer en 64-karakter-herwinsleutel wat jy gestoor het toe jy Signal se Veilige Rugsteun geaktiveer het. Rugsteun kan nie sonder hierdie sleutel herwin word nie.</string>
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Probeer weer</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">Hulp met rugsteunsleutel</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Verkeerde rugsteunsleutel</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">Hulp met herwinsleutel</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">Verkeerde herwinsleutel</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">Te lank (%1$d/%2$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Ongeldige rugsteunsleutel</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">Ongeldige herwinsleutel</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Rugsteun nie gevind nie</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Die rugsteunsleutel wat jy ingevoer het is korrek, maar daar is geen rugsteun daarmee geassosieer nie. As jy nog jou ou foon het, maak seker dat rugsteune geaktiveer is, dat \'n rugsteun voltooi is en probeer weer.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Die herwinsleutel wat jy ingevoer het is korrek, maar daar is geen rugsteun daarmee geassosieer nie. As jy nog jou ou foon het, maak seker dat rugsteune geaktiveer is, dat \'n rugsteun voltooi is en probeer weer.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Jy het dalk jou herwinsleutel verkeerd ingevoer, of jy het nie minstens een rugsteun op jou ou toestel voltooi nie.\n\nMaak seker jy registreer met dieselfde telefoonnommer en herwinsleutel wat jy gestoor het toe jy Signal se Veilige Rugsteun geaktiveer het, en bevestig dat jou ou toestel \'n rugsteun voltooi het.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Jy het nie meer herwinsleutelpogings oor nie. Vir jou veiligheid word die getal pogings wat jy toegelaat word, beperk. Wag vir \'n uur en probeer weer.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Slaan herstel oor</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8656,9 +8771,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">Gaan voort om jou rekening na jou ander toestel oor te dra.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Herstel vanaf rugsteun voltooi</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">Voltooi op jou ander toestel</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Daar is begin om jou Signal-rekening en boodskappe na jou ander toestel oor te dra. Signal is nou onaktief op hierdie toestel.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Jou Signal-rekening en boodskappe is gereed om op jou ander toestel herstel te word. Signal is nou onaktief op hierdie toestel.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">Oordrag voltooi</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
@@ -8669,7 +8784,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">Geen rugsteun om te herstel nie</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Omdat jy van iPhone na Android oorgaan, is die enigste manier om jou boodskappe en media oor te dra deur Signal-rugsteun op jou ou toestel te aktiveer.</string>
+    <string name="NoBackupToRestore_subtitle">Omdat jy van iPhone na Android oorgaan, is die enigste manier om jou boodskappe en media oor te dra deur Signal se Veilige Rugsteun op jou ou toestel te aktiveer.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Maak Signal op jou ou toestel oop</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
@@ -8679,6 +8794,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Slaan herstel oor</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Herwinsleutel-limiet bereik</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Jy het suksesvol \'n nuwe herwinsleutel geskep, maar om misbruik te voorkom, is die getal nuwe sleutels wat jy kan skep beperk. Jy sal vir 7 dae nie \'n ander sleutel kan skep nie. Bêre jou herwinsleutel op ’n veilige en beveiligde plek.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Kan nie nuwe sleutel skep nie</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Jy het die maksimum aantal nuwe sleutels wat jy kan skep bereik. Jy sal binne 7 dae \'n nuwe herwinsleutel kan skep. As jy dink dat iemand dalk toegang tot jou rugsteun het, kan jy \"Skakel af en skrap rugsteun\" kies.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">Goed</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Sluit soektog</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8718,6 +8843,151 @@
         <item quantity="one">Jy het %1$d dag laas \'n rugsteun gedoen. Skep nou \'n rugsteun.</item>
         <item quantity="other">Jy het %1$d dae laas \'n rugsteun gedoen. Skep nou \'n rugsteun.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">Meningsopname · Kies een</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">Meningsopname · Kies een of meer</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">Meningsopname · Finale resultate</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">Geen stemme nie</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">Besigtig stemme</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">Besigtig meningsopname</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">Meningsopname nie gevind nie</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">Besigtig resultate</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">Meningsopname: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s het die meningsopname \"%2$s\" beëindig</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">Jy het die meningsopname \"%1$s\" beëindig</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s het gestem in die meningsopname: \"%2$s\"</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">Meningsopnames</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">Resultate van meningsopname</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">Besonderhede van meningsopname</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">Vraag</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="one">%1$d stem</item>
+        <item quantity="other">%1$d stemme</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">Wenner</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">Beëindig meningsopname</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">Sien almal</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">Kon nie meningsopname beëindig nie</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">Gaan jou verbinding na en probeer weer.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">Beëindig meningsopname?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">Groeplede sal nie meer in hierdie meningsopname kan stem nie.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">Wag tans vir netwerk…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">Nuwe meningsopname</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">Vraag</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">Vra \'n vraag</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">Opsies</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">Opsie %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">Sleep-en-neerlaat-handvatsel</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">Laat veelvuldige stemme toe</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">Voeg \'n vraag en minstens twee opsies by</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">Voeg minstens twee opsies by</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">Voeg \'n vraag by</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">Oudioprobleem</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">Videoprobleem</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">Oproep is afgesny</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">Iets anders</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">Oudio het gestotter</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">Oudio het uitgesny</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">Ek het \'n eggo gehoor</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">Ander het \'n eggo gehoor</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">Swak videokwaliteit</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">Lae resolusie</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">Kamera het nie gewerk nie</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">Iets anders</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Beskryf jou probleem</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Sluit asseblief enige besonderhede in wat met die probleem verband hou. Enigiets wat jy hier deel, sal privaat gehou word en sal slegs gebruik word om oproepe in Signal te help verbeter.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">Stoor</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">Terug</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">Hoe was jou oproep?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Dit help ons om oproepe in Signal te verbeter. Geen persoonlik identifiseerbare inligting sal gestoor word nie.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">Het probleme ondervind</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">Baie goed</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">Watter probleme het jy ondervind?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">Kies alles wat van toepassing is</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">Beskryf jou probleem</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">Gaan voort</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">Help ons om te verbeter</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">As jy jou diagnostiese inligting aan ons stuur, help dit ons om oproepkwaliteit te verbeter. Jy kan </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">jou ontfout-log besigtig</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> voordat jy dit indien</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">Deel ontfout-log</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">Ontfout-logs bevat laevlak-toepassingsinligting en maak niks van jou boodskapinhoud bekend nie.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">Dien in</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">Dankie vir jou terugvoer!</string>
 
     <!-- EOF -->
 </resources>

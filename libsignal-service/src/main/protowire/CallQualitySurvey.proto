@@ -1,0 +1,25 @@
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+syntax = "proto3";
+
+option java_package        = "org.signal.storageservice.protos.calls.quality";
+option java_multiple_files = true;
+
+message SubmitCallQualitySurveyRequest {
+  optional bool   user_satisfied                = 1;
+  repeated string call_quality_issues           = 2;
+  optional string additional_issues_description = 3;
+  optional string debug_log_url                 = 4;
+  optional int64  start_timestamp               = 5;
+  optional int64  end_timestamp                 = 6;
+  optional string call_type                     = 7;
+  optional bool   success                       = 8;
+  optional string call_end_reason               = 9;
+  optional float  rtt_median                    = 10;
+  optional float  jitter_median                 = 11;
+  optional float  packet_loss_fraction          = 12;
+  optional bytes  call_telemetry                = 13;
+}

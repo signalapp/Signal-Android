@@ -5,8 +5,6 @@ import android.os.PowerManager;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobs.MinimalJobSpec;
 import org.thoughtcrime.securesms.util.WakeLockUtil;
@@ -30,24 +28,37 @@ class JobRunner extends Thread {
   private static long WAKE_LOCK_TIMEOUT = TimeUnit.MINUTES.toMillis(10);
 
   private final Application               application;
-  private final int                       id;
   private final JobController             jobController;
   private final Predicate<MinimalJobSpec> jobPredicate;
+  private final long                      idleTimeoutMs;
 
-  JobRunner(@NonNull Application application, int id, @NonNull JobController jobController, @NonNull Predicate<MinimalJobSpec> predicate) {
-    super("signal-JobRunner-" + id);
+  /**
+   * @param idleTimeoutMs If the runner experiences no activity within this duration, it will terminate. If set to 0, it will never terminate.
+   */
+  JobRunner(@NonNull Application application, @NonNull String name, @NonNull JobController jobController, @NonNull Predicate<MinimalJobSpec> predicate, long idleTimeoutMs) {
+    super(name);
 
     this.application   = application;
-    this.id            = id;
     this.jobController = jobController;
     this.jobPredicate  = predicate;
+    this.idleTimeoutMs = idleTimeoutMs;
   }
 
   @Override
   public synchronized void run() {
-    //noinspection InfiniteLoopStatement
+    Log.i(TAG, getName() + " started" + (idleTimeoutMs > 0 ? " with idle timeout " + idleTimeoutMs + "ms" : " with no idle timeout"));
+    
     while (true) {
-      Job        job    = jobController.pullNextEligibleJobForExecution(jobPredicate);
+      Job job = jobController.pullNextEligibleJobForExecution(jobPredicate, getName(), idleTimeoutMs);
+      if (job == null && idleTimeoutMs > 0) {
+        Log.i(TAG, getName() + " terminating due to inactivity");
+        jobController.onRunnerTerminated(this);
+        break;
+      } else if (job == null) {
+        Log.i(TAG, getName() + " unexpectedly given a null job. Going around the loop.");
+        continue;
+      }
+
       Job.Result result = run(job);
 
       jobController.onJobFinished(job);
@@ -60,7 +71,7 @@ class JobRunner extends Thread {
       } else if (result.isFailure()) {
         List<Job> dependents = jobController.onFailure(job);
         job.onFailure();
-        Stream.of(dependents).forEach(Job::onFailure);
+        dependents.stream().forEach(Job::onFailure);
 
         if (result.getException() != null) {
           throw result.getException();
@@ -73,10 +84,10 @@ class JobRunner extends Thread {
 
   private Job.Result run(@NonNull Job job) {
     long runStartTime = System.currentTimeMillis();
-    Log.i(TAG, JobLogger.format(job, String.valueOf(id), "Running job."));
+    Log.i(TAG, JobLogger.format(job, getName(), "Running job."));
 
     if (isJobExpired(job)) {
-      Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing after surpassing its lifespan."));
+      Log.w(TAG, JobLogger.format(job, getName(), "Failing after surpassing its lifespan."));
       return Job.Result.failure();
     }
 
@@ -88,14 +99,14 @@ class JobRunner extends Thread {
       result   = job.run();
 
       if (job.isCanceled()) {
-        Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing because the job was canceled."));
+        Log.w(TAG, JobLogger.format(job, getName(), "Failing because the job was canceled."));
         result = Job.Result.failure();
       }
     } catch (RuntimeException e) {
-      Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing fatally due to an unexpected runtime exception."), e);
+      Log.w(TAG, JobLogger.format(job, getName(), "Failing fatally due to an unexpected runtime exception."), e);
       return Job.Result.fatalFailure(e);
     } catch (Exception e) {
-      Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing due to an unexpected exception."), e);
+      Log.w(TAG, JobLogger.format(job, getName(), "Failing due to an unexpected exception."), e);
       return Job.Result.failure();
     } finally {
       if (wakeLock != null) {
@@ -109,7 +120,7 @@ class JobRunner extends Thread {
         job.getRunAttempt() + 1 >= job.getParameters().getMaxAttempts() &&
         job.getParameters().getMaxAttempts() != Job.Parameters.UNLIMITED)
     {
-      Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing after surpassing its max number of attempts."));
+      Log.w(TAG, JobLogger.format(job, getName(), "Failing after surpassing its max number of attempts."));
       return Job.Result.failure();
     }
 
@@ -128,11 +139,23 @@ class JobRunner extends Thread {
 
   private void printResult(@NonNull Job job, @NonNull Job.Result result, long runStartTime) {
     if (result.getException() != null) {
-      Log.e(TAG, JobLogger.format(job, String.valueOf(id), "Job failed with a fatal exception. Crash imminent."));
+      Log.e(TAG, JobLogger.format(job, getName(), "Job failed with a fatal exception. Crash imminent."));
     } else if (result.isFailure()) {
-      Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Job failed."));
+      Log.w(TAG, JobLogger.format(job, getName(), "Job failed."));
     } else {
-      Log.i(TAG, JobLogger.format(job, String.valueOf(id), "Job finished with result " + result + " in " + (System.currentTimeMillis() - runStartTime) + " ms."));
+      Log.i(TAG, JobLogger.format(job, getName(), "Job finished with result " + result + " in " + (System.currentTimeMillis() - runStartTime) + " ms."));
     }
+  }
+
+  static @NonNull String generateName(int id, boolean reserved, boolean core) {
+    if (reserved) {
+      return "JobRunner-Rsrv-" + id;
+    }
+
+    if (core) {
+      return "JobRunner-Core-" + id;
+    }
+
+    return "JobRunner-Temp-" + id;
   }
 }

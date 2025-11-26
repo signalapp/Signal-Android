@@ -46,12 +46,12 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.Emojifier
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.main.EmptyMegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones.Event
 import org.thoughtcrime.securesms.util.DynamicTheme
@@ -323,7 +323,7 @@ private fun MegaphoneImage(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BasicMegaphonePreview() {
   Previews.Preview {
@@ -334,7 +334,7 @@ private fun BasicMegaphonePreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun PopupMegaphonePreview() {
   Previews.Preview {

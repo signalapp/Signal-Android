@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentActivity
+import org.signal.core.ui.compose.Dividers
 import org.thoughtcrime.securesms.compose.ComposeFullScreenDialogFragment
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsViewModel.AttachmentInfo
@@ -143,8 +144,12 @@ private fun Content(state: ViewState) {
             .fillMaxWidth()
         )
       } else {
-        state.attachments.forEach { attachment ->
+        state.attachments.forEachIndexed { i, attachment ->
           AttachmentBlock(attachment)
+
+          if (i != state.attachments.lastIndex) {
+            Dividers.Default()
+          }
         }
       }
     }
@@ -198,6 +203,10 @@ private fun AttachmentBlock(attachment: AttachmentInfo) {
   ClickToCopyRow(
     name = "Content Type",
     value = attachment.contentType ?: "null"
+  )
+  ClickToCopyRow(
+    name = "Quote Target Content Type",
+    value = attachment.quoteTargetContentType ?: "Not a quote"
   )
   ClickToCopyRow(
     name = "Start Hash",

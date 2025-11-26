@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.service
 
+import android.app.ForegroundServiceStartNotAllowedException
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
@@ -190,6 +191,14 @@ class GenericForegroundService : Service() {
     stopSelf()
   }
 
+  private fun stop() {
+    lock.withLock {
+      allActiveMessages.clear()
+    }
+    ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
+    stopSelf()
+  }
+
   fun replaceTitle(id: Int, title: String) {
     lock.withLock {
       updateEntry(id) { oldEntry ->
@@ -236,7 +245,11 @@ class GenericForegroundService : Service() {
       if (Build.VERSION.SDK_INT >= 31 && e.message?.contains("Time limit", ignoreCase = true) == true) {
         Log.w(TAG, "Foreground service timed out, but not in onTimeout call", e)
         stopDueToTimeout()
+      } else if (Build.VERSION.SDK_INT >= 31 && e is ForegroundServiceStartNotAllowedException) {
+        Log.w(TAG, "Unable to start foreground service", e)
+        stop()
       } else {
+        Log.w(TAG, "Unhandled exception being thrown when starting a foreground service.", e)
         throw e
       }
     }

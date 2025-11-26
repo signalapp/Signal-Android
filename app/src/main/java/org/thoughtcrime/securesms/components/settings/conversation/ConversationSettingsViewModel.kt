@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
+import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -435,9 +436,7 @@ sealed class ConversationSettingsViewModel(
           internalEvents.onNext(
             ConversationSettingsEvent.AddMembersToGroup(
               groupId,
-              capacityResult.getSelectionWarning(),
-              capacityResult.getSelectionLimit(),
-              capacityResult.isAnnouncementGroup,
+              SelectionLimits(capacityResult.getSelectionWarning(), capacityResult.getSelectionLimit()),
               capacityResult.getMembersWithoutSelf()
             )
           )

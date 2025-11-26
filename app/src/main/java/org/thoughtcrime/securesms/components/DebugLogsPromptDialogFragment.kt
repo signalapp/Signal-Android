@@ -18,7 +18,6 @@ import androidx.lifecycle.Lifecycle
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment.Purpose.entries
 import org.thoughtcrime.securesms.databinding.PromptLogsBottomSheetBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -159,11 +158,7 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
   }
 
   private fun batteryOptimizationsString(): String {
-    return if (Build.VERSION.SDK_INT < 23) {
-      "N/A (API < 23)"
-    } else {
-      PowerManagerCompat.isIgnoringBatteryOptimizations(requireContext()).toString()
-    }
+    return PowerManagerCompat.isIgnoringBatteryOptimizations(requireContext()).toString()
   }
 
   private fun backgroundRestrictedString(): String {

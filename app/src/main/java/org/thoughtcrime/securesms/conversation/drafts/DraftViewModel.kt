@@ -44,6 +44,9 @@ class DraftViewModel @JvmOverloads constructor(
 
   fun cancelEphemeralVoiceNoteDraft(draft: Draft) {
     repository.deleteVoiceNoteDraftData(draft)
+    store.update {
+      saveDraftsIfChanged(it, it.copy(voiceNoteDraft = null))
+    }
   }
 
   fun deleteVoiceNoteDraft() {

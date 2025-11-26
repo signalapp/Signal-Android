@@ -26,6 +26,9 @@
     {{#if (eq "string" pluginResult.type)}}
       <p>{{pluginResult.text}}</p>
     {{/if}}
+    {{#if (eq "html" pluginResult.type)}}
+      {{{pluginResult.html}}}
+    {{/if}}
     {{> partials/suffix }}
   </body>
 </html>

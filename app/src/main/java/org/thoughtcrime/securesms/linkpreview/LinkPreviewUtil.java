@@ -62,7 +62,7 @@ public final class LinkPreviewUtil {
 
     return new Links(Stream.of(spannable.getSpans(0, spannable.length(), URLSpan.class))
                            .map(span -> new Link(span.getURL(), spannable.getSpanStart(span)))
-                           .filter(link -> LinkUtil.isValidPreviewUrl(link.getUrl()))
+                           .filter(link -> LinkUtil.isValidPreviewUrl(link.url))
                            .toList());
   }
 
@@ -180,7 +180,7 @@ public final class LinkPreviewUtil {
     private Links(@NonNull List<Link> links) {
       this.links  = links;
       this.urlSet = Stream.of(links)
-                          .map(link -> trimTrailingSlash(link.getUrl()))
+                          .map(link -> trimTrailingSlash(link.url))
                           .collect(Collectors.toSet());
     }
 

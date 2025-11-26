@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="conversation_item_selected_system_ui">@color/reactions_status_bar_shade</color>
-</resources>

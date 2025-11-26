@@ -9,7 +9,6 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.protocol.util.Pair
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.Badge.Category.Companion.fromCode
@@ -76,7 +75,7 @@ object Badges {
       "xxxhdpi" -> Pair(getBadgeImageUri(serviceBadge.sprites6[5]), "xxxhdpi")
       else -> Pair(getBadgeImageUri(serviceBadge.sprites6[3]), "xhdpi")
     }.also {
-      Log.d(TAG, "Selected badge density ${it.second()}")
+      Log.d(TAG, "Selected badge density ${it.second}")
     }
   }
 
@@ -121,8 +120,8 @@ object Badges {
       fromCode(serviceBadge.category),
       serviceBadge.name,
       serviceBadge.description,
-      uriAndDensity.first(),
-      uriAndDensity.second(),
+      uriAndDensity.first,
+      uriAndDensity.second,
       serviceBadge.expiration?.let { getTimestamp(it) } ?: 0,
       serviceBadge.isVisible,
       TimeUnit.SECONDS.toMillis(serviceBadge.duration)

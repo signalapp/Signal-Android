@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Spremi frazu za oporavak za plaćanja</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Spremi frazu</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Prije nego što onemogućite vaš PIN, morate zabilježiti frazu za oporavak plaćanja kako biste osigurali oporavak računa za plaćanje.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Stvorite novi ključ za oporavak</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Morate stvoriti i zabilježiti novi ključ za oporavak prije nego što onemogućite PIN.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Stvori novi ključ</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">Datoteka</string>
     <string name="AttachmentKeyboard_contact">Kontakt</string>
     <string name="AttachmentKeyboard_location">Lokacija</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">Anketa</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal zahtijeva dopuštenje za prikazivanje vaših fotografija i videozapisa</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Omogući pristup</string>
@@ -562,15 +570,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">Nije moguće snimiti glasovnu poruku tijekom poziva.</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Slanje oblikovanog teksta</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Neki korisnici možda koriste verziju Signala koja ne podržava oblikovani tekst. Te osobe neće moći vidjeti promjene oblikovanja koje ste unijeli u svoju poruku.</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">Svejedno pošalji</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">Poništi</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%1$d nepročitana poruka</item>
@@ -910,12 +909,10 @@
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__you_are_all_set">Sve je spremno. Započnite sigurnosno kopiranje.</string>
-    <!-- Bottom sheet message -->
+    <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Ovisno o veličini sigurnosne kopije, ovo bi moglo malo duže potrajati. Tijekom sigurnosnog kopiranja možete normalno koristiti svoj telefon.</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Sigurnosno kopiraj kasnije</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">Sigurnosno kopiraj sada</string>
+    <!-- Bottom sheet free message -->
+    <string name="CreateBackupBottomSheet__free_tier">Medijski zapisi se dodaju u vašu sigurnosnu kopiju dok šaljete i primate poruke.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Nije moguće vratiti medijske zapise</string>
@@ -1182,6 +1179,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">Prijenos povijesti poruka</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Prenesite svoje poruke i medijske zapise iz zadnjih 45 dana</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Prenesite svoje poruke i medijske zapise</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Preskoči prijenos</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1219,6 +1218,9 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Ova verzija Signala je istekla. Ažurirajte odmah da biste slali i primali poruke.</string>
     <string name="ExpiredBuildReminder_update_now">Ažuriraj sada</string>
+
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal više nije kompatibilan s ovim uređajem. Da biste ponovno koristili Signal, ažurirajte svoj uređaj na noviju verziju Androida ili prijeđite na noviji uređaj.</string>
 
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Ažuriraj Signal</string>
@@ -1468,13 +1470,18 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Gotovo</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ovu osobu nije moguće dodati u naslijeđene grupe.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Dodaj \"%1$s\" u \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Dodati %1$s u grupu „%2$s“?</item>
-        <item quantity="few">Dodati %3$d člana u grupu „%2$s“?</item>
-        <item quantity="many">Dodati %3$d članova u grupu „%2$s“?</item>
-        <item quantity="other">Dodati %3$d članova u grupu „%2$s“?</item>
+        <item quantity="one">Dodati {2} u grupu „%2$s“?</item>
+        <item quantity="few">Dodati %1$d člana u grupu „%2$s“?</item>
+        <item quantity="many">Dodati %1$d članova u grupu „%2$s“?</item>
+        <item quantity="other">Dodati %1$d članova u grupu „%2$s“?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Dodaj</string>
     <string name="AddMembersActivity__add_members">Dodaj članove</string>
 
@@ -1579,7 +1586,11 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Ne sada</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Ako sada preskočite ovaj korak, kasnije više nećete moći vratiti svoje podatke iz sigurnosne kopije. Medijski zapisi preuzimat će se u pozadini.</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Medijski zapisi preuzimat će se u pozadini. Ako sada preskočite ovaj korak, kasnije više nećete moći vratiti svoje podatke iz sigurnosne kopije.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">Ovaj uređaj više nije registriran</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">To je vjerojatno zato što ste svoj račun na Signalu registrirali na drugom uređaju.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obavijesti me samo za Spominjanja</string>
@@ -2234,6 +2245,12 @@
     <string name="MessageRecord_you_blocked_this_group">Blokirali ste ovu grupu</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">Odblokirali ste ovu grupu</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s vam je poslao poruku koja se ne može obraditi niti prikazati jer koristi novu značajku Signala.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s zatvara anketu: „%2$s“</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">Zatvorili ste anketu: „%1$s“</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Prihvati</string>
@@ -2575,6 +2592,12 @@
     <string name="WebRtcCallActivity__to_start_call">Za novi poziv ili pridruživanje pozivu:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">Za korištenje videopoziva:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal poziv</string>
@@ -3107,6 +3130,8 @@
     <string name="SubmitDebugLogActivity_success">Uspješno!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopirajte ovaj URL i dodajte ga u izvješće o problemu ili u e-poštu za podršku:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Podijeli</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">Zatvori</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ovaj će zapisnik biti javno objavljen na internetu za suradnike. Možete ga pregledati prije učitavanja.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Kada kliknete pošalji, vaš će zapisnik biti objavljen online 30 dana na jedinstvenom, neobjavljenom URL-u. Možete ga najprije spremiti lokalno.</string>
@@ -3371,6 +3396,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">Reagira s %1$s na vašu uplatu.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagira s %1$s na vašu naljepnicu.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ova poruka je izbrisana.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s glasa u anketi za „%3$s“</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Isključiti obavijesti o novim kontaktima na Signalu? Možete ih ponovo omogućiti u Signal &amp;gt Postavke &amp;gt Obavijesti.</string>
 
@@ -3557,6 +3584,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Odgovori bez videa</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">Promijeni smjer kamere</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Audio izlaz</string>
@@ -3614,9 +3644,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" nije korisnik Signala. Provjerite korisničko ime i pokušajte ponovno."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Ne trebate dodavati sebe u grupu</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Dosegnuta je maksimalna veličina grupe</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal grupe mogu imati najviše %1$d članova.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal grupe mogu imati najviše %1$s članova.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Dosegnuto preporučeno ograničenje članova</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal grupe najbolje rade s %1$d članova ili manje. Dodavanje više članova uzrokovat će kašnjenja u slanju i primanju poruka.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal grupe najbolje rade s %1$s članova ili manje. Dodavanje više članova uzrokovat će kašnjenja u slanju i primanju poruka.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d član</item>
         <item quantity="few">%1$d člana</item>
@@ -4654,6 +4684,8 @@
     <string name="conversation_selection__menu_multi_select">Odaberi</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Pojedinosti o plaćanju</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">Završi anketu</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5059,7 +5091,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">Detalji</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Ovo je beta verzija nove značajke kojoj ćemo kontinuirano dodavati nove funkcionalnosti.</string>
+    <string name="Beta__this_is_beta">Ovo je beta značajka i bit će poboljšana s vremenom.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Otključaj Signal</string>
@@ -5215,7 +5247,7 @@
     <string name="DeviceTransfer__unable_to_transfer">Nije moguće prenijeti</string>
 
     <!-- OldDeviceTransferInstructionsFragment -->
-    <string name="OldDeviceTransferInstructions__transfer_account">Prenesi račun</string>
+    <string name="OldDeviceTransferInstructions__transfer_account">Prenos računa</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Preuzmite Signal na novom Android uređaju</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
@@ -5223,6 +5255,14 @@
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Odaberite \"Prijenos s Android uređaja\" i zatim \"Nastavi\". Držite oba uređaja blizu."</string>
     <string name="OldDeviceTransferInstructions__continue">Nastavi</string>
+    <!-- Title for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">Zaustavi prijenos na drugi uređaj?</string>
+    <!-- Message for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">Nijedan podatak nije prenesen na vaš novi uređaj.</string>
+    <!-- Confirm button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__stop_transfer">Zaustavi prijenos</string>
+    <!-- Negative/cancel button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__continue_transfer">Nastavi prijenos</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Idite na vaš novi uređaj</string>
@@ -5426,12 +5466,16 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Preskoči</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d član</item>
-        <item quantity="few">%1$d člana</item>
-        <item quantity="many">%1$d članova</item>
-        <item quantity="other">%1$d članova</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$s član</item>
+        <item quantity="few">%1$s člana</item>
+        <item quantity="many">%1$s članova</item>
+        <item quantity="other">%1$s članova</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">Dalje</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Podijeli</string>
@@ -5626,7 +5670,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Obnovite pretplatu na sigurnosne kopije Signala</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Obnovite svoju pretplatu na zaštićene sigurnosne kopije Signala</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Nije moguće dovršiti sigurnosno kopiranje</string>
     <!-- String alerting user that backup redemption -->
@@ -6169,26 +6213,26 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s je blokiran(a)</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Blokiranje nije uspjelo</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Nije moguće ukloniti korisnika %1$s</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Ova je osoba spremljena u kontaktima vašeg uređaja. Izbrišite je iz svojih kontakata i pokušajte ponovno.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Prikaži kontakt</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s nije korisnik Signala</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s nije korisnik Signala</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s nije korisnik Signala</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Otvori izbornik</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s nije korisnik Signala</item>
         <item quantity="few">%1$s nisu korisnici Signala</item>
         <item quantity="many">%1$s nisu korisnici Signala</item>
         <item quantity="other">%1$s nisu korisnici Signala</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Pretraži ime ili broj</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Ime, korisničko ime ili broj telefona</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Prebacivanje na numeričku tipkovnicu</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Prebacivanje na alfanumeričku tipkovnicu</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Poništi filtar pretraživanja</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6366,7 +6410,6 @@
     <string name="BadgesOverviewFragment__featured_badge">Istaknuta značka</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Prikažite značke na svom profilu</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Ažuriranje profila nije uspjelo</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Odaberite značku</string>
@@ -7951,15 +7994,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Povijest uređivanja</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Uredi poruku</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Ako uredite poruku, izmjene će biti vidljive samo osobama koje koriste najnovije verzije Signala. Moći će vidjeti da ste uredili poruku.</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Poništi</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Pošalji</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -8080,25 +8114,29 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Odbij sve</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Uključite sigurnosne kopije Signala</string>
+    <string name="TurnOnSignalBackups__title">Uključite zaštićene sigurnosne kopije Signala</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Isprobajte zaštićene sigurnosne kopije Signala</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Nećete izgubiti nijednu poruku kada kupite novi telefon ili ponovno instalirate Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Uključi</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Ne sada</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">Sigurnosne kopije možete omogućiti u postavkama</string>
 
-    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">Potvrdite svoj ključ za sigurnosnu kopiju</string>
-    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">Kako bismo vam pomogli da zapamtite ključ, zamolit ćemo vas da ga povremeno unesete.</string>
-    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">Potvrdite svoj ključ za oporavak</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">Povremeno ćemo zatražiti da potvrdite svoj ključ kako bismo bili sigurni da ga i dalje znate</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
     <string name="VerifyBackupKey__verify">Potvrdi</string>
-    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">Ne sada</string>
-    <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Ključ za sigurnosnu kopiju je ispravan. Zapamtite svoj ključ.</string>
-    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">Ključ za oporavak je točan. Zapamtite svoj ključ.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Podsjetit ćemo vas ponovno za tjedan dana.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -8248,7 +8286,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Nije bilo moguće obnoviti pretplatu s odabranim načinom plaćanja. Za nastavak izrade sigurnosnih kopija vaših medijskih zapisa potrebna je aktivna pretplata.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">I dalje ćete imati pristup besplatnom planu za sigurnosne kopije Signala.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">I dalje ćete imati pristup besplatnom planu za zaštićene sigurnosne kopije Signala.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Nije moguće dovršiti sigurnosno kopiranje</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -8318,6 +8356,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Oslobodite %1$s prostora da biste preuzeli svoje medijske zapise.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Vraćanje medijskih zapisa</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">Otkazivanje oporavka medijskih zapisa</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">Vraćanje medijskih zapisa je pauzirano</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8363,6 +8403,12 @@
     <string name="BackupStatusRow__your_last_backup">Posljednje sigurnosno kopiranje podataka nije uspjelo. Provjerite je li vaš mobilni uređaj spojen na Wi-Fi i pokušajte ponovno dodirom na \"Izradi sigurnosnu kopiju sada\".</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Posljednje sigurnosno kopiranje podataka nije uspjelo. Provjerite imate li instaliranu najnoviju verziju Signala i pokušajte ponovno.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">Broj poruka na vašem uređaju premašuje ograničenje pohrane. Izbrišite dio poruka i pokušajte ponovno.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Poruke poslane ili primljene prije %1$s neće biti spremljene u sigurnosnu kopiju.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Saznajte više</string>
 
@@ -8393,6 +8439,32 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Promijenite ili otkažite pretplatu</string>
 
+    <!-- GooglePlayServicesAvailability -->
+    <!-- Dialog title when Google Play services are missing from the device -->
+    <string name="GooglePlayServicesAvailability__service_missing_title">Nedostaju Google Play usluge</string>
+    <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
+    <string name="GooglePlayServicesAvailability__service_missing_message">Za pretplatu na zaštićene sigurnosne kopije Signala morate instalirati Google Play usluge na svoj uređaj.</string>
+    <!-- Dialog button text to install Google Play services -->
+    <string name="GooglePlayServicesAvailability__install_play_services">Instaliraj Google Play usluge</string>
+    <!-- Dialog title when Google Play services are currently updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play usluge se ažuriraju</string>
+    <!-- Dialog message asking user to wait while Google Play services finish updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_message">Za pretplatu na zaštićene sigurnosne kopije Signala pričekajte da se dovrši ažuriranje Google Play usluga.</string>
+    <!-- Dialog title when Google Play services need to be updated -->
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Ažuriranje Google Play usluga</string>
+    <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
+    <string name="GooglePlayServicesAvailability__service_update_required_message">Za pretplatu na zaštićene sigurnosne kopije Signala, ažurirajte Google Play usluge na svom uređaju.</string>
+    <!-- Dialog button text to update Google Play services -->
+    <string name="GooglePlayServicesAvailability__update">Ažuriraj</string>
+    <!-- Dialog title when Google Play services are disabled -->
+    <string name="GooglePlayServicesAvailability__service_disabled_title">Za plaćene pretplate potreban je Google Play</string>
+    <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
+    <string name="GooglePlayServicesAvailability__service_disabled_message">Za pretplatu na zaštićene sigurnosne kopije Signala, omogućite Google Play usluge na telefonu i prijavite se u trgovinu Google Play. </string>
+    <!-- Dialog button text to learn more about enabling Google Play services -->
+    <string name="GooglePlayServicesAvailability__learn_more">Saznajte više</string>
+    <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
+    <string name="GooglePlayServicesAvailability__service_invalid_message">Ne možete se pretplatiti na zaštićene sigurnosne kopije Signala jer vaš telefon ne podržava Google Play usluge. Obratite se proizvođaču telefona za pomoć.</string>
+
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">Ograničenje broja poruka u razgovoru</string>
@@ -8413,13 +8485,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nekorišteni medijski zapisi bit će uklonjeni, ali moguće ih je vratiti iz sigurnosne kopije u bilo kojem trenutku.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optimizacija pohrane dostupna je samo uz plaćenu pretplatu na sigurnosno kopiranje Signala. Vaša pretplata se trenutno obrađuje i još nije aktivna. Pokušajte ponovno kasnije.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optimizacija pohrane dostupna je samo uz plaćenu pretplatu na zaštićeno sigurnosno kopiranje Signala. Vaša pretplata se trenutno obrađuje i još nije aktivna. Pokušajte ponovno kasnije.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Pretplatite se da biste omogućili ovu značajku</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Optimizacija pohrane dostupna je samo uz plaćenu pretplatu na sigurnosno kopiranje Signala. Pretplatite se na sigurnosno kopiranje kako biste koristili ovu značajku.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Optimizacija pohrane dostupna je samo uz plaćenu pretplatu na zaštićeno sigurnosno kopiranje Signala. Pretplatite se na sigurnosno kopiranje za korištenje ove značajke.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Pretplati se za %1$s mjesečno</string>
 
@@ -8440,7 +8512,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Medijski zapis više nije dostupan</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Da biste započeli sigurnosno kopiranje svih svojih medijskih zapisa, omogućite plaćenu pretplatu na sigurnosno kopiranje Signala.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Da biste započeli sigurnosno kopiranje svih svojih medijskih zapisa, omogućite plaćenu pretplatu na zaštićeno sigurnosno kopiranje Signala.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Nastavi</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8472,6 +8544,8 @@
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s mjesečno, obnavlja se %2$s</string>
+    <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
+    <string name="BackupsSettingsFragment_renews_s">Obnavlja se %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Posljednje sigurnosno kopiranje: %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8488,8 +8562,12 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">Otkaži prijenos</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Zaštićene sigurnosne kopije</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Sigurnosne kopije Signala</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Zaštićene sigurnosne kopije Signala</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">Isključeno</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Potrebna je provjera autentičnosti</string>
     <!-- Row label to launch payment history screen -->
@@ -8501,19 +8579,30 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Veličina sigurnosne kopije</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">Izračunavanje…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Učestalost sigurnosnog kopiranja</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Vaši medijski zapisi i poruke se svakodnevno sigurnosno kopiraju.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Sigurnosno kopiranje putem mobilne mreže</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">Prikaži ključ za sigurnosnu kopiju</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Otključajte za prikaz ključa za sigurnosnu kopiju</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Prikaži ključ za oporavak</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Otključajte za prikaz ključa za oporavak</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">Da biste vidjeli svoj ključ, potvrdite da ste to vi</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Isključi i izbriši sigurnosnu kopiju</string>
+    <!-- Dialog title for explainer text to on how backup size works for free tier -->
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Veličina sigurnosne kopije</string>
+    <!-- Dialog message for explainer text to on how backup size works for free tier -->
+    <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
+        <item quantity="one">Vaša sigurnosna kopija uključuje sve tekstualne poruke i medijske zapise koje ste poslali ili primili u posljednjem %1$d danu. Veličina datoteke će se mijenjati primanjem novih i istekom starih medijskih zapisa.</item>
+        <item quantity="few">Vaša sigurnosna kopija uključuje sve tekstualne poruke i medijske zapise koje ste poslali ili primili u posljednja %1$d dana. Veličina datoteke će se mijenjati primanjem novih i istekom starih medijskih zapisa.</item>
+        <item quantity="many">Vaša sigurnosna kopija uključuje sve tekstualne poruke i medijske zapise koje ste poslali ili primili u posljednjih %1$d dana. Veličina datoteke će se mijenjati primanjem novih i istekom starih medijskih zapisa.</item>
+        <item quantity="other">Vaša sigurnosna kopija uključuje sve tekstualne poruke i medijske zapise koje ste poslali ili primili u posljednjih %1$d dana. Veličina datoteke će se mijenjati primanjem novih i istekom starih medijskih zapisa.</item>
+    </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Sigurnosna kopija je izbrisana i sigurnosno kopiranje je isključeno.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
@@ -8525,7 +8614,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Sigurnosna kopija bit će izrađena tijekom noćnih sati.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Stvoren je novi ključ za sigurnosnu kopiju</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Stvoren je novi ključ za oporavak</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Pretplata nije aktivna</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8603,13 +8692,13 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Ovisno o veličini sigurnosne kopije, ovo bi moglo malo duže potrajati. Tijekom preuzimanja sigurnosne kopije možete normalno koristiti svoj telefon.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Nije pronađena pretplata na ovom uređaju. Obnovite je odmah kako biste nastavili koristiti sigurnosne kopije Signala.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Nije pronađena pretplata na ovom uređaju. Obnovite je odmah kako biste nastavili koristiti zaštićene sigurnosne kopije Signala.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Vaša pretplata na ovom uređaju vrijedi još %1$d dan. Obnovite pretplatu da biste nastavili koristiti sigurnosno kopiranje Signala</item>
-        <item quantity="few">Vaša pretplata na ovom uređaju vrijedi još %1$d dana. Obnovite pretplatu da biste nastavili koristiti sigurnosno kopiranje Signala</item>
-        <item quantity="many">Vaša pretplata na ovom uređaju vrijedi još %1$d dana. Obnovite pretplatu da biste nastavili koristiti sigurnosno kopiranje Signala</item>
-        <item quantity="other">Vaša pretplata na ovom uređaju vrijedi još %1$d dana. Obnovite pretplatu da biste nastavili koristiti sigurnosno kopiranje Signala</item>
+        <item quantity="one">Vaša pretplata na ovom uređaju vrijedi još %1$d dan. Obnovite pretplatu da biste nastavili koristiti zaštićeno sigurnosno kopiranje Signala</item>
+        <item quantity="few">Vaša pretplata na ovom uređaju vrijedi još %1$d dana. Obnovite pretplatu da biste nastavili koristiti zaštićeno sigurnosno kopiranje Signala</item>
+        <item quantity="many">Vaša pretplata na ovom uređaju vrijedi još %1$d dana. Obnovite pretplatu da biste nastavili koristiti zaštićeno sigurnosno kopiranje Signala</item>
+        <item quantity="other">Vaša pretplata na ovom uređaju vrijedi još %1$d dan. Obnovite pretplatu da biste nastavili koristiti zaštićeno sigurnosno kopiranje Signala</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Ponovno se pretplati</string>
@@ -8663,6 +8752,8 @@
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Došlo je do pogreške mreže. Provjerite internetsku vezu i pokušajte ponovno.</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Prijenos: %1$s od %2$s (%3$d %%)</string>
+    <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Prijenos: %1$d %%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Detalji</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8736,36 +8827,38 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Vaš ključ za sigurnosnu kopiju</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Ključ za oporavak</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Ključ za sigurnosnu kopiju je 64-znamenkasti kôd koji vam omogućuje vraćanje sigurnosne kopije kada ponovno instalirate Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Ključ za oporavak je 64-znamenkasti kôd koji je potreban za oporavak sigurnosne kopije.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ako zaboravite svoj ključ, neće biti moguće vratiti podatke iz sigurnosne kopije. Signal vam ne može pomoći vratiti sigurnosnu kopiju.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Svoj ključ za oporavak spremite isključivo u upravitelju lozinki kojemu vjerujete i koji smatrate sigurnim, i nemojte ga dijeliti ni s kim.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Ako ga izgubite ili zaboravite, nećete moći oporaviti svoje razgovore.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Dalje</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Prikaži ključ za oporavak</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Spremite svoj ključ za sigurnosnu kopiju</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Zabilježite svoj ključ za oporavak</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Ovaj je ključ potreban za oporavak vašeg računa i vaših podataka. Spremite svoj ključ na sigurno mjesto. Ako ga izgubite ili zaboravite, nećete moći oporaviti svoj račun.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopiraj u međuspremnik</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Spremi u upravitelju lozinki</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Spremiti u upravitelju lozinki?</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Rezervnu kopiju ključa za sigurnosnu kopiju spremite isključivo u upravitelju lozinki kojemu vjerujete i koji smatrate sigurnim. Signal ne daje preporuke o tome koji je upravitelj lozinki pravi za vas.</string>
-    <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Sigurnosne kopije Signala</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Rezervnu kopiju ključa za oporavak spremite isključivo u upravitelju lozinki kojemu vjerujete i koji smatrate sigurnim. Signal ne daje preporuke o tome koji je upravitelj lozinki pravi za vas.</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Zaštićene sigurnosne kopije Signala</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Spremljeno u vašem upravitelju lozinki</string>
-    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Spremanje u upravitelju lozinki nije uspjelo</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Nije postavljen upravitelj lozinki ili upravitelj lozinki koji koristite nije podržan.</string>
-    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
     <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Prethodno ste odabrali da ne želite spremati lozinke za Signal u Google upravitelju lozinki. U postavkama Google upravitelja lozinki uklonite Signal iz liste odbijenih web-mjesta i aplikacija i pokušajte ponovno.</string>
     <!-- Label for a button that navigates to the device settings -->
     <string name="MessageBackupsKeyRecordScreen__go_to_settings">Otvori postavke</string>
@@ -8786,42 +8879,48 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">Preuzimanje medijskih zapisa</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Za stvaranje novog ključa za sigurnosnu kopiju morate isključiti optimizaciju pohrane i pričekati da se vaši medijski zapisi preuzmu. Kada je preuzimanje dovršeno, možete stvoriti novi ključ.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Za stvaranje novog ključa za oporavak morate isključiti optimizaciju pohrane i pričekati da se vaši medijski zapisi preuzmu. Kada je preuzimanje dovršeno, možete stvoriti novi ključ.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Isključi i preuzmi</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Stvaranje novog ključa za sigurnosnu kopiju</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Stvorite novi ključ za oporavak</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Stvaranje novog ključa potrebno je samo ako je netko drugi saznao vaš ključ. Morat ćete ponovno prenijeti sigurnosnu kopiju, uključujući medijske zapise. Ako koristite optimizaciju pohrane, najprije ćete morati preuzeti medijske zapise koje ste prenijeli.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Želite li izaći iz postavljanja sigurnosnog kopiranja?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Postavljanje sigurnosnog kopiranja nije dovršeno. Nije stvorena sigurnosna kopija. Sigurnosne kopije možete omogućiti u postavkama.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Izađi iz postavljanja</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Želite li otkazati stvaranje novog ključa?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Vaš novi ključ za sigurnosnu kopiju neće biti stvoren dok ga ne potvrdite.</string>
-    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Vaš novi ključ za oporavak neće biti stvoren dok ga ne potvrdite.</string>
+    <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">Potvrdi ključ</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">Otkaži stvaranje novog ključa</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Potvrdite svoj ključ za sigurnosnu kopiju</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Potvrdite svoj ključ za oporavak</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Unesite ključ za sigurnosnu kopiju koji ste upravo zabilježili</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Unesite ključ za oporavak koji ste upravo zabilježili</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Ključ za sigurnosnu kopiju</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Ključ za oporavak</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Netočan ključ za sigurnosnu kopiju</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Netočan ključ za oporavak</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Ponovno prikaži ključ</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Dalje</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">Unesite svoj ključ za sigurnosnu kopiju</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Unesite svoj ključ za oporavak</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Unesite 64-znamenkasti kod koji ste zabilježili kada ste omogućili sigurnosno kopiranje.</string>
-    <!-- Button text when you forget your backup key -->
+    <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Zaboravili ste ključ?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
@@ -8839,10 +8938,14 @@
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Pretplati se za %1$s mjesečno</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Promijenite vrstu sigurnosnog kopiranja</string>
+    <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">Više informacija o planu</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Otkažite pretplatu</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Besplatno</string>
+    <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
+    <string name="MessageBackupsTypeSelectionScreen__paid">Plaćeno</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s mjesečno</string>
     <!-- Title for free tier -->
@@ -8871,6 +8974,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">Vaš trenutni plan</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Nije moguće nadograditi plan</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Za pretplatu na zaštićene sigurnosne kopije Signala morate imati omogućene Google usluge na telefonu i biti prijavljeni u trgovinu Google Play.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8901,9 +9008,9 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Vratite ili prenesite račun</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Prenesite svoj Signal račun i povijest poruka na ovaj uređaj.</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Iz sigurnosne kopije Signala</string>
-    <!-- Option subtitle for restoring via signal backups -->
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Iz zaštićene sigurnosne kopije Signala</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Vaš besplatni ili plaćeni plan za sigurnosno kopiranje Signala</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">Iz mape za sigurnosne kopije</string>
@@ -8915,46 +9022,56 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Sa svog starog telefona</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Prenesite izravno sa svog starog Android uređaja</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Preskočiti vraćanje datoteka?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Ako sada ne oporavite svoju kopiju podataka, kasnije više nećete moći vratiti podatke iz sigurnosne kopije. Ako ponovno omogućite sigurnosno kopiranje nakon što preskočite oporavak, vaša trenutna sigurnosna kopija bit će zamijenjena novom poviješću poruka.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Preskoči</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Vratite podatke iz lokalne sigurnosne kopije</string>
     <!-- Screen subtitle for restore via local backup -->
     <string name="RestoreLocalBackup_subtitle">Vratite svoje poruke iz sigurnosne kopije spremljene na vašem uređaju. Ako to ne učinite sada, kasnije više nećete moći vratiti podatke iz sigurnosne kopije.</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Unesite svoj ključ za sigurnosnu kopiju</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Ključ za sigurnosnu kopiju je 64-znamenkasti kôd koji je potreban za oporavak vašeg računa i podataka.</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Nemate ključ za sigurnosnu kopiju?</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Ključ za sigurnosnu kopiju</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Sigurnosne kopije nije moguće vratiti bez 64-znamenkastog koda za oporavak. Ako ste zaboravili svoj ključ, nećete moći vratiti podatke iz sigurnosne kopije.</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Ako imate svoj stari uređaj, svoj ključ za sigurnosnu kopiju možete pregledati u Postavkama &gt; Sigurnosne kopije. Zatim dodirnite Prikaži ključ za sigurnosnu kopiju.</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">Unesite svoj ključ za oporavak</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">Ključ za oporavak je 64-znamenkasti kôd koji je potreban za oporavak vašeg računa i podataka.</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">Bez ključa za oporavak?</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">Ključ za oporavak</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">Sigurnosne kopije nije moguće vratiti bez 64-znamenkastog koda za oporavak. Ako ste zaboravili svoj ključ za oporavak, nećete moći vratiti podatke iz sigurnosne kopije.</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">Ako imate svoj stari uređaj, svoj ključ za sigurnosnu kopiju možete pregledati u Postavkama &gt; Sigurnosne kopije. Zatim dodirnite Prikaži ključ za oporavak.</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Saznajte više</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Preskoči sigurnosno kopiranje</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Netočan ključ za sigurnosnu kopiju</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Netočan ključ za oporavak</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Provjerite jeste li se registrirali s istim brojem telefona i 64-znamenkastim ključem za sigurnosnu kopiju koji ste postavili kada ste omogućili sigurnosne kopije Signala. Sigurnosne kopije nije moguće vratiti bez tog ključa.</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Provjerite jeste li se registrirali s istim brojem telefona i 64-znamenkastim ključem za oporavak koji ste postavili kada ste omogućili sigurnosne kopije Signala. Sigurnosne kopije nije moguće vratiti bez tog ključa.</string>
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Pokušaj ponovno</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">Pomoć za ključ za sigurnosnu kopiju</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Netočan ključ za sigurnosnu kopiju</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">Pomoć za ključ za oporavak</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">Netočan ključ za oporavak</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">Predugo (%1$d/%2$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Ključ za sigurnosnu kopiju nije važeći</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">Nevažeći ključ za oporavak</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Nije pronađena sigurnosna kopija</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Ključ za sigurnosnu kopiju koji ste unijeli je ispravan, ali nema povezane sigurnosne kopije. Ako još uvijek imate pristup svom starom uređaju, provjerite je li sigurnosno kopiranje omogućeno i postoji li sigurnosna kopija datoteka te pokušajte ponovno.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Ključ za oporavak koji ste unijeli je ispravan, ali nema povezane sigurnosne kopije. Ako još uvijek imate pristup svom starom telefonu, provjerite je li sigurnosno kopiranje omogućeno i je li sigurnosna kopija dovršena, pa pokušajte ponovno.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Moguće je da je ključ za oporavak koji ste unijeli netočan ili da niste izvršili nijednu sigurnosnu kopiju na starom uređaju.\n\nProvjerite jeste li se registrirali s istim brojem telefona i ključem za oporavak koje ste postavili kada ste omogućili zaštićene kopije podataka te potvrdite da je vaš stari uređaj dovršio sigurnosno kopiranje.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Iskoristili ste maksimalan broj pokušaja unosa ključa za oporavak. Broj pokušaja je ograničen radi vaše sigurnosti. Pričekajte sat vremena i pokušajte ponovno.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Preskoči</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -9020,9 +9137,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">Prijenos računa nastavit će se na drugom uređaju.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Dovršeno vraćanje sigurnosne kopije</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">Dovršite na drugom uređaju</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Započeo je prijenos vašeg Signal računa i poruka na drugi uređaj. Signal više nije aktivan na ovom uređaju.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Vaš Signal račun i poruke su spremni za oporavak na vašem drugom uređaju. Signal više nije aktivan na ovom uređaju.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">Prijenos je dovršen</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
@@ -9033,7 +9150,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">Nema sigurnosne kopije za vraćanje</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Prelaskom s iPhone na Android uređaj, jedina mogućnost prijenosa vaših poruka i medijskih zapisa je omogućavanje sigurnosne kopije Signala na vašem starom uređaju.</string>
+    <string name="NoBackupToRestore_subtitle">Prelaskom s iPhone uređaja na Android uređaj, jedina mogućnost prijenosa vaših poruka i medijskih zapisa je omogućavanje zaštićene sigurnosne kopije Signala na vašem starom uređaju.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Otvorite Signal na starom uređaju</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
@@ -9043,6 +9160,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Preskoči</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Dosegnuto je ograničenje ključeva za oporavak</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Uspješno ste stvorili novi ključ za oporavak. Kako bi se spriječila zlouporaba, broj novih ključeva koje možete stvoriti je ograničen. Nećete moći stvoriti drugi ključ idućih 7 dana. Spremite svoj ključ za oporavak na sigurno mjesto.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Stvaranje novog ključa nije moguće</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Iskoristili ste maksimalan broj novih ključeva koje možete stvoriti. Moći ćete stvoriti novi ključ za oporavak za 7 dana. Ako smatrate da netko može pristupiti vašim podacima, odaberite opciju „Isključi i izbriši sigurnosnu kopiju“.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">U redu</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Zatvori pretragu</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -9086,6 +9213,153 @@
         <item quantity="many">Niste izvršili sigurnosno kopiranje već %1$d dana. Izradite sigurnosnu kopiju sada.</item>
         <item quantity="other">Niste izvršili sigurnosno kopiranje već %1$d dana. Izradite sigurnosnu kopiju sada.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">Anketa · Odaberite jedan odgovor</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">Anketa · Odaberite jedan ili više odgovora</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">Anketa · Konačni rezultati</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">Nema glasova</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">Prikaži glasove</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">Prikaži anketu</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">Anketa nije pronađena</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">Prikaži rezultate</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">Anketa: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s zatvara anketu: „%2$s“</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">Zatvorili ste anketu: „%1$s“</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s glasa u anketi: „%2$s“</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">Ankete</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">Rezultati ankete</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">Detalji ankete</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">Pitanje</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="one">%1$d glas</item>
+        <item quantity="few">%1$d glasa</item>
+        <item quantity="many">%1$d glasova</item>
+        <item quantity="other">%1$d glasova</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">Opcija s najviše glasova</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">Završi anketu</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">Prikaži sve</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">Nije moguće završiti anketu</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">Provjerite internetsku vezu i pokušajte ponovno.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">Zatvoriti anketu?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">Članovi grupe više neće moći glasati u ovoj anketi.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">Čeka se mrežna veza…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">Nova anketa</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">Pitanje</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">Postavi pitanje</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">Mogućnosti</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">Odgovor %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">Element za povlačenje i ispuštanje</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">Dopusti više glasova</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">Dodajte pitanje i barem dva moguća odgovora</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">Dodajte barem dva moguća odgovora</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">Dodajte pitanje</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">Problem sa zvukom</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">Problem sa slikom</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">Poziv je prekinut</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">Nešto drugo</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">Isprekidani zvuk</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">Nestanak zvuka</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">Čujem jeku</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">Moj sugovornik čuje jeku</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">Loša kvaliteta slike</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">Niska rezolucija</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">Kamera nije radila</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">Nešto drugo</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Opišite problem</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Molimo navedite sve relevantne detalje o vašem problemu. Sve što ovdje podijelite ostat će privatno i koristit će se samo u svrhu poboljšanja poziva na Signalu.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">Spremi</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">Natrag</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">Kakav je bio poziv?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Vaše povratne informacije pomažu nam poboljšati pozive na Signalu. Osobni identifikacijski podaci neće biti pohranjeni.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">Bilo je problema</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">Odličan</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">Koje ste probleme imali?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">Odaberite sve što se odnosi na vas</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">Opišite problem</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">Nastavi</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">Pomozite nam poboljšati Signal</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Slanjem dijagnostičkih podataka pomažete nam poboljšati kvalitetu poziva. Možete </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">pregledati zapisnik otklanjanja pogreške</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> prije slanja</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">Podijeli zapisnik otklanjanja pogreške</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">Zapisnici otklanjanja pogrešaka sadrže informacije o aplikaciji niske razine i ne otkrivaju sadržaj vaših poruka.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">Pošalji</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">Hvala na povratnim informacijama!</string>
 
     <!-- EOF -->
 </resources>

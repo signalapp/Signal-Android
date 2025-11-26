@@ -34,8 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.getParcelableArrayListCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
@@ -248,7 +248,7 @@ private fun isThreadListAlreadyAdded(folder: ChatFolderRecord, threadIds: List<L
   return folder.includedChats.containsAll(threadIds)
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AddToChatFolderSheetContentPreview() {
   Previews.BottomSheetPreview {

@@ -92,6 +92,7 @@ class CallLogAdapter(
   fun submitCallRows(
     rows: List<CallLogRow?>,
     selectionState: CallLogSelectionState,
+    activeCallLogRowId: CallLogRow.Id?,
     localCallRecipientId: RecipientId,
     onCommit: () -> Unit
   ): Int {
@@ -99,8 +100,19 @@ class CallLogAdapter(
       .filterNotNull()
       .map {
         when (it) {
-          is CallLogRow.Call -> CallModel(it, selectionState, itemCount, it.peer.id == localCallRecipientId)
-          is CallLogRow.CallLink -> CallLinkModel(it, selectionState, itemCount, it.recipient.id == localCallRecipientId)
+          is CallLogRow.Call -> CallModel(
+            call = it,
+            selectionState = selectionState,
+            itemCount = itemCount,
+            isLocalDeviceInCall = it.peer.id == localCallRecipientId
+          )
+          is CallLogRow.CallLink -> CallLinkModel(
+            callLink = it,
+            selectionState = selectionState,
+            activeCallLogRowId = activeCallLogRowId,
+            itemCount = itemCount,
+            isLocalDeviceInCall = it.recipient.id == localCallRecipientId
+          )
           is CallLogRow.ClearFilter -> ClearFilterModel()
           is CallLogRow.ClearFilterEmpty -> ClearFilterEmptyModel()
           is CallLogRow.CreateCallLink -> CreateCallLinkModel()
@@ -148,6 +160,7 @@ class CallLogAdapter(
   private class CallLinkModel(
     val callLink: CallLogRow.CallLink,
     val selectionState: CallLogSelectionState,
+    val activeCallLogRowId: CallLogRow.Id?,
     val itemCount: Int,
     val isLocalDeviceInCall: Boolean
   ) : MappingModel<CallLinkModel> {
@@ -159,12 +172,13 @@ class CallLogAdapter(
     override fun areContentsTheSame(newItem: CallLinkModel): Boolean {
       return callLink == newItem.callLink &&
         isSelectionStateTheSame(newItem) &&
+        isActiveIdStateTheSame(newItem) &&
         isItemCountTheSame(newItem) &&
         isLocalDeviceInCall == newItem.isLocalDeviceInCall
     }
 
     override fun getChangePayload(newItem: CallLinkModel): Any? {
-      return if (callLink == newItem.callLink && (!isSelectionStateTheSame(newItem) || !isItemCountTheSame(newItem))) {
+      return if (callLink == newItem.callLink && (!isSelectionStateTheSame(newItem) || !isItemCountTheSame(newItem) || !isActiveIdStateTheSame(newItem))) {
         PAYLOAD_SELECTION_STATE
       } else {
         null
@@ -174,6 +188,13 @@ class CallLogAdapter(
     private fun isSelectionStateTheSame(newItem: CallLinkModel): Boolean {
       return selectionState.contains(callLink.id) == newItem.selectionState.contains(newItem.callLink.id) &&
         selectionState.isNotEmpty(itemCount) == newItem.selectionState.isNotEmpty(newItem.itemCount)
+    }
+
+    private fun isActiveIdStateTheSame(newItem: CallLinkModel): Boolean {
+      val isOldItemActive = activeCallLogRowId == callLink.id
+      val isNewItemActive = newItem.activeCallLogRowId == newItem.callLink.id
+
+      return (isOldItemActive && isNewItemActive) || (!isOldItemActive && !isNewItemActive)
     }
 
     private fun isItemCountTheSame(newItem: CallLinkModel): Boolean {
@@ -219,6 +240,8 @@ class CallLogAdapter(
       itemView.isSelected = model.selectionState.contains(model.callLink.id)
       binding.callSelected.isChecked = model.selectionState.contains(model.callLink.id)
       binding.callSelected.visible = model.selectionState.isNotEmpty(model.itemCount)
+
+      itemView.isActivated = model.activeCallLogRowId == model.callLink.id
 
       if (payload.isNotEmpty()) {
         return

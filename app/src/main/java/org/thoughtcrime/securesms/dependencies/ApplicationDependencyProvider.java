@@ -35,6 +35,8 @@ import org.thoughtcrime.securesms.database.PendingRetryReceiptCache;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobMigrator;
 import org.thoughtcrime.securesms.jobmanager.impl.FactoryJobPredicate;
+import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob;
+import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.IndividualSendJob;
@@ -44,6 +46,7 @@ import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
+import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
@@ -118,7 +121,6 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnection;
 import org.whispersystems.signalservice.internal.websocket.LibSignalNetworkExtensions;
-import org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection;
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -171,9 +173,10 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                             keysApi,
                                             Optional.of(new SecurityEventListener(context)),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 16, 30),
-                                            ByteUnit.KILOBYTES.toBytes(256),
+                                            RemoteConfig.maxEnvelopeSizeBytes(),
                                             RemoteConfig::useMessageSendRestFallback,
-                                            RemoteConfig.usePqRatchet());
+                                            RemoteConfig.useBinaryId(),
+                                            BuildConfig.USE_STRING_ID);
   }
 
   @Override
@@ -200,7 +203,15 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                                                   .setJobStorage(new FastJobStorage(JobDatabase.getInstance(context)))
                                                                   .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
                                                                   .addReservedJobRunner(new FactoryJobPredicate(PushProcessMessageJob.KEY, MarkerJob.KEY))
-                                                                  .addReservedJobRunner(new FactoryJobPredicate(IndividualSendJob.KEY, PushGroupSendJob.KEY, ReactionSendJob.KEY, TypingSendJob.KEY, GroupCallUpdateSendJob.KEY))
+                                                                  .addReservedJobRunner(new FactoryJobPredicate(AttachmentUploadJob.KEY, AttachmentCompressionJob.KEY))
+                                                                  .addReservedJobRunner(new FactoryJobPredicate(
+                                                                      IndividualSendJob.KEY,
+                                                                      PushGroupSendJob.KEY,
+                                                                      ReactionSendJob.KEY,
+                                                                      TypingSendJob.KEY,
+                                                                      GroupCallUpdateSendJob.KEY,
+                                                                      SendDeliveryReceiptJob.KEY
+                                                                  ))
                                                                   .build();
     return new JobManager(context, config);
   }
@@ -264,7 +275,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   public @NonNull Network provideLibsignalNetwork(@NonNull SignalServiceConfiguration config) {
     Network network = new Network(BuildConfig.LIBSIGNAL_NET_ENV, StandardUserAgentInterceptor.USER_AGENT);
     LibSignalNetworkExtensions.applyConfiguration(network, config);
-    LibSignalNetworkExtensions.buildAndSetRemoteConfig(network, RemoteConfig.libsignalEnforceMinTlsVersion());
+    network.setRemoteConfig(RemoteConfig.getLibsignalConfigs());
 
     return network;
   }
@@ -316,23 +327,6 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     return new PendingRetryReceiptCache();
   }
 
-  private boolean shouldUseLibsignalForWebsocket(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
-    if (RemoteConfig.libSignalWebSocketEnabled()) {
-      if (RemoteConfig.libSignalWebSocketEnabledForProxies()) {
-        return true;
-      } else {
-        // libsignalWebSocketEnabled = true but libsignalWebSocketEnabledForProxies = false
-        if (signalServiceConfiguration.getCensored() ||
-            signalServiceConfiguration.getSignalProxy().isPresent()) {
-          return false;
-        } else {
-          return true;
-        }
-      }
-    } else {
-      return false;
-    }
-  }
   @Override
   public @NonNull SignalWebSocket.AuthenticatedWebSocket provideAuthWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier) {
     SleepTimer                   sleepTimer    = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer();
@@ -345,25 +339,16 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
         throw new WebSocketUnavailableException("Invalid auth credentials");
       }
 
-      if (shouldUseLibsignalForWebsocket(signalServiceConfigurationSupplier.get())) {
-        Network network = libSignalNetworkSupplier.get();
-        return new LibSignalChatConnection("libsignal-auth",
-                                           network,
-                                           credentialsProvider,
-                                           Stories.isFeatureEnabled(),
-                                           healthMonitor);
-      } else {
-        return new OkHttpWebSocketConnection("auth",
-                                             signalServiceConfigurationSupplier.get(),
-                                             Optional.of(credentialsProvider),
-                                             BuildConfig.SIGNAL_AGENT,
-                                             healthMonitor,
-                                             Stories.isFeatureEnabled());
-      }
+      Network network = libSignalNetworkSupplier.get();
+      return new LibSignalChatConnection("libsignal-auth",
+                                         network,
+                                         credentialsProvider,
+                                         Stories.isFeatureEnabled(),
+                                         healthMonitor);
     };
 
     SignalWebSocket.AuthenticatedWebSocket webSocket = new SignalWebSocket.AuthenticatedWebSocket(authFactory,
-                                                                                                  () -> !SignalStore.misc().isClientDeprecated() && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork(),
+                                                                                                  () -> !SignalStore.misc().isClientDeprecated() && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork() && !Environment.IS_INSTRUMENTATION,
                                                                                                   sleepTimer,
                                                                                                   TimeUnit.SECONDS.toMillis(30));
     if (AppForegroundObserver.isForegrounded()) {
@@ -381,25 +366,16 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     SignalWebSocketHealthMonitor healthMonitor = new SignalWebSocketHealthMonitor(sleepTimer);
 
     WebSocketFactory unauthFactory = () -> {
-      if (shouldUseLibsignalForWebsocket(signalServiceConfigurationSupplier.get())) {
-        Network network = libSignalNetworkSupplier.get();
-        return new LibSignalChatConnection("libsignal-unauth",
-                                           network,
-                                           null,
-                                           Stories.isFeatureEnabled(),
-                                           healthMonitor);
-      } else {
-        return new OkHttpWebSocketConnection("unauth",
-                                             signalServiceConfigurationSupplier.get(),
-                                             Optional.empty(),
-                                             BuildConfig.SIGNAL_AGENT,
-                                             healthMonitor,
-                                             Stories.isFeatureEnabled());
-      }
+      Network network = libSignalNetworkSupplier.get();
+      return new LibSignalChatConnection("libsignal-unauth",
+                                         network,
+                                         null,
+                                         Stories.isFeatureEnabled(),
+                                         healthMonitor);
     };
 
     SignalWebSocket.UnauthenticatedWebSocket webSocket = new SignalWebSocket.UnauthenticatedWebSocket(unauthFactory,
-                                                                                                      () -> !SignalStore.misc().isClientDeprecated() && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork(),
+                                                                                                      () -> !SignalStore.misc().isClientDeprecated() && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork() && !Environment.IS_INSTRUMENTATION,
                                                                                                       sleepTimer,
                                                                                                       TimeUnit.SECONDS.toMillis(30));
     if (AppForegroundObserver.isForegrounded()) {
@@ -499,7 +475,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @Override
   public @NonNull BillingApi provideBillingApi() {
-    return BillingFactory.create(GooglePlayBillingDependencies.INSTANCE, RemoteConfig.messageBackups() && Environment.Backups.supportsGooglePlayBilling());
+    return BillingFactory.create(GooglePlayBillingDependencies.INSTANCE, Environment.Backups.supportsGooglePlayBilling());
   }
 
   @Override

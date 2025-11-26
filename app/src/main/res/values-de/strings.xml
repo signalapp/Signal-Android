@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Wiederherstellungsphrase für Zahlungen notieren</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Phrase notieren</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Bevor du deine PIN deaktivieren kannst, musst du deine Wiederherstellungsphrase für Zahlungen notieren. Dies stellt sicher, dass du dein Zahlungskonto wiederherstellen kannst.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Neuen Wiederherstellungsschlüssel erstellen</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Du musst einen neuen Wiederherstellungsschlüssel erstellen und speichern, bevor du deine PIN deaktivieren kannst.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Schlüssel erstellen</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">Datei</string>
     <string name="AttachmentKeyboard_contact">Kontakt</string>
     <string name="AttachmentKeyboard_location">Standort</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">Umfrage</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal benötigt die Berechtigung, um deine Fotos und Videos anzuzeigen.</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Zugriff erlauben</string>
@@ -552,15 +560,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">Du kannst während eines Anrufs keine Sprachnachricht aufnehmen.</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Formatierten Text senden</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Einige Leute benutzen möglicherweise eine Version von Signal, die keinen formatierten Text unterstützt. Sie können die Formatierungen, die du an deiner Nachricht vorgenommen hast, nicht sehen.</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">Trotzdem versenden</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">Abbrechen</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%1$d ungelesene Nachricht</item>
@@ -870,12 +869,10 @@
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__you_are_all_set">Du kannst loslegen. Starte jetzt dein Backup.</string>
-    <!-- Bottom sheet message -->
+    <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Je nach Größe deines Backup könnte dies etwas dauern. Während des Backups kannst du dein Mobiltelefon weiterhin ganz normal nutzen.</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Später sichern</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">Jetzt sichern</string>
+    <!-- Bottom sheet free message -->
+    <string name="CreateBackupBottomSheet__free_tier">Neue Medieninhalte werden deinem Backup kontinuierlich hinzugefügt.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Medien können nicht wiederhergestellt werden</string>
@@ -1138,6 +1135,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">Nachrichtenverlauf übertragen</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Übertrage alle deine Nachrichten und die Medien der letzten 45 Tage</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Übertrage deine Textnachrichten und Medien</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Nicht übertragen</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1175,6 +1174,9 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Diese Signal-Version ist veraltet. Aktualisiere jetzt, um Nachrichten senden und empfangen zu können.</string>
     <string name="ExpiredBuildReminder_update_now">Jetzt aktualisieren</string>
+
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal funktioniert auf diesem Gerät nicht mehr. Um Signal wieder nutzen zu können, aktualisiere dein Gerät auf eine neuere Android-Version oder wechsle zu einem neueren Gerät.</string>
 
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Signal aktualisieren</string>
@@ -1392,11 +1394,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Fertig</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Diese Person kann nicht zu Gruppen alten Typs hinzugefügt werden.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">%1$s zu »%2$s« hinzufügen?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">»%1$s« zu »%2$s« hinzufügen?</item>
-        <item quantity="other">%3$d Mitglieder zu »%2$s« hinzufügen?</item>
+        <item quantity="one">»{2}« zu »%2$s« hinzufügen?</item>
+        <item quantity="other">%1$d Mitglieder zu »%2$s« hinzufügen?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Hinzufügen</string>
     <string name="AddMembersActivity__add_members">Mitglieder hinzufügen</string>
 
@@ -1483,7 +1490,7 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Übertragung konnte nicht abgeschlossen werden</string>
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Dieses Backup kann nicht wiederhergestellt werden</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Backup kann nicht wiederhergestellt werden</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Beim Wiederherstellen deines Backups ist ein Fehler aufgetreten. Dein Backup lässt sich nicht wiederherstellen. Bitte kontaktiere den Support, falls du Hilfe benötigst.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
@@ -1499,7 +1506,11 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Jetzt nicht</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Falls du jetzt nicht wiederherstellst, wirst du dies später nicht nachholen können. Deine Medien werden im Hintergrund wiederhergestellt.</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Deine Medien werden im Hintergrund wiederhergestellt. Falls du jetzt nicht wiederherstellst, wirst du dies später nicht nachholen können.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">Dieses Gerät ist nicht mehr registriert</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">Das liegt wahrscheinlich daran, dass du dein Signal-Konto auf einem anderen Gerät registriert hast.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Mich bei Erwähnungen benachrichtigen</string>
@@ -2114,6 +2125,12 @@
     <string name="MessageRecord_you_blocked_this_group">Du hast diese Gruppe blockiert</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">Du hast diese Gruppe freigegeben</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s hat dir eine Nachricht gesendet, die nicht verarbeitet oder angezeigt werden kann, da sie ein neues Signal-Feature nutzt.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s hat die Umfrage beendet: »%2$s«</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">Du hast die Umfrage »%1$s« beendet</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Annehmen</string>
@@ -2429,6 +2446,12 @@
     <string name="WebRtcCallActivity__to_start_call">Anruf starten oder Anruf beitreten:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">Die Videoübertragung aktivieren:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Lokales Video verkleinern</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Lokales Video vergrößern</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal-Anruf</string>
@@ -2921,6 +2944,8 @@
     <string name="SubmitDebugLogActivity_success">Erfolgreich!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Teilen</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">Schließen</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dieses Diagnoseprotokoll wird online gestellt, sodass Mitwirkende es einsehen können. Bevor du das Protokoll hochlädst, kannst du es noch einmal überprüfen.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Wenn du auf »Übermitteln« klickst, wird dein Diagnoseprotokoll unter einer eindeutigen, unveröffentlichten Internetadresse für 30 Tage online gestellt. Du kannst es aber auch erst lokal speichern.</string>
@@ -3179,6 +3204,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">Hat mit %1$s auf deine Zahlung reagiert.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Hat mit %1$s auf deinen Sticker reagiert.</string>
     <string name="MessageNotifier_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s hat eine Stimme in der Umfrage »%3$s« abgegeben</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Benachrichtigungen über neue Signal-Kontakte ausschalten? Du kannst sie wieder einschalten in Signal → Einstellungen → Benachrichtigungen.</string>
 
@@ -3355,6 +3382,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Ohne Video annehmen</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">Kamerarichtung ändern</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Audioausgang</string>
@@ -3412,9 +3442,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"»%1$s« ist kein Signal-Nutzername. Bitte überprüfe den Nutzernamen und versuche es erneut."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Du musst dich nicht selbst zur Gruppe hinzufügen</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Maximale Gruppengröße erreicht</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-Gruppen können maximal %1$d Mitglieder besitzen.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal-Gruppen können maximal %1$s Mitglieder haben.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Empfohlene Mitgliederanzahl erreicht</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-Gruppen funktionieren am besten mit %1$d oder weniger Mitgliedern. Das Hinzufügen weiterer Mitglieder führt zu Verzögerungen beim Senden und Empfangen von Nachrichten.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal-Gruppen funktionieren am besten mit %1$s oder weniger Mitgliedern. Das Hinzufügen weiterer Mitglieder führt zu Verzögerungen beim Senden und Empfangen von Nachrichten.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d Mitglied</item>
         <item quantity="other">%1$d Mitglieder</item>
@@ -4424,6 +4454,8 @@
     <string name="conversation_selection__menu_multi_select">Auswählen</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Zahlungsdetails</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">Umfrage beenden</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4510,7 +4542,7 @@
     <string name="text_secure_normal__menu_new_group">Neue Gruppe</string>
     <string name="text_secure_normal__menu_settings">Einstellungen</string>
     <string name="text_secure_normal__menu_clear_passphrase">Signal sperren</string>
-    <string name="text_secure_normal__mark_all_as_read">Alle gelesen</string>
+    <string name="text_secure_normal__mark_all_as_read">Alle als  gelesen markieren</string>
     <string name="text_secure_normal__invite_friends">Kontakte einladen</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Ungelesene Chats filtern</string>
@@ -4813,7 +4845,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">Info</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Das ist eine Beta-Funktion, die wir nach und nach verbessern werden.</string>
+    <string name="Beta__this_is_beta">Dies ist eine Beta-Funktion, die nach und nach verbessert wird.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal entsperren</string>
@@ -4977,6 +5009,14 @@
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Tippe auf »Von Android-Gerät übertragen« und dann auf »Weiter«. Positioniere beide Geräte nahe beieinander."</string>
     <string name="OldDeviceTransferInstructions__continue">Fortfahren</string>
+    <!-- Title for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">Geräteübertragung stoppen?</string>
+    <!-- Message for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">Es wurden keine Daten auf dein neues Gerät übertragen.</string>
+    <!-- Confirm button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__stop_transfer">Übertragung abbrechen</string>
+    <!-- Negative/cancel button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__continue_transfer">Übertragung fortsetzen</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Wechsle zu deinem neuen Gerät</string>
@@ -5168,10 +5208,14 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Überspringen</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d Mitglied</item>
-        <item quantity="other">%1$d Mitglieder</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$s Mitglied</item>
+        <item quantity="other">%1$s Mitglieder</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">Weiter</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Teilen</string>
@@ -5306,7 +5350,7 @@
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Deine Wiederherstellungsphrase</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Notiere die folgenden %1$d Wörter in der angegebenen Reihenfolge, und bewahre deine Liste an einem sicheren Ort auf.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Vergewissere dich, dass du deine Phrase richtig eingegeben hast.</string>
-    <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Keine Bildschirmfotos machen und nicht per E-Mail versenden.</string>
+    <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Keine Screenshots machen und nicht per E-Mail versenden.</string>
     <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Konto für Zahlungen wiederhergestellt.</string>
     <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Ungültige Wiederherstellungsphrase</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Vergewissere dich, dass du deine Phrase richtig eingegeben hast, und versuche es erneut.</string>
@@ -5364,7 +5408,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Erneuere dein Signal Backup-Abo</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Erneuere dein Signal Secure Backup-Abo</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Das Backup konnte nicht abgeschlossen werden</string>
     <!-- String alerting user that backup redemption -->
@@ -5547,7 +5591,7 @@
     <!-- Option in context menu to unmute all chats in the folder -->
     <string name="ChatFoldersFragment__unmute_all">Stummschaltung aufheben</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
-    <string name="ChatFoldersFragment__mark_all_read">Alle gelesen</string>
+    <string name="ChatFoldersFragment__mark_all_read">Alle als  gelesen markieren</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
         <item quantity="one">%1$d Chat-Art</item>
@@ -5645,7 +5689,7 @@
     <string name="PrivacySettingsFragment__disappearing_messages">Verschwindende Nachrichten</string>
     <string name="PrivacySettingsFragment__app_security">App-Sicherheit</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Screenshots in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-Nachrichten und -Anrufe, Anrufe immer indirekt und Vertraulicher Absender</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardablaufzeit für neue Chats</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Lege eine Standardablaufzeit für verschwindende Nachrichten fest. Diese gilt für alle von dir begonnenen neuen Chats.</string>
@@ -5893,24 +5937,24 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s wurde blockiert</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Blockierung fehlgeschlagen</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">%1$s kann nicht entfernt werden</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Diese Person ist in den Kontakten deines Geräts gespeichert. Lösche sie aus deinen Kontakten und versuche es erneut.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Kontakt anzeigen</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s nutzt Signal nicht</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s nutzt Signal nicht</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s nutzt Signal nicht</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Menü öffnen</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s nutzt Signal nicht</item>
         <item quantity="other">%1$s nutzen Signal nicht</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Name oder Nummer suchen</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Name, Nutzername oder Nummer</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Zur numerischen Tastatur wechseln</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Zur alphanumerischen Tastatur wechseln</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Suchfilter zurücksetzen</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6076,7 +6120,6 @@
     <string name="BadgesOverviewFragment__featured_badge">Ausgewähltes Abzeichen</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Abzeichen im Profil anzeigen</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Profil konnte nicht aktualisiert werden</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Wähle ein Abzeichen</string>
@@ -7613,15 +7656,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Bearbeitungsverlauf</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Nachricht bearbeiten</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Wenn du eine Nachricht bearbeitest, ist sie nur für Personen sichtbar, die die neuesten Versionen von Signal verwenden. Sie können dann sehen, dass du eine Nachricht bearbeitet hast.</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Abbrechen</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Senden</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -7738,25 +7772,29 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Alle ablehnen</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Signal Backups einschalten</string>
+    <string name="TurnOnSignalBackups__title">Aktiviere Signal Secure Backups</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Probiere Signal Secure Backups aus</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Verliere keine alten Nachrichten, wenn du ein neues Mobiltelefon hast oder Signal erneut installierst.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Einschalten</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Jetzt nicht</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">Du kannst Backups unter »Einstellungen« aktivieren</string>
 
-    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">Bestätige deinen Backup-Schlüssel</string>
-    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">Damit du dich besser an deinen Backup-Schlüssel besser erinnerst, werden wir gelegentlich danach fragen.</string>
-    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">Bestätige deinen Wiederherstellungsschlüssel</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">Wir werden dich ab und zu bitten, deinen Schlüssel zu verifizieren, um sicherzugehen, dass du ihn noch weißt</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
     <string name="VerifyBackupKey__verify">Bestätigen</string>
-    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">Jetzt nicht</string>
-    <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Backup-Schlüssel korrekt. Verwahre deinen Schlüssel sicher auf.</string>
-    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">Wiederherstellungsschlüssel korrekt. Verwahre deinen Schlüssel sicher auf.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Wir fragen dich in einer Woche erneut.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -7902,7 +7940,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Dein Abo konnte mit deiner Zahlungsmethode nicht verlängert werden. Um deine Medien weiterhin sichern zu können, brauchst du ein aktives Abo.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Du kannst den kostenlosen Signal Backup-Plan weiterhin nutzen.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Du kannst die kostenlose Signal Secure Backup-Option weiterhin nutzen.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Backup konnte nicht abgeschlossen werden</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7970,6 +8008,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Du musst %1$s freigeben, um deine Medien wiederherzustellen.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Medien werden wiederhergestellt</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">Medienwiederherstellung abbrechen</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">Medienwiederherstellung angehalten</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8015,6 +8055,12 @@
     <string name="BackupStatusRow__your_last_backup">Dein letztes Backup konnte nicht abgeschlossen werden. Stelle sicher, dass dein Smartphone mit dem WLAN verbunden ist, und tippe auf »Jetzt sichern«, um es erneut zu versuchen.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Dein letztes Backup konnte nicht abgeschlossen werden. Vergewissere dich, dass du die neueste Version von Signal verwendest, und versuche es erneut.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">Du hast mehr Nachrichten als das Speicherlimit zulässt. Lösche einige Nachrichten und versuche es erneut.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Nachrichten, die vor dem %1$s verschickt oder empfangen wurden, werden nicht gesichert.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Dein Backup konnte nicht fertiggestellt werden, weil du nicht genug Speicherplatz hast. Mach Platz auf deinem Gerät und versuch\'s noch mal.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Mehr erfahren</string>
 
@@ -8045,6 +8091,32 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Backup-Abo ändern oder kündigen</string>
 
+    <!-- GooglePlayServicesAvailability -->
+    <!-- Dialog title when Google Play services are missing from the device -->
+    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play-Dienste fehlen</string>
+    <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
+    <string name="GooglePlayServicesAvailability__service_missing_message">Wenn du Signal Secure Backups abonnieren willst, installiere Google Play-Dienste auf deinem Telefon.</string>
+    <!-- Dialog button text to install Google Play services -->
+    <string name="GooglePlayServicesAvailability__install_play_services">Google Play-Dienste installieren</string>
+    <!-- Dialog title when Google Play services are currently updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play-Dienste werden gerade aktualisiert</string>
+    <!-- Dialog message asking user to wait while Google Play services finish updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_message">Wenn du Signal Secure Backups abonnieren willst, warte bitte, bis die Google Play-Dienste fertig aktualisiert sind.</string>
+    <!-- Dialog title when Google Play services need to be updated -->
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Google Play-Dienste aktualisieren</string>
+    <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
+    <string name="GooglePlayServicesAvailability__service_update_required_message">Um Signal Secure Backups zu abonnieren, aktualisiere Google Play auf deinem Telefon.</string>
+    <!-- Dialog button text to update Google Play services -->
+    <string name="GooglePlayServicesAvailability__update">Aktualisieren</string>
+    <!-- Dialog title when Google Play services are disabled -->
+    <string name="GooglePlayServicesAvailability__service_disabled_title">Kostenpflichtige Abos erfordern Google Play</string>
+    <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
+    <string name="GooglePlayServicesAvailability__service_disabled_message">Um Signal Secure Backups zu abonnieren, aktiviere die Google Play-Dienste auf deinem Telefon und melde dich im Google Play Store an. </string>
+    <!-- Dialog button text to learn more about enabling Google Play services -->
+    <string name="GooglePlayServicesAvailability__learn_more">Mehr erfahren</string>
+    <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
+    <string name="GooglePlayServicesAvailability__service_invalid_message">Du kannst Signal Secure Backups nicht abonnieren, weil dein Telefon Google Play-Dienste nicht unterstützt. Kontaktiere den Hersteller deines Telefons, um weitere Hilfe zu erhalten.</string>
+
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">Chat-Beschränkungen</string>
@@ -8065,13 +8137,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nicht verwendete Medien werden zwar ausgelagert, sie können aber jederzeit aus deinem Backup heruntergeladen werden.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Die Speicheroptimierung kann nur mit der kostenpflichtigen Option für Signal Backups genutzt werden. Dein Backup-Abo wird momentan noch bearbeitet und ist daher noch nicht aktiv. Bitte versuche es später noch einmal.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Die Speicheroptimierung kann nur mit der kostenpflichtigen Option von Signal Secure Backups genutzt werden. Dein Backup-Abo wird momentan noch bearbeitet und ist daher noch nicht aktiv. Bitte versuche es später erneut.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Upgraden um diese Funktion zu aktivieren</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Die Speicheroptimierung kann nur mit der kostenpflichtigen Option für Signal Backups genutzt werden. Upgrade deine Backup-Option, um diese Funktion zu nutzen.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Die Speicheroptimierung kann nur mit der kostenpflichtigen Option von Signal Secure Backups genutzt werden. Führe ein Upgrade deiner Backup-Option durch, um diese Funktion zu nutzen.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Abonniere für %1$s/Monat</string>
 
@@ -8090,7 +8162,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Diese Medien sind nicht länger verfügbar</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Aktiviere Signal Backup und wähle die kostenpflichtige Variante, um mit der Sicherung deiner Medien zu beginnen.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Aktiviere Signal Secure Backups und wähle die kostenpflichtige Variante, um mit der Sicherung deiner Medien zu beginnen.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Fortfahren</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8118,6 +8190,8 @@
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/Monat, verlängert sich am %2$s</string>
+    <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
+    <string name="BackupsSettingsFragment_renews_s">Verlängert sich am %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Letztes Backup: %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8134,8 +8208,12 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">Upload abbrechen</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Secure Backups</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Backups</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Secure Backups</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">Aus</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentifizierung erforderlich</string>
     <!-- Row label to launch payment history screen -->
@@ -8147,19 +8225,28 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Größe des Backups</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">Wird berechnet …</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Häufigkeit von Backups</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Deine Medien und Nachrichten werden täglich gesichert.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Backup über das Mobilfunknetz</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">Backup-Schlüssel anzeigen</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Entsperren, um Backup-Schlüssel anzuzeigen</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Wiederherstellungsschlüssel anzeigen</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Entsperren, um den Wiederherstellungsschlüssel anzuzeigen</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">Bestätige, dass du es bist, um deinen Schlüssel anzuzeigen</string>
     <!-- Row label for cancelling and deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Backup ausschalten und löschen</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Backup deaktivieren und löschen</string>
+    <!-- Dialog title for explainer text to on how backup size works for free tier -->
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Größe des Backups</string>
+    <!-- Dialog message for explainer text to on how backup size works for free tier -->
+    <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
+        <item quantity="one">Dein Backup umfasst deine Textnachrichten und die Medien deines letzten (%1$d) Tags. Die Größe wird angepasst, wenn neue Medien empfangen werden und alte Medien ablaufen.</item>
+        <item quantity="other">Dein Backup umfasst deine Textnachrichten und die Medien der vergangenen %1$d Tage. Die Größe wird angepasst, wenn neue Medien empfangen werden und alte Medien ablaufen.</item>
+    </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Backup gelöscht und ausgeschaltet.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
@@ -8171,7 +8258,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Backup wird über Nacht erstellt.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Neuer Backup-Schlüssel wurde erstellt</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Neuer Wiederherstellungsschlüssel erstellt</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Abo inaktiv</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8217,7 +8304,7 @@
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">Jetzt sichern</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Backups ausschalten und löschen?</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Backups deaktivieren und löschen?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Dein Backup wird gelöscht und es werden keine neuen Backups erstellt. Medien in deinem Backup werden jetzt auf dein Smartphone heruntergeladen.</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
@@ -8249,11 +8336,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Je nach Größe deines Backups könnte dies etwas dauern. Während das Backup heruntergeladen wird, kannst du dein Mobiltelefon weiterhin ganz normal nutzen.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Dein Abo wurde auf diesem Gerät nicht gefunden. Jetzt erneuern, um Signal Backups weiterhin verwenden zu können.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Dein Abo wurde auf diesem Gerät nicht gefunden. Jetzt erneuern, um Signal Secure Backups weiterhin verwenden zu können.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Dein Backup-Abo auf diesem Gerät ist für den nächsten %1$d Tag gültig. Erneuere dein Abo, um Signal Backup weiterhin nutzen zu können.</item>
-        <item quantity="other">Dein Backup-Abo auf diesem Gerät ist für die nächsten %1$d Tage gültig. Erneuere dein Abo, um Signal Backup weiterhin nutzen zu können.</item>
+        <item quantity="one">Dein Backups-Abo auf diesem Gerät ist für den nächsten %1$d Tag gültig. Erneuere dein Abo, um Signal Secure Backups weiterhin nutzen zu können.</item>
+        <item quantity="other">Dein Backups-Abo auf diesem Gerät ist für die nächsten %1$d Tage gültig. Erneuere dein Abo, um Signal Secure Backups weiterhin nutzen zu können.</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Erneut abonnieren</string>
@@ -8298,11 +8385,13 @@
     <!-- Positive dialog action to skip download during deletion -->
     <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Überspringen und dauerhaft löschen</string>
     <!-- Dialog title for network error while trying to disable backups -->
-    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Backups konnten nicht ausgeschaltet und gelöscht werden.</string>
+    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Backups konnten nicht deaktiviert und gelöscht werden.</string>
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Ein Netzwerkfehler ist aufgetreten. Bitte überprüfe deine Internetverbindung und versuche es erneut.</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Hochladen: %1$s von %2$s (%3$d %%)</string>
+    <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Lädt: %1$d %%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Details</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8376,36 +8465,38 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Dein Backup-Schlüssel</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Wiederherstellungsschlüssel</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Dein Backup-Schlüssel ist ein 64-stelliger Code, mit dem du dein Backup wiederherstellen kannst, wenn du Signal neu installierst.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Dein Wiederherstellungsschlüssel ist ein 64-stelliger Code, mit dem du dein Backup wiederherstellen kannst.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ohne Schlüssel kannst du dein Backup nicht wiederherstellen. Signal kann dir nicht helfen, dein Backup wiederherzustellen.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Speichere deinen Wiederherstellungsschlüssel an einem sicheren Ort wie in einem Passwortmanager und gib ihn nicht weiter.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Wenn du ihn verlierst, kannst du deine Nachrichten nicht wiederherstellen.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Weiter</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Wiederherstellungsschlüssel anzeigen</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Sichere deinen Backup-Schlüssel</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Speichere deinen Wiederherstellungsschlüssel</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Dieser Schlüssel wird benötigt, um dein Konto und deine Daten wiederherzustellen. Bewahre diesen Schlüssel sicher auf. Wenn du ihn verlierst, kannst du dein Konto nicht wiederherstellen.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">In Zwischenablage kopieren</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Im Passwortmanager speichern</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Im Passwortmanager speichern?</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Speichere deinen Backup-Schlüssel nur in einem sicheren Passwortmanager. Signal gibt keine Empfehlung ab, welcher der passende Passwortmanager für dich ist.</string>
-    <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Speichere deinen Wiederherstellungsschlüssel nur in einem sicheren Passwortmanager. Signal gibt keine Empfehlung ab, welcher der passende Passwortmanager für dich ist.</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Secure Backups</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">In deinem Passwortmanager gespeichert</string>
-    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Kann nicht im Passwortmanager gespeichert werden</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Du hast keinen Passwortmanager eingerichtet, oder dein Passwortmanager wird nicht unterstützt.</string>
-    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
     <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Du hast vorher ausgewählt, dass Passwörter für Signal nicht im Google Passwortmanager gespeichert werden sollen. Entferne Signal in den Einstellungen deines Google Passwortmanagers aus »Abgelehnte Websites und Apps« und versuche es noch mal.</string>
     <!-- Label for a button that navigates to the device settings -->
     <string name="MessageBackupsKeyRecordScreen__go_to_settings">Zu Einstellungen</string>
@@ -8426,42 +8517,48 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">Medien herunterladen</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Du musst „Speicher optimieren“ erst deaktivieren und warten, bis deine Medien heruntergeladen wurden, um einen neuen Backup-Schlüssel zu erstellen. Sobald der Download abgeschlossen ist, kannst du einen neuen Schlüssel erstellen.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Du musst »Speicher optimieren« erst deaktivieren und warten, bis deine Medien heruntergeladen wurden, um einen neuen Wiederherstellungsschlüssel zu erstellen. Sobald der Download abgeschlossen ist, kannst du einen neuen Schlüssel erstellen.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Ausschalten und herunterladen</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Neuen Backup-Schlüssel erstellen</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Neuen Wiederherstellungsschlüssel erstellen</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Das Erstellen eines neuen Schlüssels ist nur erforderlich, wenn jemand anderes ihn kennt. Du musst dein Backup erneut hochladen, einschließlich Medien. Wenn du „Speicher optimieren“ nutzt, musst du ausgelagerte Medien erst herunterladen.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Backup-Konfiguration beenden?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Du hast das Einrichten von Backups noch nicht abgeschlossen, und es wurde noch kein Backup erstellt. Du kannst Backups unter »Einstellungen« aktivieren.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Backup-Konfiguration beenden</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Schlüsselerstellung abbrechen?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Dein neuer Backup-Schlüssel wird erst erstellt, wenn du bestätigst.</string>
-    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Dein neuer Wiederherstellungsschlüssel wird erst erstellt, wenn du ihn bestätigst.</string>
+    <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">Schlüssel bestätigen</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">Schlüsselerstellung abbrechen</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Bestätige deinen Backup-Schlüssel</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Bestätige deinen Wiederherstellungsschlüssel</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Gib den Backup-Schlüssel ein, den du eben aufgezeichnet hast</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Gib den Wiederherstellungsschlüssel ein, den du eben gespeichert hast</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Backup-Schlüssel</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Wiederherstellungsschlüssel</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Falscher Backup-Schlüssel</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Wiederherstellungsschlüssel nicht korrekt</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Schlüssel erneut anzeigen</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Weiter</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">Gib deinen Backup-Schlüssel ein</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Gib deinen Wiederherstellungsschlüssel ein</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Gib den 64-stelligen Code ein, den du beim Aktivieren deiner Backups aufgezeichnet hast.</string>
-    <!-- Button text when you forget your backup key -->
+    <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Schlüssel vergessen?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
@@ -8479,10 +8576,14 @@
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Abonniere für %1$s/Monat</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Backup-Art ändern</string>
+    <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">Mehr Infos zu diesem Abo</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Abo kündigen</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Kostenlos</string>
+    <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
+    <string name="MessageBackupsTypeSelectionScreen__paid">Bezahlt</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/Monat</string>
     <!-- Title for free tier -->
@@ -8507,6 +8608,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">Aktuelles Abo</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Abo-Upgrade nicht möglich</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Um Signal Secure Backups zu abonnieren, musst du Google Play-Dienste auf deinem Telefon aktiviert haben und im Google Play Store angemeldet sein.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8537,9 +8642,9 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Konto wiederherstellen oder übertragen</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Hol dir dein Signal-Konto und deinen Nachrichtenverlauf auf dieses Gerät.</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Von Signal Backups</string>
-    <!-- Option subtitle for restoring via signal backups -->
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Von Signal Secure Backups</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Dein kostenloses oder kostenpflichtiges Signal Backup-Abo</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">Von einem Backup-Ordner</string>
@@ -8551,46 +8656,56 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Von deinem alten Telefon</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Direkt von deinem alten Android-Telefon übertragen</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Wiederherstellen überspringen?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Falls du die Wiederherstellung jetzt überspringst, kannst du sie später nicht mehr durchführen. Wenn du Backups wieder aktivierst, nachdem du die Wiederherstellung übersprungen hast, wird dein aktuelles Backup durch deinen neuen Nachrichtenverlauf ersetzt.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Wiederherstellen überspringen</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Lokales Backup wiederherstellen</string>
     <!-- Screen subtitle for restore via local backup -->
     <string name="RestoreLocalBackup_subtitle">Stelle deine Nachrichten mithilfe einem auf deinem Gerät gespeicherten Backup wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Gib deinen Backup-Schlüssel ein</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Dein Backup-Schlüssel ist ein 64-stelliger Code, den du benötigst, um dein Konto und deine Daten wiederherzustellen.</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Kein Backup-Schlüssel?</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Backup-Schlüssel</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups können ohne den 64-stelligen Code nicht wiederhergestellt werden. Wenn du deinen Backup-Schlüssel verloren hast, kann dir Signal nicht helfen, dein Backup wiederherzustellen.</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Auf deinem alten Gerät kannst du deinen Backup-Schlüssel in Einstellungen &gt; Backups sehen. Tippe dann auf »Backup-Schlüssel anzeigen«.</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">Gib deinen Wiederherstellungsschlüssel ein</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">Dein Wiederherstellungsschlüssel ist ein 64-stelliger Code, den du benötigst, um dein Konto und deine Daten wiederherzustellen.</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">Kein Wiederherstellungsschlüssel?</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">Wiederherstellungsschlüssel</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups können ohne den 64-stelligen Code nicht wiederhergestellt werden. Wenn du deinen Wiederherstellungsschlüssel verloren hast, kann dir Signal nicht helfen, dein Backup wiederherzustellen.</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">Auf deinem alten Gerät kannst du deinen Wiederherstellungsschlüssel in Einstellungen &gt; Backups sehen. Tippe anschließend auf »Wiederherstellungsschlüssel anzeigen«.</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Mehr erfahren</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Überspringen und nicht wiederherstellen</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Falscher Backup-Schlüssel</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Wiederherstellungsschlüssel nicht korrekt</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Registriere dich unbedingt mit derselben Telefonnummer und demselben 64-stelligen Backup-Schlüssel, den du beim Aktivieren von Signal Backups gespeichert hast. Backups können ohne diesen Schlüssel nicht wiederhergestellt werden.</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Registriere dich unbedingt mit derselben Telefonnummer und demselben 64-stelligen Wiederherstellungsschlüssel, den du beim Aktivieren von Signal Secure Backups gespeichert hast. Backups können ohne diesen Schlüssel nicht wiederhergestellt werden.</string>
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Erneut versuchen</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">Backup-Schlüssel – Hilfe</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Falscher Backup-Schlüssel</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">Hilfe</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">Wiederherstellungsschlüssel nicht korrekt</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">Zu lang (%1$d/%2$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Ungültiger Backup-Schlüssel</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">Wiederherstellungsschlüssel ungültig</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Backup nicht gefunden</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Der von dir eingegebene Backup-Schlüssel ist korrekt, diesem ist aber kein Backup zugeordnet. Falls du dein altes Telefon noch hast, stelle sicher, dass Backups aktiviert sind und dass ein Backup abgeschlossen wurde. Versuche es dann erneut.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Der von dir eingegebene Wiederherstellungsschlüssel ist korrekt, diesem ist aber kein Backup zugeordnet. Falls du dein altes Telefon noch hast, stelle sicher, dass Backups aktiviert ist und dass ein Backup abgeschlossen wurde. Versuche es dann erneut.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Du hast vielleicht deinen Wiederherstellungsschlüssel falsch eingegeben oder mindestens ein Backup auf deinem alten Gerät nicht abgeschlossen.\n\nRegistriere dich unbedingt mit derselben Telefonnummer und demselben Wiederherstellungsschlüssel, den du beim Aktivieren von Signal Secure Backups gespeichert hast, und vergewissere dich, dass dein altes Gerät ein Backup abgeschlossen hat.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Du kannst keine neuen Wiederherstellungsschlüssel mehr ausprobieren. Zu deiner Sicherheit ist die Anzahl von Versuchen begrenzt. Warte eine Stunde und versuche es dann erneut.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Wiederherstellen überspringen</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8604,7 +8719,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup-Wiederherstellung: Netzwerk-Problem</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup-Wiederherstellung: dauerhafter Fehler</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Dauerhafter Fehler bei Signal Android Backup-Wiederherstellung</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
@@ -8656,9 +8771,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">Fahre damit fort, dein Konto auf dein anderes Gerät zu übertragen.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Wiederherstellung abgeschlossen</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">Auf deinem anderen Gerät abschließen</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Die Übertragung deines Signal-Kontos und deiner Nachrichten auf dein anderes Gerät hat begonnen. Signal ist jetzt auf diesem Gerät inaktiv.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Dein Signal-Konto und deine Nachrichten können jetzt auf deinem anderen Gerät wiederhergestellt werden. Signal ist jetzt auf diesem Gerät inaktiv.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">Übertragung vollständig</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
@@ -8669,7 +8784,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">Kein Backup zum Wiederherstellen</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Da du von iPhone auf Android umsteigst, kannst du deine Nachrichten und Medien nur übertragen, wenn du auf deinem alten Gerät Signal Backups aktivierst.</string>
+    <string name="NoBackupToRestore_subtitle">Da du von iPhone auf Android umsteigst, kannst du deine Nachrichten und Medien nur übertragen, wenn du auf deinem alten Gerät Signal Secure Backups aktivierst.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Öffne Signal auf deinem alten Gerät</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
@@ -8679,6 +8794,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Wiederherstellen überspringen</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Obergrenze für Wiederherstellungsschlüssel erreicht</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Du hast einen neuen Wiederherstellungsschlüssel erstellt. Um Missbrauch zu verhindern, ist die Anzahl der neuen Schlüssel, die du erstellen kannst, begrenzt. Du kannst erst in 7 Tagen einen neuen Schlüssel erstellen. Bewahre deinen Wiederherstellungsschlüssel an einem sicheren Ort auf.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Ich kann keinen neuen Schlüssel erstellen</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Du hast die Anzahl der neuen Schlüssel, die erstellt werden dürfen, aufgebraucht. Du kannst in 7 Tagen einen neuen Wiederherstellungsschlüssel erstellen. Wenn du denkst, dass jemand auf dein Backup zugreifen könnte, kannst du dein »Backup deaktivieren und löschen«.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Suche schließen</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8718,6 +8843,151 @@
         <item quantity="one">Du hast seit %1$d Tag kein Backup mehr durchgeführt. Erstelle jetzt ein Backup.</item>
         <item quantity="other">Du hast seit %1$d Tagen kein Backup mehr durchgeführt. Erstelle jetzt ein Backup.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">Umfrage · Eine Option auswählen</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">Umfrage · Eine oder mehrere Optionen auswählen</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">Umfrage · Endergebnis</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">Keine Stimmen</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">Stimmen ansehen</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">Umfrage ansehen</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">Umfrage konnte nicht gefunden werden</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">Ergebnisse ansehen</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">Umfrage: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s hat die Umfrage beendet: »%2$s«</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">Du hast die Umfrage »%1$s« beendet</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s hat an der Umfrage »%2$s« teilgenommen</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">Umfragen</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">Umfrageergebnisse</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">Umfragedetails</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">Frage</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="one">%1$d Stimme</item>
+        <item quantity="other">%1$d Stimmen</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">Gewinner</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">Umfrage beenden</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">Alle anzeigen</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">Umfrage konnte nicht beendet werden</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">Überprüfe deine Verbindung und versuche es erneut.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">Umfrage beenden?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">Gruppenmitglieder können an dieser Umfrage nicht mehr teilnehmen.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">Warten auf Netzwerk…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">Neue Umfrage</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">Frage</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">Eine Frage stellen</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">Optionen</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">Reihenfolge ändern-Handle</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">Mehrere Stimmen zulassen</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">Füge eine Frage und mindestens 2 Optionen hinzu</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">Mindestens 2 Optionen hinzufügen</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">Eine Frage hinzufügen</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">Audio-Problem</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">Video-Problem</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">Anruf abgebrochen</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">Etwas anderes</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">Audio-Aussetzer</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">Audio-Ausfall</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">Ich habe ein Echo gehört</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">Andere haben ein Echo gehört</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">Schlechte Videoqualität</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">Niedrige Auflösung</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">Kamera hat nicht funktioniert</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">Etwas anderes</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Schildere uns dein Problem</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Bitte gib alle Details an, die für das Problem relevant sind. Alles, was du hier teilst, bleibt vertraulich und wird nur dazu verwendet, die Anrufe in Signal zu verbessern.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">Speichern</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">Zurück</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">Wie war dein Anruf?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Das hilft uns, Anrufe in Signal zu verbessern. Es werden keine personenbezogenen Daten gespeichert.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">Gab Probleme</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">Super</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">Was für Probleme hattest du?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">Wähle aus, was zutrifft</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">Schildere dein Problem</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">Fortfahren</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">Hilf uns, besser zu werden</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Wenn du uns deine Diagnose-Infos übermittelst, hilfst du uns dabei, die Anrufqualität zu verbessern. Du kannst </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">dein Diagnoseprotokoll ansehen</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> bevor du es absendest</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">Diagnoseprotokoll teilen</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">Diagnoseprotokolle enthalten nur wenige App-Infos und verraten nichts über den Inhalt deiner Nachrichten.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">Übermitteln</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">Danke für dein Feedback!</string>
 
     <!-- EOF -->
 </resources>

@@ -17,7 +17,6 @@ import org.signal.core.util.Result;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
-import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.ringrtc.CallLinkEpoch;
@@ -68,6 +67,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
+
+import kotlin.Pair;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -287,8 +288,8 @@ public class LinkPreviewRepository {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         Pair<String, String> stickerParams = StickerUrl.parseShareLink(packUrl).orElse(new Pair<>("", ""));
-        String               packIdString  = stickerParams.first();
-        String               packKeyString = stickerParams.second();
+        String               packIdString  = stickerParams.getFirst();
+        String               packKeyString = stickerParams.getSecond();
         byte[]               packIdBytes   = Hex.fromStringCondensed(packIdString);
         byte[]               packKeyBytes  = Hex.fromStringCondensed(packKeyString);
 
@@ -484,6 +485,7 @@ public class LinkPreviewRepository {
                              false,
                              false,
                              false,
+                             null,
                              null,
                              null,
                              null,

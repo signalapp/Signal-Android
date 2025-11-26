@@ -38,7 +38,6 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
@@ -50,9 +49,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.Texts
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
@@ -184,10 +184,10 @@ class BankTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDeleg
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun BankTransferDetailsContentPreview() {
-  SignalTheme {
+  Previews.Preview {
     BankTransferDetailsContent(
       state = BankTransferDetailsState(
         name = "Miles Morales",

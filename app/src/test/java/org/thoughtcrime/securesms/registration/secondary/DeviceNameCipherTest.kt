@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.registration.secondary
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import org.junit.Test
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.thoughtcrime.securesms.devicelist.protos.DeviceName
 import java.nio.charset.Charset
 
@@ -11,7 +11,7 @@ class DeviceNameCipherTest {
   @Test
   fun encryptDeviceName() {
     val deviceName = "xXxCoolDeviceNamexXx"
-    val identityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
+    val identityKeyPair = IdentityKeyPair.generate()
 
     val encryptedDeviceName = DeviceNameCipher.encryptDeviceName(deviceName.toByteArray(Charset.forName("UTF-8")), identityKeyPair)
 

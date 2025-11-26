@@ -10,5 +10,6 @@ public final class EmojiStrings {
   public static final String STICKER            = "\u2B50";
   public static final String GIFT               = "\uD83C\uDF81";
   public static final String CARD               = "\uD83D\uDCB3";
+  public static final String POLL               = "\uD83D\uDCCA";
   public static final String FAILED_STORY       = "\u2757";
 }

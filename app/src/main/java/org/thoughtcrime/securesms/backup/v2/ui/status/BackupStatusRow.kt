@@ -5,47 +5,33 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.status
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.text.InlineTextContent
-import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.LinkAnnotation
-import androidx.compose.ui.text.Placeholder
-import androidx.compose.ui.text.PlaceholderVerticalAlign
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextLinkStyles
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
-import org.signal.core.ui.compose.SignalPreview
-import org.signal.core.util.ByteSize
+import org.signal.core.util.mebiBytes
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.RestoreState
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState.RestoreStatus
+import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
 import kotlin.math.roundToInt
 import org.signal.core.ui.R as CoreUiR
-
-private val YELLOW_DOT = Color(0xFFFFCC00)
 
 /**
  * Specifies what kind of restore this is. Slightly different messaging
@@ -69,11 +55,10 @@ enum class RestoreType {
  */
 @Composable
 fun BackupStatusRow(
-  backupStatusData: BackupStatusData,
+  backupStatusData: ArchiveRestoreProgressState,
   restoreType: RestoreType = RestoreType.RESTORE,
   onSkipClick: () -> Unit = {},
-  onCancelClick: (() -> Unit)? = null,
-  onLearnMoreClick: () -> Unit = {}
+  onCancelClick: (() -> Unit)? = null
 ) {
   val endPad = if (onCancelClick == null) {
     dimensionResource(CoreUiR.dimen.gutter)
@@ -84,285 +69,216 @@ fun BackupStatusRow(
   Column(
     modifier = Modifier.padding(top = 8.dp, bottom = 12.dp)
   ) {
-    if (backupStatusData !is BackupStatusData.CouldNotCompleteBackup &&
-      backupStatusData !is BackupStatusData.BackupFailed
+    Row(
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier.padding(
+        start = dimensionResource(CoreUiR.dimen.gutter),
+        end = endPad
+      )
     ) {
-      Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(
-          start = dimensionResource(CoreUiR.dimen.gutter),
-          end = endPad
-        )
-      ) {
-        LinearProgressIndicator(
-          color = progressColor(backupStatusData),
-          progress = { backupStatusData.progress },
-          modifier = Modifier.weight(1f).padding(vertical = 12.dp),
-          gapSize = 0.dp,
-          drawStopIndicator = {}
-        )
+      LinearProgressIndicator(
+        color = progressColor(backupStatusData),
+        progress = { backupStatusData.progress ?: 0f },
+        modifier = Modifier.weight(1f).padding(vertical = 12.dp),
+        gapSize = 0.dp,
+        drawStopIndicator = {}
+      )
 
-        val isFinished = backupStatusData is BackupStatusData.RestoringMedia && backupStatusData.restoreStatus == BackupStatusData.RestoreStatus.FINISHED
-        if (onCancelClick != null && !isFinished) {
-          IconButton(
-            onClick = onCancelClick
-          ) {
-            Icon(
-              painter = painterResource(R.drawable.symbol_x_24),
-              contentDescription = stringResource(R.string.BackupStatusRow__cancel_download)
-            )
-          }
+      if (onCancelClick != null) {
+        IconButton(
+          onClick = onCancelClick
+        ) {
+          Icon(
+            painter = painterResource(R.drawable.symbol_x_24),
+            contentDescription = stringResource(R.string.BackupStatusRow__cancel_download)
+          )
         }
       }
     }
 
-    when (backupStatusData) {
-      is BackupStatusData.RestoringMedia -> {
-        val string = when (restoreType) {
-          RestoreType.RESTORE -> getRestoringMediaString(backupStatusData)
-          RestoreType.DOWNLOAD -> getDownloadingMediaString(backupStatusData)
-        }
+    if (backupStatusData.restoreStatus == RestoreStatus.NOT_ENOUGH_DISK_SPACE) {
+      BackupAlertText(
+        text = stringResource(R.string.BackupStatusRow__not_enough_space, backupStatusData.remainingRestoreSize.toUnitString())
+      )
 
-        BackupAlertText(text = string)
+      Rows.TextRow(
+        text = stringResource(R.string.BackupStatusRow__skip_download),
+        onClick = onSkipClick
+      )
+    } else {
+      val string = when (restoreType) {
+        RestoreType.RESTORE -> getRestoringMediaString(backupStatusData)
+        RestoreType.DOWNLOAD -> getDownloadingMediaString(backupStatusData)
       }
 
-      is BackupStatusData.NotEnoughFreeSpace -> {
-        BackupAlertText(
-          text = stringResource(
-            R.string.BackupStatusRow__not_enough_space,
-            backupStatusData.requiredSpace,
-            "%d".format((backupStatusData.progress * 100).roundToInt())
-          )
-        )
-
-        Rows.TextRow(
-          text = stringResource(R.string.BackupStatusRow__skip_download),
-          onClick = onSkipClick
-        )
-      }
-
-      BackupStatusData.CouldNotCompleteBackup -> {
-        val inlineContentMap = mapOf(
-          "yellow_bullet" to InlineTextContent(
-            Placeholder(20.sp, 12.sp, PlaceholderVerticalAlign.TextCenter)
-          ) {
-            Box(
-              modifier = Modifier
-                .size(12.dp)
-                .background(color = YELLOW_DOT, shape = CircleShape)
-            )
-          }
-        )
-
-        BackupAlertText(
-          text = buildAnnotatedString {
-            appendInlineContent("yellow_bullet")
-            append(" ")
-            append(stringResource(R.string.BackupStatusRow__your_last_backup))
-          },
-          inlineContent = inlineContentMap
-        )
-      }
-      BackupStatusData.BackupFailed -> {
-        val inlineContentMap = mapOf(
-          "yellow_bullet" to InlineTextContent(
-            Placeholder(20.sp, 12.sp, PlaceholderVerticalAlign.TextCenter)
-          ) {
-            Box(
-              modifier = Modifier
-                .size(12.dp)
-                .background(color = YELLOW_DOT, shape = CircleShape)
-            )
-          }
-        )
-
-        BackupAlertText(
-          text = buildAnnotatedString {
-            appendInlineContent("yellow_bullet")
-            append(" ")
-            append(stringResource(R.string.BackupStatusRow__your_last_backup_latest_version))
-            append(" ")
-            withLink(
-              LinkAnnotation.Clickable(
-                stringResource(R.string.BackupStatusRow__learn_more),
-                styles = TextLinkStyles(style = SpanStyle(color = MaterialTheme.colorScheme.primary))
-              ) {
-                onLearnMoreClick()
-              }
-            ) {
-              append(stringResource(R.string.BackupStatusRow__learn_more))
-            }
-          },
-          inlineContent = inlineContentMap
-        )
-      }
+      BackupAlertText(text = string)
     }
   }
 }
 
 @Composable
 private fun BackupAlertText(text: String) {
-  BackupAlertText(
-    text = remember(text) { AnnotatedString(text) },
-    inlineContent = emptyMap()
-  )
-}
-
-@Composable
-private fun BackupAlertText(text: AnnotatedString, inlineContent: Map<String, InlineTextContent>) {
   Text(
     text = text,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     style = MaterialTheme.typography.bodyMedium,
-    modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter)),
-    inlineContent = inlineContent
+    modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
   )
 }
 
 @Composable
-private fun getRestoringMediaString(backupStatusData: BackupStatusData.RestoringMedia): String {
-  return when (backupStatusData.restoreStatus) {
-    BackupStatusData.RestoreStatus.NORMAL -> {
+private fun getRestoringMediaString(backupStatusData: ArchiveRestoreProgressState): String {
+  return when (backupStatusData.restoreState) {
+    RestoreState.CALCULATING_MEDIA -> {
       stringResource(
         R.string.BackupStatusRow__restoring_s_of_s_s,
-        backupStatusData.bytesDownloaded.toUnitString(2),
-        backupStatusData.bytesTotal.toUnitString(2),
-        "%d".format((backupStatusData.progress * 100).roundToInt())
+        backupStatusData.completedRestoredSize.toUnitString(2),
+        backupStatusData.totalRestoreSize.toUnitString(2),
+        "%d".format(((backupStatusData.progress ?: 0f) * 100).roundToInt())
       )
     }
-    BackupStatusData.RestoreStatus.LOW_BATTERY -> stringResource(R.string.BackupStatusRow__restore_device_has_low_battery)
-    BackupStatusData.RestoreStatus.WAITING_FOR_INTERNET -> stringResource(R.string.BackupStatusRow__restore_no_internet)
-    BackupStatusData.RestoreStatus.WAITING_FOR_WIFI -> stringResource(R.string.BackupStatusRow__restore_waiting_for_wifi)
-    BackupStatusData.RestoreStatus.FINISHED -> stringResource(R.string.BackupStatus__restore_complete)
+    RestoreState.CANCELING_MEDIA -> stringResource(R.string.BackupStatus__cancel_restore_media)
+    RestoreState.RESTORING_MEDIA -> {
+      when (backupStatusData.restoreStatus) {
+        RestoreStatus.RESTORING -> {
+          stringResource(
+            R.string.BackupStatusRow__restoring_s_of_s_s,
+            backupStatusData.completedRestoredSize.toUnitString(2),
+            backupStatusData.totalRestoreSize.toUnitString(2),
+            "%d".format(((backupStatusData.progress ?: 0f) * 100).roundToInt())
+          )
+        }
+        RestoreStatus.WAITING_FOR_INTERNET -> stringResource(R.string.BackupStatusRow__restore_no_internet)
+        RestoreStatus.WAITING_FOR_WIFI -> stringResource(R.string.BackupStatusRow__restore_waiting_for_wifi)
+        RestoreStatus.LOW_BATTERY -> stringResource(R.string.BackupStatusRow__restore_device_has_low_battery)
+        RestoreStatus.FINISHED -> stringResource(R.string.BackupStatus__restore_complete)
+        else -> throw IllegalStateException()
+      }
+    }
+    RestoreState.NONE -> {
+      if (backupStatusData.restoreStatus == RestoreStatus.FINISHED) {
+        stringResource(R.string.BackupStatus__restore_complete)
+      } else {
+        throw IllegalStateException()
+      }
+    }
+    RestoreState.PENDING,
+    RestoreState.RESTORING_DB -> throw IllegalStateException()
   }
 }
 
 @Composable
-private fun getDownloadingMediaString(backupStatusData: BackupStatusData.RestoringMedia): String {
-  return when (backupStatusData.restoreStatus) {
-    BackupStatusData.RestoreStatus.NORMAL -> {
+private fun getDownloadingMediaString(backupStatusData: ArchiveRestoreProgressState): String {
+  return when (backupStatusData.restoreState) {
+    RestoreState.CALCULATING_MEDIA -> {
       stringResource(
         R.string.BackupStatusRow__downloading_s_of_s_s,
-        backupStatusData.bytesDownloaded.toUnitString(2),
-        backupStatusData.bytesTotal.toUnitString(2),
-        "%d".format((backupStatusData.progress * 100).roundToInt())
+        backupStatusData.completedRestoredSize.toUnitString(2),
+        backupStatusData.totalRestoreSize.toUnitString(2),
+        "%d".format(((backupStatusData.progress ?: 0f) * 100).roundToInt())
       )
     }
-    BackupStatusData.RestoreStatus.LOW_BATTERY -> stringResource(R.string.BackupStatusRow__download_device_has_low_battery)
-    BackupStatusData.RestoreStatus.WAITING_FOR_INTERNET -> stringResource(R.string.BackupStatusRow__download_no_internet)
-    BackupStatusData.RestoreStatus.WAITING_FOR_WIFI -> stringResource(R.string.BackupStatusRow__download_waiting_for_wifi)
-    BackupStatusData.RestoreStatus.FINISHED -> stringResource(R.string.BackupStatus__restore_complete)
+    RestoreState.CANCELING_MEDIA -> stringResource(R.string.BackupStatus__cancel_restore_media)
+    RestoreState.RESTORING_MEDIA -> {
+      when (backupStatusData.restoreStatus) {
+        RestoreStatus.RESTORING -> {
+          stringResource(
+            R.string.BackupStatusRow__downloading_s_of_s_s,
+            backupStatusData.completedRestoredSize.toUnitString(2),
+            backupStatusData.totalRestoreSize.toUnitString(2),
+            "%d".format(((backupStatusData.progress ?: 0f) * 100).roundToInt())
+          )
+        }
+        RestoreStatus.WAITING_FOR_INTERNET -> stringResource(R.string.BackupStatusRow__download_no_internet)
+        RestoreStatus.WAITING_FOR_WIFI -> stringResource(R.string.BackupStatusRow__download_waiting_for_wifi)
+        RestoreStatus.LOW_BATTERY -> stringResource(R.string.BackupStatusRow__download_device_has_low_battery)
+        RestoreStatus.FINISHED -> stringResource(R.string.BackupStatus__restore_complete)
+        else -> throw IllegalStateException()
+      }
+    }
+    RestoreState.NONE -> {
+      if (backupStatusData.restoreStatus == RestoreStatus.FINISHED) {
+        stringResource(R.string.BackupStatus__restore_complete)
+      } else {
+        throw IllegalStateException()
+      }
+    }
+    RestoreState.PENDING,
+    RestoreState.RESTORING_DB -> throw IllegalStateException()
   }
 }
 
 @Composable
-private fun progressColor(backupStatusData: BackupStatusData): Color {
-  return if (backupStatusData is BackupStatusData.RestoringMedia && backupStatusData.restoreStatus == BackupStatusData.RestoreStatus.NORMAL) {
-    MaterialTheme.colorScheme.primary
-  } else {
-    backupStatusData.iconColors.foreground
+private fun progressColor(backupStatusData: ArchiveRestoreProgressState): Color {
+  return when (backupStatusData.restoreStatus) {
+    RestoreStatus.RESTORING -> MaterialTheme.colorScheme.primary
+    RestoreStatus.WAITING_FOR_INTERNET,
+    RestoreStatus.WAITING_FOR_WIFI,
+    RestoreStatus.LOW_BATTERY,
+    RestoreStatus.NOT_ENOUGH_DISK_SPACE -> BackupsIconColors.Warning.foreground
+    RestoreStatus.FINISHED -> BackupsIconColors.Success.foreground
+    RestoreStatus.NONE -> BackupsIconColors.Normal.foreground
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowNormalPreview() {
   Previews.Preview {
     BackupStatusRow(
-      backupStatusData = BackupStatusData.RestoringMedia(
-        bytesTotal = ByteSize(100),
-        bytesDownloaded = ByteSize(50),
-        restoreStatus = BackupStatusData.RestoreStatus.NORMAL
-      ),
+      backupStatusData = ArchiveRestoreProgressState(restoreState = RestoreState.RESTORING_MEDIA, restoreStatus = RestoreStatus.RESTORING, remainingRestoreSize = 800.mebiBytes, totalRestoreSize = 1024.mebiBytes),
       onCancelClick = {}
     )
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowWaitingForWifiPreview() {
   Previews.Preview {
     BackupStatusRow(
-      backupStatusData = BackupStatusData.RestoringMedia(
-        bytesTotal = ByteSize(100),
-        bytesDownloaded = ByteSize(50),
-        restoreStatus = BackupStatusData.RestoreStatus.WAITING_FOR_WIFI
-      )
+      backupStatusData = ArchiveRestoreProgressState(restoreState = RestoreState.RESTORING_MEDIA, restoreStatus = RestoreStatus.WAITING_FOR_WIFI, remainingRestoreSize = 800.mebiBytes, totalRestoreSize = 1024.mebiBytes)
     )
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowWaitingForInternetPreview() {
   Previews.Preview {
     BackupStatusRow(
-      backupStatusData = BackupStatusData.RestoringMedia(
-        bytesTotal = ByteSize(100),
-        bytesDownloaded = ByteSize(50),
-        restoreStatus = BackupStatusData.RestoreStatus.WAITING_FOR_INTERNET
-      )
+      backupStatusData = ArchiveRestoreProgressState(restoreState = RestoreState.RESTORING_MEDIA, restoreStatus = RestoreStatus.WAITING_FOR_INTERNET, remainingRestoreSize = 800.mebiBytes, totalRestoreSize = 1024.mebiBytes)
     )
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowLowBatteryPreview() {
   Previews.Preview {
     BackupStatusRow(
-      backupStatusData = BackupStatusData.RestoringMedia(
-        bytesTotal = ByteSize(100),
-        bytesDownloaded = ByteSize(50),
-        restoreStatus = BackupStatusData.RestoreStatus.LOW_BATTERY
-      )
+      backupStatusData = ArchiveRestoreProgressState(restoreState = RestoreState.RESTORING_MEDIA, restoreStatus = RestoreStatus.LOW_BATTERY, remainingRestoreSize = 800.mebiBytes, totalRestoreSize = 1024.mebiBytes)
     )
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowFinishedPreview() {
   Previews.Preview {
     BackupStatusRow(
-      backupStatusData = BackupStatusData.RestoringMedia(
-        bytesTotal = ByteSize(100),
-        bytesDownloaded = ByteSize(50),
-        restoreStatus = BackupStatusData.RestoreStatus.FINISHED
-      )
+      backupStatusData = ArchiveRestoreProgressState(restoreState = RestoreState.NONE, restoreStatus = RestoreStatus.FINISHED, remainingRestoreSize = 0.mebiBytes, totalRestoreSize = 0.mebiBytes, totalToRestoreThisRun = 1024.mebiBytes),
+      onCancelClick = {}
     )
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowNotEnoughFreeSpacePreview() {
   Previews.Preview {
     BackupStatusRow(
-      backupStatusData = BackupStatusData.NotEnoughFreeSpace(
-        requiredSpace = ByteSize(50)
-      )
-    )
-  }
-}
-
-@SignalPreview
-@Composable
-fun BackupStatusRowCouldNotCompleteBackupPreview() {
-  Previews.Preview {
-    BackupStatusRow(
-      backupStatusData = BackupStatusData.CouldNotCompleteBackup
-    )
-  }
-}
-
-@SignalPreview
-@Composable
-fun BackupStatusRowBackupFailedPreview() {
-  Previews.Preview {
-    BackupStatusRow(
-      backupStatusData = BackupStatusData.BackupFailed
+      backupStatusData = ArchiveRestoreProgressState(restoreState = RestoreState.RESTORING_MEDIA, restoreStatus = RestoreStatus.NOT_ENOUGH_DISK_SPACE, remainingRestoreSize = 500.mebiBytes, totalRestoreSize = 1024.mebiBytes)
     )
   }
 }

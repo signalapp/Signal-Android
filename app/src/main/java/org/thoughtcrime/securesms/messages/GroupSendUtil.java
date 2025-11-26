@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.api.CancelationException;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.LegacyGroupEvents;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.SenderKeyGroupEvents;
@@ -133,10 +132,11 @@ public final class GroupSendUtil {
                                                                     boolean isRecipientUpdate,
                                                                     ContentHint contentHint,
                                                                     @NonNull SignalServiceDataMessage message,
-                                                                    boolean urgent)
+                                                                    boolean urgent,
+                                                                    CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, isRecipientUpdate, false, DataSendOperation.unresendable(message, contentHint, urgent), null);
+    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, isRecipientUpdate, false, DataSendOperation.unresendable(message, contentHint, urgent), cancelationSignal);
   }
 
   /**
@@ -393,6 +393,11 @@ public final class GroupSendUtil {
         final AtomicLong           entryId             = new AtomicLong(-1);
         final boolean              includeInMessageLog = sendOperation.shouldIncludeInMessageLog();
 
+        if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+          Log.i(TAG, "Send canceled before any sends took place. Returning an empty list.");
+          return Collections.emptyList();
+        }
+
         List<SendMessageResult> results = sendOperation.sendWithSenderKey(messageSender, distributionId, targets, access, groupSendEndorsements, isRecipientUpdate, partialResults -> {
           if (!includeInMessageLog) {
             return;
@@ -446,7 +451,20 @@ public final class GroupSendUtil {
     }
 
     if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-      throw new CancelationException();
+      Log.i(TAG, "Send canceled. Adding canceled results for " + legacyTargets.size() + " remaining legacy targets.");
+      for (Recipient recipient : legacyTargets) {
+        allResults.add(SendMessageResult.canceledFailure(recipients.getAddress(recipient.getId())));
+      }
+
+      if (unregisteredTargets.size() > 0) {
+        List<SendMessageResult> unregisteredResults = unregisteredTargets.stream()
+                                                                         .filter(Recipient::getHasServiceId)
+                                                                         .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireServiceId(), t.getE164().orElse(null))))
+                                                                         .collect(Collectors.toList());
+        allResults.addAll(unregisteredResults);
+      }
+
+      return allResults;
     }
 
     boolean onlyTargetIsSelfWithLinkedDevice = legacyTargets.isEmpty() && senderKeyTargets.isEmpty() && SignalStore.account().isMultiDevice();

@@ -5,7 +5,6 @@ import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.annotation.NonNull
 import androidx.annotation.WorkerThread
-import androidx.core.util.toKotlinPair
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
@@ -16,7 +15,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.UriUtil
 import java.io.IOException
 import java.io.InputStream
-import java.util.Optional
 
 class ShareRepository(context: Context) {
 
@@ -93,7 +91,7 @@ class ShareRepository(context: Context) {
         } ?: return@map null
 
         val size = getSize(appContext, uri)
-        val dimens: Pair<Int, Int> = MediaUtil.getDimensions(appContext, mimeType, uri).toKotlinPair()
+        val dimens: Pair<Int, Int> = MediaUtil.getDimensions(appContext, mimeType, uri)
         val duration = 0L
         val blobUri = try {
           BlobProvider.getInstance()
@@ -106,19 +104,19 @@ class ShareRepository(context: Context) {
         }
 
         Media(
-          blobUri,
-          mimeType,
-          System.currentTimeMillis(),
-          dimens.first,
-          dimens.second,
-          size,
-          duration,
-          false,
-          false,
-          Optional.of(Media.ALL_MEDIA_BUCKET_ID),
-          Optional.empty(),
-          Optional.empty(),
-          Optional.empty()
+          uri = blobUri,
+          contentType = mimeType,
+          date = System.currentTimeMillis(),
+          width = dimens.first,
+          height = dimens.second,
+          size = size,
+          duration = duration,
+          isBorderless = false,
+          isVideoGif = false,
+          bucketId = Media.ALL_MEDIA_BUCKET_ID,
+          caption = null,
+          transformProperties = null,
+          fileName = null
         )
       }.filterNotNull()
 

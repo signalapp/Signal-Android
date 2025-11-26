@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.settings.app.backups
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.milliseconds
 
 class BackupsSettingsViewModel : ViewModel() {
@@ -44,11 +44,20 @@ class BackupsSettingsViewModel : ViewModel() {
           it.copy(
             backupState = enabledState,
             lastBackupAt = SignalStore.backup.lastBackupTime.milliseconds,
-            showBackupTierInternalOverride = RemoteConfig.internalUser || Environment.IS_STAGING,
+            showBackupTierInternalOverride = Environment.IS_STAGING,
             backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride
           )
         }
       }
+    }
+
+    viewModelScope.launch(Dispatchers.IO) {
+      SignalStore.backup.lastBackupTimeFlow
+        .collect { lastBackupTime ->
+          internalStateFlow.update {
+            it.copy(lastBackupAt = lastBackupTime.milliseconds)
+          }
+        }
     }
   }
 
@@ -60,6 +69,6 @@ class BackupsSettingsViewModel : ViewModel() {
       StorageSyncHelper.scheduleSyncForDataChange()
     }
 
-    BackupStateObserver.notifyBackupTierChanged(scope = viewModelScope)
+    BackupStateObserver.notifyBackupStateChanged(scope = viewModelScope)
   }
 }

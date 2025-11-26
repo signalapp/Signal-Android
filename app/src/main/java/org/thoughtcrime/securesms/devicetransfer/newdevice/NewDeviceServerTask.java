@@ -44,12 +44,7 @@ final class NewDeviceServerTask implements ServerTask {
       DataRestoreConstraint.setRestoringData(true);
       SQLiteDatabase database = SignalDatabase.getBackupDatabase();
 
-      String passphrase;
-      if (RemoteConfig.restoreAfterRegistration()) {
-        passphrase = SignalStore.account().getAccountEntropyPool().getValue();
-      } else {
-        passphrase = "deadbeef";
-      }
+      String passphrase = SignalStore.account().getAccountEntropyPool().getValue();
 
       BackupPassphrase.set(context, passphrase);
       FullBackupImporter.importFile(context,
@@ -57,7 +52,7 @@ final class NewDeviceServerTask implements ServerTask {
                                     database,
                                     inputStream,
                                     passphrase,
-                                    RemoteConfig.restoreAfterRegistration());
+                                    true);
 
       SignalDatabase.runPostBackupRestoreTasks(database);
       NotificationChannels.getInstance().restoreContactNotificationChannels();

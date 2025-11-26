@@ -9,6 +9,7 @@ import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.usernames.BaseUsernameException;
 import org.signal.libsignal.usernames.Username;
+import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.badges.BadgeRepository;
@@ -117,8 +118,17 @@ public class RefreshOwnProfileJob extends BaseJob {
       return;
     }
 
-    Recipient            self                 = Recipient.self();
-    ProfileAndCredential profileAndCredential = ProfileUtil.retrieveProfileSync(context, self, getRequestType(self), false);
+    Recipient self = Recipient.self();
+
+    ProfileAndCredential profileAndCredential;
+    try {
+      profileAndCredential = ProfileUtil.retrieveProfileSync(context, self, getRequestType(self), false);
+    } catch (IllegalStateException e) {
+      Log.w(TAG, "Unexpected exception result from profile fetch. Skipping.");
+      return;
+    }
+
+
     SignalServiceProfile profile              = profileAndCredential.getProfile();
 
     if (Util.isEmpty(profile.getName()) &&
@@ -148,6 +158,8 @@ public class RefreshOwnProfileJob extends BaseJob {
 
     profileAndCredential.getExpiringProfileKeyCredential()
                         .ifPresent(expiringProfileKeyCredential -> setExpiringProfileKeyCredential(self, ProfileKeyUtil.getSelfProfileKey(), expiringProfileKeyCredential));
+
+    SignalStore.registration().setHasDownloadedProfile(true);
 
     StoryOnboardingDownloadJob.Companion.enqueueIfNeeded();
 
@@ -221,12 +233,6 @@ public class RefreshOwnProfileJob extends BaseJob {
     Recipient selfSnapshot = Recipient.self();
 
     SignalDatabase.recipients().setCapabilities(Recipient.self().getId(), capabilities);
-
-    if (selfSnapshot.getStorageServiceEncryptionV2Capability() == Recipient.Capability.NOT_SUPPORTED && capabilities.isStorageServiceEncryptionV2()) {
-      Log.i(TAG, "Transitioned to storageServiceEncryptionV2 capable. Notifying other devices and pushing to storage service with a recordIkm.");
-      AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
-      AppDependencies.getJobManager().add(new StorageForcePushJob());
-    }
   }
 
   private void ensureUnidentifiedAccessCorrect(@Nullable String unidentifiedAccessVerifier, boolean universalUnidentifiedAccess) {

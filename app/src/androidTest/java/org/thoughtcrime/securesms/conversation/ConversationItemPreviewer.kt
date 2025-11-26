@@ -126,7 +126,7 @@ class ConversationItemPreviewer {
       SignalDatabase.threads.getOrCreateThreadIdFor(other),
       false,
       null
-    )
+    ).messageId
 
     SignalDatabase.attachments.getAttachmentsForMessage(insert).forEachIndexed { index, attachment ->
       SignalDatabase.attachments.setTransferProgressPermanentFailure(attachment.attachmentId, insert)

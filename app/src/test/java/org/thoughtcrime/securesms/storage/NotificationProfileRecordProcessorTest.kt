@@ -103,7 +103,7 @@ class NotificationProfileRecordProcessorTest {
     val proto = NotificationProfile.Builder().apply {
       id = UuidUtil.toByteArray(UUID.randomUUID()).toByteString()
       name = "Profile"
-      allowedMembers = listOf(Recipient(contact = Recipient.Contact(serviceId = "bad")))
+      allowedMembers = listOf(Recipient(contact = Recipient.Contact(serviceIdBinary = "bad".toByteArray().toByteString())))
     }.build()
     val record = SignalNotificationProfileRecord(STORAGE_ID, proto)
 

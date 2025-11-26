@@ -46,4 +46,17 @@ interface WebSocketConnection {
 
   @Throws(IOException::class)
   fun sendResponse(response: WebSocketResponseMessage)
+
+  /**
+   * Executes the given callback with the underlying chat connection when it becomes available.
+   * This is specifically for LibSignal-based connections to access the native connection.
+   *
+   * @param callback Function to execute with the chat connection
+   * @return The result of the callback
+   * @throws UnsupportedOperationException if this connection doesn't support chat connection access
+   */
+  suspend fun <T> runWithChatConnection(callback: (org.signal.libsignal.net.ChatConnection) -> T): T {
+    // Default implementation for non-LibSignal connections
+    throw UnsupportedOperationException("This connection does not support chat connection access")
+  }
 }

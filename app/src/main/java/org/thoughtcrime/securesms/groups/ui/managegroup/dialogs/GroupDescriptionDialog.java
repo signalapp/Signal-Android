@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
-import org.thoughtcrime.securesms.groups.ParcelableGroupId;
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 
@@ -46,7 +45,7 @@ public final class GroupDescriptionDialog extends DialogFragment {
 
   private static void show(@NonNull FragmentManager fragmentManager, @Nullable GroupId groupId, @Nullable String title, @Nullable String description, boolean linkify) {
     Bundle arguments = new Bundle();
-    arguments.putParcelable(ARGUMENT_GROUP_ID, ParcelableGroupId.from(groupId));
+    arguments.putParcelable(ARGUMENT_GROUP_ID, groupId);
     arguments.putString(ARGUMENT_TITLE, title);
     arguments.putString(ARGUMENT_DESCRIPTION, description);
     arguments.putBoolean(ARGUMENT_LINKIFY, linkify);
@@ -62,7 +61,7 @@ public final class GroupDescriptionDialog extends DialogFragment {
     View      dialogView          = LayoutInflater.from(getContext()).inflate(R.layout.group_description_dialog, null, false);
     String    argumentTitle       = requireArguments().getString(ARGUMENT_TITLE, null);
     String    argumentDescription = requireArguments().getString(ARGUMENT_DESCRIPTION, null);
-    GroupId   argumentGroupId     = ParcelableGroupId.get(requireArguments().getParcelable(ARGUMENT_GROUP_ID));
+    GroupId   argumentGroupId     = requireArguments().getParcelable(ARGUMENT_GROUP_ID);
     boolean   linkify             = requireArguments().getBoolean(ARGUMENT_LINKIFY, false);
     LiveGroup liveGroup           = argumentGroupId != null ? new LiveGroup(argumentGroupId) : null;
 

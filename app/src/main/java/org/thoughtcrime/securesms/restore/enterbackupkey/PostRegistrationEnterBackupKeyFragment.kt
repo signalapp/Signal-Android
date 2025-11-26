@@ -24,7 +24,7 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.registrationv3.ui.restore.EnterBackupKeyScreen
+import org.thoughtcrime.securesms.registration.ui.restore.EnterBackupKeyScreen
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.AccountEntropyPool
@@ -71,17 +71,14 @@ class PostRegistrationEnterBackupKeyFragment : ComposeFragment() {
       chunkLength = 4,
       aepValidationError = state.aepValidationError,
       onBackupKeyChanged = viewModel::updateBackupKey,
-      onNextClicked = {
-        viewModel.restoreBackupTier()
-      },
+      onNextClicked = { viewModel.restoreBackupTimestamp() },
       onLearnMore = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) },
       onSkip = { findNavController().popBackStack() }
     ) {
       ErrorContent(
-        showBackupTierNotRestoreError = state.showBackupTierNotRestoreError,
-        onBackupTierRetry = { viewModel.restoreBackupTier() },
-        onCancel = { findNavController().popBackStack() },
-        onBackupTierNotRestoredDismiss = viewModel::hideRestoreBackupTierFailed
+        errorDialog = state.errorDialog,
+        onBackupKeyHelp = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) },
+        onDismiss = viewModel::hideErrorDialog
       )
     }
   }
@@ -89,20 +86,71 @@ class PostRegistrationEnterBackupKeyFragment : ComposeFragment() {
 
 @Composable
 private fun ErrorContent(
-  showBackupTierNotRestoreError: Boolean,
-  onBackupTierRetry: () -> Unit = {},
-  onCancel: () -> Unit = {},
-  onBackupTierNotRestoredDismiss: () -> Unit = {}
+  errorDialog: PostRegistrationEnterBackupKeyViewModel.ErrorDialog?,
+  onBackupKeyHelp: () -> Unit = {},
+  onDismiss: () -> Unit = {}
 ) {
-  if (showBackupTierNotRestoreError) {
-    Dialogs.SimpleAlertDialog(
-      title = stringResource(R.string.EnterBackupKey_backup_not_found),
-      body = stringResource(R.string.EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup),
-      confirm = stringResource(R.string.EnterBackupKey_try_again),
-      dismiss = stringResource(R.string.EnterBackupKey_skip_restore),
-      onConfirm = onBackupTierRetry,
-      onDeny = onCancel,
-      onDismiss = onBackupTierNotRestoredDismiss
-    )
+  if (errorDialog == null) {
+    return
+  }
+
+  when (errorDialog) {
+    PostRegistrationEnterBackupKeyViewModel.ErrorDialog.AEP_INVALID -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.EnterBackupKey_incorrect_backup_key_title),
+        body = stringResource(R.string.EnterBackupKey_incorrect_backup_key_message),
+        confirm = stringResource(R.string.EnterBackupKey_try_again),
+        dismiss = stringResource(R.string.EnterBackupKey_backup_key_help),
+        onConfirm = {},
+        onDeny = onBackupKeyHelp,
+        onDismiss = onDismiss
+      )
+    }
+
+    PostRegistrationEnterBackupKeyViewModel.ErrorDialog.BACKUP_NOT_FOUND -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.EnterBackupKey_backup_not_found),
+        body = stringResource(R.string.EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup),
+        confirm = stringResource(R.string.EnterBackupKey_try_again),
+        dismiss = stringResource(R.string.EnterBackupKey_backup_key_help),
+        onConfirm = {},
+        onDeny = onBackupKeyHelp,
+        onDismiss = onDismiss
+      )
+    }
+
+    PostRegistrationEnterBackupKeyViewModel.ErrorDialog.UNKNOWN_ERROR -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.EnterBackupKey_cant_restore_backup),
+        body = stringResource(R.string.EnterBackupKey_your_backup_cant_be_restored_right_now),
+        confirm = stringResource(R.string.EnterBackupKey_try_again),
+        onConfirm = {},
+        onDismiss = onDismiss
+      )
+    }
+
+    PostRegistrationEnterBackupKeyViewModel.ErrorDialog.BACKUPS_NOT_ENABLED -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.EnterBackupKey_backup_not_found),
+        body = stringResource(R.string.EnterBackupKey_backup_key_incorrect_or_backups_not_enabled),
+        confirm = stringResource(R.string.EnterBackupKey_try_again),
+        dismiss = stringResource(R.string.EnterBackupKey_backup_key_help),
+        onConfirm = {},
+        onDeny = onBackupKeyHelp,
+        onDismiss = onDismiss
+      )
+    }
+
+    PostRegistrationEnterBackupKeyViewModel.ErrorDialog.RATE_LIMITED -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.EnterBackupKey_backup_not_found),
+        body = stringResource(R.string.EnterBackupKey_backup_key_check_rate_limited),
+        confirm = stringResource(R.string.EnterBackupKey_try_again),
+        dismiss = stringResource(R.string.EnterBackupKey_backup_key_help),
+        onConfirm = {},
+        onDeny = onBackupKeyHelp,
+        onDismiss = onDismiss
+      )
+    }
   }
 }

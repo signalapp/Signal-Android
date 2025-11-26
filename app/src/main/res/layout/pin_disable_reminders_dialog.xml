@@ -34,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/reminder_disable_title" />
 
-        <EditText
+        <org.thoughtcrime.securesms.components.NoAutofillEditText
             android:id="@+id/reminder_disable_pin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

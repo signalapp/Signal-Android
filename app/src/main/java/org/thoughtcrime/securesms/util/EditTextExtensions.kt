@@ -4,9 +4,8 @@ import android.widget.EditText
 import androidx.appcompat.widget.SearchView
 
 /**
- * Since this value is only supported on API26+ we hard-code it here
- *  to avoid issues with older versions. This mirrors the approach
- *  taken by [org.thoughtcrime.securesms.components.ComposeText].
+ * Since [android.view.inputmethod.EditorInfo.IME_FLAG_NO_PERSONALIZED_LEARNING] is only supported on API 26+ we hard-code it here
+ * to avoid issues with older versions. This mirrors the approach taken by [org.thoughtcrime.securesms.components.ComposeText].
  */
 private const val INCOGNITO_KEYBOARD = 16777216
 

@@ -37,8 +37,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.parcelize.Parcelize
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -434,7 +434,7 @@ private fun rememberSecondaryAction(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupAlertSheetContentPreviewGeneric() {
   Previews.BottomSheetPreview {
@@ -446,7 +446,7 @@ private fun BackupAlertSheetContentPreviewGeneric() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupAlertSheetContentPreviewPayment() {
   Previews.BottomSheetPreview {
@@ -458,7 +458,7 @@ private fun BackupAlertSheetContentPreviewPayment() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupAlertSheetContentPreviewDelete() {
   Previews.BottomSheetPreview {
@@ -473,7 +473,7 @@ private fun BackupAlertSheetContentPreviewDelete() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupAlertSheetContentPreviewDiskFull() {
   Previews.BottomSheetPreview {
@@ -485,7 +485,7 @@ private fun BackupAlertSheetContentPreviewDiskFull() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupAlertSheetContentPreviewBackupFailed() {
   Previews.BottomSheetPreview {
@@ -497,7 +497,7 @@ private fun BackupAlertSheetContentPreviewBackupFailed() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupAlertSheetContentPreviewCouldNotRedeemBackup() {
   Previews.BottomSheetPreview {
@@ -509,7 +509,7 @@ private fun BackupAlertSheetContentPreviewCouldNotRedeemBackup() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupAlertSheetContentPreviewSubscriptionExpired() {
   Previews.BottomSheetPreview {

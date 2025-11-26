@@ -25,6 +25,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import kotlin.Pair;
+
 public final class MentionUtil {
 
   public static final char   MENTION_STARTER     = '@';
@@ -97,10 +99,13 @@ public final class MentionUtil {
     BodyRangeList.Builder builder = new BodyRangeList.Builder();
     builder.ranges(
         mentions.stream()
-                .map(mention -> {
-                  String uuid = Recipient.resolved(mention.getRecipientId()).requireAci().toString();
+                .map(mention -> new Pair<>(Recipient.resolved(mention.getRecipientId()), mention))
+                .filter(pair -> pair.getFirst().getHasAci())
+                .map(pair -> {
+                  Recipient recipient = pair.getFirst();
+                  Mention   mention   = pair.getSecond();
                   return new BodyRangeList.BodyRange.Builder()
-                      .mentionUuid(uuid)
+                      .mentionUuid(recipient.requireAci().toString())
                       .start(mention.getStart())
                       .length(mention.getLength())
                       .build();

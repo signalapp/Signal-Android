@@ -39,6 +39,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.WIDTH}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.HEIGHT}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.QUOTE}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.QUOTE_TARGET_CONTENT_TYPE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_PACK_ID}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_PACK_KEY}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_ID}, 

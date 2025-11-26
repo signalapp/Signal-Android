@@ -75,7 +75,7 @@ class ChatFolderRecordProcessor : DefaultStorageRecordProcessor<SignalChatFolder
    */
   override fun merge(remote: SignalChatFolderRecord, local: SignalChatFolderRecord, keyGenerator: StorageKeyGenerator): SignalChatFolderRecord {
     return if (remote.proto.deletedAtTimestampMs > 0 && local.proto.deletedAtTimestampMs > 0) {
-      if (remote.proto.deletedAtTimestampMs < local.proto.deletedAtTimestampMs) {
+      if (remote.proto.deletedAtTimestampMs <= local.proto.deletedAtTimestampMs) {
         remote
       } else {
         local
@@ -99,7 +99,7 @@ class ChatFolderRecordProcessor : DefaultStorageRecordProcessor<SignalChatFolder
 
   private fun containsInvalidServiceId(recipients: List<Recipient>): Boolean {
     return recipients.any { recipient ->
-      recipient.contact != null && ServiceId.parseOrNull(recipient.contact!!.serviceId) == null
+      recipient.contact != null && ServiceId.parseOrNull(recipient.contact!!.serviceId, recipient.contact!!.serviceIdBinary) == null
     }
   }
 }

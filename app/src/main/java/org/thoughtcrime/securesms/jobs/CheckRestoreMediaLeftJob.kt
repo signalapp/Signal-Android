@@ -7,10 +7,12 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.DeletionState
-import org.thoughtcrime.securesms.backup.RestoreState
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -44,11 +46,16 @@ class CheckRestoreMediaLeftJob private constructor(parameters: Parameters) : Job
 
     if (remainingAttachmentSize == 0L) {
       Log.d(TAG, "Media restore complete: there are no remaining restorable attachments.")
-      SignalStore.backup.totalRestorableAttachmentSize = 0
-      SignalStore.backup.restoreState = RestoreState.NONE
+      ArchiveRestoreProgress.allMediaRestored()
+      BackupMediaRestoreService.stop(context)
 
       if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
         SignalStore.backup.deletionState = DeletionState.MEDIA_DOWNLOAD_FINISHED
+      }
+
+      if (!SignalStore.backup.backsUpMedia) {
+        SignalDatabase.attachments.markQuotesThatNeedReconstruction()
+        AppDependencies.jobManager.add(QuoteThumbnailReconstructionJob())
       }
     } else if (runAttempt == 0) {
       Log.w(TAG, "Still have remaining data to restore, will retry before checking job queues, queue: ${parameters.queue} estimated remaining: $remainingAttachmentSize")

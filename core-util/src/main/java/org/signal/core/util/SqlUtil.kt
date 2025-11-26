@@ -403,13 +403,13 @@ object SqlUtil {
   }
 
   @JvmStatic
-  fun buildBulkInsert(tableName: String, columns: Array<String>, contentValues: List<ContentValues>): List<Query> {
+  fun buildBulkInsert(tableName: String, columns: Array<String>, contentValues: List<ContentValues>, onConflict: String? = null): List<Query> {
     return buildBulkInsert(tableName, columns, contentValues, MAX_QUERY_ARGS)
   }
 
   @JvmStatic
   @VisibleForTesting
-  fun buildBulkInsert(tableName: String, columns: Array<String>, contentValues: List<ContentValues>, maxQueryArgs: Int): List<Query> {
+  fun buildBulkInsert(tableName: String, columns: Array<String>, contentValues: List<ContentValues>, maxQueryArgs: Int, onConflict: String? = null): List<Query> {
     val batchSize = maxQueryArgs / columns.size
 
     return contentValues

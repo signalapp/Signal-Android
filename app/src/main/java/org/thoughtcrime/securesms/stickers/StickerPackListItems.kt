@@ -31,9 +31,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.nullIfBlank
 import org.thoughtcrime.securesms.R
@@ -170,7 +170,7 @@ fun InstalledStickerPackRow(
       RoundCheckbox(
         checked = selected,
         onCheckedChange = { onSelectionToggle(pack) },
-        modifier = Modifier.padding(end = 8.dp)
+        modifier = Modifier.padding(start = 12.dp, end = 20.dp, top = 12.dp, bottom = 12.dp)
       )
     }
 
@@ -277,17 +277,17 @@ private fun StickerPackInfo(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
-private fun StickerPackSectionHeaderPreview() = SignalTheme {
+private fun StickerPackSectionHeaderPreview() = Previews.Preview {
   StickerPackSectionHeader(
     text = "Signal artist series"
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewBlessed() = SignalTheme {
+private fun AvailableStickerPackRowPreviewBlessed() = Previews.Preview {
   AvailableStickerPackRow(
     pack = StickerPreviewDataFactory.availablePack(
       title = "Swoon / Faces",
@@ -298,9 +298,9 @@ private fun AvailableStickerPackRowPreviewBlessed() = SignalTheme {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewNotBlessed() = SignalTheme {
+private fun AvailableStickerPackRowPreviewNotBlessed() = Previews.Preview {
   AvailableStickerPackRow(
     pack = StickerPreviewDataFactory.availablePack(
       title = "Day by Day",
@@ -312,9 +312,9 @@ private fun AvailableStickerPackRowPreviewNotBlessed() = SignalTheme {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewDownloading() = SignalTheme {
+private fun AvailableStickerPackRowPreviewDownloading() = Previews.Preview {
   AvailableStickerPackRow(
     pack = StickerPreviewDataFactory.availablePack(
       title = "Bandit the Cat",
@@ -326,9 +326,9 @@ private fun AvailableStickerPackRowPreviewDownloading() = SignalTheme {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewDownloaded() = SignalTheme {
+private fun AvailableStickerPackRowPreviewDownloaded() = Previews.Preview {
   AvailableStickerPackRow(
     pack = StickerPreviewDataFactory.availablePack(
       title = "Bandit the Cat",
@@ -340,9 +340,9 @@ private fun AvailableStickerPackRowPreviewDownloaded() = SignalTheme {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
-private fun InstalledStickerPackRowPreview() = SignalTheme {
+private fun InstalledStickerPackRowPreview() = Previews.Preview {
   InstalledStickerPackRow(
     multiSelectEnabled = false,
     menuController = DropdownMenus.MenuController(),
@@ -354,9 +354,9 @@ private fun InstalledStickerPackRowPreview() = SignalTheme {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
-private fun InstalledStickerPackRowSelectModePreview() = SignalTheme {
+private fun InstalledStickerPackRowSelectModePreview() = Previews.Preview {
   InstalledStickerPackRow(
     multiSelectEnabled = true,
     menuController = DropdownMenus.MenuController(),
@@ -388,7 +388,6 @@ private fun MenuItem(
         )
         Text(
           text = text,
-          style = MaterialTheme.typography.bodyLarge,
           modifier = Modifier.padding(horizontal = 16.dp)
         )
       }
@@ -398,7 +397,7 @@ private fun MenuItem(
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MenuItemPreview() = Previews.Preview {
   MenuItem(

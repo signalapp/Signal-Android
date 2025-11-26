@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.BackupUpgradeAvailabilityChecker
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.MediaTable
@@ -27,6 +28,7 @@ import org.thoughtcrime.securesms.jobs.OptimizeMediaJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
 
 class ManageStorageSettingsViewModel : ViewModel() {
@@ -41,18 +43,16 @@ class ManageStorageSettingsViewModel : ViewModel() {
   val state = store.asStateFlow()
 
   init {
-    if (RemoteConfig.messageBackups) {
-      viewModelScope.launch(Dispatchers.IO) {
-        InAppPaymentsRepository.observeLatestBackupPayment()
-          .collectLatest { payment ->
-            store.update { it.copy(isPaidTierPending = payment.state == InAppPaymentTable.State.PENDING) }
-          }
-      }
-
-      viewModelScope.launch {
-        store.update {
-          it.copy(onDeviceStorageOptimizationState = getOnDeviceStorageOptimizationState())
+    viewModelScope.launch(Dispatchers.IO) {
+      InAppPaymentsRepository.observeLatestBackupPayment()
+        .collectLatest { payment ->
+          store.update { it.copy(isPaidTierPending = payment.state == InAppPaymentTable.State.PENDING) }
         }
+    }
+
+    viewModelScope.launch {
+      store.update {
+        it.copy(onDeviceStorageOptimizationState = getOnDeviceStorageOptimizationState())
       }
     }
   }
@@ -134,7 +134,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
 
   private suspend fun getOnDeviceStorageOptimizationState(): OnDeviceStorageOptimizationState {
     return when {
-      !RemoteConfig.messageBackups || !SignalStore.backup.areBackupsEnabled || !AppDependencies.billingApi.isApiAvailable() -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
+      !SignalStore.backup.areBackupsEnabled || !BackupUpgradeAvailabilityChecker.isUpgradeAvailable(AppDependencies.application) || (!RemoteConfig.internalUser && !Environment.IS_STAGING) -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
       SignalStore.backup.backupTier != MessageBackupTier.PAID -> OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER
       SignalStore.backup.optimizeStorage -> OnDeviceStorageOptimizationState.ENABLED
       else -> OnDeviceStorageOptimizationState.DISABLED

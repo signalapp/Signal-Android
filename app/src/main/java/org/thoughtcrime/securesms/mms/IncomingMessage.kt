@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 class IncomingMessage(
@@ -39,7 +40,8 @@ class IncomingMessage(
   mentions: List<Mention> = emptyList(),
   val giftBadge: GiftBadge? = null,
   val messageExtras: MessageExtras? = null,
-  val isGroupAdd: Boolean = false
+  val isGroupAdd: Boolean = false,
+  val poll: Poll? = null
 ) {
 
   val attachments: List<Attachment> = ArrayList(attachments)

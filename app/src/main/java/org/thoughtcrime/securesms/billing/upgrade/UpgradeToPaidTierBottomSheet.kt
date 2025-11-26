@@ -19,6 +19,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.gms.common.GoogleApiAvailability
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlowable
@@ -59,6 +60,7 @@ abstract class UpgradeToPaidTierBottomSheet : ComposeBottomSheetDialogFragment()
   private val viewModel: MessageBackupsFlowViewModel by viewModel {
     MessageBackupsFlowViewModel(
       initialTierSelection = MessageBackupTier.PAID,
+      googlePlayApiAvailability = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(requireContext()),
       startScreen = MessageBackupsStage.TYPE_SELECTION
     )
   }
@@ -93,12 +95,18 @@ abstract class UpgradeToPaidTierBottomSheet : ComposeBottomSheetDialogFragment()
     }
   }
 
+  override fun onResume() {
+    super.onResume()
+    viewModel.refreshCurrentTier()
+    viewModel.setGooglePlayApiAvailability(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(requireContext()))
+  }
+
   @Composable
   override fun SheetContent() {
     val state by viewModel.stateFlow.collectAsStateWithLifecycle()
 
-    val paidBackupType = state.availableBackupTypes.firstOrNull { it.tier == MessageBackupTier.PAID } as? MessageBackupsType.Paid
-    val freeBackupType = state.availableBackupTypes.firstOrNull { it.tier == MessageBackupTier.FREE } as? MessageBackupsType.Free
+    val paidBackupType = state.allBackupTypes.firstOrNull { it.tier == MessageBackupTier.PAID } as? MessageBackupsType.Paid
+    val freeBackupType = state.allBackupTypes.firstOrNull { it.tier == MessageBackupTier.FREE } as? MessageBackupsType.Free
 
     if (paidBackupType != null && freeBackupType != null) {
       UpgradeSheetContent(

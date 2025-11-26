@@ -43,7 +43,7 @@ class PrivacySettingsViewModel(
   }
 
   fun setIncognitoKeyboard(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.INCOGNITO_KEYBORAD_PREF, enabled).apply()
+    sharedPreferences.edit().putBoolean(TextSecurePreferences.INCOGNITO_KEYBOARD_PREF, enabled).apply()
     refresh()
   }
 

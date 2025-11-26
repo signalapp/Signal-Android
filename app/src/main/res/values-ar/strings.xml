@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">تسجيل عبارة استعادة المدفوعات</string>
     <string name="ApplicationPreferencesActivity_record_phrase">تسجيل عبارة</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">قبل تعطيل رقم التعريف الشخصي (PIN) لديك، يجب عليك تسجيل عبارة استعادة المدفوعات للتأكُّد من إمكانية استعادة حساب المدفوعات الخاص بك.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">إنشاء مفتاح استعادة جديد</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">عليك إنشاء وتسجيل مفتاح استعادة جديد قبل أن تتمكّن من إيقاف تشغيل رقم التعريف الشخصي الخاص بك.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">إنشاء مفتاح</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">ملف</string>
     <string name="AttachmentKeyboard_contact">جهة الاتصال</string>
     <string name="AttachmentKeyboard_location">الموقع</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">استطلاع</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">يحتاج سيجنال إلى إذن لإظهار الصور ومقاطع الفيديو الخاصة بك.</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">إعطاء الصلاحية</string>
@@ -572,15 +580,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">لا يُمكن تسجيل رسالة صوتية خلال المكالمة.</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">إرسال نص بتنسيق مُعيَّن</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">قد يستخدم بعض الأشخاص إصدارًا من سيجنال لا يدعم النص المُنسَّق. لن يتمكنوا من رؤية تغييرات التنسيق التي أحدثتها على رسالتك.</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">أرسِل على كل حال</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">إلغاء</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="zero">%1$d رسالة غير مقروءة</item>
@@ -950,12 +949,10 @@
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__you_are_all_set">أنت جاهز الآن. ابدأ النسخ الاحتياطي لديك الآن.</string>
-    <!-- Bottom sheet message -->
+    <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">قد يستغرق هذا وقتًا طويلًا حسب حجم النسخة الاحتياطية الخاصة بك. يُمكنك استخدام هاتفك بشكل اعتيادي أثناء إجراء عملية النسخ الاحتياطي.</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">إجراء النسخ الاحتياطي لاحقًا</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">إنشاء نسخة احتياطية الآن</string>
+    <!-- Bottom sheet free message -->
+    <string name="CreateBackupBottomSheet__free_tier">تتمُّ إضافة ملفات الوسائط إلى نسختك الاحتياطية كلما أرسلتَ أو استلمتَ رسائل.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">تعذَّر استرجاع الوسائط.</string>
@@ -1226,6 +1223,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">نقل سجلّ الرسائل</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">انقل رسائلك النصية وآخر 45 يومًا من الوسائط.</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">انقل رسائلك النصية ووسائطك</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">عدم نقل سِجل الرسائل</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1263,6 +1262,9 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">انتهت صلاحية هذا الإصدار من سيجنال. يُرجى التحديث الآن لإرسال واستلام الرسائل.</string>
     <string name="ExpiredBuildReminder_update_now">حدِّث الآن</string>
+
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">لم يعُد تطبيق Signal يَعمل على هذا الجهاز. لاستخدام التطبيق مرّة أخرى، قُم بتحديث الأندرويد على جهازك إلى إصدار أحدث أو قُم بالتغيير إلى جهاز أحدث.</string>
 
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">تحديث سيجنال</string>
@@ -1544,15 +1546,20 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">تم</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات السابقة.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">هل ترغبُ بإضافة \"%1$s\" إلى \"%2$s\"؟</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="zero">هل ترغبُ بإضافة %3$d عضوًا إلى \"%2$s\"؟</item>
-        <item quantity="one">هل ترغبُ بإضافة \"%1$s\" إلى \"%2$s\"؟</item>
-        <item quantity="two">هل ترغبُ بإضافة %3$d عضوين إلى \"%2$s\"؟</item>
-        <item quantity="few">هل ترغبُ بإضافة %3$d أعضاء إلى \"%2$s\"؟</item>
-        <item quantity="many">هل ترغبُ بإضافة %3$d عضوًا إلى \"%2$s\"؟</item>
-        <item quantity="other">هل ترغبُ بإضافة %3$d عضوٍ إلى \"%2$s\"؟</item>
+        <item quantity="zero">هل ترغبُ بإضافة %1$d عضوًا إلى \"%2$s\"؟</item>
+        <item quantity="one">هل ترغبُ بإضافة \"{2}\" إلى \"%2$s\"؟</item>
+        <item quantity="two">هل ترغبُ بإضافة %1$d عضوين إلى \"%2$s\"؟</item>
+        <item quantity="few">هل ترغبُ بإضافة %1$d أعضاء إلى \"%2$s\"؟</item>
+        <item quantity="many">هل ترغبُ بإضافة %1$d عضوًا إلى \"%2$s\"؟</item>
+        <item quantity="other">هل ترغبُ بإضافة %1$d عضوٍ إلى \"%2$s\"؟</item>
     </plurals>
+
     <string name="AddMembersActivity__add">إضافة</string>
     <string name="AddMembersActivity__add_members">إضافة أعضاء</string>
 
@@ -1659,7 +1666,11 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">ليس الآن</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">If you choose not to restore now, you won\'t be able to restore later. Your media will restore in the background.</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">سَتتم استعادة ملفات وسائطك في الخلفية. إذا اخترتَ عدم الاستعادة الآن، فلن تتمكَّن من الاستعادة لاحقًا.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">هذا الجهاز لم يَعُد مُسجلًا.</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">على الأغلب هذا بسبب قيامك بتسجيل حساب سيجنال الخاص بك على جهاز آخر.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
@@ -2354,6 +2365,12 @@
     <string name="MessageRecord_you_blocked_this_group">حظرتَ هذه المجموعة</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">رفعتَ الحظر عن هذه المجموعة</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">أرسَلَ %1$s لك رسالة لا يمكن معالجتها ولا عرضها لأنها تستخدم ميزة سيجنال جديدة.</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s أنهى الاستطلاع: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">أنهيتَ الاستطلاع: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">موافقة</string>
@@ -2721,6 +2738,12 @@
     <string name="WebRtcCallActivity__to_start_call">لبدء مكالمة أو الانضمام إليها:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">لتفعيل الفيديو:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">مكالمة سيجنال</string>
@@ -3293,6 +3316,8 @@
     <string name="SubmitDebugLogActivity_success">تمَّ بنجاح!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">يُرجى نسخ هذا العنوان وإضافته إلى بلاغك عن مشكلة أو إلى بريد الدعم:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">مشاركة</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">إغلاق</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">سيتمُّ نشر هذا السّجل علنًا على الانترنت حتى يتمكن المساهمون من الاطِّلاع عليه. يمكنك فحصه أو تعديله قبل تحميله.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">‫عند النقرعلى زر \"إرسال\"، سوف يُنشَر السجلّ على الإنترنت لمدة 30 يومًا في عنوان URL فريد غير منشور. يمكنك حفظه محليًا أولًا.</string>
@@ -3563,6 +3588,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">تفاعل %1$s مع عملية الدفع الخاصة بك.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">تفاعل %1$s مع الملصق الخاص بك.</string>
     <string name="MessageNotifier_this_message_was_deleted">تمَّ حذف هذه الرسالة.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s صوّتَ في الاستطلاع بخصوص \"%3$s\"</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">هل ترغبُ بإيقاف إشعارات انضمام شخص إلى سيجنال؟ يمكنك تفعيل الميزة مُجدَّدًا في سيجنال &gt; الإعدادات &gt; الإشعارات.</string>
 
@@ -3759,6 +3786,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">أجب بدون فيديو</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">قُم بتغيير اتجاه الكاميرا</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">مخرَج الصوت</string>
@@ -3816,9 +3846,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ليس مُستخدم لِسيجنال. يُرجى التحقُّق من اسم المُستخدم والمحاولة مُجدَّدًا."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">لستَ بحاجة إلى إضافة نفسك إلى المجموعة</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">وصلت المجموعة إلى الحد الأقصى.</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">أقصى حد للأعضاء في مجموعات سيجنال هو %1$d عضوًا.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">أقصى حد للأعضاء في مجموعات سيجنال هو %1$s عضوًا.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">تمَّ الوصول إلى حد الأعضاء المُوصى به</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">تعمل مجموعات سيجنال بشكلٍ أفضل مع %1$d عضو (أعضاء) أو أقل. ستؤدي إضافة المزيد من الأعضاء إلى تأخُّر في إرسال الرسائل واستلامها.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">تعمل مجموعات سيجنال بشكلٍ أفضل مع %1$s عضو (أعضاء) أو أقل. ستؤدي إضافة المزيد من الأعضاء إلى تأخُّر في إرسال الرسائل واستلامها.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="zero">%1$d عضو</item>
         <item quantity="one">%1$d عضو</item>
@@ -4884,6 +4914,8 @@
     <string name="conversation_selection__menu_multi_select">تحديد</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">تفاصيل عملية الدفع</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">إنهاء الاستطلاع</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5305,7 +5337,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">المعلومات</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">هذه ميزة تجريبية سنُضيف إليها المزيد من الوظائف بشكلٍ مستمر.</string>
+    <string name="Beta__this_is_beta">هذه ميزة تجريبية وسيتمُّ تحسينها مع مرور الوقت.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">فتح قفل سيجنال</string>
@@ -5469,6 +5501,14 @@
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"قُم بتحديد \"نقل من جهاز أندرويد\" عند ظهورها، ثم انقر على \"متابعة\". يُرجى إبقاء الجهازين قريبين من بعضهما."</string>
     <string name="OldDeviceTransferInstructions__continue">متابعة</string>
+    <!-- Title for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">هل تريد إيقاف النقل؟</string>
+    <!-- Message for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">لم يتم نقل أي بيانات إلى جهازك الجديد.</string>
+    <!-- Confirm button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__stop_transfer">إيقاف النقل</string>
+    <!-- Negative/cancel button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__continue_transfer">متابعة النقل</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">انتقِل إلى جهازك الجديد</string>
@@ -5684,14 +5724,18 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">تخطّي</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="zero">بدون أعضاء %1$d</item>
-        <item quantity="one">عضو واحد %1$d</item>
-        <item quantity="two">عضوان %1$d</item>
-        <item quantity="few">%1$d أعضاء</item>
-        <item quantity="many">%1$d عضوًا</item>
-        <item quantity="other">%1$d عضو</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="zero">%1$s عضو</item>
+        <item quantity="one">%1$s عضو</item>
+        <item quantity="two">%1$s عضوان</item>
+        <item quantity="few">%1$s أعضاء</item>
+        <item quantity="many">%1$s عضوًا</item>
+        <item quantity="other">%1$s عضوٍ</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">التالي</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">مشاركة</string>
@@ -5888,7 +5932,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">جدِّد اشتراكك في النسخ الاحتياطية على سيجنال</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">جدِّد اشتراكك في النسخ الاحتياطية الآمنة لسيجنال</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">تعذَّر إكمال النسخ الاحتياطي</string>
     <!-- String alerting user that backup redemption -->
@@ -6445,18 +6489,12 @@
     <string name="NewConversationActivity__s_has_been_blocked">تمَّ حظر %1$s</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">تعذّر الحظر</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">لا يمكن إزالة %1$s</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">هذا الشخص محفوظ في جهات اتصالك. اِحذفه من جهات اتصالك وحاوِل مرّة أخرى.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">عرض جهة الاتصال</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">ليس %1$s من مُستخدِمي سيجنال</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">ليس %1$s من مُستخدِمي سيجنال.</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">ليس %1$s من مُستخدِمي سيجنال.</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">فتح القائمة</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="zero">%1$s ليسوا من مُستخدِمي سيجنال</item>
         <item quantity="one">%1$s ليس مستخدم سيجنال</item>
         <item quantity="two">%1$s ليسا من مُستخدِمي سيجنال</item>
@@ -6465,8 +6503,14 @@
         <item quantity="other">%1$s ليسوا من مُستخدِمي سيجنال</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">البحث باستخدام الاسم أو الرقم</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">الاسم، أو اسم المُستخدِم، أو الرقم</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">التبديل إلى لوحة مفاتيح رقمية</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">التبديل إلى لوحة مفاتيح أبجدية ورقمية</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">إعادة تعيين فلتر البحث</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6656,7 +6700,6 @@
     <string name="BadgesOverviewFragment__featured_badge">شارة مُمَيَّزة</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">عرض الشارات على الحساب الشخصي</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">فشل تحديث الحساب الشخصي</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">اختر شارة</string>
@@ -8289,15 +8332,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">سِجل التعديلات</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">تعديل الرسالة</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">إذا قُمت بتعديل رسالة، فلن يظهر إلا للأشخاص الذين يستخدمون أحدث إصدار سيجنال. سَيتمكنون من رؤية أنك قمت بتعديل رسالة.</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">إلغاء</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">إرسال</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -8422,25 +8456,29 @@
     <string name="PendingParticipantsBottomSheet__deny_all">رفض الكل</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">تفعيل النسخ الاحتياطية لسيجنال</string>
+    <string name="TurnOnSignalBackups__title">فعِّل النُسخ الاحتياطية الآمنة لسيجنال</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">جرِّب النسخ الاحتياطية الآمنة</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">لا تُفوِّت رسالة عندما تستخدم هاتفًا جديدًا أو تعيد تثبيت سيجنال.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">تشغيل</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">ليس الآن</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">يُمكنك تفعيل النسخ الاحتياطية في \"الإعدادات\"</string>
 
-    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">تحقّق من مفتاح النسخ الاحتياطي الخاص بك</string>
-    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">لمُساعدتك على تذكر مفتاحك، سَنطلب منك إعادة إدخاله من وقتٍ لآخر.</string>
-    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">قُم بتأكيد مفتاح الاستعادة الخاص بك</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">سَنطلب منك أحيانًا التحقُّق من مفتاحك للتأكُّد من أنك لا زلت تعرفه.</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
     <string name="VerifyBackupKey__verify">التحقُّق</string>
-    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">ليس الآن</string>
-    <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">مفتاح النسخ الاحتياطي صحيح. حافِظ على مفتاحك في مكانٍ آمن.</string>
-    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">مفتاح الاستعادة صحيح. حافِظ على مفتاحك في مكانٍ آمن.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">سَنسألك من جديد بعد أسبوع.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -8594,7 +8632,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">تعذَّر تجديد اشتراكك بواسطة طريقة الدفع الخاصة بك. لمتابعة النسخ الاحتياطي للوسائط، تحتاج إلى اشتراك نشِط.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">سَيظل بإمكانك الوصول إلى خطة النسح الاحتياطي المجانية على سيجنال.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">سَيظل بإمكانك الوصول إلى خطة النُسخ الاحتياطية الآمنة المجانية على سيجنال.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">تعذَّر إكمال النسخ الاحتياطي</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -8666,6 +8704,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">حرِّر %1$s من المساحة لاستعادة وسائطك.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">جارٍ استعادة الوسائط</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">جارٍ إلغاء استرجاع ملفات الوسائط</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">تمَّ إيقاف استعادة الوسائط</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8711,6 +8751,12 @@
     <string name="BackupStatusRow__your_last_backup">تعذَّر إتمام عملية النسخ الاحتياطي الأخيرة. تأكَّد من أن هاتفك مُتصل بشبكة الواي فاي وانقر على \"إنشاء نسخة احتياطية الآن\" للمحاولة من جديد.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">تعذَّر إتمام عملية النسخ الاحتياطي الأخيرة. تأكَّد من أنك تستخدم آخر إصدار لسيجنال وحاوِل من جديد.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">عدد رسائلك يتجاوز حدّ التخزين. احذف بعض الرسائل وحاوِل مُجدَّدًا.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">لا يتم نسخ الرسائل المُرسَلة أو المُستلَمة قبل %1$s احتياطيًا.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">اعرف المزيد</string>
 
@@ -8741,6 +8787,32 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">تغيير أو إلغاء الاشتراك</string>
 
+    <!-- GooglePlayServicesAvailability -->
+    <!-- Dialog title when Google Play services are missing from the device -->
+    <string name="GooglePlayServicesAvailability__service_missing_title">خدمات Google Play غير موجودة</string>
+    <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
+    <string name="GooglePlayServicesAvailability__service_missing_message">للتسجيل في النسخ الاحتياطية الآمنة لسيجنال، تحتاج للانتظار لتثبيت خدمات Google Play على جهازك.</string>
+    <!-- Dialog button text to install Google Play services -->
+    <string name="GooglePlayServicesAvailability__install_play_services">ثبِّت خدمات Play</string>
+    <!-- Dialog title when Google Play services are currently updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_title">يتم تحديث خدمات Google Play</string>
+    <!-- Dialog message asking user to wait while Google Play services finish updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_message">للتسجيل في النسخ الاحتياطية الآمنة لسيجنال، يُرجى الانتظار حتى انتهاء تحديث خدمات Google Play.</string>
+    <!-- Dialog title when Google Play services need to be updated -->
+    <string name="GooglePlayServicesAvailability__service_update_required_title">تحديث خدمات Google Play</string>
+    <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
+    <string name="GooglePlayServicesAvailability__service_update_required_message">للتسجيل في النسخ الاحتياطية الآمنة لسيجنال، قُم بتحديث خدمات Google Play على هاتفك.</string>
+    <!-- Dialog button text to update Google Play services -->
+    <string name="GooglePlayServicesAvailability__update">تحديث</string>
+    <!-- Dialog title when Google Play services are disabled -->
+    <string name="GooglePlayServicesAvailability__service_disabled_title">تتطلب الاشتراكات المدفوعة Google Play</string>
+    <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
+    <string name="GooglePlayServicesAvailability__service_disabled_message">للتسجيل في النسخ الاحتياطية الآمنة لسيجنال، فعّل خدمات Google Play على هاتفك وتسجيل الدخول إلى متجر Google Play. </string>
+    <!-- Dialog button text to learn more about enabling Google Play services -->
+    <string name="GooglePlayServicesAvailability__learn_more">اعرف المزيد</string>
+    <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
+    <string name="GooglePlayServicesAvailability__service_invalid_message">لا يمكنك الاشتراك في النسخ الاحتياطية الآمنة لسيجنال لأن هاتفك لا يدعم خدمات Google Play. تواصَل مع مُصنِّع الهاتف للحصول على المساعدة.</string>
+
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">العدد الأقصى للرسائل في الدردشة</string>
@@ -8761,13 +8833,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">سيتمُّ تفريغ ملفات الوسائط غير المُستخدِمة، لكن يُمكن تنزيلها من النسخة الاحتياطية الخاصة بك في أيّ وقت.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">لا يمكن استخدام ميزة تحسين التخزين إلّا مع المُستوى المدفوع لنسخ سيجنال الاحتياطية. اشتراك النسخ الاحتياطية الخاص بك لا يزال قيد المعالجة ولم يتم تفعيله بعد. يُرجى المحاولة لاحقًا.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">لا يمكن استخدام ميزة تحسين التخزين إلّا مع المُستوى المدفوع لنسخ سيجنال الاحتياطية. اشتراك النسخ الاحتياطية الخاص بك لا يزال قيد المعالجة ولم يتم تفعيله بعد. يُرجى المحاولة مرّة أخرى لاحقًا.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">يُرجى الترقية لتفعيل هذه الخاصية.</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">لا يمكن استخدام ميزة تحسين التخزين إلا مع المستوى المدفوع لنسخ سيجنال الاحتياطية. يُرجى ترقية خطة النسخ الاحتياطية لديك لتفعيل هذه الميزة.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">لا يمكن استخدام ميزة تحسين التخزين إلّا مع المُستوى المدفوع لنسخ سيجنال الاحتياطية. قُم بترقية خطة النسخ الاحتياطية لديك لتبدأ باستخدام هذه الميزة.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">اشترِك مقابل %1$s/شهريًا</string>
 
@@ -8790,7 +8862,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">لم يعد ملف الوسائط هذا متوفِّرًا.</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">للبدء في إنشاء نسخة احتياطية لجميع الوسائط لديك، فعِّل النسخ الاحتياطية لسيجنال واختر المستوى المدفوع.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">للبدء في إنشاء نسخة احتياطية لجميع الوسائط لديك، فعِّل النُسخ الاحتياطية الآمنة لسيجنال واختر المستوى المدفوع.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">متابعة</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8826,6 +8898,8 @@
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/شهريًا، التجديد في %2$s</string>
+    <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
+    <string name="BackupsSettingsFragment_renews_s">يتجدَّد في %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">آخِر نسخة احتياطية في %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8842,8 +8916,12 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">إلغاء التحميل</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">النسخ الاحتياطية الآمنة</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">النسخ الاحتياطية على سيجنال</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">النسخ الاحتياطية الآمنة لسيجنال</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">في حالة إيقاف</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">المُصادقة مطلوبة</string>
     <!-- Row label to launch payment history screen -->
@@ -8855,19 +8933,32 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">حجم النسخة الاحتياطية</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">جارٍ الحساب…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">وتيرة النسخ الاحتياطي</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">تُحفَظ نسخة احتياطية من وسائطك ورسائلك بشكلٍ يومي.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">إجراء النسخ الاحتياطي باستخدام بيانات الجوال</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">عرض مفتاح النسخة الاحتياطية</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">افتح القفل لعرض مفتاح النسخة الاحتياطية</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">عرض مفتاح الاستعادة</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">افتح القفل لعرض مفتاح الاستعادة</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">لعرض مفتاحك، قُم بتأكيد هويتك.</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">إيقاف وحذف النسخ الاحتياطية</string>
+    <!-- Dialog title for explainer text to on how backup size works for free tier -->
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">حجم النسخة الاحتياطية</string>
+    <!-- Dialog message for explainer text to on how backup size works for free tier -->
+    <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
+        <item quantity="zero">تتضمّن النسخة الاحتياطية الخاصة بك كل رسائلك النصية وملفات الوسائط الخاصة بك للأيام الـ %1$d الأخيرة. سيتغير الحجم كلما تمَّ استلام ملفات وسائط جديدة وعند انتهاء صلاحية الوسائط القديمة.</item>
+        <item quantity="one">تتضمن النسخة الاحتياطية الخاصة بك كل رسائلك النصية وملفات الوسائط الخاصة بك لليوم الـ %1$d الأخير. سيتغير الحجم كلما تمَّ استلام ملفات وسائط جديدة وعند انتهاء صلاحية الوسائط القديمة.</item>
+        <item quantity="two">تتضمن النسخة الاحتياطية الخاصة بك كل رسائلك النصية وملفات الوسائط الخاصة بك لليومين %1$d الأخيرين. سيتغير الحجم كلما تمَّ استلام ملفات وسائط جديدة وعند انتهاء صلاحية الوسائط القديمة.</item>
+        <item quantity="few">تتضمن النسخة الاحتياطية الخاصة بك كل رسائلك النصية وملفات الوسائط الخاصة بك للأيام الـ %1$d الأخيرة. سيتغير الحجم كلما تمَّ استلام ملفات وسائط جديدة وعند انتهاء صلاحية الوسائط القديمة.</item>
+        <item quantity="many">تتضمن النسخة الاحتياطية الخاصة بك كل رسائلك النصية وملفات الوسائط الخاصة بك للأيام الـ %1$d الأخيرة. سيتغير الحجم كلما تمَّ استلام ملفات وسائط جديدة وعند انتهاء صلاحية الوسائط القديمة.</item>
+        <item quantity="other">تتضمن النسخة الاحتياطية الخاصة بك كل رسائلك النصية وملفات الوسائط الخاصة بك للأيام الـ %1$d الأخيرة. سيتغير الحجم كلما تمَّ استلام ملفات وسائط جديدة وعند انتهاء صلاحية الوسائط القديمة.</item>
+    </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">تمَّ حذف النُسخ الاحتياطية وإيقافها.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
@@ -8879,7 +8970,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">سيتمُّ إنشاء نسخة احتياطية خلال الليل.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">تمَّ إنشاء مفتاح نسخ احتياطي جديد.</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">تمَّ إنشاء مفتاح استعادة جديد</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">الاشتراك غير فعَّال</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8957,15 +9048,15 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">قد يستغرق هذا وقتًا طويلًا حسب حجم النسخة الاحتياطية الخاصة بك. يُمكنك استخدام هاتفك بشكل طبيعي أثناء إجراء عملية التنزيل.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">تعذَّر العثور على اشتراكك على هذا الجهاز. جدِّد لمتابعة استخدام النسخ الاحتياطية على سيجنال.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">تعذَّر العثور على اشتراكك على هذا الجهاز. جدِّد لمتابعة استخدام النسخ الاحتياطية الآمنة لسيجنال.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="zero">اشتراكك الموجود على هذا الجهاز صالح لمدة الأيام %1$d القادمة. جدّد اشتراكك لمواصلة استخدام نُسخ سيجنال الاحتياطية.</item>
-        <item quantity="one">اشتراكك الموجود على هذا الجهاز صالح لمدة اليوم %1$d القادم. جدّد اشتراكك لمواصلة استخدام نُسخ سيجنال الاحتياطية.</item>
-        <item quantity="two">اشتراكك الموجود على هذا الجهاز صالح لمدة اليومين %1$d القادمين. جدّد اشتراكك لمواصلة استخدام نُسخ سيجنال الاحتياطية.</item>
-        <item quantity="few">اشتراكك الموجود على هذا الجهاز صالح لمدة الأيام %1$d القادمة. جدّد اشتراكك لمواصلة استخدام نُسخ سيجنال الاحتياطية.</item>
-        <item quantity="many">اشتراكك الموجود على هذا الجهاز صالح لمدة الأيام %1$d القادمة. جدّد اشتراكك لمواصلة استخدام نُسخ سيجنال الاحتياطية.</item>
-        <item quantity="other">اشتراكك الموجود على هذا الجهاز صالح للأيام %1$d القادمة. جدِّد اشتراكك لمواصلة استخدام نُسخ سيجنال الاحتياطية.</item>
+        <item quantity="zero">اشتراكك الموجود على هذا الجهاز صالح لمدة الأيام %1$d القادمة. جدِّد اشتراكك لمواصلة استخدام النُسخ الاحتياطية الآمنة لسيجنال</item>
+        <item quantity="one">اشتراكك الموجود على هذا الجهاز صالح لمدة يوم %1$d قادم. جدِّد اشتراكك لمواصلة استخدام النُسخ الاحتياطية الآمنة لسيجنال</item>
+        <item quantity="two">اشتراكك الموجود على هذا الجهاز صالح لمدة يومين %1$d قادمين. جدِّد اشتراكك لمواصلة استخدام النُسخ الاحتياطية الآمنة لسيجنال</item>
+        <item quantity="few">اشتراكك الموجود على هذا الجهاز صالح لمدة الأيام %1$d القادمة. جدِّد اشتراكك لمواصلة استخدام النُسخ الاحتياطية الآمنة لسيجنال</item>
+        <item quantity="many">اشتراكك الموجود على هذا الجهاز صالح لمدة %1$d يومٍ قادم. جدِّد اشتراكك لمواصلة استخدام النُسخ الاحتياطية الآمنة لسيجنال</item>
+        <item quantity="other">اشتراكك الموجود على هذا الجهاز صالح للأيام %1$d القادمة. جدِّد اشتراكك لمواصلة استخدام النُسخ الاحتياطية الآمنة لسيجنال</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">إعادة الاشتراك</string>
@@ -9023,6 +9114,8 @@
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">حدث خطأ بالشبكة. يُرجى التحقُّق من اتصالك بالإنترنت والمحاولة مرّة أخرى.</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">جارٍ تحميل: %1$s من أصل %2$s (%3$d%%)</string>
+    <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_d">جارٍ التحميل: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">التفاصيل</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -9096,37 +9189,39 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">مفتاح النسخة الاحتياطية الخاص بك</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">مفتاح الاستعادة</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">مفتاح النسخة الاحتياطية الخاص بك هو كود مُكوَّن من 64 رقمًا يَسمح لك باستعادة نسختك الاحتياطية عندما تُعيد تثبيت سيجنال.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">مفتاح الاستعادة هو عبارة عن كود مُكوَّن من 64 رمزًا، وتحتاجه لاستعادة نسختك الاحتياطية.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">إذا نسيتَ مفتاحك، لن تتمكَّن من استرجاع نسختك الاحتياطية. لا يُمكن لسيجنال مُساعدتك على استرجاع نسختك الاحتياطية.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">احتفِظ بمفتاح الاستعادة الخاص بك في مكانٍ آمن مثل تطبيق إدارة كلمات المرور، ولا تشاركه مع أي أحد.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">إذا فقدته، فلن تتمكَّن من استعادة رسائلك.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">التالي</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">عرض مفتاح الاستعادة</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">احتفِظ بنسخة عن مفتاح النسخة الاحتياطية الخاص بك.</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">قُم بتسجيل مفتاح الاستعادة الخاص بك</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">هذا المفتاح مطلوب لاسترجاع بياناتك وحسابك. احتفِظ بهذا المفتاح في مكانٍ آمن. إذا فقدته، لن تتمكّن من استرجاع حسابك.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">نسخ إلى الحافظة</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">حفظ في مدير كلمات المرور</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">هل ترغبُ بالحفظ في مدير كلمات المرور؟</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">لا تقُم بتخزين مفتاح النسخ الاحتياطي إلّا في مدير كلمات مرور تثق به. لا يُقدِّم سيجنال أي توصية بشأن مدير كلمات المرور المناسب لك.</string>
-    <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">النسخ الاحتياطية على سيجنال</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">لا تُخزِّن مفتاح الاستعادة إلّا في مدير كلمات مرور تثق به. لا يُقدِّم سيجنال أي توصية بشأن مدير كلمات المرور المناسب لك.</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">النسخ الاحتياطية الآمنة لسيجنال</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">تمَّ الحفظ في مدير كلمات المرور.</string>
-    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">تعذَّر الحفظ في مدير كلمات المرور.</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">لم تقم بإعداد مدير كلمات المرور، أو مدير كلمات المرور الذي تستخدمه غير مدعوم.</string>
-    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">لقد اخترت مسبقًا عدم حفظ كلمات المرور الخاصة بسيجنال في Google Password Manager. أزِل سيجنال من \"المواقع والتطبيقات المرفوضة\" في إعدادات Google Password Manager ثم حاول من جديد.</string>
     <!-- Label for a button that navigates to the device settings -->
     <string name="MessageBackupsKeyRecordScreen__go_to_settings">انتقِل إلى الإعدادات</string>
     <!-- Action button label -->
@@ -9146,42 +9241,48 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">تنزيل الوسائط</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">لإنشاء مفتاح نسخ احتياطي جديد، عليك إيقاف تشغيل \"تحسين التخزين\" والانتظار حتى يتم تنزيل ملفات وسائطك. عند اكتمال التنزيل، يُمكنك إنشاء مفتاح جديد.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">لإنشاء مفتاح استعادة جديد، عليك إيقاف تشغيل \"تحسين التخزين\" والانتظار حتى يتم تنزيل ملفات الوسائط الخاصة بك. عند اكتمال التنزيل، يُمكنك إنشاء مفتاح جديد.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">إيقاف التشغيل والتنزيل</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">إنشاء مفتاح نسخ احتياطي جديد</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">إنشاء مفتاح استعادة جديد</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">لا يُعتبَر إنشاء مفتاح نسخ احتياطي جديد ضروريًا إلّا إذا كان شخص آخر يعرف مفتاحك. سَيتعين عليك تحميل نسختك الاحتياطية من جديد، بما في ذلك ملفات الوسائط. إذا كُنتَ تستخدم خاصية \"تحسين الخزين\"، سَيتعين عليك تنزيل ملفات الوسائط المُفرَّغة أولًا.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">هل ترغبُ بمغادرة تثبيت النسخة الاحتياطية؟</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">لم تُنه إعداد النسخ الاحتياطية، ولم يتم إنشاء أي نسخة احتياطية. يمكنك تفعيل النسخ الاحتياطية في الإعدادات.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">مغادرة تثبيت النسخة الاحتياطية</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">هل ترغبُ بإلغاء إنشاء المفتاح؟</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">لن يتم إنشاء مفتاح النسخ الاحتياطي الجديد إلّا بعد أن تقوم بتأكيده.</string>
-    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">لن يتم إنشاء مفتاح الاستعادة الجديد الخاص بك إلّا بعد أن تقوم بتأكيده.</string>
+    <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">تأكيد المفتاح</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">إلغاء إنشاء المفتاح</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">تأكَّد من مفتاح نسختك الاحتياطية</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">قُم بتأكيد مفتاح الاستعادة الخاص بك</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">أدخِل مفتاح النسخة الاحتياطية الذي سجّلته للتو</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">أدخِل مفتاح الاستعادة الذي سجّلته للتو</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">مفتاح النسخة الاحتياطية</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">مفتاح الاستعادة</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">مفتاح النسخة الاحتياطية غير صحيح.</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">مفتاح الاستعادة خاطئ</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">اطَّلِع على المفتاح مُجدَّدًا</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">التالي</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">أدخِل مفتاح النسخة الاحتياطية الخاص بك</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">أدخِل مفتاح الاستعادة</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">أدخِل الكود المُكوَّن من 64 رقمًا الذي سجلته عند تفعيل النسخ الاحتياطية.</string>
-    <!-- Button text when you forget your backup key -->
+    <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">هل نسيت المفتاح؟</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
@@ -9199,10 +9300,14 @@
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">اشترِك مقابل %1$s/شهريًا</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">تغيير نوع النسخ الاحتياطية</string>
+    <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">المزيد بخصوص هذه الخطة</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">إلغاء الاشتراك</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">مجانًا</string>
+    <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
+    <string name="MessageBackupsTypeSelectionScreen__paid">مدفوع</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/شهريًا</string>
     <!-- Title for free tier -->
@@ -9235,6 +9340,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">الخطة الحالية</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">تتعذَّر ترقية الخطة</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">للتسجيل في النسخ الاحتياطية الآمنة لسيجنال، عليك تفعيل خدمات Google Play على هاتفك وتسجيل الدخول إلى متجر Google Play.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -9265,9 +9374,9 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">استعادة أو نقل الحساب</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">حوّل حساب سيجنال الخاص بك وسِجل رسائلك إلى جهازك الحالي.</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">من النسخ الاحتياطية على سيجنال</string>
-    <!-- Option subtitle for restoring via signal backups -->
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">من النسخ الاحتياطية الآمنة لسيجنال</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">خطة النسخ الاحتياطي لسيجنال المجانية أو المدفوعة</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">من مجلد نسخة احتياطية</string>
@@ -9279,46 +9388,56 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">من جهازك القديم</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">النقل مباشرةً من جهاز أندرويد القديم الخاص بك</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">هل ترغبُ بتخطِّي الاستعادة؟</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">إذا قُمتَ بتخطي الاستعادة الآن، فلن تتمكّن من الاستعادة لاحقًا. إذا فعّلتَ النسخ الاحتياطية من جديد لاحقًا بعد تخطي الاستعادة، فسيتم استبدال نسختك الاحتياطية الحالية بسجل الرسائل الخاص بك الجديد.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">تخطِّي الاستعادة</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">استعادة نسخة احتياطية محلية</string>
     <!-- Screen subtitle for restore via local backup -->
     <string name="RestoreLocalBackup_subtitle">استعِد رسائلك من النسخة الاحتياطية التي حفظتها على جهازك. إذا لم تقُم بالاستعادة الآن، فسيتعذَّر عليك الاستعادة لاحقًا.</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">أدخِل مفتاح النسخة الاحتياطية الخاص بك</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">مفتاح النسخة الاحتياطية الخاص بك هو كود مُكوَّن من 64 رمزًا، وهو مطلوب لاستعادة حسابك وبياناتك.</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">لا ترغبُ باستخدام مفتاح النسخة الاحتياطية؟</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">مفتاح النسخة الاحتياطية</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">لا يُمكن استعادة النُسخ الاحتياطية دون كود الاستعادة المُكوَّن من 64 رمزًا. إذا فقدت مفتاح النسخة الاحتياطية الخاص بك، فلا يُمكن لسيجنال مُساعدتك في استعادة نسختك الاحتياطية.</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">إذا كان لديك جهازك القديم، يُمكنك عرض مفتاح النسخة الاحتياطية الخاص بك في \"الإعدادات\" &gt; \"النسخ الاحتياطية\". ثم انقر على عرض مفتاح النسخة الاحتياطية.</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">أدخِل مفتاح الاستعادة الخاص بك.</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">مفتاح الاستعادة الخاص بك هو كود مُكوَّن من 64 رمزًا، وهو مطلوب لاستعادة حسابك وبياناتك.</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">لا حاجة لمفتاح استعادة جديد؟</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">مفتاح الاستعادة</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">لا يُمكن استعادة النُسخ الاحتياطية دون كود الاستعادة المُكوَّن من 64 رمزًا. إذا فقدتَ مفتاح الاستعادة الخاص بك، فلا يُمكن لسيجنال مُساعدتك في استعادة نسختك الاحتياطية.</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">إذا كان لديك جهازك القديم، يُمكنك عرض مفتاح النسخة الاحتياطية الخاص بك في \"الإعدادات\" &gt; \"النسخ الاحتياطية\". ثم انقر على عرض مفتاح الاستعادة.</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">اعرف المزيد</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">تخطَّي الاستعادة</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">مفتاح النسخة الاحتياطية غير صحيح.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">مفتاح الاستعادة خاطئ</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">تأكَّد من أنك تُسجِّل باستخدام نفس رقم الهاتف ومفتاح النسخة الاحتياطية المُكوَّن من 64 رمزًا الذي حفظته عند تفعيل النسخ الاحتياطية لسيجنال. لا يمكن استرجاع النسخ الاحتياطية دون هذا المفتاح.</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">تأكَّد من أنك تُسجِّل باستخدام نفس رقم الهاتف ومفتاح الاستعادة المُكوَّن من 64 رمزًا الذي حفظته عند تفعيل النسخ الاحتياطية الآمنة لسيجنال. لا يُمكن استرجاع النُسخ الاحتياطية دون هذا المفتاح.</string>
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">حاوِل مُجدَّدًا</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">المساعدة بخصوص مفتاح النسخة الاحتياطية</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">مفتاح النسخة الاحتياطية غير صحيح.</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">المساعدة بخصوص مفتاح الاستعادة</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">مفتاح الاستعادة خاطئ</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">طويل جدًا (%1$d/%2$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">مفتاح النسخة الاحتياطية غير صالح.</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">مفتاح الاستعادة غير صالح</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">لا توجد نسخة احتياطية</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">مفتاح النسخة الاحتياطية الذي أدخلته صحيح، لكن لا توجد أي نسخة احتياطية مرتبطة به. إذا كُنتَ لا تزال تحتفظ بهاتفك القديم، تأكَّد من أن النسخة الاحتياطية مُفعَّلة وأن عملية النسخ الاحتياطي قد اكتملت بالفعل، وحاوِل مرّة أخرى.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">مفتاح الاستعادة الذي أدخلته صحيح، لكن لا توجد أي نسخة احتياطية مرتبطة به. إذا كُنتَ لا تزال تحتفظ بهاتفك القديم، تأكَّد من أن النسخ الاحتياطية مُفعَّلة وأن عملية نسخ احتياطي قد اكتملت بالفعل، وحاوِل مرّة أخرى.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">قد تكون أدخلتَ مفتاح الاستعادة الخاص بك بشكل خاطئ، أو لم تكمل نسخة احتياطية واحدة على الأقل على جهازك القديم.\n\nتأكَّد من تسجيل الدخول باستخدام رقم الهاتف ومفتاح الاستعادة نفسيهما اللذين حفظتهما عند تفعيل النسخ الاحتياطية الآمنة في سيجنال، وتحقَّق من أن جهازك القديم قد أكملَ النسخ الاحتياطي.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">نفدَت محاولات إدخال مفتاح الاستعادة. من أجل أمانك، فإن عدد المحاولات التي يمكنك القيام بها محدود. حاوِل مُجدَّدًا بعد ساعة.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">تخطِّي الاستعادة</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -9384,9 +9503,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">تابِع نقل حسابك على جهازك الآخر.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">اكتملَت عملية الاستعادة.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">الإنهاء على الجهاز الآخر</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">بدأ نقل حساب سيجنال الخاص بك ورسائلك إلى جهازك الآخر. سيجنال غير مُفعّل الآن على هذا الجهاز.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">حسابك ورسائلك على سيجنال جاهزة للاستعادة على جهازك الآخر. سيجنال غير مُفعَّل الآن على هذا الجهاز.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">اكتمَلَ النقل</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
@@ -9397,7 +9516,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">لا تُوجد نسخة احتياطية للاستعادة</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">بما أنك تنتقل من نظام آيفون إلى أندرويد، فإن الطريقة الوحيدة لنقل رسائلك ووسائطك هي عن طريق تفعيل النسخ الاحتياطية لسيجنال على جهازك القديم.</string>
+    <string name="NoBackupToRestore_subtitle">بما أنك تنتقل من نظام آيفون إلى أندرويد، فإن الطريقة الوحيدة لنقل رسائلك ووسائطك هي عن طريق تفعيل النسخ الاحتياطية الآمنة لسيجنال على جهازك القديم.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">افتح تطبيق سيجنال على جهازك القديم</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
@@ -9407,6 +9526,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">تخطِّي الاستعادة</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">بلغتَ الحد الأقصى من مفاتيح الاستعادة المسموح بها</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">نجحتَ في إنشاء مفتاح استرداد جديد، ولكن لمنع إساءة الاستخدام، فإن عدد المفاتيح الجديدة التي يمكنك إنشاؤها محدود. لن تتمكن من إنشاء مفتاح آخر لمدة 7 أيام. احتفِظ بمفتاح الاستعادة الخاص بك في مكانٍ آمن.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">تعذَّر إنشاء مفتاح جديد</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">استنفدت عدد المفاتيح التي يمكنك إنشاؤها. سيصبح بإمكانك إنشاء مفتاح استعادة جديد في 7 أيام. إذا كُنتَ تعتقد أن أحدًا ما لديه الوصول إلى نسختك الاحتياطية، يمكنك اختيار \"إيقاف تشغيل النسخة الاحتياطية وحذفها.\"</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">حسنًا</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">إغلاق البحث</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -9454,6 +9583,155 @@
         <item quantity="many">لم تُكمِل نسخة احتياطية منذ %1$d يومًا. أنشِئ نسخة احتياطية الآن.</item>
         <item quantity="other">لم تُكمِل نسخة احتياطية منذ %1$d يوم. أنشِئ نسخة احتياطية الآن.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">استطلاع · اختر خيارًا واحدًا</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">استطلاع · اختر واحدًا أو أكثر</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">استطلاع · النتائج النهائية</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">لا أصوات</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">عرض الأصوات</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">عرض الاستطلاع</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">لم يتم العثور على الاستطلاع</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">عرض النتائج</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">استطلاع: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s أنهى الاستطلاع: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">أنهيتَ الاستطلاع: \"%1$s\"</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s صوت في الاستطلاع: \"%2$s\"</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">الاستطلاعات</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">نتائج الاستطلاع</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">تفاصيل الاستطلاع</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">سؤال</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="zero">%1$d أصوات</item>
+        <item quantity="one">%1$d صوت</item>
+        <item quantity="two">%1$d صوتين</item>
+        <item quantity="few">%1$d أصوات</item>
+        <item quantity="many">%1$d صوت</item>
+        <item quantity="other">%1$d صوت</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">الفائز</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">إنهاء الاستطلاع</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">مشاهدة الكل</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">تعذَّر إنهاء الاستطلاع.</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">تحقّق من اتصالك بالشبكة ثم حاوِل مرّة أخرى.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">هل ترغبُ بإنهاء الاستطلاع؟</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">لن يستطيع أعضاء المجموعة التصويت في هذا الاستطلاع بعد الآن.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">جارٍ انتظار الشبكة…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">استطلاع جديد</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">سؤال</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">اطرَح سؤالًا</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">الخيارات</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">خيار %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">أداة التحكُّم بالسحب والإفلات</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">السماح بالتصويت عدة مرّات</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">أضِف سؤالًا وخيارين على الأقل</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">أضِف خيارين على الأقل</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">أضِف سؤالًا</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">مشكلة في الصوت</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">مشكلة في الفيديو</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">انقطعت المكالمة</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">شيء آخر</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">تقطَّع الصوت</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">انقطاع الصوت</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">أسمع صدى</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">سمع الآخرون صدى</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">جودة الفيديو رديئة</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">دقة منخفضة</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">لم تعمل الكاميرا</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">شيء آخر</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">صِف مشكلتك</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">يُرجى مشاركة كافة التفاصيل المتعلقة بالمشكلة. ستظل جميع المعلومات التي تشاركها هنا سرية، وسَتُستخدَم لتحسين مكالمات سيجنال فقط.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">حفظ</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">الرجوع</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">كيف كانت مكالمتك؟</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">يساعدنا هذا على تحسين مكالمات سيجنال. لن يتم تخزين أي معلومات تعريف شخصية.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">واجهت مشاكل</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">رائع</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">ما هي المشاكل التي واجهتك؟</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">حدِّد كل ما ينطبق</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">صِف مشكلتك</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">متابعة</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">ساعدنا على التحسُّن</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">تساعدنا مشاركتك لمعلومات التشخيص الخاصة بك على تحسين جودة المكالمات. يُمكنك </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">إلقاء نظرة على سِجل الأخطاء الخاص بك</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> قبل الإرسال</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">مشاركة سجل الأخطاء</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">تحتوي سجلات الأخطاء على معلومات التطبيق منخفضة المستوى ولا تكشف عن أي من محتويات رسالتك.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">تقديم</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">شكرًا على ملاحظاتك!</string>
 
     <!-- EOF -->
 </resources>

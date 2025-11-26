@@ -36,6 +36,8 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
+import org.thoughtcrime.securesms.polls.PollOption
+import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
@@ -346,5 +348,13 @@ class V2ConversationItemShapeTest {
     override fun onDisplayMediaNoLongerAvailableSheet() = Unit
 
     override fun onShowUnverifiedProfileSheet(forGroup: Boolean) = Unit
+
+    override fun onUpdateSignalClicked() = Unit
+
+    override fun onViewResultsClicked(pollId: Long) = Unit
+
+    override fun onViewPollClicked(messageId: Long) = Unit
+
+    override fun onToggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) = Unit
   }
 }

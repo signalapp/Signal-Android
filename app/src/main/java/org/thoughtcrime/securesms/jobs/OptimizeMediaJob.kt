@@ -54,7 +54,8 @@ class OptimizeMediaJob private constructor(parameters: Parameters) : Job(paramet
     SignalDatabase.attachments.markEligibleAttachmentsAsOptimized()
 
     Log.i(TAG, "Deleting abandoned attachment files")
-    SignalDatabase.attachments.deleteAbandonedAttachmentFiles()
+    val count = SignalDatabase.attachments.deleteAbandonedAttachmentFiles()
+    Log.i(TAG, "Deleted $count attachments")
 
     return Result.success()
   }

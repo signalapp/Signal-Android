@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.util.parcelers.MillisecondDurationParceler
 import org.thoughtcrime.securesms.util.parcelers.NullableSubscriberIdParceler
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
@@ -135,7 +136,7 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
     endOfPeriod: Duration?,
     inAppPaymentData: InAppPaymentData
   ): InAppPaymentId {
-    val now = System.currentTimeMillis()
+    val now = System.currentTimeMillis().milliseconds
 
     validateInAppPayment(state, inAppPaymentData)
 
@@ -143,8 +144,8 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .values(
         TYPE to type.code,
         STATE to state.code,
-        INSERTED_AT to now,
-        UPDATED_AT to now,
+        INSERTED_AT to now.inWholeMilliseconds,
+        UPDATED_AT to now.inWholeSeconds,
         SUBSCRIBER_ID to subscriberId?.serialize(),
         END_OF_PERIOD to (endOfPeriod?.inWholeSeconds ?: 0L),
         DATA to InAppPaymentData.ADAPTER.encode(inAppPaymentData),
@@ -182,6 +183,20 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .run()
 
     AppDependencies.databaseObserver.notifyInAppPaymentsObservers(inAppPayment)
+  }
+
+  fun getOldPendingPayments(type: InAppPaymentType): List<InAppPayment> {
+    val oneDayAgo = System.currentTimeMillis().milliseconds - 24.hours
+    return readableDatabase
+      .select()
+      .from(TABLE_NAME)
+      .where(
+        "$STATE = ? AND $TYPE = ? AND $UPDATED_AT <= ${oneDayAgo.inWholeSeconds}",
+        State.serialize(State.PENDING),
+        InAppPaymentType.serialize(type)
+      )
+      .run()
+      .readToList(mapper = InAppPayment::deserialize)
   }
 
   /**
@@ -410,7 +425,7 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
           ID to data.id.serialize(),
           TYPE to data.type.apply { check(this != InAppPaymentType.UNKNOWN) }.code,
           STATE to data.state.code,
-          INSERTED_AT to data.insertedAt.inWholeSeconds,
+          INSERTED_AT to data.insertedAt.inWholeMilliseconds,
           UPDATED_AT to data.updatedAt.inWholeSeconds,
           NOTIFIED to data.notified,
           SUBSCRIBER_ID to data.subscriberId?.serialize(),
@@ -424,7 +439,7 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
           id = InAppPaymentId(input.requireLong(ID)),
           type = InAppPaymentType.deserialize(input.requireInt(TYPE)),
           state = State.deserialize(input.requireInt(STATE)),
-          insertedAt = input.requireLong(INSERTED_AT).seconds,
+          insertedAt = input.requireLong(INSERTED_AT).milliseconds,
           updatedAt = input.requireLong(UPDATED_AT).seconds,
           notified = input.requireBoolean(NOTIFIED),
           subscriberId = input.requireString(SUBSCRIBER_ID)?.let { SubscriberId.deserialize(it) },

@@ -51,7 +51,6 @@ public final class KeyStoreHelper {
   private static final String   KEY_ALIAS         = "SignalSecret";
   private static final Executor executor          = Executors.newSingleThreadExecutor();
 
-  @RequiresApi(23)
   public static SealedData seal(@NonNull byte[] input) {
     CountDownLatch              latch  = new CountDownLatch(1);
     AtomicReference<SealedData> result = new AtomicReference<>();
@@ -83,7 +82,6 @@ public final class KeyStoreHelper {
     return result.get();
   }
 
-  @RequiresApi(23)
   public static byte[] unseal(@NonNull SealedData sealedData) {
     CountDownLatch          latch  = new CountDownLatch(1);
     AtomicReference<byte[]> result = new AtomicReference<>();

@@ -469,7 +469,7 @@ class DonateToSignalFragment :
   }
 
   override fun onBoostThanksSheetDismissed() {
-    findNavController().popBackStack()
+    requireActivity().onBackPressedDispatcher.onBackPressed()
   }
 
   override fun navigateToStripePaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment) {

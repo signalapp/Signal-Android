@@ -138,9 +138,8 @@
 
     <color name="reactions_pill_text_color">@color/signal_colorOnSurfaceVariant</color>
     <color name="reactions_pill_selected_text_color">@color/core_grey_75</color>
-    <color name="reactions_screen_dark_shade_color">@color/transparent_black_70</color>
-    <color name="reactions_screen_light_shade_color">@color/transparent_white_87</color>
-    <color name="reactions_status_bar_shade">#4d4d4d</color>
+    <color name="reactions_screen_dark_shade_color">#6670747D</color>
+    <color name="reactions_screen_light_shade_color">@color/transparent_white_20</color>
     <color name="reactions_overlay_any_emoji_background">@color/signal_colorSurfaceVariant_16_no_alpha</color>
     <color name="reactions_overlay_any_emoji_foreground">@color/signal_colorOnSurfaceVariant</color>
 

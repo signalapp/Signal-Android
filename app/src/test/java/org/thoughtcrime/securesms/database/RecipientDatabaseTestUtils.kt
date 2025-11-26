@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.database
 
 import android.net.Uri
-import org.signal.core.util.Bitmask
 import org.signal.core.util.toOptional
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -125,8 +124,7 @@ object RecipientDatabaseTestUtils {
       notificationChannel = notificationChannel,
       sealedSenderAccessMode = sealedSenderAccessMode,
       capabilities = RecipientRecord.Capabilities(
-        rawBits = capabilities,
-        storageServiceEncryptionV2 = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.STORAGE_SERVICE_ENCRYPTION_V2, RecipientTable.Capabilities.BIT_LENGTH).toInt())
+        rawBits = capabilities
       ),
       storageId = storageId,
       mentionSetting = mentionSetting,

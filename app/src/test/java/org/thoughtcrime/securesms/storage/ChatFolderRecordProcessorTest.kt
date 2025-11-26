@@ -197,14 +197,14 @@ class ChatFolderRecordProcessorTest {
     val proto = ChatFolderRecord.Builder().apply {
       identifier = UuidUtil.toByteArray(UUID.randomUUID()).toByteString()
       name = "Folder1"
-      position = -1
+      position = 1
       showOnlyUnread = false
       showMutedChats = false
       includeAllIndividualChats = false
       includeAllGroupChats = false
       folderType = ChatFolderRecord.FolderType.CUSTOM
       deletedAtTimestampMs = 0L
-      includedRecipients = listOf(Recipient(contact = Recipient.Contact(serviceId = "bad")))
+      includedRecipients = listOf(Recipient(contact = Recipient.Contact(serviceIdBinary = "bad".toByteArray().toByteString())))
     }.build()
     val record = SignalChatFolderRecord(STORAGE_ID, proto)
 

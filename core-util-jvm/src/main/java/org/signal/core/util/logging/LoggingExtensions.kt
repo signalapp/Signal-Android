@@ -32,8 +32,8 @@ fun <T> T.logI(tag: String, message: String, throwable: Throwable? = null): T {
 /**
  * Convenience method to replace `.also { Log.w(TAG, "message") }`
  */
-fun <T> T.logW(tag: String, message: String, throwable: Throwable? = null): T {
-  Log.w(tag, message, throwable)
+fun <T> T.logW(tag: String, message: String, throwable: Throwable? = null, keepLonger: Boolean = false): T {
+  Log.w(tag, message, throwable, keepLonger)
   return this
 }
 

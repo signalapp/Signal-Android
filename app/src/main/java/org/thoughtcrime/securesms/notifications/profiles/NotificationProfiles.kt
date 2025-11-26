@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.notifications.profiles
 
 import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.NotificationProfileValues
@@ -21,6 +22,8 @@ import java.time.ZoneId
  * how long the active profile will be on for.
  */
 object NotificationProfiles {
+
+  val TAG = Log.tag(NotificationProfiles::class.java)
 
   @JvmStatic
   @JvmOverloads
@@ -49,11 +52,7 @@ object NotificationProfiles {
       return manualProfile ?: scheduledProfile
     }
 
-    return if (manualProfile == scheduledProfile) {
-      manualProfile
-    } else {
-      scheduledProfile
-    }
+    return manualProfile
   }
 
   private fun shouldClearManualOverride(manualProfile: NotificationProfile?, scheduledProfile: NotificationProfile?): Boolean {
@@ -61,12 +60,14 @@ object NotificationProfiles {
     var shouldScheduleSync = false
 
     if (manualProfile == null && storeValues.manuallyEnabledProfile != 0L) {
+      Log.i(TAG, "Clearing override: ${storeValues.manuallyEnabledProfile} and ${storeValues.manuallyEnabledUntil}")
       storeValues.manuallyEnabledProfile = 0
       storeValues.manuallyEnabledUntil = 0
       shouldScheduleSync = true
     }
 
     if (scheduledProfile != null && storeValues.manuallyDisabledAt != 0L) {
+      Log.i(TAG, "Clearing override: ${storeValues.manuallyDisabledAt}")
       storeValues.manuallyDisabledAt = 0
       shouldScheduleSync = true
     }

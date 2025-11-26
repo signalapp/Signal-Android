@@ -14,9 +14,9 @@ import org.signal.core.util.toOptional
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.LocalStickerAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
-import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.contactshare.Contact
@@ -41,6 +41,8 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
+import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.database.model.toBodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
@@ -82,8 +84,8 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointersWith
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.QuoteModel
-import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
+import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.Recipient.HiddenState
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -102,13 +104,14 @@ import org.whispersystems.signalservice.api.payments.Money
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.util.Preconditions
+import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.GroupContextV2
 import org.whispersystems.signalservice.internal.push.Preview
-import java.security.SecureRandom
+import org.whispersystems.signalservice.internal.util.Util
 import java.util.Optional
 import java.util.UUID
 import kotlin.time.Duration
@@ -117,6 +120,8 @@ import kotlin.time.Duration.Companion.seconds
 object DataMessageProcessor {
 
   private const val BODY_RANGE_PROCESSING_LIMIT = 250
+  private const val POLL_CHARACTER_LIMIT = 100
+  private const val POLL_OPTIONS_LIMIT = 10
 
   fun process(
     context: Context,
@@ -144,7 +149,7 @@ object DataMessageProcessor {
         groupV2 = message.groupV2!!,
         senderRecipient = senderRecipient,
         groupSecretParams = groupSecretParams,
-        serverGuid = envelope.serverGuid
+        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary)
       )
 
       if (groupProcessResult == MessageContentProcessor.Gv2PreProcessResult.IGNORE) {
@@ -170,6 +175,9 @@ object DataMessageProcessor {
       message.isMediaMessage -> insertResult = handleMediaMessage(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, localMetrics)
       message.body != null -> insertResult = handleTextMessage(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, localMetrics)
       message.groupCallUpdate != null -> handleGroupCallUpdateMessage(envelope, message, senderRecipient.id, groupId)
+      message.pollCreate != null -> insertResult = handlePollCreate(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime)
+      message.pollTerminate != null -> insertResult = handlePollTerminate(context, envelope, metadata, message, senderRecipient, earlyMessageCacheEntry, threadRecipient, groupId, receivedTime)
+      message.pollVote != null -> messageId = handlePollVote(context, envelope, message, senderRecipient, earlyMessageCacheEntry)
     }
 
     messageId = messageId ?: insertResult?.messageId?.let { MessageId(it) }
@@ -300,7 +308,7 @@ object DataMessageProcessor {
       serverTimeMillis = envelope.serverTimestamp!!,
       receivedTimeMillis = System.currentTimeMillis(),
       isUnidentified = metadata.sealedSender,
-      serverGuid = envelope.serverGuid,
+      serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
       type = MessageType.END_SESSION
     )
 
@@ -358,7 +366,7 @@ object DataMessageProcessor {
         receivedTimeMillis = receivedTime,
         expiresIn = expiresIn.inWholeMilliseconds,
         isUnidentified = metadata.sealedSender,
-        serverGuid = envelope.serverGuid
+        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary)
       )
 
       val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
@@ -419,7 +427,7 @@ object DataMessageProcessor {
       return null
     }
 
-    val authorServiceId: ServiceId = ServiceId.parseOrThrow(storyContext.authorAci!!)
+    val authorServiceId: ServiceId = ACI.parseOrThrow(storyContext.authorAci, storyContext.authorAciBinary)
     val sentTimestamp = storyContext.sentTimestamp!!
 
     SignalDatabase.messages.beginTransaction()
@@ -445,7 +453,7 @@ object DataMessageProcessor {
           }
 
           parentStoryId = DirectReply(storyId)
-          quoteModel = QuoteModel(sentTimestamp, authorRecipientId, displayText, false, story.slideDeck.asAttachments(), emptyList(), QuoteModel.Type.NORMAL, bodyRanges)
+          quoteModel = QuoteModel(sentTimestamp, authorRecipientId, displayText, false, story.slideDeck.asAttachments().firstOrNull(), emptyList(), QuoteModel.Type.NORMAL, bodyRanges)
           expiresIn = message.expireTimerDuration
         } else {
           warn(envelope.timestamp!!, "Story has reactions disabled. Dropping reaction.")
@@ -469,7 +477,7 @@ object DataMessageProcessor {
         body = emoji,
         groupId = groupId,
         quote = quoteModel,
-        serverGuid = envelope.serverGuid
+        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary)
       )
 
       val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
@@ -513,7 +521,7 @@ object DataMessageProcessor {
 
     val emoji: String? = reaction.emoji
     val isRemove: Boolean = reaction.remove ?: false
-    val targetAuthorServiceId: ServiceId = ServiceId.parseOrThrow(reaction.targetAuthorAci!!)
+    val targetAuthorServiceId: ServiceId = ACI.parseOrThrow(reaction.targetAuthorAci, reaction.targetAuthorAciBinary)
     val targetSentTimestamp: Long = reaction.targetSentTimestamp!!
 
     if (targetAuthorServiceId.isUnknown) {
@@ -631,7 +639,7 @@ object DataMessageProcessor {
         receivedTimeMillis = receivedTime,
         expiresIn = message.expireTimerDuration.inWholeMilliseconds,
         isUnidentified = metadata.sealedSender,
-        serverGuid = envelope.serverGuid,
+        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
         type = if (isActivatePaymentsRequest) MessageType.ACTIVATE_PAYMENTS_REQUEST else MessageType.PAYMENTS_ACTIVATED
       )
 
@@ -682,7 +690,7 @@ object DataMessageProcessor {
         receivedTimeMillis = receivedTime,
         expiresIn = message.expireTimerDuration.inWholeMilliseconds,
         isUnidentified = metadata.sealedSender,
-        serverGuid = envelope.serverGuid,
+        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
         type = MessageType.PAYMENTS_NOTIFICATION
       )
 
@@ -722,7 +730,7 @@ object DataMessageProcessor {
     log(envelope.timestamp!!, "Story reply.")
 
     val storyContext: DataMessage.StoryContext = message.storyContext!!
-    val authorServiceId: ServiceId = ServiceId.parseOrThrow(storyContext.authorAci!!)
+    val authorServiceId: ServiceId = ACI.parseOrThrow(storyContext.authorAci, storyContext.authorAciBinary)
     val sentTimestamp: Long = if (storyContext.sentTimestamp != null) {
       storyContext.sentTimestamp!!
     } else {
@@ -771,7 +779,7 @@ object DataMessageProcessor {
             bodyRanges = story.messageRanges
           }
 
-          quoteModel = QuoteModel(sentTimestamp, storyAuthorRecipientId, displayText, false, story.slideDeck.asAttachments(), emptyList(), QuoteModel.Type.NORMAL, bodyRanges)
+          quoteModel = QuoteModel(sentTimestamp, storyAuthorRecipientId, displayText, false, story.slideDeck.asAttachments().firstOrNull(), emptyList(), QuoteModel.Type.NORMAL, bodyRanges)
           expiresInMillis = message.expireTimerDuration
         } else {
           warn(envelope.timestamp!!, "Story has replies disabled. Dropping reply.")
@@ -782,7 +790,7 @@ object DataMessageProcessor {
         return null
       }
 
-      val bodyRanges: BodyRangeList? = message.bodyRanges.filter { it.mentionAci == null }.toList().toBodyRangeList()
+      val bodyRanges: BodyRangeList? = message.bodyRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toList().toBodyRangeList()
 
       val mediaMessage = IncomingMessage(
         type = MessageType.NORMAL,
@@ -797,7 +805,7 @@ object DataMessageProcessor {
         groupId = groupId,
         quote = quoteModel,
         mentions = getMentions(message.bodyRanges),
-        serverGuid = envelope.serverGuid,
+        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
         messageRanges = bodyRanges
       )
 
@@ -862,7 +870,7 @@ object DataMessageProcessor {
         expiresIn = message.expireTimerDuration.inWholeMilliseconds,
         isUnidentified = metadata.sealedSender,
         body = Base64.encodeWithPadding(dbGiftBadge.encode()),
-        serverGuid = envelope.serverGuid,
+        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
         giftBadge = dbGiftBadge
       )
 
@@ -900,13 +908,13 @@ object DataMessageProcessor {
 
     SignalDatabase.messages.beginTransaction()
     try {
-      val quote: QuoteModel? = getValidatedQuote(context, envelope.timestamp!!, message, senderRecipient, threadRecipient)
+      val quoteModel: QuoteModel? = getValidatedQuote(context, envelope.timestamp!!, message, senderRecipient, threadRecipient)
       val contacts: List<Contact> = getContacts(message)
       val linkPreviews: List<LinkPreview> = getLinkPreviews(message.preview, message.body ?: "", false)
       val mentions: List<Mention> = getMentions(message.bodyRanges.take(BODY_RANGE_PROCESSING_LIMIT))
       val sticker: Attachment? = getStickerAttachment(envelope.timestamp!!, message)
       val attachments: List<Attachment> = message.attachments.toPointersWithinLimit()
-      val messageRanges: BodyRangeList? = if (message.bodyRanges.isNotEmpty()) message.bodyRanges.asSequence().take(BODY_RANGE_PROCESSING_LIMIT).filter { it.mentionAci == null }.toList().toBodyRangeList() else null
+      val messageRanges: BodyRangeList? = if (message.bodyRanges.isNotEmpty()) message.bodyRanges.asSequence().take(BODY_RANGE_PROCESSING_LIMIT).filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toList().toBodyRangeList() else null
 
       handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
 
@@ -922,11 +930,11 @@ object DataMessageProcessor {
         body = message.body?.ifEmpty { null },
         groupId = groupId,
         attachments = attachments + if (sticker != null) listOf(sticker) else emptyList(),
-        quote = quote,
+        quote = quoteModel,
         sharedContacts = contacts,
         linkPreviews = linkPreviews,
         mentions = mentions,
-        serverGuid = envelope.serverGuid,
+        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
         messageRanges = messageRanges
       )
 
@@ -1002,7 +1010,7 @@ object DataMessageProcessor {
       groupId = groupId,
       expiresIn = message.expireTimerDuration.inWholeMilliseconds,
       isUnidentified = metadata.sealedSender,
-      serverGuid = envelope.serverGuid
+      serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary)
     )
 
     val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(textMessage).orNull()
@@ -1042,6 +1050,203 @@ object DataMessageProcessor {
     )
   }
 
+  fun handlePollCreate(
+    context: Context,
+    envelope: Envelope,
+    metadata: EnvelopeMetadata,
+    message: DataMessage,
+    senderRecipient: Recipient,
+    threadRecipient: Recipient,
+    groupId: GroupId.V2?,
+    receivedTime: Long
+  ): InsertResult? {
+    if (!RemoteConfig.receivePolls) {
+      log(envelope.timestamp!!, "Poll creation not allowed due to remote config.")
+      return null
+    }
+
+    log(envelope.timestamp!!, "Handle poll creation")
+    val poll: DataMessage.PollCreate = message.pollCreate!!
+
+    handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
+
+    if (groupId == null) {
+      warn(envelope.timestamp!!, "[handlePollCreate] Polls can only be sent to groups. author: $senderRecipient")
+      return null
+    }
+
+    val groupRecord = SignalDatabase.groups.getGroup(groupId).orNull()
+    if (groupRecord == null || !groupRecord.members.contains(senderRecipient.id)) {
+      warn(envelope.timestamp!!, "[handlePollCreate] Poll author is not in the group. author $senderRecipient")
+      return null
+    }
+
+    if (poll.question == null || poll.question!!.isEmpty() || poll.question!!.length > POLL_CHARACTER_LIMIT) {
+      warn(envelope.timestamp!!, "[handlePollCreate] Poll question is invalid.")
+      return null
+    }
+
+    if (poll.options.isEmpty() || poll.options.size > POLL_OPTIONS_LIMIT || poll.options.any { it.isEmpty() || it.length > POLL_CHARACTER_LIMIT }) {
+      warn(envelope.timestamp!!, "[handlePollCreate] Poll option is invalid.")
+      return null
+    }
+
+    val pollMessage = IncomingMessage(
+      type = MessageType.NORMAL,
+      from = senderRecipient.id,
+      sentTimeMillis = envelope.timestamp!!,
+      serverTimeMillis = envelope.serverTimestamp!!,
+      receivedTimeMillis = receivedTime,
+      groupId = groupId,
+      expiresIn = message.expireTimerDuration.inWholeMilliseconds,
+      isUnidentified = metadata.sealedSender,
+      serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
+      poll = Poll(
+        question = poll.question!!,
+        allowMultipleVotes = poll.allowMultiple!!,
+        pollOptions = poll.options,
+        authorId = senderRecipient.id.toLong()
+      ),
+      body = poll.question!!
+    )
+
+    val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(pollMessage).orNull()
+    return if (insertResult != null) {
+      AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+      insertResult
+    } else {
+      null
+    }
+  }
+
+  fun handlePollTerminate(
+    context: Context,
+    envelope: Envelope,
+    metadata: EnvelopeMetadata,
+    message: DataMessage,
+    senderRecipient: Recipient,
+    earlyMessageCacheEntry: EarlyMessageCacheEntry? = null,
+    threadRecipient: Recipient,
+    groupId: GroupId.V2?,
+    receivedTime: Long
+  ): InsertResult? {
+    if (!RemoteConfig.receivePolls) {
+      log(envelope.timestamp!!, "Poll terminate not allowed due to remote config.")
+      return null
+    }
+
+    val pollTerminate: DataMessage.PollTerminate = message.pollTerminate!!
+    val targetSentTimestamp = pollTerminate.targetSentTimestamp!!
+
+    log(envelope.timestamp!!, "Handle poll termination for poll $targetSentTimestamp")
+
+    handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
+
+    val messageId = handlePollValidation(envelope = envelope, targetSentTimestamp = targetSentTimestamp, senderRecipient = senderRecipient, earlyMessageCacheEntry = earlyMessageCacheEntry, targetAuthor = senderRecipient)
+    if (messageId == null) {
+      return null
+    }
+
+    val poll = SignalDatabase.polls.getPoll(messageId.id)
+    if (poll == null) {
+      warn(envelope.timestamp!!, "[handlePollTerminate] Poll was not found. timestamp: $targetSentTimestamp  author: ${senderRecipient.id}")
+      return null
+    }
+
+    val pollMessage = IncomingMessage(
+      type = MessageType.POLL_TERMINATE,
+      from = senderRecipient.id,
+      sentTimeMillis = envelope.timestamp!!,
+      serverTimeMillis = envelope.serverTimestamp!!,
+      receivedTimeMillis = receivedTime,
+      groupId = groupId,
+      expiresIn = message.expireTimerDuration.inWholeMilliseconds,
+      isUnidentified = metadata.sealedSender,
+      serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
+      messageExtras = MessageExtras(pollTerminate = PollTerminate(poll.question, poll.messageId, targetSentTimestamp))
+    )
+
+    val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(pollMessage).orNull()
+
+    return if (insertResult != null) {
+      AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+      insertResult
+    } else {
+      null
+    }
+  }
+
+  fun handlePollVote(
+    context: Context,
+    envelope: Envelope,
+    message: DataMessage,
+    senderRecipient: Recipient,
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+  ): MessageId? {
+    if (!RemoteConfig.receivePolls) {
+      log(envelope.timestamp!!, "Poll vote not allowed due to remote config.")
+      return null
+    }
+
+    val pollVote: DataMessage.PollVote = message.pollVote!!
+    val targetSentTimestamp = pollVote.targetSentTimestamp!!
+
+    log(envelope.timestamp!!, "Handle poll vote for poll $targetSentTimestamp")
+
+    val targetAuthorServiceId: ServiceId = ServiceId.parseOrThrow(pollVote.targetAuthorAciBinary!!)
+    if (targetAuthorServiceId.isUnknown) {
+      warn(envelope.timestamp!!, "[handlePollVote] Vote was to an unknown UUID! Ignoring the message.")
+      return null
+    }
+
+    val messageId = handlePollValidation(envelope, targetSentTimestamp, senderRecipient, earlyMessageCacheEntry, Recipient.externalPush(targetAuthorServiceId))
+    if (messageId == null) {
+      return null
+    }
+
+    val targetMessage = SignalDatabase.messages.getMessageRecord(messageId.id)
+    val pollId = SignalDatabase.polls.getPollId(messageId.id)
+    if (pollId == null) {
+      warn(envelope.timestamp!!, "[handlePollVote] Poll was not found. timestamp: $targetSentTimestamp  author: ${senderRecipient.id}")
+      return null
+    }
+
+    val existingVoteCount = SignalDatabase.polls.getCurrentPollVoteCount(pollId, senderRecipient.id.toLong())
+    val currentVoteCount = pollVote.voteCount?.toLong() ?: 0
+    if (currentVoteCount <= existingVoteCount) {
+      warn(envelope.timestamp!!, "[handlePollVote] Incoming vote count was not higher. timestamp: $targetSentTimestamp author: ${senderRecipient.id}")
+      return null
+    }
+
+    val allOptionIds = SignalDatabase.polls.getPollOptionIds(pollId)
+    if (pollVote.optionIndexes.any { it < 0 || it >= allOptionIds.size }) {
+      warn(envelope.timestamp!!, "[handlePollVote] Invalid option indexes. timestamp: $targetSentTimestamp author: ${senderRecipient.id}")
+      return null
+    }
+
+    if (!SignalDatabase.polls.canAllowMultipleVotes(pollId) && pollVote.optionIndexes.size > 1) {
+      warn(envelope.timestamp!!, "[handlePollVote] Can not vote multiple times. timestamp: $targetSentTimestamp author: ${senderRecipient.id}")
+      return null
+    }
+
+    if (SignalDatabase.polls.hasEnded(pollId)) {
+      warn(envelope.timestamp!!, "[handlePollVote] Poll has already ended. timestamp: $targetSentTimestamp author: ${senderRecipient.id}")
+      return null
+    }
+
+    SignalDatabase.polls.insertVotes(
+      pollId = pollId,
+      pollOptionIds = pollVote.optionIndexes.map { index -> allOptionIds[index] },
+      voterId = senderRecipient.id.toLong(),
+      voteCount = pollVote.voteCount?.toLong() ?: 0,
+      messageId = messageId
+    )
+
+    AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
+
+    return messageId
+  }
+
   fun notifyTypingStoppedFromIncomingMessage(context: Context, senderRecipient: Recipient, threadRecipientId: RecipientId, device: Int) {
     val threadId = SignalDatabase.threads.getThreadIdIfExistsFor(threadRecipientId)
 
@@ -1053,9 +1258,9 @@ object DataMessageProcessor {
 
   fun getMentions(mentionBodyRanges: List<BodyRange>): List<Mention> {
     return mentionBodyRanges
-      .filter { it.mentionAci != null && it.start != null && it.length != null }
+      .filter { Util.anyNotNull(it.mentionAci, it.mentionAciBinary) && it.start != null && it.length != null }
       .mapNotNull {
-        val aci = ACI.parseOrNull(it.mentionAci)
+        val aci = ACI.parseOrNull(it.mentionAci, it.mentionAciBinary)
 
         if (aci != null && !aci.isUnknown) {
           val id = Recipient.externalPush(aci).id
@@ -1088,30 +1293,37 @@ object DataMessageProcessor {
       return null
     }
 
-    val authorId = Recipient.externalPush(ServiceId.parseOrThrow(quote.authorAci!!)).id
+    val authorId = Recipient.externalPush(ACI.parseOrThrow(quote.authorAci, quote.authorAciBinary)).id
     var quotedMessage = SignalDatabase.messages.getMessageFor(quote.id!!, authorId) as? MmsMessageRecord
 
-    if (quotedMessage != null && isSenderValid(quotedMessage, timestamp, senderRecipient, threadRecipient) && !quotedMessage.isRemoteDelete) {
+    if (quotedMessage != null && isSenderValid(quotedMessage, timestamp, senderRecipient, threadRecipient) && !quotedMessage.isRemoteDelete && !quotedMessage.isUnsupported) {
       log(timestamp, "Found matching message record...")
 
-      val attachments: MutableList<Attachment> = mutableListOf()
-      val mentions: MutableList<Mention> = mutableListOf()
+      var thumbnailAttachment: Attachment? = null
+      val targetMessageAttachments = SignalDatabase.attachments.getAttachmentsForMessage(quotedMessage.id)
+      val mentions: List<Mention> = SignalDatabase.mentions.getMentionsForMessage(quotedMessage.id)
 
-      quotedMessage = quotedMessage.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(quotedMessage.id))
-
-      mentions.addAll(SignalDatabase.mentions.getMentionsForMessage(quotedMessage.id))
+      // We want our thumbnail attachment to be the first "thumbnailable" item from the target message.
+      // That means we want to pick the earliest image/video that has data.
+      thumbnailAttachment = targetMessageAttachments
+        .sortedBy { it.displayOrder }
+        .sortedBy {
+          if (MediaUtil.isImageType(it.contentType) || MediaUtil.isVideoType(it.contentType)) {
+            0
+          } else {
+            1
+          }
+        }
+        .firstOrNull { it.hasData }
 
       if (quotedMessage.isViewOnce) {
-        attachments.add(TombstoneAttachment(MediaUtil.VIEW_ONCE, true))
-      } else {
-        attachments += quotedMessage.slideDeck.asAttachments()
-
-        if (attachments.isEmpty()) {
-          attachments += quotedMessage
-            .linkPreviews
-            .filter { it.thumbnail.isPresent }
-            .map { it.thumbnail.get() }
-        }
+        thumbnailAttachment = TombstoneAttachment.forQuote()
+      } else if (thumbnailAttachment == null) {
+        thumbnailAttachment = quotedMessage
+          .linkPreviews
+          .filter { it.thumbnail.isPresent }
+          .map { it.thumbnail.get() }
+          .firstOrNull()
       }
 
       if (quotedMessage.isPaymentNotification) {
@@ -1121,14 +1333,14 @@ object DataMessageProcessor {
       val body = if (quotedMessage.isPaymentNotification) quotedMessage.getDisplayBody(context).toString() else quotedMessage.body
 
       return QuoteModel(
-        quote.id!!,
-        authorId,
-        body,
-        false,
-        attachments,
-        mentions,
-        QuoteModel.Type.fromProto(quote.type),
-        quotedMessage.messageRanges
+        id = quote.id!!,
+        author = authorId,
+        text = body,
+        isOriginalMissing = false,
+        attachment = thumbnailAttachment,
+        mentions = mentions,
+        type = QuoteModel.Type.fromProto(quote.type),
+        bodyRanges = quotedMessage.messageRanges
       )
     } else if (quotedMessage != null && quotedMessage.isRemoteDelete) {
       warn(timestamp, "Found the target for the quote, but it's flagged as remotely deleted.")
@@ -1136,14 +1348,14 @@ object DataMessageProcessor {
 
     warn(timestamp, "Didn't find matching message record...")
     return QuoteModel(
-      quote.id!!,
-      authorId,
-      quote.text ?: "",
-      true,
-      quote.attachments.mapNotNull { PointerAttachment.forPointer(it).orNull() },
-      getMentions(quote.bodyRanges),
-      QuoteModel.Type.fromProto(quote.type),
-      quote.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
+      id = quote.id!!,
+      author = authorId,
+      text = quote.text ?: "",
+      isOriginalMissing = true,
+      attachment = quote.attachments.firstNotNullOfOrNull { PointerAttachment.forPointer(it).orNull() },
+      mentions = getMentions(quote.bodyRanges),
+      type = QuoteModel.Type.fromProto(quote.type),
+      bodyRanges = quote.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
     )
   }
 
@@ -1160,6 +1372,53 @@ object DataMessageProcessor {
     }
 
     return true
+  }
+
+  /**
+   * When ending or voting on a poll, checks validity of the message. Specifically
+   * that the message exists, was only sent to a group, and the sender
+   * is a member of the group. Returns the messageId of the poll if valid, null otherwise.
+   */
+  private fun handlePollValidation(
+    envelope: Envelope,
+    targetSentTimestamp: Long,
+    senderRecipient: Recipient,
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?,
+    targetAuthor: Recipient
+  ): MessageId? {
+    val targetMessage = SignalDatabase.messages.getMessageFor(targetSentTimestamp, targetAuthor.id)
+    if (targetMessage == null) {
+      warn(envelope.timestamp!!, "[handlePollValidation] Could not find matching message! Putting it in the early message cache. timestamp: $targetSentTimestamp  author: ${targetAuthor.id}")
+      if (earlyMessageCacheEntry != null) {
+        AppDependencies.earlyMessageCache.store(senderRecipient.id, targetSentTimestamp, earlyMessageCacheEntry)
+        PushProcessEarlyMessagesJob.enqueue()
+      }
+      return null
+    }
+
+    if (targetMessage.isRemoteDelete) {
+      warn(envelope.timestamp!!, "[handlePollValidation] Found a matching message, but it's flagged as remotely deleted. timestamp: $targetSentTimestamp  author: ${targetAuthor.id}")
+      return null
+    }
+
+    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
+    if (targetThread == null) {
+      warn(envelope.timestamp!!, "[handlePollValidation] Could not find a thread for the message. timestamp: $targetSentTimestamp  author: ${targetAuthor.id}")
+      return null
+    }
+
+    val groupRecord = SignalDatabase.groups.getGroup(targetThread.recipient.id).orNull()
+    if (groupRecord == null) {
+      warn(envelope.timestamp!!, "[handlePollValidation] Target thread needs to be a group. timestamp: $targetSentTimestamp  author: ${targetAuthor.id}")
+      return null
+    }
+
+    if (!groupRecord.members.contains(senderRecipient.id)) {
+      warn(envelope.timestamp!!, "[handlePollValidation] Sender is not in the group. timestamp: $targetSentTimestamp author: ${targetAuthor.id}")
+      return null
+    }
+
+    return MessageId(targetMessage.id)
   }
 
   fun getContacts(message: DataMessage): List<Contact> {
@@ -1211,25 +1470,7 @@ object DataMessageProcessor {
     val stickerRecord: StickerRecord? = SignalDatabase.stickers.getSticker(stickerLocator.packId, stickerLocator.stickerId, false)
 
     return if (stickerRecord != null) {
-      UriAttachment(
-        stickerRecord.uri,
-        stickerRecord.contentType,
-        AttachmentTable.TRANSFER_PROGRESS_DONE,
-        stickerRecord.size,
-        StickerSlide.WIDTH,
-        StickerSlide.HEIGHT,
-        null,
-        SecureRandom().nextLong().toString(),
-        false,
-        false,
-        false,
-        false,
-        null,
-        stickerLocator,
-        null,
-        null,
-        null
-      )
+      LocalStickerAttachment(stickerRecord, stickerLocator)
     } else {
       sticker.data_!!.toPointer(stickerLocator)
     }

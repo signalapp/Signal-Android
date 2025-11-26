@@ -12,7 +12,6 @@ import com.google.android.material.transition.platform.MaterialContainerTransfor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.DynamicConversationSettingsTheme
@@ -44,8 +43,10 @@ open class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSet
       return if (context is Activity) {
         ActivityOptionsCompat.makeSceneTransitionAnimation(
           context,
-          Pair.create(avatar, "avatar"),
-          Pair.create(windowContent, "window_content")
+          *arrayOf(
+            androidx.core.util.Pair.create(avatar, "avatar"),
+            androidx.core.util.Pair.create(windowContent, "window_content")
+          )
         ).toBundle()
       } else {
         null
@@ -67,7 +68,7 @@ open class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSet
 
     @JvmStatic
     fun forGroup(context: Context, groupId: GroupId): Intent {
-      val startBundle = ConversationSettingsFragmentArgs.Builder(null, ParcelableGroupId.from(groupId), null)
+      val startBundle = ConversationSettingsFragmentArgs.Builder(null, groupId, null)
         .build()
         .toBundle()
 
@@ -88,7 +89,7 @@ open class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSet
     @JvmStatic
     fun forCall(context: Context, callPeer: Recipient, callMessageIds: LongArray): Intent {
       val startBundleBuilder = if (callPeer.isGroup) {
-        ConversationSettingsFragmentArgs.Builder(null, ParcelableGroupId.from(callPeer.requireGroupId()), callMessageIds)
+        ConversationSettingsFragmentArgs.Builder(null, callPeer.requireGroupId(), callMessageIds)
       } else {
         ConversationSettingsFragmentArgs.Builder(callPeer.id, null, callMessageIds)
       }

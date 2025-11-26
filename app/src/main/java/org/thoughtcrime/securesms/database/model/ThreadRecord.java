@@ -230,6 +230,11 @@ public final class ThreadRecord {
     else               return true;
   }
 
+  public boolean isPoll() {
+    if (extra != null) return extra.isPoll();
+    else               return false;
+  }
+
   public boolean isPinned() {
     return isPinned;
   }

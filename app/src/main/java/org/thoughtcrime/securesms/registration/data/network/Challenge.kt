@@ -27,8 +27,4 @@ enum class Challenge(val key: String) {
       }
     }
   }
-
-  fun stringify(challenges: List<Challenge>): String {
-    return challenges.joinToString { it.key }
-  }
 }

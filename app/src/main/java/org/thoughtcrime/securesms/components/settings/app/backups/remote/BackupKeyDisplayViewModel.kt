@@ -14,30 +14,41 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.concurrent.SignalDispatchers
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.StagedBackupKeyRotations
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.AccountEntropyPool
+import org.whispersystems.signalservice.api.NetworkResult
 
 class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
-  private val _uiState = MutableStateFlow(BackupKeyDisplayUiState())
-  val uiState: StateFlow<BackupKeyDisplayUiState> = _uiState.asStateFlow()
+
+  companion object {
+    private val TAG = Log.tag(BackupKeyDisplayViewModel::class.java)
+  }
+
+  private val internalUiState = MutableStateFlow(BackupKeyDisplayUiState())
+  val uiState: StateFlow<BackupKeyDisplayUiState> = internalUiState.asStateFlow()
 
   override fun updateBackupKeySaveState(newState: BackupKeySaveState?) {
-    _uiState.update { it.copy(keySaveState = newState) }
+    internalUiState.update { it.copy(keySaveState = newState) }
+  }
+
+  init {
+    getKeyRotationLimit()
   }
 
   fun rotateBackupKey() {
     viewModelScope.launch {
-      _uiState.update { it.copy(rotationState = BackupKeyRotationState.GENERATING_KEY) }
+      internalUiState.update { it.copy(rotationState = BackupKeyRotationState.GENERATING_KEY) }
 
       val stagedKeyRotations = withContext(SignalDispatchers.IO) {
         BackupRepository.stageBackupKeyRotations()
       }
 
-      _uiState.update {
+      internalUiState.update {
         it.copy(
           accountEntropyPool = stagedKeyRotations.aep,
           stagedKeyRotations = stagedKeyRotations,
@@ -49,15 +60,30 @@ class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler
 
   fun commitBackupKey() {
     viewModelScope.launch {
-      _uiState.update { it.copy(rotationState = BackupKeyRotationState.COMMITTING_KEY) }
+      internalUiState.update { it.copy(rotationState = BackupKeyRotationState.COMMITTING_KEY) }
 
-      val keyRotations = _uiState.value.stagedKeyRotations ?: error("No key rotations to commit!")
+      val keyRotations = internalUiState.value.stagedKeyRotations ?: error("No key rotations to commit!")
 
       withContext(SignalDispatchers.IO) {
         BackupRepository.commitAEPKeyRotation(keyRotations)
       }
 
-      _uiState.update { it.copy(rotationState = BackupKeyRotationState.FINISHED) }
+      internalUiState.update { it.copy(rotationState = BackupKeyRotationState.FINISHED) }
+    }
+  }
+
+  fun getKeyRotationLimit() {
+    viewModelScope.launch(SignalDispatchers.IO) {
+      val result = BackupRepository.getKeyRotationLimit()
+      if (result is NetworkResult.Success) {
+        internalUiState.update {
+          it.copy(
+            canRotateKey = result.result.hasPermitsRemaining ?: true
+          )
+        }
+      } else {
+        Log.w(TAG, "Error while getting rotation limit: $result. Default to allowing key rotations.")
+      }
     }
   }
 
@@ -73,7 +99,8 @@ data class BackupKeyDisplayUiState(
   val keySaveState: BackupKeySaveState? = null,
   val isOptimizedStorageEnabled: Boolean = SignalStore.backup.optimizeStorage,
   val rotationState: BackupKeyRotationState = BackupKeyRotationState.NOT_STARTED,
-  val stagedKeyRotations: StagedBackupKeyRotations? = null
+  val stagedKeyRotations: StagedBackupKeyRotations? = null,
+  val canRotateKey: Boolean = true
 )
 
 enum class BackupKeyRotationState {

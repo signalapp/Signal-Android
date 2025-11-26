@@ -61,7 +61,7 @@ class InAppPaymentRecurringContextJob private constructor(
         parameters = Parameters.Builder()
           .addConstraint(NetworkConstraint.KEY)
           .setQueue(InAppPaymentsRepository.resolveJobQueueKey(inAppPayment))
-          .setLifespan(InAppPaymentsRepository.resolveContextJobLifespan(inAppPayment).inWholeMilliseconds)
+          .setLifespan(InAppPaymentsRepository.resolveContextJobLifespanMillis(inAppPayment))
           .setMaxAttempts(Parameters.UNLIMITED)
           .build()
       )
@@ -106,7 +106,7 @@ class InAppPaymentRecurringContextJob private constructor(
     warning("A permanent failure occurred.")
 
     val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
-    val isRedeemed = inAppPayment?.state == InAppPaymentTable.State.END && inAppPayment.data.redemption?.stage != InAppPaymentData.RedemptionState.Stage.REDEEMED
+    val isRedeemed = inAppPayment?.state == InAppPaymentTable.State.END && inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEEMED
     if (isRedeemed) {
       info("Already redeemed. Exiting quietly.")
       return
@@ -116,11 +116,11 @@ class InAppPaymentRecurringContextJob private constructor(
         inAppPayment.copy(
           notified = false,
           state = InAppPaymentTable.State.END,
-          data = inAppPayment.data.copy(
+          data = inAppPayment.data.newBuilder().error(
             error = InAppPaymentData.Error(
               type = InAppPaymentData.Error.Type.REDEMPTION
             )
-          )
+          ).build()
         )
       )
     }
@@ -164,8 +164,13 @@ class InAppPaymentRecurringContextJob private constructor(
     val subscription = activeSubscription.activeSubscription
 
     if (subscription == null) {
-      warning("Subscription is null. Retrying later.")
-      throw InAppPaymentRetryException()
+      if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+        warning("Backup subscription is null.")
+        throw Exception()
+      } else {
+        warning("${inAppPayment.type} Subscription is null. Retrying later.")
+        throw InAppPaymentRetryException()
+      }
     }
 
     handlePossibleFailedPayment(inAppPayment, activeSubscription, subscription)
@@ -228,8 +233,9 @@ class InAppPaymentRecurringContextJob private constructor(
 
     return when (inAppPayment.type) {
       InAppPaymentType.RECURRING_BACKUP -> {
-        if (whoAmIResponse.entitlements?.backup?.backupLevel != SubscriptionsConfiguration.BACKUPS_LEVEL.toLong()) {
-          info("Entitlement level does not match expected paid backups level.")
+        val whoAmIEntitlementLevel = whoAmIResponse.entitlements?.backup?.backupLevel
+        if (whoAmIEntitlementLevel != SubscriptionsConfiguration.BACKUPS_LEVEL.toLong()) {
+          info("WhoAmI entitlement level ($whoAmIEntitlementLevel) does not match expected paid backups level (${SubscriptionsConfiguration.BACKUPS_LEVEL.toLong()}). Forcing a redemption.")
           return false
         }
 
@@ -543,7 +549,9 @@ class InAppPaymentRecurringContextJob private constructor(
       409 -> {
         warning("Already redeemed this token during new subscription. Failing.", applicationError)
 
-        if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+        // During keep-alive processing, we don't alert the user about redemption failures.
+        if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP && inAppPayment.data.redemption?.keepAlive != true) {
+          info("Displaying redemption failure for non-keep-alive processing.")
           SignalStore.backup.hasBackupAlreadyRedeemedError = true
         }
 
@@ -632,12 +640,14 @@ class InAppPaymentRecurringContextJob private constructor(
     SignalDatabase.inAppPayments.update(
       inAppPayment = inAppPayment.copy(
         state = InAppPaymentTable.State.END,
-        data = inAppPayment.data.copy(
-          error = InAppPaymentData.Error(
-            type = InAppPaymentData.Error.Type.REDEMPTION,
-            data_ = "409"
+        data = inAppPayment.data.newBuilder()
+          .error(
+            InAppPaymentData.Error(
+              type = InAppPaymentData.Error.Type.REDEMPTION,
+              data_ = "409"
+            )
           )
-        )
+          .build()
       )
     )
   }

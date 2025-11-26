@@ -5,7 +5,6 @@ import android.app.Application
 import android.database.Cursor
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
-import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.delete
@@ -18,8 +17,10 @@ import org.signal.core.util.mebiBytes
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleLong
+import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
+import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
@@ -159,6 +160,7 @@ class LogDatabase private constructor(
       val MAX_FILE_SIZE = 20L.mebiBytes.inWholeBytes
       val DEFAULT_LIFESPAN = 3.days.inWholeMilliseconds
       val LONGER_LIFESPAN = 21.days.inWholeMilliseconds
+      val KEEP_LONGER_MARKER = "\u200B"
     }
 
     private val readableDatabase: SQLiteDatabase get() = openHelper.readableDatabase
@@ -185,7 +187,7 @@ class LogDatabase private constructor(
 
     fun getAllBeforeTime(time: Long): Reader {
       return readableDatabase
-        .select(BODY)
+        .select(BODY, KEEP_LONGER)
         .from("$TABLE_NAME INDEXED BY $CREATED_AT_KEEP_LONGER_INDEX")
         .where("$CREATED_AT < $time")
         .run()
@@ -303,7 +305,14 @@ class LogDatabase private constructor(
 
       override fun next(): String {
         cursor.moveToNext()
-        return CursorUtil.requireString(cursor, LogTable.BODY)
+        val body = cursor.requireString(BODY) ?: ""
+        val keepLonger = cursor.requireBoolean(KEEP_LONGER)
+
+        return if (keepLonger) {
+          "$KEEP_LONGER_MARKER$body"
+        } else {
+          body
+        }
       }
 
       override fun close() {

@@ -16,11 +16,6 @@ import kotlin.time.Duration.Companion.seconds
  */
 sealed interface BackupState {
   /**
-   * Backups are not available on this device
-   */
-  data object NotAvailable : BackupState
-
-  /**
    * User has no active backup tier, no tier history
    */
   data object None : BackupState
@@ -100,5 +95,11 @@ sealed interface BackupState {
   /**
    * An error occurred retrieving the network state
    */
-  data object Error : BackupState
+  data class Error(val localState: BackupState) : BackupState
+
+  fun isLikelyPaidTier(): Boolean {
+    return (this is WithTypeAndRenewalTime && this.messageBackupsType is MessageBackupsType.Paid) ||
+      (this is LocalStore && this.tier == MessageBackupTier.PAID) ||
+      (this is Error && this.localState.isLikelyPaidTier())
+  }
 }

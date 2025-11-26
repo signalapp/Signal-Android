@@ -72,7 +72,7 @@ class NotificationProfileRecordProcessor : DefaultStorageRecordProcessor<SignalN
     val isLocalDeleted = local.proto.deletedAtTimestampMs > 0
 
     return when {
-      isRemoteDeleted && isLocalDeleted -> if (remote.proto.deletedAtTimestampMs < local.proto.deletedAtTimestampMs) remote else local
+      isRemoteDeleted && isLocalDeleted -> if (remote.proto.deletedAtTimestampMs <= local.proto.deletedAtTimestampMs) remote else local
       isRemoteDeleted -> remote
       isLocalDeleted -> local
       else -> remote
@@ -89,7 +89,7 @@ class NotificationProfileRecordProcessor : DefaultStorageRecordProcessor<SignalN
 
   private fun containsInvalidServiceId(recipients: List<Recipient>): Boolean {
     return recipients.any { recipient ->
-      recipient.contact != null && ServiceId.parseOrNull(recipient.contact!!.serviceId) == null
+      recipient.contact != null && ServiceId.parseOrNull(recipient.contact!!.serviceId, recipient.contact!!.serviceIdBinary) == null
     }
   }
 }

@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 import android.Manifest
 import android.content.pm.PackageManager
 import android.content.res.Configuration
-import android.os.Build
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,14 +27,13 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
-import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.TriggerAlignedPopupState.Companion.popupTrigger
 import org.signal.core.ui.compose.TriggerAlignedPopupState.Companion.rememberTriggerAlignedPopupState
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
 import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState
-import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
 import org.thoughtcrime.securesms.events.WebRtcViewModel
@@ -53,6 +50,7 @@ fun CallControls(
   callScreenControlsListener: CallScreenControlsListener,
   callScreenSheetDisplayListener: CallScreenSheetDisplayListener,
   additionalActionsState: AdditionalActionsState,
+  audioOutputPickerController: AudioOutputPickerController,
   modifier: Modifier = Modifier
 ) {
   val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
@@ -76,37 +74,10 @@ fun CallControls(
       horizontalArrangement = spacedBy(20.dp)
     ) {
       if (callControlsState.displayAudioOutputToggle) {
-        val outputState = remember {
-          ToggleButtonOutputState().apply {
-            isEarpieceAvailable = callControlsState.isEarpieceAvailable
-            isWiredHeadsetAvailable = callControlsState.isWiredHeadsetAvailable
-            isBluetoothHeadsetAvailable = callControlsState.isBluetoothHeadsetAvailable
-          }
-        }
-
-        LaunchedEffect(callControlsState.isEarpieceAvailable, callControlsState.isWiredHeadsetAvailable, callControlsState.isBluetoothHeadsetAvailable) {
-          outputState.apply {
-            isEarpieceAvailable = callControlsState.isEarpieceAvailable
-            isWiredHeadsetAvailable = callControlsState.isWiredHeadsetAvailable
-            isBluetoothHeadsetAvailable = callControlsState.isBluetoothHeadsetAvailable
-          }
-        }
-
-        val onSelectedAudioDeviceChanged: (WebRtcAudioDevice) -> Unit = remember {
-          {
-            if (Build.VERSION.SDK_INT >= 31) {
-              callScreenControlsListener.onAudioOutputChanged31(it)
-            } else {
-              callScreenControlsListener.onAudioOutputChanged(it.webRtcAudioOutput)
-            }
-          }
-        }
-
         CallAudioToggleButton(
-          outputState = outputState,
           contentDescription = stringResource(id = R.string.WebRtcAudioOutputToggle__audio_output),
-          onSelectedDeviceChanged = onSelectedAudioDeviceChanged,
-          onSheetDisplayChanged = callScreenSheetDisplayListener::onAudioDeviceSheetDisplayChanged
+          onSheetDisplayChanged = callScreenSheetDisplayListener::onAudioDeviceSheetDisplayChanged,
+          pickerController = audioOutputPickerController
         )
       }
 
@@ -172,7 +143,7 @@ fun CallControls(
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 fun CallControlsPreview() {
   Previews.Preview {
@@ -196,6 +167,10 @@ fun CallControlsPreview() {
       callScreenSheetDisplayListener = CallScreenSheetDisplayListener.Empty,
       additionalActionsState = AdditionalActionsState(
         triggerAlignedPopupState = rememberTriggerAlignedPopupState()
+      ),
+      audioOutputPickerController = AudioOutputPickerController(
+        outputState = ToggleButtonOutputState(),
+        onSelectedDeviceChanged = {}
       )
     )
   }

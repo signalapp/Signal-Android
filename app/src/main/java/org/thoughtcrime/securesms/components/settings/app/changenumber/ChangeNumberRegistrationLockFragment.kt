@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.components.settings.app.changenumber
 
 import android.os.Bundle
-import android.text.InputType
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -24,12 +23,9 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.changeNumberSuccess
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationLockBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
-import org.thoughtcrime.securesms.registration.ui.registrationlock.RegistrationLockFragment
-import org.thoughtcrime.securesms.registration.ui.registrationlock.RegistrationLockFragmentArgs
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -43,10 +39,12 @@ import java.util.concurrent.TimeUnit
 class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_change_number_registration_lock) {
 
   companion object {
-    private val TAG = Log.tag(RegistrationLockFragment::class.java)
+    private val TAG = Log.tag(ChangeNumberRegistrationLockFragment::class.java)
   }
 
-  private val binding: FragmentRegistrationLockBinding by ViewBinderDelegate(FragmentRegistrationLockBinding::bind)
+  private val binding: FragmentRegistrationLockBinding by ViewBinderDelegate(bindingFactory = { rootView ->
+    FragmentRegistrationLockBinding.bind(rootView.findViewById(R.id.registration_lock_content))
+  })
 
   private val viewModel by activityViewModels<ChangeNumberViewModel>()
 
@@ -67,7 +65,7 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
       }
     )
 
-    val args: RegistrationLockFragmentArgs = RegistrationLockFragmentArgs.fromBundle(requireArguments())
+    val args: ChangeNumberRegistrationLockFragmentArgs = ChangeNumberRegistrationLockFragmentArgs.fromBundle(requireArguments())
 
     timeRemaining = args.getTimeRemaining()
 
@@ -91,14 +89,7 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
       handlePinEntry()
     }
 
-    binding.kbsLockKeyboardToggle.setOnClickListener {
-      val keyboardType: PinKeyboardType = getPinEntryKeyboardType()
-      updateKeyboard(keyboardType.other)
-      binding.kbsLockKeyboardToggle.setIconResource(keyboardType.iconResource)
-    }
-
-    val keyboardType: PinKeyboardType = getPinEntryKeyboardType().getOther()
-    binding.kbsLockKeyboardToggle.setIconResource(keyboardType.iconResource)
+    binding.kbsLockKeyboardToggle.setOnClickListener { viewModel.togglePinKeyboardType() }
 
     viewModel.liveLockedTimeRemaining.observe(viewLifecycleOwner) { t: Long -> timeRemaining = t }
 
@@ -125,6 +116,11 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
     if (state.changeNumberOutcome == ChangeNumberOutcome.VerificationCodeWorked) {
       handleSuccessfulPinEntry(state.enteredPin)
     }
+
+    state.pinKeyboardType.applyTo(
+      pinEditText = binding.kbsLockPinInput,
+      toggleTypeButton = binding.kbsLockKeyboardToggle
+    )
   }
 
   private fun handlePinEntry() {
@@ -207,7 +203,7 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
 
   private fun onIncorrectKbsRegistrationLockPin(svrTriesRemaining: Int) {
     binding.kbsLockPinConfirm.cancelSpinning()
-    binding.kbsLockPinInput.getText().clear()
+    binding.kbsLockPinInput.getText()?.clear()
     enableAndFocusPinEntry()
 
     if (svrTriesRemaining == 0) {
@@ -275,23 +271,6 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
     binding.kbsLockPinInput.setEnabled(true)
     binding.kbsLockPinInput.setFocusable(true)
     ViewUtil.focusAndShowKeyboard(binding.kbsLockPinInput)
-  }
-
-  private fun getPinEntryKeyboardType(): PinKeyboardType {
-    val isNumeric = (binding.kbsLockPinInput.inputType and InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_NUMBER
-
-    return if (isNumeric) PinKeyboardType.NUMERIC else PinKeyboardType.ALPHA_NUMERIC
-  }
-
-  private fun updateKeyboard(keyboard: PinKeyboardType) {
-    val isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC
-
-    binding.kbsLockPinInput.setInputType(
-      if (isAlphaNumeric) InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-      else InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
-    )
-
-    binding.kbsLockPinInput.getText().clear()
   }
 
   private fun navigateToAccountLocked() {

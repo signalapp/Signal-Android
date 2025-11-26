@@ -130,11 +130,11 @@ class InAppPaymentRedemptionJob private constructor(
           inAppPayment.copy(
             notified = false,
             state = InAppPaymentTable.State.END,
-            data = inAppPayment.data.copy(
-              error = InAppPaymentData.Error(
+            data = inAppPayment.data.newBuilder().error(
+              InAppPaymentData.Error(
                 type = InAppPaymentData.Error.Type.REDEMPTION
               )
-            )
+            ).build()
           )
         )
       }
@@ -253,7 +253,7 @@ class InAppPaymentRedemptionJob private constructor(
       )
     }
 
-    Log.i(TAG, "InAppPayment with ID $inAppPaymentId was successfully redeemed. Response code: ${serviceResponse.status}, Will notify: ${jobData.isFromAuthCheck}")
+    Log.i(TAG, "InAppPayment with ID $inAppPaymentId was successfully redeemed. Response code: ${serviceResponse.status}, Will notify: ${jobData.isFromAuthCheck}", true)
 
     SignalDatabase.inAppPayments.update(
       inAppPayment = inAppPayment.copy(

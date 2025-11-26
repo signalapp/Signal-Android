@@ -116,11 +116,11 @@ public class CallParticipantView extends ConstraintLayout {
     useLargeAvatar();
   }
 
-  void setMirror(boolean mirror) {
+  public void setMirror(boolean mirror) {
     renderer.setMirror(mirror);
   }
 
-  void setScalingType(@NonNull RendererCommon.ScalingType scalingType) {
+  public void setScalingType(@NonNull RendererCommon.ScalingType scalingType) {
     renderer.setScalingType(scalingType);
   }
 
@@ -128,7 +128,7 @@ public class CallParticipantView extends ConstraintLayout {
     renderer.setScalingType(scalingTypeMatchOrientation, scalingTypeMismatchOrientation);
   }
 
-  void setCallParticipant(@NonNull CallParticipant participant) {
+  public void setCallParticipant(@NonNull CallParticipant participant) {
     boolean participantChanged = recipientId == null || !recipientId.equals(participant.getRecipient().getId());
     recipientId = participant.getRecipient().getId();
     infoMode    = participant.getRecipient().isBlocked() || isMissingMediaKeys(participant);
@@ -221,7 +221,7 @@ public class CallParticipantView extends ConstraintLayout {
     return false;
   }
 
-  void setRenderInPip(boolean shouldRenderInPip) {
+  public void setRenderInPip(boolean shouldRenderInPip) {
     this.shouldRenderInPip = shouldRenderInPip;
 
     if (infoMode) {
@@ -243,11 +243,15 @@ public class CallParticipantView extends ConstraintLayout {
     this.raiseHandAllowed = raiseHandAllowed;
   }
 
+  public void setCameraToggleOnClickListener(@Nullable View.OnClickListener onClickListener) {
+    switchCameraIconFrame.setOnClickListener(onClickListener);
+  }
+
   /**
    * Adjust UI elements for the various self PIP positions. If called after a {@link TransitionManager#beginDelayedTransition(ViewGroup, Transition)},
    * the changes to the UI elements will animate.
    */
-  void setSelfPipMode(@NonNull SelfPipMode selfPipMode, boolean isMoreThanOneCameraAvailable) {
+  public void setSelfPipMode(@NonNull SelfPipMode selfPipMode, boolean isMoreThanOneCameraAvailable) {
     Preconditions.checkArgument(selfPipMode != SelfPipMode.NOT_SELF_PIP);
 
     if (this.selfPipMode == selfPipMode) {
@@ -402,7 +406,7 @@ public class CallParticipantView extends ConstraintLayout {
     ViewUtil.setBottomMargin(audioIndicator, desiredMargin);
   }
 
-  void releaseRenderer() {
+  public void releaseRenderer() {
     renderer.release();
   }
 

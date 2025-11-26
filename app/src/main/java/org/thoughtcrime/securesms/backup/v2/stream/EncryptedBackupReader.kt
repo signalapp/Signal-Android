@@ -50,6 +50,13 @@ class EncryptedBackupReader private constructor(
     const val MAC_SIZE = 32
 
     /**
+     * Estimated upperbound need to read backup secrecy metadata from the start of a file.
+     *
+     * Magic Number size + ~varint size (5) + forward secrecy metadata size estimate (200)
+     */
+    val BACKUP_SECRET_METADATA_UPPERBOUND = EncryptedBackupWriter.MAGIC_NUMBER.size + 5 + 200
+
+    /**
      * Create a reader for a backup from the archive CDN.
      * The key difference is that we require forward secrecy data.
      */

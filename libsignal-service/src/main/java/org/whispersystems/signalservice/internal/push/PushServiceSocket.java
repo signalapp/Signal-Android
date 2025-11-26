@@ -13,7 +13,6 @@ import com.squareup.wire.Message;
 import org.signal.core.util.Base64;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
-import org.signal.libsignal.protocol.util.Pair;
 import org.signal.storageservice.protos.groups.AvatarUploadAttributes;
 import org.signal.storageservice.protos.groups.Group;
 import org.signal.storageservice.protos.groups.GroupChange;
@@ -134,10 +133,13 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import kotlin.Pair;
+
 import okhttp3.Call;
 import okhttp3.ConnectionPool;
 import okhttp3.ConnectionSpec;
 import okhttp3.Dns;
+import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -177,6 +179,8 @@ public class PushServiceSocket {
 
   private static final String VERIFICATION_SESSION_PATH = "/v1/verification/session";
   private static final String VERIFICATION_CODE_PATH    = "/v1/verification/session/%s/code";
+
+  private static final String REMOTE_CONFIG = "/v2/config";
 
   private static final String REGISTRATION_PATH    = "/v1/registration";
 
@@ -427,6 +431,14 @@ public class PushServiceSocket {
     downloadFromCdn(destination, cdnNumber, headers, cdnPath, maxSizeBytes, listener);
   }
 
+  public byte[] retrieveBackupForwardSecrecyMetadataBytes(int cdnNumber, Map<String, String> headers, String cdnPath, int maxSizeBytes)
+      throws MissingConfigurationException, IOException
+  {
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    downloadFromCdn(outputStream, 0, cdnNumber, headers, cdnPath, maxSizeBytes, null);
+    return outputStream.toByteArray();
+  }
+
   public void retrieveAttachment(int cdnNumber, Map<String, String> headers, SignalServiceAttachmentRemoteId remoteId, File destination, long maxSizeBytes, ProgressListener listener)
       throws IOException, MissingConfigurationException
   {
@@ -541,8 +553,11 @@ public class PushServiceSocket {
   }
 
   public RemoteConfigResponse getRemoteConfig() throws IOException {
-    String response = makeServiceRequest("/v1/config", "GET", null);
-    return JsonUtil.fromJson(response, RemoteConfigResponse.class);
+    try (Response response = makeServiceRequest(REMOTE_CONFIG, "GET", jsonRequestBody(null), NO_HEADERS, NO_HANDLER, SealedSenderAccess.NONE, false)) {
+      RemoteConfigResponse remoteConfigResponse = JsonUtil.fromJson(readBodyString(response), RemoteConfigResponse.class);
+      remoteConfigResponse.setServerEpochTime(response.headers().get("X-Signal-Timestamp") != null ? Long.parseLong(response.headers().get("X-Signal-Timestamp")) : System.currentTimeMillis());
+      return remoteConfigResponse;
+    }
   }
 
   public void cancelInFlightRequests() {
@@ -1382,7 +1397,7 @@ public class PushServiceSocket {
 
     if (headers != null) {
       for (Pair<String, String> header : headers) {
-        builder.addHeader(header.first(), header.second());
+        builder.addHeader(header.getFirst(), header.getSecond());
       }
     }
 

@@ -47,8 +47,6 @@ public class JobManager implements ConstraintObserver.Notifier {
 
   public static final int CURRENT_VERSION = 12;
 
-  private static final Predicate<MinimalJobSpec> NO_PREDICATE = spec -> true;
-
   private final Application   application;
   private final Configuration configuration;
   private final Executor      executor;
@@ -76,7 +74,11 @@ public class JobManager implements ConstraintObserver.Notifier {
                                            Build.VERSION.SDK_INT < 26 ? new AlarmManagerScheduler(application)
                                                                       : new CompositeScheduler(new InAppScheduler(this), new JobSchedulerScheduler(application)),
                                            new Debouncer(500),
-                                           this::onEmptyQueue);
+                                           this::onEmptyQueue,
+                                           configuration.getMinGeneralRunners(),
+                                           configuration.getMaxGeneralRunners(),
+                                           configuration.getGeneralRunnerIdleTimeout(),
+                                           configuration.getReservedJobRunners());
 
     executor.execute(() -> {
       synchronized (this) {
@@ -111,17 +113,8 @@ public class JobManager implements ConstraintObserver.Notifier {
    * Begins the execution of jobs.
    */
   public void beginJobLoop() {
-    runOnExecutor(()-> {
-      int id = 0;
-
-      for (int i = 0; i < configuration.getJobThreadCount(); i++) {
-        new JobRunner(application, ++id, jobController, NO_PREDICATE).start();
-      }
-
-      for (Predicate<MinimalJobSpec> predicate : configuration.getReservedJobRunners()) {
-        new JobRunner(application, ++id, jobController, predicate).start();
-      }
-
+    runOnExecutor(() -> {
+      jobController.startJobRunners();
       jobController.wakeUp();
     });
   }
@@ -444,6 +437,19 @@ public class JobManager implements ConstraintObserver.Notifier {
   }
 
   /**
+   * Can tell you if there are no jobs for the given factories at the time of invocation. It is worth noting
+   * that the state could change immediately after this method returns due to a call on some
+   * other thread, and you should take that into consideration when using the result.
+   *
+   * @return True if there are no jobs for the given factories at the time of invocation, otherwise false.
+   */
+  @WorkerThread
+  public boolean areFactoriesEmpty(@NonNull Set<String> factoryKeys) {
+    waitUntilInitialized();
+    return jobController.areFactoriesEmpty(factoryKeys);
+  }
+
+  /**
    * Pokes the system to take another pass at the job queue.
    */
   void wakeUp() {
@@ -596,7 +602,9 @@ public class JobManager implements ConstraintObserver.Notifier {
   public static class Configuration {
 
     private final ExecutorFactory                 executorFactory;
-    private final int                             jobThreadCount;
+    private final int                             minGeneralRunners;
+    private final int                             maxGeneralRunners;
+    private final long                            generalRunnerIdleTimeout;
     private final JobInstantiator                 jobInstantiator;
     private final ConstraintInstantiator          constraintInstantiator;
     private final List<ConstraintObserver>        constraintObservers;
@@ -605,7 +613,9 @@ public class JobManager implements ConstraintObserver.Notifier {
     private final JobTracker                      jobTracker;
     private final List<Predicate<MinimalJobSpec>> reservedJobRunners;
 
-    private Configuration(int jobThreadCount,
+    private Configuration(int minGeneralRunners,
+                          int maxGeneralRunners,
+                          long generalRunnerIdleTimeout,
                           @NonNull ExecutorFactory executorFactory,
                           @NonNull JobInstantiator jobInstantiator,
                           @NonNull ConstraintInstantiator constraintInstantiator,
@@ -615,19 +625,29 @@ public class JobManager implements ConstraintObserver.Notifier {
                           @NonNull JobTracker jobTracker,
                           @NonNull List<Predicate<MinimalJobSpec>> reservedJobRunners)
     {
-      this.executorFactory        = executorFactory;
-      this.jobThreadCount         = jobThreadCount;
-      this.jobInstantiator        = jobInstantiator;
-      this.constraintInstantiator = constraintInstantiator;
-      this.constraintObservers    = new ArrayList<>(constraintObservers);
-      this.jobStorage             = jobStorage;
-      this.jobMigrator            = jobMigrator;
-      this.jobTracker             = jobTracker;
-      this.reservedJobRunners     = new ArrayList<>(reservedJobRunners);
+      this.executorFactory          = executorFactory;
+      this.minGeneralRunners        = minGeneralRunners;
+      this.maxGeneralRunners        = maxGeneralRunners;
+      this.generalRunnerIdleTimeout = generalRunnerIdleTimeout;
+      this.jobInstantiator          = jobInstantiator;
+      this.constraintInstantiator   = constraintInstantiator;
+      this.constraintObservers      = new ArrayList<>(constraintObservers);
+      this.jobStorage               = jobStorage;
+      this.jobMigrator              = jobMigrator;
+      this.jobTracker               = jobTracker;
+      this.reservedJobRunners       = new ArrayList<>(reservedJobRunners);
     }
 
-    int getJobThreadCount() {
-      return jobThreadCount;
+    int getMinGeneralRunners() {
+      return minGeneralRunners;
+    }
+
+    int getMaxGeneralRunners() {
+      return maxGeneralRunners;
+    }
+
+    long getGeneralRunnerIdleTimeout() {
+      return generalRunnerIdleTimeout;
     }
 
     @NonNull ExecutorFactory getExecutorFactory() {
@@ -665,18 +685,30 @@ public class JobManager implements ConstraintObserver.Notifier {
 
     public static class Builder {
 
-      private ExecutorFactory                 executorFactory     = new DefaultExecutorFactory();
-      private int                             jobThreadCount      = 8;
-      private Map<String, Job.Factory>        jobFactories        = new HashMap<>();
-      private Map<String, Constraint.Factory> constraintFactories = new HashMap<>();
-      private List<ConstraintObserver>        constraintObservers = new ArrayList<>();
-      private JobStorage                      jobStorage          = null;
-      private JobMigrator                     jobMigrator         = null;
-      private JobTracker                      jobTracker          = new JobTracker();
-      private List<Predicate<MinimalJobSpec>> reservedJobRunners  = new ArrayList<>();
+      private ExecutorFactory                 executorFactory          = new DefaultExecutorFactory();
+      private int                             minGeneralRunners        = 4;
+      private int                             maxGeneralRunners        = 16;
+      private long                            generalRunnerIdleTimeout = TimeUnit.MINUTES.toMillis(1);
+      private Map<String, Job.Factory>        jobFactories             = new HashMap<>();
+      private Map<String, Constraint.Factory> constraintFactories      = new HashMap<>();
+      private List<ConstraintObserver>        constraintObservers      = new ArrayList<>();
+      private JobStorage                      jobStorage               = null;
+      private JobMigrator                     jobMigrator              = null;
+      private JobTracker                      jobTracker               = new JobTracker();
+      private List<Predicate<MinimalJobSpec>> reservedJobRunners       = new ArrayList<>();
 
-      public @NonNull Builder setJobThreadCount(int jobThreadCount) {
-        this.jobThreadCount = jobThreadCount;
+      public @NonNull Builder setMinGeneralRunners(int minGeneralRunners) {
+        this.minGeneralRunners = minGeneralRunners;
+        return this;
+      }
+
+      public @NonNull Builder setMaxGeneralRunners(int maxGeneralRunners) {
+        this.maxGeneralRunners = maxGeneralRunners;
+        return this;
+      }
+
+      public @NonNull Builder setGeneralRunnerIdleTimeout(long generalRunnerIdleTimeout) {
+        this.generalRunnerIdleTimeout = generalRunnerIdleTimeout;
         return this;
       }
 
@@ -716,7 +748,9 @@ public class JobManager implements ConstraintObserver.Notifier {
       }
 
       public @NonNull Configuration build() {
-        return new Configuration(jobThreadCount,
+        return new Configuration(minGeneralRunners,
+                                 maxGeneralRunners,
+                                 generalRunnerIdleTimeout,
                                  executorFactory,
                                  new JobInstantiator(jobFactories),
                                  new ConstraintInstantiator(constraintFactories),

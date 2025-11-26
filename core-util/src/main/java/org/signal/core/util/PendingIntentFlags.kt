@@ -42,6 +42,6 @@ object PendingIntentFlags {
 
   @JvmStatic
   fun immutable(): Int {
-    return if (Build.VERSION.SDK_INT >= 23) PendingIntent.FLAG_IMMUTABLE else 0
+    return PendingIntent.FLAG_IMMUTABLE
   }
 }

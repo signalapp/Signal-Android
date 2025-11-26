@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import android.content.Context
+import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.annotation.UiContext
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -47,10 +49,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -68,7 +70,8 @@ sealed interface MessageBackupsKeyRecordMode {
   data class CreateNewKey(
     val onCreateNewKeyClick: () -> Unit,
     val onTurnOffAndDownloadClick: () -> Unit,
-    val isOptimizedStorageEnabled: Boolean
+    val isOptimizedStorageEnabled: Boolean,
+    val canRotateKey: Boolean
   ) : MessageBackupsKeyRecordMode
 }
 
@@ -92,6 +95,10 @@ fun MessageBackupsKeyRecordScreen(
   val snackbarHostState = remember { SnackbarHostState() }
   val backupKeyString = remember(backupKey) {
     backupKey.chunked(4).joinToString("  ")
+  }
+
+  if (mode is MessageBackupsKeyRecordMode.Next) {
+    RecordScreenBackHandler()
   }
 
   Scaffolds.Settings(
@@ -257,10 +264,17 @@ private fun CreateNewKeyButton(
   mode: MessageBackupsKeyRecordMode.CreateNewKey
 ) {
   var displayBottomSheet by remember { mutableStateOf(false) }
-  var displayDialog by remember { mutableStateOf(false) }
+  var displayDownloadMediaDialog by remember { mutableStateOf(false) }
+  var displayKeyLimitDialog by remember { mutableStateOf(false) }
 
   TextButton(
-    onClick = { displayBottomSheet = true },
+    onClick = {
+      if (!mode.canRotateKey) {
+        displayKeyLimitDialog = true
+      } else {
+        displayBottomSheet = true
+      }
+    },
     modifier = Modifier
       .padding(bottom = 24.dp)
       .horizontalGutters()
@@ -270,10 +284,16 @@ private fun CreateNewKeyButton(
     Text(text = stringResource(R.string.MessageBackupsKeyRecordScreen__create_new_key))
   }
 
-  if (displayDialog) {
+  if (displayKeyLimitDialog) {
+    KeyLimitExceededDialog(
+      onClick = { displayKeyLimitDialog = false }
+    )
+  }
+
+  if (displayDownloadMediaDialog) {
     DownloadMediaDialog(
       onTurnOffAndDownloadClick = mode.onTurnOffAndDownloadClick,
-      onCancelClick = { displayDialog = false }
+      onCancelClick = { displayDownloadMediaDialog = false }
     )
   }
 
@@ -285,7 +305,7 @@ private fun CreateNewKeyButton(
       CreateNewBackupKeySheetContent(
         onContinueClick = {
           if (mode.isOptimizedStorageEnabled) {
-            displayDialog = true
+            displayDownloadMediaDialog = true
           } else {
             mode.onCreateNewKeyClick()
           }
@@ -334,6 +354,38 @@ private fun BackupKeySaveErrorDialog(
       message = message,
       dismiss = stringResource(android.R.string.ok),
       onDismiss = onDismiss
+    )
+  }
+}
+
+@Composable
+private fun RecordScreenBackHandler() {
+  var displayWarningDialog by remember { mutableStateOf(false) }
+  var didConfirmDialog by remember { mutableStateOf(false) }
+  val backPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+
+  BackHandler(enabled = !didConfirmDialog) {
+    displayWarningDialog = true
+  }
+
+  LaunchedEffect(didConfirmDialog, backPressedDispatcher) {
+    if (didConfirmDialog) {
+      backPressedDispatcher?.onBackPressed()
+    }
+  }
+
+  if (displayWarningDialog) {
+    Dialogs.SimpleAlertDialog(
+      title = stringResource(R.string.MessageBackupsKeyRecordScreen__exit_backup_setup),
+      body = stringResource(R.string.MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups),
+      confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__exit_backup_setup_confirm),
+      dismiss = stringResource(android.R.string.cancel),
+      onConfirm = {
+        didConfirmDialog = true
+      },
+      onDismiss = {
+        displayWarningDialog = false
+      }
     )
   }
 }
@@ -410,6 +462,19 @@ private fun DownloadMediaDialog(
   )
 }
 
+@Composable
+private fun KeyLimitExceededDialog(
+  onClick: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.MessageBackupsKeyRecordScreen__limit_exceeded_title),
+    body = stringResource(R.string.MessageBackupsKeyRecordScreen__limit_exceeded_body),
+    confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__ok),
+    onConfirm = {},
+    onDismiss = onClick
+  )
+}
+
 private suspend fun saveKeyToCredentialManager(
   @UiContext activityContext: Context,
   backupKey: String
@@ -421,7 +486,7 @@ private suspend fun saveKeyToCredentialManager(
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MessageBackupsKeyRecordScreenPreview() {
   Previews.Preview {
@@ -432,13 +497,14 @@ private fun MessageBackupsKeyRecordScreenPreview() {
       mode = MessageBackupsKeyRecordMode.CreateNewKey(
         onCreateNewKeyClick = {},
         onTurnOffAndDownloadClick = {},
-        isOptimizedStorageEnabled = true
+        isOptimizedStorageEnabled = true,
+        canRotateKey = true
       )
     )
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SaveKeyConfirmationDialogPreview() {
   Previews.Preview {
@@ -452,7 +518,7 @@ private fun SaveKeyConfirmationDialogPreview() {
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun CreateNewBackupKeySheetContentPreview() {
   Previews.BottomSheetPreview {
@@ -462,10 +528,18 @@ private fun CreateNewBackupKeySheetContentPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DownloadMediaDialogPreview() {
   Previews.Preview {
     DownloadMediaDialog()
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun KeyLimitExceededDialogPreview() {
+  Previews.Preview {
+    KeyLimitExceededDialog()
   }
 }

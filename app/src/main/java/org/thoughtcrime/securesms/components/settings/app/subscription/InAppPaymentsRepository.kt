@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -73,6 +74,73 @@ object InAppPaymentsRepository {
   private val backupExpirationDeletion = 60.days
 
   private val temporaryErrorProcessor = PublishProcessor.create<Pair<InAppPaymentTable.InAppPaymentId, Throwable>>()
+
+  /**
+   * Updates the latest payment object for the given subscription with cancelation information as necessary.
+   *
+   * This operation will only be performed if we find a latest payment for the given subscriber id in the END state without cancelation data
+   */
+  fun updateBackupInAppPaymentWithCancelation(activeSubscription: ActiveSubscription) {
+    if (activeSubscription.isCanceled || activeSubscription.willCancelAtPeriodEnd()) {
+      val subscriber = getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP) ?: return
+      val latestPayment = SignalDatabase.inAppPayments.getLatestBySubscriberId(subscriber.subscriberId) ?: return
+      if (latestPayment.state == InAppPaymentTable.State.END && latestPayment.data.cancellation == null) {
+        synchronized(subscriber.type.lock) {
+          val payment = SignalDatabase.inAppPayments.getLatestBySubscriberId(subscriber.subscriberId) ?: return
+          val chargeFailure: ActiveSubscription.ChargeFailure? = activeSubscription.chargeFailure
+
+          Log.i(TAG, "Recording cancelation in the database. (has charge failure? ${chargeFailure != null})")
+          SignalDatabase.inAppPayments.update(
+            payment.copy(
+              data = payment.data.newBuilder()
+                .cancellation(
+                  InAppPaymentData.Cancellation(
+                    reason = if (chargeFailure != null) InAppPaymentData.Cancellation.Reason.PAST_DUE else InAppPaymentData.Cancellation.Reason.CANCELED,
+                    chargeFailure = chargeFailure?.let {
+                      InAppPaymentData.ChargeFailure(
+                        code = it.code,
+                        message = it.message,
+                        outcomeType = it.outcomeType,
+                        outcomeNetworkReason = it.outcomeNetworkReason ?: "",
+                        outcomeNetworkStatus = it.outcomeNetworkStatus
+                      )
+                    }
+                  )
+                )
+                .build()
+            )
+          )
+        }
+      }
+    }
+  }
+
+  /**
+   * Updates the latest payment object clearing cancelation information as necessary.
+   *
+   * This operation will only be performed if we find a latest payment for the given subscriber id in the END state with cancelation data
+   */
+  fun clearCancelation(activeSubscription: ActiveSubscription) {
+    if (!activeSubscription.isCanceled && !activeSubscription.willCancelAtPeriodEnd()) {
+      val subscriber = getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP) ?: return
+
+      val latestPayment = SignalDatabase.inAppPayments.getLatestBySubscriberId(subscriber.subscriberId) ?: return
+      if (latestPayment.data.cancellation != null && latestPayment.state == InAppPaymentTable.State.END) {
+        synchronized(subscriber.type.lock) {
+          val payment = SignalDatabase.inAppPayments.getLatestBySubscriberId(subscriber.subscriberId) ?: return
+
+          Log.i(TAG, "Clearing cancelation in the database.")
+          SignalDatabase.inAppPayments.update(
+            payment.copy(
+              data = payment.data.newBuilder()
+                .cancellation(null)
+                .build()
+            )
+          )
+        }
+      }
+    }
+  }
 
   /**
    * Wraps an in-app-payment update in a completable.
@@ -223,10 +291,14 @@ object InAppPaymentsRepository {
    * Returns a duration to utilize for jobs tied to different payment methods. For long running bank transfers, we need to
    * allow extra time for completion.
    */
-  fun resolveContextJobLifespan(inAppPayment: InAppPaymentTable.InAppPayment): Duration {
-    return when (inAppPayment.data.paymentMethodType) {
-      InAppPaymentData.PaymentMethodType.SEPA_DEBIT, InAppPaymentData.PaymentMethodType.IDEAL -> 30.days
-      else -> 1.days
+  fun resolveContextJobLifespanMillis(inAppPayment: InAppPaymentTable.InAppPayment): Long {
+    return if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+      Job.Parameters.IMMORTAL
+    } else {
+      when (inAppPayment.data.paymentMethodType) {
+        InAppPaymentData.PaymentMethodType.SEPA_DEBIT, InAppPaymentData.PaymentMethodType.IDEAL -> 30.days.inWholeMilliseconds
+        else -> 1.days.inWholeMilliseconds
+      }
     }
   }
 

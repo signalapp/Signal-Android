@@ -22,20 +22,14 @@ import assertk.assertThat
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
 import io.reactivex.rxjava3.schedulers.TestScheduler
-import okhttp3.mockwebserver.MockResponse
-import org.junit.After
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
-import org.thoughtcrime.securesms.testing.Put
 import org.thoughtcrime.securesms.testing.RxTestSchedulerRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.success
 import org.whispersystems.signalservice.api.util.Usernames
-import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse
 import java.util.concurrent.TimeUnit
 
 @RunWith(AndroidJUnit4::class)
@@ -52,11 +46,6 @@ class UsernameEditFragmentTest {
     ioTestScheduler = ioScheduler,
     computationTestScheduler = computationScheduler
   )
-
-  @After
-  fun tearDown() {
-    InstrumentationApplicationDependencyProvider.clearHandlers()
-  }
 
   @Ignore("Flakey espresso test.")
   @Test
@@ -82,14 +71,7 @@ class UsernameEditFragmentTest {
     val discriminator = "4578"
     val username = "$nickname${Usernames.DELIMITER}$discriminator"
 
-    InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
-      Put("/v1/accounts/username/reserved") {
-        MockResponse().success(ReserveUsernameResponse(username))
-      },
-      Put("/v1/accounts/username/confirm") {
-        MockResponse().success()
-      }
-    )
+    // TODO: mock network requests as necessary
 
     val scenario = createScenario(UsernameEditMode.NORMAL)
     scenario.moveToState(Lifecycle.State.RESUMED)

@@ -32,4 +32,5 @@ message RegistrationProvisionMessage {
   bytes aciIdentityKeyPrivate = 11;
   bytes pniIdentityKeyPublic = 12;
   bytes pniIdentityKeyPrivate = 13;
+  uint64 backupVersion = 14;
 }

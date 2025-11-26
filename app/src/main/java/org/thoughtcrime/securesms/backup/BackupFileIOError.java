@@ -1,16 +1,20 @@
 package org.thoughtcrime.securesms.backup;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.PendingIntentFlags;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.notifications.NotificationCancellationHelper;
@@ -26,6 +30,7 @@ public enum BackupFileIOError {
   ATTACHMENT_TOO_LARGE(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_your_backup_contains_a_very_large_file),
   UNKNOWN(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_tap_to_manage_backups);
 
+  private static final String TAG = Log.tag(BackupFileIOError.class);
   private static final short BACKUP_FAILED_ID = 31321;
 
   private final @StringRes int titleId;
@@ -41,6 +46,11 @@ public enum BackupFileIOError {
   }
 
   public void postNotification(@NonNull Context context) {
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) !=  PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "postNotification: Notification permission is not granted.");
+      return;
+    }
+
     PendingIntent pendingIntent           = PendingIntent.getActivity(context, -1, AppSettingsActivity.backups(context), PendingIntentFlags.mutable());
     Notification backupFailedNotification = new NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
                                                                   .setSmallIcon(R.drawable.ic_signal_backup)

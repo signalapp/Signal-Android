@@ -29,4 +29,10 @@ class ReRegisterWithPinViewModel : ViewModel() {
       it.copy(hasIncorrectGuess = true)
     }
   }
+
+  fun toggleKeyboardType() {
+    store.update {
+      it.copy(pinKeyboardType = it.pinKeyboardType.other)
+    }
+  }
 }

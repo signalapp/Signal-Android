@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.jobs.InAppPaymentPurchaseTokenJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.next
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
@@ -53,6 +52,7 @@ import kotlin.time.Duration.Companion.seconds
 
 class MessageBackupsFlowViewModel(
   private val initialTierSelection: MessageBackupTier?,
+  googlePlayApiAvailability: Int,
   startScreen: MessageBackupsStage = if (SignalStore.backup.backupTier == null) MessageBackupsStage.EDUCATION else MessageBackupsStage.TYPE_SELECTION
 ) : ViewModel(), BackupKeyCredentialManagerHandler {
 
@@ -63,7 +63,8 @@ class MessageBackupsFlowViewModel(
 
   private val internalStateFlow = MutableStateFlow(
     MessageBackupsFlowState(
-      availableBackupTypes = emptyList(),
+      allBackupTypes = emptyList(),
+      googlePlayApiAvailability = GooglePlayServicesAvailability.fromCode(googlePlayApiAvailability),
       currentMessageBackupTier = SignalStore.backup.backupTier,
       selectedMessageBackupTier = resolveSelectedTier(initialTierSelection, SignalStore.backup.backupTier),
       startScreen = startScreen
@@ -74,6 +75,14 @@ class MessageBackupsFlowViewModel(
   val deletionState: Flow<DeletionState> = SignalStore.backup.deletionStateFlow
 
   init {
+    viewModelScope.launch(SignalDispatchers.IO) {
+      internalStateFlow.update {
+        it.copy(
+          googlePlayBillingAvailability = AppDependencies.billingApi.getApiAvailability()
+        )
+      }
+    }
+
     viewModelScope.launch {
       val result = withContext(SignalDispatchers.IO) {
         BackupRepository.triggerBackupIdReservation()
@@ -85,16 +94,16 @@ class MessageBackupsFlowViewModel(
       }
 
       result.runOnStatusCodeError { code ->
-        Log.d(TAG, "Failed to trigger backup id reservation. ($code)")
+        Log.w(TAG, "Failed to trigger backup id reservation. ($code)")
         internalStateFlow.update { it.copy(paymentReadyState = MessageBackupsFlowState.PaymentReadyState.FAILED) }
       }
     }
 
     viewModelScope.launch {
-      val availableBackupTypes: List<MessageBackupsType> = try {
+      val allBackupTypes: List<MessageBackupsType> = try {
         withContext(SignalDispatchers.IO) {
-          BackupRepository.getAvailableBackupsTypes(
-            if (!RemoteConfig.messageBackups) emptyList() else listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)
+          BackupRepository.getBackupTypes(
+            listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)
           )
         }
       } catch (e: Exception) {
@@ -104,8 +113,8 @@ class MessageBackupsFlowViewModel(
 
       internalStateFlow.update { state ->
         state.copy(
-          availableBackupTypes = availableBackupTypes,
-          selectedMessageBackupTier = if (state.selectedMessageBackupTier in availableBackupTypes.map { it.tier }) state.selectedMessageBackupTier else availableBackupTypes.firstOrNull()?.tier
+          allBackupTypes = allBackupTypes,
+          selectedMessageBackupTier = if (state.selectedMessageBackupTier in allBackupTypes.map { it.tier }) state.selectedMessageBackupTier else allBackupTypes.firstOrNull()?.tier
         )
       }
     }
@@ -157,6 +166,12 @@ class MessageBackupsFlowViewModel(
     }
   }
 
+  fun setGooglePlayApiAvailability(googlePlayApiAvailability: Int) {
+    internalStateFlow.update {
+      it.copy(googlePlayApiAvailability = GooglePlayServicesAvailability.fromCode(googlePlayApiAvailability))
+    }
+  }
+
   fun refreshCurrentTier() {
     val tier = SignalStore.backup.backupTier
     if (tier == MessageBackupTier.PAID) {
@@ -166,7 +181,7 @@ class MessageBackupsFlowViewModel(
           RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
         }
 
-        activeSubscription.onSuccess { subscription ->
+        activeSubscription.runIfSuccessful { subscription ->
           if (subscription.willCancelAtPeriodEnd()) {
             Log.d(TAG, "Active subscription is cancelled. Clearing tier.")
             internalStateFlow.update {
@@ -285,7 +300,7 @@ class MessageBackupsFlowViewModel(
 
       MessageBackupTier.PAID -> {
         check(state.selectedMessageBackupTier == MessageBackupTier.PAID)
-        check(state.availableBackupTypes.any { it.tier == state.selectedMessageBackupTier })
+        check(state.allBackupTypes.any { it.tier == state.selectedMessageBackupTier })
 
         viewModelScope.launch(SignalDispatchers.IO) {
           internalStateFlow.update { it.copy(inAppPayment = null) }

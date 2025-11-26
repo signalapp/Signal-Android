@@ -24,6 +24,7 @@ import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -185,8 +186,15 @@ public class SealedSenderAccessUtil {
 
     private static CertificateValidator buildCertificateValidator() {
       try {
-        ECPublicKey unidentifiedSenderTrustRoot = new ECPublicKey(Base64.decode(BuildConfig.UNIDENTIFIED_SENDER_TRUST_ROOT));
-        return new CertificateValidator(unidentifiedSenderTrustRoot);
+        String[]               base64Strings = BuildConfig.UNIDENTIFIED_SENDER_TRUST_ROOTS;
+        ArrayList<ECPublicKey> roots         = new ArrayList<>(base64Strings.length);
+
+        for (String base64String: base64Strings) {
+          ECPublicKey unidentifiedSenderTrustRoot = new ECPublicKey(Base64.decode(base64String));
+          roots.add(unidentifiedSenderTrustRoot);
+        }
+
+        return new CertificateValidator(roots);
       } catch (InvalidKeyException | IOException e) {
         throw new AssertionError(e);
       }

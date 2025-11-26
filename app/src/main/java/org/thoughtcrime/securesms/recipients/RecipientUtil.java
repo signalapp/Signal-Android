@@ -176,16 +176,28 @@ public class RecipientUtil {
     SignalDatabase.recipients().setBlocked(recipient.getId(), true);
     insertBlockedUpdate(recipient, SignalDatabase.threads().getOrCreateThreadIdFor(recipient));
 
-    if (recipient.isSystemContact() || recipient.isProfileSharing() || isProfileSharedViaGroup(recipient)) {
-      SignalDatabase.recipients().setProfileSharing(recipient.getId(), false);
-
-      AppDependencies.getJobManager().startChain(new RefreshOwnProfileJob())
-                     .then(new RotateProfileKeyJob())
-                     .enqueue();
-    }
+    RecipientUtil.updateProfileSharingAfterBlock(recipient, true);
 
     AppDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
     StorageSyncHelper.scheduleSyncForDataChange();
+  }
+
+  @WorkerThread
+  public static boolean updateProfileSharingAfterBlock(@NonNull Recipient recipient, boolean rotateProfileKeyOnBlock) {
+    if (recipient.isSystemContact() || recipient.isProfileSharing() || isProfileSharedViaGroup(recipient)) {
+      SignalDatabase.recipients().setProfileSharing(recipient.getId(), false);
+
+      if (rotateProfileKeyOnBlock) {
+        Log.i(TAG, "Rotating profile key");
+        AppDependencies.getJobManager().startChain(new RefreshOwnProfileJob())
+                       .then(new RotateProfileKeyJob())
+                       .enqueue();
+
+        return true;
+      }
+    }
+
+    return false;
   }
 
   @WorkerThread

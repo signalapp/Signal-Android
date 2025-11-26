@@ -75,7 +75,8 @@ class DatabaseAttachment : Attachment {
     archiveCdn: Int?,
     thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState,
     archiveTransferState: AttachmentTable.ArchiveTransferState,
-    uuid: UUID?
+    uuid: UUID?,
+    quoteTargetContentType: String?
   ) : super(
     contentType = contentType,
     transferState = transferProgress,
@@ -93,6 +94,7 @@ class DatabaseAttachment : Attachment {
     height = height,
     incrementalMacChunkSize = incrementalMacChunkSize,
     quote = quote,
+    quoteTargetContentType = quoteTargetContentType,
     uploadTimestamp = uploadTimestamp,
     caption = caption,
     stickerLocator = stickerLocator,

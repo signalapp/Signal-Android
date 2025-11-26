@@ -31,6 +31,6 @@ class AvatarColorHashTest {
 
   @Test
   fun `hash test vector - GroupId`() {
-    assertEquals(AvatarColor.A130, AvatarColorHash.forGroupId(GroupId.V2.push(Base64.decode("BwJRIdomqOSOckHjnJsknNCibCZKJFt+RxLIpa9CWJ4="))))
+    assertEquals(AvatarColor.A130, AvatarColorHash.forGroupId(GroupId.push(Base64.decode("BwJRIdomqOSOckHjnJsknNCibCZKJFt+RxLIpa9CWJ4="))))
   }
 }

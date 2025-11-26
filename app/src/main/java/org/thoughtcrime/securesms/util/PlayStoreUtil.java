@@ -21,6 +21,16 @@ public final class PlayStoreUtil {
     }
   }
 
+  public static void openPlayStoreHome(@NonNull Context context) {
+    try {
+      Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.android.vending"));
+      intent.setPackage("com.android.vending");
+      context.startActivity(intent);
+    } catch (android.content.ActivityNotFoundException e) {
+      CommunicationActions.openBrowserLink(context, "https://play.google.com/store/apps/");
+    }
+  }
+
   private static void openPlayStore(@NonNull Context context) {
     String packageName = context.getPackageName();
 

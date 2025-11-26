@@ -15,7 +15,8 @@ class LinkPreviewState private constructor(
   @JvmField val isLoading: Boolean,
   private val hasLinks: Boolean,
   private val preview: LinkPreview?,
-  @JvmField val error: LinkPreviewRepository.Error?
+  @JvmField val error: LinkPreviewRepository.Error?,
+  @JvmField val link: Link?
 ) : Parcelable {
 
   @IgnoredOnParcel
@@ -30,15 +31,18 @@ class LinkPreviewState private constructor(
     return isLoading || hasLinks
   }
 
+  val url: String? = link?.url ?: preview?.url ?: activeUrlForError
+
   companion object {
     @JvmStatic
-    fun forLoading(): LinkPreviewState {
+    fun forLoading(link: Link): LinkPreviewState {
       return LinkPreviewState(
         activeUrlForError = null,
         isLoading = true,
         hasLinks = false,
         preview = null,
-        error = null
+        error = null,
+        link = link
       )
     }
 
@@ -49,7 +53,8 @@ class LinkPreviewState private constructor(
         isLoading = false,
         hasLinks = true,
         preview = linkPreview,
-        error = null
+        error = null,
+        link = null
       )
     }
 
@@ -60,7 +65,8 @@ class LinkPreviewState private constructor(
         isLoading = false,
         hasLinks = true,
         preview = null,
-        error = error
+        error = error,
+        link = null
       )
     }
 
@@ -71,7 +77,8 @@ class LinkPreviewState private constructor(
         isLoading = false,
         hasLinks = false,
         preview = null,
-        error = null
+        error = null,
+        link = null
       )
     }
   }

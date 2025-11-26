@@ -81,13 +81,14 @@ object ContactDiscovery {
   }
 
   @JvmStatic
+  @JvmOverloads
   @Throws(IOException::class)
   @WorkerThread
-  fun refresh(context: Context, recipients: List<Recipient>, notifyOfNewUsers: Boolean) {
+  fun refresh(context: Context, recipients: List<Recipient>, notifyOfNewUsers: Boolean, timeoutMs: Long? = null) {
     refreshRecipients(
       context = context,
       descriptor = "refresh-multiple",
-      refresh = { ContactDiscoveryRefreshV2.refresh(context, recipients) },
+      refresh = { ContactDiscoveryRefreshV2.refresh(context, recipients, timeoutMs = timeoutMs) },
       removeSystemContactLinksIfMissing = false,
       notifyOfNewUsers = notifyOfNewUsers
     )

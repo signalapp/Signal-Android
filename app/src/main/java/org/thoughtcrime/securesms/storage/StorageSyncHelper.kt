@@ -210,6 +210,7 @@ object StorageSyncHelper {
   private fun getNotificationProfileManualOverride(): AccountRecord.NotificationProfileManualOverride {
     val profile = SignalDatabase.notificationProfiles.getProfile(SignalStore.notificationProfile.manuallyEnabledProfile)
     return if (profile != null && profile.deletedTimestampMs == 0L) {
+      Log.i(TAG, "Setting a manually enabled profile ${profile.id}")
       // From [StorageService.proto], end timestamp should be unset if no timespan was chosen in the UI
       val endTimestamp = if (SignalStore.notificationProfile.manuallyEnabledUntil == Long.MAX_VALUE) 0 else SignalStore.notificationProfile.manuallyEnabledUntil
       AccountRecord.NotificationProfileManualOverride(
@@ -219,6 +220,7 @@ object StorageSyncHelper {
         )
       )
     } else if (SignalStore.notificationProfile.manuallyDisabledAt != 0L) {
+      Log.i(TAG, "Setting a manually disabled profile ${SignalStore.notificationProfile.manuallyDisabledAt}")
       AccountRecord.NotificationProfileManualOverride(
         disabledAtTimestampMs = SignalStore.notificationProfile.manuallyDisabledAt
       )
@@ -296,6 +298,7 @@ object StorageSyncHelper {
 
     if (update.new.proto.notificationProfileManualOverride != null) {
       if (update.new.proto.notificationProfileManualOverride!!.enabled != null) {
+        Log.i(TAG, "Found a remote enabled notification override")
         val remoteProfile = update.new.proto.notificationProfileManualOverride!!.enabled!!
         val remoteId = UuidUtil.parseOrNull(remoteProfile.id)
         val remoteEndTime = if (remoteProfile.endAtTimestampMs == 0L) Long.MAX_VALUE else remoteProfile.endAtTimestampMs
@@ -307,14 +310,16 @@ object StorageSyncHelper {
           val localProfile = SignalDatabase.notificationProfiles.getProfile(query)
 
           if (localProfile == null) {
-            Log.w(TAG, "Unable to find local notification profile with given remote id")
+            Log.w(TAG, "Unable to find local notification profile with given remote id $remoteId")
           } else {
+            Log.i(TAG, "Setting manually enabled profile to ${localProfile.id} ending at $remoteEndTime.")
             SignalStore.notificationProfile.manuallyEnabledProfile = localProfile.id
             SignalStore.notificationProfile.manuallyEnabledUntil = remoteEndTime
-            SignalStore.notificationProfile.manuallyDisabledAt = System.currentTimeMillis()
+            SignalStore.notificationProfile.manuallyDisabledAt = 0L
           }
         }
       } else if (update.new.proto.notificationProfileManualOverride!!.disabledAtTimestampMs != null) {
+        Log.i(TAG, "Found a remote disabled notification override for ${update.new.proto.notificationProfileManualOverride!!.disabledAtTimestampMs!!}")
         SignalStore.notificationProfile.manuallyEnabledProfile = 0
         SignalStore.notificationProfile.manuallyEnabledUntil = 0
         SignalStore.notificationProfile.manuallyDisabledAt = update.new.proto.notificationProfileManualOverride!!.disabledAtTimestampMs!!

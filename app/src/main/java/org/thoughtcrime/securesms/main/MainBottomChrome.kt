@@ -15,20 +15,22 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones
-import org.thoughtcrime.securesms.window.WindowSizeClass
+import org.thoughtcrime.securesms.window.NavigationType
+import org.thoughtcrime.securesms.window.isSplitPane
 
 data class SnackbarState(
   val message: String,
@@ -76,14 +78,15 @@ fun MainBottomChrome(
   megaphoneActionController: MegaphoneActionController,
   modifier: Modifier = Modifier
 ) {
-  val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+  val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+  val navigationType = NavigationType.rememberNavigationType()
 
   Column(
     modifier = modifier
       .fillMaxWidth()
       .animateContentSize()
   ) {
-    if (state.mainToolbarMode == MainToolbarMode.FULL && windowSizeClass.isCompact()) {
+    if (state.mainToolbarMode == MainToolbarMode.FULL && navigationType != NavigationType.RAIL) {
       Box(
         contentAlignment = Alignment.CenterEnd,
         modifier = Modifier.fillMaxWidth()
@@ -93,7 +96,9 @@ fun MainBottomChrome(
           callback = callback
         )
       }
+    }
 
+    if (state.mainToolbarMode == MainToolbarMode.FULL) {
       MainMegaphoneContainer(
         state = state.megaphoneState,
         controller = megaphoneActionController,
@@ -101,8 +106,7 @@ fun MainBottomChrome(
       )
     }
 
-    val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
-    val snackBarModifier = if (windowSizeClass.isCompact() && state.mainToolbarMode == MainToolbarMode.BASIC) {
+    val snackBarModifier = if (!windowSizeClass.isSplitPane() && state.mainToolbarMode == MainToolbarMode.BASIC) {
       Modifier.navigationBarsPadding()
     } else {
       Modifier
@@ -151,7 +155,7 @@ private fun MainSnackbar(
   }
 }
 
-@SignalPreview
+@AllDevicePreviews
 @Composable
 fun MainBottomChromePreview() {
   Previews.Preview {

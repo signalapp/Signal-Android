@@ -66,10 +66,9 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.L
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.SharedMediaPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.Utils.formatMutedUntil
-import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.groups.ParcelableGroupId
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
 import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog
@@ -136,11 +135,11 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
   private val viewModel by viewModels<ConversationSettingsViewModel>(
     factoryProducer = {
-      val groupId = args.groupId as? ParcelableGroupId
+      val groupId = args.groupId as? GroupId
 
       ConversationSettingsViewModel.Factory(
         recipientId = args.recipientId,
-        groupId = ParcelableGroupId.get(groupId),
+        groupId = groupId,
         callMessageIds = args.callMessageIds ?: longArrayOf(),
         repository = ConversationSettingsRepository(requireContext()),
         messageRequestRepository = MessageRequestRepository(requireContext())
@@ -210,9 +209,9 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return if (item.itemId == R.id.action_edit) {
       val args = ConversationSettingsFragmentArgs.fromBundle(requireArguments())
-      val groupId = args.groupId as ParcelableGroupId
+      val groupId = args.groupId as GroupId
 
-      startActivity(CreateProfileActivity.getIntentForGroupProfile(requireActivity(), requireNotNull(ParcelableGroupId.get(groupId))))
+      startActivity(CreateProfileActivity.getIntentForGroupProfile(requireActivity(), requireNotNull(groupId)))
       true
     } else {
       super.onOptionsItemSelected(item)
@@ -820,7 +819,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
               icon = DSLSettingsIcon.from(R.drawable.ic_lock_24),
               isEnabled = !state.isDeprecatedOrUnregistered,
               onClick = {
-                val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToPermissionsSettingsFragment(ParcelableGroupId.from(groupState.groupId))
+                val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToPermissionsSettingsFragment(groupState.groupId)
                 navController.safeNavigate(action)
               }
             )
@@ -953,12 +952,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     startActivityForResult(
       AddMembersActivity.createIntent(
         requireContext(),
-        addMembersToGroup.groupId,
-        ContactSelectionDisplayMode.FLAG_PUSH,
-        addMembersToGroup.selectionWarning,
-        addMembersToGroup.selectionLimit,
-        addMembersToGroup.isAnnouncementGroup,
-        addMembersToGroup.groupMembersWithoutSelf
+        addMembersToGroup
       ),
       REQUEST_CODE_ADD_MEMBERS_TO_GROUP
     )

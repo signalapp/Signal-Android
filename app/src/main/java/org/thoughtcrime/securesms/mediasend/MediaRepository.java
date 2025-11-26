@@ -9,7 +9,7 @@ import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video;
 import android.provider.OpenableColumns;
-import android.util.Pair;
+import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -277,7 +277,7 @@ public class MediaRepository {
         long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
         long   duration    = !isImage ? cursor.getInt(cursor.getColumnIndexOrThrow(Video.Media.DURATION)) : 0;
 
-        media.add(fixMimeType(context, new Media(uri, mimetype, date, width, height, size, duration, false, false, Optional.of(bucketId), Optional.empty(), Optional.of(AttachmentTable.TransformProperties.forSentMediaQuality(SignalStore.settings().getSentMediaQuality().getCode())), Optional.empty())));
+        media.add(fixMimeType(context, new Media(uri, mimetype, date, width, height, size, duration, false, false, bucketId, null, AttachmentTable.TransformProperties.forSentMediaQuality(SignalStore.settings().getSentMediaQuality().getCode()), null)));
       }
     }
 
@@ -364,11 +364,11 @@ public class MediaRepository {
 
     if (width == 0 || height == 0) {
       Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, media.getContentType(), media.getUri());
-      width  = dimens.first;
-      height = dimens.second;
+      width  = dimens.getFirst();
+      height = dimens.getSecond();
     }
 
-    return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.empty(), Optional.empty());
+    return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), null, null);
   }
 
   private Media getContentResolverPopulatedMedia(@NonNull Context context, @NonNull Media media) throws IOException {
@@ -390,11 +390,11 @@ public class MediaRepository {
 
     if (width == 0 || height == 0) {
       Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, media.getContentType(), media.getUri());
-      width  = dimens.first;
-      height = dimens.second;
+      width  = dimens.getFirst();
+      height = dimens.getSecond();
     }
 
-    return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.empty(), Optional.empty());
+    return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), null, null);
   }
 
   @VisibleForTesting
@@ -404,11 +404,11 @@ public class MediaRepository {
       String newMimeType = MediaUtil.getMimeType(context, media.getUri());
       if (newMimeType != null && !newMimeType.equals(media.getContentType())) {
         Log.d(TAG, "Changing mime type to '" + newMimeType + "'");
-        return Media.withMimeType(media, newMimeType);
+        return media.withMimeType(newMimeType);
       } else if (media.getSize() > 0 && media.getWidth() > 0 && media.getHeight() > 0) {
         boolean likelyVideo = media.getDuration() > 0;
         Log.d(TAG, "Assuming content is " + (likelyVideo ? "a video" : "an image") + ", setting mimetype");
-        return Media.withMimeType(media, likelyVideo ? MediaUtil.VIDEO_UNSPECIFIED : MediaUtil.IMAGE_JPEG);
+        return media.withMimeType(likelyVideo ? MediaUtil.VIDEO_UNSPECIFIED : MediaUtil.IMAGE_JPEG);
       } else {
         Log.d(TAG, "Unable to fix mimetype");
       }

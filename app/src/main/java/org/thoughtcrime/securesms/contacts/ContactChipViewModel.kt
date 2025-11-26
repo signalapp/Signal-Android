@@ -25,7 +25,8 @@ class ContactChipViewModel : ViewModel() {
     .distinctUntilChanged()
     .observeOn(AndroidSchedulers.mainThread())
 
-  val count = store.state.size
+  val count: Int
+    get() = store.state.size
 
   private val disposables = CompositeDisposable()
   private val disposableMap: MutableMap<RecipientId, Disposable> = mutableMapOf()

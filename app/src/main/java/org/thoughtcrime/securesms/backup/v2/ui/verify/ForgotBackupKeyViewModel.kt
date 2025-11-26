@@ -11,11 +11,11 @@ import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupK
  * View model for [ForgotBackupKeyFragment]
  */
 class ForgotBackupKeyViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
-  private val _uiState = MutableStateFlow(BackupKeyDisplayUiState())
-  val uiState: StateFlow<BackupKeyDisplayUiState> = _uiState
+  private val internalUiState = MutableStateFlow(BackupKeyDisplayUiState())
+  val uiState: StateFlow<BackupKeyDisplayUiState> = internalUiState
 
   override fun updateBackupKeySaveState(newState: BackupKeySaveState?) {
-    _uiState.update { it.copy(keySaveState = newState) }
+    internalUiState.update { it.copy(keySaveState = newState) }
   }
 }
 

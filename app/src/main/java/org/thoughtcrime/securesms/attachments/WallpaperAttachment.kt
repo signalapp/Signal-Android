@@ -30,6 +30,7 @@ class WallpaperAttachment() : Attachment(
   height = 0,
   incrementalMacChunkSize = 0,
   quote = false,
+  quoteTargetContentType = null,
   uploadTimestamp = 0,
   caption = null,
   stickerLocator = null,

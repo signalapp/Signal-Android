@@ -180,7 +180,7 @@ public class AvatarHelper {
   public static @NonNull OutputStream getOutputStream(@NonNull Context context, @NonNull RecipientId recipientId, boolean isSyncAvatar) throws IOException {
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
     File             targetFile       = getAvatarFile(context, recipientId, isSyncAvatar);
-    return ModernEncryptingPartOutputStream.createFor(attachmentSecret, targetFile, true).second;
+    return ModernEncryptingPartOutputStream.createFor(attachmentSecret, targetFile, true).getSecond();
   }
 
   /**

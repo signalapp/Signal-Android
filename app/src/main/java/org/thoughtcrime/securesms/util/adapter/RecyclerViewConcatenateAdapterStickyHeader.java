@@ -4,11 +4,12 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 
 import java.util.Optional;
+
+import kotlin.Pair;
 
 
 public final class RecyclerViewConcatenateAdapterStickyHeader extends    RecyclerViewConcatenateAdapter
@@ -18,12 +19,12 @@ public final class RecyclerViewConcatenateAdapterStickyHeader extends    Recycle
 
   @Override
   public long getHeaderId(int position) {
-    return getForPosition(position).map(p -> p.first().getHeaderId(p.second())).orElse(-1L);
+    return getForPosition(position).map(p -> p.getFirst().getHeaderId(p.getSecond())).orElse(-1L);
   }
 
   @Override
   public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position, int type) {
-    return getForPosition(position).map(p -> p.first().onCreateHeaderViewHolder(parent, p.second(), type)).orElse(null);
+    return getForPosition(position).map(p -> p.getFirst().onCreateHeaderViewHolder(parent, p.getSecond(), type)).orElse(null);
   }
 
   @Override
@@ -33,7 +34,7 @@ public final class RecyclerViewConcatenateAdapterStickyHeader extends    Recycle
     if (forPosition.isPresent()) {
       Pair<StickyHeaderDecoration.StickyHeaderAdapter, Integer> stickyHeaderAdapterIntegerPair = forPosition.get();
       //noinspection unchecked
-      stickyHeaderAdapterIntegerPair.first().onBindHeaderViewHolder(viewHolder, stickyHeaderAdapterIntegerPair.second(), type);
+      stickyHeaderAdapterIntegerPair.getFirst().onBindHeaderViewHolder(viewHolder, stickyHeaderAdapterIntegerPair.getSecond(), type);
     }
   }
 
@@ -42,8 +43,8 @@ public final class RecyclerViewConcatenateAdapterStickyHeader extends    Recycle
     Optional<Pair<StickyHeaderDecoration.StickyHeaderAdapter, Integer>> forPosition = getForPosition(position);
 
     return forPosition.map(a -> {
-      if (a.first() instanceof RecyclerViewFastScroller.FastScrollAdapter) {
-        return ((RecyclerViewFastScroller.FastScrollAdapter) a.first()).getBubbleText(a.second());
+      if (a.getFirst() instanceof RecyclerViewFastScroller.FastScrollAdapter) {
+        return ((RecyclerViewFastScroller.FastScrollAdapter) a.getFirst()).getBubbleText(a.getSecond());
       } else {
         return "";
       }

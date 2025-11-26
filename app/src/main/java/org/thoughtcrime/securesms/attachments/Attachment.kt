@@ -59,6 +59,8 @@ abstract class Attachment(
   @JvmField
   val quote: Boolean,
   @JvmField
+  val quoteTargetContentType: String?,
+  @JvmField
   val uploadTimestamp: Long,
   @JvmField
   val caption: String?,
@@ -98,6 +100,7 @@ abstract class Attachment(
     height = parcel.readInt(),
     incrementalMacChunkSize = parcel.readInt(),
     quote = ParcelUtil.readBoolean(parcel),
+    quoteTargetContentType = parcel.readString(),
     uploadTimestamp = parcel.readLong(),
     caption = parcel.readString(),
     stickerLocator = ParcelCompat.readParcelable(parcel, StickerLocator::class.java.classLoader, StickerLocator::class.java),
@@ -126,6 +129,7 @@ abstract class Attachment(
     dest.writeInt(height)
     dest.writeInt(incrementalMacChunkSize)
     ParcelUtil.writeBoolean(dest, quote)
+    dest.writeString(quoteTargetContentType)
     dest.writeLong(uploadTimestamp)
     dest.writeString(caption)
     dest.writeParcelable(stickerLocator, 0)

@@ -56,13 +56,12 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
-import org.signal.core.ui.compose.theme.LocalExtendedColors
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarImage
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
@@ -135,7 +134,7 @@ object CallInfoView {
 @Preview
 @Composable
 private fun CallInfoPreview() {
-  SignalTheme(isDarkMode = true) {
+  Previews.Preview {
     Surface {
       val remoteParticipants = listOf(CallParticipant(recipient = Recipient.UNKNOWN))
       CallInfo(
@@ -344,7 +343,7 @@ private fun getCallSheetLabel(state: ParticipantsState): String {
 @Preview
 @Composable
 private fun CallParticipantRowPreview() {
-  SignalTheme(isDarkMode = true) {
+  Previews.Preview {
     Surface {
       CallParticipantRow(
         CallParticipant(recipient = Recipient.UNKNOWN),
@@ -357,7 +356,7 @@ private fun CallParticipantRowPreview() {
 @Preview
 @Composable
 private fun HandRaisedRowPreview() {
-  SignalTheme(isDarkMode = true) {
+  Previews.Preview {
     Surface {
       HandRaisedRow(Recipient.UNKNOWN, "Peter Parker", canLowerHand = true)
     }
@@ -604,7 +603,7 @@ private fun TwoUnknownAvatars() {
       modifier = Modifier
         .size(38.dp)
         .align(Alignment.CenterEnd)
-        .border(width = 2.dp, color = LocalExtendedColors.current.colorSurface1, shape = CircleShape)
+        .border(width = 2.dp, color = SignalTheme.colors.colorSurface1, shape = CircleShape)
     )
   }
 }

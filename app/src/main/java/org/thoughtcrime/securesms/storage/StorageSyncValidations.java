@@ -14,6 +14,7 @@ import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 
@@ -181,8 +182,8 @@ public final class StorageSyncValidations {
       if (insert.getProto().contact != null) {
         ContactRecord contact = insert.getProto().contact;
 
-        if (self.requireAci().equals(ServiceId.ACI.parseOrNull(contact.aci)) ||
-            (self.getPni().isPresent() && self.requirePni().equals(ServiceId.PNI.parseOrNull(contact.pni))) ||
+        if (self.requireAci().equals(ServiceId.ACI.parseOrNull(contact.aci, contact.aciBinary)) ||
+            (self.getPni().isPresent() && self.requirePni().equals(ServiceId.PNI.parseOrNull(contact.pni, contact.pniBinary))) ||
             (self.getE164().isPresent() && self.requireE164().equals(contact.e164)))
         {
           throw new SelfAddedAsContactError();

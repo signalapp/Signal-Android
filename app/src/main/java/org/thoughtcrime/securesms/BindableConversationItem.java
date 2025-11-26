@@ -30,6 +30,8 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
+import org.thoughtcrime.securesms.polls.PollRecord;
+import org.thoughtcrime.securesms.polls.PollOption;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -142,5 +144,9 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onPaymentTombstoneClicked();
     void onDisplayMediaNoLongerAvailableSheet();
     void onShowUnverifiedProfileSheet(boolean forGroup);
+    void onUpdateSignalClicked();
+    void onViewResultsClicked(long pollId);
+    void onViewPollClicked(long messageId);
+    void onToggleVote(@NonNull PollRecord poll, @NonNull PollOption pollOption, Boolean isChecked);
   }
 }

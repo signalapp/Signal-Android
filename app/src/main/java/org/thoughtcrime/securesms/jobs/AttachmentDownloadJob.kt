@@ -235,6 +235,10 @@ class AttachmentDownloadJob private constructor(
           Log.i(TAG, "[$attachmentId] Attachment is a story. Skipping.")
         }
 
+        SignalDatabase.messages.isViewOnce(messageId) -> {
+          Log.i(TAG, "[$attachmentId] View-once. Skipping.")
+        }
+
         SignalDatabase.messages.willMessageExpireBeforeCutoff(messageId) -> {
           Log.i(TAG, "[$attachmentId] Message will expire within 24hrs. Skipping.")
         }
@@ -276,7 +280,7 @@ class AttachmentDownloadJob private constructor(
 
     try {
       if (attachment.size > maxReceiveSize) {
-        throw MmsException("Attachment too large, failing download")
+        throw MmsException("[$attachmentId] Attachment too large, failing download")
       }
 
       val pointer = createAttachmentPointer(attachment)
@@ -292,7 +296,7 @@ class AttachmentDownloadJob private constructor(
       }
 
       if (attachment.remoteDigest == null && attachment.dataHash == null) {
-        Log.w(TAG, "Attachment has no integrity check!")
+        Log.w(TAG, "[$attachmentId] Attachment has no integrity check!")
         throw InvalidAttachmentException("Attachment has no integrity check!")
       }
 
@@ -310,40 +314,46 @@ class AttachmentDownloadJob private constructor(
         SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, input)
       }
     } catch (e: RangeException) {
-      Log.w(TAG, "Range exception, file size " + attachmentFile.length(), e)
+      Log.w(TAG, "[$attachmentId] Range exception, file size " + attachmentFile.length(), e)
       if (attachmentFile.delete()) {
-        Log.i(TAG, "Deleted temp download file to recover")
+        Log.i(TAG, "[$attachmentId] Deleted temp download file to recover")
         throw RetryLaterException(e)
       } else {
-        throw IOException("Failed to delete temp download file following range exception")
+        throw IOException("[$attachmentId] Failed to delete temp download file following range exception")
       }
     } catch (e: InvalidAttachmentException) {
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     } catch (e: NonSuccessfulResponseCodeException) {
       if (SignalStore.backup.backsUpMedia && e.code == 404 && attachment.archiveTransferState === AttachmentTable.ArchiveTransferState.FINISHED) {
-        Log.i(TAG, "Retrying download from archive CDN")
+        Log.i(TAG, "[$attachmentId] Retrying download from archive CDN")
         RestoreAttachmentJob.forManualRestore(attachment)
         return
       }
 
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     } catch (e: MmsException) {
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     } catch (e: MissingConfigurationException) {
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     } catch (e: InvalidMessageException) {
-      Log.w(TAG, "Experienced an InvalidMessageException while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced an InvalidMessageException while trying to download an attachment.", e)
       if (e.cause is InvalidMacException) {
-        Log.w(TAG, "Detected an invalid mac. Treating as a permanent failure.")
+        Log.w(TAG, "[$attachmentId] Detected an invalid mac. Treating as a permanent failure.")
         markPermanentlyFailed(messageId, attachmentId)
       } else {
         markFailed(messageId, attachmentId)
       }
+    } catch (e: org.signal.libsignal.protocol.incrementalmac.InvalidMacException) {
+      Log.w(TAG, "[$attachmentId] Detected an invalid incremental mac. Clearing and marking as a temporary failure, requiring the user to manually try again.")
+      SignalDatabase.attachments.clearIncrementalMacsForAttachmentAndAnyDuplicates(attachmentId, attachment.remoteKey, attachment.dataHash)
+      markFailed(messageId, attachmentId)
     }
+
+    attachmentFile.delete()
   }
 
   @Throws(InvalidAttachmentException::class)

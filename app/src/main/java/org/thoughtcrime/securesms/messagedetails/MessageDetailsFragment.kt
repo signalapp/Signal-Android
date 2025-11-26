@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -37,6 +38,8 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory.MediaPreviewArgs
 import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsFragment.Companion.create
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsAdapter.MessageDetailsViewState
+import org.thoughtcrime.securesms.polls.PollOption
+import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet.forMessageRecord
@@ -388,6 +391,22 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
   }
 
   override fun onShowUnverifiedProfileSheet(forGroup: Boolean) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onUpdateSignalClicked() {
+    Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
+  }
+
+  override fun onViewResultsClicked(pollId: Long) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onViewPollClicked(messageId: Long) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onToggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 

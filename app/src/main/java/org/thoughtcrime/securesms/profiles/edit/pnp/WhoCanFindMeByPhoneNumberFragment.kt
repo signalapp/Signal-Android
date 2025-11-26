@@ -4,10 +4,12 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.signal.core.util.concurrent.LifecycleDisposable
+import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -33,21 +35,25 @@ class WhoCanFindMeByPhoneNumberFragment : DSLSettingsFragment(
   }
 
   private val viewModel: WhoCanFindMeByPhoneNumberViewModel by viewModels()
-  private val lifecycleDisposable = LifecycleDisposable()
 
   private val binding by ViewBinderDelegate(WhoCanFindMeByPhoneNumberFragmentBinding::bind)
 
   override fun bindAdapter(adapter: MappingAdapter) {
-    lifecycleDisposable += viewModel.state.subscribe {
-      adapter.submitList(getConfiguration(it).toMappingModelList())
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect { state ->
+          adapter.submitList(getConfiguration(state).toMappingModelList())
+        }
+      }
     }
 
     binding.save.setOnClickListener {
       binding.save.isEnabled = false
-      lifecycleDisposable += viewModel.onSave().subscribeBy(onComplete = {
+      viewLifecycleOwner.lifecycleScope.launch {
+        viewModel.onSave()
         setFragmentResult(REQUEST_KEY, Bundle())
         findNavController().popBackStack()
-      })
+      }
     }
   }
 

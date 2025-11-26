@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AlarmSleepTimer
 import org.thoughtcrime.securesms.util.AppForegroundObserver
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.asChain
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -249,7 +248,7 @@ class IncomingMessageObserver(
   }
 
   private fun isConnectionAvailable(): Boolean {
-    return authWebSocket.stateSnapshot == WebSocketConnectionState.CONNECTED || (authWebSocket.shouldSendKeepAlives() && NetworkConstraint.isMet(context))
+    return SignalStore.account.isRegistered && (authWebSocket.stateSnapshot == WebSocketConnectionState.CONNECTED || (authWebSocket.shouldSendKeepAlives() && NetworkConstraint.isMet(context)))
   }
 
   private fun waitForConnectionNecessary() {
@@ -266,17 +265,13 @@ class IncomingMessageObserver(
     }
   }
 
-  fun terminateAsync() {
-    Log.w(TAG, "Termination Enqueued! ${this.hashCode()}", Throwable())
+  fun terminate() {
+    Log.w(TAG, "Termination! ${this.hashCode()}", Throwable())
     INSTANCE_COUNT.decrementAndGet()
     networkConnectionListener.unregister()
     webSocketStateDisposable.dispose()
-    SignalExecutors.BOUNDED.execute {
-      Log.w(TAG, "Beginning termination. ${this.hashCode()}")
-      terminated = true
-      Log.w(TAG, "Disconnecting auth socket as part of termination")
-      authWebSocket.disconnect()
-    }
+    terminated = true
+    authWebSocket.disconnect()
   }
 
   @VisibleForTesting
@@ -335,7 +330,7 @@ class IncomingMessageObserver(
   }
 
   private fun processReceipt(envelope: Envelope) {
-    val serviceId = ServiceId.parseOrNull(envelope.sourceServiceId)
+    val serviceId = ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
     if (serviceId == null) {
       Log.w(TAG, "Invalid envelope sourceServiceId!")
       return
@@ -378,7 +373,7 @@ class IncomingMessageObserver(
 
       sleepTimer = if (!SignalStore.account.fcmEnabled || SignalStore.internal.isWebsocketModeForced) AlarmSleepTimer(context) else UptimeSleepTimer()
 
-      canProcessMessages = !(RemoteConfig.restoreAfterRegistration && SignalStore.registration.restoreDecisionState.isDecisionPending)
+      canProcessMessages = !SignalStore.registration.restoreDecisionState.isDecisionPending
     }
 
     override fun run() {

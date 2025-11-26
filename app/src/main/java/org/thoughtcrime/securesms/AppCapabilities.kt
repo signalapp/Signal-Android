@@ -11,10 +11,9 @@ object AppCapabilities {
   fun getCapabilities(storageCapable: Boolean): AccountAttributes.Capabilities {
     return AccountAttributes.Capabilities(
       storage = storageCapable,
-      deleteSync = true,
       versionedExpirationTimer = true,
-      storageServiceEncryptionV2 = true,
-      attachmentBackfill = true
+      attachmentBackfill = true,
+      spqr = true
     )
   }
 }

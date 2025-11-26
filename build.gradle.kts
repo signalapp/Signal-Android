@@ -66,6 +66,10 @@ subprojects {
       dependsOn("clean", "testReleaseUnitTest", "lintRelease")
     }
   }
+
+  tasks.withType<Test>().configureEach {
+    maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
+  }
 }
 
 tasks.register("buildQa") {
@@ -85,7 +89,7 @@ tasks.register("qa") {
     "clean",
     "checkStopship",
     "buildQa",
-    ":Signal-Android:testPlayProdReleaseUnitTest",
+    ":Signal-Android:testPlayProdPerfUnitTest",
     ":Signal-Android:lintPlayProdRelease",
     "Signal-Android:ktlintCheck",
     ":libsignal-service:test",

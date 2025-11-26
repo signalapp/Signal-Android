@@ -59,26 +59,30 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.TextFields.TextField
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.getLength
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.DialogState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.ArchiveAttachmentBackfillJob
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentReconciliationJob
+import org.thoughtcrime.securesms.jobs.ArchiveThumbnailBackfillJob
+import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
+import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Util
 
@@ -153,6 +157,9 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
           onCheckRemoteBackupStateClicked = { viewModel.checkRemoteBackupState() },
           onEnqueueRemoteBackupClicked = { viewModel.triggerBackupJob() },
           onEnqueueReconciliationClicked = { AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob(forced = true)) },
+          onEnqueueAttachmentBackfillJob = { AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob()) },
+          onEnqueueThumbnailBackfillJob = { AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob()) },
+          onEnqueueMediaRestoreClicked = { AppDependencies.jobManager.add(BackupRestoreMediaJob()) },
           onHaltAllBackupJobsClicked = { viewModel.haltAllJobs() },
           onValidateBackupClicked = { viewModel.validateBackup() },
           onSaveEncryptedBackupToDiskClicked = {
@@ -190,7 +197,12 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
             MaterialAlertDialogBuilder(context)
               .setTitle("Are you sure?")
               .setMessage("This will delete all of your chats! Make sure you've finished a backup first, we don't check for you. Only do this on a test device!")
-              .setPositiveButton("Wipe and restore") { _, _ -> viewModel.wipeAllDataAndRestoreFromRemote() }
+              .setPositiveButton("Wipe and restore") { _, _ ->
+                Toast.makeText(this@InternalBackupPlaygroundFragment.requireContext(), "Restoring backup...", Toast.LENGTH_SHORT).show()
+                viewModel.wipeAllDataAndRestoreFromRemote {
+                  startActivity(MainActivity.clearTop(this@InternalBackupPlaygroundFragment.requireActivity()))
+                }
+              }
               .show()
           },
           onImportEncryptedBackupFromDiskClicked = {
@@ -329,6 +341,9 @@ fun Screen(
   onCheckRemoteBackupStateClicked: () -> Unit = {},
   onEnqueueRemoteBackupClicked: () -> Unit = {},
   onEnqueueReconciliationClicked: () -> Unit = {},
+  onEnqueueMediaRestoreClicked: () -> Unit = {},
+  onEnqueueAttachmentBackfillJob: () -> Unit = {},
+  onEnqueueThumbnailBackfillJob: () -> Unit = {},
   onWipeDataAndRestoreFromRemoteClicked: () -> Unit = {},
   onHaltAllBackupJobsClicked: () -> Unit = {},
   onSavePlaintextCopyOfRemoteBackupClicked: () -> Unit = {},
@@ -344,13 +359,6 @@ fun Screen(
 ) {
   val context = LocalContext.current
   val scrollState = rememberScrollState()
-  val options = remember {
-    mapOf(
-      "None" to null,
-      "Free" to MessageBackupTier.FREE,
-      "Paid" to MessageBackupTier.PAID
-    )
-  }
 
   when (state.dialog) {
     DialogState.None -> Unit
@@ -398,6 +406,24 @@ fun Screen(
         text = "Enqueue reconciliation job",
         label = "Schedules a job that will ensure local and remote media state are in sync.",
         onClick = onEnqueueReconciliationClicked
+      )
+
+      Rows.TextRow(
+        text = "Enqueue attachment backfill job",
+        label = "Schedules a job that will upload any attachments that haven't been uploaded yet.",
+        onClick = onEnqueueAttachmentBackfillJob
+      )
+
+      Rows.TextRow(
+        text = "Enqueue thumbnail backfill job",
+        label = "Schedules a job that will generate and upload any thumbnails that been uploaded yet.",
+        onClick = onEnqueueThumbnailBackfillJob
+      )
+
+      Rows.TextRow(
+        text = "Enqueue media restore job",
+        label = "Schedules a job that will restore any NEEDS_RESTORE media.",
+        onClick = onEnqueueMediaRestoreClicked
       )
 
       Rows.TextRow(
@@ -536,10 +562,10 @@ fun Screen(
       )
 
       Rows.TextRow(
-        text = "Mark backup failure",
+        text = "Mark backup validation failure",
         label = "This will display the error sheet when returning to the chats list.",
         onClick = {
-          BackupRepository.markBackupFailure()
+          BackupRepository.markBackupCreationFailed(BackupValues.BackupCreationError.VALIDATION)
         }
       )
 
@@ -614,7 +640,7 @@ private fun ImportCredentialsDialog(onSubmit: (aci: String, backupKey: String) -
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun PreviewScreen() {
   Previews.Preview {
@@ -622,7 +648,7 @@ fun PreviewScreen() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun PreviewScreenExportInProgress() {
   Previews.Preview {
@@ -630,7 +656,7 @@ fun PreviewScreenExportInProgress() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun PreviewImportCredentialDialog() {
   Previews.Preview {

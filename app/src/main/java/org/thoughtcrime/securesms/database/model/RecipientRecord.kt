@@ -119,14 +119,12 @@ data class RecipientRecord(
   )
 
   data class Capabilities(
-    val rawBits: Long,
-    val storageServiceEncryptionV2: Recipient.Capability
+    val rawBits: Long
   ) {
     companion object {
       @JvmField
       val UNKNOWN = Capabilities(
-        rawBits = 0,
-        storageServiceEncryptionV2 = Recipient.Capability.UNKNOWN
+        rawBits = 0
       )
     }
   }

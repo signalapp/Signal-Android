@@ -23,8 +23,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 object ChatItemArchiveProcessor {
   val TAG = Log.tag(ChatItemArchiveProcessor::class.java)
 
-  fun export(db: SignalDatabase, exportState: ExportState, selfRecipientId: RecipientId, cancellationSignal: () -> Boolean, emitter: BackupFrameEmitter) {
-    db.messageTable.getMessagesForBackup(db, exportState.backupTime, selfRecipientId, exportState).use { chatItems ->
+  fun export(db: SignalDatabase, exportState: ExportState, selfRecipientId: RecipientId, messageInclusionCutoffTime: Long, cancellationSignal: () -> Boolean, emitter: BackupFrameEmitter) {
+    db.messageTable.getMessagesForBackup(db, exportState.backupTime, selfRecipientId, messageInclusionCutoffTime, exportState).use { chatItems ->
       var count = 0
       while (chatItems.hasNext()) {
         if (count % 1000 == 0 && cancellationSignal()) {

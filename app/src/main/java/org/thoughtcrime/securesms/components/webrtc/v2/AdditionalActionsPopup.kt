@@ -33,7 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
-import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.TriggerAlignedPopup
 import org.signal.core.ui.compose.TriggerAlignedPopupState
@@ -177,7 +177,7 @@ private fun CallScreenMenuOption(
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun CallScreenAdditionalActionsPopupPreview() {
   Previews.Preview {

@@ -51,7 +51,7 @@ object MmsHelper {
     message: OutgoingMessage,
     threadId: Long
   ): Long {
-    return SignalDatabase.messages.insertMessageOutbox(message, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
+    return SignalDatabase.messages.insertMessageOutbox(message, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null).messageId
   }
 
   fun insert(

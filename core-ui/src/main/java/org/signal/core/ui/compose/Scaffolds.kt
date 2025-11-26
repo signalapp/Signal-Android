@@ -10,8 +10,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -22,11 +20,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.theme.SignalTheme
 
@@ -42,8 +41,8 @@ object Scaffolds {
   fun Settings(
     title: String,
     onNavigationClick: () -> Unit,
-    navigationIcon: ImageVector,
     modifier: Modifier = Modifier,
+    navigationIcon: ImageVector? = null,
     navigationContentDescription: String? = null,
     titleContent: @Composable (Float, String) -> Unit = { _, title ->
       Text(text = title, style = MaterialTheme.typography.titleLarge)
@@ -80,7 +79,7 @@ object Scaffolds {
     title: String,
     titleContent: @Composable (Float, String) -> Unit,
     onNavigationClick: () -> Unit,
-    navigationIcon: ImageVector,
+    navigationIcon: ImageVector?,
     navigationContentDescription: String? = null,
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -90,14 +89,16 @@ object Scaffolds {
         titleContent(scrollBehavior.state.contentOffset, title)
       },
       navigationIcon = {
-        IconButton(
-          onClick = onNavigationClick,
-          Modifier.padding(end = 16.dp)
-        ) {
-          Icon(
-            imageVector = navigationIcon,
-            contentDescription = navigationContentDescription
-          )
+        if (navigationIcon != null) {
+          IconButton(
+            onClick = onNavigationClick,
+            Modifier.padding(end = 16.dp)
+          ) {
+            Icon(
+              imageVector = navigationIcon,
+              contentDescription = navigationContentDescription
+            )
+          }
         }
       },
       scrollBehavior = scrollBehavior,
@@ -109,17 +110,51 @@ object Scaffolds {
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun SettingsScaffoldPreview() {
-  SignalTheme(isDarkMode = false) {
+  Previews.Preview {
+    val vector = remember {
+      ImageVector.Builder(
+        defaultWidth = 24.dp,
+        defaultHeight = 24.dp,
+        viewportWidth = 24f,
+        viewportHeight = 24f
+      ).build()
+    }
+
     Scaffolds.Settings(
       "Settings Scaffold",
       onNavigationClick = {},
-      navigationIcon = Icons.Filled.Settings,
+      navigationIcon = vector,
       actions = {
         IconButton(onClick = {}) {
-          Icon(Icons.Default.Settings, contentDescription = null)
+          Icon(painterResource(android.R.drawable.ic_menu_camera), contentDescription = null)
+        }
+      }
+    ) { paddingValues ->
+      Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+          .padding(paddingValues)
+          .fillMaxSize()
+      ) {
+        Text("Content")
+      }
+    }
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun SettingsScaffoldNoNavIconPreview() {
+  Previews.Preview {
+    Scaffolds.Settings(
+      "Settings Scaffold",
+      onNavigationClick = {},
+      actions = {
+        IconButton(onClick = {}) {
+          Icon(painterResource(android.R.drawable.ic_menu_camera), contentDescription = null)
         }
       }
     ) { paddingValues ->

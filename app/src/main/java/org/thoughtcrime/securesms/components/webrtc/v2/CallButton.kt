@@ -24,8 +24,8 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Buttons
-import org.signal.core.ui.compose.DarkPreview
 import org.signal.core.ui.compose.IconButtons
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 
@@ -228,7 +228,7 @@ fun StartCallButton(
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun ToggleMicButtonPreview() {
   Previews.Preview {
@@ -246,7 +246,7 @@ private fun ToggleMicButtonPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun ToggleVideoButtonPreview() {
   Previews.Preview {
@@ -264,7 +264,7 @@ private fun ToggleVideoButtonPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun ToggleRingButtonPreview() {
   Previews.Preview {
@@ -284,7 +284,7 @@ private fun ToggleRingButtonPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun AdditionalActionsButtonPreview() {
   Previews.Preview {
@@ -294,7 +294,7 @@ private fun AdditionalActionsButtonPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun HangupButtonPreview() {
   Previews.Preview {
@@ -304,7 +304,7 @@ private fun HangupButtonPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun VideoAcceptCallButtonPreview() {
   Previews.Preview {
@@ -315,7 +315,7 @@ private fun VideoAcceptCallButtonPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun AcceptCallButtonPreview() {
   Previews.Preview {
@@ -326,7 +326,7 @@ private fun AcceptCallButtonPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun AnswerWithoutVideoButtonPreview() {
   Previews.Preview {
@@ -336,7 +336,7 @@ private fun AnswerWithoutVideoButtonPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun StartCallButtonPreview() {
   Previews.Preview {
@@ -347,7 +347,7 @@ private fun StartCallButtonPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun JoinCallButtonPreview() {
   Previews.Preview {

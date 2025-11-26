@@ -198,6 +198,8 @@ public final class MessageDetailsRepository {
       return RecipientDeliveryStatus.Status.VIEWED;
     } else if (groupStatus == GroupReceiptTable.STATUS_SKIPPED) {
       return RecipientDeliveryStatus.Status.SKIPPED;
+    } else if (groupStatus == GroupReceiptTable.STATUS_FAILED) {
+      return RecipientDeliveryStatus.Status.SKIPPED;
     }
 
     throw new AssertionError();

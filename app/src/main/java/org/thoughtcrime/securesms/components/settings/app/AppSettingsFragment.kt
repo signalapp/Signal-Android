@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components.settings.app
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,30 +29,32 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDirections
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
@@ -68,11 +69,13 @@ import org.thoughtcrime.securesms.banner.ui.compose.DefaultBanner
 import org.thoughtcrime.securesms.banner.ui.compose.Importance
 import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.thoughtcrime.securesms.components.emoji.Emojifier
+import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRoute
+import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageMedium
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.InAppPaymentsBottomSheetDelegate
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
+import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -84,9 +87,38 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 class AppSettingsFragment : ComposeFragment(), Callbacks {
 
   private val viewModel: AppSettingsViewModel by viewModels()
+  private val appSettingsRouter by viewModels<AppSettingsRouter>()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     viewLifecycleOwner.lifecycle.addObserver(InAppPaymentsBottomSheetDelegate(childFragmentManager, viewLifecycleOwner))
+
+    viewLifecycleOwner.lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        appSettingsRouter.currentRoute.collect { route ->
+          when (route) {
+            is AppSettingsRoute.BackupsRoute.Remote -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_remoteBackupsSettingsFragment)
+            is AppSettingsRoute.AccountRoute.Account -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_accountSettingsFragment)
+            is AppSettingsRoute.LinkDeviceRoute.LinkDevice -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_linkDeviceFragment)
+            is AppSettingsRoute.DonationsRoute.Donations -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_manageDonationsFragment)
+            is AppSettingsRoute.AppearanceRoute.Appearance -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_appearanceSettingsFragment)
+            is AppSettingsRoute.ChatsRoute.Chats -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_chatsSettingsFragment)
+            is AppSettingsRoute.StoriesRoute.Privacy -> findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToStoryPrivacySettings(route.titleId))
+            is AppSettingsRoute.NotificationsRoute.Notifications -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_notificationsSettingsFragment)
+            is AppSettingsRoute.PrivacyRoute.Privacy -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_privacySettingsFragment)
+            is AppSettingsRoute.BackupsRoute.Backups -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_backupsSettingsFragment)
+            is AppSettingsRoute.DataAndStorageRoute.DataAndStorage -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_dataAndStorageSettingsFragment)
+            is AppSettingsRoute.AppUpdates -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_appUpdatesSettingsFragment)
+            is AppSettingsRoute.Payments -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_paymentsActivity)
+            is AppSettingsRoute.HelpRoute.Settings -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_helpSettingsFragment)
+            is AppSettingsRoute.Invite -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_inviteFragment)
+            is AppSettingsRoute.InternalRoute.Internal -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_internalSettingsFragment)
+            is AppSettingsRoute.AccountRoute.ManageProfile -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_manageProfileActivity)
+            is AppSettingsRoute.UsernameLinkRoute.UsernameLink -> findNavController().safeNavigate(R.id.action_appSettingsFragment_to_usernameLinkSettingsFragment)
+            else -> error("Unsupported route: ${route.javaClass.name}")
+          }
+        }
+      }
+    }
   }
 
   @Composable
@@ -107,16 +139,11 @@ class AppSettingsFragment : ComposeFragment(), Callbacks {
       )
     }
 
-    val nestedScrollConnection = remember {
-      StatusBarColorNestedScrollConnection(requireActivity())
-    }
-
     AppSettingsContent(
       self = self!!,
       state = state!!,
       bannerManager = bannerManager,
-      callbacks = this,
-      lazyColumnModifier = Modifier.nestedScroll(nestedScrollConnection)
+      callbacks = this
     )
   }
 
@@ -124,12 +151,8 @@ class AppSettingsFragment : ComposeFragment(), Callbacks {
     requireActivity().finishAfterTransition()
   }
 
-  override fun navigate(actionId: Int) {
-    findNavController().safeNavigate(actionId)
-  }
-
-  override fun navigate(directions: NavDirections) {
-    findNavController().safeNavigate(directions)
+  override fun navigate(route: AppSettingsRoute) {
+    appSettingsRouter.navigateTo(route)
   }
 
   override fun onResume() {
@@ -176,8 +199,7 @@ private fun AppSettingsContent(
   self: BioRecipientState,
   state: AppSettingsState,
   bannerManager: BannerManager,
-  callbacks: Callbacks,
-  lazyColumnModifier: Modifier = Modifier
+  callbacks: Callbacks
 ) {
   val isRegisteredAndUpToDate by rememberUpdatedState(state.isRegisteredAndUpToDate())
 
@@ -193,7 +215,7 @@ private fun AppSettingsContent(
       bannerManager.Banner()
 
       LazyColumn(
-        modifier = lazyColumnModifier
+        modifier = rememberStatusBarColorNestedScrollModifier()
       ) {
         item {
           BioRow(
@@ -210,7 +232,7 @@ private fun AppSettingsContent(
               BackupsWarningRow(
                 text = stringResource(R.string.AppSettingsFragment__renew_your_signal_backups_subscription),
                 onClick = {
-                  callbacks.navigate(R.id.action_appSettingsFragment_to_remoteBackupsSettingsFragment)
+                  callbacks.navigate(AppSettingsRoute.BackupsRoute.Remote())
                 }
               )
 
@@ -226,7 +248,7 @@ private fun AppSettingsContent(
                 text = stringResource(R.string.AppSettingsFragment__couldnt_complete_backup),
                 onClick = {
                   BackupRepository.markBackupFailedIndicatorClicked()
-                  callbacks.navigate(R.id.action_appSettingsFragment_to_remoteBackupsSettingsFragment)
+                  callbacks.navigate(AppSettingsRoute.BackupsRoute.Remote())
                 }
               )
 
@@ -242,7 +264,7 @@ private fun AppSettingsContent(
                 text = stringResource(R.string.AppSettingsFragment__couldnt_redeem_your_backups_subscription),
                 onClick = {
                   BackupRepository.markBackupAlreadyRedeemedIndicatorClicked()
-                  callbacks.navigate(R.id.action_appSettingsFragment_to_remoteBackupsSettingsFragment)
+                  callbacks.navigate(AppSettingsRoute.BackupsRoute.Remote())
                 }
               )
 
@@ -259,7 +281,7 @@ private fun AppSettingsContent(
                 icon = ImageVector.vectorResource(R.drawable.symbol_error_circle_fill_24),
                 iconTint = MaterialTheme.colorScheme.error,
                 onClick = {
-                  callbacks.navigate(R.id.action_appSettingsFragment_to_remoteBackupsSettingsFragment)
+                  callbacks.navigate(AppSettingsRoute.BackupsRoute.Remote())
                 }
               )
 
@@ -270,68 +292,70 @@ private fun AppSettingsContent(
           BackupFailureState.NONE -> Unit
         }
 
-        item {
-          Rows.TextRow(
-            text = stringResource(R.string.AccountSettingsFragment__account),
-            icon = painterResource(R.drawable.symbol_person_circle_24),
-            onClick = {
-              callbacks.navigate(R.id.action_appSettingsFragment_to_accountSettingsFragment)
-            }
-          )
-        }
+        if (state.isPrimaryDevice) {
+          item {
+            Rows.TextRow(
+              text = stringResource(R.string.AccountSettingsFragment__account),
+              icon = painterResource(R.drawable.symbol_person_circle_24),
+              onClick = {
+                callbacks.navigate(AppSettingsRoute.AccountRoute.Account)
+              }
+            )
+          }
 
-        item {
-          Rows.TextRow(
-            text = stringResource(R.string.preferences__linked_devices),
-            icon = painterResource(R.drawable.symbol_devices_24),
-            onClick = {
-              callbacks.navigate(R.id.action_appSettingsFragment_to_linkDeviceFragment)
-            },
-            enabled = isRegisteredAndUpToDate
-          )
-        }
+          item {
+            Rows.TextRow(
+              text = stringResource(R.string.preferences__linked_devices),
+              icon = painterResource(R.drawable.symbol_devices_24),
+              onClick = {
+                callbacks.navigate(AppSettingsRoute.LinkDeviceRoute.LinkDevice)
+              },
+              enabled = isRegisteredAndUpToDate
+            )
+          }
 
-        item {
-          val context = LocalContext.current
-          val donateUrl = stringResource(R.string.donate_url)
+          item {
+            val context = LocalContext.current
+            val donateUrl = stringResource(R.string.donate_url)
 
-          Rows.TextRow(
-            text = {
-              Text(
-                text = stringResource(R.string.preferences__donate_to_signal),
-                modifier = Modifier.weight(1f)
-              )
-
-              if (state.hasExpiredGiftBadge) {
-                Icon(
-                  painter = painterResource(R.drawable.symbol_info_fill_24),
-                  tint = colorResource(R.color.signal_accent_primary),
-                  contentDescription = null
+            Rows.TextRow(
+              text = {
+                Text(
+                  text = stringResource(R.string.preferences__donate_to_signal),
+                  modifier = Modifier.weight(1f)
                 )
-              }
-            },
-            icon = {
-              Icon(
-                painter = painterResource(R.drawable.symbol_heart_24),
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface
-              )
-            },
-            onClick = {
-              if (state.allowUserToGoToDonationManagementScreen) {
-                callbacks.navigate(R.id.action_appSettingsFragment_to_manageDonationsFragment)
-              } else {
-                CommunicationActions.openBrowserLink(context, donateUrl)
-              }
-            },
-            onLongClick = {
-              callbacks.copyDonorBadgeSubscriberIdToClipboard()
-            }
-          )
-        }
 
-        item {
-          Dividers.Default()
+                if (state.hasExpiredGiftBadge) {
+                  Icon(
+                    painter = painterResource(R.drawable.symbol_info_fill_24),
+                    tint = colorResource(R.color.signal_accent_primary),
+                    contentDescription = null
+                  )
+                }
+              },
+              icon = {
+                Icon(
+                  painter = painterResource(R.drawable.symbol_heart_24),
+                  contentDescription = null,
+                  tint = MaterialTheme.colorScheme.onSurface
+                )
+              },
+              onClick = {
+                if (state.allowUserToGoToDonationManagementScreen) {
+                  callbacks.navigate(AppSettingsRoute.DonationsRoute.Donations())
+                } else {
+                  CommunicationActions.openBrowserLink(context, donateUrl)
+                }
+              },
+              onLongClick = {
+                callbacks.copyDonorBadgeSubscriberIdToClipboard()
+              }
+            )
+          }
+
+          item {
+            Dividers.Default()
+          }
         }
 
         item {
@@ -339,7 +363,7 @@ private fun AppSettingsContent(
             text = stringResource(R.string.preferences__appearance),
             icon = painterResource(R.drawable.symbol_appearance_24),
             onClick = {
-              callbacks.navigate(R.id.action_appSettingsFragment_to_appearanceSettingsFragment)
+              callbacks.navigate(AppSettingsRoute.AppearanceRoute.Appearance)
             }
           )
         }
@@ -349,9 +373,9 @@ private fun AppSettingsContent(
             text = stringResource(R.string.preferences_chats__chats),
             icon = painterResource(R.drawable.symbol_chat_24),
             onClick = {
-              callbacks.navigate(R.id.action_appSettingsFragment_to_chatsSettingsFragment)
+              callbacks.navigate(AppSettingsRoute.ChatsRoute.Chats)
             },
-            enabled = state.legacyLocalBackupsEnabled || isRegisteredAndUpToDate
+            enabled = isRegisteredAndUpToDate
           )
         }
 
@@ -360,7 +384,7 @@ private fun AppSettingsContent(
             text = stringResource(R.string.preferences__stories),
             icon = painterResource(R.drawable.symbol_stories_24),
             onClick = {
-              callbacks.navigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToStoryPrivacySettings(R.string.preferences__stories))
+              callbacks.navigate(AppSettingsRoute.StoriesRoute.Privacy(titleId = R.string.preferences__stories))
             },
             enabled = isRegisteredAndUpToDate
           )
@@ -371,7 +395,7 @@ private fun AppSettingsContent(
             text = stringResource(R.string.preferences__notifications),
             icon = painterResource(R.drawable.symbol_bell_24),
             onClick = {
-              callbacks.navigate(R.id.action_appSettingsFragment_to_notificationsSettingsFragment)
+              callbacks.navigate(AppSettingsRoute.NotificationsRoute.Notifications)
             },
             enabled = isRegisteredAndUpToDate
           )
@@ -382,19 +406,20 @@ private fun AppSettingsContent(
             text = stringResource(R.string.preferences__privacy),
             icon = painterResource(R.drawable.symbol_lock_24),
             onClick = {
-              callbacks.navigate(R.id.action_appSettingsFragment_to_privacySettingsFragment)
+              callbacks.navigate(AppSettingsRoute.PrivacyRoute.Privacy)
             },
             enabled = isRegisteredAndUpToDate
           )
         }
 
-        if (state.showBackups) {
+        if (state.isPrimaryDevice) {
           item {
             Rows.TextRow(
               text = {
                 TextWithBetaLabel(
                   text = stringResource(R.string.preferences_chats__backups),
-                  textStyle = MaterialTheme.typography.bodyLarge
+                  textStyle = MaterialTheme.typography.bodyLarge,
+                  enabled = isRegisteredAndUpToDate
                 )
               },
               icon = {
@@ -405,7 +430,7 @@ private fun AppSettingsContent(
                 )
               },
               onClick = {
-                callbacks.navigate(R.id.action_appSettingsFragment_to_backupsSettingsFragment)
+                callbacks.navigate(AppSettingsRoute.BackupsRoute.Backups)
               },
               onLongClick = {
                 callbacks.copyRemoteBackupsSubscriberIdToClipboard()
@@ -420,7 +445,7 @@ private fun AppSettingsContent(
             text = stringResource(R.string.preferences__data_and_storage),
             icon = painterResource(R.drawable.symbol_data_24),
             onClick = {
-              callbacks.navigate(R.id.action_appSettingsFragment_to_dataAndStorageSettingsFragment)
+              callbacks.navigate(AppSettingsRoute.DataAndStorageRoute.DataAndStorage)
             }
           )
         }
@@ -431,13 +456,13 @@ private fun AppSettingsContent(
               text = "App updates",
               icon = painterResource(R.drawable.symbol_calendar_24),
               onClick = {
-                callbacks.navigate(R.id.action_appSettingsFragment_to_appUpdatesSettingsFragment)
+                callbacks.navigate(AppSettingsRoute.AppUpdates)
               }
             )
           }
         }
 
-        if (state.showPayments) {
+        if (state.isPrimaryDevice && state.showPayments) {
           item {
             Dividers.Default()
           }
@@ -474,7 +499,7 @@ private fun AppSettingsContent(
                 )
               },
               onClick = {
-                callbacks.navigate(R.id.action_appSettingsFragment_to_paymentsActivity)
+                callbacks.navigate(AppSettingsRoute.Payments)
               }
             )
           }
@@ -489,7 +514,7 @@ private fun AppSettingsContent(
             text = stringResource(R.string.preferences__help),
             icon = painterResource(R.drawable.symbol_help_24),
             onClick = {
-              callbacks.navigate(R.id.action_appSettingsFragment_to_helpSettingsFragment)
+              callbacks.navigate(AppSettingsRoute.HelpRoute.Settings())
             }
           )
         }
@@ -499,7 +524,7 @@ private fun AppSettingsContent(
             text = stringResource(R.string.AppSettingsFragment__invite_your_friends),
             icon = painterResource(R.drawable.symbol_invite_24),
             onClick = {
-              callbacks.navigate(R.id.action_appSettingsFragment_to_inviteFragment)
+              callbacks.navigate(AppSettingsRoute.Invite)
             }
           )
         }
@@ -513,7 +538,7 @@ private fun AppSettingsContent(
             Rows.TextRow(
               text = stringResource(R.string.preferences__internal_preferences),
               onClick = {
-                callbacks.navigate(R.id.action_appSettingsFragment_to_internalSettingsFragment)
+                callbacks.navigate(AppSettingsRoute.InternalRoute.Internal)
               }
             )
           }
@@ -565,7 +590,7 @@ private fun BioRow(
     modifier = Modifier
       .clickable(
         onClick = {
-          callbacks.navigate(R.id.action_appSettingsFragment_to_manageProfileActivity)
+          callbacks.navigate(AppSettingsRoute.AccountRoute.ManageProfile)
         }
       )
       .horizontalGutters()
@@ -612,7 +637,10 @@ private fun BioRow(
 
       Text(
         text = prettyPhoneNumber,
-        color = MaterialTheme.colorScheme.onSurfaceVariant
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        style = TextStyle(
+          textDirection = TextDirection.ContentOrLtr
+        )
       )
 
       if (hasUsername) {
@@ -639,7 +667,7 @@ private fun BioRow(
     if (hasUsername) {
       IconButtons.IconButton(
         onClick = {
-          callbacks.navigate(R.id.action_appSettingsFragment_to_usernameLinkSettingsFragment)
+          callbacks.navigate(AppSettingsRoute.UsernameLinkRoute.UsernameLink)
         },
         size = 36.dp,
         colors = IconButtons.iconButtonColors(
@@ -656,7 +684,7 @@ private fun BioRow(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AppSettingsContentPreview() {
   Previews.Preview {
@@ -674,6 +702,7 @@ private fun AppSettingsContentPreview() {
         )
       ),
       state = AppSettingsState(
+        isPrimaryDevice = true,
         unreadPaymentsCount = 5,
         hasExpiredGiftBadge = true,
         allowUserToGoToDonationManagementScreen = true,
@@ -682,9 +711,7 @@ private fun AppSettingsContentPreview() {
         showInternalPreferences = true,
         showPayments = true,
         showAppUpdates = true,
-        showBackups = true,
-        backupFailureState = BackupFailureState.OUT_OF_STORAGE_SPACE,
-        legacyLocalBackupsEnabled = false
+        backupFailureState = BackupFailureState.OUT_OF_STORAGE_SPACE
       ),
       bannerManager = BannerManager(
         banners = listOf(TestBanner())
@@ -694,7 +721,44 @@ private fun AppSettingsContentPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
+@Composable
+private fun AppSettingsContentUnregisteredPreview() {
+  Previews.Preview {
+    AppSettingsContent(
+      self = BioRecipientState(
+        Recipient(
+          systemContactName = "Miles Morales",
+          profileName = ProfileName.fromParts("Miles", "Morales ❤\uFE0F"),
+          isSelf = true,
+          e164Value = "+15555555555",
+          usernameValue = "miles.98",
+          aboutEmoji = "❤\uFE0F",
+          about = "About",
+          isResolving = false
+        )
+      ),
+      state = AppSettingsState(
+        isPrimaryDevice = true,
+        unreadPaymentsCount = 5,
+        hasExpiredGiftBadge = true,
+        allowUserToGoToDonationManagementScreen = true,
+        userUnregistered = true,
+        clientDeprecated = false,
+        showInternalPreferences = true,
+        showPayments = true,
+        showAppUpdates = true,
+        backupFailureState = BackupFailureState.OUT_OF_STORAGE_SPACE
+      ),
+      bannerManager = BannerManager(
+        banners = listOf(TestBanner())
+      ),
+      callbacks = EmptyCallbacks
+    )
+  }
+}
+
+@DayNightPreviews
 @Composable
 private fun BioRowPreview() {
   Previews.Preview {
@@ -718,8 +782,7 @@ private fun BioRowPreview() {
 
 private interface Callbacks {
   fun onNavigationClick(): Unit = error("Not implemented.")
-  fun navigate(@IdRes actionId: Int): Unit = error("Not implemented")
-  fun navigate(directions: NavDirections): Unit = error("Not implemented")
+  fun navigate(route: AppSettingsRoute): Unit = error("Not implemented")
   fun copyDonorBadgeSubscriberIdToClipboard(): Unit = error("Not implemented")
   fun copyRemoteBackupsSubscriberIdToClipboard(): Unit = error("Not implemented")
 }

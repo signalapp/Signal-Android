@@ -20,7 +20,6 @@ import java.io.FileDescriptor
 import java.io.FileInputStream
 import java.io.IOException
 import java.util.LinkedList
-import java.util.Optional
 
 private val TAG = Log.tag(MediaCaptureRepository::class.java)
 
@@ -95,19 +94,19 @@ class MediaCaptureRepository(context: Context) {
         .createForSingleSessionOnDisk(context)
 
       Media(
-        uri,
-        mimeType,
-        System.currentTimeMillis(),
-        width,
-        height,
-        length,
-        0,
-        false,
-        false,
-        Optional.of(Media.ALL_MEDIA_BUCKET_ID),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.empty()
+        uri = uri,
+        contentType = mimeType,
+        date = System.currentTimeMillis(),
+        width = width,
+        height = height,
+        size = length,
+        duration = 0,
+        isBorderless = false,
+        isVideoGif = false,
+        bucketId = Media.ALL_MEDIA_BUCKET_ID,
+        caption = null,
+        transformProperties = null,
+        fileName = null
       )
     } catch (e: IOException) {
       return null
@@ -150,19 +149,19 @@ class MediaCaptureRepository(context: Context) {
             MediaRepository.fixMimeType(
               context,
               Media(
-                uri,
-                mimetype,
-                date,
-                width,
-                height,
-                size,
-                duration,
-                false,
-                false,
-                Optional.of(bucketId),
-                Optional.empty(),
-                Optional.empty(),
-                Optional.empty()
+                uri = uri,
+                contentType = mimetype,
+                date = date,
+                width = width,
+                height = height,
+                size = size,
+                duration = duration,
+                isBorderless = false,
+                isVideoGif = false,
+                bucketId = bucketId,
+                caption = null,
+                transformProperties = null,
+                fileName = null
               )
             )
           )

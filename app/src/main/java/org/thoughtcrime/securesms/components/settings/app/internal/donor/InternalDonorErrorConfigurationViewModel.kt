@@ -1,15 +1,16 @@
 package org.thoughtcrime.securesms.components.settings.app.internal.donor
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.donations.StripeDeclineCode
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation
 import org.thoughtcrime.securesms.components.settings.app.subscription.getBoostBadges
 import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBadges
@@ -17,56 +18,25 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.getSubscr
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.util.Locale
 import kotlin.concurrent.withLock
 
 class InternalDonorErrorConfigurationViewModel : ViewModel() {
 
-  private val store = RxStore(InternalDonorErrorConfigurationState())
-  private val disposables = CompositeDisposable()
+  private val store = MutableStateFlow(InternalDonorErrorConfigurationState())
 
-  val state: Flowable<InternalDonorErrorConfigurationState> = store.stateFlowable
+  val state: StateFlow<InternalDonorErrorConfigurationState> = store
 
   init {
-    val giftBadges: Single<List<Badge>> = Single
-      .fromCallable {
-        AppDependencies.donationsService
-          .getDonationsConfiguration(Locale.getDefault())
-      }
-      .flatMap { it.flattenResult() }
-      .map { it.getGiftBadges() }
-      .subscribeOn(Schedulers.io())
+    viewModelScope.launch(SignalDispatchers.IO) {
+      val configuration = AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault()).toNetworkResult().successOrNull() ?: return@launch
+      val giftBadges = configuration.getGiftBadges()
+      val boostBadges = configuration.getBoostBadges()
+      val subscriptionBadges = configuration.getSubscriptionLevels().values.map { Badges.fromServiceBadge(it.badge) }
 
-    val boostBadges: Single<List<Badge>> = Single
-      .fromCallable {
-        AppDependencies.donationsService
-          .getDonationsConfiguration(Locale.getDefault())
-      }
-      .flatMap { it.flattenResult() }
-      .map { it.getBoostBadges() }
-      .subscribeOn(Schedulers.io())
-
-    val subscriptionBadges: Single<List<Badge>> = Single
-      .fromCallable {
-        AppDependencies.donationsService
-          .getDonationsConfiguration(Locale.getDefault())
-      }
-      .flatMap { it.flattenResult() }
-      .map { config -> config.getSubscriptionLevels().values.map { Badges.fromServiceBadge(it.badge) } }
-      .subscribeOn(Schedulers.io())
-
-    disposables += Single.zip(giftBadges, boostBadges, subscriptionBadges) { g, b, s ->
-      g + b + s
-    }.subscribe { badges ->
-      store.update { it.copy(badges = badges) }
+      store.update { it.copy(badges = giftBadges + boostBadges + subscriptionBadges) }
     }
-  }
-
-  override fun onCleared() {
-    disposables.clear()
-    store.dispose()
   }
 
   fun setSelectedBadge(badgeIndex: Int) {
@@ -100,7 +70,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   }
 
   fun save(): Completable {
-    val snapshot = store.state
+    val snapshot = store.value
     val saveState = Completable.fromAction {
       InAppPaymentSubscriberRecord.Type.DONATION.lock.withLock {
         when {

@@ -50,7 +50,7 @@ class EnterPhoneNumberViewModel : ViewModel() {
       null
     }
 
-  var mode: RegistrationRepository.E164VerificationMode
+  var e164VerificationMode: RegistrationRepository.E164VerificationMode
     get() = store.value.mode
     set(value) = store.update {
       it.copy(mode = value)

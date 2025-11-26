@@ -6,7 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.util.Pair;
+import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.EmojiSearchTable;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.KyberPreKeyTable;
+import org.thoughtcrime.securesms.database.LastResortKeyTupleTable;
 import org.thoughtcrime.securesms.database.OneTimePreKeyTable;
 import org.thoughtcrime.securesms.database.SearchTable;
 import org.thoughtcrime.securesms.database.SignedPreKeyTable;
@@ -70,7 +71,7 @@ public class FullBackupImporter extends FullBackupBase {
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(FullBackupImporter.class);
 
-  private static final Set<String> KEY_TABLES = SetsKt.setOf(KyberPreKeyTable.TABLE_NAME, OneTimePreKeyTable.TABLE_NAME, SignedPreKeyTable.TABLE_NAME);
+  private static final Set<String> KEY_TABLES = SetsKt.setOf(KyberPreKeyTable.TABLE_NAME, LastResortKeyTupleTable.TABLE_NAME, OneTimePreKeyTable.TABLE_NAME, SignedPreKeyTable.TABLE_NAME);
 
   public static boolean validatePassphrase(@NonNull Context context,
                                            @NonNull Uri uri,
@@ -223,10 +224,10 @@ public class FullBackupImporter extends FullBackupBase {
     ContentValues contentValues = new ContentValues();
 
     try {
-      inputStream.readAttachmentTo(output.second, attachment.length);
+      inputStream.readAttachmentTo(output.getSecond(), attachment.length);
 
       contentValues.put(dataFileColumnName, dataFile.getAbsolutePath());
-      contentValues.put(dataRandomColumnName, output.first);
+      contentValues.put(dataRandomColumnName, output.getFirst());
     } catch (BackupRecordInputStream.BadMacException e) {
       Log.w(TAG, "Bad MAC for attachment " + attachment.attachmentId + "! Can't restore it.", e);
       dataFile.delete();
@@ -248,12 +249,12 @@ public class FullBackupImporter extends FullBackupBase {
 
     Pair<byte[], OutputStream> output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
 
-    inputStream.readAttachmentTo(output.second, sticker.length);
+    inputStream.readAttachmentTo(output.getSecond(), sticker.length);
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(StickerTable.FILE_PATH, dataFile.getAbsolutePath());
     contentValues.put(StickerTable.FILE_LENGTH, sticker.length);
-    contentValues.put(StickerTable.FILE_RANDOM, output.first);
+    contentValues.put(StickerTable.FILE_RANDOM, output.getFirst());
 
     db.update(StickerTable.TABLE_NAME, contentValues,
               StickerTable.ID + " = ?",

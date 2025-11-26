@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.push
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.os.Build
 import androidx.core.content.ContextCompat
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import okhttp3.CipherSuite
@@ -33,7 +32,6 @@ import org.whispersystems.signalservice.internal.configuration.SignalStorageUrl
 import org.whispersystems.signalservice.internal.configuration.SignalSvr2Url
 import java.io.IOException
 import java.util.Optional
-import android.net.Proxy as AndroidProxy
 
 /**
  * Provides a [SignalServiceConfiguration] to be used with our service layer.
@@ -142,24 +140,13 @@ class SignalServiceNetworkAccess(context: Context) {
 
     @Suppress("DEPRECATION")
     private fun getSystemHttpProxy(context: Context): HttpProxy? {
-      return if (Build.VERSION.SDK_INT >= 23) {
-        val connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager::class.java) ?: return null
+      val connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager::class.java) ?: return null
 
-        connectivityManager
-          .activeNetwork
-          ?.let { connectivityManager.getLinkProperties(it)?.httpProxy }
-          ?.takeIf { !it.exclusionList.contains(BuildConfig.SIGNAL_URL.stripProtocol()) }
-          ?.let { proxy -> HttpProxy(proxy.host, proxy.port) }
-      } else {
-        val host: String? = AndroidProxy.getHost(context)
-        val port: Int = AndroidProxy.getPort(context)
-
-        if (host != null) {
-          HttpProxy(host, port)
-        } else {
-          null
-        }
-      }
+      return connectivityManager
+        .activeNetwork
+        ?.let { connectivityManager.getLinkProperties(it)?.httpProxy }
+        ?.takeIf { !it.exclusionList.contains(BuildConfig.SIGNAL_URL.stripProtocol()) }
+        ?.let { proxy -> HttpProxy(proxy.host, proxy.port) }
     }
   }
 
@@ -298,9 +285,11 @@ class SignalServiceNetworkAccess(context: Context) {
       SettingsValues.CensorshipCircumventionEnabled.ENABLED -> {
         censorshipConfiguration[countryCode] ?: defaultCensoredConfiguration
       }
+
       SettingsValues.CensorshipCircumventionEnabled.DISABLED -> {
         uncensoredConfiguration
       }
+
       SettingsValues.CensorshipCircumventionEnabled.DEFAULT -> {
         if (defaultCensoredCountryCodes.contains(countryCode)) {
           censorshipConfiguration[countryCode] ?: defaultCensoredConfiguration

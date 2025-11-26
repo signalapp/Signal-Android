@@ -21,6 +21,9 @@ interface JobStorage {
   fun getNextEligibleJob(currentTime: Long, filter: (MinimalJobSpec) -> Boolean): JobSpec?
 
   @WorkerThread
+  fun getEligibleJobCount(currentTime: Long): Int
+
+  @WorkerThread
   fun getJobsInQueue(queue: String): List<JobSpec>
 
   @WorkerThread
@@ -31,6 +34,9 @@ interface JobStorage {
 
   @WorkerThread
   fun areQueuesEmpty(queueKeys: Set<String>): Boolean
+
+  @WorkerThread
+  fun areFactoriesEmpty(factoryKeys: Set<String>): Boolean
 
   @WorkerThread
   fun markJobAsRunning(id: String, currentTime: Long)

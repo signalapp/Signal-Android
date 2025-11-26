@@ -10,6 +10,8 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.SingleSubject
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.suspendCancellableCoroutine
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
@@ -41,6 +43,8 @@ import java.util.concurrent.TimeoutException
 import java.util.concurrent.atomic.AtomicLong
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import org.signal.libsignal.net.ChatConnection.Request as LibSignalRequest
@@ -81,10 +85,9 @@ class LibSignalChatConnection(
   private val nextIncomingMessageInternalPseudoId = AtomicLong(1)
   val ackSenderForInternalPseudoId = ConcurrentHashMap<Long, ChatConnectionListener.ServerMessageAck>()
 
-  private data class RequestAwaitingConnection(
-    val request: WebSocketRequestMessage,
-    val timeoutSeconds: Long,
-    val single: SingleSubject<WebsocketResponse>
+  private data class PendingAction(
+    val onConnectionSuccess: (ChatConnection) -> Unit,
+    val onFailure: (Throwable) -> Unit
   )
 
   // CHAT_SERVICE_LOCK: Protects state, stateChangedOrMessageReceivedCondition, chatConnection,
@@ -98,9 +101,9 @@ class LibSignalChatConnection(
   private var chatConnection: ChatConnection? = null
   private var chatConnectionFuture: CompletableFuture<out ChatConnection>? = null
 
-  // requestsAwaitingConnection should only have contents when we are transitioning to, out of, or are
+  // pendingCallbacks should only have contents when we are transitioning to, out of, or are
   // in the CONNECTING state.
-  private val requestsAwaitingConnection = mutableListOf<RequestAwaitingConnection>()
+  private val pendingCallbacks = mutableListOf<PendingAction>()
 
   companion object {
     const val SERVICE_ENVELOPE_REQUEST_VERB = "PUT"
@@ -162,14 +165,14 @@ class LibSignalChatConnection(
     // There's no sense in resetting nextIncomingMessageInternalPseudoId.
 
     // This is a belt-and-suspenders check, because the transition handler leaving the CONNECTING
-    // state should always cleanup the requestsAwaitingConnection, but in case we miss one, log it
+    // state should always cleanup the pendingCallbacks, but in case we miss one, log it
     // as an error and clean it up gracefully
-    if (requestsAwaitingConnection.isNotEmpty()) {
-      Log.w(TAG, "$name [cleanup] ${requestsAwaitingConnection.size} requestsAwaitingConnection during cleanup! This is probably a bug.")
-      requestsAwaitingConnection.forEach { pending ->
-        pending.single.onError(SocketException("Connection terminated unexpectedly"))
+    if (pendingCallbacks.isNotEmpty()) {
+      Log.w(TAG, "$name [cleanup] ${pendingCallbacks.size} pendingCallbacks during cleanup! This is probably a bug.")
+      pendingCallbacks.forEach { pending ->
+        pending.onFailure(SocketException("Connection terminated unexpectedly"))
       }
-      requestsAwaitingConnection.clear()
+      pendingCallbacks.clear()
     }
   }
 
@@ -251,16 +254,15 @@ class LibSignalChatConnection(
           Log.i(TAG, "$name Connected")
           state.onNext(WebSocketConnectionState.CONNECTED)
 
-          requestsAwaitingConnection.forEach { pending ->
-            runCatching {
-              sendRequestInternal(pending.request, pending.timeoutSeconds, pending.single)
-            }.onFailure { e ->
-              Log.w(TAG, "$name [sendRequest] Failed to send pending request", e)
-              pending.single.onError(SocketException("Closed unexpectedly"))
-            }
+          pendingCallbacks.forEach { pending ->
+            runCatching { pending.onConnectionSuccess(connection) }
+              .onFailure { e ->
+                Log.w(TAG, "$name [handleConnectionSuccess] Failed to execute pending action", e)
+                pending.onFailure(e)
+              }
           }
 
-          requestsAwaitingConnection.clear()
+          pendingCallbacks.clear()
         }
         else -> {
           Log.i(TAG, "$name Dropped successful connection because we are now ${state.value}")
@@ -306,10 +308,10 @@ class LibSignalChatConnection(
         else -> SocketException("Closed unexpectedly")
       }
 
-      requestsAwaitingConnection.forEach { pending ->
-        pending.single.onError(downstreamThrowable)
+      pendingCallbacks.forEach { pending ->
+        pending.onFailure(downstreamThrowable)
       }
-      requestsAwaitingConnection.clear()
+      pendingCallbacks.clear()
     }
   }
 
@@ -379,7 +381,12 @@ class LibSignalChatConnection(
       return when (state.value) {
         WebSocketConnectionState.CONNECTING -> {
           Log.i(TAG, "[sendRequest] Enqueuing request send for after connection")
-          requestsAwaitingConnection.add(RequestAwaitingConnection(request, timeoutSeconds, single))
+          pendingCallbacks.add(
+            PendingAction(
+              onConnectionSuccess = { _ -> sendRequestInternal(request, timeoutSeconds, single) },
+              onFailure = { error -> single.onError(error) }
+            )
+          )
           single
         }
         WebSocketConnectionState.CONNECTED -> {
@@ -543,6 +550,53 @@ class LibSignalChatConnection(
       // libsignal-net only supports sending {200: OK} responses
       Log.w(TAG, "$name [sendResponse] Silently dropped unsupported response {status: ${response.status}, id: ${response.id}}")
       ackSenderForInternalPseudoId.remove(response.id)
+    }
+  }
+
+  @OptIn(InternalCoroutinesApi::class)
+  override suspend fun <T> runWithChatConnection(callback: (ChatConnection) -> T): T = suspendCancellableCoroutine { continuation ->
+    CHAT_SERVICE_LOCK.withLock {
+      when (state.value) {
+        WebSocketConnectionState.CONNECTED -> {
+          try {
+            val result = callback(chatConnection!!)
+            continuation.resume(result)
+          } catch (e: Exception) {
+            continuation.resumeWithException(e)
+          }
+        }
+
+        WebSocketConnectionState.CONNECTING -> {
+          val action = PendingAction(
+            onConnectionSuccess = { connection ->
+              CHAT_SERVICE_LOCK.withLock {
+                try {
+                  val result = callback(connection)
+                  // NB: We use the experimental tryResume* methods here to avoid crashing if the continuation is
+                  // canceled before we finish the connection attempt, but the PendingAction cannot be removed from
+                  // pendingActions before we get to executing it.
+                  continuation.tryResume(result)?.let(continuation::completeResume)
+                } catch (e: Throwable) {
+                  continuation.tryResumeWithException(e)?.let(continuation::completeResume)
+                }
+              }
+            },
+            onFailure = { error ->
+              continuation.tryResumeWithException(error)?.let(continuation::completeResume)
+            }
+          )
+          pendingCallbacks.add(action)
+
+          continuation.invokeOnCancellation {
+            CHAT_SERVICE_LOCK.withLock {
+              pendingCallbacks.removeIf { it === action }
+            }
+          }
+        }
+        else -> {
+          continuation.resumeWithException(IOException("WebSocket is not connected (state: ${state.value})"))
+        }
+      }
     }
   }
 

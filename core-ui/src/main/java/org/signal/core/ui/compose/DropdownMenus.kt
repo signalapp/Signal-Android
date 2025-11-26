@@ -5,12 +5,16 @@
 
 package org.signal.core.ui.compose
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,6 +26,7 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.R
 import org.signal.core.ui.compose.copied.androidx.compose.material3.DropdownMenu
+import org.signal.core.ui.compose.theme.SignalTheme
 
 /**
  * Properly styled dropdown menus and items.
@@ -32,8 +37,8 @@ object DropdownMenus {
    */
   @Composable
   fun Menu(
-    controller: MenuController = remember { MenuController() },
     modifier: Modifier = Modifier,
+    controller: MenuController = remember { MenuController() },
     offsetX: Dp = dimensionResource(id = R.dimen.gutter),
     offsetY: Dp = 0.dp,
     content: @Composable ColumnScope.(MenuController) -> Unit
@@ -48,6 +53,8 @@ object DropdownMenus {
         ),
         content = { content(controller) },
         modifier = modifier
+          .background(SignalTheme.colors.colorSurface2)
+          .widthIn(min = 220.dp)
       )
     }
   }
@@ -57,14 +64,18 @@ object DropdownMenus {
    */
   @Composable
   fun Item(
+    modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
     text: @Composable () -> Unit,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    onClick: () -> Unit
   ) {
     DropdownMenuItem(
       contentPadding = contentPadding,
-      text = text,
+      text = {
+        CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.bodyLarge) {
+          text()
+        }
+      },
       onClick = onClick,
       modifier = modifier
     )

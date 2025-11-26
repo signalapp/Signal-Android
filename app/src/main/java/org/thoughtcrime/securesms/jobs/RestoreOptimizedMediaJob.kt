@@ -6,10 +6,13 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 
 /**
  * Restores any media that was previously optimized and off-loaded into the user's archive. Leverages
@@ -61,18 +64,22 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
 
     val jobManager = AppDependencies.jobManager
 
+    ArchiveRestoreProgress.onStartMediaRestore()
+
     restorableAttachments
       .forEach {
         val job = RestoreAttachmentJob.forOffloadedRestore(
           messageId = it.mmsId,
-          attachmentId = it.attachmentId
+          attachmentId = it.attachmentId,
+          queueHash = it.plaintextHash?.contentHashCode() ?: it.remoteKey?.contentHashCode()
         )
 
         // Intentionally enqueues one at a time for safer attachment transfer state management
         jobManager.add(job)
       }
 
-    SignalStore.backup.totalRestorableAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
+    BackupMediaRestoreService.start(context, context.getString(R.string.BackupStatus__restoring_media))
+    ArchiveRestoreProgress.onRestoringMedia()
 
     RestoreAttachmentJob.Queues.OFFLOAD_RESTORE.forEach { queue ->
       AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(queue))

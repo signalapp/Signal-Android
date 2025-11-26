@@ -9,19 +9,18 @@ import android.preference.PreferenceManager
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.runBlocking
-import okhttp3.mockwebserver.MockResponse
 import org.junit.rules.ExternalResource
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.thoughtcrime.securesms.SignalInstrumentationApplicationContext
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
+import org.thoughtcrime.securesms.keyvalue.NewAccount
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -79,8 +78,6 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
         others[1].asMember()
       )
     }
-
-    InstrumentationApplicationDependencyProvider.clearHandlers()
   }
 
   private fun setupSelf(): Recipient {
@@ -93,7 +90,6 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
     SignalStore.account.generateAciIdentityKeyIfNecessary()
     SignalStore.account.generatePniIdentityKeyIfNecessary()
 
-    InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(Put("/v2/keys") { MockResponse().success() })
     runBlocking {
       val registrationData = RegistrationData(
         code = "123123",
@@ -125,6 +121,7 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
     SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts("Tester", "McTesterson"))
 
     SignalStore.settings.isMessageNotificationsEnabled = false
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState.NewAccount
 
     return Recipient.self()
   }
@@ -145,7 +142,7 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
       SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true))
       SignalDatabase.recipients.setProfileSharing(recipientId, true)
       SignalDatabase.recipients.markRegistered(recipientId, aci)
-      val otherIdentity = IdentityKeyUtil.generateIdentityKeyPair()
+      val otherIdentity = IdentityKeyPair.generate()
       AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(aci.toString(), 1), otherIdentity.publicKey)
       others += recipientId
       othersKeys += otherIdentity
@@ -158,7 +155,7 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
     return androidx.test.core.app.launchActivity(Intent(context, T::class.java).apply(initIntent))
   }
 
-  fun changeIdentityKey(recipient: Recipient, identityKey: IdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey) {
+  fun changeIdentityKey(recipient: Recipient, identityKey: IdentityKey = IdentityKeyPair.generate().publicKey) {
     AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(recipient.requireServiceId().toString(), 0), identityKey)
   }
 

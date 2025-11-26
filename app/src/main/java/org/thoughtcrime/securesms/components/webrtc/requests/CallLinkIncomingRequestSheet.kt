@@ -33,8 +33,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import org.signal.core.ui.compose.BottomSheets
-import org.signal.core.ui.compose.DarkPreview
 import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.util.getParcelableCompat
@@ -103,7 +103,7 @@ class CallLinkIncomingRequestSheet : ComposeBottomSheetDialogFragment() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun CallLinkIncomingRequestSheetContentPreview() {
   Previews.BottomSheetPreview {

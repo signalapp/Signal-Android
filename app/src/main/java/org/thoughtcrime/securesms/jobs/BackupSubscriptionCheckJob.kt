@@ -14,6 +14,7 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.settings.app.backups.BackupStateObserver
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
@@ -60,10 +60,6 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
     @JvmStatic
     fun enqueueIfAble() {
-      if (!RemoteConfig.messageBackups) {
-        return
-      }
-
       val job = create()
 
       AppDependencies.jobManager.add(job)
@@ -83,13 +79,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
-    if (!RemoteConfig.messageBackups) {
-      Log.i(TAG, "Message backups feature is not available. Clearing mismatch value and exiting.", true)
-      SignalStore.backup.subscriptionStateMismatchDetected = false
-      return Result.success()
-    }
-
-    if (!AppDependencies.billingApi.isApiAvailable()) {
+    if (!AppDependencies.billingApi.getApiAvailability().isSuccess) {
       Log.i(TAG, "Google Play Billing API is not available on this device. Clearing mismatch value and exiting.", true)
       SignalStore.backup.subscriptionStateMismatchDetected = false
       return Result.success()
@@ -113,8 +103,26 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
+    if (SignalDatabase.inAppPayments.hasPrePendingRecurringTransaction(InAppPaymentType.RECURRING_BACKUP)) {
+      Log.i(TAG, "A backup redemption is in the pre-pending state. Clearing mismatch and skipping check job.", true)
+      SignalStore.backup.subscriptionStateMismatchDetected = false
+      return Result.success()
+    }
+
+    if (SignalDatabase.inAppPayments.hasPendingBackupRedemption()) {
+      Log.i(TAG, "A backup redemption is pending. Clearing mismatch and skipping check job.", true)
+      SignalStore.backup.subscriptionStateMismatchDetected = false
+      return Result.success()
+    }
+
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()
     Log.i(TAG, "Retrieved purchase result from Billing api: $purchase", true)
+
+    if (purchase !is BillingPurchaseResult.Success && purchase !is BillingPurchaseResult.None) {
+      Log.w(TAG, "Possible error when grabbing purchase from billing API. Clearing mismatch and exiting.")
+      SignalStore.backup.subscriptionStateMismatchDetected = false
+      return Result.success()
+    }
 
     val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged
     val product: BillingProduct? = AppDependencies.billingApi.queryProduct()
@@ -133,7 +141,22 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
         return Result.success()
       }
 
-      val activeSubscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()
+      val activeSubscriptionResult = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
+      val activeSubscription: ActiveSubscription? = when (activeSubscriptionResult) {
+        is NetworkResult.ApplicationError<ActiveSubscription>, is NetworkResult.NetworkError<ActiveSubscription> -> {
+          Log.w(TAG, "Encountered an app-level or network-level error. Failing.", activeSubscriptionResult.getCause(), true)
+          return Result.failure()
+        }
+        is NetworkResult.StatusCodeError<ActiveSubscription> -> {
+          Log.w(TAG, "Encountered a status-code error.", activeSubscriptionResult.getCause(), true)
+          null
+        }
+        is NetworkResult.Success<ActiveSubscription> -> {
+          Log.i(TAG, "Successfully retrieved the user's active subscription object.", true)
+          activeSubscriptionResult.result
+        }
+      }
+
       val hasActiveSignalSubscription = activeSubscription?.isActive == true
 
       checkForFailedOrCanceledSubscriptionState(activeSubscription)
@@ -173,11 +196,21 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
           val isGooglePlayBillingCanceled = purchase is BillingPurchaseResult.Success && !purchase.isAutoRenewing
 
           if (isGooglePlayBillingCanceled && (!hasActiveSignalSubscription || isSignalSubscriptionFailedOrCanceled)) {
-            Log.i(TAG, "Valid cancel state. Clearing mismatch. (isGooglePlayBillingCanceled: true, hasActiveSignalSubscription: $hasActiveSignalSubscription, isSignalSubscriptionFailedOrCanceled: $isSignalSubscriptionFailedOrCanceled", true)
+            Log.i(
+              TAG,
+              "Valid cancel state. Clearing mismatch. (isGooglePlayBillingCanceled: true, hasActiveSignalSubscription: $hasActiveSignalSubscription, isSignalSubscriptionFailedOrCanceled: $isSignalSubscriptionFailedOrCanceled",
+              true
+            )
+            SignalStore.backup.subscriptionStateMismatchDetected = false
+            return Result.success()
+          } else if (hasActivePurchase && !hasActiveSignalSubscription && SignalStore.backup.backupTier == MessageBackupTier.FREE) {
+            Log.i(TAG, "Mismatched state but user has no Signal Service subscription and is on the free tier. Clearing flag.", true)
+
             SignalStore.backup.subscriptionStateMismatchDetected = false
             return Result.success()
           } else {
             Log.w(TAG, "State mismatch: (hasActivePaidBackupTier: $hasActivePaidBackupTier, hasActiveSignalSubscription: $hasActiveSignalSubscription, hasActivePurchase: $hasActivePurchase). Setting mismatch value and exiting.", true)
+
             SignalStore.backup.subscriptionStateMismatchDetected = true
             return Result.success()
           }
@@ -216,7 +249,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
    * the "download your data" notifier sheet.
    */
   private fun checkForFailedOrCanceledSubscriptionState(activeSubscription: ActiveSubscription?) {
-    if (activeSubscription?.willCancelAtPeriodEnd() == true && activeSubscription?.activeSubscription != null) {
+    if (activeSubscription?.willCancelAtPeriodEnd() == true && activeSubscription.activeSubscription != null) {
       Log.i(TAG, "Subscription either has a payment failure or has been canceled.")
 
       val response = SignalNetwork.account.whoAmI()
@@ -225,6 +258,8 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
         if (backupExpiration != null) {
           Log.i(TAG, "Marking subscription failed or canceled.")
           SignalStore.backup.setDownloadNotifierToTriggerAtHalfwayPoint(backupExpiration)
+          InAppPaymentsRepository.updateBackupInAppPaymentWithCancelation(activeSubscription)
+          BackupStateObserver.notifyBackupStateChanged()
         } else {
           Log.w(TAG, "Failed to mark, no entitlement was found on WhoAmIResponse")
         }
@@ -233,6 +268,8 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       if (response.getCause() != null) {
         Log.w(TAG, "Failed to get WhoAmI from service.", response.getCause())
       }
+    } else if (activeSubscription != null) {
+      InAppPaymentsRepository.clearCancelation(activeSubscription)
     }
   }
 

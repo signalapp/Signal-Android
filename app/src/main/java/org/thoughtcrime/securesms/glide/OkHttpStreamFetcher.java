@@ -1,3 +1,8 @@
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.glide;
 
 import androidx.annotation.NonNull;
@@ -7,8 +12,6 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.util.ContentLengthInputStream;
-
-import org.signal.core.util.logging.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,16 +25,14 @@ import okhttp3.ResponseBody;
 /**
  * Fetches an {@link InputStream} using the okhttp library.
  */
-class OkHttpStreamFetcher implements DataFetcher<InputStream> {
-
-  private static final String TAG = Log.tag(OkHttpStreamFetcher.class);
+public class OkHttpStreamFetcher implements DataFetcher<InputStream> {
 
   private final OkHttpClient client;
   private final GlideUrl     url;
   private       InputStream  stream;
   private       ResponseBody responseBody;
 
-  OkHttpStreamFetcher(OkHttpClient client, GlideUrl url) {
+  public OkHttpStreamFetcher(OkHttpClient client, GlideUrl url) {
     this.client = client;
     this.url = url;
   }

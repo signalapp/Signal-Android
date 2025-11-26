@@ -18,7 +18,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Checkbox
@@ -26,6 +25,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -34,9 +34,10 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.SignalPreview
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 
 /**
@@ -50,7 +51,11 @@ import org.thoughtcrime.securesms.R
 fun RoundCheckbox(
   checked: Boolean,
   onCheckedChange: (Boolean) -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  size: Dp = 24.dp,
+  enabled: Boolean = true,
+  outlineColor: Color = MaterialTheme.colorScheme.outline,
+  checkedColor: Color = MaterialTheme.colorScheme.primary
 ) {
   val contentDescription = if (checked) {
     stringResource(R.string.SignalCheckbox_accessibility_checked_description)
@@ -60,15 +65,14 @@ fun RoundCheckbox(
 
   Box(
     modifier = modifier
-      .padding(12.dp)
-      .size(24.dp)
+      .size(size)
       .aspectRatio(1f)
       .border(
         width = 1.5.dp,
         color = if (checked) {
-          MaterialTheme.colorScheme.primary
+          checkedColor
         } else {
-          MaterialTheme.colorScheme.outline
+          outlineColor
         },
         shape = CircleShape
       )
@@ -76,7 +80,8 @@ fun RoundCheckbox(
         interactionSource = remember { MutableInteractionSource() },
         indication = null,
         onClick = { onCheckedChange(!checked) },
-        onClickLabel = stringResource(R.string.SignalCheckbox_accessibility_on_click_label)
+        onClickLabel = stringResource(R.string.SignalCheckbox_accessibility_on_click_label),
+        enabled = enabled
       )
       .semantics(mergeDescendants = true) {
         this.role = Role.Checkbox
@@ -90,7 +95,7 @@ fun RoundCheckbox(
     ) {
       Image(
         imageVector = ImageVector.vectorResource(id = R.drawable.ic_check_circle_solid_24),
-        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
+        colorFilter = ColorFilter.tint(checkedColor),
         contentDescription = null,
         modifier = Modifier.fillMaxSize()
       )
@@ -98,14 +103,14 @@ fun RoundCheckbox(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
-private fun RoundCheckboxCheckedPreview() = SignalTheme {
+private fun RoundCheckboxCheckedPreview() = Previews.Preview {
   RoundCheckbox(checked = true, onCheckedChange = {})
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
-private fun RoundCheckboxUncheckedPreview() = SignalTheme {
+private fun RoundCheckboxUncheckedPreview() = Previews.Preview {
   RoundCheckbox(checked = false, onCheckedChange = {})
 }

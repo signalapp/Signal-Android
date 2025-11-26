@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
-import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,8 +44,8 @@ public class MainNavigator {
     Disposable disposable = ConversationIntents.createBuilder(activity, recipientId, threadId)
                                                .map(builder -> builder.withDistributionType(distributionType)
                                                                       .withStartingPosition(startingPosition)
-                                                                      .build())
-                                               .subscribe(intent -> viewModel.goTo(new MainNavigationDetailLocation.Conversation(intent)));
+                                                                      .toConversationArgs())
+                                               .subscribe(args -> viewModel.goTo(new MainNavigationDetailLocation.Chats.Conversation(args)));
 
     lifecycleDisposable.add(disposable);
   }
@@ -56,7 +55,7 @@ public class MainNavigator {
   }
 
   public void goToGroupCreation() {
-    activity.startActivity(CreateGroupActivity.newIntent(activity));
+    activity.startActivity(CreateGroupActivity.createIntent(activity));
   }
 
   private @NonNull FragmentManager getFragmentManager() {

@@ -15,12 +15,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.RestoreTimestampResult
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.registrationv3.ui.restore.AccountEntropyPoolVerification
-import org.thoughtcrime.securesms.registrationv3.ui.restore.AccountEntropyPoolVerification.AEPValidationError
+import org.thoughtcrime.securesms.registration.ui.restore.AccountEntropyPoolVerification
+import org.thoughtcrime.securesms.registration.ui.restore.AccountEntropyPoolVerification.AEPValidationError
 import org.whispersystems.signalservice.api.AccountEntropyPool
 
 class PostRegistrationEnterBackupKeyViewModel : ViewModel() {
@@ -51,33 +51,37 @@ class PostRegistrationEnterBackupKeyViewModel : ViewModel() {
     }
   }
 
-  fun restoreBackupTier() {
+  fun restoreBackupTimestamp() {
     store.update { it.copy(inProgress = true) }
     viewModelScope.launch(Dispatchers.IO) {
       val aep = AccountEntropyPool.parseOrNull(backupKey)
-      val backupTier = withContext(Dispatchers.IO) {
-        if (aep != null) {
-          BackupRepository.verifyBackupKeyAssociatedWithAccount(SignalStore.account.requireAci(), aep)
-        } else {
-          Log.w(TAG, "Parsed AEP is null, failing")
-          null
-        }
+
+      val restoreTimestampResult = if (aep != null) {
+        BackupRepository.verifyBackupKeyAssociatedWithAccount(SignalStore.account.requireAci(), aep)
+      } else {
+        Log.w(TAG, "Parsed AEP is null, failing")
+        store.update { it.copy(aepValidationError = AEPValidationError.Invalid, errorDialog = ErrorDialog.AEP_INVALID) }
+        return@launch
       }
 
-      if (backupTier != null) {
-        Log.i(TAG, "Backup tier found with entered AEP, migrating to new AEP and moving on to restore")
-        SignalStore.account.restoreAccountEntropyPool(aep!!)
-        store.update { it.copy(restoreBackupTierSuccessful = true) }
-      } else {
-        Log.w(TAG, "Unable to validate AEP against currently registered account")
-        store.update { it.copy(showBackupTierNotRestoreError = true) }
+      when (restoreTimestampResult) {
+        is RestoreTimestampResult.Success -> {
+          Log.i(TAG, "Backup timestamp found with entered AEP, migrating to new AEP and moving on to restore")
+          SignalStore.account.restoreAccountEntropyPool(aep)
+          store.update { it.copy(restoreBackupTierSuccessful = true) }
+        }
+
+        RestoreTimestampResult.NotFound -> store.update { it.copy(errorDialog = ErrorDialog.BACKUP_NOT_FOUND) }
+        RestoreTimestampResult.BackupsNotEnabled -> store.update { it.copy(errorDialog = ErrorDialog.BACKUPS_NOT_ENABLED) }
+        is RestoreTimestampResult.RateLimited -> store.update { it.copy(errorDialog = ErrorDialog.RATE_LIMITED) }
+        else -> store.update { it.copy(errorDialog = ErrorDialog.UNKNOWN_ERROR) }
       }
     }
   }
 
-  fun hideRestoreBackupTierFailed() {
+  fun hideErrorDialog() {
     store.update {
-      it.copy(showBackupTierNotRestoreError = false, inProgress = false)
+      it.copy(errorDialog = null, inProgress = false)
     }
   }
 
@@ -85,7 +89,15 @@ class PostRegistrationEnterBackupKeyViewModel : ViewModel() {
     val backupKeyValid: Boolean = false,
     val inProgress: Boolean = false,
     val restoreBackupTierSuccessful: Boolean = false,
-    val showBackupTierNotRestoreError: Boolean = false,
-    val aepValidationError: AEPValidationError? = null
+    val aepValidationError: AEPValidationError? = null,
+    val errorDialog: ErrorDialog? = null
   )
+
+  enum class ErrorDialog {
+    AEP_INVALID,
+    BACKUPS_NOT_ENABLED,
+    BACKUP_NOT_FOUND,
+    RATE_LIMITED,
+    UNKNOWN_ERROR
+  }
 }

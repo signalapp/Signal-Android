@@ -8,6 +8,7 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.media.AudioManagerCompat
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewStateCache
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewStateViewModel
-import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import kotlin.math.max
@@ -46,6 +46,8 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    enableEdgeToEdge()
+
     if (savedInstanceState != null) {
       val cache: StoryViewStateCache? = savedInstanceState.getParcelableCompat(DATA_CACHE, StoryViewStateCache::class.java)
       if (cache != null) {
@@ -55,7 +57,6 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
 
     StoryMutePolicy.initialize()
     Glide.get(this).setMemoryCategory(MemoryCategory.HIGH)
-    FullscreenHelper.showSystemUI(window)
 
     supportPostponeEnterTransition()
 

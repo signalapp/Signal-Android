@@ -11,14 +11,18 @@ import org.signal.core.util.Base64
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
+import org.signal.libsignal.usernames.BaseUsernameException
+import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
+import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -39,7 +43,8 @@ fun FilePointer?.toLocalAttachment(
   contentType: String? = this?.contentType,
   fileName: String? = this?.fileName,
   uuid: ByteString? = null,
-  quote: Boolean = false
+  quote: Boolean = false,
+  quoteTargetContentType: String? = null
 ): Attachment? {
   if (this == null || this.locatorInfo == null) return null
 
@@ -71,6 +76,7 @@ fun FilePointer?.toLocalAttachment(
         stickerLocator = stickerLocator,
         gif = gif,
         quote = quote,
+        quoteTargetContentType = quoteTargetContentType,
         uuid = UuidUtil.fromByteStringOrNull(uuid),
         fileName = fileName
       )
@@ -100,7 +106,9 @@ fun FilePointer?.toLocalAttachment(
       PointerAttachment.forPointer(
         pointer = Optional.of(signalAttachmentPointer),
         stickerLocator = stickerLocator,
-        transferState = if (wasDownloaded) AttachmentTable.TRANSFER_NEEDS_RESTORE else AttachmentTable.TRANSFER_PROGRESS_PENDING
+        transferState = if (wasDownloaded) AttachmentTable.TRANSFER_NEEDS_RESTORE else AttachmentTable.TRANSFER_PROGRESS_PENDING,
+        quote = quote,
+        quoteTargetContentType = quoteTargetContentType
       ).orNull()
     }
     AttachmentType.INVALID -> {
@@ -117,6 +125,7 @@ fun FilePointer?.toLocalAttachment(
         borderless = borderless,
         gif = gif,
         quote = quote,
+        quoteTargetContentType = quoteTargetContentType,
         stickerLocator = stickerLocator,
         uuid = UuidUtil.fromByteStringOrNull(uuid)
       )
@@ -217,6 +226,10 @@ fun RemoteAvatarColor.toLocal(): AvatarColor {
   }
 }
 
+fun ChatColors.Id.isValid(exportState: ExportState): Boolean {
+  return this !is ChatColors.Id.Custom || this.longValue in exportState.customChatColorIds
+}
+
 private fun DatabaseAttachment.toRemoteAttachmentType(): AttachmentType {
   if (this.remoteKey.isNullOrBlank()) {
     return AttachmentType.INVALID
@@ -227,7 +240,7 @@ private fun DatabaseAttachment.toRemoteAttachmentType(): AttachmentType {
   }
 
   val activelyOnArchiveCdn = this.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED
-  val couldBeOnArchiveCdn = this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE && this.archiveTransferState != AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE
+  val couldBeOnArchiveCdn = (this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE) && this.archiveTransferState != AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE
 
   if (this.dataHash != null && (activelyOnArchiveCdn || couldBeOnArchiveCdn)) {
     return AttachmentType.ARCHIVE
@@ -238,6 +251,19 @@ private fun DatabaseAttachment.toRemoteAttachmentType(): AttachmentType {
   }
 
   return AttachmentType.INVALID
+}
+
+fun String.isValidUsername(): Boolean {
+  if (this.isBlank()) {
+    return false
+  }
+
+  return try {
+    Username(this)
+    true
+  } catch (e: BaseUsernameException) {
+    false
+  }
 }
 
 private enum class AttachmentType {

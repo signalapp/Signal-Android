@@ -29,7 +29,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -41,11 +40,11 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Rows.TextAndLabel
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.internal.storage.InternalStorageServicePlaygroundViewModel.OneOffEvent
@@ -74,20 +73,14 @@ class InternalStorageServicePlaygroundFragment : ComposeFragment() {
     val storageRecords by viewModel.storageRecords
     val storageInsights by viewModel.storageInsights
     val oneOffEvent by viewModel.oneOffEvents
-    var forceSsreToggled by remember { mutableStateOf(SignalStore.internal.forceSsre2Capability) }
 
     Screen(
-      onBackPressed = { findNavController().popBackStack() },
       manifest = manifest,
       storageRecords = storageRecords,
       storageInsights = storageInsights,
       oneOffEvent = oneOffEvent,
-      forceSsreCapability = forceSsreToggled,
-      onForceSsreToggled = { checked ->
-        SignalStore.internal.forceSsre2Capability = checked
-        forceSsreToggled = checked
-      },
-      onViewTabSelected = { viewModel.onViewTabSelected() }
+      onViewTabSelected = { viewModel.onViewTabSelected() },
+      onBackPressed = { findNavController().popBackStack() }
     )
   }
 }
@@ -98,9 +91,7 @@ fun Screen(
   manifest: SignalStorageManifest,
   storageRecords: List<SignalStorageRecord>,
   storageInsights: StorageInsights,
-  forceSsreCapability: Boolean,
   oneOffEvent: OneOffEvent,
-  onForceSsreToggled: (Boolean) -> Unit = {},
   onViewTabSelected: () -> Unit = {},
   onBackPressed: () -> Unit = {}
 ) {
@@ -141,10 +132,7 @@ fun Screen(
   ) { contentPadding ->
     Surface(modifier = Modifier.padding(contentPadding)) {
       when (tabIndex) {
-        0 -> ToolScreen(
-          forceSsreCapability = forceSsreCapability,
-          onForceSsreToggled = onForceSsreToggled
-        )
+        0 -> ToolScreen()
         1 -> ViewScreen(
           manifest = manifest,
           storageRecords = storageRecords,
@@ -157,10 +145,7 @@ fun Screen(
 }
 
 @Composable
-fun ToolScreen(
-  forceSsreCapability: Boolean,
-  onForceSsreToggled: (Boolean) -> Unit = {}
-) {
+fun ToolScreen() {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier.fillMaxWidth()
@@ -184,12 +169,6 @@ fun ToolScreen(
     ActionRow("Clear initial master key", "Sets it to null.") {
       SignalStore.svr.masterKeyForInitialDataRestore = null
     }
-
-    Rows.ToggleRow(
-      text = "Force SSRE2 Capability",
-      checked = forceSsreCapability,
-      onCheckChanged = onForceSsreToggled
-    )
   }
 }
 
@@ -376,12 +355,11 @@ private fun RunButton(onClick: () -> Unit) {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun ScreenPreview() {
   Previews.Preview {
     Screen(
-      forceSsreCapability = true,
       manifest = SignalStorageManifest.EMPTY,
       storageRecords = emptyList(),
       storageInsights = StorageInsights(),
@@ -390,7 +368,7 @@ fun ScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun ViewScreenPreview() {
   val storageRecords = listOf(

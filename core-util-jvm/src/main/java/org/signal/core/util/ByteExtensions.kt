@@ -93,7 +93,7 @@ class ByteSize(val bytes: Long) {
       }
     }
 
-    return "${formatter.format(size)}${if (spaced) " " else ""}${unit.label}"
+    return BidiUtil.forceLtr("${formatter.format(size)}${if (spaced) " " else ""}${unit.label}")
   }
 
   operator fun compareTo(other: ByteSize): Int {
@@ -114,6 +114,23 @@ class ByteSize(val bytes: Long) {
 
   operator fun times(other: Long): ByteSize {
     return ByteSize(this.inWholeBytes * other)
+  }
+
+  override fun toString(): String {
+    return "ByteSize(${toUnitString(maxPlaces = 4, spaced = false)})"
+  }
+
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+
+    other as ByteSize
+
+    return bytes == other.bytes
+  }
+
+  override fun hashCode(): Int {
+    return bytes.hashCode()
   }
 
   enum class Size(val label: String) {

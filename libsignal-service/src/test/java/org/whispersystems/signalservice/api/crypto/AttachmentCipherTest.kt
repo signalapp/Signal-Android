@@ -6,6 +6,7 @@ import assertk.assertions.isTrue
 import assertk.fail
 import org.conscrypt.Conscrypt
 import org.junit.Assert
+import org.junit.Ignore
 import org.junit.Test
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.readFully
@@ -62,6 +63,7 @@ class AttachmentCipherTest {
     attachment_encryptDecrypt(incremental = true, fileSize = MEBIBYTE, integrityCheckMode = IntegrityCheckMode.BOTH)
   }
 
+  @Ignore("Useful when making changes, otherwise a bit slow.")
   @Test
   fun attachment_encryptDecrypt_nonIncremental_manyFileSizes() {
     for (i in 0..99) {
@@ -69,6 +71,7 @@ class AttachmentCipherTest {
     }
   }
 
+  @Ignore("Useful when making changes, otherwise a bit slow.")
   @Test
   fun attachment_encryptDecrypt_incremental_manyFileSizes() {
     // Designed to stress the various boundary conditions of reading the final mac
@@ -101,6 +104,7 @@ class AttachmentCipherTest {
     cipherFile.delete()
   }
 
+  @Ignore("Useful when making changes, otherwise a bit slow.")
   @Test
   fun attachment_encryptDecrypt_skipAll_manyFileSizes() {
     for (i in 0..99) {
@@ -416,6 +420,7 @@ class AttachmentCipherTest {
     archive_encryptDecrypt(incremental = true, fileSize = MEBIBYTE)
   }
 
+  @Ignore("Useful when making changes, otherwise a bit slow.")
   @Test
   fun archive_encryptDecrypt_nonIncremental_manyFileSizes() {
     for (i in 0..99) {
@@ -423,6 +428,7 @@ class AttachmentCipherTest {
     }
   }
 
+  @Ignore("Useful when making changes, otherwise a bit slow.")
   @Test
   fun archive_encryptDecrypt_incremental_manyFileSizes() {
     // Designed to stress the various boundary conditions of reading the final mac
@@ -458,6 +464,7 @@ class AttachmentCipherTest {
     cipherFile.delete()
   }
 
+  @Ignore("Useful when making changes, otherwise a bit slow.")
   @Test
   fun archiveThumbnail_encryptDecrypt_manyFileSizes() {
     for (i in 0..99) {

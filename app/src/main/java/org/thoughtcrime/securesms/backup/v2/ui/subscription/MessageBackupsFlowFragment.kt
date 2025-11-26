@@ -25,6 +25,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.android.gms.common.GoogleApiAvailability
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlowable
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.compose.Nav
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.storage.AndroidCredentialRepository
 import org.thoughtcrime.securesms.util.viewModel
@@ -63,7 +65,10 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
   }
 
   private val viewModel: MessageBackupsFlowViewModel by viewModel {
-    MessageBackupsFlowViewModel(requireArguments().getSerializableCompat(TIER, MessageBackupTier::class.java))
+    MessageBackupsFlowViewModel(
+      initialTierSelection = requireArguments().getSerializableCompat(TIER, MessageBackupTier::class.java),
+      googlePlayApiAvailability = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(requireContext())
+    )
   }
 
   private val errorHandler = InAppPaymentCheckoutDelegate.ErrorHandler()
@@ -97,6 +102,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
   override fun onResume() {
     super.onResume()
     viewModel.refreshCurrentTier()
+    viewModel.setGooglePlayApiAvailability(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(requireContext()))
   }
 
   @Composable
@@ -170,7 +176,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           stage = state.stage,
           currentBackupTier = state.currentMessageBackupTier,
           selectedBackupTier = state.selectedMessageBackupTier,
-          availableBackupTypes = state.availableBackupTypes,
+          allBackupTypes = state.allBackupTypes,
           isNextEnabled = state.isCheckoutButtonEnabled(),
           onMessageBackupsTierSelected = viewModel::onMessageBackupTierUpdated,
           onNavigationClick = viewModel::goToPreviousStage,
@@ -180,7 +186,23 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
               getString(R.string.backup_support_url)
             )
           },
-          onNextClicked = viewModel::goToNextStage
+          onNextClicked = viewModel::goToNextStage,
+          googlePlayServicesAvailability = state.googlePlayApiAvailability,
+          googlePlayBillingAvailability = state.googlePlayBillingAvailability,
+          onLearnMoreAboutWhyUserCanNotUpgrade = {
+            CommunicationActions.openBrowserLink(
+              requireContext(),
+              getString(R.string.backup_support_url)
+            )
+          },
+          onMakeGooglePlayServicesAvailable = {
+            GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(requireActivity()).addOnSuccessListener {
+              viewModel.setGooglePlayApiAvailability(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(requireContext()))
+            }
+          },
+          onOpenPlayStore = {
+            PlayStoreUtil.openPlayStoreHome(requireContext())
+          }
         )
       }
     }

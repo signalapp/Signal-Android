@@ -40,7 +40,7 @@ class CallLinkArchiveExporter(private val cursor: Cursor) : Iterator<ArchiveReci
       id = callLink.recipientId.toLong(),
       callLink = CallLink(
         rootKey = callLink.credentials!!.linkKeyBytes.toByteString(),
-        epoch = callLink.credentials.epochBytes?.takeIf { it.isNotEmpty() }?.toByteString(),
+        epoch = callLink.credentials.epochBytes?.takeIf { it.size == 4 }?.toByteString(),
         adminKey = callLink.credentials.adminPassBytes?.toByteString()?.nullIfEmpty(),
         name = callLink.state.name,
         expirationMs = expirationTime.takeIf { it != Long.MAX_VALUE }?.clampToValidBackupRange() ?: 0,

@@ -24,6 +24,8 @@ import java.net.URLDecoder
 object CallLinks {
   private const val ROOT_KEY = "key"
   private const val EPOCH = "epoch"
+  private const val LEGACY_HTTPS_LINK_PREFIX = "https://signal.link/call#key="
+  private const val LEGACY_SGNL_LINK_PREFIX = "sgnl://signal.link/call#key="
   private const val HTTPS_LINK_PREFIX = "https://signal.link/call/#key="
   private const val SNGL_LINK_PREFIX = "sgnl://signal.link/call/#key="
 
@@ -60,9 +62,16 @@ object CallLinks {
     }
   }
 
+  private fun isPrefixedCallLink(url: String): Boolean {
+    return url.startsWith(HTTPS_LINK_PREFIX) ||
+      url.startsWith(SNGL_LINK_PREFIX) ||
+      url.startsWith(LEGACY_HTTPS_LINK_PREFIX) ||
+      url.startsWith(LEGACY_SGNL_LINK_PREFIX)
+  }
+
   @JvmStatic
   fun isCallLink(url: String): Boolean {
-    if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
+    if (!isPrefixedCallLink(url)) {
       return false
     }
 
@@ -76,7 +85,7 @@ object CallLinks {
 
   @JvmStatic
   fun parseUrl(url: String): CallLinkParseResult? {
-    if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
+    if (!isPrefixedCallLink(url)) {
       Log.w(TAG, "Invalid url prefix.")
       return null
     }

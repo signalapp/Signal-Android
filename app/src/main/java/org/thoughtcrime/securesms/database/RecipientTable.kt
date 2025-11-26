@@ -860,7 +860,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun applyStorageSyncContactInsert(insert: SignalContactRecord) {
+  fun applyStorageSyncContactInsert(insert: SignalContactRecord, rotateProfileKeyOnBlock: Boolean): Boolean {
     val db = writableDatabase
     val threadDatabase = threads
     val values = getValuesForStorageContact(insert, true)
@@ -869,12 +869,18 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val recipientId: RecipientId
     if (id < 0) {
       Log.w(TAG, "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.")
-      recipientId = getAndPossiblyMerge(aci = ACI.parseOrNull(insert.proto.aci), pni = PNI.parseOrNull(insert.proto.pni), e164 = insert.proto.e164.nullIfBlank(), pniVerified = insert.proto.pniSignatureVerified)
+      recipientId = getAndPossiblyMerge(aci = ACI.parseOrNull(insert.proto.aci, insert.proto.aciBinary), pni = PNI.parseOrNull(insert.proto.pni, insert.proto.pniBinary), e164 = insert.proto.e164.nullIfBlank(), pniVerified = insert.proto.pniSignatureVerified)
       resolvePotentialUsernameConflicts(values.getAsString(USERNAME), recipientId)
 
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     } else {
       recipientId = RecipientId.from(id)
+    }
+
+    val profileKeyRotated = if (insert.proto.blocked) {
+      RecipientUtil.updateProfileSharingAfterBlock(Recipient.resolved(recipientId), rotateProfileKeyOnBlock)
+    } else {
+      false
     }
 
     if (insert.proto.identityKey.isNotEmpty() && (insert.proto.signalAci != null || insert.proto.signalPni != null)) {
@@ -892,9 +898,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     threadDatabase.applyStorageSyncUpdate(recipientId, insert)
+
+    return profileKeyRotated
   }
 
-  fun applyStorageSyncContactUpdate(update: StorageRecordUpdate<SignalContactRecord>) {
+  fun applyStorageSyncContactUpdate(update: StorageRecordUpdate<SignalContactRecord>, rotateProfileKeyOnBlock: Boolean): Boolean {
     val db = writableDatabase
     val identityStore = AppDependencies.protocolStore.aci().identities()
     val values = getValuesForStorageContact(update.new, false)
@@ -909,7 +917,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       var recipientId = getByColumn(STORAGE_SERVICE_ID, Base64.encodeWithPadding(update.old.id.raw)).get()
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Found user $recipientId. Possibly merging.")
-      recipientId = getAndPossiblyMerge(aci = ACI.parseOrNull(update.new.proto.aci), pni = PNI.parseOrNull(update.new.proto.pni), e164 = update.new.proto.e164.nullIfBlank(), pniVerified = update.new.proto.pniSignatureVerified)
+      recipientId = getAndPossiblyMerge(aci = ACI.parseOrNull(update.new.proto.aci, update.new.proto.aciBinary), pni = PNI.parseOrNull(update.new.proto.pni, update.new.proto.pniBinary), e164 = update.new.proto.e164.nullIfBlank(), pniVerified = update.new.proto.pniSignatureVerified)
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Merged into $recipientId")
       resolvePotentialUsernameConflicts(values.getAsString(USERNAME), recipientId)
@@ -925,11 +933,17 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       db.update(TABLE_NAME, clearValues, ID_WHERE, SqlUtil.buildArgs(recipientId))
     }
 
+    val profileKeyRotated = if (update.new.proto.blocked && !update.old.proto.blocked) {
+      RecipientUtil.updateProfileSharingAfterBlock(Recipient.resolved(recipientId), rotateProfileKeyOnBlock)
+    } else {
+      false
+    }
+
     try {
       val oldIdentityRecord = identityStore.getIdentityRecord(recipientId)
       if (update.new.proto.identityKey.isNotEmpty() && update.new.proto.signalAci != null) {
         val identityKey = IdentityKey(update.new.proto.identityKey.toByteArray(), 0)
-        identities.updateIdentityAfterSync(update.new.proto.aci, recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.new.proto.identityState))
+        identities.updateIdentityAfterSync(update.new.proto.signalAci!!.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.new.proto.identityState))
       }
 
       val newIdentityRecord = identityStore.getIdentityRecord(recipientId)
@@ -948,6 +962,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     threads.applyStorageSyncUpdate(recipientId, update.new)
     AppDependencies.databaseObserver.notifyRecipientChanged(recipientId)
+
+    return profileKeyRotated
   }
 
   private fun resolvePotentialUsernameConflicts(username: String?, recipientId: RecipientId) {
@@ -3729,9 +3745,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
 
       if (blockedGroupIds.isNotEmpty()) {
-        val groupIds: List<GroupId.V1> = blockedGroupIds.mapNotNull { raw ->
+        val groupIds: List<GroupId.V1> = blockedGroupIds.filterNotNull().mapNotNull { raw ->
           try {
-            GroupId.v1(raw)
+            raw?.let { GroupId.v1(it) }
           } catch (e: BadGroupIdException) {
             Log.w(TAG, "[applyBlockedUpdate] Bad GV1 ID!")
             null

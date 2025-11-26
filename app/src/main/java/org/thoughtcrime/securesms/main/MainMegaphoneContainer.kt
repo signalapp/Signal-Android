@@ -7,15 +7,15 @@ package org.thoughtcrime.securesms.main
 
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.fragment.app.DialogFragment
+import androidx.window.core.layout.WindowHeightSizeClass
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.MegaphoneComponent
@@ -45,9 +45,9 @@ fun MainMegaphoneContainer(
   controller: MegaphoneActionController,
   onMegaphoneVisible: (Megaphone) -> Unit
 ) {
-  val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
-  val visible = remember(isLandscape, state) {
-    !(state.megaphone == Megaphone.NONE || state.mainToolbarMode != MainToolbarMode.FULL || isLandscape)
+  val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+  val visible = remember(windowSizeClass, state) {
+    !(state.megaphone == Megaphone.NONE || state.mainToolbarMode != MainToolbarMode.FULL || windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT)
   }
 
   AnimatedVisibility(visible = visible) {
@@ -57,8 +57,8 @@ fun MainMegaphoneContainer(
     )
   }
 
-  LaunchedEffect(state, isLandscape) {
-    if (state.megaphone == Megaphone.NONE || state.mainToolbarMode == MainToolbarMode.BASIC || isLandscape) {
+  LaunchedEffect(state, windowSizeClass) {
+    if (state.megaphone == Megaphone.NONE || state.mainToolbarMode == MainToolbarMode.BASIC || windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT) {
       return@LaunchedEffect
     }
 
@@ -66,7 +66,7 @@ fun MainMegaphoneContainer(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MainMegaphoneContainerPreview() {
   Previews.Preview {

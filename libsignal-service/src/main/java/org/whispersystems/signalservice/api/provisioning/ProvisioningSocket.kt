@@ -290,7 +290,7 @@ class ProvisioningSocket<T> private constructor(
 
   enum class Mode(val host: String, val params: String) {
     REREG("rereg", ""),
-    LINK("linkdevice", "&capabilities=backup4")
+    LINK("linkdevice", "&capabilities=backup5")
   }
 
   fun interface ProvisioningSocketExceptionHandler {

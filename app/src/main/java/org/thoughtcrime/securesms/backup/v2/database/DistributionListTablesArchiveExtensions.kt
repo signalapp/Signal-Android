@@ -7,19 +7,20 @@ package org.thoughtcrime.securesms.backup.v2.database
 
 import org.signal.core.util.select
 import org.signal.core.util.withinTransaction
+import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.exporters.DistributionListArchiveExporter
 import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.recipients.RecipientId
 
-fun DistributionListTables.getAllForBackup(selfRecipientId: RecipientId): DistributionListArchiveExporter {
+fun DistributionListTables.getAllForBackup(selfRecipientId: RecipientId, exportState: ExportState): DistributionListArchiveExporter {
   val cursor = readableDatabase
     .select()
     .from(DistributionListTables.ListTable.TABLE_NAME)
     .run()
 
-  return DistributionListArchiveExporter(cursor, this, selfRecipientId)
+  return DistributionListArchiveExporter(cursor, this, selfRecipientId, exportState)
 }
 
 fun DistributionListTables.getMembersForBackup(id: DistributionListId): List<RecipientId> {

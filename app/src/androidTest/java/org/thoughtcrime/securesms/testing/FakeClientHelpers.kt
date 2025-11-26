@@ -2,8 +2,7 @@ package org.thoughtcrime.securesms.testing
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
-import org.signal.libsignal.internal.Native
-import org.signal.libsignal.internal.NativeHandleGuard
+import org.signal.libsignal.metadata.certificate.CertificateValidator
 import org.signal.libsignal.metadata.certificate.SenderCertificate
 import org.signal.libsignal.metadata.certificate.ServerCertificate
 import org.signal.libsignal.protocol.ecc.ECKeyPair
@@ -15,6 +14,7 @@ import org.whispersystems.signalservice.api.crypto.EnvelopeContent
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.util.toByteArray
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.Envelope
@@ -24,25 +24,14 @@ import java.util.UUID
 
 object FakeClientHelpers {
 
-  // TODO reinstate this for libsignal 0.76.1
-//  val noOpCertificateValidator = object : CertificateValidator(ECKeyPair.generate().publicKey) {
-//    override fun validate(certificate: SenderCertificate, validationTime: Long) = Unit
-//  }
+  val noOpCertificateValidator = object : CertificateValidator(ECKeyPair.generate().publicKey) {
+    override fun validate(certificate: SenderCertificate, validationTime: Long) = Unit
+  }
 
   fun createCertificateFor(trustRoot: ECKeyPair, uuid: UUID, e164: String, deviceId: Int, identityKey: ECPublicKey, expires: Long): SenderCertificate {
     val serverKey: ECKeyPair = ECKeyPair.generate()
-    NativeHandleGuard(serverKey.publicKey).use { serverPublicGuard ->
-      NativeHandleGuard(trustRoot.privateKey).use { trustRootPrivateGuard ->
-        val serverCertificate = ServerCertificate(Native.ServerCertificate_New(1, serverPublicGuard.nativeHandle(), trustRootPrivateGuard.nativeHandle()))
-        NativeHandleGuard(identityKey).use { identityGuard ->
-          NativeHandleGuard(serverCertificate).use { serverCertificateGuard ->
-            NativeHandleGuard(serverKey.privateKey).use { serverPrivateGuard ->
-              return SenderCertificate(Native.SenderCertificate_New(uuid.toString(), e164, deviceId, identityGuard.nativeHandle(), expires, serverCertificateGuard.nativeHandle(), serverPrivateGuard.nativeHandle()))
-            }
-          }
-        }
-      }
-    }
+    val serverCertificate = ServerCertificate(trustRoot.privateKey, 1, serverKey.publicKey)
+    return serverCertificate.issue(serverKey.privateKey, uuid.toString(), Optional.of(e164), deviceId, identityKey, expires)
   }
 
   fun getSealedSenderAccess(theirProfileKey: ProfileKey, senderCertificate: SenderCertificate): SealedSenderAccess? {
@@ -64,13 +53,16 @@ object FakeClientHelpers {
   }
 
   fun OutgoingPushMessage.toEnvelope(timestamp: Long, destination: ServiceId): Envelope {
+    val serverGuid = UUID.randomUUID()
     return Envelope.Builder()
       .type(Envelope.Type.fromValue(this.type))
       .sourceDevice(1)
       .timestamp(timestamp)
       .serverTimestamp(timestamp + 1)
       .destinationServiceId(destination.toString())
-      .serverGuid(UUID.randomUUID().toString())
+      .destinationServiceIdBinary(destination.toByteString())
+      .serverGuid(serverGuid.toString())
+      .serverGuidBinary(serverGuid.toByteArray().toByteString())
       .content(Base64.decode(this.content).toByteString())
       .urgent(true)
       .story(false)

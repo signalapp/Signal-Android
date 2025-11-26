@@ -152,4 +152,8 @@ object BidiUtil {
   fun forceLtr(text: CharSequence): String {
     return "\u202a" + text + "\u202c"
   }
+
+  fun stripAllDirectionalCharacters(text: String): String {
+    return text.replace("[\\u200f\\u2066\\u2067\\u2068\\u2069\\u202a\\u202b\\u202c\\u202d\\u202e]".toRegex(), "")
+  }
 }

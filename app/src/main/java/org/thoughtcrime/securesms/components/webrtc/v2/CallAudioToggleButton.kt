@@ -20,6 +20,7 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,8 +33,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.DarkPreview
 import org.signal.core.ui.compose.IconButtons
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.thoughtcrime.securesms.R
@@ -51,16 +52,15 @@ private const val SHOW_PICKER_THRESHOLD = 3
  */
 @Composable
 fun CallAudioToggleButton(
-  outputState: ToggleButtonOutputState,
   contentDescription: String,
-  onSelectedDeviceChanged: (WebRtcAudioDevice) -> Unit,
   onSheetDisplayChanged: (Boolean) -> Unit,
+  pickerController: AudioOutputPickerController,
   modifier: Modifier = Modifier
 ) {
   val buttonSize = dimensionResource(id = R.dimen.webrtc_button_size)
 
-  val currentOutput = outputState.currentDevice
-  val allOutputs = outputState.availableDevices
+  val currentOutput = pickerController.outputState.currentDevice
+  val allOutputs = pickerController.outputState.availableDevices
 
   val containerColor = if (currentOutput == WebRtcAudioOutput.HANDSET || allOutputs.size >= SHOW_PICKER_THRESHOLD) {
     MaterialTheme.colorScheme.secondaryContainer
@@ -73,11 +73,6 @@ fun CallAudioToggleButton(
   } else {
     colorResource(id = R.color.signal_light_colorOnSecondaryContainer)
   }
-
-  val pickerController = rememberPickerController(
-    onSelectedDeviceChanged = onSelectedDeviceChanged,
-    outputState = outputState
-  )
 
   IconButtons.IconButton(
     size = buttonSize,
@@ -125,12 +120,12 @@ fun CallAudioToggleButton(
 }
 
 @Composable
-private fun rememberPickerController(
+fun rememberAudioOutputPickerController(
   onSelectedDeviceChanged: (WebRtcAudioDevice) -> Unit,
   outputState: ToggleButtonOutputState
-): PickerController {
+): AudioOutputPickerController {
   return remember(onSelectedDeviceChanged, outputState) {
-    PickerController(
+    AudioOutputPickerController(
       onSelectedDeviceChanged,
       outputState
     )
@@ -141,9 +136,10 @@ private fun rememberPickerController(
  * Controller for the Audio picker which contains different state variables for choosing whether
  * or not to display the sheet.
  */
-private class PickerController(
+@Stable
+class AudioOutputPickerController(
   private val onSelectedDeviceChanged: (WebRtcAudioDevice) -> Unit,
-  private val outputState: ToggleButtonOutputState
+  val outputState: ToggleButtonOutputState
 ) {
 
   var displaySheet: Boolean by mutableStateOf(false)
@@ -170,6 +166,10 @@ private class PickerController(
 
   fun show() {
     displaySheet = true
+  }
+
+  fun hide() {
+    displaySheet = false
   }
 
   @OptIn(ExperimentalMaterial3Api::class)
@@ -263,7 +263,7 @@ private fun LegacyAudioPickerContent(
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun CallAudioPickerSheetContentPreview() {
   Previews.BottomSheetPreview {
@@ -280,7 +280,7 @@ private fun CallAudioPickerSheetContentPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun TwoDeviceCallAudioToggleButtonPreview() {
   val outputState = remember {
@@ -291,17 +291,19 @@ private fun TwoDeviceCallAudioToggleButtonPreview() {
 
   Previews.Preview {
     CallAudioToggleButton(
-      outputState = outputState,
       contentDescription = "",
-      onSelectedDeviceChanged = {
-        outputState.setCurrentOutput(it.webRtcAudioOutput)
-      },
-      onSheetDisplayChanged = {}
+      onSheetDisplayChanged = {},
+      pickerController = rememberAudioOutputPickerController(
+        outputState = outputState,
+        onSelectedDeviceChanged = {
+          outputState.setCurrentOutput(it.webRtcAudioOutput)
+        }
+      )
     )
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun ThreeDeviceCallAudioToggleButtonPreview() {
   val outputState = remember {
@@ -313,12 +315,14 @@ private fun ThreeDeviceCallAudioToggleButtonPreview() {
 
   Previews.Preview {
     CallAudioToggleButton(
-      outputState = outputState,
       contentDescription = "",
-      onSelectedDeviceChanged = {
-        outputState.setCurrentOutput(it.webRtcAudioOutput)
-      },
-      onSheetDisplayChanged = {}
+      onSheetDisplayChanged = {},
+      pickerController = rememberAudioOutputPickerController(
+        outputState = outputState,
+        onSelectedDeviceChanged = {
+          outputState.setCurrentOutput(it.webRtcAudioOutput)
+        }
+      )
     )
   }
 }

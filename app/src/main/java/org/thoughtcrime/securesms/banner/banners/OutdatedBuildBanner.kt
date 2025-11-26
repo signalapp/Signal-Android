@@ -13,8 +13,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.ui.compose.Action
@@ -87,7 +87,7 @@ private fun Banner(contentPadding: PaddingValues, daysUntilExpiry: Int, onUpdate
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BannerPreviewExpireToday() {
   Previews.Preview {
@@ -98,7 +98,7 @@ private fun BannerPreviewExpireToday() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BannerPreviewExpireTomorrow() {
   Previews.Preview {
@@ -109,7 +109,7 @@ private fun BannerPreviewExpireTomorrow() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BannerPreviewExpireLater() {
   Previews.Preview {

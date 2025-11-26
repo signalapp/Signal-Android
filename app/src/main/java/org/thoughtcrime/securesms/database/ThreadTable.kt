@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
 import org.thoughtcrime.securesms.util.LRUCache
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.isPoll
 import org.thoughtcrime.securesms.util.isScheduled
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
@@ -496,6 +497,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     messages.setAllReactionsSeen()
+    messages.setAllVotesSeen()
     notifyConversationListListeners()
 
     return messageRecords
@@ -557,6 +559,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         messageRecords += messages.setMessagesReadSince(threadId, sinceTimestamp)
 
         messages.setReactionsSeen(threadId, sinceTimestamp)
+        messages.setVoteSeen(threadId, sinceTimestamp)
 
         val unreadCount = messages.getUnreadCount(threadId)
         val unreadMentionsCount = messages.getUnreadMentionCount(threadId)
@@ -1579,20 +1582,20 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalContactRecord) {
-    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread, isGroup = false)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV1Record) {
-    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread, isGroup = true)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV2Record) {
-    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread, isGroup = true)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalAccountRecord) {
     writableDatabase.withinTransaction { db ->
-      applyStorageSyncUpdate(recipientId, record.proto.noteToSelfArchived, record.proto.noteToSelfMarkedUnread)
+      applyStorageSyncUpdate(recipientId, record.proto.noteToSelfArchived, record.proto.noteToSelfMarkedUnread, isGroup = false)
 
       db.updateAll(TABLE_NAME)
         .values(PINNED_ORDER to null)
@@ -1602,7 +1605,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       for (pinned: AccountRecord.PinnedConversation in record.proto.pinnedConversations) {
         val pinnedRecipient: Recipient? = if (pinned.contact != null) {
-          if (ServiceId.parseOrNull(pinned.contact!!.serviceId) != null) {
+          if (ServiceId.parseOrNull(pinned.contact!!.serviceId, pinned.contact!!.serviceIdBinary) != null) {
             Recipient.externalPush(pinned.contact!!.toSignalServiceAddress())
           } else {
             Log.w(TAG, "Failed to parse serviceId!")
@@ -1628,6 +1631,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         }
 
         if (pinnedRecipient != null) {
+          getOrCreateThreadIdFor(pinnedRecipient)
+
           db.update(TABLE_NAME)
             .values(PINNED_ORDER to pinnedPosition, ACTIVE to 1)
             .where("$RECIPIENT_ID = ?", pinnedRecipient.id)
@@ -1641,11 +1646,11 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     notifyConversationListListeners()
   }
 
-  private fun applyStorageSyncUpdate(recipientId: RecipientId, archived: Boolean, forcedUnread: Boolean) {
+  private fun applyStorageSyncUpdate(recipientId: RecipientId, archived: Boolean, forcedUnread: Boolean, isGroup: Boolean) {
     val values = ContentValues()
     values.put(ARCHIVED, if (archived) 1 else 0)
 
-    val threadId: Long? = getThreadIdFor(recipientId)
+    val threadId: Long? = if (archived) getOrCreateThreadIdFor(recipientId, isGroup) else getThreadIdFor(recipientId)
 
     if (forcedUnread) {
       values.put(READ, ReadStatus.FORCED_UNREAD.serialize())
@@ -2097,6 +2102,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       Extra.forSticker(slide.emoji, authorId)
     } else if (record.isMms && (record as MmsMessageRecord).slideDeck.slides.size > 1) {
       Extra.forAlbum(authorId)
+    } else if (record.isPoll()) {
+      Extra.forPoll(authorId)
     } else if (threadRecipient != null && threadRecipient.isGroup) {
       Extra.forDefault(authorId)
     } else {
@@ -2280,7 +2287,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             individualRecipientId = jsonObject.getString("individualRecipientId")!!,
             bodyRanges = jsonObject.getString("bodyRanges"),
             isScheduled = jsonObject.getBoolean("isScheduled"),
-            isRecipientHidden = jsonObject.getBoolean("isRecipientHidden")
+            isRecipientHidden = jsonObject.getBoolean("isRecipientHidden"),
+            isPoll = jsonObject.getBoolean("isPoll")
           )
         } catch (exception: Exception) {
           null
@@ -2291,7 +2299,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       return ThreadRecord.Builder(cursor.requireLong(ID))
         .setRecipient(recipient)
-        .setType(cursor.requireInt(SNIPPET_TYPE).toLong())
+        .setType(cursor.requireLong(SNIPPET_TYPE))
         .setDistributionType(cursor.requireInt(TYPE))
         .setBody(cursor.requireString(SNIPPET) ?: "")
         .setDate(cursor.requireLong(DATE))
@@ -2367,7 +2375,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val isScheduled: Boolean = false,
     @field:JsonProperty
     @param:JsonProperty("isRecipientHidden")
-    val isRecipientHidden: Boolean = false
+    val isRecipientHidden: Boolean = false,
+    @field:JsonProperty
+    @param:JsonProperty("isPoll")
+    val isPoll: Boolean = false
   ) {
 
     fun getIndividualRecipientId(): String {
@@ -2413,6 +2424,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       fun forScheduledMessage(individualRecipient: RecipientId): Extra {
         return Extra(individualRecipientId = individualRecipient.serialize(), isScheduled = true)
+      }
+
+      fun forPoll(individualRecipient: RecipientId): Extra {
+        return Extra(individualRecipientId = individualRecipient.serialize(), isPoll = true)
       }
     }
   }

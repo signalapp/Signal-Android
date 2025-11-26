@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.devicelist.protos.DeviceName
 import org.thoughtcrime.securesms.jobs.DeviceNameChangeJob
+import org.thoughtcrime.securesms.jobs.E164FormattingJob
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -321,6 +322,7 @@ object LinkDeviceRepository {
       }
       is ArchiveValidator.ValidationResult.RecipientDuplicateE164Error -> {
         Log.w(TAG, "[createAndUploadArchive] The backup file fails validation with a duplicate recipient! Details: ${result.details}", result.exception)
+        AppDependencies.jobManager.add(E164FormattingJob())
         return LinkUploadArchiveResult.BackupCreationFailure(result.exception)
       }
     }

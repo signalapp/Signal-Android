@@ -149,7 +149,13 @@ internal class Svr2Socket(
     }
 
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: OkHttpResponse?) {
-      if (emitError(IOException(t))) {
+      val exception = if (t.message?.contains("404") == true) {
+        NonSuccessfulResponseCodeException(404)
+      } else {
+        IOException(t)
+      }
+
+      if (emitError(exception)) {
         Log.w(TAG, "[onFailure] response? " + (response != null), t)
         stage.set(Stage.FAILED)
         webSocket.close(1000, "OK")

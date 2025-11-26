@@ -118,6 +118,8 @@ class InAppPaymentKeepAliveJob private constructor(
       return
     }
 
+    clearOldPendingPaymentsIfRequired()
+
     if (SignalDatabase.inAppPayments.hasPrePendingRecurringTransaction(type.inAppPaymentType)) {
       info(type, "We are currently processing a transaction for this type. Skipping.")
       return
@@ -223,6 +225,40 @@ class InAppPaymentKeepAliveJob private constructor(
           warn(type, "An unknown server error occurred: ${serviceResponse.status}", error)
           throw InAppPaymentRetryException(error)
         }
+      }
+    }
+  }
+
+  /**
+   * If we have a pending payment that is at least 24 hours old AND we have no jobs
+   * enqueued that are associated with it, then something weird has happened. We should
+   * fail the job and let the keep-alive check create a new one as necessary.
+   */
+  private fun clearOldPendingPaymentsIfRequired() {
+    info(type, "Clearing out old pending payments as required.")
+
+    val inAppPayments = SignalDatabase.inAppPayments.getOldPendingPayments(type.inAppPaymentType)
+
+    inAppPayments.forEach { inAppPayment ->
+      val queue = InAppPaymentsRepository.resolveJobQueueKey(inAppPayment)
+
+      if (AppDependencies.jobManager.isQueueEmpty(queue)) {
+        Log.i(TAG, "User has an aged-out pending in-app payment [${inAppPayment.id}][${inAppPayment.type}]. Marking failed and proceeding with check.")
+        SignalDatabase.inAppPayments.update(
+          inAppPayment = inAppPayment.copy(
+            notified = true,
+            endOfPeriod = 0.seconds,
+            subscriberId = null,
+            state = InAppPaymentTable.State.END,
+            data = inAppPayment.data.newBuilder()
+              .error(
+                InAppPaymentData.Error(
+                  type = InAppPaymentData.Error.Type.REDEMPTION
+                )
+              )
+              .build()
+          )
+        )
       }
     }
   }

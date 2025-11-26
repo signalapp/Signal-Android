@@ -54,20 +54,20 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navArgument
 import org.signal.core.ui.compose.Animations
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Rows.TextAndLabel
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Texts
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.billing.upgrade.UpgradeToEnableOptimizedStorageSheet
 import org.thoughtcrime.securesms.billing.upgrade.UpgradeToPaidTierBottomSheet
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -550,7 +550,7 @@ private fun SetCustomLengthLimitDialog(
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ManageStorageSettingsScreenPreview() {
   Previews.Preview {
@@ -565,7 +565,7 @@ private fun ManageStorageSettingsScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SetKeepMessagesScreenPreview() {
   Previews.Preview {
@@ -573,7 +573,7 @@ private fun SetKeepMessagesScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SetChatLengthLimitScreenPreview() {
   Previews.Preview {
@@ -583,7 +583,7 @@ private fun SetChatLengthLimitScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SetCustomLengthLimitDialogPreview() {
   Previews.Preview {

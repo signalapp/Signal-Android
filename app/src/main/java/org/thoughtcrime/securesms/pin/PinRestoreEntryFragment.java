@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.pin;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.autofill.HintConstants;
-import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -31,13 +28,12 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.keyvalue.RestoreDecisionStateUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.lock.v2.SvrConstants;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.registration.util.RegistrationUtil;
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate;
+import org.thoughtcrime.securesms.registration.util.RegistrationUtil;
 import org.thoughtcrime.securesms.restore.RestoreActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.RemoteConfig;
@@ -94,7 +90,6 @@ public class PinRestoreEntryFragment extends LoggingFragment {
       }
       return false;
     });
-    ViewCompat.setAutofillHints(pinEntry, HintConstants.AUTOFILL_HINT_PASSWORD);
 
     enableAndFocusPinEntry();
 
@@ -103,19 +98,13 @@ public class PinRestoreEntryFragment extends LoggingFragment {
       onPinSubmitted();
     });
 
-    keyboardToggle.setOnClickListener((v) -> {
-      PinKeyboardType keyboardType = getPinEntryKeyboardType();
-
-      keyboardToggle.setIconResource(keyboardType.getIconResource());
-
-      updateKeyboard(keyboardType.getOther());
-    });
-
-    keyboardToggle.setIconResource(getPinEntryKeyboardType().getOther().getIconResource());
+    keyboardToggle.setOnClickListener((v) -> viewModel.toggleKeyboardType());
   }
 
   private void initViewModel() {
     viewModel = new ViewModelProvider(this).get(PinRestoreViewModel.class);
+
+    viewModel.getKeyboardType().observe(getViewLifecycleOwner(), keyboardType -> keyboardType.applyTo(pinEntry, keyboardToggle));
 
     viewModel.triesRemaining.observe(getViewLifecycleOwner(), this::presentTriesRemaining);
     viewModel.getEvent().observe(getViewLifecycleOwner(), this::presentEvent);
@@ -125,10 +114,10 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     if (triesRemaining.hasIncorrectGuess()) {
       if (triesRemaining.getCount() == 1) {
         new MaterialAlertDialogBuilder(requireContext())
-                       .setTitle(R.string.PinRestoreEntryFragment_incorrect_pin)
-                       .setMessage(getResources().getQuantityString(R.plurals.PinRestoreEntryFragment_you_have_d_attempt_remaining, triesRemaining.getCount(), triesRemaining.getCount()))
-                       .setPositiveButton(android.R.string.ok, null)
-                       .show();
+            .setTitle(R.string.PinRestoreEntryFragment_incorrect_pin)
+            .setMessage(getResources().getQuantityString(R.plurals.PinRestoreEntryFragment_you_have_d_attempt_remaining, triesRemaining.getCount(), triesRemaining.getCount()))
+            .setPositiveButton(android.R.string.ok, null)
+            .show();
       }
 
       errorLabel.setText(R.string.PinRestoreEntryFragment_incorrect_pin);
@@ -137,9 +126,9 @@ public class PinRestoreEntryFragment extends LoggingFragment {
       if (triesRemaining.getCount() == 1) {
         helpButton.setVisibility(View.VISIBLE);
         new MaterialAlertDialogBuilder(requireContext())
-                       .setMessage(getResources().getQuantityString(R.plurals.PinRestoreEntryFragment_you_have_d_attempt_remaining, triesRemaining.getCount(), triesRemaining.getCount()))
-                       .setPositiveButton(android.R.string.ok, null)
-                       .show();
+            .setMessage(getResources().getQuantityString(R.plurals.PinRestoreEntryFragment_you_have_d_attempt_remaining, triesRemaining.getCount(), triesRemaining.getCount()))
+            .setPositiveButton(android.R.string.ok, null)
+            .show();
       }
     }
 
@@ -183,50 +172,44 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     }
   }
 
-  private PinKeyboardType getPinEntryKeyboardType() {
-    boolean isNumeric = (pinEntry.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_NUMBER;
-
-    return isNumeric ? PinKeyboardType.NUMERIC : PinKeyboardType.ALPHA_NUMERIC;
-  }
-
   private void onPinSubmitted() {
     pinEntry.setEnabled(false);
-    viewModel.onPinSubmitted(pinEntry.getText().toString(), getPinEntryKeyboardType());
+    viewModel.onPinSubmitted(pinEntry.getText().toString());
     pinButton.setSpinning();
   }
 
   private void onNeedHelpClicked() {
     new MaterialAlertDialogBuilder(requireContext())
-                   .setTitle(R.string.PinRestoreEntryFragment_need_help)
-                   .setMessage(getString(R.string.PinRestoreEntryFragment_your_pin_is_a_d_digit_code, SvrConstants.MINIMUM_PIN_LENGTH))
-                   .setPositiveButton(R.string.PinRestoreEntryFragment_create_new_pin, ((dialog, which) -> {
-                     SvrRepository.onPinRestoreForgottenOrSkipped();
-                     ((PinRestoreActivity) requireActivity()).navigateToPinCreation();
-                   }))
-                   .setNeutralButton(R.string.PinRestoreEntryFragment_contact_support, (dialog, which) -> {
-                     String body = SupportEmailUtil.generateSupportEmailBody(requireContext(),
-                                                                             R.string.PinRestoreEntryFragment_signal_registration_need_help_with_pin,
-                                                                             null,
-                                                                             null);
-                     CommunicationActions.openEmail(requireContext(),
-                                                    SupportEmailUtil.getSupportEmailAddress(requireContext()),
-                                                    getString(R.string.PinRestoreEntryFragment_signal_registration_need_help_with_pin),
-                                                    body);
-                   })
-                   .setNegativeButton(R.string.PinRestoreEntryFragment_cancel, null)
-                   .show();
+        .setTitle(R.string.PinRestoreEntryFragment_need_help)
+        .setMessage(getString(R.string.PinRestoreEntryFragment_your_pin_is_a_d_digit_code, SvrConstants.MINIMUM_PIN_LENGTH))
+        .setPositiveButton(R.string.PinRestoreEntryFragment_create_new_pin, ((dialog, which) -> {
+          SvrRepository.onPinRestoreForgottenOrSkipped();
+          ((PinRestoreActivity) requireActivity()).navigateToPinCreation();
+        }))
+        .setNeutralButton(R.string.PinRestoreEntryFragment_contact_support, (dialog, which) -> {
+          String body = SupportEmailUtil.generateSupportEmailBody(requireContext(),
+                                                                  R.string.PinRestoreEntryFragment_signal_registration_need_help_with_pin,
+                                                                  null,
+                                                                  null);
+          CommunicationActions.openEmail(requireContext(),
+                                         SupportEmailUtil.getSupportEmailAddress(requireContext()),
+                                         getString(R.string.PinRestoreEntryFragment_signal_registration_need_help_with_pin),
+                                         body);
+        })
+        .setNegativeButton(R.string.PinRestoreEntryFragment_cancel, null)
+        .show();
   }
 
   private void onSkipClicked() {
     new MaterialAlertDialogBuilder(requireContext())
-                   .setTitle(R.string.PinRestoreEntryFragment_skip_pin_entry)
-                   .setMessage(R.string.PinRestoreEntryFragment_if_you_cant_remember_your_pin)
-                   .setPositiveButton(R.string.PinRestoreEntryFragment_create_new_pin, (dialog, which) -> {
-                     SvrRepository.onPinRestoreForgottenOrSkipped();
-                     ((PinRestoreActivity) requireActivity()).navigateToPinCreation();
-                   })
-                   .setNegativeButton(R.string.PinRestoreEntryFragment_cancel, null)
-                   .show();
+        .setTitle(R.string.PinRestoreEntryFragment_skip_pin_entry)
+        .setMessage(R.string.PinRestoreEntryFragment_if_you_cant_remember_your_pin)
+        .setPositiveButton(R.string.PinRestoreEntryFragment_create_new_pin, (dialog, which) -> {
+          SvrRepository.onPinRestoreForgottenOrSkipped();
+          ((PinRestoreActivity) requireActivity()).navigateToPinCreation();
+        })
+        .setNegativeButton(R.string.PinRestoreEntryFragment_cancel, null)
+        .show();
   }
 
   private void onAccountLocked() {
@@ -240,7 +223,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
 
     Activity activity = requireActivity();
 
-    if (RemoteConfig.messageBackups() && RestoreDecisionStateUtil.isDecisionPending(SignalStore.registration().getRestoreDecisionState())) {
+    if (RestoreDecisionStateUtil.isDecisionPending(SignalStore.registration().getRestoreDecisionState())) {
       final Intent transferOrRestore = RestoreActivity.getRestoreIntent(activity);
       transferOrRestore.putExtra(PassphraseRequiredActivity.NEXT_INTENT_EXTRA, MainActivity.clearTop(requireContext()));
       startActivity(transferOrRestore);
@@ -257,15 +240,6 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     }
 
     activity.finish();
-  }
-
-  private void updateKeyboard(@NonNull PinKeyboardType keyboard) {
-    boolean isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC;
-
-    pinEntry.setInputType(isAlphaNumeric ? InputType.TYPE_CLASS_TEXT   | InputType.TYPE_TEXT_VARIATION_PASSWORD
-                                         : InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-
-    pinEntry.getText().clear();
   }
 
   private void enableAndFocusPinEntry() {

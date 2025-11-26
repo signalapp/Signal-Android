@@ -51,6 +51,7 @@
             android:paddingTop="8dp"
             android:paddingEnd="14dp"
             android:paddingBottom="8dp"
+            android:gravity="center"
             android:textAppearance="@style/TextAppearance.Signal.Body2"
             android:textColor="@color/signal_dark_colorOnSurface"
             android:visibility="gone"

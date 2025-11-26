@@ -99,10 +99,10 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
                               0,
                               false,
                               false,
-                              Optional.of(Media.ALL_MEDIA_BUCKET_ID),
-                              Optional.empty(),
-                              Optional.empty(),
-                              Optional.empty()));
+                              Media.ALL_MEDIA_BUCKET_ID,
+                              null,
+                              null,
+                              null));
   }
 
   @Override

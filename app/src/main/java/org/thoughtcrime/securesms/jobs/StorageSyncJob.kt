@@ -359,7 +359,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
 
     Log.i(TAG, "We are up-to-date with the remote storage state.")
 
-    if (remoteManifest.recordIkm == null && Recipient.self().storageServiceEncryptionV2Capability.isSupported) {
+    if (remoteManifest.recordIkm == null) {
       Log.w(TAG, "The SSRE2 capability is supported, but no recordIkm is set! Force pushing.")
       AppDependencies.jobManager.add(StorageForcePushJob())
       return false
@@ -464,11 +464,11 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     ContactRecordProcessor().process(records.contacts, StorageSyncHelper.KEY_GENERATOR)
     GroupV1RecordProcessor().process(records.gv1, StorageSyncHelper.KEY_GENERATOR)
     GroupV2RecordProcessor().process(records.gv2, StorageSyncHelper.KEY_GENERATOR)
+    NotificationProfileRecordProcessor().process(records.notificationProfileRecords, StorageSyncHelper.KEY_GENERATOR)
     AccountRecordProcessor(context, freshSelf()).process(records.account, StorageSyncHelper.KEY_GENERATOR)
     StoryDistributionListRecordProcessor().process(records.storyDistributionLists, StorageSyncHelper.KEY_GENERATOR)
     CallLinkRecordProcessor().process(records.callLinkRecords, StorageSyncHelper.KEY_GENERATOR)
     ChatFolderRecordProcessor().process(records.chatFolderRecords, StorageSyncHelper.KEY_GENERATOR)
-    NotificationProfileRecordProcessor().process(records.notificationProfileRecords, StorageSyncHelper.KEY_GENERATOR)
   }
 
   private fun getAllLocalStorageIds(self: Recipient): List<StorageId> {

@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ریکارڈ ادائیگیوں کی وصولی کا جملہ</string>
     <string name="ApplicationPreferencesActivity_record_phrase">ریکارڈ جملہ</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">اپنے PIN کو غیر فعال کرنے سے پہلے ، آپ کو اپنے ادائیگیوں کے کھاتے کی وصولی کو یقینی بنانے کے لئے اپنے ادائیگیوں کی بازیابی کے جملہ کو ریکارڈ کرنا ہوگا۔</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">نئی ریکوری کیی تخلیق کریں</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">آپ کو اپنی پِن غیر فعال کرنے سے پہلے ایک نئی بحالی کی کیی تخلیق کرنی اور ریکارڈ کرنی ہو گی۔</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">کیی تخلیق کریں</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -88,6 +94,8 @@
     <string name="AttachmentKeyboard_file">فائل</string>
     <string name="AttachmentKeyboard_contact">رابطہ</string>
     <string name="AttachmentKeyboard_location">مقام</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">پول</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal کو آپ کی تصاویر اور ویڈیوز دکھانے کے لیے اجازت کی ضرورت ہوتی ہے</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">رسائی کی اجازت دیں</string>
@@ -552,15 +560,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">کال کے دوران صوتی میسج ریکارڈ نہیں کیا جا سکتا۔</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">فارمیٹ کردہ ٹیکسٹ بھیج رہے ہیں</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">ہو سکتا ہے کچھ لوگ Signal کا وہ ورژن استعمال کر رہے ہوں جو فارمیٹ کردہ ٹیکسٹ کو سپورٹ نہیں کرتا۔ وہ آپ کی طرف سے اپنے میسج پر کی گئیں فارمیٹ کی تبدیلیوں کو دیکھنے کے قابل نہیں ہوں گے۔</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">بہر حال بھیجیں</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">منسوخ کریں</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%1$dنہ پڑھے ہوئے پیغامات</item>
@@ -870,12 +869,10 @@
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__you_are_all_set">آپ بالکل تیار ہیں۔ ابھی اپنا بیک اپ شروع کریں۔</string>
-    <!-- Bottom sheet message -->
+    <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">آپ کے بیک کے سائز پر منحصر، اس میں طویل وقت لگ سکتا ہے۔ آپ بیک اپ کے دوران اپنا فون معمول کے مطابق استعمال کر سکتے ہیں۔</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">بعد میں بیک اپ کریں</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">اب بیک اپ کریں</string>
+    <!-- Bottom sheet free message -->
+    <string name="CreateBackupBottomSheet__free_tier">جب آپ میسجز بھیجتے اور موصول کرتے ہیں تو میڈیا آپ کے بیک اپ میں شامل ہو جاتا ہے۔</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">میڈیا بحال نہیں ہو سکتا</string>
@@ -1138,6 +1135,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">میسج ہسٹری ٹرانسفر کریں</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">اپنے ٹیکسٹ میسجز اور اپنے پچھلے 45 دنوں کے میڈیا کو ٹرانسفر کریں</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">اپنے ٹیکسٹ میسجز اور میڈیا کو ٹرانسفر کریں</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">ٹرانسفر نہیں کریں</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1175,6 +1174,9 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal کا یہ ورژن ختم ہوگیا ہے۔ پیغامات بھیجنے اور موصول کرنے کے لئے ابھی اپ ڈیٹ کریں۔</string>
     <string name="ExpiredBuildReminder_update_now">تازہ ترین کریں.</string>
+
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal اب اس ڈیوائس پر کام نہیں کرتی Signal کو دوبارہ استعمال کرنے کے لیے، اپنی ڈیوائس کو Android کے نئے ورژن پر اپ ڈیٹ کریں یا ایک حالیہ ڈیوائس پر سوئچ کریں۔</string>
 
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Signal اپ ڈیٹ کریں</string>
@@ -1392,11 +1394,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">ہو گیا</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">اس شخص کو میراثی گروپوں میں شامل نہیں کیا جاسکتا۔</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">\"%1$s\" میں \"%2$s\" شامل کریں؟</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">\"%2$s\" میں \"%1$s\" کو شامل کریں؟</item>
-        <item quantity="other">\"%2$s\" میں %3$d ممبران کو شامل کریں؟</item>
+        <item quantity="one">\"%2$s\" میں \"{2}\" کو شامل کریں؟</item>
+        <item quantity="other">\"%2$s\" میں %1$d ممبران کو شامل کریں؟</item>
     </plurals>
+
     <string name="AddMembersActivity__add">شامل کریں</string>
     <string name="AddMembersActivity__add_members">ممبران شامل کریں</string>
 
@@ -1499,7 +1506,11 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">ابھی نہیں</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">اگر آپ ابھی ری اسٹور نہ کرنے کا انتخاب کرتے ہیں، تو آپ بعد میں ری اسٹور نہیں کر سکیں گے۔ آپ کا میڈیا پس منظر میں ری اسٹور ہو گا۔</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">آپ کا میڈیا پس منظر میں ری اسٹور ہو گا۔ اگر آپ ابھی ری اسٹور نہ کرنے کا انتخاب کرتے ہیں، تو آپ بعد میں ری اسٹور نہیں کر سکیں گے۔</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">یہ ڈیوائس اب رجسٹر شدہ نہیں رہی۔</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">ایسا ہو سکتا ہے کیونکہ آپ نے ایک مختلف ڈیوائس پر اپنا Signal اکاؤنٹ رجسٹر کیا تھا۔</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">جب مجھے کوئی ذکر کرتا ہے تو مجھے مطلع کریں</string>
@@ -2114,6 +2125,12 @@
     <string name="MessageRecord_you_blocked_this_group">آپ نے اس گروپ کو بلاک کر دیا</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">آپ نے اس گروپ کو ان بلاک کر دیا</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s  نے آپ کو ایک پیغام بھیجا جس پر کارروائی نہیں ہوسکتی ہے یا ظاہر نہیں ہوسکتی ہے کیونکہ یہ ایک نئی Signal کی خصوصیت استعمال کرتی ہے۔</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s نے پول ختم کر دیا: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">آپ نے رائے شماری ختم کر دی: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">قبول کریں</string>
@@ -2429,6 +2446,12 @@
     <string name="WebRtcCallActivity__to_start_call">کال شروع کرنے یا اس میں شامل ہونے کے لیے:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">اپنی ویڈیو کو اہل کے لیے:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">لوکل ویڈیو کا سائز کم کریں</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">لوکل ویڈیو کا سائز بڑھائیں</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal کال</string>
@@ -2921,6 +2944,8 @@
     <string name="SubmitDebugLogActivity_success">کامیابی</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">اس یو آر ایل کو کاپی کریں اور اسے اپنی ایشو رپورٹ یا سپورٹ ای میل میں شامل کریں:. n \\ n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">اشتراک کریں</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">بند کریں</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">اس لاگ کو دیکھنے والوں کے دیکھنے کے لئے عوامی سطح پر آن لائن پوسٹ کیا جائے گا۔ اپ لوڈ کرنے سے پہلے آپ اس کی جانچ کرسکتے ہیں۔</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">آپ کے جمع کروائیں پر کلک کرنے پر، آپ کا لاگ ایک منفرد، غیر پبلش شدہ URL پر 30 دنوں کے لیے آن لائن پوسٹ کر دیا جائے گا۔ آپ پہلے اسے مقامی طور پر محفوظ کر سکتے ہیں۔</string>
@@ -3179,6 +3204,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">آپ کی پیمنٹ پر %1$s ری ایکٹ کیا۔</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">آپ کے اسٹیکر پر %1$s ری ایکٹ کیا۔</string>
     <string name="MessageNotifier_this_message_was_deleted">یہ پیغام حذف کردیا گیا تھا۔</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s%2$s نے پول میں ووٹ دیا \"%3$s\"</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">رابطے میں شامل Signal اطلاعات بند کردیں؟ آپ انہیں Signal &amp; gt میں دوبارہ فعال کرسکتے ہیں۔ ترتیبات &amp; gt؛ اطلاعات۔</string>
 
@@ -3355,6 +3382,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">ویڈیو کے بغیر جواب دیں</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">کیمرے کی سمت تبدیل کریں</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">آڈیو آؤٹ پٹ</string>
@@ -3412,9 +3442,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal یوزر نہیں ہے۔ براہ کرم یوزر نیم چیک کریں اور دوبارہ کوشش کریں۔"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">آپ کو اپنے آپ کو گروپ میں شامل کرنے کی ضرورت نہیں ہے</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">گروپ کا زیادہ سے زیادہ سائز پہنچ گیا</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal گروپس میں زیادہ سے زیادہ %1$dممبر ہوسکتے ہیں۔</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal گروپس میں زیادہ سے زیادہ %1$sممبر ہوسکتے ہیں۔</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">تجویز کردہ ممبر کی حد ہوگئی</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal گروپس ممبروں %1$d یا اس سے کم کے ساتھ بہترین کارکردگی کا مظاہرہ کرتے ہیں۔ مزید ممبروں کو شامل کرنے سے پیغامات بھیجنے اور موصول ہونے میں تاخیر ہوگی۔</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal گروپس ممبروں %1$s یا اس سے کم کے ساتھ بہترین کارکردگی کا مظاہرہ کرتے ہیں۔ مزید ممبروں کو شامل کرنے سے پیغامات بھیجنے اور موصول ہونے میں تاخیر ہوگی۔</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$dممبر</item>
         <item quantity="other">%1$dممبروں</item>
@@ -4424,6 +4454,8 @@
     <string name="conversation_selection__menu_multi_select">منتخب کریں</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">پیمنٹ کی تفصیلات</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">پول ختم کریں</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4813,7 +4845,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">معلومات</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">یہ ایک بیٹا فیچر ہے جس میں ہم مسلسل نئی فعالیت شامل کرتے رہیں گے۔</string>
+    <string name="Beta__this_is_beta">یہ ایک بی ٹا فیچر ہے اور وقت کے ساتھ اس میں بہتری آئے گی۔</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal ان لاک کریں</string>
@@ -4977,6 +5009,14 @@
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"اشارہ کرنے پر \"Android ڈیوائس سے ٹرانسفر\" منتخب کریں اور پھر \"جاری رکھیں\"۔ دونوں آلات قریب رکھیں۔"</string>
     <string name="OldDeviceTransferInstructions__continue">جاری رکھیں</string>
+    <!-- Title for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">ڈیوائس ٹرانسفر کو روک دیں؟</string>
+    <!-- Message for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">آپ کی نئی دیوائس پر کوئی بھی ڈیٹا ٹرانسفر نہیں کیا گیا۔</string>
+    <!-- Confirm button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__stop_transfer">منتقلی بند کرو</string>
+    <!-- Negative/cancel button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__continue_transfer">منتقل کرنا جاری رکھیں</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">اپنے نئے آلے پر جائیں</string>
@@ -5168,10 +5208,14 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">چھوڑ دو</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d رکن</item>
-        <item quantity="other">%1$dممبران</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$sممبر</item>
+        <item quantity="other">%1$sممبروں</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">اگلا</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">اشتراک کریں</string>
@@ -5364,7 +5408,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">اپنے Signal بیک اپس کی سبسکرپشن کی تجدید کریں</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">اپنے Signal کے محفوظ بیک اپس کی سبسکرپشن کی تجدید کریں</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">بیک اپ مکمل نہیں کر سکے</string>
     <!-- String alerting user that backup redemption -->
@@ -5893,24 +5937,24 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s کو بلاک کر دیا گیا ہے</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">بلاک ناکام ہو گیا</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">%1$s کو ہٹانے سے قاصر ہیں</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">یہ فرد آپ کی ڈیوائس کے روابط میں محفوظ ہے۔ انہیں اپنے روابط سے ڈیلیٹ کریں اور دوبارہ کوشش کریں۔</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">رابطہ دیکھیں</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s Signal یوزر نہیں ہے</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s Signal یوزر نہیں ہے</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s Signal یوزر نہیں ہے</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">مینو کھولیں</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s Signal کا یوزر نہیں ہے</item>
         <item quantity="other">%1$s Signal کے یوزرز نہیں ہیں</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">نام یا نمبر تلاش کریں</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">نام، یوزر نیم ، یا نمبر</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">عددی کیی بورڈ پر منتقل کریں</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">حرفی عددی کیی بورڈ پر منتقل کریں</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">تلاش کے فلٹر کو ری سیٹ کریں</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6076,7 +6120,6 @@
     <string name="BadgesOverviewFragment__featured_badge">خصوصی بیج</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">پروفائل پر بیجز ڈسپلے کریں</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">پروفائل اپ ڈیٹ کرنے میں ناکامی ہوئی</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">بیج منتخب کریں</string>
@@ -7613,15 +7656,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ترمیم کی ہسٹری</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">میسج میں ترمیم کریں</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">اگر آپ کسی میسج میں ترمیم کرتے ہیں، تو یہ صرف ان لوگوں کو نظر آئے گی جو Signal کے تازہ ترین ورژنز پر ہیں۔ وہ یہ دیکھ سکیں گے کہ آپ نے میسج میں ترمیم کی ہے۔</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">منسوخ کریں</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">بھیجیں</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -7738,25 +7772,29 @@
     <string name="PendingParticipantsBottomSheet__deny_all">سب مسترد کریں</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Signal بیک اپس کو آن کریں</string>
+    <string name="TurnOnSignalBackups__title">Signal کے محفوظ بیک اپس کو فعال کریں</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Signal محفوظ بیک اپس کو آزمائیں</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">اپنا نیا فون لینے یا Signal کو دوبارہ انسٹال کرنے پر اپنے کسی بھی میسج سے کبھی محروم نہ ہوں۔</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">آن کریں</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">ابھی نہیں</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">آپ \"سیٹنگز\" میں جا کر بیک اپس کو فعال کر سکتے ہیں</string>
 
-    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">اپنی بیک اپ کیی کی تصدیق کریں</string>
-    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">اپنی کیی کو یاد رکھنے میں مدد کے لیے، ہم آپ سے وقتاً فوقتاً اس کا پوچھتے رہیں گے۔</string>
-    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">اپنی ریکوری کیی کی تصدیق کریں</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">ہم کبھی کبھار آپ سے اپنی کیی کی تصدیق کرنے کے لیے کہیں گے تاکہ یقینی بنایا جا سکے کہ آپ کو یہ ابھی بھی یاد ہے</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
     <string name="VerifyBackupKey__verify">تصدیق کریں</string>
-    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">ابھی نہیں</string>
-    <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">بیک اپ کیی درست ہے۔ اپنی کیی کو محفوظ رکھیں۔</string>
-    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">ریکوری کیی درست ہے۔ اپنی کیی کو محفوظ رکھیں۔</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">ہم ایک ہفتے میں آپ سے دوبارہ رابطہ کریں گے۔</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -7902,7 +7940,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">آپ کے ادائیگی کے طریقے سے آپ کی رکنیت کی تجدید نہیں ہو سکی۔ آپ کو میڈیا کا بیک اپ جاری رکھنے کے لیے ایک فعال سبسکرپشن کی ضرورت ہے۔</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Signal بیک اپس کے مفت پلان تک آپ کی رسائی جاری رہے گی۔</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">آپ کو Signal کے محفوظ بیک اپس کے مفت پلان تک رسائی حاصل رہے گی۔</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">بیک اپ مکمل نہیں کر سکے</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7970,6 +8008,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">اپنے میڈیا کو بحال کرنے کے لیے %1$s جگہ خالی کریں۔</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">میڈیا بحال ہو رہا ہے</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">میڈیا ری اسٹور کرنے کو منسوخ کرنا</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">میڈیا کی ری اسٹور روک دی گئی</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8015,6 +8055,12 @@
     <string name="BackupStatusRow__your_last_backup">آپ کا آخری بیک اپ مکمل نہیں ہو سکا۔ یقینی بنائیں کہ آپ کا فون Wi-Fi سے کنکٹ ہے اور دوبارہ کوشش کرنے کے لیے \"اب بیک اپ کریں\" پر ٹیپ کریں۔</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">آپ کا آخری بیک اپ مکمل نہیں ہو سکا۔ یقینی بنائیں کہ آپ Signal کا جدید ورژن استعمال کر رہے ہیں اور دوبارہ کوشش کریں۔</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">آپ کے پاس موجود میسجز کی تعداد اسٹوریج کی حد سے زیادہ ہے۔ کچھ میسجز حذف کریں اور دوبارہ کوشش کریں۔</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s سے پہلے بھیجے گئے یا موصول کیے گئے میسجز کو بیک اپ نہیں کیا جا رہا۔</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">آپ کا بیک اپ مکمل نہیں ہو سکا کیونکہ آپ کی اسٹوریج میں جگہ کم ہے۔ اپنی ڈیوائس میں جگہ خالی کریں اور دوبارہ کوشش کریں۔</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">مزید جانیں</string>
 
@@ -8045,6 +8091,32 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">سبسکرپشن کو تبدیل یا منسوخ کریں</string>
 
+    <!-- GooglePlayServicesAvailability -->
+    <!-- Dialog title when Google Play services are missing from the device -->
+    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play کی سروسز موجود نہیں ہیں</string>
+    <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
+    <string name="GooglePlayServicesAvailability__service_missing_message">Signal کے محفوظ بیک اپس کو سبسکرائب کرنے کے لیے، آپ کو اپنے فون پر Google Play کی سروسز انسٹال کرنے کی ضرورت ہے۔</string>
+    <!-- Dialog button text to install Google Play services -->
+    <string name="GooglePlayServicesAvailability__install_play_services">Play سروسز انسٹال کریں</string>
+    <!-- Dialog title when Google Play services are currently updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play کی سروسز اپ ڈیٹ ہو رہی ہیں</string>
+    <!-- Dialog message asking user to wait while Google Play services finish updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_message">Signal کے محفوظ بیک اپس کو سبسکرائب کرنے کے لیے براہ کرم Google Play کی سروسز کی اپ ڈیٹ مکمل ہونے کا انتظار کریں۔</string>
+    <!-- Dialog title when Google Play services need to be updated -->
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Google Play کی سروسز کو اپ ڈیٹ کریں</string>
+    <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
+    <string name="GooglePlayServicesAvailability__service_update_required_message">Signal کے محفوظ بیک اپس کو سبسکرائب کرنے کے لیے، اپنے فون میں Google Play سروس کو اپ ڈیٹ کریں۔</string>
+    <!-- Dialog button text to update Google Play services -->
+    <string name="GooglePlayServicesAvailability__update">اَپ ڈیٹ</string>
+    <!-- Dialog title when Google Play services are disabled -->
+    <string name="GooglePlayServicesAvailability__service_disabled_title">ادا شدہ سبسکرپشنز کے لیے Google Play درکار ہے</string>
+    <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
+    <string name="GooglePlayServicesAvailability__service_disabled_message">Signal کے محفوظ بیک اپس کو سبسکرائب کرنے کے لیے، اپنے فون میں Google Play کی سروسز کو فعال کریں اور Google Play اسٹور میں سائن ان کریں۔ </string>
+    <!-- Dialog button text to learn more about enabling Google Play services -->
+    <string name="GooglePlayServicesAvailability__learn_more">مزید جانیں</string>
+    <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
+    <string name="GooglePlayServicesAvailability__service_invalid_message">آپ Signal کے محفوظ بیک اپس کو سبسکرائب نہیں کر سکتے کیونکہ آپ کا فون Google Play کی سروسز کو سپورٹ نہیں کرتا۔ مدد کے لیے فون تیار کرنے والے ادارے سے رابطہ کریں۔</string>
+
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">چیٹ کی حدود</string>
@@ -8065,13 +8137,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">غیر استعمال شدہ میڈیا کو آف لوڈ کر دیا جائے گا، لیکن آپ کے بیک اپ سے کسی بھی وقت ڈاؤن لوڈ کیا جا سکتا ہے۔</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">اسٹوریج کی کارکردگی کو صرف Signal بیک اپس کے ادا شدہ درجے کے ساتھ ہی استعمال کیا جا سکتا ہے۔ آپ کی بیک اپس کی سبسکرپشن ابھی بھی زیرِ عمل ہے اور ابھی فعال نہیں ہوئی۔ براہ کرم کچھ دیر بعد دوبارہ کوشش کریں۔</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">اسٹوریج کی کارکردگی کو صرف Signal کے محفوظ بیک اپس کے ادا شدہ درجے کے ساتھ ہی استعمال کیا جا سکتا ہے۔ آپ کی بیک اپس کی سبسکرپشن ابھی بھی زیرِ عمل ہے اور ابھی فعال نہیں ہوئی۔ براہ کرم بعد میں دوبارہ کوشش کریں۔</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">اس فیچر کو فعال کرنے کے لیے اپ گریڈ کریں</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">اسٹوریج کی کارکردگی کو صرف Signal بیک اپس کے ادا شدہ درجے کے ساتھ ہی استعمال کیا جا سکتا ہے۔ اس فیچر کے استعمال کو شروع کرنے کے لیے اپنے بیک اپ پلان کو اپ گریڈ کریں۔</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">اسٹوریج کی کارکردگی کو صرف Signal کے محفوظ بیک اپس کے ادا شدہ درجے کے ساتھ ہی استعمال کیا جا سکتا ہے۔ اس فیچر کے استعمال کو شروع کرنے کے لیے اپنے بیک اپ پلان کو اپ گریڈ کریں۔</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">%1$s/ماہ کے لیے سبسکرائب کریں</string>
 
@@ -8090,7 +8162,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">یہ میڈیا مزید دستیاب نہیں ہے</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">اپنے تمام میڈیا کے بیک اپ کا آغاز کرنے کے لیے، Signal بیک اپس کو فعال کریں اور ادا شدہ درجے کا انتخاب کریں۔</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">اپنے تمام میڈیا کا بیک اپ شروع کرنے کے لیے، Signal کے محفوظ بیک اپس کو فعال کریں اور ادا شدہ درجے کا انتخاب کریں۔</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">جاری رکھیں</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8118,6 +8190,8 @@
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/ماہانہ، %2$s کو تجدید ہوتی ہے</string>
+    <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
+    <string name="BackupsSettingsFragment_renews_s">%1$s کی تجدید کرتا ہے</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">%1$s کو آخری بیک اپ</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8134,8 +8208,12 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">اپ لوڈ کرنا منسوخ کریں</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">محفوظ بیک اپس</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal بیک اپس</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal کے محفوظ بیک اپس</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">آف کریں</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">تصدیق درکار ہے</string>
     <!-- Row label to launch payment history screen -->
@@ -8147,19 +8225,28 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">بیک اپ کا سائز</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">جانچ کی جا رہی ہے…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">بیک اپ کی فریکوئنسی</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">آپ کے میڈیا اور میسجز کا روزانہ بیک اپ لیا جاتا ہے۔</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">سیلولر کا استعمال کرتے ہوئے بیک اپ کریں</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">بیک اپ کیی دیکھیں</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">بیک اپ کیی دیکھنے کے لیے ان لاک کریں</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">ریکوری کیی دیکھیں</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">ریکوری کیی دیکھنے کے لیے ان لاک کریں</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">اپنی کیی دیکھنے کے لیے، تصدیق کریں کہ یہ آپ ہی ہیں</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">بند کریں اور بیک اپ حذف کریں</string>
+    <!-- Dialog title for explainer text to on how backup size works for free tier -->
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">بیک اپ کا سائز</string>
+    <!-- Dialog message for explainer text to on how backup size works for free tier -->
+    <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
+        <item quantity="one">آپ کے بیک اپ میں تمام ٹیکسٹ میسجز اور آخری %1$d دن کا میڈیا شامل ہے۔ نیا میڈیا موصول ہونے اور پرانے میڈیا کی معیاد ختم ہونے پر سائز تبدیل ہو جائے گا۔</item>
+        <item quantity="other">آپ کے بیک اپ میں تمام ٹیکسٹ میسجز اور آخری %1$d دنوں کا میڈیا شامل ہے۔ نیا میڈیا موصول ہونے اور پرانے میڈیا کی معیاد ختم ہونے پر سائز تبدیل ہو جائے گا۔</item>
+    </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">بیک اپ حذف اور بند کر دیا گیا۔</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
@@ -8171,7 +8258,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">بیک اپ رات تیار کیا جائے گا۔</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">نئی بیک اپ کیی تخلیق ہو گئی</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">نئی ریکوری کیی تخلیق ہو گئی</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">سبسکرپشن غیر فعال ہے</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8249,11 +8336,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">آپ کے بیک اپ کے سائز پر منحصر ہے، یہ زیادہ وقت لے سکتا ہے۔ ڈاؤن لوڈ کے دوران آپ اپنے فون کو معمول کے مطابق استعمال کر سکتے ہیں۔</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">اس ڈیوائس پر آپ کی سبسکرپشن نہیں ملی۔ Signal بیک اپس کا استعمال کرنا جاری رکھنے کے لیے تجدید کریں۔</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">اس ڈیوائس پر آپ کی سبسکرپشن نہیں ملی۔ Signal کے محفوظ بیک اپس کا استعمال جاری رکھنے کے لیے تجدید کریں۔</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">اس ڈیوائس پر آپ کی سبسکرپشن اگلے %1$d دن کے لیے مستند ہے۔ Signal کے بیک اپس کا استعمال کرنا جاری رکھنے کے لیے تجدید کریں</item>
-        <item quantity="other">اس ڈیوائس پر آپ کی سبسکرپشن اگلے %1$d ایام کے لیے مؤثر ہے۔ Signal کے بیک اپس کا استعمال کرنا جاری رکھنے کے لیے تجدید کریں</item>
+        <item quantity="one">اس ڈیوائس پر آپ کی سبسکرپشن اگلے %1$d دن کے لیے فعال ہے۔ Signal کے محفوظ بیک اپس کا استعمال کرنا جاری رکھنے کے لیے تجدید کریں</item>
+        <item quantity="other">اس ڈیوائس پر آپ کی سبسکرپشن اگلے %1$d دنوں کے لیے فعال ہے۔ Signal کے محفوظ بیک اپس کا استعمال کرنا جاری رکھنے کے لیے تجدید کریں</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">دوبارہ سبسکرائب کریں</string>
@@ -8303,6 +8390,8 @@
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">نیٹ ورک میں کوئی نقص واقع ہوا ہے۔ براہ کرم اپنا انٹرنیٹ کنیکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">اپ لوڈ ہو رہا ہے: %2$s کا %1$s (%3$d%%)</string>
+    <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_d">اپ لوڈ ہو رہا ہے: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">تفصیلات</string>
     <!-- Text displayed when there was an error deleting backup -->
@@ -8376,36 +8465,38 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">آپ کی بیک اپ کیی</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">ریکوری کیی</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">آپ کی بیک اپ کی کیی 64 حروف پر مشتمل ایک کوڈ ہے جو آپ کو Signal کو دوبارہ انسٹال کرنے پر اپنے بیک اپ کو بحال کرنے میں مدد دیتا ہے۔</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">آپ کی بحالی کی کیی 64 حروف پر مشتمل ایک کوڈ ہے جو آپ کو اپنے بیک اپ کی بحالی میں درکار ہو گی۔</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">اگر آپ اپنی کیی بھول جاتے ہیں، تو آپ اپنے بیک اپ کو بحال نہیں کر سکیں گے۔ Signal آپ کے بیک اپ کو بحال کرنے میں مدد نہیں کر سکتا۔</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">اپنی بحالی کی کیی کو کسی محفوظ جگہ جیسے کسی محفوظ پاسورڈ مینیجر میں اسٹور کریں، اور اسے کسی کے ساتھ شیئر نہ کریں۔</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">اگر آپ اسے کھو دیتے ہیں، تو آپ اپنے میسجز کو بحال نہیں کر سکیں گے۔</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">اگلا</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">ریکوری کیی دیکھیں</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">اپنی بیک اپ کیی محفوظ کریں</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">اپنی ریکوری کیی کو ریکارڈ کریں</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">یہ کیی آپ کے اکاؤنٹ اور ڈیٹا کو بحال کرنے کے لیے درکار ہوتی ہے۔ اس کیی کو کسی محفوظ جگہ پر اسٹور کریں۔ اگر آپ اسے کھو دیتے ہیں، تو آپ اپنا اکاؤنٹ بحال نہیں کر سکیں گے۔</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">پاسورڈ مینیجر میں محفوظ کریں</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">پاسورڈ مینیجر میں محفوظ کرنا ہے؟</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">اپنی بیک اپ کیی کو پاسورڈ مینیجر میں صرف اس وقت محفوظ کریں جب آپ کو بھروسہ ہو کہ وہ محفوظ ہے۔ Signal ایسی کوئی تجویز نہیں دیتا کہ آپ کے لیے کون سا پاسورڈ مینیجر صحیح ہے۔</string>
-    <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal بیک اپس</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">اپنی ریکوری کیی کو صرف اسی پاسورڈ مینیجر میں رکھیں جسے آپ محفوظ سمجھتے ہیں۔ Signal ایسی کوئی تجویز نہیں دیتا کہ آپ کے لیے کون سا پاسورڈ مینیجر صحیح ہے۔</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal کے محفوظ بیک اپس</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">آپ کے پاسورڈ مینیجر میں محفوظ ہو گیا</string>
-    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">پاسورڈ مینیجر میں محفوظ نہیں کر سکتے</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">آپ کے پاس پاسورڈ مینیجر کا سیٹ اپ نہیں ہے، یا آپ کا استعمال کردہ پاسورڈ مینیجر معاونت یافتہ نہیں ہے۔</string>
-    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
     <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">آپ نے پہلے گوگل کے پاسورڈ مینیجر میں Signal کے لیے پاسورڈ محفوظ نہ کرنے کا انتخاب کیا تھا۔ اپنے گوگل پاسورڈ مینیجر کی سیٹنگز میں، Signal کو \"مسترد شدہ سائٹس اور ایپس\" سے ہٹائیں اور دوبارہ کوشش کریں۔</string>
     <!-- Label for a button that navigates to the device settings -->
     <string name="MessageBackupsKeyRecordScreen__go_to_settings">سیٹنگز پر جائیں</string>
@@ -8426,42 +8517,48 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">میڈیا ڈاؤن لوڈ کریں</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">نئی بیک اپ کیی تخلیق کرنے کے لیے، آپ کو \"اسٹوریج کو بہتر بنائیں\" کو لازمی آف کرنا ہو گا اور اس وقت تک انتظار کرنا ہو گا جب تک آپ کا تمام میڈیا ڈاؤن لوڈ نہ ہو جائے۔ ڈاؤن لوڈ مکمل ہونے پر، آپ نئی کیی تخلیق کر سکتے ہیں۔</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">نئی ریکوری کیی تخلیق کرنے کے لیے، آپ کو \"اسٹوریج کو بہتر بنائیں\" کو لازمی بند کرنا ہو گا اور اس وقت تک انتظار کرنا ہو گا جب تک آپ کا تمام میڈیا ڈاؤن لوڈ نہ ہو جائے۔ ڈاؤن لوڈ مکمل ہونے پر، آپ نئی کیی تخلیق کر سکتے ہیں۔</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">آف کریں اور ڈاؤن لوڈ کریں</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">نئی بیک اپ کیی تخلیق کریں</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">نئی ریکوری کیی تخلیق کریں</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">نئی کیی تخلیق کرنا صرف اس صورت میں ضروری ہے جب کوئی اور آپ کی کیی کے متعلق جانتا ہو۔ آپ کو میڈیا سمیت، اپنے بیک اپ کو دوبارہ اپ لوڈ کرنا ہو گا۔ اگر آپ \"اسٹوریج کو بہتر بنائیں\" کا استعمال کر رہے ہیں تو آپ کو پہلے آف لوڈ کردہ میڈیا ڈاؤن لوڈ کرنا ہو گا۔</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">بیک اپ کا سیٹ اپ بند کریں؟</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">آپ نے بیک اپس ترتیب دینے کو ختم نہیں کیا، اور کوئی بیک اپ تخلیق نہیں کیا جا سکا ہے۔ آپ سیٹنگز میں جا کر بیک اپس کو فعال کر سکتے ہیں۔</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">بیک اپ کا سیٹ اپ بند کریں</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">کیی کی تخلیق کے عمل کو منسوخ کریں؟</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">آپ کی نئی بیک اپ کیی اس وقت تک تخلیق نہیں کی جائے گی جب تک آپ اس کی تصدیق نہ کر دیں۔</string>
-    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">آپ کی نئی ریکوری کیی اس وقت تک تخلیق نہیں کی جائے گی جب تک آپ اس کی تصدیق نہ کر دیں۔</string>
+    <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">کیی کی تصدیق کریں</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">کیی کی تخلیق کے عمل کو منسوخ کریں</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">اپنی بیک اپ کیی کی تصدیق کریں</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">اپنی ریکوری کیی کی تصدیق کریں</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">وہ بیک اپ کیی درج کریں جو آپ نے ابھی ریکارڈ کی ہے</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">وہ ریکوری کیی درج کریں جو آپ نے ابھی ریکارڈ کی ہے</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">بیک اپ کیی</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">ریکوری کیی</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">غلط بیک اپ کیی</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">غلط ریکوری کیی</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">کیی کو دوبارہ دیکھیں</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">اگلا</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">اپنی بیک اپ کیی درج کریں</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">اپنی ریکوری کیی درج کریں</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">64 ہندسوں پر مشتمل وہ کوڈ درج کریں جو آپ نے بیک اپس کو فعال کرتے وقت ریکارڈ کیا تھا۔</string>
-    <!-- Button text when you forget your backup key -->
+    <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">کیی بھول گئے ہیں؟</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
@@ -8479,10 +8576,14 @@
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/ماہ کے لیے سبسکرائب کریں</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">بیک اپ کی قسم کو تبدیل کریں</string>
+    <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">اس پلان کے متعلق مزید</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">سبسکرپشن منسوخ کریں</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">مفت</string>
+    <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
+    <string name="MessageBackupsTypeSelectionScreen__paid">ادا شدہ</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/ماہ</string>
     <!-- Title for free tier -->
@@ -8507,6 +8608,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">موجودہ پلان</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">پلان اپ گریڈ نہیں ہو سکتا</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Signal کے محفوظ بیک اپس کو سبسکرائب کرنے لیے، آپ کا اپنے فون پر Google کی سروسز کو فعال کرنا اور Google Play اسٹور میں سائن ان کرنا ضروری ہے۔</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8537,9 +8642,9 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">ری اسٹور کریں یا اکاؤنٹ ٹرانسفر کریں</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">اس ڈیوائس پر اپنا Signal اکاؤنٹ اور میسج ہسٹری حاصل کریں۔</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal بیک اپس سے</string>
-    <!-- Option subtitle for restoring via signal backups -->
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">منجانب Signal کے محفوظ کردہ بیک اپس</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">آپ کا مفت یا ادائیگی شدہ Signal بیک اپ پلان</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">کسی بیک اپ فولڈر سے</string>
@@ -8551,46 +8656,56 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">اپنے پرانے فون سے</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">اپنے پرانے Android سے براہ راست ٹرانسفر کریں</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">بحال کرنا چھوڑ دیں؟</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">اگر آپ ابھی ری اسٹور نہیں کرتے تو آپ بعد میں بھی ری اسٹور نہیں کر سکیں گے۔ اگر آپ ری اسٹور چھوڑ دینے کے بعد بیک اپس دوبارہ فعال کرتے ہیں، تو آپ کا موجودہ بیک اپ آپ کی نئی میسجنگ ہسٹری کے ساتھ تبدیل ہو جائے گا۔</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">بحال کرنا نظر انداز کریں</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">لوکل بیک اپ کو ری اسٹور کریں</string>
     <!-- Screen subtitle for restore via local backup -->
     <string name="RestoreLocalBackup_subtitle">اپنی ڈیوائس پر جو آپ نے بیک اپ محفوظ کیا ہے اس سے اپنے میسجز ری اسٹور کریں۔ اگر آپ ابھی ری اسٹور نہیں کرتے، تو آپ بعد میں ری اسٹور نہیں کر سکیں گے۔</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">اپنی بیک اپ کیی درج کریں</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">آپ کی بیک اپ کیی 64 حروف پر مشتمل ایک کوڈ ہے جو آپ کے اکاؤنٹ اور ڈیٹا کو بحال کرنے کے لیے درکار ہوتی ہے۔</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">بیک اپ کیی نہیں ہے؟</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">بیک اپ کیی</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">بیک اپس کو ان کے 64 حروف پر مشتمل بحالی کے کوڈ کے بغیر بحال نہیں کیا جا سکتا۔ اگر آپ سے اپنی بیک اپ کیی گم ہو گئی ہے، تو Signal آپ کے بیک اپ کو بحال کرنے میں مدد نہیں کر سکتا۔</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">اگر آپ کے پاس اپنی پرانی ڈیوائس موجود ہے تو آپ سیٹنگز &gt; بیک اپس میں اپنی بیک اپ کیی دیکھ سکتے ہیں۔ اس کے بعد بیک اپ کیی دیکھیں پر ٹیپ کریں۔</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">اپنی ریکوری کیی درج کریں</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">آپ کی ریکوری کیی 64 حروف پر مشتمل ایک کوڈ ہے جو آپ کے اکاؤنٹ اور ڈیٹا کو ریکور کرنے کے لیے درکار ہوتی ہے۔</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">کوئی ریکوری کیی نہیں ہے؟</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">ریکوری کیی</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">بیک اپس کو ان کے 64 حروف پر مشتمل ریکوری کوڈ کے بغیر ریکور نہیں کیا جا سکتا۔ اگر آپ سے اپنی ریکوری کیی گم ہو گئی ہے، تو Signal آپ کے بیک اپ کو ری اسٹور کرنے میں مدد نہیں کر سکتا۔</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">اگر آپ کے پاس اپنی پرانی ڈیوائس موجود ہے تو آپ سیٹنگز &gt; بیک اپس میں اپنی ریکوری کیی دیکھ سکتے ہیں۔ اس کے بعد ریکوری کیی دیکھیں پر ٹیپ کریں۔</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">مزید جانیں</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">اسکپ کریں اور ری اسٹور نہ کریں</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">غلط بیک اپ کیی</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">غلط ریکوری کیی</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">یقینی بنائیں کہ Signal بیک اپس کی فعالی کے وقت آپ اسی فون نمبر اور اپنی محفوظ کردہ 64 حروف کی بیک اپ کیی کے ساتھ رجسٹر کر رہے ہیں۔ اس کیی کے بغیر بیک اپس کو بحال نہیں کیا جا سکتا۔</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">یقینی بنائیں کہ آپ اسی فون نمبر اور 64 حروف پر مشتمل ریکوری کیی کے ساتھ رجسٹر کریں جو آپ نے Signal کے محفوظ بیک اپس کو فعال کرتے ہوئے محفوظ کی تھی۔ اس کیی کے بغیر بیک اپس کو ریکور نہیں کیا جا سکتا۔</string>
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">دوبارہ کوشش کریں</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">بیک اپ کیی میں مدد</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">غلط بیک اپ کیی</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">ریکوری کیی میں مدد</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">غلط ریکوری کیی</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">بہت طویل ہے (%1$d/%2$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">غیر درست بیک اپ کیی</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">غلط ریکوری کیی</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">بیک اپ نہیں ملا</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">آپ نے جو بیک اپ کیی درج کی ہے وہ درست ہے، لیکن اس سے کوئی بیک اپ وابستہ نہیں ہے۔ اگر آپ کے پاس ابھی تک پرانا فون ہے، تو یقینی بنائیں کہ بیک اپس فعال ہیں اور بیک اپ مکمل ہو چکا ہے اور دوبارہ کوشش کریں۔</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">جو ریکوری کیی آپ نے درج کی ہے وہ درست ہے، لیکن اس سے کوئی بیک اپ منسلک نہیں ہے۔ اگر آپ کے پاس ابھی تک پرانا فون ہے، تو یقینی بنائیں کہ بیک اپس فعال ہیں اور بیک اپ مکمل ہو چکا ہے اور دوبارہ کوشش کریں۔</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">ہو سکتا ہے آپ نے اپنی بحالی کی کیی غلط درج کی ہو، یا آپ نے اپنی پرانی ڈیوائس پر کم از کم ایک بیک اپ مکمل نہ کیا ہو۔\n\nیقینی بنائیں کہ آپ اسی فون نمبر اور بحالی کی کیی کے ساتھ رجسٹر کر رہے ہیں جو آپ نے Signal محفوظ بیک اپس کو فعال کرتے ہوئے محفوظ کی تھی، اور تصدیق کریں کہ آپ کی پرانی ڈیوائس پر بیک اپ مکمل ہو گیا ہو۔</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">آپ کی بحالی کی کیی کی کوششوں کی حد ختم ہو گئی ہے۔ آپ کی حفاظت کے لیے، آپ کی انجام دی جانے والی کوششوں کی تعداد محدود ہے۔ ایک گھنٹے تک انتظار کریں اور دوبارہ کوشش کریں۔</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">بحال کرنا نظر انداز کریں</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8656,9 +8771,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">اپنی دوسری ڈیوائس پر اپنا اکاؤنٹ ٹرانسفر کرنا جاری رکھیں۔</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">بحالی مکمل</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">اپنی دوسری ڈیوائس پر مکمل کریں</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">آپ کا Signal اکاؤنٹ اور میسجز آپ کی دوسری ڈیوائس پر ٹرانسفر ہونا شروع ہو گئے ہیں۔ Signal اب اس ڈیوائس پر غیر فعال ہے۔</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">آپ کا Signal اکاؤنٹ اور میسجز آپ کی دوسری ڈیوائس پر ری اسٹور کرنے کے لیے تیار ہیں۔ اب اس ڈیوائس پر Signal غیر فعال ہے۔</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">منتقلی مکمل</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
@@ -8669,7 +8784,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">ری اسٹور کرنے کے لیے کوئی بیک اپ نہیں ہے</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">چونکہ آپ iPhone سے Android پر منتقل کر رہے ہیں، اس لیے اپنے میسجز اور میڈیا کو ٹرانسفر کرنے کا واحد طریقہ یہ ہے کہ اپنی پرانی ڈیوائس پر Signal بیک اپس کو فعال کریں۔</string>
+    <string name="NoBackupToRestore_subtitle">چونکہ آپ iPhone سے Android پر منتقل ہو رہے ہیں، اس لیے اپنے میسجز اور میڈیا کو ٹرانسفر کرنے کا واحد طریقہ یہ ہے کہ اپنی پرانی ڈیوائس پر Signal کے محفوظ بیک اپس کو فعال کریں۔</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">اپنی پرانی ڈیوائس پر Signal کھولیں</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
@@ -8679,6 +8794,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">بحال کرنا نظر انداز کریں</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">بحالی کی کیی کی حد ختم ہو گئی ہے</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">آپ نے کامیابی سے نئی بحالی کی کیی تخلیق کر لی ہے، لیکن غلط استعمال کو روکنے کے لیے آپ کی تخلیق کی جانے والی نئی کییز کی تعداد کو محدود کر دیا گیا ہے۔ آپ 7 دن تک کوئی اور کیی تخلیق نہیں کر سکیں گے۔ اپنی بحالی کی کیی کو کسی با حفاظت اور محفوظ جگہ اسٹور کریں۔</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">نئی کیی تخلیق نہیں کی جا سکتی</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">آپ نئی کییز تخلیق کرنے کی تعداد کی حد ختم کر چکے ہیں۔ آپ 7 دن میں نئی بحالی کی کیی تخلیق کر سکیں گے۔ اگر آپ کو یقین ہے کہ کوئی آپ کے بیک اپ تک رسائی حاصل کر سکتا ہے، تو آپ \"بند کرنے اور بیک اپ حذف کرنے\" کا انتخاب کر سکتے ہیں۔</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">ٹھیک ہے</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">سرچ کو بند کریں</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8718,6 +8843,151 @@
         <item quantity="one">آپ نے %1$d دن سے کوئی بیک اپ مکمل نہیں کیا۔ ابھی بیک اپ تخلیق کریں۔</item>
         <item quantity="other">آپ نے %1$d دنوں سے کوئی بیک اپ مکمل نہیں کیا۔ ابھی بیک اپ تخلیق کریں۔</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">پول · ایک منتخب کریں</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">پول · ایک یا زیادہ</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">پول · حتمی نتائج</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">کوئی ووٹس نہیں ہیں</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">ووٹس دیکھیں</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">پول دیکھیں</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">پول نہیں ملے</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">نتائج دیکھیں</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">پول: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s نے پول ختم کر دیا: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">آپ نے رائے شماری ختم کر دی: \"%1$s\"</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s نے پول میں ووٹ دیا: \"%2$s\"</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">پولز</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">پول کے نتائج</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">پول کی تفصیلات</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">سوال</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="one">%1$d ووٹ</item>
+        <item quantity="other">%1$d ووٹس</item>
+    </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">فاتح</string>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">پول ختم کریں</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">تمام دیکھیں</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">رائے شماری ختم نہیں ہو سکی</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">رائے شماری ختم کر دی گئی؟</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">اس رائے شماری میں اب گروپ ممبرز ووٹ نہیں دے سکیں گے۔</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">نیٹ ورک کا انتظار ہو رہا ہے…</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">نیا پول</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">سوال</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">سوال پوچھیں</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">آپشنز</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">اختیار کا انتخاب کریں %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">ہینڈل کو ڈریگ اور ڈراپ کریں</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">متعدد ووٹس کی اجازت دیتا ہے</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">ایک سوال اور کم از کم 2 اختیارات شامل کریں</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">کم از کم 2 اختیارات شامل کریں</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">سوال شامل کریں</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">آڈیو کا مسئلہ</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">ویڈیو کا مسئلہ</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">کال منقطع ہو گئی</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">اس کے علاوہ کچھ اور</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">آڈیو کا اٹکنا</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">آڈیو میں خلل پڑنا</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">مجھے گونج سنائی دی</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">دوسروں کو گونج سنائی دی</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">ویڈیو کا ناقص معیار</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">کم ریزولوشن</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">کیمرہ نے کام نہیں کیا</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">اس کے علاوہ کچھ اور</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">اپنا مسئلہ بیان کریں</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">براہ کرم مسئلے سے متعلق کوئی تفصیلات شامل کریں۔ آپ جو کچھ یہاں شیئر کرتے ہیں اسے مخفی رکھا جائے گا اور صرف Signal میں کالز کو بہتر بنانے میں استعمال کیا جائے گا۔</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">محفوظ کریں</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">واپس جائیں</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">آپ کی کال کا تجربہ کیسا تھا؟</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">اس سے ہمیں Signal میں کالز کو بہتر بنانے میں مدد ملتی ہے۔ کوئی ذاتی قابل شناخت معلومات اسٹور نہیں کی جائیں گی۔</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">مسائل کا سامنا تھا</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">بہترین</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">آپ کو کن مسائل کا سامنا کرنا پڑا؟</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">تمام قابل اطلاق کو منتخب کریں</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">اپنا مسئلہ بیان کریں</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">جاری رکھیں</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">بہتر بننے میں ہماری مدد کریں</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">ہمیں اپنی تشخیصی معلومات بھیجنے سے کال کے معیار کو بہتر بنانے میں مدد ملتی ہے۔ آپ جمع کروانے سے پہلے </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">اپنا ڈی بگ لاگ دیکھ</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> سکتے ہیں</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">ڈی بگ لاگ شیئر کریں</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">ڈی بگ لاگز کم درجے کی ایپ معلومات پر مشتمل ہوتے ہیں اور آپ کے کسی بھی میسج کے مندرجات کو ظاہر نہیں کرتے۔</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">جمع کرائیں</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">آپ کی رائے کا شکریہ!</string>
 
     <!-- EOF -->
 </resources>

@@ -44,7 +44,7 @@ abstract class InAppPaymentSetupJob(
     protected fun getParameters(inAppPayment: InAppPaymentTable.InAppPayment): Parameters {
       return Parameters.Builder()
         .setQueue(InAppPaymentsRepository.resolveJobQueueKey(inAppPayment))
-        .setLifespan(InAppPaymentsRepository.resolveContextJobLifespan(inAppPayment).inWholeMilliseconds)
+        .setLifespan(InAppPaymentsRepository.resolveContextJobLifespanMillis(inAppPayment))
         .setMaxAttempts(Parameters.UNLIMITED)
         .build()
     }

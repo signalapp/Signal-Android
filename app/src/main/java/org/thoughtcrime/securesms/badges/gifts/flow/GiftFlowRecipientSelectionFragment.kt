@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import org.signal.core.util.getParcelableArrayListCompat
 import org.thoughtcrime.securesms.R
@@ -18,16 +17,19 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.SearchConfigurationProvider
 import org.thoughtcrime.securesms.database.RecipientTable
+import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.viewModel
+import kotlin.getValue
 
 /**
  * Allows the user to select a recipient to send a gift to.
  */
 class GiftFlowRecipientSelectionFragment : Fragment(R.layout.gift_flow_recipient_selection_fragment), MultiselectForwardFragment.Callback, SearchConfigurationProvider {
 
-  private val viewModel: GiftFlowViewModel by viewModels(
-    ownerProducer = { requireActivity() }
-  )
+  private val viewModel: GiftFlowViewModel by activityViewModel {
+    GiftFlowViewModel()
+  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val toolbar = view.findViewById<Toolbar>(R.id.toolbar)

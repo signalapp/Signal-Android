@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.Window
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.enableSavedStateHandles
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
@@ -20,10 +21,10 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.ConfigurationUtil
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
+import org.thoughtcrime.securesms.window.isLargeScreenSupportEnabled
 import java.util.concurrent.TimeUnit
 
 /**
@@ -53,7 +54,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    if (SignalStore.internal.largeScreenUi) {
+    if (!ActivityCompat.isLaunchedFromBubble(this) && isLargeScreenSupportEnabled()) {
       startActivity(
         MainActivity.clearTop(this).apply {
           action = ConversationIntents.ACTION
@@ -66,6 +67,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
       }
 
       finish()
+      return
     }
 
     enableSavedStateHandles()

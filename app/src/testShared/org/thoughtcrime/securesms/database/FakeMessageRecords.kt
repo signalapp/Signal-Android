@@ -100,7 +100,8 @@ object FakeMessageRecords {
       archiveCdn = archiveCdn,
       thumbnailRestoreState = thumbnailRestoreState,
       archiveTransferState = archiveTransferState,
-      uuid = null
+      uuid = null,
+      quoteTargetContentType = null
     )
   }
 
@@ -196,6 +197,7 @@ object FakeMessageRecords {
       giftBadge,
       payment,
       call,
+      null,
       -1,
       null,
       null,

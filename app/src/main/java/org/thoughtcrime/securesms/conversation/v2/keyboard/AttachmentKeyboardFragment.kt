@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.function.Predicate
 
 /**
@@ -48,6 +49,7 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
 
   private val lifecycleDisposable = LifecycleDisposable()
   private val removePaymentFilter: Predicate<AttachmentKeyboardButton> = Predicate { button -> button != AttachmentKeyboardButton.PAYMENT }
+  private val removePollFilter: Predicate<AttachmentKeyboardButton> = Predicate { button -> button != AttachmentKeyboardButton.POLL }
 
   @Suppress("ReplaceGetOrSet")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,7 +74,7 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
 
     val snapshot = conversationViewModel.recipientSnapshot
     if (snapshot != null) {
-      updatePaymentsAvailable(snapshot)
+      updateButtonsAvailable(snapshot)
     }
 
     conversationViewModel
@@ -80,7 +82,7 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy {
         attachmentKeyboardView.setWallpaperEnabled(it.hasWallpaper)
-        updatePaymentsAvailable(it)
+        updateButtonsAvailable(it)
       }
       .addTo(lifecycleDisposable)
   }
@@ -126,16 +128,19 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
       .execute()
   }
 
-  private fun updatePaymentsAvailable(recipient: Recipient) {
+  private fun updateButtonsAvailable(recipient: Recipient) {
     val paymentsValues = SignalStore.payments
-    if (paymentsValues.paymentsAvailability.isSendAllowed &&
-      !recipient.isSelf &&
-      !recipient.isGroup &&
-      recipient.isRegistered
-    ) {
-      attachmentKeyboardView.filterAttachmentKeyboardButtons(null)
-    } else {
+    val isPaymentsAvailable = paymentsValues.paymentsAvailability.isSendAllowed && !recipient.isSelf && !recipient.isGroup && recipient.isRegistered
+    val isPollsAvailable = recipient.isPushV2Group && RemoteConfig.polls
+
+    if (!isPaymentsAvailable && !isPollsAvailable) {
+      attachmentKeyboardView.filterAttachmentKeyboardButtons(removePaymentFilter.and(removePollFilter))
+    } else if (!isPaymentsAvailable) {
       attachmentKeyboardView.filterAttachmentKeyboardButtons(removePaymentFilter)
+    } else if (!isPollsAvailable) (
+      attachmentKeyboardView.filterAttachmentKeyboardButtons(removePollFilter)
+      ) else {
+      attachmentKeyboardView.filterAttachmentKeyboardButtons(null)
     }
   }
 }

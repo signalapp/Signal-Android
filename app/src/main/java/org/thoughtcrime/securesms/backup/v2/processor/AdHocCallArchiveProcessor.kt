@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.processor
 
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.backup.v2.ExportSkips
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.database.getAdhocCallsForBackup
@@ -28,7 +29,7 @@ object AdHocCallArchiveProcessor {
         if (exportState.recipientIds.contains(callLog.recipientId)) {
           emitter.emit(Frame(adHocCall = callLog))
         } else {
-          Log.w(TAG, "Dropping adhoc call for non-exported recipient.")
+          Log.w(TAG, ExportSkips.callWithMissingRecipient(callLog.callTimestamp))
         }
       }
     }

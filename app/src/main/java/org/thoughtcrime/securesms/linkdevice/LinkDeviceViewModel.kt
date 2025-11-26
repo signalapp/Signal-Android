@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.OneTimeEven
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.QrCodeState
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.notifications.NotificationIds
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
@@ -424,15 +423,8 @@ class LinkDeviceViewModel : ViewModel() {
   }
 
   private fun Uri.supportsLinkAndSync(): Boolean {
-    return if (RemoteConfig.internalUser) {
-      this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true ||
-        this.getQueryParameter("capabilities")?.split(",")?.contains("backup2") == true ||
-        this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true ||
-        this.getQueryParameter("capabilities")?.split(",")?.contains("backup4") == true
-    } else {
-      this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true ||
-        this.getQueryParameter("capabilities")?.split(",")?.contains("backup4") == true
-    }
+    val capabilities = this.getQueryParameter("capabilities")?.split(",")?.toSet() ?: emptySet()
+    return "backup5" in capabilities
   }
 
   fun onSyncErrorIgnored() = viewModelScope.launch(Dispatchers.IO) {

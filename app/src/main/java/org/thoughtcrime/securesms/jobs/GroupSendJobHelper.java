@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-final class GroupSendJobHelper {
+public final class GroupSendJobHelper {
 
   private static final String TAG = Log.tag(GroupSendJobHelper.class);
 
   private GroupSendJobHelper() {
   }
 
-  static @NonNull SendResult getCompletedSends(@NonNull List<Recipient> possibleRecipients, @NonNull Collection<SendMessageResult> results) {
+  public static @NonNull SendResult getCompletedSends(@NonNull List<Recipient> possibleRecipients, @NonNull Collection<SendMessageResult> results) {
     RecipientAccessList accessList   = new RecipientAccessList(possibleRecipients);
     List<Recipient>     completions  = new ArrayList<>(results.size());
     List<RecipientId>   skipped      = new ArrayList<>();
@@ -45,6 +45,11 @@ final class GroupSendJobHelper {
 
       if (sendMessageResult.isInvalidPreKeyFailure()) {
         Log.w(TAG, "Invalid pre-key failure for " + recipient.getId());
+        skipped.add(recipient.getId());
+      }
+
+      if (sendMessageResult.isCanceledFailure()) {
+        Log.w(TAG, "Canceled result " + recipient.getId());
         skipped.add(recipient.getId());
       }
 

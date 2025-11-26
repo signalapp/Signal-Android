@@ -55,12 +55,7 @@ public final class SignalStrengthPhoneStateListener extends PhoneStateListener
   }
 
   private boolean isLowLevel(@NonNull SignalStrength signalStrength) {
-    if (Build.VERSION.SDK_INT >= 23) {
-      return signalStrength.getLevel() == 0;
-    } else {
-      //noinspection deprecation: False lint warning, deprecated by 29, but this else block is for < 23
-      return signalStrength.getGsmSignalStrength() == 0;
-    }
+    return signalStrength.getLevel() == 0;
   }
 
   public interface Callback {

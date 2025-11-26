@@ -24,7 +24,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
-import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 
@@ -313,11 +312,7 @@ public class KeyCachingService extends Service {
   }
 
   private static int getPendingIntentFlags() {
-    if (Build.VERSION.SDK_INT >= 23) {
-      return PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
-    } else {
-      return PendingIntent.FLAG_UPDATE_CURRENT;
-    }
+    return PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
   }
 
   @Override

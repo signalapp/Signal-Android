@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.welcome.WelcomeFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.welcome.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_registration_welcome">
+        tools:layout="@layout/fragment_registration_welcome_v3">
 
         <action
             android:id="@+id/go_to_enterPhoneNumber"
@@ -55,19 +55,19 @@
 
     <fragment
         android:id="@+id/grantPermissionsFragment"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.permissions.GrantPermissionsFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.permissions.GrantPermissionsFragment"
         android:label="fragment_grant_permissions"
         tools:ignore="NewApi">
 
         <argument
             android:name="welcomeUserSelection"
-            app:argType="org.thoughtcrime.securesms.registrationv3.ui.welcome.WelcomeUserSelection" />
+            app:argType="org.thoughtcrime.securesms.registration.ui.welcome.WelcomeUserSelection" />
 
     </fragment>
 
     <fragment
         android:id="@+id/restoreViaQr"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreViaQrFragment">
+        android:name="org.thoughtcrime.securesms.registration.ui.restore.RestoreViaQrFragment">
 
         <action
             android:id="@+id/go_to_noBackupToRestore"
@@ -87,16 +87,24 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@+id/welcomeFragment"
             app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/go_to_editProxy"
+            app:destination="@+id/edit_proxy"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
         android:id="@+id/linkViaQr"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.link.RegisterLinkDeviceQrFragment">
+        android:name="org.thoughtcrime.securesms.registration.ui.link.RegisterLinkDeviceQrFragment">
     </fragment>
 
     <fragment
         android:id="@+id/noBackupToRestore"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.restore.NoBackupToRestoreFragment">
+        android:name="org.thoughtcrime.securesms.registration.ui.restore.NoBackupToRestoreFragment">
 
         <action
             android:id="@+id/restart_registration_flow"
@@ -112,7 +120,7 @@
 
     <fragment
         android:id="@+id/selectRestoreMethod"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.restore.SelectManualRestoreMethodFragment">
+        android:name="org.thoughtcrime.securesms.registration.ui.restore.SelectManualRestoreMethodFragment">
 
         <action
             android:id="@+id/go_to_enterPhoneNumber"
@@ -124,13 +132,13 @@
 
         <argument
             android:name="welcomeUserSelection"
-            app:argType="org.thoughtcrime.securesms.registrationv3.ui.welcome.WelcomeUserSelection" />
+            app:argType="org.thoughtcrime.securesms.registration.ui.welcome.WelcomeUserSelection" />
 
     </fragment>
 
     <fragment
         android:id="@+id/countryPickerFragment"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.countrycode.CountryCodeFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.countrycode.CountryCodeFragment"
         tools:layout="@layout/fragment_registration_country_picker">
 
         <argument
@@ -142,7 +150,7 @@
 
     <fragment
         android:id="@+id/enterPhoneNumberFragment"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.phonenumber.EnterPhoneNumberFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberFragment"
         android:label="fragment_enter_phone_number"
         tools:layout="@layout/fragment_registration_enter_phone_number">
 
@@ -216,13 +224,13 @@
 
         <argument
             android:name="enterPhoneNumberMode"
-            app:argType="org.thoughtcrime.securesms.registrationv3.ui.phonenumber.EnterPhoneNumberMode" />
+            app:argType="org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberMode" />
 
     </fragment>
 
     <fragment
         android:id="@+id/enterBackupKey"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.restore.EnterBackupKeyFragment">
+        android:name="org.thoughtcrime.securesms.registration.ui.restore.EnterBackupKeyFragment">
 
         <action
             android:id="@+id/go_to_enterPhoneNumber"
@@ -237,7 +245,7 @@
 
     <fragment
         android:id="@+id/enterCodeFragment"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.entercode.EnterCodeFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.entercode.EnterCodeFragment"
         android:label="fragment_enter_code"
         tools:layout="@layout/fragment_registration_enter_code">
 
@@ -273,7 +281,7 @@
 
     <fragment
         android:id="@+id/registrationLockFragment"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.registrationlock.RegistrationLockFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.registrationlock.RegistrationLockFragment"
         android:label="fragment_kbs_lock"
         tools:layout="@layout/fragment_registration_lock">
 
@@ -295,7 +303,7 @@
 
     <fragment
         android:id="@+id/reRegisterWithPinFragment"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.reregisterwithpin.ReRegisterWithPinFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.reregisterwithpin.ReRegisterWithPinFragment"
         tools:layout="@layout/fragment_registration_lock">
 
         <action
@@ -312,13 +320,13 @@
 
     <fragment
         android:id="@+id/accountLockedFragment"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.accountlocked.AccountLockedFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.accountlocked.AccountLockedFragment"
         android:label="fragment_account_locked"
         tools:layout="@layout/account_locked_fragment" />
 
     <fragment
         android:id="@+id/captchaFragment"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.captcha.RegistrationCaptchaFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.captcha.RegistrationCaptchaFragment"
         android:label="fragment_captcha"
         tools:layout="@layout/fragment_registration_captcha" />
 

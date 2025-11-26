@@ -232,6 +232,14 @@
             tools:text="Mango pickle lorem ipsum" />
 
         <ViewStub
+            android:id="@+id/poll"
+            android:layout_width="wrap_content"
+            android:maxWidth="@dimen/media_bubble_max_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-4dp"
+            android:layout="@layout/conversation_item_poll" />
+
+        <ViewStub
             android:id="@+id/conversation_item_join_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

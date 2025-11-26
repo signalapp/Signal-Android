@@ -5,12 +5,15 @@
 
 package org.thoughtcrime.securesms.messages
 
+import android.Manifest
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -40,6 +43,11 @@ object GroupSendEndorsementInternalNotifier {
       return
     }
 
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "maybePostGroupSendFallbackError: Notification permission is not granted.")
+      return
+    }
+
     Log.internal().w(TAG, "Group send with GSE failed, GSE was likely out of date or incorrect", Throwable())
 
     val now = System.currentTimeMillis().milliseconds
@@ -64,6 +72,11 @@ object GroupSendEndorsementInternalNotifier {
   @JvmStatic
   fun maybePostMissingGroupSendEndorsement(context: Context) {
     if (!RemoteConfig.internalUser) {
+      return
+    }
+
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "maybePostMissingGroupSendEndorsement: Notification permission is not granted.")
       return
     }
 

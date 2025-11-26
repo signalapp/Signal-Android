@@ -9,7 +9,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.conversation.ConversationArgs
 import org.thoughtcrime.securesms.util.delegate
 
 /**
@@ -33,7 +33,7 @@ class ShareDataTimestampViewModel(
     }
   }
 
-  fun setTimestampFromConversationArgs(args: ConversationIntents.Args) {
+  fun setTimestampFromConversationArgs(args: ConversationArgs) {
     timestamp = args.shareDataTimestamp
   }
 }

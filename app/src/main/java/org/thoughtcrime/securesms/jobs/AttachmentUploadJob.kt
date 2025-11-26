@@ -155,6 +155,9 @@ class AttachmentUploadJob private constructor(
       return
     } else if (databaseAttachment.uploadTimestamp > 0) {
       Log.i(TAG, "This file was previously-uploaded, but too long ago to be re-used. Age: $timeSinceUpload ms (${timeSinceUpload.milliseconds.inRoundedDays()} days)")
+      if (databaseAttachment.archiveTransferState != AttachmentTable.ArchiveTransferState.NONE) {
+        SignalDatabase.attachments.clearArchiveData(attachmentId)
+      }
     }
 
     if (uploadSpec != null && System.currentTimeMillis() > uploadSpec!!.timeout) {
@@ -187,16 +190,15 @@ class AttachmentUploadJob private constructor(
           SignalDatabase.attachments.finalizeAttachmentAfterUpload(databaseAttachment.attachmentId, uploadResult)
           if (SignalStore.backup.backsUpMedia) {
             val messageId = SignalDatabase.attachments.getMessageId(databaseAttachment.attachmentId)
-            val isStory = SignalDatabase.messages.isStory(messageId)
             when {
-              databaseAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED -> {
-                Log.i(TAG, "[$attachmentId] Already archived. Skipping.")
-              }
-              isStory -> {
-                Log.i(TAG, "[$attachmentId] Attachment is a story. Skipping.")
-              }
               messageId == AttachmentTable.PREUPLOAD_MESSAGE_ID -> {
                 Log.i(TAG, "[$attachmentId] Avoid uploading preuploaded attachments to archive. Skipping.")
+              }
+              SignalDatabase.messages.isStory(messageId) -> {
+                Log.i(TAG, "[$attachmentId] Attachment is a story. Skipping.")
+              }
+              SignalDatabase.messages.isViewOnce(messageId) -> {
+                Log.i(TAG, "[$attachmentId] Attachment is view-once. Skipping.")
               }
               SignalDatabase.messages.willMessageExpireBeforeCutoff(messageId) -> {
                 Log.i(TAG, "[$attachmentId] Message will expire within 24hrs. Skipping.")

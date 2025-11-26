@@ -82,6 +82,8 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
       notificationProfile.onFirstEverAppLaunch()
       releaseChannel.onFirstEverAppLaunch()
       story.onFirstEverAppLaunch()
+      apkUpdate.onFirstEverAppLaunch()
+      backup.onFirstEverAppLaunch()
     }
 
     @JvmStatic
@@ -111,7 +113,9 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
           imageEditor.keysToIncludeInBackup +
           notificationProfile.keysToIncludeInBackup +
           releaseChannel.keysToIncludeInBackup +
-          story.keysToIncludeInBackup
+          story.keysToIncludeInBackup +
+          apkUpdate.keysToIncludeInBackup +
+          backup.keysToIncludeInBackup
       }
 
     /**
@@ -151,6 +155,8 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     val pin: PinValues
       get() = instance!!.pinValues
 
+    @JvmStatic
+    @get:JvmName("remoteConfig")
     val remoteConfig: RemoteConfigValues
       get() = instance!!.remoteConfigValues
 
@@ -237,6 +243,8 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     val imageEditor: ImageEditorValues
       get() = instance!!.imageEditorValues
 
+    @JvmStatic
+    @get:JvmName("notificationProfile")
     val notificationProfile: NotificationProfileValues
       get() = instance!!.notificationProfileValues
 

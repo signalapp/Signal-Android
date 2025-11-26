@@ -167,6 +167,7 @@ object SignalSymbols {
     PLUS('\u002B'),
     PLUS_CIRCLE('\u2295'),
     PLUS_SQUARE('\uE06C'),
+    POLL('\uE082'),
     RAISE_HAND('\uE07E'),
     RAISE_HAND_FILL('\uE084'),
     REPLY('\uE06D'),

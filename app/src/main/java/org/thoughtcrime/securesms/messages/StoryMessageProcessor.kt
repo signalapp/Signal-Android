@@ -21,10 +21,12 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
+import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.StoryMessage
 import org.whispersystems.signalservice.internal.push.TextAttachment
+import org.whispersystems.signalservice.internal.util.Util
 
 object StoryMessageProcessor {
 
@@ -75,8 +77,8 @@ object StoryMessageProcessor {
           body = "",
           isStoryEmbed = true
         ),
-        serverGuid = envelope.serverGuid,
-        messageRanges = storyMessage.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
+        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
+        messageRanges = storyMessage.bodyRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toBodyRangeList()
       )
 
       insertResult = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()

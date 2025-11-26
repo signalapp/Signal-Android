@@ -14,6 +14,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
+import org.signal.libsignal.internal.CompletableFuture
+import org.signal.libsignal.net.BadRequestError
+import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.UnauthenticatedChatConnection
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.messages.EnvelopeResponse
 import org.whispersystems.signalservice.api.util.SleepTimer
@@ -23,6 +27,8 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessa
 import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
 import java.io.IOException
+import java.util.concurrent.CancellationException
+import java.util.concurrent.CompletionException
 import java.util.concurrent.CopyOnWriteArraySet
 import java.util.concurrent.TimeoutException
 import kotlin.time.Duration
@@ -168,6 +174,18 @@ sealed class SignalWebSocket(
     getWebSocket().sendResponse(response.websocketRequest.getWebSocketResponse())
   }
 
+  /**
+   * Executes the given callback with the underlying libsignal chat connection when available.
+   *
+   * This is only supported for LibSignal-based connections.
+   *
+   * @param callback The callback to execute with the connection. Should be very quick and
+   *                 non-blocking, because it may block other operations on that connection.
+   */
+  suspend fun <T> runWithChatConnection(callback: (org.signal.libsignal.net.ChatConnection) -> T): T {
+    return getWebSocket().runWithChatConnection(callback)
+  }
+
   @Synchronized
   @Throws(WebSocketUnavailableException::class)
   protected fun getWebSocket(): WebSocketConnection {
@@ -311,6 +329,28 @@ sealed class SignalWebSocket(
         return Single.error(e)
       }
     }
+
+    suspend fun <Result, Error : BadRequestError> runCatchingWithUnauthChatConnection(
+      callback: (UnauthenticatedChatConnection) -> CompletableFuture<RequestResult<Result, Error>>
+    ): CompletableFuture<RequestResult<Result, Error>> {
+      val requestFuture = try {
+        getWebSocket().runWithChatConnection { chatConnection ->
+          val unauthenticatedConnection = chatConnection as? UnauthenticatedChatConnection
+            ?: throw IllegalStateException("Expected unauthenticated chat connection but got ${chatConnection::class.java.simpleName}")
+          callback(unauthenticatedConnection)
+        }
+      } catch (throwable: Throwable) {
+        return CompletableFuture.completedFuture(throwable.toNetworkRequestResult())
+      }
+
+      return requestFuture.handle { result, throwable ->
+        when {
+          throwable != null -> throwable.toNetworkRequestResult()
+          result != null -> result
+          else -> RequestResult.ApplicationError(IllegalStateException("RequestResult was null"))
+        }
+      }
+    }
   }
 
   /**
@@ -428,5 +468,18 @@ sealed class SignalWebSocket(
 
   fun interface CanConnect {
     fun canConnect(): Boolean
+  }
+}
+
+private fun <T, E : BadRequestError> Throwable.toNetworkRequestResult(): RequestResult<T, E> {
+  val cause = if (this is CompletionException && this.cause != null) {
+    this.cause!!
+  } else {
+    this
+  }
+  return when (cause) {
+    is IOException -> RequestResult.RetryableNetworkError(cause)
+    is CancellationException -> RequestResult.RetryableNetworkError(IOException("Request cancelled", cause))
+    else -> RequestResult.ApplicationError(cause)
   }
 }
