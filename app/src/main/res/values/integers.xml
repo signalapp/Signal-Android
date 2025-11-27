@@ -10,5 +10,6 @@
 
     <integer name="text_entry_exit_duration">150</integer>
 
-    <integer name="fake_keyboard_hide_duration">200</integer>
+    <!-- Ref: https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:core/core/src/main/java/androidx/core/view/WindowInsetsAnimationCompat.java;l=740;drc=be09f29954b93ee30644b45d90d539bdb78d4117 -->
+    <integer name="fake_keyboard_hide_duration">160</integer>
 </resources>
