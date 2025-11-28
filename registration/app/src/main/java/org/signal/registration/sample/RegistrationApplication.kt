@@ -7,14 +7,14 @@ package org.signal.registration.sample
 
 import android.app.Application
 import android.os.Build
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
 import org.signal.registration.RegistrationDependencies
 import org.signal.registration.sample.dependencies.RealNetworkController
 import org.signal.registration.sample.dependencies.RealStorageController
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.api.util.CredentialsProvider
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl

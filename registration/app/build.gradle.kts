@@ -1,6 +1,7 @@
 plugins {
   id("signal-sample-app")
   alias(libs.plugins.compose.compiler)
+  alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -36,6 +37,7 @@ dependencies {
   // Core dependencies
   implementation(project(":core-ui"))
   implementation(project(":core-util"))
+  implementation(project(":core-models"))
   implementation(project(":libsignal-service"))
 
   // libsignal-protocol for PreKeyCollection types
@@ -47,6 +49,16 @@ dependencies {
   // AndroidX
   implementation(libs.androidx.activity.compose)
   implementation(libs.androidx.core.ktx)
+
+  // Lifecycle
+  implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+  // Kotlinx Serialization
+  implementation(libs.kotlinx.serialization.json)
+
+  // Navigation 3
+  implementation(libs.androidx.navigation3.runtime)
+  implementation(libs.androidx.navigation3.ui)
 
   // Compose BOM
   platform(libs.androidx.compose.bom).let { composeBom ->

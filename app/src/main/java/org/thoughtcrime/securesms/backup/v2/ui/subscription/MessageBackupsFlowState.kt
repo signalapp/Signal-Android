@@ -6,12 +6,12 @@
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import androidx.compose.runtime.Immutable
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.util.billing.BillingResponseCode
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.whispersystems.signalservice.api.AccountEntropyPool
 
 @Immutable
 data class MessageBackupsFlowState(

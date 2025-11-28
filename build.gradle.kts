@@ -57,7 +57,7 @@ subprojects {
     }
   }
 
-  val skipQa = setOf("Signal-Android", "libsignal-service", "lintchecks", "benchmark", "core-util-jvm", "logging")
+  val skipQa = setOf("Signal-Android", "libsignal-service", "lintchecks", "benchmark", "core-util-jvm", "core-models", "logging")
 
   if (project.name !in skipQa && !project.name.endsWith("-app")) {
     tasks.register("qa") {

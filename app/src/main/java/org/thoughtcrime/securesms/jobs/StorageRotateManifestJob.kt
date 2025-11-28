@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.storageservice.StorageKey
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
-import org.whispersystems.signalservice.api.storage.StorageKey
 import org.whispersystems.signalservice.api.storage.StorageServiceRepository
 import java.util.concurrent.TimeUnit
 

@@ -6,11 +6,11 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.CursorUtil
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.SignalDatabaseRule
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.util.UUID
 
 @Suppress("ClassName")

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.testing
 
+import org.signal.core.models.ServiceId
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.select
 import org.signal.libsignal.protocol.IdentityKey
@@ -32,7 +33,6 @@ import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.SignalSessionBuilder
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.Envelope
 import java.util.UUID

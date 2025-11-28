@@ -1,16 +1,16 @@
 /*
- * Copyright 2024 Signal Messenger, LLC
+ * Copyright 2025 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.whispersystems.signalservice.api
+package org.signal.core.models
 
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
-import org.whispersystems.signalservice.api.kbs.MasterKey
-import org.signal.libsignal.messagebackup.AccountEntropyPool as LibSignalAccountEntropyPool
+import org.signal.core.models.backup.MessageBackupKey
+
+private typealias LibSignalAccountEntropyPool = org.signal.libsignal.messagebackup.AccountEntropyPool
 
 /**
- * The Root of All Entropy. You can use this to derive the [MasterKey] or [MessageBackupKey].
+ * The Root of All Entropy. You can use this to derive the [org.whispersystems.signalservice.api.kbs.MasterKey] or [org.whispersystems.signalservice.api.backup.MessageBackupKey].
  */
 class AccountEntropyPool(value: String) {
 

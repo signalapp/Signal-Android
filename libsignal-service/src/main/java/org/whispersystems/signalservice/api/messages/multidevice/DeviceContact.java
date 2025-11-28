@@ -6,8 +6,7 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
-import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.signal.core.models.ServiceId.ACI;
 
 import java.util.Optional;
 

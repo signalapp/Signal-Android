@@ -5,9 +5,9 @@
 
 package org.whispersystems.signalservice.api.groupsv2
 
+import org.signal.core.models.ServiceId
 import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsement
 import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsementsResponse
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.time.Instant
 
 /**

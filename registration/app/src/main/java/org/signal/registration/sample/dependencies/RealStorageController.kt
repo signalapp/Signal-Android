@@ -11,8 +11,10 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.util.Base64
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.protocol.ServiceId
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.kem.KEMKeyPair
 import org.signal.libsignal.protocol.kem.KEMKeyType
@@ -20,6 +22,8 @@ import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.registration.KeyMaterial
+import org.signal.registration.NewRegistrationData
+import org.signal.registration.PreExistingRegistrationData
 import org.signal.registration.StorageController
 import java.security.SecureRandom
 import javax.crypto.Cipher
@@ -71,6 +75,69 @@ class RealStorageController(context: Context) : StorageController {
     storeKeyMaterial(keyMaterial, profileKey)
 
     keyMaterial
+  }
+
+  override suspend fun saveNewRegistrationData(newRegistrationData: NewRegistrationData) = withContext(Dispatchers.IO) {
+    val database = db.writableDatabase
+    database.beginTransaction()
+    try {
+      database.delete(RegistrationDatabase.TABLE_ACCOUNT, null, null)
+
+      database.insert(
+        RegistrationDatabase.TABLE_ACCOUNT,
+        null,
+        ContentValues().apply {
+          put(RegistrationDatabase.COLUMN_E164, newRegistrationData.e164)
+          put(RegistrationDatabase.COLUMN_ACI, newRegistrationData.aci.toString())
+          put(RegistrationDatabase.COLUMN_PNI, newRegistrationData.pni.toString())
+          put(RegistrationDatabase.COLUMN_SERVICE_PASSWORD, newRegistrationData.servicePassword)
+          put(RegistrationDatabase.COLUMN_AEP, newRegistrationData.aep.toString())
+        }
+      )
+
+      database.setTransactionSuccessful()
+    } finally {
+      database.endTransaction()
+    }
+  }
+
+  override suspend fun getPreExistingRegistrationData(): PreExistingRegistrationData? = withContext(Dispatchers.IO) {
+    val database = db.readableDatabase
+    val cursor = database.query(
+      RegistrationDatabase.TABLE_ACCOUNT,
+      arrayOf(
+        RegistrationDatabase.COLUMN_E164,
+        RegistrationDatabase.COLUMN_ACI,
+        RegistrationDatabase.COLUMN_PNI,
+        RegistrationDatabase.COLUMN_SERVICE_PASSWORD,
+        RegistrationDatabase.COLUMN_AEP
+      ),
+      null,
+      null,
+      null,
+      null,
+      null
+    )
+
+    cursor.use {
+      if (it.moveToFirst()) {
+        val e164 = it.getString(it.getColumnIndexOrThrow(RegistrationDatabase.COLUMN_E164))
+        val aciString = it.getString(it.getColumnIndexOrThrow(RegistrationDatabase.COLUMN_ACI))
+        val pniString = it.getString(it.getColumnIndexOrThrow(RegistrationDatabase.COLUMN_PNI))
+        val servicePassword = it.getString(it.getColumnIndexOrThrow(RegistrationDatabase.COLUMN_SERVICE_PASSWORD))
+        val aepValue = it.getString(it.getColumnIndexOrThrow(RegistrationDatabase.COLUMN_AEP))
+
+        PreExistingRegistrationData(
+          e164 = e164,
+          aci = ServiceId.Aci.parseFromString(aciString),
+          pni = ServiceId.Pni.parseFromString(pniString),
+          servicePassword = servicePassword,
+          aep = AccountEntropyPool(aepValue)
+        )
+      } else {
+        null
+      }
+    }
   }
 
   private fun storeKeyMaterial(keyMaterial: KeyMaterial, profileKey: ProfileKey) {
@@ -254,12 +321,18 @@ class RealStorageController(context: Context) : StorageController {
       const val TABLE_KYBER_PREKEYS = "kyber_prekeys"
       const val TABLE_REGISTRATION_IDS = "registration_ids"
       const val TABLE_PROFILE_KEY = "profile_key"
+      const val TABLE_ACCOUNT = "account"
 
       const val COLUMN_ID = "_id"
       const val COLUMN_ACCOUNT_TYPE = "account_type"
       const val COLUMN_KEY_ID = "key_id"
       const val COLUMN_KEY_DATA = "key_data"
       const val COLUMN_REGISTRATION_ID = "registration_id"
+      const val COLUMN_E164 = "e164"
+      const val COLUMN_ACI = "aci"
+      const val COLUMN_PNI = "pni"
+      const val COLUMN_SERVICE_PASSWORD = "service_password"
+      const val COLUMN_AEP = "aep"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -310,6 +383,19 @@ class RealStorageController(context: Context) : StorageController {
         CREATE TABLE $TABLE_PROFILE_KEY (
           $COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
           $COLUMN_KEY_DATA BLOB NOT NULL
+        )
+        """.trimIndent()
+      )
+
+      db.execSQL(
+        """
+        CREATE TABLE $TABLE_ACCOUNT (
+          $COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+          $COLUMN_E164 TEXT NOT NULL,
+          $COLUMN_ACI TEXT NOT NULL,
+          $COLUMN_PNI TEXT NOT NULL,
+          $COLUMN_SERVICE_PASSWORD TEXT NOT NULL,
+          $COLUMN_AEP TEXT NOT NULL
         )
         """.trimIndent()
       )

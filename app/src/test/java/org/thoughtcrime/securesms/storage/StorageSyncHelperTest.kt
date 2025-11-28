@@ -11,12 +11,12 @@ import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.ACI.Companion.parseOrThrow
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.findIdDifference
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.profileKeyChanged
 import org.thoughtcrime.securesms.testutil.TestHelpers
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.ACI.Companion.parseOrThrow
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalRecord
 import org.whispersystems.signalservice.api.storage.StorageId

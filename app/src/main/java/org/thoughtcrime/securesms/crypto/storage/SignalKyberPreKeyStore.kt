@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.crypto.storage
 
+import org.signal.core.models.ServiceId
 import org.signal.libsignal.protocol.InvalidKeyIdException
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
@@ -12,7 +13,6 @@ import org.signal.libsignal.protocol.state.KyberPreKeyStore
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.whispersystems.signalservice.api.SignalServiceKyberPreKeyStore
-import org.whispersystems.signalservice.api.push.ServiceId
 import kotlin.jvm.Throws
 
 /**

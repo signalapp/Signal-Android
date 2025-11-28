@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api.crypto
 
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.signal.core.models.ServiceId
 
 class EnvelopeMetadata(
   val sourceServiceId: ServiceId,

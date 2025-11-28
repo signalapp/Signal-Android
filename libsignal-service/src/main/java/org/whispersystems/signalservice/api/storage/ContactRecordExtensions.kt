@@ -5,7 +5,7 @@
 
 package org.whispersystems.signalservice.api.storage
 
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.signal.core.models.ServiceId
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 
 val ContactRecord.signalAci: ServiceId.ACI?

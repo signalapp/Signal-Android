@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.api.messages.multidevice;
 
 import org.junit.Test;
 import org.signal.libsignal.zkgroup.InvalidInputException;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.signal.core.models.ServiceId.ACI;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

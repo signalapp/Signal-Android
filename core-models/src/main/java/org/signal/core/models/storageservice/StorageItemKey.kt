@@ -1,4 +1,9 @@
-package org.whispersystems.signalservice.api.storage
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.core.models.storageservice
 
 /**
  * Key used to encrypt individual storage items in the storage service.

@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.service.webrtc
 
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallException
 import org.signal.ringrtc.CallManager
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState
-import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Process actions for when the call link has at least once been connected and joined.

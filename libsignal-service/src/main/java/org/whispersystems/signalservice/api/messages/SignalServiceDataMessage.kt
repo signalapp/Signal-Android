@@ -5,10 +5,10 @@
  */
 package org.whispersystems.signalservice.api.messages
 
+import org.signal.core.models.ServiceId
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.whispersystems.signalservice.api.messages.shared.SharedContact
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.OptionalUtil.asOptional
 import org.whispersystems.signalservice.api.util.OptionalUtil.emptyIfStringEmpty
 import org.whispersystems.signalservice.internal.push.BodyRange

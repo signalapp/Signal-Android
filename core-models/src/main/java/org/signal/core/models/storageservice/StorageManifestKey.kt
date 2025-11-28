@@ -1,9 +1,14 @@
-package org.whispersystems.signalservice.api.storage
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.core.models.storageservice
 
 /**
  * Key used to encrypt a manifest in the storage service.
  *
- * Created via [StorageKey.deriveManifestKey].
+ * Created via [org.whispersystems.signalservice.api.storage.StorageKey.deriveManifestKey].
  */
 class StorageManifestKey(val key: ByteArray) : StorageCipherKey {
   init {

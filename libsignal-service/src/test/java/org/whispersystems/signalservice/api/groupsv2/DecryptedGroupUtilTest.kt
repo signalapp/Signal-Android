@@ -6,10 +6,10 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
 import okio.ByteString
 import org.junit.Test
+import org.signal.core.models.ServiceId
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.internal.util.Util
 import java.util.UUID
 

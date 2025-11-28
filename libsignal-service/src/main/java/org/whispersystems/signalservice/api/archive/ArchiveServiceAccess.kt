@@ -5,7 +5,7 @@
 
 package org.whispersystems.signalservice.api.archive
 
-import org.whispersystems.signalservice.api.backup.BackupKey
+import org.signal.core.models.backup.BackupKey
 
 /**
  * Key and credential combo needed to perform backup operations on the server.

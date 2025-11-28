@@ -4,6 +4,7 @@
  */
 package org.whispersystems.signalservice.api.kbs
 
+import org.signal.core.models.MasterKey
 import org.signal.libsignal.svr2.Pin
 import org.signal.libsignal.svr2.PinHash
 import org.whispersystems.signalservice.api.crypto.HmacSIV

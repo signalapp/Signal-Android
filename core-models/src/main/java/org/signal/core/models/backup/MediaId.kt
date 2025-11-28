@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.whispersystems.signalservice.api.backup
+package org.signal.core.models.backup
 
 import org.signal.core.util.Base64
 

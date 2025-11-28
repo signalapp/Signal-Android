@@ -14,6 +14,7 @@ import android.preference.PreferenceManager
 import android.text.TextUtils
 import androidx.core.content.contentValuesOf
 import com.annimon.stream.Stream
+import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.Hex
@@ -47,7 +48,6 @@ import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.Triple
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.io.File
 import java.io.IOException
 import java.util.LinkedList

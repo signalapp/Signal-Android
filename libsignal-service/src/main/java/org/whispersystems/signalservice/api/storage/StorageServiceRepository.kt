@@ -9,6 +9,7 @@ import com.squareup.wire.FieldEncoding
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import okio.IOException
+import org.signal.core.models.storageservice.StorageKey
 import org.signal.core.util.bytes
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log

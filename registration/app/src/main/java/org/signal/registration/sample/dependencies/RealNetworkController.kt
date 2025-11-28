@@ -51,7 +51,7 @@ class RealNetworkController(
             val session = json.decodeFromString<SessionMetadata>(response.body.string())
             RegistrationNetworkResult.Success(session)
           }
-          400 -> {
+          422 -> {
             RegistrationNetworkResult.Failure(CreateSessionError.InvalidRequest(response.body.string()))
           }
           429 -> {
@@ -208,7 +208,7 @@ class RealNetworkController(
             RegistrationNetworkResult.Success(session)
           }
           400 -> {
-            RegistrationNetworkResult.Failure(SubmitVerificationCodeError.IncorrectVerificationCode(response.body.string()))
+            RegistrationNetworkResult.Failure(SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode(response.body.string()))
           }
           404 -> {
             RegistrationNetworkResult.Failure(SubmitVerificationCodeError.SessionNotFound(response.body.string()))

@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api.push;
 
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.signal.core.util.UuidUtil;
 
 import java.util.Objects;
 import java.util.UUID;

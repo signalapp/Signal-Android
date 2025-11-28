@@ -72,7 +72,7 @@ class VerificationCodeViewModel(
 
   private suspend fun transformCodeEntered(inputState: VerificationCodeState, code: String): VerificationCodeState {
     var state = inputState.copy()
-    var sessionMetadata = state.sessionMetadata ?: return state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
+    var sessionMetadata = state.sessionMetadata ?: return state.also { parentEventEmitter(RegistrationFlowEvent.ResetState) }
 
     // TODO should we be checking on whether we need to do more captcha stuff?
 
@@ -84,12 +84,13 @@ class VerificationCodeViewModel(
       }
       is NetworkController.RegistrationNetworkResult.Failure -> {
         when (result.error) {
-          is NetworkController.SubmitVerificationCodeError.IncorrectVerificationCode -> {
-            Log.w(TAG, "[SubmitCode] Incorrect verification code entered. Body: ${result.error.message}")
+          is NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode -> {
+            Log.w(TAG, "[SubmitCode] Invalid sessionId or verification code entered. This is distinct from an *incorrect* verification code. Body: ${result.error.message}")
             return state.copy(oneTimeEvent = OneTimeEvent.IncorrectVerificationCode)
           }
           is NetworkController.SubmitVerificationCodeError.SessionNotFound -> {
             Log.w(TAG, "[SubmitCode] Session not found: ${result.error.message}")
+            // TODO don't start over, go back to phone number entry
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             return state
           }
@@ -113,12 +114,17 @@ class VerificationCodeViewModel(
         return state.copy(oneTimeEvent = OneTimeEvent.NetworkError)
       }
       is NetworkController.RegistrationNetworkResult.ApplicationError -> {
-        Log.w(TAG, "Unknown error when submitting verification code.", result.exception)
+        Log.w(TAG, "[SubmitCode] Unknown error when submitting verification code.", result.exception)
         return state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
       }
     }
 
     state = state.copy(sessionMetadata = sessionMetadata)
+
+    if (!sessionMetadata.verified) {
+      Log.w(TAG, "[SubmitCode] Verification code was incorrect.")
+      return state.copy(oneTimeEvent = OneTimeEvent.IncorrectVerificationCode)
+    }
 
     // Attempt to register
     val registerResult = repository.registerAccount(e164 = state.e164, sessionId = sessionMetadata.id, skipDeviceTransfer = true)
@@ -198,6 +204,7 @@ class VerificationCodeViewModel(
             state.copy(oneTimeEvent = OneTimeEvent.CouldNotRequestCodeWithSelectedTransport)
           }
           is NetworkController.RequestVerificationCodeError.InvalidSessionId -> {
+            // TODO don't start over, go back to phone number entry
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }
@@ -206,6 +213,7 @@ class VerificationCodeViewModel(
             state.copy(oneTimeEvent = OneTimeEvent.NetworkError)
           }
           is NetworkController.RequestVerificationCodeError.SessionNotFound -> {
+            // TODO don't start over, go back to phone number entry
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }

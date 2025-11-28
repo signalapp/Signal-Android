@@ -1,15 +1,18 @@
-package org.whispersystems.signalservice.api.storage
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
-import org.signal.core.util.Base64.encodeWithPadding
+package org.signal.core.models.storageservice
+
+import org.signal.core.util.Base64
 import org.signal.core.util.CryptoUtil
-import org.whispersystems.signalservice.api.kbs.MasterKey
-import org.whispersystems.util.StringUtil
 
 /**
  * Key used to encrypt data on the storage service. Not used directly -- instead we used keys that
  * are derived for each item we're storing.
  *
- * Created via [MasterKey.deriveStorageServiceKey].
+ * Created via [org.signal.core.models.MasterKey.deriveStorageServiceKey].
  */
 class StorageKey(val key: ByteArray) {
   init {
@@ -21,11 +24,11 @@ class StorageKey(val key: ByteArray) {
   }
 
   fun deriveItemKey(rawId: ByteArray): StorageItemKey {
-    return StorageItemKey(derive("Item_" + encodeWithPadding(rawId)))
+    return StorageItemKey(derive("Item_" + Base64.encodeWithPadding(rawId)))
   }
 
   private fun derive(keyName: String): ByteArray {
-    return CryptoUtil.hmacSha256(key, StringUtil.utf8(keyName))
+    return CryptoUtil.hmacSha256(key, keyName.toByteArray(Charsets.UTF_8))
   }
 
   fun serialize(): ByteArray {

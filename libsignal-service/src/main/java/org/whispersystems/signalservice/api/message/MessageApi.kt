@@ -5,9 +5,9 @@
 
 package org.whispersystems.signalservice.api.message
 
+import org.signal.core.models.ServiceId
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.post
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList

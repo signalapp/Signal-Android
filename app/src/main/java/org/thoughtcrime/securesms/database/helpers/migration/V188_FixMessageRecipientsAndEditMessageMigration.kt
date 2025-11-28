@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database.helpers.migration
 import android.app.Application
 import android.preference.PreferenceManager
 import androidx.core.content.contentValuesOf
+import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 
 /**
  * This is a fix for a bad situation that could happen during [V185_MessageRecipientsAndEditMessageMigration].

@@ -160,7 +160,7 @@ interface NetworkController {
   }
 
   sealed class SubmitVerificationCodeError() {
-    data class IncorrectVerificationCode(val message: String) : SubmitVerificationCodeError()
+    data class InvalidSessionIdOrVerificationCode(val message: String) : SubmitVerificationCodeError()
     data class SessionNotFound(val message: String) : SubmitVerificationCodeError()
     data class SessionAlreadyVerifiedOrNoCodeRequested(val session: SessionMetadata) : SubmitVerificationCodeError()
     data class RateLimited(val retryAfter: Duration, val session: SessionMetadata) : SubmitVerificationCodeError()

@@ -1,18 +1,19 @@
 package org.whispersystems.signalservice.api.kbs;
 
 import org.junit.Test;
+import org.signal.core.models.MasterKey;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public final class MasterKeyTest {
 
-  @Test(expected = AssertionError.class)
+  @Test(expected = IllegalStateException.class)
   public void wrong_length_too_short() {
     new MasterKey(new byte[31]);
   }
 
-  @Test(expected = AssertionError.class)
+  @Test(expected = IllegalStateException.class)
   public void wrong_length_too_long() {
     new MasterKey(new byte[33]);
   }
