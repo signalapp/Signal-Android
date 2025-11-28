@@ -170,6 +170,24 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         }
       )
 
+      switchPref(
+        title = DSLSettingsText.from("Send delivery receipts for edits"),
+        summary = DSLSettingsText.from("Send delivery receipts when you receive edited messages"),
+        isChecked = state.deliveryReceiptsForEdits,
+        onClick = {
+          viewModel.setDeliveryReceiptsForEditsEnabled(!state.deliveryReceiptsForEdits)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("Send delivery receipts for reactions"),
+        summary = DSLSettingsText.from("Send delivery receipts when you receive reactions"),
+        isChecked = state.deliveryReceiptsForReactions,
+        onClick = {
+          viewModel.setDeliveryReceiptsForReactionsEnabled(!state.deliveryReceiptsForReactions)
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(R.string.PrivacySettingsFragment__disappearing_messages)

@@ -204,7 +204,16 @@ object DataMessageProcessor {
     }
 
     if (metadata.sealedSender && messageId != null) {
-      SignalExecutors.BOUNDED.execute { AppDependencies.jobManager.add(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, messageId)) }
+      // Check if we should skip delivery receipts for reactions
+      val shouldSendReceipt = if (message.reaction != null) {
+        TextSecurePreferences.isDeliveryReceiptsForReactionsEnabled(context)
+      } else {
+        true
+      }
+      
+      if (shouldSendReceipt) {
+        SignalExecutors.BOUNDED.execute { AppDependencies.jobManager.add(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, messageId)) }
+      }
     } else if (!metadata.sealedSender) {
       if (RecipientUtil.shouldHaveProfileKey(threadRecipient)) {
         Log.w(MessageContentProcessor.TAG, "Received an unsealed sender message from " + senderRecipient.id + ", but they should already have our profile key. Correcting.")

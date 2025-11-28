@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasAudio
 import org.thoughtcrime.securesms.util.hasSharedContact
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -96,8 +97,10 @@ object EditMessageProcessor {
     }
 
     if (insertResult != null) {
-      SignalExecutors.BOUNDED.execute {
-        AppDependencies.jobManager.add(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, MessageId(insertResult.messageId)))
+      if (TextSecurePreferences.isDeliveryReceiptsForEditsEnabled(context)) {
+        SignalExecutors.BOUNDED.execute {
+          AppDependencies.jobManager.add(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, MessageId(insertResult.messageId)))
+        }
       }
 
       if (targetMessage.expireStarted > 0) {
