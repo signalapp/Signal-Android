@@ -95,6 +95,7 @@ public class TextSecurePreferences {
   public  static final String DELIVERY_RECEIPTS_FOR_EDITS_PREF = "pref_delivery_receipts_for_edits";
   public  static final String DELIVERY_RECEIPTS_FOR_REACTIONS_PREF = "pref_delivery_receipts_for_reactions";
   public  static final String DELIVERY_RECEIPTS_FOR_DELETES_PREF = "pref_delivery_receipts_for_deletes";
+  public  static final String DELIVERY_RECEIPTS_FOR_BLOCKED_PREF = "pref_delivery_receipts_for_blocked";
   public  static final String INCOGNITO_KEYBOARD_PREF          = "pref_incognito_keyboard";
   public  static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
   private static final String SUCCESSFUL_DIRECTORY_PREF        = "pref_successful_directory";
@@ -429,28 +430,36 @@ public class TextSecurePreferences {
     setBooleanPreference(context, RECEIPT_DELIVERY_DELAY_PREF, enabled);
   }
 
-  public static boolean isDeliveryReceiptsForEditsEnabled(Context context) {
-    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_EDITS_PREF, true);
+  public static boolean isDeliveryReceiptsForEditsDisabled(Context context) {
+    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_EDITS_PREF, false);
   }
 
-  public static void setDeliveryReceiptsForEditsEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, DELIVERY_RECEIPTS_FOR_EDITS_PREF, enabled);
+  public static void setDeliveryReceiptsForEditsDisabled(Context context, boolean disabled) {
+    setBooleanPreference(context, DELIVERY_RECEIPTS_FOR_EDITS_PREF, disabled);
   }
 
-  public static boolean isDeliveryReceiptsForReactionsEnabled(Context context) {
-    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_REACTIONS_PREF, true);
+  public static boolean isDeliveryReceiptsForReactionsDisabled(Context context) {
+    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_REACTIONS_PREF, false);
   }
 
-  public static void setDeliveryReceiptsForReactionsEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, DELIVERY_RECEIPTS_FOR_REACTIONS_PREF, enabled);
+  public static void setDeliveryReceiptsForReactionsDisabled(Context context, boolean disabled) {
+    setBooleanPreference(context, DELIVERY_RECEIPTS_FOR_REACTIONS_PREF, disabled);
   }
 
-  public static boolean isDeliveryReceiptsForDeletesEnabled(Context context) {
-    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_DELETES_PREF, true);
+  public static boolean isDeliveryReceiptsForDeletesDisabled(Context context) {
+    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_DELETES_PREF, false);
   }
 
-  public static void setDeliveryReceiptsForDeletesEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, DELIVERY_RECEIPTS_FOR_DELETES_PREF, enabled);
+  public static void setDeliveryReceiptsForDeletesDisabled(Context context, boolean disabled) {
+    setBooleanPreference(context, DELIVERY_RECEIPTS_FOR_DELETES_PREF, disabled);
+  }
+
+  public static boolean isDeliveryReceiptsForBlockedDisabled(Context context) {
+    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_BLOCKED_PREF, true);
+  }
+
+  public static void setDeliveryReceiptsForBlockedDisabled(Context context, boolean disabled) {
+    setBooleanPreference(context, DELIVERY_RECEIPTS_FOR_BLOCKED_PREF, disabled);
   }
 
   public static boolean isTypingIndicatorsEnabled(Context context) {

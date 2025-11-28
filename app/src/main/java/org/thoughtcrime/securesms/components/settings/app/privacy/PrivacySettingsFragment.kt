@@ -171,29 +171,38 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
       )
 
       switchPref(
-        title = DSLSettingsText.from("Send delivery receipts for edits"),
-        summary = DSLSettingsText.from("Send delivery receipts when you receive edited messages"),
+        title = DSLSettingsText.from("Disable delivery receipts for edits"),
+        summary = DSLSettingsText.from("Don't send delivery receipts when you receive edited messages"),
         isChecked = state.deliveryReceiptsForEdits,
         onClick = {
-          viewModel.setDeliveryReceiptsForEditsEnabled(!state.deliveryReceiptsForEdits)
+          viewModel.setDeliveryReceiptsForEditsDisabled(!state.deliveryReceiptsForEdits)
         }
       )
 
       switchPref(
-        title = DSLSettingsText.from("Send delivery receipts for reactions"),
-        summary = DSLSettingsText.from("Send delivery receipts when you receive reactions"),
+        title = DSLSettingsText.from("Disable delivery receipts for reactions"),
+        summary = DSLSettingsText.from("Don't send delivery receipts when you receive reactions"),
         isChecked = state.deliveryReceiptsForReactions,
         onClick = {
-          viewModel.setDeliveryReceiptsForReactionsEnabled(!state.deliveryReceiptsForReactions)
+          viewModel.setDeliveryReceiptsForReactionsDisabled(!state.deliveryReceiptsForReactions)
         }
       )
 
       switchPref(
-        title = DSLSettingsText.from("Send delivery receipts for deletes"),
-        summary = DSLSettingsText.from("Send delivery receipts when you receive remote delete messages"),
+        title = DSLSettingsText.from("Disable delivery receipts for deletes"),
+        summary = DSLSettingsText.from("Don't send delivery receipts when you receive remote delete messages"),
         isChecked = state.deliveryReceiptsForDeletes,
         onClick = {
-          viewModel.setDeliveryReceiptsForDeletesEnabled(!state.deliveryReceiptsForDeletes)
+          viewModel.setDeliveryReceiptsForDeletesDisabled(!state.deliveryReceiptsForDeletes)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("Disable delivery receipts to blocked users"),
+        summary = DSLSettingsText.from("Don't allow blocked contacts to know when you receive their messages (you should enable this to protect against timing attacks)"),
+        isChecked = state.deliveryReceiptsForBlocked,
+        onClick = {
+          viewModel.setDeliveryReceiptsForBlockedDisabled(!state.deliveryReceiptsForBlocked)
         }
       )
 

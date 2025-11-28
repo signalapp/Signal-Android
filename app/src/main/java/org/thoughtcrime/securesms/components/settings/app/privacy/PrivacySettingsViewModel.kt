@@ -42,18 +42,23 @@ class PrivacySettingsViewModel(
     refresh()
   }
 
-  fun setDeliveryReceiptsForEditsEnabled(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.DELIVERY_RECEIPTS_FOR_EDITS_PREF, enabled).apply()
+  fun setDeliveryReceiptsForEditsDisabled(disabled: Boolean) {
+    sharedPreferences.edit().putBoolean(TextSecurePreferences.DELIVERY_RECEIPTS_FOR_EDITS_PREF, disabled).apply()
     refresh()
   }
 
-  fun setDeliveryReceiptsForReactionsEnabled(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.DELIVERY_RECEIPTS_FOR_REACTIONS_PREF, enabled).apply()
+  fun setDeliveryReceiptsForReactionsDisabled(disabled: Boolean) {
+    sharedPreferences.edit().putBoolean(TextSecurePreferences.DELIVERY_RECEIPTS_FOR_REACTIONS_PREF, disabled).apply()
     refresh()
   }
 
-  fun setDeliveryReceiptsForDeletesEnabled(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.DELIVERY_RECEIPTS_FOR_DELETES_PREF, enabled).apply()
+  fun setDeliveryReceiptsForDeletesDisabled(disabled: Boolean) {
+    sharedPreferences.edit().putBoolean(TextSecurePreferences.DELIVERY_RECEIPTS_FOR_DELETES_PREF, disabled).apply()
+    refresh()
+  }
+
+  fun setDeliveryReceiptsForBlockedDisabled(disabled: Boolean) {
+    sharedPreferences.edit().putBoolean(TextSecurePreferences.DELIVERY_RECEIPTS_FOR_BLOCKED_PREF, disabled).apply()
     refresh()
   }
 
@@ -92,9 +97,10 @@ class PrivacySettingsViewModel(
       readReceipts = TextSecurePreferences.isReadReceiptsEnabled(AppDependencies.application),
       typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(AppDependencies.application),
       receiptDeliveryDelay = TextSecurePreferences.isReceiptDeliveryDelayEnabled(AppDependencies.application),
-      deliveryReceiptsForEdits = TextSecurePreferences.isDeliveryReceiptsForEditsEnabled(AppDependencies.application),
-      deliveryReceiptsForReactions = TextSecurePreferences.isDeliveryReceiptsForReactionsEnabled(AppDependencies.application),
-      deliveryReceiptsForDeletes = TextSecurePreferences.isDeliveryReceiptsForDeletesEnabled(AppDependencies.application),
+      deliveryReceiptsForEdits = TextSecurePreferences.isDeliveryReceiptsForEditsDisabled(AppDependencies.application),
+      deliveryReceiptsForReactions = TextSecurePreferences.isDeliveryReceiptsForReactionsDisabled(AppDependencies.application),
+      deliveryReceiptsForDeletes = TextSecurePreferences.isDeliveryReceiptsForDeletesDisabled(AppDependencies.application),
+      deliveryReceiptsForBlocked = TextSecurePreferences.isDeliveryReceiptsForBlockedDisabled(AppDependencies.application),
       screenLock = SignalStore.settings.screenLockEnabled,
       screenLockActivityTimeout = SignalStore.settings.screenLockTimeout,
       screenSecurity = TextSecurePreferences.isScreenSecurityEnabled(AppDependencies.application),

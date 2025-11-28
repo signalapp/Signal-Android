@@ -97,7 +97,7 @@ object EditMessageProcessor {
     }
 
     if (insertResult != null) {
-      if (TextSecurePreferences.isDeliveryReceiptsForEditsEnabled(context)) {
+      if (!TextSecurePreferences.isDeliveryReceiptsForEditsDisabled(context)) {
         SignalExecutors.BOUNDED.execute {
           AppDependencies.jobManager.add(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, MessageId(insertResult.messageId)))
         }

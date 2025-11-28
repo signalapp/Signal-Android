@@ -131,6 +131,11 @@ public class SendDeliveryReceiptJob extends BaseJob {
       return;
     }
 
+    if (recipient.isBlocked() && TextSecurePreferences.isDeliveryReceiptsForBlockedDisabled(context)) {
+      Log.w(TAG, "Refusing to send delivery receipt to blocked recipient");
+      return;
+    }
+
     if (recipient.isUnregistered()) {
       Log.w(TAG, recipient.getId() + " is unregistered!");
       return;
