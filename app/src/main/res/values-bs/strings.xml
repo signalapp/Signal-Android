@@ -2595,9 +2595,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Smanji lokalni video</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Proširi lokalni video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal poziv</string>
@@ -8408,7 +8408,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">Sigurnosne kopije poruka poslanih ili primljenih prije %1$s se ne kreiraju.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Kreiranje sigurnosne kopije nije moglo biti završeno jer imate malo prostora za pohranu. Oslobodite prostor na uređaju i pokušajte ponovo.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Saznaj više</string>
 
@@ -9216,7 +9216,7 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Anketa · Odaberite jedno</string>
+    <string name="Poll__select_one">Anketa · Odaberite jedan odgovor</string>
     <!-- Caption in poll message to select one or more options  -->
     <string name="Poll__select_multiple">Anketa · Odaberite jednu ili više</string>
     <!-- Caption in poll message once a poll has ended  -->

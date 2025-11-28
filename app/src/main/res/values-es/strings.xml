@@ -679,9 +679,9 @@
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Consejos de seguridad</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Ten cuidado al aceptar solicitudes de mensajes de personas que no conoces. Presta atención a lo siguiente:</string>
+    <string name="SafetyTips_subtitle_individual">Ten cuidado al aceptar solicitudes de mensajes de personas que no conoces. Aquí hay algunas recomendaciones a tener en cuenta:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Revisa detenidamente esta solicitud. Ninguno de tus contactos o personas con las que chateas están en este grupo. Aquí hay algunas cosas a tener en cuenta:</string>
+    <string name="SafetyTips_subtitle_group">Revisa detenidamente esta solicitud. Ninguno de tus contactos o personas con las que chateas están en este grupo. Aquí hay algunas recomendaciones a tener en cuenta:</string>
     <!-- Button text to move to the previous tip-->
     <string name="SafetyTips_previous_tip">Anterior</string>
     <!-- Button text to move to the next tip -->
@@ -4795,7 +4795,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Tu número de teléfono será visible para las personas y los grupos a los que les envíes mensajes.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Tu número de teléfono no será visible para nadie a menos que lo tenga guardado en los contactos de su teléfono.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Tu número de teléfono no será visible para nadie a menos que lo tenga guardado en su teléfono.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Tu número de teléfono no será visible para nadie.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
@@ -4912,7 +4912,7 @@
     <string name="TransferOrRestoreFragment__restore_from_backup">Restaurar desde copia de seguridad</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restaura tus mensajes desde una copia de seguridad local. Si no los restauras ahora, no podrás hacerlo más tarde.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Restaurar copia de seguridad local</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restaurar copia de seguridad de Signal</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Desde Copias Seguras de Signal</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Más opciones</string>
 
@@ -6936,8 +6936,8 @@
     <string name="GiftFlowStartFragment__donate_for_a_friend">Donar en nombre de alguien más</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
-        <item quantity="one">Apoya a Signal haciendo una donación en nombre de un amigo o familiar que use Signal. La persona que elijas recibirá una insignia para mostrar en su perfil durante %1$d día.</item>
-        <item quantity="other">Apoya a Signal haciendo una donación en nombre de un amigo o familiar que use Signal. La persona que elijas recibirá una insignia para mostrar en su perfil durante %1$d días.</item>
+        <item quantity="one">Apoya a Signal haciendo una donación en nombre de un amigo o familiar que use Signal. La persona que elijas recibirá una insignia para mostrar en su perfil durante %1$d día.</item>
+        <item quantity="other">Apoya a Signal haciendo una donación en nombre de un amigo o familiar que use Signal. La persona que elijas recibirá una insignia para mostrar en su perfil durante %1$d días.</item>
     </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Siguiente</string>
