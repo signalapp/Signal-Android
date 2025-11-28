@@ -439,7 +439,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isDeliveryReceiptsForReactionsDisabled(Context context) {
-    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_REACTIONS_PREF, false);
+    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_REACTIONS_PREF, true);
   }
 
   public static void setDeliveryReceiptsForReactionsDisabled(Context context, boolean disabled) {
@@ -447,7 +447,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isDeliveryReceiptsForDeletesDisabled(Context context) {
-    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_DELETES_PREF, false);
+    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_DELETES_PREF, true);
   }
 
   public static void setDeliveryReceiptsForDeletesDisabled(Context context, boolean disabled) {
