@@ -7,6 +7,7 @@ data class PrivacySettingsState(
   val receiptDeliveryDelay: Boolean,
   val deliveryReceiptsForEdits: Boolean,
   val deliveryReceiptsForReactions: Boolean,
+  val deliveryReceiptsForDeletes: Boolean,
   val screenLock: Boolean,
   val screenLockActivityTimeout: Long,
   val screenSecurity: Boolean,

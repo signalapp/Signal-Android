@@ -204,11 +204,11 @@ object DataMessageProcessor {
     }
 
     if (metadata.sealedSender && messageId != null) {
-      // Check if we should skip delivery receipts for reactions
-      val shouldSendReceipt = if (message.reaction != null) {
-        TextSecurePreferences.isDeliveryReceiptsForReactionsEnabled(context)
-      } else {
-        true
+      // Check if we should skip delivery receipts based on message type
+      val shouldSendReceipt = when {
+        message.reaction != null -> TextSecurePreferences.isDeliveryReceiptsForReactionsEnabled(context)
+        message.hasRemoteDelete -> TextSecurePreferences.isDeliveryReceiptsForDeletesEnabled(context)
+        else -> true
       }
       
       if (shouldSendReceipt) {

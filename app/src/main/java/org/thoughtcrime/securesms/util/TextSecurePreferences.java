@@ -94,6 +94,7 @@ public class TextSecurePreferences {
   public  static final String RECEIPT_DELIVERY_DELAY_PREF      = "pref_receipt_delivery_delay";
   public  static final String DELIVERY_RECEIPTS_FOR_EDITS_PREF = "pref_delivery_receipts_for_edits";
   public  static final String DELIVERY_RECEIPTS_FOR_REACTIONS_PREF = "pref_delivery_receipts_for_reactions";
+  public  static final String DELIVERY_RECEIPTS_FOR_DELETES_PREF = "pref_delivery_receipts_for_deletes";
   public  static final String INCOGNITO_KEYBOARD_PREF          = "pref_incognito_keyboard";
   public  static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
   private static final String SUCCESSFUL_DIRECTORY_PREF        = "pref_successful_directory";
@@ -442,6 +443,14 @@ public class TextSecurePreferences {
 
   public static void setDeliveryReceiptsForReactionsEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, DELIVERY_RECEIPTS_FOR_REACTIONS_PREF, enabled);
+  }
+
+  public static boolean isDeliveryReceiptsForDeletesEnabled(Context context) {
+    return getBooleanPreference(context, DELIVERY_RECEIPTS_FOR_DELETES_PREF, true);
+  }
+
+  public static void setDeliveryReceiptsForDeletesEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, DELIVERY_RECEIPTS_FOR_DELETES_PREF, enabled);
   }
 
   public static boolean isTypingIndicatorsEnabled(Context context) {

@@ -52,6 +52,11 @@ class PrivacySettingsViewModel(
     refresh()
   }
 
+  fun setDeliveryReceiptsForDeletesEnabled(enabled: Boolean) {
+    sharedPreferences.edit().putBoolean(TextSecurePreferences.DELIVERY_RECEIPTS_FOR_DELETES_PREF, enabled).apply()
+    refresh()
+  }
+
   fun setScreenSecurityEnabled(enabled: Boolean) {
     sharedPreferences.edit().putBoolean(TextSecurePreferences.SCREEN_SECURITY_PREF, enabled).apply()
     refresh()
@@ -89,6 +94,7 @@ class PrivacySettingsViewModel(
       receiptDeliveryDelay = TextSecurePreferences.isReceiptDeliveryDelayEnabled(AppDependencies.application),
       deliveryReceiptsForEdits = TextSecurePreferences.isDeliveryReceiptsForEditsEnabled(AppDependencies.application),
       deliveryReceiptsForReactions = TextSecurePreferences.isDeliveryReceiptsForReactionsEnabled(AppDependencies.application),
+      deliveryReceiptsForDeletes = TextSecurePreferences.isDeliveryReceiptsForDeletesEnabled(AppDependencies.application),
       screenLock = SignalStore.settings.screenLockEnabled,
       screenLockActivityTimeout = SignalStore.settings.screenLockTimeout,
       screenSecurity = TextSecurePreferences.isScreenSecurityEnabled(AppDependencies.application),

@@ -188,6 +188,15 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         }
       )
 
+      switchPref(
+        title = DSLSettingsText.from("Send delivery receipts for deletes"),
+        summary = DSLSettingsText.from("Send delivery receipts when you receive remote delete messages"),
+        isChecked = state.deliveryReceiptsForDeletes,
+        onClick = {
+          viewModel.setDeliveryReceiptsForDeletesEnabled(!state.deliveryReceiptsForDeletes)
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(R.string.PrivacySettingsFragment__disappearing_messages)
