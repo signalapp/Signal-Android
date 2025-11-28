@@ -91,6 +91,7 @@ public class TextSecurePreferences {
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   public  static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
   public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
+  public  static final String RECEIPT_DELIVERY_DELAY_PREF      = "pref_receipt_delivery_delay";
   public  static final String INCOGNITO_KEYBOARD_PREF          = "pref_incognito_keyboard";
   public  static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
   private static final String SUCCESSFUL_DIRECTORY_PREF        = "pref_successful_directory";
@@ -415,6 +416,14 @@ public class TextSecurePreferences {
 
   public static void setReadReceiptsEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, READ_RECEIPTS_PREF, enabled);
+  }
+
+  public static boolean isReceiptDeliveryDelayEnabled(Context context) {
+    return getBooleanPreference(context, RECEIPT_DELIVERY_DELAY_PREF, true);
+  }
+
+  public static void setReceiptDeliveryDelayEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, RECEIPT_DELIVERY_DELAY_PREF, enabled);
   }
 
   public static boolean isTypingIndicatorsEnabled(Context context) {

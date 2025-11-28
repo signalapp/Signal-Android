@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -28,6 +29,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
@@ -42,6 +44,11 @@ public class SendDeliveryReceiptJob extends BaseJob {
 
   private static final String TAG = Log.tag(SendReadReceiptJob.class);
 
+  // Privacy enhancement: randomized delay to prevent timing attacks
+  private static final long MIN_DELAY_MS = 300;
+  private static final long MAX_DELAY_MS = 5000; // 5 seconds
+  private static final SecureRandom secureRandom = new SecureRandom();
+
   private final RecipientId recipientId;
   private final long        messageSentTimestamp;
   private final long        timestamp;
@@ -55,11 +62,27 @@ public class SendDeliveryReceiptJob extends BaseJob {
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .setQueue(recipientId.toQueueKey())
+                           .setInitialDelay(getRandomDelayIfEnabled())
                            .build(),
          recipientId,
          messageSentTimestamp,
          messageId,
          System.currentTimeMillis());
+  }
+
+  /**
+   * Generates a random delay between MIN_DELAY_MS and MAX_DELAY_MS to prevent timing attacks,
+   * but only if the feature is enabled. This makes it difficult for an adversary to correlate
+   * message receipt with delivery receipt timing.
+   *
+   * @return A random delay in milliseconds if enabled, 0 otherwise
+   */
+  private static long getRandomDelayIfEnabled() {
+    if (!TextSecurePreferences.isReceiptDeliveryDelayEnabled(AppDependencies.getApplication())) {
+      return 0;
+    }
+    long range = MAX_DELAY_MS - MIN_DELAY_MS;
+    return MIN_DELAY_MS + (long)(secureRandom.nextDouble() * range);
   }
 
   private SendDeliveryReceiptJob(@NonNull Job.Parameters parameters,

@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -46,6 +47,11 @@ public class SendReadReceiptJob extends BaseJob {
   private static final String TAG = Log.tag(SendReadReceiptJob.class);
 
   static final int MAX_TIMESTAMPS = 500;
+
+  // Privacy enhancement: randomized delay to prevent timing attacks
+  private static final long MIN_DELAY_MS = 300;
+  private static final long MAX_DELAY_MS = 5000; // 5 seconds
+  private static final SecureRandom secureRandom = new SecureRandom();
 
   private static final String KEY_THREAD                  = "thread";
   private static final String KEY_ADDRESS                 = "address";
@@ -67,12 +73,28 @@ public class SendReadReceiptJob extends BaseJob {
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .setQueue(recipientId.toQueueKey())
+                           .setInitialDelay(getRandomDelayIfEnabled())
                            .build(),
          threadId,
          recipientId,
          ensureSize(messageSentTimestamps, MAX_TIMESTAMPS),
          ensureSize(messageIds, MAX_TIMESTAMPS),
          System.currentTimeMillis());
+  }
+
+  /**
+   * Generates a random delay between MIN_DELAY_MS and MAX_DELAY_MS to prevent timing attacks,
+   * but only if the feature is enabled. This makes it difficult for an adversary to correlate
+   * message read events with read receipt timing.
+   *
+   * @return A random delay in milliseconds if enabled, 0 otherwise
+   */
+  private static long getRandomDelayIfEnabled() {
+    if (!TextSecurePreferences.isReceiptDeliveryDelayEnabled(AppDependencies.getApplication())) {
+      return 0;
+    }
+    long range = MAX_DELAY_MS - MIN_DELAY_MS;
+    return MIN_DELAY_MS + (long)(secureRandom.nextDouble() * range);
   }
 
   private SendReadReceiptJob(@NonNull Job.Parameters parameters,
