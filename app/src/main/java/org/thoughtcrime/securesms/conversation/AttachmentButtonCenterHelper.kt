@@ -16,16 +16,12 @@ object AttachmentButtonCenterHelper {
   private val TAG = Log.tag(AttachmentButtonCenterHelper::class)
   private val DEFAULT_PADDING = DimensionUnit.DP.toPixels(16f).toInt()
 
+  @Synchronized
   fun recenter(buttonHolder: View, wrapper: View) {
-    // The core width of the list of buttons not include any padding.
-    // Story time - as far as I can remember, the width attribute included padding, so calculating
-    // the core width required doing myView.run { width - (paddingLeft + paddingRight) } to account
-    // for that. This is weird if you're used to CSS.
-    // However something changed between 7.58 and 7.66, but the width attribute no longer includes
-    // padding at all, which mirrors the behaviour of CSS. So, yay, I guess?
-    // To be clear, I have no clue why this behaviour changed. My current suspects are Signal (doubt),
-    // Android Studio (maybe), and Google silently changing upstream dependencies (maybe).
-    val extraSpace = wrapper.width - buttonHolder.width
+    buttonHolder.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+    buttonHolder.layout(0, 0, buttonHolder.measuredWidth, buttonHolder.measuredHeight)
+    val buttonHolderCoreWidth = buttonHolder.run { width - (paddingLeft + paddingRight) }
+    val extraSpace = wrapper.width - buttonHolderCoreWidth
     val horizontalPadding = if (extraSpace >= 0)
       (extraSpace / 2f).toInt()
     else
