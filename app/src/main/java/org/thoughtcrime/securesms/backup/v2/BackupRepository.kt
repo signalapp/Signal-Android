@@ -2437,6 +2437,7 @@ class ExportState(
   val aciToRecipientId: MutableMap<String, Long> = hashMapOf()
   val recipientIdToE164: MutableMap<Long, Long> = hashMapOf()
   val customChatColorIds: MutableSet<Long> = hashSetOf()
+  var releaseNoteRecipientId: Long? = null
 }
 
 class ImportState(val mediaRootBackupKey: MediaRootBackupKey) {

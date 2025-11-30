@@ -147,6 +147,10 @@ object ExportSkips {
     return log(sentTimestamp, "An incoming message author did not have an aci or e164.")
   }
 
+  fun outgoingMessageToReleaseNotesChat(sentTimestamp: Long): String {
+    return log(sentTimestamp, "An outgoing message was sent to the release notes chat.")
+  }
+
   fun callWithMissingRecipient(sentTimestamp: Long): String {
     return log(sentTimestamp, "A call had a ringer with no matching exported Recipient.")
   }

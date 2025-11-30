@@ -44,6 +44,7 @@ object RecipientArchiveProcessor {
     if (releaseChannelId != null) {
       exportState.recipientIds.add(releaseChannelId.toLong())
       exportState.contactRecipientIds.add(releaseChannelId.toLong())
+      exportState.releaseNoteRecipientId = releaseChannelId.toLong()
       emitter.emit(
         Frame(
           recipient = ArchiveRecipient(

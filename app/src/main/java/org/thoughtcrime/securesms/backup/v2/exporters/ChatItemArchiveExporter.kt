@@ -1390,6 +1390,10 @@ private fun BackupMessageRecord.toRemoteSendStatus(isGroupThread: Boolean, group
     return emptyList()
   }
 
+  if (this.toRecipientId == exportState.releaseNoteRecipientId) {
+    return emptyList()
+  }
+
   val statusBuilder = SendStatus.Builder()
     .recipientId(this.toRecipientId)
     .timestamp(max(this.receiptTimestamp, 0))
@@ -1448,6 +1452,7 @@ private fun List<GroupReceiptTable.GroupReceiptInfo>?.toRemoteSendStatus(message
 
   return this
     .filter { exportState.recipientIds.contains(it.recipientId.toLong()) }
+    .filterNot { it.recipientId.toLong() == exportState.releaseNoteRecipientId }
     .map {
       val statusBuilder = SendStatus.Builder()
         .recipientId(it.recipientId.toLong())
@@ -1631,6 +1636,11 @@ private fun ChatItem.validateChatItem(exportState: ExportState, selfRecipientId:
 
   if (this.incoming != null && exportState.recipientIdToAci[this.authorId] == null && exportState.recipientIdToE164[this.authorId] == null) {
     Log.w(TAG, ExportSkips.incomingMessageAuthorDoesNotHaveAciOrE164(this.dateSent))
+    return null
+  }
+
+  if (this.outgoing != null && exportState.releaseNoteRecipientId != null && exportState.threadIdToRecipientId[this.chatId] == exportState.releaseNoteRecipientId) {
+    Log.w(TAG, ExportSkips.outgoingMessageToReleaseNotesChat(this.dateSent))
     return null
   }
 
