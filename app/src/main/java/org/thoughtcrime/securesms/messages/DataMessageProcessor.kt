@@ -1316,6 +1316,7 @@ object DataMessageProcessor {
       return null
     }
 
+    val targetMessageId = targetMessage.latestRevisionId?.id ?: targetMessage.id
     val duration = if (pinMessage.pinDurationForever == true) MessageTable.PIN_FOREVER else pinMessage.pinDurationSeconds!!.toLong()
     val pinnedMessage = IncomingMessage(
       type = MessageType.PINNED_MESSAGE,
@@ -1327,7 +1328,7 @@ object DataMessageProcessor {
       groupId = groupId,
       isUnidentified = metadata.sealedSender,
       serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
-      messageExtras = MessageExtras(pinnedMessage = PinnedMessage(pinnedMessageId = targetMessage.id, targetAuthorAci = pinMessage.targetAuthorAciBinary!!, targetTimestamp = pinMessage.targetSentTimestamp!!, pinDurationInSeconds = duration))
+      messageExtras = MessageExtras(pinnedMessage = PinnedMessage(pinnedMessageId = targetMessageId, targetAuthorAci = pinMessage.targetAuthorAciBinary!!, targetTimestamp = pinMessage.targetSentTimestamp!!, pinDurationInSeconds = duration))
     )
 
     val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(pinnedMessage).orNull()
@@ -1399,9 +1400,10 @@ object DataMessageProcessor {
       return null
     }
 
-    SignalDatabase.messages.unpinMessage(targetMessage.id, targetMessage.threadId)
+    val targetMessageId = targetMessage.latestRevisionId?.id ?: targetMessage.id
+    SignalDatabase.messages.unpinMessage(targetMessageId, targetMessage.threadId)
 
-    return MessageId(targetMessage.id)
+    return MessageId(targetMessageId)
   }
 
   fun notifyTypingStoppedFromIncomingMessage(context: Context, senderRecipient: Recipient, threadRecipientId: RecipientId, device: Int) {

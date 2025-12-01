@@ -1136,6 +1136,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .run()
 
       reactions.moveReactionsToNewMessage(newMessageId = messageId, previousId = targetMessage.id)
+      movePinnedDetailsToNewMessage(newMessageId = messageId, previousId = targetMessage.id)
 
       notifyConversationListeners(targetMessage.threadId)
     }
@@ -3411,6 +3412,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       attachments.duplicateAttachmentsForMessage(messageId, message.messageToEdit, excludeIds)
 
       reactions.moveReactionsToNewMessage(messageId, message.messageToEdit)
+      movePinnedDetailsToNewMessage(newMessageId = messageId, previousId = message.messageToEdit)
     }
 
     threads.updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId, dateReceived)
@@ -3652,7 +3654,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           PINNED_UNTIL to 0,
           PINNED_AT to 0
         )
-        .where("$PINNED_AT > 0 AND $PINNED_AT <= ?", oldestPin)
+        .where("$PINNED_AT > 0 AND $PINNED_AT <= ? AND $THREAD_ID = ?", oldestPin, threadId)
         .run()
     }
   }
@@ -5278,6 +5280,49 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     return mmsReaderFor(cursor).use { reader ->
       reader.filterNotNull()
+    }
+  }
+
+  fun movePinnedDetailsToNewMessage(newMessageId: Long, previousId: Long) {
+    writableDatabase.withinTransaction { db ->
+      val (pinnedAt, pinnedUntil, pinningMessageId) = db
+        .select(PINNED_AT, PINNED_UNTIL, PINNING_MESSAGE_ID)
+        .from(TABLE_NAME)
+        .where("$ID = ?", previousId)
+        .run()
+        .use { cursor ->
+          if (cursor.moveToNext()) {
+            Triple(cursor.requireLong(PINNED_AT), cursor.requireLong(PINNED_UNTIL), cursor.requireLong(PINNING_MESSAGE_ID))
+          } else {
+            Triple(0, 0, 0)
+          }
+        }
+
+      if (pinnedUntil == 0) {
+        return
+      }
+
+      // Remove pinned details from original message
+      db
+        .update(TABLE_NAME)
+        .values(
+          PINNED_AT to 0,
+          PINNED_UNTIL to 0,
+          PINNING_MESSAGE_ID to 0
+        )
+        .where("$ID = ?", previousId)
+        .run()
+
+      // Add pinned details to edited message
+      db
+        .update(TABLE_NAME)
+        .values(
+          PINNED_AT to pinnedAt,
+          PINNED_UNTIL to pinnedUntil,
+          PINNING_MESSAGE_ID to pinningMessageId
+        )
+        .where("$ID = ?", newMessageId)
+        .run()
     }
   }
 

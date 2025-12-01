@@ -1895,12 +1895,13 @@ object SyncMessageProcessor {
       return -1
     }
 
+    val targetMessageId = (targetMessage as? MmsMessageRecord)?.latestRevisionId?.id ?: targetMessage.id
     val duration = if (pinMessage.pinDurationForever == true) MessageTable.PIN_FOREVER else pinMessage.pinDurationSeconds!!.toLong()
     val outgoingMessage = OutgoingMessage.pinMessage(
       threadRecipient = recipient,
       sentTimeMillis = sent.timestamp!!,
       expiresIn = recipient.expiresInSeconds.seconds.inWholeMilliseconds,
-      messageExtras = MessageExtras(pinnedMessage = PinnedMessage(pinnedMessageId = targetMessage.id, targetAuthorAci = pinMessage.targetAuthorAciBinary!!, targetTimestamp = pinMessage.targetSentTimestamp!!, pinDurationInSeconds = duration))
+      messageExtras = MessageExtras(pinnedMessage = PinnedMessage(pinnedMessageId = targetMessageId, targetAuthorAci = pinMessage.targetAuthorAciBinary!!, targetTimestamp = pinMessage.targetSentTimestamp!!, pinDurationInSeconds = duration))
     )
 
     val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null).messageId
