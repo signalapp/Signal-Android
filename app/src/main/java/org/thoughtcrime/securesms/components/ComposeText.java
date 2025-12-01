@@ -57,6 +57,7 @@ import static org.thoughtcrime.securesms.database.MentionUtil.MENTION_STARTER;
 
 public class ComposeText extends EmojiEditText {
 
+  private static final String  TAG              = Log.tag(ComposeText.class);
   private static final char    EMOJI_STARTER    = ':';
   private static final int     MAX_QUERY_LENGTH = 64;
   private static final Pattern TIME_PATTERN     = Pattern.compile("^[0-9]{1,2}:[0-9]{1,2}$");
@@ -99,11 +100,21 @@ public class ComposeText extends EmojiEditText {
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    try {
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    } catch (IndexOutOfBoundsException e) {
+      Log.w(TAG, "IndexOutOfBoundsException during onMeasure, retrying", e);
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
 
     if (getLayout() != null && !TextUtils.isEmpty(hint)) {
       setHintWithChecks(ellipsizeToWidth(hint));
-      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+      try {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+      } catch (IndexOutOfBoundsException e) {
+        Log.w(TAG, "IndexOutOfBoundsException during hint onMeasure, retrying", e);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+      }
     }
   }
 
