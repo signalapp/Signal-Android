@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.mms.DocumentSlide
 import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.mms.VideoSlide
+import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.hasSharedContact
 import org.thoughtcrime.securesms.util.isPoll
 import org.thoughtcrime.securesms.util.isViewOnceMessage
@@ -180,6 +181,8 @@ fun Heading(selectedIndex: Int, size: Int) {
           .background(
             color = if (i == selectedIndex) {
               MaterialTheme.colorScheme.onSurface
+            } else if (DynamicTheme.isDarkTheme(LocalContext.current)) {
+              MaterialTheme.colorScheme.secondaryContainer
             } else {
               SignalTheme.colors.colorTransparentInverse2
             },
