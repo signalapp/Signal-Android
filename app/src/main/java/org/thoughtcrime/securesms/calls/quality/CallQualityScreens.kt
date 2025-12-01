@@ -7,14 +7,16 @@ package org.thoughtcrime.securesms.calls.quality
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.core.CubicBezierEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -77,68 +79,88 @@ fun CallQualitySheet(
 ) {
   var navEntry: CallQualitySheetNavEntry by remember { mutableStateOf(CallQualitySheetNavEntry.HowWasYourCall) }
 
-  when (navEntry) {
-    CallQualitySheetNavEntry.HowWasYourCall -> HowWasYourCall(
-      onGreatClick = {
-        callback.onUserSatisfiedWithCall(true)
-        navEntry = CallQualitySheetNavEntry.HelpUsImprove
-      },
-      onHadIssuesClick = {
-        callback.onUserSatisfiedWithCall(true)
-        navEntry = CallQualitySheetNavEntry.WhatIssuesDidYouHave
-      },
-      onCancelClick = callback::dismiss
-    )
+  Sheet(onDismissRequest = callback::dismiss) {
+    AnimatedContent(
+      targetState = navEntry,
+      transitionSpec = {
+        fadeIn(
+          animationSpec = tween(
+            durationMillis = 300,
+            delayMillis = 300,
+            easing = CubicBezierEasing(0.25f, 0.1f, 0.25f, 1f)
+          )
+        ) togetherWith fadeOut(
+          animationSpec = tween(
+            durationMillis = 300,
+            easing = CubicBezierEasing(0f, 0f, 0.58f, 1f)
+          )
+        )
+      }
+    ) { target ->
+      Column {
+        when (target) {
+          CallQualitySheetNavEntry.HowWasYourCall -> HowWasYourCall(
+            onGreatClick = {
+              callback.onUserSatisfiedWithCall(true)
+              navEntry = CallQualitySheetNavEntry.HelpUsImprove
+            },
+            onHadIssuesClick = {
+              callback.onUserSatisfiedWithCall(true)
+              navEntry = CallQualitySheetNavEntry.WhatIssuesDidYouHave
+            },
+            onCancelClick = callback::dismiss
+          )
 
-    CallQualitySheetNavEntry.WhatIssuesDidYouHave -> WhatIssuesDidYouHave(
-      selectedQualityIssues = state.selectedQualityIssues,
-      somethingElseDescription = state.somethingElseDescription,
-      onCallQualityIssueSelectionChanged = callback::onCallQualityIssueSelectionChanged,
-      onContinueClick = {
-        navEntry = CallQualitySheetNavEntry.HelpUsImprove
-      },
-      onDescribeYourIssueClick = callback::describeYourIssue,
-      onCancelClick = callback::dismiss
-    )
+          CallQualitySheetNavEntry.WhatIssuesDidYouHave -> WhatIssuesDidYouHave(
+            selectedQualityIssues = state.selectedQualityIssues,
+            somethingElseDescription = state.somethingElseDescription,
+            onCallQualityIssueSelectionChanged = callback::onCallQualityIssueSelectionChanged,
+            onContinueClick = {
+              navEntry = CallQualitySheetNavEntry.HelpUsImprove
+            },
+            onDescribeYourIssueClick = callback::describeYourIssue,
+            onCancelClick = callback::dismiss
+          )
 
-    CallQualitySheetNavEntry.HelpUsImprove -> HelpUsImprove(
-      isShareDebugLogSelected = state.isShareDebugLogSelected,
-      onViewDebugLogClick = callback::viewDebugLog,
-      onCancelClick = callback::dismiss,
-      onShareDebugLogChanged = callback::onShareDebugLogChanged,
-      onSubmitClick = callback::submit
-    )
+          CallQualitySheetNavEntry.HelpUsImprove -> HelpUsImprove(
+            isShareDebugLogSelected = state.isShareDebugLogSelected,
+            onViewDebugLogClick = callback::viewDebugLog,
+            onCancelClick = callback::dismiss,
+            onShareDebugLogChanged = callback::onShareDebugLogChanged,
+            onSubmitClick = callback::submit
+          )
+        }
+      }
+    }
   }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun HowWasYourCall(
+private fun ColumnScope.HowWasYourCall(
   onHadIssuesClick: () -> Unit,
   onGreatClick: () -> Unit,
   onCancelClick: () -> Unit
 ) {
-  Sheet(onDismissRequest = onCancelClick) {
-    SheetTitle(text = stringResource(R.string.CallQualitySheet__how_was_your_call))
-    SheetSubtitle(text = stringResource(R.string.CallQualitySheet__how_was_your_call_subtitle))
+  SheetTitle(text = stringResource(R.string.CallQualitySheet__how_was_your_call))
+  SheetSubtitle(text = stringResource(R.string.CallQualitySheet__how_was_your_call_subtitle))
 
-    Row(
-      horizontalArrangement = Arrangement.SpaceEvenly,
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(top = 24.dp)
-    ) {
-      HadIssuesButton(onClick = onHadIssuesClick)
-      GreatButton(onClick = onGreatClick)
-    }
-
-    CancelButton(
-      onClick = onCancelClick,
-      modifier = Modifier
-        .align(Alignment.CenterHorizontally)
-        .padding(top = 32.dp, bottom = 24.dp)
-    )
+  Row(
+    horizontalArrangement = Arrangement.SpaceEvenly,
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(top = 24.dp)
+  ) {
+    HadIssuesButton(onClick = onHadIssuesClick)
+    GreatButton(onClick = onGreatClick)
   }
+
+  CancelButton(
+    onClick = onCancelClick,
+    modifier = Modifier
+      .align(Alignment.CenterHorizontally)
+      .padding(top = 32.dp, bottom = 24.dp)
+  )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -151,189 +173,187 @@ private fun WhatIssuesDidYouHave(
   onContinueClick: () -> Unit,
   onDescribeYourIssueClick: () -> Unit
 ) {
-  Sheet(onDismissRequest = onCancelClick) {
-    SheetTitle(text = stringResource(R.string.CallQualitySheet__what_issues_did_you_have))
-    SheetSubtitle(text = stringResource(R.string.CallQualitySheet__select_all_that_apply))
+  SheetTitle(text = stringResource(R.string.CallQualitySheet__what_issues_did_you_have))
+  SheetSubtitle(text = stringResource(R.string.CallQualitySheet__select_all_that_apply))
 
-    val onCallQualityIssueClick: (CallQualityIssue) -> Unit = remember(selectedQualityIssues, onCallQualityIssueSelectionChanged) {
-      { issue ->
-        val isRemoving = issue in selectedQualityIssues
-        val selection = when {
-          isRemoving && issue == CallQualityIssue.AUDIO_ISSUE -> {
-            selectedQualityIssues.filterNot { it.category == CallQualityIssueCategory.AUDIO }.toSet()
-          }
-
-          isRemoving && issue == CallQualityIssue.VIDEO_ISSUE -> {
-            selectedQualityIssues.filterNot { it.category == CallQualityIssueCategory.VIDEO }.toSet()
-          }
-
-          isRemoving -> {
-            selectedQualityIssues - issue
-          }
-
-          else -> {
-            selectedQualityIssues + issue
-          }
+  val onCallQualityIssueClick: (CallQualityIssue) -> Unit = remember(selectedQualityIssues, onCallQualityIssueSelectionChanged) {
+    { issue ->
+      val isRemoving = issue in selectedQualityIssues
+      val selection = when {
+        isRemoving && issue == CallQualityIssue.AUDIO_ISSUE -> {
+          selectedQualityIssues.filterNot { it.category == CallQualityIssueCategory.AUDIO }.toSet()
         }
 
-        onCallQualityIssueSelectionChanged(selection)
+        isRemoving && issue == CallQualityIssue.VIDEO_ISSUE -> {
+          selectedQualityIssues.filterNot { it.category == CallQualityIssueCategory.VIDEO }.toSet()
+        }
+
+        isRemoving -> {
+          selectedQualityIssues - issue
+        }
+
+        else -> {
+          selectedQualityIssues + issue
+        }
       }
+
+      onCallQualityIssueSelectionChanged(selection)
+    }
+  }
+
+  val isAudioExpanded = CallQualityIssue.AUDIO_ISSUE in selectedQualityIssues
+  val isVideoExpanded = CallQualityIssue.VIDEO_ISSUE in selectedQualityIssues
+
+  FlowRow(
+    modifier = Modifier
+      .animateContentSize()
+      .fillMaxWidth()
+      .horizontalGutters(),
+    horizontalArrangement = Arrangement.Center
+  ) {
+    IssueChip(
+      issue = CallQualityIssue.AUDIO_ISSUE,
+      isSelected = isAudioExpanded,
+      onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_ISSUE) }
+    )
+
+    AnimatedIssueChip(
+      visible = isAudioExpanded,
+      issue = CallQualityIssue.AUDIO_STUTTERING,
+      isSelected = CallQualityIssue.AUDIO_STUTTERING in selectedQualityIssues,
+      onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_STUTTERING) }
+    )
+
+    AnimatedIssueChip(
+      visible = isAudioExpanded,
+      issue = CallQualityIssue.AUDIO_CUT_OUT,
+      isSelected = CallQualityIssue.AUDIO_CUT_OUT in selectedQualityIssues,
+      onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_CUT_OUT) }
+    )
+
+    AnimatedIssueChip(
+      visible = isAudioExpanded,
+      issue = CallQualityIssue.AUDIO_I_HEARD_ECHO,
+      isSelected = CallQualityIssue.AUDIO_I_HEARD_ECHO in selectedQualityIssues,
+      onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_I_HEARD_ECHO) }
+    )
+
+    AnimatedIssueChip(
+      visible = isAudioExpanded,
+      issue = CallQualityIssue.AUDIO_OTHERS_HEARD_ECHO,
+      isSelected = CallQualityIssue.AUDIO_OTHERS_HEARD_ECHO in selectedQualityIssues,
+      onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_OTHERS_HEARD_ECHO) }
+    )
+
+    IssueChip(
+      issue = CallQualityIssue.VIDEO_ISSUE,
+      isSelected = isVideoExpanded,
+      onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_ISSUE) }
+    )
+
+    AnimatedIssueChip(
+      visible = isVideoExpanded,
+      issue = CallQualityIssue.VIDEO_POOR_QUALITY,
+      isSelected = CallQualityIssue.VIDEO_POOR_QUALITY in selectedQualityIssues,
+      onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_POOR_QUALITY) }
+    )
+
+    AnimatedIssueChip(
+      visible = isVideoExpanded,
+      issue = CallQualityIssue.VIDEO_LOW_RESOLUTION,
+      isSelected = CallQualityIssue.VIDEO_LOW_RESOLUTION in selectedQualityIssues,
+      onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_LOW_RESOLUTION) }
+    )
+
+    AnimatedIssueChip(
+      visible = isVideoExpanded,
+      issue = CallQualityIssue.VIDEO_CAMERA_MALFUNCTION,
+      isSelected = CallQualityIssue.VIDEO_CAMERA_MALFUNCTION in selectedQualityIssues,
+      onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_CAMERA_MALFUNCTION) }
+    )
+
+    IssueChip(
+      issue = CallQualityIssue.CALL_DROPPED,
+      isSelected = CallQualityIssue.CALL_DROPPED in selectedQualityIssues,
+      onClick = { onCallQualityIssueClick(CallQualityIssue.CALL_DROPPED) }
+    )
+
+    IssueChip(
+      issue = CallQualityIssue.SOMETHING_ELSE,
+      isSelected = CallQualityIssue.SOMETHING_ELSE in selectedQualityIssues,
+      onClick = { onCallQualityIssueClick(CallQualityIssue.SOMETHING_ELSE) }
+    )
+  }
+
+  AnimatedVisibility(
+    visible = CallQualityIssue.SOMETHING_ELSE in selectedQualityIssues,
+    enter = fadeIn() + expandVertically(),
+    exit = fadeOut() + shrinkVertically()
+  ) {
+    val text = somethingElseDescription.ifEmpty {
+      stringResource(R.string.CallQualitySheet__describe_your_issue)
     }
 
-    val isAudioExpanded = CallQualityIssue.AUDIO_ISSUE in selectedQualityIssues
-    val isVideoExpanded = CallQualityIssue.VIDEO_ISSUE in selectedQualityIssues
+    val textColor = if (somethingElseDescription.isNotEmpty()) {
+      MaterialTheme.colorScheme.onSurface
+    } else {
+      MaterialTheme.colorScheme.onSurfaceVariant
+    }
 
-    FlowRow(
+    val textUnderlineStrokeWidthPx = with(LocalDensity.current) {
+      1.dp.toPx()
+    }
+
+    val textUnderlineColor = MaterialTheme.colorScheme.outline
+
+    Text(
+      text = text,
+      color = textColor,
+      maxLines = 1,
+      overflow = TextOverflow.Ellipsis,
       modifier = Modifier
-        .animateContentSize()
-        .fillMaxWidth()
-        .horizontalGutters(),
-      horizontalArrangement = Arrangement.Center
-    ) {
-      IssueChip(
-        issue = CallQualityIssue.AUDIO_ISSUE,
-        isSelected = isAudioExpanded,
-        onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_ISSUE) }
-      )
-
-      AnimatedIssueChip(
-        visible = isAudioExpanded,
-        issue = CallQualityIssue.AUDIO_STUTTERING,
-        isSelected = CallQualityIssue.AUDIO_STUTTERING in selectedQualityIssues,
-        onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_STUTTERING) }
-      )
-
-      AnimatedIssueChip(
-        visible = isAudioExpanded,
-        issue = CallQualityIssue.AUDIO_CUT_OUT,
-        isSelected = CallQualityIssue.AUDIO_CUT_OUT in selectedQualityIssues,
-        onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_CUT_OUT) }
-      )
-
-      AnimatedIssueChip(
-        visible = isAudioExpanded,
-        issue = CallQualityIssue.AUDIO_I_HEARD_ECHO,
-        isSelected = CallQualityIssue.AUDIO_I_HEARD_ECHO in selectedQualityIssues,
-        onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_I_HEARD_ECHO) }
-      )
-
-      AnimatedIssueChip(
-        visible = isAudioExpanded,
-        issue = CallQualityIssue.AUDIO_OTHERS_HEARD_ECHO,
-        isSelected = CallQualityIssue.AUDIO_OTHERS_HEARD_ECHO in selectedQualityIssues,
-        onClick = { onCallQualityIssueClick(CallQualityIssue.AUDIO_OTHERS_HEARD_ECHO) }
-      )
-
-      IssueChip(
-        issue = CallQualityIssue.VIDEO_ISSUE,
-        isSelected = isVideoExpanded,
-        onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_ISSUE) }
-      )
-
-      AnimatedIssueChip(
-        visible = isVideoExpanded,
-        issue = CallQualityIssue.VIDEO_POOR_QUALITY,
-        isSelected = CallQualityIssue.VIDEO_POOR_QUALITY in selectedQualityIssues,
-        onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_POOR_QUALITY) }
-      )
-
-      AnimatedIssueChip(
-        visible = isVideoExpanded,
-        issue = CallQualityIssue.VIDEO_LOW_RESOLUTION,
-        isSelected = CallQualityIssue.VIDEO_LOW_RESOLUTION in selectedQualityIssues,
-        onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_LOW_RESOLUTION) }
-      )
-
-      AnimatedIssueChip(
-        visible = isVideoExpanded,
-        issue = CallQualityIssue.VIDEO_CAMERA_MALFUNCTION,
-        isSelected = CallQualityIssue.VIDEO_CAMERA_MALFUNCTION in selectedQualityIssues,
-        onClick = { onCallQualityIssueClick(CallQualityIssue.VIDEO_CAMERA_MALFUNCTION) }
-      )
-
-      IssueChip(
-        issue = CallQualityIssue.CALL_DROPPED,
-        isSelected = CallQualityIssue.CALL_DROPPED in selectedQualityIssues,
-        onClick = { onCallQualityIssueClick(CallQualityIssue.CALL_DROPPED) }
-      )
-
-      IssueChip(
-        issue = CallQualityIssue.SOMETHING_ELSE,
-        isSelected = CallQualityIssue.SOMETHING_ELSE in selectedQualityIssues,
-        onClick = { onCallQualityIssueClick(CallQualityIssue.SOMETHING_ELSE) }
-      )
-    }
-
-    AnimatedVisibility(
-      visible = CallQualityIssue.SOMETHING_ELSE in selectedQualityIssues,
-      enter = fadeIn() + expandVertically(),
-      exit = fadeOut() + shrinkVertically()
-    ) {
-      val text = somethingElseDescription.ifEmpty {
-        stringResource(R.string.CallQualitySheet__describe_your_issue)
-      }
-
-      val textColor = if (somethingElseDescription.isNotEmpty()) {
-        MaterialTheme.colorScheme.onSurface
-      } else {
-        MaterialTheme.colorScheme.onSurfaceVariant
-      }
-
-      val textUnderlineStrokeWidthPx = with(LocalDensity.current) {
-        1.dp.toPx()
-      }
-
-      val textUnderlineColor = MaterialTheme.colorScheme.outline
-
-      Text(
-        text = text,
-        color = textColor,
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis,
-        modifier = Modifier
-          .clickable(
-            role = Role.Button,
-            onClick = onDescribeYourIssueClick
-          )
-          .fillMaxWidth()
-          .horizontalGutters()
-          .padding(top = 24.dp)
-          .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp))
-          .drawWithContent {
-            drawContent()
-
-            val width = size.width
-            val height = size.height - textUnderlineStrokeWidthPx / 2f
-
-            drawLine(
-              color = textUnderlineColor,
-              start = Offset(x = 0f, y = height),
-              end = Offset(x = width, y = height),
-              strokeWidth = textUnderlineStrokeWidthPx
-            )
-          }
-          .padding(16.dp)
-      )
-    }
-
-    // Buttons - outside FlowRow, stable position
-    Row(
-      horizontalArrangement = Arrangement.SpaceBetween,
-      verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier
+        .clickable(
+          role = Role.Button,
+          onClick = onDescribeYourIssueClick
+        )
         .fillMaxWidth()
         .horizontalGutters()
-        .padding(top = 32.dp, bottom = 24.dp)
-    ) {
-      CancelButton(
-        onClick = onCancelClick
-      )
+        .padding(top = 24.dp)
+        .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp))
+        .drawWithContent {
+          drawContent()
 
-      Buttons.LargeTonal(
-        onClick = onContinueClick
-      ) {
-        Text(text = stringResource(R.string.CallQualitySheet__continue))
-      }
+          val width = size.width
+          val height = size.height - textUnderlineStrokeWidthPx / 2f
+
+          drawLine(
+            color = textUnderlineColor,
+            start = Offset(x = 0f, y = height),
+            end = Offset(x = width, y = height),
+            strokeWidth = textUnderlineStrokeWidthPx
+          )
+        }
+        .padding(16.dp)
+    )
+  }
+
+  // Buttons - outside FlowRow, stable position
+  Row(
+    horizontalArrangement = Arrangement.SpaceBetween,
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier
+      .fillMaxWidth()
+      .horizontalGutters()
+      .padding(top = 32.dp, bottom = 24.dp)
+  ) {
+    CancelButton(
+      onClick = onCancelClick
+    )
+
+    Buttons.LargeTonal(
+      onClick = onContinueClick
+    ) {
+      Text(text = stringResource(R.string.CallQualitySheet__continue))
     }
   }
 }
@@ -379,8 +399,19 @@ private fun AnimatedIssueChip(
 ) {
   AnimatedVisibility(
     visible = visible,
-    enter = fadeIn() + expandHorizontally(),
-    exit = fadeOut() + shrinkHorizontally()
+    enter = fadeIn(
+      animationSpec = tween(
+        durationMillis = 300,
+        delayMillis = 300,
+        easing = CubicBezierEasing(0f, 0f, 0.58f, 1f)
+      )
+    ),
+    exit = fadeOut(
+      animationSpec = tween(
+        durationMillis = 300,
+        easing = CubicBezierEasing(0f, 0f, 0.58f, 1f)
+      )
+    )
   ) {
     IssueChip(
       issue = issue,
@@ -399,58 +430,58 @@ private fun HelpUsImprove(
   onCancelClick: () -> Unit,
   onSubmitClick: () -> Unit
 ) {
-  Sheet(onDismissRequest = onCancelClick) {
-    SheetTitle(text = stringResource(R.string.CallQualitySheet__help_us_improve))
-    SheetSubtitle(
-      text = buildAnnotatedString {
-        append(stringResource(R.string.CallQualitySheet__help_us_improve_description_prefix))
-        append(" ")
+  SheetTitle(text = stringResource(R.string.CallQualitySheet__help_us_improve))
+  SheetSubtitle(
+    text = buildAnnotatedString {
+      append(stringResource(R.string.CallQualitySheet__help_us_improve_description_prefix))
+      append(" ")
 
-        withLink(
-          link = LinkAnnotation.Clickable(
-            "view-your-debug-log",
-            linkInteractionListener = { onViewDebugLogClick() },
-            styles = TextLinkStyles(style = SpanStyle(color = MaterialTheme.colorScheme.primary))
-          )
-        ) {
-          append(stringResource(R.string.CallQualitySheet__view_your_debug_log))
-        }
-
-        append(" ")
-        append(stringResource(R.string.CallQualitySheet__help_us_improve_description_suffix))
-      }
-    )
-
-    Rows.ToggleRow(
-      checked = isShareDebugLogSelected,
-      text = stringResource(R.string.CallQualitySheet__share_debug_log),
-      onCheckChanged = onShareDebugLogChanged
-    )
-
-    Text(
-      text = stringResource(R.string.CallQualitySheet__debug_log_privacy_notice),
-      style = MaterialTheme.typography.bodyMedium,
-      color = MaterialTheme.colorScheme.onSurfaceVariant,
-      modifier = Modifier.horizontalGutters().padding(top = 14.dp)
-    )
-
-    Row(
-      horizontalArrangement = Arrangement.SpaceBetween,
-      verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier
-        .fillMaxWidth()
-        .horizontalGutters()
-        .padding(top = 32.dp, bottom = 24.dp)
-    ) {
-      CancelButton(
-        onClick = onCancelClick
-      )
-
-      Buttons.LargeTonal(
-        onClick = onSubmitClick
+      withLink(
+        link = LinkAnnotation.Clickable(
+          "view-your-debug-log",
+          linkInteractionListener = { onViewDebugLogClick() },
+          styles = TextLinkStyles(style = SpanStyle(color = MaterialTheme.colorScheme.primary))
+        )
       ) {
-        Text(text = stringResource(R.string.CallQualitySheet__submit))
+        append(stringResource(R.string.CallQualitySheet__view_your_debug_log))
       }
+
+      append(" ")
+      append(stringResource(R.string.CallQualitySheet__help_us_improve_description_suffix))
+    }
+  )
+
+  Rows.ToggleRow(
+    checked = isShareDebugLogSelected,
+    text = stringResource(R.string.CallQualitySheet__share_debug_log),
+    onCheckChanged = onShareDebugLogChanged
+  )
+
+  Text(
+    text = stringResource(R.string.CallQualitySheet__debug_log_privacy_notice),
+    style = MaterialTheme.typography.bodyMedium,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
+    modifier = Modifier
+      .horizontalGutters()
+      .padding(top = 14.dp)
+  )
+
+  Row(
+    horizontalArrangement = Arrangement.SpaceBetween,
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier
+      .fillMaxWidth()
+      .horizontalGutters()
+      .padding(top = 32.dp, bottom = 24.dp)
+  ) {
+    CancelButton(
+      onClick = onCancelClick
+    )
+
+    Buttons.LargeTonal(
+      onClick = onSubmitClick
+    ) {
+      Text(text = stringResource(R.string.CallQualitySheet__submit))
     }
   }
 }
