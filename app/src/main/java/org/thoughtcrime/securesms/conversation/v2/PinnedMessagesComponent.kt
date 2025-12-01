@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -65,6 +66,7 @@ import kotlin.jvm.optionals.getOrDefault
 fun PinnedMessagesBanner(
   messages: List<ConversationMessage> = emptyList(),
   canUnpin: Boolean,
+  hasWallpaper: Boolean,
   onUnpinMessage: (Long) -> Unit = {},
   onGoToMessage: (Long) -> Unit = {},
   onViewAllMessages: () -> Unit = {}
@@ -81,7 +83,7 @@ fun PinnedMessagesBanner(
       verticalAlignment = Alignment.CenterVertically,
       modifier = Modifier
         .fillMaxWidth()
-        .background(SignalTheme.colors.colorSurface2)
+        .background(if (hasWallpaper) colorResource(R.color.conversation_toolbar_color_wallpaper_scrolled) else SignalTheme.colors.colorSurface2)
         .clickable {
           index = (index + 1) % messages.size
           onGoToMessage(message.id)

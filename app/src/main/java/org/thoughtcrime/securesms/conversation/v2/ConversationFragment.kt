@@ -1203,7 +1203,7 @@ class ConversationFragment :
         .flowWithLifecycle(viewLifecycleOwner.lifecycle)
         .flowOn(Dispatchers.Main)
         .collect {
-          presentPinnedMessage(it)
+          presentPinnedMessage(it, args.wallpaper != null)
         }
     }
 
@@ -1350,9 +1350,9 @@ class ConversationFragment :
       .addTo(disposables)
   }
 
-  private fun presentPinnedMessage(pinnedMessages: List<ConversationMessage>) {
+  private fun presentPinnedMessage(pinnedMessages: List<ConversationMessage>, hasWallpaper: Boolean) {
     if (pinnedMessages.isNotEmpty()) {
-      binding.conversationBanner.showPinnedMessageStub(messages = pinnedMessages, canUnpin = conversationGroupViewModel.canEditGroupInfo())
+      binding.conversationBanner.showPinnedMessageStub(messages = pinnedMessages, canUnpin = conversationGroupViewModel.canEditGroupInfo(), hasWallpaper = hasWallpaper)
     } else {
       binding.conversationBanner.hidePinnedMessageStub()
     }
