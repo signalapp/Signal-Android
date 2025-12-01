@@ -1,6 +1,11 @@
 package org.thoughtcrime.securesms.conversation
 
 import android.view.View
+import android.view.View.OnLayoutChangeListener
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
 
@@ -11,17 +16,55 @@ import org.signal.core.util.logging.Log
  * then put a basic amount of padding on each side so that it looks nice when scrolling
  * to either end.
  */
-object AttachmentButtonCenterHelper {
+class AttachmentButtonCenterHelper(val buttonHolder: View, val wrapper: View) {
 
-  private val TAG = Log.tag(AttachmentButtonCenterHelper::class)
-  private val DEFAULT_PADDING = DimensionUnit.DP.toPixels(16f).toInt()
+  companion object {
+    val TAG = Log.tag(AttachmentButtonCenterHelper::class)
+    private val DEFAULT_PADDING = DimensionUnit.DP.toPixels(16f).toInt()
+  }
 
-  @Synchronized
-  fun recenter(buttonHolder: View, wrapper: View) {
-    buttonHolder.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-    buttonHolder.layout(0, 0, buttonHolder.measuredWidth, buttonHolder.measuredHeight)
-    val buttonHolderCoreWidth = buttonHolder.run { width - (paddingLeft + paddingRight) }
-    val extraSpace = wrapper.width - buttonHolderCoreWidth
+  /** The wrapper width is the maximum size of the button holder before scrollbars appear. */
+  private val wrapperWidthObservable: PublishSubject<Int> = PublishSubject.create()
+  private val emitNewWrapperWidth = OnLayoutChangeListener { _, left, _, right, _, oldLeft, _, oldRight, _ ->
+    if (oldRight - oldLeft == right - left)
+      return@OnLayoutChangeListener
+    wrapperWidthObservable.onNext(right - left)
+  }
+
+  /** The "core width" of the button holder is the size of its contents. */
+  private val coreWidthObservable: PublishSubject<Int> = PublishSubject.create()
+  private val emitNewCoreWidth = OnLayoutChangeListener { view, _, _, _, _, _, _, _, _ ->
+    val newCoreWidth = view.run { width - (paddingLeft + paddingRight) }
+    coreWidthObservable.onNext(newCoreWidth)
+  }
+
+  private var listener: Disposable? = null
+
+  fun attach() {
+    wrapper.addOnLayoutChangeListener(emitNewWrapperWidth)
+    buttonHolder.addOnLayoutChangeListener(emitNewCoreWidth)
+
+    listener?.dispose()
+    listener = Observable.combineLatest(wrapperWidthObservable, coreWidthObservable, ::Pair)
+      .distinctUntilChanged()
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { widths ->
+        val wrapperWidth = widths.first
+        val coreWidth = widths.second
+        Log.d(TAG, "wrapperWidth: $wrapperWidth, coreWidth: $coreWidth")
+        recenter(coreWidth, wrapperWidth)
+      }
+  }
+
+  fun detach() {
+    wrapper.removeOnLayoutChangeListener(emitNewWrapperWidth)
+    buttonHolder.removeOnLayoutChangeListener(emitNewCoreWidth)
+    listener?.dispose()
+    listener = null
+  }
+
+  fun recenter(buttonHolderCoreWidth: Int, wrapperWidth: Int) {
+    val extraSpace = wrapperWidth - buttonHolderCoreWidth
     val horizontalPadding = if (extraSpace >= 0)
       (extraSpace / 2f).toInt()
     else

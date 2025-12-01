@@ -28,7 +28,8 @@ class AttachmentKeyboardButtonList @JvmOverloads constructor(
 
   private val inflater = LayoutInflater.from(context)
   private val inner: LinearLayout
-  private val recenterOnWidthChange: OnLayoutChangeListener
+
+  private val recenterHelper: AttachmentButtonCenterHelper
   var onButtonClicked: Consumer<AttachmentKeyboardButton> = Consumer { _ -> }
 
   private var currentButtons: List<AttachmentKeyboardButton> = listOf()
@@ -36,21 +37,17 @@ class AttachmentKeyboardButtonList @JvmOverloads constructor(
   init {
     inflate(context, R.layout.attachment_keyboard_button_list, this)
     inner = findViewById(R.id.attachment_keyboard_button_list_inner_linearlayout)
-    recenterOnWidthChange = OnLayoutChangeListener { _, left, _, right, _, oldLeft, _, oldRight, _ ->
-      if (oldRight - oldLeft == right - left)
-        return@OnLayoutChangeListener
-      AttachmentButtonCenterHelper.recenter(inner, this)
-    }
+    recenterHelper = AttachmentButtonCenterHelper(inner, this)
   }
 
   override fun onAttachedToWindow() {
     super.onAttachedToWindow()
-    addOnLayoutChangeListener(recenterOnWidthChange)
+    recenterHelper.attach()
   }
 
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
-    removeOnLayoutChangeListener(recenterOnWidthChange)
+    recenterHelper.detach()
   }
 
   fun setButtons(newButtons: List<AttachmentKeyboardButton>) {
@@ -60,7 +57,6 @@ class AttachmentKeyboardButtonList @JvmOverloads constructor(
     currentButtons = newButtons
     inner.removeAllViews()
     newButtons.forEach { inner += inflateButton(it) }
-    inner.post { AttachmentButtonCenterHelper.recenter(inner, this) }
   }
 
   private fun inflateButton(button: AttachmentKeyboardButton): ButtonStripItemView {
