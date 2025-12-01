@@ -48,6 +48,7 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.isInMultiWindowModeCompat
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.BaseActivity
@@ -282,7 +283,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       requestNewSizesThrottle.clear()
     }
 
-    if (!isChangingConfigurations && !isInMultiWindowMode) {
+    if (!isChangingConfigurations && !isInMultiWindowModeCompat()) {
       AppDependencies.signalCallManager.setEnableVideo(false)
     }
 
