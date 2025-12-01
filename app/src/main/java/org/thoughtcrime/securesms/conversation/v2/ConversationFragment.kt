@@ -4718,10 +4718,14 @@ class ConversationFragment :
     }
 
     override fun onKeyboardHidden() {
-      closeEmojiSearch()
-
       if (searchMenuItem?.isActionViewExpanded == true && searchMenuItem?.actionView?.hasFocus() == true) {
         searchMenuItem?.actionView?.clearFocus()
+      }
+    }
+
+    override fun onKeyboardAnimationEnded() {
+      if (!container.isKeyboardShowing) {
+        closeEmojiSearch()
       }
     }
   }

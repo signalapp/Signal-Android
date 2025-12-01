@@ -231,6 +231,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   interface KeyboardStateListener {
     fun onKeyboardShown()
     fun onKeyboardHidden()
+    fun onKeyboardAnimationEnded() = Unit
   }
 
   interface WindowInsetsListener {
@@ -288,6 +289,10 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     }
 
     override fun onEnd(animation: WindowInsetsAnimationCompat) {
+      keyboardStateListeners.forEach {
+        it.onKeyboardAnimationEnded()
+      }
+
       if (overridingKeyboard) {
         return
       }
