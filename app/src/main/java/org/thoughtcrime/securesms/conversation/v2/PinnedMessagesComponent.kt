@@ -28,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -78,7 +79,10 @@ fun PinnedMessagesBanner(
   val (glyph, body, showThumbnail) = getMessageMetadata(conversationMessage)
 
   Column {
-    HorizontalDivider(thickness = 1.dp)
+    HorizontalDivider(
+      thickness = 1.dp,
+      color = if (DynamicTheme.isDarkTheme(LocalContext.current)) Color(0XFF4A4C52) else Color(0XFFCCCFD5)
+    )
     Row(
       verticalAlignment = Alignment.CenterVertically,
       modifier = Modifier
