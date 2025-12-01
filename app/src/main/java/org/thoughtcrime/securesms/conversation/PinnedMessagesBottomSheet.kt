@@ -165,6 +165,7 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
         anchorView = itemView,
         rootView = itemView.rootView as ViewGroup,
         message = item.conversationMessage.messageRecord as MmsMessageRecord,
+        isGroup = item.conversationMessage.threadRecipient.isPushV2Group,
         canUnpin = requireArguments().getBoolean(KEY_CAN_UNPIN),
         onUnpin = {
           dismiss()

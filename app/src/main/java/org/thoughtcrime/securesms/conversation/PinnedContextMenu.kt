@@ -22,6 +22,7 @@ object PinnedContextMenu {
     anchorView: View,
     rootView: ViewGroup = anchorView.rootView as ViewGroup,
     message: MmsMessageRecord,
+    isGroup: Boolean,
     canUnpin: Boolean,
     onUnpin: () -> Unit = {},
     onCopy: () -> Unit = {},
@@ -33,6 +34,7 @@ object PinnedContextMenu {
       anchorView = anchorView,
       rootView = rootView,
       message = message,
+      isGroup = isGroup,
       canUnpin = canUnpin,
       callbacks = object : Callbacks {
         override fun onUnpin() = onUnpin()
@@ -48,6 +50,7 @@ object PinnedContextMenu {
     anchorView: View,
     rootView: ViewGroup,
     message: MmsMessageRecord,
+    isGroup: Boolean,
     canUnpin: Boolean,
     callbacks: Callbacks
   ) {
@@ -97,10 +100,11 @@ object PinnedContextMenu {
     }
 
     val horizontalPosition = if (message.isOutgoing) SignalContextMenu.HorizontalPosition.END else SignalContextMenu.HorizontalPosition.START
+    val offsetX = if (message.isOutgoing || !isGroup) 16f else 48f
     SignalContextMenu.Builder(anchorView, rootView)
       .preferredHorizontalPosition(horizontalPosition)
       .preferredVerticalPosition(SignalContextMenu.VerticalPosition.BELOW)
-      .offsetX(DimensionUnit.DP.toPixels(16f).toInt())
+      .offsetX(DimensionUnit.DP.toPixels(offsetX).toInt())
       .offsetY(DimensionUnit.DP.toPixels(4f).toInt())
       .show(actions)
   }
