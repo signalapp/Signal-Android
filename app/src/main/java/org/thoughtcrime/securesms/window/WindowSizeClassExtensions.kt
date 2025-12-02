@@ -36,7 +36,7 @@ fun isLargeScreenSupportEnabled(): Boolean {
 
 @OptIn(ExperimentalWindowCoreApi::class)
 fun Resources.getWindowSizeClass(): WindowSizeClass {
-  return WindowSizeClass.compute(displayMetrics.widthPixels, displayMetrics.heightPixels, displayMetrics.density)
+  return WindowSizeClass.compute(displayMetrics.widthPixels / displayMetrics.density, displayMetrics.heightPixels / displayMetrics.density)
 }
 
 /**

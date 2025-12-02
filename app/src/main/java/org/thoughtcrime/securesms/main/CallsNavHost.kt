@@ -5,10 +5,10 @@
 
 package org.thoughtcrime.securesms.main
 
+import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -56,7 +56,7 @@ fun NavGraphBuilder.callNavGraphBuilder(navHostController: NavHostController) {
 
 @Composable
 private fun informNavigatorWeAreReady() {
-  val navigator = LocalContext.current as? MainNavigator.NavigatorProvider
+  val navigator = LocalActivity.current as? MainNavigator.NavigatorProvider
   LaunchedEffect(navigator) {
     navigator?.onFirstRender()
   }

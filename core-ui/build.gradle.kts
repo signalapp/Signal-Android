@@ -29,6 +29,7 @@ dependencies {
   api(libs.androidx.compose.material3.adaptive.layout)
   api(libs.androidx.compose.material3.adaptive.navigation)
   api(libs.androidx.compose.ui.tooling.preview)
+  api(libs.androidx.activity.compose)
   debugApi(libs.androidx.compose.ui.tooling.core)
   api(libs.androidx.fragment.compose)
   implementation(libs.kotlinx.serialization.json)

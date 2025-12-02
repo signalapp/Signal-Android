@@ -9,6 +9,7 @@ import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -96,7 +97,7 @@ private fun NewConversationScreen(
   activityIntent: Intent,
   closeScreen: () -> Unit
 ) {
-  val context = LocalContext.current as FragmentActivity
+  val context = LocalActivity.current as FragmentActivity
 
   val createGroupLauncher: ActivityResultLauncher<Intent> = rememberLauncherForActivityResult(
     contract = ActivityResultContracts.StartActivityForResult(),
