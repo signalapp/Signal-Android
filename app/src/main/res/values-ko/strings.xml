@@ -52,7 +52,7 @@
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">아직 암호 문구가 설정되지 않았어요.</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">암호 문구 사용을 비활성화하시겠어요?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal이 잠금 해제되어 메시지 알림이 표시됩니다.</string>
-    <string name="ApplicationPreferencesActivity_disable">사용 안 함</string>
+    <string name="ApplicationPreferencesActivity_disable">비활성화하기</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">서버에 연결할 수 없습니다</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">등록 잠금을 위해 PIN이 필요합니다. PIN을 비활성화하려면 먼저 등록 잠금을 비활성화하세요.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN이 생성되었습니다.</string>
@@ -809,7 +809,7 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">프로필 사진 설정 중 오류 발생</string>
     <string name="CreateProfileActivity_problem_setting_profile">프로필 설정 중 오류 발생</string>
     <string name="CreateProfileActivity_set_up_your_profile">프로필을 설정하세요.</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">프로필과 프로필 변경 사항이 사용자가 메시지를 보내는 사람과 연락처, 그룹에 표시됩니다.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">프로필과 프로필 변경 사항은 메시지를 주고받는 상대와 연락처, 그룹에 표시됩니다.</string>
     <string name="CreateProfileActivity_set_avatar_description">아바타 설정</string>
 
     <!-- ProfileCreateFragment -->
@@ -1137,8 +1137,8 @@
 
     <!-- DeviceListItem -->
     <string name="DeviceListItem_unnamed_device">이름 없는 기기</string>
-    <string name="DeviceListItem_linked_s">연결된 %1$s</string>
-    <string name="DeviceListItem_last_active_s">최근 사용한 %1$s</string>
+    <string name="DeviceListItem_linked_s">%1$s 연결됨</string>
+    <string name="DeviceListItem_last_active_s">%1$s 마지막으로 사용됨</string>
     <string name="DeviceListItem_today">오늘</string>
 
     <!-- DocumentView -->
@@ -1297,7 +1297,7 @@
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal에 오류가 발생했습니다. 디버그 로그를 제출할까요?</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
-    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">메시지가 수신되지 않을 수 있습니다. 디버그 로그를 제출할까요?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">메시지 수신에 문제가 있을 수 있습니다. 디버그 로그를 제출할까요?</string>
 
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
@@ -1315,7 +1315,7 @@
     <string name="DeviceSpecificNotificationBottomSheet__continue">계속</string>
 
     <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_title">메시지가 수신되지 않을 수 있습니다.</string>
+    <string name="ConnectivityWarningBottomSheet_title">메시지 수신에 문제가 있을 수 있습니다</string>
     <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
     <string name="ConnectivityWarningBottomSheet_body">기기를 다시 시작하면 메시지 전송 문제를 해결하는 데 도움이 될 수도 있습니다. 문제가 지속되면 Signal 지원팀에 연락해 주세요.</string>
     <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
@@ -1482,7 +1482,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">사용자 이름과 QR 코드, 링크가 프로필에 표시되지 않습니다. 신뢰하는 사람과만 사용자 이름을 공유하세요.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">이제 나에게 메시지를 보낼 때 선택적 사용자 이름을 사용할 수 있으므로 다른 사람과 전화번호를 공유할 필요가 없습니다. </string>
+    <string name="ManageProfileFragment__username_footer_no_username">이제 별도의 사용자 이름으로 메시지를 받을 수 있어 다른 사람과 전화번호를 공유하지 않아도 됩니다. </string>
     <string name="ManageProfileFragment_profile_name">프로필 이름</string>
     <string name="ManageProfileFragment_username">사용자 이름</string>
     <string name="ManageProfileFragment_about">정보</string>
@@ -1534,7 +1534,7 @@
     <string name="CustomNotificationsDialogFragment__notification_sound">알림 벨소리</string>
     <string name="CustomNotificationsDialogFragment__vibrate">진동</string>
     <!-- Button text for customizing notification options -->
-    <string name="CustomNotificationsDialogFragment__customize">사용자 정의</string>
+    <string name="CustomNotificationsDialogFragment__customize">맞춤 설정</string>
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">소리와 진동 변경하기</string>
     <string name="CustomNotificationsDialogFragment__call_settings">전화 설정</string>
     <string name="CustomNotificationsDialogFragment__ringtone">벨소리</string>
@@ -2972,10 +2972,10 @@
     <string name="UsernameEditFragment_username_is_invalid">잘못된 사용자 이름입니다.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">사용자 이름은 %1$d~%2$d자여야 합니다.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">사용자 이름은 항상 숫자와 짝지어 쓰입니다.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">모든 사용자 이름에는 고유 번호가 부여됩니다.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">이 번호는 무엇인가요?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">이 일련번호는 사용자 이름을 비공개로 유지하여 원치 않는 메시지를 피할 수 있도록 도와줍니다. 대화를 원하는 사용자 및 그룹과만 사용자 이름을 공유하세요. 사용자 이름을 변경하면 새로운 일련번호가 부여됩니다.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">이 일련번호는 사용자 이름을 비공개로 보호해 원치 않는 메시지를 차단하는 데 도움이 됩니다. 사용자 이름은 신뢰하는 사용자나 그룹과만 공유해 주세요. 사용자 이름을 변경하면 새로운 일련번호가 생성됩니다.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">건너뛰기</string>
     <!-- Content description for done button -->
@@ -3213,17 +3213,17 @@
     <!-- Fragment title, displayed at the top of the content -->
     <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">새로운 연락 방법</string>
     <!-- Row item title for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">전화번호 개인 정보 보호</string>
+    <string name="NewWaysToConnectDialogFragment__phone_number_privacy">전화번호 보호</string>
     <!-- Row item description for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">이제 전화번호가 대화와 공유되지 않습니다. 내 전화번호를 연락처에 저장한 친구는 계속 내 전화번호를 볼 수 있습니다.</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">사용자 이름</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">이제 나에게 메시지를 보낼 때 선택적 사용자 이름을 사용할 수 있으므로 다른 사람과 전화번호를 공유할 필요가 없습니다. 사용자 이름은 프로필에 표시되지 않습니다.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">이제 별도의 사용자 이름으로 메시지를 받을 수 있어 다른 사람과 전화번호를 공유하지 않아도 됩니다. 사용자 이름은 프로필에 표시되지 않습니다.</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR 코드와 링크</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">사용자 이름에는 나와 빠르게 대화를 시작하도록 친구와 공유할 수 있는 고유한 QR 코드와 링크가 있습니다.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">사용자 이름에는 고유한 QR 코드와 링크가 함께 제공됩니다. 해당 코드나 링크를 친구와 공유하여 바로 대화를 시작해 보세요.</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">나중에</string>
     <!-- Button label for continue -->
@@ -3618,15 +3618,15 @@
 
     <!-- EditAboutFragment -->
     <string name="EditAboutFragment_about">정보</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">자신에 대해 간략하게 소개해보세요…</string>
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">나를 간략하게 소개해 보세요</string>
     <string name="EditAboutFragment_count">%1$d/%2$d</string>
-    <string name="EditAboutFragment_speak_freely">자유롭게 말하기</string>
-    <string name="EditAboutFragment_encrypted">암호화됨</string>
-    <string name="EditAboutFragment_be_kind">친절함</string>
-    <string name="EditAboutFragment_coffee_lover">커피 애호가</string>
-    <string name="EditAboutFragment_free_to_chat">대화 가능</string>
-    <string name="EditAboutFragment_taking_a_break">쉬는 중</string>
-    <string name="EditAboutFragment_working_on_something_new">새로운 것에 도전하는 중</string>
+    <string name="EditAboutFragment_speak_freely">자유롭게 이야기해요</string>
+    <string name="EditAboutFragment_encrypted">프라이버시가 중요해요</string>
+    <string name="EditAboutFragment_be_kind">배려 있게 대화해요</string>
+    <string name="EditAboutFragment_coffee_lover">커피 없인 못 살아요</string>
+    <string name="EditAboutFragment_free_to_chat">대화 가능해요</string>
+    <string name="EditAboutFragment_taking_a_break">휴식 모드</string>
+    <string name="EditAboutFragment_working_on_something_new">새로운 것에 도전하고 있어요</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">그룹 편집</string>
@@ -3839,7 +3839,7 @@
     <string name="preferences__led_color">LED 색상</string>
     <string name="preferences__led_color_unknown">알 수 없음</string>
     <string name="preferences__pref_led_blink_title">LED 반복 패턴</string>
-    <string name="preferences__customize">사용자 정의</string>
+    <string name="preferences__customize">맞춤 설정</string>
     <string name="preferences__change_sound_and_vibration">소리와 진동 변경하기</string>
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">소리</string>
@@ -4866,7 +4866,7 @@
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">데이터 이전 중</string>
-    <string name="DeviceTransfer__keep_both_devices_near_each_other">두 기기를 서로 가까이 둔 채로 유지해 주세요. 기기를 끄지 말고 Signal을 계속 열어 두세요. 이전 과정은 종단간 암호화로 보호됩니다.</string>
+    <string name="DeviceTransfer__keep_both_devices_near_each_other">두 기기를 서로 가까이 둔 채로 유지해 주세요. 기기를 끄지 말고 Signal을 계속 열어 두세요. 이전 과정은 엔드투엔드 암호화로 보호됩니다.</string>
     <string name="DeviceTransfer__d_messages_so_far">지금까지 %1$d개의 메시지…</string>
     <!-- Filled in with total percentage of messages transferred -->
     <string name="DeviceTransfer__s_of_messages_so_far">현재까지 메시지 %1$s%% 전송 완료</string>
@@ -5669,7 +5669,7 @@
     <string name="AddAProfilePhotoMegaphone__add_photo">사진 추가</string>
 
     <!-- BecomeASustainerMegaphone -->
-    <string name="BecomeASustainerMegaphone__become_a_sustainer">후원자가 되세요</string>
+    <string name="BecomeASustainerMegaphone__become_a_sustainer">후원자 되기</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal은 여러분과 같은 사용자의 기여로 운영됩니다. 기부하고 배지를 받으세요.</string>
     <string name="BecomeASustainerMegaphone__not_now">나중에</string>
@@ -6054,7 +6054,7 @@
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
     <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">일회성 %1$s 기부를 확인할 수 없습니다. 은행 앱을 확인하여 iDEAL 결제를 승인하세요.</string>
 
-    <string name="Boost__enter_custom_amount">사용자 정의 금액 입력</string>
+    <string name="Boost__enter_custom_amount">직접 금액 입력하기</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">기부할 수 있는 최소 금액은 %1$s입니다.</string>
 
@@ -6101,7 +6101,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">일회성 기부를 통해 부스트 배지를 다음 30일 동안 재활성화하세요.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal을 계속 사용할 수는 있지만 사용자를 위해 설계된 Signal의 기술을 지지하고 싶다면 월간 기부를 통해 기여자가 되어주세요.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">후원자가 되세요</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">후원자 되기</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">부스트 추가</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">나중에</string>
     <!-- Copy displayed when badge expires after user inactivity -->
@@ -6595,7 +6595,7 @@
     <string name="MyStorySettingsFragment__all_signal_connections">모든 Signal 커넥션</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__all_except">다음을 제외한 모든 사용자…</string>
+    <string name="MyStorySettingsFragment__all_except">일부를 제외한 모든 사용자</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">특정 사용자에게서 스토리 숨기기</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
@@ -6603,7 +6603,7 @@
         <item quantity="other">%1$d명을 제외함</item>
     </plurals>
     <!-- Privacy setting title for only sharing your story with specified connections -->
-    <string name="MyStorySettingsFragment__only_share_with">다음 사용자와만 공유…</string>
+    <string name="MyStorySettingsFragment__only_share_with">일부 사용자와만 공유</string>
     <!-- Privacy setting description for only sharing your story with specified connections -->
     <string name="MyStorySettingsFragment__only_share_with_selected_people">선택한 사용자와만 공유</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
@@ -6668,9 +6668,9 @@
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">유효한 링크를 입력하세요.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
-    <string name="ChangeMyStoryMembershipFragment__all_except">다음을 제외한 모든 사용자…</string>
+    <string name="ChangeMyStoryMembershipFragment__all_except">일부를 제외한 모든 사용자</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
-    <string name="ChangeMyStoryMembershipFragment__only_share_with">다음 사용자와만 공유…</string>
+    <string name="ChangeMyStoryMembershipFragment__only_share_with">일부 사용자와만 공유</string>
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">확인</string>
     <!-- Dialog title for removing a group story -->
@@ -6828,7 +6828,7 @@
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">나중에</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
-    <string name="ContactSearchItems__only_share_with">다음 사용자와만 공유</string>
+    <string name="ContactSearchItems__only_share_with">일부 사용자와만 공유</string>
     <!-- Label under name for custom stories -->
     <plurals name="ContactSearchItems__custom_story_d_viewers">
         <item quantity="other">사용자 지정 스토리 · 볼 수 있는 사람 %1$d명</item>
@@ -6944,9 +6944,9 @@
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">모든 Signal 커넥션</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_except">다음을 제외한 모든 사용자…</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_except">일부를 제외한 모든 사용자</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">다음 사용자와만 공유…</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">일부 사용자와만 공유</string>
 
     <!-- Story info header sent heading -->
     <string name="StoryInfoHeader__sent">보낸 시간</string>
@@ -7248,7 +7248,7 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Signal 사용자 이름 설정</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">전화번호 개인 정보 보호와 선택적 사용자 이름 및 링크를 소개합니다.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">전화번호 보호와 사용자 이름, 그리고 링크 기능이 추가됐어요.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">취소</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -7257,7 +7257,7 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="PnpLaunchMegaphone_title">새로운 연락 방법</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="PnpLaunchMegaphone_body">전화번호 개인 정보 보호와 선택적 사용자 이름 및 링크를 소개합니다.</string>
+    <string name="PnpLaunchMegaphone_body">전화번호 보호와 사용자 이름, 그리고 링크 기능이 추가됐어요.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
     <string name="PnpLaunchMegaphone_dismiss">취소</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->

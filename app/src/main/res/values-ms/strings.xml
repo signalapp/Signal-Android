@@ -1358,7 +1358,7 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Orang ini tidak boleh ditambah kepada kumpulan legasi.</string>
 
     <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
-    <string name="AddMembersActivity__add_member_to_s">Tambah \"%1$s\" kepada \"%2$s\"?</string>
+    <string name="AddMembersActivity__add_member_to_s">Tambah \"%1$s\" ke dalam \"%2$s\"?</string>
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -2378,7 +2378,7 @@
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
     <string name="MoveableLocalVideoRenderer__shrink_local_video">Kecilkan video setempat</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Kembangkan video setempat</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Besarkan video setempat</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Panggilan Signal</string>
@@ -7882,11 +7882,11 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Sandaran terakhir anda tidak dapat diselesaikan. Pastikan anda menggunakan versi terkini Signal dan cuba lagi.</string>
     <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
-    <string name="BackupStatusRow__backup_file_too_large">Bilangan mesej yang anda miliki melebihi had storan. Padamkan beberapa mesej dan cuba lagi.</string>
+    <string name="BackupStatusRow__backup_file_too_large">Bilangan mesej yang anda ada melebihi had storan. Padamkan beberapa mesej dan cuba lagi.</string>
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">Mesej yang dihantar atau diterima sebelum %1$s tidak disandarkan.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Sandaran anda tidak dapat diselesaikan kerana anda kekurangan ruang storan. Kosongkan ruang pada peranti anda dan cuba lagi.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Sandaran anda tidak dapat diselesaikan kerana ruang storan anda tidak mencukupi. Kosongkan ruang pada peranti anda dan cuba lagi.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Ketahui lebih lanjut</string>
 
@@ -8520,9 +8520,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Kunci pemulihan yang anda masukkan adalah betul, tetapi tiada sandaran yang dikaitkan dengannya. Jika anda masih mempunyai telefon lama anda, pastikan sandaran diaktifkan dan satu telah selesai dibuat, kemudian cuba lagi.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Anda mungkin telah memasukkan kunci pemulihan anda dengan salah atau anda belum melengkapkan sekurang-kurangnya satu sandaran pada peranti lama anda.\n\nPastikan anda mendaftar dengan nombor telefon dan kunci pemulihan yang sama yang anda simpan semasa mendayakan Sandaran Selamat Signal dan sahkan bahawa peranti lama anda telah melengkapkan sandaran.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Anda mungkin telah tersalah memasukkan kunci pemulihan, atau anda belum melengkapkan sekurang-kurangnya satu sandaran pada peranti lama anda.\n\nPastikan anda mendaftar dengan nombor telefon dan kunci pemulihan yang sama seperti yang anda simpan semasa mendayakan Sandaran Selamat Signal, dan sahkan bahawa peranti lama anda telah melengkapkan sandaran.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Anda telah kehabisan percubaan kunci pemulihan. Untuk keselamatan anda, bilangan percubaan yang boleh anda lakukan adalah terhad. Tunggu satu jam dan cuba lagi.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Anda telah kehabisan percubaan kunci pemulihan. Untuk keselamatan anda, bilangan percubaan yang boleh dibuat adalah terhad. Tunggu satu jam dan cuba lagi.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Langkau pemulihan</string>
     <!-- Dialog title text when encountering backup restore network error -->

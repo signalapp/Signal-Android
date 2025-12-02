@@ -679,7 +679,7 @@
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Consejos de seguridad</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Ten cuidado al aceptar solicitudes de mensajes de personas que no conoces. Aquí hay algunas recomendaciones a tener en cuenta:</string>
+    <string name="SafetyTips_subtitle_individual">Ten cuidado al aceptar solicitudes de mensaje de personas que no conoces. Aquí hay algunas recomendaciones a tener en cuenta:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
     <string name="SafetyTips_subtitle_group">Revisa detenidamente esta solicitud. Ninguno de tus contactos o personas con las que chateas están en este grupo. Aquí hay algunas recomendaciones a tener en cuenta:</string>
     <!-- Button text to move to the previous tip-->
@@ -1353,7 +1353,7 @@
     <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
     <string name="ConnectivityWarningBottomSheet_title">Es posible que no estés recibiendo mensajes</string>
     <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_body">Reiniciar tu dispositivo puede ayudar a resolver el problema. Si el problema persiste, contacta con el equipo de asistencia de Signal.</string>
+    <string name="ConnectivityWarningBottomSheet_body">Reiniciar tu dispositivo puede ayudar a resolver el problema. Si el problema persiste, contacta con el equipo de Asistencia de Signal.</string>
     <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
     <string name="ConnectivityWarningBottomSheet_dismiss_button">Entendido</string>
 
@@ -1492,7 +1492,7 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">No se puede restaurar la copia de seguridad</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Se ha producido un error al restaurar tu copia de seguridad. Tu copia de seguridad no se puede recuperar. Contacta con el equipo de asistencia para obtener ayuda.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Se ha producido un error al restaurar tu copia de seguridad. Tu copia de seguridad no se puede recuperar. Contacta con el equipo de Asistencia para obtener ayuda.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contactar con asistencia</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -2942,7 +2942,7 @@
     <string name="SubmitDebugLogActivity_submit">Enviar</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">No se ha podido enviar el registro de depuración</string>
     <string name="SubmitDebugLogActivity_success">¡Todo listo!</string>
-    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia esta URL y envíala junto con tu informe de incidencia o correo al equipo de asistencia:\n\n<b>%1$s</b></string>
+    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia esta URL y envíala junto con tu informe de incidencia o correo al equipo de Asistencia:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Compartir</string>
     <!-- Displayed when entering activity in view-only mode -->
     <string name="SubmitDebugLogActivity_close">Cerrar</string>
@@ -4780,7 +4780,7 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Llamarme (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Reenviar código (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Contacta con el equipo de asistencia de Signal</string>
+    <string name="RegistrationActivity_contact_signal_support">Contacta con el equipo de Asistencia de Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registro de Signal: Clave de verificación en Android</string>
     <string name="RegistrationActivity_incorrect_code">Código incorrecto</string>
     <string name="BackupUtil_never">Nunca</string>
@@ -6209,7 +6209,7 @@
     <string name="MySupportPreference__processing_transaction">Procesando transacción…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">No se ha podido añadir la insignia. %1$s</string>
-    <string name="MySupportPreference__please_contact_support">Contacta con el equipo de asistencia.</string>
+    <string name="MySupportPreference__please_contact_support">Contacta con el equipo de Asistencia.</string>
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Pago pendiente</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
@@ -6303,16 +6303,16 @@
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
     <string name="DonationsError__something_went_wrong">Se ha producido un error</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
-    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">No se ha podido mostrar tu suscripción a las copias de seguridad. Contacta con el equipo de asistencia.</string>
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">No se ha podido mostrar tu suscripción a las copias de seguridad. Contacta con el equipo de Asistencia.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">No se ha podido validar la insignia</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__could_not_validate">No se ha podido validar la respuesta del servidor. Contacta con el equipo de asistencia.</string>
+    <string name="DonationsErrors__could_not_validate">No se ha podido validar la respuesta del servidor. Contacta con el equipo de Asistencia.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">No se ha podido hacer la donación</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Tu donación se ha procesado, pero Signal no ha podido enviar tu mensaje de donación. Contacta con el equipo de asistencia.</string>
-    <string name="DonationsErrors__your_badge_could_not">No se ha podido añadir la insignia a tu perfil, pero es posible que se haya realizado el cargo. Contacta con el equipo de asistencia.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Tu donación se ha procesado, pero Signal no ha podido enviar tu mensaje de donación. Contacta con el equipo de Asistencia.</string>
+    <string name="DonationsErrors__your_badge_could_not">No se ha podido añadir la insignia a tu perfil, pero es posible que se haya realizado el cargo. Contacta con el equipo de Asistencia.</string>
     <string name="DonationsErrors__your_payment_is_still">Tu donación aún se está procesando. Este proceso puede llevar unos minutos dependiendo de tu conexión.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">No se ha podido cancelar la suscripción</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Necesitas conexión a Internet para cancelar la suscripción.</string>
@@ -6559,11 +6559,11 @@
     <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat_period">Este es el único chat oficial de Signal.</string>
     <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Mantente al día con las novedades y las notas de la versión.</string>
+    <string name="ReleaseNotes__keep_up_to_date_period">Mantente al día con las novedades y las notas de las nuevas versiones.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">Este es el único chat oficial de Signal</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date">Mantente al día con las novedades y las notas de la versión</string>
+    <string name="ReleaseNotes__keep_up_to_date">Mantente al día con las novedades y las notas de las nuevas versiones.</string>
     <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__official_only_chat">Único chat oficial de Signal</string>
 
@@ -7991,9 +7991,9 @@
     <!-- Dialog title when a backup redemption fails -->
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">No se ha podido validar tu suscripción a las copias de seguridad</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
-    <string name="BackupAlertBottomSheet__an_error_occurred">Se ha producido un error y no se ha podido completar tu copia de seguridad. Asegúrate de estar usando la última versión de Signal y vuelve a intentarlo. Si el problema persiste, ponte en contacto con el equipo de asistencia.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred">Se ha producido un error y no se ha podido completar tu copia de seguridad. Asegúrate de estar usando la última versión de Signal y vuelve a intentarlo. Si el problema persiste, ponte en contacto con el equipo de Asistencia.</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
-    <string name="BackupAlertBottomSheet__an_error_occurred_and">Se ha producido un error y no se ha podido completar tu copia de seguridad. Si el problema persiste, ponte en contacto con el equipo de asistencia.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Se ha producido un error y no se ha podido completar tu copia de seguridad. Si el problema persiste, ponte en contacto con el equipo de Asistencia.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Buscar actualizaciones</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8399,7 +8399,7 @@
     <!-- Text displayed as the title in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">No se ha podido eliminar tu copia de seguridad</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Se ha producido un error. Contacta con el equipo de asistencia.</string>
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Se ha producido un error. Contacta con el equipo de Asistencia.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Se han desactivado las copias de seguridad: tus datos se descargarán en el dispositivo y se eliminarán del servicio de almacenamiento seguro de Signal.</string>
     <!-- Text displayed while we are processing a backup delete -->
