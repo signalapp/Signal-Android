@@ -431,7 +431,7 @@ private fun Viewport(
     }
   }
 
-  if (webRtcCallState.inOngoingCall && localParticipant.isVideoEnabled) {
+  if (webRtcCallState.inOngoingCall) {
     MoveableLocalVideoRenderer(
       localParticipant = localParticipant,
       localRenderState = localRenderState,
