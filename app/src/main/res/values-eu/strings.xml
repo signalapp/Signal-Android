@@ -365,6 +365,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Hau ez da baliozko dei-esteka bat. Ziurtatu esteka osoa osorik dagela eta zuzena dela sartzen saiatu aurretik.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Deian zaude</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__dont_transfer">Don\'t transfer</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -675,6 +680,22 @@
     <string name="ConversationFragment_group_names">Talde-izenak</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Ezin izan da deskargatu argazkia. Saiatu berriro.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 hours</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 days</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 days</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Forever</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Replace</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Segurtasun-aholkuak</string>
@@ -1204,11 +1225,11 @@
     <string name="AddToGroupActivity_add_member">Gehitu kidea?</string>
     <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" gehitu \"%2$s\" taldera?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" erabiltzailea \"%2$s\" taldera gehitua.</string>
-    <string name="AddToGroupActivity_add_to_group">Gehitu taldera</string>
     <string name="AddToGroupActivity_add_to_groups">Gehitu taldeetara</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Pertsona hau ezin da jarauntsitako taldeetan gehitu.</string>
     <string name="AddToGroupActivity_add">Gehitu</string>
     <string name="AddToGroupActivity_add_to_a_group">Gehitu taldera</string>
+    <string name="AddToGroupActivity_search">Search</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Hautatu administratzaile berria</string>
@@ -4456,6 +4477,10 @@
     <string name="conversation_selection__menu_payment_details">Ordainketaren xehetasunak</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Amaitu galdeketa</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
 
     <!-- conversation_expiring_on -->
 
@@ -8919,6 +8944,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Gehitu galdera bat</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Scan QR code</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">Okay</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">Audioarekin lotutako arazo bat</string>
@@ -8988,6 +9020,51 @@
     <string name="CallQualitySheet__submit">Bidali</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Eskerrik asko iritziarengatik!</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Go to message</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Message not found</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Pinned</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Photo</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Video</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Sticker</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Voice message</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">View-once media</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Got it</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Unpin</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
 
     <!-- EOF -->
 </resources>
