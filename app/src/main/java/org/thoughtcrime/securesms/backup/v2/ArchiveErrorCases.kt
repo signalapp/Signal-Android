@@ -135,6 +135,10 @@ object ExportSkips {
     return log(sentTimestamp, "Poll option was invalid.")
   }
 
+  fun pollNotInGroupChat(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Poll was not in a group chat.")
+  }
+
   fun individualChatUpdateInWrongTypeOfChat(sentTimestamp: Long): String {
     return log(sentTimestamp, "A chat update that only makes sense for individual chats was found in a different kind of chat.")
   }

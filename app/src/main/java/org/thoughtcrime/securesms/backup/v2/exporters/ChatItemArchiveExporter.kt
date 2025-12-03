@@ -395,6 +395,11 @@ class ChatItemArchiveExporter(
         }
 
         extraData.pollsById[record.id] != null -> {
+          if (exportState.threadIdToRecipientId[builder.chatId] !in exportState.groupRecipientIds) {
+            Log.w(TAG, ExportSkips.pollNotInGroupChat(record.dateSent))
+            continue
+          }
+
           val poll = extraData.pollsById[record.id]!!
           if (poll.question.isEmpty() || poll.question.length > MAX_POLL_CHARACTER_LENGTH) {
             Log.w(TAG, ExportSkips.invalidPollQuestion(record.dateSent))
