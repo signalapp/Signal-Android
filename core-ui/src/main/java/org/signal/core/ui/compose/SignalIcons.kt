@@ -20,6 +20,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.R
@@ -27,18 +29,39 @@ import org.signal.core.ui.R
 /**
  * Signal icon library with all available icons.
  */
-enum class SignalIcons(
-  @DrawableRes val drawableRes: Int,
-  val displayName: String
-) {
-  Keyboard(R.drawable.ic_keyboard_24, "Keyboard"),
-  Camera(R.drawable.symbol_camera_24, "Camera"),
-  Phone(R.drawable.symbol_phone_24, "Phone"),
-  QrCode(R.drawable.symbol_qrcode_24, "QR Code");
+enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
+  Keyboard(icon(R.drawable.ic_keyboard_24)),
+  Camera(icon(R.drawable.symbol_camera_24)),
+  Phone(icon(R.drawable.symbol_phone_24)),
+  QrCode(icon(R.drawable.symbol_qrcode_24))
+}
 
+private fun icon(@DrawableRes id: Int) = SignalIcon.DrawableIcon(id)
+private fun icon(image: ImageVector) = SignalIcon.ImageVectorIcon(image)
+
+sealed interface SignalIcon {
+  @get:Composable
   val painter: Painter
-    @Composable
-    get() = painterResource(drawableRes)
+
+  /**
+   * Icon backed by an XML drawable resource.
+   */
+  @JvmInline
+  value class DrawableIcon(@get:DrawableRes private val drawableId: Int) : SignalIcon {
+    @get:Composable
+    override val painter: Painter
+      get() = painterResource(drawableId)
+  }
+
+  /**
+   * Icon backed by an [ImageVector].
+   */
+  @JvmInline
+  value class ImageVectorIcon(val image: ImageVector) : SignalIcon {
+    @get:Composable
+    override val painter: Painter
+      get() = rememberVectorPainter(image)
+  }
 }
 
 @DayNightPreviews
@@ -51,18 +74,18 @@ private fun SignalIconsPreview() {
       horizontalArrangement = Arrangement.spacedBy(16.dp),
       verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-      items(SignalIcons.entries) { icon ->
+      items(SignalIcons.entries.sortedBy { it.name }) { icon ->
         Column(
           horizontalAlignment = Alignment.CenterHorizontally,
           verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
           Icon(
             painter = icon.painter,
-            contentDescription = icon.displayName,
+            contentDescription = icon.name,
             modifier = Modifier.size(24.dp)
           )
           Text(
-            text = icon.displayName,
+            text = icon.name,
             style = MaterialTheme.typography.labelSmall
           )
         }
