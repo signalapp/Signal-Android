@@ -34,7 +34,10 @@ class UnpinMessageJob(
     const val KEY: String = "UnpinMessageJob"
     private val TAG = Log.tag(UnpinMessageJob::class.java)
 
-    fun create(messageId: Long): UnpinMessageJob? {
+    /**
+     * If [initialRecipientIds] is set, the message will only be sent to those recipients. Otherwise, it is sent to everyone who is eligible.
+     */
+    fun create(messageId: Long, initialRecipientIds: Set<RecipientId> = emptySet()): UnpinMessageJob? {
       val message = SignalDatabase.messages.getMessageRecordOrNull(messageId)
       if (message == null) {
         Log.w(TAG, "Unable to find corresponding message")
@@ -47,7 +50,9 @@ class UnpinMessageJob(
         return null
       }
 
-      val recipients = if (conversationRecipient.isGroup) {
+      val recipients = if (initialRecipientIds.isNotEmpty()) {
+        initialRecipientIds.map { it.toLong() }
+      } else if (conversationRecipient.isGroup) {
         conversationRecipient.participantIds.filter { it != Recipient.self().id }.map { it.toLong() }
       } else {
         listOf(conversationRecipient.id.toLong())

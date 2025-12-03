@@ -54,7 +54,9 @@ object SignalServiceProtoUtil {
         hasRemoteDelete ||
         pollCreate != null ||
         pollVote != null ||
-        pollTerminate != null
+        pollTerminate != null ||
+        pinMessage != null ||
+        unpinMessage != null
     }
 
   val DataMessage.hasDisallowedAnnouncementOnlyContent: Boolean

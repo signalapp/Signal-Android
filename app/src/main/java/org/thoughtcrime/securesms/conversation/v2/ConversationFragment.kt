@@ -407,6 +407,7 @@ class ConversationFragment :
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
     private val POLL_SPINNER_DELAY = 500.milliseconds
+    private val PIN_SPINNER_DELAY = 500.milliseconds
 
     private const val ACTION_PINNED_SHORTCUT = "action_pinned_shortcut"
     private const val SAVED_STATE_IS_SEARCH_REQUESTED = "is_search_requested"
@@ -1728,7 +1729,23 @@ class ConversationFragment :
             duration = if (values[selection] == -1) kotlin.time.Duration.INFINITE else values[selection].days,
             threadRecipient = conversationMessage.threadRecipient
           )
-          .subscribe()
+          .doOnSubscribe {
+            handler.postDelayed({ showSpinner() }, PIN_SPINNER_DELAY.inWholeMilliseconds)
+          }
+          .doFinally {
+            handler.removeCallbacksAndMessages(null)
+            hideSpinner()
+          }
+          .subscribeBy(
+            onError = {
+              Log.w(TAG, "Error received during pin message!", it)
+              MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.PinnedMessage__couldnt_pin)
+                .setMessage(getString(R.string.PinnedMessage__check_connection))
+                .setPositiveButton(android.R.string.ok) { dialog: DialogInterface?, which: Int -> dialog!!.dismiss() }
+                .show()
+            }
+          )
         dialog.dismiss()
       }
       .setNegativeButton(android.R.string.cancel) { dialog, _ ->
@@ -1738,7 +1755,25 @@ class ConversationFragment :
   }
 
   private fun handleUnpinMessage(messageId: Long) {
-    viewModel.unpinMessage(messageId)
+    disposables += viewModel
+      .unpinMessage(messageId)
+      .doOnSubscribe {
+        handler.postDelayed({ showSpinner() }, PIN_SPINNER_DELAY.inWholeMilliseconds)
+      }
+      .doFinally {
+        handler.removeCallbacksAndMessages(null)
+        hideSpinner()
+      }
+      .subscribeBy(
+        onError = {
+          Log.w(TAG, "Error received during unpin message!", it)
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.PinnedMessage__couldnt_unpin)
+            .setMessage(getString(R.string.PinnedMessage__check_connection))
+            .setPositiveButton(android.R.string.ok) { dialog: DialogInterface?, which: Int -> dialog!!.dismiss() }
+            .show()
+        }
+      )
   }
 
   private fun handleVideoCall() {

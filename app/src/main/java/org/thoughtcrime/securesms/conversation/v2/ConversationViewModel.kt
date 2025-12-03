@@ -77,7 +77,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.PollVoteJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
-import org.thoughtcrime.securesms.jobs.UnpinMessageJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -356,19 +355,22 @@ class ConversationViewModel(
   }
 
   fun pinMessage(messageRecord: MessageRecord, duration: Duration, threadRecipient: Recipient): Completable {
-    return repository
-      .pinMessage(messageRecord, duration, threadRecipient)
-      .observeOn(AndroidSchedulers.mainThread())
+    return if (!NetworkUtil.isConnected(AppDependencies.application)) {
+      Completable.error(Exception("Connection required to pin message"))
+    } else {
+      repository
+        .pinMessage(messageRecord, duration, threadRecipient)
+        .observeOn(AndroidSchedulers.mainThread())
+    }
   }
 
-  fun unpinMessage(messageId: Long) {
-    viewModelScope.launch(Dispatchers.IO) {
-      val unpinJob = UnpinMessageJob.create(messageId = messageId)
-      if (unpinJob != null) {
-        AppDependencies.jobManager.add(unpinJob)
-      } else {
-        Log.w(TAG, "Unable to create unpin job, ignoring.")
-      }
+  fun unpinMessage(messageId: Long): Completable {
+    return if (!NetworkUtil.isConnected(AppDependencies.application)) {
+      Completable.error(Exception("Connection required to unpin message"))
+    } else {
+      repository
+        .unpinMessage(messageId)
+        .observeOn(AndroidSchedulers.mainThread())
     }
   }
 

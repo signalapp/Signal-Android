@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.BottomSheetUtil
+import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.visible
@@ -120,13 +121,25 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
         .setTitle(R.string.PinnedMessage__unpin_title)
         .setMessage(getString(R.string.PinnedMessage__unpin_body))
         .setPositiveButton(R.string.PinnedMessage__unpin) { dialog, which ->
-          viewModel.unpinMessage()
-          dismissAllowingStateLoss()
+          if (NetworkUtil.isConnected(requireContext())) {
+            viewModel.unpinMessage()
+            dismissAllowingStateLoss()
+          } else {
+            showNetworkErrorDialog()
+          }
         }
         .setNegativeButton(android.R.string.cancel) { dialog, which -> dialog.dismiss() }
         .show()
     }
     unpinAll.visible = requireArguments().getBoolean(KEY_CAN_UNPIN)
+  }
+
+  private fun showNetworkErrorDialog() {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.PinnedMessage__couldnt_unpin_all)
+      .setMessage(getString(R.string.PinnedMessage__check_connection))
+      .setPositiveButton(android.R.string.ok, null)
+      .show()
   }
 
   private fun initializeGiphyMp4(videoContainer: ViewGroup, list: RecyclerView): GiphyMp4ProjectionRecycler {
