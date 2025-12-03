@@ -103,6 +103,10 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
                                .cameraState(camera.getCameraState())
                                .build();
 
+    boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled();
+    boolean remoteVideoEnabled = currentState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
+    webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
+
     WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor, currentState);
 
     return currentState;
