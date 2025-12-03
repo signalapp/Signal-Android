@@ -27,6 +27,13 @@ dependencyResolutionManagement {
     maven {
       url = uri("https://dl.cloudsmith.io/qxAgwaeEE1vN8aLU/mobilecoin/mobilecoin/maven/")
     }
+    maven {
+      name = "SignalBuildArtifacts"
+      url = uri("https://build-artifacts.signal.org/libraries/maven/")
+      content {
+        includeGroupByRegex("org\\.signal.*")
+      }
+    }
   }
   versionCatalogs {
     // libs.versions.toml is automatically registered.
