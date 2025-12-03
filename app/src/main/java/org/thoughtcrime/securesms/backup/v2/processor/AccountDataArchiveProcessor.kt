@@ -109,6 +109,7 @@ object AccountDataArchiveProcessor {
             typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context),
             readReceipts = TextSecurePreferences.isReadReceiptsEnabled(context),
             sealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
+            allowSealedSenderFromAnyone = TextSecurePreferences.isUniversalUnidentifiedAccess(context),
             linkPreviews = signalStore.settingsValues.isLinkPreviewsEnabled,
             notDiscoverableByPhoneNumber = signalStore.phoneNumberPrivacyValues.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE,
             phoneNumberSharingMode = signalStore.phoneNumberPrivacyValues.phoneNumberSharingMode.toRemotePhoneNumberSharingMode(),
@@ -249,6 +250,7 @@ object AccountDataArchiveProcessor {
     TextSecurePreferences.setReadReceiptsEnabled(context, settings.readReceipts)
     TextSecurePreferences.setTypingIndicatorsEnabled(context, settings.typingIndicators)
     TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, settings.sealedSenderIndicators)
+    TextSecurePreferences.setIsUnidentifiedDeliveryEnabled(context, settings.allowSealedSenderFromAnyone)
     SignalStore.settings.isLinkPreviewsEnabled = settings.linkPreviews
     SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (settings.notDiscoverableByPhoneNumber) PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberDiscoverabilityMode.DISCOVERABLE
     SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = settings.phoneNumberSharingMode.toLocalPhoneNumberMode()
