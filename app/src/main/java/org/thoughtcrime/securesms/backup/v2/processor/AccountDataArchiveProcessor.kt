@@ -86,6 +86,8 @@ object AccountDataArchiveProcessor {
     val mobileAutoDownload = TextSecurePreferences.getMobileMediaDownloadAllowed(context)
     val wifiAutoDownload = TextSecurePreferences.getWifiMediaDownloadAllowed(context)
 
+    val username = selfRecord.username?.takeIf { it.isValidUsername() }
+
     emitter.emit(
       Frame(
         account = AccountData(
@@ -94,8 +96,8 @@ object AccountDataArchiveProcessor {
           familyName = selfRecord.signalProfileName.familyName,
           avatarUrlPath = selfRecord.signalProfileAvatar ?: "",
           svrPin = SignalStore.svr.pin ?: "",
-          username = selfRecord.username?.takeIf { it.isValidUsername() },
-          usernameLink = if (selfRecord.username.isNotNullOrBlank() && signalStore.accountValues.usernameLink != null) {
+          username = username,
+          usernameLink = if (username != null && signalStore.accountValues.usernameLink != null) {
             AccountData.UsernameLink(
               entropy = signalStore.accountValues.usernameLink?.entropy?.toByteString() ?: EMPTY,
               serverId = signalStore.accountValues.usernameLink?.serverId?.toByteArray()?.toByteString() ?: EMPTY,
