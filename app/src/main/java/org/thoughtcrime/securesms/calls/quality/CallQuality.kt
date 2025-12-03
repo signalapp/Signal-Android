@@ -125,7 +125,7 @@ object CallQuality {
   }
 
   private fun isFeatureEnabled(): Boolean {
-    return (RemoteConfig.callQualitySurvey || SignalStore.internal.callQualitySurveys) && SignalStore.callQuality.isQualitySurveyEnabled
+    return RemoteConfig.callQualitySurvey && SignalStore.callQuality.isQualitySurveyEnabled
   }
 
   private enum class CallType(val code: String) {

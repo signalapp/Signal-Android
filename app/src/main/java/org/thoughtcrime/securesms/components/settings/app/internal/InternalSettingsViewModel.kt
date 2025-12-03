@@ -197,7 +197,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null,
     hevcEncoding = SignalStore.internal.hevcEncoding,
     newCallingUi = SignalStore.internal.newCallingUi,
-    callQualitySurveys = SignalStore.internal.callQualitySurveys,
     forceSplitPane = SignalStore.internal.forceSplitPane
   )
 
@@ -211,11 +210,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
 
   fun setUseNewCallingUi(newCallingUi: Boolean) {
     SignalStore.internal.newCallingUi = newCallingUi
-    refresh()
-  }
-
-  fun setEnableCallQualitySurveys(enabled: Boolean) {
-    SignalStore.internal.callQualitySurveys = enabled
     refresh()
   }
 

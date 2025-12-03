@@ -27,6 +27,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -556,7 +557,9 @@ private fun HadIssuesButton(
     text = stringResource(R.string.CallQualitySheet__had_issues),
     containerColor = MaterialTheme.colorScheme.errorContainer,
     contentColor = MaterialTheme.colorScheme.error,
-    onClick = onClick
+    onClick = onClick,
+    contentDescription = stringResource(R.string.CallQualitySheet__had_issues_content_description),
+    imageVector = ImageVector.vectorResource(R.drawable.symbol_thumbs_down_24)
   )
 }
 
@@ -568,7 +571,9 @@ private fun GreatButton(
     text = stringResource(R.string.CallQualitySheet__great),
     containerColor = MaterialTheme.colorScheme.primaryContainer,
     contentColor = MaterialTheme.colorScheme.primary,
-    onClick = onClick
+    onClick = onClick,
+    contentDescription = stringResource(R.string.CallQualitySheet__great_content_description),
+    imageVector = ImageVector.vectorResource(R.drawable.symbol_thumbs_up_24)
   )
 }
 
@@ -577,8 +582,9 @@ private fun FeedbackButton(
   text: String,
   onClick: () -> Unit,
   containerColor: Color,
-  contentColor: Color
-  // imageVector icon
+  contentColor: Color,
+  imageVector: ImageVector,
+  contentDescription: String
 ) {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
@@ -591,7 +597,12 @@ private fun FeedbackButton(
         .clip(CircleShape)
         .background(color = containerColor)
     ) {
-      // TODO - icon with contentcolor tint
+      Icon(
+        imageVector = imageVector,
+        contentDescription = contentDescription,
+        tint = contentColor,
+        modifier = Modifier.size(36.dp)
+      )
     }
 
     Text(
