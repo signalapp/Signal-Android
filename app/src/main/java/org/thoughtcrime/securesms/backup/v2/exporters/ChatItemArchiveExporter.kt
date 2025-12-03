@@ -312,7 +312,7 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isThreadMergeType(record.type) -> {
-          builder.updateMessage = record.toRemoteThreadMergeUpdate(record.dateSent)?.takeIf { exportState.recipientIdToAci[builder.authorId] != null } ?: continue
+          builder.updateMessage = record.toRemoteThreadMergeUpdate(record.dateSent)?.takeIf { builder.authorIsAciContact(exportState) } ?: continue
           transformTimer.emit("thread-merge")
         }
 
@@ -1719,6 +1719,10 @@ private fun ChatItem.withDowngradeVoiceNotes(): ChatItem {
       }
     )
   )
+}
+
+private fun ChatItem.Builder.authorIsAciContact(exportState: ExportState): Boolean {
+  return exportState.recipientIdToAci[this.authorId] != null && this.authorId != exportState.selfRecipientId.toLong() && this.authorId != exportState.releaseNoteRecipientId
 }
 
 private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Long): BackupMessageRecord? {
