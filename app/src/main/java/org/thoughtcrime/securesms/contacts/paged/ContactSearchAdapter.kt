@@ -587,7 +587,7 @@ open class ContactSearchAdapter(
               }
             )
           }
-          .sortedWith(compareBy({ it.recipient.isSelf }, { it.displayName }))
+          .sortedWith(compareBy({ it.recipient.isUnregistered }, { it.recipient.isSelf }, { it.displayName }))
           .joinToString(", ") { it.displayName }
       }
     }
