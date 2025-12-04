@@ -16,6 +16,7 @@ import android.view.View
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.transition.addListener
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.BannerManager
@@ -49,6 +50,11 @@ class ConversationBannerView @JvmOverloads constructor(
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
 ) : LinearLayoutCompat(context, attrs, defStyleAttr) {
+
+  companion object {
+    private const val ANIMATION_DURATION = 500L
+  }
+
   private val unverifiedBannerStub: Stub<UnverifiedBannerView> by lazy { ViewUtil.findStubById(this, R.id.unverified_banner_stub) }
   private val bannerStub: Stub<ComposeView> by lazy { ViewUtil.findStubById(this, R.id.banner_stub) }
   private val reviewBannerStub: Stub<ReviewBannerView> by lazy { ViewUtil.findStubById(this, R.id.review_banner_stub) }
@@ -134,22 +140,37 @@ class ConversationBannerView @JvmOverloads constructor(
   }
 
   fun showPinnedMessageStub(messages: List<ConversationMessage>, canUnpin: Boolean, hasWallpaper: Boolean) {
-    show(
-      stub = pinnedMessageStub
-    ) {
-      this.apply {
-        setContent {
-          SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(context)) {
-            PinnedMessagesBanner(
-              messages = messages,
-              canUnpin = canUnpin,
-              hasWallpaper = hasWallpaper,
-              onUnpinMessage = { messageId -> listener?.onUnpinMessage(messageId) },
-              onGoToMessage = { messageId -> listener?.onGoToMessage(messageId) },
-              onViewAllMessages = { listener?.onViewAllMessages() }
-            )
-          }
+    val firstRender = !pinnedMessageStub.isVisible
+
+    val view = pinnedMessageStub.get()
+    view.apply {
+      setContent {
+        SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(context)) {
+          PinnedMessagesBanner(
+            messages = messages,
+            canUnpin = canUnpin,
+            hasWallpaper = hasWallpaper,
+            onUnpinMessage = { messageId -> listener?.onUnpinMessage(messageId) },
+            onGoToMessage = { messageId -> listener?.onGoToMessage(messageId) },
+            onViewAllMessages = { listener?.onViewAllMessages() }
+          )
         }
+      }
+    }
+
+    if (firstRender) {
+      view.visibility = INVISIBLE
+      view.post {
+        view.visible = true
+        view.translationY = -view.height.toFloat()
+        view.alpha = 0f
+
+        view.animate()
+          .translationY(0f)
+          .setInterpolator(FastOutSlowInInterpolator())
+          .alpha(1f)
+          .setDuration(ANIMATION_DURATION)
+          .start()
       }
     }
   }
