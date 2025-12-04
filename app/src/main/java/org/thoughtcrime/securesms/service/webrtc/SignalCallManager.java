@@ -614,11 +614,15 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       if (s.getCallInfoState().getGroupCall() != null) {
         Log.i(TAG, "onCallEnded(): call_id: bypassing call summary handling for group call, this is handled in onEnded(groupCall, ...)");
       } else {
-        boolean     isRemoteVideoEnabled = Objects.requireNonNull(s.getCallInfoState().getRemoteCallParticipant(s.getCallInfoState().getCallRecipient())).isVideoEnabled();
+        boolean     hasRemoteVideoContent = s.getCallInfoState()
+                                             .getRemoteCallParticipants()
+                                             .stream()
+                                             .anyMatch(participant -> participant.isVideoEnabled() || participant.isScreenSharing());
+
         CameraState cameraState          = s.getLocalDeviceState().getCameraState();
         boolean     isLocalVideoEnabled  = cameraState.isEnabled() && cameraState.getCameraCount() > 0;
 
-        CallQuality.handleOneToOneCallSummary(summary, isRemoteVideoEnabled || isLocalVideoEnabled);
+        CallQuality.handleOneToOneCallSummary(summary, hasRemoteVideoContent || isLocalVideoEnabled);
       }
 
       switch (reason) {

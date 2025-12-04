@@ -28,8 +28,8 @@ object CallQuality {
   )
 
   @JvmStatic
-  fun handleOneToOneCallSummary(callSummary: CallSummary, isVideoCall: Boolean) {
-    val callType = if (isVideoCall) CallType.DIRECT_VIDEO else CallType.DIRECT_VOICE
+  fun handleOneToOneCallSummary(callSummary: CallSummary, hasRemoteVideoContent: Boolean) {
+    val callType = if (hasRemoteVideoContent) CallType.DIRECT_VIDEO else CallType.DIRECT_VOICE
 
     handleCallSummary(callSummary, callType)
   }
