@@ -366,7 +366,7 @@
     <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
     <!-- Message on dialog when quick restore qr code is scanned in system camera -->
     <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
-    <string name="CommunicationActions__dont_transfer">Don\'t transfer</string>
+    <string name="CommunicationActions__dont_transfer">전송 안 함</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -675,17 +675,17 @@
     <!-- Dialog option to keep message pin for 24 hours -->
     <string name="ConversationFragment__24_hours">24 hours</string>
     <!-- Dialog option to keep message pin for 7 days -->
-    <string name="ConversationFragment__7_days">7 days</string>
+    <string name="ConversationFragment__7_days">7일</string>
     <!-- Dialog option to keep message pin for 30 days -->
-    <string name="ConversationFragment__30_days">30 days</string>
+    <string name="ConversationFragment__30_days">30일</string>
     <!-- Dialog option to keep message pin forever -->
-    <string name="ConversationFragment__forever">Forever</string>
+    <string name="ConversationFragment__forever">영원히</string>
     <!-- Dialog title when replacing the oldest pin -->
     <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
     <!-- Dialog body when replacing the oldest pin -->
     <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
     <!-- Dialog button when replacing the oldest pin -->
-    <string name="ConversationFragment__replace">Replace</string>
+    <string name="ConversationFragment__replace">바꾸기</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">안전 팁</string>
@@ -1206,7 +1206,7 @@
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">이 사용자를 레거시 그룹에 추가할 수 없습니다.</string>
     <string name="AddToGroupActivity_add">추가</string>
     <string name="AddToGroupActivity_add_to_a_group">그룹에 추가</string>
-    <string name="AddToGroupActivity_search">Search</string>
+    <string name="AddToGroupActivity_search">검색</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">새 관리자 선택</string>
@@ -2941,9 +2941,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">배지를 사용했습니다.</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">내 스토리에 %1$s 이모지로 반응했습니다.</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">내 스토리에 %1$s 이모지로 반응했어요</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">상대 스토리에 %1$s 이모지로 반응했습니다.</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">스토리에 %1$s 이모지로 반응했어요</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">결제</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -3118,16 +3118,16 @@
     <string name="MessageNotifier_signal_message">Signal 메시지</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">연락처</string>
-    <string name="MessageNotifier_reacted_s_to_s">다음에 %1$s 이모지로 반응함: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">내 동영상에 %1$s 이모지로 반응했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">내 이미지에 %1$s 이모지로 반응했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">내 GIF에 %1$s 이모지로 반응했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">내 파일에 %1$s 이모지로 반응했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">내 오디오에 %1$s 이모지로 반응했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">한 번만 볼 수 있는 내 미디어에 %1$s 이모지로 반응했습니다.</string>
+    <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" 메시지에 %1$s 이모지로 반응했어요</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">내 동영상에 %1$s 이모지로 반응했어요.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">내 이미지에 %1$s 이모지로 반응했어요.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">내 GIF에 %1$s 이모지로 반응했어요.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">내 파일에 %1$s 이모지로 반응했어요.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">내 오디오에 %1$s 이모지로 반응했어요.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">한 번만 볼 수 있는 내 미디어에 %1$s 이모지로 반응했어요.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">내 결제에 %1$s 이모지로 반응했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">내 스티커에 %1$s 이모지로 반응했습니다.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">내 결제에 %1$s 이모지로 반응했어요.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">내 스티커에 %1$s 이모지로 반응했어요.</string>
     <string name="MessageNotifier_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
     <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s 님이 \"%3$s\" 설문조사에 투표했습니다.</string>
@@ -3627,8 +3627,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">배송 문제</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s 님이 보낸 메시지, 스티커, 반응 또는 수신 확인을 받지 못했습니다. 사용자에게 직접 보내거나 그룹에서 보내려고 했을 수 있습니다.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s 님이 보낸 메시지, 스티커, 반응 또는 수신 확인을 받지 못했습니다.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s 님이 보낸 메시지, 스티커, 반응 또는 수신 확인이 전달되지 못했습니다. 나에게 직접 보내거나 그룹 대화에서 보내려 했던 것으로 보여요.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s 님이 보낸 메시지, 스티커, 반응 또는 수신 확인이 전달되지 못했습니다.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">이름(필수)</string>
@@ -5680,7 +5680,7 @@
     <string name="Donate2022Q2Megaphone_not_now">나중에</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">반응 사용자 지정</string>
+    <string name="EditReactionsFragment__customize_reactions">반응 맞춤 설정하기</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">이모티콘을 바꾸려면 탭하세요.</string>
     <string name="EditReactionsFragment__reset">초기화</string>
     <string name="EditReactionsFragment_save">저장</string>
@@ -6589,9 +6589,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">더 이상 이 그룹의 멤버가 아니므로 이 스토리에 답장할 수 없습니다.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">스토리에 반응함</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">스토리에 반응했어요</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">스토리에 반응함</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">스토리에 반응했어요</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">조회</string>
     <!-- Label for story replies tab -->
@@ -6789,11 +6789,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">%1$s 님의 스토리에 반응했습니다.</string>
+    <string name="ConversationItem__you_reacted_to_s_story">%1$s 님의 스토리에 반응했어요</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">내 스토리에 반응했습니다.</string>
+    <string name="ConversationItem__reacted_to_your_story">내 스토리에 반응했어요</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">스토리에 반응했습니다.</string>
+    <string name="ConversationItem__reacted_to_a_story">스토리에 반응했어요</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -8759,11 +8759,11 @@
     <string name="CreatePollFragment__add_question">질문을 추가하세요</string>
 
     <!-- Bottom sheet title telling users to scan a qr code -->
-    <string name="QuickRestoreInfoDialog__scan_qr_code">Scan QR code</string>
+    <string name="QuickRestoreInfoDialog__scan_qr_code">QR 코드 스캔</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
     <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
-    <string name="QuickRestoreInfoDialog__okay">Okay</string>
+    <string name="QuickRestoreInfoDialog__okay">확인</string>
 
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
@@ -8840,23 +8840,23 @@
     <!-- Message body when you pin a message -->
     <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
     <!-- Button body to go to the pinned message -->
-    <string name="PinnedMessage__go_to_message">Go to message</string>
+    <string name="PinnedMessage__go_to_message">메시지로 이동</string>
     <!-- Toast shown when a pinned message is not found -->
     <string name="PinnedMessage__not_found">Message not found</string>
     <!-- Content description for the pin icon -->
-    <string name="PinnedMessage__pinned">Pinned</string>
+    <string name="PinnedMessage__pinned">고정됨</string>
     <!-- Caption shown when the pinned message is a photo -->
-    <string name="PinnedMessage__photo">Photo</string>
+    <string name="PinnedMessage__photo">사진</string>
     <!-- Caption shown when the pinned message is a video -->
-    <string name="PinnedMessage__video">Video</string>
+    <string name="PinnedMessage__video">동영상</string>
     <!-- Caption shown when the pinned message is a sticker -->
-    <string name="PinnedMessage__sticker">Sticker</string>
+    <string name="PinnedMessage__sticker">스티커</string>
     <!-- Caption shown when the pinned message is a voice message  -->
-    <string name="PinnedMessage__voice">Voice message</string>
+    <string name="PinnedMessage__voice">음성 메시지</string>
     <!-- Caption shown when the pinned message is a gif -->
     <string name="PinnedMessage__gif">GIF</string>
     <!-- Caption shown when the pinned message is a view once media -->
-    <string name="PinnedMessage__view_once">View-once media</string>
+    <string name="PinnedMessage__view_once">한 번 볼 수 있는 미디어</string>
     <!-- Context menu option to unpin the message -->
     <string name="PinnedMessage__unpin_message">Unpin message</string>
     <!-- Context menu option to view all the message -->
@@ -8868,13 +8868,13 @@
     <!-- Body of bottom sheet when pinning a disappearing message -->
     <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
     <!-- Confirmation button for bottom sheet -->
-    <string name="PinnedMessage__got_it">Got it</string>
+    <string name="PinnedMessage__got_it">확인</string>
     <!-- Content description of disappearing timer icon -->
     <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
     <!-- Title of bottom sheet -->
     <string name="PinnedMessage__pinned_messages">Pinned messages</string>
     <!-- Context menu option to unpin message -->
-    <string name="PinnedMessage__unpin">Unpin</string>
+    <string name="PinnedMessage__unpin">고정 해제</string>
     <!-- Title of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
     <!-- Body of dialog to unpin all messages -->
