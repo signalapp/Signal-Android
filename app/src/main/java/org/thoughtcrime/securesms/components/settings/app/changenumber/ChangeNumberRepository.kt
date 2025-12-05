@@ -75,32 +75,31 @@ class ChangeNumberRepository(
     return accountManager.whoAmI
   }
 
-  suspend fun ensureDecryptionsDrained(timeout: Duration = 15.seconds) =
-    withTimeoutOrNull(timeout) {
-      suspendCancellableCoroutine {
-        val drainedListener = object : Runnable {
-          override fun run() {
-            AppDependencies
-              .incomingMessageObserver
-              .removeDecryptionDrainedListener(this)
-            Log.d(TAG, "Decryptions drained.")
-            it.resume(true)
-          }
-        }
-
-        it.invokeOnCancellation { cancellationCause ->
+  suspend fun ensureDecryptionsDrained(timeout: Duration = 15.seconds) = withTimeoutOrNull(timeout) {
+    suspendCancellableCoroutine {
+      val drainedListener = object : Runnable {
+        override fun run() {
           AppDependencies
             .incomingMessageObserver
-            .removeDecryptionDrainedListener(drainedListener)
-          Log.d(TAG, "Decryptions draining canceled.", cancellationCause)
+            .removeDecryptionDrainedListener(this)
+          Log.d(TAG, "Decryptions drained.")
+          it.resume(true)
         }
+      }
 
+      it.invokeOnCancellation { cancellationCause ->
         AppDependencies
           .incomingMessageObserver
-          .addDecryptionDrainedListener(drainedListener)
-        Log.d(TAG, "Waiting for decryption drain.")
+          .removeDecryptionDrainedListener(drainedListener)
+        Log.d(TAG, "Decryptions draining canceled.", cancellationCause)
       }
+
+      AppDependencies
+        .incomingMessageObserver
+        .addDecryptionDrainedListener(drainedListener)
+      Log.d(TAG, "Waiting for decryption drain.")
     }
+  }
 
   @WorkerThread
   fun changeLocalNumber(e164: String, pni: ServiceId.PNI) {

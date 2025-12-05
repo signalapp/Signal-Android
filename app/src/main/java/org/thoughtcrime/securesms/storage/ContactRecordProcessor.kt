@@ -102,7 +102,9 @@ class ContactRecordProcessor(
     if (!hasAci && !hasPni) {
       Log.w(TAG, "Found a ContactRecord with neither an ACI nor a PNI -- marking as invalid.")
       return true
-    } else if (selfAci != null && selfAci == remote.proto.signalAci ||
+    } else if (
+      selfAci != null &&
+      selfAci == remote.proto.signalAci ||
       (selfPni != null && selfPni == remote.proto.signalPni) ||
       (selfE164 != null && remote.proto.e164.isNotBlank() && remote.proto.e164 == selfE164)
     ) {

@@ -14,6 +14,5 @@ class GiphyMp4PlaybackControllerRangeComparatorTest {
     Assert.assertArrayEquals(expected, sorted)
   }
 
-  private fun createComparator(start: Int, end: Int): GiphyMp4PlaybackController.RangeComparator =
-    GiphyMp4PlaybackController.RangeComparator(start, end)
+  private fun createComparator(start: Int, end: Int): GiphyMp4PlaybackController.RangeComparator = GiphyMp4PlaybackController.RangeComparator(start, end)
 }

@@ -22,7 +22,7 @@ accompanist = "0.28.0"
 nanohttpd = "2.3.1"
 navigation-safe-args-gradle-plugin = "2.8.5"
 protobuf-gradle-plugin = "0.9.0"
-ktlint = "12.1.1"
+ktlint = "14.0.1"
 ui-test-junit4 = "1.9.4"
 
 [plugins]

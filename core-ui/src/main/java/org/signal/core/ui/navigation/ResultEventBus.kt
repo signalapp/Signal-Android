@@ -62,8 +62,7 @@ class ResultEventBus {
   /**
    * Provides a flow for the given resultKey.
    */
-  inline fun <reified T> getResultFlow(resultKey: String = T::class.toString()) =
-    channelMap[resultKey]?.receiveAsFlow()
+  inline fun <reified T> getResultFlow(resultKey: String = T::class.toString()) = channelMap[resultKey]?.receiveAsFlow()
 
   /**
    * Sends a result into the channel associated with the given resultKey.

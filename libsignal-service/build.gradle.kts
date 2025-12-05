@@ -69,7 +69,7 @@ afterEvaluate {
 }
 
 ktlint {
-  version.set("1.2.1")
+  version.set("1.5.0")
 
   filter {
     exclude { entry ->

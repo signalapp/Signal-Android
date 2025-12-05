@@ -127,5 +127,4 @@ suspend fun AwaitPointerEventScope.awaitLongPressOrCancellation(
   }
 }
 
-private fun PointerEvent.isPointerUp(pointerId: PointerId): Boolean =
-  changes.fastFirstOrNull { it.id == pointerId }?.pressed != true
+private fun PointerEvent.isPointerUp(pointerId: PointerId): Boolean = changes.fastFirstOrNull { it.id == pointerId }?.pressed != true

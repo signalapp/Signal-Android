@@ -423,12 +423,13 @@ object SvrRepository {
         false
       }
 
-      newToken = newToken || if (Svr3Migration.shouldWriteToSvr2) {
-        val credentials: AuthCredentials = svr2.authorization()
-        SignalStore.svr.appendSvr2AuthTokenToList(credentials.asBasic())
-      } else {
-        false
-      }
+      newToken = newToken ||
+        if (Svr3Migration.shouldWriteToSvr2) {
+          val credentials: AuthCredentials = svr2.authorization()
+          SignalStore.svr.appendSvr2AuthTokenToList(credentials.asBasic())
+        } else {
+          false
+        }
 
       if (newToken && SignalStore.svr.hasPin()) {
         BackupManager(AppDependencies.application).dataChanged()

@@ -178,12 +178,10 @@ class ChatColors(
     }
 
     @JvmStatic
-    fun forGradient(id: Id, linearGradient: LinearGradient): ChatColors =
-      ChatColors(id, linearGradient, null)
+    fun forGradient(id: Id, linearGradient: LinearGradient): ChatColors = ChatColors(id, linearGradient, null)
 
     @JvmStatic
-    fun forColor(id: Id, @ColorInt color: Int): ChatColors =
-      ChatColors(id, null, color)
+    fun forColor(id: Id, @ColorInt color: Int): ChatColors = ChatColors(id, null, color)
   }
 
   sealed class Id(val longValue: Long) : Parcelable {
