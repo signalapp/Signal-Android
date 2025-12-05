@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import okhttp3.Response
+import org.signal.core.util.logging.Log
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.AccountAttributes
 import org.signal.registration.NetworkController.CreateSessionError
@@ -24,6 +25,8 @@ import org.signal.registration.NetworkController.SubmitVerificationCodeError
 import org.signal.registration.NetworkController.ThirdPartyServiceErrorResponse
 import org.signal.registration.NetworkController.UpdateSessionError
 import org.signal.registration.NetworkController.VerificationCodeTransport
+import org.signal.registration.sample.fcm.FcmUtil
+import org.signal.registration.sample.fcm.PushChallengeReceiver
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.io.IOException
 import java.util.Locale
@@ -33,8 +36,13 @@ import org.whispersystems.signalservice.api.account.AccountAttributes as Service
 import org.whispersystems.signalservice.api.account.PreKeyCollection as ServicePreKeyCollection
 
 class RealNetworkController(
+  private val context: android.content.Context,
   private val pushServiceSocket: PushServiceSocket
 ) : NetworkController {
+
+  companion object {
+    private val TAG = Log.tag(RealNetworkController::class)
+  }
 
   private val json = Json { ignoreUnknownKeys = true }
 
@@ -294,7 +302,21 @@ class RealNetworkController(
   }
 
   override suspend fun getFcmToken(): String? {
-    return null
+    return try {
+      FcmUtil.getToken(context)
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to get FCM token", e)
+      null
+    }
+  }
+
+  override suspend fun awaitPushChallengeToken(): String? {
+    return try {
+      PushChallengeReceiver.awaitChallenge()
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to await push challenge token", e)
+      null
+    }
   }
 
   override fun getCaptchaUrl(): String {

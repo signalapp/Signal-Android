@@ -14,6 +14,7 @@ data class PhoneNumberEntryState(
   val nationalNumber: String = "",
   val formattedNumber: String = "",
   val sessionMetadata: SessionMetadata? = null,
+  val showFullScreenSpinner: Boolean = false,
   val oneTimeEvent: OneTimeEvent? = null
 ) {
   sealed interface OneTimeEvent {

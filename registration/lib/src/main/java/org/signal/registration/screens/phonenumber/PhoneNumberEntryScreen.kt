@@ -6,6 +6,7 @@
 package org.signal.registration.screens.phonenumber
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -38,6 +39,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryState.OneTimeEvent
 import org.signal.registration.test.TestTags
@@ -52,6 +54,29 @@ fun PhoneNumberScreen(
   onEvent: (PhoneNumberEntryScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
+  LaunchedEffect(state.oneTimeEvent) {
+    onEvent(PhoneNumberEntryScreenEvents.ConsumeOneTimeEvent)
+    when (state.oneTimeEvent) {
+      OneTimeEvent.NetworkError -> TODO()
+      is OneTimeEvent.RateLimited -> TODO()
+      OneTimeEvent.UnknownError -> TODO()
+      OneTimeEvent.CouldNotRequestCodeWithSelectedTransport -> TODO()
+      OneTimeEvent.ThirdPartyError -> TODO()
+      null -> Unit
+    }
+  }
+
+  Box(modifier = modifier.fillMaxSize()) {
+    ScreenContent(state, onEvent)
+
+    if (state.showFullScreenSpinner) {
+      Dialogs.IndeterminateProgressDialog()
+    }
+  }
+}
+
+@Composable
+private fun ScreenContent(state: PhoneNumberEntryState, onEvent: (PhoneNumberEntryScreenEvents) -> Unit) {
   // TODO: These should come from state once country picker is implemented
   var selectedCountry by remember { mutableStateOf("United States") }
   var selectedCountryEmoji by remember { mutableStateOf("🇺🇸") }
@@ -88,20 +113,8 @@ fun PhoneNumberScreen(
     }
   }
 
-  LaunchedEffect(state.oneTimeEvent) {
-    onEvent(PhoneNumberEntryScreenEvents.ConsumeOneTimeEvent)
-    when (state.oneTimeEvent) {
-      OneTimeEvent.NetworkError -> TODO()
-      is OneTimeEvent.RateLimited -> TODO()
-      OneTimeEvent.UnknownError -> TODO()
-      OneTimeEvent.CouldNotRequestCodeWithSelectedTransport -> TODO()
-      OneTimeEvent.ThirdPartyError -> TODO()
-      null -> Unit
-    }
-  }
-
   Column(
-    modifier = modifier
+    modifier = Modifier
       .fillMaxSize()
       .padding(24.dp),
     horizontalAlignment = Alignment.Start
@@ -237,6 +250,17 @@ private fun PhoneNumberScreenPreview() {
   Previews.Preview {
     PhoneNumberScreen(
       state = PhoneNumberEntryState(),
+      onEvent = {}
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun PhoneNumberScreenSpinnerPreview() {
+  Previews.Preview {
+    PhoneNumberScreen(
+      state = PhoneNumberEntryState(showFullScreenSpinner = true),
       onEvent = {}
     )
   }

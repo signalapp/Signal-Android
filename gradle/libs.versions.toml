@@ -136,6 +136,7 @@ material-material = "com.google.android.material:material:1.12.0"
 
 # Google
 google-libphonenumber = "com.googlecode.libphonenumber:libphonenumber:8.13.50"
+google-play-services-base = "com.google.android.gms:play-services-base:18.5.0"
 google-play-services-maps = "com.google.android.gms:play-services-maps:19.0.0"
 google-play-services-auth = "com.google.android.gms:play-services-auth:21.3.0"
 google-play-services-wallet = "com.google.android.gms:play-services-wallet:19.4.0"

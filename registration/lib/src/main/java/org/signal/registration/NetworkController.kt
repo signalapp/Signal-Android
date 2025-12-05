@@ -88,6 +88,15 @@ interface NetworkController {
   suspend fun getFcmToken(): String?
 
   /**
+   * Waits for a push challenge token to arrive via FCM.
+   * This is a suspending function that will complete when the token arrives.
+   * The caller should wrap this in withTimeoutOrNull to handle timeout scenarios.
+   *
+   * @return The push challenge token, or null if cancelled/unavailable.
+   */
+  suspend fun awaitPushChallengeToken(): String?
+
+  /**
    * Returns the URL to load in the WebView for captcha verification.
    */
   fun getCaptchaUrl(): String

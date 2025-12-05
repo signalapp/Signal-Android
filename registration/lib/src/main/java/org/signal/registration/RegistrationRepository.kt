@@ -56,6 +56,21 @@ class RegistrationRepository(val networkController: NetworkController, val stora
     )
   }
 
+  suspend fun awaitPushChallengeToken(): String? = withContext(Dispatchers.IO) {
+    networkController.awaitPushChallengeToken()
+  }
+
+  suspend fun submitPushChallengeToken(
+    sessionId: String,
+    pushChallengeToken: String
+  ): RegistrationNetworkResult<SessionMetadata, UpdateSessionError> = withContext(Dispatchers.IO) {
+    networkController.updateSession(
+      sessionId = sessionId,
+      pushChallengeToken = pushChallengeToken,
+      captchaToken = null
+    )
+  }
+
   suspend fun submitVerificationCode(
     sessionId: String,
     verificationCode: String

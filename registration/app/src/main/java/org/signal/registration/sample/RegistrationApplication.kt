@@ -35,7 +35,7 @@ class RegistrationApplication : Application() {
     Log.initialize(AndroidLogger)
 
     val pushServiceSocket = createPushServiceSocket()
-    val networkController = RealNetworkController(pushServiceSocket)
+    val networkController = RealNetworkController(this, pushServiceSocket)
     val storageController = RealStorageController(this)
 
     RegistrationDependencies.provide(

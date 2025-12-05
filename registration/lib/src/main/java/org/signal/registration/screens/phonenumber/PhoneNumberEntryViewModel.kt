@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 import org.signal.core.util.logging.Log
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
@@ -34,6 +35,7 @@ class PhoneNumberEntryViewModel(
 
   companion object {
     private val TAG = Log.tag(PhoneNumberEntryViewModel::class)
+    private const val PUSH_CHALLENGE_TIMEOUT_MS = 5000L
   }
 
   private val phoneNumberUtil: PhoneNumberUtil = PhoneNumberUtil.getInstance()
@@ -46,18 +48,35 @@ class PhoneNumberEntryViewModel(
 
   fun onEvent(event: PhoneNumberEntryScreenEvents) {
     viewModelScope.launch {
-      _state.emit(applyEvent(_state.value, event))
+      val stateEMitter: (PhoneNumberEntryState) -> Unit = { state ->
+        _state.value = state
+      }
+      applyEvent(_state.value, event, stateEMitter, parentEventEmitter)
     }
   }
 
-  suspend fun applyEvent(state: PhoneNumberEntryState, event: PhoneNumberEntryScreenEvents): PhoneNumberEntryState {
-    return when (event) {
-      is PhoneNumberEntryScreenEvents.CountryCodeChanged -> transformCountryCodeChanged(state, event.value)
-      is PhoneNumberEntryScreenEvents.PhoneNumberChanged -> transformPhoneNumberChanged(state, event.value)
-      is PhoneNumberEntryScreenEvents.PhoneNumberSubmitted -> transformPhoneNumberSubmitted(state)
-      is PhoneNumberEntryScreenEvents.CountryPicker -> state.also { parentEventEmitter.navigateTo(RegistrationRoute.CountryCodePicker) }
-      is PhoneNumberEntryScreenEvents.CaptchaCompleted -> transformCaptchaCompleted(state, event.token)
-      is PhoneNumberEntryScreenEvents.ConsumeOneTimeEvent -> state.copy(oneTimeEvent = null)
+  suspend fun applyEvent(state: PhoneNumberEntryState, event: PhoneNumberEntryScreenEvents, stateEmitter: (PhoneNumberEntryState) -> Unit, parentEventEmitter: (RegistrationFlowEvent) -> Unit) {
+    when (event) {
+      is PhoneNumberEntryScreenEvents.CountryCodeChanged -> {
+        stateEmitter(applyCountryCodeChanged(state, event.value))
+      }
+      is PhoneNumberEntryScreenEvents.PhoneNumberChanged -> {
+        stateEmitter(applyPhoneNumberChanged(state, event.value))
+      }
+      is PhoneNumberEntryScreenEvents.PhoneNumberSubmitted -> {
+        stateEmitter(state.copy(showFullScreenSpinner = true))
+        val resultState = applyPhoneNumberSubmitted(state, parentEventEmitter)
+        stateEmitter(resultState.copy(showFullScreenSpinner = false))
+      }
+      is PhoneNumberEntryScreenEvents.CountryPicker -> {
+        state.also { parentEventEmitter.navigateTo(RegistrationRoute.CountryCodePicker) }
+      }
+      is PhoneNumberEntryScreenEvents.CaptchaCompleted -> {
+        stateEmitter(applyCaptchaCompleted(state, event.token, parentEventEmitter))
+      }
+      is PhoneNumberEntryScreenEvents.ConsumeOneTimeEvent -> {
+        stateEmitter(state.copy(oneTimeEvent = null))
+      }
     }
   }
 
@@ -65,7 +84,7 @@ class PhoneNumberEntryViewModel(
     return state.copy(sessionMetadata = parentState.sessionMetadata)
   }
 
-  private fun transformCountryCodeChanged(state: PhoneNumberEntryState, countryCode: String): PhoneNumberEntryState {
+  private fun applyCountryCodeChanged(state: PhoneNumberEntryState, countryCode: String): PhoneNumberEntryState {
     // Only allow digits, max 3 characters
     val sanitized = countryCode.filter { it.isDigit() }.take(3)
     if (sanitized == state.countryCode) return state
@@ -84,7 +103,7 @@ class PhoneNumberEntryViewModel(
     )
   }
 
-  private fun transformPhoneNumberChanged(state: PhoneNumberEntryState, input: String): PhoneNumberEntryState {
+  private fun applyPhoneNumberChanged(state: PhoneNumberEntryState, input: String): PhoneNumberEntryState {
     // Extract only digits from the input
     val digitsOnly = input.filter { it.isDigit() }
     if (digitsOnly == state.nationalNumber) return state
@@ -107,8 +126,9 @@ class PhoneNumberEntryViewModel(
     return result
   }
 
-  private suspend fun transformPhoneNumberSubmitted(
-    inputState: PhoneNumberEntryState
+  private suspend fun applyPhoneNumberSubmitted(
+    inputState: PhoneNumberEntryState,
+    parentEventEmitter: (RegistrationFlowEvent) -> Unit
   ): PhoneNumberEntryState {
     val e164 = "+${inputState.countryCode}${inputState.nationalNumber}"
     var state = inputState.copy()
@@ -139,6 +159,36 @@ class PhoneNumberEntryViewModel(
     }
 
     state = state.copy(sessionMetadata = sessionMetadata)
+
+    if (sessionMetadata.requestedInformation.contains("pushChallenge")) {
+      Log.d(TAG, "Push challenge requested, waiting for token...")
+      val pushChallengeToken = withTimeoutOrNull(PUSH_CHALLENGE_TIMEOUT_MS) {
+        repository.awaitPushChallengeToken()
+      }
+
+      if (pushChallengeToken != null) {
+        Log.d(TAG, "Received push challenge token, submitting...")
+        val updateResult = repository.submitPushChallengeToken(sessionMetadata.id, pushChallengeToken)
+        sessionMetadata = when (updateResult) {
+          is NetworkController.RegistrationNetworkResult.Success -> updateResult.data
+          is NetworkController.RegistrationNetworkResult.Failure -> {
+            Log.w(TAG, "Failed to submit push challenge token: ${updateResult.error}")
+            sessionMetadata
+          }
+          is NetworkController.RegistrationNetworkResult.NetworkError -> {
+            Log.w(TAG, "Network error submitting push challenge token", updateResult.exception)
+            sessionMetadata
+          }
+          is NetworkController.RegistrationNetworkResult.ApplicationError -> {
+            Log.w(TAG, "Application error submitting push challenge token", updateResult.exception)
+            sessionMetadata
+          }
+        }
+        state = state.copy(sessionMetadata = sessionMetadata)
+      } else {
+        Log.d(TAG, "Push challenge token not received within timeout")
+      }
+    }
 
     if (sessionMetadata.requestedInformation.contains("captcha")) {
       parentEventEmitter.navigateTo(RegistrationRoute.Captcha(sessionMetadata))
@@ -203,7 +253,7 @@ class PhoneNumberEntryViewModel(
     return state
   }
 
-  private suspend fun transformCaptchaCompleted(inputState: PhoneNumberEntryState, token: String): PhoneNumberEntryState {
+  private suspend fun applyCaptchaCompleted(inputState: PhoneNumberEntryState, token: String, parentEventEmitter: (RegistrationFlowEvent) -> Unit): PhoneNumberEntryState {
     var state = inputState.copy()
     var sessionMetadata = state.sessionMetadata ?: return state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
 
