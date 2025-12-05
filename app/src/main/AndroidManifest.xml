@@ -198,6 +198,7 @@
             <category android:name="android.intent.category.DEFAULT"/>
             <data android:mimeType="image/*" />
             <data android:mimeType="video/*" />
+            <data android:mimeType="text/*" />
         </intent-filter>
 
       <meta-data

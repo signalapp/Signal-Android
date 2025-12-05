@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.SpannableStringBuilder
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -13,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
+import androidx.core.text.buildSpannedString
 import com.google.android.material.appbar.MaterialToolbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -193,29 +193,22 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
   override fun getDialogBackgroundColor(): Int = ContextCompat.getColor(this, R.color.signal_background_primary)
 
   private fun getUnresolvedShareData(): Result<UnresolvedShareData, IntentError> {
-    return when {
-      intent.action == Intent.ACTION_SEND_MULTIPLE && intent.hasExtra(Intent.EXTRA_TEXT) -> {
-        intent.getCharSequenceArrayListExtra(Intent.EXTRA_TEXT)?.let { list ->
-          val stringBuilder = SpannableStringBuilder()
-          list.forEachIndexed { index, text ->
-            stringBuilder.append(text)
-
-            if (index != list.lastIndex) {
-              stringBuilder.append("\n")
-            }
-          }
-
-          Result.success(UnresolvedShareData.ExternalPrimitiveShare(stringBuilder))
-        } ?: Result.failure(IntentError.SEND_MULTIPLE_TEXT)
-      }
-
-      intent.action == Intent.ACTION_SEND_MULTIPLE && intent.hasExtra(Intent.EXTRA_STREAM) -> {
-        intent.getParcelableArrayListExtraCompat(Intent.EXTRA_STREAM, Uri::class.java)?.let {
-          Result.success(UnresolvedShareData.ExternalMultiShare(it))
+    return when (intent.action) {
+      Intent.ACTION_SEND_MULTIPLE if intent.hasExtra(Intent.EXTRA_STREAM) -> {
+        intent.getParcelableArrayListExtraCompat(Intent.EXTRA_STREAM, Uri::class.java)?.let { uris ->
+          val text: CharSequence? = intent.getCharSequenceArrayListExtra(Intent.EXTRA_TEXT)
+            ?.let { textExtras -> combineTextExtras(textExtras) }
+          Result.success(UnresolvedShareData.ExternalMultiShare(uris, text))
         } ?: Result.failure(IntentError.SEND_MULTIPLE_STREAM)
       }
 
-      intent.action == Intent.ACTION_SEND && intent.hasExtra(Intent.EXTRA_STREAM) -> {
+      Intent.ACTION_SEND_MULTIPLE if intent.hasExtra(Intent.EXTRA_TEXT) -> {
+        intent.getCharSequenceArrayListExtra(Intent.EXTRA_TEXT)
+          ?.let { textExtras -> Result.success(UnresolvedShareData.ExternalPrimitiveShare(text = combineTextExtras(textExtras))) }
+          ?: Result.failure(IntentError.SEND_MULTIPLE_TEXT)
+      }
+
+      Intent.ACTION_SEND if intent.hasExtra(Intent.EXTRA_STREAM) -> {
         val uri: Uri? = intent.getParcelableExtraCompat(Intent.EXTRA_STREAM, Uri::class.java)
         if (uri == null) {
           extractSingleExtraTextFromIntent(IntentError.SEND_STREAM)
@@ -225,7 +218,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
         }
       }
 
-      intent.action == Intent.ACTION_SEND && intent.hasExtra(Intent.EXTRA_TEXT) -> {
+      Intent.ACTION_SEND if intent.hasExtra(Intent.EXTRA_TEXT) -> {
         extractSingleExtraTextFromIntent()
       }
 
@@ -240,6 +233,17 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
       } ?: Result.failure(IntentError.SEND_TEXT)
     } else {
       Result.failure(fallbackError)
+    }
+  }
+
+  private fun combineTextExtras(textExtras: List<CharSequence>): CharSequence {
+    return buildSpannedString {
+      textExtras.forEachIndexed { index, textItem ->
+        append(textItem)
+        if (index != textExtras.lastIndex) {
+          append("\n")
+        }
+      }
     }
   }
 

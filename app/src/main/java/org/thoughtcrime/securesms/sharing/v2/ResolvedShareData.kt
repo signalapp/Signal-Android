@@ -25,10 +25,14 @@ sealed class ResolvedShareData {
   }
 
   data class Media(
-    val media: List<org.thoughtcrime.securesms.mediasend.Media>
+    val media: List<org.thoughtcrime.securesms.mediasend.Media>,
+    val text: CharSequence?
   ) : ResolvedShareData() {
     override fun toMultiShareArgs(): MultiShareArgs {
-      return MultiShareArgs.Builder(setOf()).withMedia(media).build()
+      return MultiShareArgs.Builder(setOf())
+        .withMedia(media)
+        .withDraftText(text?.toString())
+        .build()
     }
   }
 
