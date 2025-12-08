@@ -1,8 +1,3 @@
-/*
- * Copyright 2024 Signal Messenger, LLC
- * SPDX-License-Identifier: AGPL-3.0-only
- */
-
 package org.thoughtcrime.securesms.video.videoconverter;
 
 import android.media.MediaCodec;
@@ -152,10 +147,23 @@ final class VideoTrackConverter {
             outputHeightRotated = outputHeight;
         }
 
+        final ColorInfo colorInfo = preDecodeColorInfo(mVideoExtractor, inputVideoFormat);
         final MediaFormat outputVideoFormat = MediaFormat.createVideoFormat(videoCodec, outputWidthRotated, outputHeightRotated);
 
         // Set some properties. Failing to specify some of these can cause the MediaCodec
         // configure() call to throw an unhelpful exception.
+
+        // Apply extracted color info to encoder
+        if (colorInfo.colorStandard != null) {
+            outputVideoFormat.setInteger(MediaFormat.KEY_COLOR_STANDARD, colorInfo.colorStandard);
+        }
+        if (colorInfo.colorTransfer != null) {
+            outputVideoFormat.setInteger(MediaFormat.KEY_COLOR_TRANSFER, colorInfo.colorTransfer);
+        }
+        if (colorInfo.colorRange != null) {
+            outputVideoFormat.setInteger(MediaFormat.KEY_COLOR_RANGE, colorInfo.colorRange);
+        }
+
         outputVideoFormat.setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface);
         outputVideoFormat.setInteger(MediaFormat.KEY_BIT_RATE, videoBitrate);
         outputVideoFormat.setInteger(MediaFormat.KEY_BITRATE_MODE, MediaCodecInfo.EncoderCapabilities.BITRATE_MODE_CBR);
@@ -190,6 +198,54 @@ final class VideoTrackConverter {
             mVideoExtractor.seekTo(mTimeFrom * 1000, MediaExtractor.SEEK_TO_PREVIOUS_SYNC);
             Log.i(TAG, "Seek video:" + mTimeFrom + " " + mVideoExtractor.getSampleTime());
         }
+    }
+
+    private ColorInfo preDecodeColorInfo(MediaExtractor extractor, MediaFormat inputFormat) throws IOException {
+        // Create a decoder, but don't attach a surface since we won't render
+        MediaCodec decoder = MediaCodec.createDecoderByType(MediaConverter.getMimeTypeFor(inputFormat));
+        decoder.configure(inputFormat, null, null, 0);
+        decoder.start();
+
+        ByteBuffer[] inputBuffers = decoder.getInputBuffers();
+        MediaCodec.BufferInfo info = new MediaCodec.BufferInfo();
+
+        // Feed the first real sample from the extractor
+        int inIndex = decoder.dequeueInputBuffer(20000);
+        if (inIndex >= 0) {
+            ByteBuffer buf = inputBuffers[inIndex];
+            buf.clear();
+            int sampleSize = extractor.readSampleData(buf, 0);
+            long pts = extractor.getSampleTime();
+            if (sampleSize < 0) {
+                decoder.queueInputBuffer(inIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM);
+            } else {
+                decoder.queueInputBuffer(inIndex, 0, sampleSize, pts, 0);
+            }
+        }
+
+        // Wait for decoder to output format change, which contains color info
+        boolean gotFormat = false;
+        Integer colorStandard = null;
+        Integer colorTransfer = null;
+        Integer colorRange = null;
+        while (!gotFormat) {
+            int outIndex = decoder.dequeueOutputBuffer(info, 20000);
+            if (outIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
+                MediaFormat fmt = decoder.getOutputFormat();
+                if (fmt.containsKey(MediaFormat.KEY_COLOR_STANDARD))
+                    colorStandard = fmt.getInteger(MediaFormat.KEY_COLOR_STANDARD);
+                if (fmt.containsKey(MediaFormat.KEY_COLOR_TRANSFER))
+                    colorTransfer = fmt.getInteger(MediaFormat.KEY_COLOR_TRANSFER);
+                if (fmt.containsKey(MediaFormat.KEY_COLOR_RANGE))
+                    colorRange = fmt.getInteger(MediaFormat.KEY_COLOR_RANGE);
+                gotFormat = true;
+            }
+        }
+
+        decoder.stop();
+        decoder.release();
+
+        return new ColorInfo(colorStandard, colorTransfer, colorRange);
     }
 
     private boolean isHdr(MediaFormat inputVideoFormat) {
@@ -549,4 +605,17 @@ final class VideoTrackConverter {
     private static boolean isVideoFormat(final @NonNull MediaFormat format) {
         return MediaConverter.getMimeTypeFor(format).startsWith("video/");
     }
+
+    private class ColorInfo {
+        public final Integer colorStandard;
+        public final Integer colorTransfer;
+        public final Integer colorRange;
+
+        public ColorInfo(Integer colorSpace, Integer transfer, Integer primaries) {
+          this.colorStandard = colorSpace;
+          this.colorTransfer = transfer;
+          this.colorRange    = primaries;
+        }
+    }
 }
+
