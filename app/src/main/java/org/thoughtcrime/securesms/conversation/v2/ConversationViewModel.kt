@@ -42,6 +42,7 @@ import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
@@ -76,6 +77,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.PollVoteJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
+import org.thoughtcrime.securesms.jobs.UnpinMessageJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -92,11 +94,11 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
+import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
 
@@ -206,6 +208,9 @@ class ConversationViewModel(
   private val internalBackPressedState = MutableStateFlow(BackPressedState())
   val backPressedState: StateFlow<BackPressedState> = internalBackPressedState
 
+  private val internalPinnedMessages = MutableStateFlow<List<ConversationMessage>>(emptyList())
+  val pinnedMessages: StateFlow<List<ConversationMessage>> = internalPinnedMessages
+
   init {
     disposables += recipient
       .subscribeBy {
@@ -236,6 +241,8 @@ class ConversationViewModel(
         _conversationThreadState.onNext(it)
       })
 
+    getPinnedMessages()
+
     disposables += conversationThreadState.flatMapObservable { threadState ->
       Observable.create<Unit> { emitter ->
         val controller = threadState.items.controller
@@ -247,6 +254,7 @@ class ConversationViewModel(
         }
         val conversationObserver = DatabaseObserver.Observer {
           controller.onDataInvalidated()
+          getPinnedMessages()
         }
 
         AppDependencies.databaseObserver.registerMessageUpdateObserver(messageUpdateObserver)
@@ -335,6 +343,32 @@ class ConversationViewModel(
         recipients.manuallyUpdateShowAvatar(recipient.id, false)
       }
       pagingController.onDataItemChanged(ConversationElementKey.threadHeader)
+    }
+  }
+
+  private fun getPinnedMessages() {
+    viewModelScope.launch(Dispatchers.IO) {
+      val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
+      internalPinnedMessages.value = repository.getPinnedMessages(threadId).map {
+        ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(AppDependencies.application, it, threadRecipient!!)
+      }
+    }
+  }
+
+  fun pinMessage(messageRecord: MessageRecord, duration: Duration, threadRecipient: Recipient): Completable {
+    return repository
+      .pinMessage(messageRecord, duration, threadRecipient)
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun unpinMessage(messageId: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      val unpinJob = UnpinMessageJob.create(messageId = messageId)
+      if (unpinJob != null) {
+        AppDependencies.jobManager.add(unpinJob)
+      } else {
+        Log.w(TAG, "Unable to create unpin job, ignoring.")
+      }
     }
   }
 
@@ -516,9 +550,13 @@ class ConversationViewModel(
   }
 
   fun endPoll(pollId: Long): Completable {
-    return repository
-      .endPoll(pollId)
-      .observeOn(AndroidSchedulers.mainThread())
+    return if (!NetworkUtil.isConnected(AppDependencies.application)) {
+      Completable.error(Exception("Connection required to end poll"))
+    } else {
+      repository
+        .endPoll(pollId)
+        .observeOn(AndroidSchedulers.mainThread())
+    }
   }
 
   fun sendMessage(
@@ -649,6 +687,18 @@ class ConversationViewModel(
     }
   }
 
+  fun setIsInActionMode(isInActionMode: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isInActionMode = isInActionMode)
+    }
+  }
+
+  fun setIsMediaKeyboardShowing(isMediaKeyboardShowing: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isMediaKeyboardShowing = isMediaKeyboardShowing)
+    }
+  }
+
   fun toggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) {
     viewModelScope.launch(Dispatchers.IO) {
       val voteCount = if (isChecked) {
@@ -659,7 +709,8 @@ class ConversationViewModel(
       val pollVoteJob = PollVoteJob.create(
         messageId = poll.messageId,
         voteCount = voteCount,
-        isRemoval = !isChecked
+        isRemoval = !isChecked,
+        optionId = pollOption.id
       )
 
       if (pollVoteJob != null) {
@@ -672,8 +723,10 @@ class ConversationViewModel(
 
   data class BackPressedState(
     val isReactionDelegateShowing: Boolean = false,
-    val isSearchRequested: Boolean = false
+    val isSearchRequested: Boolean = false,
+    val isInActionMode: Boolean = false,
+    val isMediaKeyboardShowing: Boolean = false
   ) {
-    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing
+    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing || isInActionMode || isMediaKeyboardShowing
   }
 }

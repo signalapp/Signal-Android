@@ -10,9 +10,12 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleObserver
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
@@ -21,6 +24,7 @@ import org.thoughtcrime.securesms.audio.AudioRecorder
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft
 import org.thoughtcrime.securesms.conversation.VoiceRecorderWakeLock
 import org.thoughtcrime.securesms.util.ServiceUtil
+import java.util.concurrent.TimeUnit
 
 /**
  * Delegate class for VoiceMessage recording.
@@ -33,6 +37,7 @@ class VoiceMessageRecordingDelegate(
 
   companion object {
     private val TAG = Log.tag(VoiceMessageRecordingDelegate::class.java)
+    private const val PERIODIC_DRAFT_SAVE_INTERVAL_MS = 1000L
   }
 
   private val disposables = LifecycleDisposable().apply {
@@ -43,13 +48,15 @@ class VoiceMessageRecordingDelegate(
 
   private var session: Session? = null
 
+  fun hasActiveSession(): Boolean = session != null
+
   fun onRecorderStarted() {
     beginRecording()
   }
 
   fun onRecorderLocked() {
     voiceRecorderWakeLock.acquire()
-    fragment.requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+    fragment.requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
   }
 
   fun onRecorderFinished() {
@@ -115,16 +122,22 @@ class VoiceMessageRecordingDelegate(
 
     private var saveDraft = true
     private var shouldSend = false
-    private var disposable = Disposable.empty()
+    private val compositeDisposable = CompositeDisposable()
 
     init {
       observable
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(this)
+
+      Flowable.interval(PERIODIC_DRAFT_SAVE_INTERVAL_MS, TimeUnit.MILLISECONDS)
+        .onBackpressureDrop()
+        .observeOn(Schedulers.single())
+        .subscribe { savePeriodicDraftSnapshot() }
+        .let { compositeDisposable.add(it) }
     }
 
     override fun onSubscribe(d: Disposable) {
-      disposable = d
+      compositeDisposable.add(d)
     }
 
     override fun onSuccess(draft: VoiceNoteDraft) {
@@ -142,13 +155,27 @@ class VoiceMessageRecordingDelegate(
       Toast.makeText(fragment.requireContext(), R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_LONG).show()
       Log.e(TAG, "Error in RecordingSession.", e)
 
+      val currentSnapshot = audioRecorder.getCurrentRecordingSnapshot()
+      if (currentSnapshot != null) {
+        sessionCallback.cancelEphemeralVoiceNoteDraft(currentSnapshot)
+      }
+
       session?.dispose()
       session = null
     }
 
-    override fun dispose() = disposable.dispose()
+    override fun dispose() {
+      compositeDisposable.dispose()
+    }
 
-    override fun isDisposed(): Boolean = disposable.isDisposed
+    override fun isDisposed(): Boolean = compositeDisposable.isDisposed
+
+    private fun savePeriodicDraftSnapshot() {
+      val snapshot = audioRecorder.getCurrentRecordingSnapshot()
+      if (snapshot != null) {
+        sessionCallback.saveEphemeralVoiceNoteDraft(snapshot)
+      }
+    }
 
     fun completeRecording() {
       shouldSend = true
@@ -158,7 +185,16 @@ class VoiceMessageRecordingDelegate(
     fun discardRecording() {
       saveDraft = false
       shouldSend = false
+
+      val currentSnapshot = audioRecorder.getCurrentRecordingSnapshot()
       audioRecorder.discardRecording()
+
+      if (currentSnapshot != null) {
+        sessionCallback.cancelEphemeralVoiceNoteDraft(currentSnapshot)
+      }
+
+      session?.dispose()
+      session = null
     }
 
     fun saveDraft() {

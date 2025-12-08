@@ -16,7 +16,6 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
-import org.signal.libsignal.protocol.util.Pair
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
@@ -86,12 +85,12 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
     val mmsMatchPrefix = "$MMS_ID = $mmsId AND"
     val unidentifiedQueries = SqlUtil.buildCollectionQuery(
       column = RECIPIENT_ID,
-      values = results.filter { it.second() }.map { it.first().serialize() },
+      values = results.filter { it.second }.map { it.first.serialize() },
       prefix = mmsMatchPrefix
     )
     val identifiedQueries = SqlUtil.buildCollectionQuery(
       column = RECIPIENT_ID,
-      values = results.filterNot { it.second() }.map { it.first().serialize() },
+      values = results.filterNot { it.second }.map { it.first.serialize() },
       prefix = mmsMatchPrefix
     )
     writableDatabase.withinTransaction { db ->

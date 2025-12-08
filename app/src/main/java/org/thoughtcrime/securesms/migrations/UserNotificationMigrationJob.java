@@ -15,8 +15,8 @@ import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversation.NewConversationActivity;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
@@ -108,7 +108,7 @@ public class UserNotificationMigrationJob extends MigrationJob {
                                                               registeredSystemContacts.size());
 
     Intent        mainActivityIntent    = new Intent(context, MainActivity.class);
-    Intent        newConversationIntent = new Intent(context, NewConversationActivity.class);
+    Intent        newConversationIntent = NewConversationActivity.createIntent(context);
     PendingIntent pendingIntent         = TaskStackBuilder.create(context)
                                                           .addNextIntent(mainActivityIntent)
                                                           .addNextIntent(newConversationIntent)

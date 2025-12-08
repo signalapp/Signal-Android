@@ -10,7 +10,6 @@ import kotlinx.parcelize.Parcelize
 data class PollOption(
   val id: Long,
   val text: String,
-  val voterIds: List<Long>,
-  val isSelected: Boolean = false,
-  val isPending: Boolean = false
+  val voters: List<Voter>,
+  val voteState: VoteState = VoteState.NONE
 ) : Parcelable

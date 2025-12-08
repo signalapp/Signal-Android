@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrer gendannelsessætning for betalinger</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Registrer sætning</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Før du kan deaktivere din pinkode, skal du notere din gendannelsessætning til betaling for at sikre, at du kan gendanne din betalingskonto.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Opret en ny gendannelsesnøgle</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">Du skal oprette og registrere en ny gendannelsesnøgle, før du kan deaktivere din pinkode.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Opret nøgle</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -89,7 +95,7 @@
     <string name="AttachmentKeyboard_contact">Kontakt</string>
     <string name="AttachmentKeyboard_location">Placering</string>
     <!-- Text for a button that will allow users to create a poll -->
-    <string name="AttachmentKeyboard_poll">Poll</string>
+    <string name="AttachmentKeyboard_poll">Meningsmåling</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal skal have tilladelse til at vise dine billeder og videoer</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Tillad adgang</string>
@@ -359,6 +365,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Dette er ikke et gyldigt opkaldslink. Sørg for, at hele linket er intakt og korrekt, inden du prøver at deltage.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Du er allerede i et opkald</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__dont_transfer">Overfør ikke</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -669,6 +680,22 @@
     <string name="ConversationFragment_group_names">Gruppenavne</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Billedet kunne ikke downloades. Prøv igen.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 hours</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 dage</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 dage</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">For evigt</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Erstat</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Sikkerhedstips</string>
@@ -1169,6 +1196,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Denne version af Signal er udløbet. Opdatér nu for at sende og modtage beskeder.</string>
     <string name="ExpiredBuildReminder_update_now">Opdatér nu</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal virker ikke længere på denne enhed. For at bruge Signal igen skal du opdatere din enhed til en nyere version af Android eller skifte til en nyere enhed.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Opdater Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1195,11 +1225,11 @@
     <string name="AddToGroupActivity_add_member">Tilføj medlem?</string>
     <string name="AddToGroupActivity_add_s_to_s">Tilføj \"%1$s\" til \"%2$s\"?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" blev tilføjet til \"%2$s\".</string>
-    <string name="AddToGroupActivity_add_to_group">Tilføj til gruppe</string>
     <string name="AddToGroupActivity_add_to_groups">Tilføj til grupper</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Personen kan ikke tilføjes forældede grupper</string>
     <string name="AddToGroupActivity_add">Tilføj</string>
     <string name="AddToGroupActivity_add_to_a_group">Tilføj til en gruppe</string>
+    <string name="AddToGroupActivity_search">Søg</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Vælg ny administrator</string>
@@ -1385,11 +1415,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Udført</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Personen kan ikke tilføjes forældede grupper</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Tilføj \"%1$s\" til \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Vil du føje \"%1$s\" til \"%2$s\"?</item>
-        <item quantity="other">Vil du føje %3$d medlemmer til \"%2$s\"?</item>
+        <item quantity="one">Vil du føje \"{2}\" til \"%2$s\"?</item>
+        <item quantity="other">Vil du føje %1$d medlemmer til \"%2$s\"?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Tilføj</string>
     <string name="AddMembersActivity__add_members">Tilføj medlemmer</string>
 
@@ -1493,6 +1528,10 @@
     <string name="RemoteRestoreActivity__not_now">Ikke nu</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Dine medier vil blive gendannet i baggrunden. Hvis du vælger ikke at gendanne nu, vil du ikke kunne gendanne senere.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">Denne enhed er ikke længere registreret</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">Det skyldes sandsynligvis, at du har registreret din Signal-konto på en anden enhed.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Underret mig ved omtaler</string>
@@ -2110,7 +2149,9 @@
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s sendte dig en besked, der ikke kan behandles eller vises, fordi den bruger en ny Signal funktion.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
-    <string name="MessageRecord_ended_the_poll">%1$s ended the poll: \"%2$s\"</string>
+    <string name="MessageRecord_ended_the_poll">%1$s har afsluttet afstemningen: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">Du afsluttede afstemningen: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Godkend</string>
@@ -2426,6 +2467,12 @@
     <string name="WebRtcCallActivity__to_start_call">For at starte eller deltage i et opkald:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">Sådan aktiverer du video:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Formindsk lokal video</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Udvid lokal video</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal-opkald</string>
@@ -2918,6 +2965,8 @@
     <string name="SubmitDebugLogActivity_success">Fuldført!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL og tilføj den til din fejlrapport, eller til din e-mail til supporten:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Del</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">Luk</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Denne log vil blive offentliggjort online, så bidragyderne kan se den. Du kan undersøge den, inden den uploades.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Når du klikker på Indsend, bliver din log lagt online i 30 dage på en unik, ikke-offentliggjort URL-adresse. Du kan gemme den lokalt først.</string>
@@ -3177,7 +3226,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerede med %1$s på dit klistermærke.</string>
     <string name="MessageNotifier_this_message_was_deleted">Beskeden blev slettet.</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
-    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s voted in the poll \"%3$s\"</string>
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s stemte i afstemningen \"%3$s\"</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Deaktiver notifikationer om at kontakt er begyndt at bruge Signal? Du kan aktivere dem igen i Signal &gt; Indstillinger &gt; Notifikationer</string>
 
@@ -3354,6 +3403,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Besvar uden video</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">Skift kameraretning</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Audio output</string>
@@ -3411,9 +3463,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s er ikke en Signal-bruger. Tjek venligst brugernavnet og prøv igen"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Du behøver ikke tilføje dig selv til gruppen</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Maks. grænse for gruppestørrelse nået</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-grupper kan maksimalt have %1$d medlemmer.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal-grupper kan maksimalt have %1$s medlemmer.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Anbefalet antal medlemmer nået</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-grupper virker bedst med %1$d medlemmer, eller færre. Tilføjes flere medlemmer, vil det medføre forsinkelser ved afsendelse og modtagelse af beskeder.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal-grupper virker bedst med %1$s medlemmer, eller færre. Tilføjes flere medlemmer, vil det medføre forsinkelser ved afsendelse og modtagelse af beskeder.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d medlem</item>
         <item quantity="other">%1$d medlemmer</item>
@@ -4424,7 +4476,11 @@
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Betalingsoplysninger</string>
     <!-- Button to end a poll -->
-    <string name="conversation_selection__menu_end_poll">End poll</string>
+    <string name="conversation_selection__menu_end_poll">Afslut afstemning</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5177,10 +5233,14 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Spring over</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d medlem</item>
-        <item quantity="other">%1$d medlemmer</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$s medlem</item>
+        <item quantity="other">%1$s medlemmer</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">Næste</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Del</string>
@@ -5902,24 +5962,24 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s er blevet blokeret</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Blokering mislykkedes</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Kunne ikke fjerne %1$s</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Denne person er gemt i enhedens kontakter. Slet vedkommende fra dine kontakter, og prøv igen.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Se kontakt</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s bruger ikke Signal</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s bruger ikke Signal</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s bruger ikke Signal</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Åbn menu</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s bruger ikke Signal</item>
         <item quantity="other">%1$s bruger ikke Signal</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Søg navn eller nummer</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Navn, brugernavn eller nummer</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Skift til numerisk tastatur</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Skift til alfanumerisk tastatur</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Nulstil søgefilter</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6085,7 +6145,6 @@
     <string name="BadgesOverviewFragment__featured_badge">Fremhævet badge</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Vis badges på profil</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Opdatering af profil mislykkedes</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Vælg et badge</string>
@@ -7739,12 +7798,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Slå Sikre Signal-sikkerhedskopier til</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Prøv Sikre sikkerhedskopier</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Mist aldrig en besked, når du får en ny telefon eller geninstallerer Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Aktiver</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Ikke nu</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">Du kan aktivere sikkerhedskopier under \"Indstillinger\"</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Verificer din gendannelsesnøgle</string>
@@ -8017,6 +8080,12 @@
     <string name="BackupStatusRow__your_last_backup">Din sidste sikkerhedskopiering kunne ikke gennemføres. Tjek, om din telefon er tilsluttet Wi-Fi-netværket, og tryk på \"Sikkerhedskopiér nu\" for at prøve igen.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Din sidste sikkerhedskopiering kunne ikke gennemføres. Tjek, at du har den nyeste version af Signal, og prøv igen.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">Du har flere beskeder, end der er lagerplads til. Slet nogle beskeder, og prøv igen.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">Beskeder sendt eller modtaget før %1$s bliver ikke sikkerhedskopieret.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Din sikkerhedskopi kunne ikke gennemføres på grund af mangel på lagerplads. Frigør plads på din enhed, og prøv igen.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Få mere at vide</string>
 
@@ -8421,13 +8490,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Din gendannelsesnøgle</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Gendannelsesnøgle</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Din gendannelsesnøgle er en kode på 64 tegn, der giver dig mulighed for at gendanne din sikkerhedskopi, når du geninstallerer Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Din gendannelsesnøgle er en kode på 64-tegn, som du skal bruge for at gendanne din sikkerhedskopi.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Hvis du glemmer din nøgle, kan du ikke gendanne din sikkerhedskopi. Signal kan ikke hjælpe dig med at gendanne din sikkerhedskopi.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Opbevar din gendannelsesnøgle et sikkert sted, f.eks. i en adgangskodeadministrator, og del den ikke med andre.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Hvis du mister den, vil du ikke kunne gendanne dine beskeder.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Næste</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Se gendannelsesnøgle</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8478,6 +8549,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Opret en ny gendannelsesnøgle</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Det er kun nødvendigt at oprette en ny nøgle, hvis den er kendt af uvedkommende. Du skal uploade din sikkerhedskopi, inklusive alle medier, igen. Hvis du benytter funktionen \"Optimer plads\", skal du først downloade de medier, der er fjernet fra enheden.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Vil du afslutte opsætningen af sikkerhedskopiering?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Du er ikke færdig med at konfigurere sikkerhedskopier, og der er ikke oprettet nogen sikkerhedskopi. Du kan aktivere sikkerhedskopier i Indstillinger.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Afslut opsætning af sikkerhedskopiering</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8604,6 +8681,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Fra din gamle telefon</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Overfør direkte fra din gamle Android</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Vil du springe gendannelse over?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Hvis du vælger ikke at gendanne nu, vil du ikke kunne gendanne senere. Hvis du genaktiverer sikkerhedskopiering efter at have sprunget gendannelse over, vil din nuværende sikkerhedskopi blive erstattet af din nye beskedhistorik.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Spring gendannelse over</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Genopret lokal sikkerhedskopi</string>
@@ -8644,6 +8727,10 @@
     <string name="EnterBackupKey_backup_not_found">Sikkerhedskopi ikke fundet</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Den angivne gendannelsesnøgle er korrekt, men der er ingen sikkerhedskopi knyttet til den. Hvis du stadig har din gamle telefon, skal du sørge for, at sikkerhedskopier er aktiveret, og at en sikkerhedskopiering er gennemført, og prøve igen.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Du kan have indtastet din gendannelsesnøgle forkert, ellers har du ikke gennemført mindst én sikkerhedskopi på din gamle enhed.\n\nSørg for, at du registrerer dig med det samme telefonnummer og den samme gendannelsesnøgle, som du gemte, da du aktiverede Sikre sikkerhedskopier, og bekræft, at din gamle enhed har gennemført en sikkerhedskopi.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Du er løbet tør for forsøg på gendannelsesnøglen. Af sikkerhedshensyn er antallet af forsøg, du kan gøre, begrænset. Vent en time, og prøv igen.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Spring gendannelse over</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8732,6 +8819,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Spring gendannelse over</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Maks. antal gendannelsesnøgler er nået</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Du har oprettet en ny gendannelsesnøgle, men for at forhindre misbrug er antallet af nye nøgler, du kan oprette, begrænset. Du vil ikke kunne oprette en ny nøgle i syv dage. Opbevar din gendannelsesnøgle et sikkert sted.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Kan ikke oprette en ny nøgle</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Du har nået grænsen for, hvor mange nye nøgler du kan oprette. Du kan oprette en ny gendannelsesnøgle om syv dage. Hvis du har mistanke om, at nogen kan tilgå din sikkerhedskopi, kan du vælge at “deaktivere og slette sikkerhedskopien.”</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Luk søgning</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8774,62 +8871,200 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select One</string>
+    <string name="Poll__select_one">Afstemning · Vælg en</string>
     <!-- Caption in poll message to select one or more options  -->
-    <string name="Poll__select_multiple">Poll · Select one or more</string>
+    <string name="Poll__select_multiple">Afstemning · Vælg en eller flere muligheder</string>
     <!-- Caption in poll message once a poll has ended  -->
-    <string name="Poll__final_results">Poll · Final results</string>
+    <string name="Poll__final_results">Afstemning · Endeligt resultat</string>
     <!-- Caption in poll message that no votes have been cast  -->
-    <string name="Poll__no_votes">No votes</string>
+    <string name="Poll__no_votes">Ingen stemmer</string>
     <!-- Button in poll message to view current votes for a poll -->
-    <string name="Poll__view_votes">View votes</string>
+    <string name="Poll__view_votes">Se stemmer</string>
     <!-- Button in poll message to view the poll after it has ended -->
-    <string name="Poll__view_poll">View poll</string>
+    <string name="Poll__view_poll">Se afstemning</string>
     <!-- Toast message shown if we cannot find the poll -->
-    <string name="Poll__unable_poll">Poll not found</string>
+    <string name="Poll__unable_poll">Afstemning ikke fundet</string>
     <!-- Button in poll message to view results for a poll after it ends -->
-    <string name="Poll__view_results">View results</string>
+    <string name="Poll__view_results">Vis resultater</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
-    <string name="Poll__poll_question">Poll: %1$s</string>
+    <string name="Poll__poll_question">Afstemning: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
-    <string name="Poll__poll_end">%1$s ended the poll: \"%2$s\"</string>
+    <string name="Poll__poll_end">%1$s har afsluttet afstemningen: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">Du afsluttede afstemningen: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
+    <string name="Poll__poll_voted">%1$s stemte i afstemningen: \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Polls</string>
-    <!-- Title of screen that shows the poll results of a poll -->
-    <string name="Poll__poll_results">Poll results</string>
+    <string name="Poll__poll">Afstemninger</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">Afstemningsresultater</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">Afstemningsoplysninger</string>
     <!-- Header text displaying the question of the poll -->
-    <string name="Poll__question">Question</string>
+    <string name="Poll__question">Spørgsmål</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
-        <item quantity="one">%1$d vote</item>
-        <item quantity="other">%1$d votes</item>
+        <item quantity="one">%1$d stemme</item>
+        <item quantity="other">%1$d stemmer</item>
     </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">Vinder</string>
     <!-- Text that when pressed will end the poll   -->
-    <string name="Poll__end_poll">End poll</string>
+    <string name="Poll__end_poll">Afslut afstemning</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
-    <string name="Poll__see_all">See all</string>
+    <string name="Poll__see_all">Vis alle</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">Kunne ikke afslutte afstemningen</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">Tjek din forbindelse, og prøv igen.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">Vil du afslutte afstemningen?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">Gruppemedlemmer vil ikke længere kunne stemme i denne afstemning.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">Venter på netværk…</string>
     <!-- Header when creating a new poll -->
-    <string name="CreatePollFragment__new_poll">New poll</string>
+    <string name="CreatePollFragment__new_poll">Ny afstemning</string>
     <!-- Section text to enter in a question for a poll  -->
-    <string name="CreatePollFragment__question">Question</string>
+    <string name="CreatePollFragment__question">Spørgsmål</string>
     <!-- Hint text for question field when creating a poll  -->
-    <string name="CreatePollFragment__ask_a_question">Ask a question</string>
+    <string name="CreatePollFragment__ask_a_question">Stil et spørgsmål</string>
     <!-- Section text to enter in options for a poll -->
-    <string name="CreatePollFragment__options">Options</string>
+    <string name="CreatePollFragment__options">Valgmuligheder</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
-    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <string name="CreatePollFragment__option_n">Mulighed %1$d</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
-    <string name="CreatePollFragment__drag_handle">Drag and drop handle</string>
+    <string name="CreatePollFragment__drag_handle">Træk og slip-håndtag</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
-    <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
+    <string name="CreatePollFragment__allow_multiple_votes">Tillad flere stemmer</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
-    <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
+    <string name="CreatePollFragment__add_question_option">Tilføj et spørgsmål og mindst to valgmuligheder.</string>
     <!-- Snackbar text to add two options before creating a poll -->
-    <string name="CreatePollFragment__add_option">Add at least 2 options</string>
+    <string name="CreatePollFragment__add_option">Tilføj mindst to spørgsmål</string>
     <!-- Snackbar text to add a question before creating a poll -->
-    <string name="CreatePollFragment__add_question">Add a question</string>
+    <string name="CreatePollFragment__add_question">Tilføj et spørgsmål</string>
+
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Scan QR-kode</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">Okay</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">Problemer med lyden</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">Videoproblem</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">Opkaldet blev afbrudt</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">Noget andet</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">Lyden hakker</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">Lydafbrydelse</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">Jeg får ekko</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">Andre oplevede ekko</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">Dårlig videokvalitet</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">Lav opløsning</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">Kameraet virkede ikke</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">Noget andet</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Beskriv dit problem</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Inkluder venligst alle oplysninger, der er relevante for problemet. Din information holdes fortrolig og bruges kun til at forbedre opkald i Signal.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">Gem</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">Tilbage</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">Hvordan var dit opkald?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Dette hjælper os med at forbedre opkald i Signal. Personlige oplysninger vil ikke blive gemt.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">Oplevede problemer</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">Godt</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">Hvilke problemer oplevede du?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">Vælg alle, der gælder for din situation</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">Beskriv dit problem</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">Fortsæt</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">Hjælp os med at blive bedre</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Din diagnostik hjælper os med at gøre opkald bedre. Du kan </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">se din fejlsøgningslog,</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> inden du sender den</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">Del fejlsøgningslog</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">Fejlsøgningslogger indeholder oplysninger om appen på lavt niveau og afslører ikke noget indhold fra dine beskeder.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">Send</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">Tak for din feedback!</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Gå til besked</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Message not found</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Fastgjort</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Billede</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Video</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Klistermærke</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Talebesked</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Vis mediefil én gang</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Forstået</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Frigør</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
 
     <!-- EOF -->
 </resources>

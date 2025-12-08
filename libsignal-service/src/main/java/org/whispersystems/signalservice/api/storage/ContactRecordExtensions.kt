@@ -5,11 +5,11 @@
 
 package org.whispersystems.signalservice.api.storage
 
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.signal.core.models.ServiceId
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 
 val ContactRecord.signalAci: ServiceId.ACI?
-  get() = ServiceId.ACI.parseOrNull(this.aci)
+  get() = ServiceId.ACI.parseOrNull(this.aci, this.aciBinary)
 
 val ContactRecord.signalPni: ServiceId.PNI?
-  get() = ServiceId.PNI.parseOrNull(this.pni)
+  get() = ServiceId.PNI.parseOrNull(this.pni, this.pniBinary)

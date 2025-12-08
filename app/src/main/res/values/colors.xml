@@ -41,7 +41,6 @@
 
     <color name="conversation_compose_divider">#32000000</color>
 
-    <color name="conversation_item_selected_system_ui">#4d4d4d</color>
     <color name="touch_highlight">#400099cc</color>
     <color name="touch_highlight_material3">#14E2E1E5</color>
 

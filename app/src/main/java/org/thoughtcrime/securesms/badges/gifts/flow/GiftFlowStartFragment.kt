@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.badges.gifts.flow
 
 import android.view.View
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.DimensionUnit
@@ -17,8 +16,10 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
 import org.thoughtcrime.securesms.components.settings.models.SplashImage
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.viewModel
 import java.util.concurrent.TimeUnit
 
 /**
@@ -28,12 +29,9 @@ class GiftFlowStartFragment : DSLSettingsFragment(
   layoutId = R.layout.gift_flow_start_fragment
 ) {
 
-  private val viewModel: GiftFlowViewModel by viewModels(
-    ownerProducer = { requireActivity() },
-    factoryProducer = {
-      GiftFlowViewModel.Factory(GiftFlowRepository())
-    }
-  )
+  private val viewModel: GiftFlowViewModel by activityViewModel {
+    GiftFlowViewModel()
+  }
 
   private val lifecycleDisposable = LifecycleDisposable()
 

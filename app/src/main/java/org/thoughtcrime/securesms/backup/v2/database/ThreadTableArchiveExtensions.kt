@@ -10,13 +10,14 @@ import org.signal.core.util.forEach
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.select
+import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatArchiveExporter
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 
-fun ThreadTable.getThreadsForBackup(db: SignalDatabase, includeImageWallpapers: Boolean): ChatArchiveExporter {
+fun ThreadTable.getThreadsForBackup(db: SignalDatabase, exportState: ExportState, includeImageWallpapers: Boolean): ChatArchiveExporter {
   //language=sql
   val query = """
       SELECT
@@ -39,7 +40,7 @@ fun ThreadTable.getThreadsForBackup(db: SignalDatabase, includeImageWallpapers: 
     """
   val cursor = readableDatabase.query(query)
 
-  return ChatArchiveExporter(cursor, db, includeImageWallpapers)
+  return ChatArchiveExporter(cursor, db, exportState, includeImageWallpapers)
 }
 
 fun ThreadTable.getThreadGroupStatus(messageIds: Collection<Long>): Map<Long, Boolean> {

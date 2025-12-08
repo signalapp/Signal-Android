@@ -6,12 +6,13 @@ import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
 
-import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.BuildConfig;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import kotlin.Pair;
 
 public class LogSectionPermissions implements LogSection {
   @Override
@@ -35,11 +36,11 @@ public class LogSectionPermissions implements LogSection {
       return "Unable to retrieve.";
     }
 
-    Collections.sort(status, (o1, o2) -> o1.first().compareTo(o2.first()));
+    Collections.sort(status, (o1, o2) -> o1.getFirst().compareTo(o2.getFirst()));
 
     for (Pair<String, Boolean> pair : status) {
-      out.append(pair.first()).append(": ");
-      out.append(pair.second() ? "YES" : "NO");
+      out.append(pair.getFirst()).append(": ");
+      out.append(pair.getSecond() ? "YES" : "NO");
       out.append("\n");
     }
 

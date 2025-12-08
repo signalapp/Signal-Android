@@ -5,6 +5,8 @@
 
 package org.whispersystems.signalservice.api.profiles
 
+import org.signal.core.models.ServiceId
+import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
@@ -15,7 +17,6 @@ import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.get
@@ -25,7 +26,6 @@ import org.whispersystems.signalservice.internal.push.ProfileAvatarUploadAttribu
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.push.http.ProfileCipherOutputStreamFactory
 import org.whispersystems.signalservice.internal.put
-import org.whispersystems.signalservice.internal.util.Hex
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse

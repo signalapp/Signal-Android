@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.util.DiskUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -51,10 +52,20 @@ class OptimizeMediaJob private constructor(parameters: Parameters) : Job(paramet
     RestoreAttachmentJob.Queues.OFFLOAD_RESTORE.forEach { queue -> AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(queue)) }
 
     Log.i(TAG, "Optimizing media in the db")
-    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized()
+
+    val available = DiskUtil.getAvailableSpace(context).bytes.toFloat()
+    val total = DiskUtil.getTotalDiskSize(context).bytes.toFloat()
+    val remaining = (total - available) / total * 100
+
+    val minimumAge = if (remaining > 5f) 30.days else 15.days
+
+    Log.i(TAG, "${"%.1f".format(remaining)}% storage available, not optimizing the last $minimumAge of attachments")
+
+    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(minimumAge)
 
     Log.i(TAG, "Deleting abandoned attachment files")
-    SignalDatabase.attachments.deleteAbandonedAttachmentFiles()
+    val count = SignalDatabase.attachments.deleteAbandonedAttachmentFiles()
+    Log.i(TAG, "Deleted $count attachments")
 
     return Result.success()
   }

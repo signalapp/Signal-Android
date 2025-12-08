@@ -13,7 +13,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.libsignal.protocol.util.Pair
 import org.thoughtcrime.securesms.database.MessageTable.ExpirationInfo
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId

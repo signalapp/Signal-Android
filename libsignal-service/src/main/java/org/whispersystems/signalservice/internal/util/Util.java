@@ -164,4 +164,22 @@ public class Util {
       return defaultValue;
     }
   }
+
+  public static boolean anyNotNull(Object... values) {
+    for (Object value : values) {
+      if (value != null) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public static boolean allAreNull(Object... values) {
+    for (Object value : values) {
+      if (value != null) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

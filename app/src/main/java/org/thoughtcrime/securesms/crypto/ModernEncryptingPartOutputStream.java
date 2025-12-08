@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.crypto;
 
 
-import android.util.Pair;
+import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 

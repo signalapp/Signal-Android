@@ -328,7 +328,7 @@ private fun CreateCallLinkBottomSheetContent(
 @DayNightPreviews
 @Composable
 private fun CreateCallLinkBottomSheetContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     CreateCallLinkBottomSheetContent(
       callLink = CallLinkTable.CallLink(
         recipientId = RecipientId.UNKNOWN,

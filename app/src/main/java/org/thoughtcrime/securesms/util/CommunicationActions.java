@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -229,6 +230,9 @@ public class CommunicationActions {
   public static void openBrowserLink(@NonNull Context context, @NonNull String link) {
     try {
       Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+      if (!(context instanceof Activity)) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      }
       context.startActivity(intent);
     } catch (ActivityNotFoundException e) {
       Toast.makeText(context, R.string.CommunicationActions_no_browser_found, Toast.LENGTH_SHORT).show();
@@ -341,6 +345,26 @@ public class CommunicationActions {
   }
 
   /**
+   * If the url is a quick restore link it will handle it.
+   * Otherwise returns false, indicating it was not a quick restore link.
+   */
+  public static boolean handlePotentialQuickRestoreUrl(@NonNull FragmentActivity activity, @NonNull String potentialQuickRestoreUrl, @NonNull Runnable onContinue) {
+    URI uri = URI.create(potentialQuickRestoreUrl);
+
+    if ("sgnl".equalsIgnoreCase(uri.getScheme()) && "rereg".equalsIgnoreCase(uri.getHost())) {
+      new MaterialAlertDialogBuilder(activity)
+          .setTitle(R.string.CommunicationActions__transfer_dialog_title)
+          .setMessage(R.string.CommunicationActions__transfer_dialog_message)
+          .setPositiveButton(R.string.DeviceProvisioningActivity_continue, (d, w) -> onContinue.run())
+          .setNegativeButton(R.string.CommunicationActions__dont_transfer, null)
+          .show();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /**
    * Attempts to start a video call for the given call link via root key. This will insert a call link into
    * the user's database if one does not already exist.
    *
@@ -449,7 +473,7 @@ public class CommunicationActions {
         startConversation(activity, recipient, null);
       } else {
         new MaterialAlertDialogBuilder(activity)
-            .setMessage(activity.getString(R.string.NewConversationActivity__s_is_not_a_signal_user, e164))
+            .setMessage(activity.getString(R.string.RecipientLookup_error__s_is_not_a_signal_user, e164))
             .setPositiveButton(android.R.string.ok, null)
             .show();
       }

@@ -16,6 +16,10 @@ class VerifyBackupKeyReminderSchedule : MegaphoneSchedule {
       return false
     }
 
+    if (SignalStore.account.isLinkedDevice) {
+      return false
+    }
+
     val lastVerifiedTime = SignalStore.backup.lastVerifyKeyTime
     val previouslySnoozed = SignalStore.backup.hasSnoozedVerified
     val isFirstReminder = !SignalStore.backup.hasVerifiedBefore

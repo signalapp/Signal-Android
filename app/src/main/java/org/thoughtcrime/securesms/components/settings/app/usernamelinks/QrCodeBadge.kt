@@ -37,7 +37,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 
 /**
@@ -165,7 +165,7 @@ fun QrCodeBadge(
 @Preview(name = "Dark Theme", group = "ShortName", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PreviewWithCodeShort() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Column {
         QrCodeBadge(
@@ -188,7 +188,7 @@ private fun PreviewWithCodeShort() {
 @Preview(group = "LongName")
 @Composable
 private fun PreviewWithCodeLong() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Column {
         QrCodeBadge(
@@ -212,7 +212,7 @@ private fun PreviewWithCodeLong() {
 @Preview(group = "Colors", heightDp = 1500)
 @Composable
 private fun PreviewAllColorsP1() {
-  SignalTheme(isDarkMode = false) {
+  Previews.Preview {
     Surface {
       Column {
         SampleCode(colorScheme = UsernameQrCodeColorScheme.Blue)
@@ -230,7 +230,7 @@ private fun PreviewAllColorsP1() {
 @Preview(group = "Colors", heightDp = 1500)
 @Composable
 private fun PreviewAllColorsP2() {
-  SignalTheme(isDarkMode = false) {
+  Previews.Preview {
     Surface {
       Column {
         SampleCode(colorScheme = UsernameQrCodeColorScheme.Pink)
@@ -258,7 +258,7 @@ private fun SampleCode(colorScheme: UsernameQrCodeColorScheme) {
 @Preview(name = "Dark Theme", group = "Loading", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PreviewLoading() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       QrCodeBadge(
         data = QrCodeState.Loading,
@@ -273,7 +273,7 @@ private fun PreviewLoading() {
 @Preview(name = "Dark Theme", group = "NotSet", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PreviewNotSet() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       QrCodeBadge(
         data = QrCodeState.NotSet,

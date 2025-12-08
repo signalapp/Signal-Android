@@ -238,7 +238,7 @@ public final class SqlUtilTest {
 
     contentValues.add(cv1);
 
-    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b"}, contentValues);
+    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b"}, contentValues, null);
 
     assertEquals(1, output.size());
     assertEquals("INSERT INTO mytable (a, b) VALUES (?, ?)", output.get(0).getWhere());
@@ -256,7 +256,7 @@ public final class SqlUtilTest {
 
     contentValues.add(cv1);
 
-    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b", "c"}, contentValues);
+    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b", "c"}, contentValues, null);
 
     assertEquals(1, output.size());
     assertEquals("INSERT INTO mytable (a, b, c) VALUES (?, ?, null)", output.get(0).getWhere());
@@ -278,7 +278,7 @@ public final class SqlUtilTest {
     contentValues.add(cv1);
     contentValues.add(cv2);
 
-    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b"}, contentValues);
+    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b"}, contentValues, null);
 
     assertEquals(1, output.size());
     assertEquals("INSERT INTO mytable (a, b) VALUES (?, ?), (?, ?)", output.get(0).getWhere());
@@ -305,7 +305,7 @@ public final class SqlUtilTest {
     contentValues.add(cv2);
     contentValues.add(cv3);
 
-    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b"}, contentValues, 4);
+    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b"}, contentValues, 4, null);
 
     assertEquals(2, output.size());
 

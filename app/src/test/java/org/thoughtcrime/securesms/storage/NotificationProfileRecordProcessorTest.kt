@@ -5,11 +5,11 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.BeforeClass
 import org.junit.Test
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.testutil.EmptyLogger
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.StorageId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.storage.protos.NotificationProfile
 import org.whispersystems.signalservice.internal.storage.protos.Recipient
 import java.util.UUID
@@ -103,7 +103,7 @@ class NotificationProfileRecordProcessorTest {
     val proto = NotificationProfile.Builder().apply {
       id = UuidUtil.toByteArray(UUID.randomUUID()).toByteString()
       name = "Profile"
-      allowedMembers = listOf(Recipient(contact = Recipient.Contact(serviceId = "bad")))
+      allowedMembers = listOf(Recipient(contact = Recipient.Contact(serviceIdBinary = "bad".toByteArray().toByteString())))
     }.build()
     val record = SignalNotificationProfileRecord(STORAGE_ID, proto)
 

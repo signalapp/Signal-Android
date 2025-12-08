@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CallParticipantsListUpdatePopupWindow extends PopupWindow implements DefaultLifecycleObserver {
 
-  private static final long DURATION = TimeUnit.SECONDS.toMillis(10);
+  private static final long DURATION = TimeUnit.SECONDS.toMillis(5);
 
   private final ViewGroup       parent;
   private final AvatarImageView avatarImageView;
@@ -55,6 +55,7 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow implement
     this.handler             = new Handler(Looper.getMainLooper());
 
     setOnDismissListener(this::showPending);
+    getContentView().setOnClickListener(v -> dismiss());
     setAnimationStyle(R.style.PopupAnimation);
   }
 
@@ -138,37 +139,40 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow implement
   }
 
   private void setDescriptionForRecipients(@NonNull Set<CallParticipantListUpdate.Wrapper> recipients, boolean isAdded) {
+    descriptionTextView.setText(getDescriptionForRecipients(getContentView().getContext(), recipients, isAdded));
+  }
+
+  public static @NonNull String getDescriptionForRecipients(@NonNull Context context, @NonNull Set<CallParticipantListUpdate.Wrapper> recipients, boolean isAdded) {
     Iterator<CallParticipantListUpdate.Wrapper> iterator = recipients.iterator();
-    Context                                     context  = getContentView().getContext();
     String                                      description;
 
     switch (recipients.size()) {
       case 0:
         throw new IllegalArgumentException("Recipients must contain 1 or more entries");
       case 1:
-        description = context.getString(getOneMemberDescriptionResourceId(isAdded), getNextDisplayName(iterator));
+        description = context.getString(getOneMemberDescriptionResourceId(isAdded), getNextDisplayName(context, iterator));
         break;
       case 2:
-        description = context.getString(getTwoMemberDescriptionResourceId(isAdded), getNextDisplayName(iterator), getNextDisplayName(iterator));
+        description = context.getString(getTwoMemberDescriptionResourceId(isAdded), getNextDisplayName(context, iterator), getNextDisplayName(context, iterator));
         break;
       case 3:
-        description = context.getString(getThreeMemberDescriptionResourceId(isAdded), getNextDisplayName(iterator), getNextDisplayName(iterator), getNextDisplayName(iterator));
+        description = context.getString(getThreeMemberDescriptionResourceId(isAdded), getNextDisplayName(context, iterator), getNextDisplayName(context, iterator), getNextDisplayName(context, iterator));
         break;
       default:
-        description = context.getResources().getQuantityString(getManyMemberDescriptionResourceId(isAdded), recipients.size() - 2, getNextDisplayName(iterator), getNextDisplayName(iterator), recipients.size() - 2);
+        description = context.getResources().getQuantityString(getManyMemberDescriptionResourceId(isAdded), recipients.size() - 2, getNextDisplayName(context, iterator), getNextDisplayName(context, iterator), recipients.size() - 2);
     }
 
-    descriptionTextView.setText(description);
+    return description;
   }
 
   private @NonNull Recipient getNextRecipient(@NonNull Iterator<CallParticipantListUpdate.Wrapper> wrapperIterator) {
     return wrapperIterator.next().getCallParticipant().getRecipient();
   }
 
-  private @NonNull String getNextDisplayName(@NonNull Iterator<CallParticipantListUpdate.Wrapper> wrapperIterator) {
+  private static @NonNull String getNextDisplayName(@NonNull Context context, @NonNull Iterator<CallParticipantListUpdate.Wrapper> wrapperIterator) {
     CallParticipantListUpdate.Wrapper wrapper   = wrapperIterator.next();
 
-    return wrapper.getCallParticipant().getRecipientDisplayName(getContentView().getContext());
+    return wrapper.getCallParticipant().getRecipientDisplayName(context);
   }
 
   private static @StringRes int getOneMemberDescriptionResourceId(boolean isAdded) {

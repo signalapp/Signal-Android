@@ -231,7 +231,10 @@ private fun SampleBox(
   darkMode: Boolean,
   content: @Composable BoxScope.() -> Unit
 ) {
-  SignalTheme(isDarkMode = darkMode) {
+  SignalTheme(
+    isDarkMode = darkMode,
+    incognitoKeyboardEnabled = false
+  ) {
     Surface {
       Box(modifier = Modifier.padding(8.dp)) {
         content()

@@ -6,6 +6,7 @@ import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Hex
 import org.signal.libsignal.attest.AttestationDataException
 import org.signal.libsignal.protocol.logging.Log
 import org.signal.libsignal.sgxsession.SgxCommunicationFailureException
@@ -16,7 +17,6 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.configuration.SignalSvr2Url
 import org.whispersystems.signalservice.internal.push.AuthCredentials
-import org.whispersystems.signalservice.internal.util.Hex
 import java.io.IOException
 import java.time.Instant
 import java.util.concurrent.CountDownLatch
@@ -149,7 +149,13 @@ internal class Svr2Socket(
     }
 
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: OkHttpResponse?) {
-      if (emitError(IOException(t))) {
+      val exception = if (t.message?.contains("404") == true) {
+        NonSuccessfulResponseCodeException(404)
+      } else {
+        IOException(t)
+      }
+
+      if (emitError(exception)) {
         Log.w(TAG, "[onFailure] response? " + (response != null), t)
         stage.set(Stage.FAILED)
         webSocket.close(1000, "OK")

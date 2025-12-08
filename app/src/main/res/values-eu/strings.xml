@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Grabatu ordainketak berreskuratzeko esaldi bat</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Grabatu esaldi bat</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PINa desgaitu ahal izateko, ordainketak berreskuratzeko esaldi bat grabatu behar duzu, ordainketen kontua berreskura dezakezula ziurtatzeko.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Sortu beste berreskuratze-gako bat</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">PINa desgaitu ahal izateko, berreskuratze-gako bat sortu eta erregistratu beharko duzu.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Sortu gako bat</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -89,7 +95,7 @@
     <string name="AttachmentKeyboard_contact">Kontaktua</string>
     <string name="AttachmentKeyboard_location">Kokalekua</string>
     <!-- Text for a button that will allow users to create a poll -->
-    <string name="AttachmentKeyboard_poll">Poll</string>
+    <string name="AttachmentKeyboard_poll">Galdeketa</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal-ek baimena behar du argazki eta bideoak erakusteko</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Sartzeko Baimena Eman</string>
@@ -359,6 +365,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Hau ez da baliozko dei-esteka bat. Ziurtatu esteka osoa osorik dagela eta zuzena dela sartzen saiatu aurretik.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Deian zaude</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__dont_transfer">Ez transferitu</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -669,6 +680,22 @@
     <string name="ConversationFragment_group_names">Talde-izenak</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Ezin izan da deskargatu argazkia. Saiatu berriro.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 hours</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 days</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 egun</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Betirako</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Ordeztu</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Segurtasun-aholkuak</string>
@@ -1169,6 +1196,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signalen bertsio hau iraungi da. Eguneratu orain mezuak bidali eta jaso ahal izateko.</string>
     <string name="ExpiredBuildReminder_update_now">Eguneratu orain</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Signal-ek jada ez du funtzionatzen gailu honetan. Signal berriro erabiltzeko, eguneratu gailua Android-en bertsio berriago batera, edo erabili gailu berriago bat.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Eguneratu Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1195,11 +1225,11 @@
     <string name="AddToGroupActivity_add_member">Gehitu kidea?</string>
     <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" gehitu \"%2$s\" taldera?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" erabiltzailea \"%2$s\" taldera gehitua.</string>
-    <string name="AddToGroupActivity_add_to_group">Gehitu taldera</string>
     <string name="AddToGroupActivity_add_to_groups">Gehitu taldeetara</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Pertsona hau ezin da jarauntsitako taldeetan gehitu.</string>
     <string name="AddToGroupActivity_add">Gehitu</string>
     <string name="AddToGroupActivity_add_to_a_group">Gehitu taldera</string>
+    <string name="AddToGroupActivity_search">Bilatu</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Hautatu administratzaile berria</string>
@@ -1385,11 +1415,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Eginda</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Pertsona hau ezin da jarauntsitako taldeetan gehitu.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">\"%1$s\" gehitu \"%2$s\" taldera?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">\"%2$s\" taldean gehitu nahi duzu \"%1$s\"?</item>
-        <item quantity="other">\"%2$s\" taldean gehitu nahi dituzu %3$d kide?</item>
+        <item quantity="one">\"%2$s\" taldean gehitu nahi duzu \"{2}\"?</item>
+        <item quantity="other">\"%2$s\" taldean gehitu nahi dituzu %1$d kide?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Gehitu</string>
     <string name="AddMembersActivity__add_members">Gehitu kideak</string>
 
@@ -1493,6 +1528,10 @@
     <string name="RemoteRestoreActivity__not_now">Orain ez</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Multimedia-edukia atzeko planoan leheneratuko da. Orain leheneratzea aukeratu ezean, ezingo dituzu geroago leheneratu.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">Gailu hau jada ez dago erregistratuta</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">Ziurrenik Signal-eko kontua beste gailu batean erregistratu duzulako gertatu da hori.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Nahi dut aipamenak jakinaraztea</string>
@@ -2110,7 +2149,9 @@
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$serabiltzaileak prozesatu edo erakusti ezin daitekeen mezu bat bidali dizu; arrazoia zera da:  mezuak Signal-en ezagarri berria erabiltzen du.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
-    <string name="MessageRecord_ended_the_poll">%1$s ended the poll: \"%2$s\"</string>
+    <string name="MessageRecord_ended_the_poll">%1$s erabiltzaileak galdeketa hau amaitu du: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">Galdeketa hau amaitu duzu: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Onartu</string>
@@ -2426,6 +2467,12 @@
     <string name="WebRtcCallActivity__to_start_call">Dei bat hasteko edo dei batean sartzeko:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">Bideoa gaitzeko:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Txikitu bideo lokala</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Handitu bideo lokala</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal deia</string>
@@ -2918,6 +2965,8 @@
     <string name="SubmitDebugLogActivity_success">Arrakasta!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">URL hau kopiatu eta erantsi zure arazoaren txostenari edo laguntza eskatzeko emailari: \n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Elkarbanatu</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">Itxi</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Erregistro hau publikoki argitaratuko da, laguntzaileek ikus dezaten. Kargatu aurretik azter dezakezu.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">\"Bidali\" sakatzen duzunean, erregistroa sarera kargatuko da 30 egunez, argitaratu gabeko URL esklusibo batean. Lehenik, gailuan gorde dezakezu.</string>
@@ -3177,7 +3226,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">Zure eranskailuari bidalitako erreakzioa: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Mezu hau ezabatu egin da.</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
-    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s voted in the poll \"%3$s\"</string>
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s erabiltzaileak galdeketa honetan bozkatu du: \"%3$s\"</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desaktibatu nahi duzu kontaktu bat batzen denean bidaltzen diren jakinarazpenak? Berriro aktiba ditzakezu Signal &gt; Ezarpenak &gt; Jakinarazpenak atalean.</string>
 
@@ -3354,6 +3403,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Erantzun bideoa erabili gabe</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">Aldatu kameraren norabidea</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Soinu irteera</string>
@@ -3411,9 +3463,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ez da Signal erabiltzaile bat. Mesedez, egiaztatu erabiltzaile-izena eta saia zaitez berriro."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Ez daukazu zertan zeure burua taldera gehitu</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Taldearen gehienezko tamainara iritsi da</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal taldeek izan dezaketen gehienezko kide kopurua %1$d da.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal taldeek izan dezaketen gehienezko kide kopurua %1$s da.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Gomendatutako kide kopuru mugara iritsi da</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal taldeen errendimendurik onena %1$d kide edo gutxiago dutenean lortzen da. Kide gehiago gehitzeak atzerapenak sortuko ditu mezuak bidaltzerakoan eta jasotzerakoan.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal taldeen errendimendurik onena %1$s kide edo gutxiago dutenean lortzen da. Kide gehiago gehitzeak atzerapenak sortuko ditu mezuak bidaltzerakoan eta jasotzerakoan.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">Kide %1$d</item>
         <item quantity="other">%1$d kide</item>
@@ -4424,7 +4476,11 @@
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Ordainketaren xehetasunak</string>
     <!-- Button to end a poll -->
-    <string name="conversation_selection__menu_end_poll">End poll</string>
+    <string name="conversation_selection__menu_end_poll">Amaitu galdeketa</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5177,10 +5233,14 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Saltatu</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">kide %1$d</item>
-        <item quantity="other">%1$dkide</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$s kide</item>
+        <item quantity="other">%1$s kide</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">Hurrengoa</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Elkarbanatu</string>
@@ -5902,24 +5962,24 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s blokeatu da</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Ezin izan da blokeatu</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Ezin da kendu %1$s</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Pertsona hau zure gailuko Kontaktuak aplikazioan dago gordeta. Ezaba ezazu bertatik eta saiatu berriro.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Ikusi kontaktua</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s ez da Signal-en erabiltzailea</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s ez da Signal-en erabiltzailea</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s ez da Signal-en erabiltzailea</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Ireki menua</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s ez da Signal-eko erabiltzailea</item>
         <item quantity="other">%1$s ez dira Signal-eko erabiltzaileak</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Bilatu izena edo zenbakia</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Izena, erabiltzaile-izena edo zenbakia</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Erabili zenbakizko teklatua</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Erabili teklatu alfanumerikoa</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Berrezarri bilaketa-iragazkia</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">. %1$s</string>
@@ -6085,7 +6145,6 @@
     <string name="BadgesOverviewFragment__featured_badge">Nabarmendutako bereizgarria</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Erakutsi bereizgarriak profilean</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Ezin izan da eguneratu profila</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Hautatu bereizgarri bat</string>
@@ -7739,12 +7798,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Aktibatu Signal-en babeskopia seguruak</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Probatu Babeskopia seguruak</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Ez galdu mezuak telefono berri bat eskuratzean edo Signal berriro instalatzean.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Aktibatu</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Orain ez</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">Babeskopiak gaitzeko, joan \"Ezarpenak\" atalera</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Egiaztatu berreskuratze-gakoa</string>
@@ -8017,6 +8080,12 @@
     <string name="BackupStatusRow__your_last_backup">Ezin izan da osatu azken babeskopia. Ziurtatu telefonoa wifira konektatuta dagoela eta, berriro saiatzeko, sakatu Egin babeskopia orain.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Ezin izan da osatu azken babeskopia. Ziurtatu Signal-en bertsio berriena duzula eta saiatu berriro.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">Dauzkazun mezuen kopuruak biltegiratze-muga gainditzen du. Ezabatu mezu batzuk eta saiatu berriro.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s baino lehen bidalitako edo jasotako mezuak ez dira sartzen ari babeskopietan.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Ezin izan da osatu babeskopia, toki gutxi geratzen zaizulako biltegian. Egin tokia gailuan eta saiatu berriro.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Informazio gehiago</string>
 
@@ -8421,13 +8490,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Zure berreskuratze-gakoa</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Berreskuratze-gakoa</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Berreskuratze-gakoa 64 karaktereko kode bat da, eta Signal berriro instalatzean babeskopia leheneratzeko aukera ematen dizu.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Babeskopia leheneratzeko beharko duzun 64 karaktereko kodea bat da berreskuratze-gakoa.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Gakoa ahaztuz gero, ezingo duzu leheneratu babeskopia. Signal-ek ezin dizu lagundu babeskopia berreskuratzen.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Gorde bberreskuratze-gakoa toki seguru batean, hala nola pasahitz-kudeatzaile seguru batean, eta ez ezazu inorekin partekatu.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Galduz gero, ezingo dituzu berreskuratu mezuak.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Hurrengoa</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Ikusi berreskuratze-gakoa</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8478,6 +8549,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Sortu beste berreskuratze-gako bat</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Gako berria sortzea beharrezkoa da beste norbaitek zure gakoa badaki soilik. Berriro kargatu beharko duzu babeskopia, multimedia-edukia barne. \"Optimizatu biltegiratzea\" erabiltzen ari bazara, kendutako multimedia-eduki deskargatu beharko duzu lehenik.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Babeskopiaren konfiguraziotik irten nahi duzu?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Ez duzu amaitu babeskopiak konfiguratzen, eta ez da babeskopiarik sortu. Babeskopiak gaitzeko, joan ezarpenetara.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Irten babeskopiaren konfiguraziotik</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8604,6 +8681,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Telefono zaharretik</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transferitu zuzenean Android zaharretik</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Leheneratzea saltatu nahi duzu?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Orain leheneratu ezean, ezingo dituzu geroago leheneratu. Leheneratzeko urratsa saltatu ondoren birgaitzen badituzu babeskopiak, oraingo babeskopia mezu-historia berriarekin ordeztuko da.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Saltatu leheneratzeko aukera</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Leheneratu babeskopia lokala</string>
@@ -8644,6 +8727,10 @@
     <string name="EnterBackupKey_backup_not_found">Ez da aurkitu babeskopia</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Idatzi duzun berreskuratze-gakoa zuzena da, baina ez dago hari lotutako babeskopiarik. Oraindik telefono zaharra badaukazu, ziurtatu babeskopiak gaituta daudela eta babeskopiak egiteko prozesua osatu dela, eta saiatu berriro.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Agian berreskuratze-gako okerra idatzi duzu, edo ez duzu babeskopia bat ere egin gailu zaharrarekin.\n\nZiurtatu Babeskopia seguruak gaitzean gordetako telefono-zenbaki eta berreskuratze-gako berberekin erregistratzen ari zarela, eta berretsi gailu zaharrarekin babeskopia bat egin dela.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Berreskuratze-gakoa erabiltzeko saiakerarik gabe geratu zara. Zure segurtasunerako, egin daitezkeen saiakeren kopurua mugatuta dago. Itxaron ordubetez eta saiatu berriro.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Saltatu leheneratzeko aukera</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8732,6 +8819,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Saltatu leheneratzeko aukera</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Berreskuratze-gakoen mugara iritsi zara</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Sortu duzu berreskuratze-gako bat, baina, erabilera okerrak ekiditeko, sor daitezkeen gakoen kopurua mugatuta dago. Ezingo duzu beste gakorik sortu datozen 7 egunetan. Gorde berreskuratze-gakoa toki seguru batean.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Ezin da sortu gako berria</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Sor ditzakezun gakoen gehieneko kopurura iritsi zara. 7 egunen buruan sortu ahalko duzu beste berreskuratze-gako bat. Norbait zure babeskopia atzitu nahian dabilela uste baduzu, \"Desaktibatu eta ezabatu babeskopia\" aukera dezakezu.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">Ados</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Itxi bilaketa</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8774,62 +8871,200 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select One</string>
+    <string name="Poll__select_one">Galdeketa · Hautatu bat</string>
     <!-- Caption in poll message to select one or more options  -->
-    <string name="Poll__select_multiple">Poll · Select one or more</string>
+    <string name="Poll__select_multiple">Galdeketa · Hautatu bat edo gehiago</string>
     <!-- Caption in poll message once a poll has ended  -->
-    <string name="Poll__final_results">Poll · Final results</string>
+    <string name="Poll__final_results">Galdeketa · Azken emaitzak</string>
     <!-- Caption in poll message that no votes have been cast  -->
-    <string name="Poll__no_votes">No votes</string>
+    <string name="Poll__no_votes">Ez dago botorik</string>
     <!-- Button in poll message to view current votes for a poll -->
-    <string name="Poll__view_votes">View votes</string>
+    <string name="Poll__view_votes">Ikusi botoak</string>
     <!-- Button in poll message to view the poll after it has ended -->
-    <string name="Poll__view_poll">View poll</string>
+    <string name="Poll__view_poll">Ikusi galdeketa</string>
     <!-- Toast message shown if we cannot find the poll -->
-    <string name="Poll__unable_poll">Poll not found</string>
+    <string name="Poll__unable_poll">Ez da aurkitu galdeketa</string>
     <!-- Button in poll message to view results for a poll after it ends -->
-    <string name="Poll__view_results">View results</string>
+    <string name="Poll__view_results">Ikusi emaitzak</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
-    <string name="Poll__poll_question">Poll: %1$s</string>
+    <string name="Poll__poll_question">Galdeketa: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
-    <string name="Poll__poll_end">%1$s ended the poll: \"%2$s\"</string>
+    <string name="Poll__poll_end">%1$s erabiltzaileak galdeketa hau amaitu du: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">Galdeketa hau amaitu duzu: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
+    <string name="Poll__poll_voted">%1$s erabiltzaileak galdeketa honetan bozkatu du: \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Polls</string>
-    <!-- Title of screen that shows the poll results of a poll -->
-    <string name="Poll__poll_results">Poll results</string>
+    <string name="Poll__poll">Galdeketak</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">Galdeketaren emaitzak</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">Galdeketaren xehetasunak</string>
     <!-- Header text displaying the question of the poll -->
-    <string name="Poll__question">Question</string>
+    <string name="Poll__question">Galdera</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
-        <item quantity="one">%1$d vote</item>
-        <item quantity="other">%1$d votes</item>
+        <item quantity="one">%1$d boto</item>
+        <item quantity="other">%1$d boto</item>
     </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">Irabazlea</string>
     <!-- Text that when pressed will end the poll   -->
-    <string name="Poll__end_poll">End poll</string>
+    <string name="Poll__end_poll">Amaitu galdeketa</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
-    <string name="Poll__see_all">See all</string>
+    <string name="Poll__see_all">Ikusi denak</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">Ezin izan da amaitu galdeketa</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">Egiaztatu zure konexioa eta saiatu berriro.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">Galdeketa amaitu nahi duzu?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">Aurrerantzean, taldeko kideek ezingo dute bozkatu galdeketa honetan.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">Sarearen zain…</string>
     <!-- Header when creating a new poll -->
-    <string name="CreatePollFragment__new_poll">New poll</string>
+    <string name="CreatePollFragment__new_poll">Galdeketa berria</string>
     <!-- Section text to enter in a question for a poll  -->
-    <string name="CreatePollFragment__question">Question</string>
+    <string name="CreatePollFragment__question">Galdera</string>
     <!-- Hint text for question field when creating a poll  -->
-    <string name="CreatePollFragment__ask_a_question">Ask a question</string>
+    <string name="CreatePollFragment__ask_a_question">Egin galdera bat</string>
     <!-- Section text to enter in options for a poll -->
-    <string name="CreatePollFragment__options">Options</string>
+    <string name="CreatePollFragment__options">Aukerak</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
-    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <string name="CreatePollFragment__option_n">%1$d. aukera</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
-    <string name="CreatePollFragment__drag_handle">Drag and drop handle</string>
+    <string name="CreatePollFragment__drag_handle">Arrastatu eta jaregiteko heldulekua</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
-    <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
+    <string name="CreatePollFragment__allow_multiple_votes">Onartu boto bat baino gehiago</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
-    <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
+    <string name="CreatePollFragment__add_question_option">Gehitu galdera bat eta gutxienez 2 aukera</string>
     <!-- Snackbar text to add two options before creating a poll -->
-    <string name="CreatePollFragment__add_option">Add at least 2 options</string>
+    <string name="CreatePollFragment__add_option">Gehitu gutxienez 2 galdera</string>
     <!-- Snackbar text to add a question before creating a poll -->
-    <string name="CreatePollFragment__add_question">Add a question</string>
+    <string name="CreatePollFragment__add_question">Gehitu galdera bat</string>
+
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">QR kodea eskaneatu</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">Ados</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">Audioarekin lotutako arazo bat</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">Bideoarekin lotutako arazo bat</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">Deia moztu egin da</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">Beste zerbait</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">Audioa eten egiten zen</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">Audioa entzuteari uzten zitzaion</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">Oihartzuna entzuten zen</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">Besteek oihartzuna entzuten zuten</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">Bideo-kalitate kaskarra</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">Bereizmen txikia</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">Kamera ez zebilen</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">Beste zerbait</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Azaldu arazoa</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Adierazi arazoarekin lotutako xehetasun guztiak. Hemen partekatzen duzun guztia pribatu mantenduko da, eta Signal-eko deiak hobetzeko bakarrik erabiliko da.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">Gorde</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">Atzera</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">Zer-nolakoa izan da deia?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Signal-eko deiak hobetzen laguntzen digu honek. Ez da gordeko pertsonalki identifikatzeko balio duen informaziorik.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">Arazoak izan ditut</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">Bikaina</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">Zein arazo izan dituzu?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">Hautatu aukera egoki guztiak</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">Azaldu arazoa</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">Jarraitu</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">Lagun iezaguzu hobetzen</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Diagnostiko-informazia bidaltzen badiguzu, deien kalitatea hobetzen lagunduko diguzu. Bidali aurretik, </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">arazketa-erregistroa ikusi</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> ahalko duzu</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">Partekatu arazketa-erregistroa</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">Arazketa-erregistroek aplikazioari buruzko maila baxuko informazioa dute, eta ez dute mezuetako edukirik.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">Bidali</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">Eskerrik asko iritziarengatik!</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Go to message</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Message not found</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Finkatuta</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Argazkia</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Bideoa</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Eranskailua</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Ahots-mezua</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Behi ikusteko multimedia</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Ulertu dut</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Kendu aingura</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
 
     <!-- EOF -->
 </resources>

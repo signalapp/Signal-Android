@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">תעד משפט השבה של תשלומים</string>
     <string name="ApplicationPreferencesActivity_record_phrase">תעד משפט</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">לפני שתוכל להשבית את ה־PIN שלך, אתה חייב לתעד את משפט ההשבה של התשלומים שלך כדי להבטיח שתוכל להשיב את חשבון התשלומים שלך.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">יצירת מפתח שחזור חדש</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">יש ליצור ולתעד מפתח שחזור חדש לפני שתהיה לך אפשרות להשבית את קוד ה–PIN שלך.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">יצירת מפתח</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -89,7 +95,7 @@
     <string name="AttachmentKeyboard_contact">איש קשר</string>
     <string name="AttachmentKeyboard_location">מיקום</string>
     <!-- Text for a button that will allow users to create a poll -->
-    <string name="AttachmentKeyboard_poll">Poll</string>
+    <string name="AttachmentKeyboard_poll">סקר</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal צריכה הרשאה כדי להציג את התמונות והסרטונים שלך</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">התר גישה</string>
@@ -365,6 +371,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">זה לא לינק שיחה תקף. יש לוודא שהלינק שלם ונכון לפני שמנסים להצטרף.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">אתה כבר בשיחה</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__dont_transfer">לא להעביר</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -626,7 +637,7 @@
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">מדיה לצפייה חד–פעמית נמחקת לאחר השליחה</string>
     <string name="ConversationFragment_you_already_viewed_this_message">צפית כבר בהודעה זו</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">אפשר להוסיף הערות לעצמך בצ\'אט זה. אם מקושרים לחשבון שלך מכשירים כלשהם, הערות חדשות יסונכרנו.</string>
-    <string name="ConversationFragment__d_group_members_have_the_same_name">אל %1$d חברי קבוצה יש אותו שם.</string>
+    <string name="ConversationFragment__d_group_members_have_the_same_name">ל–%1$d חברי קבוצה יש אותו שם.</string>
     <string name="ConversationFragment__tap_to_review">הקש כדי לסקור</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">לאדם הזה יש את אותו שם משתמש כמו לאיש קשר אחר</string>
@@ -689,6 +700,22 @@
     <string name="ConversationFragment_group_names">שמות קבוצות</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">הורדת התמונה נכשלה. יש לנסות שוב.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 hours</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 ימים</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 ימים</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">לנצח</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">החלפה</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">טיפים לבטיחות</string>
@@ -1213,6 +1240,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">גרסה זו של Signal פגה. עדכן עכשיו כדי לשלוח ולקבל הודעות.</string>
     <string name="ExpiredBuildReminder_update_now">עדכן עכשיו</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">אפליקציית Signal כבר לא פועלת במכשיר הזה. כדי להשתמש ב–Signal שוב, צריך לעדכן את המכשיר לגרסה חדשה יותר של Android או להחליף למכשיר חדש יותר.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">עדכן את Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1241,11 +1271,11 @@
     <string name="AddToGroupActivity_add_member">להוסיף חבר קבוצה?</string>
     <string name="AddToGroupActivity_add_s_to_s">להוסיף את \"%1$s\" אל \"%2$s\"?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" התווסף/ה אל \"%2$s\".</string>
-    <string name="AddToGroupActivity_add_to_group">הוסף לקבוצה</string>
     <string name="AddToGroupActivity_add_to_groups">הוסף לקבוצות</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">איש זה אינו יכול להתווסף אל קבוצות מיושנות.</string>
     <string name="AddToGroupActivity_add">הוסף</string>
     <string name="AddToGroupActivity_add_to_a_group">הוסף אל קבוצה</string>
+    <string name="AddToGroupActivity_search">חפש</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">בחר מנהלן חדש</string>
@@ -1461,13 +1491,18 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">סיים</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">איש זה אינו יכול להתווסף אל קבוצות מיושנות.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">להוסיף את \"%1$s\" אל \"%2$s\"?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">להוסיף את ״%1$s״ אל \"%2$s\"?</item>
-        <item quantity="two">להוסיף %3$d חברים אל \"%2$s\"?</item>
-        <item quantity="many">להוסיף %3$d חברים אל \"%2$s\"?</item>
-        <item quantity="other">להוסיף %3$d חברים אל \"%2$s\"?</item>
+        <item quantity="one">להוסיף את ״{2}״ אל \"%2$s\"?</item>
+        <item quantity="two">להוסיף %1$d חברים אל \"%2$s\"?</item>
+        <item quantity="many">להוסיף %1$d חברים אל \"%2$s\"?</item>
+        <item quantity="other">להוסיף %1$d חברים אל \"%2$s\"?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">הוסף</string>
     <string name="AddMembersActivity__add_members">הוסף חברי קבוצה</string>
 
@@ -1573,6 +1608,10 @@
     <string name="RemoteRestoreActivity__not_now">לא עכשיו</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">המדיה שלך תשוחזר ברקע. אם לא תשחזר/י עכשיו, לא תהיה לך אפשרות לשחזר מאוחר יותר.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">המכשיר הזה כבר לא רשום</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">זה כנראה בגלל שנרשמת עם חשבון Signal שלך במכשיר אחר.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">יידע אותי לגבי אזכורים</string>
@@ -2230,7 +2269,9 @@
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s שלח לך הודעה שאינה יכולה להיות מעובדת או להיות מוצגת מאחר שהיא משתמשת במאפיין חדש של Signal.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
-    <string name="MessageRecord_ended_the_poll">%1$s ended the poll: \"%2$s\"</string>
+    <string name="MessageRecord_ended_the_poll">%1$s סיימ/ה את הסקר: ״%2$s״</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">סיימת את הסקר: ״%1$s״</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">אשר</string>
@@ -2572,6 +2613,12 @@
     <string name="WebRtcCallActivity__to_start_call">כדי להתחיל או להצטרף לשיחה:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">כדי להפעיל וידאו:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">כיווץ סרטון מקומי</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">הרחבת סרטון מקומי</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">שיחת Signal</string>
@@ -3104,6 +3151,8 @@
     <string name="SubmitDebugLogActivity_success">הצלחה!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">העתק כתובת זו והוסף אותה אל דוח הסוגיות שלך או דוא״ל התמיכה שלך:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">שתף</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">סגור</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">יומן זה יפורסם באופן ציבורי ומקוון עבור מתנדבים כדי שיצפו בו, אתה יכול לבחון אותו לפני העלאה.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">כשאתה לוחץ הגש, היומן שלך יפורסם באופן מקוון למשך 30 ימים במען ייחודי, בלתי מפורסם. אתה יכול לשמור אותו באופן מקומי תחילה.</string>
@@ -3369,7 +3418,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">הגיב/ה %1$s לסטיקר שלך.</string>
     <string name="MessageNotifier_this_message_was_deleted">הודעה זו נמחקה.</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
-    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s voted in the poll \"%3$s\"</string>
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s הצביע/ה בסקר ״%3$s״</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">לכבות התראות של איש קשר הצטרף אל Signal? אתה יכול לאפשר אותן שוב דרך Signal &lt; הגדרות &lt; התראות.</string>
 
@@ -3556,6 +3605,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">ענה בלי וידאו</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">שינוי כיוון מצלמה</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">פלט שמע</string>
@@ -3613,9 +3665,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s לא משתמש/ת Signal. יש לבדוק את שם המשתמש ולנסות שוב."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">אתה לא צריך להוסיף את עצמך אל הקבוצה</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">גודל קבוצה מרבי הושג</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">קבוצות Signal יכולות להכיל מרב של %1$d חברי קבוצה.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">קבוצות Signal יכולות להכיל מרב של %1$s חברי קבוצה.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">מגבלה מומלצת של חברי קבוצה הושגה</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">קבוצות Signal מתפקדות בצורה הטובה ביותר עם %1$d חברי קבוצה או פחות. הוספת חברי קבוצה נוספים תגרום לעיכובים בשליחה ובקבלה של הודעות.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">קבוצות Signal מתפקדות בצורה הטובה ביותר עם %1$s חברי קבוצה או פחות. הוספת חברי קבוצה נוספים תגרום לעיכובים בשליחה ובקבלה של הודעות.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">חבר קבוצה %1$d</item>
         <item quantity="two">%1$d חברי קבוצה</item>
@@ -4654,7 +4706,11 @@
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">פרטי תשלום</string>
     <!-- Button to end a poll -->
-    <string name="conversation_selection__menu_end_poll">End poll</string>
+    <string name="conversation_selection__menu_end_poll">סיום סקר</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5435,12 +5491,16 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">דלג</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">חבר קבוצה %1$d</item>
-        <item quantity="two">%1$d חברי קבוצה</item>
-        <item quantity="many">%1$d חברי קבוצה</item>
-        <item quantity="other">%1$d חברי קבוצה</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">חבר/ה %1$s</item>
+        <item quantity="two">%1$s חברים</item>
+        <item quantity="many">%1$s חברים</item>
+        <item quantity="other">%1$s חברים</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">הבא</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">שתף</string>
@@ -6178,26 +6238,26 @@
     <string name="NewConversationActivity__s_has_been_blocked">חסמת את %1$s</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">חסימה נכשלה</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">לא הצלחנו להסיר את %1$s</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">האדם הזה שמור ברשימת אנשי הקשר במכשיר שלך. צריך למחוק את הרשומה מאנשי הקשר ולנסות שוב.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">צפייה באיש קשר</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s לא משתמש/ת ב–Signal</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s לא משתמש/ת ב–Signal</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s לא משתמש/ת ב–Signal</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">פתיחת תפריט</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s לא משתמש/ת ב–Signal</item>
         <item quantity="two">%1$s לא משתמשים ב–Signal</item>
         <item quantity="many">%1$s לא משתמשים ב–Signal</item>
         <item quantity="other">%1$s לא משתמשים ב–Signal</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">חפש שם או מספר</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">שם, שם משתמש או מספר</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">מעבר למקלדת מספרית</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">מעבר למקלדת אלפאנומרית</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">איפוס מסנן החיפוש</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6375,7 +6435,6 @@
     <string name="BadgesOverviewFragment__featured_badge">תג פרופיל</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">הצגת תגים בפרופיל שלי</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">נכשל בעדכון פרופיל</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">בחירת תג</string>
@@ -8081,12 +8140,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">הפעלת הגיבויים המאובטחים של Signal</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">כדאי לנסות: גיבויי Signal מאובטחים</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">ככה, לא מאבדים אף הודעה כשמחליפים טלפון או מתקינים מחדש את Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">הפעלה</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">לא עכשיו</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">אפשר להפעיל גיבויים ב״הגדרות״</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">אימות מפתח השחזור שלך</string>
@@ -8365,6 +8428,12 @@
     <string name="BackupStatusRow__your_last_backup">לא ניתן היה להשלים את הגיבוי האחרון שלך. חשוב לוודא שהטלפון שלך מחובר ל–Wi–Fi וללחוץ ״לגבות כעת״ כדי לנסות שוב.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">לא ניתן היה להשלים את הגיבוי האחרון שלך. כדאי לוודא שיש לך את הגרסה האחרונה של Signal ולנסות שוב.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">מספר ההודעות שיש לך חורג ממגבלת האחסון. יש למחוק כמה הודעות ולנסות שוב.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">הודעות שנשלחו או התקבלו לפני %1$s אינן מגובות.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">לא ניתן להשלים את הגיבוי שלך מכיוון שאין לך מספיק שטח אחסון פנוי. יש לפנות מקום במכשיר שלך ולנסות שוב.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">למידע נוסף</string>
 
@@ -8672,10 +8741,10 @@
     <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">ממתינים לחיבור אינטרנט…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
-        <item quantity="one">מעבדים %1$s מתוך הודעה %2$s (%%%3$d)</item>
-        <item quantity="two">מעבדים %1$s מתוך %2$s~ הודעות (%%%3$d)</item>
-        <item quantity="many">מעבדים %1$s מתוך %2$s~ הודעות (%%%3$d)</item>
-        <item quantity="other">מעבדים %1$s מתוך %2$s~ הודעות (%%%3$d)</item>
+        <item quantity="one">מעבדים %1$s מתוך הודעה %2$s (%3$d%%)</item>
+        <item quantity="two">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
+        <item quantity="many">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
+        <item quantity="other">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">יש לך %1$s של נתוני גיבוי שאינם נמצאים במכשיר זה. בלי מנוי בתשלום, לא ניתן להוריד מדיה.</string>
@@ -8783,13 +8852,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">מפתח השחזור שלך</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">מפתח שחזור</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">מפתח השחזור שלך הוא קוד בן 64 ספרות שמאפשר לך לשחזר את הגיבוי שלך בעת התקנה מחדש של Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">מפתח השחזור שלך הוא קוד בן 64 ספרות שנדרש כדי לשחזר את הגיבוי שלך.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">אם שכחת את המפתח שלך, לא תהיה לך אפשרות לשחזר את הגיבוי. Signal לא תוכל לעזור לך לשחזר את הגיבוי שלך.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">חשוב לאחסן את מפתח השחזור שלך במקום בטוח כמו מנהל סיסמאות מאובטח, ולא לשתף אותו עם אף אחד.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">אם הוא יאבד, לא תהיה לך אפשרות לשחזר את ההודעות שלך.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">הבא</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">הצגת מפתח שחזור</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8840,6 +8911,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">יצירת מפתח שחזור חדש</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">יצירת מפתח חדש נחוצה רק אם מישהו אחר יודע את המפתח שלך. יהיה עליך להעלות מחדש את הגיבוי שלך, כולל המדיה. אם את/ה עושה שימוש ב״אופטימיזציה של אחסון״, יהיה עליך להוריד תחילה מדיה שנוקתה.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">לצאת מהגדרת גיבוי?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">לא סיימת להגדיר גיבויים, ולא נוצר אף גיבוי. אפשר להפעיל גיבויים בהגדרות.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">יציאה מהגדרת גיבוי</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8970,6 +9047,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">מהטלפון הישן שלך</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">להעביר ישירות ממכשיר ה–Android הישן שלך</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">לדלג על שחזור?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">אם תדלג/י על השחזור כעת, לא תהיה לך אפשרות לשחזר מאוחר יותר. אם תפעיל/י מחדש גיבויים לאחר דילוג על שחזור, הגיבוי הנוכחי שלך יוחלף עם היסטוריית ההודעות החדשה שלך.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">דילוג על שחזור</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">שחזור גיבוי מקומי</string>
@@ -9010,6 +9093,10 @@
     <string name="EnterBackupKey_backup_not_found">גיבוי לא נמצא</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">מפתח השחזור שהזנת נכון, אך אין גיבוי שמשויך אליו. אם הטלפון הישן שלך עדיין ברשותך, כדאי לוודא שהגיבויים מופעלים ושהושלם גיבוי, ולנסות שוב.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">יתכן שהזנת את מפתח השחזור שלך באופן שגוי, או שלא השלמת לפחות גיבוי אחד במכשיר הישן שלך.\n\nחשוב לוודא שההרשמה מתבצעת עם אותו מספר טלפון ואותו מפתח שחזור ששמרת בעת הפעלת גיבויי Signal מאובטחים, וכן שהושלם גיבוי במכשיר הישן שלך.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">נגמרו לך ניסיונות מפתח השחזור. למען ביטחונך, מספר הניסיונות שאפשר לבצע מוגבל. יש להמתין שעה ולנסות שוב.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">דילוג על שחזור</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -9098,6 +9185,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">דילוג על שחזור</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">הגעת למגבלת מפתחות השחזור</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">יצרת בהצלחה מפתח שחזור חדש. כדי למנוע שימוש לרעה, מספר המפתחות החדשים שאפשר ליצור מוגבל. לא תהיה לך אפשרות ליצור מפתח שחזור נוסף למשך 7 ימים. יש לאחסן את מפתח הגיבוי במקום בטוח ומאובטח.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">לא ניתן ליצור מפתח חדש</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">מיצית את מספר המפתחות החדשים שבאפשרותך ליצור. תהיה לך אפשרות ליצור מפתח שחזור חדש בעוד 7 ימים. אם נראה לך שלמישהו יש אפשרות לגשת לגיבוי שלך, אפשר לבחור באפשרות ״כיבוי ומחיקת גיבוי״.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">אישור</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">סגירת חיפוש</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -9144,64 +9241,202 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select One</string>
+    <string name="Poll__select_one">סקר · יש לבחור 1</string>
     <!-- Caption in poll message to select one or more options  -->
-    <string name="Poll__select_multiple">Poll · Select one or more</string>
+    <string name="Poll__select_multiple">סקר · יש לבחור 1 או יותר</string>
     <!-- Caption in poll message once a poll has ended  -->
-    <string name="Poll__final_results">Poll · Final results</string>
+    <string name="Poll__final_results">סקר · תוצאות סופיות</string>
     <!-- Caption in poll message that no votes have been cast  -->
-    <string name="Poll__no_votes">No votes</string>
+    <string name="Poll__no_votes">אין הצבעות</string>
     <!-- Button in poll message to view current votes for a poll -->
-    <string name="Poll__view_votes">View votes</string>
+    <string name="Poll__view_votes">הצגת הצבעות</string>
     <!-- Button in poll message to view the poll after it has ended -->
-    <string name="Poll__view_poll">View poll</string>
+    <string name="Poll__view_poll">הצגת סקר</string>
     <!-- Toast message shown if we cannot find the poll -->
-    <string name="Poll__unable_poll">Poll not found</string>
+    <string name="Poll__unable_poll">סקר לא נמצא</string>
     <!-- Button in poll message to view results for a poll after it ends -->
-    <string name="Poll__view_results">View results</string>
+    <string name="Poll__view_results">הצגת תוצאות</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
-    <string name="Poll__poll_question">Poll: %1$s</string>
+    <string name="Poll__poll_question">סקר: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
-    <string name="Poll__poll_end">%1$s ended the poll: \"%2$s\"</string>
+    <string name="Poll__poll_end">%1$s סיימ/ה את הסקר: ״%2$s״</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">סיימת את הסקר: ״%1$s״</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
+    <string name="Poll__poll_voted">%1$s הצביע/ה בסקר: ״%2$s״</string>
     <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Polls</string>
-    <!-- Title of screen that shows the poll results of a poll -->
-    <string name="Poll__poll_results">Poll results</string>
+    <string name="Poll__poll">סקרים</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">תוצאות סקר</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">פרטי סקר</string>
     <!-- Header text displaying the question of the poll -->
-    <string name="Poll__question">Question</string>
+    <string name="Poll__question">שאלה</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
-        <item quantity="one">%1$d vote</item>
-        <item quantity="two">%1$d votes</item>
-        <item quantity="many">%1$d votes</item>
-        <item quantity="other">%1$d votes</item>
+        <item quantity="one">הצבעה %1$d</item>
+        <item quantity="two">%1$d הצבעות</item>
+        <item quantity="many">%1$d הצבעות</item>
+        <item quantity="other">%1$d הצבעות</item>
     </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">הזוכה</string>
     <!-- Text that when pressed will end the poll   -->
-    <string name="Poll__end_poll">End poll</string>
+    <string name="Poll__end_poll">סיום סקר</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
-    <string name="Poll__see_all">See all</string>
+    <string name="Poll__see_all">הצגת הכל</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">לא ניתן היה לסיים את הסקר</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">כדאי לבדוק את החיבור שלך ולנסות שוב.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">לסיים את הסקר?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">חברי קבוצה לא יוכלו יותר להצביע בסקר הזה.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">בהמתנה לרשת…</string>
     <!-- Header when creating a new poll -->
-    <string name="CreatePollFragment__new_poll">New poll</string>
+    <string name="CreatePollFragment__new_poll">סקר חדש</string>
     <!-- Section text to enter in a question for a poll  -->
-    <string name="CreatePollFragment__question">Question</string>
+    <string name="CreatePollFragment__question">שאלה</string>
     <!-- Hint text for question field when creating a poll  -->
-    <string name="CreatePollFragment__ask_a_question">Ask a question</string>
+    <string name="CreatePollFragment__ask_a_question">לשאול שאלה</string>
     <!-- Section text to enter in options for a poll -->
-    <string name="CreatePollFragment__options">Options</string>
+    <string name="CreatePollFragment__options">אפשרויות</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
-    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <string name="CreatePollFragment__option_n">אפשרות %1$d</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
-    <string name="CreatePollFragment__drag_handle">Drag and drop handle</string>
+    <string name="CreatePollFragment__drag_handle">יש לגרור ולשחרר את הידית</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
-    <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
+    <string name="CreatePollFragment__allow_multiple_votes">לאפשר הצבעות מרובות</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
-    <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
+    <string name="CreatePollFragment__add_question_option">יש להוסיף שאלה ולפחות 2 אפשרויות</string>
     <!-- Snackbar text to add two options before creating a poll -->
-    <string name="CreatePollFragment__add_option">Add at least 2 options</string>
+    <string name="CreatePollFragment__add_option">יש להוסיף לפחות 2 אפשרויות</string>
     <!-- Snackbar text to add a question before creating a poll -->
-    <string name="CreatePollFragment__add_question">Add a question</string>
+    <string name="CreatePollFragment__add_question">הוספת שאלה</string>
+
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">סריקת קוד QR</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">בסדר</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">בעיית שמע</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">בעיית וידאו</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">השיחה התנתקה</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">משהו אחר</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">שמע מקוטע</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">הפסקת שמע</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">שמעתי הד</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">אחרים שמעו הד</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">איכות וידאו ירודה</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">רזולוציה נמוכה</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">המצלמה לא עבדה</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">משהו אחר</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">תיאור הבעיה שלך</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">נא לכלול כל פרט רלוונטי לבעיה. כל דבר שתשתפ/י כאן יישאר פרטי וישמש רק כדי לעזור לשפר את השיחות ב–Signal.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">שמירה</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">הקודם</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">איך הייתה השיחה שלך?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">זה עוזר לנו לשפר את השיחות ב–Signal. לא יאוחסן מידע אישי מזהה.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">היו בעיות</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">נהדרת</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">אילו בעיות היו לך?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">יש לבחור את כל האפשריות המתאימות</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">תיאור הבעיה שלך</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">המשך</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">נשמח לעזרתך כדי להשתפר</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">שליחת פרטי האבחון שלך עוזרת לנו לשפר את איכות השיחות. באפשרותך </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">לראות את יומן ניפוי הבאגים שלך</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> לפני ההגשה</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">שיתוף יומן ניפוי באגים</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">יומני ניפוי באגים מכילים מידע בסיסי מהאפליקציה ולא חושפים את תוכן ההודעות שלך.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">הגש</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">תודה על המשוב!</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">מעבר להודעה</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Message not found</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">מוצמד</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">תמונה</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">סרטון</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">מדבקה</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">הודעה קולית</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">מדיה לצפייה חד־פעמית</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">הבנתי</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">ביטול הצמדה</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
 
     <!-- EOF -->
 </resources>

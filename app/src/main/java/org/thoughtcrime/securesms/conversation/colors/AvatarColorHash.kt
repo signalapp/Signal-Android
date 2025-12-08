@@ -5,9 +5,9 @@
 
 package org.thoughtcrime.securesms.conversation.colors
 
+import org.signal.core.models.ServiceId
 import org.signal.core.util.CryptoUtil
 import org.thoughtcrime.securesms.groups.GroupId
-import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Stolen from iOS. Utilizes a simple hash to map different characteristics to an avatar color index.

@@ -356,5 +356,7 @@ class V2ConversationItemShapeTest {
     override fun onViewPollClicked(messageId: Long) = Unit
 
     override fun onToggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) = Unit
+
+    override fun onViewPinnedMessage(messageId: Long) = Unit
   }
 }

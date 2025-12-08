@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.signal.libsignal.messagebackup.MessageBackup
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.isStory
 import org.thoughtcrime.securesms.util.isStoryReaction
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import java.io.File
 import java.io.IOException
 import org.signal.libsignal.messagebackup.BackupKey as LibSignalBackupKey

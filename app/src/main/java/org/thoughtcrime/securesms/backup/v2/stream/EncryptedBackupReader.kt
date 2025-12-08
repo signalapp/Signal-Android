@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.backup.v2.stream
 
 import androidx.annotation.VisibleForTesting
 import com.google.common.io.CountingInputStream
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.readFully
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.readVarInt32
@@ -16,8 +18,6 @@ import org.signal.core.util.writeVarInt32
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.io.ByteArrayOutputStream
 import java.io.EOFException
 import java.io.IOException
@@ -48,6 +48,13 @@ class EncryptedBackupReader private constructor(
 
   companion object {
     const val MAC_SIZE = 32
+
+    /**
+     * Estimated upperbound need to read backup secrecy metadata from the start of a file.
+     *
+     * Magic Number size + ~varint size (5) + forward secrecy metadata size estimate (200)
+     */
+    val BACKUP_SECRET_METADATA_UPPERBOUND = EncryptedBackupWriter.MAGIC_NUMBER.size + 5 + 200
 
     /**
      * Create a reader for a backup from the archive CDN.

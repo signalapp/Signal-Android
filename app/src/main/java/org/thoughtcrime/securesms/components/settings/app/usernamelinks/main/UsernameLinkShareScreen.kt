@@ -35,7 +35,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeBadge
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
@@ -67,15 +67,19 @@ fun UsernameLinkShareScreen(
     UsernameLinkResetResult.NetworkUnavailable -> {
       ResetLinkResultDialog(stringResource(R.string.UsernameLinkSettings_reset_link_result_network_unavailable), onDismiss = onLinkResultHandled)
     }
+
     UsernameLinkResetResult.NetworkError -> {
       ResetLinkResultDialog(stringResource(R.string.UsernameLinkSettings_reset_link_result_network_error), onDismiss = onLinkResultHandled)
     }
+
     UsernameLinkResetResult.UnexpectedError -> {
       ResetLinkResultDialog(stringResource(R.string.UsernameLinkSettings_reset_link_result_unknown_error), onDismiss = onLinkResultHandled)
     }
+
     is UsernameLinkResetResult.Success -> {
       ResetLinkResultDialog(stringResource(R.string.UsernameLinkSettings_reset_link_result_success), onDismiss = onLinkResultHandled)
     }
+
     else -> {}
   }
 
@@ -216,7 +220,7 @@ private fun ResetLinkResultDialog(message: String, onDismiss: () -> Unit) {
 @Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ScreenPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       UsernameLinkShareScreen(
         state = previewState(),
@@ -235,7 +239,7 @@ private fun ScreenPreview() {
 @Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ScreenPreviewResetSuccess() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       UsernameLinkShareScreen(
         state = previewState().copy(usernameLinkResetResult = UsernameLinkResetResult.Success(UsernameLinkComponents(Util.getSecretBytes(32), UUID.randomUUID()))),
@@ -254,7 +258,7 @@ private fun ScreenPreviewResetSuccess() {
 @Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ScreenPreviewResetNetworkError() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       UsernameLinkShareScreen(
         state = previewState().copy(usernameLinkResetResult = UsernameLinkResetResult.NetworkError),
@@ -273,7 +277,7 @@ private fun ScreenPreviewResetNetworkError() {
 @Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ScreenPreviewResetNetworkUnavailable() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       UsernameLinkShareScreen(
         state = previewState().copy(usernameLinkResetResult = UsernameLinkResetResult.NetworkUnavailable),
@@ -292,7 +296,7 @@ private fun ScreenPreviewResetNetworkUnavailable() {
 @Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ScreenPreviewResetUnexpectedError() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       UsernameLinkShareScreen(
         state = previewState().copy(usernameLinkResetResult = UsernameLinkResetResult.UnexpectedError),
@@ -311,7 +315,7 @@ private fun ScreenPreviewResetUnexpectedError() {
 @Preview(name = "Dark Theme", group = "LinkRow", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun LinkRowPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Column(modifier = Modifier.padding(8.dp)) {
         LinkRow(

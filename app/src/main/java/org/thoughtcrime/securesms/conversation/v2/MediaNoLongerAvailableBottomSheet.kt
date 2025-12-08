@@ -118,7 +118,7 @@ private fun MediaNoLongerAvailableBottomSheetContent(
 @DayNightPreviews
 @Composable
 private fun MediaNoLongerAvailableBottomSheetContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     MediaNoLongerAvailableBottomSheetContent()
   }
 }

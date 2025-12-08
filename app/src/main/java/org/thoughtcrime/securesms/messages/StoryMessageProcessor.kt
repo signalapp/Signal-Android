@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.messages
 
 import android.graphics.Color
 import org.signal.core.util.Base64
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult
 import org.thoughtcrime.securesms.database.MessageType
@@ -25,6 +26,7 @@ import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.StoryMessage
 import org.whispersystems.signalservice.internal.push.TextAttachment
+import org.whispersystems.signalservice.internal.util.Util
 
 object StoryMessageProcessor {
 
@@ -75,8 +77,8 @@ object StoryMessageProcessor {
           body = "",
           isStoryEmbed = true
         ),
-        serverGuid = envelope.serverGuid,
-        messageRanges = storyMessage.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
+        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
+        messageRanges = storyMessage.bodyRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toBodyRangeList()
       )
 
       insertResult = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()

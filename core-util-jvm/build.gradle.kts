@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
+import org.gradle.api.tasks.SourceSetContainer
+
 val signalJavaVersion: JavaVersion by rootProject.extra
 val signalKotlinJvmTarget: String by rootProject.extra
 
@@ -49,6 +51,20 @@ tasks.runKtlintCheckOverMainSourceSet {
   dependsOn(":core-util-jvm:generateMainProtos")
 }
 
+val sourceSets = extensions.getByName("sourceSets") as SourceSetContainer
+sourceSets.named("main") {
+  output.dir(
+    mapOf("builtBy" to tasks.named("compileKotlin")),
+    "$buildDir/classes/kotlin/main"
+  )
+}
+sourceSets.named("test") {
+  output.dir(
+    mapOf("builtBy" to tasks.named("compileTestKotlin")),
+    "$buildDir/classes/kotlin/test"
+  )
+}
+
 dependencies {
   implementation(libs.kotlin.reflect)
   implementation(libs.kotlinx.coroutines.core)
@@ -56,6 +72,8 @@ dependencies {
   implementation(libs.google.libphonenumber)
   implementation(libs.rxjava3.rxjava)
   implementation(libs.rxjava3.rxkotlin)
+  implementation(libs.kotlinx.serialization.json)
+  implementation(libs.libsignal.client)
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)

@@ -28,7 +28,8 @@ import kotlin.time.Duration.Companion.milliseconds
  * Handles the importing of [Chat] models into the local database.
  */
 object ChatArchiveImporter {
-  fun import(chat: Chat, recipientId: RecipientId, importState: ImportState): Long {
+
+  fun import(chat: Chat, recipientId: RecipientId, importState: ImportState): Long? {
     val chatColor = chat.style?.toLocal(importState)
 
     val wallpaperAttachmentId: AttachmentId? = chat.style?.wallpaperPhoto?.let { filePointer ->
@@ -49,6 +50,11 @@ object ChatArchiveImporter {
         ThreadTable.ACTIVE to 1
       )
       .run()
+      .takeIf { it > 0L }
+
+    if (threadId == null) {
+      return null
+    }
 
     SignalDatabase.writableDatabase
       .update(

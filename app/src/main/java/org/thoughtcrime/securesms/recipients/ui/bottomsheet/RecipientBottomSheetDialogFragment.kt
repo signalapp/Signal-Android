@@ -15,13 +15,11 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -31,6 +29,7 @@ import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.view.ViewBadgeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
+import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
 import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache
@@ -45,7 +44,6 @@ import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.visible
@@ -54,7 +52,7 @@ import org.thoughtcrime.securesms.util.visible
  * A bottom sheet that shows some simple recipient details, as well as some actions (like calling,
  * adding to contacts, etc).
  */
-class RecipientBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class RecipientBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
 
   companion object {
     val TAG: String = Log.tag(RecipientBottomSheetDialogFragment::class.java)
@@ -87,6 +85,8 @@ class RecipientBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
   }
 
+  override val peekHeightPercentage: Float = 1f
+
   private val viewModel: RecipientDialogViewModel by viewModels(factoryProducer = this::createFactory)
   private var callback: Callback? = null
 
@@ -96,15 +96,6 @@ class RecipientBottomSheetDialogFragment : BottomSheetDialogFragment() {
     val groupId: GroupId? = GroupId.parseNullableOrThrow(arguments.getString(ARGS_GROUP_ID))
 
     return RecipientDialogViewModel.Factory(requireContext(), recipientId, groupId)
-  }
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    setStyle(
-      DialogFragment.STYLE_NORMAL,
-      if (ThemeUtil.isDarkTheme(requireContext())) R.style.Theme_Signal_RoundedBottomSheet else R.style.Theme_Signal_RoundedBottomSheet_Light
-    )
-
-    super.onCreate(savedInstanceState)
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -306,6 +297,7 @@ class RecipientBottomSheetDialogFragment : BottomSheetDialogFragment() {
         background = DSLSettingsIcon.from(ContextUtil.requireDrawable(requireContext(), R.drawable.selectable_recipient_bottom_sheet_icon_button)),
         enabled = !viewModel.isDeprecatedOrUnregistered,
         onMessageClick = {
+          callback?.onMessageClicked()
           dismiss()
           viewModel.onMessageClicked(requireActivity())
         },
@@ -458,5 +450,6 @@ class RecipientBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
   interface Callback {
     fun onRecipientBottomSheetDismissed()
+    fun onMessageClicked()
   }
 }

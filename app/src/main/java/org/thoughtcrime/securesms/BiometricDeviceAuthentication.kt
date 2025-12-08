@@ -38,11 +38,7 @@ class BiometricDeviceAuthentication(
   }
 
   private fun isDeviceSecure(context: Context): Boolean {
-    return if (Build.VERSION.SDK_INT > 23) {
-      ServiceUtil.getKeyguardManager(context).isDeviceSecure
-    } else {
-      ServiceUtil.getKeyguardManager(context).isKeyguardSecure
-    }
+    return ServiceUtil.getKeyguardManager(context).isDeviceSecure
   }
 
   /**

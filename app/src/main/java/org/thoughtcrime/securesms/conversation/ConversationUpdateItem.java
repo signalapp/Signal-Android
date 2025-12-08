@@ -59,7 +59,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.signal.core.models.ServiceId;
 
 import java.util.Collection;
 import java.util.Locale;
@@ -420,6 +420,10 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   private void updateBodyWithTimer() {
+    if (displayBody == null) {
+      return;
+    }
+
     SpannableStringBuilder builder = new SpannableStringBuilder(displayBody);
 
     if (latestFrame != 0) {
@@ -681,6 +685,16 @@ public final class ConversationUpdateItem extends FrameLayout
           passthroughClickListener.onClick(v);
         }
       });
+    } else if (MessageRecordUtil.hasPinnedMessageUpdate(conversationMessage.getMessageRecord()) && conversationMessage.getMessageRecord().getMessageExtras().pinnedMessage.pinnedMessageId != -1) {
+      actionButton.setText(R.string.PinnedMessage__go_to_message);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null && MessageRecordUtil.hasPinnedMessageUpdate(conversationMessage.getMessageRecord())) {
+          eventListener.onViewPinnedMessage(conversationMessage.getMessageRecord().getMessageExtras().pinnedMessage.pinnedMessageId);
+        } else {
+          passthroughClickListener.onClick(v);
+        }
+      });
     } else {
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);
@@ -790,6 +804,7 @@ public final class ConversationUpdateItem extends FrameLayout
       handler.post(timerUpdateRunnable);
     } else {
       latestFrame = 0;
+      updateBodyWithTimer();
       handler.removeCallbacks(timerUpdateRunnable);
     }
   }

@@ -7,9 +7,14 @@ package org.thoughtcrime.securesms.registration.ui.restore
 
 import android.os.Bundle
 import android.view.View
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -80,6 +85,7 @@ class EnterBackupKeyFragment : ComposeFragment() {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val sharedState by sharedViewModel.state.collectAsStateWithLifecycle()
     val contactSupportState: ContactSupportViewModel.ContactSupportState<Unit> by contactSupportViewModel.state.collectAsStateWithLifecycle()
+    var showSkipRestoreWarning by remember { mutableStateOf(false) }
 
     SendSupportEmailEffect(
       contactSupportState = contactSupportState,
@@ -110,10 +116,24 @@ class EnterBackupKeyFragment : ComposeFragment() {
       },
       onLearnMore = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) },
       onSkip = {
-        sharedViewModel.skipRestore()
-        findNavController().safeNavigate(EnterBackupKeyFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION))
+        showSkipRestoreWarning = true
       },
       dialogContent = {
+        if (showSkipRestoreWarning) {
+          Dialogs.SimpleAlertDialog(
+            title = stringResource(R.string.SelectRestoreMethodFragment__skip_restore_title),
+            body = stringResource(R.string.SelectRestoreMethodFragment__skip_restore_warning),
+            confirm = stringResource(R.string.SelectRestoreMethodFragment__skip_restore),
+            dismiss = stringResource(android.R.string.cancel),
+            onConfirm = {
+              sharedViewModel.skipRestore()
+              findNavController().safeNavigate(EnterBackupKeyFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION))
+            },
+            onDismiss = { showSkipRestoreWarning = false },
+            confirmColor = MaterialTheme.colorScheme.error,
+            properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+          )
+        }
         if (contactSupportState.show) {
           ContactSupportDialog(
             showInProgress = contactSupportState.showAsProgress,
@@ -128,6 +148,7 @@ class EnterBackupKeyFragment : ComposeFragment() {
             },
             onAbandonRemoteRestoreAfterRegistration = {
               viewLifecycleOwner.lifecycleScope.launch {
+                sharedViewModel.resetRestoreDecision()
                 sharedViewModel.resumeNormalRegistration()
               }
             },
@@ -182,7 +203,8 @@ private fun ErrorContent(
         onConfirm = onBackupTierRetry,
         onDeny = onAbandonRemoteRestoreAfterRegistration,
         onDismiss = onBackupTierNotRestoredDismiss,
-        onDismissRequest = {}
+        onDismissRequest = {},
+        properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
       )
     }
   } else if (state.showBackupTierNotRestoreError == EnterBackupKeyViewModel.TierRestoreError.NOT_FOUND) {
@@ -193,7 +215,8 @@ private fun ErrorContent(
       dismiss = stringResource(R.string.EnterBackupKey_skip_restore),
       onConfirm = onBackupTierRetry,
       onDeny = onAbandonRemoteRestoreAfterRegistration,
-      onDismiss = onBackupTierNotRestoredDismiss
+      onDismiss = onBackupTierNotRestoredDismiss,
+      properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
     )
   } else if (state.showRegistrationError) {
     if (state.registerAccountResult is RegisterAccountResult.IncorrectRecoveryPassword) {
@@ -204,7 +227,8 @@ private fun ErrorContent(
         dismiss = stringResource(R.string.EnterBackupKey_backup_key_help),
         onConfirm = {},
         onDeny = onBackupKeyHelp,
-        onDismiss = onRegistrationErrorDismiss
+        onDismiss = onRegistrationErrorDismiss,
+        properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
       )
     } else {
       val message = when (state.registerAccountResult) {
@@ -215,7 +239,8 @@ private fun ErrorContent(
       Dialogs.SimpleMessageDialog(
         message = message,
         onDismiss = onRegistrationErrorDismiss,
-        dismiss = stringResource(android.R.string.ok)
+        dismiss = stringResource(android.R.string.ok),
+        properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
       )
     }
   }

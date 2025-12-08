@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.exporters
 
 import android.database.Cursor
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalInt
@@ -14,20 +15,18 @@ import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
-import org.signal.libsignal.usernames.BaseUsernameException
-import org.signal.libsignal.usernames.Username
+import org.signal.core.util.toByteArray
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.proto.Contact
 import org.thoughtcrime.securesms.backup.v2.proto.Self
 import org.thoughtcrime.securesms.backup.v2.util.clampToValidBackupRange
+import org.thoughtcrime.securesms.backup.v2.util.isValidUsername
 import org.thoughtcrime.securesms.backup.v2.util.toRemote
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.Closeable
 
 /**
@@ -71,7 +70,7 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
     val contactBuilder = Contact.Builder()
       .aci(aci?.rawUuid?.toByteArray()?.toByteString())
       .pni(pni?.rawUuid?.toByteArray()?.toByteString())
-      .username(cursor.requireString(RecipientTable.USERNAME).takeIf { isValidUsername(it) })
+      .username(cursor.requireString(RecipientTable.USERNAME)?.takeIf { it.isValidUsername() })
       .e164(cursor.requireString(RecipientTable.E164)?.e164ToLong())
       .blocked(cursor.requireBoolean(RecipientTable.BLOCKED))
       .visibility(Recipient.HiddenState.deserialize(cursor.requireInt(RecipientTable.HIDDEN)).toRemote())
@@ -145,17 +144,4 @@ private fun String.e164ToLong(): Long? {
   }
 
   return fixed.toLongOrNull()?.takeUnless { it == 0L }
-}
-
-private fun isValidUsername(username: String?): Boolean {
-  if (username.isNullOrBlank()) {
-    return false
-  }
-
-  return try {
-    Username(username)
-    true
-  } catch (e: BaseUsernameException) {
-    false
-  }
 }

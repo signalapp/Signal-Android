@@ -69,9 +69,9 @@ import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
-import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.util.UuidUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -113,6 +113,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                     receiptTimestamp;
   private final MessageId                originalMessageId;
   private final int                      revisionNumber;
+  private final long                     pinnedUntil;
   private final MessageExtras            messageExtras;
 
   protected Boolean isJumboji = null;
@@ -135,6 +136,7 @@ public abstract class MessageRecord extends DisplayRecord {
                 long receiptTimestamp,
                 @Nullable MessageId originalMessageId,
                 int revisionNumber,
+                long pinnedUntil,
                 @Nullable MessageExtras messageExtras)
   {
     super(body, fromRecipient, toRecipient, dateSent, dateReceived,
@@ -156,6 +158,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.receiptTimestamp    = receiptTimestamp;
     this.originalMessageId   = originalMessageId;
     this.revisionNumber      = revisionNumber;
+    this.pinnedUntil         = pinnedUntil;
     this.messageExtras       = messageExtras;
   }
 
@@ -295,8 +298,11 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isUnsupported()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_unsupported_feature, getFromRecipient().getDisplayName(context)), Glyph.ERROR);
     } else if (MessageRecordUtil.hasPollTerminate(this)) {
-      String creator = isOutgoing() ? context.getString(R.string.MessageRecord_you) : getFromRecipient().getDisplayName(context);
-      return staticUpdateDescriptionWithExpiration(context.getString(R.string.MessageRecord_ended_the_poll, creator, messageExtras.pollTerminate.question), Glyph.POLL);
+      return getFromRecipient().isSelf() ? staticUpdateDescriptionWithExpiration(context.getString(R.string.MessageRecord_you_ended_the_poll, messageExtras.pollTerminate.question), Glyph.POLL)
+                                         : staticUpdateDescriptionWithExpiration(context.getString(R.string.MessageRecord_ended_the_poll, getFromRecipient().getDisplayName(context), messageExtras.pollTerminate.question), Glyph.POLL);
+    } else if (MessageRecordUtil.hasPinnedMessageUpdate(this)) {
+     return getFromRecipient().isSelf() ? staticUpdateDescriptionWithExpiration(context.getString(R.string.PinnedMessage__you_pinned_a_message), Glyph.PIN)
+                                        : staticUpdateDescriptionWithExpiration(context.getString(R.string.PinnedMessage__s_pinned_a_message, getFromRecipient().getDisplayName(context)), Glyph.PIN);
     }
 
     return null;
@@ -740,7 +746,7 @@ public abstract class MessageRecord extends DisplayRecord {
            isProfileChange() || isGroupV1MigrationEvent() || isChatSessionRefresh() || isBadDecryptType() ||
            isChangeNumber() || isReleaseChannelDonationRequest() || isThreadMergeEventType() || isSmsExportType() || isSessionSwitchoverEventType() ||
            isPaymentsRequestToActivate() || isPaymentsActivated() || isReportedSpam() || isMessageRequestAccepted() ||
-           isBlocked() || isUnblocked() || isUnsupported() || isPollTerminate();
+           isBlocked() || isUnblocked() || isUnsupported() || isPollTerminate() || isPinnedMessageUpdate();
   }
 
   public boolean isMediaPending() {
@@ -773,6 +779,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isChatSessionRefresh() {
     return MessageTypes.isChatSessionRefresh(type);
+  }
+
+  public long getPinnedUntil() {
+    return pinnedUntil;
   }
 
   public boolean isInMemoryMessageRecord() {

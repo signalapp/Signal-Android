@@ -21,12 +21,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import kotlinx.collections.immutable.persistentListOf
+import org.signal.core.ui.compose.NightPreview
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.compose.ComposeFragment
 
 class InternalSvrPlaygroundFragment : ComposeFragment() {
@@ -116,10 +116,10 @@ fun SvrPlaygroundScreen(
   }
 }
 
-@Preview
+@NightPreview
 @Composable
 fun SvrPlaygroundScreenLightTheme() {
-  SignalTheme(isDarkMode = false) {
+  Previews.Preview {
     Surface {
       SvrPlaygroundScreen(
         state = InternalSvrPlaygroundState(
@@ -130,10 +130,10 @@ fun SvrPlaygroundScreenLightTheme() {
   }
 }
 
-@Preview
+@NightPreview
 @Composable
 fun SvrPlaygroundScreenDarkTheme() {
-  SignalTheme(isDarkMode = true) {
+  Previews.Preview {
     Surface {
       SvrPlaygroundScreen(
         state = InternalSvrPlaygroundState(

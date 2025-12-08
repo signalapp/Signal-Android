@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.DiskSpaceNotLowConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -87,6 +88,12 @@ object ArchiveRestoreProgress {
   fun onRestorePending() {
     Log.i(TAG, "onRestorePending")
     SignalStore.backup.restoreState = RestoreState.PENDING
+    update()
+  }
+
+  fun onRestoreFailed() {
+    Log.i(TAG, "onRestoreFailed")
+    SignalStore.backup.restoreState = RestoreState.NONE
     update()
   }
 
@@ -185,6 +192,7 @@ object ArchiveRestoreProgress {
         !WifiConstraint.isMet(AppDependencies.application) && !SignalStore.backup.restoreWithCellular -> ArchiveRestoreProgressState.RestoreStatus.WAITING_FOR_WIFI
         !NetworkConstraint.isMet(AppDependencies.application) -> ArchiveRestoreProgressState.RestoreStatus.WAITING_FOR_INTERNET
         !BatteryNotLowConstraint.isMet() -> ArchiveRestoreProgressState.RestoreStatus.LOW_BATTERY
+        !DiskSpaceNotLowConstraint.isMet() -> ArchiveRestoreProgressState.RestoreStatus.NOT_ENOUGH_DISK_SPACE
         restoreState == RestoreState.NONE -> if (state.hasActivelyRestoredThisRun) ArchiveRestoreProgressState.RestoreStatus.FINISHED else ArchiveRestoreProgressState.RestoreStatus.NONE
         else -> {
           val availableBytes = SignalStore.backup.spaceAvailableOnDiskBytes

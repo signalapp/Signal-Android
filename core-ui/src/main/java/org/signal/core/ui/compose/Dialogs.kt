@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
@@ -60,6 +61,7 @@ import org.signal.core.ui.compose.Dialogs.PermissionRationaleDialog
 import org.signal.core.ui.compose.Dialogs.SimpleAlertDialog
 import org.signal.core.ui.compose.Dialogs.SimpleMessageDialog
 import org.signal.core.ui.compose.theme.SignalTheme
+import kotlin.math.max
 
 object Dialogs {
 
@@ -93,7 +95,7 @@ object Dialogs {
     tonalElevation: Dp = Defaults.TonalElevation,
     properties: DialogProperties = DialogProperties()
   ) {
-    androidx.compose.material3.AlertDialog(
+    AlertDialog(
       onDismissRequest = onDismissRequest,
       confirmButton = confirmButton,
       modifier = modifier,
@@ -203,7 +205,8 @@ object Dialogs {
     onDismissRequest: () -> Unit = {}
   ) {
     Dialog(
-      onDismissRequest = onDismissRequest
+      onDismissRequest = onDismissRequest,
+      properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
     ) {
       Surface(
         modifier = Modifier.size(100.dp),
@@ -397,7 +400,7 @@ object Dialogs {
           LazyColumn(
             modifier = Modifier.padding(top = 24.dp, bottom = 16.dp),
             state = rememberLazyListState(
-              initialFirstVisibleItemIndex = selectedIndex
+              initialFirstVisibleItemIndex = max(selectedIndex, 0)
             )
           ) {
             items(
@@ -549,11 +552,19 @@ object Dialogs {
     negative: String,
     onPositive: () -> Unit,
     onNegative: () -> Unit,
-    onNeutral: () -> Unit
+    onNeutral: () -> Unit,
+    properties: DialogProperties = DialogProperties()
   ) {
     Dialog(
       onDismissRequest = onNegative,
-      properties = DialogProperties(usePlatformDefaultWidth = false)
+      properties = DialogProperties(
+        usePlatformDefaultWidth = false,
+        dismissOnBackPress = properties.dismissOnBackPress,
+        dismissOnClickOutside = properties.dismissOnClickOutside,
+        securePolicy = properties.securePolicy,
+        decorFitsSystemWindows = properties.decorFitsSystemWindows,
+        windowTitle = properties.windowTitle
+      )
     ) {
       Surface(
         modifier = Modifier

@@ -109,7 +109,7 @@ fun EducationRow(text: String, painter: Painter) {
 @DayNightPreviews
 @Composable
 fun ChatFoldersEducationSheetPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     FolderEducationSheet(onClick = {})
   }
 }

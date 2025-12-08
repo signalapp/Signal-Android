@@ -410,6 +410,10 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
+  override fun onViewPinnedMessage(messageId: Long) {
+    Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
+  }
+
   interface Callback {
     fun onMessageDetailsFragmentDismissed()
   }

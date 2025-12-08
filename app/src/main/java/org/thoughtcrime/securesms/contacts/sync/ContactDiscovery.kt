@@ -7,8 +7,10 @@ import androidx.annotation.WorkerThread
 import org.signal.contacts.SystemContactsRepository
 import org.signal.contacts.SystemContactsRepository.ContactIterator
 import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.StringUtil
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -27,9 +29,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.io.IOException
 import java.util.Calendar
 
@@ -81,13 +81,14 @@ object ContactDiscovery {
   }
 
   @JvmStatic
+  @JvmOverloads
   @Throws(IOException::class)
   @WorkerThread
-  fun refresh(context: Context, recipients: List<Recipient>, notifyOfNewUsers: Boolean) {
+  fun refresh(context: Context, recipients: List<Recipient>, notifyOfNewUsers: Boolean, timeoutMs: Long? = null) {
     refreshRecipients(
       context = context,
       descriptor = "refresh-multiple",
-      refresh = { ContactDiscoveryRefreshV2.refresh(context, recipients) },
+      refresh = { ContactDiscoveryRefreshV2.refresh(context, recipients, timeoutMs = timeoutMs) },
       removeSystemContactLinksIfMissing = false,
       notifyOfNewUsers = notifyOfNewUsers
     )

@@ -44,7 +44,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeBadge
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
@@ -186,7 +186,7 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
   @DayNightPreviews
   @Composable
   private fun PreviewColorPickerItem() {
-    SignalTheme {
+    Previews.Preview {
       Surface {
         Row(verticalAlignment = Alignment.CenterVertically) {
           ColorPickerItem(color = UsernameQrCodeColorScheme.Blue, selected = false, onClick = {})
@@ -199,7 +199,7 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
   @DayNightPreviews
   @Composable
   private fun PreviewColorPicker() {
-    SignalTheme {
+    Previews.Preview {
       Surface {
         ColorPicker(
           colors = UsernameQrCodeColorScheme.entries.toImmutableList(),

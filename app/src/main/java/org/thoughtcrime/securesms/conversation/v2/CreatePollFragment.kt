@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -30,14 +31,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -47,6 +52,7 @@ import androidx.fragment.app.setFragmentResult
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
@@ -132,6 +138,10 @@ private fun CreatePollScreen(
   onSend: (String, Boolean, List<String>) -> Unit = { _, _, _ -> },
   onShowErrorSnackbar: (Boolean, Boolean) -> Unit = { _, _ -> }
 ) {
+  val coroutineScope = rememberCoroutineScope()
+  val density = LocalDensity.current
+  val focusRequester = remember { FocusRequester() }
+
   // Parts of poll
   var question by remember { mutableStateOf("") }
   val options = remember { mutableStateListOf("", "") }
@@ -163,6 +173,10 @@ private fun CreatePollScreen(
         val count = currentOptions.count { it.isNotBlank() }
         if (count == currentOptions.size && currentOptions.size < CreatePollFragment.MAX_OPTIONS) {
           options.add("")
+          coroutineScope.launch {
+            val offset = with(density) { 48.dp.toPx() }
+            listState.animateScrollBy(offset)
+          }
         }
         hasMinimumOptions = count >= CreatePollFragment.MIN_OPTIONS
       }
@@ -175,6 +189,10 @@ private fun CreatePollScreen(
         options.add("")
       }
     }
+  }
+
+  LaunchedEffect(Unit) {
+    focusRequester.requestFocus()
   }
 
   Box(
@@ -212,7 +230,8 @@ private fun CreatePollScreen(
             ),
             modifier = Modifier
               .fillMaxWidth()
-              .onFocusChanged { focusState -> if (focusState.isFocused) focusedOption = -1 },
+              .onFocusChanged { focusState -> if (focusState.isFocused) focusedOption = -1 }
+              .focusRequester(focusRequester),
             countdownThreshold = CreatePollFragment.CHARACTER_COUNTDOWN_THRESHOLD
           )
 
@@ -269,7 +288,7 @@ private fun CreatePollScreen(
       ),
       onClick = {
         if (isEnabled) {
-          onSend(question, allowMultiple, options.filter { it.isNotBlank() })
+          onSend(question.trim(), allowMultiple, options.filter { it.isNotBlank() }.map { it.trim() })
         } else {
           onShowErrorSnackbar(question.isNotBlank(), hasMinimumOptions)
         }

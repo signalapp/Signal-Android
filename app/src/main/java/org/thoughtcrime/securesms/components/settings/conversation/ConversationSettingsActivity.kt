@@ -43,8 +43,10 @@ open class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSet
       return if (context is Activity) {
         ActivityOptionsCompat.makeSceneTransitionAnimation(
           context,
-          Pair.create(avatar, "avatar"),
-          Pair.create(windowContent, "window_content")
+          *arrayOf(
+            androidx.core.util.Pair.create(avatar, "avatar"),
+            androidx.core.util.Pair.create(windowContent, "window_content")
+          )
         ).toBundle()
       } else {
         null

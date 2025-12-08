@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages
 
 import android.content.Context
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
@@ -48,7 +49,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.CallMessage
 import org.whispersystems.signalservice.internal.push.Content
@@ -659,7 +659,7 @@ open class MessageContentProcessor(private val context: Context) {
   private fun handleIndividualRetryReceipt(requester: Recipient, messageLogEntry: MessageLogEntry?, envelope: Envelope, metadata: EnvelopeMetadata, decryptionErrorMessage: DecryptionErrorMessage) {
     var archivedSession = false
 
-    if (ServiceId.parseOrNull(envelope.destinationServiceId) is ServiceId.PNI) {
+    if (ServiceId.parseOrNull(envelope.destinationServiceId, envelope.destinationServiceIdBinary) is ServiceId.PNI) {
       warn(envelope.timestamp!!, "[RetryReceipt-I] Destination is our PNI. Ignoring.")
       return
     }

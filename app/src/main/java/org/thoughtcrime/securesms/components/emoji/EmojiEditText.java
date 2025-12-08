@@ -116,16 +116,12 @@ public class EmojiEditText extends AppCompatEditText {
       ClipData clipData = ServiceUtil.getClipboardManager(getContext()).getPrimaryClip();
 
       if (clipData != null) {
-        CharSequence label        = clipData.getDescription().getLabel();
-        CharSequence pendingPaste = getTextFromClipData(clipData);
+        CharSequence label = clipData.getDescription().getLabel();
 
         if (TextUtils.equals(Util.COPY_LABEL, label) && shouldPersistSignalStylingWhenPasting()) {
           return super.onTextContextMenuItem(id);
-        } else if (Build.VERSION.SDK_INT >= 23) {
+        } else {
           return super.onTextContextMenuItem(android.R.id.pasteAsPlainText);
-        } else if (pendingPaste != null) {
-          Util.copyToClipboard(getContext(), pendingPaste.toString());
-          return super.onTextContextMenuItem(id);
         }
       }
     } else if (id == android.R.id.copy || id == android.R.id.cut) {

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.conversation
 
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -13,9 +14,7 @@ sealed class ConversationSettingsEvent {
 
   class AddMembersToGroup(
     val groupId: GroupId,
-    val selectionWarning: Int,
-    val selectionLimit: Int,
-    val isAnnouncementGroup: Boolean,
+    val selectionLimits: SelectionLimits,
     val groupMembersWithoutSelf: List<RecipientId>
   ) : ConversationSettingsEvent()
 

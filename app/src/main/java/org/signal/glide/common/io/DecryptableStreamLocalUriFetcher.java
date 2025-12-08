@@ -9,7 +9,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.util.Pair;
+import kotlin.Pair;
 
 import com.bumptech.glide.load.data.StreamLocalUriFetcher;
 
@@ -84,7 +84,7 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
     try {
       InputStream            stream      = PartAuthority.getAttachmentThumbnailStream(context, uri);
       Pair<Integer, Integer> dimensions  = BitmapUtil.getDimensions(stream);
-      long                   totalPixels = (long) dimensions.first * dimensions.second;
+      long                   totalPixels = (long) dimensions.getFirst() * dimensions.getSecond();
       return totalPixels < TOTAL_PIXEL_SIZE_LIMIT;
     } catch (BitmapDecodingException e) {
       Long size = PartAuthority.getAttachmentSize(context, uri);

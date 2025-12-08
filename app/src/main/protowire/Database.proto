@@ -259,11 +259,13 @@ message SignalStoreList {
 }
 
 message PendingChangeNumberMetadata {
-    bytes previousPni                = 1;
-    bytes pniIdentityKeyPair         = 2;
-    int32 pniRegistrationId          = 3;
-    int32 pniSignedPreKeyId          = 4;
-    int32 pniLastResortKyberPreKeyId = 5;
+    bytes  previousPni                = 1;
+    bytes  pniIdentityKeyPair         = 2;
+    int32  pniRegistrationId          = 3;
+    int32  pniSignedPreKeyId          = 4;
+    int32  pniLastResortKyberPreKeyId = 5;
+    string previousE164               = 6;
+    string newE164                    = 7;
 }
 
 message MessageExportState {
@@ -533,6 +535,7 @@ message MessageExtras {
         ProfileChangeDetails profileChangeDetails = 3;
         PaymentTombstone paymentTombstone = 4;
         PollTerminate pollTerminate = 5;
+        PinnedMessage pinnedMessage = 6;
     }
 }
 
@@ -551,6 +554,13 @@ message PollTerminate {
     string question = 1;
     uint64 messageId = 2;
     uint64 targetTimestamp = 3;
+}
+
+message PinnedMessage {
+    uint64 pinnedMessageId = 1;
+    bytes targetAuthorAci = 2;
+    uint64 targetTimestamp = 3;
+    uint64 pinDurationInSeconds = 4; // Long.MAX_VALUE if pin is forever
 }
 
 message LocalRegistrationMetadata {

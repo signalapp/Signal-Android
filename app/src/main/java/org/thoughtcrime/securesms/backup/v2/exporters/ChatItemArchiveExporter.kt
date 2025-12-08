@@ -14,6 +14,8 @@ import org.signal.core.util.EventTimer
 import org.signal.core.util.Hex
 import org.signal.core.util.ParallelEventTimer
 import org.signal.core.util.StringUtil
+import org.signal.core.util.UuidUtil
+import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.emptyIfNull
 import org.signal.core.util.isNotNullOrBlank
@@ -30,6 +32,7 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireString
+import org.signal.core.util.toByteArray
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.ExportOddities
@@ -50,6 +53,8 @@ import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
 import org.thoughtcrime.securesms.backup.v2.proto.LearnedProfileChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.PaymentNotification
+import org.thoughtcrime.securesms.backup.v2.proto.Poll
+import org.thoughtcrime.securesms.backup.v2.proto.PollTerminateUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
@@ -93,11 +98,11 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
+import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.whispersystems.signalservice.api.util.UuidUtil
-import org.whispersystems.signalservice.api.util.toByteArray
+import org.thoughtcrime.securesms.util.mb
 import java.io.Closeable
 import java.io.IOException
 import java.util.LinkedList
@@ -114,6 +119,8 @@ private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
 private val MAX_INLINED_BODY_SIZE = 128.kibiBytes.bytes.toInt()
 private val MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER = 2.kibiBytes.bytes.toInt()
 private val MAX_INLINED_QUOTE_BODY_SIZE = 2.kibiBytes.bytes.toInt()
+private const val MAX_POLL_CHARACTER_LENGTH = 100
+private const val MAX_POLL_OPTIONS = 10
 
 /**
  * An iterator for chat items with a clever performance twist: rather than do the extra queries one at a time (for reactions,
@@ -134,6 +141,7 @@ class ChatItemArchiveExporter(
 
   companion object {
     val EXPIRATION_CUTOFF = 1.days
+    private val MAX_BUFFER_MEMORY_SIZE = 15.mb
   }
 
   /** Timer for more macro-level events, like fetching extra data vs transforming the data. */
@@ -304,11 +312,16 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isThreadMergeType(record.type) -> {
-          builder.updateMessage = record.toRemoteThreadMergeUpdate(record.dateSent)?.takeIf { exportState.recipientIdToAci.contains(builder.authorId) } ?: continue
+          builder.updateMessage = record.toRemoteThreadMergeUpdate(record.dateSent)?.takeIf { exportState.recipientIdToAci[builder.authorId] != null } ?: continue
           transformTimer.emit("thread-merge")
         }
 
         MessageTypes.isGroupV2(record.type) && MessageTypes.isGroupUpdate(record.type) -> {
+          if (builder.authorId != selfRecipientId.toLong() && exportState.recipientIdToAci[builder.authorId] == null) {
+            Log.w(TAG, ExportSkips.groupUpdateHasInvalidAuthor(record.dateSent))
+            continue
+          }
+
           val update = record.toRemoteGroupUpdate() ?: continue
           if (update.groupChange!!.updates.isEmpty()) {
             Log.w(TAG, ExportSkips.groupUpdateHasNoUpdates(record.dateSent))
@@ -371,6 +384,30 @@ class ChatItemArchiveExporter(
           transformTimer.emit("story")
         }
 
+        MessageTypes.isPollTerminate(record.type) -> {
+          val pollTerminateUpdate = record.toRemotePollTerminateUpdate()
+          if (pollTerminateUpdate == null) {
+            Log.w(TAG, ExportSkips.pollTerminateIsEmpty(record.dateSent))
+            continue
+          }
+          builder.updateMessage = ChatUpdateMessage(pollTerminate = pollTerminateUpdate)
+          transformTimer.emit("poll-terminate")
+        }
+
+        extraData.pollsById[record.id] != null -> {
+          val poll = extraData.pollsById[record.id]!!
+          if (poll.question.isEmpty() || poll.question.length > MAX_POLL_CHARACTER_LENGTH) {
+            Log.w(TAG, ExportSkips.invalidPollQuestion(record.dateSent))
+            continue
+          }
+          if (poll.pollOptions.isEmpty() || poll.pollOptions.size > MAX_POLL_OPTIONS || poll.pollOptions.any { it.text.isEmpty() || it.text.length > MAX_POLL_CHARACTER_LENGTH }) {
+            Log.w(TAG, ExportSkips.invalidPollOption(record.dateSent))
+            continue
+          }
+          builder.poll = poll.toRemotePollMessage(reactionRecords = extraData.reactionsById[record.id])
+          transformTimer.emit("poll")
+        }
+
         else -> {
           val attachments = extraData.attachmentsById[record.id]
           val sticker = attachments?.firstOrNull { dbAttachment -> dbAttachment.isSticker }
@@ -398,7 +435,7 @@ class ChatItemArchiveExporter(
 
       if (record.latestRevisionId == null) {
         builder.revisions = revisionMap.remove(record.id)?.repairRevisions(builder) ?: emptyList()
-        val chatItem = builder.build().validateChatItem(exportState) ?: continue
+        val chatItem = builder.build().validateChatItem(exportState, selfRecipientId) ?: continue
         buffer += chatItem
       } else {
         var previousEdits = revisionMap[record.latestRevisionId]
@@ -434,11 +471,17 @@ class ChatItemArchiveExporter(
   private fun readNextMessageRecordBatch(pastIds: Set<Long>): LinkedHashMap<Long, BackupMessageRecord> {
     return cursorGenerator(lastSeenReceivedTime, batchSize).use { cursor ->
       val records: LinkedHashMap<Long, BackupMessageRecord> = LinkedHashMap(batchSize)
-      while (cursor.moveToNext()) {
+      var estimatedRecordsMemorySize = 0
+      while (cursor.moveToNext() && estimatedRecordsMemorySize < MAX_BUFFER_MEMORY_SIZE) {
         cursor.toBackupMessageRecord(pastIds, backupStartTime)?.let { record ->
           records[record.id] = record
           lastSeenReceivedTime = record.dateReceived
+          estimatedRecordsMemorySize += record.estimatedSizeInBytes
         }
+      }
+
+      if (estimatedRecordsMemorySize > MAX_BUFFER_MEMORY_SIZE) {
+        Log.d(TAG, "[readNextMessageRecordBatch] recordsSize = ${records.size} recordsMemSize: ${estimatedRecordsMemorySize.bytes.toUnitString(spaced = false)}")
       }
       records
     }
@@ -471,16 +514,24 @@ class ChatItemArchiveExporter(
       }
     }
 
+    val pollsFuture = executor.submitTyped {
+      extraDataTimer.timeEvent("polls") {
+        db.pollTable.getPollsForMessages(messageIds = messageIds, includePending = false)
+      }
+    }
+
     val mentionsResult = mentionsFuture.get()
     val reactionsResult = reactionsFuture.get()
     val attachmentsResult = attachmentsFuture.get()
     val groupReceiptsResult = groupReceiptsFuture.get()
+    val pollsResult = pollsFuture.get()
 
     return ExtraMessageData(
       mentionsById = mentionsResult,
       reactionsById = reactionsResult,
       attachmentsById = attachmentsResult,
-      groupReceiptsById = groupReceiptsResult
+      groupReceiptsById = groupReceiptsResult,
+      pollsById = pollsResult
     )
   }
 }
@@ -720,7 +771,7 @@ private fun CallTable.Call.toRemoteCallUpdate(exportState: ExportState, messageR
             CallTable.Event.OUTGOING_RING -> GroupCall.State.OUTGOING_RING
             CallTable.Event.DELETE -> return null
           },
-          ringerRecipientId = this.ringerRecipient?.toLong(),
+          ringerRecipientId = this.ringerRecipient?.toLong()?.takeIf { exportState.recipientIdToAci[it] != null },
           startedCallRecipientId = groupCallUpdateDetails.startedCallUuid.takeIf { it.isNotEmpty() }?.let { exportState.aciToRecipientId[it] },
           startedCallTimestamp = this.timestamp.clampToValidBackupRange(),
           endedCallTimestamp = groupCallUpdateDetails.endedCallTimestamp.clampToValidBackupRange().takeIf { it > 0 },
@@ -781,6 +832,14 @@ private fun BackupMessageRecord.toRemotePaymentNotificationUpdate(db: SignalData
       transactionDetails = payment.toRemoteTransactionDetails()
     )
   }
+}
+
+private fun BackupMessageRecord.toRemotePollTerminateUpdate(): PollTerminateUpdate? {
+  val pollTerminate = this.messageExtras?.pollTerminate ?: return null
+  return PollTerminateUpdate(
+    targetSentTimestamp = pollTerminate.targetTimestamp,
+    question = pollTerminate.question
+  )
 }
 
 private fun BackupMessageRecord.toRemoteSharedContact(attachments: List<DatabaseAttachment>?): Contact? {
@@ -1082,6 +1141,7 @@ private fun BackupMessageRecord.toRemoteQuote(exportState: ExportState, attachme
       }
     }
     QuoteModel.Type.GIFT_BADGE -> Quote.Type.GIFT_BADGE
+    QuoteModel.Type.POLL -> Quote.Type.POLL
   }
 
   val bodyRanges = this.quoteBodyRanges?.toRemoteBodyRanges(dateSent) ?: emptyList()
@@ -1131,6 +1191,26 @@ private fun BackupMessageRecord.toRemoteGiftBadgeUpdate(): BackupGiftBadge? {
   )
 }
 
+private fun PollRecord.toRemotePollMessage(reactionRecords: List<ReactionRecord>?): Poll {
+  return Poll(
+    question = this.question,
+    allowMultiple = this.allowMultipleVotes,
+    hasEnded = this.hasEnded,
+    options = this.pollOptions.map { option ->
+      Poll.PollOption(
+        option = option.text,
+        votes = option.voters.map { voter ->
+          Poll.PollOption.PollVote(
+            voterId = voter.id,
+            voteCount = voter.voteCount
+          )
+        }
+      )
+    },
+    reactions = reactionRecords?.toRemote() ?: emptyList()
+  )
+}
+
 private fun DatabaseAttachment.toRemoteStickerMessage(sentTimestamp: Long, reactions: List<ReactionRecord>?): StickerMessage? {
   val stickerLocator = this.stickerLocator!!
 
@@ -1174,9 +1254,10 @@ private fun List<DatabaseAttachment>.toRemoteQuoteAttachments(): List<Quote.Quot
 }
 
 private fun DatabaseAttachment.toRemoteMessageAttachment(flagOverride: MessageAttachment.Flag? = null, contentTypeOverride: String? = null): MessageAttachment {
+  val pointer = this.toRemoteFilePointer(contentTypeOverride)
   return MessageAttachment(
-    pointer = this.toRemoteFilePointer(contentTypeOverride),
-    wasDownloaded = this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE,
+    pointer = pointer,
+    wasDownloaded = (this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE) && pointer.locatorInfo?.plaintextHash != null,
     flag = if (flagOverride != null) {
       flagOverride
     } else if (this.voiceNote) {
@@ -1265,6 +1346,10 @@ private fun ByteArray.toRemoteBodyRanges(dateSent: Long): List<BackupBodyRange> 
       null
     }
 
+    if (mention == null && style == null) {
+      return emptyList()
+    }
+
     BackupBodyRange(
       start = it.start,
       length = it.length,
@@ -1302,6 +1387,10 @@ private fun BackupMessageRecord.toRemoteSendStatus(isGroupThread: Boolean, group
   }
 
   if (!exportState.recipientIds.contains(this.toRecipientId)) {
+    return emptyList()
+  }
+
+  if (this.toRecipientId == exportState.releaseNoteRecipientId) {
     return emptyList()
   }
 
@@ -1363,6 +1452,7 @@ private fun List<GroupReceiptTable.GroupReceiptInfo>?.toRemoteSendStatus(message
 
   return this
     .filter { exportState.recipientIds.contains(it.recipientId.toLong()) }
+    .filterNot { it.recipientId.toLong() == exportState.releaseNoteRecipientId }
     .map {
       val statusBuilder = SendStatus.Builder()
         .recipientId(it.recipientId.toLong())
@@ -1385,7 +1475,11 @@ private fun List<GroupReceiptTable.GroupReceiptInfo>?.toRemoteSendStatus(message
           )
         }
         it.status == GroupReceiptTable.STATUS_UNKNOWN -> {
-          statusBuilder.pending = SendStatus.Pending()
+          if (MessageTypes.isPendingMessageType(messageRecord.type)) {
+            statusBuilder.pending = SendStatus.Pending()
+          } else {
+            statusBuilder.skipped = SendStatus.Skipped()
+          }
         }
         it.status == GroupReceiptTable.STATUS_UNDELIVERED -> {
           statusBuilder.sent = SendStatus.Sent(
@@ -1491,7 +1585,8 @@ private fun Long.isDirectionlessType(): Boolean {
     MessageTypes.isGroupCall(this) ||
     MessageTypes.isGroupUpdate(this) ||
     MessageTypes.isGroupV1MigrationEvent(this) ||
-    MessageTypes.isGroupQuit(this)
+    MessageTypes.isGroupQuit(this) ||
+    MessageTypes.isPollTerminate(this)
 }
 
 private fun Long.isIdentityVerifyType(): Boolean {
@@ -1506,14 +1601,14 @@ private fun String.e164ToLong(): Long? {
     this
   }
 
-  return fixed.toLongOrNull()
+  return fixed.toLongOrNull()?.takeIf { it > 0L }
 }
 
 private fun <T> ExecutorService.submitTyped(callable: Callable<T>): Future<T> {
   return this.submit(callable)
 }
 
-private fun ChatItem.validateChatItem(exportState: ExportState): ChatItem? {
+private fun ChatItem.validateChatItem(exportState: ExportState, selfRecipientId: RecipientId): ChatItem? {
   if (this.standardMessage == null &&
     this.contactMessage == null &&
     this.stickerMessage == null &&
@@ -1522,7 +1617,8 @@ private fun ChatItem.validateChatItem(exportState: ExportState): ChatItem? {
     this.paymentNotification == null &&
     this.giftBadge == null &&
     this.viewOnceMessage == null &&
-    this.directStoryReplyMessage == null
+    this.directStoryReplyMessage == null &&
+    this.poll == null
   ) {
     Log.w(TAG, ExportSkips.emptyChatItem(this.dateSent))
     return null
@@ -1530,6 +1626,21 @@ private fun ChatItem.validateChatItem(exportState: ExportState): ChatItem? {
 
   if (this.updateMessage != null && this.updateMessage.isOnlyForIndividualChats() && exportState.threadIdToRecipientId[this.chatId] !in exportState.contactRecipientIds) {
     Log.w(TAG, ExportSkips.individualChatUpdateInWrongTypeOfChat(this.dateSent))
+    return null
+  }
+
+  if (this.updateMessage != null && this.updateMessage.canOnlyBeAuthoredBySelf() && this.authorId != selfRecipientId.toLong()) {
+    Log.w(TAG, ExportSkips.individualChatUpdateNotAuthoredBySelf(this.dateSent))
+    return null
+  }
+
+  if (this.incoming != null && exportState.recipientIdToAci[this.authorId] == null && exportState.recipientIdToE164[this.authorId] == null) {
+    Log.w(TAG, ExportSkips.incomingMessageAuthorDoesNotHaveAciOrE164(this.dateSent))
+    return null
+  }
+
+  if (this.outgoing != null && exportState.releaseNoteRecipientId != null && exportState.threadIdToRecipientId[this.chatId] == exportState.releaseNoteRecipientId) {
+    Log.w(TAG, ExportSkips.outgoingMessageToReleaseNotesChat(this.dateSent))
     return null
   }
 
@@ -1542,6 +1653,13 @@ private fun ChatUpdateMessage.isOnlyForIndividualChats(): Boolean {
     this.simpleUpdate?.type == SimpleChatUpdate.Type.CHAT_SESSION_REFRESH ||
     this.simpleUpdate?.type == SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST ||
     this.simpleUpdate?.type == SimpleChatUpdate.Type.PAYMENTS_ACTIVATED
+}
+
+private fun ChatUpdateMessage.canOnlyBeAuthoredBySelf(): Boolean {
+  return this.simpleUpdate?.type == SimpleChatUpdate.Type.REPORTED_SPAM ||
+    this.simpleUpdate?.type == SimpleChatUpdate.Type.MESSAGE_REQUEST_ACCEPTED ||
+    this.simpleUpdate?.type == SimpleChatUpdate.Type.BLOCKED ||
+    this.simpleUpdate?.type == SimpleChatUpdate.Type.UNBLOCKED
 }
 
 private fun List<ChatItem>.repairRevisions(current: ChatItem.Builder): List<ChatItem> {
@@ -1611,6 +1729,7 @@ private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Lo
 
   val expiresIn = this.requireLong(MessageTable.EXPIRES_IN)
   val expireStarted = this.requireLong(MessageTable.EXPIRE_STARTED)
+  val messageExtras = this.requireBlob(MessageTable.MESSAGE_EXTRAS)
 
   return BackupMessageRecord(
     id = id,
@@ -1645,9 +1764,10 @@ private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Lo
     networkFailureRecipientIds = this.requireString(MessageTable.NETWORK_FAILURES).parseNetworkFailures(),
     identityMismatchRecipientIds = this.requireString(MessageTable.MISMATCHED_IDENTITIES).parseIdentityMismatches(),
     baseType = this.requireLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK,
-    messageExtras = this.requireBlob(MessageTable.MESSAGE_EXTRAS).parseMessageExtras(),
+    messageExtras = messageExtras.parseMessageExtras(),
     viewOnce = this.requireBoolean(MessageTable.VIEW_ONCE),
-    parentStoryId = this.requireLong(MessageTable.PARENT_STORY_ID)
+    parentStoryId = this.requireLong(MessageTable.PARENT_STORY_ID),
+    messageExtrasSize = messageExtras?.size ?: 0
   )
 }
 
@@ -1686,14 +1806,24 @@ private class BackupMessageRecord(
   val identityMismatchRecipientIds: Set<Long>,
   val baseType: Long,
   val messageExtras: MessageExtras?,
-  val viewOnce: Boolean
-)
+  val viewOnce: Boolean,
+  private val messageExtrasSize: Int
+) {
+  val estimatedSizeInBytes: Int = (body?.length ?: 0) +
+    (linkPreview?.length ?: 0) +
+    (sharedContacts?.length ?: 0) +
+    (quoteBody?.length ?: 0) +
+    (quoteBodyRanges?.size ?: 0) +
+    messageExtrasSize +
+    ((17 + networkFailureRecipientIds.size + identityMismatchRecipientIds.size) * 8)
+}
 
 private data class ExtraMessageData(
   val mentionsById: Map<Long, List<Mention>>,
   val reactionsById: Map<Long, List<ReactionRecord>>,
   val attachmentsById: Map<Long, List<DatabaseAttachment>>,
-  val groupReceiptsById: Map<Long, List<GroupReceiptTable.GroupReceiptInfo>>
+  val groupReceiptsById: Map<Long, List<GroupReceiptTable.GroupReceiptInfo>>,
+  val pollsById: Map<Long, PollRecord>
 )
 
 private enum class Direction {

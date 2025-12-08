@@ -5,6 +5,7 @@
  */
 package org.whispersystems.signalservice.api.crypto
 
+import org.signal.core.models.backup.MediaRootBackupKey.MediaKeyMaterial
 import org.signal.core.util.Base64
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.stream.LimitedInputStream
@@ -13,7 +14,6 @@ import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
 import org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream
 import org.signal.libsignal.protocol.kdf.HKDF
-import org.whispersystems.signalservice.api.backup.MediaRootBackupKey.MediaKeyMaterial
 import org.whispersystems.signalservice.internal.util.Util
 import java.io.ByteArrayInputStream
 import java.io.File
@@ -362,7 +362,11 @@ object AttachmentCipherInputStream {
 
   private class CombinedKeyMaterial(val aesKey: ByteArray, val macKey: ByteArray) {
     companion object {
+      @Throws(InvalidMessageException::class)
       fun from(combinedKeyMaterial: ByteArray): CombinedKeyMaterial {
+        if (combinedKeyMaterial.size != CIPHER_KEY_SIZE + MAC_KEY_SIZE) {
+          throw InvalidMessageException("Invalid combined key material size: ${combinedKeyMaterial.size}")
+        }
         val parts = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE)
         return CombinedKeyMaterial(parts[0], parts[1])
       }

@@ -5,7 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.text.TextUtils;
-import android.util.Pair;
+import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -78,11 +78,11 @@ public class SQLCipherMigrationHelper {
                                                         row.getAsLong("type"),
                                                         row.getAsString("body"));
 
-        row.put("body", plaintext.second);
-        row.put("type", plaintext.first);
+        row.put("body", plaintext.getSecond());
+        row.put("type", plaintext.getFirst());
 
-        if (listener != null && (progress.first % 1000 == 0)) {
-          listener.setProgress(getTotalProgress(0, progress.first, progress.second), total);
+        if (listener != null && (progress.getFirst() % 1000 == 0)) {
+          listener.setProgress(getTotalProgress(0, progress.getFirst(), progress.getSecond()), total);
         }
 
         return row;
@@ -93,11 +93,11 @@ public class SQLCipherMigrationHelper {
                                                         row.getAsLong("msg_box"),
                                                         row.getAsString("body"));
 
-        row.put("body", plaintext.second);
-        row.put("msg_box", plaintext.first);
+        row.put("body", plaintext.getSecond());
+        row.put("msg_box", plaintext.getFirst());
 
-        if (listener != null && (progress.first % 1000 == 0)) {
-          listener.setProgress(getTotalProgress(1000, progress.first, progress.second), total);
+        if (listener != null && (progress.getFirst() % 1000 == 0)) {
+          listener.setProgress(getTotalProgress(1000, progress.getFirst(), progress.getSecond()), total);
         }
 
         return row;
@@ -131,8 +131,8 @@ public class SQLCipherMigrationHelper {
           Log.w(TAG, e);
         }
 
-        if (listener != null && (progress.first % 1000 == 0)) {
-          listener.setProgress(getTotalProgress(2000, progress.first, progress.second), total);
+        if (listener != null && (progress.getFirst() % 1000 == 0)) {
+          listener.setProgress(getTotalProgress(2000, progress.getFirst(), progress.getSecond()), total);
         }
 
         return row;
@@ -145,11 +145,11 @@ public class SQLCipherMigrationHelper {
         Pair<Long, String> plaintext = getPlaintextBody(legacyCipher, legacyAsymmetricCipher,
                                                         snippetType, row.getAsString("snippet"));
 
-        row.put("snippet", plaintext.second);
-        row.put("snippet_type", plaintext.first);
+        row.put("snippet", plaintext.getSecond());
+        row.put("snippet_type", plaintext.getFirst());
 
-        if (listener != null && (progress.first % 1000 == 0)) {
-          listener.setProgress(getTotalProgress(3000, progress.first, progress.second), total);
+        if (listener != null && (progress.getFirst() % 1000 == 0)) {
+          listener.setProgress(getTotalProgress(3000, progress.getFirst(), progress.getSecond()), total);
         }
 
         return row;
@@ -167,8 +167,8 @@ public class SQLCipherMigrationHelper {
           Log.w(TAG, e);
         }
 
-        if (listener != null && (progress.first % 1000 == 0)) {
-          listener.setProgress(getTotalProgress(4000, progress.first, progress.second), total);
+        if (listener != null && (progress.getFirst() % 1000 == 0)) {
+          listener.setProgress(getTotalProgress(4000, progress.getFirst(), progress.getSecond()), total);
         }
 
         return row;

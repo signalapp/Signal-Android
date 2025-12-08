@@ -2,4 +2,5 @@
 <resources>
     <dimen name="media_bubble_max_width">350dp</dimen>
     <dimen name="media_bubble_max_height">300dp</dimen>
+    <dimen name="bottom_sheet_corner_size">32dp</dimen>
 </resources>

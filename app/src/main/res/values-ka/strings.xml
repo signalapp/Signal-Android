@@ -29,7 +29,7 @@
     <string name="yes">დიახ</string>
     <string name="no">არა</string>
     <string name="delete">წაშლა</string>
-    <string name="please_wait">გთხოვთ დაელოდოთ…</string>
+    <string name="please_wait">გთხოვთ დაელოდო…</string>
     <string name="save">შენახვა</string>
     <string name="note_to_self">ჩემი ჩანიშვნები</string>
 
@@ -49,7 +49,7 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">მიმდინარეობს Signal-ის განახლება…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">შენ ჯერ არ დაგიყენებია პაროლფრაზა!</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">პაროლფრაზა ჯერ არ დაგიყენებია!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">გამოვრთოთ პაროლფრაზა?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ეს სამუდამოდ განბლოკავს Signal-ს და მიმოწერის შეტყობინებებს.</string>
     <string name="ApplicationPreferencesActivity_disable">გამორთვა</string>
@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ჩაიწერე ტრანზაქციების აღდგენის ფრაზა</string>
     <string name="ApplicationPreferencesActivity_record_phrase">ჩაიწერე ფრაზა</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">სანამ პინ-კოდის გამორთვას შეძლებ, უნდა ჩაიწერო შენი ტრანზაქციების აღდგენის ფრაზა, რათა უზრუნველყო შენი გადახდების მონაცემების აღდგენა.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">შექმენი ახალი აღდგენის გასაღები</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">შენი პინ კოდის გამორთვამდე ახალი აღდგენის გასაღები უნდა შექმნა და ჩაიწერო.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">გასაღების შექმნა</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -89,7 +95,7 @@
     <string name="AttachmentKeyboard_contact">კონტაქტი</string>
     <string name="AttachmentKeyboard_location">ადგილმდებარეობა</string>
     <!-- Text for a button that will allow users to create a poll -->
-    <string name="AttachmentKeyboard_poll">Poll</string>
+    <string name="AttachmentKeyboard_poll">გამოკითხვა</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">შენი ფოტოებისა და ვიდეოების საჩვენებლად Signal-ს ნებართვა სჭირდება</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">წვდომის მიცემა</string>
@@ -110,7 +116,7 @@
     <string name="MediaGalleryFragment__no_photos_found">ფოტოები და ვიდეოები ვერ მოიძებნა. Signal-ს მხოლოდ იმ ფოტოებსა და ვიდეოებზე აქვს წვდომა, რომლებიც შენ აირჩიე.</string>
 
     <!-- AttachmentManager -->
-    <string name="AttachmentManager_cant_open_media_selection">მედიის ასარჩევი აპლიკაცია ვერ მოიძებნა.</string>
+    <string name="AttachmentManager_cant_open_media_selection">მედიის ასარჩევი აპი ვერ მოიძებნა.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">სურათების, ვიდეოების ან აუდიოს მისამაგრებლად Signal-ს მეხსიერებაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიე \"ნებართვები\" და გააქტიურე \"მეხსიერება\".</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">საკონტაქტო ინფორმაციის მისაბმელად Signal-ს კონტაქტებზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიე \"ნებართვები\" და გააქტიურე \"კონტაქტები\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ადგილმდებარეობის საჩვენებლად Signal-ს ადგილმდებარეობაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიე \"ნებართვები\" და გააქტიურე \"ადგილმდებარეობა\".</string>
@@ -152,7 +158,7 @@
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">შეიძლება ახალი შეტყობინებები გქონდეს</string>
+    <string name="FcmFetchManager__you_may_have_messages">შეიძლება ახალი წერილები გქონდეს</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">დაბლოკილი მომხმარებლები</string>
@@ -359,6 +365,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">ეს ზარის ვალიდური ბმული არაა. შესვლის მცდელობამდე დარწმუნდი, რომ მთლიანი ბმული სწორი და ხელუხლებელია.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">შენ უკვე ამ ზარზე იმყოფები</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__dont_transfer">არ გადაიტანო</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -669,6 +680,22 @@
     <string name="ConversationFragment_group_names">ჯგუფის სახელები</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">ფოტო ვერ ჩამოიტვირთა. თავიდან სცადე.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 hours</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 days</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 დღით</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">სამუდამოდ</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">ჩანაცვლება</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">რჩევები უსაფრთხოებაზე</string>
@@ -1169,6 +1196,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal-ის ამ ვერსიას ვადა გაუვიდა. განაახლე ახლავე, რათა გააგზავნო და მიიღო შეტყობინებები.</string>
     <string name="ExpiredBuildReminder_update_now">განაახლე ახლავე</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">ამ მოწყობილობაზე Signal-ი აღარ მუშაობს. იმისათვის, რომ Signal-ის გამოყენება ისევ შეძლო, განაახლე Android-ის ვერსია, ან შეცვალე შენი მოწყობილობა ახლით.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Signal-ის განახლება</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1195,11 +1225,11 @@
     <string name="AddToGroupActivity_add_member">დავამატოთ წევრი?</string>
     <string name="AddToGroupActivity_add_s_to_s">დავამატოთ \"%1$s\" \"%2$s\"-ში?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" დამატებულია \"%2$s\"-ში.</string>
-    <string name="AddToGroupActivity_add_to_group">დაამატე ჯგუფში</string>
     <string name="AddToGroupActivity_add_to_groups">დაამატე ჯგუფებში</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ამ პიროვნების მოძველებულ ჯგუფებში დამატება შეუძლებელია.</string>
     <string name="AddToGroupActivity_add">დამატება</string>
     <string name="AddToGroupActivity_add_to_a_group">ჯგუფში დამატება</string>
+    <string name="AddToGroupActivity_search">ძიება</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">ახალი ადმინის არჩევა</string>
@@ -1385,11 +1415,16 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">შესრულებულია</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ამ პიროვნების მოძველებულ ჯგუფებში დამატება შეუძლებელია.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">დავამატოთ \"%1$s\" \"%2$s\"-ში?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">დავამატოთ \"%1$s\" \"%2$s\"-ში?</item>
-        <item quantity="other">დავამატოთ %3$d წევრი \"%2$s\"-ში?</item>
+        <item quantity="one">დავამატოთ \"{2}\" \"%2$s\"-ში?</item>
+        <item quantity="other">დავამატოთ %1$d წევრი \"%2$s\"-ში?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">დამატება</string>
     <string name="AddMembersActivity__add_members">წევრების დამატება</string>
 
@@ -1493,6 +1528,10 @@
     <string name="RemoteRestoreActivity__not_now">ახლა არა</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">შენი მედია ფაილები უკანა ფონზე აღდგება. თუ ახლა არ აღადგენ, მოგვიანებით აღდგენას ვეღარ შეძლებ.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">ეს მოწყობილობა აღარ არის რეგისტრირებული</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">ეს, ალბათ, იმიტომ მოხდა, რომ შენი Signal-ის ანგარიში სხვა მოწყობილობაზე დაარეგისტრირე.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">შემატყობინეთ, როცა მომნიშნავენ</string>
@@ -2110,7 +2149,9 @@
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s -მა გამოგიგზავნა შეტყობინება, რომლის დამუშავება ან ჩვენება შეუძლებელია, რადგან ის Signal-ის ახალ ფუნქციას იყენებს.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
-    <string name="MessageRecord_ended_the_poll">%1$s ended the poll: \"%2$s\"</string>
+    <string name="MessageRecord_ended_the_poll">%1$s-მ(ა) გამოკითხვა დაასრულა: \"%2$s\"</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">შენ დაასრულე გამოკითხვა: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">დასტური</string>
@@ -2426,6 +2467,12 @@
     <string name="WebRtcCallActivity__to_start_call">ზარის წამოსაწყებად, ან მასში შესასვლელად:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">შენი ვიდეოს ჩასართავად:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">ლოკალური ვიდეოს დაპატარავება</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">ლოკალური ვიდეოს გადიდება</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal-ის ზარი</string>
@@ -2918,6 +2965,8 @@
     <string name="SubmitDebugLogActivity_success">Success!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">დააკოპირე ეს URL-ი და დაამატე ის შენი პრობლემის ანგარიშში ან მხარდაჭერის წერილში:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">გაზიარება</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">Close</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">ეს რეესტრი საჯაროდ გამოქვეყნდება ინტერნეტში, რომ კონტრიბუტორებმა ნახონ. მისი შემოწმება ატვირთვამდე შეგიძლია.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">როცა \"გაგზავნა\"-ზე დააწკაპუნებ, შენი რეესტრი ინტერნეტში გამოქვეყნდება 30 დღით უნიკალურ, გამოუქვეყნებელ URL-ზე. შეგიძლია ის ჯერ ადგილობრივად შეინახო.</string>
@@ -3177,7 +3226,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">გამოეხმაურა %1$s შენს სტიკერს.</string>
     <string name="MessageNotifier_this_message_was_deleted">ეს შეტყობინება იქნა წაშლილი.</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
-    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s voted in the poll \"%3$s\"</string>
+    <string name="MessageNotifier_s_voted_in_poll">%1$s-მ(ა), %2$s-მ(ა) გამოკითხვაში მონიშნეს \"%3$s\"</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">გამოვრთოთ კონტაქტის Signal-ში დამატების შეტყობინებები? მათი ხელახლა ჩართვა შეგიძლია Signal &gt; პარამეტრები &gt; შეტყობინებები.</string>
 
@@ -3354,6 +3403,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">ზარის მიღება ვიდეოს გარეშე</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">შეცვალე კამერის მიმართულება</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">გამავალი აუდიო</string>
@@ -3411,9 +3463,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s არაა Signal-ის მომხმარებელი. გთხოვთ, გადაამოწმო მომხმარებლის სახელი და თავიდან სცადო."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ჯგუფში საკუთარი თავის დამატება არ გჭირდება</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">ჯგუფის მაქსიმალური ტევადობა მიღწეულია</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-ის ჯგუფებს მაქსიმუმ %1$d წევრის ყოლა შეუძლიათ.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal-ის ჯგუფებს მაქსიმუმ %1$s წევრის ყოლა შეუძლიათ.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">წევრთა რეკომენდირებული ლიმიტი მიღწეულია</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-ის ჯგუფები საუკეთესოდ მუშაობენ %1$d ან ნაკლები წევრით. მეტი წევრის დამატება გამოიწვევს შეტყობინებების გაგზავნისა და მიღების დაგვიანებას.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Signal-ის ჯგუფები საუკეთესოდ მუშაობენ %1$s ან ნაკლები წევრით. მეტი წევრის დამატება გამოიწვევს შეტყობინებების გაგზავნისა და მიღების დაგვიანებას.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="one">%1$d წევრი</item>
         <item quantity="other">%1$d წევრი</item>
@@ -4424,7 +4476,11 @@
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">ტრანზაქციის დეტალები</string>
     <!-- Button to end a poll -->
-    <string name="conversation_selection__menu_end_poll">End poll</string>
+    <string name="conversation_selection__menu_end_poll">გამოკითხვის დასრულება</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5177,10 +5233,14 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">გამოტოვება</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d წევრი</item>
-        <item quantity="other">%1$d წევრი</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one">%1$s წევრი</item>
+        <item quantity="other">%1$s წევრი</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">შემდეგი</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">გაზიარება</string>
@@ -5902,24 +5962,24 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s დაბლოკილია</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">დაბლოკვა ვერ მოხერხდა</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">%1$s-ის წაშლა ვერ მოხერხდა</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">ეს ადამიანი შენი მოწყობილობის კონტაქტებშია შენახული. წაშალე ის შენი კონტაქტებიდან და თავიდან სცადე.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">კონტაქტის ნახვა</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s Signal-ის მომხმარებელი არაა</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s Signal-ის მომხმარებელი არაა</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s Signal-ის მომხმარებელი არაა</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">მენიუს გახსნა</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="one">%1$s არ არის Signal-ის მომხმარებელი</item>
         <item quantity="other">%1$s არ არიან Signal-ის მომხმარებლები</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">სახელის ან ნომრის ძებნა</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">სახელი, მომხმარებლის სახელი ან ნომერი</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">ნუმერულ კლავიატურაზე გადასვლა</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">ალფანუმერულ კლავიატურაზე გადასვლა</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">ძიების ფილტრის ახლიდან დაყენება</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6085,7 +6145,6 @@
     <string name="BadgesOverviewFragment__featured_badge">გამორჩეული ემბლემა</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">ემბლემების პროფილზე ჩვენება</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">პროფილის განახლება ვერ მოხერხდა</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">ემბლემის არჩევა</string>
@@ -7739,12 +7798,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">ჩართე Signal-ის უსაფრთხო სათადარიგო ასლები</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">სცადე Signal-ის უსაფრთხო სათადარიგო ასლები</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">არასდროს დაკარგო შეტყობინებები, როდესაც ახალ მობილურს იყიდი ან Signal-ს თავიდან დააყენებ.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">ჩართვა</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">ახლა არა</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">სათადარიგო ასლების ჩართვა \"პარამეტრებიდან\" შეგიძლია</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">დაადასტურე შენი აღდგენის გასაღები</string>
@@ -8017,6 +8080,12 @@
     <string name="BackupStatusRow__your_last_backup">შენი ბოლო სათადარიგო ასლის შექმნა ვერ მოხერხდა. დარწმუნდი, რომ შენი მობილური Wi-Fi-თან დაკავშირებულია და თავიდან საცდელად \"სათადარიგო ასლის შექმნას“ დააჭირე.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">შენი ბოლო სათადარიგო ასლის შექმნა ვერ მოხერხდა. დარწმუნდი, რომ Signal-ის უახლეს ვერსიაზე ხარ და თავიდან სცადე.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">შენი წერილების რიცხვი მეხსიერების ლიმიტს აღემატება. რამდენიმე წერილი წაშალე და თავიდან სცადე.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s-მდე გაგზავნილი და მიღებული წერილების სათადარიგო ასლები არ იქმნება.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">შენი სათადარიგო ასლები ვერ შეიქმნა, რადგან მეხსიერების ადგილი არ გყოფნის. გაათავისუფლე ადგილი შენს მოწყობილობაზე და თავიდან სცადე.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">გაიგე მეტი</string>
 
@@ -8421,13 +8490,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">შენი აღდგენის გასაღები</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">აღდგენის გასაღები</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">შენი სათადარიგო ასლების გასაღები 64-სიმბოლოიანი კოდია, რომელიც საშუალებას გაძლევს, შენი ჩანაწერები აღადგინო, თუ Signal-ს თავიდან გადმოიწერ.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">შენი აღდგენის გასაღები 64 სიმბოლოსგან შემდგარი კოდია, რომელიც შენი სათადარიგო ასლების აღსადგენად დაგჭირდება.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">თუ შენი პინ-კოდი დაგავიწყდება, სათადარიგო ჩანაწერების აღდგენას ვეღარ შეძლებ. Signal-ი შენი სათადარიგო ჩანაწერების აღდგენაში ვერ დაგეხმარება.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">შენი აღდგენის გასაღები სადმე უსაფრთხოდ, მაგალითად უსაფრთხო პაროლის მენეჯერში შეინახე და არავის გაუზიარო.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">თუ მას დაკარგავ, შენი წერილების აღდგენას ვერ შეძლებ.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">შემდეგი</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">აღდგენის გასაღების ნახვა</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8478,6 +8549,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">შექმენი ახალი აღდგენის გასაღები</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">ახალი გასაღების შექმნა მხოლოდ იმ შემთხვევაშია საჭირო, თუ სხვამ იცის შენი გასაღების შესახებ. მოგიწევს შენი სათადარიგო ასლი თავიდან ატვირთო, მედია ფაილის ჩათვლით. თუ \"მეხსიერების ოპტიმიზაციას\" იყენებ, მოგიწევს, ჯერ გადატვირთული მედია ფაილი გადმოიწერო.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">გსურს სათადარიგო ასლების შექმნიდან გამოხვიდე?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">სათადარიგო ასლების დაყენება არ დაგისრულებია და არც ერთი სათადარიგო ასლი არ შექმნილა. სათადარიგო ასლების ჩართვა პარამეტრებიდან შეგიძლია.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">სათადარიგო ასლების შექმნიდან გასვლა</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8604,6 +8681,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">შენი ძველი მობილურიდან</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">გადმოიტანე პირდაპირ შენი ძველი მობილურიდან</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">გსურს აღდგენის გამოტოვება?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">თუ ახლა აღდგენას გამოტოვებ, მომავალში ვეღარ შეძლებ. თუ აღდგენის გამოტოვების შემდეგ სათადარიგო ასლებს ისევ ჩართავ, შენი ამჟამინდელი სათადარიგო ასლები შენი ახალი მიმოწერის ისტორიით ჩანაცვლდება.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">აღდგენის გამოტოვება</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">ადგილობრივი სარეზერვო კოპიების აღდგენა</string>
@@ -8644,6 +8727,10 @@
     <string name="EnterBackupKey_backup_not_found">სათადარიგო ასლების მოძებნა ვერ მოხერხდა</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">შენ მიერ შეყვანილი სათადარიგო ასლების გასაღები სწორია, მაგრამ მასთან ასოცირებული სათადარიგო ასლები ვერ მოიძებნა. თუ შენი ძველი მობილური ისევ გაქვს, დარწმუნდი, რომ სათადარიგო ასლები ჩართულია და სათადარიგო ასლის შექმნა დასრულებულია, შემდეგ კი თავიდან სცადე.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">შეიძლება შენი აღდგენის გასაღები არასწორად შეიყვანე, ან შენს ძველ მოწყობილობაზე ერთი სათადარიგო ასლიც არ შეგიქმნია.\n\nდარწმუნდი, რომ იმავე მობილურის ნომრითა და აღდგენის გასაღებით რეგისტრირდები, რომელიც Signal-ის უსაფრთხო სათადარიგო ასლების ჩართვისას შეინახე და დაადასტურე, რომ შენს ძველ მოწყობილობაზე სათადარიგო ასლების შექმნა დასრულდა.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">აღდგენის გასაღების ცდები ამოგეწურა. შენი უსაფრთხოებისთვის, ცდების რაოდენობა შეზღუდულია. დაელოდე ერთი საათი და კიდევ სცადე.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">აღდგენის გამოტოვება</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8732,6 +8819,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">აღდგენის გამოტოვება</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">აღდგენის გასაღები ლიმიტს მიაღწიე</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">ახალი აღდგენის გასაღები წარმატებით შექმენი, მაგრამ უსაფრთხოების მიზნით, ახალი აღდგენის გასაღებების შექმნის ნებადართული რაოდენობა შეზღუდულია. სხვა გასაღების შექმნას 7 დღით ვეღარ შეძლებ. შენი აღდგენის გასაღები სადმე უსაფრთხო და დაცულ ადგილას შეინახე.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">ახალი გასაღების შექმნა შეუძლებელია</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">ახალი გასაღების შექმნის შესაძლებლობები ამოწურე. ახალი აღდგენის გასაღების შექმნას 7 დღეში შეძლებ. თუ ფიქრობ, რომ შეიძლება ვინმეს შენს სათადარიგო ასლებზე წვდომა ჰქონდეს, შეგიძლია \"სათადარიგო ასლების გამორთვა და წაშლა\" აირჩიო.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">ძიების დახურვა</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8774,62 +8871,200 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select One</string>
+    <string name="Poll__select_one">გამოკითხვა · აირჩიე ერთი</string>
     <!-- Caption in poll message to select one or more options  -->
-    <string name="Poll__select_multiple">Poll · Select one or more</string>
+    <string name="Poll__select_multiple">გამოკითხვა · აირჩიე ერთი ან მეტი</string>
     <!-- Caption in poll message once a poll has ended  -->
-    <string name="Poll__final_results">Poll · Final results</string>
+    <string name="Poll__final_results">გამოკითხვა · საბოლოო შედეგები</string>
     <!-- Caption in poll message that no votes have been cast  -->
-    <string name="Poll__no_votes">No votes</string>
+    <string name="Poll__no_votes">ხმები არ მიუღია</string>
     <!-- Button in poll message to view current votes for a poll -->
-    <string name="Poll__view_votes">View votes</string>
+    <string name="Poll__view_votes">ხმების ნახვა</string>
     <!-- Button in poll message to view the poll after it has ended -->
-    <string name="Poll__view_poll">View poll</string>
+    <string name="Poll__view_poll">გამოკითხვის ნახვა</string>
     <!-- Toast message shown if we cannot find the poll -->
-    <string name="Poll__unable_poll">Poll not found</string>
+    <string name="Poll__unable_poll">გამოკითხვა ვერ მოიძებნა</string>
     <!-- Button in poll message to view results for a poll after it ends -->
-    <string name="Poll__view_results">View results</string>
+    <string name="Poll__view_results">შედეგების ნახვა</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
-    <string name="Poll__poll_question">Poll: %1$s</string>
+    <string name="Poll__poll_question">გამოკითხვა: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
-    <string name="Poll__poll_end">%1$s ended the poll: \"%2$s\"</string>
+    <string name="Poll__poll_end">%1$s-მ(ა) გამოკითხვა დაასრულა: \"%2$s\"</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">შენ დაასრულე გამოკითხვა: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
+    <string name="Poll__poll_voted">%1$s-მ(ა) გამოკითხვაში მონიშნა: \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Polls</string>
-    <!-- Title of screen that shows the poll results of a poll -->
-    <string name="Poll__poll_results">Poll results</string>
+    <string name="Poll__poll">გამოკითხვები</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">გამოკითხვის შედეგები</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">გამოკითხვის დეტალები</string>
     <!-- Header text displaying the question of the poll -->
-    <string name="Poll__question">Question</string>
+    <string name="Poll__question">კითხვა</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
-        <item quantity="one">%1$d vote</item>
-        <item quantity="other">%1$d votes</item>
+        <item quantity="one">%1$d ხმა</item>
+        <item quantity="other">%1$d ხმა</item>
     </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">გამარჯვებული</string>
     <!-- Text that when pressed will end the poll   -->
-    <string name="Poll__end_poll">End poll</string>
+    <string name="Poll__end_poll">გამოკითხვის დასრულება</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
-    <string name="Poll__see_all">See all</string>
+    <string name="Poll__see_all">ყველას ნახვა</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">გამოკითხვის დასრულება ვერ მოხერხდა</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">შეამოწმე შენი კავშირი და თავიდან სცადე.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">გამოკითხვის დასრულება გსურს?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">ჯგუფის წევრები ამ გამოკითხვაში ხმის მიცემას ვეღარ შეძლებენ.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">მიმდინარეობს ინტერნეტთან დაკავშირება…</string>
     <!-- Header when creating a new poll -->
-    <string name="CreatePollFragment__new_poll">New poll</string>
+    <string name="CreatePollFragment__new_poll">ახალი გამოკითხვა</string>
     <!-- Section text to enter in a question for a poll  -->
-    <string name="CreatePollFragment__question">Question</string>
+    <string name="CreatePollFragment__question">კითხვა</string>
     <!-- Hint text for question field when creating a poll  -->
-    <string name="CreatePollFragment__ask_a_question">Ask a question</string>
+    <string name="CreatePollFragment__ask_a_question">დასვი კითხვა</string>
     <!-- Section text to enter in options for a poll -->
-    <string name="CreatePollFragment__options">Options</string>
+    <string name="CreatePollFragment__options">ოფციები</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
-    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <string name="CreatePollFragment__option_n">ვარიანტი %1$d</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
-    <string name="CreatePollFragment__drag_handle">Drag and drop handle</string>
+    <string name="CreatePollFragment__drag_handle">დრეგ-ენდ-დროფ ჰენდლი</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
-    <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
+    <string name="CreatePollFragment__allow_multiple_votes">ხმის მრავალჯერადად მიცემის ნებართვა</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
-    <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
+    <string name="CreatePollFragment__add_question_option">დაამატე კითხვა და მინიმუმ 2 ვარიანტი</string>
     <!-- Snackbar text to add two options before creating a poll -->
-    <string name="CreatePollFragment__add_option">Add at least 2 options</string>
+    <string name="CreatePollFragment__add_option">დაამატე მინიმუმ 2 ვარიანტი</string>
     <!-- Snackbar text to add a question before creating a poll -->
-    <string name="CreatePollFragment__add_question">Add a question</string>
+    <string name="CreatePollFragment__add_question">კითხვის დამატება</string>
+
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">QR კოდის დასკანირება</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">კარგი</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">აუდიოს პრობლემა</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">ვიდეოს პრობლემა</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">ზარი გაითიშა</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">სხვა</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">ხმა წყვეტილად ისმოდა</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">ამოჭრილი აუდიო</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">ექო მესმოდა</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">სხვებს ექო ესმოდათ</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">ვიდეოს ცუდი ხარისხი</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">დაბალი გარჩევადობა</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">კამერა არ მუშაობდა</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">სხვა</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">აღწერე შენი პრობლემა</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">გთხოვთ საკითხთან დაკავშირებული ნებისმიერი დეტალი მიუთითო. ყველაფერს, რასაც აქ გააზიარებ, კონფიდენციალურობას შევუნარჩუნებთ და მხოლოდ Signal-ის ზარების გასაუმჯობესებლად გამოვიყენებთ.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">შენახვა</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">უკან</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">როგორ შეაფასებდი ზარს?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">ეს Signal-ის ზარების გაუმჯობესებაში გვეხმარება. არანაირი პირადი საიდენტიფიკაციო ინფორმაცია არ ინახება.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">პრობლემები ჰქონდა</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">მშვენიერი იყო</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">რა პრობლემებს გადააწყდი?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">მონიშნე ყველაფერი, რაც მიესადაგება</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">აღწერე შენი პრობლემა</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">გაგრძელება</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">დაგვეხმარე გაუმჯობესებაში</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">თუ დიაგნოსტიკურ ინფორმაციას გამოგვიგზავნი, ზარების ხარისხის გაუმჯობესებაში დაგვეხმარები. შეგიძლია </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">შენი გაუმართაობის რეესტრი ნახო</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> სანამ ატვირთავ</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">გაუმართაობის რეესტრის გაზიარება</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">გაუმართაობის რეესტრი აპის ქვედა დონის ინფორმაციას შეიცავს და შენი არც ერთი წერილის შინაარს არ ავლენს.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">Submit</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">მადლობა უკუკავშირისთვის!</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Go to message</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Message not found</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">აპინული</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">ფოტო</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">ვიდეო</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">სტიკერი</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">ხმოვანი შეტყობინება</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">ერთხელ სანახავი მედია-ფაილი</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">გასაგებია</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">პინის მოხსნა</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
 
     <!-- EOF -->
 </resources>

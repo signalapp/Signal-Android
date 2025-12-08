@@ -35,11 +35,15 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 public class AudioSlide extends Slide {
 
   public static @NonNull AudioSlide createFromVoiceNoteDraft(@NonNull DraftTable.Draft draft) {
+    return createFromVoiceNoteDraft(draft, false);
+  }
+
+  public static @NonNull AudioSlide createFromVoiceNoteDraft(@NonNull DraftTable.Draft draft, boolean isFinal) {
     VoiceNoteDraft voiceNoteDraft = VoiceNoteDraft.fromDraft(draft);
 
     return new AudioSlide(new UriAttachment(voiceNoteDraft.getUri(),
                                             MediaUtil.AUDIO_AAC,
-                                            AttachmentTable.TRANSFER_PROGRESS_DONE,
+                                            isFinal ? AttachmentTable.TRANSFER_PROGRESS_DONE : AttachmentTable.TRANSFER_PROGRESS_STARTED,
                                             voiceNoteDraft.getSize(),
                                             0,
                                             0,

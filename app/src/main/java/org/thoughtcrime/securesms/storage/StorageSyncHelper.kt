@@ -6,7 +6,9 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64.encodeWithPadding
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.toByteArray
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.getSubscriber
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.isUserManuallyCancelled
@@ -38,8 +40,6 @@ import org.whispersystems.signalservice.api.storage.safeSetPayments
 import org.whispersystems.signalservice.api.storage.safeSetSubscriber
 import org.whispersystems.signalservice.api.storage.toSignalAccountRecord
 import org.whispersystems.signalservice.api.storage.toSignalStorageRecord
-import org.whispersystems.signalservice.api.util.UuidUtil
-import org.whispersystems.signalservice.api.util.toByteArray
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import org.whispersystems.signalservice.internal.storage.protos.OptionalBool
 import java.util.Optional
@@ -177,10 +177,11 @@ object StorageSyncHelper {
       }
 
       hasBackup = SignalStore.backup.areBackupsEnabled && SignalStore.backup.hasBackupBeenUploaded
-      if (SignalStore.backup.areBackupsEnabled && SignalStore.backup.backupTier != null) {
-        backupTier = getBackupLevelValue(SignalStore.backup.backupTier!!)
-      } else if (SignalStore.backup.backupTierInternalOverride != null) {
-        backupTier = getBackupLevelValue(SignalStore.backup.backupTierInternalOverride!!)
+      backupTier = when {
+        SignalStore.account.isLinkedDevice -> null
+        SignalStore.backup.areBackupsEnabled && SignalStore.backup.backupTier != null -> getBackupLevelValue(SignalStore.backup.backupTier!!)
+        SignalStore.backup.backupTierInternalOverride != null -> getBackupLevelValue(SignalStore.backup.backupTierInternalOverride!!)
+        else -> null
       }
 
       notificationProfileManualOverride = getNotificationProfileManualOverride()
@@ -310,13 +311,12 @@ object StorageSyncHelper {
           val localProfile = SignalDatabase.notificationProfiles.getProfile(query)
 
           if (localProfile == null) {
-            Log.w(TAG, "Unable to find local notification profile with given remote id")
+            Log.w(TAG, "Unable to find local notification profile with given remote id $remoteId")
           } else {
-            val disabledAt = System.currentTimeMillis()
-            Log.i(TAG, "Setting manually enabled profile to ${localProfile.id} ending at $remoteEndTime. Disabled at: $disabledAt")
+            Log.i(TAG, "Setting manually enabled profile to ${localProfile.id} ending at $remoteEndTime.")
             SignalStore.notificationProfile.manuallyEnabledProfile = localProfile.id
             SignalStore.notificationProfile.manuallyEnabledUntil = remoteEndTime
-            SignalStore.notificationProfile.manuallyDisabledAt = disabledAt
+            SignalStore.notificationProfile.manuallyDisabledAt = 0L
           }
         }
       } else if (update.new.proto.notificationProfileManualOverride!!.disabledAtTimestampMs != null) {

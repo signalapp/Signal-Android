@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.testing
 
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
+import org.signal.core.util.toByteArray
 import org.signal.libsignal.metadata.certificate.CertificateValidator
 import org.signal.libsignal.metadata.certificate.SenderCertificate
 import org.signal.libsignal.metadata.certificate.ServerCertificate
@@ -13,7 +15,6 @@ import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.Envelope
@@ -52,13 +53,16 @@ object FakeClientHelpers {
   }
 
   fun OutgoingPushMessage.toEnvelope(timestamp: Long, destination: ServiceId): Envelope {
+    val serverGuid = UUID.randomUUID()
     return Envelope.Builder()
       .type(Envelope.Type.fromValue(this.type))
       .sourceDevice(1)
       .timestamp(timestamp)
       .serverTimestamp(timestamp + 1)
       .destinationServiceId(destination.toString())
-      .serverGuid(UUID.randomUUID().toString())
+      .destinationServiceIdBinary(destination.toByteString())
+      .serverGuid(serverGuid.toString())
+      .serverGuidBinary(serverGuid.toByteArray().toByteString())
       .content(Base64.decode(this.content).toByteString())
       .urgent(true)
       .story(false)

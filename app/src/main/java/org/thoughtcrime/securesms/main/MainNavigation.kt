@@ -12,6 +12,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.height
@@ -42,6 +43,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.BlendModeColorFilterCompat
@@ -213,15 +215,18 @@ fun MainNavigationRail(
   onDestinationSelected: (MainNavigationListLocation) -> Unit
 ) {
   NavigationRail(
-    containerColor = SignalTheme.colors.colorSurface1,
-    header = {
-      MainFloatingActionButtons(
-        destination = state.currentListLocation,
-        callback = mainFloatingActionButtonsCallback,
-        modifier = Modifier.padding(vertical = 40.dp)
-      )
-    }
+    containerColor = SignalTheme.colors.colorSurface1
   ) {
+    Spacer(modifier = Modifier.height(40.dp).weight(1f, fill = false))
+
+    MainFloatingActionButtons(
+      destination = state.currentListLocation,
+      callback = mainFloatingActionButtonsCallback,
+      modifier = Modifier.padding(vertical = 8.dp)
+    )
+
+    Spacer(modifier = Modifier.height(40.dp).weight(1f, fill = false))
+
     val entries = remember(state.isStoriesFeatureEnabled) {
       if (state.isStoriesFeatureEnabled) {
         MainNavigationListLocation.entries.filterNot { it == MainNavigationListLocation.ARCHIVE }
@@ -230,8 +235,14 @@ fun MainNavigationRail(
       }
     }
 
+    val selectedDestination = if (state.currentListLocation == MainNavigationListLocation.ARCHIVE) {
+      MainNavigationListLocation.CHATS
+    } else {
+      state.currentListLocation
+    }
+
     entries.forEachIndexed { idx, destination ->
-      val selected = state.currentListLocation == destination
+      val selected = selectedDestination == destination
 
       Box {
         NavigationRailItem(
@@ -336,6 +347,7 @@ private fun formatCount(count: Int): String {
 }
 
 @DayNightPreviews
+@Preview(device = "spec:parent=pixel_7,orientation=landscape")
 @Composable
 private fun MainNavigationRailPreview() {
   Previews.Preview {

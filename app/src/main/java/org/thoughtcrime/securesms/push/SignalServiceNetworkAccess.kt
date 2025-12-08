@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.push
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.os.Build
+import android.net.Uri
 import androidx.core.content.ContextCompat
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import okhttp3.CipherSuite
@@ -33,7 +33,6 @@ import org.whispersystems.signalservice.internal.configuration.SignalStorageUrl
 import org.whispersystems.signalservice.internal.configuration.SignalSvr2Url
 import java.io.IOException
 import java.util.Optional
-import android.net.Proxy as AndroidProxy
 
 /**
  * Provides a [SignalServiceConfiguration] to be used with our service layer.
@@ -142,24 +141,23 @@ class SignalServiceNetworkAccess(context: Context) {
 
     @Suppress("DEPRECATION")
     private fun getSystemHttpProxy(context: Context): HttpProxy? {
-      return if (Build.VERSION.SDK_INT >= 23) {
-        val connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager::class.java) ?: return null
+      val connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager::class.java) ?: return null
 
-        connectivityManager
-          .activeNetwork
-          ?.let { connectivityManager.getLinkProperties(it)?.httpProxy }
-          ?.takeIf { !it.exclusionList.contains(BuildConfig.SIGNAL_URL.stripProtocol()) }
-          ?.let { proxy -> HttpProxy(proxy.host, proxy.port) }
-      } else {
-        val host: String? = AndroidProxy.getHost(context)
-        val port: Int = AndroidProxy.getPort(context)
-
-        if (host != null) {
-          HttpProxy(host, port)
-        } else {
-          null
-        }
-      }
+      return connectivityManager
+        .activeNetwork
+        ?.let { connectivityManager.getLinkProperties(it)?.httpProxy }
+        ?.takeIf { !it.exclusionList.contains(BuildConfig.SIGNAL_URL.stripProtocol()) }
+        // NB: Edit carefully, dear reader, as the line below is written from hard won experience.
+        // It turns out, that despite being documented *nowhere*, if a PAC file is set
+        //   as the system proxy, proxyInfo.host will return "localhost" and proxyInfo.port
+        //   will return -1.
+        // I learnt this by reading the AOSP source code for ProxyInfo:
+        //   https://android.googlesource.com/platform/frameworks/base/+/4696ee4/core/java/android/net/ProxyInfo.java#107
+        // So, if we do not explicitly check that a PAC file is not set, the proxy
+        //   we pass to libsignal may be syntactically invalid, and the user may be
+        //   rendered unable to connect.
+        ?.takeIf { proxyInfo -> proxyInfo.pacFileUrl.equals(Uri.EMPTY) }
+        ?.let { proxy -> HttpProxy(proxy.host, proxy.port) }
     }
   }
 
@@ -298,9 +296,11 @@ class SignalServiceNetworkAccess(context: Context) {
       SettingsValues.CensorshipCircumventionEnabled.ENABLED -> {
         censorshipConfiguration[countryCode] ?: defaultCensoredConfiguration
       }
+
       SettingsValues.CensorshipCircumventionEnabled.DISABLED -> {
         uncensoredConfiguration
       }
+
       SettingsValues.CensorshipCircumventionEnabled.DEFAULT -> {
         if (defaultCensoredCountryCodes.contains(countryCode)) {
           censorshipConfiguration[countryCode] ?: defaultCensoredConfiguration

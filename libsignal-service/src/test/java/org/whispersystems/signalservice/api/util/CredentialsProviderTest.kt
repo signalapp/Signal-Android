@@ -7,7 +7,7 @@ package org.whispersystems.signalservice.api.util
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Test
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.signal.core.models.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.util.UUID
 

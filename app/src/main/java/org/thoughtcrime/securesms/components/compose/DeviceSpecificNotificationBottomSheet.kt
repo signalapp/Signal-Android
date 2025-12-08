@@ -127,7 +127,7 @@ private fun DeviceSpecificSheet(onContinue: () -> Unit = {}, onDismiss: () -> Un
 @DayNightPreviews
 @Composable
 private fun DeviceSpecificSheetPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     DeviceSpecificSheet()
   }
 }

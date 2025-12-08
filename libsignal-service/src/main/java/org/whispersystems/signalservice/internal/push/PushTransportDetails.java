@@ -12,6 +12,7 @@ import org.signal.libsignal.protocol.logging.Log;
 public class PushTransportDetails {
 
   private static final String TAG = PushTransportDetails.class.getSimpleName();
+  private static final int PADDING_BLOCK_SIZE = 80;
 
 
   public byte[] getStrippedPaddingMessageBody(byte[] messageWithPadding) {
@@ -46,12 +47,12 @@ public class PushTransportDetails {
 
   private int getPaddedMessageLength(int messageLength) {
     int messageLengthWithTerminator = messageLength + 1;
-    int messagePartCount            = messageLengthWithTerminator / 160;
+    int messagePartCount            = messageLengthWithTerminator / PADDING_BLOCK_SIZE;
 
-    if (messageLengthWithTerminator % 160 != 0) {
+    if (messageLengthWithTerminator % PADDING_BLOCK_SIZE != 0) {
       messagePartCount++;
     }
 
-    return messagePartCount * 160;
+    return messagePartCount * PADDING_BLOCK_SIZE;
   }
 }

@@ -5,13 +5,13 @@
 
 package org.whispersystems.signalservice.api.cds
 
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.CdsiProtocolException
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.NetworkResult.StatusCodeError
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException
 import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket

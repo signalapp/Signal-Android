@@ -23,6 +23,7 @@ import android.view.inputmethod.InputConnection;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.inputmethod.EditorInfoCompat;
 import androidx.core.view.inputmethod.InputConnectionCompat;
@@ -56,6 +57,7 @@ import static org.thoughtcrime.securesms.database.MentionUtil.MENTION_STARTER;
 
 public class ComposeText extends EmojiEditText {
 
+  private static final String  TAG              = Log.tag(ComposeText.class);
   private static final char    EMOJI_STARTER    = ':';
   private static final int     MAX_QUERY_LENGTH = 64;
   private static final Pattern TIME_PATTERN     = Pattern.compile("^[0-9]{1,2}:[0-9]{1,2}$");
@@ -98,11 +100,21 @@ public class ComposeText extends EmojiEditText {
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    try {
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    } catch (IndexOutOfBoundsException e) {
+      Log.w(TAG, "IndexOutOfBoundsException during onMeasure, retrying", e);
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
 
     if (getLayout() != null && !TextUtils.isEmpty(hint)) {
       setHintWithChecks(ellipsizeToWidth(hint));
-      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+      try {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+      } catch (IndexOutOfBoundsException e) {
+        Log.w(TAG, "IndexOutOfBoundsException during hint onMeasure, retrying", e);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+      }
     }
   }
 
@@ -226,6 +238,7 @@ public class ComposeText extends EmojiEditText {
 
     if (SignalStore.settings().isEnterKeySends()) {
       editorInfo.imeOptions &= ~EditorInfo.IME_FLAG_NO_ENTER_ACTION;
+      editorInfo.inputType &= ~EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE;
     }
 
     if (mediaListener == null) {
@@ -236,7 +249,7 @@ public class ComposeText extends EmojiEditText {
       return null;
     }
 
-    EditorInfoCompat.setContentMimeTypes(editorInfo, new String[] { "image/jpeg", "image/png", "image/gif" });
+    EditorInfoCompat.setContentMimeTypes(editorInfo, new String[] { "image/jpeg", "image/png", "image/gif", "image/webp", "image/heic", "image/heif", "image/avif" });
     return InputConnectionCompat.createWrapper(inputConnection, editorInfo, new CommitContentListener(mediaListener));
   }
 
@@ -477,16 +490,20 @@ public class ComposeText extends EmojiEditText {
   /**
    * Return true if we think the user may be inputting a time.
    */
-  private static boolean couldBeTimeEntry(@NonNull CharSequence text, int startIndex) {
+  @VisibleForTesting
+  static boolean couldBeTimeEntry(@NonNull CharSequence text, int startIndex) {
     if (startIndex <= 0 || startIndex + 1 >= text.length()) {
       return false;
     }
 
     int startOfToken = startIndex;
-    while (startOfToken > 0 && !Character.isWhitespace(text.charAt(startOfToken))) {
-      startOfToken--;
+    while (startOfToken > 0) {
+      int prevIndex = startOfToken - 1;
+      if (Character.isWhitespace(text.charAt(prevIndex))) {
+        break;
+      }
+      startOfToken = prevIndex;
     }
-    startOfToken++;
 
     int endOfToken = startIndex;
     while (endOfToken < text.length() && !Character.isWhitespace(text.charAt(endOfToken))) {

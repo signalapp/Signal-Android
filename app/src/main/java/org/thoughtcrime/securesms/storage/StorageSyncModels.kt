@@ -2,11 +2,14 @@ package org.thoughtcrime.securesms.storage
 
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.ServiceId
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.isNullOrEmpty
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
@@ -28,7 +31,7 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
@@ -49,7 +52,6 @@ import org.whispersystems.signalservice.api.storage.toSignalNotificationProfileR
 import org.whispersystems.signalservice.api.storage.toSignalStorageRecord
 import org.whispersystems.signalservice.api.storage.toSignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState
@@ -132,8 +134,9 @@ object StorageSyncModels {
       RecipientType.INDIVIDUAL -> {
         AccountRecord.PinnedConversation(
           contact = AccountRecord.PinnedConversation.Contact(
-            serviceId = settings.serviceId?.toString() ?: "",
-            e164 = settings.e164 ?: ""
+            serviceId = settings.serviceId?.toString().takeIf { BuildConfig.USE_STRING_ID } ?: "",
+            e164 = settings.e164 ?: "",
+            serviceIdBinary = settings.serviceId?.toByteString().takeIf { RemoteConfig.useBinaryId } ?: ByteString.EMPTY
           )
         )
       }
@@ -186,9 +189,9 @@ object StorageSyncModels {
     }
 
     return SignalContactRecord.newBuilder(recipient.syncExtras.storageProto).apply {
-      aci = recipient.aci?.toString() ?: ""
+      aci = recipient.aci?.toString().takeIf { BuildConfig.USE_STRING_ID } ?: ""
       e164 = recipient.e164 ?: ""
-      pni = recipient.pni?.toStringWithoutPrefix() ?: ""
+      pni = recipient.pni?.toStringWithoutPrefix().takeIf { BuildConfig.USE_STRING_ID } ?: ""
       profileKey = recipient.profileKey?.toByteString() ?: ByteString.EMPTY
       givenName = recipient.signalProfileName.givenName
       familyName = recipient.signalProfileName.familyName
@@ -210,6 +213,8 @@ object StorageSyncModels {
       nickname = recipient.nickname.takeUnless { it.isEmpty }?.let { ContactRecord.Name(given = it.givenName, family = it.familyName) }
       note = recipient.note ?: ""
       avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
+      aciBinary = recipient.aci?.toByteString()?.takeIf { RemoteConfig.useBinaryId } ?: ByteString.EMPTY
+      pniBinary = recipient.pni?.toByteStringWithoutPrefix()?.takeIf { RemoteConfig.useBinaryId } ?: ByteString.EMPTY
     }.build().toSignalContactRecord(StorageId.forContact(rawStorageId))
   }
 
@@ -244,7 +249,7 @@ object StorageSyncModels {
       archived = recipient.syncExtras.isArchived
       markedUnread = recipient.syncExtras.isForcedUnread
       mutedUntilTimestamp = recipient.muteUntil
-      dontNotifyForMentionsIfMuted = recipient.mentionSetting == RecipientTable.MentionSetting.ALWAYS_NOTIFY
+      dontNotifyForMentionsIfMuted = recipient.mentionSetting == RecipientTable.MentionSetting.DO_NOT_NOTIFY
       hideStory = recipient.extras != null && recipient.extras.hideStory()
       avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
       storySendMode = when (groups.getShowAsStoryState(groupId)) {
@@ -290,10 +295,22 @@ object StorageSyncModels {
     return SignalStoryDistributionListRecord.newBuilder(recipient.syncExtras.storageProto).apply {
       identifier = UuidUtil.toByteArray(record.distributionId.asUuid()).toByteString()
       name = record.name
-      recipientServiceIds = record.getMembersToSync()
-        .map { Recipient.resolved(it) }
-        .filter { it.hasServiceId }
-        .map { it.requireServiceId().toString() }
+      recipientServiceIds = if (BuildConfig.USE_STRING_ID) {
+        record.getMembersToSync()
+          .map { Recipient.resolved(it) }
+          .filter { it.hasServiceId }
+          .map { it.requireServiceId().toString() }
+      } else {
+        emptyList()
+      }
+      recipientServiceIdsBinary = if (RemoteConfig.useBinaryId) {
+        record.getMembersToSync()
+          .map { Recipient.resolved(it) }
+          .filter { it.hasServiceId }
+          .map { it.requireServiceId().toByteString() }
+      } else {
+        emptyList()
+      }
       allowsReplies = record.allowsReplies
       isBlockList = record.privacyMode.isBlockList
     }.build().toSignalStoryDistributionListRecord(StorageId.forStoryDistributionList(rawStorageId))
@@ -493,7 +510,13 @@ object StorageSyncModels {
       } else {
         when (recipient.recipientType) {
           RecipientType.INDIVIDUAL -> {
-            RemoteRecipient(contact = RemoteRecipient.Contact(serviceId = recipient.serviceId?.toString() ?: "", e164 = recipient.e164 ?: ""))
+            RemoteRecipient(
+              contact = RemoteRecipient.Contact(
+                serviceId = recipient.serviceId?.toString().takeIf { BuildConfig.USE_STRING_ID } ?: "",
+                e164 = recipient.e164 ?: "",
+                serviceIdBinary = recipient.serviceId?.toByteString().takeIf { RemoteConfig.useBinaryId } ?: ByteString.EMPTY
+              )
+            )
           }
           RecipientType.GV1 -> {
             RemoteRecipient(legacyGroupId = recipient.groupId!!.requireV1().decodedId.toByteString())
@@ -509,7 +532,7 @@ object StorageSyncModels {
 
   fun remoteToLocalRecipient(remoteRecipient: RemoteRecipient): Recipient? {
     return if (remoteRecipient.contact != null) {
-      val serviceId = ServiceId.parseOrNull(remoteRecipient.contact!!.serviceId)
+      val serviceId = ServiceId.parseOrNull(remoteRecipient.contact!!.serviceId, remoteRecipient.contact!!.serviceIdBinary)
       val e164 = remoteRecipient.contact!!.e164
       Recipient.externalPush(SignalServiceAddress(serviceId, e164))
     } else if (remoteRecipient.legacyGroupId != null) {

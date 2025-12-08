@@ -16,8 +16,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.whispersystems.signalservice.api.provisioning.ProvisioningSocket
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
@@ -88,7 +88,7 @@ class RegisterLinkDeviceQrViewModel : ViewModel() {
 
     return ProvisioningSocket.start<ProvisionMessage>(
       mode = ProvisioningSocket.Mode.LINK,
-      identityKeyPair = IdentityKeyUtil.generateIdentityKeyPair(),
+      identityKeyPair = IdentityKeyPair.generate(),
       configuration = AppDependencies.signalServiceNetworkAccess.getConfiguration(),
       handler = { id, t ->
         store.update {

@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.util.toLocalDateTime
 import java.time.Duration
 import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
@@ -78,8 +79,9 @@ class MessageBackupListenerTest {
     val nextDateTime = MessageBackupListener.setNextBackupTimeToIntervalFromNow(
       now = now,
       maxJitterSeconds = jitterWindow.inWholeSeconds.toInt(),
-      randomSource = mockRandom
-    ).toLocalDateTime()
+      randomSource = mockRandom,
+      zoneId = ZoneId.of("UTC")
+    ).toLocalDateTime(ZoneId.of("UTC"))
 
     assertThat(nextDateTime.dayOfMonth).isEqualTo(28)
     assertThat(nextDateTime.hour).isEqualTo(1)

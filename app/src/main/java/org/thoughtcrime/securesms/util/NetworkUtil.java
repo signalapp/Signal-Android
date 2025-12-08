@@ -19,8 +19,32 @@ public final class NetworkUtil {
   private NetworkUtil() {}
 
   public static boolean isConnectedWifi(@NonNull Context context) {
-    final NetworkInfo info = getNetworkInfo(context);
-    return info != null && info.isConnected() && info.getType() == ConnectivityManager.TYPE_WIFI;
+    ConnectivityManager connectivityManager = ServiceUtil.getConnectivityManager(context);
+    Network             activeNetwork       = connectivityManager.getActiveNetwork();
+
+    if (activeNetwork == null) {
+      return false;
+    }
+
+    NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(activeNetwork);
+    if (capabilities == null) {
+      return false;
+    }
+
+    if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+      return true;
+    }
+
+    if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) {
+      for (Network underlyingNetwork : connectivityManager.getAllNetworks()) {
+        NetworkCapabilities underlyingCapabilities = connectivityManager.getNetworkCapabilities(underlyingNetwork);
+        if (underlyingCapabilities != null && underlyingCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   public static boolean isConnectedMobile(@NonNull Context context) {
@@ -89,17 +113,13 @@ public final class NetworkUtil {
   public static @NonNull NetworkStatus getNetworkStatus(@NonNull Context context) {
     ConnectivityManager connectivityManager = ServiceUtil.getConnectivityManager(context);
 
-    if (Build.VERSION.SDK_INT >= 23) {
-      Network             network      = connectivityManager.getActiveNetwork();
-      NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
+    Network             network      = connectivityManager.getActiveNetwork();
+    NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
 
-      boolean onVpn        = capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN);
-      boolean isNotMetered = capabilities == null || capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED);
+    boolean onVpn        = capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN);
+    boolean isNotMetered = capabilities == null || capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED);
 
-      return new NetworkStatus(onVpn, !isNotMetered);
-    } else {
-      return new NetworkStatus(false, false);
-    }
+    return new NetworkStatus(onVpn, !isNotMetered);
   }
 
   private static boolean useLowDataCalling(@NonNull Context context, @NonNull PeerConnection.AdapterType networkAdapter) {

@@ -11,7 +11,6 @@ import org.signal.core.util.gibiBytes
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
-import org.signal.libsignal.protocol.UsePqRatchet
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -1133,7 +1132,7 @@ object RemoteConfig {
 
   /** Whether to allow different WindowSizeClasses to be used to determine screen layout */
   val largeScreenUi: Boolean by remoteBoolean(
-    key = "android.largeScreenUI",
+    key = "android.largeScreenUI.2",
     hotSwappable = false,
     defaultValue = false
   )
@@ -1165,16 +1164,6 @@ object RemoteConfig {
     durationUnit = DurationUnit.DAYS
   )
 
-  /** Whether or not to use the new post-quantum ratcheting. */
-  @JvmStatic
-  @get:JvmName("usePqRatchet")
-  val usePqRatchet: UsePqRatchet by remoteValue(
-    key = "android.usePqRatchet",
-    hotSwappable = false
-  ) { value ->
-    if (value.asBoolean(false)) UsePqRatchet.YES else UsePqRatchet.NO
-  }
-
   /** The maximum allowed envelope size for messages we send. */
   @JvmStatic
   @get:JvmName("maxEnvelopeSizeBytes")
@@ -1187,10 +1176,74 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("polls")
   val polls: Boolean by remoteBoolean(
-    key = "android.polls",
+    key = "android.polls.2",
     defaultValue = false,
     hotSwappable = true
   )
 
+  /** Whether or not to send over binary service ids (alongside string service ids). */
+  @JvmStatic
+  @get:JvmName("useBinaryId")
+  val useBinaryId: Boolean by remoteBoolean(
+    key = "android.useBinaryServiceId",
+    defaultValue = Environment.IS_STAGING,
+    hotSwappable = false
+  )
+
+  @JvmStatic
+  @get:JvmName("receivePolls")
+  val receivePolls: Boolean by remoteBoolean(
+    key = "android.receivePolls",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("backupsBetaMegaphone")
+  val backupsBetaMegaphone: Boolean by remoteBoolean(
+    key = "android.backupsBetaMegaphone",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("pinLimit")
+  val pinLimit: Int by remoteInt(
+    key = "global.pinnedMessageLimit",
+    defaultValue = 3,
+    hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("receivePinnedMessages")
+  val receivePinnedMessages: Boolean by remoteBoolean(
+    key = "android.receivePinnedMessages",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("sendPinnedMessages")
+  val sendPinnedMessages: Boolean by remoteBoolean(
+    key = "android.sendPinnedMessages",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("callQualitySurvey")
+  val callQualitySurvey: Boolean by remoteBoolean(
+    key = "android.callQualitySurvey",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("callQualitySurveyPercent")
+  val callQualitySurveyPercent: Int by remoteInt(
+    key = "android.callQualitySurveyPercent",
+    defaultValue = 1,
+    hotSwappable = true
+  )
   // endregion
 }

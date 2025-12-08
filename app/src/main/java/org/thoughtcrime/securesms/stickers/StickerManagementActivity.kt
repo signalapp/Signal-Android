@@ -10,7 +10,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,7 +18,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -80,11 +78,11 @@ import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
 import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
 import org.signal.core.ui.compose.copied.androidx.compose.dragContainer
 import org.signal.core.ui.compose.copied.androidx.compose.rememberDragDropState
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.model.StickerPackId
@@ -331,19 +329,10 @@ private fun TopAppBar(
         DropdownMenus.Menu(
           controller = menuController,
           offsetX = 24.dp,
-          offsetY = 0.dp,
-          modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .widthIn(min = 200.dp)
-            .background(SignalTheme.colors.colorSurface2)
+          offsetY = 0.dp
         ) {
           DropdownMenus.Item(
-            text = {
-              Text(
-                text = stringResource(R.string.StickerManagement_menu_select_packs),
-                style = MaterialTheme.typography.bodyLarge
-              )
-            },
+            text = { Text(text = stringResource(R.string.StickerManagement_menu_select_packs)) },
             onClick = {
               onSetMultiSelectModeEnabled(true)
               menuController.hide()

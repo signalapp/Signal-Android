@@ -64,6 +64,7 @@ import kotlinx.coroutines.CoroutineScope
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -349,7 +350,7 @@ private fun ResetDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
 @DayNightPreviews
 @Composable
 private fun AppBarPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       Column {
         TopAppBarContent(activeTab = ActiveTab.Code)
@@ -362,7 +363,7 @@ private fun AppBarPreview() {
 @DayNightPreviews
 @Composable
 private fun MainScreenPreview() {
-  SignalTheme {
+  Previews.Preview {
     MainScreen(
       state = UsernameLinkSettingsState(
         activeTab = ActiveTab.Code,
@@ -378,7 +379,7 @@ private fun MainScreenPreview() {
 @DayNightPreviews
 @Composable
 private fun ResetDialogPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       ResetDialog(onConfirm = {}, onDismiss = {})
     }

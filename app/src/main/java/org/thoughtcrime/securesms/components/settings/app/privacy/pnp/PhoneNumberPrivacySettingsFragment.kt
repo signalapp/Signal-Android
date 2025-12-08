@@ -28,10 +28,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.Texts
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
@@ -203,7 +203,7 @@ private fun Screen(
 @Preview(name = "Dark Theme", group = "Screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ScreenPreviewSharingAndDiscoverable() {
-  SignalTheme {
+  Previews.Preview {
     Screen(
       state = PhoneNumberPrivacySettingsState(
         phoneNumberSharing = true,
@@ -217,7 +217,7 @@ private fun ScreenPreviewSharingAndDiscoverable() {
 @Preview(name = "Dark Theme", group = "Screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ScreenPreviewNotSharingDiscoverable() {
-  SignalTheme {
+  Previews.Preview {
     Screen(
       state = PhoneNumberPrivacySettingsState(
         phoneNumberSharing = false,
@@ -231,7 +231,7 @@ private fun ScreenPreviewNotSharingDiscoverable() {
 @Preview(name = "Dark Theme", group = "Screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ScreenPreviewNotSharingNotDiscoverable() {
-  SignalTheme {
+  Previews.Preview {
     Screen(
       state = PhoneNumberPrivacySettingsState(
         phoneNumberSharing = false,

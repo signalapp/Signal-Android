@@ -8,9 +8,10 @@ package org.whispersystems.signalservice.api.push
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
-import org.whispersystems.signalservice.api.util.UuidUtil
+import org.signal.core.models.ServiceId
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
+import org.signal.core.util.UuidUtil
 import java.util.UUID
 import org.signal.libsignal.protocol.ServiceId.Aci as LibSignalAci
 import org.signal.libsignal.protocol.ServiceId.Pni as LibSignalPni

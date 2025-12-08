@@ -8,6 +8,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.SqlUtil.buildArgs
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
@@ -16,7 +17,6 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
 import org.signal.core.util.requireString
 import org.signal.core.util.select
-import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyData
@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.storage.recipientServiceAddresses
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.UUID
 
 /**
@@ -620,7 +619,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     }
 
     val privacyMode: DistributionListPrivacyMode = when {
-      insert.proto.isBlockList && insert.proto.recipientServiceIds.isEmpty() -> DistributionListPrivacyMode.ALL
+      insert.proto.isBlockList && insert.proto.recipientServiceIds.isEmpty() && insert.proto.recipientServiceIdsBinary.isEmpty() -> DistributionListPrivacyMode.ALL
       insert.proto.isBlockList -> DistributionListPrivacyMode.ALL_EXCEPT
       else -> DistributionListPrivacyMode.ONLY_WITH
     }
@@ -666,7 +665,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     }
 
     val privacyMode: DistributionListPrivacyMode = when {
-      update.new.proto.isBlockList && update.new.proto.recipientServiceIds.isEmpty() -> DistributionListPrivacyMode.ALL
+      update.new.proto.isBlockList && update.new.proto.recipientServiceIds.isEmpty() && update.new.proto.recipientServiceIdsBinary.isEmpty() -> DistributionListPrivacyMode.ALL
       update.new.proto.isBlockList -> DistributionListPrivacyMode.ALL_EXCEPT
       else -> DistributionListPrivacyMode.ONLY_WITH
     }

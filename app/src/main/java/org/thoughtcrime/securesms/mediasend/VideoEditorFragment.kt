@@ -1,14 +1,12 @@
 package org.thoughtcrime.securesms.mediasend
 
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import org.signal.core.util.logging.Log
@@ -161,7 +159,6 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
     }
   }
 
-  @RequiresApi(23)
   private fun bindVideoTimeline(data: VideoTrimData) {
     val autoplay = isVideoGif
     val slide = VideoSlide(requireContext(), uri, 0, autoplay)
@@ -213,10 +210,8 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
   }
 
   private fun startPositionUpdates() {
-    if (Build.VERSION.SDK_INT >= 23) {
-      stopPositionUpdates()
-      handler.post(updatePosition)
-    }
+    stopPositionUpdates()
+    handler.post(updatePosition)
   }
 
   private fun stopPositionUpdates() {
@@ -250,7 +245,6 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
     hud.showPlayButton()
   }
 
-  @RequiresApi(23)
   private fun onEditVideoDuration(data: VideoTrimData, editingComplete: Boolean) {
     if (editingComplete) {
       isInEdit = false

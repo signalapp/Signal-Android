@@ -358,9 +358,7 @@ fun CreateFolderScreen(
         }
       }
 
-      if (hasChanges) {
-        item { Spacer(modifier = Modifier.height(60.dp)) }
-      }
+      item { Spacer(modifier = Modifier.height(60.dp)) }
     }
 
     Buttons.MediumTonal(
@@ -402,6 +400,7 @@ fun CreateFolderScreen(
 private fun ShowUnreadSection(state: ChatFoldersSettingsState, onToggleShowUnread: (Boolean) -> Unit) {
   Row(
     modifier = Modifier
+      .clickable { onToggleShowUnread(!state.currentFolder.folderRecord.showUnread) }
       .padding(horizontal = 24.dp)
       .defaultMinSize(minHeight = 92.dp),
     verticalAlignment = Alignment.CenterVertically
@@ -429,6 +428,7 @@ private fun ShowMutedSection(state: ChatFoldersSettingsState, onToggleShowMuted:
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
+      .clickable { onToggleShowMuted(!state.currentFolder.folderRecord.showMutedChats) }
       .padding(horizontal = 24.dp)
       .defaultMinSize(minHeight = 56.dp)
   ) {

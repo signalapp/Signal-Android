@@ -251,7 +251,7 @@ private fun isThreadListAlreadyAdded(folder: ChatFolderRecord, threadIds: List<L
 @DayNightPreviews
 @Composable
 private fun AddToChatFolderSheetContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     AddToChatFolderSheetContent(
       folders = listOf(ChatFolderRecord(name = "Friends"), ChatFolderRecord(name = "Work")),
       threadIds = listOf(1),

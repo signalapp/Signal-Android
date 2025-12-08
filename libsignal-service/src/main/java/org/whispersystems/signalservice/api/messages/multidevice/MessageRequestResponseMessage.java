@@ -2,8 +2,7 @@ package org.whispersystems.signalservice.api.messages.multidevice;
 
 
 
-import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.signal.core.models.ServiceId;
 
 import java.util.Optional;
 

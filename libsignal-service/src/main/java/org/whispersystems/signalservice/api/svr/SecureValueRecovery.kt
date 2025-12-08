@@ -5,7 +5,7 @@
 
 package org.whispersystems.signalservice.api.svr
 
-import org.whispersystems.signalservice.api.kbs.MasterKey
+import org.signal.core.models.MasterKey
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import java.io.IOException
 import kotlin.jvm.Throws
@@ -102,6 +102,9 @@ interface SecureValueRecovery {
 
     /** The PIN was incorrect. Includes the number of attempts the user has remaining. */
     data class PinMismatch(val triesRemaining: Int) : RestoreResponse()
+
+    /** The enclave no longer exists */
+    data object EnclaveNotFound : RestoreResponse()
 
     /** There as a network error. Not a bad response, but rather interference or some other inability to make a network request. */
     data class NetworkError(val exception: IOException) : RestoreResponse()

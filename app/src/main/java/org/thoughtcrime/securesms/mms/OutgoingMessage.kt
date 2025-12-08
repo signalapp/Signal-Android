@@ -60,7 +60,8 @@ data class OutgoingMessage(
   val isBlocked: Boolean = false,
   val isUnblocked: Boolean = false,
   val poll: Poll? = null,
-  val messageExtras: MessageExtras? = null
+  val messageExtras: MessageExtras? = null,
+  val isSelfGroupAdd: Boolean = false
 ) {
 
   val isV2Group: Boolean = messageGroupContext != null && GroupV2UpdateMessageUtil.isGroupV2(messageGroupContext)
@@ -240,7 +241,7 @@ data class OutgoingMessage(
      * Helper for creating a group update message when a state change occurs and needs to be sent to others.
      */
     @JvmStatic
-    fun groupUpdateMessage(threadRecipient: Recipient, update: GV2UpdateDescription, sentTimeMillis: Long): OutgoingMessage {
+    fun groupUpdateMessage(threadRecipient: Recipient, update: GV2UpdateDescription, sentTimeMillis: Long, isSelfGroupAdd: Boolean): OutgoingMessage {
       val messageExtras = MessageExtras(gv2UpdateDescription = update)
       val groupContext = MessageGroupContext(update.gv2ChangeDescription!!)
 
@@ -251,7 +252,8 @@ data class OutgoingMessage(
         isGroup = true,
         isGroupUpdate = true,
         isSecure = true,
-        messageExtras = messageExtras
+        messageExtras = messageExtras,
+        isSelfGroupAdd = isSelfGroupAdd
       )
     }
 
@@ -493,6 +495,17 @@ data class OutgoingMessage(
         expiresIn = expiresIn,
         messageExtras = messageExtras,
         isUrgent = true,
+        isSecure = true
+      )
+    }
+
+    @JvmStatic
+    fun pinMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long, messageExtras: MessageExtras): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        messageExtras = messageExtras,
         isSecure = true
       )
     }

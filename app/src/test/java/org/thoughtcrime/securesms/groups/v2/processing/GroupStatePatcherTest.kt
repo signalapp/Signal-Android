@@ -9,6 +9,8 @@ import assertk.assertions.isNull
 import assertk.assertions.isSameInstanceAs
 import org.junit.Before
 import org.junit.Test
+import org.signal.core.models.ServiceId
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
@@ -16,8 +18,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedMember
 import org.signal.storageservice.protos.groups.local.DecryptedString
 import org.thoughtcrime.securesms.testutil.LogRecorder
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupChangeLog
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.UUID
 
 class GroupStatePatcherTest {

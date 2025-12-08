@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.SettingHeader;
@@ -31,6 +30,8 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+
+import kotlin.Pair;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
@@ -95,11 +96,11 @@ public final class SetCurrencyViewModel extends ViewModel {
   private int findSelectedIndex(MappingModelList items) {
     return Stream.of(items)
                  .mapIndexed(Pair::new)
-                 .filter(p -> p.second() instanceof SingleSelectSetting.Item)
-                 .map(p -> new Pair<>(p.first(), (SingleSelectSetting.Item) p.second()))
-                 .filter(pair -> pair.second().isSelected())
+                 .filter(p -> p.getSecond() instanceof SingleSelectSetting.Item)
+                 .map(p -> new Pair<>(p.getFirst(), (SingleSelectSetting.Item) p.getSecond()))
+                 .filter(pair -> pair.getSecond().isSelected())
                  .findFirst()
-                 .map(Pair::first)
+                 .map(Pair::getFirst)
                  .orElse(-1);
   }
 

@@ -7,6 +7,9 @@ package org.thoughtcrime.securesms.groups.v2.processing
 
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
+import org.signal.core.models.ServiceId
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -45,10 +48,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException
 import org.whispersystems.signalservice.api.groupsv2.ReceivedGroupSendEndorsements
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceIds
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException
 import java.io.IOException
@@ -672,7 +672,7 @@ class GroupsV2StateProcessor private constructor(
       )
 
       val updateDescription = GroupProtoUtil.createOutgoingGroupV2UpdateDescription(masterKey, GroupMutation(decryptedGroup, simulatedGroupChange, simulatedGroupState), null)
-      val leaveMessage = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, System.currentTimeMillis())
+      val leaveMessage = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, System.currentTimeMillis(), isSelfGroupAdd = false)
 
       try {
         val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
@@ -728,10 +728,17 @@ class GroupsV2StateProcessor private constructor(
       )
 
       if (outgoing) {
+        val isSelfGroupAdd = updateDescription
+          .groupChangeUpdate!!
+          .updates
+          .asSequence()
+          .mapNotNull { it.groupMemberJoinedUpdate }
+          .any { serviceIds.matches(it.newMemberAci) }
+
         try {
           val recipientId = SignalDatabase.recipients.getOrInsertFromGroupId(groupId)
           val recipient = Recipient.resolved(recipientId)
-          val outgoingMessage = OutgoingMessage.groupUpdateMessage(recipient, updateDescription, timestamp)
+          val outgoingMessage = OutgoingMessage.groupUpdateMessage(recipient, updateDescription, timestamp, isSelfGroupAdd)
           val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
           val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, null).messageId
 

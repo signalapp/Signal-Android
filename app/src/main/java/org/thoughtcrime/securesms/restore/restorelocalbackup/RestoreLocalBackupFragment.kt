@@ -96,7 +96,7 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
 
     if (sharedViewModel.getBackupFileUri() == null) {
       Log.i(TAG, "No backup URI found, must navigate back to choose one.")
-      findNavController().navigateUp()
+      findNavController().navigate(RestoreLocalBackupFragmentDirections.goDirectlyToChooseLocalBackup())
       return
     }
 

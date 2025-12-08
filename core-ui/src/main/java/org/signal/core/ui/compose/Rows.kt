@@ -53,6 +53,8 @@ import org.signal.core.ui.compose.Rows.TextAndLabel
 
 object Rows {
 
+  const val DISABLED_ALPHA = 0.4f
+
   /**
    * Link row that positions [text] and optional [label] in a [TextAndLabel] to the side of an [icon] on the right.
    */
@@ -193,7 +195,8 @@ object Rows {
       enabled = enabled,
       onClick = {
         displayDialog = true
-      }
+      },
+      modifier = Modifier.alpha(if (enabled) 1f else DISABLED_ALPHA)
     )
 
     if (displayDialog) {
@@ -361,9 +364,9 @@ object Rows {
    */
   @Composable
   fun TextRow(
-    text: String,
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
+    text: String? = null,
     label: String? = null,
     icon: Painter? = null,
     foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
@@ -372,7 +375,7 @@ object Rows {
     enabled: Boolean = true
   ) {
     TextRow(
-      text = remember(text) { AnnotatedString(text) },
+      text = remember(text) { text?.let { AnnotatedString(text) } },
       label = remember(label) { label?.let { AnnotatedString(label) } },
       icon = icon,
       modifier = modifier,
@@ -389,9 +392,9 @@ object Rows {
    */
   @Composable
   fun TextRow(
-    text: AnnotatedString,
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
+    text: AnnotatedString? = null,
     label: AnnotatedString? = null,
     icon: Painter? = null,
     foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
@@ -432,10 +435,10 @@ object Rows {
    */
   @Composable
   fun TextRow(
-    text: String,
     icon: ImageVector?,
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
+    text: String? = null,
     label: String? = null,
     foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
     iconTint: Color = foregroundTint,
@@ -554,7 +557,7 @@ object Rows {
   ) {
     Column(
       modifier = modifier
-        .alpha(if (enabled) 1f else 0.4f)
+        .alpha(if (enabled) 1f else DISABLED_ALPHA)
         .weight(1f)
     ) {
       if (text != null) {

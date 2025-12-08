@@ -5,9 +5,12 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -72,20 +76,19 @@ fun MessageBackupsKeyEducationScreen(
         modifier = Modifier.padding(top = 16.dp)
       )
 
-      Text(
-        text = stringResource(R.string.MessageBackupsKeyEducationScreen__your_backup_key_is_a),
-        textAlign = TextAlign.Center,
-        style = MaterialTheme.typography.bodyLarge,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier.padding(top = 12.dp)
+      InfoRow(
+        R.drawable.symbol_number_24,
+        R.string.MessageBackupsKeyEducationScreen__your_backup_key_is_a
       )
 
-      Text(
-        text = stringResource(R.string.MessageBackupsKeyEducationScreen__if_you_forget_your_key),
-        textAlign = TextAlign.Center,
-        style = MaterialTheme.typography.bodyLarge,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier.padding(top = 16.dp)
+      InfoRow(
+        R.drawable.symbol_lock_24,
+        R.string.MessageBackupsKeyEducationScreen__store_your_recovery
+      )
+
+      InfoRow(
+        R.drawable.symbol_error_circle_24,
+        R.string.MessageBackupsKeyEducationScreen__if_you_lose_it
       )
 
       Spacer(
@@ -101,14 +104,36 @@ fun MessageBackupsKeyEducationScreen(
       ) {
         Buttons.LargeTonal(
           onClick = onNextClick,
-          modifier = Modifier.align(Alignment.BottomEnd)
+          modifier = Modifier.align(Alignment.Center)
         ) {
           Text(
-            text = stringResource(R.string.MessageBackupsKeyEducationScreen__next)
+            text = stringResource(R.string.MessageBackupsKeyEducationScreen__view_recovery_key),
+            modifier = Modifier.padding(horizontal = 20.dp)
           )
         }
       }
     }
+  }
+}
+
+@Composable
+private fun InfoRow(@DrawableRes iconId: Int, @StringRes textId: Int) {
+  Row(
+    verticalAlignment = Alignment.Top,
+    modifier = Modifier.padding(top = 24.dp)
+  ) {
+    Icon(
+      imageVector = ImageVector.vectorResource(iconId),
+      contentDescription = null,
+      tint = MaterialTheme.colorScheme.onSurfaceVariant
+
+    )
+    Text(
+      text = stringResource(textId),
+      style = MaterialTheme.typography.bodyLarge,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+      modifier = Modifier.padding(start = 16.dp)
+    )
   }
 }
 

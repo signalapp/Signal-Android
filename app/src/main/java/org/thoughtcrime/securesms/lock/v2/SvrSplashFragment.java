@@ -125,6 +125,6 @@ public final class SvrSplashFragment extends Fragment {
   }
 
   private void onPinSkipped() {
-    PinOptOutDialog.show(requireContext(), () -> requireActivity().finish());
+    PinOptOutDialog.show(requireContext(), false, () -> requireActivity().finish());
   }
 }

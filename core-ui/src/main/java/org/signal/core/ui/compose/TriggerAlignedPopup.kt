@@ -27,6 +27,9 @@ import androidx.compose.ui.window.DialogWindowProvider
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupPositionProvider
 import androidx.compose.ui.window.PopupProperties
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import org.signal.core.ui.compose.TriggerAlignedPopupState.Companion.popupTrigger
 import kotlin.math.max
 import kotlin.math.min
 
@@ -57,17 +60,35 @@ class TriggerAlignedPopupState private constructor(
 
   companion object {
 
+    @Serializable
+    data class SaveState(
+      val display: Boolean,
+      val left: Int,
+      val top: Int,
+      val right: Int,
+      val bottom: Int
+    )
+
     @Composable
     fun rememberTriggerAlignedPopupState(): TriggerAlignedPopupState {
       return rememberSaveable(
         saver = Saver(
           save = {
-            it.display to it.triggerBounds
+            Json.encodeToString(
+              SaveState(
+                display = it.display,
+                left = it.triggerBounds.left,
+                right = it.triggerBounds.right,
+                top = it.triggerBounds.top,
+                bottom = it.triggerBounds.bottom
+              )
+            )
           },
           restore = {
+            val saveState: SaveState = Json.decodeFromString(it)
             TriggerAlignedPopupState(
-              it.first,
-              it.second
+              saveState.display,
+              IntRect(saveState.left, saveState.top, saveState.right, saveState.bottom)
             )
           }
         )

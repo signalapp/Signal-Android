@@ -30,7 +30,7 @@ data class CallScreenState(
   val displayAdditionalActionsDialog: Boolean = false,
   val displayMissingPermissionsNotice: Boolean = false,
   val pendingParticipantsState: PendingParticipantsState? = null,
-  val isParticipantUpdatePopupEnabled: Boolean = false,
+  val isParticipantUpdatePopupEnabled: Boolean = true,
   val isCallStateUpdatePopupEnabled: Boolean = false,
   val reactions: PersistentList<String> = persistentListOf()
 ) {

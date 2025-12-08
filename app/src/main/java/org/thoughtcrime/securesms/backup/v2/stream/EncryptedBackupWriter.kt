@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.backup.v2.stream
 
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.stream.MacOutputStream
 import org.signal.core.util.writeVarInt32
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
@@ -12,8 +14,6 @@ import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader.Companion.createForSignalBackup
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.io.IOException
 import java.io.OutputStream
 import javax.crypto.Cipher

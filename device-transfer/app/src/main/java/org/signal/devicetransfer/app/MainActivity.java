@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.stop).setOnClickListener(v -> DeviceToDeviceTransferService.stop(this));
 
     findViewById(R.id.enable_permission).setOnClickListener(v -> {
-      if (Build.VERSION.SDK_INT >= 23 && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+      if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 420);
       }
     });

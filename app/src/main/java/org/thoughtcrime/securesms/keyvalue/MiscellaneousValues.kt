@@ -42,6 +42,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val NEW_LINKED_DEVICE_ID = "misc.new_linked_device_id"
     private const val NEW_LINKED_DEVICE_CREATED_TIME = "misc.new_linked_device_created_time"
     private const val STARTED_QUOTE_THUMBNAIL_MIGRATION = "misc.started_quote_thumbnail_migration"
+    private const val PREFERRED_MAIN_ACTIVITY_ANCHOR_INDEX = "misc.preferred_main_activity_anchor_index"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -94,6 +95,8 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
   var hasEverHadAnAvatar by booleanValue(HAS_EVER_HAD_AN_AVATAR, false)
 
   val isChangeNumberLocked: Boolean by booleanValue(CHANGE_NUMBER_LOCK, false)
+
+  var preferredMainActivityAnchorIndex: Int by integerValue(PREFERRED_MAIN_ACTIVITY_ANCHOR_INDEX, -1)
 
   fun lockChangeNumber() {
     putBoolean(CHANGE_NUMBER_LOCK, true)

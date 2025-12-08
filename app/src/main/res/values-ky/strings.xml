@@ -60,6 +60,12 @@
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Калыбына келтирүүчү төлөм сөз айкашын жазыңыз</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Сөз айкашын жазуу</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN кодду өчүрөрдөн мурун, калыбына келтирүүчү төлөм сөз айкашын жаздырып алышыңыз керек. Кийин кааласаңыз, төлөм аккаунтуңузду кабылына келтире аласыз.</string>
+    <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Жаңы калыбына келтирүү ачкычын түзүү</string>
+    <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">PIN кодуңузду өчүрөрдөн мурун жаңы калыбына келтирүүчү ачкыч түзүп, жаздырышыңыз керек.</string>
+    <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Түзүү</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -89,7 +95,7 @@
     <string name="AttachmentKeyboard_contact">Байланыш</string>
     <string name="AttachmentKeyboard_location">Жүргөн жер</string>
     <!-- Text for a button that will allow users to create a poll -->
-    <string name="AttachmentKeyboard_poll">Poll</string>
+    <string name="AttachmentKeyboard_poll">Добуш берүү</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal сүрөттөрүңүз менен видеолоруңузду сиздин уруксатыңыз менен көрсөтөт</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Кирүүгө уруксат берүү</string>
@@ -356,6 +362,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Чалуунун шилтемеси жараксыз. Шилтеменин толуктугун жана тууралыгын текшерип туруп кошулуңуз.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Сиз чалуудасыз</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__dont_transfer">Өтпөсүн</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -659,6 +670,22 @@
     <string name="ConversationFragment_group_names">Топтун аталыштары</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Сүрөт түзмөккө жүктөлгөн жок. Кайталап көрүңүз.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 hours</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 days</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 күнгө</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Биротоло</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Ооба</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Коопсуздук кеңештери</string>
@@ -1147,6 +1174,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal\'дын бул версиясы эскирип калган. Жазышкыңыз келсе, аны жаңыртыңыз.</string>
     <string name="ExpiredBuildReminder_update_now">Жаңыртуу</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="DeprecatedSdkBanner_body">Бул түзмөктө Signal иштебей калды. Signal\'ды колдонуу үчүн Android түзмөгүңүздүн версиясын жаңыртыңыз же жаңыраак түзмөккө которулуңуз.</string>
+
     <!-- Title of notification telling users to update Signal -->
     <string name="DeprecatedNotificationJob_update_signal">Signal\'ды жаңыртуу</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
@@ -1172,11 +1202,11 @@
     <string name="AddToGroupActivity_add_member">Мүчө кошосузбу?</string>
     <string name="AddToGroupActivity_add_s_to_s">Бул адамды \"%1$s\" \"%2$s\" тобуна кошосузбу?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" \"%2$s\" тобуна кошулду.</string>
-    <string name="AddToGroupActivity_add_to_group">Топко кошуу</string>
     <string name="AddToGroupActivity_add_to_groups">Топторго кошуу</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Бул адамды эски топторго кошо албайсыз.</string>
     <string name="AddToGroupActivity_add">Кошуу</string>
     <string name="AddToGroupActivity_add_to_a_group">Топко кошуу</string>
+    <string name="AddToGroupActivity_search">Издөө</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Жаңы администратор тандоо</string>
@@ -1347,10 +1377,15 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Бүттү</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Бул адамды эски топторго кошо албайсыз.</string>
-    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
+
+    <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
+    <string name="AddMembersActivity__add_member_to_s">Бул адамды \"%1$s\" \"%2$s\" тобуна кошосузбу?</string>
+
+    <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="other">%3$d мүчөнү \"%2$s\" тобуна кошосузбу?</item>
+        <item quantity="other">%1$d мүчөнү \"%2$s\" тобуна кошосузбу?</item>
     </plurals>
+
     <string name="AddMembersActivity__add">Кошуу</string>
     <string name="AddMembersActivity__add_members">Мүчөлөрдү кошуу</string>
 
@@ -1453,6 +1488,10 @@
     <string name="RemoteRestoreActivity__not_now">Азыр эмес</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Медиа файлдар фондо калыбына келет. Азыр калыбына келтирбесеңиз, кийин калыбына келтире албай каласыз.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">Бул түзмөк катталбай калды</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">Signal аккаунтун башка түзмөккө каттаган окшойсуз.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Мени айтып өткөндөр тууралуу билип турайын</string>
@@ -2050,7 +2089,9 @@
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s сизге билдирүү жөнөттү, бирок аны иштетүүгө же көрсөтүүгө болбойт, анткени ал жаңы Signal функциясын колдонот.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
-    <string name="MessageRecord_ended_the_poll">%1$s ended the poll: \"%2$s\"</string>
+    <string name="MessageRecord_ended_the_poll">%1$s \"%2$s\" деген добуш берүүнү токтотту</string>
+    <!-- Update message shown when you end the poll. %1$s is the poll question. -->
+    <string name="MessageRecord_you_ended_the_poll">Сурамжылоону бүтүрдүңүз: \"%1$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Кабыл алуу</string>
@@ -2353,6 +2394,12 @@
     <string name="WebRtcCallActivity__to_start_call">Чалып баштоо же чалууга кошулуу үчүн:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">Видеоңузду иштетүү үчүн:</string>
+
+    <!-- MoveableLocalVideoRenderer -->
+    <!-- Content description for button to shrink local video from focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Түзмөктөгү видеону кысуу</string>
+    <!-- Content description for button to expand local video to focused/full-screen mode -->
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Түзмөктөгү видеону жаюу</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal аркылуу чалуу</string>
@@ -2825,6 +2872,8 @@
     <string name="SubmitDebugLogActivity_success">Бүттү!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Ушул URL дарегин көчүрүп, ката жөнүндө кабарга же кардарларды тейлеген кызматка жолдогон катыңызга кошуп коюңуз:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Бөлүшүү</string>
+    <!-- Displayed when entering activity in view-only mode -->
+    <string name="SubmitDebugLogActivity_close">Жабуу</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Бул журнал иштеп чыгуучулар көрө алышы үчүн Интернетке жайгаштырылат. Жөнөтүүдөн мурун баштан аяк көз жүгүртүп чыгыңыз.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">\"Тапшыруу\" баскычын басканыңызда журналыңыз уникалдуу, жарыяланбаган URL дарегинде 30 күн бою онлайнда жайгаштырылат. Адегенде аны жергиликтүү түрдө сактасаңыз болот.</string>
@@ -3081,7 +3130,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">Стикериңизге %1$s деген сезимин билдирди.</string>
     <string name="MessageNotifier_this_message_was_deleted">Бул билдирүү өчүрүлгөн.</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
-    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s voted in the poll \"%3$s\"</string>
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s \"%3$s\" деген суроого добушун берди</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">«Signal\'га байланыш кошулду» деген билдирмени өчүрөсүзбү? Аны кайра Signal\'дан &gt; Тууралоо &gt; Билдирмелер бөлүмүнөн иштете аласыз.</string>
 
@@ -3253,6 +3302,9 @@
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Видеосуз жооп берүү</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen__change_camera_direction">Камеранын багытын өзгөртүү</string>
+
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Аудиочыгыш</string>
@@ -3310,9 +3362,9 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" Signal колдонуучусу эмес. Колдонуучу атын текшерип, кайталап көрүңүз."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Өзүңүздү топко кошпой деле койсоңуз болот</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Топ толуп калды</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal топторунда %1$d чейин гана мүчө болот.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal топторунда %1$s чейин гана мүчө болот.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Мүчөлөрдүн саны эң жогорку чекке жетти</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Мүчөлөрдүн саны %1$d же андан азыраак болгондо, Signal топтору жакшы иштейт. Дагы мүчө кошулса, билдирүүлөр кечигип жөнөтүлүп, кечигип алынышы мүмкүн.</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Мүчөлөрдүн саны %1$s же андан азыраак болгондо, Signal топтору жакшы иштейт. Дагы мүчө кошулса, билдирүүлөр кечигип жөнөтүлүп, кечигип алынышы мүмкүн.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="other">%1$d мүчө</item>
     </plurals>
@@ -4309,7 +4361,11 @@
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Төлөмдүн чоо-жайы</string>
     <!-- Button to end a poll -->
-    <string name="conversation_selection__menu_end_poll">End poll</string>
+    <string name="conversation_selection__menu_end_poll">Добуш берүүнү бүтүрүү</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5048,9 +5104,13 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Өткөрүп жиберүү</string>
-    <plurals name="CreateGroupActivity__d_members">
-        <item quantity="other">%1$d мүчө</item>
+
+    <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
+    <plurals name="CreateGroupActivity__s_members">
+        <item quantity="other">%1$s мүчө</item>
     </plurals>
+    <!-- Accessibility label for navigating to the next screen in the create group flow. -->
+    <string name="CreateGroupActivity__accessibility_next">Кийинки</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Бөлүшүү</string>
@@ -5764,23 +5824,23 @@
     <string name="NewConversationActivity__s_has_been_blocked">%1$s бөгөттөлдү</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Бөгөттөлгөн жок</string>
-    <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">%1$s алынып салынган жок</string>
-    <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Бул адам түзмөгүңүздөгү Байланыштар тизмесине сакталган. Аны Байланыштарыңыздан өчүрүп, кайталап көрүңүз.</string>
-    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Байланышты карап көрүү</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s Signal колдонуучусу эмес</string>
-    <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s Signal колдонуучусу эмес</string>
+    <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s Signal колдонуучусу эмес</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="NewConversationActivity__accessibility_open_top_bar_menu">Менюну ачуу</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
-    <plurals name="CreateGroupActivity_not_signal_users">
+    <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="other">%1$s Signal колдонуучулары эмес</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Атын же номерин издөө</string>
+    <!-- Hint text that shows in the recipient search bar when no text is entered yet. -->
+    <string name="RecipientSearchBar__search_name_or_number">Ысым, колдонуучу аты же номер</string>
+    <!-- Accessibility label for the button to switch to the numeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_numeric_keyboard">Сандык баскычтопко которулуу</string>
+    <!-- Accessibility label for the button to switch to the alphanumeric keyboard type. -->
+    <string name="RecipientSearchBar_accessibility_switch_to_alphanumeric_keyboard">Тамгалар-сандар баскычтобуна которулуу</string>
+    <!-- Accessibility label for the button to clear the search filter. -->
+    <string name="RecipientSearchBar_accessibility_clear_search">Издөө чыпкаларын баштапкы абалга келтирүү</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -5940,7 +6000,6 @@
     <string name="BadgesOverviewFragment__featured_badge">Өзгөчөлөнгөн төшбелги</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Профилде төшбелгилерди көрсөтүү</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Профиль жаңыртылбай калды</string>
-
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Төшбелги тандоо</string>
@@ -7568,12 +7627,16 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Signal\'дын Коопсуз камдык көчүрмөлөрүн иштетүү</string>
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
+    <string name="TurnOnSignalBackups__title_beta">Signal\'дын коопсуз камдык көчүрмөлөрүн байкап көрүңүз</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Алардын баарын жаңы телефонуңузга же жаңы Signal\'га өткөрүп аласыз.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Күйгүзүү</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Азыр эмес</string>
+    <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
+    <string name="TurnOnSignalBackups__toast_not_now">Камдык көчүрмөлөрдү \"Параметрлерден\" иштете аласыз</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Калыбына келтирүү ачкычыңызды ырастаңыз</string>
@@ -7843,6 +7906,12 @@
     <string name="BackupStatusRow__your_last_backup">Акыркы камдык көчүрмөңүз толук жүктөлгөн жок. Телефонуңуздун Wi-Fi\'га туташып турганын текшерип, \"Камдык көчүрмөнү сактоо\" дегенди басып кайталап көрүңүз.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Акыркы камдык көчүрмөңүз толук жүктөлгөн жок. Signal\'дын акыркы версиясын орнотуп, кайталап көрүңүз.</string>
+    <!-- Text displayed when a backup file exceeds the storage limit during upload. -->
+    <string name="BackupStatusRow__backup_file_too_large">Билдирүүлөрүңүз сактагычыңызга батпай калды. Айрымдарын өчүрүп, кайталап көрүңүз.</string>
+    <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
+    <string name="BackupStatusRow__not_backing_up_old_messages">%1$s чейин жөнөтүлгөн же алынган билдирүүлөрдүн камдык көчүрмөлөрү сакталган жок.</string>
+    <!-- Text displayed when we failed to create a backup because of low disk space. -->
+    <string name="BackupStatusRow__not_enough_disk_space">Түзмөгүңүздө орун калбай бараткандыктан, камдык көчүрмөңүз толук сакталган жок. Түзмөгүңүздө орун бошотуп, кайталап көрүңүз.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Кененирээк маалымат</string>
 
@@ -8240,13 +8309,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Калыбына келтирүү ачкычыңыз</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Калыбына келтирүү ачкычы</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Калыбына келтирүү ачкычы 64 орундуу код болуп, Signal\'ды кайра орнотконуңузда сакталган нерселерди калыбына келтиргенге жардам берет.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Калыбына келтирүү ачкычы 64 орундуу код болуп, камдык көчүрмөнү калыбына келтирет.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">PIN кодуңузду унутуп калсаңыз, камдык көчүрмөлөрүңүздү калыбына келтире албай каласыз. Signal да жардам бере албайт.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Калыбына келтирүүчү ачкычты сырсөздөрдү башкаргычта коопсуз сактап, эч ким менен бөлүшпөңүз.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Жоготуп алсаңыз, аккаунтуңузду калыбына келтире албай каласыз.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Кийинки</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Калыбына келтирүү ачкычы</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
@@ -8297,6 +8368,12 @@
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Жаңы калыбына келтирүү ачкычын түзүү</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Жаңы ачкыч учурдагы ачкычыңызды бирөө билип алса гана керек болот. Ал үчүн камдык көчүрмөлөрүңүздү жана медиа файлдарыңызды кайра жүктөп беришиңиз керек. \"Сактагычты оптималдаштыруу\" деген параметр иштеп турса, алгач, буга чейин жүктөлгөн медиа файлдарды жүктөп алышыңыз керек.</string>
+    <!-- Dialog title shown when user attempts to exit backup setup before completion -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Камдык көчүрмөлөрдү орнотууну токтотосузбу?</string>
+    <!-- Dialog body warning user that backup setup is incomplete -->
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Камдык көчүрмөлөр аягына чейин орнотулбагандыктан, түзүлгөн жок. Камдык көчүрмөлөрдү \"Параметрлерде\" иштете аласыз.</string>
+    <!-- Dialog confirmation button to exit backup setup -->
+    <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Ооба</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8421,6 +8498,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Эски телефонуңуздан</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Дароо эски Android телефонуңуздан өткөрөсүз</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Калыбына келтирүү өткөрүп жиберилсинби?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Азыр өткөрүп жиберсеңиз, кийин калыбына келтире албай каласыз. Калыбына келтирүү процессин өткөрүп жибергенден кийин камдык көчүрмөлөрдү кайра иштетсеңиз, учурдагы камдык көчүрмөлөр жаңы билдирүүлөр таржымалынан башталат.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Өткөрүп жиберүү</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Түзмөктөгү камдык көчүрмөлөрдү калыбына келтирүү</string>
@@ -8461,6 +8544,10 @@
     <string name="EnterBackupKey_backup_not_found">Камдык көчүрмө табылган жок</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Ачкычты туура киргиздиңиз, бирок ага байланышкан камдык көчүрмө жок. Эски телефонуңуз жаныңызда болсо, камдык көчүрмөлөрдүн күйгүзүлүп, аяктаганын текшерип, кайталап көрүңүз.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Калыбына келтирүү ачкычын туура эмес киргизген окшойсуз же эски түзмөгүңүздө кеминде бир камдык көчүрмөнү аягына чыгарган жоксуз.\n\nSignal\'дын Коопсуз камдык көчүрмөлөр кызматын иштетип жатканда каттаган телефон номериңизди жана калыбына келтирүүчү ачкычты колдонуп, эски түзмөгүңүздөгү камдык көчүрмөнү аягына чыгарыңыз.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Калыбына келтирүү ачкычын көп жолу туура эмес киргиздиңиз. Коопсуздук максатында, белгилүү бир санда гана аракет кыла аласыз. Бир саат күтүп туруп, кайталап көрүңүз.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Өткөрүп жиберүү</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8549,6 +8636,16 @@
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Өткөрүп жиберүү</string>
 
+    <!-- Dialog title when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Калыбына келтирүү ачкычын түзүү чегине жеттиңиз</string>
+    <!-- Dialog body when the recovery key change limit is reached -->
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">Калыбына келтирүүчү жаңы ачкыч түздүңүз, бирок шылуундукка жол бербөө үчүн жаңы ачкычтарды түзүү санын чектеп койдук. Дагы бир ачкыч түзгүңүз келсе, 7 күн күтүшүңүз керек. Калыбына келтирүүчү ачкычтарды эч ким көрбөгөн коопсуз жерге сактаңыз.</string>
+    <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">Жаңы ачкыч түзүлгөн жок</string>
+    <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">Жаңы ачкыч түзгөнгө өтө көп жолу аракет кылдыңыз. Эми аны 7 күндөн кийин гана түзө аласыз. Эгер камдык көчүрмөлөрүңүз кимдир бирөөгө жеткиликтүү болуп калды деп ойлосоңуз, \"Өчүрүп, камдык көчүрмөлөрдү жок кылуу\" дегенди басыңыз.</string>
+    <!-- Button to acknowledge and dismiss dialog   -->
+    <string name="MessageBackupsKeyRecordScreen__ok">OK</string>
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Издөөнү жабуу</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
@@ -8589,61 +8686,199 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select One</string>
+    <string name="Poll__select_one">Добуш берүү · Бирөөсүн тандаңыз</string>
     <!-- Caption in poll message to select one or more options  -->
-    <string name="Poll__select_multiple">Poll · Select one or more</string>
+    <string name="Poll__select_multiple">Добуш берүү · Бир же бир нече жооп тандаңыз</string>
     <!-- Caption in poll message once a poll has ended  -->
-    <string name="Poll__final_results">Poll · Final results</string>
+    <string name="Poll__final_results">Добуш берүү · Соңку жыйынтык</string>
     <!-- Caption in poll message that no votes have been cast  -->
-    <string name="Poll__no_votes">No votes</string>
+    <string name="Poll__no_votes">Эч ким добуш бере элек</string>
     <!-- Button in poll message to view current votes for a poll -->
-    <string name="Poll__view_votes">View votes</string>
+    <string name="Poll__view_votes">Добуштарды карап көрүү</string>
     <!-- Button in poll message to view the poll after it has ended -->
-    <string name="Poll__view_poll">View poll</string>
+    <string name="Poll__view_poll">Добуш берүүнү карап көрүү</string>
     <!-- Toast message shown if we cannot find the poll -->
-    <string name="Poll__unable_poll">Poll not found</string>
+    <string name="Poll__unable_poll">Табылган жок</string>
     <!-- Button in poll message to view results for a poll after it ends -->
-    <string name="Poll__view_results">View results</string>
+    <string name="Poll__view_results">Жыйынтыгын көрүү</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
-    <string name="Poll__poll_question">Poll: %1$s</string>
+    <string name="Poll__poll_question">Добуш бергиле: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
-    <string name="Poll__poll_end">%1$s ended the poll: \"%2$s\"</string>
+    <string name="Poll__poll_end">%1$s \"%2$s\" деген добуш берүүнү токтотту</string>
+    <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
+    <string name="Poll__you_poll_end">Сурамжылоону бүтүрдүңүз: \"%1$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
+    <string name="Poll__poll_voted">%1$s \"%2$s\" деген суроого добуш берди</string>
     <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Polls</string>
-    <!-- Title of screen that shows the poll results of a poll -->
-    <string name="Poll__poll_results">Poll results</string>
+    <string name="Poll__poll">Добуш берүүлөр</string>
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
+    <string name="Poll__poll_results">Добуш берүүнүн жыйынтыгы</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">Добуш берүү чоо-жайы</string>
     <!-- Header text displaying the question of the poll -->
-    <string name="Poll__question">Question</string>
+    <string name="Poll__question">Суроо берүү</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
-        <item quantity="other">%1$d votes</item>
+        <item quantity="other">%1$d добуш</item>
     </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">Жеңүүчү</string>
     <!-- Text that when pressed will end the poll   -->
-    <string name="Poll__end_poll">End poll</string>
+    <string name="Poll__end_poll">Добуш берүүнү бүтүрүү</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
-    <string name="Poll__see_all">See all</string>
+    <string name="Poll__see_all">Баарын көрүү</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">Добуш берүү аягына чыккан жок</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">Байланышыңызды текшерип, кайталап көрүңүз.</string>
+    <!-- Dialog title when you go to end a poll -->
+    <string name="Poll__end_poll_title">Добуш берүүнү бүтүрөсүзбү?</string>
+    <!-- Dialog body when you go to end a poll -->
+    <string name="Poll__end_poll_body">Топтун мүчөлөрү бул сурамжылоодо добуш бере алышпайт.</string>
+    <!-- Body used in dialog when we are waiting for network -->
+    <string name="Poll__waiting_for_network">Интернет байланышы күтүлүүдө…</string>
     <!-- Header when creating a new poll -->
-    <string name="CreatePollFragment__new_poll">New poll</string>
+    <string name="CreatePollFragment__new_poll">Жаңы добуш берүү</string>
     <!-- Section text to enter in a question for a poll  -->
-    <string name="CreatePollFragment__question">Question</string>
+    <string name="CreatePollFragment__question">Суроо берүү</string>
     <!-- Hint text for question field when creating a poll  -->
-    <string name="CreatePollFragment__ask_a_question">Ask a question</string>
+    <string name="CreatePollFragment__ask_a_question">Суроо</string>
     <!-- Section text to enter in options for a poll -->
-    <string name="CreatePollFragment__options">Options</string>
+    <string name="CreatePollFragment__options">Параметрлер</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
-    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <string name="CreatePollFragment__option_n">%1$d-вариант</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
-    <string name="CreatePollFragment__drag_handle">Drag and drop handle</string>
+    <string name="CreatePollFragment__drag_handle">Сүйрөп алып баруу туткасы</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
-    <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
+    <string name="CreatePollFragment__allow_multiple_votes">Бир нече добушка уруксат берүү</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
-    <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
+    <string name="CreatePollFragment__add_question_option">Суроо жана кеминде 2 вариант кошуу</string>
     <!-- Snackbar text to add two options before creating a poll -->
-    <string name="CreatePollFragment__add_option">Add at least 2 options</string>
+    <string name="CreatePollFragment__add_option">Кеминде 2 вариант кошуу</string>
     <!-- Snackbar text to add a question before creating a poll -->
-    <string name="CreatePollFragment__add_question">Add a question</string>
+    <string name="CreatePollFragment__add_question">Суроо кошуу</string>
+
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">QR кодун скандоо</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">Макул</string>
+
+    <!-- CallQualityIssue -->
+    <!-- Label for general audio issue category -->
+    <string name="CallQualityIssue__audio_issue">Жакшы угулбай жатат</string>
+    <!-- Label for general video issue category -->
+    <string name="CallQualityIssue__video_issue">Жакшы көрүнбөй жатат</string>
+    <!-- Label for call dropped issue -->
+    <string name="CallQualityIssue__call_droppped">Чалуу үзүлүп калды</string>
+    <!-- Label for other/custom issues not covered by predefined categories -->
+    <string name="CallQualityIssue__something_else">Башка нерсе</string>
+    <!-- Label for audio stuttering/choppy audio issue -->
+    <string name="CallQualityIssue__audio_stuttering">Үзүл-кесил угулуп жатат</string>
+    <!-- Label for audio cutting out/dropping issue -->
+    <string name="CallQualityIssue__audio_cut_out">Үн өчүп калды</string>
+    <!-- Label for echo heard by the user -->
+    <string name="CallQualityIssue__i_heard_echo">Жаңырып жатат</string>
+    <!-- Label for echo heard by other call participants -->
+    <string name="CallQualityIssue__others_heard_echo">Башкаларга жаңырып жатат</string>
+    <!-- Label for poor video quality issue -->
+    <string name="CallQualityIssue__poor_video_quality">Видеонун сапаты начар болуп жатат</string>
+    <!-- Label for low video resolution issue -->
+    <string name="CallQualityIssue__low_resolution">Даана эмес</string>
+    <!-- Label for camera malfunction issue -->
+    <string name="CallQualityIssue__camera_did_not_work">Камера иштеген жок</string>
+
+    <!-- CallQualitySomethingElseScreen -->
+    <!-- Title for the "Something else" call quality issue screen -->
+    <string name="CallQualitySomethingElseScreen__title">Башка нерсе</string>
+    <!-- Label for text field where user describes their call quality issue -->
+    <string name="CallQualitySomethingElseScreen__describe_your_issue">Маселе тууралуу айтып бериңиз</string>
+    <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
+    <string name="CallQualitySomethingElseScreen__privacy_notice">Маселеге байланыштуу нерселерди жазыңыз. Ушул жерде бөлүшкөн нерселериңиздин баары купуя сакталып, Signal\'дагы чалуулардын сапатын жакшыртуу үчүн колдонулат.</string>
+    <!-- Button to save the call quality issue description -->
+    <string name="CallQualitySomethingElseScreen__save">Сактоо</string>
+    <!-- Content description for the back navigation button -->
+    <string name="CallQualitySomethingElseScreen__back">Артка</string>
+
+    <!-- CallQualitySheet -->
+    <!-- Title asking user how their call was -->
+    <string name="CallQualitySheet__how_was_your_call">Чалуунун сапаты кандай болду?</string>
+    <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Ушуну менен Signal\'дын чалууларын жакшырта алабыз. Жеке маалымат сакталбайт.</string>
+    <!-- Button label indicating the call had issues -->
+    <string name="CallQualitySheet__had_issues">Маселелер бар</string>
+    <!-- Button label indicating the call was great -->
+    <string name="CallQualitySheet__great">Сонун</string>
+    <!-- Title asking what issues the user experienced -->
+    <string name="CallQualitySheet__what_issues_did_you_have">Эмне болду?</string>
+    <!-- Instruction to select all applicable issues -->
+    <string name="CallQualitySheet__select_all_that_apply">Туура келген жоопторду тандаңыз</string>
+    <!-- Placeholder text for describing a custom issue -->
+    <string name="CallQualitySheet__describe_your_issue">Маселе тууралуу айтып бериңиз</string>
+    <!-- Button to continue to the next step -->
+    <string name="CallQualitySheet__continue">Улантуу</string>
+    <!-- Title asking user to help improve Signal -->
+    <string name="CallQualitySheet__help_us_improve">Жакшыртканга жардам бериңиз</string>
+    <!-- First part of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Мүчүлүштүк тууралуу маалымат бөлүшүү менен, чалуулардын сапатын жакшыртканга жардам бересиз. Бөлүшүүдөн мурун </string>
+    <!-- Link text to view debug log -->
+    <string name="CallQualitySheet__view_your_debug_log">аныкталган мүчүлүштүктөрдү</string>
+    <!-- Last part of description about viewing debug log before submitting -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> карап чыксаңыз болот</string>
+    <!-- Toggle label for sharing debug log -->
+    <string name="CallQualitySheet__share_debug_log">Мүчүлүштүктөр журналын бөлүшүү</string>
+    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
+    <string name="CallQualitySheet__debug_log_privacy_notice">Мүчүлүштүктөр журналында төмөнкү деңгээлдеги колдонмолор тууралуу маалымат камтылып, билдирүүлөрүңүздөгү нерселерди ачыктабаңыз.</string>
+    <!-- Button to submit the call quality feedback -->
+    <string name="CallQualitySheet__submit">Тапшыруу</string>
+    <!-- Displayed as a snackbar after submitting feedback -->
+    <string name="CallQualitySheet__thanks_for_your_feedback">Пикириңиз үчүн чоң рахмат!</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Go to message</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Message not found</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Кадалган</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Сүрөт</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Видео</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Стикер</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Аудио билдирүү</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Бир жолу көрүлүүчү MMS</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Түшүндүм</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Бошотуу</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
 
     <!-- EOF -->
 </resources>

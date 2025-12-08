@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.ServiceId
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.protos.groups.AccessControl
 import org.signal.storageservice.protos.groups.GroupChange
@@ -20,7 +21,6 @@ import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupChangeLog
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Optional
 
 fun DecryptedGroupChange.Builder.setNewDescription(description: String) {

@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -38,6 +39,16 @@ public final class ProfileUploadJob extends BaseJob {
   protected void onRun() throws Exception {
     if (!SignalStore.account().isRegistered()) {
       Log.w(TAG, "Not registered. Skipping.");
+      return;
+    }
+
+    if (SignalStore.account().isLinkedDevice() && !SignalStore.registration().hasDownloadedProfile()) {
+      Log.w(TAG, "Attempting to upload profile before downloading, forcing download first");
+      AppDependencies.getJobManager()
+                     .startChain(new RefreshOwnProfileJob())
+                     .then(new ProfileUploadJob())
+                     .enqueue();
+
       return;
     }
 

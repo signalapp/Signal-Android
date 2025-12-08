@@ -5,6 +5,7 @@
 
 package org.whispersystems.signalservice.api.svr
 
+import org.signal.core.models.backup.MessageBackupKey
 import org.signal.libsignal.attest.AttestationDataException
 import org.signal.libsignal.attest.AttestationFailedException
 import org.signal.libsignal.messagebackup.BackupKey
@@ -19,9 +20,7 @@ import org.signal.libsignal.sgxsession.SgxCommunicationFailureException
 import org.signal.libsignal.svr.DataMissingException
 import org.signal.libsignal.svr.InvalidSvrBDataException
 import org.signal.libsignal.svr.RestoreFailedException
-import org.whispersystems.signalservice.api.CancelationException
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import java.io.IOException
 import java.util.concurrent.ExecutionException
@@ -71,8 +70,6 @@ class SvrBApi(private val network: Network) {
         is SgxCommunicationFailureException -> StoreResult.SvrError(exception)
         else -> StoreResult.UnknownError(exception)
       }
-    } catch (e: CancelationException) {
-      StoreResult.UnknownError(e)
     } catch (e: ExecutionException) {
       StoreResult.UnknownError(e)
     } catch (e: InterruptedException) {
@@ -107,8 +104,6 @@ class SvrBApi(private val network: Network) {
         is SgxCommunicationFailureException -> RestoreResult.SvrError(exception)
         else -> RestoreResult.UnknownError(exception)
       }
-    } catch (e: CancelationException) {
-      RestoreResult.UnknownError(e)
     } catch (e: ExecutionException) {
       RestoreResult.UnknownError(e)
     } catch (e: InterruptedException) {

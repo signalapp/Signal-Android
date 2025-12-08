@@ -47,3 +47,9 @@ sealed interface ChangeNumberOutcome {
   data object VerificationCodeWorked : ChangeNumberOutcome
   class ChangeNumberRequestOutcome(val result: VerificationCodeRequestResult) : ChangeNumberOutcome
 }
+
+sealed interface ChangeLocalNumberOutcome {
+  data object NotPerformed : ChangeLocalNumberOutcome
+  data object Success : ChangeLocalNumberOutcome
+  data object Failure : ChangeLocalNumberOutcome
+}

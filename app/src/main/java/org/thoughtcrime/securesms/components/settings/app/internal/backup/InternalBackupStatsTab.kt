@@ -107,12 +107,12 @@ fun InternalBackupStatsTab(stats: InternalBackupPlaygroundViewModel.StatsState, 
       CircularProgressIndicator()
     } else if (stats.remoteState != null) {
       Rows.TextRow(
-        "Total media items ⭐",
+        text = "Total media items ⭐",
         label = "${stats.remoteState.mediaCount}"
       )
 
       Rows.TextRow(
-        "Total media size ⭐",
+        text = "Total media size ⭐",
         label = "${stats.remoteState.mediaSize} (~${stats.remoteState.mediaSize.bytes.toUnitString()})"
       )
 

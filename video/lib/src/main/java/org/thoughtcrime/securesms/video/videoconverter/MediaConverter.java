@@ -29,9 +29,9 @@ import androidx.annotation.StringDef;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
 import org.thoughtcrime.securesms.video.interfaces.MediaInput;
 import org.thoughtcrime.securesms.video.interfaces.Muxer;
+import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.muxer.StreamingMuxer;
 
 import java.io.File;
@@ -142,7 +142,6 @@ public final class MediaConverter {
      * @return The total content size of the MP4 mdat box.
      */
     @WorkerThread
-    @RequiresApi(23)
     public long convert() throws EncodingException, IOException {
         // Exception that may be thrown during release.
         Exception           exception           = null;

@@ -19,6 +19,12 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.MasterKey
+import org.signal.core.models.ServiceId
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -67,19 +73,13 @@ import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection
-import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
-import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
@@ -171,6 +171,11 @@ object RegistrationRepository {
   suspend fun registerAccountLocally(context: Context, data: LocalRegistrationMetadata) =
     withContext(Dispatchers.IO) {
       Log.v(TAG, "registerAccountLocally()")
+      if (data.linkedDeviceInfo != null) {
+        SignalStore.account.deviceId = data.linkedDeviceInfo.deviceId
+        SignalStore.account.deviceName = data.linkedDeviceInfo.deviceName
+      }
+
       val aciIdentityKeyPair = data.getAciIdentityKeyPair()
       val pniIdentityKeyPair = data.getPniIdentityKeyPair()
       SignalStore.account.restoreAciIdentityKeyFromBackup(aciIdentityKeyPair.publicKey.serialize(), aciIdentityKeyPair.privateKey.serialize())
@@ -219,9 +224,6 @@ object RegistrationRepository {
       saveOwnIdentityKey(selfId, pni, pniProtocolStore, now)
 
       if (data.linkedDeviceInfo != null) {
-        SignalStore.account.deviceId = data.linkedDeviceInfo.deviceId
-        SignalStore.account.deviceName = data.linkedDeviceInfo.deviceName
-
         if (data.linkedDeviceInfo.accountEntropyPool != null) {
           SignalStore.account.setAccountEntropyPoolFromPrimaryDevice(AccountEntropyPool(data.linkedDeviceInfo.accountEntropyPool))
         }
@@ -254,7 +256,6 @@ object RegistrationRepository {
         RotateSignedPreKeyListener.schedule(context)
       } else {
         SignalStore.account.isMultiDevice = true
-        SignalStore.registration.hasUploadedProfile = true
         jobManager.runJobBlocking(RefreshOwnProfileJob(), 30.seconds)
 
         jobManager.add(RotateCertificateJob())

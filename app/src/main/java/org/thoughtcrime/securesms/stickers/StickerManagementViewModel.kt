@@ -24,8 +24,8 @@ import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
 class StickerManagementViewModel : ViewModel() {
   private val stickerManagementRepo = StickerManagementRepository
 
-  private val _uiState = MutableStateFlow(StickerManagementUiState())
-  val uiState: StateFlow<StickerManagementUiState> = _uiState.asStateFlow()
+  private val internalUiState = MutableStateFlow(StickerManagementUiState())
+  val uiState: StateFlow<StickerManagementUiState> = internalUiState.asStateFlow()
 
   private val downloadStatusByPackId: MutableStateFlow<Map<StickerPackId, DownloadStatus>> = MutableStateFlow(emptyMap())
 
@@ -68,12 +68,12 @@ class StickerManagementViewModel : ViewModel() {
           )
         }
 
-        _uiState.update { previousState ->
-          previousState.copy(
+        internalUiState.update {
+          it.copy(
             availableBlessedPacks = availableBlessedPacks,
             availableNotBlessedPacks = availableNotBlessedPacks,
             installedPacks = installedPacks,
-            multiSelectEnabled = if (installedPacks.isEmpty()) false else previousState.multiSelectEnabled
+            multiSelectEnabled = if (installedPacks.isEmpty()) false else it.multiSelectEnabled
           )
         }
       }
@@ -86,10 +86,8 @@ class StickerManagementViewModel : ViewModel() {
       StickerManagementRepository.installStickerPack(packId = pack.id, packKey = pack.key, notify = true)
       updatePackDownloadStatus(pack.id, DownloadStatus.Downloaded)
 
-      _uiState.update { previousState ->
-        previousState.copy(
-          actionConfirmation = StickerManagementConfirmation.InstalledPack(pack.record.title)
-        )
+      internalUiState.update {
+        it.copy(actionConfirmation = StickerManagementConfirmation.InstalledPack(pack.record.title))
       }
 
       delay(1500) // wait, so we show the downloaded status for a bit before removing this row from the available sticker packs list
@@ -110,11 +108,9 @@ class StickerManagementViewModel : ViewModel() {
       return
     }
 
-    if (_uiState.value.multiSelectEnabled) {
-      _uiState.update { previousState ->
-        previousState.copy(
-          userPrompt = ConfirmRemoveStickerPacksPrompt(numItemsToDelete = packIds.size)
-        )
+    if (internalUiState.value.multiSelectEnabled) {
+      internalUiState.update {
+        it.copy(userPrompt = ConfirmRemoveStickerPacksPrompt(numItemsToDelete = packIds.size))
       }
     } else {
       uninstallStickerPacks(packIds)
@@ -122,48 +118,48 @@ class StickerManagementViewModel : ViewModel() {
   }
 
   fun onUninstallStickerPacksConfirmed(packIds: Set<StickerPackId>) {
-    _uiState.update { previousState -> previousState.copy(userPrompt = null) }
+    internalUiState.update { it.copy(userPrompt = null) }
     uninstallStickerPacks(packIds)
   }
 
   fun onUninstallStickerPacksCanceled() {
-    _uiState.update { previousState -> previousState.copy(userPrompt = null) }
+    internalUiState.update { it.copy(userPrompt = null) }
   }
 
   private fun uninstallStickerPacks(packIds: Set<StickerPackId>) {
-    val packsToUninstall = _uiState.value.installedPacks.filter { packIds.contains(it.id) }
+    val packsToUninstall = internalUiState.value.installedPacks.filter { packIds.contains(it.id) }
     viewModelScope.launch {
       StickerManagementRepository.uninstallStickerPacks(packsToUninstall.associate { it.id to it.key })
 
-      _uiState.update { previousState ->
-        previousState.copy(
+      internalUiState.update {
+        it.copy(
           actionConfirmation = if (packsToUninstall.size == 1) {
             StickerManagementConfirmation.UninstalledPack(packsToUninstall.single().record.title)
           } else {
             StickerManagementConfirmation.UninstalledPacks(packsToUninstall.size)
           },
-          selectedPackIds = previousState.selectedPackIds.minus(packIds)
+          selectedPackIds = it.selectedPackIds.minus(packIds)
         )
       }
     }
   }
 
   fun updatePosition(fromIndex: Int, toIndex: Int) {
-    _uiState.update { it.copy(installedPacks = _uiState.value.installedPacks.swap(fromIndex, toIndex)) }
+    internalUiState.update { it.copy(installedPacks = internalUiState.value.installedPacks.swap(fromIndex, toIndex)) }
   }
 
   fun saveInstalledPacksSortOrder() {
     viewModelScope.launch {
-      StickerManagementRepository.setStickerPacksOrder(_uiState.value.installedPacks.map { it.record })
+      StickerManagementRepository.setStickerPacksOrder(internalUiState.value.installedPacks.map { it.record })
     }
   }
 
   fun toggleSelection(pack: InstalledStickerPack) {
-    _uiState.update { previousState ->
-      val wasItemSelected = previousState.selectedPackIds.contains(pack.id)
-      val selectedPackIds = if (wasItemSelected) previousState.selectedPackIds.minus(pack.id) else previousState.selectedPackIds.plus(pack.id)
+    internalUiState.update {
+      val wasItemSelected = it.selectedPackIds.contains(pack.id)
+      val selectedPackIds = if (wasItemSelected) it.selectedPackIds.minus(pack.id) else it.selectedPackIds.plus(pack.id)
 
-      previousState.copy(
+      it.copy(
         multiSelectEnabled = selectedPackIds.isNotEmpty(),
         selectedPackIds = selectedPackIds
       )
@@ -171,21 +167,21 @@ class StickerManagementViewModel : ViewModel() {
   }
 
   fun toggleSelectAll() {
-    _uiState.update { previousState ->
-      previousState.copy(
+    internalUiState.update {
+      it.copy(
         multiSelectEnabled = true,
-        selectedPackIds = if (previousState.selectedPackIds.size == previousState.installedPacks.size) {
+        selectedPackIds = if (it.selectedPackIds.size == it.installedPacks.size) {
           emptySet()
         } else {
-          previousState.installedPacks.map { it.id }.toSet()
+          it.installedPacks.map { pack -> pack.id }.toSet()
         }
       )
     }
   }
 
   fun setMultiSelectEnabled(isEnabled: Boolean) {
-    _uiState.update { previousState ->
-      previousState.copy(
+    internalUiState.update {
+      it.copy(
         multiSelectEnabled = isEnabled,
         selectedPackIds = emptySet()
       )
@@ -193,8 +189,8 @@ class StickerManagementViewModel : ViewModel() {
   }
 
   fun onSnackbarDismiss() {
-    _uiState.update { previousState ->
-      previousState.copy(actionConfirmation = null)
+    internalUiState.update {
+      it.copy(actionConfirmation = null)
     }
   }
 }

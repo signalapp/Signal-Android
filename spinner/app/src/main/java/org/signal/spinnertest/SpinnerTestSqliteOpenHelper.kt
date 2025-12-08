@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.database.sqlite.SQLiteTransactionListener
 import android.os.CancellationSignal
-import android.util.Pair
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteStatement
@@ -160,7 +159,7 @@ class SpinnerTestSqliteOpenHelper(context: Context) : SQLiteOpenHelper(context, 
   override val isWriteAheadLoggingEnabled: Boolean
     get() = readableDatabase.isWriteAheadLoggingEnabled
 
-  override val attachedDbs: List<Pair<String, String>>?
+  override val attachedDbs: List<android.util.Pair<String, String>>?
     get() = readableDatabase.attachedDbs
 
   override val isDatabaseIntegrityOk: Boolean

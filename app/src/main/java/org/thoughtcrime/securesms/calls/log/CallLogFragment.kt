@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.kotlin.Flowables
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
@@ -25,6 +26,7 @@ import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.create.CreateCallLinkBottomSheetDialogFragment
@@ -59,7 +61,8 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
-import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
+import org.thoughtcrime.securesms.window.getWindowSizeClass
+import org.thoughtcrime.securesms.window.isSplitPane
 import java.util.Objects
 
 /**
@@ -122,12 +125,13 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     )
 
     disposables += scrollToPositionDelegate
-    disposables += Flowables.combineLatest(viewModel.data, viewModel.selected)
+    disposables += Flowables.combineLatest(viewModel.data, viewModel.selected, mainNavigationViewModel.observableActiveCallId.toFlowable(BackpressureStrategy.LATEST))
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { (data, selected) ->
+      .subscribe { (data, selected, activeRowId) ->
         val filteredCount = callLogAdapter.submitCallRows(
           data,
           selected,
+          activeCallLogRowId = activeRowId.orNull().takeIf { resources.getWindowSizeClass().isSplitPane() },
           viewModel.callLogPeekHelper.localDeviceCallRecipientId,
           scrollToPositionDelegate::notifyListCommitted
         )
@@ -139,6 +143,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { (selected, totalCount) ->
         if (selected.isNotEmpty(totalCount)) {
+          callLogActionMode.start()
           callLogActionMode.setCount(selected.count(totalCount))
         } else if (mainToolbarViewModel.isInActionMode()) {
           callLogActionMode.end()
@@ -180,7 +185,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       }
     }
 
-    if (resources.getWindowSizeClass().isCompact()) {
+    if (!resources.getWindowSizeClass().isSplitPane()) {
       ViewUtil.setBottomMargin(binding.bottomActionBar, ViewUtil.getNavigationBarHeight(binding.bottomActionBar))
     }
 
@@ -203,7 +208,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   }
 
   private fun initializeTapToScrollToTop(scrollToPositionDelegate: ScrollToPositionDelegate) {
-    disposables += mainNavigationViewModel.tabClickEvents
+    disposables += mainNavigationViewModel.tabClickEventsObservable
       .filter { it == MainNavigationListLocation.CALLS }
       .subscribeBy(onNext = {
         scrollToPositionDelegate.resetScrollPosition()

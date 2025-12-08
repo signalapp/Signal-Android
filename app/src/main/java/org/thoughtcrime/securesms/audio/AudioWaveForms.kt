@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.Uri
 import android.util.LruCache
 import androidx.annotation.AnyThread
-import androidx.annotation.RequiresApi
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.SingleSubject
@@ -24,7 +23,6 @@ import kotlin.concurrent.write
  *
  * Maintains an in-memory cache of recently requested wave forms.
  */
-@RequiresApi(23)
 object AudioWaveForms {
 
   private val TAG = Log.tag(AudioWaveForms::class.java)

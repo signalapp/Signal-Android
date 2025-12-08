@@ -5,10 +5,10 @@
  */
 package org.whispersystems.signalservice.api.messages
 
+import org.signal.core.models.ServiceId
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.whispersystems.signalservice.api.messages.shared.SharedContact
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.OptionalUtil.asOptional
 import org.whispersystems.signalservice.api.util.OptionalUtil.emptyIfStringEmpty
 import org.whispersystems.signalservice.internal.push.BodyRange
@@ -53,7 +53,9 @@ class SignalServiceDataMessage private constructor(
   val bodyRanges: Optional<List<BodyRange>>,
   val pollCreate: Optional<PollCreate>,
   val pollVote: Optional<PollVote>,
-  val pollTerminate: Optional<PollTerminate>
+  val pollTerminate: Optional<PollTerminate>,
+  val pinnedMessage: Optional<PinnedMessage>,
+  val unpinnedMessage: Optional<UnpinnedMessage>
 ) {
   val isActivatePaymentsRequest: Boolean = payment.map { it.isActivationRequest }.orElse(false)
   val isPaymentsActivated: Boolean = payment.map { it.isActivation }.orElse(false)
@@ -74,7 +76,9 @@ class SignalServiceDataMessage private constructor(
       this.remoteDelete.isPresent ||
       this.pollCreate.isPresent ||
       this.pollVote.isPresent ||
-      this.pollTerminate.isPresent
+      this.pollTerminate.isPresent ||
+      this.pinnedMessage.isPresent ||
+      this.unpinnedMessage.isPresent
 
   val isGroupV2Update: Boolean = groupContext.isPresent && groupContext.get().hasSignedGroupChange() && !hasRenderableContent
   val isEmptyGroupV2Message: Boolean = isGroupV2Message && !isGroupV2Update && !hasRenderableContent
@@ -106,6 +110,8 @@ class SignalServiceDataMessage private constructor(
     private var pollCreate: PollCreate? = null
     private var pollVote: PollVote? = null
     private var pollTerminate: PollTerminate? = null
+    private var pinnedMessage: PinnedMessage? = null
+    private var unpinnedMessage: UnpinnedMessage? = null
 
     fun withTimestamp(timestamp: Long): Builder {
       this.timestamp = timestamp
@@ -244,6 +250,16 @@ class SignalServiceDataMessage private constructor(
       return this
     }
 
+    fun withPinnedMessage(pinnedMessage: PinnedMessage?): Builder {
+      this.pinnedMessage = pinnedMessage
+      return this
+    }
+
+    fun withUnpinnedMessage(unpinnedMessage: UnpinnedMessage?): Builder {
+      this.unpinnedMessage = unpinnedMessage
+      return this
+    }
+
     fun build(): SignalServiceDataMessage {
       if (timestamp == 0L) {
         timestamp = System.currentTimeMillis()
@@ -275,7 +291,9 @@ class SignalServiceDataMessage private constructor(
         bodyRanges = bodyRanges.asOptional(),
         pollCreate = pollCreate.asOptional(),
         pollVote = pollVote.asOptional(),
-        pollTerminate = pollTerminate.asOptional()
+        pollTerminate = pollTerminate.asOptional(),
+        pinnedMessage = pinnedMessage.asOptional(),
+        unpinnedMessage = unpinnedMessage.asOptional()
       )
     }
   }
@@ -291,7 +309,8 @@ class SignalServiceDataMessage private constructor(
   ) {
     enum class Type(val protoType: QuoteProto.Type) {
       NORMAL(QuoteProto.Type.NORMAL),
-      GIFT_BADGE(QuoteProto.Type.GIFT_BADGE);
+      GIFT_BADGE(QuoteProto.Type.GIFT_BADGE),
+      POLL(QuoteProto.Type.POLL);
 
       companion object {
         @JvmStatic
@@ -321,6 +340,8 @@ class SignalServiceDataMessage private constructor(
   data class PollCreate(val question: String, val allowMultiple: Boolean, val options: List<String>)
   data class PollVote(val targetAuthor: ServiceId, val targetSentTimestamp: Long, val optionIndexes: List<Int>, val voteCount: Int)
   data class PollTerminate(val targetSentTimestamp: Long)
+  data class PinnedMessage(val targetAuthor: ServiceId, val targetSentTimestamp: Long, val pinDurationInSeconds: Int?, val forever: Boolean?)
+  data class UnpinnedMessage(val targetAuthor: ServiceId, val targetSentTimestamp: Long)
 
   companion object {
     @JvmStatic

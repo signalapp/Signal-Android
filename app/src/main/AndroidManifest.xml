@@ -129,6 +129,10 @@
     <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false" />
     <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
 
+    <meta-data
+        android:name="android.telephony.PROPERTY_SATELLITE_DATA_OPTIMIZED"
+        android:value="org.thoughtcrime.securesms" />
+
     <activity android:name=".components.webrtc.v2.WebRtcCallActivity"
               android:theme="@style/TextSecure.DarkTheme.WebRTCCall"
               android:excludeFromRecents="true"
@@ -632,6 +636,13 @@
             <data android:scheme="sgnl" />
             <data android:host="signal.link" />
         </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="sgnl" />
+            <data android:host="rereg" />
+        </intent-filter>
     </activity>
 
     <activity android:name=".conversation.v2.ConversationActivity"
@@ -692,10 +703,10 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
-    <activity android:name=".NewConversationActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false"/>
+    <activity
+              android:name=".conversation.NewConversationActivity"
+              android:exported="false"
+              android:theme="@style/Signal.DayNight.NoActionBar" />
 
     <activity android:name=".recipients.ui.findby.FindByActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
@@ -709,11 +720,10 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
-    <activity android:name=".calls.new.NewCallActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:windowSoftInputMode="stateAlwaysVisible"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false"/>
+    <activity
+            android:name=".calls.new.NewCallActivity"
+            android:exported="false"
+            android:theme="@style/Signal.DayNight.NoActionBar" />
 
     <activity android:name=".PushContactSelectionActivity"
               android:label="@string/AndroidManifest__select_contacts"
@@ -1041,7 +1051,7 @@
     <activity android:name=".MainActivity"
               android:enableOnBackInvokedCallback="true"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"
+              android:configChanges="touchscreen|keyboard|keyboardHidden"
               android:windowSoftInputMode="stateUnchanged"
               android:resizeableActivity="true"
               android:exported="false"/>
@@ -1051,17 +1061,20 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
-    <activity android:name=".groups.ui.creategroup.CreateGroupActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:exported="false"/>
+    <activity
+        android:name=".groups.ui.creategroup.CreateGroupActivity"
+        android:exported="false"
+        android:theme="@style/Signal.DayNight.NoActionBar" />
 
-    <activity android:name=".groups.ui.addtogroup.AddToGroupsActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:exported="false"/>
+    <activity
+            android:name=".groups.ui.addtogroup.AddToGroupsActivity"
+            android:exported="false"
+            android:theme="@style/Signal.DayNight.NoActionBar" />
 
-    <activity android:name=".groups.ui.addmembers.AddMembersActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:exported="false"/>
+    <activity
+            android:name=".groups.ui.addmembers.AddMembersActivity"
+            android:exported="false"
+            android:theme="@style/Signal.DayNight.NoActionBar" />
 
     <activity android:name=".groups.ui.creategroup.details.AddGroupDetailsActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
@@ -1253,6 +1266,10 @@
 
     <receiver
         android:name=".service.ScheduledMessageManager$ScheduledMessagesAlarm"
+        android:exported="false"/>
+
+    <receiver
+        android:name=".service.PinnedMessageManager$PinnedMessagesAlarm"
         android:exported="false"/>
 
     <receiver

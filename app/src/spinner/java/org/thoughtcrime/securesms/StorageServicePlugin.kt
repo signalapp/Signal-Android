@@ -11,7 +11,7 @@ class StorageServicePlugin : Plugin {
   override val name: String = "Storage"
   override val path: String = PATH
 
-  override fun get(): PluginResult {
+  override fun get(parameters: Map<String, List<String>>): PluginResult {
     val columns = listOf("Type", "Id", "Data")
     val rows = mutableListOf<List<String>>()
 

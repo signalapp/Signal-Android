@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.api.messages.multidevice;
 
 import org.junit.Test;
 import org.signal.libsignal.zkgroup.InvalidInputException;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.signal.core.models.ServiceId.ACI;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -17,7 +17,7 @@ public class DeviceContactsInputStreamTest {
   @Test
   public void read() throws IOException, InvalidInputException {
     ByteArrayOutputStream      byteArrayOut  = new ByteArrayOutputStream();
-    DeviceContactsOutputStream output        = new DeviceContactsOutputStream(byteArrayOut);
+    DeviceContactsOutputStream output        = new DeviceContactsOutputStream(byteArrayOut, true, true);
     Optional<ACI>              aciFirst      = Optional.of(ACI.from(UUID.randomUUID()));
     Optional<String>           e164First     = Optional.of("+1404555555");
     Optional<ACI>              aciSecond     = Optional.of(ACI.from(UUID.randomUUID()));

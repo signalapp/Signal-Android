@@ -68,6 +68,10 @@ class PinRestoreViewModel : ViewModel() {
           is SecureValueRecovery.RestoreResponse.ApplicationError -> {
             event.postValue(Event.NETWORK_ERROR)
           }
+
+          SecureValueRecovery.RestoreResponse.EnclaveNotFound -> {
+            event.postValue(Event.PIN_LOCKED)
+          }
         }
       }
   }

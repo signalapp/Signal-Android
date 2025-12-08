@@ -44,8 +44,8 @@ import kotlin.time.Duration.Companion.seconds
 @Composable
 fun CircularProgressWrapper(
   isLoading: Boolean,
-  content: @Composable () -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  content: @Composable () -> Unit
 ) {
   Box(
     contentAlignment = Alignment.Center,

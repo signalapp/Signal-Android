@@ -9,7 +9,7 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
-import org.signal.ringrtc.CallManager.CallEvent;
+import org.signal.ringrtc.CallManager.CallEndReason;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -34,14 +34,14 @@ import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_OUT
  */
 public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
 
-  private static final Map<CallEvent, WebRtcViewModel.State> ENDED_REMOTE_EVENT_TO_STATE = new HashMap<CallEvent, WebRtcViewModel.State>() {{
-    put(CallEvent.ENDED_REMOTE_HANGUP_ACCEPTED, WebRtcViewModel.State.CALL_ACCEPTED_ELSEWHERE);
-    put(CallEvent.ENDED_REMOTE_HANGUP_BUSY, WebRtcViewModel.State.CALL_ONGOING_ELSEWHERE);
-    put(CallEvent.ENDED_REMOTE_HANGUP_DECLINED, WebRtcViewModel.State.CALL_DECLINED_ELSEWHERE);
-    put(CallEvent.ENDED_REMOTE_BUSY, WebRtcViewModel.State.CALL_BUSY);
-    put(CallEvent.ENDED_REMOTE_HANGUP_NEED_PERMISSION, WebRtcViewModel.State.CALL_NEEDS_PERMISSION);
-    put(CallEvent.ENDED_REMOTE_GLARE, WebRtcViewModel.State.CALL_DISCONNECTED_GLARE);
-    put(CallEvent.ENDED_REMOTE_RECALL, WebRtcViewModel.State.CALL_DISCONNECTED_GLARE);
+  private static final Map<CallEndReason, WebRtcViewModel.State> ENDED_REMOTE_END_REASON_TO_STATE = new HashMap<CallEndReason, WebRtcViewModel.State>() {{
+    put(CallEndReason.REMOTE_HANGUP_ACCEPTED, WebRtcViewModel.State.CALL_ACCEPTED_ELSEWHERE);
+    put(CallEndReason.REMOTE_HANGUP_BUSY, WebRtcViewModel.State.CALL_ONGOING_ELSEWHERE);
+    put(CallEndReason.REMOTE_HANGUP_DECLINED, WebRtcViewModel.State.CALL_DECLINED_ELSEWHERE);
+    put(CallEndReason.REMOTE_BUSY, WebRtcViewModel.State.CALL_BUSY);
+    put(CallEndReason.REMOTE_HANGUP_NEED_PERMISSION, WebRtcViewModel.State.CALL_NEEDS_PERMISSION);
+    put(CallEndReason.REMOTE_GLARE, WebRtcViewModel.State.CALL_DISCONNECTED_GLARE);
+    put(CallEndReason.REMOTE_RECALL, WebRtcViewModel.State.CALL_DISCONNECTED_GLARE);
   }};
 
   public ActiveCallActionProcessorDelegate(@NonNull WebRtcInteractor webRtcInteractor, @NonNull String tag) {
@@ -166,10 +166,10 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleEndedRemote(@NonNull WebRtcServiceState currentState,
-                                                          @NonNull CallEvent endedRemoteEvent,
+                                                          @NonNull CallEndReason callEndReason,
                                                           @NonNull RemotePeer remotePeer)
   {
-    Log.i(tag, "handleEndedRemote(): call_id: " + remotePeer.getCallId() + " action: " + endedRemoteEvent);
+    Log.i(tag, "handleEndedRemote(): call_id: " + remotePeer.getCallId() + " action: " + callEndReason);
 
     WebRtcViewModel.State state                = currentState.getCallInfoState().getCallState();
     RemotePeer            activePeer           = currentState.getCallInfoState().getActivePeer();
@@ -177,11 +177,11 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
     boolean               outgoingBeforeAccept = remotePeer.getState() == CallState.DIALING || remotePeer.getState() == CallState.REMOTE_RINGING;
     boolean               incomingBeforeAccept = remotePeer.getState() == CallState.ANSWERING || remotePeer.getState() == CallState.LOCAL_RINGING;
 
-    if (remotePeerIsActive && ENDED_REMOTE_EVENT_TO_STATE.containsKey(endedRemoteEvent)) {
-      state = Objects.requireNonNull(ENDED_REMOTE_EVENT_TO_STATE.get(endedRemoteEvent));
+    if (remotePeerIsActive && ENDED_REMOTE_END_REASON_TO_STATE.containsKey(callEndReason)) {
+      state = Objects.requireNonNull(ENDED_REMOTE_END_REASON_TO_STATE.get(callEndReason));
     }
 
-    if (endedRemoteEvent == CallEvent.ENDED_REMOTE_HANGUP || endedRemoteEvent == CallEvent.ENDED_REMOTE_HANGUP_BUSY) {
+    if (callEndReason == CallEndReason.REMOTE_HANGUP || callEndReason == CallEndReason.REMOTE_HANGUP_BUSY) {
       if (remotePeerIsActive) {
         state = outgoingBeforeAccept ? WebRtcViewModel.State.RECIPIENT_UNAVAILABLE : WebRtcViewModel.State.CALL_DISCONNECTED;
       }
@@ -189,15 +189,15 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
       if (incomingBeforeAccept) {
         webRtcInteractor.insertMissedCall(remotePeer, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState(remotePeer).isRemoteVideoOffer());
       }
-    } else if (endedRemoteEvent == CallEvent.ENDED_REMOTE_BUSY && remotePeerIsActive) {
+    } else if (callEndReason == CallEndReason.REMOTE_BUSY && remotePeerIsActive) {
       activePeer.receivedBusy();
 
       OutgoingRinger ringer = new OutgoingRinger(context);
       ringer.start(OutgoingRinger.Type.BUSY);
       ThreadUtil.runOnMainDelayed(ringer::stop, SignalCallManager.BUSY_TONE_LENGTH);
-    } else if (endedRemoteEvent == CallEvent.ENDED_REMOTE_GLARE && incomingBeforeAccept) {
+    } else if (callEndReason == CallEndReason.REMOTE_GLARE && incomingBeforeAccept) {
       webRtcInteractor.insertMissedCall(remotePeer, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState(remotePeer).isRemoteVideoOffer());
-    } else if (endedRemoteEvent == CallEvent.ENDED_REMOTE_RECALL && incomingBeforeAccept) {
+    } else if (callEndReason == CallEndReason.REMOTE_RECALL && incomingBeforeAccept) {
       webRtcInteractor.insertMissedCall(remotePeer, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState(remotePeer).isRemoteVideoOffer());
     }
 
@@ -216,13 +216,13 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallEvent endedEvent, @NonNull RemotePeer remotePeer) {
-    Log.i(tag, "handleEnded(): call_id: " + remotePeer.getCallId() + " action: " + endedEvent);
+  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallEndReason callEndReason, @NonNull RemotePeer remotePeer) {
+    Log.i(tag, "handleEnded(): call_id: " + remotePeer.getCallId() + " action: " + callEndReason);
 
     if (remotePeer.callIdEquals(currentState.getCallInfoState().getActivePeer()) && !currentState.getCallInfoState().getCallState().isErrorState()) {
       currentState = currentState.builder()
                                  .changeCallInfoState()
-                                 .callState(endedEvent == CallEvent.ENDED_TIMEOUT ? WebRtcViewModel.State.RECIPIENT_UNAVAILABLE : WebRtcViewModel.State.NETWORK_FAILURE)
+                                 .callState(callEndReason == CallEndReason.TIMEOUT ? WebRtcViewModel.State.RECIPIENT_UNAVAILABLE : WebRtcViewModel.State.NETWORK_FAILURE)
                                  .build();
 
       webRtcInteractor.postStateUpdate(currentState);

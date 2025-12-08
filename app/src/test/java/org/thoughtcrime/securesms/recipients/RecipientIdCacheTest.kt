@@ -5,9 +5,9 @@ import io.mockk.mockk
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.testutil.LogRecorder
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Optional
 import java.util.UUID
 

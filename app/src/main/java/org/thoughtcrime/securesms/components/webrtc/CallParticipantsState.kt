@@ -261,7 +261,13 @@ data class CallParticipantsState(
 
     @JvmStatic
     fun setExpanded(oldState: CallParticipantsState, expanded: Boolean): CallParticipantsState {
-      val localRenderState: WebRtcLocalRenderState = determineLocalRenderMode(oldState = oldState, isExpanded = expanded)
+      val localRenderState: WebRtcLocalRenderState = determineLocalRenderMode(oldState = oldState, isLocalParticipantExpanded = expanded)
+
+      return oldState.copy(localRenderState = localRenderState)
+    }
+
+    fun setFocusLocalParticipant(oldState: CallParticipantsState, focused: Boolean): CallParticipantsState {
+      val localRenderState: WebRtcLocalRenderState = determineLocalRenderMode(oldState = oldState, isLocalParticipantFocused = focused)
 
       return oldState.copy(localRenderState = localRenderState)
     }
@@ -304,12 +310,15 @@ data class CallParticipantsState(
       callState: WebRtcViewModel.State = oldState.callState,
       numberOfRemoteParticipants: Int = oldState.allRemoteParticipants.size,
       isViewingFocusedParticipant: Boolean = oldState.isViewingFocusedParticipant,
-      isExpanded: Boolean = oldState.localRenderState == WebRtcLocalRenderState.EXPANDED
+      isLocalParticipantExpanded: Boolean = oldState.localRenderState == WebRtcLocalRenderState.EXPANDED,
+      isLocalParticipantFocused: Boolean = oldState.localRenderState == WebRtcLocalRenderState.FOCUSED
     ): WebRtcLocalRenderState {
       val displayLocal: Boolean = (numberOfRemoteParticipants == 0 || !isInPip) && (isNonIdleGroupCall || localParticipant.isVideoEnabled)
       var localRenderState: WebRtcLocalRenderState = WebRtcLocalRenderState.GONE
 
-      if (!isInPip && isExpanded && localParticipant.isVideoEnabled) {
+      if (!isInPip && isLocalParticipantFocused && localParticipant.isVideoEnabled) {
+        return WebRtcLocalRenderState.FOCUSED
+      } else if (!isInPip && isLocalParticipantExpanded && localParticipant.isVideoEnabled) {
         return WebRtcLocalRenderState.EXPANDED
       } else if (displayLocal || showVideoForOutgoing) {
         if (callState == WebRtcViewModel.State.CALL_CONNECTED || callState == WebRtcViewModel.State.CALL_RECONNECTING) {

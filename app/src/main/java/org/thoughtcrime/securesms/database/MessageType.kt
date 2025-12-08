@@ -48,5 +48,8 @@ enum class MessageType {
   END_SESSION,
 
   /** A poll has ended **/
-  POLL_TERMINATE
+  POLL_TERMINATE,
+
+  /** A message has been pinned **/
+  PINNED_MESSAGE
 }

@@ -266,7 +266,7 @@ private fun LegacyAudioPickerContent(
 @NightPreview
 @Composable
 private fun CallAudioPickerSheetContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     Column {
       LegacyAudioPickerContent(
         toggleButtonOutputState = ToggleButtonOutputState().apply {

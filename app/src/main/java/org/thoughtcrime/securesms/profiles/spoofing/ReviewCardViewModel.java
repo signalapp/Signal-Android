@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.profiles.spoofing;
 
-import android.util.Pair;
+import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,7 +46,7 @@ public class ReviewCardViewModel extends ViewModel {
 
     LiveData<Pair<Boolean, List<ReviewRecipient>>> adminStatusAndReviewRecipients = LiveDataUtil.combineLatest(isSelfGroupAdmin, reviewRecipients, Pair::new);
 
-    this.reviewCards      = LiveDataUtil.mapAsync(adminStatusAndReviewRecipients, pair -> transformReviewRecipients(pair.first, pair.second));
+    this.reviewCards      = LiveDataUtil.mapAsync(adminStatusAndReviewRecipients, pair -> transformReviewRecipients(pair.getFirst(), pair.getSecond()));
     this.reviewEvents     = new SingleLiveEvent<>();
 
     repository.loadRecipients(new OnRecipientsLoadedListener());

@@ -1,5 +1,6 @@
 package org.whispersystems.signalservice.api.util;
 
+import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;

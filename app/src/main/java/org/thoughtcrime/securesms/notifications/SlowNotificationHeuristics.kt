@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.notifications
 
-import android.os.Build
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import org.signal.core.util.logging.Log
@@ -76,10 +75,6 @@ object SlowNotificationHeuristics {
 
   @JvmStatic
   fun shouldPromptBatterySaver(): Boolean {
-    if (Build.VERSION.SDK_INT < 23) {
-      return false
-    }
-
     val remoteEnabled = LocaleRemoteConfig.isBatterySaverPromptEnabled() || LocaleRemoteConfig.isDelayedNotificationPromptEnabled()
     if (!remoteEnabled || SignalStore.uiHints.hasDismissedBatterySaverPrompt()) {
       return false

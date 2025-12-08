@@ -12,6 +12,7 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlinx.serialization.json.Json
+import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.conversation.ConversationArgs
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
@@ -23,13 +24,15 @@ import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 @Parcelize
 sealed class MainNavigationDetailLocation : Parcelable {
 
-  class Saver : androidx.compose.runtime.saveable.Saver<MainNavigationDetailLocation, String> {
+  class Saver(
+    val earlyLocation: MainNavigationDetailLocation?
+  ) : androidx.compose.runtime.saveable.Saver<MainNavigationDetailLocation, String> {
     override fun SaverScope.save(value: MainNavigationDetailLocation): String? {
       return Json.encodeToString(value)
     }
 
     override fun restore(value: String): MainNavigationDetailLocation? {
-      return Json.decodeFromString(value)
+      return earlyLocation ?: Json.decodeFromString(value)
     }
   }
 
@@ -70,10 +73,10 @@ sealed class MainNavigationDetailLocation : Parcelable {
   @Parcelize
   sealed class Calls : MainNavigationDetailLocation() {
 
+    abstract val controllerKey: CallLogRow.Id
+
     @Parcelize
     sealed class CallLinks : Calls() {
-
-      abstract val controllerKey: CallLinkRoomId
 
       @Serializable
       data class CallLinkDetails(val callLinkRoomId: CallLinkRoomId) : CallLinks() {
@@ -83,14 +86,14 @@ sealed class MainNavigationDetailLocation : Parcelable {
 
         @Transient
         @IgnoredOnParcel
-        override val controllerKey: CallLinkRoomId = callLinkRoomId
+        override val controllerKey: CallLogRow.Id = CallLogRow.Id.CallLink(callLinkRoomId)
       }
 
       @Serializable
       data class EditCallLinkName(val callLinkRoomId: CallLinkRoomId) : CallLinks() {
         @Transient
         @IgnoredOnParcel
-        override val controllerKey: CallLinkRoomId = callLinkRoomId
+        override val controllerKey: CallLogRow.Id = CallLogRow.Id.CallLink(callLinkRoomId)
       }
     }
   }

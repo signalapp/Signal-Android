@@ -111,7 +111,7 @@ private fun NoRemoteStorageSpaceAvailableBottomSheetContent(
 @DayNightPreviews
 @Composable
 private fun NoRemoteStorageSpaceAvailableBottomSheetContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     NoRemoteStorageSpaceAvailableBottomSheetContent({}, {}, {})
   }
 }

@@ -4,6 +4,8 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import io.mockk.every
+import io.mockk.mockkStatic
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -14,12 +16,14 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.mms.IncomingMessage
+import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.GroupTestingUtils
 import org.thoughtcrime.securesms.testing.GroupTestingUtils.asMember
 import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.internal.push.DataMessage
 
@@ -38,6 +42,10 @@ class DataMessageProcessorTest_polls {
 
   @Before
   fun setUp() {
+    mockkStatic(RemoteConfig::class)
+
+    every { RemoteConfig.receivePolls } returns true
+
     alice = Recipient.resolved(harness.others[0])
     bob = Recipient.resolved(harness.others[1])
     charlie = Recipient.resolved(harness.others[2])
@@ -180,7 +188,7 @@ class DataMessageProcessorTest_polls {
     assertThat(messageId!!.id).isEqualTo(1)
     val poll = SignalDatabase.polls.getPoll(messageId.id)
     assert(poll != null)
-    assertThat(poll!!.pollOptions[0].voterIds).isEqualTo(listOf(bob.id.toLong()))
+    assertThat(poll!!.pollOptions[0].voters).isEqualTo(listOf(Voter(bob.id.toLong(), 1)))
   }
 
   @Test
@@ -200,9 +208,9 @@ class DataMessageProcessorTest_polls {
     assert(messageId != null)
     val poll = SignalDatabase.polls.getPoll(messageId!!.id)
     assert(poll != null)
-    assertThat(poll!!.pollOptions[0].voterIds).isEqualTo(listOf(bob.id.toLong()))
-    assertThat(poll.pollOptions[1].voterIds).isEqualTo(listOf(bob.id.toLong()))
-    assertThat(poll.pollOptions[2].voterIds).isEqualTo(listOf(bob.id.toLong()))
+    assertThat(poll!!.pollOptions[0].voters).isEqualTo(listOf(Voter(bob.id.toLong(), 1)))
+    assertThat(poll.pollOptions[1].voters).isEqualTo(listOf(Voter(bob.id.toLong(), 1)))
+    assertThat(poll.pollOptions[2].voters).isEqualTo(listOf(Voter(bob.id.toLong(), 1)))
   }
 
   @Test

@@ -205,7 +205,7 @@ private fun MessageBackupsKeyRecordScreenPreview() {
 @DayNightPreviews
 @Composable
 private fun BottomSheetContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     BottomSheetContent({}, {})
   }
 }

@@ -55,6 +55,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
@@ -129,7 +130,7 @@ class BankTransferMandateFragment : ComposeFragment() {
 @DayNightPreviews
 @Composable
 fun BankTransferScreenPreview() {
-  SignalTheme {
+  Previews.Preview {
     BankTransferScreen(
       bankMandate = "Test ".repeat(500),
       failedToLoadMandate = false,

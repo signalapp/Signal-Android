@@ -45,8 +45,8 @@ data class StickerPackParams(
       return (StickerUrl.parseActionUri(uri) ?: StickerUrl.parseShareLink(uri.toString()))
         .map { parseResult ->
           StickerPackParams(
-            id = StickerPackId(parseResult.first()),
-            key = StickerPackKey(parseResult.second())
+            id = StickerPackId(parseResult.first),
+            key = StickerPackKey(parseResult.second)
           )
         }.orNull()
     }

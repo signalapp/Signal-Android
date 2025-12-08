@@ -701,6 +701,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       }
     } else if (MessageTypes.isPollTerminate(thread.getType())) {
       return emphasisAdded(context, thread.getBody(), Glyph.POLL, defaultTint);
+    } else if (MessageTypes.isPinnedMessageUpdate(thread.getType())) {
+      return emphasisAdded(context, thread.getBody(), Glyph.PIN, defaultTint);
     } else {
       ThreadTable.Extra extra = thread.getExtra();
       if (extra != null && extra.isViewOnce()) {

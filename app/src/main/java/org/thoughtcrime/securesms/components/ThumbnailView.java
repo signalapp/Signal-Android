@@ -403,7 +403,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (hasSameContents(this.slide, slide)) {
-      Log.i(TAG, "Not re-loading slide " + slide.asAttachment().getUri());
+      Log.i(TAG, "Not re-loading slide " + slide.asAttachment().getDisplayUri());
       return new SettableFuture<>(false);
     }
 
@@ -604,9 +604,7 @@ public class ThumbnailView extends FrameLayout {
                                                               .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
                                                               .transition(withCrossFade()));
 
-    boolean doNotShowMissingThumbnailImage = Build.VERSION.SDK_INT < 23;
-
-    if (slide.isInProgress() || doNotShowMissingThumbnailImage) {
+    if (slide.isInProgress()) {
       return requestBuilder;
     } else {
       return requestBuilder.apply(RequestOptions.errorOf(R.drawable.missing_thumbnail));

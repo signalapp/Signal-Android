@@ -17,7 +17,11 @@ public final class PinOptOutDialog {
 
   private static final String TAG = Log.tag(PinOptOutDialog.class);
 
-  public static void show(@NonNull Context context, @NonNull Runnable onSuccess) {
+  /**
+   * @param rotateAep If true, this will rotate the AEP as part of the process of opting out. Only do this if the user has not enabled backups! If the user
+   *    has backups enabled, you should guide them through rotating the AEP first, and then call this with [rotateAep] = false.
+   */
+  public static void show(@NonNull Context context, boolean rotateAep, @NonNull Runnable onSuccess) {
     Log.i(TAG, "show()");
     AlertDialog dialog = new MaterialAlertDialogBuilder(context)
                                         .setTitle(R.string.PinOptOutDialog_warning)
@@ -29,7 +33,7 @@ public final class PinOptOutDialog {
                                           AlertDialog progress = SimpleProgressDialog.show(context);
 
                                           SimpleTask.run(() -> {
-                                            SvrRepository.optOutOfPin();
+                                            SvrRepository.optOutOfPin(rotateAep);
                                             return null;
                                           }, success -> {
                                             Log.i(TAG, "Disable operation finished.");

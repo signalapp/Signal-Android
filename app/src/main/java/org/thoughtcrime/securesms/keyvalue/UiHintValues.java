@@ -8,6 +8,7 @@ import java.util.List;
 public class UiHintValues extends SignalStoreValues {
 
   private static final int NEVER_DISPLAY_PULL_TO_FILTER_TIP_THRESHOLD = 3;
+  private static final int HAS_SEEN_PINNED_MESSAGE_SHEET_THRESHOLD    = 3;
 
   private static final String HAS_SEEN_GROUP_SETTINGS_MENU_TOAST       = "uihints.has_seen_group_settings_menu_toast";
   private static final String HAS_CONFIRMED_DELETE_FOR_EVERYONE_ONCE   = "uihints.has_confirmed_delete_for_everyone_once";
@@ -29,6 +30,7 @@ public class UiHintValues extends SignalStoreValues {
   private static final String HAS_SEEN_CHAT_FOLDERS_EDUCATION_SHEET    = "uihints.has_seen_chat_folders_education_sheet";
   private static final String HAS_SEEN_LINK_DEVICE_QR_EDUCATION_SHEET  = "uihints.has_seen_link_device_qr_education_sheet";
   private static final String HAS_DISMISSED_SAVE_STORAGE_WARNING       = "uihints.has_dismissed_save_storage_warning";
+  private static final String HAS_SEEN_PINNED_MESSAGE_SHEET            = "uihints.has_seen_pinned_message_sheet";
 
   UiHintValues(@NonNull KeyValueStore store) {
     super(store);
@@ -217,5 +219,17 @@ public class UiHintValues extends SignalStoreValues {
 
   public void markDismissedSaveStorageWarning() {
     putBoolean(HAS_DISMISSED_SAVE_STORAGE_WARNING, true);
+  }
+
+  public boolean shouldDisplayPinnedSheet() {
+    return getSeenPinnedSheetCount() < HAS_SEEN_PINNED_MESSAGE_SHEET_THRESHOLD;
+  }
+
+  public void incrementSeenPinnedSheetCount() {
+    putInteger(HAS_SEEN_PINNED_MESSAGE_SHEET, getSeenPinnedSheetCount() + 1);
+  }
+
+  private int getSeenPinnedSheetCount() {
+    return getInteger(HAS_SEEN_PINNED_MESSAGE_SHEET, 0);
   }
 }

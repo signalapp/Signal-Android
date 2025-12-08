@@ -36,6 +36,28 @@
     </FrameLayout>
 
     <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/body_bubble"
+        android:layout_alignTop="@id/body_bubble"
+        android:layout_alignBottom="@id/body_bubble"
+        android:layout_marginEnd="-42dp" >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/go_to_pinned_indicator"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/signal_colorSurfaceVariant"
+            android:padding="6dp"
+            android:tint="@color/signal_colorOnSurfaceVariant"
+            android:visibility="gone"
+            app:srcCompat="@drawable/symbol_chat_arrow_24" />
+
+    </FrameLayout>
+
+    <FrameLayout
         android:id="@+id/contact_photo_container"
         android:layout_width="@dimen/conversation_item_avatar_size"
         android:layout_height="@dimen/conversation_item_avatar_size"

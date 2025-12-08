@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.MasterKey
+import org.signal.core.util.Hex
 import org.signal.libsignal.protocol.logging.Log
 import org.signal.libsignal.svr2.PinHash
 import org.signal.svr2.proto.BackupRequest
@@ -13,7 +15,6 @@ import org.signal.svr2.proto.Request
 import org.signal.svr2.proto.RestoreRequest
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
-import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
@@ -26,7 +27,6 @@ import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.get
 import org.whispersystems.signalservice.internal.push.AuthCredentials
-import org.whispersystems.signalservice.internal.util.Hex
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.io.IOException
@@ -83,7 +83,11 @@ class SecureValueRecoveryV2(
       DeleteResponse.Success
     } catch (e: NonSuccessfulResponseCodeException) {
       Log.w(TAG, "[Delete] Failed with a non-successful response code exception!", e)
-      DeleteResponse.ApplicationError(e)
+      if (e.code == 404) {
+        DeleteResponse.EnclaveNotFound
+      } else {
+        DeleteResponse.ApplicationError(e)
+      }
     } catch (e: IOException) {
       Log.w(TAG, "[Delete] Failed with a network exception!", e)
       DeleteResponse.NetworkError(e)
@@ -149,7 +153,11 @@ class SecureValueRecoveryV2(
       }
     } catch (e: NonSuccessfulResponseCodeException) {
       Log.w(TAG, "[Restore] Failed with a non-successful response code exception!", e)
-      RestoreResponse.ApplicationError(e)
+      if (e.code == 404) {
+        RestoreResponse.EnclaveNotFound
+      } else {
+        RestoreResponse.ApplicationError(e)
+      }
     } catch (e: IOException) {
       Log.w(TAG, "[Restore] Failed with a network exception!", e)
       RestoreResponse.NetworkError(e)
@@ -212,7 +220,11 @@ class SecureValueRecoveryV2(
         }
       } catch (e: NonSuccessfulResponseCodeException) {
         Log.w(TAG, "[Set] Failed with a non-successful response code exception!", e)
-        BackupResponse.ApplicationError(e)
+        if (e.code == 404) {
+          BackupResponse.EnclaveNotFound
+        } else {
+          BackupResponse.ApplicationError(e)
+        }
       } catch (e: IOException) {
         Log.w(TAG, "[Set] Failed with a network exception!", e)
         BackupResponse.NetworkError(e)

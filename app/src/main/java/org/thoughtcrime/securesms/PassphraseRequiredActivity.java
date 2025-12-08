@@ -195,7 +195,8 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
     return !SignalStore.registration().isRegistrationComplete() &&
            !SignalStore.svr().hasPin() &&
            !SignalStore.svr().lastPinCreateFailed() &&
-           !SignalStore.svr().hasOptedOut();
+           !SignalStore.svr().hasOptedOut() &&
+           SignalStore.account().isPrimaryDevice();
   }
 
   private boolean userMustSetProfileName() {

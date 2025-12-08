@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
 import kotlin.jvm.optionals.getOrNull
@@ -424,7 +424,7 @@ class LinkDeviceViewModel : ViewModel() {
 
   private fun Uri.supportsLinkAndSync(): Boolean {
     val capabilities = this.getQueryParameter("capabilities")?.split(",")?.toSet() ?: emptySet()
-    return "backup4" in capabilities || "backup5" in capabilities
+    return "backup5" in capabilities
   }
 
   fun onSyncErrorIgnored() = viewModelScope.launch(Dispatchers.IO) {

@@ -5,7 +5,6 @@ import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.annotation.NonNull
 import androidx.annotation.WorkerThread
-import androidx.core.util.toKotlinPair
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
@@ -92,7 +91,7 @@ class ShareRepository(context: Context) {
         } ?: return@map null
 
         val size = getSize(appContext, uri)
-        val dimens: Pair<Int, Int> = MediaUtil.getDimensions(appContext, mimeType, uri).toKotlinPair()
+        val dimens: Pair<Int, Int> = MediaUtil.getDimensions(appContext, mimeType, uri)
         val duration = 0L
         val blobUri = try {
           BlobProvider.getInstance()

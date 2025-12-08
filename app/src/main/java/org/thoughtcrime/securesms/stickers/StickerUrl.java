@@ -7,12 +7,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.Hex;
-import org.signal.libsignal.protocol.util.Pair;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import kotlin.Pair;
 
 /**
  * Manages creating and parsing the various sticker pack URLs.

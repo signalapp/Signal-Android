@@ -113,7 +113,7 @@ object Scaffolds {
 @DayNightPreviews
 @Composable
 private fun SettingsScaffoldPreview() {
-  SignalTheme {
+  Previews.Preview {
     val vector = remember {
       ImageVector.Builder(
         defaultWidth = 24.dp,
@@ -148,7 +148,7 @@ private fun SettingsScaffoldPreview() {
 @DayNightPreviews
 @Composable
 private fun SettingsScaffoldNoNavIconPreview() {
-  SignalTheme {
+  Previews.Preview {
     Scaffolds.Settings(
       "Settings Scaffold",
       onNavigationClick = {},

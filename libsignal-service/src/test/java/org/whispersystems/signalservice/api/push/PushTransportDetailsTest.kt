@@ -15,19 +15,19 @@ class PushTransportDetailsTest {
 
   @Test
   fun testV3Padding() {
-    (0 until 159).forEach { i ->
+    (0 until 79).forEach { i ->
+      val message = ByteArray(i)
+      assertThat(transportV3.getPaddedMessageBody(message)).hasSize(79)
+    }
+
+    (79 until 159).forEach { i ->
       val message = ByteArray(i)
       assertThat(transportV3.getPaddedMessageBody(message)).hasSize(159)
     }
 
-    (159 until 319).forEach { i ->
+    (159 until 239).forEach { i ->
       val message = ByteArray(i)
-      assertThat(transportV3.getPaddedMessageBody(message)).hasSize(319)
-    }
-
-    (319 until 479).forEach { i ->
-      val message = ByteArray(i)
-      assertThat(transportV3.getPaddedMessageBody(message)).hasSize(479)
+      assertThat(transportV3.getPaddedMessageBody(message)).hasSize(239)
     }
   }
 }

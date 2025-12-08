@@ -32,6 +32,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -41,15 +44,19 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -58,7 +65,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.MainActivity
@@ -71,6 +78,7 @@ import org.thoughtcrime.securesms.components.contactsupport.ContactSupportCallba
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportDialog
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportViewModel
 import org.thoughtcrime.securesms.components.contactsupport.SendSupportEmailEffect
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreen
@@ -78,6 +86,7 @@ import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreenTitle
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.PlayStoreUtil
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.viewModel
 import java.util.Locale
 import kotlin.time.Duration
@@ -147,9 +156,22 @@ class RemoteRestoreActivity : BaseActivity() {
       }
     }
 
+    lifecycleScope.launch {
+      lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        while (isActive) {
+          if (TextSecurePreferences.isUnauthorizedReceived(this@RemoteRestoreActivity)) {
+            ThreadUtil.runOnMain { showUnregisteredDialog() }
+            break
+          }
+          delay(1000)
+        }
+      }
+    }
+
     setContent {
       val state: RemoteRestoreViewModel.ScreenState by viewModel.state.collectAsStateWithLifecycle()
       val contactSupportState: ContactSupportViewModel.ContactSupportState<ContactSupportReason> by contactSupportViewModel.state.collectAsStateWithLifecycle()
+      var showSkipRestoreWarning by remember { mutableStateOf(false) }
 
       SendSupportEmailEffect(
         contactSupportState = contactSupportState,
@@ -178,13 +200,9 @@ class RemoteRestoreActivity : BaseActivity() {
             onRetryRestoreTier = { viewModel.reload() },
             onContactSupport = { contactSupportViewModel.showContactSupport() },
             onCancelClick = {
-              lifecycleScope.launch {
-                if (state.isRemoteRestoreOnlyOption) {
-                  viewModel.skipRestore()
-                  viewModel.performStorageServiceAccountRestoreIfNeeded()
-                  startActivity(MainActivity.clearTop(this@RemoteRestoreActivity))
-                }
-
+              if (state.isRemoteRestoreOnlyOption) {
+                showSkipRestoreWarning = true
+              } else {
                 finish()
               }
             },
@@ -194,6 +212,26 @@ class RemoteRestoreActivity : BaseActivity() {
             },
             contactSupportCallbacks = contactSupportViewModel
           )
+
+          if (showSkipRestoreWarning) {
+            Dialogs.SimpleAlertDialog(
+              title = stringResource(R.string.SelectRestoreMethodFragment__skip_restore_title),
+              body = stringResource(R.string.SelectRestoreMethodFragment__skip_restore_warning),
+              confirm = stringResource(R.string.SelectRestoreMethodFragment__skip_restore),
+              dismiss = stringResource(android.R.string.cancel),
+              onConfirm = {
+                lifecycleScope.launch {
+                  viewModel.skipRestore()
+                  viewModel.performStorageServiceAccountRestoreIfNeeded()
+                  startActivity(MainActivity.clearTop(this@RemoteRestoreActivity))
+                  finish()
+                }
+              },
+              onDismiss = { showSkipRestoreWarning = false },
+              confirmColor = MaterialTheme.colorScheme.error,
+              properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+            )
+          }
         }
       }
     }
@@ -204,6 +242,19 @@ class RemoteRestoreActivity : BaseActivity() {
   @Subscribe(threadMode = ThreadMode.MAIN)
   fun onEvent(restoreEvent: RestoreV2Event) {
     viewModel.updateRestoreProgress(restoreEvent)
+  }
+
+  private fun showUnregisteredDialog() {
+    MaterialAlertDialogBuilder(this)
+      .setTitle(R.string.RestoreActivity__no_longer_registered_title)
+      .setMessage(R.string.RestoreActivity__no_longer_registered_message)
+      .setCancelable(false)
+      .setPositiveButton(android.R.string.ok) { _, _ ->
+        viewModel.skipRestore()
+        startActivity(MainActivity.clearTop(this))
+        supportFinishAfterTransition()
+      }
+      .show()
   }
 
   enum class ContactSupportReason {
@@ -633,7 +684,8 @@ fun TierRestoreFailedDialog(
       negative = stringResource(android.R.string.cancel),
       onPositive = onRetryRestore,
       onNeutral = onContactSupport,
-      onNegative = onCancel
+      onNegative = onCancel,
+      properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
     )
   } else {
     Dialogs.SimpleAlertDialog(

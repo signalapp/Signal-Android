@@ -6,10 +6,15 @@
 package org.thoughtcrime.securesms.components.emoji
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.AnnotatedString
@@ -68,6 +73,27 @@ fun Emojifier(
   }
 
   content(annotatedString, candidateMap)
+}
+
+@Composable
+fun EmojiImage(
+  emoji: String,
+  modifier: Modifier
+) {
+  if (LocalInspectionMode.current) {
+    Box(modifier.background(color = Color.Red, shape = CircleShape))
+    return
+  }
+
+  val context = LocalContext.current
+  val drawable = remember(emoji) { EmojiProvider.getEmojiDrawable(context, emoji) }
+  val painter = rememberDrawablePainter(drawable)
+
+  Image(
+    painter = painter,
+    contentDescription = emoji,
+    modifier = modifier
+  )
 }
 
 @Composable

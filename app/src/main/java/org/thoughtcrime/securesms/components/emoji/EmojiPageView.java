@@ -141,7 +141,7 @@ public class EmojiPageView extends RecyclerView implements VariationSelectorList
 
   @Override
   protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
-    if (visibility != VISIBLE) {
+    if (visibility != VISIBLE && popup != null) {
       popup.dismiss();
     }
   }

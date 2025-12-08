@@ -3,6 +3,7 @@ package org.signal.util
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.groups.state.SenderKeyRecord
 import org.signal.libsignal.protocol.state.IdentityKeyStore
 import org.signal.libsignal.protocol.state.IdentityKeyStore.IdentityChange
@@ -142,7 +143,7 @@ class InMemorySignalServiceAccountDataStore : SignalServiceAccountDataStore {
     return kyberPreKeys.containsKey(kyberPreKeyId)
   }
 
-  override fun markKyberPreKeyUsed(kyberPreKeyId: Int) {
+  override fun markKyberPreKeyUsed(kyberPreKeyId: Int, signedPreKeyId: Int, baseKey: ECPublicKey) {
     kyberPreKeys.remove(kyberPreKeyId)
   }
 

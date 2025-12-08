@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 
 @Immutable
 data class AppSettingsState(
+  val isPrimaryDevice: Boolean,
   val unreadPaymentsCount: Int,
   val hasExpiredGiftBadge: Boolean,
   val allowUserToGoToDonationManagementScreen: Boolean,

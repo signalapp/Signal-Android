@@ -31,6 +31,7 @@ Before you begin, ensure you have the following installed:
 - `git`
 - `docker`
 - `python` (version 3.x)
+- `uv`
 - `adb` ([link](https://developer.android.com/tools/adb))
 - `bundletool` ([link](https://github.com/google/bundletool/releases))
 
@@ -168,25 +169,24 @@ You'll notice that the names of the APKs in each directory are very similar, but
 
 Finally, it's time for the moment of truth! Let's compare the APKs that were pulled from your device with the APKs that were compiled from the Signal source code. The [`apkdiff.py`](./apkdiff/apkdiff.py) utility that is provided in the Signal repo makes this step easy.
 
-The code for the `apkdiff.py` script is short and easy to examine, and it simply extracts the zipped APKs and automates the comparison process. Using this script to check the APKs is helpful because APKs are compressed archives that can't easily be compared with a tool like `diff`. The script also knows how to skip files that are unrelated to any of the app's code or functionality (like signing information).
+Using this script to check the APKs is helpful because APKs are compressed archives that can't easily be compared with a tool like `diff`. The script also knows how to skip files that are unrelated to any of the app's code or functionality (like signing information, or extra harmless metadata added by the Play Store).
 
-Let's copy the script to our working directory and ensure that it's executable:
-
-```bash
-cp ~/Signal-Android/reproducible-builds/apkdiff/apkdiff.py ~/reproducible-signal
-
-chmod +x ~/reproducible-signal/apkdiff.py
-```
-
-The script expects two APK filenames as arguments. In order to verify all of the APKs, simply run the script for each pair of APKs as follows. Be sure to update the filenames for your specific device (e.g. replacing `arm64-v8a` or `xxhdpi` if necessary):
+Let's first install all necessary dependencies using `uv`:
 
 ```bash
-./apkdiff.py apks-i-built/base-master.apk    apks-from-device/base.apk
-./apkdiff.py apks-i-built/base-arm64-v8a.apk apks-from-device/split_config.arm64-v8a.apk
-./apkdiff.py apks-i-built/base-xxhdpi.apk    apks-from-device/split_config.xxhdpi.apk
+cd ~/Signal-Android/reproducible-builds/apkdiff
+uv sync
 ```
 
-If each step says `APKs match!`, you're good to go! You've successfully verified that your device is running exactly the same code that is in the Signal Android git repository.
+The script expects two APK filenames as arguments. In order to verify all of the APKs, simply run the script for each pair of APKs as follows. Be sure to update the filenames for your specific device (e.g. replacing `arm64-v8a` or `xxhdpi` if necessary). We'll use `uv` to run the script to handle the python venv stuff for us:
+
+```bash
+uv run apkdiff.py ~/reproducible-signal/apks-i-built/base-master.apk    ~/reproducible-signal/apks-from-device/base.apk
+uv run apkdiff.py ~/reproducible-signal/apks-i-built/base-arm64-v8a.apk ~/reproducible-signal/apks-from-device/split_config.arm64-v8a.apk
+uv run apkdiff.py ~/reproducible-signal/apks-i-built/base-xxhdpi.apk    ~/reproducible-signal/apks-from-device/split_config.xxhdpi.apk
+```
+
+If each ends with `APKs match!`, you're good to go! You've successfully verified that your device is running exactly the same code that is in the Signal Android git repository.
 
 If you get `APKs don't match!`, it means something went wrong. Please see the [Troubleshooting section](#troubleshooting) for more information.
 
@@ -211,7 +211,7 @@ If you're able to successfully build and retrieve all of the APKs yet some of th
 - Are you comparing the right APKs? Multiple APKs are present with app bundles, so make sure you're comparing base-to-base, density-to-density, and ABI-to-ABI. The wrong filename in the wrong place will cause the `apkdiff.py` script to report a mismatch.
 - Are you using the latest version of the Docker image? The Dockerfile can change on a version-by-version basis, and you should be re-building the image each time to make sure it hasn't changed.
 
-We have a daily automated task that tests the reproducible build process, but bugs are still possible.
+We have a daily automated task that tests the reproducible build process, but bugs are still possible. 
 
 If you're having trouble even after building and pulling all the APKs correctly and trying the troubleshooting steps above, please [open an issue](https://github.com/signalapp/Signal-Android/issues/new/choose).
 

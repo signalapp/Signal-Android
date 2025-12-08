@@ -74,7 +74,7 @@ private fun NoManualBackupSheetContent(
 @DayNightPreviews
 @Composable
 private fun NoManualBackupSheetContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     NoManualBackupSheetContent(
       durationSinceLastBackup = 30.days
     )

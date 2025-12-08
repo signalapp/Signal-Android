@@ -48,6 +48,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
@@ -99,7 +100,7 @@ private val tips = listOf(
 @DayNightPreviews
 @Composable
 private fun SafetyTipsContentPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       SafetyTipsContent()
     }
@@ -224,7 +225,7 @@ private fun SafetyTipsContent(forGroup: Boolean = false, modifier: Modifier = Mo
 @Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun SafetyTipPreview() {
-  SignalTheme {
+  Previews.Preview {
     Surface {
       SafetyTip(tips[0])
     }

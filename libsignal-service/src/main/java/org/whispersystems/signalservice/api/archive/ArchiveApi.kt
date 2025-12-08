@@ -5,6 +5,10 @@
 
 package org.whispersystems.signalservice.api.archive
 
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.backup.BackupKey
+import org.signal.core.models.backup.MediaRootBackupKey
+import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.protocol.ecc.ECPublicKey
@@ -14,11 +18,7 @@ import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequestContext
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialResponse
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse.StoredMediaObject
-import org.whispersystems.signalservice.api.backup.BackupKey
-import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.delete
 import org.whispersystems.signalservice.internal.get
@@ -95,19 +95,21 @@ class ArchiveApi(
    * Ensures that you reserve backupIds for both messages and media on the service. This must be done before any other
    * backup-related calls. You only need to do it once, but repeated calls are safe.
    *
+   * Passing null for either key will skip reserving for that backup and not cost a rate limit permit.
+   *
    * PUT /v1/archives/backupid
    *
    * - 204: Success
    * - 400: Invalid credential
    * - 429: Rate-limited
    */
-  fun triggerBackupIdReservation(messageBackupKey: MessageBackupKey, mediaRootBackupKey: MediaRootBackupKey, aci: ACI): NetworkResult<Unit> {
-    val messageBackupRequestContext = BackupAuthCredentialRequestContext.create(messageBackupKey.value, aci.rawUuid)
-    val mediaBackupRequestContext = BackupAuthCredentialRequestContext.create(mediaRootBackupKey.value, aci.rawUuid)
+  fun triggerBackupIdReservation(messageBackupKey: MessageBackupKey?, mediaRootBackupKey: MediaRootBackupKey?, aci: ACI): NetworkResult<Unit> {
+    val messageBackupRequestContext = messageBackupKey?.let { BackupAuthCredentialRequestContext.create(messageBackupKey.value, aci.rawUuid) }
+    val mediaBackupRequestContext = mediaRootBackupKey?.let { BackupAuthCredentialRequestContext.create(mediaRootBackupKey.value, aci.rawUuid) }
 
     val request = WebSocketRequestMessage.put(
       "/v1/archives/backupid",
-      ArchiveSetBackupIdRequest(messageBackupRequestContext.request, mediaBackupRequestContext.request)
+      ArchiveSetBackupIdRequest(messageBackupRequestContext?.request, mediaBackupRequestContext?.request)
     )
 
     return NetworkResult.fromWebSocketRequest(authWebSocket, request)
@@ -161,6 +163,15 @@ class ArchiveApi(
    * return 0 for used space since that is stored under the media key/credential.
    *
    * Will return a [NetworkResult.StatusCodeError] with status code 404 if you haven't uploaded a backup yet.
+   *
+   * GET /v1/archives
+   * - 200: Success
+   * - 400: Bad arguments. The request may have been made on an authenticated channel.
+   * - 401: The provided backup auth credential presentation could not be verified or the public key signature was invalid or there is no backup associated with
+   *        the backup-id in the presentation or the credential was of the wrong type (messages/media)
+   * - 403: Forbidden
+   * - 404: No backup
+   * - 429: Rate limited
    */
   fun getBackupInfo(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<ArchiveGetBackupInfoResponse> {
     return getCredentialPresentation(aci, archiveServiceAccess)
@@ -379,6 +390,18 @@ class ArchiveApi(
         val request = WebSocketRequestMessage.get("/v1/archives/auth/svrb", headers)
         NetworkResult.fromWebSocketRequest(unauthWebSocket, request, AuthCredentials::class)
       }
+  }
+
+  /**
+   * Determine whether the backup-id can currently be rotated
+   *
+   * GET /v1/archives/backupid/limits
+   * - 200: Successfully retrieved backup-id rotation limits
+   * - 403: Invalid account authentication
+   */
+  fun getKeyRotationLimit(): NetworkResult<ArchiveKeyRotationLimitResponse> {
+    val request = WebSocketRequestMessage.get("/v1/archives/backupid/limits")
+    return NetworkResult.fromWebSocketRequest(authWebSocket, request, ArchiveKeyRotationLimitResponse::class)
   }
 
   private fun getCredentialPresentation(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<CredentialPresentationData> {

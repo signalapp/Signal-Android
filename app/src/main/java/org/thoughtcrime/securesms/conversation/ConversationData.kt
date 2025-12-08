@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.conversation
 
+import org.signal.core.models.ServiceId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Represents metadata about a conversation.

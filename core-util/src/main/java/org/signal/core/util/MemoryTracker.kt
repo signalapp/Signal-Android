@@ -9,7 +9,6 @@ import android.app.ActivityManager
 import android.content.Context
 import android.os.Debug
 import android.os.Handler
-import androidx.annotation.RequiresApi
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import kotlin.time.Duration.Companion.milliseconds
@@ -89,7 +88,6 @@ object MemoryTracker {
    * This gives us details stats, but it takes an appreciable amount of time. On an emulator, it can take ~30ms.
    * As a result, we don't want to be calling this regularly for most users.
    */
-  @RequiresApi(23)
   fun getDetailedMemoryStats(): DetailedMemoryStats {
     Debug.getMemoryInfo(debugMemoryInfo)
 

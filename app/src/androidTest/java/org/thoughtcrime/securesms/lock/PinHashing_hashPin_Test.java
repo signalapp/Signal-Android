@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.signal.core.util.Hex;
 import org.signal.libsignal.svr2.PinHash;
 import org.whispersystems.signalservice.api.kbs.KbsData;
-import org.whispersystems.signalservice.api.kbs.MasterKey;
+import org.signal.core.models.MasterKey;
 import org.whispersystems.signalservice.api.kbs.PinHashUtil;
 
 import java.io.IOException;

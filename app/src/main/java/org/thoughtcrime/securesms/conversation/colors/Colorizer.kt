@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.conversation.colors
 import android.content.Context
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import org.signal.core.models.ServiceId
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Helper class for all things ChatColors.
