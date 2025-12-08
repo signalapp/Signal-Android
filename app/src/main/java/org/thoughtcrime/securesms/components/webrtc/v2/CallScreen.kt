@@ -22,16 +22,21 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetValue
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -46,7 +51,10 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.window.core.layout.WindowSizeClass
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.AllNightPreviews
@@ -137,7 +145,6 @@ fun CallScreen(
 
   val scaffoldState = remember(callScreenController) { callScreenController.scaffoldState }
   val scope = rememberCoroutineScope()
-  val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
 
   val additionalActionsPopupState = TriggerAlignedPopupState.rememberTriggerAlignedPopupState()
   val additionalActionsState = remember(
@@ -179,7 +186,10 @@ fun CallScreen(
           modifier = Modifier
             .fillMaxWidth()
             .padding(top = SHEET_TOP_PADDING.dp, bottom = SHEET_BOTTOM_PADDING.dp)
-            .height(DimensionUnit.PIXELS.toDp(maxSheetHeight).dp)
+            .heightIn(
+              min = with(LocalDensity.current) { maxSheetHeight.toDp() },
+              max = with(LocalDensity.current) { maxHeight.toDp() }
+            )
             .onGloballyPositioned {
               val offset = it.positionInRoot().y
               val current = maxHeight - offset - DimensionUnit.DP.toPixels(peekHeight)
@@ -192,7 +202,7 @@ fun CallScreen(
           val callInfoAlpha = max(0f, peekPercentage)
 
           if (callInfoAlpha > 0f) {
-            Surface {
+            CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onSurface) {
               callInfoView(callInfoAlpha)
             }
           }
@@ -221,6 +231,35 @@ fun CallScreen(
         label = "animate-as-state"
       )
 
+      // Self-pip bottom inset should be based off of:
+      // A. The container width
+      // B. The sheet width
+      // A - B / 2 gives you the gutter width.
+      // If the pip in its current state would be bigger than the gutter width (accounting for padding)
+      // then we need to apply the inset.
+
+      val selfPipHorizontalPadding = 32.dp
+      val shouldNotApplyBottomPaddingToViewPort = currentWindowAdaptiveInfo().windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND)
+      val selfPipBottomInset: Dp = if (shouldNotApplyBottomPaddingToViewPort) {
+        val containerWidth = maxWidth
+        val sheetWidth = BottomSheetDefaults.SheetMaxWidth
+        val widthOfPip = rememberSelfPipSize(localRenderState).width
+
+        if (containerWidth <= sheetWidth) {
+          padding
+        } else {
+          val spaceRemaining: Dp = (containerWidth - sheetWidth) / 2f - selfPipHorizontalPadding
+
+          if (spaceRemaining > widthOfPip) {
+            0.dp
+          } else {
+            padding
+          }
+        }
+      } else {
+        0.dp
+      }
+
       Viewport(
         localParticipant = localParticipant,
         localRenderState = localRenderState,
@@ -235,9 +274,10 @@ fun CallScreen(
         onControlsToggled = onControlsToggled,
         callScreenController = callScreenController,
         onToggleCameraDirection = callScreenControlsListener::onCameraDirectionChanged,
-        modifier = if (isPortrait) {
-          Modifier.padding(bottom = padding)
-        } else Modifier
+        selfPipBottomInset = selfPipBottomInset,
+        modifier = if (shouldNotApplyBottomPaddingToViewPort) {
+          Modifier
+        } else Modifier.padding(bottom = padding)
       )
 
       val onCallInfoClick: () -> Unit = {
@@ -349,6 +389,7 @@ private fun Viewport(
   onPipFocusClick: () -> Unit,
   onControlsToggled: (Boolean) -> Unit,
   onToggleCameraDirection: () -> Unit,
+  selfPipBottomInset: Dp,
   modifier: Modifier = Modifier
 ) {
   val isEmptyOngoingCall = webRtcCallState.inOngoingCall && callParticipantsPagerState.callParticipants.isEmpty()
@@ -377,6 +418,7 @@ private fun Viewport(
       }
     }
 
+    val callScreenMetrics = rememberCallScreenMetrics()
     BlurContainer(
       isBlurred = localRenderState == WebRtcLocalRenderState.FOCUSED,
       modifier = modifier.fillMaxWidth()
@@ -408,7 +450,7 @@ private fun Viewport(
                 overflowParticipants = overflowParticipants,
                 modifier = Modifier
                   .padding(vertical = 16.dp)
-                  .height(CallScreenMetrics.SmallRendererSize)
+                  .height(callScreenMetrics.overflowParticipantRendererSize)
                   .weight(1f)
               )
             }
@@ -422,7 +464,7 @@ private fun Viewport(
               overflowParticipants = overflowParticipants,
               modifier = Modifier
                 .padding(horizontal = 16.dp)
-                .width(CallScreenMetrics.SmallRendererSize)
+                .width(callScreenMetrics.overflowParticipantRendererSize)
                 .weight(1f)
             )
           }
@@ -438,7 +480,7 @@ private fun Viewport(
       onClick = onPipClick,
       onToggleCameraDirectionClick = onToggleCameraDirection,
       onFocusLocalParticipantClick = onPipFocusClick,
-      modifier = modifier
+      modifier = modifier.padding(bottom = selfPipBottomInset)
     )
   }
 }
@@ -451,9 +493,11 @@ private fun LargeLocalVideoRenderer(
   localParticipant: CallParticipant,
   modifier: Modifier = Modifier
 ) {
-  CallParticipantRenderer(
-    callParticipant = localParticipant,
+  RemoteParticipantContent(
+    participant = localParticipant,
     renderInPip = false,
+    raiseHandAllowed = false,
+    onInfoMoreInfoClick = null,
     modifier = modifier
       .fillMaxSize()
   )
@@ -536,7 +580,7 @@ private fun CallScreenPreview() {
           2
         )
       ),
-      localRenderState = WebRtcLocalRenderState.SMALLER_RECTANGLE,
+      localRenderState = WebRtcLocalRenderState.FOCUSED,
       callScreenDialogType = CallScreenDialogType.NONE,
       callInfoView = {
         Text(text = "Call Info View Preview", modifier = Modifier.alpha(it))

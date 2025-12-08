@@ -66,9 +66,11 @@ fun CallParticipantsPager(
         }
 
         1 -> {
-          CallParticipantRenderer(
-            callParticipant = callParticipantsPagerState.focusedParticipant,
+          RemoteParticipantContent(
+            participant = callParticipantsPagerState.focusedParticipant,
             renderInPip = callParticipantsPagerState.isRenderInPip,
+            raiseHandAllowed = false,
+            onInfoMoreInfoClick = null,
             modifier = Modifier.fillMaxSize()
           )
         }
@@ -260,9 +262,11 @@ private fun AutoSizedParticipant(
     else -> Modifier.size(DpSize(maxSize.width, maxSize.height))
   }
 
-  CallParticipantRenderer(
-    callParticipant = participant,
+  RemoteParticipantContent(
+    participant = participant,
     renderInPip = isRenderInPip,
+    raiseHandAllowed = false,
+    onInfoMoreInfoClick = null,
     modifier = sizeModifier
       .clip(RoundedCornerShape(state.cornerRadius))
   )

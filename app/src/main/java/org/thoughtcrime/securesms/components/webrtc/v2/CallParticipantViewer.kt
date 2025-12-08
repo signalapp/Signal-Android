@@ -8,6 +8,8 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -22,6 +24,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -50,26 +53,30 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageLarge
 import org.thoughtcrime.securesms.components.webrtc.AudioIndicatorView
 import org.thoughtcrime.securesms.components.webrtc.TextureViewRenderer
+import org.thoughtcrime.securesms.compose.GlideImage
+import org.thoughtcrime.securesms.compose.GlideImageScaleType
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.AvatarUtil
 
 /**
- * Encapsulates views needed to show a call participant including their
- * avatar in full screen or pip mode, and their video feed.
+ * Displays a remote participant (or local participant in pre-join screen).
+ * Handles both full-size grid view and system PIP mode.
  *
  * This is a Compose reimplementation of [org.thoughtcrime.securesms.components.webrtc.CallParticipantView].
+ *
+ * @param participant The call participant to display
+ * @param renderInPip Whether rendering in system PIP mode (smaller, simplified UI)
+ * @param raiseHandAllowed Whether to show raise hand indicator
+ * @param onInfoMoreInfoClick Callback when "More Info" is tapped on blocked/missing keys overlay
  */
 @Composable
-fun CallParticipantViewer(
+fun RemoteParticipantContent(
   participant: CallParticipant,
-  modifier: Modifier = Modifier,
-  renderInPip: Boolean = false,
-  raiseHandAllowed: Boolean = false,
-  selfPipMode: SelfPipMode = SelfPipMode.NOT_SELF_PIP,
-  isMoreThanOneCameraAvailable: Boolean = false,
-  onSwitchCameraClick: (() -> Unit)? = null,
-  onInfoMoreInfoClick: (() -> Unit)? = null
+  renderInPip: Boolean,
+  raiseHandAllowed: Boolean,
+  onInfoMoreInfoClick: (() -> Unit)?,
+  modifier: Modifier = Modifier
 ) {
   val context = LocalContext.current
   val recipient = participant.recipient
@@ -96,23 +103,62 @@ fun CallParticipantViewer(
           participant = participant,
           modifier = Modifier.fillMaxSize()
         )
+      } else if (renderInPip) {
+        PipAvatar(
+          recipient = recipient,
+          modifier = Modifier
+            .fillMaxSize()
+            .align(Alignment.Center)
+        )
       } else {
-        if (!renderInPip) {
-          AvatarWithBadge(
-            recipient = recipient,
-            modifier = Modifier.align(Alignment.Center)
-          )
-        }
-
-        if (renderInPip) {
-          PipAvatar(
-            recipient = recipient,
-            modifier = Modifier
-              .fillMaxSize()
-              .align(Alignment.Center)
-          )
-        }
+        AvatarWithBadge(
+          recipient = recipient,
+          modifier = Modifier.align(Alignment.Center)
+        )
       }
+
+      AudioIndicator(
+        participant = participant,
+        selfPipMode = SelfPipMode.NOT_SELF_PIP,
+        modifier = Modifier.align(Alignment.BottomStart)
+      )
+
+      if (raiseHandAllowed && !renderInPip && participant.isHandRaised) {
+        RaiseHandIndicator(
+          name = participant.getShortRecipientDisplayName(context),
+          modifier = Modifier
+            .align(Alignment.TopStart)
+            .padding(start = 8.dp, top = 8.dp)
+        )
+      }
+    }
+  }
+}
+
+/**
+ * Displays the local camera preview overlay (self PIP).
+ * Shows video feed with audio indicator and camera switch button when camera is enabled.
+ * Shows a blurred gray background with camera-off icon when camera is disabled.
+ *
+ * @param participant The local call participant
+ * @param selfPipMode The current self-pip display mode
+ * @param isMoreThanOneCameraAvailable Whether to show camera switch button
+ * @param onSwitchCameraClick Callback when camera switch is tapped
+ */
+@Composable
+fun SelfPipContent(
+  participant: CallParticipant,
+  selfPipMode: SelfPipMode,
+  isMoreThanOneCameraAvailable: Boolean,
+  onSwitchCameraClick: (() -> Unit)?,
+  modifier: Modifier = Modifier
+) {
+  if (participant.isVideoEnabled) {
+    Box(modifier = modifier) {
+      VideoRenderer(
+        participant = participant,
+        modifier = Modifier.fillMaxSize()
+      )
 
       AudioIndicator(
         participant = participant,
@@ -125,22 +171,99 @@ fun CallParticipantViewer(
         )
       )
 
-      if (selfPipMode != SelfPipMode.NOT_SELF_PIP && isMoreThanOneCameraAvailable && selfPipMode != SelfPipMode.MINI_SELF_PIP) {
+      if (isMoreThanOneCameraAvailable && selfPipMode != SelfPipMode.MINI_SELF_PIP) {
         SwitchCameraButton(
           selfPipMode = selfPipMode,
           onClick = onSwitchCameraClick,
           modifier = Modifier.align(Alignment.BottomEnd)
         )
       }
+    }
+  } else {
+    SelfPipCameraOffContent(
+      participant = participant,
+      selfPipMode = selfPipMode,
+      modifier = modifier
+    )
+  }
+}
 
-      if (raiseHandAllowed && participant.isHandRaised) {
-        RaiseHandIndicator(
-          name = participant.getShortRecipientDisplayName(context),
-          modifier = Modifier
-            .align(Alignment.TopStart)
-            .padding(start = 8.dp, top = 8.dp)
+/**
+ * Camera-off state for self PIP.
+ * Shows a blurred avatar background with a semi-transparent gray overlay,
+ * centered video-off icon, and audio indicator in lower-start.
+ */
+@Composable
+private fun SelfPipCameraOffContent(
+  participant: CallParticipant,
+  selfPipMode: SelfPipMode,
+  modifier: Modifier = Modifier
+) {
+  Box(modifier = modifier) {
+    BlurredBackgroundAvatar(recipient = participant.recipient)
+
+    // Semi-transparent overlay
+    Box(
+      modifier = Modifier
+        .fillMaxSize()
+        .background(
+          color = Color(0x995E5E5E), // rgba(94, 94, 94, 0.6)
+          shape = RoundedCornerShape(24.dp)
         )
-      }
+    )
+
+    Icon(
+      painter = painterResource(id = R.drawable.symbol_video_slash_fill_24),
+      contentDescription = null,
+      tint = Color.White,
+      modifier = Modifier
+        .size(24.dp)
+        .align(Alignment.Center)
+    )
+
+    AudioIndicator(
+      participant = participant,
+      selfPipMode = selfPipMode,
+      modifier = Modifier.align(Alignment.BottomStart)
+    )
+  }
+}
+
+/**
+ * Displays a remote participant in the overflow strip.
+ * Shows video if enabled, otherwise shows the participant's avatar filling the tile.
+ *
+ * This is a simplified version of [RemoteParticipantContent] that:
+ * - Always renders in "pip mode" style (avatar fills the space when video is off)
+ * - Uses the same audio indicator metrics as [SelfPipMode.MINI_SELF_PIP]
+ * - Does not show raise hand indicators or info overlays
+ *
+ * @param participant The call participant to display
+ */
+@Composable
+fun OverflowParticipantContent(
+  participant: CallParticipant,
+  modifier: Modifier = Modifier
+) {
+  val recipient = participant.recipient
+
+  Box(modifier = modifier) {
+    BlurredBackgroundAvatar(recipient = recipient)
+
+    val hasContentToRender = participant.isVideoEnabled || participant.isScreenSharing
+
+    if (hasContentToRender) {
+      VideoRenderer(
+        participant = participant,
+        modifier = Modifier.fillMaxSize()
+      )
+    } else {
+      PipAvatar(
+        recipient = recipient,
+        modifier = Modifier
+          .size(rememberCallScreenMetrics().overflowParticipantRendererAvatarSize)
+          .align(Alignment.Center)
+      )
     }
   }
 }
@@ -150,28 +273,34 @@ private fun BlurredBackgroundAvatar(
   recipient: Recipient,
   modifier: Modifier = Modifier
 ) {
-  val isInPreview = LocalInspectionMode.current
-
-  // Use a simple background in preview mode, otherwise use Glide to load the blurred avatar
-  if (isInPreview) {
-    Box(
-      modifier = modifier
-        .fillMaxSize()
-        .background(Color(0xFF1B1B1D))
-    )
-  } else {
-    // Use AndroidView to leverage AvatarUtil.loadBlurredIconIntoImageView
-    AndroidView(
-      factory = { context ->
-        androidx.appcompat.widget.AppCompatImageView(context).apply {
-          scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
+  BlurContainer(
+    isBlurred = true,
+    modifier = modifier,
+    blurRadius = 15.dp
+  ) {
+    if (LocalInspectionMode.current) {
+      Image(
+        painter = painterResource(R.drawable.ic_avatar_abstract_02),
+        contentDescription = null,
+        modifier = Modifier.fillMaxSize()
+      )
+    } else {
+      val photo = remember(recipient.isSelf, recipient.contactPhoto) {
+        if (recipient.isSelf) {
+          ProfileContactPhoto(recipient)
+        } else {
+          recipient.contactPhoto
         }
-      },
-      update = { imageView ->
-        AvatarUtil.loadBlurredIconIntoImageView(recipient, imageView)
-      },
-      modifier = modifier.fillMaxSize()
-    )
+      }
+
+      GlideImage(
+        modifier = Modifier
+          .fillMaxSize()
+          .background(color = Color.Black),
+        model = photo,
+        scaleType = GlideImageScaleType.CENTER_CROP
+      )
+    }
   }
 }
 
@@ -218,13 +347,6 @@ private fun PipAvatar(
     AvatarImage(
       recipient = recipient,
       modifier = avatarModifier
-    )
-
-    BadgeImageLarge(
-      badge = recipient.badges.firstOrNull(),
-      modifier = Modifier
-        .align(Alignment.BottomEnd)
-        .size(36.dp)
     )
   }
 }
@@ -317,24 +439,29 @@ private fun SwitchCameraButton(
   onClick: (() -> Unit)?,
   modifier: Modifier = Modifier
 ) {
-  val size = when (selfPipMode) {
+  val targetSize = when (selfPipMode) {
     SelfPipMode.EXPANDED_SELF_PIP, SelfPipMode.FOCUSED_SELF_PIP -> 48.dp
     else -> 28.dp
   }
 
-  val margin = when (selfPipMode) {
+  val size by animateDpAsState(targetSize)
+
+  val targetMargin = when (selfPipMode) {
     SelfPipMode.FOCUSED_SELF_PIP -> 12.dp
     else -> 10.dp
   }
 
-  val iconInset = when (selfPipMode) {
+  val margin by animateDpAsState(targetMargin)
+
+  val targetIconInset = when (selfPipMode) {
     SelfPipMode.EXPANDED_SELF_PIP, SelfPipMode.FOCUSED_SELF_PIP -> 12.dp
     SelfPipMode.MINI_SELF_PIP -> 7.dp
     else -> 6.dp
   }
 
-  // Only clickable in EXPANDED_SELF_PIP mode (per setSelfPipMode logic)
-  val clickModifier = if (selfPipMode == SelfPipMode.EXPANDED_SELF_PIP && onClick != null) {
+  val iconInset by animateDpAsState(targetIconInset)
+
+  val clickModifier = if ((selfPipMode == SelfPipMode.EXPANDED_SELF_PIP || selfPipMode == SelfPipMode.FOCUSED_SELF_PIP) && onClick != null) {
     Modifier.clickable { onClick() }
   } else {
     Modifier
@@ -354,7 +481,7 @@ private fun SwitchCameraButton(
   ) {
     Icon(
       painter = painterResource(id = R.drawable.symbol_switch_24),
-      contentDescription = "Switch camera direction",
+      contentDescription = stringResource(R.string.SwitchCameraButton__switch_camera_direction),
       tint = Color.White
     )
   }
@@ -479,11 +606,13 @@ enum class SelfPipMode {
   FOCUSED_SELF_PIP
 }
 
+// region Remote Participant Previews
+
 @NightPreview
 @Composable
-private fun CallParticipantViewerPreview() {
+private fun RemoteParticipantGridPreview() {
   Previews.Preview {
-    CallParticipantViewer(
+    RemoteParticipantContent(
       participant = CallParticipant.EMPTY.copy(
         recipient = Recipient(isResolving = false, systemContactName = "Alice Johnson"),
         isMicrophoneEnabled = true,
@@ -491,6 +620,7 @@ private fun CallParticipantViewerPreview() {
       ),
       raiseHandAllowed = false,
       renderInPip = false,
+      onInfoMoreInfoClick = null,
       modifier = Modifier.size(400.dp, 600.dp)
     )
   }
@@ -498,9 +628,9 @@ private fun CallParticipantViewerPreview() {
 
 @NightPreview
 @Composable
-private fun CallParticipantViewerRaiseHandPreview() {
+private fun RemoteParticipantRaiseHandPreview() {
   Previews.Preview {
-    CallParticipantViewer(
+    RemoteParticipantContent(
       participant = CallParticipant.EMPTY.copy(
         recipient = Recipient(isResolving = false, systemContactName = "Bob Smith"),
         isMicrophoneEnabled = true,
@@ -509,6 +639,7 @@ private fun CallParticipantViewerRaiseHandPreview() {
       ),
       raiseHandAllowed = true,
       renderInPip = false,
+      onInfoMoreInfoClick = null,
       modifier = Modifier.size(400.dp, 600.dp)
     )
   }
@@ -516,14 +647,16 @@ private fun CallParticipantViewerRaiseHandPreview() {
 
 @NightPreview
 @Composable
-private fun CallParticipantViewerPipPreview() {
+private fun RemoteParticipantSystemPipPreview() {
   Previews.Preview {
-    CallParticipantViewer(
+    RemoteParticipantContent(
       participant = CallParticipant.EMPTY.copy(
         recipient = Recipient(isResolving = false, systemContactName = "Charlie Davis"),
         isMicrophoneEnabled = false
       ),
+      raiseHandAllowed = false,
       renderInPip = true,
+      onInfoMoreInfoClick = null,
       modifier = Modifier.size(200.dp, 200.dp)
     )
   }
@@ -531,14 +664,16 @@ private fun CallParticipantViewerPipPreview() {
 
 @NightPreview
 @Composable
-private fun CallParticipantViewerPipLandscapePreview() {
+private fun RemoteParticipantSystemPipLandscapePreview() {
   Previews.Preview {
-    CallParticipantViewer(
+    RemoteParticipantContent(
       participant = CallParticipant.EMPTY.copy(
         recipient = Recipient(isResolving = false, systemContactName = "Charlie Davis"),
         isMicrophoneEnabled = false
       ),
+      raiseHandAllowed = false,
       renderInPip = true,
+      onInfoMoreInfoClick = null,
       modifier = Modifier.size(200.dp, 100.dp)
     )
   }
@@ -546,12 +681,13 @@ private fun CallParticipantViewerPipLandscapePreview() {
 
 @NightPreview
 @Composable
-private fun CallParticipantViewerBlockedPreview() {
+private fun RemoteParticipantBlockedPreview() {
   Previews.Preview {
-    CallParticipantViewer(
+    RemoteParticipantContent(
       participant = CallParticipant.EMPTY.copy(
         recipient = Recipient(isResolving = false, systemContactName = "Diana Prince", isBlocked = true)
       ),
+      raiseHandAllowed = false,
       renderInPip = false,
       onInfoMoreInfoClick = {},
       modifier = Modifier.size(400.dp, 600.dp)
@@ -559,57 +695,98 @@ private fun CallParticipantViewerBlockedPreview() {
   }
 }
 
+// endregion
+
+// region Self PIP Previews
+
 @NightPreview
 @Composable
-private fun CallParticipantViewerSelfPipNormalPreview() {
+private fun SelfPipNormalPreview() {
   Previews.Preview {
-    CallParticipantViewer(
+    SelfPipContent(
       participant = CallParticipant.EMPTY.copy(
         recipient = Recipient(isResolving = false, systemContactName = "You", isSelf = true),
         isMicrophoneEnabled = true,
         audioLevel = CallParticipant.AudioLevel.MEDIUM
       ),
-      renderInPip = true,
       selfPipMode = SelfPipMode.NORMAL_SELF_PIP,
       isMoreThanOneCameraAvailable = true,
       onSwitchCameraClick = {},
-      modifier = Modifier.size(CallScreenMetrics.NormalRendererDpSize)
+      modifier = Modifier.size(rememberCallScreenMetrics().normalRendererDpSize)
     )
   }
 }
 
 @NightPreview
 @Composable
-private fun CallParticipantViewerSelfPipExpandedPreview() {
+private fun SelfPipExpandedPreview() {
   Previews.Preview {
-    CallParticipantViewer(
+    SelfPipContent(
       participant = CallParticipant.EMPTY.copy(
         recipient = Recipient(isResolving = false, systemContactName = "You", isSelf = true),
         isMicrophoneEnabled = true,
         audioLevel = CallParticipant.AudioLevel.HIGH
       ),
-      renderInPip = true,
       selfPipMode = SelfPipMode.EXPANDED_SELF_PIP,
       isMoreThanOneCameraAvailable = true,
       onSwitchCameraClick = {},
-      modifier = Modifier.size(CallScreenMetrics.ExpandedRendererDpSize)
+      modifier = Modifier.size(rememberCallScreenMetrics().expandedRendererDpSize)
     )
   }
 }
 
 @NightPreview
 @Composable
-private fun CallParticipantViewerSelfPipMiniPreview() {
+private fun SelfPipMiniPreview() {
   Previews.Preview {
-    CallParticipantViewer(
+    SelfPipContent(
       participant = CallParticipant.EMPTY.copy(
         recipient = Recipient(isResolving = false, systemContactName = "You", isSelf = true),
         isMicrophoneEnabled = false
       ),
-      renderInPip = true,
       selfPipMode = SelfPipMode.MINI_SELF_PIP,
       isMoreThanOneCameraAvailable = false,
-      modifier = Modifier.size(CallScreenMetrics.SmallRendererDpSize)
+      onSwitchCameraClick = null,
+      modifier = Modifier.size(rememberCallScreenMetrics().overflowParticipantRendererDpSize)
     )
   }
 }
+
+@NightPreview
+@Composable
+private fun SelfPipCameraOffPreview() {
+  Previews.Preview {
+    SelfPipContent(
+      participant = CallParticipant.EMPTY.copy(
+        recipient = Recipient(isResolving = false, systemContactName = "You", isSelf = true),
+        isMicrophoneEnabled = false,
+        isVideoEnabled = false
+      ),
+      selfPipMode = SelfPipMode.NORMAL_SELF_PIP,
+      isMoreThanOneCameraAvailable = false,
+      onSwitchCameraClick = null,
+      modifier = Modifier.size(rememberCallScreenMetrics().normalRendererDpSize)
+    )
+  }
+}
+
+// endregion
+
+// region Overflow Participant Previews
+
+@NightPreview
+@Composable
+private fun OverflowParticipantPreview() {
+  Previews.Preview {
+    OverflowParticipantContent(
+      participant = CallParticipant.EMPTY.copy(
+        recipient = Recipient(isResolving = false, systemContactName = "Eve Wilson"),
+        isMicrophoneEnabled = true,
+        audioLevel = CallParticipant.AudioLevel.MEDIUM
+      ),
+      modifier = Modifier.size(rememberCallScreenMetrics().overflowParticipantRendererDpSize)
+    )
+  }
+}
+
+// endregion

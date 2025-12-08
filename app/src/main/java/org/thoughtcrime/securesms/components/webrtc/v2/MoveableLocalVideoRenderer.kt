@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
@@ -37,6 +38,7 @@ import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -44,7 +46,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.NightPreview
+import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
@@ -60,20 +62,9 @@ fun MoveableLocalVideoRenderer(
   onClick: () -> Unit,
   onToggleCameraDirectionClick: () -> Unit,
   onFocusLocalParticipantClick: () -> Unit,
-  modifier: Modifier = Modifier.Companion
+  modifier: Modifier = Modifier
 ) {
-  // 1. We need to remember our small and expanded sizes based off of the call size.
-  val size = remember(localRenderState) {
-    when (localRenderState) {
-      WebRtcLocalRenderState.GONE -> DpSize.Zero
-      WebRtcLocalRenderState.SMALL_RECTANGLE -> CallScreenMetrics.NormalRendererDpSize
-      WebRtcLocalRenderState.SMALLER_RECTANGLE -> CallScreenMetrics.SmallRendererDpSize
-      WebRtcLocalRenderState.LARGE -> DpSize.Zero
-      WebRtcLocalRenderState.LARGE_NO_VIDEO -> DpSize.Zero
-      WebRtcLocalRenderState.EXPANDED -> CallScreenMetrics.ExpandedRendererDpSize
-      WebRtcLocalRenderState.FOCUSED -> DpSize.Unspecified
-    }
-  }
+  val size = rememberSelfPipSize(localRenderState)
 
   BoxWithConstraints(
     modifier = Modifier
@@ -84,9 +75,28 @@ fun MoveableLocalVideoRenderer(
   ) {
     val targetSize = size.let {
       if (it == DpSize.Unspecified) {
-        DpSize(maxWidth - 32.dp, maxHeight - 32.dp)
+        val orientation = LocalConfiguration.current.orientation
+        val desiredWidth = maxWidth - 32.dp
+        val desiredHeight = maxHeight - 32.dp
+
+        val aspectRatio = if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+          16f / 9f
+        } else {
+          9f / 16f
+        }
+
+        val widthFromHeight = desiredHeight * aspectRatio
+        val heightFromWidth = desiredWidth / aspectRatio
+
+        val size: DpSize = if (widthFromHeight <= desiredWidth) {
+          DpSize(widthFromHeight, desiredHeight)
+        } else {
+          DpSize(desiredWidth, heightFromWidth)
+        }
+
+        size
       } else {
-        it
+        it.rotateForConfiguration()
       }
     }
 
@@ -96,12 +106,16 @@ fun MoveableLocalVideoRenderer(
     val selfPipMode = when (localRenderState) {
       WebRtcLocalRenderState.EXPANDED -> {
         SelfPipMode.EXPANDED_SELF_PIP
-      } WebRtcLocalRenderState.FOCUSED -> {
+      }
+
+      WebRtcLocalRenderState.FOCUSED -> {
         SelfPipMode.FOCUSED_SELF_PIP
       }
+
       WebRtcLocalRenderState.SMALLER_RECTANGLE -> {
         SelfPipMode.MINI_SELF_PIP
       }
+
       else -> {
         SelfPipMode.NORMAL_SELF_PIP
       }
@@ -111,16 +125,17 @@ fun MoveableLocalVideoRenderer(
     val shadow by animateShadow(localRenderState)
 
     PictureInPicture(
+      centerContent = size == DpSize.Unspecified,
       state = state,
       modifier = Modifier
         .padding(16.dp)
         .fillMaxSize()
     ) {
-      CallParticipantRenderer(
-        callParticipant = localParticipant,
-        renderInPip = true,
+      SelfPipContent(
+        participant = localParticipant,
         selfPipMode = selfPipMode,
-        onToggleCameraDirection = onToggleCameraDirectionClick,
+        isMoreThanOneCameraAvailable = localParticipant.cameraState.cameraCount > 1,
+        onSwitchCameraClick = onToggleCameraDirectionClick,
         modifier = Modifier
           .fillMaxSize()
           .dropShadow(
@@ -170,7 +185,7 @@ private fun animateClip(localRenderState: WebRtcLocalRenderState): State<Dp> {
   val targetDp = when (localRenderState) {
     WebRtcLocalRenderState.FOCUSED -> CallScreenMetrics.FocusedRendererCornerSize
     WebRtcLocalRenderState.EXPANDED -> CallScreenMetrics.ExpandedRendererCornerSize
-    else -> CallScreenMetrics.SmallRendererCornerSize
+    else -> CallScreenMetrics.OverflowParticipantRendererCornerSize
   }
 
   return animateDpAsState(targetValue = targetDp)
@@ -182,6 +197,7 @@ private fun animateShadow(localRenderState: WebRtcLocalRenderState): State<Shado
     WebRtcLocalRenderState.EXPANDED, WebRtcLocalRenderState.FOCUSED, WebRtcLocalRenderState.SMALLER_RECTANGLE -> {
       14.dp
     }
+
     else -> {
       0.dp
     }
@@ -191,6 +207,7 @@ private fun animateShadow(localRenderState: WebRtcLocalRenderState): State<Shado
     WebRtcLocalRenderState.EXPANDED, WebRtcLocalRenderState.FOCUSED, WebRtcLocalRenderState.SMALLER_RECTANGLE -> {
       4.dp
     }
+
     else -> {
       0.dp
     }
@@ -203,7 +220,7 @@ private fun animateShadow(localRenderState: WebRtcLocalRenderState): State<Shado
   }
 }
 
-@NightPreview
+@AllNightPreviews
 @Composable
 private fun MoveableLocalVideoRendererPreview() {
   var localRenderState by remember { mutableStateOf(WebRtcLocalRenderState.SMALL_RECTANGLE) }
@@ -258,5 +275,38 @@ private fun MoveableLocalVideoRendererPreview() {
         }
       )
     }
+  }
+}
+
+@Composable
+fun rememberSelfPipSize(
+  localRenderState: WebRtcLocalRenderState
+): DpSize {
+  val callScreenMetrics = rememberCallScreenMetrics()
+  return remember(localRenderState, callScreenMetrics) {
+    when (localRenderState) {
+      WebRtcLocalRenderState.GONE -> DpSize.Zero
+      WebRtcLocalRenderState.SMALL_RECTANGLE -> callScreenMetrics.normalRendererDpSize
+      WebRtcLocalRenderState.SMALLER_RECTANGLE -> callScreenMetrics.overflowParticipantRendererDpSize
+      WebRtcLocalRenderState.LARGE -> DpSize.Zero
+      WebRtcLocalRenderState.LARGE_NO_VIDEO -> DpSize.Zero
+      WebRtcLocalRenderState.EXPANDED -> callScreenMetrics.expandedRendererDpSize
+      WebRtcLocalRenderState.FOCUSED -> DpSize.Unspecified
+    }
+  }
+}
+
+/**
+ * Sets the proper DpSize rotation based off the window configuration.
+ *
+ * Call-Screen DpSizes for the movable pip are expected to be in portrait by default.
+ */
+@Composable
+private fun DpSize.rotateForConfiguration(): DpSize {
+  val orientation = LocalConfiguration.current.orientation
+
+  return when (orientation) {
+    Configuration.ORIENTATION_LANDSCAPE -> DpSize(this.height, this.width)
+    else -> this
   }
 }

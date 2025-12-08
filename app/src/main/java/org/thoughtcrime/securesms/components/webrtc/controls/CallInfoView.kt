@@ -127,7 +127,7 @@ object CallInfoView {
 @NightPreview
 @Composable
 private fun CallInfoPreview() {
-  Previews.Preview {
+  Previews.BottomSheetContentPreview {
     val remoteParticipants = listOf(CallParticipant(recipient = Recipient(isResolving = false, systemContactName = "Miles Morales")))
     CallInfo(
       participantsState = ParticipantsState(remoteParticipants = remoteParticipants, raisedHands = remoteParticipants.map { GroupCallRaiseHandEvent(it, System.currentTimeMillis()) }),
@@ -162,9 +162,7 @@ private fun CallInfo(
     item {
       val text = if (controlAndInfoState.callLink == null) {
         stringResource(id = R.string.CallLinkInfoSheet__call_info)
-      } else if (controlAndInfoState.callLink.state.name.isNotEmpty()) {
-        controlAndInfoState.callLink.state.name
-      } else {
+      } else controlAndInfoState.callLink.state.name.ifEmpty {
         stringResource(id = R.string.Recipient_signal_call)
       }
 
