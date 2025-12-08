@@ -262,7 +262,7 @@ fun CreateFolderScreen(
       }
 
       if (!expandIncluded && state.currentFolder.includedRecipients.size > MAX_CHAT_COUNT) {
-        items(state.currentFolder.includedRecipients.subList(0, MAX_CHAT_COUNT)) { recipient ->
+        items(state.currentFolder.includedRecipients.take(0, MAX_CHAT_COUNT)) { recipient ->
           ChatRow(
             recipient = recipient,
             onClick = onAddChat
