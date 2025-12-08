@@ -104,6 +104,7 @@ import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.payments.Money
@@ -1295,6 +1296,11 @@ object DataMessageProcessor {
       return null
     }
 
+    if (targetMessage.hasGiftBadge()) {
+      warn(envelope.timestamp!!, "[handlePinMessage] Cannot pin a gift badge")
+      return null
+    }
+
     val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
     if (targetThread == null) {
       warn(envelope.timestamp!!, "[handlePinMessage] Could not find a thread for the message! timestamp: ${pinMessage.targetSentTimestamp}")
@@ -1376,6 +1382,11 @@ object DataMessageProcessor {
 
     if (targetMessage.isRemoteDelete) {
       warn(envelope.timestamp!!, "[handleUnpinMessage] Found a matching message, but it's flagged as remotely deleted. timestamp: ${unpinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    if (targetMessage.hasGiftBadge()) {
+      warn(envelope.timestamp!!, "[handleUnpinMessage] Cannot pin a gift badge")
       return null
     }
 

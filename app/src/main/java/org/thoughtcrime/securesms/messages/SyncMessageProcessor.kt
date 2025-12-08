@@ -112,6 +112,7 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.push.DistributionId
@@ -1892,6 +1893,11 @@ object SyncMessageProcessor {
         AppDependencies.earlyMessageCache.store(senderRecipient.id, pinMessage.targetSentTimestamp!!, earlyMessageCacheEntry)
         PushProcessEarlyMessagesJob.enqueue()
       }
+      return -1
+    }
+
+    if (targetMessage.hasGiftBadge()) {
+      warn(envelope.timestamp!!, "Cannot pin gift badge")
       return -1
     }
 
