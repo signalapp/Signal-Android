@@ -106,6 +106,8 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentBackfillJob
+import org.thoughtcrime.securesms.jobs.ArchiveThumbnailBackfillJob
+import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
@@ -594,6 +596,7 @@ object BackupRepository {
     }
 
     if (SignalStore.backup.archiveUploadState?.backupPhase == ArchiveUploadProgressState.BackupPhase.Message && AppDependencies.jobManager.find { it.factoryKey == BackupMessagesJob.KEY }.isEmpty()) {
+      Log.w(TAG, "Found a situation where message backup was in progress, but there's no active BackupMessageJob! Re-enqueueing.")
       SignalStore.backup.archiveUploadState = null
       BackupMessagesJob.enqueue()
       return
@@ -605,9 +608,16 @@ object BackupRepository {
 
     if (!AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)) {
       if (SignalStore.backup.archiveUploadState?.state == ArchiveUploadProgressState.State.None) {
+        Log.w(TAG, "Found a situation where attachment uploads are in progress, but the progress state was None! Fixing.")
         ArchiveUploadProgress.onAttachmentSectionStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
       }
       return
+    }
+
+    if (AppDependencies.jobManager.areQueuesEmpty(ArchiveThumbnailUploadJob.QUEUES) && SignalDatabase.attachments.areAnyThumbnailsPendingUpload()) {
+      Log.w(TAG, "Found a situation where there's no thumbnail jobs in progress, but thumbnails are in the pending upload state! Clearing the pending state and re-enqueueing.")
+      SignalDatabase.attachments.clearArchiveThumbnailTransferStateForInProgressItems()
+      AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob())
     }
 
     val pendingBytes = SignalDatabase.attachments.getPendingArchiveUploadBytes()

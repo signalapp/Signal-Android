@@ -1106,6 +1106,17 @@ class AttachmentTable(
   }
 
   /**
+   * Resets the [ARCHIVE_THUMBNAIL_TRANSFER_STATE] of any attachments that are currently in-progress of uploading.
+   */
+  fun clearArchiveThumbnailTransferStateForInProgressItems(): Int {
+    return writableDatabase
+      .update(TABLE_NAME)
+      .values(ARCHIVE_THUMBNAIL_TRANSFER_STATE to ArchiveTransferState.NONE.value)
+      .where("$ARCHIVE_THUMBNAIL_TRANSFER_STATE  = ?", ArchiveTransferState.UPLOAD_IN_PROGRESS.value)
+      .run()
+  }
+
+  /**
    * Marks eligible attachments as offloaded based on their received at timestamp, their last restore time,
    * presence of thumbnail if media, and the full file being available in the archive.
    *
@@ -1175,6 +1186,13 @@ class AttachmentTable(
         """.trimIndent()
       )
       .readToSingleLong()
+  }
+
+  fun areAnyThumbnailsPendingUpload(): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$ARCHIVE_THUMBNAIL_TRANSFER_STATE = ?", ArchiveTransferState.UPLOAD_IN_PROGRESS.value)
+      .run()
   }
 
   /**
