@@ -136,6 +136,9 @@ class VerificationCodeViewModel(
       }
       is NetworkController.RegistrationNetworkResult.Failure -> {
         when (registerResult.error) {
+          is NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified -> {
+            TODO()
+          }
           is NetworkController.RegisterAccountError.DeviceTransferPossible -> {
             Log.w(TAG, "[Register] Got told a device transfer is possible. We should never get into this state. Resetting.")
             parentEventEmitter(RegistrationFlowEvent.ResetState)
@@ -143,7 +146,13 @@ class VerificationCodeViewModel(
           }
           is NetworkController.RegisterAccountError.RegistrationLock -> {
             Log.w(TAG, "[Register] Reglocked.")
-            TODO("reglock")
+            parentEventEmitter.navigateTo(
+              RegistrationRoute.RegistrationLockPinEntry(
+                timeRemaining = registerResult.error.data.timeRemaining,
+                svrCredentials = registerResult.error.data.svr2Credentials
+              )
+            )
+            state
           }
           is NetworkController.RegisterAccountError.RateLimited -> {
             Log.w(TAG, "[Register] Rate limited.")

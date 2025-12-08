@@ -12,25 +12,66 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.signal.registration.StorageController
+import org.signal.registration.sample.storage.RegistrationPreferences
 
 class MainScreenViewModel(
-  private val onLaunchRegistration: () -> Unit
+  private val storageController: StorageController,
+  private val onLaunchRegistration: () -> Unit,
+  private val onOpenPinSettings: () -> Unit
 ) : ViewModel() {
 
   private val _state = MutableStateFlow(MainScreenState())
   val state: StateFlow<MainScreenState> = _state.asStateFlow()
 
+  init {
+    loadRegistrationData()
+  }
+
+  fun refreshData() {
+    loadRegistrationData()
+  }
+
   fun onEvent(event: MainScreenEvents) {
     viewModelScope.launch {
       when (event) {
         MainScreenEvents.LaunchRegistration -> onLaunchRegistration()
+        MainScreenEvents.OpenPinSettings -> onOpenPinSettings()
+        MainScreenEvents.ClearAllData -> {
+          storageController.clearAllData()
+          refreshData()
+        }
       }
     }
   }
 
-  class Factory(private val onLaunchRegistration: () -> Unit) : ViewModelProvider.Factory {
+  private fun loadRegistrationData() {
+    viewModelScope.launch {
+      val existingData = storageController.getPreExistingRegistrationData()
+      _state.value = _state.value.copy(
+        existingRegistrationState = if (existingData != null) {
+          MainScreenState.ExistingRegistrationState(
+            phoneNumber = existingData.e164,
+            aci = existingData.aci.toString(),
+            pni = existingData.pni.toStringWithoutPrefix(),
+            aep = existingData.aep.value,
+            pin = RegistrationPreferences.pin,
+            registrationLockEnabled = RegistrationPreferences.registrationLockEnabled
+          )
+        } else {
+          null
+        }
+      )
+    }
+  }
+
+  class Factory(
+    private val storageController: StorageController,
+    private val onLaunchRegistration: () -> Unit,
+    private val onOpenPinSettings: () -> Unit
+  ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return MainScreenViewModel(onLaunchRegistration) as T
+      return MainScreenViewModel(storageController, onLaunchRegistration, onOpenPinSettings) as T
     }
   }
 }

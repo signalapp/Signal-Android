@@ -48,10 +48,10 @@ class PhoneNumberEntryViewModel(
 
   fun onEvent(event: PhoneNumberEntryScreenEvents) {
     viewModelScope.launch {
-      val stateEMitter: (PhoneNumberEntryState) -> Unit = { state ->
+      val stateEmitter: (PhoneNumberEntryState) -> Unit = { state ->
         _state.value = state
       }
-      applyEvent(_state.value, event, stateEMitter, parentEventEmitter)
+      applyEvent(_state.value, event, stateEmitter, parentEventEmitter)
     }
   }
 
@@ -64,9 +64,10 @@ class PhoneNumberEntryViewModel(
         stateEmitter(applyPhoneNumberChanged(state, event.value))
       }
       is PhoneNumberEntryScreenEvents.PhoneNumberSubmitted -> {
-        stateEmitter(state.copy(showFullScreenSpinner = true))
-        val resultState = applyPhoneNumberSubmitted(state, parentEventEmitter)
-        stateEmitter(resultState.copy(showFullScreenSpinner = false))
+        var localState = state.copy(showFullScreenSpinner = true)
+        stateEmitter(localState)
+        localState = applyPhoneNumberSubmitted(localState, parentEventEmitter)
+        stateEmitter(localState.copy(showFullScreenSpinner = false))
       }
       is PhoneNumberEntryScreenEvents.CountryPicker -> {
         state.also { parentEventEmitter.navigateTo(RegistrationRoute.CountryCodePicker) }

@@ -7,14 +7,19 @@ package org.signal.registration
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.registration.NetworkController.AccountAttributes
 import org.signal.registration.NetworkController.CreateSessionError
+import org.signal.registration.NetworkController.MasterKeyResponse
 import org.signal.registration.NetworkController.PreKeyCollection
 import org.signal.registration.NetworkController.RegisterAccountError
 import org.signal.registration.NetworkController.RegisterAccountResponse
 import org.signal.registration.NetworkController.RegistrationNetworkResult
 import org.signal.registration.NetworkController.RequestVerificationCodeError
+import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.NetworkController.SessionMetadata
+import org.signal.registration.NetworkController.SvrCredentials
 import org.signal.registration.NetworkController.UpdateSessionError
 import java.util.Locale
 
@@ -81,6 +86,16 @@ class RegistrationRepository(val networkController: NetworkController, val stora
     )
   }
 
+  suspend fun restoreMasterKeyFromSvr(
+    svr2Credentials: SvrCredentials,
+    pin: String
+  ): RegistrationNetworkResult<MasterKeyResponse, RestoreMasterKeyError> = withContext(Dispatchers.IO) {
+    networkController.restoreMasterKeyFromSvr(
+      svr2Credentials = svr2Credentials,
+      pin = pin
+    )
+  }
+
   /**
    * Registers a new account after successful phone number verification.
    *
@@ -88,28 +103,30 @@ class RegistrationRepository(val networkController: NetworkController, val stora
    * 1. Generates and stores all required cryptographic key material
    * 2. Creates account attributes with registration IDs and capabilities
    * 3. Calls the network controller to register the account
+   * 4. On success, saves the registration data to persistent storage
    *
    * @param e164 The phone number in E.164 format (used for basic auth)
    * @param sessionId The verified session ID from phone number verification
+   * @param registrationLock The registration lock token derived from the master key (if unlocking a reglocked account)
    * @param skipDeviceTransfer Whether to skip device transfer flow
    * @return The registration result containing account information or an error
    */
   suspend fun registerAccount(
     e164: String,
     sessionId: String,
+    registrationLock: String? = null,
     skipDeviceTransfer: Boolean = true
   ): RegistrationNetworkResult<RegisterAccountResponse, RegisterAccountError> = withContext(Dispatchers.IO) {
     val keyMaterial = storageController.generateAndStoreKeyMaterial()
     val fcmToken = networkController.getFcmToken()
 
-    // TODO this will need to be re-usable for reglocked accounts too (i.e. can't assume no reglock)
     val accountAttributes = AccountAttributes(
       signalingKey = null,
       registrationId = keyMaterial.aciRegistrationId,
       voice = true,
       video = true,
       fetchesMessages = fcmToken == null,
-      registrationLock = null,
+      registrationLock = registrationLock,
       unidentifiedAccessKey = keyMaterial.unidentifiedAccessKey,
       unrestrictedUnidentifiedAccess = false,
       discoverableByPhoneNumber = false, // Important -- this should be false initially, and then the user should be given a choice as to whether to turn it on later
@@ -136,7 +153,7 @@ class RegistrationRepository(val networkController: NetworkController, val stora
       lastResortKyberPreKey = keyMaterial.pniLastResortKyberPreKey
     )
 
-    networkController.registerAccount(
+    val result = networkController.registerAccount(
       e164 = e164,
       password = keyMaterial.servicePassword,
       sessionId = sessionId,
@@ -147,5 +164,19 @@ class RegistrationRepository(val networkController: NetworkController, val stora
       fcmToken = fcmToken,
       skipDeviceTransfer = skipDeviceTransfer
     )
+
+    if (result is RegistrationNetworkResult.Success) {
+      storageController.saveNewRegistrationData(
+        NewRegistrationData(
+          e164 = result.data.e164,
+          aci = ACI.parseOrThrow(result.data.aci),
+          pni = PNI.parseOrThrow(result.data.pni),
+          servicePassword = keyMaterial.servicePassword,
+          aep = keyMaterial.accountEntropyPool
+        )
+      )
+    }
+
+    result
   }
 }

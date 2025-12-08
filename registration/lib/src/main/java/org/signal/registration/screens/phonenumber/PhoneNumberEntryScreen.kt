@@ -54,16 +54,26 @@ fun PhoneNumberScreen(
   onEvent: (PhoneNumberEntryScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
+  var simpleErrorMessage: String? by remember { mutableStateOf(null) }
+
   LaunchedEffect(state.oneTimeEvent) {
     onEvent(PhoneNumberEntryScreenEvents.ConsumeOneTimeEvent)
     when (state.oneTimeEvent) {
-      OneTimeEvent.NetworkError -> TODO()
-      is OneTimeEvent.RateLimited -> TODO()
-      OneTimeEvent.UnknownError -> TODO()
-      OneTimeEvent.CouldNotRequestCodeWithSelectedTransport -> TODO()
-      OneTimeEvent.ThirdPartyError -> TODO()
+      OneTimeEvent.NetworkError -> simpleErrorMessage = "Network error"
+      is OneTimeEvent.RateLimited -> simpleErrorMessage = "Rate limited"
+      OneTimeEvent.UnknownError -> simpleErrorMessage = "Unknown error"
+      OneTimeEvent.CouldNotRequestCodeWithSelectedTransport -> simpleErrorMessage = "Could not request code with selected transport"
+      OneTimeEvent.ThirdPartyError -> simpleErrorMessage = "Third party error"
       null -> Unit
     }
+  }
+
+  simpleErrorMessage?.let { message ->
+    Dialogs.SimpleMessageDialog(
+      message = message,
+      dismiss = "Ok",
+      onDismiss = { simpleErrorMessage = null }
+    )
   }
 
   Box(modifier = modifier.fillMaxSize()) {

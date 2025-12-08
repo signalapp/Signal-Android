@@ -15,6 +15,7 @@ import org.signal.core.util.logging.Log
 import org.signal.registration.RegistrationDependencies
 import org.signal.registration.sample.dependencies.RealNetworkController
 import org.signal.registration.sample.dependencies.RealStorageController
+import org.signal.registration.sample.storage.RegistrationPreferences
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.api.util.CredentialsProvider
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
@@ -29,13 +30,22 @@ import java.util.Optional
 
 class RegistrationApplication : Application() {
 
+  companion object {
+    // Staging SVR2 mrEnclave value
+    private const val SVR2_MRENCLAVE = "a75542d82da9f6914a1e31f8a7407053b99cc99a0e7291d8fbd394253e19b036"
+  }
+
   override fun onCreate() {
     super.onCreate()
 
     Log.initialize(AndroidLogger)
 
-    val pushServiceSocket = createPushServiceSocket()
-    val networkController = RealNetworkController(this, pushServiceSocket)
+    RegistrationPreferences.init(this)
+
+    val trustStore = SampleTrustStore()
+    val configuration = createServiceConfiguration(trustStore)
+    val pushServiceSocket = createPushServiceSocket(configuration)
+    val networkController = RealNetworkController(this, pushServiceSocket, configuration, SVR2_MRENCLAVE)
     val storageController = RealStorageController(this)
 
     RegistrationDependencies.provide(
@@ -46,9 +56,7 @@ class RegistrationApplication : Application() {
     )
   }
 
-  private fun createPushServiceSocket(): PushServiceSocket {
-    val trustStore = SampleTrustStore()
-    val configuration = createServiceConfiguration(trustStore)
+  private fun createPushServiceSocket(configuration: SignalServiceConfiguration): PushServiceSocket {
     val credentialsProvider = NoopCredentialsProvider()
     val signalAgent = "Signal-Android/${BuildConfig.VERSION_NAME} Android/${Build.VERSION.SDK_INT}"
 

@@ -107,13 +107,13 @@ fun PinEntryScreen(
             }
           }
         ),
-        isError = state.errorMessage != null
+        isError = state.triesRemaining != null
       )
 
-      if (state.errorMessage != null) {
+      if (state.triesRemaining != null) {
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-          text = state.errorMessage,
+          text = "Incorrect PIN. ${state.triesRemaining} attempts remaining.",
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.error,
           textAlign = TextAlign.Center,
@@ -205,7 +205,7 @@ private fun PinEntryScreenWithErrorPreview() {
   Previews.Preview {
     PinEntryScreen(
       state = PinEntryState(
-        errorMessage = "Incorrect PIN. Try again.",
+        triesRemaining = 3,
         showNeedHelp = true
       ),
       onEvent = {}

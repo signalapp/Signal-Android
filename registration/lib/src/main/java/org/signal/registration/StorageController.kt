@@ -6,8 +6,9 @@
 package org.signal.registration
 
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.libsignal.protocol.IdentityKeyPair
-import org.signal.libsignal.protocol.ServiceId
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 
@@ -32,6 +33,11 @@ interface StorageController {
    * @return Data for the existing registration if registered, otherwise null.
    */
   suspend fun getPreExistingRegistrationData(): PreExistingRegistrationData?
+
+  /**
+   * Clears all stored registration data, including key material and account information.
+   */
+  suspend fun clearAllData()
 }
 
 /**
@@ -57,21 +63,23 @@ data class KeyMaterial(
   /** Unidentified access key (derived from profile key) for sealed sender. */
   val unidentifiedAccessKey: ByteArray,
   /** Password for basic auth during registration (18 random bytes, base64 encoded). */
-  val servicePassword: String
+  val servicePassword: String,
+  /** Account entropy pool for key derivation. */
+  val accountEntropyPool: AccountEntropyPool
 )
 
 data class NewRegistrationData(
   val e164: String,
-  val aci: ServiceId.Aci,
-  val pni: ServiceId.Pni,
+  val aci: ACI,
+  val pni: PNI,
   val servicePassword: String,
   val aep: AccountEntropyPool
 )
 
 data class PreExistingRegistrationData(
   val e164: String,
-  val aci: ServiceId.Aci,
-  val pni: ServiceId.Pni,
+  val aci: ACI,
+  val pni: PNI,
   val servicePassword: String,
   val aep: AccountEntropyPool
 )

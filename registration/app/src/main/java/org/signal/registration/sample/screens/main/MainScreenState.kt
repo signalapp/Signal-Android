@@ -8,5 +8,12 @@ package org.signal.registration.sample.screens.main
 data class MainScreenState(
   val existingRegistrationState: ExistingRegistrationState? = null
 ) {
-  data class ExistingRegistrationState(val phoneNumber: String)
+  data class ExistingRegistrationState(
+    val phoneNumber: String,
+    val aci: String,
+    val pni: String,
+    val aep: String,
+    val pin: String?,
+    val registrationLockEnabled: Boolean
+  )
 }

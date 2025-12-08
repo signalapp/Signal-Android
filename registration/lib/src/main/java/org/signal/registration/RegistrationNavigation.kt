@@ -30,6 +30,9 @@ import com.google.accompanist.permissions.MultiplePermissionsState
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import org.signal.core.ui.navigation.ResultEffect
+import org.signal.registration.screens.accountlocked.AccountLockedScreen
+import org.signal.registration.screens.accountlocked.AccountLockedScreenEvents
+import org.signal.registration.screens.accountlocked.AccountLockedState
 import org.signal.registration.screens.captcha.CaptchaScreen
 import org.signal.registration.screens.captcha.CaptchaScreenEvents
 import org.signal.registration.screens.captcha.CaptchaState
@@ -40,6 +43,8 @@ import org.signal.registration.screens.phonenumber.PhoneNumberScreen
 import org.signal.registration.screens.pincreation.PinCreationScreen
 import org.signal.registration.screens.pincreation.PinCreationScreenEvents
 import org.signal.registration.screens.pincreation.PinCreationState
+import org.signal.registration.screens.pinentry.PinEntryScreen
+import org.signal.registration.screens.registrationlock.RegistrationLockPinEntryViewModel
 import org.signal.registration.screens.restore.RestoreViaQrScreen
 import org.signal.registration.screens.restore.RestoreViaQrScreenEvents
 import org.signal.registration.screens.restore.RestoreViaQrState
@@ -71,6 +76,18 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
 
   @Serializable
   data class Captcha(val session: NetworkController.SessionMetadata) : RegistrationRoute
+
+  @Serializable
+  data object PinEntry : RegistrationRoute
+
+  @Serializable
+  data class RegistrationLockPinEntry(
+    val timeRemaining: Long,
+    val svrCredentials: NetworkController.SvrCredentials
+  ) : RegistrationRoute
+
+  @Serializable
+  data class AccountLocked(val timeRemainingMs: Long) : RegistrationRoute
 
   @Serializable
   data object Profile : RegistrationRoute
@@ -311,6 +328,44 @@ private fun EntryProviderScope<NavKey>.registrationEntries(
           }
           PinCreationScreenEvents.LearnMore -> {
             // TODO: Show learn more dialog
+          }
+        }
+      }
+    )
+  }
+
+  // -- Registration Lock PIN Entry Screen
+  entry<RegistrationRoute.RegistrationLockPinEntry> { key ->
+    val viewModel: RegistrationLockPinEntryViewModel = viewModel(
+      factory = RegistrationLockPinEntryViewModel.Factory(
+        repository = registrationRepository,
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent,
+        timeRemaining = key.timeRemaining,
+        svrCredentials = key.svrCredentials
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    PinEntryScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- Account Locked Screen
+  entry<RegistrationRoute.AccountLocked> { key ->
+    val daysRemaining = (key.timeRemainingMs / (1000 * 60 * 60 * 24)).toInt()
+    AccountLockedScreen(
+      state = AccountLockedState(daysRemaining = daysRemaining),
+      onEvent = { event ->
+        when (event) {
+          AccountLockedScreenEvents.Next -> {
+            // TODO: Navigate to appropriate next screen (likely back to welcome or phone entry)
+            navigator.navigate(RegistrationRoute.Welcome)
+          }
+          AccountLockedScreenEvents.LearnMore -> {
+            // TODO: Open learn more URL
           }
         }
       }

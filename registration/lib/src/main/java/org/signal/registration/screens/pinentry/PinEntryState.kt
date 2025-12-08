@@ -5,8 +5,18 @@
 
 package org.signal.registration.screens.pinentry
 
+import kotlin.time.Duration
+
 data class PinEntryState(
-  val errorMessage: String? = null,
   val showNeedHelp: Boolean = false,
-  val isNumericKeyboard: Boolean = true
-)
+  val isNumericKeyboard: Boolean = true,
+  val loading: Boolean = false,
+  val triesRemaining: Int? = null,
+  val oneTimeEvent: OneTimeEvent? = null
+) {
+  sealed interface OneTimeEvent {
+    data object NetworkError : OneTimeEvent
+    data class RateLimited(val retryAfter: Duration) : OneTimeEvent
+    data object UnknownError : OneTimeEvent
+  }
+}
