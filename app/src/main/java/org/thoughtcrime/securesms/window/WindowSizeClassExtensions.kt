@@ -13,7 +13,6 @@ import androidx.window.core.layout.WindowHeightSizeClass
 import androidx.window.core.layout.WindowSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 val WindowSizeClass.listPaneDefaultPreferredWidth: Dp get() = if (windowWidthSizeClass.isAtLeast(WindowWidthSizeClass.EXPANDED)) 416.dp else 316.dp
 val WindowSizeClass.horizontalPartitionDefaultSpacerSize: Dp get() = 12.dp
@@ -25,13 +24,6 @@ fun WindowHeightSizeClass.isAtLeast(other: WindowHeightSizeClass): Boolean {
 
 fun WindowWidthSizeClass.isAtLeast(other: WindowWidthSizeClass): Boolean {
   return hashCode() >= other.hashCode()
-}
-
-/**
- * Global check for large screen support, can be inlined after production release.
- */
-fun isLargeScreenSupportEnabled(): Boolean {
-  return RemoteConfig.largeScreenUi
 }
 
 @OptIn(ExperimentalWindowCoreApi::class)

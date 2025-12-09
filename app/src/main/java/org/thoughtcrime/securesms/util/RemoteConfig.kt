@@ -1130,13 +1130,6 @@ object RemoteConfig {
     hotSwappable = false
   )
 
-  /** Whether to allow different WindowSizeClasses to be used to determine screen layout */
-  val largeScreenUi: Boolean by remoteBoolean(
-    key = "android.largeScreenUI.2",
-    hotSwappable = false,
-    defaultValue = false
-  )
-
   @JvmStatic
   @get:JvmName("useMessageSendRestFallback")
   val useMessageSendRestFallback: Boolean by remoteBoolean(

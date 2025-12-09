@@ -347,7 +347,6 @@ import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.atMidnight
 import org.thoughtcrime.securesms.util.atUTC
 import org.thoughtcrime.securesms.util.doAfterNextLayout
@@ -370,7 +369,6 @@ import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
 import org.thoughtcrime.securesms.window.getWindowSizeClass
-import org.thoughtcrime.securesms.window.isLargeScreenSupportEnabled
 import org.thoughtcrime.securesms.window.isSplitPane
 import java.time.Instant
 import java.time.LocalDateTime
@@ -713,11 +711,6 @@ class ConversationFragment :
 
   override fun onResume() {
     super.onResume()
-
-    if (!isLargeScreenSupportEnabled()) {
-      WindowUtil.setLightNavigationBarFromTheme(requireActivity())
-      WindowUtil.setLightStatusBarFromTheme(requireActivity())
-    }
 
     EventBus.getDefault().register(this)
 
@@ -1514,16 +1507,12 @@ class ConversationFragment :
   }
 
   private fun presentNavigationIconForNormal() {
-    if (isLargeScreenSupportEnabled()) {
-      lifecycleScope.launch {
-        repeatOnLifecycle(Lifecycle.State.RESUMED) {
-          mainNavigationViewModel.isFullScreenPane.collect { isFullScreenPane ->
-            updateNavigationIconForNormal(isFullScreenPane)
-          }
+    lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        mainNavigationViewModel.isFullScreenPane.collect { isFullScreenPane ->
+          updateNavigationIconForNormal(isFullScreenPane)
         }
       }
-    } else {
-      updateNavigationIconForNormal(true)
     }
   }
 
@@ -3676,11 +3665,6 @@ class ConversationFragment :
                   getVoiceNoteMediaController().resumePlayback(selectedConversationModel.audioUri, messageRecord.id)
                 }
 
-                if (!isLargeScreenSupportEnabled()) {
-                  WindowUtil.setLightStatusBarFromTheme(requireActivity())
-                  WindowUtil.setLightNavigationBarFromTheme(requireActivity())
-                }
-
                 clearFocusedItem()
 
                 if (mp4Holder != null) {
@@ -4730,9 +4714,11 @@ class ConversationFragment :
             binding.navBar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.signal_background_primary))
           }
         }
+
         MEDIA_KEYBOARD_FRAGMENT_CREATOR_ID -> {
           binding.navBar.setBackgroundColor(ThemeUtil.getThemedColor(requireContext(), R.attr.mediaKeyboardBottomBarBackgroundColor))
         }
+
         else -> {
           Log.w(TAG, "Not setting navbar coloring for unknown creator id $fragmentCreatorId")
         }
