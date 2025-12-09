@@ -13,6 +13,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.GroupUtil
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 
 /**
  * Manages waking up and unpinning pinned messages at the correct time
@@ -51,7 +53,20 @@ class PinnedMessageManager(
     val pinnedMessagesToUnpin = messagesTable.getPinnedMessagesBefore(System.currentTimeMillis())
     for (record in pinnedMessagesToUnpin) {
       messagesTable.unpinMessage(messageId = record.id, threadId = record.threadId)
-      // TODO(michelle): Send sync message to linked device to unpin message (done to ensure consistency)
+      val dataMessageBuilder = SignalServiceDataMessage.newBuilder()
+        .withTimestamp(System.currentTimeMillis())
+        .withUnpinnedMessage(
+          SignalServiceDataMessage.UnpinnedMessage(
+            targetAuthor = record.fromRecipient.requireServiceId(),
+            targetSentTimestamp = record.dateSent
+          )
+        )
+
+      val conversationRecipient = SignalDatabase.threads.getRecipientForThreadId(record.threadId) ?: continue
+      if (conversationRecipient.isGroup) {
+        GroupUtil.setDataMessageGroupContext(application, dataMessageBuilder, conversationRecipient.requireGroupId().requirePush())
+      }
+      AppDependencies.signalServiceMessageSender.sendSyncMessage(dataMessageBuilder.build())
     }
   }
 

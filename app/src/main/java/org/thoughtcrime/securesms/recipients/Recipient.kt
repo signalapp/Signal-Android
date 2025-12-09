@@ -406,7 +406,7 @@ class Recipient(
   private val resolved: Recipient
     get() = if (isResolving) live().resolve() else this
 
-  /** Convenience method to get a non-null [serviceId] hen you know it is there. */
+  /** Convenience method to get a non-null [serviceId] when you know it is there. */
   fun requireServiceId(): ServiceId {
     return resolved.aciValue ?: resolved.pniValue ?: throw MissingServiceIdError(id)
   }
