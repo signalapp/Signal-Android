@@ -101,7 +101,7 @@ private fun AddToGroupsScreen(
   val callbacks = remember {
     object : UiCallbacks {
       override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
-      override fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) = viewModel.selectGroups(newSelections)
+      override fun onSelectionChanged(newSelections: List<SelectedContact>) = viewModel.selectGroups(newSelections)
       override fun addToSelectedGroups() = viewModel.addToSelectedGroups()
       override fun onAddConfirmed(groupRecipient: Recipient) = viewModel.addToGroups(listOf(groupRecipient))
       override fun onUserMessageDismissed(userMessage: UserMessage) = viewModel.clearUserMessage()

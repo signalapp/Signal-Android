@@ -213,8 +213,7 @@ private fun RecipientSearchResultsList(
         callbacks.listActions.onPendingRecipientSelectionsConsumed()
 
         callbacks.listActions.onSelectionChanged(
-          newSelections = fragment.selectedContacts,
-          totalMembersCount = fragment.totalMemberCount
+          newSelections = fragment.selectedContacts
         )
       }
     }
@@ -290,8 +289,7 @@ private fun ContactSelectionListFragment.setUpCallbacks(
 
     override fun onSelectionChanged() {
       callbacks.listActions.onSelectionChanged(
-        newSelections = fragment.selectedContacts,
-        totalMembersCount = fragment.totalMemberCount
+        newSelections = fragment.selectedContacts
       )
     }
   })
@@ -411,7 +409,7 @@ class RecipientPickerCallbacks(
     fun onSearchQueryChanged(query: String)
     suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean
     fun onRecipientSelected(selection: RecipientSelection)
-    fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) = Unit
+    fun onSelectionChanged(newSelections: List<SelectedContact>) = Unit
     fun onPendingRecipientSelectionsConsumed() = Unit
     fun onContactsListReset() = Unit
 

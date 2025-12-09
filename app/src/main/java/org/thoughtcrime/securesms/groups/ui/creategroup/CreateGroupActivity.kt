@@ -117,7 +117,7 @@ private fun CreateGroupScreen(
       override fun onFindByUsername() = findByLauncher.launch(FindByMode.USERNAME)
       override fun onFindByPhoneNumber() = findByLauncher.launch(FindByMode.PHONE_NUMBER)
       override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = viewModel.shouldAllowSelection(selection)
-      override fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) = viewModel.onSelectionChanged(newSelections, totalMembersCount)
+      override fun onSelectionChanged(newSelections: List<SelectedContact>) = viewModel.onSelectionChanged(newSelections)
       override fun onPendingRecipientSelectionsConsumed() = viewModel.clearPendingRecipientSelections()
       override fun onNextClicked(): Unit = viewModel.continueToGroupDetails()
       override fun onUserMessageDismissed(userMessage: UserMessage) = viewModel.clearUserMessage()
@@ -155,8 +155,8 @@ private fun CreateGroupScreenUi(
   val title = if (uiState.newSelections.isNotEmpty()) {
     pluralStringResource(
       id = R.plurals.CreateGroupActivity__s_members,
-      count = uiState.totalMembersCount,
-      NumberFormat.getInstance().format(uiState.totalMembersCount)
+      count = uiState.newSelections.size,
+      NumberFormat.getInstance().format(uiState.newSelections.size)
     )
   } else {
     stringResource(R.string.CreateGroupActivity__select_members)

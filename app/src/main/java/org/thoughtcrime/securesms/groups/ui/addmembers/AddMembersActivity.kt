@@ -121,7 +121,7 @@ private fun AddMembersScreen(
       override fun onFindByUsername() = findByLauncher.launch(FindByMode.USERNAME)
       override fun onFindByPhoneNumber() = findByLauncher.launch(FindByMode.PHONE_NUMBER)
       override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = viewModel.shouldAllowSelection(selection)
-      override fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) = viewModel.onSelectionChanged(newSelections)
+      override fun onSelectionChanged(newSelections: List<SelectedContact>) = viewModel.onSelectionChanged(newSelections)
       override fun onPendingRecipientSelectionsConsumed() = viewModel.clearPendingRecipientSelections()
       override fun onDoneClicked() = viewModel.addSelectedMembers()
       override fun onAddConfirmed(recipientIds: Set<RecipientId>) {
