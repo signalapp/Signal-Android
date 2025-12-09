@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.DiskUtil
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -47,9 +48,13 @@ class OptimizeMediaJob private constructor(parameters: Parameters) : Job(paramet
       return Result.success()
     }
 
-    Log.i(TAG, "Canceling any previous restore optimized media jobs and cleanup progress")
-    AppDependencies.jobManager.cancelAllInQueues(RestoreAttachmentJob.Queues.OFFLOAD_RESTORE)
-    RestoreAttachmentJob.Queues.OFFLOAD_RESTORE.forEach { queue -> AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(queue)) }
+    if (ArchiveRestoreProgress.state.activelyRestoring()) {
+      ArchiveRestoreProgress.onCancelMediaRestore()
+
+      Log.i(TAG, "Canceling any previous restore optimized media jobs and cleanup progress")
+      AppDependencies.jobManager.cancelAllInQueues(RestoreAttachmentJob.Queues.OFFLOAD_RESTORE)
+      RestoreAttachmentJob.Queues.OFFLOAD_RESTORE.forEach { queue -> AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(queue)) }
+    }
 
     Log.i(TAG, "Optimizing media in the db")
 
