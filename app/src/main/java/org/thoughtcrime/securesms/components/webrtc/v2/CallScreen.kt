@@ -62,6 +62,7 @@ import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.TriggerAlignedPopupState
 import org.signal.core.util.DimensionUnit
+import org.thoughtcrime.securesms.components.emoji.EmojiStrings
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.components.webrtc.controls.RaiseHandSnackbar
 import org.thoughtcrime.securesms.compose.SignalTheme
@@ -260,6 +261,12 @@ fun CallScreen(
         0.dp
       }
 
+      val reactionsAndRaisesHandBottomInset = if (shouldNotApplyBottomPaddingToViewPort) {
+        padding
+      } else {
+        0.dp
+      }
+
       Viewport(
         localParticipant = localParticipant,
         localRenderState = localRenderState,
@@ -277,7 +284,10 @@ fun CallScreen(
         selfPipBottomInset = selfPipBottomInset,
         modifier = if (shouldNotApplyBottomPaddingToViewPort) {
           Modifier
-        } else Modifier.padding(bottom = padding)
+        } else Modifier.padding(bottom = padding),
+        reactions = reactions,
+        raiseHandSnackbar = raiseHandSnackbar,
+        reactionsAndRaisesHandBottomInset = reactionsAndRaisesHandBottomInset
       )
 
       val onCallInfoClick: () -> Unit = {
@@ -323,21 +333,6 @@ fun CallScreen(
           .fillMaxSize()
           .padding(bottom = padding)
       ) {
-        Column(
-          modifier = Modifier
-            .fillMaxSize()
-            .padding(bottom = 20.dp)
-        ) {
-          CallScreenReactionsContainer(
-            reactions = reactions,
-            modifier = Modifier.weight(1f)
-          )
-
-          raiseHandSnackbar(
-            Modifier
-          )
-        }
-
         AnimatedCallStateUpdate(
           callControlsChange = callScreenState.callControlsChange,
           modifier = Modifier
@@ -359,7 +354,9 @@ fun CallScreen(
         if (callScreenState.isParticipantUpdatePopupEnabled) {
           CallParticipantUpdatePopup(
             controller = callParticipantUpdatePopupController,
-            modifier = Modifier.statusBarsPadding().fillMaxWidth()
+            modifier = Modifier
+              .statusBarsPadding()
+              .fillMaxWidth()
           )
         }
       }
@@ -367,6 +364,28 @@ fun CallScreen(
   }
 
   CallScreenDialog(callScreenDialogType, onCallScreenDialogDismissed)
+}
+
+@Composable
+private fun ReactionsAndRaiseHand(
+  reactions: List<GroupCallReactionEvent>,
+  raiseHandSnackbar: @Composable (Modifier) -> Unit,
+  modifier: Modifier = Modifier
+) {
+  Column(
+    modifier = modifier
+      .fillMaxSize()
+      .padding(bottom = 20.dp)
+  ) {
+    CallScreenReactionsContainer(
+      reactions = reactions,
+      modifier = Modifier.weight(1f)
+    )
+
+    raiseHandSnackbar(
+      Modifier
+    )
+  }
 }
 
 /**
@@ -385,11 +404,14 @@ private fun Viewport(
   callControlsState: CallControlsState,
   callScreenState: CallScreenState,
   callScreenController: CallScreenController,
+  reactions: List<GroupCallReactionEvent>,
+  raiseHandSnackbar: @Composable (Modifier) -> Unit,
   onPipClick: () -> Unit,
   onPipFocusClick: () -> Unit,
   onControlsToggled: (Boolean) -> Unit,
   onToggleCameraDirection: () -> Unit,
   selfPipBottomInset: Dp,
+  reactionsAndRaisesHandBottomInset: Dp,
   modifier: Modifier = Modifier
 ) {
   val isEmptyOngoingCall = webRtcCallState.inOngoingCall && callParticipantsPagerState.callParticipants.isEmpty()
@@ -427,21 +449,30 @@ private fun Viewport(
         Column(
           modifier = Modifier.weight(1f)
         ) {
-          CallParticipantsPager(
-            callParticipantsPagerState = callParticipantsPagerState,
-            pagerState = callScreenController.callParticipantsVerticalPagerState,
-            modifier = Modifier
-              .fillMaxWidth()
-              .weight(1f)
-              .clickable(
-                onClick = {
-                  scope.launch {
-                    callScreenController.handleEvent(CallScreenController.Event.TOGGLE_CONTROLS)
-                  }
-                },
-                enabled = !callControlsState.skipHiddenState
-              )
-          )
+          Box(
+            modifier = Modifier.fillMaxWidth().weight(1f)
+          ) {
+            CallParticipantsPager(
+              callParticipantsPagerState = callParticipantsPagerState,
+              pagerState = callScreenController.callParticipantsVerticalPagerState,
+              modifier = Modifier
+                .fillMaxSize()
+                .clickable(
+                  onClick = {
+                    scope.launch {
+                      callScreenController.handleEvent(CallScreenController.Event.TOGGLE_CONTROLS)
+                    }
+                  },
+                  enabled = !callControlsState.skipHiddenState
+                )
+            )
+
+            ReactionsAndRaiseHand(
+              reactions = reactions,
+              raiseHandSnackbar = raiseHandSnackbar,
+              modifier = Modifier.padding(bottom = reactionsAndRaisesHandBottomInset)
+            )
+          }
 
           if (isPortrait && isLargeGroupCall) {
             Row {
@@ -451,7 +482,6 @@ private fun Viewport(
                 modifier = Modifier
                   .padding(vertical = 16.dp)
                   .height(callScreenMetrics.overflowParticipantRendererSize)
-                  .weight(1f)
               )
             }
           }
@@ -465,7 +495,6 @@ private fun Viewport(
               modifier = Modifier
                 .padding(horizontal = 16.dp)
                 .width(callScreenMetrics.overflowParticipantRendererSize)
-                .weight(1f)
             )
           }
         }
@@ -606,9 +635,15 @@ private fun CallScreenPreview() {
       onNavigationClick = {},
       onLocalPictureInPictureClicked = {},
       onLocalPictureInPictureFocusClicked = {},
-      overflowParticipants = participants,
+      overflowParticipants = emptyList(), // participants,
       onControlsToggled = {},
-      reactions = emptyList(),
+      reactions = listOf(
+        GroupCallReactionEvent(
+          sender = participants[0].recipient,
+          timestamp = System.currentTimeMillis(),
+          reaction = EmojiStrings.GIFT
+        )
+      ),
       callParticipantUpdatePopupController = remember { CallParticipantUpdatePopupController() }
     )
   }
