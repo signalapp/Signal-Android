@@ -151,6 +151,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V294_RemoveLastReso
 import org.thoughtcrime.securesms.database.helpers.migration.V295_AddLastRestoreKeyTypeTableIfMissingMigration
 import org.thoughtcrime.securesms.database.helpers.migration.V296_RemovePollVoteConstraint
 import org.thoughtcrime.securesms.database.helpers.migration.V297_AddPinnedMessageColumns
+import org.thoughtcrime.securesms.database.helpers.migration.V298_ThreadUnreadReactionToSelfCount
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -309,7 +310,7 @@ object SignalDatabaseMigrations {
     295 to V295_AddLastRestoreKeyTypeTableIfMissingMigration,
     296 to V296_RemovePollVoteConstraint,
     297 to V297_AddPinnedMessageColumns,
-    298 to V294_ThreadUnreadReactionToSelfCount
+    298 to V298_ThreadUnreadReactionToSelfCount
   )
 
   const val DATABASE_VERSION = 298

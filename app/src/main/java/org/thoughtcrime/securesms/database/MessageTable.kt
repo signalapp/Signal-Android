@@ -5539,7 +5539,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           .run()
       }
 
-      ThreadUpdateJob.enqueue(threadId)
+      ThreadUpdateJob.enqueue(threadId, false)
       notifyConversationListeners(threadId)
       notifyConversationListListeners()
     } catch (e: NoSuchMessageException) {
