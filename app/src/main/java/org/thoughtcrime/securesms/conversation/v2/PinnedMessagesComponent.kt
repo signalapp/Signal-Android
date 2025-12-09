@@ -45,7 +45,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.doOnPreDraw
 import org.signal.core.ui.compose.DropdownMenus
@@ -134,7 +133,7 @@ fun PinnedMessagesBanner(
               onClickLabel = stringResource(R.string.SignalCheckbox_accessibility_on_click_label),
               enabled = true
             )
-            .padding(vertical = 8.dp)
+            .padding(vertical = 7.dp)
         ) {
           if (showThumbnail &&
             !message.hasSticker() &&
@@ -162,7 +161,7 @@ fun PinnedMessagesBanner(
               },
               fontWeight = FontWeight.Bold,
               color = MaterialTheme.colorScheme.onSurface,
-              fontSize = 13.sp
+              style = MaterialTheme.typography.bodySmall
             )
 
             val displayBody = if (glyph != null) {
@@ -189,7 +188,7 @@ fun PinnedMessagesBanner(
         }
       }
 
-      Box(modifier = Modifier.padding(8.dp).padding(end = 8.dp)) {
+      Box(modifier = Modifier.padding(vertical = 7.dp, horizontal = 8.dp).padding(end = 8.dp)) {
         Icon(
           imageVector = ImageVector.vectorResource(R.drawable.symbol_pin_24),
           contentDescription = stringResource(R.string.PinnedMessage__pinned),
