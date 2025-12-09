@@ -99,5 +99,9 @@ class CallQualityBottomSheetFragment : ComposeBottomSheetDialogFragment() {
       dismiss()
       setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to true))
     }
+
+    override fun tryAgain() {
+      viewModel.clearFailedDueToNetworkAvailability()
+    }
   }
 }

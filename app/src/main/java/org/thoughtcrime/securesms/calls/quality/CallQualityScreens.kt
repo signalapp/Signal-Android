@@ -66,6 +66,7 @@ import androidx.compose.ui.text.withLink
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
@@ -79,6 +80,19 @@ fun CallQualitySheet(
   callback: CallQualitySheetCallback = CallQualitySheetCallback.Empty
 ) {
   var navEntry: CallQualitySheetNavEntry by remember { mutableStateOf(CallQualitySheetNavEntry.HowWasYourCall) }
+
+  if (state.failedDueToNetworkAvailability) {
+    Dialogs.SimpleAlertDialog(
+      title = "",
+      body = stringResource(R.string.CallQualitySheet__your_feedback_failed_to_send),
+      confirm = stringResource(R.string.CallQualitySheet__try_again),
+      onConfirm = callback::tryAgain,
+      dismiss = stringResource(android.R.string.cancel),
+      onDeny = callback::dismiss
+    )
+
+    return
+  }
 
   Sheet(onDismissRequest = callback::dismiss) {
     AnimatedContent(
@@ -106,7 +120,7 @@ fun CallQualitySheet(
               navEntry = CallQualitySheetNavEntry.HelpUsImprove
             },
             onHadIssuesClick = {
-              callback.onUserSatisfiedWithCall(true)
+              callback.onUserSatisfiedWithCall(false)
               navEntry = CallQualitySheetNavEntry.WhatIssuesDidYouHave
             },
             onCancelClick = callback::dismiss
@@ -115,6 +129,7 @@ fun CallQualitySheet(
           CallQualitySheetNavEntry.WhatIssuesDidYouHave -> WhatIssuesDidYouHave(
             selectedQualityIssues = state.selectedQualityIssues,
             somethingElseDescription = state.somethingElseDescription,
+            isContinueEnabled = state.canContinueAfterIssueSelection(),
             onCallQualityIssueSelectionChanged = callback::onCallQualityIssueSelectionChanged,
             onContinueClick = {
               navEntry = CallQualitySheetNavEntry.HelpUsImprove
@@ -169,6 +184,7 @@ private fun ColumnScope.HowWasYourCall(
 private fun WhatIssuesDidYouHave(
   selectedQualityIssues: Set<CallQualityIssue>,
   somethingElseDescription: String,
+  isContinueEnabled: Boolean,
   onCallQualityIssueSelectionChanged: (Set<CallQualityIssue>) -> Unit,
   onCancelClick: () -> Unit,
   onContinueClick: () -> Unit,
@@ -352,7 +368,8 @@ private fun WhatIssuesDidYouHave(
     )
 
     Buttons.LargeTonal(
-      onClick = onContinueClick
+      onClick = onContinueClick,
+      enabled = isContinueEnabled
     ) {
       Text(text = stringResource(R.string.CallQualitySheet__continue))
     }
@@ -665,6 +682,7 @@ private fun WhatIssuesDidYouHavePreview() {
       WhatIssuesDidYouHave(
         selectedQualityIssues = userSelection,
         somethingElseDescription = "",
+        isContinueEnabled = false,
         onCallQualityIssueSelectionChanged = {
           userSelection = it
         },
@@ -708,8 +726,17 @@ data class CallQualitySheetState(
   val isUserSatisfiedWithCall: Boolean = false,
   val selectedQualityIssues: Set<CallQualityIssue> = emptySet(),
   val somethingElseDescription: String = "",
-  val isShareDebugLogSelected: Boolean = false
-)
+  val isShareDebugLogSelected: Boolean = false,
+  val failedDueToNetworkAvailability: Boolean = false
+) {
+  fun canContinueAfterIssueSelection(): Boolean {
+    val isSomethingElseSelected = selectedQualityIssues.contains(CallQualityIssue.SOMETHING_ELSE)
+    val isSomethingElseFieldComplete = somethingElseDescription.isNotEmpty()
+    val isSomethingElseValid = isSomethingElseSelected && isSomethingElseFieldComplete || !isSomethingElseSelected
+
+    return selectedQualityIssues.isNotEmpty() && isSomethingElseValid
+  }
+}
 
 interface CallQualitySheetCallback {
   fun dismiss()
@@ -719,6 +746,7 @@ interface CallQualitySheetCallback {
   fun onCallQualityIssueSelectionChanged(selection: Set<CallQualityIssue>)
   fun onShareDebugLogChanged(shareDebugLog: Boolean)
   fun submit()
+  fun tryAgain()
 
   object Empty : CallQualitySheetCallback {
     override fun dismiss() = Unit
@@ -728,6 +756,7 @@ interface CallQualitySheetCallback {
     override fun onCallQualityIssueSelectionChanged(selection: Set<CallQualityIssue>) = Unit
     override fun onShareDebugLogChanged(shareDebugLog: Boolean) = Unit
     override fun submit() = Unit
+    override fun tryAgain() = Unit
   }
 }
 

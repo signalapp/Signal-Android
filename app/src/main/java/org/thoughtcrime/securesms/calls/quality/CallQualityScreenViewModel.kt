@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.update
 import org.signal.core.util.logging.Log
 import org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.CallQualitySurveySubmissionJob
 
 class CallQualityScreenViewModel(
@@ -41,7 +42,17 @@ class CallQualityScreenViewModel(
     internalState.update { it.copy(isShareDebugLogSelected = shareDebugLog) }
   }
 
+  fun clearFailedDueToNetworkAvailability() {
+    internalState.update { it.copy(failedDueToNetworkAvailability = false) }
+  }
+
   fun submit() {
+    if (!NetworkConstraint.isMet(AppDependencies.application)) {
+      Log.w(TAG, "User does not have a network connection. Failing immediately with retry dialog.")
+      internalState.update { it.copy(failedDueToNetworkAvailability = true) }
+      return
+    }
+
     if (initialRequest.call_type.isEmpty()) {
       Log.i(TAG, "Ignoring survey submission for blank call_type.")
       return
