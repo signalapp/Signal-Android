@@ -106,14 +106,15 @@ public final class GroupSendUtil {
                                                                   @NonNull SignalServiceDataMessage message,
                                                                   boolean urgent,
                                                                   boolean isForStory,
-                                                                  @Nullable SignalServiceEditMessage editMessage)
+                                                                  @Nullable SignalServiceEditMessage editMessage,
+                                                                  @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException
   {
     Preconditions.checkArgument(groupId == null || distributionListId == null, "Cannot supply both a groupId and a distributionListId!");
 
     DistributionId distributionId = groupId != null ? getDistributionId(groupId) : getDistributionId(distributionListId);
 
-    return sendMessage(context, groupId, distributionId, messageId, allTargets, isRecipientUpdate, isForStory, DataSendOperation.resendable(message, contentHint, messageId, urgent, isForStory, editMessage), null);
+    return sendMessage(context, groupId, distributionId, messageId, allTargets, isRecipientUpdate, isForStory, DataSendOperation.resendable(message, contentHint, messageId, urgent, isForStory, editMessage), cancelationSignal);
   }
 
   /**

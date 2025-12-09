@@ -238,7 +238,7 @@ class ConversationRepository(
         .distinctBy { it.id }
 
       val eligibleTargets: List<Recipient> = RecipientUtil.getEligibleForSending(possibleTargets)
-      val results = sendEndPoll(threadRecipient, message, eligibleTargets)
+      val results = sendEndPoll(threadRecipient, message, eligibleTargets, poll.messageId)
       val sendResults = GroupSendJobHelper.getCompletedSends(eligibleTargets, results)
 
       if (sendResults.completed.isNotEmpty() || possibleTargets.isEmpty()) {
@@ -271,7 +271,7 @@ class ConversationRepository(
   }
 
   @Throws(IOException::class, GroupNotAMemberException::class, UndeliverableMessageException::class)
-  fun sendEndPoll(group: Recipient, message: OutgoingMessage, destinations: List<Recipient>): List<SendMessageResult?> {
+  fun sendEndPoll(group: Recipient, message: OutgoingMessage, destinations: List<Recipient>, messageId: Long): List<SendMessageResult?> {
     val groupId = group.requireGroupId().requireV2()
     val groupRecord: GroupRecord? = SignalDatabase.groups.getGroup(group.requireGroupId()).getOrNull()
 
@@ -291,14 +291,18 @@ class ConversationRepository(
       .withPollTerminate(SignalServiceDataMessage.PollTerminate(message.messageExtras!!.pollTerminate!!.targetTimestamp))
       .build()
 
-    return GroupSendUtil.sendUnresendableDataMessage(
+    return GroupSendUtil.sendResendableDataMessage(
       applicationContext,
       groupId,
+      null,
       destinations,
       false,
-      ContentHint.DEFAULT,
+      ContentHint.RESENDABLE,
+      MessageId(messageId),
       groupMessage,
-      false
+      true,
+      false,
+      null
     ) { System.currentTimeMillis() - sentTime > POLL_TERMINATE_TIMEOUT.inWholeMilliseconds }
   }
 
@@ -336,7 +340,7 @@ class ConversationRepository(
       }
 
       val eligibleTargets = RecipientUtil.getEligibleForSending(possibleTargets)
-      val results = PinSendUtil.sendPinMessage(applicationContext, threadRecipient, message, eligibleTargets)
+      val results = PinSendUtil.sendPinMessage(applicationContext, threadRecipient, message, eligibleTargets, messageRecord.id)
 
       val sendResults = GroupSendJobHelper.getCompletedSends(eligibleTargets, results)
 
@@ -393,7 +397,7 @@ class ConversationRepository(
       }
 
       val eligibleTargets: List<Recipient> = RecipientUtil.getEligibleForSending(possibleTargets)
-      val results = PinSendUtil.sendUnpinMessage(applicationContext, threadRecipient, message.fromRecipient.requireServiceId(), message.dateSent, eligibleTargets)
+      val results = PinSendUtil.sendUnpinMessage(applicationContext, threadRecipient, message.fromRecipient.requireServiceId(), message.dateSent, eligibleTargets, messageId)
       val sendResults = GroupSendJobHelper.getCompletedSends(eligibleTargets, results)
 
       if (sendResults.completed.isNotEmpty() || possibleTargets.isEmpty()) {

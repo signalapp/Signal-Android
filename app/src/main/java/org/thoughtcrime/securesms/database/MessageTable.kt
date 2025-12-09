@@ -2887,6 +2887,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val (messageId, insertedAttachments) = insertMediaMessage(
       threadId = threadId,
+      receivedTime = retrieved.receivedTimeMillis,
       body = retrieved.body,
       attachments = retrieved.attachments,
       quoteAttachments = quoteAttachments,
@@ -3342,6 +3343,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val bodyRanges = message.bodyRanges.adjustBodyRanges(updatedBodyAndMentions.bodyAdjustments)
     val (messageId, insertedAttachments) = insertMediaMessage(
       threadId = threadId,
+      receivedTime = dateReceived,
       body = updatedBodyAndMentions.bodyAsString?.trim(),
       attachments = message.attachments,
       quoteAttachments = quoteAttachments,
@@ -3453,6 +3455,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   @Throws(MmsException::class)
   private fun insertMediaMessage(
     threadId: Long,
+    receivedTime: Long,
     body: String?,
     attachments: List<Attachment>,
     quoteAttachments: List<Attachment>,
@@ -3536,14 +3539,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         val pinnedUntil = if (pinnedMessage.pinDurationInSeconds == PIN_FOREVER) {
           PIN_FOREVER
         } else {
-          System.currentTimeMillis() + pinnedMessage.pinDurationInSeconds.seconds.inWholeMilliseconds
+          receivedTime + pinnedMessage.pinDurationInSeconds.seconds.inWholeMilliseconds
         }
         val rows = db
           .update(TABLE_NAME)
           .values(
             PINNED_UNTIL to pinnedUntil,
             PINNING_MESSAGE_ID to messageId,
-            PINNED_AT to System.currentTimeMillis()
+            PINNED_AT to receivedTime
           )
           .where("$ID = ?", pinnedMessage.pinnedMessageId)
           .run()

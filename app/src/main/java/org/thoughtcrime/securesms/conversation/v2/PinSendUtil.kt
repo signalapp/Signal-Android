@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException
@@ -30,7 +31,7 @@ object PinSendUtil {
   private val PIN_TERMINATE_TIMEOUT = 7000.milliseconds
 
   @Throws(IOException::class, GroupNotAMemberException::class, UndeliverableMessageException::class)
-  fun sendPinMessage(applicationContext: Context, threadRecipient: Recipient, message: OutgoingMessage, destinations: List<Recipient>): List<SendMessageResult?> {
+  fun sendPinMessage(applicationContext: Context, threadRecipient: Recipient, message: OutgoingMessage, destinations: List<Recipient>, relatedMessageId: Long): List<SendMessageResult?> {
     val builder = newBuilder()
     val groupId = if (threadRecipient.isPushV2Group) threadRecipient.requireGroupId().requireV2() else null
 
@@ -57,19 +58,23 @@ object PinSendUtil {
       )
       .build()
 
-    return GroupSendUtil.sendUnresendableDataMessage(
+    return GroupSendUtil.sendResendableDataMessage(
       applicationContext,
       groupId,
+      null,
       destinations,
       false,
-      ContentHint.DEFAULT,
+      ContentHint.RESENDABLE,
+      MessageId(relatedMessageId),
       message,
-      false
+      false,
+      false,
+      null
     ) { System.currentTimeMillis() - sentTime > PIN_TERMINATE_TIMEOUT.inWholeMilliseconds }
   }
 
   @Throws(IOException::class, GroupNotAMemberException::class, UndeliverableMessageException::class)
-  fun sendUnpinMessage(applicationContext: Context, threadRecipient: Recipient, targetAuthor: ServiceId, targetSentTimestamp: Long, destinations: List<Recipient>): List<SendMessageResult?> {
+  fun sendUnpinMessage(applicationContext: Context, threadRecipient: Recipient, targetAuthor: ServiceId, targetSentTimestamp: Long, destinations: List<Recipient>, relatedMessageId: Long): List<SendMessageResult?> {
     val builder = newBuilder()
     val groupId = if (threadRecipient.isPushV2Group) threadRecipient.requireGroupId().requireV2() else null
     if (groupId != null) {
@@ -93,14 +98,18 @@ object PinSendUtil {
       )
       .build()
 
-    return GroupSendUtil.sendUnresendableDataMessage(
+    return GroupSendUtil.sendResendableDataMessage(
       applicationContext,
       groupId,
+      null,
       destinations,
       false,
-      ContentHint.DEFAULT,
+      ContentHint.RESENDABLE,
+      MessageId(relatedMessageId),
       message,
-      false
+      false,
+      false,
+      null
     ) { System.currentTimeMillis() - sentTime > PIN_TERMINATE_TIMEOUT.inWholeMilliseconds }
   }
 }
