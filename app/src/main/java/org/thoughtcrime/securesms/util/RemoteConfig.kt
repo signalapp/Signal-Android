@@ -1226,7 +1226,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("callQualitySurvey")
   val callQualitySurvey: Boolean by remoteBoolean(
-    key = "android.callQualitySurvey.2",
+    key = "android.callQualitySurvey.3",
     defaultValue = false,
     hotSwappable = true
   )

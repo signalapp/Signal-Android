@@ -28,8 +28,6 @@ import org.thoughtcrime.securesms.jobs.OptimizeMediaJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 class ManageStorageSettingsViewModel : ViewModel() {
 
