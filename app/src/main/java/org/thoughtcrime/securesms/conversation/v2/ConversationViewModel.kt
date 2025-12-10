@@ -200,7 +200,7 @@ class ConversationViewModel(
 
   private val startExpiration = BehaviorSubject.create<MessageTable.ExpirationInfo>()
 
-  private val _jumpToDateValidator: JumpToDateValidator by lazy { JumpToDateValidator(threadId) }
+  private val _jumpToDateValidator: JumpToDateValidator by lazy { JumpToDateValidator.create(threadId) }
   val jumpToDateValidator: JumpToDateValidator
     get() = _jumpToDateValidator
 
