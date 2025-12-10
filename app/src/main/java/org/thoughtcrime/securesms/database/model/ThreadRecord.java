@@ -58,30 +58,32 @@ public final class ThreadRecord {
   private final long          lastSeen;
   private final boolean       isPinned;
   private final int           unreadSelfMentionsCount;
+  private final int           unreadReactionToSelfCount;
   private final MessageExtras messageExtras;
 
   private ThreadRecord(@NonNull Builder builder) {
-    this.threadId                = builder.threadId;
-    this.body                    = builder.body;
-    this.recipient               = builder.recipient;
-    this.date                    = builder.date;
-    this.type                    = builder.type;
-    this.deliveryStatus          = builder.deliveryStatus;
-    this.hasDeliveryReceipt      = builder.hasDeliveryReceipt;
-    this.hasReadReceipt          = builder.hasReadReceipt;
-    this.snippetUri              = builder.snippetUri;
-    this.contentType             = builder.contentType;
-    this.extra                   = builder.extra;
-    this.meaningfulMessages      = builder.meaningfulMessages;
-    this.unreadCount             = builder.unreadCount;
-    this.forcedUnread            = builder.forcedUnread;
-    this.distributionType        = builder.distributionType;
-    this.archived                = builder.archived;
-    this.expiresIn               = builder.expiresIn;
-    this.lastSeen                = builder.lastSeen;
-    this.isPinned                = builder.isPinned;
-    this.unreadSelfMentionsCount = builder.unreadSelfMentionsCount;
-    this.messageExtras           = builder.messageExtras;
+    this.threadId                  = builder.threadId;
+    this.body                      = builder.body;
+    this.recipient                 = builder.recipient;
+    this.date                      = builder.date;
+    this.type                      = builder.type;
+    this.deliveryStatus            = builder.deliveryStatus;
+    this.hasDeliveryReceipt        = builder.hasDeliveryReceipt;
+    this.hasReadReceipt            = builder.hasReadReceipt;
+    this.snippetUri                = builder.snippetUri;
+    this.contentType               = builder.contentType;
+    this.extra                     = builder.extra;
+    this.meaningfulMessages        = builder.meaningfulMessages;
+    this.unreadCount               = builder.unreadCount;
+    this.forcedUnread              = builder.forcedUnread;
+    this.distributionType          = builder.distributionType;
+    this.archived                  = builder.archived;
+    this.expiresIn                 = builder.expiresIn;
+    this.lastSeen                  = builder.lastSeen;
+    this.isPinned                  = builder.isPinned;
+    this.unreadSelfMentionsCount   = builder.unreadSelfMentionsCount;
+    this.unreadReactionToSelfCount = builder.unreadReactionToSelfCount;
+    this.messageExtras             = builder.messageExtras;
   }
 
   public long getThreadId() {
@@ -125,7 +127,7 @@ public final class ThreadRecord {
   }
 
   public boolean isRead() {
-    return unreadCount == 0 && !forcedUnread;
+    return unreadCount == 0 && unreadReactionToSelfCount == 0 && !forcedUnread;
   }
 
   public long getDate() {
@@ -243,6 +245,10 @@ public final class ThreadRecord {
     return unreadSelfMentionsCount;
   }
 
+  public int getUnreadReactionToSelfCount() {
+    return unreadReactionToSelfCount;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -265,6 +271,7 @@ public final class ThreadRecord {
            body.equals(that.body) &&
            recipient.equals(that.recipient) &&
            unreadSelfMentionsCount == that.unreadSelfMentionsCount &&
+           unreadReactionToSelfCount == that.unreadReactionToSelfCount &&
            Objects.equals(snippetUri, that.snippetUri) &&
            Objects.equals(contentType, that.contentType) &&
            Objects.equals(extra, that.extra);
@@ -291,7 +298,8 @@ public final class ThreadRecord {
                         expiresIn,
                         lastSeen,
                         isPinned,
-                        unreadSelfMentionsCount);
+                        unreadSelfMentionsCount,
+                        unreadReactionToSelfCount);
   }
 
   public static class Builder {
@@ -315,6 +323,7 @@ public final class ThreadRecord {
     private long          lastSeen;
     private boolean       isPinned;
     private int           unreadSelfMentionsCount;
+    private int           unreadReactionToSelfCount;
     private MessageExtras messageExtras;
 
     public Builder(long threadId) {
@@ -423,6 +432,11 @@ public final class ThreadRecord {
 
     public Builder setUnreadSelfMentionsCount(int unreadSelfMentionsCount) {
       this.unreadSelfMentionsCount = unreadSelfMentionsCount;
+      return this;
+    }
+
+    public Builder setUnreadReactionToSelfCount(int unreadReactionToSelfCount) {
+      this.unreadReactionToSelfCount = unreadReactionToSelfCount;
       return this;
     }
 

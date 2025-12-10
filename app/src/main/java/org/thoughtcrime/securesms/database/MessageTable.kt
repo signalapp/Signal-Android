@@ -965,7 +965,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       )
 
       val messageId = MessageId(db.insert(TABLE_NAME, null, values))
-      threads.incrementUnread(threadId, 1, 0)
+      threads.incrementUnread(threadId, 1, 0, 0)
       threads.update(threadId, true)
 
       messageId
@@ -2550,6 +2550,15 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .readToSingleInt()
   }
 
+  fun getUnreadReactionsToSelfCount(threadId: Long): Int {
+    return readableDatabase
+      .count()
+      .from(TABLE_NAME)
+      .where("$THREAD_ID = ? AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $ORIGINAL_MESSAGE_ID IS NULL AND $SCHEDULED_DATE = -1 AND ($outgoingTypeClause) AND $REACTIONS_UNREAD = 1", threadId)
+      .run()
+      .readToSingleInt()
+  }
+
   /**
    * Trims data related to expired messages. Only intended to be run after a backup restore.
    */
@@ -2949,7 +2958,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       editedMessage == null
     ) {
       val incrementUnreadMentions = retrieved.mentions.isNotEmpty() && retrieved.mentions.any { it.recipientId == Recipient.self().id }
-      threads.incrementUnread(threadId, 1, if (incrementUnreadMentions) 1 else 0)
+      threads.incrementUnread(threadId, 1, if (incrementUnreadMentions) 1 else 0, 0)
       ThreadUpdateJob.enqueue(threadId, true)
     }
 
@@ -2995,7 +3004,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       )
       .run()
 
-    threads.incrementUnread(threadId, 1, 0)
+    threads.incrementUnread(threadId, 1, 0, 0)
     threads.update(threadId, true)
 
     notifyConversationListeners(threadId)
@@ -3024,7 +3033,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       )
       .run()
 
-    threads.incrementUnread(threadId, 1, 0)
+    threads.incrementUnread(threadId, 1, 0, 0)
     threads.update(threadId, true)
 
     notifyConversationListeners(threadId)
@@ -5501,12 +5510,24 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun updateReactionsUnread(db: SQLiteDatabase, messageId: Long, hasReactions: Boolean, isRemoval: Boolean) {
     try {
-      val isOutgoing = getMessageRecord(messageId).isOutgoing
+      val messageRecord = getMessageRecord(messageId)
+      val isOutgoing = messageRecord.isOutgoing
+      val threadId = messageRecord.threadId
+      val hasUnreadReactions = readableDatabase
+        .select(REACTIONS_UNREAD)
+        .from(TABLE_NAME)
+        .where("$ID = ?", messageId)
+        .run()
+        .readToSingleBoolean()
       val values = ContentValues()
 
       if (!hasReactions) {
         values.put(REACTIONS_UNREAD, 0)
       } else if (!isRemoval) {
+        // increment unread reactions to self only on first reaction
+        if (!hasUnreadReactions && isOutgoing) {
+          threads.incrementUnread(threadId, 0, 0, 1)
+        }
         values.put(REACTIONS_UNREAD, 1)
       }
 
@@ -5520,6 +5541,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           .where("$ID = ?", messageId)
           .run()
       }
+
+      ThreadUpdateJob.enqueue(threadId, false)
+      notifyConversationListeners(threadId)
+      notifyConversationListListeners()
     } catch (e: NoSuchMessageException) {
       Log.w(TAG, "Failed to find message $messageId")
     }
