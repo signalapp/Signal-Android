@@ -77,6 +77,19 @@ interface CallScreenMediator {
     }
   }
 
+  fun setStatusFromCallParticipantsState(context: Context, callParticipantsViewState: CallParticipantsViewState) {
+    val state = callParticipantsViewState.callParticipantsState
+    if (state.groupCallState.isNotIdle) {
+      val status = state.getPreJoinGroupDescription(context)
+        ?: state.getOutgoingRingingGroupDescription(context)
+        ?: state.getIncomingRingingGroupDescription(context)
+
+      if (status != null) {
+        setStatus(status)
+      }
+    }
+  }
+
   companion object {
     fun create(activity: WebRtcCallActivity, viewModel: WebRtcCallViewModel): CallScreenMediator {
       return if (RemoteConfig.newCallUi || (RemoteConfig.internalUser && SignalStore.internal.newCallingUi)) {
