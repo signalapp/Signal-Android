@@ -63,7 +63,12 @@ class ArchiveImportExportTests {
 
 //  @Test
   fun chat() {
-    runTests { it.startsWith("chat_") && !it.contains("_item") }
+    runTests { it.matches(Regex("^chat_%d%d.binproto$")) }
+  }
+
+//  @Test
+  fun chatReleaseNotes() {
+    runTests { it.startsWith("chat_release_notes_") }
   }
 
 //  @Test

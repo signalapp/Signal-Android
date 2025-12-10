@@ -1639,7 +1639,7 @@ private fun ChatItem.validateChatItem(exportState: ExportState, selfRecipientId:
     return null
   }
 
-  if (this.incoming != null && exportState.recipientIdToAci[this.authorId] == null && exportState.recipientIdToE164[this.authorId] == null) {
+  if (this.incoming != null && this.authorId != exportState.releaseNoteRecipientId && exportState.recipientIdToAci[this.authorId] == null && exportState.recipientIdToE164[this.authorId] == null) {
     Log.w(TAG, ExportSkips.incomingMessageAuthorDoesNotHaveAciOrE164(this.dateSent))
     return null
   }
