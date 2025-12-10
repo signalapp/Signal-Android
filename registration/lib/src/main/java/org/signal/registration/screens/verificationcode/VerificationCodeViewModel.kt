@@ -5,6 +5,7 @@
 
 package org.signal.registration.screens.verificationcode
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -46,6 +47,7 @@ class VerificationCodeViewModel(
     }
   }
 
+  @VisibleForTesting
   suspend fun applyEvent(state: VerificationCodeState, event: VerificationCodeScreenEvents): VerificationCodeState {
     return when (event) {
       is VerificationCodeScreenEvents.CodeEntered -> transformCodeEntered(state, event.code)
@@ -57,6 +59,7 @@ class VerificationCodeViewModel(
     }
   }
 
+  @VisibleForTesting
   fun applyParentState(state: VerificationCodeState, parentState: RegistrationFlowState): VerificationCodeState {
     if (parentState.sessionMetadata == null || parentState.sessionE164 == null) {
       Log.w(TAG, "Parent state is missing session metadata or e164! Resetting.")
@@ -131,7 +134,15 @@ class VerificationCodeViewModel(
 
     return when (registerResult) {
       is NetworkController.RegistrationNetworkResult.Success -> {
-        parentEventEmitter.navigateTo(RegistrationRoute.FullyComplete(registerResult.data))
+        val (response, keyMaterial) = registerResult.data
+
+        parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
+
+        if (response.storageCapable) {
+          parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
+        } else {
+          parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
+        }
         state
       }
       is NetworkController.RegistrationNetworkResult.Failure -> {
@@ -147,7 +158,7 @@ class VerificationCodeViewModel(
           is NetworkController.RegisterAccountError.RegistrationLock -> {
             Log.w(TAG, "[Register] Reglocked.")
             parentEventEmitter.navigateTo(
-              RegistrationRoute.RegistrationLockPinEntry(
+              RegistrationRoute.PinEntryForRegistrationLock(
                 timeRemaining = registerResult.error.data.timeRemaining,
                 svrCredentials = registerResult.error.data.svr2Credentials
               )

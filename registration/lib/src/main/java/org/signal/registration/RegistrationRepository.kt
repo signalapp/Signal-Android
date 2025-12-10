@@ -7,6 +7,7 @@ package org.signal.registration
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.registration.NetworkController.AccountAttributes
@@ -86,14 +87,25 @@ class RegistrationRepository(val networkController: NetworkController, val stora
     )
   }
 
+  suspend fun getSvrCredentials(): RegistrationNetworkResult<SvrCredentials, NetworkController.GetSvrCredentialsError> = withContext(Dispatchers.IO) {
+    networkController.getSvrCredentials()
+  }
+
   suspend fun restoreMasterKeyFromSvr(
     svr2Credentials: SvrCredentials,
-    pin: String
+    pin: String,
+    isAlphanumeric: Boolean,
+    forRegistrationLock: Boolean
   ): RegistrationNetworkResult<MasterKeyResponse, RestoreMasterKeyError> = withContext(Dispatchers.IO) {
     networkController.restoreMasterKeyFromSvr(
       svr2Credentials = svr2Credentials,
       pin = pin
-    )
+    ).also {
+      if (it is RegistrationNetworkResult.Success) {
+        // TODO consider whether we should save this now, or whether we should keep in app state and then hand it back to the library user at the end of the flow
+        storageController.saveValidatedPinAndTemporaryMasterKey(pin, isAlphanumeric, it.data.masterKey, forRegistrationLock)
+      }
+    }
   }
 
   /**
@@ -116,7 +128,7 @@ class RegistrationRepository(val networkController: NetworkController, val stora
     sessionId: String,
     registrationLock: String? = null,
     skipDeviceTransfer: Boolean = true
-  ): RegistrationNetworkResult<RegisterAccountResponse, RegisterAccountError> = withContext(Dispatchers.IO) {
+  ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
     val keyMaterial = storageController.generateAndStoreKeyMaterial()
     val fcmToken = networkController.getFcmToken()
 
@@ -130,8 +142,8 @@ class RegistrationRepository(val networkController: NetworkController, val stora
       unidentifiedAccessKey = keyMaterial.unidentifiedAccessKey,
       unrestrictedUnidentifiedAccess = false,
       discoverableByPhoneNumber = false, // Important -- this should be false initially, and then the user should be given a choice as to whether to turn it on later
-      capabilities = AccountAttributes.Capabilities( // TODO probably want to have this come from the app
-        storage = false,
+      capabilities = AccountAttributes.Capabilities(
+        storage = true, // True initially -- can turn off later if users opt-out
         versionedExpirationTimer = true,
         attachmentBackfill = true,
         spqr = true
@@ -175,6 +187,20 @@ class RegistrationRepository(val networkController: NetworkController, val stora
           aep = keyMaterial.accountEntropyPool
         )
       )
+    }
+
+    result.mapSuccess { it to keyMaterial }
+  }
+
+  suspend fun setNewlyCreatedPin(
+    pin: String,
+    isAlphanumeric: Boolean,
+    masterKey: MasterKey
+  ): RegistrationNetworkResult<Unit, NetworkController.BackupMasterKeyError> = withContext(Dispatchers.IO) {
+    val result = networkController.setPinAndMasterKeyOnSvr(pin, masterKey)
+
+    if (result is RegistrationNetworkResult.Success) {
+      storageController.saveNewlyCreatedPin(pin, isAlphanumeric)
     }
 
     result

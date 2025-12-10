@@ -34,7 +34,8 @@ class PinSettingsViewModel(
   private val _state = MutableStateFlow(
     PinSettingsState(
       hasPinSet = RegistrationPreferences.hasPin,
-      registrationLockEnabled = RegistrationPreferences.registrationLockEnabled
+      registrationLockEnabled = RegistrationPreferences.registrationLockEnabled,
+      pinsOptedOut = RegistrationPreferences.pinsOptedOut
     )
   )
   val state: StateFlow<PinSettingsState> = _state.asStateFlow()
@@ -50,6 +51,10 @@ class PinSettingsViewModel(
         _state.value = _state.value.copy(loading = true)
         handleToggleRegistrationLock()
         _state.value = _state.value.copy(loading = false)
+      }
+      is PinSettingsEvents.TogglePinsOptOut -> {
+        _state.value = _state.value.copy(loading = true)
+        handleTogglePinsOptOut()
       }
       is PinSettingsEvents.Back -> onBack()
       is PinSettingsEvents.DismissMessage -> dismissMessage()
@@ -141,6 +146,67 @@ class PinSettingsViewModel(
         }
         is RegistrationNetworkResult.ApplicationError -> {
           Log.w(TAG, "Application error while toggling registration lock", result.exception)
+          _state.value = _state.value.copy(
+            loading = false,
+            toastMessage = "An error occurred: ${result.exception.message}"
+          )
+        }
+      }
+    }
+  }
+
+  private fun handleTogglePinsOptOut() {
+    val currentlyOptedOut = _state.value.pinsOptedOut
+    val newOptedOut = !currentlyOptedOut
+
+    viewModelScope.launch {
+      val attributes = NetworkController.AccountAttributes(
+        signalingKey = null,
+        registrationId = RegistrationPreferences.aciRegistrationId,
+        voice = true,
+        video = true,
+        fetchesMessages = true,
+        registrationLock = null,
+        unidentifiedAccessKey = null,
+        unrestrictedUnidentifiedAccess = false,
+        discoverableByPhoneNumber = false,
+        capabilities = NetworkController.AccountAttributes.Capabilities(
+          storage = !newOptedOut,
+          versionedExpirationTimer = true,
+          attachmentBackfill = true,
+          spqr = true
+        ),
+        name = null,
+        pniRegistrationId = RegistrationPreferences.pniRegistrationId,
+        recoveryPassword = null
+      )
+
+      when (val result = networkController.setAccountAttributes(attributes)) {
+        is RegistrationNetworkResult.Success -> {
+          RegistrationPreferences.pinsOptedOut = newOptedOut
+          Log.i(TAG, "PINs opt-out ${if (newOptedOut) "enabled" else "disabled"}")
+          _state.value = _state.value.copy(
+            loading = false,
+            pinsOptedOut = newOptedOut,
+            toastMessage = if (newOptedOut) "Opted out of PINs" else "Opted back into PINs"
+          )
+        }
+        is RegistrationNetworkResult.Failure -> {
+          Log.w(TAG, "Failed to toggle PINs opt-out: ${result.error}")
+          _state.value = _state.value.copy(
+            loading = false,
+            toastMessage = "Failed to update PIN settings"
+          )
+        }
+        is RegistrationNetworkResult.NetworkError -> {
+          Log.w(TAG, "Network error while toggling PINs opt-out", result.exception)
+          _state.value = _state.value.copy(
+            loading = false,
+            toastMessage = "Network error. Please check your connection."
+          )
+        }
+        is RegistrationNetworkResult.ApplicationError -> {
+          Log.w(TAG, "Application error while toggling PINs opt-out", result.exception)
           _state.value = _state.value.copy(
             loading = false,
             toastMessage = "An error occurred: ${result.exception.message}"

@@ -19,6 +19,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
+import org.signal.registration.KeyMaterial
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
@@ -185,27 +186,29 @@ class VerificationCodeViewModelTest {
   }
 
   @Test
-  fun `CodeEntered with success registers account and navigates to FullyComplete`() = runTest {
+  fun `CodeEntered with success registers account and navigates to PinCreate for new user`() = runTest {
     val sessionMetadata = createSessionMetadata(verified = true)
     val initialState = VerificationCodeState(
       sessionMetadata = sessionMetadata,
       e164 = "+15551234567"
     )
 
-    val registerResponse = createRegisterAccountResponse()
+    val registerResponse = createRegisterAccountResponse(storageCapable = false)
+    val keyMaterial = mockk<KeyMaterial>(relaxed = true)
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
     coEvery { mockRepository.registerAccount(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(registerResponse)
+      NetworkController.RegistrationNetworkResult.Success(registerResponse to keyMaterial)
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"))
 
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(2)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.Registered>()
+    assertThat(emittedEvents[1])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
-      .isInstanceOf<RegistrationRoute.FullyComplete>()
+      .isInstanceOf<RegistrationRoute.PinCreate>()
   }
 
   @Test
@@ -256,22 +259,24 @@ class VerificationCodeViewModelTest {
       e164 = "+15551234567"
     )
 
-    val registerResponse = createRegisterAccountResponse()
+    val registerResponse = createRegisterAccountResponse(storageCapable = false)
+    val keyMaterial = mockk<KeyMaterial>(relaxed = true)
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Failure(
         NetworkController.SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested(verifiedSession)
       )
     coEvery { mockRepository.registerAccount(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(registerResponse)
+      NetworkController.RegistrationNetworkResult.Success(registerResponse to keyMaterial)
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"))
 
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(2)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.Registered>()
+    assertThat(emittedEvents[1])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
-      .isInstanceOf<RegistrationRoute.FullyComplete>()
+      .isInstanceOf<RegistrationRoute.PinCreate>()
   }
 
   @Test
@@ -759,14 +764,15 @@ class VerificationCodeViewModelTest {
   private fun createRegisterAccountResponse(
     aci: String = "test-aci",
     pni: String = "test-pni",
-    e164: String = "+15551234567"
+    e164: String = "+15551234567",
+    storageCapable: Boolean = false
   ) = NetworkController.RegisterAccountResponse(
     aci = aci,
     pni = pni,
     e164 = e164,
     usernameHash = null,
     usernameLinkHandle = null,
-    storageCapable = false,
+    storageCapable = storageCapable,
     entitlements = null,
     reregistration = false
   )

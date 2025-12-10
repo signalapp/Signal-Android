@@ -43,7 +43,9 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
       is RegistrationFlowEvent.ResetState -> RegistrationFlowState()
       is RegistrationFlowEvent.SessionUpdated -> state.copy(sessionMetadata = event.session)
       is RegistrationFlowEvent.E164Chosen -> state.copy(sessionE164 = event.e164)
-      is RegistrationFlowEvent.MasterKeyRestoredForRegistrationLock -> state.copy(masterKey = event.masterKey, registrationLockProof = event.masterKey.deriveRegistrationLock())
+      is RegistrationFlowEvent.Registered -> state.copy(accountEntropyPool = event.accountEntropyPool)
+      is RegistrationFlowEvent.MasterKeyRestoredViaRegistrationLock -> state.copy(temporaryMasterKey = event.masterKey, registrationLockProof = event.masterKey.deriveRegistrationLock())
+      is RegistrationFlowEvent.MasterKeyRestoredViaPostRegisterPinEntry -> state.copy(temporaryMasterKey = event.masterKey)
       is RegistrationFlowEvent.NavigateToScreen -> applyNavigationToScreenEvent(state, event)
       is RegistrationFlowEvent.NavigateBack -> state.copy(backStack = state.backStack.dropLast(1))
     }

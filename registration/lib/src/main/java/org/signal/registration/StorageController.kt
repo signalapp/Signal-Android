@@ -6,6 +6,7 @@
 package org.signal.registration
 
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -33,6 +34,25 @@ interface StorageController {
    * @return Data for the existing registration if registered, otherwise null.
    */
   suspend fun getPreExistingRegistrationData(): PreExistingRegistrationData?
+
+  /**
+   * Saves a validated PIN, temporary master key, and registration lock status.
+   *
+   * Called after successfully verifying a PIN against SVR, either during
+   * registration lock unlock or SVR restore flows.
+   *
+   * It's a "temporary master key" because at the end of the day, what we actually want is a master key derived from the AEP.
+   * We may need this master key to perform the initial storage service restore, but after that's done, it will be discarded after generating a new AEP.
+   *
+   * @param pin The validated PIN that was successfully verified.
+   * @param registrationLockEnabled Whether registration lock should be enabled for this account.
+   */
+  suspend fun saveValidatedPinAndTemporaryMasterKey(pin: String, isAlphanumeric: Boolean, masterKey: MasterKey, registrationLockEnabled: Boolean)
+
+  /**
+   * Saves a newly-created PIN for the account.
+   */
+  suspend fun saveNewlyCreatedPin(pin: String, isAlphanumeric: Boolean)
 
   /**
    * Clears all stored registration data, including key material and account information.

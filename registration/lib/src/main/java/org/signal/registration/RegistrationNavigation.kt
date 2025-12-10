@@ -41,10 +41,10 @@ import org.signal.registration.screens.phonenumber.PhoneNumberEntryScreenEvents
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryViewModel
 import org.signal.registration.screens.phonenumber.PhoneNumberScreen
 import org.signal.registration.screens.pincreation.PinCreationScreen
-import org.signal.registration.screens.pincreation.PinCreationScreenEvents
-import org.signal.registration.screens.pincreation.PinCreationState
+import org.signal.registration.screens.pincreation.PinCreationViewModel
+import org.signal.registration.screens.pinentry.PinEntryForRegistrationLockViewModel
+import org.signal.registration.screens.pinentry.PinEntryForSvrRestoreViewModel
 import org.signal.registration.screens.pinentry.PinEntryScreen
-import org.signal.registration.screens.registrationlock.RegistrationLockPinEntryViewModel
 import org.signal.registration.screens.restore.RestoreViaQrScreen
 import org.signal.registration.screens.restore.RestoreViaQrScreenEvents
 import org.signal.registration.screens.restore.RestoreViaQrState
@@ -78,10 +78,10 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data class Captcha(val session: NetworkController.SessionMetadata) : RegistrationRoute
 
   @Serializable
-  data object PinEntry : RegistrationRoute
+  data object PinEntryForSvrRestore : RegistrationRoute
 
   @Serializable
-  data class RegistrationLockPinEntry(
+  data class PinEntryForRegistrationLock(
     val timeRemaining: Long,
     val svrCredentials: NetworkController.SvrCredentials
   ) : RegistrationRoute
@@ -90,10 +90,7 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data class AccountLocked(val timeRemainingMs: Long) : RegistrationRoute
 
   @Serializable
-  data object Profile : RegistrationRoute
-
-  @Serializable
-  data object PinSetup : RegistrationRoute
+  data object PinCreate : RegistrationRoute
 
   @Serializable
   data object Restore : RegistrationRoute
@@ -105,7 +102,10 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object Transfer : RegistrationRoute
 
   @Serializable
-  data class FullyComplete(val registeredData: NetworkController.RegisterAccountResponse) : RegistrationRoute
+  data object Profile : RegistrationRoute
+
+  @Serializable
+  data object FullyComplete : RegistrationRoute
 }
 
 private const val CAPTCHA_RESULT = "captcha_token"
@@ -308,36 +308,44 @@ private fun EntryProviderScope<NavKey>.registrationEntries(
     )
   }
 
-  entry<RegistrationRoute.Profile> {
-    // TODO: Implement ProfileScreen
+  // -- SVR Restore PIN Entry Screen (for users with existing backup data)
+  entry<RegistrationRoute.PinEntryForSvrRestore> {
+    val viewModel: PinEntryForSvrRestoreViewModel = viewModel(
+      factory = PinEntryForSvrRestoreViewModel.Factory(
+        repository = registrationRepository,
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    PinEntryScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
   }
 
-  entry<RegistrationRoute.PinSetup> {
+  // -- PIN Creation Screen (for new users creating their first PIN)
+  entry<RegistrationRoute.PinCreate> {
+    val viewModel: PinCreationViewModel = viewModel(
+      factory = PinCreationViewModel.Factory(
+        repository = registrationRepository,
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
     PinCreationScreen(
-      state = PinCreationState(
-        inputLabel = "PIN must be at least 4 digits"
-      ),
-      onEvent = { event ->
-        when (event) {
-          is PinCreationScreenEvents.PinSubmitted -> {
-            // TODO: Save PIN and navigate to next screen
-            onRegistrationComplete()
-          }
-          PinCreationScreenEvents.ToggleKeyboard -> {
-            // TODO: Toggle between numeric and alphanumeric keyboard
-          }
-          PinCreationScreenEvents.LearnMore -> {
-            // TODO: Show learn more dialog
-          }
-        }
-      }
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
     )
   }
 
   // -- Registration Lock PIN Entry Screen
-  entry<RegistrationRoute.RegistrationLockPinEntry> { key ->
-    val viewModel: RegistrationLockPinEntryViewModel = viewModel(
-      factory = RegistrationLockPinEntryViewModel.Factory(
+  entry<RegistrationRoute.PinEntryForRegistrationLock> { key ->
+    val viewModel: PinEntryForRegistrationLockViewModel = viewModel(
+      factory = PinEntryForRegistrationLockViewModel.Factory(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
@@ -400,6 +408,10 @@ private fun EntryProviderScope<NavKey>.registrationEntries(
 
   entry<RegistrationRoute.Transfer> {
     // TODO: Implement TransferScreen
+  }
+
+  entry<RegistrationRoute.Profile> {
+    // TODO: Implement ProfileScreen
   }
 
   entry<RegistrationRoute.FullyComplete> {

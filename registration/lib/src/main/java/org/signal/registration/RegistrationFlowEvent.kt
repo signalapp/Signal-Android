@@ -5,6 +5,7 @@
 
 package org.signal.registration
 
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 
 sealed interface RegistrationFlowEvent {
@@ -13,5 +14,7 @@ sealed interface RegistrationFlowEvent {
   data object ResetState : RegistrationFlowEvent
   data class SessionUpdated(val session: NetworkController.SessionMetadata) : RegistrationFlowEvent
   data class E164Chosen(val e164: String) : RegistrationFlowEvent
-  data class MasterKeyRestoredForRegistrationLock(val masterKey: MasterKey) : RegistrationFlowEvent
+  data class Registered(val accountEntropyPool: AccountEntropyPool) : RegistrationFlowEvent
+  data class MasterKeyRestoredViaRegistrationLock(val masterKey: MasterKey) : RegistrationFlowEvent
+  data class MasterKeyRestoredViaPostRegisterPinEntry(val masterKey: MasterKey) : RegistrationFlowEvent
 }

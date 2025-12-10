@@ -9,7 +9,7 @@ object PinEntryScreenEventHandler {
 
   fun applyEvent(state: PinEntryState, event: PinEntryScreenEvents): PinEntryState {
     return when (event) {
-      PinEntryScreenEvents.ToggleKeyboard -> state.copy(isNumericKeyboard = !state.isNumericKeyboard)
+      PinEntryScreenEvents.ToggleKeyboard -> state.copy(isAlphanumericKeyboard = !state.isAlphanumericKeyboard)
       else -> throw UnsupportedOperationException("This even is not handled generically!")
     }
   }

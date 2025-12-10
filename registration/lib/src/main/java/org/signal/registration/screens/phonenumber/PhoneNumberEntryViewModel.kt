@@ -5,6 +5,7 @@
 
 package org.signal.registration.screens.phonenumber
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -42,7 +43,8 @@ class PhoneNumberEntryViewModel(
   private var formatter: AsYouTypeFormatter = phoneNumberUtil.getAsYouTypeFormatter("US")
 
   private val _state = MutableStateFlow(PhoneNumberEntryState())
-  val state = combine(_state, parentState) { state, parentState -> applyParentState(state, parentState) }
+  val state = _state
+    .combine(parentState) { state, parentState -> applyParentState(state, parentState) }
     .onEach { Log.d(TAG, "[State] $it") }
     .stateIn(viewModelScope, SharingStarted.Eagerly, PhoneNumberEntryState())
 
@@ -55,6 +57,7 @@ class PhoneNumberEntryViewModel(
     }
   }
 
+  @VisibleForTesting
   suspend fun applyEvent(state: PhoneNumberEntryState, event: PhoneNumberEntryScreenEvents, stateEmitter: (PhoneNumberEntryState) -> Unit, parentEventEmitter: (RegistrationFlowEvent) -> Unit) {
     when (event) {
       is PhoneNumberEntryScreenEvents.CountryCodeChanged -> {
@@ -81,6 +84,7 @@ class PhoneNumberEntryViewModel(
     }
   }
 
+  @VisibleForTesting
   fun applyParentState(state: PhoneNumberEntryState, parentState: RegistrationFlowState): PhoneNumberEntryState {
     return state.copy(sessionMetadata = parentState.sessionMetadata)
   }

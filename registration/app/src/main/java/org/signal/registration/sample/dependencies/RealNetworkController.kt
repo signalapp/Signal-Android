@@ -594,6 +594,97 @@ class RealNetworkController(
     }
   }
 
+  override suspend fun setAccountAttributes(
+    attributes: AccountAttributes
+  ): RegistrationNetworkResult<Unit, NetworkController.SetAccountAttributesError> = withContext(Dispatchers.IO) {
+    val aci = RegistrationPreferences.aci
+    val password = RegistrationPreferences.servicePassword
+
+    if (aci == null || password == null) {
+      Log.w(TAG, "[setAccountAttributes] Credentials not available")
+      return@withContext RegistrationNetworkResult.Failure(NetworkController.SetAccountAttributesError.Unauthorized)
+    }
+
+    try {
+      val credentials = okhttp3.Credentials.basic(aci.toString(), password)
+      val baseUrl = serviceConfiguration.signalServiceUrls[0].url
+      val requestBody = json.encodeToString(AccountAttributes.serializer(), attributes)
+        .toRequestBody("application/json".toMediaType())
+
+      val request = okhttp3.Request.Builder()
+        .url("$baseUrl/v1/accounts/attributes")
+        .put(requestBody)
+        .header("Authorization", credentials)
+        .build()
+
+      okHttpClient.newCall(request).execute().use { response ->
+        when (response.code) {
+          200, 204 -> {
+            Log.i(TAG, "[setAccountAttributes] Successfully updated account attributes")
+            RegistrationNetworkResult.Success(Unit)
+          }
+          401 -> {
+            RegistrationNetworkResult.Failure(NetworkController.SetAccountAttributesError.Unauthorized)
+          }
+          422 -> {
+            RegistrationNetworkResult.Failure(NetworkController.SetAccountAttributesError.InvalidRequest(response.body?.string() ?: ""))
+          }
+          else -> {
+            RegistrationNetworkResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body?.string()}"))
+          }
+        }
+      }
+    } catch (e: IOException) {
+      Log.w(TAG, "[setAccountAttributes] IOException", e)
+      RegistrationNetworkResult.NetworkError(e)
+    } catch (e: Exception) {
+      Log.w(TAG, "[setAccountAttributes] Exception", e)
+      RegistrationNetworkResult.ApplicationError(e)
+    }
+  }
+
+  override suspend fun getSvrCredentials(): RegistrationNetworkResult<NetworkController.SvrCredentials, NetworkController.GetSvrCredentialsError> = withContext(Dispatchers.IO) {
+    val aci = RegistrationPreferences.aci
+    val password = RegistrationPreferences.servicePassword
+
+    if (aci == null || password == null) {
+      Log.w(TAG, "[getSvrCredentials] Credentials not available")
+      return@withContext RegistrationNetworkResult.Failure(NetworkController.GetSvrCredentialsError.NoServiceCredentialsAvailable)
+    }
+
+    try {
+      val credentials = okhttp3.Credentials.basic(aci.toString(), password)
+      val baseUrl = serviceConfiguration.signalServiceUrls[0].url
+
+      val request = okhttp3.Request.Builder()
+        .url("$baseUrl/v2/svr/auth")
+        .get()
+        .header("Authorization", credentials)
+        .build()
+
+      okHttpClient.newCall(request).execute().use { response ->
+        when (response.code) {
+          200 -> {
+            val svrCredentials = json.decodeFromString<NetworkController.SvrCredentials>(response.body.string())
+            RegistrationNetworkResult.Success(svrCredentials)
+          }
+          401 -> {
+            RegistrationNetworkResult.Failure(NetworkController.GetSvrCredentialsError.Unauthorized)
+          }
+          else -> {
+            RegistrationNetworkResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
+          }
+        }
+      }
+    } catch (e: IOException) {
+      Log.w(TAG, "[getSvrCredentials] IOException", e)
+      RegistrationNetworkResult.NetworkError(e)
+    } catch (e: Exception) {
+      Log.w(TAG, "[getSvrCredentials] Exception", e)
+      RegistrationNetworkResult.ApplicationError(e)
+    }
+  }
+
   private fun AccountAttributes.toServiceAccountAttributes(): ServiceAccountAttributes {
     return ServiceAccountAttributes(
       signalingKey,

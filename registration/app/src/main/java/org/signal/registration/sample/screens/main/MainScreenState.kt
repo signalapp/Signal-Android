@@ -14,6 +14,8 @@ data class MainScreenState(
     val pni: String,
     val aep: String,
     val pin: String?,
-    val registrationLockEnabled: Boolean
+    val registrationLockEnabled: Boolean,
+    val pinsOptedOut: Boolean,
+    val temporaryMasterKey: String?
   )
 }

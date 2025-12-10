@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.signal.core.util.Base64
 import org.signal.registration.StorageController
 import org.signal.registration.sample.storage.RegistrationPreferences
 
@@ -56,7 +57,11 @@ class MainScreenViewModel(
             pni = existingData.pni.toStringWithoutPrefix(),
             aep = existingData.aep.value,
             pin = RegistrationPreferences.pin,
-            registrationLockEnabled = RegistrationPreferences.registrationLockEnabled
+            registrationLockEnabled = RegistrationPreferences.registrationLockEnabled,
+            pinsOptedOut = RegistrationPreferences.pinsOptedOut,
+            temporaryMasterKey = RegistrationPreferences.temporaryMasterKey?.let {
+              Base64.encodeWithPadding(it.serialize())
+            }
           )
         } else {
           null

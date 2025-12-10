@@ -39,9 +39,11 @@ object RegistrationPreferences {
   private const val KEY_PNI_REGISTRATION_ID = "pni_registration_id"
   private const val KEY_ACI_IDENTITY_KEY = "aci_identity_key"
   private const val KEY_PNI_IDENTITY_KEY = "pni_identity_key"
-  private const val KEY_MASTER_KEY = "master_key"
+  private const val KEY_TEMPORARY_MASTER_KEY = "temporary_master_key"
   private const val KEY_REGISTRATION_LOCK_ENABLED = "registration_lock_enabled"
   private const val KEY_PIN = "has_pin"
+  private const val KEY_PIN_ALPHANUMERIC = "pin_alphanumeric"
+  private const val KEY_PINS_OPTED_OUT = "pins_opted_out"
 
   fun init(context: Application) {
     this.context = context
@@ -94,6 +96,10 @@ object RegistrationPreferences {
   val masterKey: MasterKey?
     get() = aep?.deriveMasterKey()
 
+  var temporaryMasterKey: MasterKey?
+    get() = prefs.getString(KEY_TEMPORARY_MASTER_KEY, null)?.let { MasterKey(Base64.decode(it)) }
+    set(value) = prefs.edit { putString(KEY_TEMPORARY_MASTER_KEY, value?.let { Base64.encodeWithPadding(it.serialize()) }) }
+
   var registrationLockEnabled: Boolean
     get() = prefs.getBoolean(KEY_REGISTRATION_LOCK_ENABLED, false)
     set(value) = prefs.edit { putBoolean(KEY_REGISTRATION_LOCK_ENABLED, value) }
@@ -104,6 +110,14 @@ object RegistrationPreferences {
   var pin: String?
     get() = prefs.getString(KEY_PIN, null)
     set(value) = prefs.edit { putString(KEY_PIN, value) }
+
+  var pinAlphanumeric: Boolean
+    get() = prefs.getBoolean(KEY_PIN_ALPHANUMERIC, false)
+    set(value) = prefs.edit { putBoolean(KEY_PIN_ALPHANUMERIC, value) }
+
+  var pinsOptedOut: Boolean
+    get() = prefs.getBoolean(KEY_PINS_OPTED_OUT, false)
+    set(value) = prefs.edit { putBoolean(KEY_PINS_OPTED_OUT, value) }
 
   fun saveRegistrationData(data: NewRegistrationData) {
     prefs.edit {

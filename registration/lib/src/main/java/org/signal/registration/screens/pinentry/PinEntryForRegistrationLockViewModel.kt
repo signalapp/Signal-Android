@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.registration.screens.registrationlock
+package org.signal.registration.screens.pinentry
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -21,19 +22,15 @@ import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
-import org.signal.registration.screens.pinentry.PinEntryScreenEventHandler
-import org.signal.registration.screens.pinentry.PinEntryScreenEvents
-import org.signal.registration.screens.pinentry.PinEntryState
 import org.signal.registration.screens.util.navigateTo
 
 /**
  * ViewModel for the registration lock PIN entry screen.
  *
- * This screen is shown when the user attempts to register and their account
- * is protected by a registration lock (PIN). The user must enter their PIN
- * to proceed with registration.
+ * This screen is shown when the user attempts to register and their account is protected by a registration lock (PIN).
+ * The user must enter their PIN to proceed with registration.
  */
-class RegistrationLockPinEntryViewModel(
+class PinEntryForRegistrationLockViewModel(
   private val repository: RegistrationRepository,
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
@@ -42,12 +39,12 @@ class RegistrationLockPinEntryViewModel(
 ) : ViewModel() {
 
   companion object {
-    private val TAG = Log.tag(RegistrationLockPinEntryViewModel::class)
+    private val TAG = Log.tag(PinEntryForRegistrationLockViewModel::class)
   }
 
   private val _state = MutableStateFlow(
     PinEntryState(
-      showNeedHelp = true
+      mode = PinEntryState.Mode.RegistrationLock
     )
   )
 
@@ -64,7 +61,8 @@ class RegistrationLockPinEntryViewModel(
     }
   }
 
-  private suspend fun applyEvent(state: PinEntryState, event: PinEntryScreenEvents, stateEmitter: (PinEntryState) -> Unit, parentEventEmitter: (RegistrationFlowEvent) -> Unit) {
+  @VisibleForTesting
+  suspend fun applyEvent(state: PinEntryState, event: PinEntryScreenEvents, stateEmitter: (PinEntryState) -> Unit, parentEventEmitter: (RegistrationFlowEvent) -> Unit) {
     when (event) {
       is PinEntryScreenEvents.PinEntered -> {
         var localState = state.copy(loading = true)
@@ -85,7 +83,7 @@ class RegistrationLockPinEntryViewModel(
   private suspend fun applyPinEntered(state: PinEntryState, event: PinEntryScreenEvents.PinEntered, parentEventEmitter: (RegistrationFlowEvent) -> Unit): PinEntryState {
     Log.d(TAG, "[PinEntered] Attempting to restore master key from SVR...")
 
-    val restoreResult = repository.restoreMasterKeyFromSvr(svrCredentials, event.pin)
+    val restoreResult = repository.restoreMasterKeyFromSvr(svrCredentials, event.pin, state.isAlphanumericKeyboard, forRegistrationLock = true)
 
     val masterKey: MasterKey = when (restoreResult) {
       is NetworkController.RegistrationNetworkResult.Success -> {
@@ -115,7 +113,7 @@ class RegistrationLockPinEntryViewModel(
       }
     }
 
-    parentEventEmitter(RegistrationFlowEvent.MasterKeyRestoredForRegistrationLock(masterKey))
+    parentEventEmitter(RegistrationFlowEvent.MasterKeyRestoredViaRegistrationLock(masterKey))
 
     val registrationLockToken = masterKey.deriveRegistrationLock()
 
@@ -139,7 +137,10 @@ class RegistrationLockPinEntryViewModel(
     return when (registerResult) {
       is NetworkController.RegistrationNetworkResult.Success -> {
         Log.i(TAG, "[PinEntered] Successfully registered!")
-        parentEventEmitter.navigateTo(RegistrationRoute.FullyComplete(registerResult.data))
+        val (response, keyMaterial) = registerResult.data
+        parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
+        // TODO storage service restore + profile screen
+        parentEventEmitter.navigateTo(RegistrationRoute.FullyComplete)
         state
       }
       is NetworkController.RegistrationNetworkResult.Failure -> {
@@ -195,7 +196,7 @@ class RegistrationLockPinEntryViewModel(
     private val svrCredentials: NetworkController.SvrCredentials
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return RegistrationLockPinEntryViewModel(
+      return PinEntryForRegistrationLockViewModel(
         repository,
         parentState,
         parentEventEmitter,

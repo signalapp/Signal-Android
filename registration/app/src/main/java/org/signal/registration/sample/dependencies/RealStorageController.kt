@@ -9,6 +9,7 @@ import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.MasterKey
 import org.signal.core.util.Base64
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECKeyPair
@@ -89,6 +90,18 @@ class RealStorageController(context: Context) : StorageController {
   override suspend fun clearAllData() = withContext(Dispatchers.IO) {
     RegistrationPreferences.clearAll()
     db.clearAllPreKeys()
+  }
+
+  override suspend fun saveValidatedPinAndTemporaryMasterKey(pin: String, isAlphanumeric: Boolean, masterKey: MasterKey, registrationLockEnabled: Boolean) = withContext(Dispatchers.IO) {
+    RegistrationPreferences.pin = pin
+    RegistrationPreferences.pinAlphanumeric = isAlphanumeric
+    RegistrationPreferences.temporaryMasterKey = masterKey
+    RegistrationPreferences.registrationLockEnabled = registrationLockEnabled
+  }
+
+  override suspend fun saveNewlyCreatedPin(pin: String, isAlphanumeric: Boolean) {
+    RegistrationPreferences.pin = pin
+    RegistrationPreferences.pinAlphanumeric = isAlphanumeric
   }
 
   private fun storeKeyMaterial(keyMaterial: KeyMaterial, profileKey: ProfileKey) {

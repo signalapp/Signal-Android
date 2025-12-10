@@ -119,7 +119,7 @@ fun PinCreationScreen(
       textStyle = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center),
       singleLine = true,
       keyboardOptions = KeyboardOptions(
-        keyboardType = if (state.isNumericKeyboard) KeyboardType.NumberPassword else KeyboardType.Password,
+        keyboardType = if (state.isAlphanumericKeyboard) KeyboardType.Password else KeyboardType.NumberPassword,
         imeAction = ImeAction.Done
       ),
       keyboardActions = KeyboardActions(
@@ -153,7 +153,7 @@ fun PinCreationScreen(
         modifier = Modifier.padding(end = 8.dp)
       )
       Text(
-        text = if (state.isNumericKeyboard) "Create alphanumeric PIN" else "Create numeric PIN"
+        text = if (state.isAlphanumericKeyboard) "Switch to numeric" else "Switch to alphanumberic"
       )
     }
 
@@ -199,7 +199,7 @@ private fun PinCreationScreenAlphanumericPreview() {
   Previews.Preview {
     PinCreationScreen(
       state = PinCreationState(
-        isNumericKeyboard = false,
+        isAlphanumericKeyboard = false,
         inputLabel = "PIN must be at least 4 characters"
       ),
       onEvent = {}

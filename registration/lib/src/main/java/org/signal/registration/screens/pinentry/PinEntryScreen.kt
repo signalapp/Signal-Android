@@ -70,8 +70,15 @@ fun PinEntryScreen(
     ) {
       Spacer(modifier = Modifier.height(32.dp))
 
+      val titleString = remember {
+        return@remember when (state.mode) {
+          PinEntryState.Mode.RegistrationLock -> "Registration Lock"
+          PinEntryState.Mode.SvrRestore -> "Enter your PIN"
+        }
+      }
+
       Text(
-        text = "Enter your PIN",
+        text = titleString,
         style = MaterialTheme.typography.headlineMedium,
         textAlign = TextAlign.Center
       )
@@ -97,7 +104,7 @@ fun PinEntryScreen(
         textStyle = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center),
         singleLine = true,
         keyboardOptions = KeyboardOptions(
-          keyboardType = if (state.isNumericKeyboard) KeyboardType.Number else KeyboardType.Password,
+          keyboardType = if (state.isAlphanumericKeyboard) KeyboardType.Password else KeyboardType.NumberPassword,
           imeAction = ImeAction.Done
         ),
         keyboardActions = KeyboardActions(
@@ -205,6 +212,7 @@ private fun PinEntryScreenWithErrorPreview() {
   Previews.Preview {
     PinEntryScreen(
       state = PinEntryState(
+        mode = PinEntryState.Mode.RegistrationLock,
         triesRemaining = 3,
         showNeedHelp = true
       ),

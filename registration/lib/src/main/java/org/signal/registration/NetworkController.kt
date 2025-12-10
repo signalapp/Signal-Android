@@ -144,6 +144,25 @@ interface NetworkController {
    */
   suspend fun disableRegistrationLock(): RegistrationNetworkResult<Unit, SetRegistrationLockError>
 
+  /**
+   * Retrieves SVR2 authentication credentials for the authenticated account.
+   *
+   * `GET /v2/svr/auth`
+   *
+   * @return SVR credentials on success, or an appropriate error.
+   */
+  suspend fun getSvrCredentials(): RegistrationNetworkResult<SvrCredentials, GetSvrCredentialsError>
+
+  /**
+   * Updates account attributes on the server.
+   *
+   * `PUT /v1/accounts/attributes`
+   *
+   * @param attributes The account attributes to set.
+   * @return Success or an appropriate error.
+   */
+  suspend fun setAccountAttributes(attributes: AccountAttributes): RegistrationNetworkResult<Unit, SetAccountAttributesError>
+
   // TODO
 //  /**
 //   * Validates the provided SVR2 auth credentials, returning information on their usability.
@@ -182,6 +201,15 @@ interface NetworkController {
     data class Failure<T>(val error: T) : RegistrationNetworkResult<Nothing, T>
     data class NetworkError(val exception: IOException) : RegistrationNetworkResult<Nothing, Nothing>
     data class ApplicationError(val exception: Throwable) : RegistrationNetworkResult<Nothing, Nothing>
+
+    fun <NewSuccessModel> mapSuccess(transform: (SuccessModel) -> NewSuccessModel): RegistrationNetworkResult<NewSuccessModel, FailureModel> {
+      return when (this) {
+        is Success<SuccessModel> -> Success(transform(this.data))
+        is Failure<FailureModel> -> Failure(this.error)
+        is NetworkError -> NetworkError(this.exception)
+        is ApplicationError -> ApplicationError(this.exception)
+      }
+    }
   }
 
   sealed class CreateSessionError() {
@@ -242,6 +270,16 @@ interface NetworkController {
     data object Unauthorized : SetRegistrationLockError()
     data object NotRegistered : SetRegistrationLockError()
     data object NoPinSet : SetRegistrationLockError()
+  }
+
+  sealed class SetAccountAttributesError() {
+    data class InvalidRequest(val message: String) : SetAccountAttributesError()
+    data object Unauthorized : SetAccountAttributesError()
+  }
+
+  sealed class GetSvrCredentialsError() {
+    data object Unauthorized : GetSvrCredentialsError()
+    data object NoServiceCredentialsAvailable : GetSvrCredentialsError()
   }
 
   data class MasterKeyResponse(

@@ -128,12 +128,12 @@ fun PinSettingsScreen(
               ),
               keyboardActions = KeyboardActions(
                 onDone = {
-                  if (pinInput.length >= 4) {
+                  if (pinInput.length >= 4 && !state.pinsOptedOut) {
                     onEvent(PinSettingsEvents.SetPin(pinInput))
                   }
                 }
               ),
-              enabled = !state.loading
+              enabled = !state.loading && !state.pinsOptedOut
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -141,17 +141,26 @@ fun PinSettingsScreen(
             Button(
               onClick = { onEvent(PinSettingsEvents.SetPin(pinInput)) },
               modifier = Modifier.fillMaxWidth(),
-              enabled = pinInput.length >= 4 && !state.loading
+              enabled = pinInput.length >= 4 && !state.loading && !state.pinsOptedOut
             ) {
               Text(if (state.hasPinSet) "Update PIN" else "Set PIN")
             }
 
-            if (state.hasPinSet) {
+            if (state.hasPinSet && !state.pinsOptedOut) {
               Text(
                 text = "PIN is currently set",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(top = 8.dp)
+              )
+            }
+
+            if (state.pinsOptedOut) {
+              HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+              Text(
+                text = "Opt back into PINs to set a PIN",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.error
               )
             }
           }
@@ -192,14 +201,23 @@ fun PinSettingsScreen(
               Switch(
                 checked = state.registrationLockEnabled,
                 onCheckedChange = { onEvent(PinSettingsEvents.ToggleRegistrationLock) },
-                enabled = state.hasPinSet && !state.loading
+                enabled = state.hasPinSet && !state.loading && !state.pinsOptedOut
               )
             }
 
-            if (!state.hasPinSet) {
+            if (!state.hasPinSet && !state.pinsOptedOut) {
               HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
               Text(
                 text = "Set a PIN first to enable registration lock",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.error
+              )
+            }
+
+            if (state.pinsOptedOut) {
+              HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+              Text(
+                text = "Opt back into PINs to enable registration lock",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.error
               )
@@ -209,13 +227,55 @@ fun PinSettingsScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Info Section
-        Text(
-          text = "Note: This is a sample app. PIN changes here are simulated and won't persist to the server.",
-          style = MaterialTheme.typography.bodySmall,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          modifier = Modifier.padding(horizontal = 8.dp)
-        )
+        // PIN Opt-Out Section
+        Card(
+          modifier = Modifier.fillMaxWidth(),
+          colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+          )
+        ) {
+          Column(
+            modifier = Modifier.padding(16.dp)
+          ) {
+            Row(
+              modifier = Modifier.fillMaxWidth(),
+              horizontalArrangement = Arrangement.SpaceBetween,
+              verticalAlignment = Alignment.CenterVertically
+            ) {
+              Column(modifier = Modifier.weight(1f)) {
+                Text(
+                  text = "Opt Out of PINs",
+                  style = MaterialTheme.typography.titleMedium
+                )
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                Text(
+                  text = "Disables PIN-based account recovery. Your data will not be backed up to the server.",
+                  style = MaterialTheme.typography.bodySmall,
+                  color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+              }
+
+              Switch(
+                checked = state.pinsOptedOut,
+                onCheckedChange = { onEvent(PinSettingsEvents.TogglePinsOptOut) },
+                enabled = !state.registrationLockEnabled && !state.loading
+              )
+            }
+
+            if (state.registrationLockEnabled) {
+              HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+              Text(
+                text = "Disable registration lock first to opt out of PINs",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.error
+              )
+            }
+          }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
       }
 
       if (state.loading) {
@@ -257,6 +317,19 @@ private fun PinSettingsScreenLoadingPreview() {
     PinSettingsScreen(
       state = PinSettingsState(
         loading = true
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun PinSettingsScreenOptedOutPreview() {
+  Previews.Preview {
+    PinSettingsScreen(
+      state = PinSettingsState(
+        pinsOptedOut = true
       ),
       onEvent = {}
     )

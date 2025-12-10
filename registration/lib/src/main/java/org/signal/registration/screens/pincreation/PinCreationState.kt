@@ -5,8 +5,11 @@
 
 package org.signal.registration.screens.pincreation
 
+import org.signal.core.models.AccountEntropyPool
+
 data class PinCreationState(
-  val isNumericKeyboard: Boolean = true,
+  val isAlphanumericKeyboard: Boolean = false,
   val inputLabel: String? = null,
-  val isConfirmEnabled: Boolean = false
+  val isConfirmEnabled: Boolean = false,
+  val accountEntropyPool: AccountEntropyPool? = null
 )

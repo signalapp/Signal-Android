@@ -77,18 +77,20 @@ fun MainScreen(
   ) {
     Spacer(modifier = Modifier.height(32.dp))
 
-    Text(
-      text = "Registration Sample App",
-      style = MaterialTheme.typography.headlineMedium
-    )
+    if (state.existingRegistrationState == null) {
+      Text(
+        text = "Registration Sample App",
+        style = MaterialTheme.typography.headlineMedium
+      )
 
-    Text(
-      text = "Test the registration flow",
-      style = MaterialTheme.typography.bodyLarge,
-      modifier = Modifier.padding(top = 8.dp)
-    )
+      Text(
+        text = "Test the registration flow",
+        style = MaterialTheme.typography.bodyLarge,
+        modifier = Modifier.padding(top = 8.dp)
+      )
 
-    Spacer(modifier = Modifier.height(32.dp))
+      Spacer(modifier = Modifier.height(32.dp))
+    }
 
     if (state.existingRegistrationState != null) {
       RegistrationInfo(state.existingRegistrationState)
@@ -154,8 +156,13 @@ private fun RegistrationInfo(data: MainScreenState.ExistingRegistrationState) {
       RegistrationField(label = "ACI", value = data.aci)
       RegistrationField(label = "PNI", value = data.pni)
       RegistrationField(label = "AEP", value = data.aep)
-      RegistrationField(label = "PIN", value = data.pin ?: "(not set)")
-      RegistrationField(label = "Registration Lock", value = if (data.registrationLockEnabled) "Enabled" else "Disabled")
+      RegistrationField(label = "Temporary Master Key", value = data.temporaryMasterKey ?: "null")
+      if (data.pinsOptedOut) {
+        RegistrationField(label = "PINs Opted Out", value = "Yes")
+      } else {
+        RegistrationField(label = "PIN", value = data.pin ?: "(not set)")
+        RegistrationField(label = "Registration Lock", value = if (data.registrationLockEnabled) "Enabled" else "Disabled")
+      }
     }
   }
 }
@@ -199,7 +206,9 @@ private fun MainScreenWithRegistrationPreview() {
           pni = "abcdefab-abcd-abcd-abcd-abcdefabcdef",
           aep = "aep1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcd",
           pin = "1234",
-          registrationLockEnabled = true
+          registrationLockEnabled = true,
+          pinsOptedOut = false,
+          temporaryMasterKey = null
         )
       ),
       onEvent = {}

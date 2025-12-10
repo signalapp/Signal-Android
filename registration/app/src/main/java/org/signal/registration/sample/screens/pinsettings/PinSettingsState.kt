@@ -8,6 +8,7 @@ package org.signal.registration.sample.screens.pinsettings
 data class PinSettingsState(
   val hasPinSet: Boolean = false,
   val registrationLockEnabled: Boolean = false,
+  val pinsOptedOut: Boolean = false,
   val loading: Boolean = false,
   val toastMessage: String? = null
 )
