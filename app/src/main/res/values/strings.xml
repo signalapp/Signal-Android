@@ -5278,7 +5278,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Wallpaper preview</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Would you like to override all chat colors?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Would you like to override all wallpapers?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default colors</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Reset all colors</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Reset default wallpaper</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Reset all wallpapers</string>
@@ -6221,7 +6221,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Donation Receipts</string>
     <string name="ManageDonationsFragment__badges">Badges</string>
-    <string name="ManageDonationsFragment__subscription_faq">Subscription FAQ</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Other ways to give</string>
     <!-- Preference label to launch badge gifting -->
@@ -7502,8 +7503,10 @@
     <string name="CallLogAdapter__outgoing">Outgoing</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Missed</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Missed while notification profile on</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Join</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8591,7 +8594,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Enter your recovery key</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-digit code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Forgot key?</string>
 
@@ -9020,7 +9023,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">view your debug log</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Share debug log</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
