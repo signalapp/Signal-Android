@@ -569,6 +569,7 @@ class ConversationFragment :
   private var dataObserver: DataObserver? = null
   private var menuProvider: ConversationOptionsMenu.Provider? = null
   private var scrollListener: ScrollListener? = null
+  private var keyboardEvents: KeyboardEvents? = null
   private var progressDialog: ProgressCardDialogFragment? = null
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
@@ -770,6 +771,12 @@ class ConversationFragment :
   }
 
   override fun onDestroyView() {
+    keyboardEvents?.let {
+      container.removeInputListener(it)
+      container.removeKeyboardStateListener(it)
+    }
+    keyboardEvents = null
+
     super.onDestroyView()
     if (pinnedShortcutReceiver != null) {
       requireActivity().unregisterReceiver(pinnedShortcutReceiver)
@@ -1154,9 +1161,10 @@ class ConversationFragment :
     dataObserver = DataObserver()
     adapter.registerAdapterDataObserver(dataObserver!!)
 
-    val keyboardEvents = KeyboardEvents()
-    container.addInputListener(keyboardEvents)
-    container.addKeyboardStateListener(keyboardEvents)
+    keyboardEvents = KeyboardEvents().also {
+      container.addInputListener(it)
+      container.addKeyboardStateListener(it)
+    }
 
     childFragmentManager.setFragmentResultListener(AttachmentKeyboardFragment.RESULT_KEY, viewLifecycleOwner, AttachmentKeyboardFragmentListener())
     motionEventRelay.setDrain(MotionEventRelayDrain(this))
@@ -4745,6 +4753,9 @@ class ConversationFragment :
     }
 
     override fun onKeyboardAnimationEnded() {
+      if (view == null) {
+        return
+      }
       if (!container.isKeyboardShowing) {
         closeEmojiSearch()
       }
