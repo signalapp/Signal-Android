@@ -366,9 +366,9 @@
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">നിങ്ങൾ ഇതിനകം ഒരു കോളിൽ ഉണ്ട്</string>
     <!-- Title on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <string name="CommunicationActions__transfer_dialog_title">അക്കൗണ്ട് പുതിയ ഉപകരണത്തിലേക്ക് മാറ്റണോ?</string>
     <!-- Message on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__transfer_dialog_message">ഈ അക്കൗണ്ട് പുതിയൊരു ഉപകരണത്തിലേക്ക് മാറ്റാൻ, \"തുടരുക\" ടാപ്പ് ചെയ്‌ത് Signal ക്യാമറ ഉപയോഗിച്ച് വീണ്ടും QR കോഡ് സ്‌കാൻ ചെയ്യുക. Signal-ൽ നിന്ന് നേരിട്ട് വരുന്ന QR കോഡുകൾ മാത്രം സ്കാൻ ചെയ്യാൻ ശ്രദ്ധിക്കുക.</string>
     <string name="CommunicationActions__dont_transfer">കൈമാറരുത്</string>
 
     <!-- ConfirmIdentityDialog -->
@@ -681,19 +681,19 @@
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">ഫോട്ടോ ഡൗൺലോഡ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
-    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <string name="ConversationFragment__keep_pinned">ഇത്രയും നേരം പിൻ ചെയ്‌ത് സൂക്ഷിക്കുക…</string>
     <!-- Dialog option to keep message pin for 24 hours -->
-    <string name="ConversationFragment__24_hours">24 hours</string>
+    <string name="ConversationFragment__24_hours">24 മണിക്കൂർ</string>
     <!-- Dialog option to keep message pin for 7 days -->
-    <string name="ConversationFragment__7_days">7 days</string>
+    <string name="ConversationFragment__7_days">7 ദിവസം</string>
     <!-- Dialog option to keep message pin for 30 days -->
     <string name="ConversationFragment__30_days">30 ദിവസം</string>
     <!-- Dialog option to keep message pin forever -->
     <string name="ConversationFragment__forever">എന്നേക്കും</string>
     <!-- Dialog title when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <string name="ConversationFragment__replace_title">പിൻ ചെയ്തിരിക്കുന്ന ഏറ്റവും പഴയത് മാറ്റണോ?</string>
     <!-- Dialog body when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <string name="ConversationFragment__replace_body">പിൻ ചെയ്യുന്ന സന്ദേശം ഏറ്റവും പഴയ സന്ദേശത്തിന് പകരമാകും</string>
     <!-- Dialog button when replacing the oldest pin -->
     <string name="ConversationFragment__replace">മാറ്റി പകരം മറ്റൊന്ന് വയ്ക്കുക</string>
 
@@ -2691,6 +2691,10 @@
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s നിന്ന് ഓഡിയോയും വീഡിയോയും സ്വീകരിക്കാൻ കഴിയുന്നില്ല </string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറ്റം അവർ സ്ഥിരീകരിക്കാത്തതിനാലോ അവരുടെ ഉപകരണത്തിൽ ഒരു പ്രശ്നമുണ്ടായതിനാലോ അവർ നിങ്ങളെ തടഞ്ഞതിനാലോ ആയിരിക്കാം ഇത്.</string>
 
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">സ്ക്രീൻ ഷെയർ കാണാൻ സ്വൈപ്പ് ചെയ്യുക</string>
 
@@ -4478,9 +4482,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">പോൾ അവസാനിപ്പിക്കുക</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <string name="conversation_selection__menu_pin_message">Pin</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5269,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">വാള്‍പേപ്പറിന്റെ പ്രിവ്യൂ</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">എല്ലാ ചാറ്റ് നിറങ്ങളും അസാധുവാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">എല്ലാ വാള്‍പേപ്പറുകള്‍ അസാധുവാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">സഹജമായ നിറങ്ങൾ പുന:സജ്ജമാക്കുക</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">എല്ലാ നിറങ്ങളും പുന:സജ്ജമാക്കുക</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">ഡിഫോൾട്ട് വാള്‍പേപ്പര്‍ പുന:സജ്ജമാക്കുക</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">വാള്‍പേപ്പറുകള്‍ എല്ലാം പുനഃക്രമീകരിക്കുക</string>
@@ -5877,7 +5881,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">കോൾ ചെയ്യുക</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">മ്യൂട്ട് ചെയ്യുക</string>
+    <string name="ConversationSettingsFragment__mute">മ്യൂട്ട്</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">മ്യൂട്ട് ചെയ്തു</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6212,7 +6216,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">സംഭാവനാ രസീതുകൾ</string>
     <string name="ManageDonationsFragment__badges">ബാഡ്‌ജുകള്‍</string>
-    <string name="ManageDonationsFragment__subscription_faq">സബ്‍സ്ക്രിപ്ഷൻ FAQ</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">സംഭാവന നൽകാനുള്ള മറ്റ് മാർഗ്ഗങ്ങൾ</string>
     <!-- Preference label to launch badge gifting -->
@@ -7493,8 +7498,10 @@
     <string name="CallLogAdapter__outgoing">ഔട്ട്ഗോയിംഗ്</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">മിസ്‌ഡ്</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">അറിയിപ്പ് പ്രൊഫൈൽ ഓണായിരിക്കുമ്പോൾ മിസ്സ് ആയി</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">ചേരുക</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8582,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ നൽകുക</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ബാക്കപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കിയപ്പോൾ നിങ്ങൾ റെക്കോർഡ് ചെയ്ത 64 അക്ക കോഡ് നൽകുക.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">കീ മറന്നോ?</string>
 
@@ -8947,7 +8954,7 @@
     <!-- Bottom sheet title telling users to scan a qr code -->
     <string name="QuickRestoreInfoDialog__scan_qr_code">QR കോഡ് സ്‌കാൻ ചെയ്യുക</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
-    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">നിങ്ങൾ കൈമാറാൻ ആഗ്രഹിക്കുന്ന ഉപകരണത്തിലെ QR കോഡ് സ്കാൻ ചെയ്യാൻ ഈ ഉപകരണം ഉപയോഗിക്കുക</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="QuickRestoreInfoDialog__okay">ശരി</string>
 
@@ -9011,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">സമർപ്പിക്കുന്നതിന് മുമ്പ്</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> നിങ്ങളുടെ ഡീബഗ് ലോഗ് കാണാനാകും</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">ഡീബഗ് ലോഗ് പങ്കിടുക</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9020,15 +9027,23 @@
     <string name="CallQualitySheet__submit">സമർപ്പിക്കുക</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">നിങ്ങളുടെ പ്രതികരണത്തിന് നന്ദി!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
-    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <string name="PinnedMessage__s_pinned_a_message">%1$s ഒരു സന്ദേശം പിൻ ചെയ്തു</string>
     <!-- Message body when you pin a message -->
-    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <string name="PinnedMessage__you_pinned_a_message">നിങ്ങൾ ഒരു സന്ദേശം പിൻ ചെയ്തു</string>
     <!-- Button body to go to the pinned message -->
-    <string name="PinnedMessage__go_to_message">Go to message</string>
+    <string name="PinnedMessage__go_to_message">സന്ദേശത്തിലേക്ക് പോകുക</string>
     <!-- Toast shown when a pinned message is not found -->
-    <string name="PinnedMessage__not_found">Message not found</string>
+    <string name="PinnedMessage__not_found">സന്ദേശം കണ്ടെത്തിയില്ല</string>
     <!-- Content description for the pin icon -->
     <string name="PinnedMessage__pinned">പിൻ ചെയ്‌തവ</string>
     <!-- Caption shown when the pinned message is a photo -->
@@ -9044,27 +9059,35 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">ഒരു തവണ-ദൃശ്യമാകുന്ന മീഡിയ</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <string name="PinnedMessage__unpin_message">Unpin</string>
     <!-- Context menu option to view all the message -->
-    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <string name="PinnedMessage__view_all_messages">എല്ലാ സന്ദേശങ്ങളും കാണുക</string>
     <!-- Text to unpin all messages -->
-    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <string name="PinnedMessage__unpin_all_messages">എല്ലാ സന്ദേശങ്ങളും അൺപിൻ ചെയ്യുക</string>
     <!-- Title of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <string name="PinnedMessage__disappearing_message_title">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ പിൻ ചെയ്യുന്നു</string>
     <!-- Body of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <string name="PinnedMessage__disappearing_message_body">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങളുടെ ടൈമർ കാലഹരണപ്പെടുകയും ചാറ്റിൽ നിന്ന് സന്ദേശം നീക്കം ചെയ്യുകയും ചെയ്യുമ്പോൾ അവ അൺപിൻ ചെയ്യപ്പെടും.</string>
     <!-- Confirmation button for bottom sheet -->
     <string name="PinnedMessage__got_it">മനസ്സിലായി</string>
     <!-- Content description of disappearing timer icon -->
-    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <string name="PinnedMessage__disappearing_message_content_description">അപ്രത്യക്ഷമാകുന്ന സന്ദേശം</string>
     <!-- Title of bottom sheet -->
-    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <string name="PinnedMessage__pinned_messages">പിൻ ചെയ്ത സന്ദേശങ്ങൾ</string>
     <!-- Context menu option to unpin message -->
     <string name="PinnedMessage__unpin">അൺപിൻ ചെയ്യുക</string>
     <!-- Title of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <string name="PinnedMessage__unpin_title">എല്ലാ സന്ദേശങ്ങളും അൺപിൻ ചെയ്യണോ?</string>
     <!-- Body of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
+    <string name="PinnedMessage__unpin_body">എല്ലാ അംഗങ്ങൾക്കുമായി സന്ദേശങ്ങൾ അൺപിൻ ചെയ്യപ്പെടും.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

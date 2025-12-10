@@ -366,9 +366,9 @@
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Du er allerede i en samtale</string>
     <!-- Title on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <string name="CommunicationActions__transfer_dialog_title">Vil du overføre kontoen til en ny enhet?</string>
     <!-- Message on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__transfer_dialog_message">For å overføre denne kontoen til en ny enhet trykker du på «Fortsett» og skanner QR-koden på nytt med kameraet i Signal. Pass på at du bare skanner QR-koder som kommer direkte fra Signal.</string>
     <string name="CommunicationActions__dont_transfer">Ikke overfør</string>
 
     <!-- ConfirmIdentityDialog -->
@@ -681,9 +681,9 @@
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Bildet kunne ikke lastes ned. Prøv på nytt.</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
-    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <string name="ConversationFragment__keep_pinned">Hvor lenge skal den være festet?</string>
     <!-- Dialog option to keep message pin for 24 hours -->
-    <string name="ConversationFragment__24_hours">24 hours</string>
+    <string name="ConversationFragment__24_hours">24 timer</string>
     <!-- Dialog option to keep message pin for 7 days -->
     <string name="ConversationFragment__7_days">7 dager</string>
     <!-- Dialog option to keep message pin for 30 days -->
@@ -691,9 +691,9 @@
     <!-- Dialog option to keep message pin forever -->
     <string name="ConversationFragment__forever">For alltid</string>
     <!-- Dialog title when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <string name="ConversationFragment__replace_title">Vil du bytte ut festet melding?</string>
     <!-- Dialog body when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <string name="ConversationFragment__replace_body">Hvis du fester denne meldingen, bytter du ut den eldste festede meldingen.</string>
     <!-- Dialog button when replacing the oldest pin -->
     <string name="ConversationFragment__replace">Bytt ut</string>
 
@@ -2691,6 +2691,10 @@
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan ikke motta lyd og video fra %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan være fordi vedkommende ikke har verifisert det endrede sikkerhetsnummeret ditt, det er et problem med personens enhet eller hen har blokkert deg.</string>
 
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Sveip for å se skjermdelingen</string>
 
@@ -4478,9 +4482,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Avslutt avstemningen</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <string name="conversation_selection__menu_pin_message">Pin</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5269,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Forhåndsvisning av bakgrunn</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vil du tibakestille alle samtalers farge?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Vil du overstyre alle bakgrunner?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Tilbakestill standardfarger</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Tilbakestill alle farger</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Tilbakestill standardbakgrunn</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Fjern alle bakgrunner</string>
@@ -5877,7 +5881,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Ring</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Ikke vis</string>
+    <string name="ConversationSettingsFragment__mute">Deaktiver</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Vis</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6212,7 +6216,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Kvitteringer for pengebeløp</string>
     <string name="ManageDonationsFragment__badges">Merker</string>
-    <string name="ManageDonationsFragment__subscription_faq">Vanlige spørsmål om abonnement</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Andre måter å bidra på</string>
     <!-- Preference label to launch badge gifting -->
@@ -7493,8 +7498,10 @@
     <string name="CallLogAdapter__outgoing">utgående</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">ubesvart</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Tapt mens varslingsprofil var slått på</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Bli med</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8582,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Skriv inn sikkerhetskoden</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Skriv inn den 64-sifrede koden du valgte da du aktiverte sikkerhetskopiering.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Har du glemt koden?</string>
 
@@ -8947,7 +8954,7 @@
     <!-- Bottom sheet title telling users to scan a qr code -->
     <string name="QuickRestoreInfoDialog__scan_qr_code">Skann QR-kode</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
-    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Bruk denne enheten til å skanne QR-koden på enheten du ønsker å overføre kontoen din til.</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="QuickRestoreInfoDialog__okay">Greit</string>
 
@@ -9011,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">se feilsøkingsloggen din</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> før du sender den inn.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Del feilsøkingslogg</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9020,15 +9027,23 @@
     <string name="CallQualitySheet__submit">Send inn</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Takk for tilbakemeldingen!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
-    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <string name="PinnedMessage__s_pinned_a_message">%1$s festet en melding</string>
     <!-- Message body when you pin a message -->
-    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <string name="PinnedMessage__you_pinned_a_message">Du festet en melding</string>
     <!-- Button body to go to the pinned message -->
-    <string name="PinnedMessage__go_to_message">Åpne meldingen</string>
+    <string name="PinnedMessage__go_to_message">Gå til meldingen</string>
     <!-- Toast shown when a pinned message is not found -->
-    <string name="PinnedMessage__not_found">Message not found</string>
+    <string name="PinnedMessage__not_found">Fant ikke meldingen</string>
     <!-- Content description for the pin icon -->
     <string name="PinnedMessage__pinned">Festet</string>
     <!-- Caption shown when the pinned message is a photo -->
@@ -9042,29 +9057,37 @@
     <!-- Caption shown when the pinned message is a gif -->
     <string name="PinnedMessage__gif">GIF</string>
     <!-- Caption shown when the pinned message is a view once media -->
-    <string name="PinnedMessage__view_once">Vis en gang media</string>
+    <string name="PinnedMessage__view_once">Flyktig mediefil</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <string name="PinnedMessage__unpin_message">Unpin</string>
     <!-- Context menu option to view all the message -->
-    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <string name="PinnedMessage__view_all_messages">Se alle meldinger</string>
     <!-- Text to unpin all messages -->
-    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <string name="PinnedMessage__unpin_all_messages">Løsne alle meldinger</string>
     <!-- Title of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <string name="PinnedMessage__disappearing_message_title">Festing av tidsbegrensede meldinger</string>
     <!-- Body of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <string name="PinnedMessage__disappearing_message_body">Tidsbegrensede meldinger løsnes automatisk når de utløper, og forsvinner fra samtalen.</string>
     <!-- Confirmation button for bottom sheet -->
     <string name="PinnedMessage__got_it">Skjønner</string>
     <!-- Content description of disappearing timer icon -->
-    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <string name="PinnedMessage__disappearing_message_content_description">Tidsbegrensede meldinger</string>
     <!-- Title of bottom sheet -->
-    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <string name="PinnedMessage__pinned_messages">Festede meldinger</string>
     <!-- Context menu option to unpin message -->
     <string name="PinnedMessage__unpin">Løsne</string>
     <!-- Title of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <string name="PinnedMessage__unpin_title">Vil du løsne alle meldingene?</string>
     <!-- Body of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
+    <string name="PinnedMessage__unpin_body">Meldingene løsnes for alle medlemmene.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

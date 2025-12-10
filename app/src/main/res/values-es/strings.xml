@@ -366,9 +366,9 @@
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Ya estás en una llamada</string>
     <!-- Title on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <string name="CommunicationActions__transfer_dialog_title">¿Transferir cuenta a un nuevo dispositivo?</string>
     <!-- Message on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__transfer_dialog_message">Para transferir esta cuenta a un nuevo dispositivo, toca \"Continuar\" y vuelve a escanear el código QR con la cámara en Signal. Asegúrate de escanear solo códigos QR que se proporcione directamente en Signal.</string>
     <string name="CommunicationActions__dont_transfer">No transferir</string>
 
     <!-- ConfirmIdentityDialog -->
@@ -609,7 +609,7 @@
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Eliminar en todos mis dispositivos</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Este mensaje se eliminará para todas las personas en el chat si usan una versión reciente de Signal. Podrán ver que has eliminado un mensaje.</string>
-    <string name="ConversationFragment_quoted_message_not_found">No se encuentra el mensaje original</string>
+    <string name="ConversationFragment_quoted_message_not_found">No se ha encontrado el mensaje original</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">El mensaje original ya no está disponible</string>
     <string name="ConversationFragment_failed_to_open_message">No se ha podido abrir el mensaje</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Puedes deslizar hacia la derecha sobre cualquier mensaje para responder rápidamente</string>
@@ -681,19 +681,19 @@
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">No se ha podido descargar la foto. Vuelve a intentarlo.</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
-    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <string name="ConversationFragment__keep_pinned">Fijar mensaje…</string>
     <!-- Dialog option to keep message pin for 24 hours -->
-    <string name="ConversationFragment__24_hours">24 hours</string>
+    <string name="ConversationFragment__24_hours">24 horas</string>
     <!-- Dialog option to keep message pin for 7 days -->
-    <string name="ConversationFragment__7_days">1 semana</string>
+    <string name="ConversationFragment__7_days">7 días</string>
     <!-- Dialog option to keep message pin for 30 days -->
     <string name="ConversationFragment__30_days">30 días</string>
     <!-- Dialog option to keep message pin forever -->
-    <string name="ConversationFragment__forever">Para siempre</string>
+    <string name="ConversationFragment__forever">para siempre</string>
     <!-- Dialog title when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <string name="ConversationFragment__replace_title">¿Reemplazar el mensaje fijado más antiguo?</string>
     <!-- Dialog body when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <string name="ConversationFragment__replace_body">Si fijas este mensaje, se reemplazará el más antiguo.</string>
     <!-- Dialog button when replacing the oldest pin -->
     <string name="ConversationFragment__replace">Reemplazar</string>
 
@@ -2172,8 +2172,8 @@
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Este grupo ya no puede usarse porque pertenece al sistema antiguo. Crea un nuevo grupo para activar funciones nuevas como @menciones y admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este grupo del sistema antiguo no es válido porque es demasiado grande. Se permite un máximo de %1$d participantes.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">¿Seguir chateando con %1$s y compartir tu nombre y foto de perfil con esta persona?</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Unirte a este grupo y compartir tu nombre y foto de perfil con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">¿Unirte a este grupo y compartir tu nombre y foto de perfil con sus participantes? No podrás ver sus mensajes hasta que aceptes.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Quieres unirte a este grupo y compartir tu nombre y foto de perfil con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">¿Quieres unirte a este grupo y compartir tu nombre y foto de perfil con sus participantes? No podrás ver sus mensajes hasta que aceptes.</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Unirte a este grupo? Sus participantes no sabrán que has visto sus mensajes hasta que aceptes.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto de perfil con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
@@ -2690,6 +2690,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto puede deberse a que no ha verificado el cambio de tu número de seguridad, hay un problema con su dispositivo o te ha bloqueado.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Desliza para ver la pantalla compartida</string>
@@ -4478,9 +4482,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Finalizar encuesta</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <string name="conversation_selection__menu_pin_message">Pin</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5269,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Vista previa del fondo</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">¿Quieres reemplazar los colores de todos tus chats?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">¿Quieres reemplazar los fondos de todos tus chats?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Restablecer predeterminado</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Restablecer todos</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Restablecer predeterminado</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Restablecer todos</string>
@@ -6212,7 +6216,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Recibos de donación</string>
     <string name="ManageDonationsFragment__badges">Insignias</string>
-    <string name="ManageDonationsFragment__subscription_faq">Preguntas frecuentes sobre las suscripciones</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Otras formas de aportar</string>
     <!-- Preference label to launch badge gifting -->
@@ -7493,8 +7498,10 @@
     <string name="CallLogAdapter__outgoing">Saliente</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Perdida</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Perdida mientras el perfil de notificación estaba activo</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Unirse</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8582,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Introduce tu clave de recuperación</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Introduce el código de 64 caracteres que registraste cuando habilitaste las copias de seguridad.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">¿No recuerdas la clave?</string>
 
@@ -8947,7 +8954,7 @@
     <!-- Bottom sheet title telling users to scan a qr code -->
     <string name="QuickRestoreInfoDialog__scan_qr_code">Escanear código QR</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
-    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Usa este dispositivo para escanear el código QR que se muestra en el dispositivo al que quieres transferir tus datos.</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="QuickRestoreInfoDialog__okay">Aceptar</string>
 
@@ -9011,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">ver tu registro de depuración</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> antes de enviarlo.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Compartir registro de depuración</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9020,51 +9027,67 @@
     <string name="CallQualitySheet__submit">Enviar</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">¡Gracias por tus comentarios!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
-    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <string name="PinnedMessage__s_pinned_a_message">%1$s ha fijado un mensaje</string>
     <!-- Message body when you pin a message -->
-    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <string name="PinnedMessage__you_pinned_a_message">Has fijado un mensaje</string>
     <!-- Button body to go to the pinned message -->
     <string name="PinnedMessage__go_to_message">Ir al mensaje</string>
     <!-- Toast shown when a pinned message is not found -->
-    <string name="PinnedMessage__not_found">Message not found</string>
+    <string name="PinnedMessage__not_found">No se ha encontrado el mensaje</string>
     <!-- Content description for the pin icon -->
-    <string name="PinnedMessage__pinned">Fijados</string>
+    <string name="PinnedMessage__pinned">Fijado</string>
     <!-- Caption shown when the pinned message is a photo -->
     <string name="PinnedMessage__photo">Foto</string>
     <!-- Caption shown when the pinned message is a video -->
-    <string name="PinnedMessage__video">Vídeos</string>
+    <string name="PinnedMessage__video">Vídeo</string>
     <!-- Caption shown when the pinned message is a sticker -->
     <string name="PinnedMessage__sticker">Sticker</string>
     <!-- Caption shown when the pinned message is a voice message  -->
-    <string name="PinnedMessage__voice">Nota de voz</string>
+    <string name="PinnedMessage__voice">Mensaje de voz</string>
     <!-- Caption shown when the pinned message is a gif -->
     <string name="PinnedMessage__gif">GIF</string>
     <!-- Caption shown when the pinned message is a view once media -->
-    <string name="PinnedMessage__view_once">Archivo multimedia</string>
+    <string name="PinnedMessage__view_once">Archivo de visualización única</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <string name="PinnedMessage__unpin_message">Unpin</string>
     <!-- Context menu option to view all the message -->
-    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <string name="PinnedMessage__view_all_messages">Ver todos los mensajes</string>
     <!-- Text to unpin all messages -->
-    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <string name="PinnedMessage__unpin_all_messages">Desfijar todos los mensajes</string>
     <!-- Title of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <string name="PinnedMessage__disappearing_message_title">Fijar mensajes temporales</string>
     <!-- Body of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <string name="PinnedMessage__disappearing_message_body">Los mensajes temporales permanecerán fijados hasta que la duración establecida finalice y el mensaje desaparezca del chat.</string>
     <!-- Confirmation button for bottom sheet -->
     <string name="PinnedMessage__got_it">Entendido</string>
     <!-- Content description of disappearing timer icon -->
-    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <string name="PinnedMessage__disappearing_message_content_description">Mensaje temporal</string>
     <!-- Title of bottom sheet -->
-    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <string name="PinnedMessage__pinned_messages">Mensajes fijados</string>
     <!-- Context menu option to unpin message -->
     <string name="PinnedMessage__unpin">Desfijar</string>
     <!-- Title of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <string name="PinnedMessage__unpin_title">¿Desfijar todos los mensajes?</string>
     <!-- Body of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
+    <string name="PinnedMessage__unpin_body">Los mensajes se desfijarán para todos los participantes.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

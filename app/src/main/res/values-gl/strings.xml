@@ -366,9 +366,9 @@
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Estás xa nunha chamada</string>
     <!-- Title on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <string name="CommunicationActions__transfer_dialog_title">Transferir conta a un novo dispositivo?</string>
     <!-- Message on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__transfer_dialog_message">Para transferir a conta a un novo dispositivo, preme en «Continuar» e escanea o código QR de novo coa cámara de Signal. Asegúrate de só escanear os códigos QR que proveñan directamente de Signal.</string>
     <string name="CommunicationActions__dont_transfer">Non transferir</string>
 
     <!-- ConfirmIdentityDialog -->
@@ -681,19 +681,19 @@
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">A foto non puido descargarse. Téntao de novo.</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
-    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <string name="ConversationFragment__keep_pinned">Manter fixada durante…</string>
     <!-- Dialog option to keep message pin for 24 hours -->
-    <string name="ConversationFragment__24_hours">24 hours</string>
+    <string name="ConversationFragment__24_hours">24 horas</string>
     <!-- Dialog option to keep message pin for 7 days -->
-    <string name="ConversationFragment__7_days">7 days</string>
+    <string name="ConversationFragment__7_days">7 días</string>
     <!-- Dialog option to keep message pin for 30 days -->
     <string name="ConversationFragment__30_days">30 días</string>
     <!-- Dialog option to keep message pin forever -->
     <string name="ConversationFragment__forever">Para sempre</string>
     <!-- Dialog title when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <string name="ConversationFragment__replace_title">Substituír a mensaxe fixada antiga?</string>
     <!-- Dialog body when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <string name="ConversationFragment__replace_body">A mensaxe fixada substituirá a máis antiga</string>
     <!-- Dialog button when replacing the oldest pin -->
     <string name="ConversationFragment__replace">Substituír</string>
 
@@ -2691,6 +2691,10 @@
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Non se pode recibir o audio e vídeo de %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Pode ser que non verificasen o cambio do teu número de seguridade, que haxa un problema co seu dispositivo ou que te bloqueasen.</string>
 
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Arrastra para ver a pantalla compartida</string>
 
@@ -4478,9 +4482,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Rematar enquisa</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <string name="conversation_selection__menu_pin_message">Pin</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5269,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Visualización do fondo de pantalla</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Queres borrar todas as cores das conversas?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Queres borrar todos os fondos de pantalla?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Restablecer cores por defecto</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Restablecer todas as cores</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Fondo de pantalla por defecto</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Reestabelecer todos os fondos de pantalla</string>
@@ -6212,7 +6216,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Comprobantes dos donativos</string>
     <string name="ManageDonationsFragment__badges">Insignias</string>
-    <string name="ManageDonationsFragment__subscription_faq">Preguntas frecuentes sobre a subscrición</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Apoiar doutra maneira</string>
     <!-- Preference label to launch badge gifting -->
@@ -7493,8 +7498,10 @@
     <string name="CallLogAdapter__outgoing">Saínte</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Perdida</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Perdida mentres o perfil de notificación estaba activado</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Unirse</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8582,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Escribe a túa clave de recuperación</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Introduce o código de 64 díxitos que anotaches cando activaches as copias de seguranza.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Esqueciches a clave?</string>
 
@@ -8947,7 +8954,7 @@
     <!-- Bottom sheet title telling users to scan a qr code -->
     <string name="QuickRestoreInfoDialog__scan_qr_code">Escanear código QR</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
-    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Emprega este dispositivo para escanear o código QR que se mostra no dispositivo ao que queiras facer a transferencia</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="QuickRestoreInfoDialog__okay">De acordo</string>
 
@@ -9011,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">consultar o rexistro de depuración</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> antes de envialo.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Compartir rexistro de depuración</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9020,15 +9027,23 @@
     <string name="CallQualitySheet__submit">Enviar</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Grazas pola túa observación!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
-    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <string name="PinnedMessage__s_pinned_a_message">%1$s fixou unha mensaxe</string>
     <!-- Message body when you pin a message -->
-    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <string name="PinnedMessage__you_pinned_a_message">Fixaches unha mensaxe</string>
     <!-- Button body to go to the pinned message -->
-    <string name="PinnedMessage__go_to_message">Go to message</string>
+    <string name="PinnedMessage__go_to_message">Ir á mensaxe</string>
     <!-- Toast shown when a pinned message is not found -->
-    <string name="PinnedMessage__not_found">Message not found</string>
+    <string name="PinnedMessage__not_found">Non se atopou a mensaxe</string>
     <!-- Content description for the pin icon -->
     <string name="PinnedMessage__pinned">Fixada</string>
     <!-- Caption shown when the pinned message is a photo -->
@@ -9036,7 +9051,7 @@
     <!-- Caption shown when the pinned message is a video -->
     <string name="PinnedMessage__video">Vídeo</string>
     <!-- Caption shown when the pinned message is a sticker -->
-    <string name="PinnedMessage__sticker">Adhesivo</string>
+    <string name="PinnedMessage__sticker">Sticker</string>
     <!-- Caption shown when the pinned message is a voice message  -->
     <string name="PinnedMessage__voice">Mensaxe de voz</string>
     <!-- Caption shown when the pinned message is a gif -->
@@ -9044,27 +9059,35 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">Multimedia dunha soa visualización</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <string name="PinnedMessage__unpin_message">Unpin</string>
     <!-- Context menu option to view all the message -->
-    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <string name="PinnedMessage__view_all_messages">Ver todas as mensaxes</string>
     <!-- Text to unpin all messages -->
-    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <string name="PinnedMessage__unpin_all_messages">Soltar todas as mensaxes</string>
     <!-- Title of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <string name="PinnedMessage__disappearing_message_title">Fixar mensaxes temporais</string>
     <!-- Body of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <string name="PinnedMessage__disappearing_message_body">As mensaxes temporais soltaranse cando remate o seu temporizador e a mensaxe borrarase da conversa.</string>
     <!-- Confirmation button for bottom sheet -->
     <string name="PinnedMessage__got_it">Entendo</string>
     <!-- Content description of disappearing timer icon -->
-    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <string name="PinnedMessage__disappearing_message_content_description">Mensaxe temporal</string>
     <!-- Title of bottom sheet -->
-    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <string name="PinnedMessage__pinned_messages">Mensaxes fixadas</string>
     <!-- Context menu option to unpin message -->
-    <string name="PinnedMessage__unpin">Desancorar</string>
+    <string name="PinnedMessage__unpin">Soltar</string>
     <!-- Title of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <string name="PinnedMessage__unpin_title">Soltar todas as mensaxes?</string>
     <!-- Body of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
+    <string name="PinnedMessage__unpin_body">Soltaranse as mensaxes para todos os membros.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

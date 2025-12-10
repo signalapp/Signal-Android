@@ -363,9 +363,9 @@
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">คุณอยู่ในสายแล้ว</string>
     <!-- Title on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <string name="CommunicationActions__transfer_dialog_title">ถ่ายโอนบัญชีไปยังอุปกรณ์เครื่องใหม่ใช่หรือไม่</string>
     <!-- Message on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__transfer_dialog_message">ถ่ายโอนบัญชีนี้ไปยังอุปกรณ์เครื่องใหม่ โดยแตะ \"ดำเนินการต่อ\" แล้วใช้กล้องใน Signal สแกนคิวอาร์โค้ดอีกครั้ง โปรดตรวจสอบให้แน่ใจว่าคุณสแกนคิวอาร์โค้ดที่มาจาก Signal โดยตรงเท่านั้น</string>
     <string name="CommunicationActions__dont_transfer">ไม่ถ่ายโอน</string>
 
     <!-- ConfirmIdentityDialog -->
@@ -671,9 +671,9 @@
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">ไม่สามารถดาวน์โหลดรูปภาพได้ โปรดลองอีกครั้ง</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
-    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <string name="ConversationFragment__keep_pinned">ปักหมุดไว้เป็นเวลา…</string>
     <!-- Dialog option to keep message pin for 24 hours -->
-    <string name="ConversationFragment__24_hours">24 hours</string>
+    <string name="ConversationFragment__24_hours">24 ชั่วโมง</string>
     <!-- Dialog option to keep message pin for 7 days -->
     <string name="ConversationFragment__7_days">7 วัน</string>
     <!-- Dialog option to keep message pin for 30 days -->
@@ -681,9 +681,9 @@
     <!-- Dialog option to keep message pin forever -->
     <string name="ConversationFragment__forever">ตลอดไป</string>
     <!-- Dialog title when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <string name="ConversationFragment__replace_title">แทนที่ข้อความที่เก่าที่สุดใช่หรือไม่</string>
     <!-- Dialog body when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <string name="ConversationFragment__replace_body">ข้อความที่ปักหมุดนี้จะไปแทนที่ข้อความปักหมุดที่เก่าที่สุด</string>
     <!-- Dialog button when replacing the oldest pin -->
     <string name="ConversationFragment__replace">แทนที่</string>
 
@@ -2603,6 +2603,10 @@
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">ไม่สามารถรับการโทรเสียงและการโทรวิดีโอจาก %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">เหตุนี้อาจเกิดขึ้นเนื่องจากผู้ใช้คนนี้ยังไม่ได้ยืนยันหมายเลขความปลอดภัยที่เปลี่ยนไปของคุณ อุปกรณ์ของผู้ใช้มีปัญหา หรือผู้ใช้บล็อกคุณไว้</string>
 
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">ปัดเพื่อดูจอที่แบ่งปัน</string>
 
@@ -4363,9 +4367,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">ปิดโพล</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <string name="conversation_selection__menu_pin_message">Pin</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5139,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">ภาพตัวอย่างพื้นหลัง</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">คุณต้องการยกเลิกสีแชททั้งหมดใช่หรือไม่</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">คุณต้องการยกเลิกภาพพื้นหลังทั้งหมดใช่หรือไม่?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">รีเซ็ตสีเริ่มต้น</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">รีเซ็ตสีทั้งหมด</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">รีเซ็ตภาพพื้นหลังเริ่มต้น</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">รีเซ็ตภาพพื้นหลังทั้งหมด</string>
@@ -6067,7 +6071,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">ใบเสร็จรับเงินบริจาค</string>
     <string name="ManageDonationsFragment__badges">โล่</string>
-    <string name="ManageDonationsFragment__subscription_faq">คำถามที่พบบ่อยเกี่ยวกับการเป็นสมาชิก</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">วิธีอื่นๆ ในการมอบ</string>
     <!-- Preference label to launch badge gifting -->
@@ -7327,8 +7332,10 @@
     <string name="CallLogAdapter__outgoing">โทรออก</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">ไม่ได้รับ</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">สายที่ไม่ได้รับระหว่างใช้โปรไฟล์การแจ้งเตือน</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">เข้าร่วม</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8401,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">ป้อนกุญแจกู้คืนของคุณ</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ใส่รหัส 64 ตัวที่คุณเคยบันทึกไว้ตอนเปิดใช้งานการสำรองข้อมูล</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">ฉันลืมกุญแจ</string>
 
@@ -8761,7 +8768,7 @@
     <!-- Bottom sheet title telling users to scan a qr code -->
     <string name="QuickRestoreInfoDialog__scan_qr_code">สแกนคิวอาร์โค้ด</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
-    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">ใช้อุปกรณ์เครื่องนี้สแกนคิวอาร์โค้ดซึ่งแสดงอยู่บนอุปกรณ์ที่คุณต้องการถ่ายโอน</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="QuickRestoreInfoDialog__okay">ตกลง</string>
 
@@ -8825,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">ดูบันทึกดีบักของคุณ</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> ก่อนส่งข้อมูล</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">แชร์บันทึกดีบัก</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8834,15 +8841,23 @@
     <string name="CallQualitySheet__submit">ส่ง</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">ขอบคุณสำหรับความคิดเห็น</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
-    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <string name="PinnedMessage__s_pinned_a_message">%1$s ปักหมุดข้อความ</string>
     <!-- Message body when you pin a message -->
-    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <string name="PinnedMessage__you_pinned_a_message">คุณปักหมุดข้อความ</string>
     <!-- Button body to go to the pinned message -->
     <string name="PinnedMessage__go_to_message">ไปที่ข้อความ</string>
     <!-- Toast shown when a pinned message is not found -->
-    <string name="PinnedMessage__not_found">Message not found</string>
+    <string name="PinnedMessage__not_found">ไม่พบข้อความ</string>
     <!-- Content description for the pin icon -->
     <string name="PinnedMessage__pinned">ปักหมุด</string>
     <!-- Caption shown when the pinned message is a photo -->
@@ -8858,27 +8873,35 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">สื่อที่ดูได้ครั้งเดียว</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <string name="PinnedMessage__unpin_message">Unpin</string>
     <!-- Context menu option to view all the message -->
-    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <string name="PinnedMessage__view_all_messages">ดูข้อความทั้งหมด</string>
     <!-- Text to unpin all messages -->
-    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <string name="PinnedMessage__unpin_all_messages">เลิกปักหมุดข้อความทั้งหมด</string>
     <!-- Title of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <string name="PinnedMessage__disappearing_message_title">การปักหมุดข้อความที่จะหายไป</string>
     <!-- Body of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <string name="PinnedMessage__disappearing_message_body">เมื่อครบเวลาที่กำหนด ข้อความที่จะหายไปจะถูกปลดหมุดและจะถูกลบออกจากแชท</string>
     <!-- Confirmation button for bottom sheet -->
     <string name="PinnedMessage__got_it">เข้าใจแล้ว</string>
     <!-- Content description of disappearing timer icon -->
-    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <string name="PinnedMessage__disappearing_message_content_description">ข้อความที่จะหายไป</string>
     <!-- Title of bottom sheet -->
-    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <string name="PinnedMessage__pinned_messages">ข้อความที่ปักหมุด</string>
     <!-- Context menu option to unpin message -->
     <string name="PinnedMessage__unpin">เลิกปักหมุด</string>
     <!-- Title of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <string name="PinnedMessage__unpin_title">เลิกปักหมุดข้อความทั้งหมดใช่หรือไม่</string>
     <!-- Body of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
+    <string name="PinnedMessage__unpin_body">ระบบจะเลิกปักหมุดข้อความสำหรับสมาชิกทุกคน</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

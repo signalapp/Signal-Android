@@ -363,9 +363,9 @@
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">သင်သည် ကောလ်ထဲတွင် ရှိပြီးဖြစ်သည်</string>
     <!-- Title on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <string name="CommunicationActions__transfer_dialog_title">အကောင့်ကို စက်အသစ်သို့ လွှဲပြောင်းမလား။</string>
     <!-- Message on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__transfer_dialog_message">ဤအကောင့်ကို စက်အသစ်တစ်ခုသို့ လွှဲပြောင်းရန် \"ဆက်လုပ်ရန်\" ကိုနှိပ်ပြီး Signal ကင်မရာဖြင့် QR ကုဒ်ကို ထပ်မံစကင်န်ဖတ်ပါ။ Signal မှ တိုက်ရိုက်လာသော QR ကုဒ်များကိုသာ စကင်န်ဖတ်ပါ။</string>
     <string name="CommunicationActions__dont_transfer">မလွှဲပြောင်းပါ</string>
 
     <!-- ConfirmIdentityDialog -->
@@ -671,19 +671,19 @@
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">ဓာတ်ပုံကို ဒေါင်းလုဒ်လုပ်၍မရပါ။ ထပ်မံကြိုးစားပါ။</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
-    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <string name="ConversationFragment__keep_pinned">ပင်တွဲရန်…</string>
     <!-- Dialog option to keep message pin for 24 hours -->
-    <string name="ConversationFragment__24_hours">24 hours</string>
+    <string name="ConversationFragment__24_hours">24 နာရီ</string>
     <!-- Dialog option to keep message pin for 7 days -->
-    <string name="ConversationFragment__7_days">၇ ရက်</string>
+    <string name="ConversationFragment__7_days">7 ရက်</string>
     <!-- Dialog option to keep message pin for 30 days -->
-    <string name="ConversationFragment__30_days">ရက်ပေါင်း ၃၀</string>
+    <string name="ConversationFragment__30_days">30 ရက်</string>
     <!-- Dialog option to keep message pin forever -->
     <string name="ConversationFragment__forever">အမြဲတမ်း</string>
     <!-- Dialog title when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <string name="ConversationFragment__replace_title">အဟောင်းဆုံး ပင်ကို အစားထိုးမလား။</string>
     <!-- Dialog body when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <string name="ConversationFragment__replace_body">မက်ဆေ့ချ်ကို ပင်တွဲလိုက်ခြင်းက အဟောင်းဆုံးတစ်ခုကို အစားထိုးသွားပါမည်</string>
     <!-- Dialog button when replacing the oldest pin -->
     <string name="ConversationFragment__replace">အစားထိုးရန်</string>
 
@@ -2603,6 +2603,10 @@
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s မှ အသံနှင့် ဗီဒီယို မရရှိနိုင်ပါ</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">သင့်လုံခြုံရေးနံပါတ် ပြောင်းလဲမှုကို ၎င်းတို့ အတည်မပြုရသေးသောကြောင့် သော်လည်းကောင်း၊ ၎င်းတို့ စက်တွင် ပြဿနာရှိနေသောကြောင့် သော်လည်းကောင်း၊ ၎င်းတို့က သင့်ကို ဘလော့ခ်ထားသောကြောင့် သော်လည်းကောင်း ဖြစ်နိုင်ပါသည်။</string>
 
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">စခရင် မျှဝေမှုကို ကြည့်ရန် ပွတ်ဆွဲပါ</string>
 
@@ -4363,9 +4367,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">စစ်တမ်း အဆုံးသတ်</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <string name="conversation_selection__menu_pin_message">Pin</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5139,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">နောက်ခံပုံ ကြိုကြည့်ခြင်း</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">ချက်(တ်) အရောင်များအားလုံးကို ပယ်ဖျက်လိုပါသလား။</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">နောက်ခံပုံများအားလုံးကို ပယ်ဖျက်လိုပါသလား။</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">ပုံသေ အရောင်များအတိုင်း ပြန်သတ်မှတ်ရန်</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">အရောင်အားလုံးကို ပြန်သတ်မှတ်ရန်</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">ပုံသေ နောက်ခံပုံအတိုင်း ပြန်သတ်မှတ်ရန်</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">နောက်ခံပုံများအားလုံးကို ပြန်တပ်ဆင်ပြောင်းလဲမယ်</string>
@@ -5739,7 +5743,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">ခေါ်ဆိုမယ်</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">အသံပိတ်ရန်</string>
+    <string name="ConversationSettingsFragment__mute">အသံပိတ်</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">အသံပိတ်ပြီး</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6067,7 +6071,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">လှူဒါန်းမှု ပြေစာများ</string>
     <string name="ManageDonationsFragment__badges">ဘဲ့ဂျ်များ</string>
-    <string name="ManageDonationsFragment__subscription_faq">ပုံမှန်လှူဒါန်းငွေဆိုင်ရာ မကြာခဏမေးလေ့ရှိသည့်မေးခွန်းများ</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">အခြားလှူဒါန်းမှုနည်းလမ်းများ</string>
     <!-- Preference label to launch badge gifting -->
@@ -7327,8 +7332,10 @@
     <string name="CallLogAdapter__outgoing">အထွက်</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">လွတ်သွားသည်</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">အသိပေးချက် ပရိုဖိုင်ကို ဖွင့်ထားစဉ် လွတ်သွားသည်</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">ပါဝင်ရန်</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8401,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">သင့် ပြန်လည်ရယူရေးကီးကို ထည့်ပါ</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ဘက်ခ်အပ်ကို ဖွင့်ထားသောအခါတွင် သင်မှတ်ထားသော စာလုံး 64 လုံးကုဒ်ကို ထည့်ပါ။</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">ကီးမေ့နေပြီလား။</string>
 
@@ -8761,7 +8768,7 @@
     <!-- Bottom sheet title telling users to scan a qr code -->
     <string name="QuickRestoreInfoDialog__scan_qr_code">QR ကုဒ်ကို စကင်န်ဖတ်မည်</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
-    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">သင်လွှဲပြောင်းလိုသော စက်တွင် QR ကုဒ်ကို စကင်န်ဖတ်ရန် ဤစက်ကို အသုံးပြုပါ</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="QuickRestoreInfoDialog__okay">အိုကေ</string>
 
@@ -8825,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">ပြစ်ချက်မှတ်တမ်းကို ကြည့်ရှု</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> နိုင်သည်။</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">ပြစ်ချက်မှတ်တမ်း မျှဝေရန်</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8834,17 +8841,25 @@
     <string name="CallQualitySheet__submit">တင်သွင်းမည်</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">သင့်အကြံပြုချက်အတွက် ကျေးဇူးတင်ပါသည်။</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
-    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <string name="PinnedMessage__s_pinned_a_message">%1$s သည် မက်ဆေ့ချ်တစ်ခုကို ပင်တွဲထားသည်</string>
     <!-- Message body when you pin a message -->
-    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <string name="PinnedMessage__you_pinned_a_message">သင် မက်ဆေ့ချ်တစ်ခုကို ပင်တွဲထားသည်</string>
     <!-- Button body to go to the pinned message -->
-    <string name="PinnedMessage__go_to_message">Go to message</string>
+    <string name="PinnedMessage__go_to_message">မက်ဆေ့ချ်ကို သွားပါ</string>
     <!-- Toast shown when a pinned message is not found -->
-    <string name="PinnedMessage__not_found">Message not found</string>
+    <string name="PinnedMessage__not_found">မက်ဆေ့ချ်ကို ရှာမတွေ့ပါ</string>
     <!-- Content description for the pin icon -->
-    <string name="PinnedMessage__pinned">မှတ်ထားမယ်</string>
+    <string name="PinnedMessage__pinned">ပင်တွဲရန်</string>
     <!-- Caption shown when the pinned message is a photo -->
     <string name="PinnedMessage__photo">ရုပ်ပုံ</string>
     <!-- Caption shown when the pinned message is a video -->
@@ -8854,31 +8869,39 @@
     <!-- Caption shown when the pinned message is a voice message  -->
     <string name="PinnedMessage__voice">အသံ မက်ဆေ့ချ်</string>
     <!-- Caption shown when the pinned message is a gif -->
-    <string name="PinnedMessage__gif">လှုပ်ရှားနေသောရုပ်ပုံ GIF</string>
+    <string name="PinnedMessage__gif">GIF</string>
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">တစ်ခါကြည့် မီဒီယာ</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <string name="PinnedMessage__unpin_message">Unpin</string>
     <!-- Context menu option to view all the message -->
-    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <string name="PinnedMessage__view_all_messages">မက်ဆေ့ချ် အားလုံးကို ကြည့်ရှုရန်</string>
     <!-- Text to unpin all messages -->
-    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <string name="PinnedMessage__unpin_all_messages">မက်ဆေ့ချ်အားလုံးကို ပင်ဖြုတ်ပါ</string>
     <!-- Title of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <string name="PinnedMessage__disappearing_message_title">ပျောက်သွားမည့် မက်ဆေ့ချ်များကို ပင်တွဲခြင်း</string>
     <!-- Body of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <string name="PinnedMessage__disappearing_message_body">ပျောက်သွားမည့် မက်ဆေ့ချ်များကို ၎င်းတို့၏တိုင်မာ သက်တမ်းကုန်ဆုံးချိန်တွင် ပင်ဖြုတ်လိုက်မည်ဖြစ်ပြီး မက်ဆေ့ချ်ကို ချက်(တ်)မှ ဖယ်ရှားလိုက်ပါမည်။</string>
     <!-- Confirmation button for bottom sheet -->
     <string name="PinnedMessage__got_it">ရပြီ</string>
     <!-- Content description of disappearing timer icon -->
-    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <string name="PinnedMessage__disappearing_message_content_description">ပျောက်ကွယ်မည့် မက်ဆေ့ချ်များ</string>
     <!-- Title of bottom sheet -->
-    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <string name="PinnedMessage__pinned_messages">ပင်တွဲထားသော မက်ဆေ့ချ်များ</string>
     <!-- Context menu option to unpin message -->
     <string name="PinnedMessage__unpin">ပင်ဖြုတ်ရန်</string>
     <!-- Title of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <string name="PinnedMessage__unpin_title">မက်ဆေ့ချ်အားလုံးကို ပင်ဖြုတ်မလား။</string>
     <!-- Body of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
+    <string name="PinnedMessage__unpin_body">အဖွဲ့ဝင်အားလုံးအတွက် မက်ဆေ့ချ်များကို ပင်ဖြုတ်လိုက်ပါမည်။</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>
