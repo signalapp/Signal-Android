@@ -4487,9 +4487,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">End poll</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <string name="conversation_selection__menu_pin_message">Pin</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -9064,7 +9064,7 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">View-once media</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <string name="PinnedMessage__unpin_message">Unpin</string>
     <!-- Context menu option to view all the message -->
     <string name="PinnedMessage__view_all_messages">View all messages</string>
     <!-- Text to unpin all messages -->
