@@ -241,7 +241,7 @@ fun CallScreen(
 
       val selfPipHorizontalPadding = 32.dp
       val shouldNotApplyBottomPaddingToViewPort = currentWindowAdaptiveInfo().windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND)
-      val selfPipBottomInset: Dp = if (shouldNotApplyBottomPaddingToViewPort) {
+      val selfPipBottomInset: Dp = if (shouldNotApplyBottomPaddingToViewPort && localRenderState != WebRtcLocalRenderState.SMALLER_RECTANGLE) {
         val containerWidth = maxWidth
         val sheetWidth = BottomSheetDefaults.SheetMaxWidth
         val widthOfPip = rememberSelfPipSize(localRenderState).width
@@ -261,7 +261,12 @@ fun CallScreen(
         0.dp
       }
 
-      val reactionsAndRaisesHandBottomInset = if (shouldNotApplyBottomPaddingToViewPort) {
+      // Reactions/raised hands need bottom inset to stay above the bottom sheet,
+      // UNLESS the overflow row is present (portrait + large group call), in which case
+      // the reactions sit above the overflow row naturally.
+      val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
+      val hasOverflowRow = isPortrait && overflowParticipants.size > 1
+      val reactionsAndRaisesHandBottomInset = if (shouldNotApplyBottomPaddingToViewPort && !hasOverflowRow) {
         padding
       } else {
         0.dp
@@ -592,7 +597,7 @@ private fun CallScreenPreview() {
         isMicEnabled = true,
         displayVideoToggle = true,
         displayGroupRingingToggle = true,
-        displayStartCallButton = true
+        displayStartCallButton = false
       ),
       callParticipantsPagerState = CallParticipantsPagerState(
         callParticipants = participants,
@@ -609,7 +614,7 @@ private fun CallScreenPreview() {
           2
         )
       ),
-      localRenderState = WebRtcLocalRenderState.FOCUSED,
+      localRenderState = WebRtcLocalRenderState.SMALLER_RECTANGLE,
       callScreenDialogType = CallScreenDialogType.NONE,
       callInfoView = {
         Text(text = "Call Info View Preview", modifier = Modifier.alpha(it))
@@ -635,7 +640,7 @@ private fun CallScreenPreview() {
       onNavigationClick = {},
       onLocalPictureInPictureClicked = {},
       onLocalPictureInPictureFocusClicked = {},
-      overflowParticipants = emptyList(), // participants,
+      overflowParticipants = participants,
       onControlsToggled = {},
       reactions = listOf(
         GroupCallReactionEvent(

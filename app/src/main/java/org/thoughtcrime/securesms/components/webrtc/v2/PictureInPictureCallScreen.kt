@@ -22,8 +22,8 @@ fun PictureInPictureCallScreen(
 ) {
   val scope = rememberCoroutineScope()
 
-  CallParticipantsLayoutComponent(
-    callParticipantsPagerState = callParticipantsPagerState,
+  CallGrid(
+    items = callParticipantsPagerState.callParticipants,
     modifier = Modifier
       .fillMaxSize()
       .clickable(
@@ -33,6 +33,15 @@ fun PictureInPictureCallScreen(
           }
         },
         enabled = false
-      )
-  )
+      ),
+    itemKey = { it.callParticipantId }
+  ) { participant, itemModifier ->
+    RemoteParticipantContent(
+      participant = participant,
+      renderInPip = callParticipantsPagerState.isRenderInPip,
+      raiseHandAllowed = false,
+      onInfoMoreInfoClick = null,
+      modifier = itemModifier
+    )
+  }
 }
