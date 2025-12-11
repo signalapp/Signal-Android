@@ -139,7 +139,7 @@ class ConversationBannerView @JvmOverloads constructor(
     hide(voiceNotePlayerStub)
   }
 
-  fun showPinnedMessageStub(messages: List<ConversationMessage>, canUnpin: Boolean, hasWallpaper: Boolean) {
+  fun showPinnedMessageStub(messages: List<ConversationMessage>, canUnpin: Boolean, hasWallpaper: Boolean, shouldAnimate: Boolean) {
     val firstRender = !pinnedMessageStub.isVisible
 
     val view = pinnedMessageStub.get()
@@ -158,7 +158,7 @@ class ConversationBannerView @JvmOverloads constructor(
       }
     }
 
-    if (firstRender) {
+    if (firstRender && shouldAnimate) {
       view.visibility = INVISIBLE
       view.post {
         view.visible = true
@@ -172,6 +172,8 @@ class ConversationBannerView @JvmOverloads constructor(
           .setDuration(ANIMATION_DURATION)
           .start()
       }
+    } else {
+      view.visible = true
     }
   }
 
