@@ -362,6 +362,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Đường dẫn cuộc gọi này không hợp lệ. Đảm bảo rằng đường dẫn đầy đủ và chuẩn xác trước khi ấn để tham gia.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Bạn đã đang ở trong một cuộc gọi</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Chuyển tài khoản đến thiết bị mới?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">Để chuyển tài khoản này đến thiết bị mới, hãy nhấn \"Tiếp tục\" và quét lại mã QR bằng camera của Signal. Đảm bảo bạn chỉ quét mã QR có nguồn gốc trực tiếp từ Signal.</string>
+    <string name="CommunicationActions__dont_transfer">Không chuyển</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -665,6 +670,22 @@
     <string name="ConversationFragment_group_names">Tên nhóm</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Tải ảnh không thành công. Thử lại.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Tiếp tục ghim trong…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 giờ</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 ngày</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 ngày</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Vĩnh viễn</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Thay thế ghim cũ nhất?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Thao tác ghim tin nhắn mới sẽ thay thế tin nhắn được ghim cũ nhất</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Thay thế</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Lời khuyên để giữ an toàn</string>
@@ -1181,11 +1202,11 @@
     <string name="AddToGroupActivity_add_member">Thêm thành viên?</string>
     <string name="AddToGroupActivity_add_s_to_s">Thêm \"%1$s\" vào \"%2$s\"?</string>
     <string name="AddToGroupActivity_s_added_to_s">Đã thêm \"%1$s\" vào \"%2$s\".</string>
-    <string name="AddToGroupActivity_add_to_group">Thêm vào nhóm</string>
     <string name="AddToGroupActivity_add_to_groups">Thêm vào các nhóm</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Người này không thể được thêm vào nhóm cũ.</string>
     <string name="AddToGroupActivity_add">Thêm</string>
     <string name="AddToGroupActivity_add_to_a_group">Thêm vào một nhóm</string>
+    <string name="AddToGroupActivity_search">Tìm kiếm</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Chọn quản trị viên mới</string>
@@ -2376,9 +2397,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Thu gọn video trên thiết bị</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Mở rộng video trên thiết bị</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Cuộc gọi Signal</string>
@@ -2581,6 +2602,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Không thể nhận được âm thanh &amp; video từ %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Không thể nhận được âm thanh và video từ %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Điều này có thể vì họ chưa xác minh việc thay đổi mã số an toàn của bạn, có vấn đề với thiết bị của họ, hoặc họ đã chặn bạn.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Vuốt để xem chia sẻ màn hình</string>
@@ -4341,6 +4366,10 @@
     <string name="conversation_selection__menu_payment_details">Chi tiết Thanh toán</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Kết thúc</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5114,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Xem trước ảnh nền</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Bạn có muốn ghi đè tất cả các màu cuộc trò chuyện?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Bạn có muốn ghi đè tất cả các màu cuộc trò chuyện?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Đặt lại màu mặc định</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Đặt lại tất cả màu</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Đặt lại hình nền mặc định</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Đặt lại tất cả hình nền</string>
@@ -6042,7 +6071,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Biên lai các khoản ủng hộ</string>
     <string name="ManageDonationsFragment__badges">Huy hiệu</string>
-    <string name="ManageDonationsFragment__subscription_faq">Câu hỏi thường gặp về Gói Ủng hộ</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Các cách ủng hộ khác</string>
     <!-- Preference label to launch badge gifting -->
@@ -7302,8 +7332,10 @@
     <string name="CallLogAdapter__outgoing">Cuộc gọi đi</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Cuộc gọi nhỡ</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Bị nhỡ khi cấu hình thông báo được bật</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Tham gia</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -7886,7 +7918,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">Tin nhắn đã gửi và nhận trước %1$s không được sao lưu.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Không thể hoàn tất quá trình sao lưu vì thiếu dung lượng lưu trữ. Hãy giải phóng dung lượng trên thiết bị này và thử lại.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Tìm hiểu thêm</string>
 
@@ -8376,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Nhập mã khóa khôi phục</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Nhập mã 64 chữ số mà bạn đã ghi lại khi bật tính năng sao lưu.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Quên mã khóa?</string>
 
@@ -8733,6 +8765,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Thêm câu hỏi</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Quét Mã QR</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Sử dụng thiết bị này để quét mã QR trên thiết bị bạn muốn chuyển đến</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">OK</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">Vấn đề âm thanh</string>
@@ -8793,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">xem nhật ký gỡ lỗi của bạn</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> trước khi gửi</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Chia sẻ nhật ký gỡ lỗi</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8802,6 +8841,67 @@
     <string name="CallQualitySheet__submit">Gửi</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Cảm ơn góp ý của bạn!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s đã ghim một tin nhắn</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">Bạn đã ghim một tin nhắn</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Đến Tin nhắn</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Không tìm thấy tin nhắn</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Đã ghim</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Ảnh</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Video</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Nhãn dán</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Tin nhắn thoại</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">Ảnh GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Đa phương tiện xem một lần</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">Xem tất cả tin nhắn</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Bỏ ghim tất cả tin nhắn</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Ghim tin nhắn tự xóa</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Tin nhắn tự xóa sẽ được bỏ ghim khi đồng hồ hết giờ và tin nhắn bị xóa khỏi cuộc trò chuyện.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Đã hiểu</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Tin nhắn tự xóa</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Tin nhắn đã ghim</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Bỏ ghim</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Bỏ ghim tất cả tin nhắn?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Tin nhắn sẽ được bỏ ghim đối với tất cả thành viên.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

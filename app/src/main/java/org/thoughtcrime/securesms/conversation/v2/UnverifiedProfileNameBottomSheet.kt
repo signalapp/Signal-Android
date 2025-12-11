@@ -159,7 +159,7 @@ fun InfoRow(text: String) {
 @DayNightPreviews
 @Composable
 private fun ProfileNameSheetPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     ProfileNameSheet()
   }
 }

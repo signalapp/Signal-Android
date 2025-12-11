@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.messages.protocol
 
+import org.signal.core.models.ServiceId
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.UUID
 
 /**

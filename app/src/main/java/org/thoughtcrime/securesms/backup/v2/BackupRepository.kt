@@ -18,6 +18,12 @@ import kotlinx.coroutines.withContext
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.backup.MediaName
+import org.signal.core.models.backup.MediaRootBackupKey
+import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.CursorUtil
@@ -100,6 +106,8 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentBackfillJob
+import org.thoughtcrime.securesms.jobs.ArchiveThumbnailBackfillJob
+import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
@@ -136,7 +144,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.toMillis
-import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.ApplicationErrorAction
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.StatusCodeErrorAction
@@ -149,15 +156,10 @@ import org.whispersystems.signalservice.api.archive.ArchiveServiceAccessPair
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.DeleteArchivedMediaRequest
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
-import org.whispersystems.signalservice.api.backup.MediaName
-import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.svr.SvrBApi
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
@@ -594,6 +596,7 @@ object BackupRepository {
     }
 
     if (SignalStore.backup.archiveUploadState?.backupPhase == ArchiveUploadProgressState.BackupPhase.Message && AppDependencies.jobManager.find { it.factoryKey == BackupMessagesJob.KEY }.isEmpty()) {
+      Log.w(TAG, "Found a situation where message backup was in progress, but there's no active BackupMessageJob! Re-enqueueing.")
       SignalStore.backup.archiveUploadState = null
       BackupMessagesJob.enqueue()
       return
@@ -605,9 +608,16 @@ object BackupRepository {
 
     if (!AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)) {
       if (SignalStore.backup.archiveUploadState?.state == ArchiveUploadProgressState.State.None) {
+        Log.w(TAG, "Found a situation where attachment uploads are in progress, but the progress state was None! Fixing.")
         ArchiveUploadProgress.onAttachmentSectionStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
       }
       return
+    }
+
+    if (AppDependencies.jobManager.areQueuesEmpty(ArchiveThumbnailUploadJob.QUEUES) && SignalDatabase.attachments.areAnyThumbnailsPendingUpload()) {
+      Log.w(TAG, "Found a situation where there's no thumbnail jobs in progress, but thumbnails are in the pending upload state! Clearing the pending state and re-enqueueing.")
+      SignalDatabase.attachments.clearArchiveThumbnailTransferStateForInProgressItems()
+      AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob())
     }
 
     val pendingBytes = SignalDatabase.attachments.getPendingArchiveUploadBytes()
@@ -2437,6 +2447,7 @@ class ExportState(
   val aciToRecipientId: MutableMap<String, Long> = hashMapOf()
   val recipientIdToE164: MutableMap<Long, Long> = hashMapOf()
   val customChatColorIds: MutableSet<Long> = hashSetOf()
+  var releaseNoteRecipientId: Long? = null
 }
 
 class ImportState(val mediaRootBackupKey: MediaRootBackupKey) {

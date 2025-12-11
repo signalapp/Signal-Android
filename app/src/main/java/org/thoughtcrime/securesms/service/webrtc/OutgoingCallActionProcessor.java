@@ -265,26 +265,26 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleEndedRemote(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent endedRemoteEvent, @NonNull RemotePeer remotePeer) {
+  protected @NonNull WebRtcServiceState handleEndedRemote(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEndReason callEndReason, @NonNull RemotePeer remotePeer) {
     RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
     if (activePeer != null &&
-        (endedRemoteEvent == CallManager.CallEvent.ENDED_REMOTE_HANGUP ||
-         endedRemoteEvent == CallManager.CallEvent.ENDED_REMOTE_HANGUP_NEED_PERMISSION ||
-         endedRemoteEvent == CallManager.CallEvent.ENDED_REMOTE_BUSY ||
-         endedRemoteEvent == CallManager.CallEvent.ENDED_TIMEOUT ||
-         endedRemoteEvent == CallManager.CallEvent.ENDED_REMOTE_GLARE))
+        (callEndReason == CallManager.CallEndReason.REMOTE_HANGUP ||
+         callEndReason == CallManager.CallEndReason.REMOTE_HANGUP_NEED_PERMISSION ||
+         callEndReason == CallManager.CallEndReason.REMOTE_BUSY ||
+         callEndReason == CallManager.CallEndReason.TIMEOUT ||
+         callEndReason == CallManager.CallEndReason.REMOTE_GLARE))
     {
       webRtcInteractor.sendNotAcceptedCallEventSyncMessage(activePeer,
                                                            true,
                                                            currentState.getCallSetupState(activePeer).isAcceptWithVideo() || currentState.getLocalDeviceState().getCameraState().isEnabled());
     }
 
-    return activeCallDelegate.handleEndedRemote(currentState, endedRemoteEvent, remotePeer);
+    return activeCallDelegate.handleEndedRemote(currentState, callEndReason, remotePeer);
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent endedEvent, @NonNull RemotePeer remotePeer) {
-    return activeCallDelegate.handleEnded(currentState, endedEvent, remotePeer);
+  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEndReason callEndReason, @NonNull RemotePeer remotePeer) {
+    return activeCallDelegate.handleEnded(currentState, callEndReason, remotePeer);
   }
 
   @Override

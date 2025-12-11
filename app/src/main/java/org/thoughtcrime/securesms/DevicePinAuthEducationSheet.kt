@@ -109,7 +109,7 @@ fun DevicePinAuthEducationSheet(
 @DayNightPreviews
 @Composable
 fun DevicePinAuthEducationSheetPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     DevicePinAuthEducationSheet(
       title = "To continue, confirm it's you",
       onClick = {}

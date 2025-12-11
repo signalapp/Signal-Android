@@ -203,6 +203,7 @@ object FakeMessageRecords {
       null,
       0,
       false,
+      0,
       null
     )
   }

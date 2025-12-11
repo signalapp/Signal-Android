@@ -9,12 +9,12 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Test
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.libsignal.protocol.ReusedBaseKeyException
 import org.thoughtcrime.securesms.util.KyberPreKeysTestUtil.generateECPublicKey
 import org.thoughtcrime.securesms.util.KyberPreKeysTestUtil.getStaleTime
 import org.thoughtcrime.securesms.util.KyberPreKeysTestUtil.insertTestRecord
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.util.UUID
 
 class KyberPreKeyTableTest {

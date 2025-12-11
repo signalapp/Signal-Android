@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.service.DeletedCallEventManager;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.ExpiringStoriesManager;
 import org.thoughtcrime.securesms.service.PendingRetryReceiptManager;
+import org.thoughtcrime.securesms.service.PinnedMessageManager;
 import org.thoughtcrime.securesms.service.ScheduledMessageManager;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager;
@@ -101,8 +102,8 @@ import org.whispersystems.signalservice.api.message.MessageApi;
 import org.whispersystems.signalservice.api.payments.PaymentsApi;
 import org.whispersystems.signalservice.api.profiles.ProfileApi;
 import org.whispersystems.signalservice.api.provisioning.ProvisioningApi;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
-import org.whispersystems.signalservice.api.push.ServiceId.PNI;
+import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.models.ServiceId.PNI;
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi;
 import org.whispersystems.signalservice.api.registration.RegistrationApi;
 import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigApi;
@@ -269,6 +270,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull ScheduledMessageManager provideScheduledMessageManager() {
     return new ScheduledMessageManager(context);
+  }
+
+  @Override
+  public @NonNull PinnedMessageManager providePinnedMessageManager() {
+    return new PinnedMessageManager(context);
   }
 
   @Override
@@ -519,8 +525,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull CallingApi provideCallingApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
-    return new CallingApi(authWebSocket, pushServiceSocket);
+  public @NonNull CallingApi provideCallingApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
+    return new CallingApi(authWebSocket, unauthWebSocket, pushServiceSocket);
   }
 
   @Override

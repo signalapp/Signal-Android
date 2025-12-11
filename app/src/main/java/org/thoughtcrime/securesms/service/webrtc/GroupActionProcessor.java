@@ -8,11 +8,13 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
+import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.events.WebRtcViewModel.State;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -23,7 +25,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder
 import org.webrtc.PeerConnection;
 import org.webrtc.VideoTrack;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.signal.core.models.ServiceId.ACI;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -131,7 +133,15 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
 
     builder.remoteDevicesCount(remoteDevices.size());
 
-    return builder.build();
+    WebRtcServiceState updatedState = builder.build();
+
+    if (updatedState.getCallInfoState().getCallState() == State.CALL_CONNECTED) {
+      boolean localVideoEnabled  = updatedState.getLocalDeviceState().getCameraState().isEnabled();
+      boolean remoteVideoEnabled = updatedState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
+      webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
+    }
+
+    return updatedState;
   }
 
   @Override
@@ -284,7 +294,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleGroupCallEnded(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull GroupCall.GroupCallEndReason groupCallEndReason) {
+  protected @NonNull WebRtcServiceState handleGroupCallEnded(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull CallManager.CallEndReason groupCallEndReason) {
     Log.i(tag, "handleGroupCallEnded(): reason: " + groupCallEndReason);
 
     GroupCall groupCall = currentState.getCallInfoState().getGroupCall();
@@ -299,7 +309,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
       return groupCallFailure(currentState, "Unable to disconnect from group call", e);
     }
 
-    if (groupCallEndReason != GroupCall.GroupCallEndReason.DEVICE_EXPLICITLY_DISCONNECTED) {
+    if (groupCallEndReason != CallManager.CallEndReason.DEVICE_EXPLICITLY_DISCONNECTED) {
       Log.i(tag, "Group call ended unexpectedly, reinitializing and dropping back to lobby");
       Recipient  currentRecipient = currentState.getCallInfoState().getCallRecipient();
       VideoState videoState       = currentState.getVideoState();

@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.importer
 
 import android.content.ContentValues
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.toInt
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
-import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Handles the importing of [ArchiveGroup] models into the local database.

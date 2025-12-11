@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.database.Cursor
 import com.google.protobuf.InvalidProtocolBufferException
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalBlob
@@ -47,7 +48,6 @@ import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.IOException
 
 object RecipientTableCursorUtil {

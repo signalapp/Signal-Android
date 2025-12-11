@@ -5,8 +5,8 @@
 
 package org.whispersystems.signalservice.api.crypto
 
-import org.whispersystems.signalservice.api.backup.MediaId
-import org.whispersystems.signalservice.api.backup.MediaRootBackupKey.MediaKeyMaterial
+import org.signal.core.models.backup.MediaId
+import org.signal.core.models.backup.MediaRootBackupKey.MediaKeyMaterial
 import org.whispersystems.signalservice.internal.util.Util
 
 object AttachmentCipherTestHelper {

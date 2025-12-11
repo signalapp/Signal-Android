@@ -10,6 +10,8 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.runBlocking
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.MasterKey
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
@@ -27,10 +29,8 @@ import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.registration.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
-import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.NetworkResultUtil
 import org.whispersystems.signalservice.api.SvrNoDataException
-import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
@@ -423,12 +423,13 @@ object SvrRepository {
         false
       }
 
-      newToken = newToken || if (Svr3Migration.shouldWriteToSvr2) {
-        val credentials: AuthCredentials = svr2.authorization()
-        SignalStore.svr.appendSvr2AuthTokenToList(credentials.asBasic())
-      } else {
-        false
-      }
+      newToken = newToken ||
+        if (Svr3Migration.shouldWriteToSvr2) {
+          val credentials: AuthCredentials = svr2.authorization()
+          SignalStore.svr.appendSvr2AuthTokenToList(credentials.asBasic())
+        } else {
+          false
+        }
 
       if (newToken && SignalStore.svr.hasPin()) {
         BackupManager(AppDependencies.application).dataChanged()

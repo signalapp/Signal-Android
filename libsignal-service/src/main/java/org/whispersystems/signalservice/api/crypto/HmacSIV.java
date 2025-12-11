@@ -1,7 +1,6 @@
 package org.whispersystems.signalservice.api.crypto;
 
-import org.whispersystems.util.StringUtil;
-
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import static org.signal.core.util.CryptoUtil.hmacSha256;
@@ -16,8 +15,8 @@ import static java.util.Arrays.copyOfRange;
  */
 public final class HmacSIV {
 
-  private static final byte[] AUTH_BYTES = StringUtil.utf8("auth");
-  private static final byte[] ENC_BYTES  = StringUtil.utf8("enc");
+  private static final byte[] AUTH_BYTES = "auth".getBytes(StandardCharsets.UTF_8);
+  private static final byte[] ENC_BYTES  = "enc".getBytes(StandardCharsets.UTF_8);
 
   /**
    * Encrypts M with K.

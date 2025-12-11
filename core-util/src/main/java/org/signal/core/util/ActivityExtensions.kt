@@ -20,3 +20,11 @@ fun Activity.overrideActivityTransitionCompat(overrideType: Int, @AnimRes enterA
     overridePendingTransition(enterAnim, exitAnim)
   }
 }
+
+fun Activity.isInMultiWindowModeCompat(): Boolean {
+  return if (Build.VERSION.SDK_INT >= 24) {
+    isInMultiWindowMode
+  } else {
+    false
+  }
+}

@@ -121,7 +121,7 @@ class ShareRepository(context: Context) {
       }.filterNotNull()
 
     return if (media.isNotEmpty()) {
-      ResolvedShareData.Media(media)
+      ResolvedShareData.Media(media, externalMultiShare.text)
     } else {
       ResolvedShareData.Failure
     }

@@ -365,6 +365,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Bu, geçerli bir arama bağlantısı değil. Katılmayı denemeden önce tüm bağlantının tam ve doğru olduğundan emin ol.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Zaten bir aramadasın</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Hesap yeni cihaza aktarılsın mı?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">Bu hesabı yeni bir cihaza aktarmak için \"Devam et\"e dokun ve Signal kamera ile karekodu tekrar tara. Yalnızca doğrudan Signal\'dan gelen karekodları taradığından emin ol.</string>
+    <string name="CommunicationActions__dont_transfer">Aktarım yapma</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -675,6 +680,22 @@
     <string name="ConversationFragment_group_names">Grup adları</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Fotoğraf indirilemedi. Tekrar dene.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Şu süreliğine sabitle…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 saat</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 gün</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 gün</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Daima</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">En eski sabitleme değiştirilsin mi?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Sabitlenen mesaj en eski mesajın yerini alacaktır</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Değiştir</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Güvenlik İpuçları</string>
@@ -1204,11 +1225,11 @@
     <string name="AddToGroupActivity_add_member">Üye eklensin mi?</string>
     <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" kişisi \"%2$s\" grubuna eklensin mi?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\", \"%2$s\" grubuna eklendi.</string>
-    <string name="AddToGroupActivity_add_to_group">Gruba ekle</string>
     <string name="AddToGroupActivity_add_to_groups">Gruplara ekle</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Bu kullanıcı eski bir gruba eklenemez.</string>
     <string name="AddToGroupActivity_add">Ekle</string>
     <string name="AddToGroupActivity_add_to_a_group">Bir gruba ekle</string>
+    <string name="AddToGroupActivity_search">Ara</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Yeni yönetici seç</string>
@@ -2669,6 +2690,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s kişisinden ses ve görüntü alınamıyor</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s kişisinden ses ve görüntü alınamıyor</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Bunun sebebi güvenlik numaranın değişimini doğrulamaması, cihazıyla ilgili bir sorun olması veya seni engellemesi olabilir.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Ekran paylaşımını görmek için kaydırın</string>
@@ -4456,6 +4481,10 @@
     <string name="conversation_selection__menu_payment_details">Ödeme detayları</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Anketi sonlandır</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5244,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Duvar kağıdı önizlemesi</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Tüm sohbet renklerini değiştirmek ister misin?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Tüm arkaplanları değiştirmek ister misiniz?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Varsayılan renkleri sıfırla</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Tüm renkleri sıfırla</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Varsayılan arkaplanı sıfırla</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Tüm duvar kağıtlarını sıfırla</string>
@@ -6187,7 +6216,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Bağış Makbuzları</string>
     <string name="ManageDonationsFragment__badges">Rozetler</string>
-    <string name="ManageDonationsFragment__subscription_faq">Abonelik SSS</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Vermenin diğer yolları</string>
     <!-- Preference label to launch badge gifting -->
@@ -7468,8 +7498,10 @@
     <string name="CallLogAdapter__outgoing">Giden</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Cevapsız</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Bildirim profili açıkken cevaplanmadı</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Katıl</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8557,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Kurtarma anahtarını gir</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Yedeklemeleri etkinleştirirken kaydettiğin 64 basamaklı kodu gir.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Anahtarı mı unuttun?</string>
 
@@ -8919,6 +8951,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Bir soru ekle</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Karekodu tara</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Aktarmak istediğin cihazdaki kare kodu taramak için bu cihazı kullan</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">Tamam</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">Ses sorunu</string>
@@ -8979,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">hata ayıklama günlüğünü görüntüleyebilirsin</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> .</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Hata ayıklama günlüğünü paylaş</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8988,6 +9027,67 @@
     <string name="CallQualitySheet__submit">Gönder</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Geri bildirimin için teşekkürler!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s bir mesajı sabitledi</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">Bir mesajı sabitledin</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Mesaja git</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Mesaj bulunamadı</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Sabitlendi</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Fotoğraf</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Video</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Çıkartma</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Sesli ileti</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Bir kez görünür medya</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">Tüm mesajları görüntüle</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Tüm Mesajların Sabitlemesini Kaldır</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Kaybolan mesajları sabitleme</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Kaybolan mesajların sabitlemesi, zamanlayıcıları dolduğunda ve mesaj sohbetten kaldırıldığında sona erer.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Anladım</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Kaybolan mesaj</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Sabitlenmiş mesajlar</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Sabitlemeyi kaldır</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Tüm mesajlardaki sabitleme kaldırılsın mı?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Mesajların sabitlemesi tüm üyeler için kaldırılacaktır.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

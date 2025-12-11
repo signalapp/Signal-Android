@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages
 
 import android.content.Context
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult
@@ -31,7 +32,6 @@ import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.hasAudio
 import org.thoughtcrime.securesms.util.hasSharedContact
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.Envelope

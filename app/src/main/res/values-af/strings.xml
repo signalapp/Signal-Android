@@ -365,6 +365,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Hierdie is nie ’n geldige oproepskakel nie. Maak seker die volledige skakel is heel en korrek voor jy probeer aansluit.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Jy is reeds in \'n oproep</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Dra rekening oor na nuwe toestel?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">Om hierdie rekening na \'n nuwe toestel oor te dra, tik op \"Gaan voort\" en skandeer die QR-kode weer met die Signal-kamera. Maak seker jy skandeer slegs QR-kodes wat direk van Signal af kom.</string>
+    <string name="CommunicationActions__dont_transfer">Moenie oordra nie</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -675,6 +680,22 @@
     <string name="ConversationFragment_group_names">Groepname</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Kon nie foto aflaai nie. Probeer weer.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Hou met speld gemerk vir…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 uur</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 dae</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 dae</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Vir ewig</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Vervang oudste speld?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">As jy \'n boodskap met \'n speld merk, word die oudste gemerkte een vervang</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Vervang</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Veiligheidswenke</string>
@@ -1204,11 +1225,11 @@
     <string name="AddToGroupActivity_add_member">Voeg lid toe?</string>
     <string name="AddToGroupActivity_add_s_to_s">Voeg \"%1$s\" by \"%2$s\"?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" is by \"%2$s\" gevoeg.</string>
-    <string name="AddToGroupActivity_add_to_group">Voeg toe by groep</string>
     <string name="AddToGroupActivity_add_to_groups">Voeg toe by groepe</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Hierdie persoon kan nie by legaatgroepe gevoeg word nie.</string>
     <string name="AddToGroupActivity_add">Voeg toe</string>
     <string name="AddToGroupActivity_add_to_a_group">Voeg toe by ’n groep</string>
+    <string name="AddToGroupActivity_search">Soek</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Kies nuwe admin</string>
@@ -2669,6 +2690,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan nie oudio &amp; video van %1$s ontvang nie</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan nie oudio en video van %1$s ontvang nie</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dit kan wees omdat hulle die verandering in jou veiligheidsnommer nog nie geverifieer het nie, of hulle toestel gee probleme, of hulle het jou versper.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Vee om skermdeling te bekyk</string>
@@ -4456,6 +4481,10 @@
     <string name="conversation_selection__menu_payment_details">Betalingsbesonderhede</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Beëindig meningsopname</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5244,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Muurpapiervoorskou</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Wil jy alle kletskleure oorheers?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Wil jy alle muurpapiere oorheers?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Stel verstekkleure terug</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Stel alle kleure terug</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Stel verstekmuurpapier terug</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Stel alle muurpapiere terug</string>
@@ -6187,7 +6216,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Skenkingskwitansies</string>
     <string name="ManageDonationsFragment__badges">Wapens</string>
-    <string name="ManageDonationsFragment__subscription_faq">Gereelde Vrae oor Intekening</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Ander maniere om te gee</string>
     <!-- Preference label to launch badge gifting -->
@@ -7468,8 +7498,10 @@
     <string name="CallLogAdapter__outgoing">Uitgaande</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Gemis</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Gemis terwyl kennisgewingprofiel aan was</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Sluit aan</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8557,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Voer jou herwinsleutel in</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Voer die 64-syferkode in wat jy aangeteken het toe jy rugsteun geaktiveer het.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Sleutel vergeet?</string>
 
@@ -8919,6 +8951,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Voeg \'n vraag by</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Skandeer QR-kode</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Gebruik hierdie toestel om die QR-kode te skandeer op die toestel waarheen jy wil oorskakel</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">Reg so</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">Oudioprobleem</string>
@@ -8979,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">jou ontfout-log besigtig</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> voordat jy dit indien</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Deel ontfout-log</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8988,6 +9027,67 @@
     <string name="CallQualitySheet__submit">Dien in</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Dankie vir jou terugvoer!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s het \'n boodskap met \'n speld gemerk</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">Jy het \'n boodskap met \'n speld gemerk</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Gaan na boodskap</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Boodskap nie gevind nie</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Vasgespeld</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Foto</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Video</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Plakker</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Stemboodskap</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Eenkeerkyk-media</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">Bekyk alle boodskappe</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Verwyder merkspelde by alle boodskappe</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Merk verdwynende boodskappe met spelde</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Merkspelde sal by verdwynende boodskappe verwyder word wanneer hul tydhouer verstryk en die boodskap uit die klets verwyder word.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Ek verstaan</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Verdwynende boodskap</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Boodskappe met speld gemerk</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Verwyder speld</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Verwyder merkspelde by alle boodskappe?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Merkspelde by boodskappe sal vir alle lede verwyder word.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

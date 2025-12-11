@@ -1,15 +1,15 @@
 package org.thoughtcrime.securesms.storage
 
+import org.signal.core.models.ServiceId
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.NotificationProfileTables
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.util.OptionalUtil.asOptional
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.storage.protos.Recipient
 import java.util.Optional
 import java.util.UUID

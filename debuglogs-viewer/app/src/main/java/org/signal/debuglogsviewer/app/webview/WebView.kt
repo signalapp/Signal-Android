@@ -72,7 +72,8 @@ fun setupWebView(
     webview.evaluateJavascript("editor.setValue($originalContent, -1);", null)
   }
 
-  copyButton.setOnClickListener { // In Signal app, use Util.writeTextToClipboard(context, value) instead
+  copyButton.setOnClickListener {
+    // In Signal app, use Util.writeTextToClipboard(context, value) instead
     webview.evaluateJavascript("editor.getValue();") { value ->
       val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
       val clip = ClipData.newPlainText(context.getString(R.string.app_name), value)

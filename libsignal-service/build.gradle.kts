@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
+import org.gradle.api.tasks.SourceSetContainer
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -41,6 +42,20 @@ tasks.withType<KotlinCompile>().configureEach {
   }
 }
 
+val sourceSets = extensions.getByName("sourceSets") as SourceSetContainer
+sourceSets.named("main") {
+  output.dir(
+    mapOf("builtBy" to tasks.named("compileKotlin")),
+    "$buildDir/classes/kotlin/main"
+  )
+}
+sourceSets.named("test") {
+  output.dir(
+    mapOf("builtBy" to tasks.named("compileTestKotlin")),
+    "$buildDir/classes/kotlin/test"
+  )
+}
+
 afterEvaluate {
   listOf(
     "runKtlintCheckOverMainSourceSet",
@@ -54,7 +69,7 @@ afterEvaluate {
 }
 
 ktlint {
-  version.set("1.2.1")
+  version.set("1.5.0")
 
   filter {
     exclude { entry ->
@@ -104,6 +119,7 @@ dependencies {
   implementation(libs.kotlinx.coroutines.core.jvm)
 
   implementation(project(":core-util-jvm"))
+  implementation(project(":core-models"))
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)

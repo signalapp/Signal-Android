@@ -168,7 +168,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
 
   var hevcEncoding by booleanValue(ENCODE_HEVC, false).defaultForExternalUsers()
 
-  var newCallingUi: Boolean by booleanValue(NEW_CALL_UI, false).defaultForExternalUsers()
+  var newCallingUi: Boolean by booleanValue(NEW_CALL_UI, true).falseForExternalUsers()
 
   var lastScrollPosition: Int by integerValue(LAST_SCROLL_POSITION, 0).defaultForExternalUsers()
 

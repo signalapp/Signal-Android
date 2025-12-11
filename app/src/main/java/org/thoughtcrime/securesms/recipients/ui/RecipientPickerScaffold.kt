@@ -7,7 +7,13 @@ package org.thoughtcrime.securesms.recipients.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.isImeVisible
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
@@ -36,7 +43,7 @@ import org.thoughtcrime.securesms.window.rememberAppScaffoldNavigator
 /**
  * Provides the common adaptive layout structure for recipient picker screens.
  */
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3AdaptiveApi::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3AdaptiveApi::class, ExperimentalLayoutApi::class)
 @Composable
 fun RecipientPickerScaffold(
   title: String,
@@ -44,7 +51,8 @@ fun RecipientPickerScaffold(
   onNavigateUpClick: () -> Unit,
   topAppBarActions: @Composable () -> Unit,
   snackbarHostState: SnackbarHostState,
-  primaryContent: @Composable () -> Unit
+  primaryContent: @Composable () -> Unit,
+  floatingActionButton: (@Composable () -> Unit)? = null
 ) {
   val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
   val isSplitPane = windowSizeClass.isSplitPane(forceSplitPane = forceSplitPane)
@@ -68,7 +76,10 @@ fun RecipientPickerScaffold(
           modifier = Modifier.fillMaxSize()
         )
       } else {
-        primaryContent()
+        Box {
+          primaryContent()
+          FloatingActionButtonContainer(floatingActionButton)
+        }
       }
     },
 
@@ -79,6 +90,7 @@ fun RecipientPickerScaffold(
       ) {
         Box(modifier = Modifier.widthIn(max = windowSizeClass.detailPaneMaxContentWidth)) {
           primaryContent()
+          FloatingActionButtonContainer(floatingActionButton)
         }
       }
     },
@@ -91,6 +103,27 @@ fun RecipientPickerScaffold(
       isSplitPane = isSplitPane
     )
   )
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun BoxScope.FloatingActionButtonContainer(
+  button: (@Composable () -> Unit)?
+) {
+  if (button != null) {
+    Box(
+      modifier = Modifier
+        .align(Alignment.BottomEnd)
+        .imePadding()
+        .padding(
+          start = 16.dp,
+          end = 16.dp,
+          bottom = if (WindowInsets.isImeVisible) 0.dp else 16.dp
+        )
+    ) {
+      button()
+    }
+  }
 }
 
 @AllDevicePreviews

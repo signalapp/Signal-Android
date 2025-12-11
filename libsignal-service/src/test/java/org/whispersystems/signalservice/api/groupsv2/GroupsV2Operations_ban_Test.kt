@@ -6,10 +6,10 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.single
 import org.junit.Before
 import org.junit.Test
+import org.signal.core.models.ServiceId
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations.GroupOperations
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.internal.util.Util
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil
 import java.util.UUID

@@ -9,7 +9,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKeyCommitment;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialPresentation;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
 import org.signal.libsignal.zkgroup.profiles.ServerZkProfileOperations;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
 import java.time.Instant;

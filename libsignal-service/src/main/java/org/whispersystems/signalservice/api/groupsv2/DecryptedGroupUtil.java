@@ -13,8 +13,8 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.EnabledState;
-import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceIds;
 
 import java.util.ArrayList;

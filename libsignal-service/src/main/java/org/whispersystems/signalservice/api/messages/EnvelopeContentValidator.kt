@@ -1,13 +1,13 @@
 package org.whispersystems.signalservice.api.messages
 
 import okio.ByteString
+import org.signal.core.models.ServiceId
+import org.signal.core.models.ServiceId.ACI
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
@@ -153,6 +153,14 @@ object EnvelopeContentValidator {
 
     if (dataMessage.pollVote != null && (dataMessage.pollVote.targetAuthorAciBinary.isNullOrInvalidAci() || dataMessage.pollVote.targetSentTimestamp == null || dataMessage.pollVote.voteCount == null)) {
       return Result.Invalid("[DataMessage] Invalid poll vote!")
+    }
+
+    if (dataMessage.pinMessage != null && (dataMessage.pinMessage.targetAuthorAciBinary.isNullOrInvalidAci() || dataMessage.pinMessage.targetSentTimestamp == null || (dataMessage.pinMessage.pinDurationSeconds == null && dataMessage.pinMessage.pinDurationForever == null))) {
+      return Result.Invalid("[DataMessage] Invalid pin message!")
+    }
+
+    if (dataMessage.unpinMessage != null && (dataMessage.unpinMessage.targetAuthorAciBinary.isNullOrInvalidAci() || dataMessage.unpinMessage.targetSentTimestamp == null)) {
+      return Result.Invalid("[DataMessage] Invalid unpin message!")
     }
 
     return Result.Valid

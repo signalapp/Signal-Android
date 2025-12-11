@@ -135,7 +135,7 @@ class PendingParticipantsBottomSheet : ComposeBottomSheetDialogFragment() {
 @NightPreview
 @Composable
 private fun PendingParticipantsSheetPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     PendingParticipantsSheet(
       pendingParticipants = listOf(
         PendingParticipantCollection.State.PENDING,

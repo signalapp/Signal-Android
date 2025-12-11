@@ -21,7 +21,7 @@ import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.concurrent.FilteredExecutor;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.signal.core.models.ServiceId.ACI;
 
 import java.util.ArrayList;
 import java.util.Collection;

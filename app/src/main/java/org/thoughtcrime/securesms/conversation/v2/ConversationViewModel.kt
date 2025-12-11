@@ -42,6 +42,7 @@ import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
@@ -97,7 +98,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
 
@@ -207,6 +207,9 @@ class ConversationViewModel(
   private val internalBackPressedState = MutableStateFlow(BackPressedState())
   val backPressedState: StateFlow<BackPressedState> = internalBackPressedState
 
+  private val internalPinnedMessages = MutableStateFlow<List<ConversationMessage>>(emptyList())
+  val pinnedMessages: StateFlow<List<ConversationMessage>> = internalPinnedMessages
+
   init {
     disposables += recipient
       .subscribeBy {
@@ -237,6 +240,8 @@ class ConversationViewModel(
         _conversationThreadState.onNext(it)
       })
 
+    getPinnedMessages()
+
     disposables += conversationThreadState.flatMapObservable { threadState ->
       Observable.create<Unit> { emitter ->
         val controller = threadState.items.controller
@@ -248,6 +253,7 @@ class ConversationViewModel(
         }
         val conversationObserver = DatabaseObserver.Observer {
           controller.onDataInvalidated()
+          getPinnedMessages()
         }
 
         AppDependencies.databaseObserver.registerMessageUpdateObserver(messageUpdateObserver)
@@ -336,6 +342,35 @@ class ConversationViewModel(
         recipients.manuallyUpdateShowAvatar(recipient.id, false)
       }
       pagingController.onDataItemChanged(ConversationElementKey.threadHeader)
+    }
+  }
+
+  private fun getPinnedMessages() {
+    viewModelScope.launch(Dispatchers.IO) {
+      val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
+      internalPinnedMessages.value = repository.getPinnedMessages(threadId).map {
+        ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(AppDependencies.application, it, threadRecipient!!)
+      }
+    }
+  }
+
+  fun pinMessage(messageRecord: MessageRecord, duration: Duration, threadRecipient: Recipient): Completable {
+    return if (!NetworkUtil.isConnected(AppDependencies.application)) {
+      Completable.error(Exception("Connection required to pin message"))
+    } else {
+      repository
+        .pinMessage(messageRecord, duration, threadRecipient)
+        .observeOn(AndroidSchedulers.mainThread())
+    }
+  }
+
+  fun unpinMessage(messageId: Long): Completable {
+    return if (!NetworkUtil.isConnected(AppDependencies.application)) {
+      Completable.error(Exception("Connection required to unpin message"))
+    } else {
+      repository
+        .unpinMessage(messageId)
+        .observeOn(AndroidSchedulers.mainThread())
     }
   }
 

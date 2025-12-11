@@ -365,6 +365,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Aquest no és un enllaç de trucada vàlid. Assegura\'t que l\'enllaç estigui intacte i sigui correcte abans d\'intentar afegir-t\'hi.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Ja ets a una trucada.</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Vols transferir el compte al dispositiu nou?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">Per transferir aquest compte a un dispositiu nou, toca \"Continua\" i torna a escanejar el codi QR amb la càmera de Signal. Assegura\'t que només escaneges codis QR que provenen directament de Signal.</string>
+    <string name="CommunicationActions__dont_transfer">No transferir</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -675,6 +680,22 @@
     <string name="ConversationFragment_group_names">Els noms dels grups</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">No s\'ha pogut descarregar la foto. Torna a provar-ho.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Mantenir fixat durant…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 hores</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 dies</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 dies</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Per sempre</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Substituir el missatge fixat més antic?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">En fixar el missatge, aquest substituirà el més antic</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Substituir</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Consells de seguretat</string>
@@ -1204,11 +1225,11 @@
     <string name="AddToGroupActivity_add_member">Voleu afegir el membre?</string>
     <string name="AddToGroupActivity_add_s_to_s">Voleu afegir \"%1$s\" a \"%2$s\"?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" s\'ha afegit a \"%2$s\".</string>
-    <string name="AddToGroupActivity_add_to_group">Afegeix-lo al grup</string>
     <string name="AddToGroupActivity_add_to_groups">Afegeix-lo als grups</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Aquesta persona no es pot afegir a grups de llegat.</string>
     <string name="AddToGroupActivity_add">Afegeix</string>
     <string name="AddToGroupActivity_add_to_a_group">Afegeix-lo a un grup</string>
+    <string name="AddToGroupActivity_search">Cerca</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Trieu un administrador nou</string>
@@ -2449,9 +2470,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Disminuir vídeo local</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Ampliar vídeo local</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Trucada del Signal</string>
@@ -2669,6 +2690,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Això pot ser degut al fet que no han verificat el canvi del teu número de seguretat, hi ha un problema al seu dispositiu o t\'han bloquejat.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Llisqueu per veure la compartició de pantalla</string>
@@ -4456,6 +4481,10 @@
     <string name="conversation_selection__menu_payment_details">Detalls de pagament</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Finalitzar enquesta</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5244,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Previsualització del fons</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vols substituir tots els colors del xat?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Voleu substituir tots els fons?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Restableix els colors per defecte</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Restableix tots els colors</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Restableix el fons per defecte</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Restableix tots els fons</string>
@@ -5852,7 +5881,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Truca</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Silenci</string>
+    <string name="ConversationSettingsFragment__mute">Silenciar</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Silenciat</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6187,7 +6216,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Rebuts de donació</string>
     <string name="ManageDonationsFragment__badges">Insígnies</string>
-    <string name="ManageDonationsFragment__subscription_faq">PMF de la subscripció</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Altres maneres de fer-hi una donació</string>
     <!-- Preference label to launch badge gifting -->
@@ -7468,8 +7498,10 @@
     <string name="CallLogAdapter__outgoing">Sortint</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Perduda</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Perduda mentre els ajustos de notificació estaven activats</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Unir-me</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8060,7 +8092,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">No es farà una còpia de seguretat dels missatges enviats o rebuts abans del %1$s .</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">No s\'ha pogut completar la còpia de seguretat perquè tens poc espai d\'emmagatzematge. Allibera espai al teu dispositiu i torna-ho a provar.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Més informació</string>
 
@@ -8557,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Introdueix la teva clau de recuperació</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Introdueix el codi de 64 dígits que vas enregistrar quan vas activar les còpies de seguretat.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Has oblidat la clau?</string>
 
@@ -8919,6 +8951,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Afegeix una pregunta</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Escaneja el codi QR</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Utilitza aquest dispositiu per escanejar el codi QR que es mostra al dispositiu al qual vols fer la transferència</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">D\'acord</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">Problema d\'àudio</string>
@@ -8979,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">veure el teu registre de depuració</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> abans d\'enviar-lo</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Compartir registre de depuració</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8988,6 +9027,67 @@
     <string name="CallQualitySheet__submit">Envia</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Gràcies pels teus comentaris!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s ha fixat un missatge</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">Has fixat un missatge</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Ves a Missatge</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">No s\'ha trobat el missatge</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Fixat</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Foto</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Vídeo</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Adhesiu</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Missatge de veu</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Contingut d\'una sola visualització</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">Veure tots els missatges</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Desenganxar tots els missatges</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Fixar missatges a desaparèixer</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Els missatges a desaparèixer es desenganxaran quan s\'acabi el temps i el missatge s\'elimini del xat.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Entesos</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Missatge a desaparèixer</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Missatges fixats</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">No ho fixis</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Desenganxar tots els missatges?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Els missatges es desenganxaran per a tots els membres.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

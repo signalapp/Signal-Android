@@ -511,6 +511,10 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, false);
   }
 
+  public static void setIsUniversalUnidentifiedAccess(Context context, boolean enabled) {
+    setBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, enabled);
+  }
+
   public static void setShowUnidentifiedDeliveryIndicatorsEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, SHOW_UNIDENTIFIED_DELIVERY_INDICATORS, enabled);
   }

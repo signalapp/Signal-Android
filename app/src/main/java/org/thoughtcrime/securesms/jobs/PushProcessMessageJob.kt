@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.crypto.protos.CompleteMessage
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.Envelope

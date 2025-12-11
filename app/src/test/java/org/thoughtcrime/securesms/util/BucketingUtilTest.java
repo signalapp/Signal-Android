@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.signal.core.util.UuidUtil;
 
 import java.util.UUID;
 

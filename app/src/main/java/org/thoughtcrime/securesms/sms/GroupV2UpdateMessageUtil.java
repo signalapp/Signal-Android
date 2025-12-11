@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.signal.core.models.ServiceId;
 
 import java.util.Collections;
 import java.util.Optional;

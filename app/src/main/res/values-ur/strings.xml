@@ -365,6 +365,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">یہ کال لنک مؤثر نہیں ہے۔ شامل ہونے کی کوشش کرنے سے قبل یہ یقینی بنائیں کہ مکمل لنک محفوظ اور درست ہے۔</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">آپ پہلے ہی کال میں ہیں</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">اکاؤنٹ کو نئی ڈیوائس پر ٹرانسفر کریں؟</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">اس اکاؤنٹ کو نئی ڈیوائس پر ٹرانسفر کرنے کے لیے، \"جاری رکھیں\" پر ٹیپ کریں اور Signal کا کیمرہ استعمال کرتے ہوئے QR کوڈ دوبارہ اسکین کریں۔ یقینی بنائیں کہ آپ صرف وہ QR کوڈز اسکین کریں جو براہ راست Signal سے آتے ہیں۔</string>
+    <string name="CommunicationActions__dont_transfer">ٹرانسفر نہیں کریں</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -675,6 +680,22 @@
     <string name="ConversationFragment_group_names">گروپ کے نام</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">تصویر ڈاؤن لوڈ ہونے سے قاصر۔ دوبارہ کوشش کریں۔</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">پِن رکھیں برائے…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 گھنٹے</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 دن</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 دن</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">ہمیشہ کے لئے</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">سب سے پرانا پِن تبدیل کریں؟</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">میسج کو پِن کرنے سے سب سے پرانا تبدیل ہو جائے گا</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">تبدیل کریں</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">حفاظتی تجاویز</string>
@@ -1204,11 +1225,11 @@
     <string name="AddToGroupActivity_add_member">ممبر شامل کریں؟</string>
     <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" میں \"%2$s\" شامل کریں؟</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" میں اضافہ ہوا \"%2$s\".</string>
-    <string name="AddToGroupActivity_add_to_group">گروپ میں شامل کریں</string>
     <string name="AddToGroupActivity_add_to_groups">گروپوں میں شامل کریں</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">اس شخص کو میراثی گروپوں میں شامل نہیں کیا جاسکتا۔</string>
     <string name="AddToGroupActivity_add">شامل کریں</string>
     <string name="AddToGroupActivity_add_to_a_group">کسی گروپ میں شامل کریں</string>
+    <string name="AddToGroupActivity_search">تلا ‎ش کر یں</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">نیا ایڈمن منتخب کریں</string>
@@ -2669,6 +2690,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">آڈیو وصول نہیں کر سکتے ہیں۔ %1$s سے ویڈیو</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s سے آڈیو اور ویڈیو موصول نہیں ہوسکتی ہے</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ایسا اس لیے ہو سکتا ہے کیونکہ انہوں نے آپ کے حفاظتی نمبر کی تبدیلی کی تصدیق نہیں کی ہے، ان کی ڈیوائس کے ساتھ کوئی مسئلہ ہے، یا وہ آپ کو بلاک کر چکے ہیں۔</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">اسکرین شیئر دیکھنے کیلئے سوائپ کریں</string>
@@ -4456,6 +4481,10 @@
     <string name="conversation_selection__menu_payment_details">پیمنٹ کی تفصیلات</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">پول ختم کریں</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5244,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">وال پیپر پیش نظارہ</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">کیا آپ چیٹ کے تمام رنگوں کو اوور رائیڈ کرنا چاہتے ہیں؟</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">کیا آپ تمام وال پیپروں کو اوور رائڈ کرنا چاہیں گے؟</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">پہلے سے طے شدہ رنگوں کو دوبارہ ترتیب دیں</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">تمام رنگوں کو دوبارہ ترتیب دیں</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">پہلے سے طے شدہ وال پیپر کو دوبارہ ترتیب دیں</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">تمام وال پیپر کو دوبارہ ترتیب دیں</string>
@@ -5852,7 +5881,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">کال</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">خاموش کریں</string>
+    <string name="ConversationSettingsFragment__mute">میوٹ کریں</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">خاموش کر دیا گیا</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6187,7 +6216,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">عطیے کی رسیدیں</string>
     <string name="ManageDonationsFragment__badges">بیجز</string>
-    <string name="ManageDonationsFragment__subscription_faq">سبسکرپشن کے اکثر پوچھے جانے والے سوالات</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">دینے کے دیگر طریقے</string>
     <!-- Preference label to launch badge gifting -->
@@ -7468,8 +7498,10 @@
     <string name="CallLogAdapter__outgoing">جانے والی</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">مسڈ</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">اطلاعات کی پروفائل آن ہونے کے دوران مس ہوئیں</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">شامل ہوں</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8557,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">اپنی ریکوری کیی درج کریں</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">64 ہندسوں پر مشتمل وہ کوڈ درج کریں جو آپ نے بیک اپس کو فعال کرتے وقت ریکارڈ کیا تھا۔</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">کیی بھول گئے ہیں؟</string>
 
@@ -8919,6 +8951,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">سوال شامل کریں</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">QR کوڈ سکین کریں</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">جس ڈیوائس پر آپ ٹرانسفر کرنا چاہتے ہیں، اس کا QR کوڈ اسکین کرنے کے لیے اس ڈیوائس کا استعمال کریں</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">ٹھیک ہے</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">آڈیو کا مسئلہ</string>
@@ -8979,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">اپنا ڈی بگ لاگ دیکھ</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> سکتے ہیں</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">ڈی بگ لاگ شیئر کریں</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8988,6 +9027,67 @@
     <string name="CallQualitySheet__submit">جمع کرائیں</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">آپ کی رائے کا شکریہ!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s نے ایک میسج پِن کیا ہے</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">آپ نے ایک میسج پِن کیا ہے</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">میسج میں جائیں</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">میسج نہیں ملا</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">پن لگا ہوا</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">تصویر</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">وڈیو</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">اسٹیکر</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">آڈیو پیغام</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">گِف</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">صرف ایک بار دیکھنے کے قابل میڈیا</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">تمام میسجز دیکھیں</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">تمام میسجز اَن پِن کریں</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">غائب ہونے والے میسجز کو پِن کرنا</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">جب غائب ہونے والے میسجز کا ٹائمر ختم ہو جائے گا اور میسج چیٹ سے ہٹا دیا جائے گا تو وہ اَن پِن ہو جائیں گے۔</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">سمجھ گیا</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">غائب ہونے والا میسج</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">پِن کردہ میسجز</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">ان پِن کریں</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">تمام میسجز اَن پِن کریں؟</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">تمام ممبرز کے لیے میسجز اَن پِن ہو جائیں گے۔</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

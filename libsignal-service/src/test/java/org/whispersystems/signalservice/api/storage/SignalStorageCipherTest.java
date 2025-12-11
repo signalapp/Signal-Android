@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.storage;
 
 import org.junit.Test;
+import org.signal.core.models.storageservice.StorageItemKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.whispersystems.signalservice.internal.util.Util;
 

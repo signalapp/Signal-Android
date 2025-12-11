@@ -365,6 +365,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Овај линк није важећи линк за позив. Проверите да ли је цео линк комплетан и исправан пре него што покушате да се придружите.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Већ сте у позиву</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Желите ли да пребаците налог на нови уређај?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">Да пребаците овај налог на нови уређај, додирните „настави“ и скенирајте поново QR код преко камере на Signal-у. Уверите се да скенирате само QR кодове које вам директно шаље Signal.</string>
+    <string name="CommunicationActions__dont_transfer">Немој да пренесеш</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -675,6 +680,22 @@
     <string name="ConversationFragment_group_names">Имена група</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Преузимање фотографије није успело. Пробајте поново.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Нека порука остане закачена…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 сата</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 дана</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 дана</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Заувек</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Желите ли да замените најстарију закачену поруку?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Качење поруке замениће најстарију закачену поруку</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Замени</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Савети за безбедност</string>
@@ -1204,11 +1225,11 @@
     <string name="AddToGroupActivity_add_member">Желите ли да додате члана?</string>
     <string name="AddToGroupActivity_add_s_to_s">Желите ли да додате корисника „%1$s“ у групу „%2$s“?</string>
     <string name="AddToGroupActivity_s_added_to_s">„%1$s“ је додат(а) у групу „%2$s“.</string>
-    <string name="AddToGroupActivity_add_to_group">Додај у групу</string>
     <string name="AddToGroupActivity_add_to_groups">Додај у групе</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Ова особа се не може додати у старе групе.</string>
     <string name="AddToGroupActivity_add">Додај</string>
     <string name="AddToGroupActivity_add_to_a_group">Додај у групу</string>
+    <string name="AddToGroupActivity_search">Претражи</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Изаберите новог администратора</string>
@@ -2449,9 +2470,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Смањи видео-клип са уређаја</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Прошири видео-клип са уређаја</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Позив преко Signal-а</string>
@@ -2669,6 +2690,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Није могуће примити аудио и видео од корисника %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Није могуће примити аудио и видео од корисника %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">То је можда зато што корисник није потврдио промену вашег сигурносног броја, постоји проблем са његовим уређајем или вас је блокирао.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Превуците да видите дељење екрана</string>
@@ -4456,6 +4481,10 @@
     <string name="conversation_selection__menu_payment_details">Подаци о плаћању</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Прекини анкету</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5244,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Приказ позадине</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Желите ли да замените све боје ћаскања?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Желите ли да замените све позадине?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Ресетуј подразумеване боје</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Ресетуј све боје</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Ресетуј подразумевану позадину</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Ресетуј све позадине</string>
@@ -5852,7 +5881,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Позови</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Искључи обавештења</string>
+    <string name="ConversationSettingsFragment__mute">Утишај</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Обавештења су искључена</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6187,7 +6216,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Потврде о донацији</string>
     <string name="ManageDonationsFragment__badges">Значке</string>
-    <string name="ManageDonationsFragment__subscription_faq">Честа питања о претплати</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Други начини за донирање</string>
     <!-- Preference label to launch badge gifting -->
@@ -7468,8 +7498,10 @@
     <string name="CallLogAdapter__outgoing">Одлазни</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Пропуштени</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Пропуштено док је профил за обавештења био укључен</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Придружите се</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8060,7 +8092,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">Резервне копије се неће креирати за поруке послате или примљене пре овог датума: %1$s</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Прављење резервне копије није завршено због недостатка меморијског простора. Ослободите меморију уређаја и пробајте поново.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Сазнајте више</string>
 
@@ -8557,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Унесите кључ за опоравак</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Унесите 64-цифрени код који сте снимили када сте активирали резервне копије.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Заборавили сте кључ?</string>
 
@@ -8919,6 +8951,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Додај питање</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Скенирајте QR кôд</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Овим уређајем скенирајте QR код приказан на уређају на који желите да се пребаците</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">У реду</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">Проблем са звуком</string>
@@ -8979,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">видите извештај о грешкама</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> пре слања</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Пошаљи извештај о грешкама</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8988,6 +9027,67 @@
     <string name="CallQualitySheet__submit">Пошаљи</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Хвала вам на повратним информацијама!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s је послао/ла закачену поруку</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">Закачили сте поруку</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Иди на поруку</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Порука није пронађена</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Закачено</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Слика</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Видео</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Налепница</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Гласовна порука</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Једнократни медиј</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">Види све поруке</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Откачи све поруке</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Качење нестајућих порука</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Нестајуће поруке ће бити откачене када истекну и нестану из ћаскања.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Разумем</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Нестајућа порука</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Закачене поруке</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Откачи</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Желите ли да откачите све поруке?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Поруке ће бити откачене за све чланове.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

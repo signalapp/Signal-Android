@@ -12,9 +12,9 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
-import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_ESTABLISHED;
 
@@ -68,11 +68,9 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
           webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, currentState.getCallInfoState().getCallRecipient(), true);
           webRtcInteractor.startAudioCommunication();
 
-          if (currentState.getLocalDeviceState().getCameraState().isEnabled()) {
-            webRtcInteractor.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
-          } else {
-            webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
-          }
+          boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled();
+          boolean remoteVideoEnabled = currentState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
+          webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
 
           try {
             groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled());

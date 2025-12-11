@@ -1,9 +1,9 @@
 package org.whispersystems.signalservice.api.messages.multidevice
 
-import org.whispersystems.signalservice.api.AccountEntropyPool
-import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
-import org.whispersystems.signalservice.api.kbs.MasterKey
-import org.whispersystems.signalservice.api.storage.StorageKey
+import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.MasterKey
+import org.signal.core.models.backup.MediaRootBackupKey
+import org.signal.core.models.storageservice.StorageKey
 
 data class KeysMessage(
   val storageService: StorageKey?,

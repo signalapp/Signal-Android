@@ -6,7 +6,9 @@
 package org.thoughtcrime.securesms.database.model
 
 import okio.ByteString
+import org.signal.core.models.ServiceId
 import org.signal.core.util.BidiUtil
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNullOrEmpty
 import org.signal.storageservice.protos.groups.AccessControl
 import org.signal.storageservice.protos.groups.AccessControl.AccessRequired
@@ -50,9 +52,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedOtherUserToGroupUpd
 import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedToGroupUpdate
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceIds
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.LinkedList
 import java.util.Optional
 import java.util.stream.Collectors

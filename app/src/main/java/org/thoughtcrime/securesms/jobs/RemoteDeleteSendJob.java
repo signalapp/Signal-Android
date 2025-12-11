@@ -227,6 +227,7 @@ public class RemoteDeleteSendJob extends BaseJob {
                                                                                    dataMessage,
                                                                                    true,
                                                                                    isForStory,
+                                                                                   null,
                                                                                    null);
 
     if (conversationRecipient.isSelf()) {

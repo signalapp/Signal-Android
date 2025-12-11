@@ -17,8 +17,8 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescrip
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
 import java.util.List;

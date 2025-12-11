@@ -27,6 +27,13 @@ dependencyResolutionManagement {
     maven {
       url = uri("https://dl.cloudsmith.io/qxAgwaeEE1vN8aLU/mobilecoin/mobilecoin/maven/")
     }
+    maven {
+      name = "SignalBuildArtifacts"
+      url = uri("https://build-artifacts.signal.org/libraries/maven/")
+      content {
+        includeGroupByRegex("org\\.signal.*")
+      }
+    }
   }
   versionCatalogs {
     // libs.versions.toml is automatically registered.
@@ -61,6 +68,7 @@ include(":paging")
 include(":paging-app")
 include(":core-util")
 include(":core-util-jvm")
+include(":core-models")
 include(":glide-config")
 include(":device-transfer")
 include(":device-transfer-app")
@@ -84,6 +92,8 @@ include(":microbenchmark")
 include(":video")
 include(":video-app")
 include(":billing")
+include(":registration")
+include(":registration-app")
 
 project(":app").name = "Signal-Android"
 project(":paging").projectDir = file("paging/lib")
@@ -112,5 +122,8 @@ project(":qr-app").projectDir = file("qr/app")
 
 project(":video").projectDir = file("video/lib")
 project(":video-app").projectDir = file("video/app")
+
+project(":registration").projectDir = file("registration/lib")
+project(":registration-app").projectDir = file("registration/app")
 
 rootProject.name = "Signal"

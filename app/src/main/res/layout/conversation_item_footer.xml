@@ -54,13 +54,24 @@
         android:visibility="gone"
         app:backgroundTint="@color/transparent_white_20"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/footer_date"
+        app:layout_constraintEnd_toStartOf="@id/footer_pinned"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/footer_revealed_dot"
         app:layout_constraintTop_toTopOf="parent"
         tools:alpha="1"
         tools:text="1x"
         tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/footer_pinned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/footer_date"
+        android:src="@drawable/symbol_pin_filled_12"
+        android:visibility="gone"
+        android:layout_marginEnd="4dp" />
 
     <TextView
         android:id="@+id/footer_date"

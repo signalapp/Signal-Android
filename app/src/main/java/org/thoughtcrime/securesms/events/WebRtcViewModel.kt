@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.events
 
 import com.annimon.stream.OptionalLong
-import org.signal.ringrtc.GroupCall.GroupCallEndReason
+import org.signal.ringrtc.CallManager.CallEndReason
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink
 import org.thoughtcrime.securesms.events.CallParticipant.Companion.createLocal
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -105,7 +105,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val pendingParticipants: PendingParticipantCollection = state.callInfoState.pendingParticipants
   val isCallLink: Boolean = state.callInfoState.callRecipient.isCallLink
   val callLinkDisconnectReason: CallLinkDisconnectReason? = state.callInfoState.callLinkDisconnectReason
-  val groupCallEndReason: GroupCallEndReason? = state.callInfoState.groupCallEndReason
+  val groupCallEndReason: CallEndReason? = state.callInfoState.groupCallEndReason
   val groupCallSpeechEvent: GroupCallSpeechEvent? = state.callInfoState.groupCallSpeechEvent
 
   @get:JvmName("hasAtLeastOneRemote")

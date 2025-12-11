@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.storage;
 
 import org.junit.Test;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
 
 import okio.ByteString;

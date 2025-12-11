@@ -11,6 +11,8 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.MasterKey
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
@@ -40,8 +42,6 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
 import org.whispersystems.signalservice.api.account.PreKeyUpload
-import org.whispersystems.signalservice.api.kbs.MasterKey
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
@@ -75,32 +75,31 @@ class ChangeNumberRepository(
     return accountManager.whoAmI
   }
 
-  suspend fun ensureDecryptionsDrained(timeout: Duration = 15.seconds) =
-    withTimeoutOrNull(timeout) {
-      suspendCancellableCoroutine {
-        val drainedListener = object : Runnable {
-          override fun run() {
-            AppDependencies
-              .incomingMessageObserver
-              .removeDecryptionDrainedListener(this)
-            Log.d(TAG, "Decryptions drained.")
-            it.resume(true)
-          }
-        }
-
-        it.invokeOnCancellation { cancellationCause ->
+  suspend fun ensureDecryptionsDrained(timeout: Duration = 15.seconds) = withTimeoutOrNull(timeout) {
+    suspendCancellableCoroutine {
+      val drainedListener = object : Runnable {
+        override fun run() {
           AppDependencies
             .incomingMessageObserver
-            .removeDecryptionDrainedListener(drainedListener)
-          Log.d(TAG, "Decryptions draining canceled.", cancellationCause)
+            .removeDecryptionDrainedListener(this)
+          Log.d(TAG, "Decryptions drained.")
+          it.resume(true)
         }
+      }
 
+      it.invokeOnCancellation { cancellationCause ->
         AppDependencies
           .incomingMessageObserver
-          .addDecryptionDrainedListener(drainedListener)
-        Log.d(TAG, "Waiting for decryption drain.")
+          .removeDecryptionDrainedListener(drainedListener)
+        Log.d(TAG, "Decryptions draining canceled.", cancellationCause)
       }
+
+      AppDependencies
+        .incomingMessageObserver
+        .addDecryptionDrainedListener(drainedListener)
+      Log.d(TAG, "Waiting for decryption drain.")
     }
+  }
 
   @WorkerThread
   fun changeLocalNumber(e164: String, pni: ServiceId.PNI) {

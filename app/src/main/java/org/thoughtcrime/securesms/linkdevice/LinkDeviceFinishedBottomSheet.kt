@@ -84,7 +84,7 @@ fun FinishedSheet(onClick: () -> Unit) {
 @DayNightPreviews
 @Composable
 fun FinishedSheetSheetPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     FinishedSheet(onClick = {})
   }
 }

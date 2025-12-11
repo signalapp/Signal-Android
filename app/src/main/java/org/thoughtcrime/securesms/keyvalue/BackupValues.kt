@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import okio.withLock
+import org.signal.core.models.backup.MediaRootBackupKey
+import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.LongSerializer
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.DeletionState
@@ -20,8 +22,6 @@ import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
-import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.IOException
 import java.util.concurrent.locks.ReentrantLock
@@ -62,6 +62,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_RESTORE_OVER_CELLULAR = "backup.restore.useCellular"
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
     private const val KEY_BACKUPS_INITIALIZED = "backup.initialized"
+    private const val KEY_IMPORTED_EMPTY_ANDROID_SETTINGS = "backup.importedEmptyAndroidSettings"
 
     const val KEY_ARCHIVE_UPLOAD_STATE = "backup.archiveUploadState"
 
@@ -421,6 +422,11 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         .putInteger(KEY_ARCHIVE_ATTACHMENT_RECONCILIATION_ATTEMPTS, value)
         .apply()
     }
+
+  /**
+   * An annoying workaround to making tests pass when importing empty androidSpecificSettings.
+   */
+  var importedEmptyAndroidSettings by booleanValue(KEY_IMPORTED_EMPTY_ANDROID_SETTINGS, false)
 
   /**
    * If set, this represents how far back we should backup messages. For instance, if the returned value is 1 year in milliseconds, you should back up

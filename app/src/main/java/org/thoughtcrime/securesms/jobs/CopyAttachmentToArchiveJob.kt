@@ -123,15 +123,29 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       return Result.success()
     }
 
-    if (isCanceled) {
-      Log.w(TAG, "[$attachmentId] Canceled. Refusing to proceed.")
-      return Result.failure()
+    if (attachment.cdn !in ALLOWED_SOURCE_CDNS) {
+      Log.i(TAG, "[$attachmentId] Attachment CDN (${attachment.cdn}) is not in allowed source CDNs. Enqueueing an upload job instead.")
+      setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId, canReuseUpload = false))
+      return Result.success()
+    }
+
+    if (attachment.remoteLocation == null) {
+      Log.i(TAG, "[$attachmentId] Attachment has no remote location. Enqueueing an upload job instead.")
+      setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId, canReuseUpload = false))
+      return Result.success()
     }
 
     if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.NONE) {
       Log.i(TAG, "[$attachmentId] Not marked as pending copy. Enqueueing an upload job instead.")
       AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId))
       return Result.success()
+    }
+
+    if (isCanceled) {
+      Log.w(TAG, "[$attachmentId] Canceled. Refusing to proceed.")
+      return Result.failure()
     }
 
     val result = when (val archiveResult = BackupRepository.copyAttachmentToArchive(attachment)) {

@@ -43,7 +43,7 @@ import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.profiles.AvatarUploadParams;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.signal.core.models.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.StreamDetails;

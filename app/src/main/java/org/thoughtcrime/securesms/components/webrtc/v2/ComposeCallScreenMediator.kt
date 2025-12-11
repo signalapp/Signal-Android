@@ -227,6 +227,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
 
   override fun updateCallParticipants(callParticipantsViewState: CallParticipantsViewState) {
     callScreenViewModel.callParticipantsViewState.update { callParticipantsViewState }
+    setStatusFromCallParticipantsState(activity, callParticipantsViewState)
   }
 
   override fun maybeDismissAudioPicker() {

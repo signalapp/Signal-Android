@@ -10,7 +10,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
-import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.seconds
 
 object UntrustedRecords {
 
@@ -43,12 +44,14 @@ object UntrustedRecords {
       .flatten()
 
     val calculatedUntrustedWindow = System.currentTimeMillis() - changedSince
-    return AppDependencies
+    val identityRecords = AppDependencies
       .protocolStore
       .aci()
       .identities()
       .getIdentityRecords(recipients)
-      .getUntrustedRecords(calculatedUntrustedWindow.coerceIn(TimeUnit.SECONDS.toMillis(5)..TimeUnit.HOURS.toMillis(1)))
+
+    val untrustedRecords = identityRecords.getUntrustedRecords(calculatedUntrustedWindow.coerceIn(5.seconds.inWholeMilliseconds..1.hours.inWholeMilliseconds))
+    return (untrustedRecords + identityRecords.unverifiedRecords).distinctBy { it.recipientId }
   }
 
   class UntrustedRecordsException(val untrustedRecords: List<IdentityRecord>, val destinations: Set<ContactSearchKey.RecipientSearchKey>) : Throwable()

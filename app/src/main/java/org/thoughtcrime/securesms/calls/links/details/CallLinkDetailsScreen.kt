@@ -9,6 +9,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,7 +22,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -64,11 +64,11 @@ fun CallLinkDetailsScreen(
   viewModel: CallLinkDetailsViewModel = viewModel {
     CallLinkDetailsViewModel(roomId)
   },
-  router: MainNavigationRouter = viewModel<MainNavigationViewModel>(viewModelStoreOwner = LocalContext.current as ComponentActivity) {
+  router: MainNavigationRouter = viewModel<MainNavigationViewModel>(viewModelStoreOwner = LocalActivity.current as ComponentActivity) {
     error("Should already be created.")
   }
 ) {
-  val activity = LocalContext.current as FragmentActivity
+  val activity = LocalActivity.current as FragmentActivity
   val callback = remember {
     DefaultCallLinkDetailsCallback(
       activity = activity,

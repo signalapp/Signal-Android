@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.service.DeletedCallEventManager
 import org.thoughtcrime.securesms.service.ExpiringMessageManager
 import org.thoughtcrime.securesms.service.ExpiringStoriesManager
 import org.thoughtcrime.securesms.service.PendingRetryReceiptManager
+import org.thoughtcrime.securesms.service.PinnedMessageManager
 import org.thoughtcrime.securesms.service.ScheduledMessageManager
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
@@ -214,6 +215,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
+  override fun providePinnedMessageManager(): PinnedMessageManager {
+    return mockk(relaxed = true)
+  }
+
   override fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network {
     return mockk(relaxed = true)
   }
@@ -262,7 +267,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideCallingApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): CallingApi {
+  override fun provideCallingApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket): CallingApi {
     return mockk(relaxed = true)
   }
 

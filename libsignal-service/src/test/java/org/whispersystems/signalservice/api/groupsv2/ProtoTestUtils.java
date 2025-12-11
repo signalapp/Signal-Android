@@ -11,7 +11,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.security.SecureRandom;

@@ -6,13 +6,13 @@
 package org.thoughtcrime.securesms.backup.v2.util
 
 import okio.ByteString
+import org.signal.core.models.backup.MediaName
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.backup.v2.proto.Chat
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
-import org.whispersystems.signalservice.api.backup.MediaName
 
 fun Frame.getAllReferencedArchiveAttachmentInfos(): Set<ArchiveAttachmentInfo> {
   val infos: MutableSet<ArchiveAttachmentInfo> = mutableSetOf()

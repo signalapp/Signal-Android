@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.service.DeletedCallEventManager
 import org.thoughtcrime.securesms.service.ExpiringMessageManager
 import org.thoughtcrime.securesms.service.ExpiringStoriesManager
 import org.thoughtcrime.securesms.service.PendingRetryReceiptManager
+import org.thoughtcrime.securesms.service.PinnedMessageManager
 import org.thoughtcrime.securesms.service.ScheduledMessageManager
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
@@ -212,6 +213,11 @@ object AppDependencies {
   @JvmStatic
   val scheduledMessageManager: ScheduledMessageManager by lazy {
     provider.provideScheduledMessageManager()
+  }
+
+  @JvmStatic
+  val pinnedMessageManager: PinnedMessageManager by lazy {
+    provider.providePinnedMessageManager()
   }
 
   @JvmStatic
@@ -430,6 +436,7 @@ object AppDependencies {
     fun provideDeadlockDetector(): DeadlockDetector
     fun provideClientZkReceiptOperations(signalServiceConfiguration: SignalServiceConfiguration): ClientZkReceiptOperations
     fun provideScheduledMessageManager(): ScheduledMessageManager
+    fun providePinnedMessageManager(): PinnedMessageManager
     fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network
     fun provideBillingApi(): BillingApi
     fun provideArchiveApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket): ArchiveApi
@@ -442,7 +449,7 @@ object AppDependencies {
     fun provideUnauthWebSocket(signalServiceConfigurationSupplier: Supplier<SignalServiceConfiguration>, libSignalNetworkSupplier: Supplier<Network>): SignalWebSocket.UnauthenticatedWebSocket
     fun provideAccountApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): AccountApi
     fun provideUsernameApi(unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): UsernameApi
-    fun provideCallingApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): CallingApi
+    fun provideCallingApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket): CallingApi
     fun providePaymentsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): PaymentsApi
     fun provideCdsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): CdsApi
     fun provideRateLimitChallengeApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): RateLimitChallengeApi

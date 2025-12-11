@@ -535,6 +535,7 @@ message MessageExtras {
         ProfileChangeDetails profileChangeDetails = 3;
         PaymentTombstone paymentTombstone = 4;
         PollTerminate pollTerminate = 5;
+        PinnedMessage pinnedMessage = 6;
     }
 }
 
@@ -553,6 +554,13 @@ message PollTerminate {
     string question = 1;
     uint64 messageId = 2;
     uint64 targetTimestamp = 3;
+}
+
+message PinnedMessage {
+    uint64 pinnedMessageId = 1;
+    bytes targetAuthorAci = 2;
+    uint64 targetTimestamp = 3;
+    uint64 pinDurationInSeconds = 4; // Long.MAX_VALUE if pin is forever
 }
 
 message LocalRegistrationMetadata {

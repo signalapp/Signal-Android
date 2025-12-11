@@ -55,8 +55,8 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
-import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.ACI;
 
 import java.util.Collection;
 import java.util.List;
@@ -655,7 +655,7 @@ public abstract class WebRtcActionProcessor {
 
   //region End call
 
-  protected @NonNull WebRtcServiceState handleEndedRemote(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent endedRemoteEvent, @NonNull RemotePeer remotePeer) {
+  protected @NonNull WebRtcServiceState handleEndedRemote(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEndReason endedReason, @NonNull RemotePeer remotePeer) {
     Log.i(tag, "handleEndedRemote not processed");
     return currentState;
   }
@@ -664,7 +664,7 @@ public abstract class WebRtcActionProcessor {
 
   //region End call failure
 
-  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent endedEvent, @NonNull RemotePeer remotePeer) {
+  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEndReason endedReason, @NonNull RemotePeer remotePeer) {
     Log.i(tag, "handleEnded not processed");
     return currentState;
   }
@@ -802,7 +802,7 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleGroupCallEnded(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull GroupCall.GroupCallEndReason groupCallEndReason) {
+  protected @NonNull WebRtcServiceState handleGroupCallEnded(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull CallManager.CallEndReason groupCallEndReason) {
     Log.i(tag, "handleGroupCallEnded not processed");
     return currentState;
   }

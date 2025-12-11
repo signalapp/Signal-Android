@@ -5,7 +5,7 @@
 
 package org.whispersystems.signalservice.api.svr
 
-import org.whispersystems.signalservice.api.kbs.MasterKey
+import org.signal.core.models.MasterKey
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import java.io.IOException
 import kotlin.jvm.Throws

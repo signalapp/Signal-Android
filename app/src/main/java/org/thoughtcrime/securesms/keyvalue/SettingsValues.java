@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.preferences.BackupFrequencyV1;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
+import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallDataMode;
@@ -86,7 +87,7 @@ public final class SettingsValues extends SignalStoreValues {
   SettingsValues(@NonNull KeyValueStore store, Context context) {
     super(store);
 
-    if (!store.containsKey(SCREEN_LOCK_ENABLED)) {
+    if (!store.containsKey(SCREEN_LOCK_ENABLED) && !Environment.IS_INSTRUMENTATION) {
       migrateFromSharedPrefsV1(context);
     }
   }

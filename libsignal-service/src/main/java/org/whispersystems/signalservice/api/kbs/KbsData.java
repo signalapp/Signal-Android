@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.kbs;
 
+import org.signal.core.models.MasterKey;
+
 /**
  * Construct from a {@link org.signal.libsignal.svr2.PinHash}.
  */

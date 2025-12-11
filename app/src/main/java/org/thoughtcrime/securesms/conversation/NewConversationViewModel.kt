@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientRepository
 import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
+import org.whispersystems.signalservice.api.NetworkResult
 
 class NewConversationViewModel : ViewModel() {
   companion object {
@@ -143,11 +144,32 @@ class NewConversationViewModel : ViewModel() {
     viewModelScope.launch {
       internalUiState.update { it.copy(isRefreshingContacts = true) }
 
-      withContext(Dispatchers.IO) {
-        ContactDiscovery.refreshAll(AppDependencies.application, true)
+      val result = withContext(Dispatchers.IO) {
+        NetworkResult.fromFetch {
+          ContactDiscovery.refreshAll(AppDependencies.application, true)
+        }
       }
 
-      internalUiState.update { it.copy(isRefreshingContacts = false) }
+      when (result) {
+        is NetworkResult.Success -> {
+          internalUiState.update { it.copy(isRefreshingContacts = false) }
+        }
+
+        is NetworkResult.NetworkError, is NetworkResult.StatusCodeError -> {
+          Log.w(TAG, "Encountered network error while refreshing contacts.", result.getCause())
+          internalUiState.update {
+            it.copy(
+              isRefreshingContacts = false,
+              userMessage = Info.ContactsRefreshFailed
+            )
+          }
+        }
+
+        is NetworkResult.ApplicationError -> {
+          Log.e(TAG, "Encountered unexpected error while refreshing contacts.", result.throwable)
+          throw result.throwable
+        }
+      }
     }
   }
 
@@ -171,6 +193,7 @@ data class NewConversationUiState(
       data class RecipientBlocked(val recipient: Recipient) : Info
       data class RecipientLookupFailed(val failure: RecipientRepository.LookupResult.Failure) : Info
       data object UserAlreadyInAnotherCall : Info
+      data object ContactsRefreshFailed : Info
     }
 
     sealed interface Prompt : UserMessage {

@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.testing
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.UuidUtil
+import org.signal.core.util.toByteArray
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.buildWith
@@ -10,8 +12,6 @@ import org.thoughtcrime.securesms.messages.TestMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
-import org.whispersystems.signalservice.api.util.UuidUtil
-import org.whispersystems.signalservice.api.util.toByteArray
 import org.whispersystems.signalservice.internal.push.AddressableMessage
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange

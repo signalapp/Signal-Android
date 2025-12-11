@@ -22,8 +22,8 @@ plugins {
 
 apply(from = "static-ips.gradle.kts")
 
-val canonicalVersionCode = 1623
-val canonicalVersionName = "7.66.3"
+val canonicalVersionCode = 1628
+val canonicalVersionName = "7.68.0"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
@@ -78,7 +78,7 @@ wire {
 }
 
 ktlint {
-  version.set("1.2.1")
+  version.set("1.5.0")
 }
 
 android {
@@ -507,6 +507,7 @@ dependencies {
   implementation(project(":sticky-header-grid"))
   implementation(project(":photoview"))
   implementation(project(":core-ui"))
+  implementation(project(":core-models"))
 
   implementation(libs.androidx.fragment.ktx)
   implementation(libs.androidx.appcompat) {

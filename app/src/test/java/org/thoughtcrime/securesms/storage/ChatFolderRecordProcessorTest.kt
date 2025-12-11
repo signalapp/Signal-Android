@@ -5,11 +5,11 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.BeforeClass
 import org.junit.Test
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.testutil.EmptyLogger
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.StorageId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord
 import org.whispersystems.signalservice.internal.storage.protos.Recipient
 import java.util.UUID

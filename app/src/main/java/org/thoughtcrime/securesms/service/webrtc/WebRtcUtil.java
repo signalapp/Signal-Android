@@ -41,6 +41,18 @@ public final class WebRtcUtil {
     }
   }
 
+  /**
+   * Returns the appropriate phone state for an in-call scenario, considering both local and remote video state.
+   * If either local or remote video is enabled, returns {@link LockManager.PhoneState#IN_VIDEO} to keep the screen on.
+   * Otherwise, falls back to audio-device based phone state.
+   */
+  public static @NonNull LockManager.PhoneState getInCallPhoneState(@NonNull Context context, boolean localVideoEnabled, boolean remoteVideoEnabled) {
+    if (localVideoEnabled || remoteVideoEnabled) {
+      return LockManager.PhoneState.IN_VIDEO;
+    }
+    return getInCallPhoneState(context);
+  }
+
   public static @NonNull CallManager.CallMediaType getCallMediaTypeFromOfferType(@NonNull OfferMessage.Type offerType) {
     return offerType == OfferMessage.Type.VIDEO_CALL ? CallManager.CallMediaType.VIDEO_CALL : CallManager.CallMediaType.AUDIO_CALL;
   }

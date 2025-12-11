@@ -7,9 +7,11 @@ package org.thoughtcrime.securesms.backup.v2.importer
 
 import android.content.ContentValues
 import androidx.core.content.contentValuesOf
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.asList
 import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
@@ -81,8 +83,6 @@ import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.whispersystems.signalservice.api.payments.Money
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.DataMessage
 import java.math.BigInteger
 import java.sql.SQLException

@@ -309,7 +309,8 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     }
 
     val needBluetoothAudioStart = signalBluetoothManager.state == SignalBluetoothManager.State.AVAILABLE &&
-      (userSelectedAudioDevice == AudioDevice.NONE || userSelectedAudioDevice == AudioDevice.BLUETOOTH || autoSwitchToBluetooth) && !androidAudioManager.isBluetoothScoOn
+      (userSelectedAudioDevice == AudioDevice.NONE || userSelectedAudioDevice == AudioDevice.BLUETOOTH || autoSwitchToBluetooth) &&
+      !androidAudioManager.isBluetoothScoOn
 
     val needBluetoothAudioStop = (signalBluetoothManager.state == SignalBluetoothManager.State.CONNECTED || signalBluetoothManager.state == SignalBluetoothManager.State.CONNECTING) &&
       (userSelectedAudioDevice != AudioDevice.NONE && userSelectedAudioDevice != AudioDevice.BLUETOOTH)

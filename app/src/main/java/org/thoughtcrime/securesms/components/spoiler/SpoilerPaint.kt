@@ -28,9 +28,18 @@ object SpoilerPaint {
    */
   var shader: BitmapShader? = null
 
-  private val WIDTH = if (Util.isLowMemory(AppDependencies.application)) 50.dp else 100.dp
-  private val HEIGHT = if (Util.isLowMemory(AppDependencies.application)) 20.dp else 40.dp
-  private val PARTICLES_PER_PIXEL = if (Util.isLowMemory(AppDependencies.application)) 0.001f else 0.002f
+  private val WIDTH = if (isLowMemory()) 50.dp else 100.dp
+  private val HEIGHT = if (isLowMemory()) 20.dp else 40.dp
+  private val PARTICLES_PER_PIXEL = if (isLowMemory()) 0.001f else 0.002f
+
+  private fun isLowMemory(): Boolean {
+    return try {
+      Util.isLowMemory(AppDependencies.application)
+    } catch (e: Throwable) {
+      // In preview mode or when AppDependencies is not initialized, default to low memory mode
+      true
+    }
+  }
 
   private var shaderBitmap: Bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ALPHA_8)
   private var bufferBitmap: Bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ALPHA_8)

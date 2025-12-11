@@ -163,6 +163,14 @@
             android:layout_height="wrap_content">
 
             <ViewStub
+                android:id="@+id/pinned_message_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:inflatedId="@+id/pinned_message_compose_view"
+                android:layout="@layout/pinned_message_stub" />
+
+            <ViewStub
                 android:id="@+id/voice_note_player_stub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

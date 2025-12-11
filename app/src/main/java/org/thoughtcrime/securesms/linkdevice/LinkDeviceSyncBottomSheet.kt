@@ -128,7 +128,7 @@ private fun SheetOption(
 @DayNightPreviews
 @Composable
 fun SyncSheetSheetSheetPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     SyncSheet(onLink = {})
   }
 }

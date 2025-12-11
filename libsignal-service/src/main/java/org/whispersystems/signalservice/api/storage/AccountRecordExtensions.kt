@@ -7,9 +7,9 @@ package org.whispersystems.signalservice.api.storage
 
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.ServiceId
 import org.signal.core.util.isNotEmpty
 import org.whispersystems.signalservice.api.payments.PaymentsConstants
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId.Companion.isNotNullOrBlank
 import org.whispersystems.signalservice.api.storage.StorageRecordProtoUtil.defaultAccountRecord

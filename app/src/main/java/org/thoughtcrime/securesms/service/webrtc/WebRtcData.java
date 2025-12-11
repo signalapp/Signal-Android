@@ -8,7 +8,7 @@ import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.signal.core.models.ServiceId;
 
 import java.util.UUID;
 

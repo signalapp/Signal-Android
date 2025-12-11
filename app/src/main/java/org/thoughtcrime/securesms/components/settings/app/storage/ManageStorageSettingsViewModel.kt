@@ -28,8 +28,6 @@ import org.thoughtcrime.securesms.jobs.OptimizeMediaJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 class ManageStorageSettingsViewModel : ViewModel() {
 
@@ -134,7 +132,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
 
   private suspend fun getOnDeviceStorageOptimizationState(): OnDeviceStorageOptimizationState {
     return when {
-      !SignalStore.backup.areBackupsEnabled || !BackupUpgradeAvailabilityChecker.isUpgradeAvailable(AppDependencies.application) || (!RemoteConfig.internalUser && !Environment.IS_STAGING) -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
+      !SignalStore.backup.areBackupsEnabled || !BackupUpgradeAvailabilityChecker.isUpgradeAvailable(AppDependencies.application) -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
       SignalStore.backup.backupTier != MessageBackupTier.PAID -> OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER
       SignalStore.backup.optimizeStorage -> OnDeviceStorageOptimizationState.ENABLED
       else -> OnDeviceStorageOptimizationState.DISABLED

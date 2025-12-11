@@ -74,7 +74,7 @@ public class MediaRecorderWrapper implements Recorder {
   }
 
   private static int getSampleRate() {
-    if ("Xiaomi".equals(Build.MANUFACTURER) && "Mi 9T".equals(Build.MODEL)) {
+    if ("Xiaomi".equals(Build.MANUFACTURER) && ("Mi 9T".equals(Build.MODEL) || "Mi 9T Pro".equals(Build.MODEL))) {
       // Recordings sound robotic with the standard sample rate.
       return 44000;
     }

@@ -106,7 +106,11 @@ fun MainBottomChrome(
       )
     }
 
-    val snackBarModifier = if (!windowSizeClass.isSplitPane() && state.mainToolbarMode == MainToolbarMode.BASIC) {
+    if (windowSizeClass.isSplitPane()) {
+      return@Column
+    }
+
+    val snackBarModifier = if (state.mainToolbarMode == MainToolbarMode.BASIC) {
       Modifier.navigationBarsPadding()
     } else {
       Modifier
@@ -121,7 +125,7 @@ fun MainBottomChrome(
 }
 
 @Composable
-private fun MainSnackbar(
+fun MainSnackbar(
   snackbarState: SnackbarState?,
   onDismissed: () -> Unit,
   modifier: Modifier = Modifier

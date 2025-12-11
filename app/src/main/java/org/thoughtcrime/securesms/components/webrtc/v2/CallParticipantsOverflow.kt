@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.NightPreview
+import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.events.CallParticipant
@@ -42,23 +42,26 @@ fun CallParticipantsOverflow(
   overflowParticipants: List<CallParticipant>,
   modifier: Modifier = Modifier
 ) {
+  val callScreenMetrics = rememberCallScreenMetrics()
+  val rendererSize = callScreenMetrics.overflowParticipantRendererSize
+
   if (lineType == LayoutStrategyLineType.ROW) {
     LazyRow(
       reverseLayout = true,
       modifier = modifier,
-      contentPadding = PaddingValues(start = 16.dp, end = CallScreenMetrics.SmallRendererSize + 32.dp),
+      contentPadding = PaddingValues(start = 16.dp, end = rendererSize + 32.dp),
       horizontalArrangement = spacedBy(4.dp)
     ) {
-      appendItems(CallScreenMetrics.SmallRendererSize, overflowParticipants)
+      appendItems(rendererSize, overflowParticipants)
     }
   } else {
     LazyColumn(
       reverseLayout = true,
       modifier = modifier,
-      contentPadding = PaddingValues(top = 16.dp, bottom = CallScreenMetrics.SmallRendererSize + 32.dp),
+      contentPadding = PaddingValues(top = 16.dp, bottom = rendererSize + 32.dp),
       verticalArrangement = spacedBy(4.dp)
     ) {
-      appendItems(CallScreenMetrics.SmallRendererSize, overflowParticipants)
+      appendItems(rendererSize, overflowParticipants)
     }
   }
 }
@@ -71,17 +74,16 @@ private fun LazyListScope.appendItems(
     items = overflowParticipants,
     key = { it.callParticipantId }
   ) { participant ->
-    CallParticipantRenderer(
-      callParticipant = participant,
-      renderInPip = false,
+    OverflowParticipantContent(
+      participant = participant,
       modifier = Modifier
         .size(contentSize)
-        .clip(CallScreenMetrics.SmallRendererShape)
+        .clip(CallScreenMetrics.OverflowParticipantRendererShape)
     )
   }
 }
 
-@NightPreview
+@AllNightPreviews
 @Composable
 private fun CallParticipantsOverflowPreview() {
   Previews.Preview {
@@ -100,18 +102,19 @@ private fun CallParticipantsOverflowPreview() {
       }
     }
 
+    val callScreenMetrics = rememberCallScreenMetrics()
     CallParticipantsOverflow(
       lineType = LayoutStrategyLineType.ROW,
       overflowParticipants = participants,
       modifier = Modifier
         .padding(vertical = 16.dp)
-        .height(CallScreenMetrics.SmallRendererSize)
+        .height(callScreenMetrics.overflowParticipantRendererSize)
         .fillMaxWidth()
     )
   }
 }
 
-@NightPreview
+@AllNightPreviews
 @Composable
 private fun CallParticipantsOverflowColumnPreview() {
   Previews.Preview {
@@ -130,12 +133,13 @@ private fun CallParticipantsOverflowColumnPreview() {
       }
     }
 
+    val callScreenMetrics = rememberCallScreenMetrics()
     CallParticipantsOverflow(
       lineType = LayoutStrategyLineType.COLUMN,
       overflowParticipants = participants,
       modifier = Modifier
         .padding(horizontal = 16.dp)
-        .width(CallScreenMetrics.SmallRendererSize)
+        .width(callScreenMetrics.overflowParticipantRendererSize)
         .fillMaxHeight()
     )
   }

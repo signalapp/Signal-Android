@@ -133,6 +133,7 @@ message AccountData {
     optional bool pinReminders = 27; // If unset, consider pin reminders to be enabled.
     AppTheme appTheme = 28;  // If unset, treat the same as "Unknown" case
     CallsUseLessDataSetting callsUseLessDataSetting = 29;  // If unset, treat the same as "Unknown" case
+    bool allowSealedSenderFromAnyone = 30;
   }
 
   message SubscriberData {

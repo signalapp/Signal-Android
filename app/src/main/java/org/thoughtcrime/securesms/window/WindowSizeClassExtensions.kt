@@ -13,7 +13,6 @@ import androidx.window.core.layout.WindowHeightSizeClass
 import androidx.window.core.layout.WindowSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 val WindowSizeClass.listPaneDefaultPreferredWidth: Dp get() = if (windowWidthSizeClass.isAtLeast(WindowWidthSizeClass.EXPANDED)) 416.dp else 316.dp
 val WindowSizeClass.horizontalPartitionDefaultSpacerSize: Dp get() = 12.dp
@@ -27,20 +26,13 @@ fun WindowWidthSizeClass.isAtLeast(other: WindowWidthSizeClass): Boolean {
   return hashCode() >= other.hashCode()
 }
 
-/**
- * Global check for large screen support, can be inlined after production release.
- */
-fun isLargeScreenSupportEnabled(): Boolean {
-  return RemoteConfig.largeScreenUi
-}
-
 @OptIn(ExperimentalWindowCoreApi::class)
 fun Resources.getWindowSizeClass(): WindowSizeClass {
-  return WindowSizeClass.compute(displayMetrics.widthPixels, displayMetrics.heightPixels, displayMetrics.density)
+  return WindowSizeClass.compute(displayMetrics.widthPixels / displayMetrics.density, displayMetrics.heightPixels / displayMetrics.density)
 }
 
 /**
- * Split Pane is enabled as long as the width size class is MEDIUM or greater
+ * Determines whether the UI should display in split-pane mode based on available screen space.
  */
 @JvmOverloads
 fun WindowSizeClass.isSplitPane(
