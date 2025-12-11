@@ -7,7 +7,11 @@ import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.collections.immutable.toImmutableList
+import org.signal.core.models.ServiceId
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.BidiUtil
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
@@ -46,12 +50,8 @@ import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.UsernameUtil.isValidUsernameForSearch
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.util.OptionalUtil
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.LinkedList
 import java.util.Objects
 import java.util.Optional
@@ -406,7 +406,7 @@ class Recipient(
   private val resolved: Recipient
     get() = if (isResolving) live().resolve() else this
 
-  /** Convenience method to get a non-null [serviceId] hen you know it is there. */
+  /** Convenience method to get a non-null [serviceId] when you know it is there. */
   fun requireServiceId(): ServiceId {
     return resolved.aciValue ?: resolved.pniValue ?: throw MissingServiceIdError(id)
   }

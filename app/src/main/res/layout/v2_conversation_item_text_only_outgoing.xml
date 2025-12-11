@@ -82,14 +82,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="conversation_item_delivery_status,conversation_item_footer_date" />
+        app:constraint_referenced_ids="conversation_item_delivery_status,conversation_item_footer_date,conversation_item_footer_pinned" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier_footer_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="conversation_item_delivery_status,conversation_item_footer_date" />
+        app:constraint_referenced_ids="conversation_item_delivery_status,conversation_item_footer_date,conversation_item_footer_pinned" />
 
     <View
         android:id="@+id/conversation_item_footer_background"
@@ -102,9 +102,21 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/barrier_footer_bottom"
         app:layout_constraintEnd_toEndOf="@id/conversation_item_delivery_status"
-        app:layout_constraintStart_toStartOf="@id/conversation_item_footer_date"
+        app:layout_constraintStart_toStartOf="@id/conversation_item_footer_pinned"
         app:layout_constraintTop_toTopOf="@id/barrier_footer_top"
         tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/conversation_item_footer_pinned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="@dimen/message_bubble_footer_bottom_padding"
+        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_item_footer_date"
+        app:layout_constraintEnd_toStartOf="@id/conversation_item_footer_date"
+        android:visibility="gone"
+        android:src="@drawable/symbol_pin_filled_12" />
 
     <TextView
         android:id="@+id/conversation_item_footer_date"

@@ -148,5 +148,6 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onViewResultsClicked(long pollId);
     void onViewPollClicked(long messageId);
     void onToggleVote(@NonNull PollRecord poll, @NonNull PollOption pollOption, Boolean isChecked);
+    void onViewPinnedMessage(long messageId);
   }
 }

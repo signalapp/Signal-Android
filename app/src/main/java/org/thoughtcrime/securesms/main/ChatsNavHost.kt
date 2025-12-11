@@ -51,7 +51,6 @@ import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
 import org.thoughtcrime.securesms.serialization.JsonSerializableNavType
 import org.thoughtcrime.securesms.window.AppScaffoldAnimationDefaults
 import org.thoughtcrime.securesms.window.AppScaffoldAnimationState
-import org.thoughtcrime.securesms.window.isLargeScreenSupportEnabled
 import org.thoughtcrime.securesms.window.isSplitPane
 import kotlin.reflect.typeOf
 import kotlin.time.Duration.Companion.milliseconds
@@ -203,7 +202,7 @@ class ChatNavGraphState private constructor(
   private var hasWrittenToGraphicsLayer: Boolean by mutableStateOf(false)
 
   suspend fun writeGraphicsLayerToBitmap() {
-    if (isLargeScreenSupportEnabled() && !windowSizeClass.isSplitPane() && hasWrittenToGraphicsLayer) {
+    if (!windowSizeClass.isSplitPane() && hasWrittenToGraphicsLayer) {
       chatBitmap = graphicsLayer.toImageBitmap()
     }
   }

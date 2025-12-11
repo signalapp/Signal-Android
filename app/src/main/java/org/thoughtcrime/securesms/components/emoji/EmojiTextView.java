@@ -472,7 +472,7 @@ public class EmojiTextView extends AppCompatTextView {
     }
   }
 
-  private void ellipsizeEmojiTextForMaxLines() {
+  public void ellipsizeEmojiTextForMaxLines() {
     Runnable ellipsize = () -> {
       int maxLines = TextViewCompat.getMaxLines(EmojiTextView.this);
       if (maxLines <= 0 && maxLength < 0) {
@@ -608,6 +608,13 @@ public class EmojiTextView extends AppCompatTextView {
   public void setMentionBackgroundTint(@ColorInt int mentionBackgroundTint) {
     if (renderMentions) {
       mentionRendererDelegate.setTint(mentionBackgroundTint);
+    }
+  }
+
+  public void enableRenderSpoilers() {
+    if (spoilerRendererDelegate == null) {
+      renderSpoilers          = true;
+      spoilerRendererDelegate = new SpoilerRendererDelegate(this);
     }
   }
 

@@ -36,14 +36,11 @@ sealed class DSLSettingsText {
   }
 
   companion object {
-    fun from(@StringRes stringId: Int, @ColorInt textColor: Int): DSLSettingsText =
-      FromResource(stringId, listOf(ColorModifier(textColor)))
+    fun from(@StringRes stringId: Int, @ColorInt textColor: Int): DSLSettingsText = FromResource(stringId, listOf(ColorModifier(textColor)))
 
-    fun from(@StringRes stringId: Int, vararg modifiers: Modifier): DSLSettingsText =
-      FromResource(stringId, modifiers.toList())
+    fun from(@StringRes stringId: Int, vararg modifiers: Modifier): DSLSettingsText = FromResource(stringId, modifiers.toList())
 
-    fun from(charSequence: CharSequence, vararg modifiers: Modifier): DSLSettingsText =
-      FromCharSequence(charSequence, modifiers.toList())
+    fun from(charSequence: CharSequence, vararg modifiers: Modifier): DSLSettingsText = FromCharSequence(charSequence, modifiers.toList())
   }
 
   interface Modifier {

@@ -140,11 +140,12 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
   )
 
   private fun canEnableNotifications(): Boolean {
-    val areNotificationsDisabledBySystem = Build.VERSION.SDK_INT >= 26 && (
-      !NotificationChannels.getInstance().isMessageChannelEnabled ||
-        !NotificationChannels.getInstance().isMessagesChannelGroupEnabled ||
-        !NotificationChannels.getInstance().areNotificationsEnabled()
-      )
+    val areNotificationsDisabledBySystem = Build.VERSION.SDK_INT >= 26 &&
+      (
+        !NotificationChannels.getInstance().isMessageChannelEnabled ||
+          !NotificationChannels.getInstance().isMessagesChannelGroupEnabled ||
+          !NotificationChannels.getInstance().areNotificationsEnabled()
+        )
 
     return !areNotificationsDisabledBySystem
   }

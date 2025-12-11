@@ -5,6 +5,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import android.net.Uri
+import org.signal.core.models.backup.MediaName
 import org.signal.core.util.Base64
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.androidx.DocumentFileInfo
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.protos.RestoreLocalAttachmentJobData
 import org.thoughtcrime.securesms.mms.MmsException
-import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.StreamSupplier

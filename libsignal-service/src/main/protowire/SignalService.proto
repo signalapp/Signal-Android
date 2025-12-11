@@ -335,6 +335,20 @@ message DataMessage {
     optional uint32 voteCount = 4;  // increment this by 1 each time you vote on a given poll
   }
 
+  message PinMessage {
+    optional bytes targetAuthorAciBinary = 1; // 16-byte UUID
+    optional uint64 targetSentTimestamp = 2;
+    oneof pinDuration {
+      uint32 pinDurationSeconds = 3;
+      bool pinDurationForever = 4;
+    }
+  }
+
+  message UnpinMessage {
+    optional bytes targetAuthorAciBinary = 1; // 16-byte UUID
+    optional uint64 targetSentTimestamp = 2;
+  }
+
   optional string body = 1;
   repeated AttachmentPointer attachments = 2;
   reserved /*groupV1*/ 3;
@@ -360,7 +374,9 @@ message DataMessage {
   optional PollCreate pollCreate = 24;
   optional PollTerminate pollTerminate = 25;
   optional PollVote pollVote = 26;
-  // NEXT ID: 27
+  optional PinMessage pinMessage = 27;
+  optional UnpinMessage unpinMessage = 28;
+  // NEXT ID: 29
 }
 
 message NullMessage {

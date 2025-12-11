@@ -9,6 +9,7 @@ import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -96,7 +97,7 @@ private fun NewConversationScreen(
   activityIntent: Intent,
   closeScreen: () -> Unit
 ) {
-  val context = LocalContext.current as FragmentActivity
+  val context = LocalActivity.current as FragmentActivity
 
   val createGroupLauncher: ActivityResultLauncher<Intent> = rememberLauncherForActivityResult(
     contract = ActivityResultContracts.StartActivityForResult(),
@@ -360,6 +361,13 @@ private fun UserMessagesHost(
     is UserMessage.Info.UserAlreadyInAnotherCall -> LaunchedEffect(userMessage) {
       snackbarHostState.showSnackbar(
         message = context.getString(R.string.CommunicationActions__you_are_already_in_a_call)
+      )
+      onDismiss(userMessage)
+    }
+
+    is UserMessage.Info.ContactsRefreshFailed -> LaunchedEffect(userMessage) {
+      snackbarHostState.showSnackbar(
+        message = context.getString(R.string.ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection)
       )
       onDismiss(userMessage)
     }

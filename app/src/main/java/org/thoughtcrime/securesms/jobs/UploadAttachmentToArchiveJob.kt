@@ -360,10 +360,8 @@ class UploadAttachmentToArchiveJob private constructor(
   }
 
   private fun setArchiveTransferStateWithDelayedNotification(attachmentId: AttachmentId, transferState: AttachmentTable.ArchiveTransferState) {
-    ArchiveDatabaseExecutor.runBlocking {
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, transferState, notify = false)
-      ArchiveDatabaseExecutor.throttledNotifyAttachmentObservers()
-    }
+    SignalDatabase.attachments.setArchiveTransferState(attachmentId, transferState, notify = false)
+    ArchiveDatabaseExecutor.throttledNotifyAttachmentObservers()
   }
 
   class Factory : Job.Factory<UploadAttachmentToArchiveJob> {

@@ -50,11 +50,9 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
 
     activePeer.connected();
 
-    if (currentState.getLocalDeviceState().getCameraState().isEnabled()) {
-      webRtcInteractor.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
-    } else {
-      webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
-    }
+    boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled();
+    boolean remoteVideoEnabled = currentState.getCallSetupState(activePeer).isRemoteVideoOffer();
+    webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
 
     currentState = currentState.builder()
                                .actionProcessor(new ConnectedCallActionProcessor(webRtcInteractor))

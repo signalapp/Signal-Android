@@ -264,6 +264,18 @@
             android:tint="@color/signal_colorOnSurfaceVariant"
             app:srcCompat="@drawable/symbol_calendar_24" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/go_to_pinned_indicator"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/signal_colorSurfaceVariant"
+            android:padding="6dp"
+            android:tint="@color/signal_colorOnSurfaceVariant"
+            android:visibility="gone"
+            app:srcCompat="@drawable/symbol_chat_arrow_24" />
+
     </FrameLayout>
 
     <org.thoughtcrime.securesms.reactions.ReactionsConversationView

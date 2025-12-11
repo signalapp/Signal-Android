@@ -5,11 +5,11 @@
 
 package org.whispersystems.signalservice.api.groupsv2
 
+import org.signal.core.models.ServiceId
+import org.signal.core.models.ServiceId.ACI
 import org.signal.storageservice.protos.groups.local.DecryptedMember
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.util.Optional
 
 fun Collection<DecryptedMember>.toAciListWithUnknowns(): List<ACI> {

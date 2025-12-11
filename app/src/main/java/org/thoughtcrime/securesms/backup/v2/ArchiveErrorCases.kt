@@ -135,6 +135,10 @@ object ExportSkips {
     return log(sentTimestamp, "Poll option was invalid.")
   }
 
+  fun pollNotInGroupChat(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Poll was not in a group chat.")
+  }
+
   fun individualChatUpdateInWrongTypeOfChat(sentTimestamp: Long): String {
     return log(sentTimestamp, "A chat update that only makes sense for individual chats was found in a different kind of chat.")
   }
@@ -145,6 +149,10 @@ object ExportSkips {
 
   fun incomingMessageAuthorDoesNotHaveAciOrE164(sentTimestamp: Long): String {
     return log(sentTimestamp, "An incoming message author did not have an aci or e164.")
+  }
+
+  fun outgoingMessageToReleaseNotesChat(sentTimestamp: Long): String {
+    return log(sentTimestamp, "An outgoing message was sent to the release notes chat.")
   }
 
   fun callWithMissingRecipient(sentTimestamp: Long): String {

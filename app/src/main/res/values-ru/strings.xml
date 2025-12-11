@@ -371,6 +371,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Это недействительная ссылка на звонок. Убедитесь, что ссылка не повреждена и корректна, перед тем как попробовать присоединиться.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Вы уже участвуете в другом звонке</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Перенести учётную запись на новое устройство?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">Чтобы перенести эту учётную запись Signal на новое устройство, нажмите «Продолжить» и просканируйте QR-код ещё раз с помощью камеры Signal. Убедитесь, что вы сканируете только те QR-коды, которые приходят непосредственно от Signal.</string>
+    <string name="CommunicationActions__dont_transfer">Не переносить</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -695,6 +700,22 @@
     <string name="ConversationFragment_group_names">Названия групп</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Не удалось загрузить фото. Попробуйте ещё раз.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Оставить закреплённым на…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 часа</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 дней</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 дней</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Бессрочно</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Заменить самое старое закреплённое сообщение?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Закреплённое сообщение заменит самое старое</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Заменить</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Советы по безопасности</string>
@@ -1250,11 +1271,11 @@
     <string name="AddToGroupActivity_add_member">Добавить участника?</string>
     <string name="AddToGroupActivity_add_s_to_s">Добавить «%1$s» в «%2$s»?</string>
     <string name="AddToGroupActivity_s_added_to_s">«%1$s» добавлен(-а) в «%2$s».</string>
-    <string name="AddToGroupActivity_add_to_group">Добавить в группу</string>
     <string name="AddToGroupActivity_add_to_groups">Добавить в группы</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Этот человек не может быть добавлен в старые группы.</string>
     <string name="AddToGroupActivity_add">Добавить</string>
     <string name="AddToGroupActivity_add_to_a_group">Добавить в группу</string>
+    <string name="AddToGroupActivity_search">Поиск</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Выберите нового администратора</string>
@@ -2595,9 +2616,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Сжать локальное видео</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Развернуть локальное видео</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Звонок Signal</string>
@@ -2845,6 +2866,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Невозможно получать аудио и видео от %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Невозможно получать аудио и видео от %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Возможно, это из-за того, что этот участник не подтвердил изменение вашего кода безопасности, или есть какая-то проблема с его устройством, или он вас заблокировал.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Проведите, чтобы просмотреть показ экрана</string>
@@ -4686,6 +4711,10 @@
     <string name="conversation_selection__menu_payment_details">Подробности платежа</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Завершить опрос</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5504,7 +5533,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Предпросмотр обоев</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Вы хотите заменить цвета всех чатов?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Вы хотите заменить обои всех чатов?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Сбросить цвета по умолчанию</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Сбросить все цвета</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Сбросить обои по умолчанию</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Сбросить все обои</string>
@@ -6128,7 +6157,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Позвонить</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Откл. звук</string>
+    <string name="ConversationSettingsFragment__mute">Откл.</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Без звука</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6477,7 +6506,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Квитанции о пожертвованиях</string>
     <string name="ManageDonationsFragment__badges">Значки</string>
-    <string name="ManageDonationsFragment__subscription_faq">ЧаВо о подписке</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Другие способы пожертвовать</string>
     <!-- Preference label to launch badge gifting -->
@@ -7800,8 +7830,10 @@
     <string name="CallLogAdapter__outgoing">Исходящие</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Пропущенные</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Пропущенные при включённом профиле уведомлений</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Войти</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8408,7 +8440,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">Сообщения, отправленные или полученные до %1$s, не сохраняются в резервной копии.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">Ваше резервное копирование не завершено, так как у вас недостаточно места в хранилище. Освободите место на вашем устройстве и попробуйте ещё раз.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Узнать больше</string>
 
@@ -8919,7 +8951,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Введите ключ восстановления</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Введите 64-значный код, который вы записали при включении резервного копирования.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Забыли ключ?</string>
 
@@ -9291,6 +9323,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Добавить вопрос</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Сканировать QR-код</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Используйте данное устройство для сканирования QR-кода с устройства, на которое хотите перенести</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">Хорошо</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">Проблема со звуком</string>
@@ -9351,7 +9390,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">просмотреть свой журнал отладки</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> перед отправкой</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Поделиться журналом отладки</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9360,6 +9399,67 @@
     <string name="CallQualitySheet__submit">Отправить</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Спасибо за ваш отзыв!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s закрепил(-а) сообщение</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">Вы закрепили сообщение</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Перейти к сообщению</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Сообщение не найдено</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Прикреплённые</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Фото</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Видео</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Стикер</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Голосовое сообщение</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Одноразовое медиа</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">Просмотреть все сообщения</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Открепить все сообщения</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Закрепление исчезающих сообщений</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Исчезающие сообщения будут откреплены, когда истечёт таймер и сообщение будет удалено из чата.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Понятно</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Исчезающие сообщения</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Закреплённые сообщения</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Открепить</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Открепить все сообщения?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Сообщения будут откреплены для всех участников.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

@@ -13,7 +13,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.signal.storageservice.protos.groups.local.EnabledState;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.List;

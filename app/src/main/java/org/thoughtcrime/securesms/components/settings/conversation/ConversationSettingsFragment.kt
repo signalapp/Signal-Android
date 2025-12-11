@@ -944,7 +944,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   }
 
   private fun handleAddToAGroup(addToAGroup: ConversationSettingsEvent.AddToAGroup) {
-    startActivity(AddToGroupsActivity.newIntent(requireContext(), addToAGroup.recipientId, addToAGroup.groupMembership))
+    startActivity(AddToGroupsActivity.createIntent(requireContext(), addToAGroup.recipientId, addToAGroup.groupMembership))
   }
 
   @Suppress("DEPRECATION")

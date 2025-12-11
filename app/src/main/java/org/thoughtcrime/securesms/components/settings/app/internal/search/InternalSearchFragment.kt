@@ -7,6 +7,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.internal.search
 
+import androidx.activity.compose.LocalActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,7 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import kotlinx.collections.immutable.ImmutableList
@@ -87,7 +87,7 @@ fun SearchBar(query: String, onSearchUpdated: (String) -> Unit, modifier: Modifi
 
 @Composable
 fun ResultItem(result: InternalSearchResult, modifier: Modifier = Modifier) {
-  val activity = LocalContext.current as? AppCompatActivity
+  val activity = LocalActivity.current as? AppCompatActivity
 
   Column(
     modifier = modifier

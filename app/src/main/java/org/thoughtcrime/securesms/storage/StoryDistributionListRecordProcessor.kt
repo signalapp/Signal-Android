@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.storage
 
 import org.signal.core.util.StringUtil
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -9,7 +10,6 @@ import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListR
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.toSignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.util.OptionalUtil.asOptional
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.io.IOException
 import java.util.Optional
 

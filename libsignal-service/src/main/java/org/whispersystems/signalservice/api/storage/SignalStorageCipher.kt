@@ -1,5 +1,6 @@
 package org.whispersystems.signalservice.api.storage
 
+import org.signal.core.models.storageservice.StorageCipherKey
 import org.whispersystems.signalservice.internal.util.Util
 import java.security.InvalidAlgorithmParameterException
 import java.security.InvalidKeyException

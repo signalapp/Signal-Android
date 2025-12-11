@@ -11,12 +11,12 @@ import assertk.assertions.isInstanceOf
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.junit.Test
+import org.signal.core.util.UuidUtil
+import org.signal.core.util.toByteArray
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.whispersystems.signalservice.api.util.UuidUtil
-import org.whispersystems.signalservice.api.util.toByteArray
 import org.whispersystems.signalservice.internal.push.ProvisionEnvelope
 import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import org.whispersystems.signalservice.internal.push.ProvisioningVersion
@@ -52,7 +52,7 @@ class SecondaryProvisioningCipherTest {
 
     val success = result as SecondaryProvisioningCipher.ProvisioningDecryptResult.Success<ProvisionMessage>
 
-    assertThat(message.aci).isEqualTo(UuidUtil.parseOrThrow(success.message.aci).toString())
+    assertThat(message.aci).isEqualTo(UuidUtil.parseOrThrow(success.message.aci!!).toString())
     assertThat(message.number).isEqualTo(success.message.number)
     assertThat(primaryIdentityKeyPair.serialize()).isEqualTo(IdentityKeyPair(IdentityKey(success.message.aciIdentityKeyPublic!!.toByteArray()), ECPrivateKey(success.message.aciIdentityKeyPrivate!!.toByteArray())).serialize())
     assertThat(primaryProfileKey.serialize()).isEqualTo(ProfileKey(success.message.profileKey!!.toByteArray()).serialize())
@@ -60,7 +60,7 @@ class SecondaryProvisioningCipherTest {
     assertThat(message.userAgent).isEqualTo(success.message.userAgent)
     assertThat(message.provisioningCode).isEqualTo(success.message.provisioningCode!!)
     assertThat(message.provisioningVersion).isEqualTo(success.message.provisioningVersion!!)
-    assertThat(message.aciBinary).isEqualTo(UuidUtil.parseOrThrow(success.message.aciBinary).toByteArray().toByteString())
+    assertThat(message.aciBinary).isEqualTo(UuidUtil.parseOrThrow(success.message.aciBinary!!).toByteArray().toByteString())
   }
 
   companion object {

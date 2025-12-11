@@ -49,7 +49,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.BodyRange;
 import org.whispersystems.signalservice.internal.push.DataMessage;
 
@@ -286,6 +286,7 @@ public class IndividualSendJob extends PushSendJob {
       SignalServiceDataMessage.GiftBadge         giftBadge          = getGiftBadgeFor(message);
       SignalServiceDataMessage.Payment           payment            = getPayment(message);
       List<BodyRange>                            bodyRanges         = getBodyRanges(message);
+      SignalServiceDataMessage.PinnedMessage     pinnedMessage      = getPinnedMessage(message);
       SignalServiceDataMessage.Builder mediaMessageBuilder = SignalServiceDataMessage.newBuilder()
                                                                                      .withBody(message.getBody())
                                                                                      .withAttachments(serviceAttachments)
@@ -301,7 +302,8 @@ public class IndividualSendJob extends PushSendJob {
                                                                                      .asExpirationUpdate(message.isExpirationUpdate())
                                                                                      .asEndSessionMessage(message.isEndSession())
                                                                                      .withPayment(payment)
-                                                                                     .withBodyRanges(bodyRanges);
+                                                                                     .withBodyRanges(bodyRanges)
+                                                                                     .withPinnedMessage(pinnedMessage);
 
       if (message.getParentStoryId() != null) {
         try {

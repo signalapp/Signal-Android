@@ -262,7 +262,7 @@ final class RecipientDialogViewModel extends ViewModel {
   }
 
   void onAddToGroupButton(@NonNull Activity activity) {
-    recipientDialogRepository.getGroupMembership(existingGroups -> activity.startActivity(AddToGroupsActivity.newIntent(activity, recipientDialogRepository.getRecipientId(), existingGroups)));
+    recipientDialogRepository.getGroupMembership(existingGroups -> activity.startActivity(AddToGroupsActivity.createIntent(activity, recipientDialogRepository.getRecipientId(), existingGroups)));
   }
 
   @WorkerThread

@@ -4,7 +4,7 @@
 [versions]
 androidx-test = "1.5.0"
 androidx-test-ext-junit = "1.1.5"
-robolectric = "4.10.3"
+robolectric = "4.15.1"
 espresso = "3.4.0"
 
 [libraries]

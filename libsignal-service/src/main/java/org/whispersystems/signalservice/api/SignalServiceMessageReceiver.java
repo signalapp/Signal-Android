@@ -9,7 +9,7 @@ package org.whispersystems.signalservice.api;
 import org.signal.core.util.StreamUtil;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.whispersystems.signalservice.api.backup.MediaRootBackupKey;
+import org.signal.core.models.backup.MediaRootBackupKey;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;

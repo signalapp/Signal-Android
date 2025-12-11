@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.util
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.Optional
 import org.thoughtcrime.securesms.backup.v2.proto.AvatarColor as RemoteAvatarColor
 

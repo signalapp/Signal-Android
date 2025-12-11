@@ -365,6 +365,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Ez a híváshivatkozás nem érvényes. A csatlakozás megkísérlése előtt győződj meg róla, hogy a teljes hivatkozás sértetlen és helyes.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Már beléptél a hívásba</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Fiók átvitele új eszközre?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">A fiók új eszközre való átviteléhez koppints a „Folytatás” gombra, és olvasd be újra a QR-kódot a Signal kamerával. Ügyelj rá, hogy csak közvetlenül a Signaltól származó QR-kódokat olvass be.</string>
+    <string name="CommunicationActions__dont_transfer">Nem kerül áthelyezésre</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -675,6 +680,22 @@
     <string name="ConversationFragment_group_names">csoportnevek</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Nem sikerült letölteni a fotót. Próbáld újra.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Rögzítés megtartásának időtartama…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 óra</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 nap</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 nap</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">örökké</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Cseréled a legrégebbi rögzített üzenetet?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">A rögzített üzenet felülírja a legrégebbit.</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Csere</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Biztonsági tippek</string>
@@ -1204,11 +1225,11 @@
     <string name="AddToGroupActivity_add_member">Hozzáadod a tagot?</string>
     <string name="AddToGroupActivity_add_s_to_s">Hozzáadod \"%1$s\"-t a \"%2$s\" csoporthoz?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" hozzáadva a \"%2$s\" csoporthoz.</string>
-    <string name="AddToGroupActivity_add_to_group">Hozzáadás a csoporthoz</string>
     <string name="AddToGroupActivity_add_to_groups">Hozzáadás csoportokhoz</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Ez a személy nem adható régi típusú csoporthoz.</string>
     <string name="AddToGroupActivity_add">Hozzáadás</string>
     <string name="AddToGroupActivity_add_to_a_group">Hozzáadás egy csoporthoz</string>
+    <string name="AddToGroupActivity_search">Keresés</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Új admin választása</string>
@@ -1396,7 +1417,7 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ez a személy nem adható régi típusú csoporthoz.</string>
 
     <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
-    <string name="AddMembersActivity__add_member_to_s">Hozzáadod \"%1$s\"-t a \"%2$s\" csoporthoz?</string>
+    <string name="AddMembersActivity__add_member_to_s">Hozzáadod „%1$s” tagot a(z) „%2$s” csoporthoz?</string>
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -2449,9 +2470,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Helyi videó kicsinyítése</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Helyi videó nagyítása</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal hívás</string>
@@ -2669,6 +2690,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Sikertelen hang és kép fogadás %1$s irányából</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Sikertelen hang és kép fogadás %1$s irányából</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ennek oka lehet, hogy esetleg nem ellenőrizte le a biztonsági azonosítód megváltozását, készülék problémája van, vagy letiltott téged.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Suhints a képernyőmegosztás nézethez</string>
@@ -4456,6 +4481,10 @@
     <string name="conversation_selection__menu_payment_details">Fizetés részletei</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Szavazás befejezése</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5244,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Háttérkép előnézete</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Felülírod az összes színbeállítást?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Felülírod az összes háttérképet?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Gyári szín alaphelyzetbe</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Minden szín alaphelyzetbe</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Gyári háttérkép alaphelyzetbe</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Összes háttérkép alaphelyzetbe állítása</string>
@@ -6187,7 +6216,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Adományt igazoló nyugták</string>
     <string name="ManageDonationsFragment__badges">Jelvények</string>
-    <string name="ManageDonationsFragment__subscription_faq">Előfizetés GYIK</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Az adományozás egyéb módjai</string>
     <!-- Preference label to launch badge gifting -->
@@ -7468,8 +7498,10 @@
     <string name="CallLogAdapter__outgoing">Kimenő</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Nem fogadott</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Nem fogadott, miközben az értesítési profil be van kapcsolva</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Csatlakozás</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8060,7 +8092,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">A(z) %1$s előtt küldött vagy fogadott üzenetekről nem készül biztonsági mentés.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">A biztonsági mentés nem fejeződött be, mert kevés a tárhely. Szabadíts fel helyet az eszközödön, és próbáld újra.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Tudj meg többet</string>
 
@@ -8557,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Add meg a helyreállítási kulcsodat</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Add meg a biztonsági mentések engedélyezésekor feljegyzett 64 jegyű kódot.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Elfelejtetted a kulcsot?</string>
 
@@ -8919,6 +8951,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Kérdés hozzáadása</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">QR-kód beolvasása</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Ezzel az eszközzel olvasd be a QR-kódot azon az eszközön, amelyre át szeretnéd vinni az adatokat.</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">OK</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">Hangprobléma</string>
@@ -8979,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">megtekintheted</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> a hibanaplót</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Hibanapló megosztása</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8988,6 +9027,67 @@
     <string name="CallQualitySheet__submit">Küldés</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Köszönjük a visszajelzésedet!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s rögzített egy üzenetet</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">Rögzítettél egy üzenetet</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Ugrás az Üzenetekhez</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Üzenet nem található</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Rögzítve</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Fotó</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Videó</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Matrica</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Hangüzenet</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Egyszer megjelenő médiafájl</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">Összes üzenet megtekintése</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Összes üzenet rögzítésének feloldása</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Eltűnő üzenetek rögzítése</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Az eltűnő üzenetek rögzítése akkor lesz feloldva, amikor az időzítőjük lejár, és az üzenet eltávolításra kerül a csevegésből.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Rendben</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Eltűnő üzenetek</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Rögzített üzenetek</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Feloldás</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Összes üzenet rögzítésének feloldása?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Az üzenetek rögzítése feloldásra kerül az összes tag számára.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

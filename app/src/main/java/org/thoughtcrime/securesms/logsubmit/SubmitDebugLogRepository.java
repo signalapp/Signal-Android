@@ -126,6 +126,13 @@ public class SubmitDebugLogRepository {
     });
   }
 
+  @WorkerThread
+  public Optional<String> buildAndSubmitLogSync(long untilTime) {
+    Log.blockUntilAllWritesFinished();
+    LogDatabase.getInstance(context).logs().trimToSize();
+    return submitLogInternal(untilTime, getPrefixLogLinesInternal(), Tracer.getInstance().serialize());
+  }
+
   public void submitLogFromReader(DebugLogsViewer.LogReader logReader, @Nullable byte[] trace, Callback<Optional<String>> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogFromReaderInternal(logReader, trace)));
   }

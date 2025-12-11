@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.compose
 
 import android.animation.ValueAnimator
 import android.app.Activity
+import androidx.activity.compose.LocalActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -10,7 +11,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Velocity
 import androidx.core.content.ContextCompat
 import com.google.android.material.animation.ArgbEvaluatorCompat
@@ -96,7 +96,7 @@ class StatusBarColorNestedScrollConnection(
  */
 @Composable
 fun rememberStatusBarColorNestedScrollModifier(): Modifier {
-  val activity = LocalContext.current as? AppCompatActivity
+  val activity = LocalActivity.current as? AppCompatActivity
 
   return remember {
     if (activity != null) {

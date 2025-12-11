@@ -68,8 +68,8 @@ import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMes
 import org.whispersystems.signalservice.api.messages.multidevice.ViewedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.DistributionId;
-import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.ServiceId.PNI;
+import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
@@ -84,7 +84,7 @@ import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.api.util.Uint64RangeException;
 import org.whispersystems.signalservice.api.util.Uint64Util;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
@@ -1277,6 +1277,31 @@ public class SignalServiceMessageSender {
       builder.pollTerminate(new DataMessage.PollTerminate.Builder()
                                                          .targetSentTimestamp(pollTerminate.getTargetSentTimestamp())
                                                          .build());
+    }
+
+    if (message.getPinnedMessage().isPresent()) {
+      SignalServiceDataMessage.PinnedMessage pinnedMessage = message.getPinnedMessage().get();
+      if (Boolean.TRUE.equals(pinnedMessage.getForever())) {
+        builder.pinMessage(new DataMessage.PinMessage.Builder()
+                               .targetAuthorAciBinary(pinnedMessage.getTargetAuthor().toByteString())
+                               .targetSentTimestamp(pinnedMessage.getTargetSentTimestamp())
+                               .pinDurationForever(true)
+                               .build());
+      } else {
+        builder.pinMessage(new DataMessage.PinMessage.Builder()
+                               .targetAuthorAciBinary(pinnedMessage.getTargetAuthor().toByteString())
+                               .targetSentTimestamp(pinnedMessage.getTargetSentTimestamp())
+                               .pinDurationSeconds(pinnedMessage.getPinDurationInSeconds())
+                               .build());
+      }
+    }
+
+    if (message.getUnpinnedMessage().isPresent()) {
+      SignalServiceDataMessage.UnpinnedMessage unpinnedMessage = message.getUnpinnedMessage().get();
+      builder.unpinMessage(new DataMessage.UnpinMessage.Builder()
+                               .targetAuthorAciBinary(unpinnedMessage.getTargetAuthor().toByteString())
+                               .targetSentTimestamp(unpinnedMessage.getTargetSentTimestamp())
+                               .build());
     }
 
     builder.timestamp(message.getTimestamp());

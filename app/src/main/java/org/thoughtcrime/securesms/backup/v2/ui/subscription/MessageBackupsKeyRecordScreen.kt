@@ -521,7 +521,7 @@ private fun SaveKeyConfirmationDialogPreview() {
 @DayNightPreviews
 @Composable
 private fun CreateNewBackupKeySheetContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     Column {
       CreateNewBackupKeySheetContent()
     }

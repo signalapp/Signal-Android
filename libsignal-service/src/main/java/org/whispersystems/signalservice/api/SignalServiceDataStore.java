@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api;
 
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.signal.core.models.ServiceId;
 
 /**
  * And extension of the normal protocol store interface that has additional methods that are needed

@@ -159,7 +159,7 @@ private fun SheetContent(
 @DayNightPreviews
 @Composable
 private fun BackupAlertSheetContentPreviewMedia() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     SheetContent(
       mediaBackupsAreOff = BackupAlert.MediaBackupsAreOff(endOfPeriodSeconds = System.currentTimeMillis().milliseconds.inWholeSeconds),
       paidBackupType = MessageBackupsType.Paid(

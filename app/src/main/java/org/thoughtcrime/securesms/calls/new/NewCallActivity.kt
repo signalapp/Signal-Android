@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.calls.new
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
@@ -80,7 +81,7 @@ private fun NewCallScreen(
   viewModel: NewCallViewModel = viewModel { NewCallViewModel() },
   closeScreen: () -> Unit
 ) {
-  val context = LocalContext.current as FragmentActivity
+  val context = LocalActivity.current as FragmentActivity
 
   val callbacks = remember {
     object : UiCallbacks {
@@ -228,6 +229,13 @@ private fun UserMessagesHost(
     is UserMessage.UserAlreadyInAnotherCall -> LaunchedEffect(userMessage) {
       snackbarHostState.showSnackbar(
         message = context.getString(R.string.CommunicationActions__you_are_already_in_a_call)
+      )
+      onDismiss(userMessage)
+    }
+
+    is UserMessage.ContactsRefreshFailed -> LaunchedEffect(userMessage) {
+      snackbarHostState.showSnackbar(
+        message = context.getString(R.string.ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection)
       )
       onDismiss(userMessage)
     }

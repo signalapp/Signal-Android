@@ -6,6 +6,7 @@
 package org.whispersystems.signalservice.api.username
 
 import kotlinx.coroutines.runBlocking
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.UnauthUsernamesService
@@ -13,7 +14,6 @@ import org.signal.libsignal.net.getOrError
 import org.signal.libsignal.usernames.Username
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.AccountApi
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.get
 import org.whispersystems.signalservice.internal.push.GetUsernameFromLinkResponseBody

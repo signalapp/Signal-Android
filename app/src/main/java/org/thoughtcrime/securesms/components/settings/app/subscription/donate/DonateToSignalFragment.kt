@@ -329,6 +329,7 @@ class DonateToSignalFragment :
           isEnabled = state.continueEnabled,
           onClick = {
             if (state.canContinue) {
+              requireView().clearFocus()
               viewModel.requestSelectGateway()
             } else {
               showDonationPendingDialog(state)

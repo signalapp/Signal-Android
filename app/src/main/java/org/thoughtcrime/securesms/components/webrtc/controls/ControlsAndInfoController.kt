@@ -17,6 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.Px
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.ComposeView
@@ -57,6 +58,7 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
 import org.thoughtcrime.securesms.components.webrtc.v2.CallControlsVisibilityListener
 import org.thoughtcrime.securesms.components.webrtc.v2.CallInfoCallbacks
 import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel
+import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.visible
@@ -244,7 +246,14 @@ class ControlsAndInfoController private constructor(
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
         val nestedScrollInterop = rememberNestedScrollInteropConnection()
-        CallInfoView.View(viewModel, controlsAndInfoViewModel, callInfoCallbacks, Modifier.nestedScroll(nestedScrollInterop))
+
+        SignalTheme(
+          isDarkMode = true
+        ) {
+          Surface {
+            CallInfoView.View(viewModel, controlsAndInfoViewModel, callInfoCallbacks, Modifier.nestedScroll(nestedScrollInterop))
+          }
+        }
       }
     }
 

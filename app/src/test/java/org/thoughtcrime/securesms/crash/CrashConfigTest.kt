@@ -14,10 +14,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.ServiceId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)

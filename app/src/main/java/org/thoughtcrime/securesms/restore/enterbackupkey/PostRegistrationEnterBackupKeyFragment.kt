@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.registration.ui.restore.EnterBackupKeyScreen
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.whispersystems.signalservice.api.AccountEntropyPool
 
 /**
  * Collect user's [AccountEntropyPool] string for use in a post-registration manual remote backup restore flow.

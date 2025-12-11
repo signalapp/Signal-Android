@@ -9,9 +9,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement.spacedBy
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -29,7 +30,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
@@ -39,7 +39,7 @@ import org.signal.core.ui.compose.TriggerAlignedPopup
 import org.signal.core.ui.compose.TriggerAlignedPopupState
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.Emojifier
+import org.thoughtcrime.securesms.components.emoji.EmojiImage
 
 data class AdditionalActionsState(
   val triggerAlignedPopupState: TriggerAlignedPopupState,
@@ -96,28 +96,22 @@ private fun CallReactionScrubber(
 ) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = spacedBy(12.dp),
     modifier = Modifier
       .fillMaxWidth()
       .background(SignalTheme.colors.colorSurface2, RoundedCornerShape(percent = 50))
-      .padding(start = 6.dp, top = 12.dp, bottom = 12.dp, end = 12.dp)
+      .padding(12.dp)
   ) {
     reactions.forEach {
-      Emojifier(it) { annotatedText, inlineContent ->
-        Text(
-          text = annotatedText,
-          inlineContent = inlineContent,
-          style = MaterialTheme.typography.headlineLarge,
-          textAlign = TextAlign.Center,
-          modifier = Modifier
-            .width(44.dp)
-            .clickable(onClick = {
-              listener.onReactClick(it)
-            })
-        )
-      }
+      EmojiImage(
+        emoji = it,
+        modifier = Modifier
+          .size(32.dp)
+          .clickable(onClick = {
+            listener.onReactClick(it)
+          })
+      )
     }
-
-    Spacer(modifier = Modifier.width(6.dp))
 
     IconButton(
       onClick = listener::onReactWithAnyClick,
@@ -174,6 +168,30 @@ private fun CallScreenMenuOption(
       style = MaterialTheme.typography.bodyLarge,
       color = MaterialTheme.colorScheme.onSurface
     )
+  }
+}
+
+@NightPreview
+@Composable
+private fun ReactionsScrubberPreview() {
+  Previews.Preview {
+    Box(
+      modifier = Modifier
+        .width(IntrinsicSize.Min)
+        .padding(12.dp)
+    ) {
+      CallReactionScrubber(
+        reactions = persistentListOf(
+          "\u2764\ufe0f",
+          "\ud83d\udc4d",
+          "\ud83d\udc4e",
+          "\ud83d\ude02",
+          "\ud83d\ude2e",
+          "\ud83d\ude22"
+        ),
+        listener = AdditionalActionsListener.Empty
+      )
+    }
   }
 }
 

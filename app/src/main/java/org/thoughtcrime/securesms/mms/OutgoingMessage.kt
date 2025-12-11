@@ -500,6 +500,17 @@ data class OutgoingMessage(
     }
 
     @JvmStatic
+    fun pinMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long, messageExtras: MessageExtras): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        messageExtras = messageExtras,
+        isSecure = true
+      )
+    }
+
+    @JvmStatic
     fun quickReply(
       threadRecipient: Recipient,
       slideDeck: SlideDeck?,

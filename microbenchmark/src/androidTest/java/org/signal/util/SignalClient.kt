@@ -1,7 +1,9 @@
 package org.signal.util
 
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
+import org.signal.core.util.toByteArray
 import org.signal.libsignal.metadata.certificate.CertificateValidator
 import org.signal.libsignal.metadata.certificate.SenderCertificate
 import org.signal.libsignal.metadata.certificate.ServerCertificate
@@ -25,9 +27,7 @@ import org.whispersystems.signalservice.api.crypto.SignalGroupSessionBuilder
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.api.util.toByteArray
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.Envelope
@@ -50,7 +50,7 @@ class SignalClient {
 
   private val lock = TestSessionLock()
 
-  private val aci: ACI = ACI.from(UUID.randomUUID())
+  private val aci: ServiceId.ACI = ServiceId.ACI.from(UUID.randomUUID())
 
   private val store: SignalServiceAccountDataStore = InMemorySignalServiceAccountDataStore()
 

@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -341,6 +342,26 @@ public class CommunicationActions {
     }
 
     startVideoCall(new ActivityCallContext(activity), linkParseResult.getRootKey(), linkParseResult.getEpoch(), onUserAlreadyInAnotherCall);
+  }
+
+  /**
+   * If the url is a quick restore link it will handle it.
+   * Otherwise returns false, indicating it was not a quick restore link.
+   */
+  public static boolean handlePotentialQuickRestoreUrl(@NonNull FragmentActivity activity, @NonNull String potentialQuickRestoreUrl, @NonNull Runnable onContinue) {
+    URI uri = URI.create(potentialQuickRestoreUrl);
+
+    if ("sgnl".equalsIgnoreCase(uri.getScheme()) && "rereg".equalsIgnoreCase(uri.getHost())) {
+      new MaterialAlertDialogBuilder(activity)
+          .setTitle(R.string.CommunicationActions__transfer_dialog_title)
+          .setMessage(R.string.CommunicationActions__transfer_dialog_message)
+          .setPositiveButton(R.string.DeviceProvisioningActivity_continue, (d, w) -> onContinue.run())
+          .setNegativeButton(R.string.CommunicationActions__dont_transfer, null)
+          .show();
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**

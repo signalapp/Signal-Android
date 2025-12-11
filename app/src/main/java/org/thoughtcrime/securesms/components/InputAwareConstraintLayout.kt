@@ -42,7 +42,7 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
     listeners.add(listener)
   }
 
-  fun remoteInputListener(listener: Listener) {
+  fun removeInputListener(listener: Listener) {
     listeners.remove(listener)
   }
 
@@ -62,13 +62,13 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
       val listener = object : Listener, KeyboardStateListener {
         override fun onInputHidden() {
           onHidden()
-          remoteInputListener(this)
+          removeInputListener(this)
           removeKeyboardStateListener(this)
         }
 
         override fun onKeyboardHidden() {
           onHidden()
-          remoteInputListener(this)
+          removeInputListener(this)
           removeKeyboardStateListener(this)
         }
 

@@ -24,6 +24,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.Hex.fromStringCondensed
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider
@@ -68,8 +70,6 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException
 import org.whispersystems.signalservice.api.groupsv2.ReceivedGroupSendEndorsements
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.ServiceIds
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException

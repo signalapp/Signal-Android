@@ -62,12 +62,11 @@ class CreateGroupViewModel : ViewModel() {
     }
   }
 
-  fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) {
+  fun onSelectionChanged(newSelections: List<SelectedContact>) {
     internalUiState.update {
       it.copy(
         searchQuery = "",
-        newSelections = newSelections,
-        totalMembersCount = totalMembersCount
+        newSelections = newSelections
       )
     }
   }
@@ -125,7 +124,6 @@ data class CreateGroupUiState(
   val searchQuery: String = "",
   val selectionLimits: SelectionLimits = RemoteConfig.groupLimits.excludingSelf(),
   val newSelections: List<SelectedContact> = emptyList(),
-  val totalMembersCount: Int = 0,
   val isLookingUpRecipient: Boolean = false,
   val pendingRecipientSelections: Set<RecipientId> = emptySet(),
   val pendingDestination: NavTarget? = null,

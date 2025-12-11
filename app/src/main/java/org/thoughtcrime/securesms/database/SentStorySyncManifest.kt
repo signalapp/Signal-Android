@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.annotation.WorkerThread
+import org.signal.core.models.ServiceId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRecipient
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.util.Util

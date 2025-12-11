@@ -365,6 +365,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Ο σύνδεσμος κλήσης δεν είναι έγκυρος. Επιβεβαίωσε ότι ο σύνδεσμος είναι ακέραιος και σωστός πριν δοκιμάσεις να μπεις.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Είσαι ήδη σε κάποια κλήση</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Μεταφορά λογαριασμού σε νέα συσκευή;</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">Για να μεταφέρεις αυτόν τον λογαριασμό σε μια νέα συσκευή, πάτα «Συνέχεια» και σάρωσε ξανά τον κωδικό QR με την κάμερα Signal. Βεβαιώσου ότι σαρώνεις μόνο κωδικούς QR που προέρχονται απευθείας από το Signal.</string>
+    <string name="CommunicationActions__dont_transfer">Να μη γίνει μεταφορά</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -675,6 +680,22 @@
     <string name="ConversationFragment_group_names">Ονόματα ομάδας</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Η λήψη της φωτογραφίας απέτυχε. Ξαναπροσπάθησε.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Να μείνει καρφιτσωμένο για…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 ώρες</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 ημέρες</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 ημέρες</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Για πάντα</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Αντικατάσταση του παλαιότερου καρφιτσωμένου μηνύματος;</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Το καρφίτσωμα του μηνύματος θα αντικαταστήσει το παλαιότερο</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Αντικατάσταση</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Συμβουλές ασφαλείας</string>
@@ -1204,11 +1225,11 @@
     <string name="AddToGroupActivity_add_member">Προσθήκη μέλους;</string>
     <string name="AddToGroupActivity_add_s_to_s">Προσθήκη του/της \"%1$s\" στο \"%2$s\";</string>
     <string name="AddToGroupActivity_s_added_to_s">Ο/Η \"%1$s\" προστέθηκε στο \"%2$s\".</string>
-    <string name="AddToGroupActivity_add_to_group">Προσθήκη σε ομάδα</string>
     <string name="AddToGroupActivity_add_to_groups">Προσθήκη σε ομάδες</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Αυτό το άτομο δεν μπορεί να προστεθεί σε ομάδες παλαιού τύπου.</string>
     <string name="AddToGroupActivity_add">Προσθήκη</string>
     <string name="AddToGroupActivity_add_to_a_group">Προσθήκη σε μια ομάδα</string>
+    <string name="AddToGroupActivity_search">Αναζήτηση</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Επιλογή νέου διαχειριστή</string>
@@ -2669,6 +2690,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Δεν μπορείς να λάβεις ήχο &amp; βίντεο από τον/την %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Δεν μπορείς να λάβεις ήχο και βίντεο από τον/την %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Αυτό ίσως οφείλεται στο ότι δεν έχει επιβεβαιώσει την αλλαγή του αριθμού ασφαλείας σου, ότι υπάρχει πρόβλημα με τη συσκευή του/της ή ότι σε έχει αποκλείσει.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Σύρε για να δεις την διαμοιρασμένη οθόνη</string>
@@ -4456,6 +4481,10 @@
     <string name="conversation_selection__menu_payment_details">Στοιχεία πληρωμής</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Λήξη δημοσκόπησης</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5244,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Προεπισκόπηση ταπετσαρίας</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Θέλεις να παρακάμψεις όλα τα χρώματα συνομιλιών;</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Θέλεις να παρακάμψεις όλες τις ταπετσαρίες;</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Επαναφορά προκαθορισμένων χρωμάτων</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Επαναφορά όλων των χρωμάτων</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Επαναφορά προκαθορισμένης ταπετσαρίας</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Επαναφορά όλων των ταπετσαριών</string>
@@ -6187,7 +6216,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Αποδείξεις δωρεών</string>
     <string name="ManageDonationsFragment__badges">Σήματα</string>
-    <string name="ManageDonationsFragment__subscription_faq">Συχνές ερωτήσεις συνδρομών</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Άλλοι τρόποι δωρεάς</string>
     <!-- Preference label to launch badge gifting -->
@@ -7468,8 +7498,10 @@
     <string name="CallLogAdapter__outgoing">Εξερχόμενη</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Αναπάντητη</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Αναπάντητη ενώ είναι ενεργό το προφίλ ειδοποιήσεων</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Σύνδεση</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8557,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Γράψε το κλειδί ανάκτησής σου</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Συμπλήρωσε τον 64ψήφιο κωδικό που κατέγραψες όταν ενεργοποίησες τα αντίγραφα ασφαλείας.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Ξέχασες το κλειδί;</string>
 
@@ -8919,6 +8951,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Πρόσθεσε ερώτηση</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Σκανάρισμα κωδικού QR</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Χρησιμοποίησε αυτή τη συσκευή για να σκανάρεις τον κωδικό QR στη συσκευή που θέλεις να κάνεις μεταφορά</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">Εντάξει</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">Πρόβλημα με τον ήχο</string>
@@ -8979,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">δεις το αρχείο καταγραφής αποσφαλμάτωσης</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> πριν από την υποβολή</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Κοινή χρήση αρχείου καταγραφής αποσφαλμάτωσης</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8988,6 +9027,67 @@
     <string name="CallQualitySheet__submit">Αποστολή</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Ευχαριστούμε για τα σχόλιά σου!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">Ο χρήστης %1$s καρφίτσωσε ένα μήνυμα</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">Καρφίτσωσες ένα μήνυμα</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Μετάβαση στο Μήνυμα</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Το μήνυμα δεν βρέθηκε</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Καρφιτσωμένο</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Φωτογραφία</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Βίντεο</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Αυτοκόλλητο</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Μήνυμα φωνής</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Πολυμέσο μιας μόνο προβολής</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">Προβολή όλων των μηνυμάτων</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Κατάργηση καρφιτσώματος για όλα τα μηνύματα</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Καρφίτσωμα μηνυμάτων που εξαφανίζονται</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Τα μηνύματα που εξαφανίζονται θα ξεκαρφιτσώνονται όταν λήξει ο χρόνος τους και το μήνυμα αφαιρεθεί από τη συνομιλία.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Εντάξει</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Μήνυμα που εξαφανίζεται</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Καρφιτσωμένα μηνύματα</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Ξεκαρφίτσωμα</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Κατάργηση καρφιτσώματος για όλα τα μηνύματα;</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Τα καρφιτσωμένα μηνύματα θα καταργηθούν για όλα τα μέλη.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

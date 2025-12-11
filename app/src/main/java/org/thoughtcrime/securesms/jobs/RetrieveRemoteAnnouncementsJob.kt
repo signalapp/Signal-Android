@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode
 import org.json.JSONObject
 import org.signal.core.util.Hex
 import org.signal.core.util.ThreadUtil
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.s3.S3
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.io.IOException
 import java.lang.Integer.max

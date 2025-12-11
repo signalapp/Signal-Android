@@ -5,8 +5,8 @@
 
 package org.whispersystems.signalservice.api.archive
 
-import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
+import org.signal.core.models.backup.MediaRootBackupKey
+import org.signal.core.models.backup.MessageBackupKey
 
 /**
  * A convenient container for passing around both a message and media archive service credential.

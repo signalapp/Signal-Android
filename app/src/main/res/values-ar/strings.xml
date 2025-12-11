@@ -377,6 +377,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">رابط المكالمة هذا غير صالح. تأكَّد من سلامة وصحة الرابط بأكمله قبل مُحاولة الانضمام.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">أنت بالأصل تجري مكالمة الآن.</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">هل ترغبُ بنقل الحساب إلى الجهاز الجديد؟</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">لنقل هذا الحساب إلى جهاز جديد، انقر على \"متابعة\" وامسح كود الـ QR مرّة أخرى باستخدام كاميرا سيجنال. تأكَّد من مسح كود الـ QR الصادر مباشرة من سيجنال فقط.</string>
+    <string name="CommunicationActions__dont_transfer">عدم نقل سِجل الرسائل</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -715,6 +720,22 @@
     <string name="ConversationFragment_group_names">أسماء المجموعات</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">تعذَّر تنزيل الصورة. حاوِل مرّة أخرى.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">الاحتفاظ بالتثبيت لمدة…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 ساعة</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 أيام</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 يومًا</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">بشكل دائم</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">هل تريد استبدال التثبيت الأقدم؟</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">ستحل الرسالة المُثبَّتة مكان الرسالة الأقدم</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">استبدال</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">نصائح السلامة</string>
@@ -1296,11 +1317,11 @@
     <string name="AddToGroupActivity_add_member">هل ترغبُ بإضافة عضو؟</string>
     <string name="AddToGroupActivity_add_s_to_s">هل ترغبُ بإضافة \"%1$s\" إلى \"%2$s\"؟</string>
     <string name="AddToGroupActivity_s_added_to_s">تمَّت إضافة %1$s إلى %2$s.</string>
-    <string name="AddToGroupActivity_add_to_group">أضِف إلى مجموعة</string>
     <string name="AddToGroupActivity_add_to_groups">أضِف إلى مجموعات</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات السابقة.</string>
     <string name="AddToGroupActivity_add">إضافة</string>
     <string name="AddToGroupActivity_add_to_a_group">إضافة إلى مجموعة</string>
+    <string name="AddToGroupActivity_search">بحث</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">اختر مُشرِفًا جديدًا</string>
@@ -1497,7 +1518,7 @@
     <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
     <string name="ConnectivityWarningBottomSheet_title">قد تكون غير قادر على استلام الرسائل.</string>
     <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_body">إعادة تشغيل جهازك قد يُساعد على حل مشكلة عدم استلام الرسائل. إذا استمر المشكلة، يُرجى التواصل مع قسم الدعم في سيجنال.</string>
+    <string name="ConnectivityWarningBottomSheet_body">إعادة تشغيل جهازك قد تُساعد على حل مشكلة عدم استلام الرسائل. إذا استمرت المشكلة، تواصَل مع قسم الدعم في سيجنال.</string>
     <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
     <string name="ConnectivityWarningBottomSheet_dismiss_button">تم</string>
 
@@ -2379,10 +2400,10 @@
     <string name="MessageRequestBottomView_block">حظر</string>
     <string name="MessageRequestBottomView_unblock">رفع الحظر</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">هل ترغبُ بالسماح لـ %1$s بمراسلتك وهل ترغبُ بمشاركة اسمك وصورتك معه؟ حذفتَ هذا الشخص في الماضي.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">هل ترغبُ بالسماح لـ %1$s بمراسلتك وهل ترغب بمشاركة اسمك وصورتك معه؟ لن يعرف أنك قرأتَ رسالته إلى أن تسمح له بذلك.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">هل ترغبُ بالسماح لجهة الاتصال %1$s بمراسلتك وهل ترغبُ بمشاركة اسمك وصورتك معها؟ حذفتَ هذا الشخص في الماضي.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">هل ترغبُ بالسماح لجهة الاتصال %1$s بمراسلتك وهل ترغب بمشاركة اسمك وصورتك معها؟ لن تعرف أنك قرأتَ رسالتها إلى أن تسمح لها بذلك.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">هل ترغبُ بالسماح لـ %1$s بمراسلتك وهل ترغب بمشاركة اسمك وصورتك معه؟ لن تستقبل أي رسائل حتى تزيل الحظر عنه.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">هل ترغبُ بالسماح لجهة الاتصال %1$s بمراسلتك وهل ترغب بمشاركة اسمك وصورتك معها؟ لن تستقبل أي رسائل حتى تزيل الحظر عنها.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">هل تود السماح لـ %1$s بإرسال رسالة لك؟ لن تتلقى أي رسالة منه حتى تُلغي حظرك له.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
@@ -2741,9 +2762,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">تصغير الفيديو المحلي</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">توسيع الفيديو المحلي</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">مكالمة سيجنال</string>
@@ -3021,6 +3042,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">لا يمكن تلقِّي الصوت والفيديو من %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">لا يمكن تلقِّي الصوت والفيديو من %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ربما يكون ذلك بسبب عدم تحقُّق الشخص من تغيير رقم الامان الخاص بك أو بسبب وجود مشكلة في جهازه أو بسبب قيامه بحظرك.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">اسحب لعرض مشاركة الشاشة</string>
@@ -4916,6 +4941,10 @@
     <string name="conversation_selection__menu_payment_details">تفاصيل عملية الدفع</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">إنهاء الاستطلاع</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5764,7 +5793,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">معاينة الخلفية</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">هل لديك الرغبة في تجاهل جميع ألوان الدردشات؟</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">هل لديك الرغبة في تجاهل جميع الخلفيات؟</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">إعادة تعيين الألوان الافتراضية</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">إعادة تعيين كل الألوان</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">إعادة تعيين الخلفية الافتراضية</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">إعادة تعيين كل الخلفيات</string>
@@ -6496,7 +6525,7 @@
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="RecipientLookup_error__not_signal_users">
         <item quantity="zero">%1$s ليسوا من مُستخدِمي سيجنال</item>
-        <item quantity="one">%1$s ليس مستخدم سيجنال</item>
+        <item quantity="one">%1$s ليس مُستخدِم سيجنال</item>
         <item quantity="two">%1$s ليسا من مُستخدِمي سيجنال</item>
         <item quantity="few">%1$s ليسوا من مُستخدِمي سيجنال</item>
         <item quantity="many">%1$s ليسوا من مُستخدِمي سيجنال</item>
@@ -6767,7 +6796,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">إيصالات التبرُّعات</string>
     <string name="ManageDonationsFragment__badges">الشارات</string>
-    <string name="ManageDonationsFragment__subscription_faq">الأسئلة الشائعة حول الاشتراك</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">طرُق أخرى للتبرُّع</string>
     <!-- Preference label to launch badge gifting -->
@@ -8132,8 +8162,10 @@
     <string name="CallLogAdapter__outgoing">صادرة</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">فائتة</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">فائتة بينما كان ملف الإشعارات في وضع تشغيل</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">انضم</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8756,7 +8788,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">لا يتم نسخ الرسائل المُرسَلة أو المُستلَمة قبل %1$s احتياطيًا.</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">تعذَّر إكمال النسخ الاحتياطي لأن مساحة التخزين غير كافية. حرِّر بعض المساحة على جهازك وحاوِل مُجدَّدًا.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">اعرف المزيد</string>
 
@@ -9281,7 +9313,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">أدخِل مفتاح الاستعادة</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">أدخِل الكود المُكوَّن من 64 رقمًا الذي سجلته عند تفعيل النسخ الاحتياطية.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">هل نسيت المفتاح؟</string>
 
@@ -9663,6 +9695,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">أضِف سؤالًا</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">امسح ضوئيًا كود الـ QR</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">استخدِم هذا الجهاز لِمسح كود الـ QR المعروض على الجهاز الذي تريد النقل إليه</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">حسنًا</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">مشكلة في الصوت</string>
@@ -9723,7 +9762,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">إلقاء نظرة على سِجل الأخطاء الخاص بك</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> قبل الإرسال</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">مشاركة سجل الأخطاء</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9732,6 +9771,67 @@
     <string name="CallQualitySheet__submit">تقديم</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">شكرًا على ملاحظاتك!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">قام %1$s بتثبيت رسالة</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">قُمتَ بتثبيت رسالة</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">انتقل إلى الرسالة</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">تعذَّر العثور على الرسالة</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">المُثبَّتة</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">صورة</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">فيديو</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">مُلصَق</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">رسالة صوتية</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">صورة متحركة</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">ملف وسائط للعرض لمرّة واحدة</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">إظهار جميع الرسائل</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">إلغاء تثبيت جميع الرسائل</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">تثبيت الرسائل المؤقَّتة</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">سيُلغى تثبيت الرسائل المؤقَّتة عند انتهاء مؤقتها وإزالتها من الدردشة.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">تم</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">الرسائل المؤقَّتة</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">المُثبَّتة</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">إزالة التثبيت</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">هل ترغبُ بإلغاء تثبيت جميع الرسائل؟</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">سيُلغى تثبيت الرسائل لجميع الأعضاء.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

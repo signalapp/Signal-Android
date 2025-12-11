@@ -180,7 +180,7 @@ class NetworkDependenciesModule(
   }
 
   val callingApi: CallingApi by lazy {
-    provider.provideCallingApi(authWebSocket, pushServiceSocket)
+    provider.provideCallingApi(authWebSocket, unauthWebSocket, pushServiceSocket)
   }
 
   val paymentsApi: PaymentsApi by lazy {

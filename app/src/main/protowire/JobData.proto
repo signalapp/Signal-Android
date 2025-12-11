@@ -3,6 +3,7 @@ syntax = "proto3";
 package signal;
 
 import "ResumableUploads.proto";
+import "CallQualitySurvey.proto";
 
 option java_package        = "org.thoughtcrime.securesms.jobs.protos";
 option java_multiple_files = true;
@@ -251,4 +252,15 @@ message PollVoteJobData {
   uint32 voteCount = 4;
   bool isRemoval = 5;
   uint64 optionId = 6;
+}
+
+message UnpinJobData {
+  uint64 messageId = 1;
+  repeated uint64 recipients = 2;
+  uint32 initialRecipientCount = 3;
+}
+
+message CallQualitySurveySubmissionJobData {
+  org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest request = 1;
+  bool includeDebugLogs = 2;
 }

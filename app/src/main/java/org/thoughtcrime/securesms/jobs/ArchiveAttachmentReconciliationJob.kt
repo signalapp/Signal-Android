@@ -13,6 +13,7 @@ import android.content.pm.PackageManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import org.signal.core.models.backup.MediaId
 import org.signal.core.util.EventTimer
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.Stopwatch
@@ -35,7 +36,6 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
-import org.whispersystems.signalservice.api.backup.MediaId
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 

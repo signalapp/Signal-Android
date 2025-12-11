@@ -198,6 +198,7 @@
             <category android:name="android.intent.category.DEFAULT"/>
             <data android:mimeType="image/*" />
             <data android:mimeType="video/*" />
+            <data android:mimeType="text/*" />
         </intent-filter>
 
       <meta-data
@@ -636,6 +637,13 @@
             <data android:scheme="sgnl" />
             <data android:host="signal.link" />
         </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="sgnl" />
+            <data android:host="rereg" />
+        </intent-filter>
     </activity>
 
     <activity android:name=".conversation.v2.ConversationActivity"
@@ -1059,9 +1067,10 @@
         android:exported="false"
         android:theme="@style/Signal.DayNight.NoActionBar" />
 
-    <activity android:name=".groups.ui.addtogroup.AddToGroupsActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:exported="false"/>
+    <activity
+            android:name=".groups.ui.addtogroup.AddToGroupsActivity"
+            android:exported="false"
+            android:theme="@style/Signal.DayNight.NoActionBar" />
 
     <activity
             android:name=".groups.ui.addmembers.AddMembersActivity"
@@ -1258,6 +1267,10 @@
 
     <receiver
         android:name=".service.ScheduledMessageManager$ScheduledMessagesAlarm"
+        android:exported="false"/>
+
+    <receiver
+        android:name=".service.PinnedMessageManager$PinnedMessagesAlarm"
         android:exported="false"/>
 
     <receiver

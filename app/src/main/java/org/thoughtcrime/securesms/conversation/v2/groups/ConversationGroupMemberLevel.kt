@@ -8,5 +8,6 @@ import org.thoughtcrime.securesms.database.GroupTable
  */
 data class ConversationGroupMemberLevel(
   val groupTableMemberLevel: GroupTable.MemberLevel,
-  val isAnnouncementGroup: Boolean
+  val isAnnouncementGroup: Boolean,
+  val allMembersCanEditGroupInfo: Boolean
 )

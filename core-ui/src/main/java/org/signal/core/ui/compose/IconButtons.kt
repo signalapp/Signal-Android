@@ -39,13 +39,12 @@ object IconButtons {
     disabledContainerColor: Color = Color.Transparent,
     disabledContentColor: Color =
       contentColor.copy(alpha = 0.38f)
-  ): IconButtonColors =
-    IconButtonColors(
-      containerColor = containerColor,
-      contentColor = contentColor,
-      disabledContainerColor = disabledContainerColor,
-      disabledContentColor = disabledContentColor
-    )
+  ): IconButtonColors = IconButtonColors(
+    containerColor = containerColor,
+    contentColor = contentColor,
+    disabledContainerColor = disabledContainerColor,
+    disabledContentColor = disabledContentColor
+  )
 
   @Composable
   fun iconToggleButtonColors(
@@ -56,15 +55,14 @@ object IconButtons {
       contentColor.copy(alpha = 0.38f),
     checkedContainerColor: Color = Color.Transparent,
     checkedContentColor: Color = MaterialTheme.colorScheme.primary
-  ): IconToggleButtonColors =
-    IconToggleButtonColors(
-      containerColor = containerColor,
-      contentColor = contentColor,
-      disabledContainerColor = disabledContainerColor,
-      disabledContentColor = disabledContentColor,
-      checkedContainerColor = checkedContainerColor,
-      checkedContentColor = checkedContentColor
-    )
+  ): IconToggleButtonColors = IconToggleButtonColors(
+    containerColor = containerColor,
+    contentColor = contentColor,
+    disabledContainerColor = disabledContainerColor,
+    disabledContentColor = disabledContentColor,
+    checkedContainerColor = checkedContainerColor,
+    checkedContentColor = checkedContentColor
+  )
 
   @Composable
   fun IconButton(

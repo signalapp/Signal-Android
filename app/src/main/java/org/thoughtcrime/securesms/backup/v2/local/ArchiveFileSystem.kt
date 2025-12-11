@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.local
 import android.content.Context
 import android.net.Uri
 import androidx.documentfile.provider.DocumentFile
+import org.signal.core.models.backup.MediaName
 import org.signal.core.util.androidx.DocumentFileInfo
 import org.signal.core.util.androidx.DocumentFileUtil.delete
 import org.signal.core.util.androidx.DocumentFileUtil.hasFile
@@ -18,7 +19,6 @@ import org.signal.core.util.androidx.DocumentFileUtil.newFile
 import org.signal.core.util.androidx.DocumentFileUtil.outputStream
 import org.signal.core.util.androidx.DocumentFileUtil.renameTo
 import org.signal.core.util.logging.Log
-import org.whispersystems.signalservice.api.backup.MediaName
 import java.io.File
 import java.io.IOException
 import java.io.InputStream

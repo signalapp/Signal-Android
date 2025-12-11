@@ -6,7 +6,7 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.signal.core.models.ServiceId;
 
 public class ReadMessage {
 

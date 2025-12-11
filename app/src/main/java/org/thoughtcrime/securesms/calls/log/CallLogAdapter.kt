@@ -345,7 +345,7 @@ class CallLogAdapter(
     }
 
     private fun presentCallInfo(call: CallLogRow.Call, date: Long) {
-      val callState = context.getString(getCallStateStringRes(call.record))
+      val callState = context.getString(getCallStateStringRes(call.record, call.children.size))
       binding.callInfo.text = context.getString(
         R.string.CallLogAdapter__s_dot_s,
         if (call.children.size > 1) {
@@ -467,14 +467,15 @@ class CallLogAdapter(
     }
 
     @StringRes
-    private fun getCallStateStringRes(call: CallTable.Call): Int {
+    private fun getCallStateStringRes(call: CallTable.Call, missedCalls: Int): Int {
       return when (call.messageType) {
         MessageTypes.MISSED_VIDEO_CALL_TYPE, MessageTypes.MISSED_AUDIO_CALL_TYPE -> if (call.event == CallTable.Event.MISSED) R.string.CallLogAdapter__missed else R.string.CallLogAdapter__missed_notification_profile
         MessageTypes.OUTGOING_AUDIO_CALL_TYPE -> R.string.CallLogAdapter__outgoing
         MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.string.CallLogAdapter__outgoing
         MessageTypes.GROUP_CALL_TYPE -> when {
           call.type == CallTable.Type.AD_HOC_CALL -> R.string.CallLogAdapter__call_link
-          call.event == CallTable.Event.MISSED_NOTIFICATION_PROFILE -> R.string.CallLogAdapter__missed_notification_profile
+          call.event == CallTable.Event.MISSED_NOTIFICATION_PROFILE && missedCalls == 1 -> R.string.CallLogAdapter__missed_notification_profile
+          call.event == CallTable.Event.MISSED_NOTIFICATION_PROFILE -> R.string.CallLogAdapter__missed_notification_profile_multiple
           call.isDisplayedAsMissedCallInUi -> R.string.CallLogAdapter__missed
           call.event == CallTable.Event.GENERIC_GROUP_CALL || call.event == CallTable.Event.JOINED -> R.string.CallPreference__group_call
           call.direction == CallTable.Direction.INCOMING -> R.string.CallLogAdapter__incoming

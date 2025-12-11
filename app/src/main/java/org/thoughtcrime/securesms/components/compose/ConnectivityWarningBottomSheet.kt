@@ -105,7 +105,7 @@ private fun Sheet(onDismiss: () -> Unit = {}) {
 @DayNightPreviews
 @Composable
 private fun ConnectivityWarningSheetPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     Sheet()
   }
 }

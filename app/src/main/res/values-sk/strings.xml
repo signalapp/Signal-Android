@@ -371,6 +371,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Toto nie je platný odkaz na hovor. Uistite sa, že je celý odkaz správny a v poriadku pred tým, ako sa pokúsite pripojiť.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Už sa zúčastňujete hovoru</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Preniesť účet do nového zariadenia?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">Ak chcete tento účet preniesť do nového zariadenia, ťuknite na „Pokračovať“ a znova naskenujte QR kód pomocou fotoaparátu Signal. Uistite sa, že skenujete iba QR kódy priamo z aplikácie Signal.</string>
+    <string name="CommunicationActions__dont_transfer">Nepreniesť</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -695,6 +700,22 @@
     <string name="ConversationFragment_group_names">Názvy skupín</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Fotku sa nepodarilo stiahnuť. Skúste to znova.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Ponechať pripnuté…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 hodín</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 dní</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 dní</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Navždy</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Nahradiť najstaršiu pripnutú správu?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Pripnutá správa nahradí tú najstaršiu</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Nahradiť</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Bezpečnostné tipy</string>
@@ -1250,11 +1271,11 @@
     <string name="AddToGroupActivity_add_member">Pridať člena?</string>
     <string name="AddToGroupActivity_add_s_to_s">Pridať \"%1$s\" do \"%2$s\"?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" pridaný/á do \"%2$s\".</string>
-    <string name="AddToGroupActivity_add_to_group">Pridať do skupiny</string>
     <string name="AddToGroupActivity_add_to_groups">Pridať do skupín</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Táto osoba nemôže byť pridaná do zastaraných skupín.</string>
     <string name="AddToGroupActivity_add">Pridať</string>
     <string name="AddToGroupActivity_add_to_a_group">Pridať do skupiny</string>
+    <string name="AddToGroupActivity_search">Hľadať</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Vybrať nového admina</string>
@@ -2845,6 +2866,10 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Nie je možné prijať audio a video od používateľa %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nie je možné prijať audio a video od používateľa %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Môže to byť preto, že daný používateľ nepotvrdil zmenu vášho bezpečnostného čísla, vyskytol sa problém s jeho zariadením, alebo vás zablokoval.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Potiahnite prstom pre zobrazenie zdieľania obrazovky</string>
@@ -4686,6 +4711,10 @@
     <string name="conversation_selection__menu_payment_details">Platobné údaje</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Ukončiť anketu</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5504,7 +5533,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Náhľad pozadia</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Chceli by ste prestaviť farby všetkých četov?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Chceli by ste prestaviť všetky pozadia?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Obnoviť predvolené farby</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Obnoviť všetky farby</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Obnoviť predvolenú tapetu pozadia</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Zresetovať všetky pozadia</string>
@@ -6477,7 +6506,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Potvrdenia o prispení</string>
     <string name="ManageDonationsFragment__badges">Odznaky</string>
-    <string name="ManageDonationsFragment__subscription_faq">Často kladené otázky o predplatnom</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Iné spôsoby, ako dať</string>
     <!-- Preference label to launch badge gifting -->
@@ -7800,8 +7830,10 @@
     <string name="CallLogAdapter__outgoing">Odchádzajúci</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Zmeškaný</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Zmeškané pri zapnutom profile upozornení</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Pridať sa</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8919,7 +8951,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Zadajte kľúč na obnovenie</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Zadajte 64-miestny kód, ktorý ste si zaznamenali pri povolení záloh.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Zabudli ste kľúč?</string>
 
@@ -9291,6 +9323,13 @@
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Pridajte otázku</string>
 
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Oskenujte QR kód</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Pomocou tohto zariadenia naskenujte QR kód na zariadení, do ktorého chcete preniesť údaje</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">OK</string>
+
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
     <string name="CallQualityIssue__audio_issue">Problém so zvukom</string>
@@ -9351,7 +9390,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">si môžete zobraziť</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> protokol ladenia</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Zdieľať protokol ladenia</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9360,6 +9399,67 @@
     <string name="CallQualitySheet__submit">Potvrdiť</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Ďakujeme za vašu spätnú väzbu!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Try again</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">Používateľ %1$s pripol správu</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">Pripli ste správu</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Prejsť na správu</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Správa sa nenašla</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Pripnuté</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Fotka</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Video</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Nálepka</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Hlasová správa</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Médiá na jedno zobrazenie</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">Zobraziť všetky správy</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Odopnúť všetky správy</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Pripnutie miznúcich správ</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Miznúce správy sa po uplynutí nastaveného času odopnú a správa sa odstráni z četu.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Rozumiem</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Miznúca správa</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Pripnuté správy</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Odopnúť</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Odopnúť všetky správy?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Správy budú odopnuté pre všetkých členov.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
 
     <!-- EOF -->
 </resources>

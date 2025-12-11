@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.testing
 
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
@@ -8,7 +9,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.FakeClientHelpers.toEnvelope
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.Envelope
 

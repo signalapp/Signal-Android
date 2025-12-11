@@ -18,7 +18,7 @@ package org.whispersystems.signalservice.internal.contacts.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.whispersystems.signalservice.internal.util.Hex;
+import org.signal.core.util.Hex;
 
 public class DiscoveryResponse {
 

@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob
 import org.thoughtcrime.securesms.util.ConfigurationUtil
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
-import org.thoughtcrime.securesms.window.isLargeScreenSupportEnabled
 import java.util.concurrent.TimeUnit
 
 /**
@@ -54,7 +53,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    if (!ActivityCompat.isLaunchedFromBubble(this) && isLargeScreenSupportEnabled()) {
+    if (!ActivityCompat.isLaunchedFromBubble(this)) {
       startActivity(
         MainActivity.clearTop(this).apply {
           action = ConversationIntents.ACTION

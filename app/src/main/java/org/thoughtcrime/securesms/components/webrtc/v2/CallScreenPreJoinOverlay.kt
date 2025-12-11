@@ -6,8 +6,10 @@
 package org.thoughtcrime.securesms.components.webrtc.v2
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,6 +24,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -33,7 +36,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.window.core.layout.WindowWidthSizeClass
+import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
@@ -95,19 +101,17 @@ fun CallScreenPreJoinOverlay(
     if (!isLocalVideoEnabled) {
       Spacer(modifier = Modifier.weight(1f))
 
-      Icon(
-        painter = painterResource(
-          id = R.drawable.symbol_video_slash_24
-        ),
-        contentDescription = null,
-        tint = Color.White,
-        modifier = Modifier.padding(bottom = 8.dp)
-      )
-
-      Text(
-        text = stringResource(id = R.string.CallScreenPreJoinOverlay__your_camera_is_off),
-        color = Color.White
-      )
+      val isCompactWidth = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+      if (isCompactWidth) {
+        YourCameraIsOff(spacedBy = 8.dp)
+      } else {
+        Row(
+          horizontalArrangement = spacedBy(12.dp),
+          verticalAlignment = Alignment.CenterVertically
+        ) {
+          YourCameraIsOff()
+        }
+      }
 
       Spacer(modifier = Modifier.weight(1f))
     }
@@ -118,11 +122,32 @@ fun CallScreenPreJoinOverlay(
       Box(modifier = Modifier.fillMaxWidth()) {
         CallCameraDirectionToggle(
           onClick = onCameraToggleClick,
-          modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp)
+          modifier = Modifier
+            .align(Alignment.BottomEnd)
+            .padding(16.dp)
         )
       }
     }
   }
+}
+
+@Composable
+private fun YourCameraIsOff(
+  spacedBy: Dp = 0.dp
+) {
+  Icon(
+    painter = painterResource(
+      id = R.drawable.symbol_video_slash_24
+    ),
+    contentDescription = null,
+    tint = Color.White,
+    modifier = Modifier.padding(bottom = spacedBy)
+  )
+
+  Text(
+    text = stringResource(id = R.string.CallScreenPreJoinOverlay__your_camera_is_off),
+    color = Color.White
+  )
 }
 
 @Composable
@@ -222,7 +247,7 @@ fun CallScreenTopBarPreview() {
   }
 }
 
-@NightPreview
+@AllNightPreviews
 @Composable
 fun CallScreenPreJoinOverlayPreview() {
   Previews.Preview {
@@ -235,7 +260,7 @@ fun CallScreenPreJoinOverlayPreview() {
   }
 }
 
-@NightPreview
+@AllNightPreviews
 @Composable
 fun CallScreenPreJoinOverlayWithTogglePreview() {
   Previews.Preview {

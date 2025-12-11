@@ -204,7 +204,7 @@ private fun BackupAlertSecondaryActionButton(
 @DayNightPreviews
 @Composable
 private fun BackupAlertBottomSheetContainerPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     BackupAlertBottomSheetContainer(
       icon = { BackupAlertIcon(iconColors = BackupsIconColors.Warning) },
       title = "Test backup alert",

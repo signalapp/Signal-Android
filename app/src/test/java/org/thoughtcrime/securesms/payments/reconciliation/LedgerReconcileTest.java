@@ -20,9 +20,7 @@ import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.testutil.LogRecorder;
 import org.whispersystems.signalservice.api.payments.Money;
-import org.whispersystems.signalservice.api.util.Uint64RangeException;
-import org.whispersystems.signalservice.api.util.Uint64Util;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.signal.core.util.UuidUtil;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

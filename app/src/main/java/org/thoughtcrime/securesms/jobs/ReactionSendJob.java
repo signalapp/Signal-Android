@@ -237,6 +237,7 @@ public class ReactionSendJob extends BaseJob {
                                                                                            dataMessage,
                                                                                            true,
                                                                                            false,
+                                                                                           null,
                                                                                            null);
 
     if (includesSelf) {

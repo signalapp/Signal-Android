@@ -59,6 +59,7 @@ public class InMemoryMessageRecord extends MessageRecord {
           -1,
           null,
           0,
+          0,
           null);
   }
 

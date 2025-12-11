@@ -13,12 +13,12 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.core.models.ServiceId.ACI
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.SignalDatabaseRule
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.util.UUID
 
 @Suppress("ClassName")

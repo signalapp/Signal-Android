@@ -66,6 +66,30 @@ class FastJobStorageTest {
   }
 
   @Test
+  fun `insertJobs - depends on memory-only job`() {
+    val database = mockDatabase()
+    val subject = FastJobStorage(database)
+
+    val dependsOnFullSpec = fullSpec("j1", "f1", isMemoryOnly = true)
+
+    val job = jobSpec("j2", "f2", isMemoryOnly = false)
+    val dependencySpec = DependencySpec(jobId = "j2", dependsOnJobId = dependsOnFullSpec.jobSpec.id, isMemoryOnly = true)
+    val fullSpec = FullSpec(jobSpec = job, constraintSpecs = emptyList(), dependencySpecs = listOf(dependencySpec))
+
+    subject.insertJobs(listOf(dependsOnFullSpec))
+    verify(exactly = 0) { database.insertJobs(any()) }
+
+    val fullSpecList = listOf(fullSpec)
+    subject.insertJobs(fullSpecList)
+    verify(exactly = 1) { database.insertJobs(fullSpecList) }
+
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isEqualTo(dependsOnFullSpec.jobSpec)
+    subject.deleteJob(dependsOnFullSpec.jobSpec.id)
+
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isEqualTo(fullSpec.jobSpec)
+  }
+
+  @Test
   fun `insertJobs - data can be found`() {
     val subject = FastJobStorage(mockDatabase())
     subject.insertJobs(DataSet1.FULL_SPECS)

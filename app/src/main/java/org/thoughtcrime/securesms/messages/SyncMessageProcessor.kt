@@ -2,8 +2,14 @@ package org.thoughtcrime.securesms.messages
 
 import android.content.Context
 import com.mobilecoin.lib.exceptions.SerializationException
+import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.ServiceId
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.IdentityKey
@@ -41,6 +47,7 @@ import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
+import org.thoughtcrime.securesms.database.model.databaseprotos.PinnedMessage
 import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.database.model.toBodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -105,16 +112,11 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.api.AccountEntropyPool
-import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
+import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.AddressableMessage
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.ConversationIdentifier
@@ -251,6 +253,11 @@ object SyncMessageProcessor {
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
         dataMessage.pollTerminate != null -> threadId = handleSynchronizedPollEnd(envelope, dataMessage, sent, senderRecipient, earlyMessageCacheEntry)
+        dataMessage.pinMessage != null -> threadId = handleSynchronizedPinMessage(envelope, dataMessage, sent, senderRecipient, earlyMessageCacheEntry)
+        dataMessage.unpinMessage != null -> {
+          DataMessageProcessor.handleUnpinMessage(envelope, dataMessage, senderRecipient, threadRecipient, earlyMessageCacheEntry)
+          threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
+        }
         else -> threadId = handleSynchronizeSentTextMessage(sent, envelope.timestamp!!)
       }
 
@@ -1848,6 +1855,65 @@ object SyncMessageProcessor {
     SignalDatabase.messages.markAsSent(messageId, true)
 
     log(envelope.timestamp!!, "Inserted sync poll end message as messageId $messageId")
+
+    if (expiresInMillis > 0) {
+      SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
+      AppDependencies.expiringMessageManager.scheduleDeletion(messageId, recipient.isGroup, sent.expirationStartTimestamp ?: 0, expiresInMillis)
+    }
+
+    return threadId
+  }
+
+  private fun handleSynchronizedPinMessage(
+    envelope: Envelope,
+    message: DataMessage,
+    sent: Sent,
+    senderRecipient: Recipient,
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+  ): Long {
+    if (!RemoteConfig.receivePinnedMessages) {
+      log(envelope.timestamp!!, "Sync pinned messages not allowed due to remote config.")
+    }
+
+    log(envelope.timestamp!!, "Synchronize pinned message")
+
+    val recipient = getSyncMessageDestination(sent)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+
+    val expiresInMillis = message.expireTimerDuration.inWholeMilliseconds
+    if (recipient.expiresInSeconds != message.expireTimerDuration.inWholeSeconds.toInt() || ((message.expireTimerVersion ?: -1) > recipient.expireTimerVersion)) {
+      handleSynchronizeSentExpirationUpdate(sent, sideEffect = true)
+    }
+
+    val pinMessage = message.pinMessage!!
+    val targetMessage = SignalDatabase.messages.getMessageFor(pinMessage.targetSentTimestamp!!, Recipient.self().id)
+    if (targetMessage == null) {
+      warn(envelope.timestamp!!, "Unable to find target message for sync message. Putting in early message cache.")
+      if (earlyMessageCacheEntry != null) {
+        AppDependencies.earlyMessageCache.store(senderRecipient.id, pinMessage.targetSentTimestamp!!, earlyMessageCacheEntry)
+        PushProcessEarlyMessagesJob.enqueue()
+      }
+      return -1
+    }
+
+    if (targetMessage.hasGiftBadge()) {
+      warn(envelope.timestamp!!, "Cannot pin gift badge")
+      return -1
+    }
+
+    val targetMessageId = (targetMessage as? MmsMessageRecord)?.latestRevisionId?.id ?: targetMessage.id
+    val duration = if (pinMessage.pinDurationForever == true) MessageTable.PIN_FOREVER else pinMessage.pinDurationSeconds!!.toLong()
+    val outgoingMessage = OutgoingMessage.pinMessage(
+      threadRecipient = recipient,
+      sentTimeMillis = sent.timestamp!!,
+      expiresIn = recipient.expiresInSeconds.seconds.inWholeMilliseconds,
+      messageExtras = MessageExtras(pinnedMessage = PinnedMessage(pinnedMessageId = targetMessageId, targetAuthorAci = pinMessage.targetAuthorAciBinary!!, targetTimestamp = pinMessage.targetSentTimestamp!!, pinDurationInSeconds = duration))
+    )
+
+    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null).messageId
+    SignalDatabase.messages.markAsSent(messageId, true)
+
+    log(envelope.timestamp!!, "Inserted sync pin message as messageId $messageId")
 
     if (expiresInMillis > 0) {
       SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)

@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
-import org.whispersystems.signalservice.api.push.ServiceId.PNI;
+import org.signal.core.models.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
 
 import java.io.IOException;
