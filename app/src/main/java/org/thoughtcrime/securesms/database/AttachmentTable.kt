@@ -3168,6 +3168,10 @@ class AttachmentTable(
   }
 
   private fun buildAttachmentsThatNeedUploadQuery(transferStateFilter: String = "$ARCHIVE_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})"): String {
+    val notReleaseChannelClause = SignalStore.releaseChannel.releaseChannelRecipientId?.let {
+      "(${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} != ${it.toLong()}) AND"
+    } ?: ""
+
     return """
       $transferStateFilter AND
       $DATA_FILE NOT NULL AND 
@@ -3176,6 +3180,7 @@ class AttachmentTable(
       $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND 
       (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND 
       (${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} <= 0 OR ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds}) AND
+      $notReleaseChannelClause
       $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}' AND
       ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0
     """

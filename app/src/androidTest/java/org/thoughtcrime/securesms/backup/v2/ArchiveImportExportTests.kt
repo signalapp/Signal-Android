@@ -67,11 +67,6 @@ class ArchiveImportExportTests {
   }
 
 //  @Test
-  fun chatReleaseNotes() {
-    runTests { it.startsWith("chat_release_notes_") }
-  }
-
-//  @Test
   fun chatFolders() {
     runTests { it.startsWith("chat_folder_") }
   }
