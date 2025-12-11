@@ -232,7 +232,6 @@ class GenericForegroundService : Service() {
     lastPosted = active
 
     try {
-      val progressMax = Notification.ProgressStyle.Segment(active.progressMax)
       startForeground(
         NOTIFICATION_ID,
         NotificationCompat.Builder(this, active.channelId)
@@ -242,7 +241,7 @@ class GenericForegroundService : Service() {
           .setStyle(
             NotificationCompat.ProgressStyle().setProgress(active.progress)
               .setProgressIndeterminate(active.indeterminate)
-              .setProgressSegments(listOf(progressMax))
+              .setProgressSegments(listOf(NotificationCompat.ProgressStyle.Segment(active.progressMax)))
           )
           .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), mutable()))
           .setVibrate(longArrayOf(0))
