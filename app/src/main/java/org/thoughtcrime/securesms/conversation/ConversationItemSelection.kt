@@ -17,6 +17,8 @@ import org.thoughtcrime.securesms.util.hasNoBubble
 
 object ConversationItemSelection {
 
+  const val MAX_SIZE: Long = 4096 * 4096
+
   @JvmStatic
   fun snapshotView(
     target: InteractiveConversationElement,
@@ -45,7 +47,7 @@ object ConversationItemSelection {
   ): Bitmap {
     val snapshotStrategy = target.getSnapshotStrategy()
     if (snapshotStrategy != null) {
-      return createBitmap(target.root.width, target.root.height).applyCanvas {
+      return createSafeBitmap(target.root.width, target.root.height).applyCanvas {
         snapshotStrategy.snapshot(this)
       }
     }
@@ -94,7 +96,7 @@ object ConversationItemSelection {
     if (hasReaction) {
       bitmapHeight += (reactionsView.height - DimensionUnit.DP.toPixels(4f)).toInt()
     }
-    return createBitmap(bodyBubble.width, bitmapHeight).applyCanvas {
+    return createSafeBitmap(bodyBubble.width, bitmapHeight).applyCanvas {
       if (drawConversationItem) {
         bodyBubble.draw(this)
       }
@@ -119,6 +121,16 @@ object ConversationItemSelection {
       mp4Projection?.release()
       bodyBubble.scaleX = originalScale
       bodyBubble.scaleY = originalScale
+    }
+  }
+
+  private fun createSafeBitmap(width: Int, height: Int): Bitmap {
+    return if (width * height < MAX_SIZE) {
+      createBitmap(width, height)
+    } else {
+      // Since this is only called in rare cases where the height is incredibly large / 'Read more' has not been triggered yet,
+      // used a general solution instead of something more algorithmic.
+      createBitmap(width, height / 2)
     }
   }
 }
