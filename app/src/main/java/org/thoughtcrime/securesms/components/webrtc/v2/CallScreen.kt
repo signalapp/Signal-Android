@@ -47,6 +47,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInRoot
@@ -174,6 +175,7 @@ fun CallScreen(
       sheetDragHandle = null,
       sheetPeekHeight = peekHeight.dp,
       sheetContainerColor = SignalTheme.colors.colorSurface1,
+      containerColor = Color.Black,
       sheetMaxWidth = 540.dp,
       sheetContent = {
         BottomSheets.Handle(modifier = Modifier.align(Alignment.CenterHorizontally))

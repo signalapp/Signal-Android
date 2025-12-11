@@ -65,6 +65,7 @@ fun MoveableLocalVideoRenderer(
   modifier: Modifier = Modifier
 ) {
   val size = rememberSelfPipSize(localRenderState)
+  val isFocused = localRenderState == WebRtcLocalRenderState.FOCUSED
 
   BoxWithConstraints(
     modifier = Modifier
@@ -73,60 +74,47 @@ fun MoveableLocalVideoRenderer(
       .statusBarsPadding()
       .displayCutoutPadding()
   ) {
-    val targetSize = size.let {
-      if (it == DpSize.Unspecified) {
-        val orientation = LocalConfiguration.current.orientation
-        val desiredWidth = maxWidth - 32.dp
-        val desiredHeight = maxHeight - 32.dp
+    val orientation = LocalConfiguration.current.orientation
+    val focusedSize = remember(maxWidth, maxHeight, orientation) {
+      val desiredWidth = maxWidth - 32.dp
+      val desiredHeight = maxHeight - 32.dp
 
-        val aspectRatio = if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-          16f / 9f
-        } else {
-          9f / 16f
-        }
-
-        val widthFromHeight = desiredHeight * aspectRatio
-        val heightFromWidth = desiredWidth / aspectRatio
-
-        val size: DpSize = if (widthFromHeight <= desiredWidth) {
-          DpSize(widthFromHeight, desiredHeight)
-        } else {
-          DpSize(desiredWidth, heightFromWidth)
-        }
-
-        size
+      val aspectRatio = if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        16f / 9f
       } else {
-        it.rotateForConfiguration()
+        9f / 16f
+      }
+
+      val widthFromHeight = desiredHeight * aspectRatio
+      val heightFromWidth = desiredWidth / aspectRatio
+
+      if (widthFromHeight <= desiredWidth) {
+        DpSize(widthFromHeight, desiredHeight)
+      } else {
+        DpSize(desiredWidth, heightFromWidth)
       }
     }
+
+    val targetSize = if (isFocused) focusedSize else size.rotateForConfiguration()
 
     val state = remember { PictureInPictureState(initialContentSize = targetSize) }
     state.animateTo(targetSize)
 
     val selfPipMode = when (localRenderState) {
-      WebRtcLocalRenderState.EXPANDED -> {
-        SelfPipMode.EXPANDED_SELF_PIP
-      }
-
-      WebRtcLocalRenderState.FOCUSED -> {
-        SelfPipMode.FOCUSED_SELF_PIP
-      }
-
-      WebRtcLocalRenderState.SMALLER_RECTANGLE -> {
-        SelfPipMode.MINI_SELF_PIP
-      }
-
-      else -> {
-        SelfPipMode.NORMAL_SELF_PIP
-      }
+      WebRtcLocalRenderState.EXPANDED -> SelfPipMode.EXPANDED_SELF_PIP
+      WebRtcLocalRenderState.FOCUSED -> SelfPipMode.FOCUSED_SELF_PIP
+      WebRtcLocalRenderState.SMALLER_RECTANGLE -> SelfPipMode.MINI_SELF_PIP
+      else -> SelfPipMode.NORMAL_SELF_PIP
     }
 
     val clip by animateClip(localRenderState)
     val shadow by animateShadow(localRenderState)
 
+    val showFocusButton = localRenderState == WebRtcLocalRenderState.EXPANDED || isFocused
+
     PictureInPicture(
-      centerContent = size == DpSize.Unspecified,
       state = state,
+      isFocused = isFocused,
       modifier = Modifier
         .padding(16.dp)
         .fillMaxSize()
@@ -143,13 +131,11 @@ fun MoveableLocalVideoRenderer(
             shadow = shadow
           )
           .clip(RoundedCornerShape(clip))
-          .clickable(onClick = {
-            onClick()
-          })
+          .clickable(onClick = onClick)
       )
 
       AnimatedVisibility(
-        visible = localRenderState == WebRtcLocalRenderState.EXPANDED || localRenderState == WebRtcLocalRenderState.FOCUSED,
+        visible = showFocusButton,
         modifier = Modifier
           .align(Alignment.TopEnd)
           .padding(8.dp)
@@ -162,15 +148,14 @@ fun MoveableLocalVideoRenderer(
         ) {
           Icon(
             imageVector = ImageVector.vectorResource(
-              when (localRenderState) {
-                WebRtcLocalRenderState.FOCUSED -> R.drawable.symbol_minimize_24
-                else -> R.drawable.symbol_maximize_24
-              }
+              if (isFocused) R.drawable.symbol_minimize_24 else R.drawable.symbol_maximize_24
             ),
+            tint = MaterialTheme.colorScheme.onSecondaryContainer,
             contentDescription = stringResource(
-              when (localRenderState) {
-                WebRtcLocalRenderState.FOCUSED -> R.string.MoveableLocalVideoRenderer__shrink_local_video
-                else -> R.string.MoveableLocalVideoRenderer__expand_local_video
+              if (isFocused) {
+                R.string.MoveableLocalVideoRenderer__shrink_local_video
+              } else {
+                R.string.MoveableLocalVideoRenderer__expand_local_video
               }
             )
           )

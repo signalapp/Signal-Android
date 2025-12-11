@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
@@ -460,19 +462,28 @@ private fun SwitchCameraButton(
   }
 
   val iconInset by animateDpAsState(targetIconInset)
+  val hasActiveClick = (selfPipMode == SelfPipMode.EXPANDED_SELF_PIP || selfPipMode == SelfPipMode.FOCUSED_SELF_PIP) && onClick != null
 
-  val clickModifier = if ((selfPipMode == SelfPipMode.EXPANDED_SELF_PIP || selfPipMode == SelfPipMode.FOCUSED_SELF_PIP) && onClick != null) {
+  val clickModifier = if (hasActiveClick) {
     Modifier.clickable { onClick() }
   } else {
     Modifier
   }
+
+  val background by animateColorAsState(
+    if (hasActiveClick) {
+      MaterialTheme.colorScheme.secondaryContainer
+    } else {
+      MaterialTheme.colorScheme.surface.copy(alpha = 0.7f)
+    }
+  )
 
   Box(
     modifier = modifier
       .padding(end = margin, bottom = margin)
       .size(size)
       .background(
-        color = Color(0xFF383838),
+        color = background,
         shape = CircleShape
       )
       .padding(iconInset)
@@ -604,6 +615,42 @@ enum class SelfPipMode {
   EXPANDED_SELF_PIP,
   MINI_SELF_PIP,
   FOCUSED_SELF_PIP
+}
+
+@NightPreview
+@Composable
+private fun SwitchCameraButtonOnPreview() {
+  Previews.Preview {
+    Box(
+      modifier = Modifier.background(
+        brush = Brush.linearGradient(colors = listOf(Color.Green, Color.Blue))
+      )
+    ) {
+      SwitchCameraButton(
+        selfPipMode = SelfPipMode.EXPANDED_SELF_PIP,
+        onClick = {},
+        modifier = Modifier
+      )
+    }
+  }
+}
+
+@NightPreview
+@Composable
+private fun SwitchCameraButtonOffPreview() {
+  Previews.Preview {
+    Box(
+      modifier = Modifier.background(
+        brush = Brush.linearGradient(colors = listOf(Color.Green, Color.Blue))
+      )
+    ) {
+      SwitchCameraButton(
+        selfPipMode = SelfPipMode.NORMAL_SELF_PIP,
+        onClick = {},
+        modifier = Modifier
+      )
+    }
+  }
 }
 
 // region Remote Participant Previews

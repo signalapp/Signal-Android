@@ -5,18 +5,17 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
-import androidx.compose.animation.core.AnimationVector
-import androidx.compose.animation.core.AnimationVector2D
-import androidx.compose.animation.core.TwoWayConverter
-import androidx.compose.animation.core.animate
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.animateIntOffsetAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.draggable2D
 import androidx.compose.foundation.gestures.rememberDraggable2DState
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
@@ -24,10 +23,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.annotation.RememberInComposition
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -36,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
@@ -49,17 +48,43 @@ import kotlin.math.sqrt
 private const val DECELERATION_RATE = 0.99f
 
 /**
+ * Spring animation spec that mimics the View system's ViscousFluidInterpolator.
+ * Uses no bounce with medium-low stiffness for natural physics-based fling deceleration.
+ */
+private val FlingAnimationSpec = spring<IntOffset>(
+  dampingRatio = Spring.DampingRatioNoBouncy,
+  stiffness = Spring.StiffnessMediumLow
+)
+
+/**
+ * Spring animation spec for position changes (corner to corner, or to/from center).
+ * Uses a medium stiffness for responsive but smooth transitions.
+ */
+private val PositionAnimationSpec = spring<IntOffset>(
+  dampingRatio = Spring.DampingRatioNoBouncy,
+  stiffness = Spring.StiffnessMedium
+)
+
+/**
+ * Spring animation spec for size changes.
+ */
+private val SizeAnimationSpec = spring<Dp>(
+  dampingRatio = Spring.DampingRatioNoBouncy,
+  stiffness = Spring.StiffnessMedium
+)
+
+/**
  * Displays moveable content in a bounding box and allows the user to drag it to
  * the four corners. Automatically adjusts itself as the bounding box and content
- * size changes.
+ * size changes. When [isFocused] is true, the content centers and dragging is disabled.
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PictureInPicture(
-  centerContent: Boolean,
   state: PictureInPictureState,
   modifier: Modifier = Modifier,
-  content: @Composable () -> Unit
+  isFocused: Boolean = false,
+  content: @Composable BoxScope.() -> Unit
 ) {
   BoxWithConstraints(
     modifier = modifier
@@ -67,25 +92,12 @@ fun PictureInPicture(
     val density = LocalDensity.current
     val maxHeight = constraints.maxHeight
     val maxWidth = constraints.maxWidth
-    val contentWidth = with(density) { state.contentSize.width.toPx().roundToInt() }
-    val contentHeight = with(density) { state.contentSize.height.toPx().roundToInt() }
     val targetContentWidth = with(density) { state.targetSize.width.toPx().roundToInt() }
     val targetContentHeight = with(density) { state.targetSize.height.toPx().roundToInt() }
     val coroutineScope = rememberCoroutineScope()
 
     var isDragging by remember {
       mutableStateOf(false)
-    }
-
-    var isAnimating by remember {
-      mutableStateOf(false)
-    }
-
-    var offsetX by remember {
-      mutableIntStateOf(maxWidth - contentWidth)
-    }
-    var offsetY by remember {
-      mutableIntStateOf(maxHeight - contentHeight)
     }
 
     val topLeft = remember {
@@ -104,85 +116,82 @@ fun PictureInPicture(
       IntOffset(maxWidth - targetContentWidth, maxHeight - targetContentHeight)
     }
 
-    DisposableEffect(maxWidth, maxHeight, isAnimating, isDragging, targetContentWidth, targetContentHeight, centerContent) {
-      if (!isAnimating && !isDragging) {
-        if (centerContent) {
-          offsetX = (maxWidth / 2f).roundToInt() - (targetContentWidth / 2f).roundToInt()
-          offsetY = (maxHeight / 2f).roundToInt() - (targetContentHeight / 2f).roundToInt()
-        } else {
-          val offset = getDesiredCornerOffset(state.corner, topLeft, topRight, bottomLeft, bottomRight)
-
-          offsetX = offset.x
-          offsetY = offset.y
-        }
-      }
-
-      onDispose { }
+    val centerOffset = remember(maxWidth, maxHeight, targetContentWidth, targetContentHeight) {
+      IntOffset(
+        (maxWidth - targetContentWidth) / 2,
+        (maxHeight - targetContentHeight) / 2
+      )
     }
 
-    val animatedOffset by animateIntOffsetAsState(
-      targetValue = IntOffset(offsetX, offsetY),
-      animationSpec = tween()
-    )
+    val initialOffset = remember(maxWidth, maxHeight, targetContentWidth, targetContentHeight) {
+      getDesiredCornerOffset(state.corner, topLeft, topRight, bottomLeft, bottomRight)
+    }
+
+    val offsetAnimatable = remember {
+      Animatable(initialOffset, IntOffset.VectorConverter)
+    }
+
+    // Animate position when focused state changes or when constraints/corner changes
+    LaunchedEffect(maxWidth, maxHeight, targetContentWidth, targetContentHeight, state.corner, isFocused) {
+      if (!isDragging) {
+        val targetOffset = if (isFocused) {
+          centerOffset
+        } else {
+          getDesiredCornerOffset(state.corner, topLeft, topRight, bottomLeft, bottomRight)
+        }
+
+        // Animate to new position (don't snap)
+        offsetAnimatable.animateTo(
+          targetValue = targetOffset,
+          animationSpec = PositionAnimationSpec
+        )
+      }
+    }
 
     Box(
       modifier = Modifier
         .size(state.contentSize)
         .offset {
-          if (isDragging) {
-            IntOffset(offsetX, offsetY)
-          } else {
-            animatedOffset
-          }
+          offsetAnimatable.value
         }
         .draggable2D(
-          enabled = !isAnimating && !centerContent,
+          enabled = !offsetAnimatable.isRunning && !isFocused,
           state = rememberDraggable2DState { offset ->
-            offsetX += offset.x.roundToInt()
-            offsetY += offset.y.roundToInt()
+            coroutineScope.launch {
+              offsetAnimatable.snapTo(
+                IntOffset(
+                  offsetAnimatable.value.x + offset.x.roundToInt(),
+                  offsetAnimatable.value.y + offset.y.roundToInt()
+                )
+              )
+            }
           },
           onDragStarted = {
             isDragging = true
           },
           onDragStopped = { velocity ->
             isDragging = false
-            isAnimating = true
 
-            val x = offsetX + project(velocity.x)
-            val y = offsetY + project(velocity.y)
+            val currentOffset = offsetAnimatable.value
+            val x = currentOffset.x + project(velocity.x)
+            val y = currentOffset.y + project(velocity.y)
 
             val projectedCoordinate = IntOffset(x.roundToInt(), y.roundToInt())
-            val (corner, offset) = getClosestCorner(projectedCoordinate, topLeft, topRight, bottomLeft, bottomRight)
+            val (corner, targetOffset) = getClosestCorner(projectedCoordinate, topLeft, topRight, bottomLeft, bottomRight)
             state.corner = corner
 
             coroutineScope.launch {
-              animate(
-                typeConverter = IntOffsetConverter,
-                initialValue = IntOffset(offsetX, offsetY),
-                targetValue = offset,
+              offsetAnimatable.animateTo(
+                targetValue = targetOffset,
                 initialVelocity = IntOffset(velocity.x.roundToInt(), velocity.y.roundToInt()),
-                animationSpec = tween()
-              ) { value, _ ->
-                offsetX = value.x
-                offsetY = value.y
-              }
-
-              isAnimating = false
+                animationSpec = FlingAnimationSpec
+              )
             }
           }
         )
     ) {
       content()
     }
-  }
-}
-
-private object IntOffsetConverter : TwoWayConverter<IntOffset, AnimationVector2D> {
-  override val convertFromVector: (AnimationVector2D) -> IntOffset = { animationVector ->
-    IntOffset(animationVector.v1.roundToInt(), animationVector.v2.roundToInt())
-  }
-  override val convertToVector: (IntOffset) -> AnimationVector2D = { intOffset ->
-    AnimationVector(intOffset.x.toFloat(), intOffset.y.toFloat())
   }
 }
 
@@ -231,8 +240,8 @@ class PictureInPictureState @RememberInComposition constructor(initialContentSiz
   fun animateTo(newTargetSize: DpSize) {
     targetSize = newTargetSize
 
-    val targetWidth by animateDpAsState(label = "animate-pip-width", targetValue = newTargetSize.width, animationSpec = tween())
-    val targetHeight by animateDpAsState(label = "animate-pip-height", targetValue = newTargetSize.height, animationSpec = tween())
+    val targetWidth by animateDpAsState(label = "animate-pip-width", targetValue = newTargetSize.width, animationSpec = SizeAnimationSpec)
+    val targetHeight by animateDpAsState(label = "animate-pip-height", targetValue = newTargetSize.height, animationSpec = SizeAnimationSpec)
 
     contentSize = DpSize(targetWidth, targetHeight)
   }
@@ -247,7 +256,6 @@ private fun distance(a: IntOffset, b: IntOffset): Float {
 fun PictureInPicturePreview() {
   Previews.Preview {
     PictureInPicture(
-      centerContent = false,
       state = remember { PictureInPictureState(initialContentSize = DpSize(90.dp, 160.dp)) },
       modifier = Modifier
         .fillMaxSize()
