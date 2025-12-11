@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
@@ -16,6 +17,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
@@ -26,7 +28,10 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.rememberIsInPipMode
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantListUpdate
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
 import org.thoughtcrime.securesms.components.webrtc.CallReactionScrubber.Companion.CUSTOM_REACTION_BOTTOM_SHEET_TAG
@@ -40,6 +45,7 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
@@ -63,12 +69,31 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   private val pendingParticipantsViewListener = MutableStateFlow<PendingParticipantsListener>(PendingParticipantsListener.Empty)
 
   private val callParticipantUpdatePopupController = CallParticipantUpdatePopupController()
+  private val lifecycleDisposable = LifecycleDisposable()
 
   init {
     WindowUtil.clearTranslucentNavigationBar(activity.window)
     WindowUtil.clearTranslucentStatusBar(activity.window)
 
     activity.enableEdgeToEdge()
+
+    lifecycleDisposable.bindTo(activity)
+    activity.supportFragmentManager.setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, activity) { resultKey, bundle ->
+      if (bundle.containsKey(resultKey)) {
+        lifecycleDisposable += controlsAndInfoViewModel.setName(bundle.getString(resultKey)!!).subscribeBy(
+          onSuccess = {
+            if (it !is UpdateCallLinkResult.Update) {
+              Log.w(TAG, "Failed to set name. $it")
+              handleFailure()
+            }
+          },
+          onError = {
+            Log.w(TAG, "Failure during setName", it)
+            handleFailure()
+          }
+        )
+      }
+    }
 
     activity.setContent {
       val recipient by viewModel.getRecipientFlow().collectAsStateWithLifecycle(Recipient.UNKNOWN)
@@ -218,6 +243,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   }
 
   override fun setRecipient(recipient: Recipient) {
+    controlsAndInfoViewModel.setRecipient(recipient)
     callScreenViewModel.callScreenState.update { it.copy(callRecipientId = recipient.id) }
   }
 
@@ -326,6 +352,10 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   override fun onRaiseHandClick(raised: Boolean) {
     AppDependencies.signalCallManager.raiseHand(raised)
     callScreenViewModel.callScreenState.update { it.copy(displayAdditionalActionsDialog = false) }
+  }
+
+  private fun handleFailure() {
+    Toast.makeText(activity, R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
   }
 
   /**
