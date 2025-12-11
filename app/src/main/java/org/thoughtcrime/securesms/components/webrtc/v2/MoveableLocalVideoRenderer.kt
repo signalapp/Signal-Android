@@ -25,16 +25,15 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.dropShadow
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -42,6 +41,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.DpSize
@@ -108,8 +108,6 @@ fun MoveableLocalVideoRenderer(
     }
 
     val clip by animateClip(localRenderState)
-    val shadow by animateShadow(localRenderState)
-
     val showFocusButton = localRenderState == WebRtcLocalRenderState.EXPANDED || isFocused
 
     PictureInPicture(
@@ -128,7 +126,19 @@ fun MoveableLocalVideoRenderer(
           .fillMaxSize()
           .dropShadow(
             shape = RoundedCornerShape(clip),
-            shadow = shadow
+            shadow = Shadow(
+              radius = 32.dp,
+              color = Color.Black.copy(alpha = 0.12f),
+              offset = DpOffset(x = 0.dp, y = 4.dp)
+            )
+          )
+          .dropShadow(
+            shape = RoundedCornerShape(clip),
+            shadow = Shadow(
+              radius = 12.dp,
+              color = Color.Black.copy(alpha = 0.32f),
+              offset = androidx.compose.ui.unit.DpOffset(x = 0.dp, y = 4.dp)
+            )
           )
           .clip(RoundedCornerShape(clip))
           .clickable(onClick = onClick)
@@ -176,50 +186,13 @@ private fun animateClip(localRenderState: WebRtcLocalRenderState): State<Dp> {
   return animateDpAsState(targetValue = targetDp)
 }
 
-@Composable
-private fun animateShadow(localRenderState: WebRtcLocalRenderState): State<Shadow> {
-  val targetShadowRadius = when (localRenderState) {
-    WebRtcLocalRenderState.EXPANDED, WebRtcLocalRenderState.FOCUSED, WebRtcLocalRenderState.SMALLER_RECTANGLE -> {
-      14.dp
-    }
-
-    else -> {
-      0.dp
-    }
-  }
-
-  val targetShadowOffset = when (localRenderState) {
-    WebRtcLocalRenderState.EXPANDED, WebRtcLocalRenderState.FOCUSED, WebRtcLocalRenderState.SMALLER_RECTANGLE -> {
-      4.dp
-    }
-
-    else -> {
-      0.dp
-    }
-  }
-
-  val shadowRadius by animateDpAsState(targetShadowRadius)
-  val shadowOffset by animateDpAsState(targetShadowOffset)
-  return remember {
-    derivedStateOf { Shadow(radius = shadowRadius, offset = DpOffset(0.dp, shadowOffset)) }
-  }
-}
-
 @AllNightPreviews
 @Composable
 private fun MoveableLocalVideoRendererPreview() {
   var localRenderState by remember { mutableStateOf(WebRtcLocalRenderState.SMALL_RECTANGLE) }
 
   Previews.Preview {
-    val blur by animateDpAsState(
-      if (localRenderState == WebRtcLocalRenderState.FOCUSED) {
-        20.dp
-      } else {
-        0.dp
-      }
-    )
-
-    Box(modifier = Modifier.background(color = Color.Green)) {
+    Box {
       BlurContainer(
         isBlurred = localRenderState == WebRtcLocalRenderState.FOCUSED
       ) {
@@ -228,7 +201,7 @@ private fun MoveableLocalVideoRendererPreview() {
           contentDescription = null,
           modifier = Modifier
             .fillMaxSize()
-            .blur(blur)
+            .background(color = Color.Green)
         )
       }
 

@@ -284,7 +284,7 @@ private fun BlurredBackgroundAvatar(
       Image(
         painter = painterResource(R.drawable.ic_avatar_abstract_02),
         contentDescription = null,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.background)
       )
     } else {
       val photo = remember(recipient.isSelf, recipient.contactPhoto) {

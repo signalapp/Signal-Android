@@ -102,7 +102,7 @@ fun BlurContainerPreview() {
         Image(
           painter = painterResource(R.drawable.ic_add_a_profile_megaphone_image),
           contentDescription = null,
-          modifier = Modifier.fillMaxSize()
+          modifier = Modifier.fillMaxSize().background(color = Color.Green)
         )
 
         Buttons.LargeTonal(
