@@ -148,6 +148,10 @@ final class VideoTrackConverter {
         }
 
         final ColorInfo colorInfo = preDecodeColorInfo(mVideoExtractor, inputVideoFormat);
+        // IMPORTANT: reset extractor after probing
+        mVideoExtractor.unselectTrack(videoInputTrack);
+        mVideoExtractor.selectTrack(videoInputTrack);
+        mVideoExtractor.seekTo(0, MediaExtractor.SEEK_TO_CLOSEST_SYNC);
         final MediaFormat outputVideoFormat = MediaFormat.createVideoFormat(videoCodec, outputWidthRotated, outputHeightRotated);
 
         // Set some properties. Failing to specify some of these can cause the MediaCodec
@@ -200,55 +204,70 @@ final class VideoTrackConverter {
         }
     }
 
-    private ColorInfo preDecodeColorInfo(MediaExtractor extractor, MediaFormat inputFormat) throws IOException {
-        // Create a decoder, but don't attach a surface since we won't render
-        MediaCodec decoder = MediaCodec.createDecoderByType(MediaConverter.getMimeTypeFor(inputFormat));
-        decoder.configure(inputFormat, null, null, 0);
-        decoder.start();
+  private ColorInfo preDecodeColorInfo(MediaExtractor extractor, MediaFormat inputFormat) throws IOException {
+    MediaCodec decoder = MediaCodec.createDecoderByType(inputFormat.getString(MediaFormat.KEY_MIME));
+    decoder.configure(inputFormat, null, null, 0);
+    decoder.start();
 
-        ByteBuffer[] inputBuffers = decoder.getInputBuffers();
-        MediaCodec.BufferInfo info = new MediaCodec.BufferInfo();
+    MediaCodec.BufferInfo info = new MediaCodec.BufferInfo();
+    boolean outputFormatKnown = false;
+    Integer colorStandard = null, colorTransfer = null, colorRange = null;
 
-        // Feed the first real sample from the extractor
+    boolean inputDone = false;
+
+    while (!outputFormatKnown) {
+
+      // ---- FEED INPUT ----
+      if (!inputDone) {
         int inIndex = decoder.dequeueInputBuffer(20000);
         if (inIndex >= 0) {
-            ByteBuffer buf = inputBuffers[inIndex];
-            buf.clear();
-            int sampleSize = extractor.readSampleData(buf, 0);
+          ByteBuffer inputBuffer = decoder.getInputBuffer(inIndex);
+          int sampleSize = extractor.readSampleData(inputBuffer, 0);
+
+          if (sampleSize < 0) {
+            decoder.queueInputBuffer(
+                inIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM
+            );
+            inputDone = true;
+          } else {
             long pts = extractor.getSampleTime();
-            if (sampleSize < 0) {
-                decoder.queueInputBuffer(inIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM);
-            } else {
-                decoder.queueInputBuffer(inIndex, 0, sampleSize, pts, 0);
-            }
+            decoder.queueInputBuffer(inIndex, 0, sampleSize, pts, 0);
+            extractor.advance();
+          }
         }
+      }
 
-        // Wait for decoder to output format change, which contains color info
-        boolean gotFormat = false;
-        Integer colorStandard = null;
-        Integer colorTransfer = null;
-        Integer colorRange = null;
-        while (!gotFormat) {
-            int outIndex = decoder.dequeueOutputBuffer(info, 20000);
-            if (outIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
-                MediaFormat fmt = decoder.getOutputFormat();
-                if (fmt.containsKey(MediaFormat.KEY_COLOR_STANDARD))
-                    colorStandard = fmt.getInteger(MediaFormat.KEY_COLOR_STANDARD);
-                if (fmt.containsKey(MediaFormat.KEY_COLOR_TRANSFER))
-                    colorTransfer = fmt.getInteger(MediaFormat.KEY_COLOR_TRANSFER);
-                if (fmt.containsKey(MediaFormat.KEY_COLOR_RANGE))
-                    colorRange = fmt.getInteger(MediaFormat.KEY_COLOR_RANGE);
-                gotFormat = true;
-            }
-        }
+      // ---- DRAIN OUTPUT ----
+      int outIndex = decoder.dequeueOutputBuffer(info, 20000);
 
-        decoder.stop();
-        decoder.release();
+      if (outIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
+        MediaFormat fmt = decoder.getOutputFormat();
+        if (fmt.containsKey(MediaFormat.KEY_COLOR_STANDARD))
+          colorStandard = fmt.getInteger(MediaFormat.KEY_COLOR_STANDARD);
+        if (fmt.containsKey(MediaFormat.KEY_COLOR_TRANSFER))
+          colorTransfer = fmt.getInteger(MediaFormat.KEY_COLOR_TRANSFER);
+        if (fmt.containsKey(MediaFormat.KEY_COLOR_RANGE))
+          colorRange = fmt.getInteger(MediaFormat.KEY_COLOR_RANGE);
+        outputFormatKnown = true;
+      } else if (outIndex >= 0) {
+        // We won't render, but must release output buffers
+        decoder.releaseOutputBuffer(outIndex, false);
+      }
 
-        return new ColorInfo(colorStandard, colorTransfer, colorRange);
+      // If EOS reached and still no format → decoder doesn’t provide it
+      if (inputDone && outIndex == MediaCodec.INFO_TRY_AGAIN_LATER) {
+        break;
+      }
     }
 
-    private boolean isHdr(MediaFormat inputVideoFormat) {
+    decoder.stop();
+    decoder.release();
+
+    return new ColorInfo(colorStandard, colorTransfer, colorRange);
+  }
+
+
+  private boolean isHdr(MediaFormat inputVideoFormat) {
         if (Build.VERSION.SDK_INT < 24) {
             return false;
         }
