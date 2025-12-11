@@ -4712,9 +4712,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Baigti apklausą</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <string name="conversation_selection__menu_pin_message">Prisegti</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin</string>
+    <string name="conversation_selection__menu_unpin_message">Atsegti</string>
 
     <!-- conversation_expiring_on -->
 
@@ -7833,7 +7833,7 @@
     <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Praleista įjungus pranešimų profilį</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Praleista įjungus pranešimų profilį</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Prisijungti</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -9406,7 +9406,7 @@
     <!-- Dialog body shown when feedback submission fails due to network issues -->
     <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
-    <string name="CallQualitySheet__try_again">Try again</string>
+    <string name="CallQualitySheet__try_again">Bandykite dar kartą</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
     <string name="PinnedMessage__s_pinned_a_message">%1$s prisegė žinutę</string>
@@ -9431,7 +9431,7 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">Vienkartinės peržiūros medija</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <string name="PinnedMessage__unpin_message">Atsegti</string>
     <!-- Context menu option to view all the message -->
     <string name="PinnedMessage__view_all_messages">Žiūrėti visas žinutes</string>
     <!-- Text to unpin all messages -->
@@ -9459,7 +9459,7 @@
     <!-- Dialog title when failing to unpin all messages -->
     <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
     <!-- Dialog body when failing to pin a message -->
-    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
+    <string name="PinnedMessage__check_connection">Patikrink interneto ryšį ir bandyk dar kartą.</string>
 
     <!-- EOF -->
 </resources>

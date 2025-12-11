@@ -2693,7 +2693,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">कॅमेरा दिशा स्विच करा</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">स्क्रीन शेअर पहाण्यासाठी स्वाइप करा</string>
@@ -4482,9 +4482,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">पोल समाप्त करा</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <string name="conversation_selection__menu_pin_message">पिन</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin</string>
+    <string name="conversation_selection__menu_unpin_message">अनपिन करा</string>
 
     <!-- conversation_expiring_on -->
 
@@ -6217,7 +6217,7 @@
     <string name="ManageDonationsFragment__donation_receipts">देणगीच्या पावत्या</string>
     <string name="ManageDonationsFragment__badges">बॅजेस</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
+    <string name="ManageDonationsFragment__subscription_faq">देणगीदारांचे FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">देणगी देण्याचे इतर मार्ग</string>
     <!-- Preference label to launch badge gifting -->
@@ -7501,7 +7501,7 @@
     <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">अधिसूचना प्रोफाइल सुरू असताना मिस झालेले</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile_multiple">अधिसूचना प्रोफाइल सुरू असताना मिस झालेले</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">सामील व्हा</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -9034,7 +9034,7 @@
     <!-- Dialog body shown when feedback submission fails due to network issues -->
     <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
-    <string name="CallQualitySheet__try_again">Try again</string>
+    <string name="CallQualitySheet__try_again">पुन्हा प्रयत्न करा</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
     <string name="PinnedMessage__s_pinned_a_message">%1$s ने संदेश पिन केला</string>
@@ -9059,7 +9059,7 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">एकदा-बघा मिडिया</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <string name="PinnedMessage__unpin_message">अनपिन करा</string>
     <!-- Context menu option to view all the message -->
     <string name="PinnedMessage__view_all_messages">सर्व संदेश पाहा</string>
     <!-- Text to unpin all messages -->
@@ -9087,7 +9087,7 @@
     <!-- Dialog title when failing to unpin all messages -->
     <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
     <!-- Dialog body when failing to pin a message -->
-    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
+    <string name="PinnedMessage__check_connection">आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
 
     <!-- EOF -->
 </resources>
