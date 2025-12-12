@@ -6,7 +6,6 @@
 package org.signal.core.models
 
 import org.signal.core.models.backup.MessageBackupKey
-import org.signal.core.util.logging.Log
 
 private typealias LibSignalAccountEntropyPool = org.signal.libsignal.messagebackup.AccountEntropyPool
 
