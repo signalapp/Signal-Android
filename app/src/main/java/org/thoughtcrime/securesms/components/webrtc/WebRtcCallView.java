@@ -530,7 +530,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
     updateLocalCallParticipant(state.getLocalRenderState(), state.getLocalParticipant(), displaySmallSelfPipInLandscape);
 
-    if (state.isLargeVideoGroup()) {
+    if (state.isLargeGroup()) {
       adjustLayoutForLargeCount();
     } else {
       adjustLayoutForSmallCount();

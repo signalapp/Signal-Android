@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.webrtc
 
 import android.content.Context
+import androidx.annotation.Discouraged
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import com.annimon.stream.OptionalLong
@@ -49,8 +50,11 @@ data class CallParticipantsState(
 
   val allRemoteParticipants: List<CallParticipant> = remoteParticipants.allParticipants
   val isFolded: Boolean = foldableState.isFolded
-  val isLargeVideoGroup: Boolean = allRemoteParticipants.size > SMALL_GROUP_MAX && !isInPipMode && !isFolded
   val hideAvatar: Boolean = callState.isIncomingOrHandledElsewhere
+
+  @get:Discouraged("Only for backwards-compatibility with View code. Compose UI determines large group dynamically.")
+  val isLargeGroup: Boolean
+    get() = allRemoteParticipants.size > SMALL_GROUP_MAX
 
   val raisedHands: List<GroupCallRaiseHandEvent>
     get() {

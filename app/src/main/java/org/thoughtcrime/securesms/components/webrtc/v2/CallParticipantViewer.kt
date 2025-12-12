@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
@@ -60,6 +61,7 @@ import org.thoughtcrime.securesms.compose.GlideImageScaleType
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.webrtc.RendererCommon
 
 /**
  * Displays a remote participant (or local participant in pre-join screen).
@@ -99,23 +101,44 @@ fun RemoteParticipantContent(
       )
     } else {
       val hasContentToRender = participant.isVideoEnabled || participant.isScreenSharing
+      var isVideoReady by remember(participant.callParticipantId) { mutableStateOf(false) }
+
+      if (!hasContentToRender) {
+        isVideoReady = false
+      }
+
+      val showAvatar = !hasContentToRender || !isVideoReady
+
+      Crossfade(
+        targetState = showAvatar,
+        animationSpec = CallGridDefaults.alphaAnimationSpec,
+        label = "video-ready-crossfade"
+      ) { shouldShowAvatar ->
+        if (shouldShowAvatar) {
+          if (renderInPip) {
+            PipAvatar(
+              recipient = recipient,
+              modifier = Modifier.fillMaxSize()
+            )
+          } else {
+            Box(
+              modifier = Modifier.fillMaxSize(),
+              contentAlignment = Alignment.Center
+            ) {
+              AvatarWithBadge(recipient = recipient)
+            }
+          }
+        } else {
+          Box(modifier = Modifier.fillMaxSize())
+        }
+      }
 
       if (hasContentToRender) {
         VideoRenderer(
           participant = participant,
+          onFirstFrameRendered = { isVideoReady = true },
+          showLetterboxing = isVideoReady,
           modifier = Modifier.fillMaxSize()
-        )
-      } else if (renderInPip) {
-        PipAvatar(
-          recipient = recipient,
-          modifier = Modifier
-            .fillMaxSize()
-            .align(Alignment.Center)
-        )
-      } else {
-        AvatarWithBadge(
-          recipient = recipient,
-          modifier = Modifier.align(Alignment.Center)
         )
       }
 
@@ -165,15 +188,10 @@ fun SelfPipContent(
       AudioIndicator(
         participant = participant,
         selfPipMode = selfPipMode,
-        modifier = Modifier.align(
-          when (selfPipMode) {
-            SelfPipMode.MINI_SELF_PIP -> Alignment.BottomCenter
-            else -> Alignment.BottomStart
-          }
-        )
+        modifier = Modifier.align(Alignment.BottomStart)
       )
 
-      if (isMoreThanOneCameraAvailable && selfPipMode != SelfPipMode.MINI_SELF_PIP) {
+      if (isMoreThanOneCameraAvailable) {
         SwitchCameraButton(
           selfPipMode = selfPipMode,
           onClick = onSwitchCameraClick,
@@ -356,14 +374,37 @@ private fun PipAvatar(
 @Composable
 private fun VideoRenderer(
   participant: CallParticipant,
+  onFirstFrameRendered: (() -> Unit)? = null,
+  showLetterboxing: Boolean = true,
   modifier: Modifier = Modifier
 ) {
   var renderer by remember { mutableStateOf<TextureViewRenderer?>(null) }
 
+  val rendererEvents = remember(onFirstFrameRendered) {
+    if (onFirstFrameRendered != null) {
+      object : RendererCommon.RendererEvents {
+        override fun onFirstFrameRendered() {
+          onFirstFrameRendered()
+        }
+
+        override fun onFrameResolutionChanged(videoWidth: Int, videoHeight: Int, rotation: Int) {
+        }
+      }
+    } else {
+      null
+    }
+  }
+
+  val backgroundColor = if (showLetterboxing) {
+    android.graphics.Color.parseColor("#CC000000")
+  } else {
+    android.graphics.Color.TRANSPARENT
+  }
+
   AndroidView(
     factory = { context ->
       FrameLayout(context).apply {
-        setBackgroundColor(android.graphics.Color.parseColor("#CC000000"))
+        setBackgroundColor(backgroundColor)
         layoutParams = ViewGroup.LayoutParams(
           ViewGroup.LayoutParams.MATCH_PARENT,
           ViewGroup.LayoutParams.MATCH_PARENT
@@ -378,7 +419,7 @@ private fun VideoRenderer(
 
           if (participant.isVideoEnabled) {
             participant.videoSink.lockableEglBase.performWithValidEglBase { eglBase ->
-              init(eglBase)
+              init(eglBase, rendererEvents)
             }
             attachBroadcastVideoSink(participant.videoSink)
           }
@@ -388,12 +429,13 @@ private fun VideoRenderer(
         addView(textureRenderer)
       }
     },
-    update = {
+    update = { frameLayout ->
+      frameLayout.setBackgroundColor(backgroundColor)
       val textureRenderer = renderer
       if (textureRenderer != null) {
         if (participant.isVideoEnabled) {
           participant.videoSink.lockableEglBase.performWithValidEglBase { eglBase ->
-            textureRenderer.init(eglBase)
+            textureRenderer.init(eglBase, rendererEvents)
           }
           textureRenderer.attachBroadcastVideoSink(participant.videoSink)
         } else {
@@ -789,11 +831,12 @@ private fun SelfPipMiniPreview() {
     SelfPipContent(
       participant = CallParticipant.EMPTY.copy(
         recipient = Recipient(isResolving = false, systemContactName = "You", isSelf = true),
+        isVideoEnabled = true,
         isMicrophoneEnabled = false
       ),
       selfPipMode = SelfPipMode.MINI_SELF_PIP,
-      isMoreThanOneCameraAvailable = false,
-      onSwitchCameraClick = null,
+      isMoreThanOneCameraAvailable = true,
+      onSwitchCameraClick = {},
       modifier = Modifier.size(rememberCallScreenMetrics().overflowParticipantRendererDpSize)
     )
   }

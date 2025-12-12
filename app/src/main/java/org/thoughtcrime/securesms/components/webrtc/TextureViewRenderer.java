@@ -57,11 +57,15 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
   }
 
   public void init(@NonNull EglBase eglBase) {
+    init(eglBase, null);
+  }
+
+  public void init(@NonNull EglBase eglBase, @Nullable RendererCommon.RendererEvents rendererEvents) {
     if (isInitialized) return;
 
     isInitialized = true;
 
-    this.init(eglBase.getEglBaseContext(), null, EglBase.CONFIG_PLAIN, new GlRectDrawer());
+    this.init(eglBase.getEglBaseContext(), rendererEvents, EglBase.CONFIG_PLAIN, new GlRectDrawer());
   }
 
   public void init(@NonNull EglBase.Context sharedContext, @Nullable RendererCommon.RendererEvents rendererEvents, @NonNull int[] configAttributes, @NonNull RendererCommon.GlDrawer drawer) {

@@ -34,12 +34,17 @@ fun CallParticipantsPager(
     return
   }
 
+  val firstParticipantAR = rememberParticipantAspectRatio(
+    callParticipantsPagerState.callParticipants.firstOrNull()?.videoSink
+  )
+
   // Use movableContentOf to preserve CallGrid state when switching between
   // single participant (no pager) and multiple participants (with pager)
   val callGridContent = remember {
-    movableContentOf { state: CallParticipantsPagerState, mod: Modifier ->
+    movableContentOf { state: CallParticipantsPagerState, mod: Modifier, aspectRatio: Float? ->
       CallGrid(
         items = state.callParticipants,
+        singleParticipantAspectRatio = aspectRatio,
         modifier = mod,
         itemKey = { it.callParticipantId }
       ) { participant, itemModifier ->
@@ -63,7 +68,7 @@ fun CallParticipantsPager(
     ) { page ->
       when (page) {
         0 -> {
-          callGridContent(callParticipantsPagerState, Modifier.fillMaxSize())
+          callGridContent(callParticipantsPagerState, Modifier.fillMaxSize(), firstParticipantAR)
         }
 
         1 -> {
@@ -78,7 +83,7 @@ fun CallParticipantsPager(
       }
     }
   } else {
-    callGridContent(callParticipantsPagerState, modifier)
+    callGridContent(callParticipantsPagerState, modifier, firstParticipantAR)
   }
 }
 

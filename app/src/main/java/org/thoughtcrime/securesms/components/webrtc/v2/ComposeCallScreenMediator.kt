@@ -102,9 +102,16 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
       val callControlsState by viewModel.getCallControlsState().collectAsStateWithLifecycle(CallControlsState())
       val callParticipantsViewState by callScreenViewModel.callParticipantsViewState.collectAsStateWithLifecycle()
       val callParticipantsState = remember(callParticipantsViewState) { callParticipantsViewState.callParticipantsState }
-      val callParticipantsPagerState = remember(callParticipantsState) {
+      val callGridStrategy = rememberCallGridStrategy()
+      val gridParticipants = remember(callParticipantsState.allRemoteParticipants, callGridStrategy) {
+        callParticipantsState.allRemoteParticipants.take(callGridStrategy.maxTiles)
+      }
+      val overflowParticipants = remember(callParticipantsState.allRemoteParticipants, callGridStrategy) {
+        callParticipantsState.allRemoteParticipants.drop(callGridStrategy.maxTiles)
+      }
+      val callParticipantsPagerState = remember(gridParticipants, callParticipantsState) {
         CallParticipantsPagerState(
-          callParticipants = callParticipantsState.gridParticipants,
+          callParticipants = gridParticipants,
           focusedParticipant = callParticipantsState.focusedParticipant,
           isRenderInPip = callParticipantsState.isInPipMode,
           hideAvatar = callParticipantsState.hideAvatar
@@ -168,7 +175,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           callScreenSheetDisplayListener = callScreenSheetDisplayListener,
           callParticipantsPagerState = callParticipantsPagerState,
           pendingParticipantsListener = pendingParticipantsListener,
-          overflowParticipants = callParticipantsState.listParticipants,
+          overflowParticipants = overflowParticipants,
           localParticipant = callParticipantsState.localParticipant,
           localRenderState = callParticipantsState.localRenderState,
           reactions = callParticipantsState.reactions,
