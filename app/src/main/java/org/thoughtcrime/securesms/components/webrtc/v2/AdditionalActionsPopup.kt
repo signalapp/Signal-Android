@@ -70,22 +70,29 @@ fun AdditionalActionsPopup(
     onDismissRequest = onDismissRequest,
     state = state.triggerAlignedPopupState
   ) {
-    Column(
-      verticalArrangement = spacedBy(12.dp),
-      modifier = Modifier
-        .width(320.dp)
-        .padding(12.dp)
-    ) {
-      CallReactionScrubber(
-        reactions = state.reactions,
-        listener = state.listener
-      )
+    AdditionalActionsPopupContent(state = state)
+  }
+}
 
-      CallScreenMenu(
-        onRaiseHandClick = state.listener::onRaiseHandClick,
-        isSelfHandRaised = state.isSelfHandRaised
-      )
-    }
+@Composable
+private fun AdditionalActionsPopupContent(
+  state: AdditionalActionsState
+) {
+  Column(
+    verticalArrangement = spacedBy(12.dp),
+    modifier = Modifier
+      .width(IntrinsicSize.Min)
+      .padding(12.dp)
+  ) {
+    CallReactionScrubber(
+      reactions = state.reactions,
+      listener = state.listener
+    )
+
+    CallScreenMenu(
+      onRaiseHandClick = state.listener::onRaiseHandClick,
+      isSelfHandRaised = state.isSelfHandRaised
+    )
   }
 }
 
@@ -199,8 +206,7 @@ private fun ReactionsScrubberPreview() {
 @Composable
 private fun CallScreenAdditionalActionsPopupPreview() {
   Previews.Preview {
-    AdditionalActionsPopup(
-      onDismissRequest = {},
+    AdditionalActionsPopupContent(
       state = AdditionalActionsState(
         isShown = false,
         reactions = persistentListOf(
