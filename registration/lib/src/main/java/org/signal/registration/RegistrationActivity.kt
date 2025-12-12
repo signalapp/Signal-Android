@@ -7,11 +7,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.registration.screens.RegistrationHostScreen
 
 /**
  * Activity entry point for the registration flow.
@@ -39,16 +39,11 @@ class RegistrationActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      val permissionsState = rememberMultiplePermissionsState(
-        permissions = viewModel.getRequiredPermissions()
-      )
-
       SignalTheme(incognitoKeyboardEnabled = false) {
         Surface {
-          RegistrationHostScreen(
+          RegistrationNavHost(
             registrationRepository = repository,
-            viewModel = viewModel,
-            permissionsState = permissionsState,
+            modifier = Modifier.fillMaxSize(),
             onRegistrationComplete = {
               setResult(RESULT_OK)
               finish()

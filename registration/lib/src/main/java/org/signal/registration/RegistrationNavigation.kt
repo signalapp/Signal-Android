@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
+@file:OptIn(ExperimentalPermissionsApi::class)
+
 package org.signal.registration
 
 import android.os.Parcelable
@@ -15,7 +17,6 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -27,6 +28,7 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import org.signal.core.ui.navigation.ResultEffect
@@ -48,6 +50,8 @@ import org.signal.registration.screens.pinentry.PinEntryScreen
 import org.signal.registration.screens.restore.RestoreViaQrScreen
 import org.signal.registration.screens.restore.RestoreViaQrScreenEvents
 import org.signal.registration.screens.restore.RestoreViaQrState
+import org.signal.registration.screens.util.navigateBack
+import org.signal.registration.screens.util.navigateTo
 import org.signal.registration.screens.verificationcode.VerificationCodeScreen
 import org.signal.registration.screens.verificationcode.VerificationCodeViewModel
 import org.signal.registration.screens.welcome.WelcomeScreen
@@ -113,8 +117,9 @@ private const val CAPTCHA_RESULT = "captcha_token"
 /**
  * Sets up the navigation graph for the registration flow using Navigation 3.
  *
- * @param registrationViewModel The shared ViewModel for the registration flow.
- * @param permissionsState The permissions state managed at the activity level.
+ * @param registrationRepository The repository for registration data.
+ * @param registrationViewModel Optional ViewModel for testing. If null, creates one internally.
+ * @param permissionsState Optional permissions state for testing. If null, creates one internally.
  * @param modifier Modifier to be applied to the NavDisplay.
  * @param onRegistrationComplete Callback invoked when registration is successfully completed.
  */
@@ -122,20 +127,23 @@ private const val CAPTCHA_RESULT = "captcha_token"
 @Composable
 fun RegistrationNavHost(
   registrationRepository: RegistrationRepository,
-  registrationViewModel: RegistrationViewModel,
-  permissionsState: MultiplePermissionsState,
+  registrationViewModel: RegistrationViewModel? = null,
+  permissionsState: MultiplePermissionsState? = null,
   modifier: Modifier = Modifier,
   onRegistrationComplete: () -> Unit = {}
 ) {
-  val registrationState by registrationViewModel.state.collectAsStateWithLifecycle()
-  val navigator = remember { RegistrationNavigator(eventEmitter = registrationViewModel::onEvent) }
+  val viewModel: RegistrationViewModel = registrationViewModel ?: viewModel(
+    factory = RegistrationViewModel.Factory(registrationRepository)
+  )
+
+  val registrationState by viewModel.state.collectAsStateWithLifecycle()
+  val permissions: MultiplePermissionsState = permissionsState ?: rememberMultiplePermissionsState(viewModel.getRequiredPermissions())
 
   val entryProvider = entryProvider {
-    registrationEntries(
+    navigationEntries(
       registrationRepository = registrationRepository,
-      registrationViewModel = registrationViewModel,
-      permissionsState = permissionsState,
-      navigator = navigator,
+      registrationViewModel = viewModel,
+      permissionsState = permissions,
       onRegistrationComplete = onRegistrationComplete
     )
   }
@@ -152,7 +160,7 @@ fun RegistrationNavHost(
 
   NavDisplay(
     entries = entries,
-    onBack = { registrationViewModel.onEvent(RegistrationFlowEvent.NavigateBack) },
+    onBack = { viewModel.onEvent(RegistrationFlowEvent.NavigateBack) },
     modifier = modifier,
     transitionSpec = {
       // Slide in from right and fade in when navigating forward
@@ -204,25 +212,22 @@ fun RegistrationNavHost(
   )
 }
 
-/**
- * Defines all navigation entries for the registration flow.
- */
-@OptIn(ExperimentalPermissionsApi::class)
-private fun EntryProviderScope<NavKey>.registrationEntries(
+private fun EntryProviderScope<NavKey>.navigationEntries(
   registrationRepository: RegistrationRepository,
   registrationViewModel: RegistrationViewModel,
   permissionsState: MultiplePermissionsState,
-  navigator: RegistrationNavigator,
   onRegistrationComplete: () -> Unit
 ) {
+  val parentEventEmitter: (RegistrationFlowEvent) -> Unit = registrationViewModel::onEvent
+
   // --- Welcome Screen
   entry<RegistrationRoute.Welcome> {
     WelcomeScreen(
       onEvent = { event ->
         when (event) {
-          WelcomeScreenEvents.Continue -> navigator.navigate(RegistrationRoute.Permissions(forRestore = false))
-          WelcomeScreenEvents.DoesNotHaveOldPhone -> navigator.navigate(RegistrationRoute.Restore)
-          WelcomeScreenEvents.HasOldPhone -> navigator.navigate(RegistrationRoute.Permissions(forRestore = true))
+          WelcomeScreenEvents.Continue -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(forRestore = false))
+          WelcomeScreenEvents.DoesNotHaveOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Restore)
+          WelcomeScreenEvents.HasOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(forRestore = true))
         }
       }
     )
@@ -234,9 +239,9 @@ private fun EntryProviderScope<NavKey>.registrationEntries(
       permissionsState = permissionsState,
       onProceed = {
         if (key.forRestore) {
-          navigator.navigate(RegistrationRoute.RestoreViaQr)
+          parentEventEmitter.navigateTo(RegistrationRoute.RestoreViaQr)
         } else {
-          navigator.navigate(RegistrationRoute.PhoneNumberEntry)
+          parentEventEmitter.navigateTo(RegistrationRoute.PhoneNumberEntry)
         }
       }
     )
@@ -281,10 +286,10 @@ private fun EntryProviderScope<NavKey>.registrationEntries(
         when (event) {
           is CaptchaScreenEvents.CaptchaCompleted -> {
             registrationViewModel.resultBus.sendResult(CAPTCHA_RESULT, event.token)
-            navigator.goBack()
+            parentEventEmitter.navigateBack()
           }
           CaptchaScreenEvents.Cancel -> {
-            navigator.goBack()
+            parentEventEmitter.navigateBack()
           }
         }
       }
@@ -370,7 +375,7 @@ private fun EntryProviderScope<NavKey>.registrationEntries(
         when (event) {
           AccountLockedScreenEvents.Next -> {
             // TODO: Navigate to appropriate next screen (likely back to welcome or phone entry)
-            navigator.navigate(RegistrationRoute.Welcome)
+            parentEventEmitter.navigateTo(RegistrationRoute.Welcome)
           }
           AccountLockedScreenEvents.LearnMore -> {
             // TODO: Open learn more URL
@@ -393,7 +398,7 @@ private fun EntryProviderScope<NavKey>.registrationEntries(
             // TODO: Retry QR code generation
           }
           RestoreViaQrScreenEvents.Cancel -> {
-            navigator.goBack()
+            parentEventEmitter.navigateBack()
           }
           RestoreViaQrScreenEvents.UseProxy -> {
             // TODO: Navigate to proxy settings
@@ -418,22 +423,5 @@ private fun EntryProviderScope<NavKey>.registrationEntries(
     LaunchedEffect(Unit) {
       onRegistrationComplete()
     }
-  }
-}
-
-/**
- * Navigator for the registration flow.
- * Handles navigation events by updating the back stack.
- */
-private class RegistrationNavigator(
-  private val eventEmitter: (RegistrationFlowEvent) -> Unit
-) {
-
-  fun navigate(route: RegistrationRoute) {
-    eventEmitter(RegistrationFlowEvent.NavigateToScreen(route))
-  }
-
-  fun goBack() {
-    eventEmitter(RegistrationFlowEvent.NavigateBack)
   }
 }

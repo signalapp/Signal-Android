@@ -82,6 +82,9 @@ dependencies {
   implementation(libs.androidx.navigation3.runtime)
   implementation(libs.androidx.navigation3.ui)
 
+  // Permissions
+  implementation(libs.accompanist.permissions)
+
   // Compose BOM
   platform(libs.androidx.compose.bom).let { composeBom ->
     implementation(composeBom)

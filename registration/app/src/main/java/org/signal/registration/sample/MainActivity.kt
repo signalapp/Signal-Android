@@ -3,13 +3,13 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
+@file:OptIn(ExperimentalPermissionsApi::class)
+
 package org.signal.registration.sample
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.viewModels
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
@@ -39,15 +39,12 @@ import androidx.navigation3.runtime.rememberDecoratedNavEntries
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.serialization.Serializable
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.core.ui.navigation.ResultEffect
-import org.signal.core.ui.navigation.ResultEventBus
-import org.signal.registration.NetworkController
-import org.signal.registration.RegistrationActivity
 import org.signal.registration.RegistrationDependencies
-import org.signal.registration.StorageController
-import org.signal.registration.sample.MainActivity.Companion.REGISTRATION_RESULT
+import org.signal.registration.RegistrationNavHost
+import org.signal.registration.RegistrationRepository
 import org.signal.registration.sample.screens.RegistrationCompleteScreen
 import org.signal.registration.sample.screens.main.MainScreen
 import org.signal.registration.sample.screens.main.MainScreenViewModel
@@ -90,6 +87,9 @@ sealed interface SampleRoute : NavKey {
   data object Main : SampleRoute
 
   @Serializable
+  data object Registration : SampleRoute
+
+  @Serializable
   data object RegistrationComplete : SampleRoute
 
   @Serializable
@@ -104,14 +104,13 @@ class MainActivity : ComponentActivity() {
     const val REGISTRATION_RESULT = "registration_result"
   }
 
-  private val viewModel: AppViewModel by viewModels()
-
-  private val registrationLauncher: ActivityResultLauncher<Unit> = registerForActivityResult(RegistrationActivity.RegistrationContract()) { success ->
-    viewModel.resultEventBus.sendResult(REGISTRATION_RESULT, success)
-  }
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    val registrationRepository = RegistrationRepository(
+      networkController = RegistrationDependencies.get().networkController,
+      storageController = RegistrationDependencies.get().storageController
+    )
 
     setContent {
       SignalTheme {
@@ -122,11 +121,9 @@ class MainActivity : ComponentActivity() {
           val backStack = rememberNavBackStack(SampleRoute.Main)
 
           SampleNavHost(
-            onLaunchRegistration = { registrationLauncher.launch(Unit) },
             backStack = backStack,
-            resultEventBus = viewModel.resultEventBus,
-            storageController = RegistrationDependencies.get().storageController,
-            networkController = RegistrationDependencies.get().networkController,
+            registrationRepository = registrationRepository,
+            registrationDependencies = RegistrationDependencies.get(),
             onStartOver = {
               backStack.clear()
               backStack.add(SampleRoute.Main)
@@ -140,20 +137,18 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun SampleNavHost(
-  onLaunchRegistration: () -> Unit,
   onStartOver: () -> Unit,
+  registrationRepository: RegistrationRepository,
+  registrationDependencies: RegistrationDependencies,
   backStack: NavBackStack<NavKey>,
-  resultEventBus: ResultEventBus,
-  storageController: StorageController,
-  networkController: NetworkController,
   modifier: Modifier = Modifier
 ) {
   val entryProvider: (NavKey) -> NavEntry<NavKey> = entryProvider {
     entry<SampleRoute.Main> {
       val viewModel: MainScreenViewModel = viewModel(
         factory = MainScreenViewModel.Factory(
-          storageController = storageController,
-          onLaunchRegistration = onLaunchRegistration,
+          storageController = registrationDependencies.storageController,
+          onLaunchRegistration = { backStack.add(SampleRoute.Registration) },
           onOpenPinSettings = { backStack.add(SampleRoute.PinSettings) }
         )
       )
@@ -164,16 +159,19 @@ private fun SampleNavHost(
         onPauseOrDispose { }
       }
 
-      ResultEffect<Boolean>(resultEventBus, REGISTRATION_RESULT) { success ->
-        if (success) {
-          viewModel.refreshData()
-          backStack.add(SampleRoute.RegistrationComplete)
-        }
-      }
-
       MainScreen(
         state = state,
         onEvent = { viewModel.onEvent(it) }
+      )
+    }
+
+    entry<SampleRoute.Registration> {
+      RegistrationNavHost(
+        registrationRepository,
+        modifier = Modifier.fillMaxSize(),
+        onRegistrationComplete = {
+          backStack.add(SampleRoute.RegistrationComplete)
+        }
       )
     }
 
@@ -186,7 +184,7 @@ private fun SampleNavHost(
     ) {
       val viewModel: PinSettingsViewModel = viewModel(
         factory = PinSettingsViewModel.Factory(
-          networkController = networkController,
+          networkController = registrationDependencies.networkController,
           onBack = { backStack.removeLastOrNull() }
         )
       )
