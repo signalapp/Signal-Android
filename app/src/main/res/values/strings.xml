@@ -940,6 +940,8 @@
     <string name="BackupsPreferenceFragment__backup_folder">Backup folder</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
     <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <!-- Title for a preference item allowing the user to selected the frequency when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_frequency">Backup frequency</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verify backup passphrase</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test your backup passphrase and verify that it matches</string>
     <string name="BackupsPreferenceFragment__turn_on">Turn on</string>
@@ -956,7 +958,18 @@
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requires external storage permission in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
     <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
+    <!-- Options for frequency of backup scheduling. Used in both the BackupsPreferenceFragment and the BackupFrequencyPickerDialogFragment. -->
+    <string name="BackupsPreferenceFragment__frequency_label_daily">Daily</string>
+    <string name="BackupsPreferenceFragment__frequency_label_weekly">Weekly</string>
+    <string name="BackupsPreferenceFragment__frequency_label_monthly">Monthly</string>
+    <string name="BackupsPreferenceFragment__frequency_label_quarterly">Quarterly</string>
+    <string name="BackupsPreferenceFragment__frequency_label_never">Never</string>
 
+
+    <!-- BackupFrequencyPickerDialogFragment -->
+    <string name="BackupFrequencyPickerDialogFragment__set_backup_frequency">Set backup frequency</string>
+    <string name="BackupFrequencyPickerDialogFragment__ok">OK</string>
+    <string name="BackupFrequencyPickerDialogFragment__cancel">Cancel</string>
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
