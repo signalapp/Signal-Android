@@ -5143,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">تام قەغىزىنى ئالدىن كۆرۈش</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">بارلىق پاراڭ رەڭگىنى قاپلىۋېتەمسىز؟</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">ھەممە تام قەغەزنى قاپلىۋېتەمسىز؟</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">ئالدىن بەلگىلەنگەن رەڭنى ئەسلىگە قايتۇرۇش</string>
     <string name="ChatWallpaperFragment__reset_all_colors">ھەممە رەڭنى ئەسلىگە قايتۇر</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">كۆڭۈلدىكى تام قەغەزنى ئەسلىگە قايتۇر</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">بارلىق تام قەغەزلىرىنى قايتا تەڭشە</string>
@@ -8408,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى كىرگۈزۈڭ</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">زاپاسلاشنى قوزغاتقاندا خاتىرىلىگەن 64 خانىلىق كودنى كىرگۈزۈڭ.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">ئاچقۇچنى ئۇنتۇپ قالدىڭىزمۇ؟</string>
 
@@ -8832,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">كاشىلا ھەل قىلىش خاتىرىڭىزنى كۆرۈش</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> يوللاشتىن بۇرۇن.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">كاشىلا ھەل قىلىش خاتىرىسىنى ئورتاقلىشىش</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8842,11 +8842,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">ئىنكاسىڭىزغا رەھمەت!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">تېلېفونلىشىش جەريانىدا مەسىلە كۆرۈلدى</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">تېلېفونلىشىش ناھايىتى ياخشى بولدى</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">سىزنىڭ پىكىر-تەكلىپىڭىزنى يوللاش مەغلۇپ بولدى.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">قايتا سىناڭ</string>
 
@@ -8895,11 +8895,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">بارلىق ئەزالار ئۈچۈن ئۇچۇرلارنىڭ مىقى ئېلىۋېتىلىدۇ.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">ئۇچۇرنى مىقلىيالمىدى</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">ئۇچۇرنىڭ مىقىنى ئېلىۋېتىشكە بولمىدى</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">ئۇچۇرلارنىڭ مىقىنى ئېلىۋېتىشكە بولمىدى</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">تور ئۇلىنىشىڭىزنى تەكشۈرۈپ قايتا سىناڭ.</string>
 

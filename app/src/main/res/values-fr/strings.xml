@@ -3925,7 +3925,7 @@
     <string name="arrays__enabled">Activé</string>
     <string name="arrays__disabled">Désactivé</string>
 
-    <string name="arrays__name_and_message">Nom, contenu et actions</string>
+    <string name="arrays__name_and_message">Nom et message</string>
     <string name="arrays__name_only">Nom seulement</string>
     <string name="arrays__no_name_or_message">Ni nom, ni message</string>
 
