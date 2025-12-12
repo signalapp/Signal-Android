@@ -13,6 +13,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
 import org.signal.registration.RegistrationDependencies
+import org.signal.registration.sample.debug.DebugNetworkController
 import org.signal.registration.sample.dependencies.RealNetworkController
 import org.signal.registration.sample.dependencies.RealStorageController
 import org.signal.registration.sample.storage.RegistrationPreferences
@@ -45,7 +46,8 @@ class RegistrationApplication : Application() {
     val trustStore = SampleTrustStore()
     val configuration = createServiceConfiguration(trustStore)
     val pushServiceSocket = createPushServiceSocket(configuration)
-    val networkController = RealNetworkController(this, pushServiceSocket, configuration, SVR2_MRENCLAVE)
+    val realNetworkController = RealNetworkController(this, pushServiceSocket, configuration, SVR2_MRENCLAVE)
+    val networkController = DebugNetworkController(realNetworkController)
     val storageController = RealStorageController(this)
 
     RegistrationDependencies.provide(
