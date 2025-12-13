@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.components
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.Configuration
 import android.util.AttributeSet
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.content.withStyledAttributes
@@ -58,6 +60,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private val keyboardStateListeners: MutableSet<KeyboardStateListener> = mutableSetOf()
   private val keyboardAnimator = KeyboardInsetAnimator()
   private var overridingKeyboard: Boolean = false
+  private var otherKeyboardAnimator: ValueAnimator? = null
   private var previousKeyboardHeight: Int = 0
   private var previousStatusBarInset: Int = 0
 
@@ -157,14 +160,18 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
       if (!overridingKeyboard) {
         if (!keyboardAnimator.animating) {
           keyboardGuideline?.setGuidelineEnd(keyboardInsets.bottom)
+          Log.d(TAG, "applyInsets (keyboardInsets): setting guideline=${keyboardInsets.bottom}")
         } else {
+          Log.d(TAG, "applyInsets (keyboardInsets/else): ${keyboardInsets.bottom}")
           keyboardAnimator.endingGuidelineEnd = keyboardInsets.bottom
         }
       }
     } else if (!overridingKeyboard) {
       if (!keyboardAnimator.animating) {
+        Log.d(TAG, "applyInsets (navigationBar): setting guideline=${navigationBar}")
         keyboardGuideline?.setGuidelineEnd(navigationBar)
       } else {
+        Log.d(TAG, "applyInsets (navigationBar/else): ${navigationBar}")
         keyboardAnimator.endingGuidelineEnd = navigationBar
       }
     }
@@ -184,7 +191,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   protected fun overrideKeyboardGuidelineWithPreviousHeight() {
     overridingKeyboard = true
-    keyboardGuideline?.setGuidelineEnd(getKeyboardHeight())
+    animateKeyboardGuidelineTo(getKeyboardHeight())
   }
 
   protected fun clearKeyboardGuidelineOverride() {
@@ -193,8 +200,30 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   protected fun resetKeyboardGuideline() {
     clearKeyboardGuidelineOverride()
-    keyboardGuideline?.setGuidelineEnd(navigationBarGuideline.guidelineEnd)
     keyboardAnimator.endingGuidelineEnd = navigationBarGuideline.guidelineEnd
+    animateKeyboardGuidelineTo(navigationBarGuideline.guidelineEnd)
+  }
+
+  private fun animateKeyboardGuidelineTo(target: Int) {
+    if (otherKeyboardAnimator?.isRunning == true) {
+      otherKeyboardAnimator?.end()
+      otherKeyboardAnimator = null
+    }
+    if (keyboardAnimator.animating) {
+      // If Android is animating the keyboard in/out, forgo our own animation.
+      keyboardGuideline?.setGuidelineEnd(target)
+      return
+    }
+    Log.d(TAG, "Manually animating keyboard guideline: ${keyboardGuideline.guidelineEnd} -> $target")
+    otherKeyboardAnimator = ValueAnimator.ofInt(keyboardGuideline.guidelineEnd, target).apply {
+      duration = resources.getInteger(R.integer.fake_keyboard_hide_duration).toLong()
+      addUpdateListener { animation ->
+        (animation.animatedValue as? Int)?.let { currentValue ->
+          keyboardGuideline?.setGuidelineEnd(currentValue)
+        }
+      }
+      start()
+    }
   }
 
   private fun getKeyboardHeight(): Int {
@@ -259,8 +288,14 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
         return
       }
 
+      if (otherKeyboardAnimator?.isRunning == true) {
+        // Terminate other keyboard guideline animations as to not interfere with this one
+        otherKeyboardAnimator?.end()
+        otherKeyboardAnimator = null
+      }
       animating = true
       startingGuidelineEnd = keyboardGuideline.guidelineEnd
+      Log.d(TAG, "KeyboardInsetAnimator animating from $startingGuidelineEnd")
     }
 
     override fun onProgress(insets: WindowInsetsCompat, runningAnimations: MutableList<WindowInsetsAnimationCompat>): WindowInsetsCompat {
@@ -298,6 +333,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
       }
 
       keyboardGuideline?.setGuidelineEnd(endingGuidelineEnd)
+      Log.d(TAG, "KeyboardInsetAnimator animated to $endingGuidelineEnd")
       animating = false
     }
   }
