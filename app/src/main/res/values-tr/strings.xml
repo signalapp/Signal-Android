@@ -2693,7 +2693,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Kamera Yönünü Değştir</string>
+    <string name="SwitchCameraButton__switch_camera_direction">Kamera yönünü değiştir</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Ekran paylaşımını görmek için kaydırın</string>
@@ -5273,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Duvar kağıdı önizlemesi</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Tüm sohbet renklerini değiştirmek ister misin?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Tüm arkaplanları değiştirmek ister misiniz?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Varsayılan rengi sıfırla</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Tüm renkleri sıfırla</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Varsayılan arkaplanı sıfırla</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Tüm duvar kağıtlarını sıfırla</string>
@@ -8589,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Kurtarma anahtarını gir</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Yedeklemeleri etkinleştirdiğinde kaydettiğin 64 karakterlik kodu gir.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Anahtarı mı unuttun?</string>
 
@@ -9016,9 +9016,9 @@
     <!-- First part of description explaining diagnostics help improve call quality -->
     <string name="CallQualitySheet__help_us_improve_description_prefix">Tanılama bilgilerini bize göndermen, arama kalitesini iyileştirmemize yardımcı olur. Göndermeden önce </string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">hata ayıklama günlüğünü görüntüleyebilirsin</string>
+    <string name="CallQualitySheet__view_your_debug_log">hata ayıklama günlüğünü</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> görüntüleyebilirsin.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Hata ayıklama günlüğünü paylaş</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9028,11 +9028,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Geri bildirimin için teşekkürler!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">Aramayla ilgili sorunlarım oldu</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">Arama harikaydı</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Geri bildirimin gönderilemedi.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">Tekrar dene</string>
 
@@ -9081,11 +9081,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Mesajların sabitlemesi tüm üyeler için kaldırılacaktır.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">Mesaj sabitlenemedi</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">Mesajın sabitlemesi kaldırılamadı</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">Mesajların sabitlemesi kaldırılamadı</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">Bağlantını kontrol edip tekrar dene.</string>
 

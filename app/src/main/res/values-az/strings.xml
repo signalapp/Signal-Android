@@ -2693,7 +2693,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">Kamera istiqamətini dəyiş</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Ekran paylaşımına baxmaq üçün sürüşdürün</string>
@@ -5273,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Divar kağızına önbaxış</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Bütün çat rənglərini silmək istəyirsiniz?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Bütün divar kağızlarını etibarsız etmək istəyirsiniz?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Standart rəngi sıfırla</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Bütün rəngləri sıfırla</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">İlkin divar kağızını sıfırla</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Bütün divar kağızlarını sıfırla</string>
@@ -6217,7 +6217,7 @@
     <string name="ManageDonationsFragment__donation_receipts">İanə qəbzləri</string>
     <string name="ManageDonationsFragment__badges">Nişanlar</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
+    <string name="ManageDonationsFragment__subscription_faq">İanə verənlər üçün TSS</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Digər metodlar</string>
     <!-- Preference label to launch badge gifting -->
@@ -8589,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Bərpa şifrənizi daxil edin</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Ehtiyat nüsxələri aktivləşdirərkən qeyd etdiyiniz 64 simvoldan ibarət kodu daxil edin.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Şifrəni unutdunuz?</string>
 
@@ -9014,11 +9014,11 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Təkmilləşməyimizə kömək edin</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Diaqnostika məlumatını bizə göndərməyiniz zəng keyfiyyətini yaxşılaşdırmağımıza kömək edir. Onu, </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Diaqnostika məlumatını bizə göndərməyiniz zəng keyfiyyətini yaxşılaşdırmağımıza kömək edir. Göndərməzdən əvvəl </string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">sazlama jurnalına baxın</string>
+    <string name="CallQualitySheet__view_your_debug_log">sazlama jurnalına</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> nəzər salın.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Sazlama jurnalını paylaşın</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9028,11 +9028,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Rəyiniz üçün təşəkkür edirik!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">Zənglə bağlı problemlər vardı</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">Zəng əla idi</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Rəyinizi göndərmək mümkün olmadı.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">Yenidən cəhd edin</string>
 
@@ -9081,11 +9081,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Bütün üzvlər üçün mesajlar sancaqdan çıxarılacaq.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">Mesajı sancaqlamaq mümkün olmadı</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">Mesajl sancaqlamadan çıxarmaq mümkün olmadı</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">Mesajları sancaqlamadan çıxarmaq mümkün olmadı</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">Bağlantınızı yoxlayıb yenidən cəhd edin.</string>
 

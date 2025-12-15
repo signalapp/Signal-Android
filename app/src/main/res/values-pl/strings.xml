@@ -374,7 +374,7 @@
     <!-- Title on dialog when quick restore qr code is scanned in system camera -->
     <string name="CommunicationActions__transfer_dialog_title">Przenieść konto na nowe urządzenie?</string>
     <!-- Message on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_message">Aby przenieść to konto na nowe urządzenie, dotknij opcji „Kontynuuj” i ponownie zeskanuj kod QR za pomocą aparatu w aplikacji Signal. Pamiętaj, aby skanować wyłącznie kody QR pochodzące bezpośrednio z aplikacji Signal.</string>
+    <string name="CommunicationActions__transfer_dialog_message">Aby przenieść to konto na nowe urządzenie, dotknij opcji „Kontynuuj” i ponownie zeskanuj kod QR za pomocą aparatu w aplikacji Signal. Upewnij się, że skanujesz kod QR pochodzący bezpośrednio z aplikacji Signal.</string>
     <string name="CommunicationActions__dont_transfer">Nie przenoś</string>
 
     <!-- ConfirmIdentityDialog -->
@@ -709,13 +709,13 @@
     <!-- Dialog option to keep message pin for 30 days -->
     <string name="ConversationFragment__30_days">30 dni</string>
     <!-- Dialog option to keep message pin forever -->
-    <string name="ConversationFragment__forever">Na zawsze</string>
+    <string name="ConversationFragment__forever">Zawsze</string>
     <!-- Dialog title when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_title">Podmienić najstarszą przypiętą wiadomość?</string>
+    <string name="ConversationFragment__replace_title">Zastąpić najstarszą przypiętą wiadomość?</string>
     <!-- Dialog body when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_body">Przypięcie wiadomości spowoduje podmianę najstarszej przypiętej wiadomości</string>
+    <string name="ConversationFragment__replace_body">Gdy przypniesz tę wiadomość, zastąpi ona dotychczas najstarszą przypiętą wiadomość</string>
     <!-- Dialog button when replacing the oldest pin -->
-    <string name="ConversationFragment__replace">Podmień</string>
+    <string name="ConversationFragment__replace">Zastąp</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Wskazówki dotyczące bezpieczeństwa</string>
@@ -9326,7 +9326,7 @@
     <!-- Bottom sheet title telling users to scan a qr code -->
     <string name="QuickRestoreInfoDialog__scan_qr_code">Zeskanuj kod QR</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
-    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Zeskanuj tym urządzeniem kod QR z urządzenia, na które chcesz przenieść konto</string>
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Zeskanuj tym urządzeniem kod QR wyświetlany na drugim urządzeniu, na które chcesz przenieść konto</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="QuickRestoreInfoDialog__okay">OK</string>
 
@@ -9411,7 +9411,7 @@
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
     <string name="PinnedMessage__s_pinned_a_message">%1$s przypina wiadomość</string>
     <!-- Message body when you pin a message -->
-    <string name="PinnedMessage__you_pinned_a_message">Przypięto wiadomość</string>
+    <string name="PinnedMessage__you_pinned_a_message">Przypinasz wiadomość</string>
     <!-- Button body to go to the pinned message -->
     <string name="PinnedMessage__go_to_message">Przejdź do wiadomości</string>
     <!-- Toast shown when a pinned message is not found -->
@@ -9433,13 +9433,13 @@
     <!-- Context menu option to unpin the message -->
     <string name="PinnedMessage__unpin_message">Odepnij</string>
     <!-- Context menu option to view all the message -->
-    <string name="PinnedMessage__view_all_messages">Zobacz wszystkie wiadomości</string>
+    <string name="PinnedMessage__view_all_messages">Wyświetl wszystkie wiadomości</string>
     <!-- Text to unpin all messages -->
     <string name="PinnedMessage__unpin_all_messages">Odepnij wszystkie wiadomości</string>
     <!-- Title of bottom sheet when pinning a disappearing message -->
     <string name="PinnedMessage__disappearing_message_title">Przypinanie znikających wiadomości</string>
     <!-- Body of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_body">Gdy upłynie czas znikającej wiadomości, zostanie ona odpięta i usunięta z czatu.</string>
+    <string name="PinnedMessage__disappearing_message_body">Gdy upłynie czas wyświetlania znikającej wiadomości, zostanie ona odpięta i usunięta z czatu.</string>
     <!-- Confirmation button for bottom sheet -->
     <string name="PinnedMessage__got_it">Rozumiem</string>
     <!-- Content description of disappearing timer icon -->
@@ -9451,7 +9451,7 @@
     <!-- Title of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_title">Odpiąć wszystkie wiadomości?</string>
     <!-- Body of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_body">Wiadomości zostaną odpięte dla wszystkich osób z grupy.</string>
+    <string name="PinnedMessage__unpin_body">Wiadomości zostaną odpięte u wszystkich osób w grupie.</string>
     <!-- Dialog title when failing to pin a message -->
     <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
     <!-- Dialog title when failing to unpin a message -->

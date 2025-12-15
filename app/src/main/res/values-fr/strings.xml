@@ -7501,7 +7501,7 @@
     <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Appel(s) manqué(s) pendant que le profil de notification était activé</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile_multiple">Appel(s) manqué(s) pendant que le profil de notification était activé</string>
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Appels manqués pendant que le profil de notification était activé</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Rejoindre</string>
     <!-- Displayed on Group Call button if user is in the call -->

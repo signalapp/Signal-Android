@@ -5273,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Προεπισκόπηση ταπετσαρίας</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Θέλεις να παρακάμψεις όλα τα χρώματα συνομιλιών;</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Θέλεις να παρακάμψεις όλες τις ταπετσαρίες;</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Επαναφορά προκαθορισμένου χρώματος</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Επαναφορά όλων των χρωμάτων</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Επαναφορά προκαθορισμένης ταπετσαρίας</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Επαναφορά όλων των ταπετσαριών</string>
@@ -8589,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Γράψε το κλειδί ανάκτησής σου</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Συμπλήρωσε τον κωδικό 64 χαρακτήρων που κατέγραψες όταν ενεργοποίησες τα αντίγραφα ασφαλείας.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Ξέχασες το κλειδί;</string>
 
@@ -9018,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">δεις το αρχείο καταγραφής αποσφαλμάτωσης</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> πριν από την υποβολή.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Κοινή χρήση αρχείου καταγραφής αποσφαλμάτωσης</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9028,11 +9028,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Ευχαριστούμε για τα σχόλιά σου!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">Είχα προβλήματα με την κλήση</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">Η κλήση ήταν εξαιρετική</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Η αποστολή των σχολίων σου απέτυχε.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">Δοκίμασε ξανά</string>
 
@@ -9081,11 +9081,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Τα καρφιτσωμένα μηνύματα θα καταργηθούν για όλα τα μέλη.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">Δεν ήταν δυνατό το καρφίτσωμα μηνύματος</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">Δεν ήταν δυνατή η κατάργηση καρφιτσώματος μηνύματος</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">Δεν ήταν δυνατή η κατάργηση καρφιτσώματος μηνυμάτων</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">Έλεγξε τη σύνδεσή σου και δοκίμασε πάλι.</string>
 

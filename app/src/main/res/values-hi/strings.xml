@@ -4482,7 +4482,7 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">पोल समाप्त करें</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">पिन</string>
+    <string name="conversation_selection__menu_pin_message">पिन करें</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">अनपिन करें</string>
 
@@ -6217,7 +6217,7 @@
     <string name="ManageDonationsFragment__donation_receipts">दान की रसीदें</string>
     <string name="ManageDonationsFragment__badges">बैज</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">दानकर्ता से जुड़े अक्सर पूछे जाने वाले प्रश्न</string>
+    <string name="ManageDonationsFragment__subscription_faq">डोनर से जुड़े अक्सर पूछे जाने वाले सवाल</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">देने के अन्य तरीके</string>
     <!-- Preference label to launch badge gifting -->
@@ -7501,7 +7501,7 @@
     <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">नोटिफ़िकेशन प्रोफ़ाइल चालू होने पर चूक गया</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile_multiple">नोटिफ़िकेशन प्रोफ़ाइल चालू होने पर चूक गया</string>
+    <string name="CallLogAdapter__missed_notification_profile_multiple">नोटिफ़िकेशन प्रोफ़ाइल चालू होने से मिस हुईं</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">जुड़ें</string>
     <!-- Displayed on Group Call button if user is in the call -->

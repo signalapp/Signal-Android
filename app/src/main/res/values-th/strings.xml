@@ -5143,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">ภาพตัวอย่างพื้นหลัง</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">คุณต้องการยกเลิกสีแชททั้งหมดใช่หรือไม่</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">คุณต้องการยกเลิกภาพพื้นหลังทั้งหมดใช่หรือไม่?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">รีเซ็ตสีเริ่มต้น</string>
     <string name="ChatWallpaperFragment__reset_all_colors">รีเซ็ตสีทั้งหมด</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">รีเซ็ตภาพพื้นหลังเริ่มต้น</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">รีเซ็ตภาพพื้นหลังทั้งหมด</string>
@@ -8408,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">ป้อนกุญแจกู้คืนของคุณ</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ใส่รหัส 64 ตัวที่คุณเคยบันทึกไว้ตอนเปิดใช้งานการสำรองข้อมูล</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">ฉันลืมกุญแจ</string>
 
@@ -8832,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">ดูบันทึกดีบักของคุณ</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> ก่อนส่งข้อมูล</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">แชร์บันทึกดีบัก</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8842,11 +8842,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">ขอบคุณสำหรับความคิดเห็น</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">การโทรมีปัญหา</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">การโทรราบรื่นดี</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">ส่งข้อมูลของคุณไม่สำเร็จ</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">ลองอีกครั้ง</string>
 
@@ -8895,11 +8895,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">ระบบจะเลิกปักหมุดข้อความสำหรับสมาชิกทุกคน</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">ไม่สามารถปักหมุดข้อความ</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">ไม่สามารถเลิกปักหมุดข้อความ</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">ไม่สามารถเลิกปักหมุดข้อความ</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">กรุณาตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง</string>
 

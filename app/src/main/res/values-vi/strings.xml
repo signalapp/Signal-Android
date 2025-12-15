@@ -2605,7 +2605,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">Đổi hướng camera</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Vuốt để xem chia sẻ màn hình</string>
@@ -5143,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Xem trước ảnh nền</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Bạn có muốn ghi đè tất cả các màu cuộc trò chuyện?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Bạn có muốn ghi đè tất cả các màu cuộc trò chuyện?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Đặt lại màu mặc định</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Đặt lại tất cả màu</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Đặt lại hình nền mặc định</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Đặt lại tất cả hình nền</string>
@@ -8408,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Nhập mã khóa khôi phục</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Nhập mã 64 ký tự mà bạn đã ghi lại khi bật tính năng sao lưu.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Quên mã khóa?</string>
 
@@ -8832,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">xem nhật ký gỡ lỗi của bạn</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> trước khi gửi.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Chia sẻ nhật ký gỡ lỗi</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8842,11 +8842,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Cảm ơn góp ý của bạn!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">Tôi có vấn đề với cuộc gọi</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">Cuộc gọi rất tốt</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Không gửi được góp ý của bạn.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">Thử lại</string>
 
@@ -8895,11 +8895,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Tin nhắn sẽ được bỏ ghim đối với tất cả thành viên.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">Không thể ghim tin nhắn</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">Không thể bỏ ghim tin nhắn</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">Không thể bỏ ghim tin nhắn</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">Kiểm tra kết nối của bạn và thử lại.</string>
 

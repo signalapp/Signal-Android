@@ -5273,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">ওয়ালপেপার প্রিভিউ</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">আপনি কি সবগুলো চ্যাটের রং বাতিল করতে চান?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">আপনি কি সবগুলি ওয়ালপেপার বাতিল করতে চান?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">ডিফল্ট রং রিসেট করুন</string>
     <string name="ChatWallpaperFragment__reset_all_colors">সব রঙ রিসেট করুন</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">ডিফল্ট ওয়ালপেপার পুনরায় সেট করুন</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">সবকটি ওয়ালপেপার রিসেট করুন</string>
@@ -8589,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">আপনার পুনরুদ্ধার \'কি\' লিখুন</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ব্যাকআপ চালু করার সময় আপনি যে 64-ক্যারেক্টারের কোডটি রেকর্ড করেছিলেন তা লিখুন।</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">\'কি\' ভুলে গেছেন?</string>
 
@@ -9016,9 +9016,9 @@
     <!-- First part of description explaining diagnostics help improve call quality -->
     <string name="CallQualitySheet__help_us_improve_description_prefix">আপনার ডায়াগনস্টিকসের তথ্য আমাদের পাঠালে আমাদের পক্ষে কলের মান উন্নত করা সম্ভব। আপনি পারেন </string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">আপনার ডিবাগ লগ দেখুন</string>
+    <string name="CallQualitySheet__view_your_debug_log">আপনার ডিবাগ লগ দেখতে</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> জমা দেওয়ার আগে।</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">ডিবাগ লগ শেয়ার করুন</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9028,11 +9028,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">আপনার ফিডব্যাকের জন্য ধন্যবাদ!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">কলটিতে আমার সমস্যা হয়েছে</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">কলটি দারুণ ছিলো</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">আপনার ফিডব্যাক পাঠানো যায়নি।</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">আবার চেষ্টা করুন</string>
 
@@ -9081,11 +9081,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">সকল সদস্যের জন্য মেসেজ আনপিন করা হবে।</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">মেসেজ পিন করা যায়নি</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">মেসেজ আনপিন করা যায়নি</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">মেসেজ আনপিন করা যায়নি</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
 

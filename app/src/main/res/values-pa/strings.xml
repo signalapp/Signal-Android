@@ -2693,7 +2693,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">ਕੈਮਰੇ ਦੀ ਦਿਸ਼ਾ ਬਦਲੋ</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">ਸਾਂਝੀ ਕੀਤੀ ਸਕਰੀਨ ਨੂੰ ਵੇਖਣ ਲਈ ਸਵਾਈਪ ਕਰੋ</string>
@@ -5273,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">ਵਾਲਪੇਪਰ ਦੀ ਝਲਕ</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">ਕੀ ਤੁਸੀਂ ਸਾਰੇ ਚੈਟ ਰੰਗਾਂ ਨੂੰ ਰੱਦ ਕਰਨਾ ਚਾਹੋਗੇ?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">ਕੀ ਤੁਸੀਂ ਸਾਰੇ ਵਾਲਪੇਪਰਾਂ ਨੂੰ ਓਵਰਰਾਈਡ ਕਰਨਾ ਚਾਹੋਗੇ?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">ਡਿਫੌਲਟ ਰੰਗ ਰੀਸੈੱਟ ਕਰੋ</string>
     <string name="ChatWallpaperFragment__reset_all_colors">ਸਾਰੇ ਰੰਗ ਰੀਸੈੱਟ ਕਰੋ</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">ਮੂਲ ਵਾਲਪੇਪਰ ਰੀਸੈੱਟ ਕਰੋ</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">ਸਾਰੇ ਵਾਲਪੇਪਰ ਰੀਸੈੱਟ ਕਰੋ</string>
@@ -6217,7 +6217,7 @@
     <string name="ManageDonationsFragment__donation_receipts">ਦਾਨ ਦੀਆਂ ਰਸੀਦਾਂ</string>
     <string name="ManageDonationsFragment__badges">ਬੈਜ</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
+    <string name="ManageDonationsFragment__subscription_faq">ਦਾਨੀਆਂ ਵੱਲੋਂ ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">ਦਾਨ ਦੇਣ ਦੇ ਹੋਰ ਤਰੀਕੇ</string>
     <!-- Preference label to launch badge gifting -->
@@ -8589,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਦਰਜ ਕਰੋ</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ਬੈਕਅੱਪ ਚਾਲੂ ਕਰਦੇ ਸਮੇਂ ਰਿਕਾਰਡ ਕੀਤਾ ਗਿਆ 64-ਅੱਖਰਾਂ ਵਾਲਾ ਕੋਡ ਦਰਜ ਕਰੋ।</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">ਕੁੰਜੀ ਭੁੱਲ ਗਏ ਹੋ?</string>
 
@@ -9014,11 +9014,11 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">ਸੁਧਾਰ ਕਰਨ ਵਿੱਚ ਸਾਡੀ ਮਦਦ ਕਰੋ</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">ਸਾਨੂੰ ਆਪਣੀ ਡਾਇਗਨੌਸਟਿਕਸ ਜਾਣਕਾਰੀ ਭੇਜਣ ਨਾਲ ਤੁਸੀਂ ਸਾਨੂੰ ਕਾਲ ਦੀ ਕੁਆਲਿਟੀ ਸੁਧਾਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹੋ। ਤੁਸੀਂ </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">ਸਾਨੂੰ ਆਪਣੀ ਡਾਇਗਨੌਸਟਿਕਸ ਜਾਣਕਾਰੀ ਭੇਜਣ ਨਾਲ ਤੁਸੀਂ ਸਾਨੂੰ ਕਾਲ ਦੀ ਕੁਆਲਿਟੀ ਸੁਧਾਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹੋ। ਤੁਸੀਂ ਦਰਜ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ </string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">ਦਰਜ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣਾ</string>
+    <string name="CallQualitySheet__view_your_debug_log">ਆਪਣੀ ਡੀਬੱਗ ਲੌਗ ਦੇਖ</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> ਸਕਦੇ ਹੋ।</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">ਡੀਬੱਗ ਲੌਗ ਸਾਂਝਾ ਕਰੋ</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9028,11 +9028,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">ਤੁਹਾਡੇ ਫੀਡਬੈਕ ਲਈ ਧੰਨਵਾਦ!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">ਮੈਨੂੰ ਕਾਲ ਵਿੱਚ ਸਮੱਸਿਆਵਾਂ ਆ ਰਹੀਆਂ ਸਨ</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">ਕਾਲ ਬਹੁਤ ਵਧੀਆ ਸੀ</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">ਤੁਹਾਡਾ ਫੀਡਬੈਕ ਭੇਜਣਾ ਅਸਫਲ ਰਿਹਾ।</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
 
@@ -9081,11 +9081,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">ਸਾਰੇ ਮੈਂਬਰਾਂ ਲਈ ਸੁਨੇਹੇ ਅਨਪਿੰਨ ਕਰ ਦਿੱਤੇ ਜਾਣਗੇ।</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">ਸੁਨੇਹੇ ਨੂੰ ਪਿੰਨ ਨਹੀਂ ਕਰ ਸਕੇ</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">ਸੁਨੇਹੇ ਨੂੰ ਅਨਪਿੰਨ ਨਹੀਂ ਕਰ ਸਕੇ</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">ਸੁਨੇਹਿਆਂ ਨੂੰ ਅਨਪਿੰਨ ਨਹੀਂ ਕਰ ਸਕੇ</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
 

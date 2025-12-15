@@ -2605,7 +2605,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">ကင်မရာ ဦးတည်ချက်ကို ပြောင်းရန်</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">စခရင် မျှဝေမှုကို ကြည့်ရန် ပွတ်ဆွဲပါ</string>
@@ -5143,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">နောက်ခံပုံ ကြိုကြည့်ခြင်း</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">ချက်(တ်) အရောင်များအားလုံးကို ပယ်ဖျက်လိုပါသလား။</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">နောက်ခံပုံများအားလုံးကို ပယ်ဖျက်လိုပါသလား။</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">ပုံသေ အရောင်အတိုင်း ပြန်သတ်မှတ်ရန်</string>
     <string name="ChatWallpaperFragment__reset_all_colors">အရောင်အားလုံးကို ပြန်သတ်မှတ်ရန်</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">ပုံသေ နောက်ခံပုံအတိုင်း ပြန်သတ်မှတ်ရန်</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">နောက်ခံပုံများအားလုံးကို ပြန်တပ်ဆင်ပြောင်းလဲမယ်</string>
@@ -6072,7 +6072,7 @@
     <string name="ManageDonationsFragment__donation_receipts">လှူဒါန်းမှု ပြေစာများ</string>
     <string name="ManageDonationsFragment__badges">ဘဲ့ဂျ်များ</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
+    <string name="ManageDonationsFragment__subscription_faq">လှူဒါန်းသူ မေးဖြေများ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">အခြားလှူဒါန်းမှုနည်းလမ်းများ</string>
     <!-- Preference label to launch badge gifting -->
@@ -8408,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">သင့် ပြန်လည်ရယူရေးကီးကို ထည့်ပါ</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ဘက်ခ်အပ်ကို ဖွင့်ထားသောအခါတွင် သင်မှတ်ထားသော စာလုံး 64 လုံးကုဒ်ကို ထည့်ပါ။</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">ကီးမေ့နေပြီလား။</string>
 
@@ -8832,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">ပြစ်ချက်မှတ်တမ်းကို ကြည့်ရှု</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> နိုင်သည်။</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">ပြစ်ချက်မှတ်တမ်း မျှဝေရန်</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8842,11 +8842,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">သင့်အကြံပြုချက်အတွက် ကျေးဇူးတင်ပါသည်။</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">ဖုန်းခေါ်ဆိုမှုတွင် ပြဿနာများရှိခဲ့သည်</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">ဖုန်းခေါ်ဆိုမှု ကောင်းမွန်ပါသည်</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">သင့်တုံ့ပြန်ချက် ပေးပို့မှု မအောင်မြင်ပါ။</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">ထပ်မံကြိုးစားမည်</string>
 
@@ -8895,11 +8895,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">အဖွဲ့ဝင်အားလုံးအတွက် မက်ဆေ့ချ်များကို ပင်ဖြုတ်လိုက်ပါမည်။</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">မက်ဆေ့ချ်ကို ပင်တွဲ၍မရပါ</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">မက်ဆေ့ချ်ကို ပင်ဖြုတ်၍မရပါ</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">မက်ဆေ့ချ်ကို ပင်ဖြုတ်၍မရပါ</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
 

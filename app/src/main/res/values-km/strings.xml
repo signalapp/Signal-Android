@@ -2605,7 +2605,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">ប្តូរទិសដៅកាមេរ៉ា</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">អូស ដើម្បីបង្ហាញអេក្រង់ចែករំលែក</string>
@@ -5143,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">ពិនិត្យផ្ទៃខាងក្រោយ</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">តើអ្នកចង់លុបពណ៌តំណាងការសន្ទនាទាំងអស់មែនទេ?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">តើអ្នកចង់លុបផ្ទៃខាងក្រោយទាំងអស់មែនទេ?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">កំណត់ពណ៌លំនាំដើមឡើងវិញ</string>
     <string name="ChatWallpaperFragment__reset_all_colors">កំណត់ពណ៌ទាំងអស់ឡើងវិញ</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">កំណត់​ផ្ទាំងពីក្រោយ​លំនាំដើមឡើងវិញ</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">កំណត់​ផ្ទាំងពីក្រោយ​ឡើងវិញទាំងអស់</string>
@@ -6072,7 +6072,7 @@
     <string name="ManageDonationsFragment__donation_receipts">បង្កាន់ដៃបរិច្ចាគ</string>
     <string name="ManageDonationsFragment__badges">ស្លាក</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
+    <string name="ManageDonationsFragment__subscription_faq">សំណួរសួរញឹកញាប់អំពីម្ចាស់ជំនួយ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">វិធីផ្សេងទៀតក្នុងការផ្តល់ជូន</string>
     <!-- Preference label to launch badge gifting -->
@@ -8408,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">បញ្ចូលសោស្តាររបស់អ្នក</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">បញ្ចូលលេខកូដ 64 តួអក្សរដែលអ្នកបានកត់ត្រានៅពេលអ្នកបើកការបម្រុងទុក។</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">ភ្លេចសោ?</string>
 
@@ -8832,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">មើលកំណត់ត្រាបញ្ហារបស់អ្នក</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> មុនពេលដាក់បញ្ជូន</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">ចែករំលែកកំណត់ត្រាបញ្ហា</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8842,11 +8842,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">សូមអរគុណចំពោះមតិកែលម្អរបស់អ្នក!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">ខ្ញុំមានបញ្ហាជាមួយការហៅទូរសព្ទ</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">ការហៅទូរសព្ទនោះពិតជាអស្ចារ្យណាស់</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">មិនអាចផ្ញើមតិកែលម្អរបស់អ្នកបានទេ។</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">ព្យាយាមម្តងទៀត</string>
 
@@ -8895,11 +8895,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">សារនឹងឈប់ខ្ទាស់សម្រាប់សមាជិកទាំងអស់។</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">មិនអាចខ្ទាស់សារទេ</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">មិនអាចឈប់ខ្ទាស់សារបានទេ</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">មិនអាចឈប់ខ្ទាស់សារបានទេ</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
 
