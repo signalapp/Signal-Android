@@ -7496,7 +7496,7 @@
 
     <!-- Call Log -->
     <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
-    <string name="CallLogAdapter__s_dot_s">%s &#183; %s</string>
+    <string name="CallLogAdapter__s_dot_s">%1$s &#183; %2$s</string>
     <!-- Displayed for incoming calls -->
     <string name="CallLogAdapter__incoming">Incoming</string>
     <!-- Displayed for outgoing calls -->
