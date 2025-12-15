@@ -995,7 +995,7 @@ public class SignalServiceMessageSender {
     DataMessage.Builder dataMessage = createDataMessage(message);
 
     if (dataMessage.body != null && Utf8.size(dataMessage.body) > 2048) {
-      throw new ContentTooLargeException(Utf8.size(dataMessage.body));
+      throw new ContentTooLargeException(Utf8.size(dataMessage.body), "UTF-8 size of the data message body was over 2048 bytes!");
     }
 
     return enforceMaxContentSize(container.dataMessage(dataMessage.build()).build());
@@ -1993,7 +1993,7 @@ public class SignalServiceMessageSender {
                                         boolean story)
       throws UntrustedIdentityException, IOException
   {
-    enforceMaxContentSize(content);
+    enforceMaxEnvelopeContentSize(content);
 
     long startTime = System.currentTimeMillis();
 
@@ -2111,7 +2111,7 @@ public class SignalServiceMessageSender {
       throws IOException
   {
     Log.d(TAG, "[" + timestamp + "] Sending to " + recipients.size() + " recipients.");
-    enforceMaxContentSize(content);
+    enforceMaxEnvelopeContentSize(content);
 
     long                                startTime                  = System.currentTimeMillis();
     List<Observable<SendMessageResult>> singleResults              = new LinkedList<>();
@@ -2203,7 +2203,7 @@ public class SignalServiceMessageSender {
                                                   int retryCount)
   {
     long startTime = System.currentTimeMillis();
-    enforceMaxContentSize(content);
+    enforceMaxEnvelopeContentSize(content);
 
     Single<OutgoingPushMessageList> messagesSingle = Single.fromCallable(() -> {
       OutgoingPushMessageList messages = getEncryptedMessages(recipient, sealedSenderAccess, timestamp, content, online, urgent, story);
@@ -2893,24 +2893,95 @@ public class SignalServiceMessageSender {
     return addresses;
   }
 
-  private EnvelopeContent enforceMaxContentSize(EnvelopeContent content) {
+  private void enforceMaxEnvelopeContentSize(EnvelopeContent content) {
     int size = content.size();
 
     if (maxEnvelopeSize > 0 && size > maxEnvelopeSize) {
-      throw new ContentTooLargeException(size);
+      String message;
+      if (content.getContent().isEmpty()) {
+        message = "Empty content";
+      } else {
+        message = buildContentTooLargeBreadcrumbs(content.getContent().get());
+      }
+      throw new ContentTooLargeException(size, message);
     }
-
-    return content;
   }
 
   private Content enforceMaxContentSize(Content content) {
     int size = content.encode().length;
 
     if (maxEnvelopeSize > 0 && size > maxEnvelopeSize) {
-      throw new ContentTooLargeException(size);
+      throw new ContentTooLargeException(size, buildContentTooLargeBreadcrumbs(content));
     }
 
     return content;
+  }
+
+  private String buildContentTooLargeBreadcrumbs(Content content) {
+    StringBuilder message = new StringBuilder();
+
+    if (content.dataMessage != null) {
+      message.append("Data message;");
+      if (content.dataMessage.payment != null) {
+        message.append("Payment;");
+      }
+      if (!content.dataMessage.attachments.isEmpty()) {
+        message.append("Attachments(").append(content.dataMessage.attachments.size()).append(");");
+      }
+      if (!content.dataMessage.contact.isEmpty()) {
+        message.append("Contacts(").append(content.dataMessage.contact.size()).append(");");
+      }
+      if (!content.dataMessage.bodyRanges.isEmpty()) {
+        message.append("Contacts(").append(content.dataMessage.bodyRanges.size()).append(");");
+      }
+      if (content.dataMessage.quote != null) {
+        if (content.dataMessage.quote.text != null) {
+          message.append("Quote(").append(content.dataMessage.quote.text.length()).append(");");
+        } else {
+          message.append("Quote(No text);");
+        }
+      }
+    }
+
+    if (content.syncMessage != null) {
+      message.append("Sync message;");
+
+      if (content.syncMessage.sent != null) {
+        if (content.syncMessage.sent.storyMessage != null) {
+          message.append("StoryMessage(").append(content.syncMessage.sent.storyMessageRecipients.size()).append(");");
+        }
+        if (!content.syncMessage.sent.storyMessageRecipients.isEmpty()) {
+          message.append("StoryRecipients(").append(content.syncMessage.sent.storyMessageRecipients.size()).append(");");
+        }
+        if (content.syncMessage.blocked != null) {
+          message.append("Blocked-AciString(").append(content.syncMessage.blocked.acis.size()).append(");");
+          message.append("Blocked-AciBinary(").append(content.syncMessage.blocked.acisBinary.size()).append(");");
+          message.append("Blocked-GroupIds(").append(content.syncMessage.blocked.groupIds.size()).append(");");
+          message.append("Blocked-Numbers(").append(content.syncMessage.blocked.numbers.size()).append(");");
+        }
+        if (content.syncMessage.outgoingPayment != null) {
+          message.append("OutgoingPayment");
+        }
+        if (content.syncMessage.deleteForMe != null) {
+          message.append("DeleteForMe-Messages(").append(content.syncMessage.deleteForMe.messageDeletes.size()).append(");");
+          message.append("DeleteForMe-Attachments(").append(content.syncMessage.deleteForMe.attachmentDeletes.size()).append(");");
+          message.append("DeleteForMe-Conversations(").append(content.syncMessage.deleteForMe.conversationDeletes.size()).append(");");
+        }
+        if (!content.syncMessage.read.isEmpty()) {
+          message.append("Read(").append(content.syncMessage.read.size()).append(");");
+        }
+        if (!content.syncMessage.viewed.isEmpty()) {
+          message.append("Viewed(").append(content.syncMessage.read.size()).append(");");
+        }
+      }
+    }
+
+    if (content.receiptMessage != null) {
+      message.append("ReceiptMessage(").append(content.receiptMessage.timestamp.size()).append(");");
+      message.append("ReceiptMessage(").append(content.receiptMessage.type.getValue()).append(");");
+    }
+
+    return message.toString();
   }
 
   public interface EventListener {
