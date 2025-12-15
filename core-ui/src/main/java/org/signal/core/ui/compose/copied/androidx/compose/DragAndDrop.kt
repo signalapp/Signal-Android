@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.zIndex
@@ -127,10 +128,12 @@ internal constructor(
     draggingItemInitialOffset = 0
   }
 
-  internal fun onDrag(offset: Offset) {
+  internal fun onDrag(offset: Offset, change: PointerInputChange) {
     if ((includeHeader && draggingItemIndex == 0) ||
       (includeFooter && draggingItemIndex == (state.layoutInfo.totalItemsCount - 1))
     ) return
+
+    change.consume()
 
     draggingItemDraggedDelta += offset.y
 
@@ -203,8 +206,7 @@ fun Modifier.dragContainer(
   return pointerInput(dragDropState) {
     detectDragGestures(
       onDrag = { change, offset ->
-        change.consume()
-        dragDropState.onDrag(offset = offset)
+        dragDropState.onDrag(offset = offset, change = change)
       },
       onDragStart = { offset -> dragDropState.onDragStart(offset) },
       onDragEnd = { dragDropState.onDragEnd() },
