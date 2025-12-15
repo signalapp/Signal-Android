@@ -40,6 +40,7 @@ class AudioIndicatorView(context: Context, attrs: AttributeSet?) : FrameLayout(c
   private var sideBarAnimation: ValueAnimator? = null
 
   private var showAudioLevel = false
+  private var lastMicrophoneEnabled: Boolean = true
   private var lastAudioLevel: CallParticipant.AudioLevel? = null
 
   init {
@@ -90,7 +91,15 @@ class AudioIndicatorView(context: Context, attrs: AttributeSet?) : FrameLayout(c
       invalidate()
     }
 
+    lastMicrophoneEnabled = microphoneEnabled
     lastAudioLevel = level
+  }
+
+  override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+    super.onSizeChanged(w, h, oldw, oldh)
+    if (h > 0 && oldh == 0) {
+      bind(lastMicrophoneEnabled, lastAudioLevel)
+    }
   }
 
   private fun createAnimation(current: ValueAnimator?, finalHeight: Float): ValueAnimator {
