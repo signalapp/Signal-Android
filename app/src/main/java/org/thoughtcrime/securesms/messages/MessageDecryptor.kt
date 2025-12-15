@@ -156,6 +156,15 @@ object MessageDecryptor {
       val cipherResult: SignalServiceCipherResult? = cipher.decrypt(envelope, serverDeliveredTimestamp)
       val endTimeNanos = System.nanoTime()
 
+      val envelope = if (cipherResult?.metadata?.sourceServiceId != null) {
+        envelope.newBuilder()
+          .sourceServiceId(cipherResult.metadata.sourceServiceId.toString())
+          .sourceDevice(cipherResult.metadata.sourceDeviceId)
+          .build()
+      } else {
+        envelope
+      }
+
       if (cipherResult == null) {
         Log.w(TAG, "${logPrefix(envelope)} Decryption resulted in a null result!", true)
         return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
