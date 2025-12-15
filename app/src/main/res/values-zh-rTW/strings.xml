@@ -5143,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">壁紙預覽</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">你要覆蓋所有聊天顏色嗎？</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">你要覆蓋所有壁紙嗎？</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">重設預設色彩</string>
     <string name="ChatWallpaperFragment__reset_all_colors">重設所有顏色</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">重設預設壁紙</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">重設所有壁紙</string>
@@ -8408,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">輸入你的恢復金鑰</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">輸入啟用備份時記錄的 64 位字元碼。</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">忘記了備份金鑰？</string>
 
@@ -8832,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">檢視你的除錯日誌</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> 。</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">分享除錯日誌</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8842,11 +8842,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">感謝你的意見！</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">我在通話中遇到問題</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">這次通話很棒</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">你的回饋傳送失敗。</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">再試一次</string>
 
@@ -8895,11 +8895,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">所有成員的訊息都會被取消釘選。</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">無法釘選訊息</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">無法取消釘選訊息</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">無法取消釘選訊息</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">請檢查你的網路連接並再試一次。</string>
 
