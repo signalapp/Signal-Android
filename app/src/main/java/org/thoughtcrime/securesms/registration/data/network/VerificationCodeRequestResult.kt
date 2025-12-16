@@ -75,6 +75,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
             is RequestVerificationCodeRateLimitException -> {
               RequestVerificationCodeRateLimited(
                 cause = cause,
+                allowedToRequestCode = cause.sessionMetadata.metadata.allowedToRequestCode,
                 nextSmsTimestamp = cause.sessionMetadata.deriveTimestamp(delta = cause.sessionMetadata.metadata.nextSms?.seconds),
                 nextCallTimestamp = cause.sessionMetadata.deriveTimestamp(delta = cause.sessionMetadata.metadata.nextCall?.seconds)
               )
@@ -111,8 +112,9 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
 
   class MalformedRequest(cause: Throwable) : VerificationCodeRequestResult(cause)
 
-  class RequestVerificationCodeRateLimited(cause: Throwable, val nextSmsTimestamp: Duration, val nextCallTimestamp: Duration) : VerificationCodeRequestResult(cause) {
-    val willBeAbleToRequestAgain: Boolean = nextSmsTimestamp > 0.seconds || nextCallTimestamp > 0.seconds
+  class RequestVerificationCodeRateLimited(cause: Throwable, val allowedToRequestCode: Boolean, val nextSmsTimestamp: Duration, val nextCallTimestamp: Duration) : VerificationCodeRequestResult(cause) {
+    val willBeAbleToRequestAgain: Boolean = allowedToRequestCode && (nextSmsTimestamp > 0.seconds || nextCallTimestamp > 0.seconds)
+
     fun log(now: Duration = System.currentTimeMillis().milliseconds): String {
       val sms = if (nextSmsTimestamp > 0.seconds) {
         "${(nextSmsTimestamp - now).inWholeSeconds}s"
