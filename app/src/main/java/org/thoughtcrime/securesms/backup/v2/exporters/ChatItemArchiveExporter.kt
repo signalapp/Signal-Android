@@ -1133,7 +1133,7 @@ private fun BackupMessageRecord.toRemoteStandardMessage(exportState: ExportState
  * you should set it as the value for [StandardMessage.longText].
  */
 private fun BackupMessageRecord.getBodyText(attachments: List<DatabaseAttachment>?): Pair<String, DatabaseAttachment?> {
-  val longTextAttachment = attachments?.firstOrNull { it.contentType == "text/x-signal-plain" }
+  val longTextAttachment = attachments?.firstOrNull { it.contentType == "text/x-signal-plain" && !it.quote }
   if (longTextAttachment == null) {
     return this.body.emptyIfNull() to null
   }
