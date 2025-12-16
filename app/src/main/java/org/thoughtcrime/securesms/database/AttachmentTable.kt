@@ -2547,7 +2547,7 @@ class AttachmentTable(
   ): Boolean {
     // If we're starting now where another attachment finished, then it means we're forwarding an attachment.
     if (newHashStart == potentialMatchHashEnd) {
-      // Quotes don't get transcoded or anything and are just a reference to the original attachment, so as long as the hashes match we're fine
+      // Quotes don't get transcoded or anything, so as long as the hashes match we're fine
       if (newIsQuote) {
         return true
       }
@@ -2656,7 +2656,8 @@ class AttachmentTable(
         dataStream = thumbnail.data.inputStream(),
         attachment = attachment,
         quote = true,
-        quoteTargetContentType = attachment.contentType
+        quoteTargetContentType = attachment.contentType,
+        attachmentIsFinalized = true
       )
     }
 
@@ -2921,7 +2922,14 @@ class AttachmentTable(
       throw MmsException(e)
     }
 
-    return insertAttachmentWithData(messageId, dataStream, attachment, quote = false, quoteTargetContentType = null)
+    return insertAttachmentWithData(
+      messageId = messageId,
+      dataStream = dataStream,
+      attachment = attachment,
+      quote = false,
+      quoteTargetContentType = null,
+      attachmentIsFinalized = attachment.contentType == MediaUtil.LONG_TEXT
+    )
   }
 
   /**
@@ -2930,7 +2938,7 @@ class AttachmentTable(
    * @param dataStream The stream to read the data from. This stream will be closed by this method.
    */
   @Throws(MmsException::class)
-  private fun insertAttachmentWithData(messageId: Long, dataStream: InputStream, attachment: Attachment, quote: Boolean, quoteTargetContentType: String?): AttachmentId {
+  private fun insertAttachmentWithData(messageId: Long, dataStream: InputStream, attachment: Attachment, quote: Boolean, quoteTargetContentType: String?, attachmentIsFinalized: Boolean = false): AttachmentId {
     // To avoid performing long-running operations in a transaction, we write the data to an independent file first in a way that doesn't rely on db state.
     val fileWriteResult: DataFileWriteResult = writeToDataFile(newDataFile(context), dataStream, attachment.transformProperties ?: TransformProperties.empty())
     Log.d(TAG, "[insertAttachmentWithData] Wrote data to file: ${fileWriteResult.file.absolutePath} (MessageId: $messageId, ${attachment.uri})")
@@ -2990,6 +2998,9 @@ class AttachmentTable(
         contentValues.put(DATA_SIZE, fileWriteResult.length)
         contentValues.put(DATA_RANDOM, fileWriteResult.random)
         contentValues.put(DATA_HASH_START, fileWriteResult.hash)
+        if (attachmentIsFinalized) {
+          contentValues.put(DATA_HASH_END, fileWriteResult.hash)
+        }
       }
 
       // Our hashMatch already represents a transform-compatible attachment with the most recent upload timestamp. We just need to make sure it has all of the
@@ -3072,7 +3083,7 @@ class AttachmentTable(
   }
 
   fun insertWallpaper(dataStream: InputStream): AttachmentId {
-    return insertAttachmentWithData(WALLPAPER_MESSAGE_ID, dataStream, WallpaperAttachment(), quote = false, quoteTargetContentType = null).also { id ->
+    return insertAttachmentWithData(WALLPAPER_MESSAGE_ID, dataStream, WallpaperAttachment(), quote = false, quoteTargetContentType = null, attachmentIsFinalized = true).also { id ->
       createRemoteKeyIfNecessary(id)
     }
   }
