@@ -208,7 +208,7 @@ object StorageSyncHelper {
     }
   }
 
-  private fun getNotificationProfileManualOverride(): AccountRecord.NotificationProfileManualOverride {
+  private fun getNotificationProfileManualOverride(): AccountRecord.NotificationProfileManualOverride? {
     val profile = SignalDatabase.notificationProfiles.getProfile(SignalStore.notificationProfile.manuallyEnabledProfile)
     return if (profile != null && profile.deletedTimestampMs == 0L) {
       Log.i(TAG, "Setting a manually enabled profile ${profile.id}")
@@ -226,7 +226,7 @@ object StorageSyncHelper {
         disabledAtTimestampMs = SignalStore.notificationProfile.manuallyDisabledAt
       )
     } else {
-      AccountRecord.NotificationProfileManualOverride()
+      null
     }
   }
 
