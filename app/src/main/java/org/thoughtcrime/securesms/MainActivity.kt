@@ -1031,7 +1031,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
   }
 
   private fun updateNotificationProfileStatus(notificationProfiles: List<NotificationProfile>) {
-    val activeProfile = NotificationProfiles.getActiveProfile(notificationProfiles)
+    val activeProfile = NotificationProfiles.getActiveProfile(profiles = notificationProfiles, shouldSync = true)
     if (activeProfile != null) {
       if (activeProfile.id != SignalStore.notificationProfile.lastProfilePopup) {
         val view = findViewById<ViewGroup>(android.R.id.content)
