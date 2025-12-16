@@ -9,6 +9,7 @@ import android.database.Cursor
 import okio.ByteString.Companion.toByteString
 import org.json.JSONArray
 import org.json.JSONException
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
 import org.signal.core.util.Hex
@@ -53,6 +54,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
 import org.thoughtcrime.securesms.backup.v2.proto.LearnedProfileChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.PaymentNotification
+import org.thoughtcrime.securesms.backup.v2.proto.PinMessageUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Poll
 import org.thoughtcrime.securesms.backup.v2.proto.PollTerminateUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
@@ -413,6 +415,16 @@ class ChatItemArchiveExporter(
           transformTimer.emit("poll")
         }
 
+        MessageTypes.isPinnedMessageUpdate(record.type) -> {
+          val pinMessageUpdate = record.toRemotePinMessageUpdate(exportState)
+          if (pinMessageUpdate == null) {
+            Log.w(TAG, ExportSkips.pinMessageIsInvalid(record.dateSent))
+            continue
+          }
+          builder.updateMessage = ChatUpdateMessage(pinMessage = pinMessageUpdate)
+          transformTimer.emit("pin-message")
+        }
+
         else -> {
           val attachments = extraData.attachmentsById[record.id]
           val sticker = attachments?.firstOrNull { dbAttachment -> dbAttachment.isSticker }
@@ -595,6 +607,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
     expiresInMs = record.expiresIn.takeIf { it > 0 }
     revisions = emptyList()
     sms = record.type.isSmsType()
+    pinDetails = record.toPinDetails()
     when (direction) {
       Direction.DIRECTIONLESS -> {
         directionless = ChatItem.DirectionlessMessageDetails()
@@ -844,6 +857,27 @@ private fun BackupMessageRecord.toRemotePollTerminateUpdate(): PollTerminateUpda
   return PollTerminateUpdate(
     targetSentTimestamp = pollTerminate.targetTimestamp,
     question = pollTerminate.question
+  )
+}
+
+private fun BackupMessageRecord.toPinDetails(): ChatItem.PinDetails? {
+  return if (this.pinnedAt == 0L || this.pinnedUntil == 0L) {
+    null
+  } else {
+    ChatItem.PinDetails(
+      pinnedAtTimestamp = this.pinnedAt,
+      pinExpiresAtTimestamp = this.pinnedUntil.takeIf { it != MessageTable.PIN_FOREVER },
+      pinNeverExpires = (this.pinnedUntil == MessageTable.PIN_FOREVER).takeIf { it }
+    )
+  }
+}
+
+private fun BackupMessageRecord.toRemotePinMessageUpdate(exportState: ExportState): PinMessageUpdate? {
+  val pinMessage = this.messageExtras?.pinnedMessage ?: return null
+  val authorId = exportState.aciToRecipientId[ServiceId.ACI.parseOrNull(pinMessage.targetAuthorAci).toString()] ?: return null
+  return PinMessageUpdate(
+    targetSentTimestamp = pinMessage.targetTimestamp,
+    authorId = authorId
   )
 }
 
@@ -1591,7 +1625,8 @@ private fun Long.isDirectionlessType(): Boolean {
     MessageTypes.isGroupUpdate(this) ||
     MessageTypes.isGroupV1MigrationEvent(this) ||
     MessageTypes.isGroupQuit(this) ||
-    MessageTypes.isPollTerminate(this)
+    MessageTypes.isPollTerminate(this) ||
+    MessageTypes.isPinnedMessageUpdate(this)
 }
 
 private fun Long.isIdentityVerifyType(): Boolean {
@@ -1776,6 +1811,8 @@ private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Lo
     messageExtras = messageExtras.parseMessageExtras(),
     viewOnce = this.requireBoolean(MessageTable.VIEW_ONCE),
     parentStoryId = this.requireLong(MessageTable.PARENT_STORY_ID),
+    pinnedAt = this.requireLong(MessageTable.PINNED_AT),
+    pinnedUntil = this.requireLong(MessageTable.PINNED_UNTIL),
     messageExtrasSize = messageExtras?.size ?: 0
   )
 }
@@ -1816,6 +1853,8 @@ private class BackupMessageRecord(
   val baseType: Long,
   val messageExtras: MessageExtras?,
   val viewOnce: Boolean,
+  val pinnedAt: Long,
+  val pinnedUntil: Long,
   private val messageExtrasSize: Int
 ) {
   val estimatedSizeInBytes: Int = (body?.length ?: 0) +

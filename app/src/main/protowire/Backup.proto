@@ -460,6 +460,14 @@ message ChatItem {
   message DirectionlessMessageDetails {
   }
 
+  message PinDetails {
+    uint64 pinnedAtTimestamp = 1;
+    oneof pinExpiry {
+      uint64 pinExpiresAtTimestamp = 2; // timestamp when the pin should expire
+      bool pinNeverExpires = 3;
+    }
+  }
+
   uint64 chatId = 1;   // conversation id
   uint64 authorId = 2; // recipient id
   uint64 dateSent = 3;
@@ -488,6 +496,8 @@ message ChatItem {
     DirectStoryReplyMessage directStoryReplyMessage = 19; // group story reply messages are not backed up
     Poll poll = 20;
   }
+
+  PinDetails pinDetails = 21; // only set if message is pinned
 }
 
 message SendStatus {
@@ -898,6 +908,7 @@ message ChatUpdateMessage {
     GroupCall groupCall = 8;
     LearnedProfileChatUpdate learnedProfileChange = 9;
     PollTerminateUpdate pollTerminate = 10;
+    PinMessageUpdate pinMessage = 11;
   }
 }
 
@@ -1266,6 +1277,11 @@ message GroupExpirationTimerUpdate {
 message PollTerminateUpdate {
   uint64 targetSentTimestamp = 1;
   string question = 2; // Between 1-100 characters
+}
+
+message PinMessageUpdate {
+  uint64 targetSentTimestamp = 1;
+  uint64 authorId = 2; // recipient id
 }
 
 message StickerPack {

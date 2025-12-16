@@ -139,6 +139,10 @@ object ExportSkips {
     return log(sentTimestamp, "Poll was not in a group chat.")
   }
 
+  fun pinMessageIsInvalid(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Pin message update was invalid.")
+  }
+
   fun individualChatUpdateInWrongTypeOfChat(sentTimestamp: Long): String {
     return log(sentTimestamp, "A chat update that only makes sense for individual chats was found in a different kind of chat.")
   }

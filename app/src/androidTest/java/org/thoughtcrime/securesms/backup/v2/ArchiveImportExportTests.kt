@@ -217,6 +217,11 @@ class ArchiveImportExportTests {
   }
 
 //  @Test
+  fun chatItemPinMessage() {
+    runTests { it.startsWith("chat_item_pin_message_") }
+  }
+
+//  @Test
   fun notificationProfiles() {
     runTests { it.startsWith("notification_profile_") }
   }
