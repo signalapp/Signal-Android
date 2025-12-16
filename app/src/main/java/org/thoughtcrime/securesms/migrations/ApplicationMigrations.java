@@ -190,9 +190,10 @@ public class ApplicationMigrations {
     static final int QUOTE_THUMBNAIL_BACKFILL      = 146;
     static final int EMOJI_ENGLISH_SEARCH          = 147;
     static final int AEP_ROTATE_FIX                = 148;
+    static final int ATTACHMENT_HASH_BACKFILL_2    = 149;
   }
 
-  public static final int CURRENT_VERSION = 148;
+  public static final int CURRENT_VERSION = 149;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -877,6 +878,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.AEP_ROTATE_FIX) {
       jobs.put(Version.AEP_ROTATE_FIX, new AepMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.ATTACHMENT_HASH_BACKFILL_2) {
+      jobs.put(Version.ATTACHMENT_HASH_BACKFILL_2, new AttachmentHashBackfillMigrationJob());
     }
 
     return jobs;
