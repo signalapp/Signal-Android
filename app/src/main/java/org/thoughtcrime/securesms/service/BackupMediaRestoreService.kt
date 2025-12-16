@@ -161,7 +161,7 @@ class BackupMediaRestoreService : SafeForegroundService() {
   private fun stopDueToTimeout() {
     controllerLock.withLock {
       hasTimedOut = true
-      controllers.forEach { it.closeFromTimeout() }
+      controllers.clear()
       stop(context = this, fromTimeout = true)
     }
 
@@ -179,12 +179,6 @@ class BackupMediaRestoreService : SafeForegroundService() {
 
     val totalBytes: ByteSize
       get() = ArchiveRestoreProgress.state.totalRestoreSize
-
-    fun closeFromTimeout() {
-      controllerLock.withLock {
-        controllers.remove(this)
-      }
-    }
 
     override fun close() {
       controllerLock.withLock {
