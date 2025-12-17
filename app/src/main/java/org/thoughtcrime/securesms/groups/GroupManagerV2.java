@@ -868,9 +868,10 @@ final class GroupManagerV2 {
                                                     @Nullable byte[] avatar)
         throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception, GroupLinkNotActiveException
     {
-      boolean requestToJoin      = joinInfo.addFromInviteLink == AccessControl.AccessRequired.ADMINISTRATOR;
-      boolean alreadyAMember     = false;
-      boolean groupAlreadyExists = false;
+      boolean requestToJoin            = joinInfo.addFromInviteLink == AccessControl.AccessRequired.ADMINISTRATOR;
+      boolean alreadyAFullMember       = false;
+      boolean groupAlreadyExists       = false;
+      boolean isAlreadyPendingApproval = false;
 
       if (requestToJoin) {
         Log.i(TAG, "Requesting to join " + groupId);
@@ -895,7 +896,8 @@ final class GroupManagerV2 {
         decryptedChange = decryptChange(Objects.requireNonNull(signedGroupChange));
       } catch (GroupJoinAlreadyAMemberException e) {
         Log.i(TAG, "Server reports that we are already a member of " + groupId);
-        alreadyAMember = true;
+        alreadyAFullMember       = e.isFullMember();
+        isAlreadyPendingApproval = e.isPending();
       }
 
       DecryptedGroup decryptedGroup = createPlaceholderGroup(joinInfo, requestToJoin);
@@ -916,11 +918,11 @@ final class GroupManagerV2 {
         }
       }
 
-      if (groupAlreadyExists) {
+      if (groupAlreadyExists && alreadyAFullMember) {
         Log.i(TAG, "Attempting to update local group with change/server");
         try {
           GroupsV2StateProcessor.forGroup(SignalStore.account().getServiceIds(), groupMasterKey)
-                                .updateLocalGroupToRevision(decryptedChange != null ? decryptedChange.revision : GroupsV2StateProcessor.LATEST, System.currentTimeMillis(), decryptedChange);
+                                .updateLocalGroupToRevision(GroupsV2StateProcessor.LATEST, System.currentTimeMillis(), null);
         } catch (GroupNotAMemberException e) {
           Log.w(TAG, "Despite adding self to group, change/server says we are not a member, scheduling refresh of group info " + groupId, e);
 
@@ -936,6 +938,9 @@ final class GroupManagerV2 {
 
           throw e;
         }
+      } else if (groupAlreadyExists && requestToJoin) {
+        Log.i(TAG, "Group already exists, but we are requesting to join, updating with new placeholder, alreadyPending: " + isAlreadyPendingApproval);
+        groupDatabase.update(groupMasterKey, decryptedGroup, null);
       }
 
       RecipientId groupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
@@ -945,7 +950,16 @@ final class GroupManagerV2 {
       groupDatabase.onAvatarUpdated(groupId, avatar != null);
       SignalDatabase.recipients().setProfileSharing(groupRecipientId, true);
 
-      if (alreadyAMember) {
+      if (requestToJoin || isAlreadyPendingApproval) {
+        Log.i(TAG, "Requested to join, cannot send update");
+
+        RecipientAndThread recipientAndThread = sendGroupUpdateHelper.sendGroupUpdate(groupMasterKey, new GroupMutation(null, decryptedChange, decryptedGroup), signedGroupChange, false);
+
+        return new GroupManager.GroupActionResult(groupRecipient,
+                                                  recipientAndThread.threadId,
+                                                  0,
+                                                  Collections.emptyList());
+      } else if (alreadyAFullMember) {
         Log.i(TAG, "Already a member of the group");
 
         ThreadTable threadTable = SignalDatabase.threads();
@@ -955,17 +969,12 @@ final class GroupManagerV2 {
                                                   threadId,
                                                   0,
                                                   Collections.emptyList());
-      } else if (requestToJoin) {
-        Log.i(TAG, "Requested to join, cannot send update");
-
-        RecipientAndThread recipientAndThread = sendGroupUpdateHelper.sendGroupUpdate(groupMasterKey, new GroupMutation(null, decryptedChange, decryptedGroup), signedGroupChange, false);
-
-        return new GroupManager.GroupActionResult(groupRecipient,
-                                                  recipientAndThread.threadId,
-                                                  0,
-                                                  Collections.emptyList());
       } else {
         Log.i(TAG, "Joined group on server, fetching group state and sending update");
+
+        if (decryptedChange == null) {
+          throw new GroupChangeFailedException("Missing group change data");
+        }
 
         return fetchGroupStateAndSendUpdate(groupRecipient, decryptedGroup, decryptedChange, signedGroupChange);
       }
@@ -1099,8 +1108,10 @@ final class GroupManagerV2 {
           Log.w(TAG, "Patch not accepted", e);
 
           try {
-            if (alreadyPendingAdminApproval() || testGroupMembership()) {
-              throw new GroupJoinAlreadyAMemberException(e);
+            boolean isPending    = alreadyPendingAdminApproval();
+            boolean isFullMember = !isPending && testGroupMembership();
+            if (isPending || isFullMember) {
+              throw new GroupJoinAlreadyAMemberException(e, isPending, isFullMember);
             } else {
               throw new GroupChangeFailedException(e);
             }
