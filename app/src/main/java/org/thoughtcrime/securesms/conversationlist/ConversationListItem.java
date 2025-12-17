@@ -805,14 +805,18 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
   }
 
   private static @NonNull LiveData<SpannableString> emphasisAdded(@NonNull Context context, @NonNull UpdateDescription description, @ColorInt int defaultTint) {
-    return emphasisAdded(LiveUpdateMessage.fromMessageDescription(context, description, defaultTint, false));
+    return emphasisAdded(LiveUpdateMessage.fromMessageDescription(context, description, defaultTint, false), description.getGlyph() != null);
   }
 
   private static @NonNull LiveData<SpannableString> emphasisAdded(@NonNull LiveData<SpannableString> description) {
+    return emphasisAdded(description, false);
+  }
+
+  private static @NonNull LiveData<SpannableString> emphasisAdded(@NonNull LiveData<SpannableString> description, boolean hasGlyph) {
     return Transformations.map(description, sequence -> {
       SpannableString spannable = new SpannableString(sequence);
       spannable.setSpan(new StyleSpan(Typeface.ITALIC),
-                        0,
+                        hasGlyph ? 1 : 0,
                         sequence.length(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       return spannable;
