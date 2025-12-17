@@ -144,7 +144,7 @@ class Recipient(
   val e164: Optional<String> = Optional.ofNullable(e164Value)
 
   /** Whether or not we should show this user's e164 in the interface. */
-  val shouldShowE164: Boolean = e164Value.isNotNullOrBlank() && (isSystemContact || phoneNumberSharing == PhoneNumberSharingState.ENABLED)
+  val shouldShowE164: Boolean = e164Value.isNotNullOrBlank() && (isSystemContact || phoneNumberSharing == PhoneNumberSharingState.ENABLED || (aciValue == null && usernameValue == null))
 
   /** The recipient's email, if present. Emails are only for legacy SMS contacts that were reached via email. */
   val email: Optional<String> = Optional.ofNullable(emailValue)
