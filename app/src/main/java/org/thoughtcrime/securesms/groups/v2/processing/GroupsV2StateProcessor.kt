@@ -107,7 +107,7 @@ class GroupsV2StateProcessor private constructor(
   @Throws(IOException::class, GroupNotAMemberException::class)
   fun forceSanityUpdateFromServer(timestamp: Long): GroupUpdateResult {
     val groupRecord = SignalDatabase.groups.getGroup(groupId).orNull()
-    val currentLocalState: DecryptedGroup? = groupRecord?.requireV2GroupProperties()?.decryptedGroup
+    val currentLocalState: DecryptedGroup? = groupRecord?.requireV2GroupProperties()?.decryptedGroup?.let { if (it.isEmptyPlaceholder()) null else it }
 
     if (currentLocalState == null) {
       Log.i(TAG, "$logPrefix No local state to force update")
@@ -171,7 +171,7 @@ class GroupsV2StateProcessor private constructor(
       return GroupUpdateResult(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD, null)
     }
 
-    val currentLocalState: DecryptedGroup? = groupRecord.map { it.requireV2GroupProperties().decryptedGroup }.orNull()
+    val currentLocalState: DecryptedGroup? = groupRecord.map { it.requireV2GroupProperties().decryptedGroup }.orNull()?.let { if (it.isEmptyPlaceholder()) null else it }
 
     if (signedGroupChange != null && canApplyP2pChange(targetRevision, signedGroupChange, currentLocalState, groupRecord)) {
       when (val p2pUpdateResult = updateViaPeerGroupChange(timestamp, serverGuid, signedGroupChange, currentLocalState!!, forceApply = false)) {
@@ -273,7 +273,7 @@ class GroupsV2StateProcessor private constructor(
     serverGuid: String?,
     groupRecord: Optional<GroupRecord> = SignalDatabase.groups.getGroup(groupId)
   ): InternalUpdateResult {
-    var currentLocalState: DecryptedGroup? = groupRecord.map { it.requireV2GroupProperties().decryptedGroup }.orNull()
+    var currentLocalState: DecryptedGroup? = groupRecord.map { it.requireV2GroupProperties().decryptedGroup }.orNull()?.let { if (it.isEmptyPlaceholder()) null else it }
 
     if (targetRevision == LATEST && (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION)) {
       Log.i(TAG, "$logPrefix Latest revision only, update to latest directly")
@@ -419,6 +419,18 @@ class GroupsV2StateProcessor private constructor(
     }
 
     return revision <= groupRecord.get().requireV2GroupProperties().groupRevision
+  }
+
+  private fun DecryptedGroup.isEmptyPlaceholder(): Boolean {
+    if (!this.isPlaceholderGroup) {
+      return false
+    }
+
+    val isMember = this.members.asSequence().mapNotNull { ACI.parseOrNull(it.aciBytes) }.any { serviceIds.matches(it) }
+    val isPending = this.pendingMembers.asSequence().mapNotNull { ACI.parseOrNull(it.serviceIdBytes) }.any { serviceIds.matches(it) }
+    val isRequesting = this.requestingMembers.asSequence().mapNotNull { ACI.parseOrNull(it.aciBytes) }.any { serviceIds.matches(it) }
+
+    return !isMember && !isPending && !isRequesting
   }
 
   private fun notInGroupAndNotBeingAdded(groupRecord: Optional<GroupRecord>, signedGroupChange: DecryptedGroupChange): Boolean {
