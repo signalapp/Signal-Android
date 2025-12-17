@@ -2390,6 +2390,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
     }
 
+    if (record.e164 == null) {
+      Log.w(TAG, "[WithSplit] Missing e164! Not adding the PNI/E164 record.")
+      return
+    }
+
+    if (!SignalE164Util.isPotentialE164(record.e164)) {
+      Log.w(TAG, "[WithSplit] Invalid e164! Not adding the PNI/E164 record.")
+      return
+    }
+
     val splitId = getAndPossiblyMerge(null, record.pni, record.e164)
     Log.i(TAG, "Split off new recipient as $splitId (ACI-only recipient is $id)")
   }
