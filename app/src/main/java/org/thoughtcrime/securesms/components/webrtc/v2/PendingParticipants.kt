@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
@@ -22,7 +23,8 @@ import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
 @Composable
 fun PendingParticipants(
   pendingParticipantsState: PendingParticipantsState,
-  pendingParticipantsListener: PendingParticipantsListener
+  pendingParticipantsListener: PendingParticipantsListener,
+  modifier: Modifier = Modifier
 ) {
   if (pendingParticipantsState.isInPipMode) {
     return
@@ -34,7 +36,8 @@ fun PendingParticipants(
     hasDisplayedContent = true
 
     AndroidView(
-      ::PendingParticipantsView
+      ::PendingParticipantsView,
+      modifier = modifier
     ) { view ->
       view.listener = pendingParticipantsListener
       view.applyState(pendingParticipantsState.pendingParticipantCollection)

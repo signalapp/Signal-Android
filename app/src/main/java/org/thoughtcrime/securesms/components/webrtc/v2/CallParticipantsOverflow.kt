@@ -48,7 +48,7 @@ fun CallParticipantsOverflow(
   if (lineType == LayoutStrategyLineType.ROW) {
     LazyRow(
       reverseLayout = true,
-      modifier = modifier,
+      modifier = Modifier.fillMaxWidth().then(modifier),
       contentPadding = PaddingValues(start = 16.dp, end = rendererSize + 32.dp),
       horizontalArrangement = spacedBy(4.dp)
     ) {
@@ -57,7 +57,7 @@ fun CallParticipantsOverflow(
   } else {
     LazyColumn(
       reverseLayout = true,
-      modifier = modifier,
+      modifier = Modifier.fillMaxHeight().then(modifier),
       contentPadding = PaddingValues(top = 16.dp, bottom = rendererSize + 32.dp),
       verticalArrangement = spacedBy(4.dp)
     ) {
