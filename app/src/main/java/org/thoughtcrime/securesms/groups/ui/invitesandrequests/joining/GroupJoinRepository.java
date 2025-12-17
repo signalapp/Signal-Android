@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
 
 import java.io.IOException;
 
@@ -68,9 +69,19 @@ final class GroupJoinRepository {
       } catch (GroupLinkNotActiveException e) {
         Log.w(TAG, "Inactive group error", e);
         callback.onError(e.getReason() == GroupLinkNotActiveException.Reason.BANNED ? JoinGroupError.BANNED : JoinGroupError.GROUP_LINK_NOT_ACTIVE);
-      } catch (GroupChangeFailedException | MembershipNotSuitableForV2Exception e) {
-        Log.w(TAG, "Change failed", e);
+      } catch (MembershipNotSuitableForV2Exception e) {
+        Log.w(TAG, "Membership not suitable", e);
         callback.onError(JoinGroupError.FAILED);
+      } catch (GroupChangeFailedException e) {
+        Log.w(TAG, "Group change failed", e);
+        JoinGroupError error = JoinGroupError.FAILED;
+        if (e.getCause() instanceof GroupPatchNotAcceptedException) {
+          String message = e.getCause().getMessage();
+          if (message != null && message.contains("group size cannot exceed")) {
+            error = JoinGroupError.LIMIT_REACHED;
+          }
+        }
+        callback.onError(error);
       }
     });
   }
