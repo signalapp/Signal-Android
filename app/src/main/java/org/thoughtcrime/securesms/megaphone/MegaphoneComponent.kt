@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -133,6 +135,7 @@ private fun BasicMegaphone(
   ) {
     Column(
       modifier = Modifier
+        .verticalScroll(rememberScrollState())
         .padding(horizontal = 8.dp)
         .padding(top = 16.dp, bottom = 8.dp)
     ) {
@@ -197,6 +200,7 @@ private fun PopupMegaphone(
       MegaphoneCardContent(
         megaphone = megaphone,
         modifier = Modifier
+          .verticalScroll(rememberScrollState())
           .padding(horizontal = 8.dp)
           .padding(top = 16.dp, bottom = 8.dp)
       )
