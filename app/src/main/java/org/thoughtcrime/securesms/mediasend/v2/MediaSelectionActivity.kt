@@ -199,6 +199,7 @@ class MediaSelectionActivity :
         if (error.cause != null) {
           handleError(error.cause)
         }
+        onNoMediaSelected()
       }
     }
 
