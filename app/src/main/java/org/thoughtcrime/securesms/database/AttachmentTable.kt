@@ -97,6 +97,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable.Companion.TRANSFER_PR
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
@@ -1335,9 +1336,10 @@ class AttachmentTable(
 
     val filePathsToDelete = mutableSetOf<String>()
     val contentTypesToDelete = mutableSetOf<String>()
+    var deletedMessageId: Long? = null
 
     writableDatabase.withinTransaction { db ->
-      db.select(DATA_FILE, CONTENT_TYPE)
+      db.select(DATA_FILE, CONTENT_TYPE, MESSAGE_ID)
         .from(TABLE_NAME)
         .where("$ID = ?", id.id)
         .run()
@@ -1349,6 +1351,7 @@ class AttachmentTable(
 
           val filePath = cursor.requireString(DATA_FILE)
           val contentType = cursor.requireString(CONTENT_TYPE)
+          deletedMessageId = cursor.requireLong(MESSAGE_ID)
 
           db.delete(TABLE_NAME)
             .where("$ID = ?", id.id)
@@ -1361,6 +1364,10 @@ class AttachmentTable(
 
           AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
         }
+    }
+
+    deletedMessageId?.let {
+      AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(it))
     }
 
     deleteDataFiles(filePathsToDelete, contentTypesToDelete)
