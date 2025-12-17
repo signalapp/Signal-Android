@@ -107,6 +107,7 @@ import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord;
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.InAppPaymentsBottomSheetDelegate;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation;
+import org.thoughtcrime.securesms.components.snackbars.SnackbarState;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
@@ -134,10 +135,10 @@ import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.main.MainNavigationListLocation;
 import org.thoughtcrime.securesms.main.MainNavigationViewModel;
+import org.thoughtcrime.securesms.main.MainSnackbarHostKey;
 import org.thoughtcrime.securesms.main.MainToolbarMode;
 import org.thoughtcrime.securesms.main.MainToolbarViewModel;
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder;
-import org.thoughtcrime.securesms.main.SnackbarState;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment;
@@ -979,7 +980,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
         .subscribe(() -> {
           endActionModeIfActive();
 
-          mainNavigationViewModel.setSnackbar(new SnackbarState(
+          mainNavigationViewModel.getSnackbarRegistry().emit(new SnackbarState(
               snackBarTitle,
               new SnackbarState.ActionState(
                   getString(R.string.ConversationListFragment_undo),
@@ -990,7 +991,9 @@ public class ConversationListFragment extends MainFragment implements Conversati
                   }
               ),
               showProgress,
-              SnackbarDuration.Long
+              SnackbarDuration.Long,
+              MainSnackbarHostKey.MainChrome.INSTANCE,
+              null
           ));
         }));
   }
@@ -1068,11 +1071,13 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                                       .toList());
 
     if (toPin.size() + viewModel.getPinnedCount() > MAXIMUM_PINNED_CONVERSATIONS) {
-      mainNavigationViewModel.setSnackbar(new SnackbarState(
+      mainNavigationViewModel.getSnackbarRegistry().emit(new SnackbarState(
           getString(R.string.conversation_list__you_can_only_pin_up_to_d_chats, MAXIMUM_PINNED_CONVERSATIONS),
           null,
           false,
-          SnackbarDuration.Long
+          SnackbarDuration.Long,
+          MainSnackbarHostKey.MainChrome.INSTANCE,
+          null
       ));
 
       endActionModeIfActive();
@@ -1419,7 +1424,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(pinnedThreadIds -> {
-              mainNavigationViewModel.setSnackbar(new SnackbarState(
+              mainNavigationViewModel.getSnackbarRegistry().emit(new SnackbarState(
                   getResources().getQuantityString(R.plurals.ConversationListFragment_conversations_archived, 1, 1),
                   new SnackbarState.ActionState(
                       getString(R.string.ConversationListFragment_undo),
@@ -1436,7 +1441,9 @@ public class ConversationListFragment extends MainFragment implements Conversati
                       }
                   ),
                   false,
-                  SnackbarDuration.Long
+                  SnackbarDuration.Long,
+                  MainSnackbarHostKey.MainChrome.INSTANCE,
+                  null
               ));
             })
     );

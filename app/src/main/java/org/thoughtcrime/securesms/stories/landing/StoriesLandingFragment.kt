@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.components.snackbars.SnackbarState
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
@@ -32,10 +33,10 @@ import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
+import org.thoughtcrime.securesms.main.MainSnackbarHostKey
 import org.thoughtcrime.securesms.main.MainToolbarMode
 import org.thoughtcrime.securesms.main.MainToolbarViewModel
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
-import org.thoughtcrime.securesms.main.SnackbarState
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
@@ -332,9 +333,10 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
   private fun handleHideStory(model: StoriesLandingItem.Model) {
     StoryDialogs.hideStory(requireContext(), model.data.storyRecipient.getShortDisplayName(requireContext())) {
       viewModel.setHideStory(model.data.storyRecipient, true).subscribe {
-        mainNavigationViewModel.setSnackbar(
+        mainNavigationViewModel.snackbarRegistry.emit(
           SnackbarState(
-            message = getString(R.string.StoriesLandingFragment__story_hidden)
+            message = getString(R.string.StoriesLandingFragment__story_hidden),
+            hostKey = MainSnackbarHostKey.MainChrome
           )
         )
       }

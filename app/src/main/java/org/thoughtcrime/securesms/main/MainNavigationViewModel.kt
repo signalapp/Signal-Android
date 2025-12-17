@@ -27,6 +27,7 @@ import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.rx3.asObservable
 import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
+import org.thoughtcrime.securesms.components.snackbars.SnackbarStateConsumerRegistry
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.Megaphone
@@ -65,9 +66,6 @@ class MainNavigationViewModel(
   private val internalMegaphone = MutableStateFlow(Megaphone.NONE)
   val megaphone: StateFlow<Megaphone> = internalMegaphone
 
-  private val internalSnackbar = MutableStateFlow<SnackbarState?>(null)
-  val snackbar: StateFlow<SnackbarState?> = internalSnackbar
-
   private val internalNavigationEvents = MutableSharedFlow<NavigationEvent>()
   val navigationEvents: Flow<NavigationEvent> = internalNavigationEvents
 
@@ -97,6 +95,8 @@ class MainNavigationViewModel(
    * take them back into a PRIMARY pane. This boolean helps avoid these cases.
    */
   private var lockPaneToSecondary = false
+
+  val snackbarRegistry = SnackbarStateConsumerRegistry()
 
   init {
     performStoreUpdate(MainNavigationRepository.getNumberOfUnreadMessages()) { unreadChats, state ->
@@ -230,10 +230,6 @@ class MainNavigationViewModel(
     megaphoneRepository.getNextMegaphone { next ->
       internalMegaphone.update { next ?: Megaphone.NONE }
     }
-  }
-
-  fun setSnackbar(snackbarState: SnackbarState?) {
-    internalSnackbar.update { snackbarState }
   }
 
   fun onMegaphoneSnoozed(event: Megaphones.Event) {
