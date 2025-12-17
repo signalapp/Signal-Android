@@ -532,7 +532,7 @@ public final class DecryptedGroupUtil {
       int index = indexOfAciInRequestingList(requestingMembers, removedMember);
 
       if (index == -1) {
-        Log.w(TAG, "Deleted member on change not found in group");
+        Log.w(TAG, "Deleted requesting member on change not found in group");
         continue;
       }
 
@@ -549,7 +549,7 @@ public final class DecryptedGroupUtil {
       int index = indexOfAciInRequestingList(requestingMembers, approvedMember.aciBytes);
 
       if (index == -1) {
-        Log.w(TAG, "Deleted member on change not found in group");
+        Log.w(TAG, "Promote member on change not found in group");
         continue;
       }
 

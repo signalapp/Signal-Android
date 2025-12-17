@@ -84,11 +84,14 @@ final class GroupStatePatcher {
       }
 
       if (stateChain.getLatestState() == null && entry.getGroup() != null && current != null && current.isPlaceholderGroup) {
-        DecryptedGroup previousState = entry.getGroup().newBuilder()
-                                                       .title(current.title)
-                                                       .avatar(current.avatar)
-                                                       .description(current.description)
-                                                       .build();
+        DecryptedGroup previousState = entry.getGroup()
+                                            .newBuilder()
+                                            .title(current.title)
+                                            .avatar(current.avatar)
+                                            .description(current.description)
+                                            .pendingMembers(current.pendingMembers)
+                                            .requestingMembers(current.requestingMembers)
+                                            .build();
 
         stateChain.push(previousState, null);
       }
