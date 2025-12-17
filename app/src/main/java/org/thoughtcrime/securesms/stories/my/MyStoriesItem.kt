@@ -176,9 +176,11 @@ object MyStoriesItem {
         viewCount.setText(R.string.StoriesLandingItem__partially_sent)
         date.setText(R.string.StoriesLandingItem__tap_to_retry)
       } else {
+        val (dateString, dateContentDescription) = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.distributionStory.messageRecord.dateSent)
         errorIndicator.visible = false
         date.visible = true
-        date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.distributionStory.messageRecord.dateSent)
+        date.text = dateString
+        date.contentDescription = dateContentDescription
       }
     }
 

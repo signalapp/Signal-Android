@@ -346,6 +346,7 @@ class CallLogAdapter(
 
     private fun presentCallInfo(call: CallLogRow.Call, date: Long) {
       val callState = context.getString(getCallStateStringRes(call.record, call.children.size))
+      val (dateString, dateContentDescription) = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), date)
       binding.callInfo.text = context.getString(
         R.string.CallLogAdapter__s_dot_s,
         if (call.children.size > 1) {
@@ -353,7 +354,16 @@ class CallLogAdapter(
         } else {
           callState
         },
-        DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), date)
+        dateString
+      )
+      binding.callInfo.contentDescription = context.getString(
+        R.string.CallLogAdapter__s_dot_s,
+        if (call.children.size > 1) {
+          context.getString(R.string.CallLogAdapter__d_s, call.children.size, callState)
+        } else {
+          callState
+        },
+        dateContentDescription
       )
 
       binding.callInfo.setRelativeDrawables(

@@ -182,9 +182,11 @@ object StoryGroupReplyItem {
         alertView.setNone()
         itemView.setOnClickListener(null)
 
-        val dateText = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.sentAtMillis)
+        val (dateText, dateContentDesc) = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.sentAtMillis)
         date.text = dateText
+        date.contentDescription = dateContentDesc
         dateBelow.text = dateText
+        dateBelow.contentDescription = dateContentDesc
       }
 
       itemView.post {

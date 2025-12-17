@@ -709,13 +709,17 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.footerDate.text = conversationMessage.computedProperties.formattedDate.value
     } else {
       var dateLabel = conversationMessage.computedProperties.formattedDate.value
+      var dateLabelContentDesc = conversationMessage.computedProperties.formattedDate.contentDescValue
       if (conversationContext.displayMode != ConversationItemDisplayMode.Detailed && record is MmsMessageRecord && record.isEditMessage) {
-        dateLabel = if (conversationMessage.computedProperties.formattedDate.isNow) {
-          getContext().getString(R.string.ConversationItem_edited_now_timestamp_footer)
+        if (conversationMessage.computedProperties.formattedDate.isNow) {
+          dateLabel = getContext().getString(R.string.ConversationItem_edited_now_timestamp_footer)
+          dateLabelContentDesc = dateLabel
         } else if (conversationMessage.computedProperties.formattedDate.isRelative) {
-          getContext().getString(R.string.ConversationItem_edited_relative_timestamp_footer, dateLabel)
+          dateLabel = getContext().getString(R.string.ConversationItem_edited_relative_timestamp_footer, dateLabel)
+          dateLabelContentDesc = getContext().getString(R.string.ConversationItem_edited_relative_timestamp_footer, dateLabelContentDesc)
         } else {
           getContext().getString(R.string.ConversationItem_edited_absolute_timestamp_footer, dateLabel)
+          dateLabelContentDesc = dateLabel
         }
 
         binding.footerDate.setOnClickListener {
@@ -728,6 +732,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       }
 
       binding.footerDate.text = dateLabel
+      binding.footerDate.contentDescription = dateLabelContentDesc
     }
   }
 

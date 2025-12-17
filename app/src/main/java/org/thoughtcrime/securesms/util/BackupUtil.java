@@ -31,21 +31,23 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import kotlin.Pair;
+
 public class BackupUtil {
 
   private static final String TAG = Log.tag(BackupUtil.class);
 
   public static final int PASSPHRASE_LENGTH = 30;
 
-  public static @NonNull String getLastBackupTime(@NonNull Context context, @NonNull Locale locale) {
+  public static @NonNull Pair<String, String> getLastBackupTime(@NonNull Context context, @NonNull Locale locale) {
     try {
       BackupInfo backup = getLatestBackup();
 
-      if (backup == null) return context.getString(R.string.BackupUtil_never);
+      if (backup == null) return new Pair<>(context.getString(R.string.BackupUtil_never), context.getString(R.string.BackupUtil_never));
       else                return DateUtils.getExtendedRelativeTimeSpanString(context, locale, backup.getTimestamp());
     } catch (NoExternalStorageException e) {
       Log.w(TAG, e);
-      return context.getString(R.string.BackupUtil_unknown);
+      return new Pair<>(context.getString(R.string.BackupUtil_unknown), context.getString(R.string.BackupUtil_unknown));
     }
   }
 

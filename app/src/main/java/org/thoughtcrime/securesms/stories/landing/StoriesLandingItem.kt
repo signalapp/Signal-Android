@@ -264,7 +264,9 @@ object StoriesLandingItem {
         date.text = SpanUtil.color(ContextCompat.getColor(context, R.color.signal_alert_primary), context.getString(message))
       } else {
         errorIndicator.visible = false
-        date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.data.dateInMilliseconds)
+        val (dateString, dateContentDescription) = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.data.dateInMilliseconds)
+        date.text = dateString
+        date.contentDescription = dateContentDescription
       }
     }
 

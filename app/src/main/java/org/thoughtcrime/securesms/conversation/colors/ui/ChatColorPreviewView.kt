@@ -87,7 +87,7 @@ class ChatColorPreviewView @JvmOverloads constructor(
         findViewById(R.id.bubble_4_delivery)
       )
 
-      val now: String = DateUtils.getExtendedRelativeTimeSpanString(context, Locale.getDefault(), System.currentTimeMillis())
+      val (now, _) = DateUtils.getExtendedRelativeTimeSpanString(context, Locale.getDefault(), System.currentTimeMillis())
       listOf(sent1, sent2, recv1, recv2).forEach {
         it.time.text = now
         it.delivery?.setRead()

@@ -97,6 +97,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.Pair;
 
 import static org.thoughtcrime.securesms.database.model.LiveUpdateMessage.recipientToStringAsync;
 
@@ -270,8 +271,9 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                                             : ContextCompat.getColor(getContext(), R.color.signal_text_primary));
 
       updateDateView = () -> {
-        CharSequence date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());
-        dateView.setText(date);
+        Pair<String, String> date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());
+        dateView.setText(date.getFirst());
+        dateView.setContentDescription(date.getSecond());
       };
 
       updateDateView.run();
@@ -318,7 +320,11 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     fromView.setText(recipient.get(), recipient.get().getDisplayName(getContext()), null, false);
     setSubjectViewText(SearchUtil.getHighlightedSpan(locale, searchStyleFactory, messageResult.getBodySnippet(), highlightSubstring, SearchUtil.MATCH_ALL));
 
-    updateDateView = () -> dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs()));
+    updateDateView = () -> {
+      Pair<String, String> date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs());
+      dateView.setText(date.getFirst());
+      dateView.setContentDescription(date.getSecond());
+    };
 
     updateDateView.run();
     archivedView.setVisibility(GONE);
@@ -353,7 +359,9 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
     updateDateView = () -> {
       if (groupWithMembers.getDate() > 0) {
-        dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, groupWithMembers.getDate()));
+        Pair<String, String> date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, groupWithMembers.getDate());
+        dateView.setText(date.getFirst());
+        dateView.setContentDescription(date.getSecond());
       } else {
         dateView.setText("");
       }

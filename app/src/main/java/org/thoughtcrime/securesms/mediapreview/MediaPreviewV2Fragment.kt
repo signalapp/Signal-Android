@@ -274,8 +274,11 @@ class MediaPreviewV2Fragment :
   }
 
   private fun bindTextViews(currentItem: MediaTable.MediaRecord, showThread: Boolean, messageBodies: Map<Long, SpannableString>) {
-    binding.toolbar.title = getTitleText(currentItem, showThread)
-    binding.toolbar.subtitle = getSubTitleText(currentItem)
+    val title = getTitleText(currentItem, showThread)
+    val (subtitle, subtitleContentDesc) = getSubTitleText(currentItem)
+    binding.toolbar.title = title
+    binding.toolbar.subtitle = subtitle
+    binding.toolbar.contentDescription = "$title $subtitleContentDesc"
     val messageId: Long? = currentItem.attachment?.mmsId
     if (messageId != null) {
       binding.toolbar.setOnClickListener { v ->
@@ -469,11 +472,11 @@ class MediaPreviewV2Fragment :
     }
   }
 
-  private fun getSubTitleText(mediaRecord: MediaTable.MediaRecord): CharSequence {
-    val text = if (mediaRecord.date > 0) {
+  private fun getSubTitleText(mediaRecord: MediaTable.MediaRecord): Pair<CharSequence, CharSequence> {
+    val (text, contentDesc) = if (mediaRecord.date > 0) {
       DateUtils.getExtendedRelativeTimeSpanString(requireContext(), Locale.getDefault(), mediaRecord.date)
     } else {
-      getString(R.string.MediaPreviewActivity_draft)
+      Pair(getString(R.string.MediaPreviewActivity_draft), getString(R.string.MediaPreviewActivity_draft))
     }
     val builder = SpannableStringBuilder(text)
 
@@ -482,7 +485,7 @@ class MediaPreviewV2Fragment :
     chevron.colorFilter = PorterDuffColorFilter(onSurfaceColor, PorterDuff.Mode.SRC_IN)
 
     SpanUtil.appendCenteredImageSpan(builder, chevron, 10, 10)
-    return builder
+    return Pair(builder, contentDesc)
   }
 
   private fun anchorMarginsToBottomInsets(viewToAnchor: View) {

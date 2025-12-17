@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.JavaTimeExtensionsKt;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -49,6 +48,8 @@ import java.text.NumberFormat;
 import java.time.LocalTime;
 import java.util.Locale;
 import java.util.Objects;
+
+import kotlin.Pair;
 
 public class BackupsPreferenceFragment extends Fragment {
 
@@ -187,7 +188,9 @@ public class BackupsPreferenceFragment extends Fragment {
   }
 
   private void setBackupSummary() {
-    summary.setText(getString(R.string.BackupsPreferenceFragment__last_backup, BackupUtil.getLastBackupTime(requireContext(), Locale.getDefault())));
+    Pair<String, String> date = BackupUtil.getLastBackupTime(requireContext(), Locale.getDefault());
+    summary.setText(getString(R.string.BackupsPreferenceFragment__last_backup, date.getFirst()));
+    summary.setContentDescription(getString(R.string.BackupsPreferenceFragment__last_backup, date.getSecond()));
   }
 
   private void setBackupFolderName() {
