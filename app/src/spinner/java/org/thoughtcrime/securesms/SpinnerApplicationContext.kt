@@ -86,7 +86,9 @@ class SpinnerApplicationContext : ApplicationContext() {
       ),
       linkedMapOf(
         StorageServicePlugin.PATH to StorageServicePlugin(),
-        AttachmentPlugin.PATH to AttachmentPlugin()
+        AttachmentPlugin.PATH to AttachmentPlugin(),
+        BackupPlugin.PATH to BackupPlugin(),
+        ApiPlugin.PATH to ApiPlugin()
       )
     )
 

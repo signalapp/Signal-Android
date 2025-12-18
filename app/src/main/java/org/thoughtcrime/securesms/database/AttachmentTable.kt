@@ -60,6 +60,7 @@ import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireLong
+import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
@@ -73,6 +74,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.attachments.LocalBackupKey
 import org.thoughtcrime.securesms.attachments.LocalStickerAttachment
 import org.thoughtcrime.securesms.attachments.WallpaperAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
@@ -191,6 +193,7 @@ class AttachmentTable(
     const val ATTACHMENT_UUID = "attachment_uuid"
     const val OFFLOAD_RESTORED_AT = "offload_restored_at"
     const val QUOTE_TARGET_CONTENT_TYPE = "quote_target_content_type"
+    const val METADATA_ID = "metadata_id"
 
     const val ATTACHMENT_JSON_ALIAS = "attachment_json"
 
@@ -249,6 +252,8 @@ class AttachmentTable(
       ATTACHMENT_UUID
     )
 
+    private val PROJECTION_WITH_METADATA = PROJECTION.map { if (it == ID) "$TABLE_NAME.$ID" else it }.toTypedArray() + AttachmentMetadataTable.PROJECTION
+
     @JvmField
     val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
@@ -293,7 +298,8 @@ class AttachmentTable(
         $ATTACHMENT_UUID TEXT DEFAULT NULL,
         $OFFLOAD_RESTORED_AT INTEGER DEFAULT 0,
         $QUOTE_TARGET_CONTENT_TYPE TEXT DEFAULT NULL,
-        $ARCHIVE_THUMBNAIL_TRANSFER_STATE INTEGER DEFAULT ${ArchiveTransferState.NONE.value}
+        $ARCHIVE_THUMBNAIL_TRANSFER_STATE INTEGER DEFAULT ${ArchiveTransferState.NONE.value},
+        $METADATA_ID INTEGER DEFAULT NULL REFERENCES ${AttachmentMetadataTable.TABLE_NAME} (${AttachmentMetadataTable.ID})
       )
       """
 
@@ -309,11 +315,12 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS $DATA_HASH_REMOTE_KEY_INDEX ON $TABLE_NAME ($DATA_HASH_END, $REMOTE_KEY);",
       "CREATE INDEX IF NOT EXISTS $DATA_FILE_INDEX ON $TABLE_NAME ($DATA_FILE);",
       "CREATE INDEX IF NOT EXISTS attachment_archive_transfer_state ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);",
-      "CREATE INDEX IF NOT EXISTS attachment_remote_digest_index ON $TABLE_NAME ($REMOTE_DIGEST);"
+      "CREATE INDEX IF NOT EXISTS attachment_remote_digest_index ON $TABLE_NAME ($REMOTE_DIGEST);",
+      "CREATE INDEX IF NOT EXISTS attachment_metadata_id ON $TABLE_NAME ($METADATA_ID);"
     )
 
     private val DATA_FILE_INFO_PROJECTION = arrayOf(
-      ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_TRANSFER_STATE, THUMBNAIL_FILE, THUMBNAIL_RESTORE_STATE, THUMBNAIL_RANDOM
+      ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_TRANSFER_STATE, THUMBNAIL_FILE, THUMBNAIL_RESTORE_STATE, THUMBNAIL_RANDOM, METADATA_ID
     )
 
     private const val QUOTE_THUMBNAIL_DIMEN = 200
@@ -324,6 +331,8 @@ class AttachmentTable(
 
     /** Indicates a quote from a free-tier backup restore is pending potential reconstruction from a parent attachment. */
     const val QUOTE_PENDING_RECONSTRUCTION = 3
+
+    private val TABLE_NAME_WITH_METADTA = "$TABLE_NAME LEFT JOIN ${AttachmentMetadataTable.TABLE_NAME} ON $TABLE_NAME.$METADATA_ID = ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.ID}"
 
     @JvmStatic
     @Throws(IOException::class)
@@ -472,13 +481,15 @@ class AttachmentTable(
       .firstOrNull()
   }
 
-  fun getAttachmentIdByPlaintextHashAndRemoteKey(plaintextHash: ByteArray, remoteKey: ByteArray): AttachmentId? {
+  fun getAttachmentWithMetadata(attachmentId: AttachmentId): DatabaseAttachment? {
     return readableDatabase
-      .select(ID)
-      .from("$TABLE_NAME INDEXED BY $DATA_HASH_REMOTE_KEY_INDEX")
-      .where("$DATA_HASH_END = ? AND $REMOTE_KEY = ?", Base64.encodeWithPadding(plaintextHash), Base64.encodeWithPadding(remoteKey))
+      .select(*PROJECTION_WITH_METADATA)
+      .from(TABLE_NAME_WITH_METADTA)
+      .where("$TABLE_NAME.$ID = ?", attachmentId.id)
       .run()
-      .readToSingleObject { AttachmentId(it.requireLong(ID)) }
+      .readToList { it.readAttachments() }
+      .flatten()
+      .firstOrNull()
   }
 
   fun getAttachmentsForMessage(mmsId: Long): List<DatabaseAttachment> {
@@ -492,23 +503,37 @@ class AttachmentTable(
       .flatten()
   }
 
-  @JvmOverloads
-  fun getAttachmentsForMessages(mmsIds: Collection<Long?>, excludeTranscodingQuotes: Boolean = false): Map<Long, List<DatabaseAttachment>> {
+  fun getAttachmentsForMessagesArchive(mmsIds: Collection<Long>): Map<Long, List<DatabaseAttachment>> {
     if (mmsIds.isEmpty()) {
       return emptyMap()
     }
 
     val query = SqlUtil.buildFastCollectionQuery(MESSAGE_ID, mmsIds)
-    val where = if (excludeTranscodingQuotes) {
-      "(${query.where}) AND $QUOTE != $QUOTE_PENDING_TRANSCODE"
-    } else {
-      query.where
+    val where = "(${query.where}) AND $QUOTE != $QUOTE_PENDING_TRANSCODE"
+
+    return readableDatabase
+      .select(*PROJECTION_WITH_METADATA)
+      .from(TABLE_NAME_WITH_METADTA)
+      .where(where, query.whereArgs)
+      .orderBy("$TABLE_NAME.$ID ASC")
+      .run()
+      .groupBy { cursor ->
+        val attachment = cursor.readAttachment()
+        attachment.mmsId to attachment
+      }
+  }
+
+  fun getAttachmentsForMessages(mmsIds: Collection<Long?>): Map<Long, List<DatabaseAttachment>> {
+    if (mmsIds.isEmpty()) {
+      return emptyMap()
     }
+
+    val query = SqlUtil.buildFastCollectionQuery(MESSAGE_ID, mmsIds)
 
     return readableDatabase
       .select(*PROJECTION)
       .from(TABLE_NAME)
-      .where(where, query.whereArgs)
+      .where(query.where, query.whereArgs)
       .orderBy("$ID ASC")
       .run()
       .groupBy { cursor ->
@@ -559,38 +584,20 @@ class AttachmentTable(
       .flatten()
   }
 
-  fun getLocalArchivableAttachment(plaintextHash: String, remoteKey: String): LocalArchivableAttachment? {
-    return readableDatabase
-      .select(*PROJECTION)
-      .from(TABLE_NAME)
-      .where("$DATA_HASH_END = ? AND $REMOTE_KEY = ?")
-      .orderBy("$ID DESC")
-      .limit(1)
-      .run()
-      .readToSingleObject {
-        LocalArchivableAttachment(
-          file = File(it.requireNonNullString(DATA_FILE)),
-          random = it.requireNonNullBlob(DATA_RANDOM),
-          size = it.requireLong(DATA_SIZE),
-          remoteKey = Base64.decode(it.requireNonNullString(REMOTE_KEY)),
-          plaintextHash = Base64.decode(it.requireNonNullString(DATA_HASH_END))
-        )
-      }
-  }
-
   fun getLocalArchivableAttachments(): List<LocalArchivableAttachment> {
     return readableDatabase
-      .select(*PROJECTION)
-      .from(TABLE_NAME)
-      .where("$REMOTE_KEY IS NOT NULL AND $DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL")
-      .orderBy("$ID DESC")
+      .select(*PROJECTION_WITH_METADATA)
+      .from(TABLE_NAME_WITH_METADTA)
+      .where("$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL")
+      .orderBy("$TABLE_NAME.$ID DESC")
       .run()
       .readToList {
         LocalArchivableAttachment(
+          attachmentId = AttachmentId(it.requireLong(ID)),
           file = File(it.requireNonNullString(DATA_FILE)),
           random = it.requireNonNullBlob(DATA_RANDOM),
           size = it.requireLong(DATA_SIZE),
-          remoteKey = Base64.decode(it.requireNonNullString(REMOTE_KEY)),
+          localBackupKey = AttachmentMetadataTable.getMetadata(it)!!.localBackupKey!!,
           plaintextHash = Base64.decode(it.requireNonNullString(DATA_HASH_END))
         )
       }
@@ -646,26 +653,6 @@ class AttachmentTable(
       }
   }
 
-  fun getRestorableAttachments(batchSize: Int): List<RestorableAttachment> {
-    return readableDatabase
-      .select(ID, MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID)
-      .from(TABLE_NAME)
-      .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE)
-      .limit(batchSize)
-      .orderBy("$ID DESC")
-      .run()
-      .readToList {
-        RestorableAttachment(
-          attachmentId = AttachmentId(it.requireLong(ID)),
-          mmsId = it.requireLong(MESSAGE_ID),
-          size = it.requireLong(DATA_SIZE),
-          plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
-          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) },
-          stickerPackId = it.requireString(STICKER_PACK_ID)
-        )
-      }
-  }
-
   fun getRestorableOptimizedAttachments(): List<RestorableAttachment> {
     return readableDatabase
       .select(ID, MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID)
@@ -680,6 +667,25 @@ class AttachmentTable(
           size = it.requireLong(DATA_SIZE),
           plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
           remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) },
+          stickerPackId = it.requireString(STICKER_PACK_ID)
+        )
+      }
+  }
+
+  fun getRestorableLocalAttachments(batchSize: Int): List<LocalRestorableAttachment> {
+    return readableDatabase
+      .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_HASH_END, STICKER_PACK_ID, AttachmentMetadataTable.LOCAL_BACKUP_KEY)
+      .from(TABLE_NAME_WITH_METADTA)
+      .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE)
+      .limit(batchSize)
+      .orderBy("$TABLE_NAME.$ID DESC")
+      .run()
+      .readToList {
+        LocalRestorableAttachment(
+          attachmentId = AttachmentId(it.requireLong(ID)),
+          mmsId = it.requireLong(MESSAGE_ID),
+          plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
+          localBackupKey = it.requireBlob(AttachmentMetadataTable.LOCAL_BACKUP_KEY)?.let { key -> LocalBackupKey(key) },
           stickerPackId = it.requireString(STICKER_PACK_ID)
         )
       }
@@ -1239,6 +1245,8 @@ class AttachmentTable(
         .where("$MESSAGE_ID = ?", mmsId)
         .run()
 
+      SignalDatabase.attachmentMetadata.cleanup()
+
       AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
 
       deleteCount
@@ -1315,10 +1323,13 @@ class AttachmentTable(
           TRANSFER_STATE to TRANSFER_PROGRESS_DONE,
           ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
           BLUR_HASH to null,
-          CONTENT_TYPE to MediaUtil.VIEW_ONCE
+          CONTENT_TYPE to MediaUtil.VIEW_ONCE,
+          METADATA_ID to null
         )
         .where("$MESSAGE_ID = ?", messageId)
         .run()
+
+      SignalDatabase.attachmentMetadata.cleanup()
 
       AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
 
@@ -1356,6 +1367,8 @@ class AttachmentTable(
           db.delete(TABLE_NAME)
             .where("$ID = ?", id.id)
             .run()
+
+          SignalDatabase.attachmentMetadata.cleanup()
 
           if (filePath != null && isSafeToDeleteDataFile(filePath, id)) {
             filePathsToDelete += filePath
@@ -1490,6 +1503,7 @@ class AttachmentTable(
     Log.d(TAG, "[deleteAllAttachments]")
 
     writableDatabase.deleteAll(TABLE_NAME)
+    SignalDatabase.attachmentMetadata.cleanup()
 
     FileUtils.deleteDirectoryContents(context.getDir(DIRECTORY, Context.MODE_PRIVATE))
 
@@ -1647,6 +1661,7 @@ class AttachmentTable(
         values.put(DATA_RANDOM, hashMatch.random)
         values.put(DATA_HASH_START, hashMatch.hashEnd)
         values.put(DATA_HASH_END, hashMatch.hashEnd)
+        values.put(METADATA_ID, hashMatch.metadataId)
         if (archiveRestore) {
           // We aren't getting an updated remote key/mediaName when restoring, can reuse
           values.put(ARCHIVE_CDN, hashMatch.archiveCdn)
@@ -2295,7 +2310,8 @@ class AttachmentTable(
               archiveCdn = if (jsonObject.isNull(ARCHIVE_CDN)) null else jsonObject.getInt(ARCHIVE_CDN),
               thumbnailRestoreState = ThumbnailRestoreState.deserialize(jsonObject.getInt(THUMBNAIL_RESTORE_STATE)),
               archiveTransferState = ArchiveTransferState.deserialize(jsonObject.getInt(ARCHIVE_TRANSFER_STATE)),
-              uuid = UuidUtil.parseOrNull(jsonObject.getString(ATTACHMENT_UUID))
+              uuid = UuidUtil.parseOrNull(jsonObject.getString(ATTACHMENT_UUID)),
+              metadata = null
             )
           }
         }
@@ -2764,6 +2780,12 @@ class AttachmentTable(
     val attachmentId: AttachmentId = writableDatabase.withinTransaction { db ->
       val plaintextHash = attachment.plaintextHash.takeIf { it.isNotEmpty() }?.let { Base64.encodeWithPadding(it) }
 
+      val metadataId: Long? = if (plaintextHash != null && attachment.localBackupKey != null) {
+        SignalDatabase.attachmentMetadata.insert(plaintextHash, attachment.localBackupKey)
+      } else {
+        null
+      }
+
       val contentValues = ContentValues().apply {
         put(MESSAGE_ID, messageId)
         put(CONTENT_TYPE, attachment.contentType)
@@ -2807,6 +2829,10 @@ class AttachmentTable(
           put(REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE, attachment.incrementalMacChunkSize)
         } else {
           putNull(REMOTE_INCREMENTAL_DIGEST)
+        }
+
+        if (metadataId != null && metadataId > 0) {
+          put(METADATA_ID, metadataId)
         }
       }
 
@@ -2870,6 +2896,7 @@ class AttachmentTable(
           put(THUMBNAIL_RANDOM, dataFileInfo.thumbnailRandom)
           put(THUMBNAIL_FILE, dataFileInfo.thumbnailFile)
           put(ATTACHMENT_UUID, stickerAttachment.uuid?.toString())
+          put(METADATA_ID, dataFileInfo.metadataId)
         }
 
         val rowId = db.insert(TABLE_NAME, null, contentValues)
@@ -2911,7 +2938,7 @@ class AttachmentTable(
       attachmentId = AttachmentId(rowId)
     }
 
-    return attachmentId as AttachmentId
+    return attachmentId
   }
 
   /**
@@ -2994,6 +3021,7 @@ class AttachmentTable(
         contentValues.put(DATA_RANDOM, hashMatch.random)
         contentValues.put(DATA_HASH_START, fileWriteResult.hash)
         contentValues.put(DATA_HASH_END, hashMatch.hashEnd)
+        contentValues.put(METADATA_ID, hashMatch.metadataId)
 
         if (hashMatch.transformProperties.skipTransform) {
           Log.i(TAG, "[insertAttachmentWithData] The hash match has a DATA_HASH_END and skipTransform=true, so skipping transform of the new file as well. (MessageId: $messageId, ${attachment.uri})")
@@ -3249,7 +3277,8 @@ class AttachmentTable(
       archiveCdn = cursor.requireIntOrNull(ARCHIVE_CDN),
       thumbnailRestoreState = ThumbnailRestoreState.deserialize(cursor.requireInt(THUMBNAIL_RESTORE_STATE)),
       archiveTransferState = ArchiveTransferState.deserialize(cursor.requireInt(ARCHIVE_TRANSFER_STATE)),
-      uuid = UuidUtil.parseOrNull(cursor.requireString(ATTACHMENT_UUID))
+      uuid = UuidUtil.parseOrNull(cursor.requireString(ATTACHMENT_UUID)),
+      metadata = AttachmentMetadataTable.getMetadata(cursor)
     )
   }
 
@@ -3278,7 +3307,8 @@ class AttachmentTable(
       archiveTransferState = this.requireInt(ARCHIVE_TRANSFER_STATE),
       thumbnailFile = this.requireString(THUMBNAIL_FILE),
       thumbnailRandom = this.requireBlob(THUMBNAIL_RANDOM),
-      thumbnailRestoreState = this.requireInt(THUMBNAIL_RESTORE_STATE)
+      thumbnailRestoreState = this.requireInt(THUMBNAIL_RESTORE_STATE),
+      metadataId = this.requireLongOrNull(METADATA_ID)
     )
   }
 
@@ -3649,7 +3679,8 @@ class AttachmentTable(
     val archiveTransferState: Int,
     val thumbnailFile: String?,
     val thumbnailRandom: ByteArray?,
-    val thumbnailRestoreState: Int
+    val thumbnailRestoreState: Int,
+    val metadataId: Long?
   )
 
   @VisibleForTesting
@@ -3840,11 +3871,12 @@ class AttachmentTable(
   class SyncAttachment(val id: AttachmentId, val uuid: UUID?, val digest: ByteArray?, val plaintextHash: String?)
 
   class LocalArchivableAttachment(
+    val attachmentId: AttachmentId,
     val file: File,
     val random: ByteArray,
     val size: Long,
     val plaintextHash: ByteArray,
-    val remoteKey: ByteArray
+    val localBackupKey: LocalBackupKey
   )
 
   data class RestorableAttachment(
@@ -3853,6 +3885,22 @@ class AttachmentTable(
     val size: Long,
     val plaintextHash: ByteArray?,
     val remoteKey: ByteArray?,
+    val stickerPackId: String?
+  ) {
+    override fun equals(other: Any?): Boolean {
+      return this === other || attachmentId == (other as? RestorableAttachment)?.attachmentId
+    }
+
+    override fun hashCode(): Int {
+      return attachmentId.hashCode()
+    }
+  }
+
+  data class LocalRestorableAttachment(
+    val attachmentId: AttachmentId,
+    val mmsId: Long,
+    val plaintextHash: ByteArray?,
+    val localBackupKey: LocalBackupKey?,
     val stickerPackId: String?
   ) {
     override fun equals(other: Any?): Boolean {

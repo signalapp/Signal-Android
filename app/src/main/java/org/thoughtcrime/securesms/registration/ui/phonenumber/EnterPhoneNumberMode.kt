@@ -12,8 +12,11 @@ enum class EnterPhoneNumberMode {
   /** Normal registration start, collect number to verify */
   NORMAL,
 
-  /** User pre-selected restore/transfer flow, collect number to re-register and restore with */
+  /** User pre-selected restore/transfer flow, collect number to re-register and restore via remote */
   COLLECT_FOR_MANUAL_SIGNAL_BACKUPS_RESTORE,
+
+  /** User pre-selected restore/transfer flow, collect number to re-register and restore via local backup v2 */
+  COLLECT_FOR_LOCAL_V2_SIGNAL_BACKUPS_RESTORE,
 
   /** User reversed decision on restore and needs to resume normal re-register but automatically start verify */
   RESTART_AFTER_COLLECTION

@@ -32,6 +32,15 @@ val RestoreDecisionState.isWantingManualRemoteRestore: Boolean
     else -> false
   }
 
+/** Has the user indicated they want a manual local v2 restore but not via quick restore. */
+val RestoreDecisionState.isWantingNewLocalBackupRestore: Boolean
+  get() = when (this.decisionState) {
+    RestoreDecisionState.State.INTEND_TO_RESTORE -> {
+      this.intendToRestoreData?.fromLocalV2 == true && !this.intendToRestoreData.hasOldDevice
+    }
+    else -> false
+  }
+
 val RestoreDecisionState.includeDeviceToDeviceTransfer: Boolean
   get() = when (this.decisionState) {
     RestoreDecisionState.State.INTEND_TO_RESTORE -> {
@@ -49,10 +58,10 @@ val RestoreDecisionState.Companion.Start: RestoreDecisionState
   get() = RestoreDecisionState(RestoreDecisionState.State.START)
 
 /** Helper to create a [RestoreDecisionState.State.INTEND_TO_RESTORE] with appropriate data. */
-fun RestoreDecisionState.Companion.intendToRestore(hasOldDevice: Boolean, fromRemote: Boolean?): RestoreDecisionState {
+fun RestoreDecisionState.Companion.intendToRestore(hasOldDevice: Boolean, fromRemote: Boolean?, fromLocalV2: Boolean? = null): RestoreDecisionState {
   return RestoreDecisionState(
     decisionState = RestoreDecisionState.State.INTEND_TO_RESTORE,
-    intendToRestoreData = RestoreDecisionState.IntendToRestoreData(hasOldDevice = hasOldDevice, fromRemote = fromRemote)
+    intendToRestoreData = RestoreDecisionState.IntendToRestoreData(hasOldDevice = hasOldDevice, fromRemote = fromRemote, fromLocalV2 = fromLocalV2)
   )
 }
 

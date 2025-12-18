@@ -5,6 +5,7 @@
 
 package org.signal.core.models.backup
 
+import org.signal.core.util.CryptoUtil
 import org.signal.core.util.Hex
 
 /**
@@ -17,6 +18,7 @@ value class MediaName(val name: String) {
     fun fromPlaintextHashAndRemoteKey(plaintextHash: ByteArray, remoteKey: ByteArray) = MediaName(Hex.toStringCondensed(plaintextHash + remoteKey))
     fun fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash: ByteArray, remoteKey: ByteArray) = MediaName(Hex.toStringCondensed(plaintextHash + remoteKey) + "_thumbnail")
     fun forThumbnailFromMediaName(mediaName: String) = MediaName("${mediaName}_thumbnail")
+    fun forLocalBackupFilename(plaintextHash: ByteArray, localKey: ByteArray) = MediaName(Hex.toStringCondensed(CryptoUtil.sha256(plaintextHash + localKey)))
 
     /**
      * For java, since it struggles with value classes.

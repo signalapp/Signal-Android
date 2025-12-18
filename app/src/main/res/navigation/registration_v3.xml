@@ -222,6 +222,14 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+        <action
+            android:id="@+id/go_to_internalNewLocalBackupRestore"
+            app:destination="@id/internalNewLocalBackupRestore"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
         <argument
             android:name="enterPhoneNumberMode"
             app:argType="org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberMode" />
@@ -240,6 +248,12 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/welcomeFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/internalNewLocalBackupRestore"
+        android:name="org.thoughtcrime.securesms.registration.ui.restore.local.InternalNewLocalBackupRestore">
 
     </fragment>
 

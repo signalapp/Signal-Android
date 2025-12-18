@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.Environment
+import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.milliseconds
 
 class BackupsSettingsViewModel : ViewModel() {
@@ -45,7 +46,8 @@ class BackupsSettingsViewModel : ViewModel() {
             backupState = enabledState,
             lastBackupAt = SignalStore.backup.lastBackupTime.milliseconds,
             showBackupTierInternalOverride = Environment.IS_STAGING,
-            backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride
+            backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride,
+            showNewLocalBackup = RemoteConfig.internalUser || Environment.IS_NIGHTLY
           )
         }
       }

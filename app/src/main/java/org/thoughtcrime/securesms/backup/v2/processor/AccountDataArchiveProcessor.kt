@@ -142,7 +142,8 @@ object AccountDataArchiveProcessor {
               db = db,
               chatColors = chatColors,
               chatColorId = chatColors?.id?.takeIf { it.isValid(exportState) } ?: ChatColors.Id.NotSet,
-              chatWallpaper = chatWallpaper
+              chatWallpaper = chatWallpaper,
+              backupMode = exportState.backupMode
             )
           ),
           donationSubscriberData = donationSubscriber?.toSubscriberData(signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled()),

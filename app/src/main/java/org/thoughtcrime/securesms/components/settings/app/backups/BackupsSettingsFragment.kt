@@ -104,6 +104,7 @@ class BackupsSettingsFragment : ComposeFragment() {
         }
       },
       onOnDeviceBackupsRowClick = { findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_backupsPreferenceFragment) },
+      onNewOnDeviceBackupsRowClick = { findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_internalLocalBackupFragment) },
       onBackupTierInternalOverrideChanged = { viewModel.onBackupTierInternalOverrideChanged(it) }
     )
   }
@@ -115,6 +116,7 @@ private fun BackupsSettingsContent(
   onNavigationClick: () -> Unit = {},
   onBackupsRowClick: () -> Unit = {},
   onOnDeviceBackupsRowClick: () -> Unit = {},
+  onNewOnDeviceBackupsRowClick: () -> Unit = {},
   onBackupTierInternalOverrideChanged: (MessageBackupTier?) -> Unit = {}
 ) {
   Scaffolds.Settings(
@@ -231,6 +233,16 @@ private fun BackupsSettingsContent(
           label = stringResource(R.string.RemoteBackupsSettingsFragment__save_your_backups_to),
           onClick = onOnDeviceBackupsRowClick
         )
+      }
+
+      if (backupsSettingsState.showNewLocalBackup) {
+        item {
+          Rows.TextRow(
+            text = "INTERNAL ONLY - New Local Backup",
+            label = "Use new local backup format",
+            onClick = onNewOnDeviceBackupsRowClick
+          )
+        }
       }
     }
   }

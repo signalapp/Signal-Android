@@ -604,6 +604,7 @@ message RestoreDecisionState {
     message IntendToRestoreData {
         bool hasOldDevice = 1;
         optional bool fromRemote = 2;
+        optional bool fromLocalV2 = 3;
     }
 
     State decisionState = 1;

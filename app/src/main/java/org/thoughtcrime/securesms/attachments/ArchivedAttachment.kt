@@ -25,6 +25,9 @@ class ArchivedAttachment : Attachment {
   @JvmField
   val plaintextHash: ByteArray
 
+  @JvmField
+  val localBackupKey: ByteArray?
+
   constructor(
     contentType: String?,
     size: Long,
@@ -47,7 +50,8 @@ class ArchivedAttachment : Attachment {
     quote: Boolean,
     quoteTargetContentType: String?,
     uuid: UUID?,
-    fileName: String?
+    fileName: String?,
+    localBackupKey: ByteArray?
   ) : super(
     contentType = contentType ?: "",
     quote = quote,
@@ -77,17 +81,20 @@ class ArchivedAttachment : Attachment {
   ) {
     this.archiveCdn = archiveCdn
     this.plaintextHash = plaintextHash
+    this.localBackupKey = localBackupKey
   }
 
   constructor(parcel: Parcel) : super(parcel) {
     archiveCdn = parcel.readInt().takeIf { it != NO_ARCHIVE_CDN }
     plaintextHash = parcel.createByteArray()!!
+    localBackupKey = parcel.createByteArray()
   }
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
     super.writeToParcel(dest, flags)
     dest.writeInt(archiveCdn ?: NO_ARCHIVE_CDN)
     dest.writeByteArray(plaintextHash)
+    dest.writeByteArray(localBackupKey)
   }
 
   override val uri: Uri? = null

@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.jobs
 
+import android.net.Uri
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import org.signal.core.util.Result
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -13,13 +13,12 @@ import org.thoughtcrime.securesms.backup.v2.LocalBackupV2Event
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.service.GenericForegroundService
 import org.thoughtcrime.securesms.service.NotificationController
-import org.thoughtcrime.securesms.util.BackupUtil
-import org.thoughtcrime.securesms.util.StorageUtil
 import java.io.IOException
 
 /**
@@ -69,17 +68,11 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
 
       val stopwatch = Stopwatch("archive-export")
 
-      val archiveFileSystem = if (BackupUtil.isUserSelectionRequired(context)) {
-        val backupDirectoryUri = SignalStore.settings.signalBackupDirectory
-
-        if (backupDirectoryUri == null || backupDirectoryUri.path == null) {
-          throw IOException("Backup Directory has not been selected!")
-        }
-
-        ArchiveFileSystem.fromUri(context, backupDirectoryUri)
-      } else {
-        ArchiveFileSystem.fromFile(context, StorageUtil.getOrCreateBackupV2Directory())
+      val backupDirectoryUri = SignalStore.backup.newLocalBackupsDirectory?.let { Uri.parse(it) }
+      if (backupDirectoryUri == null || backupDirectoryUri.path == null) {
+        throw IOException("Backup Directory has not been selected!")
       }
+      val archiveFileSystem = ArchiveFileSystem.fromUri(context, backupDirectoryUri)
 
       if (archiveFileSystem == null) {
         BackupFileIOError.ACCESS_ERROR.postNotification(context)
@@ -95,6 +88,8 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
       stopwatch.split("create-snapshot")
 
       try {
+        SignalDatabase.attachmentMetadata.insertNewKeysForExistingAttachments()
+
         try {
           val result = LocalArchiver.export(snapshotFileSystem, archiveFileSystem.filesFileSystem, stopwatch, cancellationSignal = { isCanceled })
           Log.i(TAG, "Archive finished with result: $result")
@@ -108,22 +103,10 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
 
         stopwatch.split("archive-create")
 
-        // todo [local-backup] verify local backup
-        EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_VERIFYING))
-        val valid = true
-
-        stopwatch.split("archive-verify")
-
-        if (valid) {
-          snapshotFileSystem.finalize()
-          stopwatch.split("archive-finalize")
-        } else {
-          BackupFileIOError.VERIFICATION_FAILED.postNotification(context)
-        }
+        snapshotFileSystem.finalize()
+        stopwatch.split("archive-finalize")
 
         EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.FINISHED))
-
-        stopwatch.stop(TAG)
       } catch (e: BackupCanceledException) {
         EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.FINISHED))
         Log.w(TAG, "Archive cancelled")
@@ -148,6 +131,8 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
       stopwatch.split("delete-unused")
 
       stopwatch.stop(TAG)
+
+      SignalStore.backup.newLocalBackupsLastBackupTime = System.currentTimeMillis()
     } finally {
       notification?.close()
       EventBus.getDefault().unregister(updater)

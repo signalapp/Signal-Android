@@ -3,9 +3,18 @@ syntax = "proto3";
 package signal.backup.local;
 
 option java_package = "org.thoughtcrime.securesms.backup.v2.local.proto";
+option swift_prefix = "LocalBackupProto_";
 
 message Metadata {
+  message EncryptedBackupId {
+    bytes iv = 1; // 12 bytes, randomly generated
+    bytes encryptedId = 2; // AES-256-CTR, key = local backup metadata key, message = backup ID bytes
+    // local backup metadata key = hkdf(input: K_B, info: UTF8("20241011_SIGNAL_LOCAL_BACKUP_METADATA_KEY"), length: 32)
+    // No hash of the ID; if it's decrypted incorrectly, the main backup will fail to decrypt anyway.
+  }
+
   uint32 version = 1;
+  EncryptedBackupId backupId = 2; // used to decrypt the backup file knowing only the Account Entropy Pool
 }
 
 message FilesFrame {

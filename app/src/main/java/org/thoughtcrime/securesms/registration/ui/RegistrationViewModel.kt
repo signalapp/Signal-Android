@@ -987,8 +987,8 @@ class RegistrationViewModel : ViewModel() {
     SignalStore.registration.restoreDecisionState = RestoreDecisionState.Start
   }
 
-  fun intendToRestore(hasOldDevice: Boolean, fromRemote: Boolean? = null) {
-    SignalStore.registration.restoreDecisionState = RestoreDecisionState.intendToRestore(hasOldDevice, fromRemote)
+  fun intendToRestore(hasOldDevice: Boolean, fromRemote: Boolean? = null, fromLocalV2: Boolean? = null) {
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState.intendToRestore(hasOldDevice, fromRemote, fromLocalV2)
   }
 
   fun skipRestore() {

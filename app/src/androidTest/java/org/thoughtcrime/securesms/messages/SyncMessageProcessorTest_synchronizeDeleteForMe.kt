@@ -706,7 +706,8 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
       thumbnailRestoreState = this.thumbnailRestoreState,
       archiveTransferState = this.archiveTransferState,
       uuid = uuid,
-      quoteTargetContentType = this.quoteTargetContentType
+      quoteTargetContentType = this.quoteTargetContentType,
+      metadata = null
     )
   }
 

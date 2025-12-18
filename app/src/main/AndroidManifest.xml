@@ -989,6 +989,10 @@
               android:theme="@style/Signal.DayNight.NoActionBar"
               android:exported="false"/>
 
+    <activity android:name=".registration.ui.restore.local.InternalNewLocalRestoreActivity"
+              android:theme="@style/Signal.DayNight.NoActionBar"
+              android:exported="false"/>
+
     <activity android:name=".profiles.manage.EditProfileActivity"
               android:theme="@style/TextSecure.LightTheme"
               android:windowSoftInputMode="stateVisible|adjustResize"

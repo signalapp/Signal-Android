@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.util
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.backup.v2.BackupMode
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.ChatStyle
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
@@ -34,7 +35,8 @@ object ChatStyleConverter {
     db: SignalDatabase,
     chatColors: ChatColors?,
     chatColorId: ChatColors.Id,
-    chatWallpaper: Wallpaper?
+    chatWallpaper: Wallpaper?,
+    backupMode: BackupMode
   ): ChatStyle? {
     if (chatColors == null && chatWallpaper == null) {
       return null
@@ -72,7 +74,7 @@ object ChatStyleConverter {
           chatStyleBuilder.wallpaperPreset = chatWallpaper.linearGradient.toRemoteWallpaperPreset()
         }
         chatWallpaper.file_ != null -> {
-          chatStyleBuilder.wallpaperPhoto = chatWallpaper.file_.toFilePointer(db)
+          chatStyleBuilder.wallpaperPhoto = chatWallpaper.file_.toFilePointer(db, backupMode)
         }
       }
 
@@ -251,10 +253,10 @@ private fun Wallpaper.LinearGradient.toRemoteWallpaperPreset(): ChatStyle.Wallpa
   }
 }
 
-private fun Wallpaper.File.toFilePointer(db: SignalDatabase): FilePointer? {
+private fun Wallpaper.File.toFilePointer(db: SignalDatabase, backupMode: BackupMode): FilePointer? {
   val attachmentId: AttachmentId = UriUtil.parseOrNull(this.uri)?.let { PartUriParser(it).partId } ?: return null
   val attachment = db.attachmentTable.getAttachment(attachmentId)
-  return attachment?.toRemoteFilePointer()
+  return attachment?.toRemoteFilePointer(backupMode = backupMode)
 }
 
 private fun ChatStyle.Builder.hasBubbleColorSet(): Boolean {

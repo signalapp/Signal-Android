@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.attachments
 
+import android.os.Parcel
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -12,34 +13,39 @@ import org.thoughtcrime.securesms.util.MediaUtil
 /**
  * A basically-empty [Attachment] that is solely used for inserting an attachment into the [AttachmentTable].
  */
-class WallpaperAttachment() : Attachment(
-  contentType = MediaUtil.IMAGE_WEBP,
-  transferState = AttachmentTable.TRANSFER_PROGRESS_DONE,
-  size = 0,
-  fileName = null,
-  cdn = Cdn.CDN_0,
-  remoteLocation = null,
-  remoteKey = null,
-  remoteDigest = null,
-  incrementalDigest = null,
-  fastPreflightId = null,
-  voiceNote = false,
-  borderless = false,
-  videoGif = false,
-  width = 0,
-  height = 0,
-  incrementalMacChunkSize = 0,
-  quote = false,
-  quoteTargetContentType = null,
-  uploadTimestamp = 0,
-  caption = null,
-  stickerLocator = null,
-  blurHash = null,
-  audioHash = null,
-  transformProperties = TransformProperties.empty(),
-  uuid = null
-) {
+class WallpaperAttachment : Attachment {
   override val uri = null
   override val publicUri = null
   override val thumbnailUri = null
+
+  constructor() : super(
+    contentType = MediaUtil.IMAGE_WEBP,
+    transferState = AttachmentTable.TRANSFER_PROGRESS_DONE,
+    size = 0,
+    fileName = null,
+    cdn = Cdn.CDN_0,
+    remoteLocation = null,
+    remoteKey = null,
+    remoteDigest = null,
+    incrementalDigest = null,
+    fastPreflightId = null,
+    voiceNote = false,
+    borderless = false,
+    videoGif = false,
+    width = 0,
+    height = 0,
+    incrementalMacChunkSize = 0,
+    quote = false,
+    quoteTargetContentType = null,
+    uploadTimestamp = 0,
+    caption = null,
+    stickerLocator = null,
+    blurHash = null,
+    audioHash = null,
+    transformProperties = TransformProperties.empty(),
+    uuid = null
+  )
+
+  @Suppress("unused")
+  constructor(parcel: Parcel) : super(parcel)
 }

@@ -482,7 +482,8 @@ class AttachmentTableTest {
       quote = false,
       quoteTargetContentType = null,
       uuid = UUID.randomUUID(),
-      fileName = null
+      fileName = null,
+      localBackupKey = null
     )
   }
 

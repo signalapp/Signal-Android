@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public final class LocalBackupJob extends BaseJob {
 
@@ -65,11 +66,12 @@ public final class LocalBackupJob extends BaseJob {
     }
   }
 
-  public static void enqueueArchive() {
+  public static void enqueueArchive(boolean delay) {
     JobManager         jobManager = AppDependencies.getJobManager();
     Parameters.Builder parameters = new Parameters.Builder()
                                                   .setQueue(QUEUE)
                                                   .setMaxInstancesForFactory(1)
+                                                  .setInitialDelay(delay ? TimeUnit.MINUTES.toMillis(30) : 0)
                                                   .setMaxAttempts(3);
 
     jobManager.add(new LocalArchiveJob(parameters.build()));

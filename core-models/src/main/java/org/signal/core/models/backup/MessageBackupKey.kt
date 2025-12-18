@@ -54,6 +54,13 @@ class MessageBackupKey(override val value: ByteArray) : BackupKey {
     )
   }
 
+  /**
+   * The AES key used to encrypt the backup id for local file backup metadata header.
+   */
+  fun deriveLocalBackupMetadataKey(): ByteArray {
+    return LibSignalBackupKey(value).deriveLocalBackupMetadataKey()
+  }
+
   class BackupKeyMaterial(
     val id: BackupId,
     val macKey: ByteArray,

@@ -67,7 +67,8 @@ class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalData
         db = db,
         chatColors = chatColors,
         chatColorId = customChatColorsId,
-        chatWallpaper = chatWallpaper
+        chatWallpaper = chatWallpaper,
+        backupMode = exportState.backupMode
       )
     )
   }

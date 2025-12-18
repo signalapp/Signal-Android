@@ -256,7 +256,8 @@ class UploadDependencyGraphTest {
       thumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.NONE,
       archiveTransferState = AttachmentTable.ArchiveTransferState.NONE,
       uuid = null,
-      quoteTargetContentType = null
+      quoteTargetContentType = null,
+      metadata = null
     )
   }
 

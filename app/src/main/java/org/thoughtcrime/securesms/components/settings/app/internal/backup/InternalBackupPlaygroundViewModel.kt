@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.components.settings.app.internal.backup
 
-import android.net.Uri
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -43,11 +42,6 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.DebugBackupMetadata
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
-import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
-import org.thoughtcrime.securesms.backup.v2.local.ArchiveResult
-import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
-import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver.FailureCause
-import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader.Companion.MAC_SIZE
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -55,7 +49,6 @@ import org.thoughtcrime.securesms.database.AttachmentTable.DebugAttachmentStats
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
-import org.thoughtcrime.securesms.jobs.RestoreLocalAttachmentJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.providers.BlobProvider
@@ -190,29 +183,6 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy {
         _state.value = _state.value.copy(statusMessage = "Encrypted backup import complete!")
-      }
-  }
-
-  fun import(uri: Uri) {
-    _state.value = _state.value.copy(statusMessage = "Importing new-style local backup...")
-
-    val self = Recipient.self()
-    val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
-
-    disposables += Single.fromCallable {
-      val archiveFileSystem = ArchiveFileSystem.fromUri(AppDependencies.application, uri)!!
-      val snapshotInfo = archiveFileSystem.listSnapshots().firstOrNull() ?: return@fromCallable ArchiveResult.failure(FailureCause.MAIN_STREAM)
-      val snapshotFileSystem = SnapshotFileSystem(AppDependencies.application, snapshotInfo.file)
-
-      LocalArchiver.import(snapshotFileSystem, selfData)
-
-      val mediaNameToFileInfo = archiveFileSystem.filesFileSystem.allFiles()
-      RestoreLocalAttachmentJob.enqueueRestoreLocalAttachmentsJobs(mediaNameToFileInfo)
-    }
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy {
-        _state.value = _state.value.copy(statusMessage = "New-style local backup import complete!")
       }
   }
 

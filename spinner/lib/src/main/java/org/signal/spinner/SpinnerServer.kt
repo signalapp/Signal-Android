@@ -54,6 +54,8 @@ internal class SpinnerServer(
   private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS zzz", Locale.US)
 
   override fun serve(session: IHTTPSession): Response {
+    Log.v(TAG, "Request: ${session.method} ${session.uri} ${session.parameters}")
+
     if (session.method == Method.POST) {
       // Needed to populate session.parameters
       session.parseBody(mutableMapOf())
@@ -280,11 +282,15 @@ internal class SpinnerServer(
   }
 
   private fun getPlugin(dbName: String, plugin: Plugin, parameters: Map<String, List<String>>): Response {
-    val pluginResult = plugin.get(parameters)
-
-    when (pluginResult) {
+    when (val pluginResult = plugin.get(parameters)) {
+      is PluginResult.JsonResult -> {
+        return newFixedLengthResponse(Response.Status.OK, "application/json", pluginResult.json)
+      }
       is PluginResult.RawFileResult -> {
         return newFixedLengthResponse(Response.Status.OK, pluginResult.mimeType, pluginResult.data, pluginResult.length)
+      }
+      is PluginResult.ErrorResult -> {
+        return newFixedLengthResponse(pluginResult.status, "text/plain", pluginResult.message)
       }
       else -> {
         return renderTemplate(
@@ -296,7 +302,7 @@ internal class SpinnerServer(
             databases = databases.keys.toList(),
             plugins = plugins.values.toList(),
             activePlugin = plugin,
-            pluginResult = plugin.get(parameters)
+            pluginResult = pluginResult
           )
         )
       }

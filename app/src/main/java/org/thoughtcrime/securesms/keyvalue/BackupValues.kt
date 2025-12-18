@@ -99,6 +99,10 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_MESSAGE_CUTOFF_DURATION = "backup.message_cutoff_duration"
     private const val KEY_LAST_USED_MESSAGE_CUTOFF_TIME = "backup.last_used_message_cutoff_time"
 
+    private const val KEY_NEW_LOCAL_BACKUPS_ENABLED = "backup.new_local_backups_enabled"
+    private const val KEY_NEW_LOCAL_BACKUPS_DIRECTORY = "backup.new_local_backups_directory"
+    private const val KEY_NEW_LOCAL_BACKUPS_LAST_BACKUP_TIME = "backup.new_local_backups_last_backup_time"
+
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
 
     private val lock = ReentrantLock()
@@ -440,6 +444,27 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
    * size limit, which is *extraordinarily* rare, so this value is almost always 0.
    */
   var lastUsedMessageCutoffTime: Long by longValue(KEY_LAST_USED_MESSAGE_CUTOFF_TIME, 0)
+
+  /**
+   * True if the new local backup system is enabled, otherwise false.
+   */
+  private val newLocalBackupsEnabledValue = booleanValue(KEY_NEW_LOCAL_BACKUPS_ENABLED, false)
+  var newLocalBackupsEnabled: Boolean by newLocalBackupsEnabledValue
+  val newLocalBackupsEnabledFlow: Flow<Boolean> by lazy { newLocalBackupsEnabledValue.toFlow() }
+
+  /**
+   * The directory URI path selected for new local backups.
+   */
+  private val newLocalBackupsDirectoryValue = stringValue(KEY_NEW_LOCAL_BACKUPS_DIRECTORY, null as String?)
+  var newLocalBackupsDirectory: String? by newLocalBackupsDirectoryValue
+  val newLocalBackupsDirectoryFlow: Flow<String?> by lazy { newLocalBackupsDirectoryValue.toFlow() }
+
+  /**
+   * The timestamp of the last successful new local backup.
+   */
+  private val newLocalBackupsLastBackupTimeValue = longValue(KEY_NEW_LOCAL_BACKUPS_LAST_BACKUP_TIME, -1)
+  var newLocalBackupsLastBackupTime: Long by newLocalBackupsLastBackupTimeValue
+  val newLocalBackupsLastBackupTimeFlow: Flow<Long> by lazy { newLocalBackupsLastBackupTimeValue.toFlow() }
 
   /**
    * When we are told by the server that we are out of storage space, we should show
