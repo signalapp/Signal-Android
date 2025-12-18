@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil
 import org.thoughtcrime.securesms.profiles.ProfileName
+import org.thoughtcrime.securesms.recipients.Recipient.Companion.external
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.UsernameUtil.isValidUsernameForSearch
@@ -1071,9 +1072,10 @@ class Recipient(
         SignalDatabase.recipients.getOrInsertFromEmail(identifier)
       } else if (isValidUsernameForSearch(identifier)) {
         throw IllegalArgumentException("Creating a recipient based on username alone is not supported!")
+      } else if (SignalE164Util.isPotentialE164(identifier)) {
+        SignalDatabase.recipients.getOrInsertFromE164(identifier)
       } else {
-        val e164: String = SignalE164Util.formatAsE164(identifier) ?: return null
-        SignalDatabase.recipients.getOrInsertFromE164(e164)
+        return null
       }
 
       return resolved(id)
