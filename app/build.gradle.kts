@@ -373,16 +373,10 @@ android {
     }
 
     create("nightly") {
-      val apkUpdateManifestUrl = if (file("${project.rootDir}/nightly-url.txt").exists()) {
-        file("${project.rootDir}/nightly-url.txt").readText().trim()
-      } else {
-        "<unset>"
-      }
-
       dimension = "distribution"
       versionNameSuffix = "-nightly-untagged-${getDateSuffix()}"
-      buildConfigField("boolean", "MANAGES_APP_UPDATES", "true")
-      buildConfigField("String", "APK_UPDATE_MANIFEST_URL", "\"${apkUpdateManifestUrl}\"")
+      buildConfigField("boolean", "MANAGES_APP_UPDATES", "false")
+      buildConfigField("String", "APK_UPDATE_MANIFEST_URL", "null")
       buildConfigField("String", "BUILD_DISTRIBUTION_TYPE", "\"nightly\"")
       buildConfigField("boolean", "LINK_DEVICE_UX_ENABLED", "true")
     }
@@ -673,14 +667,6 @@ tasks.withType<Test>().configureEach {
     showCauses = true
     showExceptions = true
     showStackTraces = true
-  }
-}
-
-gradle.taskGraph.whenReady {
-  if (gradle.startParameter.taskNames.any { it.contains("nightly", ignoreCase = true) }) {
-    if (!file("${project.rootDir}/nightly-url.txt").exists()) {
-      throw GradleException("Missing required file: nightly-url.txt")
-    }
   }
 }
 
