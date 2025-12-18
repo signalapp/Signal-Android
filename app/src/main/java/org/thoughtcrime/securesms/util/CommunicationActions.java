@@ -47,11 +47,14 @@ import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameLinkConversionResult;
 import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.webrtc.ActiveCallData;
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
+
+import io.reactivex.rxjava3.core.Single;
 
 import java.io.IOException;
 import java.net.URI;
@@ -572,6 +575,26 @@ public class CommunicationActions {
     public @NonNull FragmentManager getFragmentManager() {
       return fragment.getParentFragmentManager();
     }
+  }
+
+  /**
+   * Returns a Single that emits true if this device is currently in an active call with the given recipient,
+   * false otherwise.
+   */
+  public static @NonNull Single<Boolean> isDeviceInCallWithRecipient(@NonNull RecipientId recipientId) {
+    return Single.create(emitter -> {
+      AppDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+          if (resultCode == 1 && resultData != null) {
+            ActiveCallData activeCallData = ActiveCallData.fromBundle(resultData);
+            emitter.onSuccess(Objects.equals(activeCallData.getRecipientId(), recipientId));
+          } else {
+            emitter.onSuccess(false);
+          }
+        }
+      });
+    });
   }
 
   public interface OnUserAlreadyInAnotherCall {
