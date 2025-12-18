@@ -27,6 +27,9 @@ val canonicalVersionName = "7.68.5"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
+// Other than the first offset of 0, we don't want versions to ever end in 0 so that they don't conflict with nightly versions
+val possibleHotfixVersions = (0 until maxHotfixVersions).toList().filter { it % 10 != 0 }
+
 val keystores: Map<String, Properties?> = mapOf("debug" to loadKeystoreProperties("keystore.debug.properties"))
 
 val selectableVariants = listOf(
@@ -178,7 +181,10 @@ android {
   }
 
   defaultConfig {
-    versionCode = (canonicalVersionCode * maxHotfixVersions) + currentHotfixVersion
+    if (currentHotfixVersion >= maxHotfixVersions) {
+      throw AssertionError("Hotfix version offset is too large!")
+    }
+    versionCode = (canonicalVersionCode * maxHotfixVersions) + possibleHotfixVersions[currentHotfixVersion]
     versionName = canonicalVersionName
 
     minSdk = signalMinSdkVersion
@@ -445,13 +451,17 @@ android {
       .map { it as com.android.build.gradle.internal.api.ApkVariantOutputImpl }
       .forEach { output ->
         if (output.baseName.contains("nightly")) {
-          var tag = getCurrentGitTag()
+          var tag = getNightlyTagForCurrentCommit()
           if (!tag.isNullOrEmpty()) {
             if (tag.startsWith("v")) {
               tag = tag.substring(1)
             }
             output.versionNameOverride = tag
             output.outputFileName = output.outputFileName.replace(".apk", "-${output.versionNameOverride}.apk")
+
+            // We add a multiple of maxHotfixVersions to nightlies to ensure we're always at least that many versions ahead
+            val nightlyBuffer = (5 * maxHotfixVersions)
+            output.versionCodeOverride = (canonicalVersionCode * maxHotfixVersions) + (getNightlyBuildNumber(tag) * 10) + nightlyBuffer
           } else {
             output.outputFileName = output.outputFileName.replace(".apk", "-$versionName.apk")
           }
@@ -656,6 +666,24 @@ dependencies {
   androidTestUtil(testLibs.androidx.test.orchestrator)
 }
 
+tasks.withType<Test>().configureEach {
+  testLogging {
+    events("failed")
+    exceptionFormat = TestExceptionFormat.FULL
+    showCauses = true
+    showExceptions = true
+    showStackTraces = true
+  }
+}
+
+gradle.taskGraph.whenReady {
+  if (gradle.startParameter.taskNames.any { it.contains("nightly", ignoreCase = true) }) {
+    if (!file("${project.rootDir}/nightly-url.txt").exists()) {
+      throw GradleException("Missing required file: nightly-url.txt")
+    }
+  }
+}
+
 fun assertIsGitRepo() {
   if (!file("${project.rootDir}/.git").exists()) {
     throw IllegalStateException("Must be a git repository to guarantee reproducible builds! (git hash is part of APK)")
@@ -678,7 +706,7 @@ fun getGitHash(): String {
   }.standardOutput.asText.get().trim().substring(0, 12)
 }
 
-fun getCurrentGitTag(): String? {
+fun getNightlyTagForCurrentCommit(): String? {
   assertIsGitRepo()
 
   val output = providers.exec {
@@ -693,22 +721,13 @@ fun getCurrentGitTag(): String? {
   }
 }
 
-tasks.withType<Test>().configureEach {
-  testLogging {
-    events("failed")
-    exceptionFormat = TestExceptionFormat.FULL
-    showCauses = true
-    showExceptions = true
-    showStackTraces = true
+fun getNightlyBuildNumber(tag: String?): Int {
+  if (tag == null) {
+    return 0
   }
-}
 
-gradle.taskGraph.whenReady {
-  if (gradle.startParameter.taskNames.any { it.contains("nightly", ignoreCase = true) }) {
-    if (!file("${project.rootDir}/nightly-url.txt").exists()) {
-      throw GradleException("Missing required file: nightly-url.txt")
-    }
-  }
+  val match = Regex("-(\\d{3})$").find(tag)
+  return match?.groupValues?.get(1)?.toIntOrNull() ?: 0
 }
 
 fun loadKeystoreProperties(filename: String): Properties? {
