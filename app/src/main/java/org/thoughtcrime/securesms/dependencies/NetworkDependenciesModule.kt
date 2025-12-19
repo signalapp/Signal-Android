@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.subjects.Subject
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
 import org.signal.core.util.resettableLazy
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
@@ -51,6 +52,7 @@ import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.svr.SvrBApi
 import org.whispersystems.signalservice.api.username.UsernameApi
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory
+import org.whispersystems.signalservice.api.util.TlsProxySocketFactory
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
@@ -239,10 +241,16 @@ class NetworkDependenciesModule(
 
       sslContext.init(null, trustManagers, null)
 
-      baseClient.newBuilder()
+      val builder = baseClient.newBuilder()
         .sslSocketFactory(Tls12SocketFactory(sslContext.socketFactory), trustManagers[0] as X509TrustManager)
         .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
-        .build()
+
+      val proxy = signalServiceNetworkAccess.getConfiguration().signalProxy.orNull()
+      if (proxy != null) {
+        builder.socketFactory(TlsProxySocketFactory(proxy.host, proxy.port, signalServiceNetworkAccess.getConfiguration().dns))
+      }
+
+      builder.build()
     } catch (e: NoSuchAlgorithmException) {
       throw AssertionError(e)
     } catch (e: KeyManagementException) {
