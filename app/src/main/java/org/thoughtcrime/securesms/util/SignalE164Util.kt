@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.util
 
+import org.signal.core.util.BidiUtil
 import org.signal.core.util.E164Util
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -28,7 +29,7 @@ object SignalE164Util {
    */
   @JvmStatic
   fun prettyPrint(input: String): String {
-    return getFormatter().prettyPrint(input)
+    return BidiUtil.forceLtr(getFormatter().prettyPrint(input))
   }
 
   /**
