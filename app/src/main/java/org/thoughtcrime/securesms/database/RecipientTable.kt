@@ -1263,8 +1263,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     for (id in groups.getAllGroupV2Ids()) {
       val recipient = Recipient.externalGroupExact(id)
       val recipientId = recipient.id
-      val existing: RecipientRecord = getRecordForSync(recipientId) ?: throw AssertionError()
-      val key = existing.storageId ?: throw AssertionError()
+      var existing: RecipientRecord = getRecordForSync(recipientId) ?: throw AssertionError("Failed to find recipient record!")
+      var key = existing.storageId
+
+      if (key == null) {
+        Log.w(TAG, "Needed to repair storageId for $recipientId (group $id)")
+        rotateStorageId(existing.id)
+        existing = getRecordForSync(recipientId) ?: throw AssertionError("Failed to find recipient record for second fetch!")
+        key = existing.storageId ?: throw AssertionError("StorageId not present immediately after setting it!")
+      }
+
       out[recipientId] = StorageId.forGroupV2(key)
     }
 
