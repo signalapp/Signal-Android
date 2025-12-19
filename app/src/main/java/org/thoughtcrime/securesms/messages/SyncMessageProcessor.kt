@@ -1886,7 +1886,14 @@ object SyncMessageProcessor {
     }
 
     val pinMessage = message.pinMessage!!
-    val targetMessage = SignalDatabase.messages.getMessageFor(pinMessage.targetSentTimestamp!!, Recipient.self().id)
+    val targetAuthorServiceId: ServiceId = ACI.parseOrThrow(pinMessage.targetAuthorAciBinary!!)
+    if (targetAuthorServiceId.isUnknown) {
+      warn(envelope.timestamp!!, "Unknown author")
+      return -1
+    }
+
+    val targetAuthor = Recipient.externalPush(targetAuthorServiceId)
+    val targetMessage = SignalDatabase.messages.getMessageFor(pinMessage.targetSentTimestamp!!, targetAuthor.id)
     if (targetMessage == null) {
       warn(envelope.timestamp!!, "Unable to find target message for sync message. Putting in early message cache.")
       if (earlyMessageCacheEntry != null) {
