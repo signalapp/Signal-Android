@@ -2957,7 +2957,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Athraigh Treo an Cheamara</string>
+    <string name="SwitchCameraButton__switch_camera_direction">Athraigh treo an cheamara</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Svaidhpeáil le hamharc ar chomhroinnt scáileáin</string>
@@ -4827,7 +4827,7 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Cuir deireadh leis an suirbhé</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pionnáil</string>
+    <string name="conversation_selection__menu_pin_message">Greamaigh</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Díghreamaigh</string>
 
@@ -5663,7 +5663,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Réamhamharc ar an gcúlbhrat</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Would you like to override all chat colors?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Would you like to override all wallpapers?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Athshocraigh an dath réamhshocraithe</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Reset All Colors</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Reset Default Wallpaper</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Reset All Wallpapers</string>
@@ -6652,7 +6652,7 @@
     <string name="ManageDonationsFragment__donation_receipts">Admhálacha Tabhartas</string>
     <string name="ManageDonationsFragment__badges">Suaitheantais</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">CCanna do Thabharthóirí</string>
+    <string name="ManageDonationsFragment__subscription_faq">CCanna do thabharthóirí</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Other Ways to Give</string>
     <!-- Preference label to launch badge gifting -->
@@ -7999,7 +7999,7 @@
     <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Caillte agus an phróifíl fógraí casta uirthi</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile_multiple">Caillte agus an phróifíl fógraí casta uirthi</string>
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Caillte agus an phróifíl fógra casta uirthi</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Téigh isteach ann</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -9132,7 +9132,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Cuir isteach d\'eochair athshlánaithe</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Cuir isteach an cód 64 carachtar a thaifead tú nuair a chumasaigh tú cúltacaí.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Eochair dearmadta?</string>
 
@@ -9576,7 +9576,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">féachaint ar do loga dífhabhtaithe</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> sula gcuireann tú isteach é.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Comhroinn an loga dífhabhtaithe</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9586,11 +9586,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Go raibh maith agat as d\'aiseolas!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">Bhí fadhbanna agam leis an nglao</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">Bhí an glao go hiontach</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Theip ar sheoladh d\'aiseolais.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">Triail arís é</string>
 
@@ -9639,11 +9639,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Díghreamófar teachtaireachtaí do gach ball.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">Níorbh fhéidir an teachtaireacht a ghreamú</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">Níorbh fhéidir an teachtaireacht a dhíghreamú</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">Níorbh fhéidir na teachtaireachtaí a dhíghreamú</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">Seiceáil do nasc agus triail arís.</string>
 

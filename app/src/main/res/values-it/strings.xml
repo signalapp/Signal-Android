@@ -4496,7 +4496,7 @@
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Scorciatoia impostazioni</string>
     <string name="conversation_list_search_description">Cerca</string>
-    <string name="conversation_list__pinned">Fissate</string>
+    <string name="conversation_list__pinned">In evidenza</string>
     <string name="conversation_list__chats">Chat</string>
     <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Puoi fissare solo fino a %1$d chat</string>

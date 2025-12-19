@@ -5143,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Pratonton kertas dinding</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Adakah anda ingin menggantikan semua warna sembang?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Adakah anda ingin menggantikan semua kertas dinding?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Tetapkan semula warna lalai</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Tetapkan semula semua warna</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Tetapkan semula kertas dinding lalai</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Tetapkan semula semua kertas dinding</string>
@@ -8408,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Masukkan kunci pemulihan anda</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Masukkan kod 64 aksara yang anda simpan semasa anda mendayakan sandaran.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Terlupa kunci?</string>
 
@@ -8832,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">melihat log nyahpepijat anda</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> sebelum menghantar.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Kongsi log nyahpepijat</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8842,11 +8842,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Terima kasih atas maklum balas anda!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">Saya mempunyai masalah dengan panggilan</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">Panggilan bagus</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Maklum balas anda gagal dihantar.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">Cuba lagi</string>
 
@@ -8895,11 +8895,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Mesej akan dinyahpinkan untuk semua ahli.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">Tidak dapat mengepin mesej</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">Tidak dapat menyahpin mesej</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">Tidak dapat menyahpin mesej</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">Periksa sambungan anda dan cuba lagi.</string>
 

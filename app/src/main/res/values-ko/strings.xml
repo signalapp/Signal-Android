@@ -117,9 +117,9 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">미디어를 선택할 수 있는 앱이 없습니다.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal에서 사진, 동영상 또는 오디오를 첨부하려면 저장 공간 접근 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal에서 연락처 정보를 첨부하려면 연락처 접근 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal에서 위치 정보를 첨부하려면 위치 접근 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'위치\' 항목을 허용해 주세요.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal에서 사진, 동영상 또는 오디오를 첨부하려면 저장 공간 접근 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal에서 연락처 정보를 첨부하려면 연락처 접근 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal에서 위치 정보를 첨부하려면 위치 접근 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'위치\' 항목을 허용해 주세요.</string>
 
     <!-- Dialog title asking users for location permission -->
     <string name="AttachmentManager_signal_allow_access_location">내 위치를 사용하도록 허용</string>
@@ -324,7 +324,7 @@
     <string name="CameraContacts_no_signal_contacts">Signal 연락처 없음</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">카메라 버튼은 Signal 연락처에 사진을 보내는 용도로만 사용할 수 있습니다. </string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">원하는 사람을 찾지 못하셨나요?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Signal에 등록하도록 연락처 초대</string>
+    <string name="CameraContacts_invite_a_contact_to_join_signal">Signal 가입 초대하기</string>
     <string name="CameraContacts__menu_search">검색</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -424,13 +424,13 @@
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">수신자가 이제 Signal 사용자가 아니므로 메시지가 암호화되지 <b>않습니다</b>.\n\n비보안 메시지를 보내시겠습니까?</string>
     <string name="ConversationItem_unable_to_open_media">미디어를 열 수 있는 앱이 없습니다.</string>
     <string name="ConversationItem_copied_text">%1$s 복사됨</string>
-    <string name="ConversationItem_from_s">%1$s에서</string>
+    <string name="ConversationItem_from_s">발신: %1$s</string>
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
-    <string name="ConversationItem_to_s">%1$s에게</string>
-    <string name="ConversationItem_read_more">더 알아보기</string>
+    <string name="ConversationItem_to_s">수신: %1$s</string>
+    <string name="ConversationItem_read_more">  더 보기</string>
     <!-- Footer shown at the end of long body messages to download more of it -->
-    <string name="ConversationItem_download_more">더 다운로드</string>
-    <string name="ConversationItem_pending">대기 중</string>
+    <string name="ConversationItem_download_more">  더 다운로드하기</string>
+    <string name="ConversationItem_pending">  대기 중</string>
     <string name="ConversationItem_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
     <string name="ConversationItem_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -459,7 +459,7 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">수정한 메시지 보내기</string>
     <string name="ConversationActivity_compose_message">메시지 작성</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">죄송합니다. 파일 첨부 설정 중 오류가 발생했습니다.</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">파일 첨부 설정 중 오류가 발생했습니다.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">수신자의 SMS 또는 이메일 주소가 올바르지 않습니다</string>
     <string name="ConversationActivity_message_is_empty_exclamation">메시지가 비어 있어요</string>
@@ -475,8 +475,8 @@
 
     <string name="ConversationActivity_invalid_recipient">잘못된 수신자입니다</string>
     <string name="ConversationActivity_added_to_home_screen">홈 화면에 추가됨</string>
-    <string name="ConversationActivity_calls_not_supported">지원되지 않는 전화</string>
-    <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">해당 기기에서는 전화를 지원하지 않는 것 같습니다.</string>
+    <string name="ConversationActivity_calls_not_supported">통화 기능 미지원</string>
+    <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">이 기기는 통화 옵션을 지원하지 않습니다.</string>
     <string name="ConversationActivity_transport_insecure_sms">비보안 SMS</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
     <string name="ConversationActivity_transport_insecure_sms_with_sim">비보안 SMS(%1$s)</string>
@@ -489,7 +489,7 @@
     <string name="ConversationActivity_specify_recipient">연락처를 선택해 주세요.</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">첨부 파일이 전송 메시지의 사이즈 제한을 초과합니다.</string>
     <string name="ConversationActivity_unable_to_record_audio">오디오를 녹음할 수 없어요</string>
-    <string name="ConversationActivity_you_cant_send_messages_to_this_group">더 이상 이 그룹의 멤버가 아니기 때문에 이 그룹에 메시지를 보내실 수 없습니다.</string>
+    <string name="ConversationActivity_you_cant_send_messages_to_this_group">현재 이 그룹의 멤버가 아니어서 메시지를 보낼 수 없어요.</string>
     <string name="ConversationActivity_only_s_can_send_messages">%1$s만 메시지를 전송할 수 있습니다.</string>
     <string name="ConversationActivity_admins">관리자</string>
     <string name="ConversationActivity_message_an_admin">관리자에게 메시지 전송</string>
@@ -507,14 +507,14 @@
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">음성 메시지를 보내려면 Signal에서 마이크를 사용할 수 있도록 허용하세요.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
     <string name="ConversationActivity_signal_needs_microphone_access_voice_message">음성 메시지를 녹음하려면 Signal에서 마이크를 사용할 수 있어야 합니다.</string>
-    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal에서 오디오 메시지를 보내려면 마이크 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\' 항목을 허용해 주세요.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal에서 음성 메시지를 보내려면 마이크 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\' 항목을 허용해 주세요.</string>
 
-    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal에서 %1$s에게 전화하려면 마이크와 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\'와 \'카메라\' 항목을 허용해 주세요.</string>
+    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal에서 \'%1$s\'에게 전화하려면 마이크와 카메라 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\'와 \'카메라\' 항목을 허용해 주세요.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Signal에서 사진과 동영상을 찍으려면 카메라 권한이 필요합니다.</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal에서 사진이나 동영상을 찍으려면 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'카메라\' 항목을 허용해 주세요.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal에서 사진이나 동영상을 찍으려면 카메라 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'카메라\' 항목을 허용해 주세요.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal에서 사진이나 동영상을 찍으려면 카메라 권한이 필요합니다.</string>
     <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">소리가 나는 동영상을 찍으려면 마이크 권한을 허용해 주세요.</string>
-    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal에서 동영상을 찍으려면 마이크 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\'와 \'카메라\'를 허용해 주세요.</string>
+    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal에서 동영상을 찍으려면 마이크 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\'와 \'카메라\'를 허용해 주세요.</string>
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal에서 동영상을 찍으려면 마이크 권한이 필요합니다.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
@@ -931,7 +931,7 @@
     <string name="BackupsPreferenceFragment__d_so_far">지금까지 %1$d…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% 진행중…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal에서 백업을 저장하려면 저장 공간 권한이 필요합니다. 현재 권한이 거부되어 있으니, 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal에서 백업을 저장하려면 저장 공간 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
     <string name="BackupsPreferenceFragment__set_backup_time">백업 시간 설정</string>
 
@@ -1236,14 +1236,14 @@
         <item quantity="other">%1$d명에게 초대가 전송됨</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
-    <string name="GroupManagement_invite_single_user">\'%1$s\' 님을 내가 그룹에 자동으로 추가할 수 없습니다.\n\n가입 초대를 받았으며 수락할 때까지 그룹 메시지가 표시되지 않습니다.</string>
-    <string name="GroupManagement_invite_multiple_users">이 사용자들을 내가 그룹에 자동으로 추가할 수 없습니다.\n\n그룹에 가입하도록 초대되었으며 수락할 때까지 그룹 메시지가 표시되지 않습니다.</string>
+    <string name="GroupManagement_invite_single_user">\'%1$s\' 님을 그룹에 자동으로 추가할 수 없습니다.\n\n현재 그룹에 초대된 상태이며, 수락하기 전까지는 그룹 메시지를 확인할 수 없습니다.</string>
+    <string name="GroupManagement_invite_multiple_users">이 사용자들을 그룹에 자동으로 추가할 수 없습니다.\n\n현재 그룹에 초대된 상태이며, 수락하기 전까지는 그룹 메시지가 표시되지 않습니다.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">새 그룹이 무엇인가요?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">새 그룹에는 @멘션 및 그룹 관리자와 같은 기능이 있으며 향후 더 많은 기능을 지원할 예정입니다.</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">모든 업그레이드 전 메시지 기록과 미디어를 보관했습니다.</string>
-    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">그룹에 다시 가입하려면 초대를 수락해야 하며 수락할 때까지 그룹 메시지를 받지 않습니다.</string>
+    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">그룹에 다시 참가하려면 초대를 수락해야 하며, 수락할 때까지 그룹 메시지는 받지 않습니다.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="other">이 멤버들이 그룹에 다시 가입하려면 초대를 수락해야 하며 수락할 때까지 그룹 메시지를 받지 않습니다.</item>
     </plurals>
@@ -1971,10 +1971,10 @@
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s 님의 그룹 가입 요청이 승인되었습니다.</string>
 
     <!-- GV2 group link deny -->
-    <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">그룹 가입 요청이 관리자에 의해 거부되었습니다.</string>
+    <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">관리자가 그룹 참가 요청을 거절했습니다.</string>
     <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">%1$s의 그룹 참가 요청을 거절하셨습니다.</string>
-    <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s 님이 %2$s 님의 그룹 가입 요청을 거부했습니다.</string>
-    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s 님의 그룹 가입 요청이 거부되었습니다.</string>
+    <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s 님이 %2$s 님의 그룹 가입 요청을 거절했습니다.</string>
+    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s 님의 그룹 가입 요청이 거절되었습니다.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">내 그룹 참가 요청을 취소했습니다.</string>
     <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s 님이 그룹 가입 요청을 취소했습니다.</string>
 
@@ -2195,7 +2195,7 @@
     <string name="DeviceProvisioningActivity_link_a_signal_device">Signal 기기를 연결하시겠습니까?</string>
     <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">이 Signal 계정에 데스크톱이나 iPad를 연결하려면 연결된 기기로 이동하여 \'새 기기 연결\'을 탭한 다음 QR 코드를 다시 스캔하세요. Signal에서 직접 제공한 QR 코드만 스캔하세요.</string>
 
-    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal에서 QR 코드를 읽으려면 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'카메라\' 항목을 허용해 주세요.</string>
+    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal에서 QR 코드를 읽으려면 카메라 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'카메라\' 항목을 허용해 주세요.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">카메라 권한이 없어 QR 코드를 스캔할 수 없음</string>
 
     <!-- OutdatedBuildReminder -->
@@ -2331,7 +2331,7 @@
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">재연결 중…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
-    <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth 사용 권한 거부함</string>
+    <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth 사용 권한이 거부됨</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
     <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">통화 중 Bluetooth를 사용하려면 \'주변 기기\' 접근 권한을 허용해 주세요.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
@@ -3037,7 +3037,7 @@
     <string name="VerifyIdentityActivity_our_signal_safety_number">우리 Signal 안전 번호:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">공유에 사용할 수 있는 앱이 없습니다.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">클립보드에 비교할 수 있는 안전 번호가 없음</string>
-    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal에서 QR 코드를 읽으려면 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'카메라\' 항목을 허용해 주세요.</string>
+    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal에서 QR 코드를 읽으려면 카메라 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'카메라\' 항목을 허용해 주세요.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR 코드를 읽으려면 카메라 권한이 필요함</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s의 안전 번호를 보려면 먼저 메시지를 교환해야 합니다.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
@@ -3208,7 +3208,7 @@
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal에서 외부 저장 공간에 저장하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal에서 외부 저장 공간에 저장하려면 저장 공간 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">외부 저장 공간에 저장하려면 저장 공간 권한이 필요함</string>
@@ -3286,7 +3286,7 @@
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">통화를 수락하려면 Signal에서 마이크를 사용하도록 허용하세요.</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">영상 통화를 수락하려면 Signal에서 마이크와 카메라를 사용하도록 허용하세요.</string>
-    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal에서 전화 기능을 사용하려면 마이크와 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\'와 \'카메라\' 항목을 허용해 주세요.</string>
+    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal에서 전화 기능을 사용하려면 마이크와 카메라 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\'와 \'카메라\' 항목을 허용해 주세요.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">연결된 기기에서 응답했습니다.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">연결된 기기에서 거부했습니다.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">연결된 기기에서 사용 중입니다.</string>
@@ -3360,7 +3360,7 @@
     <string name="SingleContactSelectionActivity_contact_photo">연락처 사진</string>
 
     <!-- ContactSelectionListFragment-->
-    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal에서 연락처 정보를 표시하려면 연락처 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
+    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal에서 연락처 정보를 표시하려면 연락처 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">연락처를 가져오는 중 오류 발생, 네트워크 연결 확인</string>
     <string name="ContactSelectionListFragment_username_not_found">사용자 이름을 찾을 수 없음</string>
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\'%1$s\' 님은 Signal 사용자가 아닙니다. 사용자 이름 확인 후 다시 시도해 주세요."</string>
@@ -5143,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">배경 미리보기</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">모든 대화창 색을 다시 정의하시겠어요?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">모든 배경 화면을 덮어쓰시겠습니까?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">기본 색 초기화</string>
     <string name="ChatWallpaperFragment__reset_all_colors">모든 색상 재설정</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">기본 배경 화면 재설정</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">모든 배경 초기화하기</string>
@@ -7737,9 +7737,9 @@
 
     <!-- NicknameFragment -->
     <!-- Title displayed at the top of the screen -->
-    <string name="NicknameActivity__nickname">닉네임</string>
+    <string name="NicknameActivity__nickname">별칭</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">닉네임과 메모는 Signal에 엔드투엔드 암호화되어 저장되며, 나에게만 표시됩니다.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">별칭과 메모는 Signal에 엔드투엔드 암호화되어 저장되며, 나에게만 표시됩니다.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">이름</string>
     <!-- Content description for first name clear button -->
@@ -7755,7 +7755,7 @@
     <!-- Dialog title for note and name deletion -->
     <string name="NicknameActivity__delete_nickname">삭제하시겠어요?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">설정한 닉네임과 메모를 영구 삭제합니다.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">설정한 별칭과 메모를 영구 삭제합니다.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
@@ -8408,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">복구 키를 입력하세요</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">백업 기능을 활성화할 때 기록해 둔 64자 코드를 입력하세요.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">키를 잊으셨나요?</string>
 
@@ -8832,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">디버그 로그를 확인한 후</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> 로그를 제출해 주세요.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">디버그 로그 공유</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8842,11 +8842,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">피드백을 보내주셔서 감사합니다!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">통화 중 문제가 발생함</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">통화 품질이 훌륭했음</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">피드백을 보내지 못했습니다.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">다시 시도</string>
 
@@ -8895,11 +8895,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">모든 멤버에게서 메시지가 고정 해제됩니다.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">메시지를 고정할 수 없음</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">메시지 고정을 해제할 수 없음</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">메시지 고정을 해제할 수 없음</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">연결을 확인하고 다시 시도하세요.</string>
 

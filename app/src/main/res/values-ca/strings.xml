@@ -5273,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Previsualització del fons</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vols substituir tots els colors del xat?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Voleu substituir tots els fons?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Restablir els colors per defecte</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Restableix tots els colors</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Restableix el fons per defecte</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Restableix tots els fons</string>
@@ -8589,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Introdueix la teva clau de recuperació</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Introdueix el codi de 64 dígits que vas enregistrar quan vas activar les còpies de seguretat.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Has oblidat la clau?</string>
 
@@ -9018,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">veure el teu registre de depuració</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> abans d\'enviar-lo.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Compartir registre de depuració</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9028,11 +9028,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Gràcies pels teus comentaris!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">He tingut problemes amb la trucada</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">La trucada ha anat genial</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">No s\'ha pogut enviar el teu comentari.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">Torna a provar-ho</string>
 
@@ -9081,11 +9081,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Els missatges es desenganxaran per a tots els membres.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">No s\'ha pogut desenganxar el missatge</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">No s\'ha pogut desenganxar el missatge</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">No s\'han pogut desenganxar els missatges</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">Comprova la connexió i torna-ho a provar.</string>
 

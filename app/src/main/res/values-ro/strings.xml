@@ -5403,7 +5403,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Previzualizare fundal</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Dorești să suprascrii culorile pentru toate conversațiile?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Dorești să suprascrii toate fundalurile?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Resetare culoare implicită</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Resetare toate culorile</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Resetare fundal implicit</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Resetare toate fundalurile</string>
@@ -8770,7 +8770,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Introdu codul de recuperare</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Introdu codul de 64 de caractere pe care l-ai înregistrat când ai activat copiile de rezervă.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Ai uitat cheia?</string>
 
@@ -9204,7 +9204,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">vedea jurnalul de depanare</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> înainte de a trimite.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Trimite jurnalul de depanare</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9214,11 +9214,11 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Mulțumesc pentru feedback!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">Am avut probleme cu apelul</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">Apelul a fost grozav</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Feedback-ul tău nu a putut fi trimis.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
     <string name="CallQualitySheet__try_again">Încearcă din nou</string>
 
@@ -9267,11 +9267,11 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Mesajele vor fi anulate pentru toți membrii.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">Nu s-a putut fixa mesajul</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">Nu s-a putut anula fixarea mesajului</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">Nu s-a putut anula fixarea mesajelor</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">Verifică-ți conexiunea și încearcă din nou.</string>
 
