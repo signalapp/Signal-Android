@@ -77,7 +77,6 @@ class AddLinkDeviceFragment : ComposeFragment() {
         viewModel.addDevice(shouldSync = false)
       },
       onQrCodeDismissed = { viewModel.onQrCodeDismissed() },
-      onQrCodeRetry = { viewModel.onQrCodeScanned(state.linkUri.toString()) },
       onLinkDeviceSuccess = {
         viewModel.onLinkDeviceResult(showSheet = true)
       },
@@ -110,7 +109,6 @@ private fun MainScreen(
   onQrCodeScanned: (String) -> Unit = {},
   onQrCodeApproved: () -> Unit = {},
   onQrCodeDismissed: () -> Unit = {},
-  onQrCodeRetry: () -> Unit = {},
   onLinkDeviceSuccess: () -> Unit = {},
   onLinkDeviceFailure: () -> Unit = {}
 ) {
@@ -133,7 +131,6 @@ private fun MainScreen(
       onQrCodeScanned = onQrCodeScanned,
       onQrCodeAccepted = onQrCodeApproved,
       onQrCodeDismissed = onQrCodeDismissed,
-      onQrCodeRetry = onQrCodeRetry,
       linkDeviceResult = state.linkDeviceResult,
       onLinkDeviceSuccess = onLinkDeviceSuccess,
       onLinkDeviceFailure = onLinkDeviceFailure,
