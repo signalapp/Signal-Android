@@ -339,8 +339,9 @@ class ConversationRepository(
         listOf(threadRecipient)
       }
 
+      val includeSelf = threadRecipient.isSelf
       val eligibleTargets = RecipientUtil.getEligibleForSending(possibleTargets)
-      val results = PinSendUtil.sendPinMessage(applicationContext, threadRecipient, message, eligibleTargets, messageRecord.id)
+      val results = PinSendUtil.sendPinMessage(applicationContext, threadRecipient, message, eligibleTargets, includeSelf, messageRecord.id)
 
       val sendResults = GroupSendJobHelper.getCompletedSends(eligibleTargets, results)
 
@@ -396,8 +397,9 @@ class ConversationRepository(
         listOf(threadRecipient)
       }
 
+      val includeSelf = threadRecipient.isSelf
       val eligibleTargets: List<Recipient> = RecipientUtil.getEligibleForSending(possibleTargets)
-      val results = PinSendUtil.sendUnpinMessage(applicationContext, threadRecipient, message.fromRecipient.requireServiceId(), message.dateSent, eligibleTargets, messageId)
+      val results = PinSendUtil.sendUnpinMessage(applicationContext, threadRecipient, message.fromRecipient.requireServiceId(), message.dateSent, eligibleTargets, includeSelf, messageId)
       val sendResults = GroupSendJobHelper.getCompletedSends(eligibleTargets, results)
 
       if (sendResults.completed.isNotEmpty() || possibleTargets.isEmpty()) {
