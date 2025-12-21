@@ -165,9 +165,12 @@ public class ConversationMessage {
   }
 
   public static @NonNull FormattedDate getFormattedDate(@NonNull Context context, @NonNull MessageRecord messageRecord) {
-    String time = DateUtils.getOnlyTimeString(context, ((MmsMessageRecord) messageRecord).getScheduledDate());
-    return MessageRecordUtil.isScheduled(messageRecord) ? new FormattedDate(false, false, time, time)
-                                                        : DateUtils.getDatelessRelativeTimeSpanFormattedDate(context, Locale.getDefault(), messageRecord.getTimestamp());
+    if (MessageRecordUtil.isScheduled(messageRecord)) {
+      String time = DateUtils.getOnlyTimeString(context, ((MmsMessageRecord) messageRecord).getScheduledDate());
+      return new FormattedDate(false, false, time, time);
+    } else {
+      return DateUtils.getDatelessRelativeTimeSpanFormattedDate(context, Locale.getDefault(), messageRecord.getTimestamp());
+    }
   }
 
   public static class ComputedProperties {
