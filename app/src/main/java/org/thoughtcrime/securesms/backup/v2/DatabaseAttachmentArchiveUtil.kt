@@ -24,7 +24,7 @@ import java.util.Optional
 object DatabaseAttachmentArchiveUtil {
   @JvmStatic
   fun requireMediaName(attachment: DatabaseAttachment): MediaName {
-    require(hadIntegrityCheckPerformed(attachment))
+    require(hadIntegrityCheckPerformed(attachment)) { "${attachment.attachmentId} has not had its integrity check performed yet. TransferState: ${attachment.transferState}, ArchiveTransferState: ${attachment.archiveTransferState}" }
     return MediaName.fromPlaintextHashAndRemoteKey(attachment.dataHash!!.decodeBase64OrThrow(), attachment.remoteKey!!.decodeBase64OrThrow())
   }
 
@@ -33,7 +33,7 @@ object DatabaseAttachmentArchiveUtil {
    */
   @JvmStatic
   fun requireMediaNameAsString(attachment: DatabaseAttachment): String {
-    require(hadIntegrityCheckPerformed(attachment))
+    require(hadIntegrityCheckPerformed(attachment)) { "${attachment.attachmentId} has not had its integrity check performed yet. TransferState: ${attachment.transferState}, ArchiveTransferState: ${attachment.archiveTransferState}" }
     return MediaName.fromPlaintextHashAndRemoteKey(attachment.dataHash!!.decodeBase64OrThrow(), attachment.remoteKey!!.decodeBase64OrThrow()).name
   }
 
@@ -55,7 +55,7 @@ object DatabaseAttachmentArchiveUtil {
 
   @JvmStatic
   fun requireThumbnailMediaName(attachment: DatabaseAttachment): MediaName {
-    require(hadIntegrityCheckPerformed(attachment))
+    require(hadIntegrityCheckPerformed(attachment)) { "${attachment.attachmentId} has not had its integrity check performed yet. TransferState: ${attachment.transferState}, ArchiveTransferState: ${attachment.archiveTransferState}" }
     return MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(attachment.dataHash!!.decodeBase64OrThrow(), attachment.remoteKey!!.decodeBase64OrThrow())
   }
 
