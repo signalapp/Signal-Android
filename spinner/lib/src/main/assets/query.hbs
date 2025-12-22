@@ -49,6 +49,8 @@
 
     {{> partials/suffix}}
 
+    {{> partials/tooltips}}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql-formatter/4.0.2/sql-formatter.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.5/ace.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.5/mode-sql.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -61,6 +63,7 @@
         //document.querySelector('.query-input').addEventListener('keypress', submitOnEnter);
         document.getElementById('query-form').addEventListener('submit', onQuerySubmitted, false);
         renderQueryHistory();
+        initializeTooltips();
 
         editor = ace.edit(document.querySelector('.query-input'), {
           mode: 'ace/mode/sql',

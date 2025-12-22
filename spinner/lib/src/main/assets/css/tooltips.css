@@ -1,0 +1,73 @@
+td {
+  overflow: visible !important;
+}
+
+td pre {
+  overflow: visible !important;
+}
+
+.popup {
+  position: relative;
+  cursor: help;
+  text-decoration: underline dotted;
+  display: inline-block;
+}
+
+.popup .tooltip {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: left;
+  border-radius: 4px;
+  padding: 8px 12px;
+  position: absolute;
+  z-index: 1000;
+  bottom: 200%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: pre-wrap;
+  max-width: 600px;
+  min-width: 200px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.popup .tooltip.align-left {
+  left: 0;
+  transform: translateX(0);
+}
+
+.popup .tooltip.align-right {
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+
+.popup .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.popup .tooltip.align-left::after {
+  left: 20px;
+  margin-left: 0;
+}
+
+.popup .tooltip.align-right::after {
+  left: auto;
+  right: 20px;
+  margin-left: 0;
+}
+
+.popup:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
