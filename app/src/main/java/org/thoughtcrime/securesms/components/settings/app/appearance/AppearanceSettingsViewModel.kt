@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import org.signal.core.util.AppUtil
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.keyvalue.SettingsValues.Theme
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -28,6 +30,7 @@ class AppearanceSettingsViewModel : ViewModel() {
     store.update { it.copy(language = language) }
     SignalStore.settings.language = language
     EmojiSearchIndexDownloadJob.scheduleImmediately()
+    AppUtil.restart(AppDependencies.application)
   }
 
   fun setMessageFontSize(size: Int) {

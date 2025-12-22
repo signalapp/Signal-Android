@@ -17,6 +17,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
@@ -60,7 +61,11 @@ class AppearanceSettingsFragment : ComposeFragment() {
     }
 
     override fun onLanguageSelected(selection: String) {
-      viewModel.setLanguage(selection)
+      MaterialAlertDialogBuilder(requireContext())
+        .setMessage(R.string.preferences_language_change_confirmation_message)
+        .setPositiveButton(android.R.string.ok) { _, _ -> viewModel.setLanguage(selection) }
+        .setNegativeButton(android.R.string.cancel, null)
+        .show()
     }
 
     override fun onThemeSelected(selection: String) {

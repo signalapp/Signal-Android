@@ -599,7 +599,7 @@ public class TextSecurePreferences {
    */
   @Deprecated
   public static void setLanguage(Context context, String language) {
-    setStringPreference(context, LANGUAGE_PREF, language);
+    getSharedPreferences(context).edit().putString(LANGUAGE_PREF, language).commit();
   }
 
   @Deprecated
