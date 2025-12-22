@@ -228,13 +228,15 @@ class MultiselectForwardFragment :
     disposables += contactSearchMediator
       .getErrorEvents()
       .subscribe {
-        val message: Int = when (it) {
+        val toastMessage: Int? = when (it) {
           ContactSearchError.CONTACT_NOT_SELECTABLE -> R.string.MultiselectForwardFragment__only_admins_can_send_messages_to_this_group
-          ContactSearchError.RECOMMENDED_LIMIT_REACHED -> R.string.ContactSelectionListFragment_recommended_member_limit_reached
           ContactSearchError.HARD_LIMIT_REACHED -> R.string.MultiselectForwardFragment__you_cant_select_more_chats
+          ContactSearchError.RECOMMENDED_LIMIT_REACHED -> null
         }
 
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        toastMessage?.let { message ->
+          Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        }
       }
 
     viewModel.state.observe(viewLifecycleOwner) {
