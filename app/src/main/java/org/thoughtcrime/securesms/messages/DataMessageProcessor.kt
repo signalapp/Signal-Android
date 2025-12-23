@@ -961,12 +961,12 @@ object DataMessageProcessor {
           val downloadJobs: List<AttachmentDownloadJob> = insertResult.insertedAttachments.mapNotNull { (attachment, attachmentId) ->
             if (attachment.isSticker) {
               if (attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
-                AttachmentDownloadJob(insertResult.messageId, attachmentId, true)
+                AttachmentDownloadJob(messageId = insertResult.messageId, attachmentId = attachmentId, forceDownload = true)
               } else {
                 null
               }
             } else {
-              AttachmentDownloadJob(insertResult.messageId, attachmentId, false)
+              AttachmentDownloadJob(messageId = insertResult.messageId, attachmentId = attachmentId, forceDownload = false)
             }
           }
           AppDependencies.jobManager.addAll(downloadJobs)

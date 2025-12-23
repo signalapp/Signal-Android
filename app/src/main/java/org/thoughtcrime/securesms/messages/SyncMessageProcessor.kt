@@ -496,9 +496,8 @@ object SyncMessageProcessor {
 
     if (syncAttachments.isNotEmpty()) {
       SignalDatabase.runPostSuccessfulTransaction {
-        for (attachment in attachments) {
-          AppDependencies.jobManager.add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
-        }
+        val downloadJobs: List<AttachmentDownloadJob> = attachments.map { AttachmentDownloadJob(messageId = messageId, attachmentId = it.attachmentId, forceDownload = it.isSticker) }
+        AppDependencies.jobManager.addAll(downloadJobs)
       }
     }
   }
@@ -596,9 +595,8 @@ object SyncMessageProcessor {
     }
 
     SignalDatabase.runPostSuccessfulTransaction {
-      for (attachment in attachments) {
-        AppDependencies.jobManager.add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
-      }
+      val downloadJobs: List<AttachmentDownloadJob> = attachments.map { AttachmentDownloadJob(messageId = messageId, attachmentId = it.attachmentId, forceDownload = false) }
+      AppDependencies.jobManager.addAll(downloadJobs)
     }
   }
 
@@ -893,10 +891,8 @@ object SyncMessageProcessor {
     }
 
     SignalDatabase.runPostSuccessfulTransaction {
-      val downloadJobs: List<AttachmentDownloadJob> = attachments.map { AttachmentDownloadJob(messageId, it.attachmentId, false) }
-      for (attachment in attachments) {
-        AppDependencies.jobManager.addAll(downloadJobs)
-      }
+      val downloadJobs: List<AttachmentDownloadJob> = attachments.map { AttachmentDownloadJob(messageId = messageId, attachmentId = it.attachmentId, forceDownload = it.isSticker) }
+      AppDependencies.jobManager.addAll(downloadJobs)
     }
 
     return threadId
