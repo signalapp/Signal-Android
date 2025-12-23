@@ -4626,7 +4626,9 @@ class ConversationFragment :
 
   private inner class InputPanelMediaListener : InputPanel.MediaListener {
     override fun onMediaSelected(uri: Uri, contentType: String?) {
-      if (MediaUtil.isGif(contentType) || MediaUtil.isImageType(contentType)) {
+      if (inputPanel.inEditMessageMode()) {
+        Log.i(TAG, "Disregarding media because we are in edit mode")
+      } else if (MediaUtil.isGif(contentType) || MediaUtil.isImageType(contentType)) {
         disposables += viewModel.getKeyboardImageDetails(uri)
           .observeOn(AndroidSchedulers.mainThread())
           .subscribeBy(
