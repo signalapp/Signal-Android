@@ -2220,7 +2220,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun markAsRemoteDelete(targetMessage: MessageRecord) {
     writableDatabase.withinTransaction { db ->
-      if (targetMessage.isEditMessage) {
+      val hasRevision = (targetMessage as? MmsMessageRecord)?.latestRevisionId?.id != null
+      if (hasRevision || targetMessage.isEditMessage) {
         val latestRevisionId = (targetMessage as? MmsMessageRecord)?.latestRevisionId?.id ?: targetMessage.id
         markAsRemoteDeleteInternal(latestRevisionId)
         getPreviousEditIds(latestRevisionId).map { id ->
