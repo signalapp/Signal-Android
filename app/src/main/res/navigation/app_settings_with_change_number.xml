@@ -223,7 +223,21 @@
         android:id="@+id/deleteAccountFragment"
         android:name="org.thoughtcrime.securesms.delete.DeleteAccountFragment"
         android:label="delete_account_fragment"
-        tools:layout="@layout/delete_account_fragment" />
+        tools:layout="@layout/delete_account_fragment">
+
+        <action
+            android:id="@+id/action_deleteAccountFragment_to_deleteAccountCountryFragment"
+            app:destination="@id/deleteAccountCountryFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/deleteAccountCountryFragment"
+        android:name="org.thoughtcrime.securesms.delete.DeleteAccountCountryCodeFragment" />
 
     <fragment
         android:id="@+id/exportAccountDataFragment"

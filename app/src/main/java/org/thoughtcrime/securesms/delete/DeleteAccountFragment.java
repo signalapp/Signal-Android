@@ -1,25 +1,18 @@
 package org.thoughtcrime.securesms.delete;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -36,8 +30,10 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.LabeledEditText;
+import org.thoughtcrime.securesms.registration.ui.countrycode.Country;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 import java.util.Optional;
@@ -45,7 +41,7 @@ import java.util.Optional;
 
 public class DeleteAccountFragment extends Fragment {
 
-  private ArrayAdapter<String>         countrySpinnerAdapter;
+  private TextView                     countryPicker;
   private TextView                     bullets;
   private LabeledEditText              countryCode;
   private LabeledEditText              number;
@@ -60,13 +56,13 @@ public class DeleteAccountFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    Spinner countrySpinner = view.findViewById(R.id.delete_account_fragment_country_spinner);
     View    confirm        = view.findViewById(R.id.delete_account_fragment_delete);
     Toolbar toolbar        = view.findViewById(R.id.toolbar);
 
-    bullets     = view.findViewById(R.id.delete_account_fragment_bullets);
-    countryCode = view.findViewById(R.id.delete_account_fragment_country_code);
-    number      = view.findViewById(R.id.delete_account_fragment_number);
+    bullets       = view.findViewById(R.id.delete_account_fragment_bullets);
+    countryCode   = view.findViewById(R.id.delete_account_fragment_country_code);
+    number        = view.findViewById(R.id.delete_account_fragment_number);
+    countryPicker = view.findViewById(R.id.delete_account_fragment_country_picker);
 
     viewModel = new ViewModelProvider(requireActivity(), new DeleteAccountViewModel.Factory(new DeleteAccountRepository())).get(DeleteAccountViewModel.class);
     viewModel.getCountryDisplayName().observe(getViewLifecycleOwner(), this::setCountryDisplay);
@@ -80,8 +76,14 @@ public class DeleteAccountFragment extends Fragment {
     countryCode.getInput().setImeOptions(EditorInfo.IME_ACTION_NEXT);
     confirm.setOnClickListener(unused -> viewModel.submit());
     toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
+    countryPicker.setOnClickListener(v ->  SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_deleteAccountFragment_to_deleteAccountCountryFragment));
 
-    initializeSpinner(countrySpinner);
+    getParentFragmentManager().setFragmentResultListener(DeleteAccountCountryCodeFragment.RESULT_KEY, this, (key, bundle) -> {
+      Country country = bundle.getParcelable(DeleteAccountCountryCodeFragment.RESULT_COUNTRY);
+      if (country != null) {
+        viewModel.onRegionSelected(country.getRegionCode());
+      }
+    });
   }
 
   private void updateBullets(@NonNull Optional<String> formattedBalance) {
@@ -101,38 +103,11 @@ public class DeleteAccountFragment extends Fragment {
     return builder;
   }
 
-  @SuppressLint("ClickableViewAccessibility")
-  private void initializeSpinner(@NonNull Spinner countrySpinner) {
-    countrySpinnerAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item);
-    countrySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-    countrySpinner.setAdapter(countrySpinnerAdapter);
-    countrySpinner.setOnTouchListener((view, event) -> {
-      if (event.getAction() == MotionEvent.ACTION_UP) {
-        pickCountry();
-      }
-      return true;
-    });
-    countrySpinner.setOnKeyListener((view, keyCode, event) -> {
-      if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER && event.getAction() == KeyEvent.ACTION_UP) {
-        pickCountry();
-        return true;
-      }
-      return false;
-    });
-  }
-
-  private void pickCountry() {
-    countryCode.clearFocus();
-    DeleteAccountCountryPickerFragment.show(requireFragmentManager());
-  }
-
   private void setCountryDisplay(@NonNull String regionDisplayName) {
-    countrySpinnerAdapter.clear();
     if (TextUtils.isEmpty(regionDisplayName)) {
-      countrySpinnerAdapter.add(requireContext().getString(R.string.RegistrationActivity_select_your_country));
+      countryPicker.setText(requireContext().getString(R.string.RegistrationActivity_select_your_country));
     } else {
-      countrySpinnerAdapter.add(regionDisplayName);
+      countryPicker.setText(regionDisplayName);
     }
   }
 

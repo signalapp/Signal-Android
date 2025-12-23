@@ -83,11 +83,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/delete_account_fragment_enter_phone_number">
 
-            <Spinner
-                android:id="@+id/delete_account_fragment_country_spinner"
-                android:layout_width="fill_parent"
+            <TextView
+                android:id="@+id/delete_account_fragment_country_picker"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                android:drawableEnd="@drawable/ic_chevron_16"
+                android:drawableTint="@color/signal_colorOnSurface"
                 android:textAlignment="viewStart" />
 
         </FrameLayout>
