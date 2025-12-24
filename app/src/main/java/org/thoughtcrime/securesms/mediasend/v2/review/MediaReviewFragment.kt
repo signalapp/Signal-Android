@@ -151,6 +151,16 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     disposables += sharedViewModel.hudCommands.subscribe {
       when (it) {
         HudCommand.ResumeEntryTransition -> startPostponedEnterTransition()
+        HudCommand.PerformSend -> {
+          if (!readyToSend) {
+            Log.d(TAG, "Attachment send button not currently enabled. Ignoring PerformSend command.")
+            return@subscribe
+          }
+
+          Log.d(TAG, "Performing send from PerformSend HUD command.")
+          readyToSend = false
+          performSend()
+        }
         else -> Unit
       }
     }
