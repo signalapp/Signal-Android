@@ -284,6 +284,14 @@ class UploadAttachmentToArchiveJob private constructor(
                 Log.w(TAG, "[$attachmentId] 400 likely means bad resumable state. Clearing upload spec before retrying.")
                 uploadSpec = null
               }
+              413 -> {
+                Log.w(TAG, "[$attachmentId] 413 means the attachment was too large. We've seen this happen with frankenstein imports using third party tools. This can never succeed.")
+                ArchiveDatabaseExecutor.runBlocking {
+                  setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+                }
+                uploadSpec = null
+                return Result.failure()
+              }
             }
             return Result.retry(defaultBackoff())
           }
