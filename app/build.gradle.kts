@@ -17,7 +17,6 @@ plugins {
   id("kotlin-parcelize")
   id("com.squareup.wire")
   id("translations")
-  id("translations-kotlin")
   id("licenses")
 }
 
