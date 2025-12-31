@@ -25,8 +25,9 @@ dependencies {
   implementation(gradleApi())
 
   implementation(libs.dnsjava)
-  implementation(libs.square.okhttp3)
+  api(libs.square.okhttp3)
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.mockk)
+  testImplementation(testLibs.square.mockwebserver)
 }

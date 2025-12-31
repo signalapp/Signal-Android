@@ -17,10 +17,12 @@ import java.util.concurrent.TimeUnit
 class SmartlingClient(
   private val userIdentifier: String,
   private val userSecret: String,
-  private val projectId: String
+  private val projectId: String,
+  private val baseUrl: String = "https://api.smartling.com",
+  client: OkHttpClient? = null
 ) {
 
-  private val client = OkHttpClient.Builder()
+  private val client = client ?: OkHttpClient.Builder()
     .connectTimeout(30, TimeUnit.SECONDS)
     .readTimeout(30, TimeUnit.SECONDS)
     .writeTimeout(30, TimeUnit.SECONDS)
@@ -41,7 +43,7 @@ class SmartlingClient(
     ).toString()
 
     val request = Request.Builder()
-      .url("https://api.smartling.com/auth-api/v2/authenticate")
+      .url("$baseUrl/auth-api/v2/authenticate")
       .post(jsonBody.toRequestBody("application/json".toMediaType()))
       .build()
 
@@ -73,7 +75,7 @@ class SmartlingClient(
       .build()
 
     val request = Request.Builder()
-      .url("https://api.smartling.com/files-api/v2/projects/$projectId/file")
+      .url("$baseUrl/files-api/v2/projects/$projectId/file")
       .header("Authorization", "Bearer $authToken")
       .post(requestBody)
       .build()
@@ -94,7 +96,7 @@ class SmartlingClient(
   @Suppress("UNCHECKED_CAST")
   fun getLocales(authToken: String, fileUri: String): List<String> {
     val request = Request.Builder()
-      .url("https://api.smartling.com/files-api/v2/projects/$projectId/file/status?fileUri=$fileUri")
+      .url("$baseUrl/files-api/v2/projects/$projectId/file/status?fileUri=$fileUri")
       .header("Authorization", "Bearer $authToken")
       .get()
       .build()
@@ -120,7 +122,7 @@ class SmartlingClient(
    */
   fun downloadFile(authToken: String, fileUri: String, locale: String): String {
     val request = Request.Builder()
-      .url("https://api.smartling.com/files-api/v2/projects/$projectId/locales/$locale/file?fileUri=$fileUri")
+      .url("$baseUrl/files-api/v2/projects/$projectId/locales/$locale/file?fileUri=$fileUri")
       .header("Authorization", "Bearer $authToken")
       .get()
       .build()
