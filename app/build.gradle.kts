@@ -66,7 +66,7 @@ wire {
   }
 
   protoPath {
-    srcDir("${project.rootDir}/libsignal-service/src/main/protowire")
+    srcDir("${project.rootDir}/lib/libsignal-service/src/main/protowire")
   }
   // Handled by libsignal
   prune("signalservice.DecryptionErrorMessage")
@@ -489,21 +489,21 @@ dependencies {
   ktlintRuleset(libs.ktlint.twitter.compose)
   coreLibraryDesugaring(libs.android.tools.desugar)
 
-  implementation(project(":libsignal-service"))
-  implementation(project(":paging"))
-  implementation(project(":core-util"))
-  implementation(project(":glide-config"))
-  implementation(project(":video"))
-  implementation(project(":device-transfer"))
-  implementation(project(":image-editor"))
-  implementation(project(":donations"))
-  implementation(project(":debuglogs-viewer"))
-  implementation(project(":contacts"))
-  implementation(project(":qr"))
-  implementation(project(":sticky-header-grid"))
-  implementation(project(":photoview"))
-  implementation(project(":core-ui"))
-  implementation(project(":core-models"))
+  implementation(project(":lib:libsignal-service"))
+  implementation(project(":lib:paging"))
+  implementation(project(":core:util"))
+  implementation(project(":lib:glide-config"))
+  implementation(project(":lib:video"))
+  implementation(project(":lib:device-transfer"))
+  implementation(project(":lib:image-editor"))
+  implementation(project(":lib:donations"))
+  implementation(project(":lib:debuglogs-viewer"))
+  implementation(project(":lib:contacts"))
+  implementation(project(":lib:qr"))
+  implementation(project(":lib:sticky-header-grid"))
+  implementation(project(":lib:photoview"))
+  implementation(project(":core:ui"))
+  implementation(project(":core:models"))
 
   implementation(libs.androidx.fragment.ktx)
   implementation(libs.androidx.appcompat) {
@@ -603,9 +603,9 @@ dependencies {
   implementation(libs.androidx.credentials.compat)
   implementation(libs.kotlinx.serialization.json)
 
-  implementation(project(":billing"))
+  implementation(project(":lib:billing"))
 
-  "spinnerImplementation"(project(":spinner"))
+  "spinnerImplementation"(project(":lib:spinner"))
 
   "canaryImplementation"(libs.square.leakcanary)
 
@@ -631,7 +631,7 @@ dependencies {
   }
   testImplementation(testLibs.conscrypt.openjdk.uber)
   testImplementation(testLibs.mockk)
-  testImplementation(testFixtures(project(":libsignal-service")))
+  testImplementation(testFixtures(project(":lib:libsignal-service")))
   testImplementation(testLibs.espresso.core)
   testImplementation(testLibs.kotlinx.coroutines.test)
   testImplementation(libs.androidx.compose.ui.test.junit4)

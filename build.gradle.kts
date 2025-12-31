@@ -55,7 +55,8 @@ subprojects {
     }
   }
 
-  val skipQa = setOf("Signal-Android", "libsignal-service", "lintchecks", "benchmark", "core-util-jvm", "core-models", "logging")
+  // Skip qa for: main app, pure Java/Kotlin libs, and implicit parent projects from hierarchical naming
+  val skipQa = setOf("Signal-Android", "libsignal-service", "lintchecks", "benchmark", "util-jvm", "models", "logging", "core", "lib", "demo", "feature")
 
   if (project.name !in skipQa && !project.name.endsWith("-app")) {
     tasks.register("qa") {
@@ -90,13 +91,13 @@ tasks.register("qa") {
     ":Signal-Android:testPlayProdPerfUnitTest",
     ":Signal-Android:lintPlayProdRelease",
     "Signal-Android:ktlintCheck",
-    ":libsignal-service:test",
-    ":libsignal-service:ktlintCheck",
+    ":lib:libsignal-service:test",
+    ":lib:libsignal-service:ktlintCheck",
     ":Signal-Android:assemblePlayProdRelease",
     ":Signal-Android:compilePlayProdInstrumentationAndroidTestSources",
     ":microbenchmark:compileReleaseAndroidTestSources",
-    ":core-util-jvm:test",
-    ":core-util-jvm:ktlintCheck"
+    ":core:util-jvm:test",
+    ":core:util-jvm:ktlintCheck"
   )
 }
 

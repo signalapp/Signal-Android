@@ -44,8 +44,8 @@ dependencies {
   coreLibraryDesugaring(libs.android.tools.desugar)
   lintChecks(project(":lintchecks"))
 
-  implementation(project(":core-util"))
-  implementation(project(":core-models"))
+  implementation(project(":core:util"))
+  implementation(project(":core:models"))
 
   // Base dependencies
   androidTestImplementation(testLibs.junit.junit)
@@ -53,6 +53,6 @@ dependencies {
   androidTestImplementation(benchmarkLibs.androidx.benchmark.micro)
 
   // Dependencies of modules being tested
-  androidTestImplementation(project(":libsignal-service"))
+  androidTestImplementation(project(":lib:libsignal-service"))
   androidTestImplementation(libs.libsignal.android)
 }

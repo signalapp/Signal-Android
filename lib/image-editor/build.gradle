@@ -1,0 +1,11 @@
+plugins {
+    id("signal-library")
+}
+
+android {
+    namespace = "org.signal.imageeditor"
+}
+
+dependencies {
+    implementation(project(":core:util"))
+}

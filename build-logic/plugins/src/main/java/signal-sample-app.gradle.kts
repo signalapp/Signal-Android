@@ -52,7 +52,7 @@ android {
 dependencies {
   coreLibraryDesugaring(libs.android.tools.desugar)
 
-  implementation(project(":core-util"))
+  implementation(project(":core:util"))
 
   coreLibraryDesugaring(libs.android.tools.desugar)
 

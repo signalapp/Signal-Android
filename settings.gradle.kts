@@ -61,69 +61,52 @@ if (libsignalClientPath is String) {
   }
 }
 
+// Main app
 include(":app")
-include(":libsignal-service")
+
+// Core modules
+include(":core:util")
+include(":core:util-jvm")
+include(":core:models")
+include(":core:ui")
+
+// Lib modules
+include(":lib:libsignal-service")
+include(":lib:glide-config")
+include(":lib:photoview")
+include(":lib:sticky-header-grid")
+include(":lib:billing")
+include(":lib:paging")
+include(":lib:device-transfer")
+include(":lib:donations")
+include(":lib:contacts")
+include(":lib:qr")
+include(":lib:spinner")
+include(":lib:video")
+include(":lib:image-editor")
+include(":lib:debuglogs-viewer")
+
+// Feature modules
+include(":feature:registration")
+
+// Demo apps
+include(":demo:paging")
+include(":demo:device-transfer")
+include(":demo:donations")
+include(":demo:contacts")
+include(":demo:qr")
+include(":demo:spinner")
+include(":demo:video")
+include(":demo:image-editor")
+include(":demo:debuglogs-viewer")
+include(":demo:registration")
+
+// Testing/Lint modules
 include(":lintchecks")
-include(":paging")
-include(":paging-app")
-include(":core-util")
-include(":core-util-jvm")
-include(":core-models")
-include(":glide-config")
-include(":device-transfer")
-include(":device-transfer-app")
-include(":image-editor")
-include(":image-editor-app")
-include(":donations")
-include(":donations-app")
-include(":debuglogs-viewer")
-include(":debuglogs-viewer-app")
-include(":spinner")
-include(":spinner-app")
-include(":contacts")
-include(":contacts-app")
-include(":qr")
-include(":qr-app")
-include(":sticky-header-grid")
-include(":photoview")
-include(":core-ui")
 include(":benchmark")
 include(":microbenchmark")
-include(":video")
-include(":video-app")
-include(":billing")
-include(":registration")
-include(":registration-app")
 
+// App project name
 project(":app").name = "Signal-Android"
-project(":paging").projectDir = file("paging/lib")
-project(":paging-app").projectDir = file("paging/app")
-
-project(":device-transfer").projectDir = file("device-transfer/lib")
-project(":device-transfer-app").projectDir = file("device-transfer/app")
-
-project(":image-editor").projectDir = file("image-editor/lib")
-project(":image-editor-app").projectDir = file("image-editor/app")
-
-project(":donations").projectDir = file("donations/lib")
-project(":donations-app").projectDir = file("donations/app")
-
-project(":debuglogs-viewer").projectDir = file("debuglogs-viewer/lib")
-project(":debuglogs-viewer-app").projectDir = file("debuglogs-viewer/app")
-
-project(":spinner").projectDir = file("spinner/lib")
-project(":spinner-app").projectDir = file("spinner/app")
-
-project(":contacts").projectDir = file("contacts/lib")
-project(":contacts-app").projectDir = file("contacts/app")
-
-project(":qr").projectDir = file("qr/lib")
-project(":qr-app").projectDir = file("qr/app")
-
-project(":video").projectDir = file("video/lib")
-project(":video-app").projectDir = file("video/app")
-
-project(":registration").projectDir = file("registration/lib")
-project(":registration-app").projectDir = file("registration/app")
 
 rootProject.name = "Signal"
