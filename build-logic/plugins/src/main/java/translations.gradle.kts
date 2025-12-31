@@ -49,6 +49,7 @@ tasks.register("pushTranslations") {
 tasks.register("pullTranslations") {
   group = "Translations"
   description = "Pulls translated strings.xml files from Smartling for all locales"
+  mustRunAfter("pushTranslations")
 
   doLast {
     val client = createSmartlingClient()
@@ -102,6 +103,7 @@ tasks.register("pullTranslations") {
 tasks.register("replaceEllipsis") {
   group = "Static Files"
   description = "Process strings for ellipsis characters."
+  mustRunAfter("pullTranslations")
   doLast {
     allStringsResourceFiles { f ->
       val before = f.readText()
@@ -117,6 +119,7 @@ tasks.register("replaceEllipsis") {
 tasks.register("cleanApostropheErrors") {
   group = "Static Files"
   description = "Fix smartling apostrophe string errors."
+  mustRunAfter("pullTranslations")
   doLast {
     val pattern = Regex("""([^\\=08])(')""")
     allStringsResourceFiles { f ->
@@ -135,6 +138,7 @@ tasks.register("cleanApostropheErrors") {
 tasks.register("excludeNonTranslatables") {
   group = "Static Files"
   description = "Remove strings that are marked \"translatable\"=\"false\" or are ExtraTranslations."
+  mustRunAfter("pullTranslations")
   doLast {
     val englishFile = file("src/main/res/values/strings.xml")
 
@@ -215,7 +219,15 @@ tasks.register("resolveStaticIps") {
 tasks.register("updateStaticFilesAndQa") {
   group = "Static Files"
   description = "Runs tasks to update static files. This includes translations, static IPs, and licenses. Runs QA afterwards to verify all went well. Intended to be run before cutting a release."
-  dependsOn("pushTranslations", "pullTranslations", "replaceEllipsis", "cleanApostropheErrors", "excludeNonTranslatables", "resolveStaticIps", ":qa")
+  dependsOn("pushTranslations", "pullTranslations", "replaceEllipsis", "cleanApostropheErrors", "excludeNonTranslatables", "resolveStaticIps", "postTranslateQa")
+}
+
+// This is a wrapper task just so that we can add a mustRunAfter in the context of the translation tasks.
+tasks.register("postTranslateQa") {
+  group = "Static Files"
+  description = "Runs QA to check validity of updated strings, and ensure presence of any new languages in internal lists."
+  mustRunAfter("replaceEllipsis", "cleanApostropheErrors", "excludeNonTranslatables", "resolveStaticIps")
+  dependsOn(":qa")
 }
 
 private fun allStringsResourceFiles(action: (File) -> Unit) {
