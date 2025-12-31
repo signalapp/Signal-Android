@@ -4189,7 +4189,7 @@
     <string name="preferences_normal">Normal</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Compact</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user's new language setting.  -->
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
 
 
