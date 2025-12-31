@@ -191,12 +191,6 @@ tasks.register("excludeNonTranslatables") {
   }
 }
 
-tasks.register("postTranslateQa") {
-  group = "Static Files"
-  description = "Runs QA to check validity of updated strings, and ensure presence of any new languages in internal lists."
-  dependsOn(":qa")
-}
-
 tasks.register("resolveStaticIps") {
   group = "Static Files"
   description = "Fetches static IPs for core hosts and writes them to static-ips.gradle"
@@ -221,7 +215,7 @@ tasks.register("resolveStaticIps") {
 tasks.register("updateStaticFilesAndQa") {
   group = "Static Files"
   description = "Runs tasks to update static files. This includes translations, static IPs, and licenses. Runs QA afterwards to verify all went well. Intended to be run before cutting a release."
-  dependsOn("replaceEllipsis", "cleanApostropheErrors", "excludeNonTranslatables", "resolveStaticIps", "postTranslateQa")
+  dependsOn("pushTranslations", "pullTranslations", "replaceEllipsis", "cleanApostropheErrors", "excludeNonTranslatables", "resolveStaticIps", ":qa")
 }
 
 private fun allStringsResourceFiles(action: (File) -> Unit) {
