@@ -56,14 +56,6 @@ val selectableVariants = listOf(
   "websiteProdRelease"
 )
 
-val signalBuildToolsVersion: String by rootProject.extra
-val signalCompileSdkVersion: String by rootProject.extra
-val signalTargetSdkVersion: Int by rootProject.extra
-val signalMinSdkVersion: Int by rootProject.extra
-val signalNdkVersion: String by rootProject.extra
-val signalJavaVersion: JavaVersion by rootProject.extra
-val signalKotlinJvmTarget: String by rootProject.extra
-
 wire {
   kotlin {
     javaInterop = true
@@ -87,9 +79,9 @@ ktlint {
 android {
   namespace = "org.thoughtcrime.securesms"
 
-  buildToolsVersion = signalBuildToolsVersion
-  compileSdkVersion = signalCompileSdkVersion
-  ndkVersion = signalNdkVersion
+  buildToolsVersion = libs.versions.buildTools.get()
+  compileSdkVersion = libs.versions.compileSdk.get()
+  ndkVersion = libs.versions.ndk.get()
 
   flavorDimensions += listOf("distribution", "environment")
   testBuildType = "instrumentation"
@@ -97,7 +89,7 @@ android {
   android.bundle.language.enableSplit = false
 
   kotlinOptions {
-    jvmTarget = signalKotlinJvmTarget
+    jvmTarget = libs.versions.kotlinJvmTarget.get()
     freeCompilerArgs = listOf("-Xjvm-default=all")
     suppressWarnings = true
   }
@@ -142,8 +134,8 @@ android {
 
   compileOptions {
     isCoreLibraryDesugaringEnabled = true
-    sourceCompatibility = signalJavaVersion
-    targetCompatibility = signalJavaVersion
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
   }
 
   packaging {
@@ -187,8 +179,8 @@ android {
     versionCode = (canonicalVersionCode * maxHotfixVersions) + possibleHotfixVersions[currentHotfixVersion]
     versionName = canonicalVersionName
 
-    minSdk = signalMinSdkVersion
-    targetSdk = signalTargetSdkVersion
+    minSdk = libs.versions.minSdk.get().toInt()
+    targetSdk = libs.versions.targetSdk.get().toInt()
 
     vectorDrawables.useSupportLibrary = true
     project.ext.set("archivesBaseName", "Signal")

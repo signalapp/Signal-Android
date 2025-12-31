@@ -3,17 +3,9 @@
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.accessors.dm.LibrariesForTestLibs
 import org.gradle.api.JavaVersion
-import org.gradle.kotlin.dsl.extra
 
 val libs = the<LibrariesForLibs>()
 val testLibs = the<LibrariesForTestLibs>()
-
-val signalBuildToolsVersion: String by rootProject.extra
-val signalCompileSdkVersion: String by rootProject.extra
-val signalTargetSdkVersion: Int by rootProject.extra
-val signalMinSdkVersion: Int by rootProject.extra
-val signalJavaVersion: JavaVersion by rootProject.extra
-val signalKotlinJvmTarget: String by rootProject.extra
 
 plugins {
   // We cannot use the version catalog in the plugins block in convention plugins (it's not supported).
@@ -24,22 +16,22 @@ plugins {
 }
 
 android {
-  buildToolsVersion = signalBuildToolsVersion
-  compileSdkVersion = signalCompileSdkVersion
+  buildToolsVersion = libs.versions.buildTools.get()
+  compileSdkVersion = libs.versions.compileSdk.get()
 
   defaultConfig {
-    minSdk = signalMinSdkVersion
+    minSdk = libs.versions.minSdk.get().toInt()
     vectorDrawables.useSupportLibrary = true
   }
 
   compileOptions {
     isCoreLibraryDesugaringEnabled = true
-    sourceCompatibility = signalJavaVersion
-    targetCompatibility = signalJavaVersion
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
   }
 
   kotlinOptions {
-    jvmTarget = signalKotlinJvmTarget
+    jvmTarget = libs.versions.kotlinJvmTarget.get()
     suppressWarnings = true
   }
 

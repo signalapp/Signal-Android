@@ -18,24 +18,17 @@ plugins {
   id("com.squareup.wire")
 }
 
-val signalBuildToolsVersion: String by rootProject.extra
-val signalCompileSdkVersion: String by rootProject.extra
-val signalTargetSdkVersion: Int by rootProject.extra
-val signalMinSdkVersion: Int by rootProject.extra
-val signalJavaVersion: JavaVersion by rootProject.extra
-val signalKotlinJvmTarget: String by rootProject.extra
-
 java {
   withJavadocJar()
   withSourcesJar()
-  sourceCompatibility = signalJavaVersion
-  targetCompatibility = signalJavaVersion
+  sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+  targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
 }
 
 tasks.withType<KotlinCompile>().configureEach {
   kotlin {
     compilerOptions {
-      jvmTarget = JvmTarget.fromTarget(signalKotlinJvmTarget)
+      jvmTarget = JvmTarget.fromTarget(libs.versions.kotlinJvmTarget.get())
       freeCompilerArgs = listOf("-Xjvm-default=all")
       suppressWarnings = true
     }

@@ -7,29 +7,22 @@ plugins {
   id("ktlint")
 }
 
-val signalBuildToolsVersion: String by rootProject.extra
-val signalCompileSdkVersion: String by rootProject.extra
-val signalTargetSdkVersion: Int by rootProject.extra
-val signalMinSdkVersion: Int by rootProject.extra
-val signalJavaVersion: JavaVersion by rootProject.extra
-val signalKotlinJvmTarget: String by rootProject.extra
-
 android {
   namespace = "org.signal.microbenchmark"
-  compileSdkVersion = signalCompileSdkVersion
+  compileSdkVersion = libs.versions.compileSdk.get()
 
   compileOptions {
     isCoreLibraryDesugaringEnabled = true
-    sourceCompatibility = signalJavaVersion
-    targetCompatibility = signalJavaVersion
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
   }
 
   kotlinOptions {
-    jvmTarget = signalKotlinJvmTarget
+    jvmTarget = libs.versions.kotlinJvmTarget.get()
   }
 
   defaultConfig {
-    minSdk = signalMinSdkVersion
+    minSdk = libs.versions.minSdk.get().toInt()
     testInstrumentationRunner = "androidx.benchmark.junit4.AndroidBenchmarkRunner"
   }
 

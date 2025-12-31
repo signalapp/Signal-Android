@@ -46,8 +46,6 @@ tasks.withType<Wrapper> {
   distributionType = Wrapper.DistributionType.ALL
 }
 
-apply(from = "$rootDir/constants.gradle.kts")
-
 subprojects {
   if (JavaVersion.current().isJava8Compatible) {
     allprojects {
@@ -126,7 +124,8 @@ tasks.register("checkStopship") {
 
     val excludedDirectories = listOf(
       "app/build",
-      "libsignal-service/build"
+      "libsignal-service/build",
+      ".idea"
     )
 
     val allowedExtensions = setOf("kt", "kts", "java", "xml")

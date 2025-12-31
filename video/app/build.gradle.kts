@@ -8,21 +8,14 @@ plugins {
   alias(libs.plugins.compose.compiler)
 }
 
-val signalBuildToolsVersion: String by rootProject.extra
-val signalCompileSdkVersion: String by rootProject.extra
-val signalTargetSdkVersion: Int by rootProject.extra
-val signalMinSdkVersion: Int by rootProject.extra
-val signalJavaVersion: JavaVersion by rootProject.extra
-val signalKotlinJvmTarget: String by rootProject.extra
-
 android {
   namespace = "org.thoughtcrime.video.app"
-  compileSdkVersion = signalCompileSdkVersion
+  compileSdkVersion = libs.versions.compileSdk.get()
 
   defaultConfig {
     applicationId = "org.thoughtcrime.video.app"
     minSdk = 23
-    targetSdk = signalTargetSdkVersion
+    targetSdk = libs.versions.targetSdk.get().toInt()
     versionCode = 1
     versionName = "1.0"
 
@@ -39,11 +32,11 @@ android {
     }
   }
   compileOptions {
-    sourceCompatibility = signalJavaVersion
-    targetCompatibility = signalJavaVersion
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
   }
   kotlinOptions {
-    jvmTarget = signalKotlinJvmTarget
+    jvmTarget = libs.versions.kotlinJvmTarget.get()
   }
   buildFeatures {
     compose = true

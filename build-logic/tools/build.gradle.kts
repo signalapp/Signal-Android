@@ -4,17 +4,14 @@ plugins {
   alias(libs.plugins.ktlint)
 }
 
-val signalJavaVersion: JavaVersion by rootProject.extra
-val signalKotlinJvmTarget: String by rootProject.extra
-
 java {
-  sourceCompatibility = signalJavaVersion
-  targetCompatibility = signalJavaVersion
+  sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+  targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
 }
 
 kotlin {
   jvmToolchain {
-    languageVersion = JavaLanguageVersion.of(signalKotlinJvmTarget)
+    languageVersion = JavaLanguageVersion.of(libs.versions.kotlinJvmTarget.get())
   }
 }
 
