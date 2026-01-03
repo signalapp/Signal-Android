@@ -182,7 +182,7 @@ class ChatItemArchiveExporter(
       val builder = record.toBasicChatItemBuilder(selfRecipientId, extraData.groupReceiptsById[id], exportState, backupStartTime)
       transformTimer.emit("basic")
 
-      if (builder == null) {
+      if (builder == null || builder.authorId == exportState.releaseNoteRecipientId) {
         continue
       }
 

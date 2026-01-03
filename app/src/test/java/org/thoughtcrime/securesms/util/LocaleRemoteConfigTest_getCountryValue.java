@@ -79,5 +79,4 @@ public class LocaleRemoteConfigTest_getCountryValue {
   public void determineCountEnabled() {
     assertEquals(output, LocaleRemoteConfig.getCountryValue(countryCounts, phoneNumber, 0));
   }
-
 }

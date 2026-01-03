@@ -2605,7 +2605,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">Ganti arah kamera</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Usap untuk melihat layar yang dibagikan</string>
@@ -4367,9 +4367,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Akhiri polling</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <string name="conversation_selection__menu_pin_message">Sematkan</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin</string>
+    <string name="conversation_selection__menu_unpin_message">Lepas Sematan</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5143,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Pratinjau gambar latar</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Apakah Anda ingin menimpa semua warna obrolan?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Apakah Anda ingin mengganti semua gambar latar?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset warna default</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Atur ulang semua warna</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Atur ulang gambar latar bawaan</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Kembalikan semua gambar latar.</string>
@@ -6017,7 +6017,7 @@
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s mendukung Signal dengan donasi bulanan. Signal adalah organisasi nirlaba tanpa pengiklan dan investor, didukung hanya oleh orang seperti Anda.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s mendukung Signal dengan donasi. Signal adalah organisasi nirlaba tanpa pengiklan dan investor, didukung hanya oleh orang seperti Anda.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s mendukung Signal dengan donasi. Signal adalah lembaga nirlaba tanpa pengiklan dan investor, didukung hanya oleh orang-orang seperti Anda.</string>
 
     <string name="ImageView__badge">Lencana</string>
 
@@ -6072,7 +6072,7 @@
     <string name="ManageDonationsFragment__donation_receipts">Resi Donasi</string>
     <string name="ManageDonationsFragment__badges">Lencana</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
+    <string name="ManageDonationsFragment__subscription_faq">Pertanyaan Umum tentang Donatur</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Cara lain untuk memberi</string>
     <!-- Preference label to launch badge gifting -->
@@ -7335,7 +7335,7 @@
     <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Tidak terjawab saat profil notifikasi aktif</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Tidak terjawab saat profil notifikasi aktif</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Gabung</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8408,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Masukkan kunci pemulihan</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Masukkan kode 64 karakter yang Anda catat saat mengaktifkan Backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Lupa kunci?</string>
 
@@ -8828,11 +8828,11 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Bantu kami meningkatkan kualitas</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Kirimkan info diagnostik untuk membantu kami meningkatkan kualitas panggilan. Anda dapat </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Kirimkan info diagnostik sebagai bahan evaluasi dalam meningkatkan kualitas panggilan. Anda dapat </string>
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">melihat catatan debug</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> sebelum mengirim.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Bagikan catatan debug</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8842,13 +8842,13 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Terima kasih atas masukannya!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">Saya mengalami masalah saat melakukan panggilan</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">Panggilan berjalan lancar</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Masukan Anda gagal terkirim.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
-    <string name="CallQualitySheet__try_again">Try again</string>
+    <string name="CallQualitySheet__try_again">Coba lagi</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
     <string name="PinnedMessage__s_pinned_a_message">%1$s menyematkan sebuah pesan</string>
@@ -8873,7 +8873,7 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">Media sekali lihat</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <string name="PinnedMessage__unpin_message">Lepas Sematan</string>
     <!-- Context menu option to view all the message -->
     <string name="PinnedMessage__view_all_messages">Lihat semua pesan</string>
     <!-- Text to unpin all messages -->
@@ -8895,13 +8895,13 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Pesan akan dilepas sematannya untuk semua anggota.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">Tidak dapat menyematkan pesan</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">Tidak dapat melepas sematan pesan</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">Tidak dapat melepas sematan pesan</string>
     <!-- Dialog body when failing to pin a message -->
-    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
+    <string name="PinnedMessage__check_connection">Periksa koneksi Anda dan coba lagi.</string>
 
     <!-- EOF -->
 </resources>

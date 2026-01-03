@@ -2693,7 +2693,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">Cambiar dirección de la cámara</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Desliza para ver la pantalla compartida</string>
@@ -4482,9 +4482,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Finalizar encuesta</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <string name="conversation_selection__menu_pin_message">Fijar</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin</string>
+    <string name="conversation_selection__menu_unpin_message">Desfijar</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5273,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Vista previa del fondo</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">¿Quieres reemplazar los colores de todos tus chats?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">¿Quieres reemplazar los fondos de todos tus chats?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Restablecer predeterminado</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Restablecer todos</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Restablecer predeterminado</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Restablecer todos</string>
@@ -6217,7 +6217,7 @@
     <string name="ManageDonationsFragment__donation_receipts">Recibos de donación</string>
     <string name="ManageDonationsFragment__badges">Insignias</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
+    <string name="ManageDonationsFragment__subscription_faq">Preguntas frecuentes sobre donaciones</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Otras formas de aportar</string>
     <!-- Preference label to launch badge gifting -->
@@ -7501,7 +7501,7 @@
     <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Perdida mientras el perfil de notificación estaba activo</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Perdida mientras el perfil de notificación estaba activo</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Unirse</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8589,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Introduce tu clave de recuperación</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Introduce el código de 64 caracteres que registraste cuando habilitaste las copias de seguridad.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">¿No recuerdas la clave?</string>
 
@@ -9018,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">ver tu registro de depuración</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> antes de enviarlo.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Compartir registro de depuración</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9028,13 +9028,13 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">¡Gracias por tus comentarios!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">He tenido problemas</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">Ha ido genial</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">No se ha podido enviar tu comentario.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
-    <string name="CallQualitySheet__try_again">Try again</string>
+    <string name="CallQualitySheet__try_again">Reintentar</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
     <string name="PinnedMessage__s_pinned_a_message">%1$s ha fijado un mensaje</string>
@@ -9059,7 +9059,7 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">Archivo de visualización única</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <string name="PinnedMessage__unpin_message">Desfijar</string>
     <!-- Context menu option to view all the message -->
     <string name="PinnedMessage__view_all_messages">Ver todos los mensajes</string>
     <!-- Text to unpin all messages -->
@@ -9081,13 +9081,13 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Los mensajes se desfijarán para todos los participantes.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">No se ha podido fijar el mensaje</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">No se ha podido desfijar el mensaje</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">No se han podido desfijar los mensajes</string>
     <!-- Dialog body when failing to pin a message -->
-    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
+    <string name="PinnedMessage__check_connection">Comprueba tu conexión e inténtalo de nuevo.</string>
 
     <!-- EOF -->
 </resources>

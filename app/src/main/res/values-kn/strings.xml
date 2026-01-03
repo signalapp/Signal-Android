@@ -2693,7 +2693,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">ಕ್ಯಾಮೆರಾ ದಿಕ್ಕನ್ನು ಬದಲಾಯಿಸಿ</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">ಸ್ಕ್ರೀನ್ ಹಂಚಿಕೆಯನ್ನು ನೋಡಲು ಸ್ವೈಪ್ ಮಾಡಿ</string>
@@ -4482,9 +4482,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">ಸಮೀಕ್ಷೆಯನ್ನು ಕೊನೆಗೊಳಿಸಿ</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <string name="conversation_selection__menu_pin_message">PIN</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin</string>
+    <string name="conversation_selection__menu_unpin_message">ಅನ್‌ಪಿನ್</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5273,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">ವಾಲ್‌ಪೇಪರ್ ಪ್ರಿವ್ಯೂ</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">ಎಲ್ಲ ಚಾಟ್ ಕಲರ್‌ಗಳನ್ನು ನೀವು ಓವರ್‌ರೈಡ್‌ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">ಎಲ್ಲ ವಾಲ್‌ಪೇಪರ್‌ಗಳನ್ನು ಓವರ್‌ರೈಡ್‌ ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">ಡೀಫಾಲ್ಟ್ ಬಣ್ಣವನ್ನು ಮರುಹೊಂದಿಸಿ</string>
     <string name="ChatWallpaperFragment__reset_all_colors">ಎಲ್ಲಾ ಬಣ್ಣಗಳನ್ನೂ ಮರುಹೊಂದಿಸಿ</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">ಡೀಫಾಲ್ಟ್‌ ವಾಲ್‌ಪೇಪರ್‌ ಮರುಹೊಂದಿಸಿ</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">ಎಲ್ಲಾ ವಾಲ್‌ಪೇಪರ್‌ಗಳನ್ನೂ ಮರುಹೊಂದಿಸಿ</string>
@@ -6217,7 +6217,7 @@
     <string name="ManageDonationsFragment__donation_receipts">ದೇಣಿಗೆ ಸ್ವೀಕೃತಿಗಳು</string>
     <string name="ManageDonationsFragment__badges">ಬ್ಯಾಡ್ಜ್‌ಗಳು</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
+    <string name="ManageDonationsFragment__subscription_faq">ದಾನಿಯ ಕುರಿತು FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">ನೀಡಲು ಇತರೆ ದಾರಿಗಳು</string>
     <!-- Preference label to launch badge gifting -->
@@ -7501,7 +7501,7 @@
     <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್ ಆನ್ ಆಗಿರುವಾಗ ತಪ್ಪಿಹೋಗಿದೆ</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile_multiple">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್ ಆನ್ ಆಗಿರುವಾಗ ತಪ್ಪಿಹೋಗಿದೆ</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">ಸೇರಿ</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8589,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">ನಿಮ್ಮ ರಿಕವರಿ ಕೀಯನ್ನು ನಮೂದಿಸಿ</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ನೀವು ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ ನೀವು ರೆಕಾರ್ಡ್ ಮಾಡಿದ 64-ಅಕ್ಷರಗಳ ಕೋಡ್ ಅನ್ನು ನಮೂದಿಸಿ.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">ಕೀ ಮರೆತಿದ್ದೀರಾ?</string>
 
@@ -9018,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">ನಿಮ್ಮ ಡೀಬಗ್ ಲಾಗ್ ಅನ್ನು</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> ಸಲ್ಲಿಸುವ ಮೊದಲೇ ವೀಕ್ಷಿಸಬಹುದು.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9028,13 +9028,13 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">ನಿಮ್ಮ ಫೀಡ್‌ಬ್ಯಾಕ್‌ಗೆ ಧನ್ಯವಾದಗಳು!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">ಕರೆಗೆ ಸಂಬಂಧಿಸಿದಂತೆ ನನಗೆ ಸಮಸ್ಯೆಯಾಗಿದೆ</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">ಕರೆ ಅದ್ಭುತವಾಗಿತ್ತು</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಕಳುಹಿಸಲು ವಿಫಲವಾಗಿದೆ.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
-    <string name="CallQualitySheet__try_again">Try again</string>
+    <string name="CallQualitySheet__try_again">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
     <string name="PinnedMessage__s_pinned_a_message">%1$s ಮೆಸೇಜ್ ಅನ್ನು ಪಿನ್ ಮಾಡಿದ್ದಾರೆ</string>
@@ -9059,7 +9059,7 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">ಏಕ ವೀಕ್ಷಣೆ ಮೀಡಿಯಾ</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <string name="PinnedMessage__unpin_message">ಅನ್‌ಪಿನ್</string>
     <!-- Context menu option to view all the message -->
     <string name="PinnedMessage__view_all_messages">ಎಲ್ಲಾ ಮೆಸೇಜ್‌ಗಳನ್ನು ವೀಕ್ಷಿಸಿ</string>
     <!-- Text to unpin all messages -->
@@ -9081,13 +9081,13 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೆ ಮೆಸೇಜ್‌ಗಳನ್ನು ಅನ್‌ಪಿನ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">ಮೆಸೇಜ್ ಅನ್ನು ಪಿನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">ಮೆಸೇಜ್ ಅನ್ನು ಅನ್‌ಪಿನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">ಮೆಸೇಜ್‌ಗಳನ್ನು ಅನ್‌ಪಿನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <!-- Dialog body when failing to pin a message -->
-    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
+    <string name="PinnedMessage__check_connection">ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಇನ್ನೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
 
     <!-- EOF -->
 </resources>

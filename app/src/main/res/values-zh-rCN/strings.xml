@@ -2605,7 +2605,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">切换前后摄像头</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">轻扫查看屏幕共享</string>
@@ -4367,9 +4367,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">结束投票</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <string name="conversation_selection__menu_pin_message">置顶</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin</string>
+    <string name="conversation_selection__menu_unpin_message">取消置顶</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5143,7 +5143,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">墙纸预览</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">是否想要覆盖全部聊天颜色？</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">是否想要覆盖全部墙纸？</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">重置默认颜色</string>
     <string name="ChatWallpaperFragment__reset_all_colors">重置全部颜色</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">重置默认墙纸</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">重置全部墙纸</string>
@@ -6072,7 +6072,7 @@
     <string name="ManageDonationsFragment__donation_receipts">捐款收据</string>
     <string name="ManageDonationsFragment__badges">徽章</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
+    <string name="ManageDonationsFragment__subscription_faq">捐款人常见问题解答</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">其他赞助方式</string>
     <!-- Preference label to launch badge gifting -->
@@ -7335,7 +7335,7 @@
     <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">由于开启通知配置而未接通</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile_multiple">由于开启通知配置而未接通</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">加入</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8408,7 +8408,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">输入您的恢复密钥</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">请输入您启用备份时记录的 64 位字符代码。</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">忘记密钥？</string>
 
@@ -8832,7 +8832,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">先查看您的调试日志</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> 再提交。</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">分享调试日志</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8842,13 +8842,13 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">感谢您的反馈！</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">通话出现问题</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">通话体验很好</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">您的反馈发送失败。</string>
     <!-- Dialog button to retry sending feedback after a failure -->
-    <string name="CallQualitySheet__try_again">Try again</string>
+    <string name="CallQualitySheet__try_again">重试</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
     <string name="PinnedMessage__s_pinned_a_message">%1$s 置顶了一条消息</string>
@@ -8873,7 +8873,7 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">一次性媒体</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <string name="PinnedMessage__unpin_message">取消置顶</string>
     <!-- Context menu option to view all the message -->
     <string name="PinnedMessage__view_all_messages">查看所有消息</string>
     <!-- Text to unpin all messages -->
@@ -8895,13 +8895,13 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">消息将对所有群成员取消置顶。</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">无法置顶消息</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">无法取消置顶消息</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">无法取消置顶消息</string>
     <!-- Dialog body when failing to pin a message -->
-    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
+    <string name="PinnedMessage__check_connection">请检查您的网络连接并重试。</string>
 
     <!-- EOF -->
 </resources>

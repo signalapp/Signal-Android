@@ -272,11 +272,11 @@ object AccountDataArchiveProcessor {
     SignalStore.settings.setCallDataMode(settings.callsUseLessDataSetting.toLocalCallDataMode())
 
     if (settings.autoDownloadSettings != null) {
-      val mobileDownloadSet = settings.autoDownloadSettings.toLocalAutoDownloadSet(AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI_AND_CELLULAR)
-      val wifiDownloadSet = settings.autoDownloadSettings.toLocalAutoDownloadSet(AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI)
+      val mobileAndWifiDownloadSet = settings.autoDownloadSettings.toLocalAutoDownloadSet(AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI_AND_CELLULAR)
+      val wifiDownloadSet = mobileAndWifiDownloadSet + settings.autoDownloadSettings.toLocalAutoDownloadSet(AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI)
 
       TextSecurePreferences.getSharedPreferences(context).edit().apply {
-        putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF, mobileDownloadSet)
+        putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF, mobileAndWifiDownloadSet)
         putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_WIFI_PREF, wifiDownloadSet)
         apply()
       }
