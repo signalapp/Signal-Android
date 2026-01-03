@@ -10,6 +10,7 @@ import org.signal.ringrtc.CallSummary
 import org.signal.ringrtc.GroupCall
 import org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.LocaleRemoteConfig
 import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
@@ -71,10 +72,19 @@ object CallQuality {
     }
   }
 
+  /**
+   * Consumes any pending request. We will automatically filter out requests if they're over five minutes old.
+   */
   fun consumeQualityRequest(): SubmitCallQualitySurveyRequest? {
-    val request = SignalStore.callQuality.surveyRequest
+    val request = SignalStore.callQuality.surveyRequest ?: return null
     SignalStore.callQuality.surveyRequest = null
-    return if (isFeatureEnabled()) request else null
+
+    val fiveMinutesAgo = System.currentTimeMillis().milliseconds - 5.minutes
+    return if (!isFeatureEnabled() || request.end_timestamp.milliseconds < fiveMinutesAgo) {
+      null
+    } else {
+      request
+    }
   }
 
   private fun isCallQualitySurveyRequired(callSummary: CallSummary): Boolean {
@@ -109,8 +119,8 @@ object CallQuality {
         return true
       }
 
-      val chance = RemoteConfig.callQualitySurveyPercent
-      val roll = (0 until 100).random()
+      val chance = LocaleRemoteConfig.getCallQualitySurveyPartsPerMillion()
+      val roll = (0 until 1_000_000).random()
 
       if (roll < chance) {
         return true

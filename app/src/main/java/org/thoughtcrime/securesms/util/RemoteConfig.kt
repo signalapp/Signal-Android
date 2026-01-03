@@ -1226,16 +1226,16 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("callQualitySurvey")
   val callQualitySurvey: Boolean by remoteBoolean(
-    key = "android.callQualitySurvey.3",
+    key = "android.callQualitySurvey.4",
     defaultValue = false,
     hotSwappable = true
   )
 
   @JvmStatic
-  @get:JvmName("callQualitySurveyPercent")
-  val callQualitySurveyPercent: Int by remoteInt(
-    key = "android.callQualitySurveyPercent",
-    defaultValue = 1,
+  @get:JvmName("callQualitySurveyPPM")
+  val callQualitySurveyPPM: String by remoteString(
+    key = "android.callQualitySurveyPPM",
+    defaultValue = "*:10000",
     hotSwappable = true
   )
   // endregion

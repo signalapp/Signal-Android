@@ -64,7 +64,7 @@ class OptimizeMediaJob private constructor(parameters: Parameters) : Job(paramet
 
     val minimumAge = if (remaining > 5f) 30.days else 15.days
 
-    Log.i(TAG, "${"%.1f".format(remaining)}% storage available, not optimizing the last $minimumAge of attachments")
+    Log.i(TAG, "${"%.1f".format(remaining)}% storage available, optimizing attachments older than $minimumAge")
 
     SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(minimumAge)
 

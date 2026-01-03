@@ -715,12 +715,6 @@ class AttachmentTable(
       .readToSingleLong()
   }
 
-  private fun getMessageDoesNotExpireWithinTimeoutClause(tablePrefix: String = MessageTable.TABLE_NAME): String {
-    val messageHasExpiration = "$tablePrefix.${MessageTable.EXPIRES_IN} > 0"
-    val messageExpiresInOneDayAfterViewing = "$messageHasExpiration AND  $tablePrefix.${MessageTable.EXPIRES_IN} < ${1.days.inWholeMilliseconds}"
-    return "NOT ($messageExpiresInOneDayAfterViewing)"
-  }
-
   /**
    * Finds all of the attachmentIds of attachments that need to be uploaded to the archive cdn.
    */
@@ -867,7 +861,7 @@ class AttachmentTable(
       .exists("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
       .where(
         """
-        ${buildAttachmentsThatNeedUploadQuery("$ARCHIVE_THUMBNAIL_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})")} AND
+        ${buildAttachmentsThatCanArchiveQuery("$ARCHIVE_THUMBNAIL_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})")} AND
         $QUOTE = 0 AND
         $STICKER_ID = -1 AND
         ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
@@ -887,7 +881,7 @@ class AttachmentTable(
       .from("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
       .where(
         """
-        ${buildAttachmentsThatNeedUploadQuery("$ARCHIVE_THUMBNAIL_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})")} AND
+        ${buildAttachmentsThatCanArchiveQuery("$ARCHIVE_THUMBNAIL_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})")} AND
         $QUOTE = 0 AND
         $STICKER_ID = -1 AND
         ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
@@ -1181,7 +1175,7 @@ class AttachmentTable(
           FROM (
             SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY, $DATA_SIZE
             FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
-            WHERE ${buildAttachmentsThatNeedUploadQuery(archiveTransferStateFilter)}
+            WHERE ${buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter)}
           )
         """.trimIndent()
       )
@@ -3110,7 +3104,7 @@ class AttachmentTable(
             SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY
             FROM $TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
             WHERE 
-              ${buildAttachmentsThatNeedUploadQuery("$ARCHIVE_THUMBNAIL_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}")} AND
+              ${buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter = "$ARCHIVE_THUMBNAIL_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}", includeOptimized = true)} AND
               ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
               $CONTENT_TYPE != 'image/svg+xml' AND
               $MESSAGE_ID != $WALLPAPER_MESSAGE_ID
@@ -3129,15 +3123,10 @@ class AttachmentTable(
           SELECT $DATA_SIZE
           FROM (
             SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY, $DATA_SIZE
-            FROM $TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} AS m ON $TABLE_NAME.$MESSAGE_ID = m.${MessageTable.ID}
+            FROM $TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
             WHERE 
-              $DATA_FILE NOT NULL AND 
-              $DATA_HASH_END NOT NULL AND 
-              $REMOTE_KEY NOT NULL AND 
-              $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
-              $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value} AND
-              ${if (afterTimestamp > 0) "m.${MessageTable.DATE_RECEIVED} >= $afterTimestamp AND" else ""}
-              ${getMessageDoesNotExpireWithinTimeoutClause(tablePrefix = "m")}
+              ${buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter = "$ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}", includeOptimized = true)}
+              ${if (afterTimestamp > 0) "AND ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} >= $afterTimestamp" else ""}
           )
         """
       )
@@ -3167,15 +3156,39 @@ class AttachmentTable(
       }
   }
 
-  private fun buildAttachmentsThatNeedUploadQuery(transferStateFilter: String = "$ARCHIVE_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})"): String {
+  private fun buildAttachmentsThatNeedUploadQuery(): String {
+    return buildAttachmentsThatCanArchiveQuery(
+      archiveTransferStateFilter = "$ARCHIVE_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})",
+      includeOptimized = false
+    )
+  }
+
+  private fun buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter: String, includeOptimized: Boolean = false): String {
+    val notReleaseChannelClause = SignalStore.releaseChannel.releaseChannelRecipientId?.let {
+      "(${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} != ${it.toLong()}) AND"
+    } ?: ""
+
+    val dataFileClause = if (includeOptimized) {
+      "($DATA_FILE NOT NULL OR $TRANSFER_STATE = $TRANSFER_RESTORE_OFFLOADED)"
+    } else {
+      "$DATA_FILE NOT NULL"
+    }
+
+    val transferStateClause = if (includeOptimized) {
+      "($TRANSFER_STATE = $TRANSFER_PROGRESS_DONE OR $TRANSFER_STATE = $TRANSFER_RESTORE_OFFLOADED)"
+    } else {
+      "$TRANSFER_STATE = $TRANSFER_PROGRESS_DONE"
+    }
+
     return """
-      $transferStateFilter AND
-      $DATA_FILE NOT NULL AND 
+      $archiveTransferStateFilter AND
+      $dataFileClause AND
       $REMOTE_KEY NOT NULL AND
       $DATA_HASH_END NOT NULL AND
-      $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND 
+      $transferStateClause AND
       (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND 
       (${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} <= 0 OR ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds}) AND
+      $notReleaseChannelClause
       $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}' AND
       ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0
     """
@@ -3353,7 +3366,7 @@ class AttachmentTable(
         SELECT COUNT(*) FROM (
           SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY
           FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
-          WHERE ${buildAttachmentsThatNeedUploadQuery(transferStateFilter = "$ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}")}
+          WHERE ${buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter = "$ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}")}
         )
         """
     )
@@ -3365,7 +3378,7 @@ class AttachmentTable(
         SELECT COUNT(*) FROM (
           SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY
           FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
-          WHERE ${buildAttachmentsThatNeedUploadQuery(transferStateFilter = "$ARCHIVE_TRANSFER_STATE = ${state.value}")}
+          WHERE ${buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter = "$ARCHIVE_TRANSFER_STATE = ${state.value}")}
         )
         """
       )
@@ -3380,7 +3393,7 @@ class AttachmentTable(
           SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY
           FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
           WHERE 
-            ${buildAttachmentsThatNeedUploadQuery("$ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${state.value}")} AND
+            ${buildAttachmentsThatCanArchiveQuery("$ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${state.value}")} AND
             $QUOTE = 0 AND
             ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
             $CONTENT_TYPE != 'image/svg+xml' AND

@@ -2693,7 +2693,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">کیمرہ کی سمت تبدیل کریں</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">اسکرین شیئر دیکھنے کیلئے سوائپ کریں</string>
@@ -4482,9 +4482,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">پول ختم کریں</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <string name="conversation_selection__menu_pin_message">پِن کریں</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin</string>
+    <string name="conversation_selection__menu_unpin_message">ان پِن کریں</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5273,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">وال پیپر پیش نظارہ</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">کیا آپ چیٹ کے تمام رنگوں کو اوور رائیڈ کرنا چاہتے ہیں؟</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">کیا آپ تمام وال پیپروں کو اوور رائڈ کرنا چاہیں گے؟</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">پہلے سے طے شدہ رنگ کو ری سیٹ کریں</string>
     <string name="ChatWallpaperFragment__reset_all_colors">تمام رنگوں کو دوبارہ ترتیب دیں</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">پہلے سے طے شدہ وال پیپر کو دوبارہ ترتیب دیں</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">تمام وال پیپر کو دوبارہ ترتیب دیں</string>
@@ -6217,7 +6217,7 @@
     <string name="ManageDonationsFragment__donation_receipts">عطیے کی رسیدیں</string>
     <string name="ManageDonationsFragment__badges">بیجز</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
-    <string name="ManageDonationsFragment__subscription_faq">Donor FAQ</string>
+    <string name="ManageDonationsFragment__subscription_faq">ڈونر کے عمومی سوال</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">دینے کے دیگر طریقے</string>
     <!-- Preference label to launch badge gifting -->
@@ -7501,7 +7501,7 @@
     <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">اطلاعات کی پروفائل آن ہونے کے دوران مس ہوئیں</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile_multiple">اطلاعات کی پروفائل آن ہونے کے دوران مس ہوئیں</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">شامل ہوں</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8589,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">اپنی ریکوری کیی درج کریں</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">64 حروف پر مشتمل وہ کوڈ درج کریں جو آپ نے اپنے بیک اپس کو فعال کرتے ہوئے ریکارڈ کیا تھا۔</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">کیی بھول گئے ہیں؟</string>
 
@@ -9018,7 +9018,7 @@
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">اپنا ڈی بگ لاگ دیکھ</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> سکتے ہیں۔</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">ڈی بگ لاگ شیئر کریں</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9028,13 +9028,13 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">آپ کی رائے کا شکریہ!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">مجھے کال میں مسائل کا سامنا کرنا پڑا</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">کال بہترین تھی</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">آپ کی رائے بھیجنے میں ناکامی۔</string>
     <!-- Dialog button to retry sending feedback after a failure -->
-    <string name="CallQualitySheet__try_again">Try again</string>
+    <string name="CallQualitySheet__try_again">دوبارہ کوشش کریں</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
     <string name="PinnedMessage__s_pinned_a_message">%1$s نے ایک میسج پِن کیا ہے</string>
@@ -9059,7 +9059,7 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">صرف ایک بار دیکھنے کے قابل میڈیا</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <string name="PinnedMessage__unpin_message">ان پِن کریں</string>
     <!-- Context menu option to view all the message -->
     <string name="PinnedMessage__view_all_messages">تمام میسجز دیکھیں</string>
     <!-- Text to unpin all messages -->
@@ -9081,13 +9081,13 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">تمام ممبرز کے لیے میسجز اَن پِن ہو جائیں گے۔</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">میسج کو پِن نہیں کیا جا سکا</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">میسج کو ان پن نہیں کیا جا سکا</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">میسج کو ان پن نہیں کیا جا سکا</string>
     <!-- Dialog body when failing to pin a message -->
-    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
+    <string name="PinnedMessage__check_connection">اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
 
     <!-- EOF -->
 </resources>

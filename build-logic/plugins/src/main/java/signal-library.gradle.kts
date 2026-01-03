@@ -29,6 +29,7 @@ android {
 
   defaultConfig {
     minSdk = signalMinSdkVersion
+    vectorDrawables.useSupportLibrary = true
   }
 
   compileOptions {

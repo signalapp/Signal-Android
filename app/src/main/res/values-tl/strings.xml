@@ -2693,7 +2693,7 @@
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
-    <string name="SwitchCameraButton__switch_camera_direction">Switch camera direction</string>
+    <string name="SwitchCameraButton__switch_camera_direction">Palitan ang direksyon ng camera</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">I-swipe para ma-view ang screen share</string>
@@ -4482,9 +4482,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Tapusin ang poll</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin</string>
+    <string name="conversation_selection__menu_pin_message">I-pin</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin</string>
+    <string name="conversation_selection__menu_unpin_message">I-unpin</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5273,7 +5273,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Wallpaper preview</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Gusto mo bang i-undo ang lahat ng chat colors?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Gusto mo bang i-undo ang lahat ng chat colors?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Reset default color</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">I-reset sa default color</string>
     <string name="ChatWallpaperFragment__reset_all_colors">I-reset ang lahat ng colors</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">I-reset sa default wallpaper</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">I-reset ang lahat ng wallpapers</string>
@@ -7501,7 +7501,7 @@
     <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Hindi nasagot habang naka-on ang notification profile</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile_multiple">Missed while notification profile on</string>
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Hindi nasagot habang naka-on ang notification profile</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Sumali</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -8589,7 +8589,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Ilagay ang iyong recovery key</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-character code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Ilagay ang 64-character code na ni-record mo noong in-enable mo ang backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Nakalimutan ang key?</string>
 
@@ -9014,11 +9014,11 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Tulungan kaming mag-improve</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Ang pag-send sa amin ng diagnostics info mo ay nakatutulong sa amin para mapabuti ang kalidad ng tawag. Maaari mong </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Nakatutulong sa amin ang pag-send ng diagnostics info mo para mapabuti ang call quality. Maaari mong </string>
     <!-- Link text to view debug log -->
     <string name="CallQualitySheet__view_your_debug_log">tignan ang debug log mo</string>
     <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> before submitting.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix"> bago mag-submit.</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">I-share ang debug log</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -9028,13 +9028,13 @@
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Maraming salamat sa feedback mo!</string>
     <!-- Content description for the thumbs down button indicating user had issues with the call -->
-    <string name="CallQualitySheet__had_issues_content_description">I had issues with the call</string>
+    <string name="CallQualitySheet__had_issues_content_description">Nagkaroon ako ng problema sa call</string>
     <!-- Content description for the thumbs up button indicating the call was great -->
-    <string name="CallQualitySheet__great_content_description">The call was great</string>
+    <string name="CallQualitySheet__great_content_description">Maganda ang call quality</string>
     <!-- Dialog body shown when feedback submission fails due to network issues -->
-    <string name="CallQualitySheet__your_feedback_failed_to_send">Your feedback failed to send.</string>
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Hindi naipadala ang feedback mo.</string>
     <!-- Dialog button to retry sending feedback after a failure -->
-    <string name="CallQualitySheet__try_again">Try again</string>
+    <string name="CallQualitySheet__try_again">Subukang muli</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
     <string name="PinnedMessage__s_pinned_a_message">Si %1$s ay nag-pin ng message</string>
@@ -9059,7 +9059,7 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">View-once na media</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin</string>
+    <string name="PinnedMessage__unpin_message">I-unpin</string>
     <!-- Context menu option to view all the message -->
     <string name="PinnedMessage__view_all_messages">Tignan lahat ng messages</string>
     <!-- Text to unpin all messages -->
@@ -9081,13 +9081,13 @@
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Magiging unpinned ang messages sa lahat ng members.</string>
     <!-- Dialog title when failing to pin a message -->
-    <string name="PinnedMessage__couldnt_pin">Couldn\'t pin message</string>
+    <string name="PinnedMessage__couldnt_pin">Hindi ma-pin ang message</string>
     <!-- Dialog title when failing to unpin a message -->
-    <string name="PinnedMessage__couldnt_unpin">Couldn\'t unpin message</string>
+    <string name="PinnedMessage__couldnt_unpin">Hindi ma-unpin ang message</string>
     <!-- Dialog title when failing to unpin all messages -->
-    <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
+    <string name="PinnedMessage__couldnt_unpin_all">Hindi ma-unpin ang messages</string>
     <!-- Dialog body when failing to pin a message -->
-    <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
+    <string name="PinnedMessage__check_connection">I-check ang iyong connection at subukan ulit.</string>
 
     <!-- EOF -->
 </resources>
