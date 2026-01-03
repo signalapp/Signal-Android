@@ -22,13 +22,14 @@ internal class BackupJitterMigrationJob(parameters: Parameters = Parameters.Buil
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
+    val frequency = SignalStore.settings.backupFrequency
     val hour = SignalStore.settings.backupHour
     val minute = SignalStore.settings.backupMinute
     if (hour == SettingsValues.BACKUP_DEFAULT_HOUR && minute == SettingsValues.BACKUP_DEFAULT_MINUTE) {
       val rand = Random()
       val newHour = rand.nextInt(3) + 1 // between 1AM - 3AM
       val newMinute = rand.nextInt(12) * 5 // 5 minute intervals up to +55 minutes
-      SignalStore.settings.setBackupSchedule(newHour, newMinute)
+      SignalStore.settings.setBackupSchedule(frequency, newHour, newMinute)
     }
   }
 

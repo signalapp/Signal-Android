@@ -159,6 +159,36 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/fragment_backup_frequency"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/listPreferredItemHeightLarge"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/BackupsPreferenceFragment__backup_frequency"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textColor="@color/signal_text_primary" />
+
+            <TextView
+                android:id="@+id/fragment_backup_frequency_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/Signal.Text.Preview"
+                android:textColor="@color/signal_text_secondary"
+                tools:text="3:00" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/fragment_backup_verify"
             android:layout_width="match_parent"
             android:layout_height="?attr/listPreferredItemHeightLarge"
