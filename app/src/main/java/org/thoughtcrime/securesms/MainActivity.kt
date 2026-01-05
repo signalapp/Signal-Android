@@ -258,6 +258,12 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
   @OptIn(ExperimentalMaterial3AdaptiveApi::class)
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    if (!isTaskRoot && intent.hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN == intent.action) {
+      Log.w(TAG, "Duplicate launcher intent received, finishing duplicate instance.")
+      finish()
+      return
+    }
+
     AppStartup.getInstance().onCriticalRenderEventStart()
 
     enableEdgeToEdge(
@@ -996,6 +1002,8 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     if (ConversationIntents.isConversationIntent(intent)) {
       mainNavigationViewModel.goTo(MainNavigationListLocation.CHATS)
       mainNavigationViewModel.goTo(MainNavigationDetailLocation.Chats.Conversation(ConversationIntents.readArgsFromBundle(intent.extras!!)))
+      intent.action = null
+      setIntent(intent)
     }
   }
 
