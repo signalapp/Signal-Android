@@ -182,6 +182,7 @@ fun SelfPipContent(
     Box(modifier = modifier) {
       VideoRenderer(
         participant = participant,
+        mirror = true,
         modifier = Modifier.fillMaxSize()
       )
 
@@ -376,6 +377,7 @@ private fun VideoRenderer(
   participant: CallParticipant,
   onFirstFrameRendered: (() -> Unit)? = null,
   showLetterboxing: Boolean = true,
+  mirror: Boolean = false,
   modifier: Modifier = Modifier
 ) {
   var renderer by remember { mutableStateOf<TextureViewRenderer?>(null) }
@@ -423,6 +425,8 @@ private fun VideoRenderer(
             }
             attachBroadcastVideoSink(participant.videoSink)
           }
+
+          setMirror(mirror)
         }
 
         renderer = textureRenderer
@@ -441,6 +445,8 @@ private fun VideoRenderer(
         } else {
           textureRenderer.attachBroadcastVideoSink(null)
         }
+
+        textureRenderer.setMirror(mirror)
       }
     },
     onRelease = {
