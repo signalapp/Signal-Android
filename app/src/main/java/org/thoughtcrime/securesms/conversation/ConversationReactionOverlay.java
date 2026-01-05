@@ -407,6 +407,10 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private void hideInternal(@Nullable OnHideListener onHideListener) {
+    if (overlayState == OverlayState.HIDDEN || selectedConversationModel == null) {
+      return;
+    }
+
     overlayState = OverlayState.HIDDEN;
 
     AnimatorSet animatorSet = newHideAnimatorSet();
