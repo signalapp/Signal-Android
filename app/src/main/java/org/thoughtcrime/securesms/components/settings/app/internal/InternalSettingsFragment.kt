@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import org.signal.core.util.AppUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
@@ -33,6 +32,8 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.components.snackbars.SnackbarState
+import org.thoughtcrime.securesms.components.snackbars.makeSnackbar
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.JobDatabase
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
@@ -100,7 +101,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
     setFragmentResultListener(CallQualityBottomSheetFragment.REQUEST_KEY) { _, bundle ->
       if (bundle.getBoolean(CallQualityBottomSheetFragment.REQUEST_KEY, false)) {
-        Snackbar.make(requireView(), R.string.CallQualitySheet__thanks_for_your_feedback, Snackbar.LENGTH_SHORT).show()
+        makeSnackbar(
+          SnackbarState(
+            message = getString(R.string.CallQualitySheet__thanks_for_your_feedback)
+          )
+        )
       }
     }
   }

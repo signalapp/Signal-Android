@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -31,7 +30,9 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.Texts
+import org.signal.core.ui.compose.showSnackbar
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
@@ -73,7 +74,7 @@ class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
           lifecycleScope.launch {
             snackbarHostState.showSnackbar(
               message = snackbarMessage,
-              duration = SnackbarDuration.Short
+              duration = Snackbars.Duration.SHORT
             )
           }
         }

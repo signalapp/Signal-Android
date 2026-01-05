@@ -43,7 +43,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
@@ -83,6 +82,7 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.compose.Snackbars
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
@@ -325,7 +325,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         mainNavigationViewModel.snackbarRegistry.emit(
           SnackbarState(
             message = getString(R.string.CallQualitySheet__thanks_for_your_feedback),
-            duration = SnackbarDuration.Short,
+            duration = Snackbars.Duration.SHORT,
             hostKey = MainSnackbarHostKey.Chat,
             fallbackKey = MainSnackbarHostKey.MainChrome
           )
@@ -903,7 +903,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       mainNavigationViewModel.snackbarRegistry.emit(
         SnackbarState(
           message = getString(R.string.VerifyBackupKey__backup_key_correct),
-          duration = SnackbarDuration.Short,
+          duration = Snackbars.Duration.SHORT,
           hostKey = MainSnackbarHostKey.MainChrome
         )
       )

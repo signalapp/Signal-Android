@@ -5,9 +5,12 @@
 
 package org.thoughtcrime.securesms.components.snackbars
 
-import androidx.compose.material3.SnackbarDuration
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.Snackbars
 
 fun Fragment.makeSnackbar(state: SnackbarState) {
   if (view == null) {
@@ -18,9 +21,10 @@ fun Fragment.makeSnackbar(state: SnackbarState) {
     requireView(),
     state.message,
     when (state.duration) {
-      SnackbarDuration.Short -> Snackbar.LENGTH_SHORT
-      SnackbarDuration.Long -> Snackbar.LENGTH_LONG
-      SnackbarDuration.Indefinite -> Snackbar.LENGTH_INDEFINITE
+      Snackbars.Duration.SHORT -> Snackbar.LENGTH_SHORT
+      Snackbars.Duration.LONG -> Snackbar.LENGTH_LONG
+      Snackbars.Duration.INDEFINITE -> Snackbar.LENGTH_INDEFINITE
+      else -> Snackbar.LENGTH_INDEFINITE
     }
   )
 
@@ -30,4 +34,11 @@ fun Fragment.makeSnackbar(state: SnackbarState) {
   }
 
   snackbar.show()
+
+  if (state.duration is Snackbars.Duration.Custom) {
+    viewLifecycleOwner.lifecycleScope.launch {
+      delay(state.duration.duration)
+      snackbar.dismiss()
+    }
+  }
 }

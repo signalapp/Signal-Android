@@ -9,7 +9,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -34,6 +33,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.showSnackbar
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyDisplayFragment
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -146,7 +146,7 @@ class AdvancedPinSettingsFragment : ComposeFragment() {
     viewLifecycleOwner.lifecycleScope.launch {
       viewModel.snackbarHostState.showSnackbar(
         message = getString(R.string.ApplicationPreferencesActivity_pin_disabled),
-        duration = SnackbarDuration.Long
+        duration = Snackbars.Duration.LONG
       )
     }
   }

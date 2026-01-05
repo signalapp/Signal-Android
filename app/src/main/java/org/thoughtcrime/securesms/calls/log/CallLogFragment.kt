@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
-import androidx.compose.material3.SnackbarDuration
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -22,6 +21,7 @@ import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.kotlin.Flowables
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.Snackbars
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
@@ -458,7 +458,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
             mainNavigationViewModel.snackbarRegistry.emit(
               SnackbarState(
                 message = snackbarMessage,
-                duration = SnackbarDuration.Short,
+                duration = Snackbars.Duration.SHORT,
                 hostKey = MainSnackbarHostKey.MainChrome
               )
             )

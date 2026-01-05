@@ -42,7 +42,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.compose.material3.SnackbarDuration;
+import org.signal.core.ui.compose.Snackbars;
 import androidx.compose.ui.platform.ComposeView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
@@ -991,7 +991,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
                   }
               ),
               showProgress,
-              SnackbarDuration.Long,
+              Snackbars.Duration.LONG,
               MainSnackbarHostKey.MainChrome.INSTANCE,
               null
           ));
@@ -1075,7 +1075,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
           getString(R.string.conversation_list__you_can_only_pin_up_to_d_chats, MAXIMUM_PINNED_CONVERSATIONS),
           null,
           false,
-          SnackbarDuration.Long,
+          Snackbars.Duration.LONG,
           MainSnackbarHostKey.MainChrome.INSTANCE,
           null
       ));
@@ -1441,7 +1441,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
                       }
                   ),
                   false,
-                  SnackbarDuration.Long,
+                  Snackbars.Duration.LONG,
                   MainSnackbarHostKey.MainChrome.INSTANCE,
                   null
               ));

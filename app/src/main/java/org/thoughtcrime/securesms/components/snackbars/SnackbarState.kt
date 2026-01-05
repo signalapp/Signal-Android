@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.components.snackbars
 
 import androidx.annotation.ColorRes
-import androidx.compose.material3.SnackbarDuration
+import org.signal.core.ui.compose.Snackbars
 import org.thoughtcrime.securesms.R
 
 /**
@@ -16,15 +16,15 @@ import org.thoughtcrime.securesms.R
  * @property actionState Optional action button configuration.
  * @property showProgress Whether to show a progress indicator in the snackbar.
  * @property duration How long the snackbar should be displayed.
- * @property hostKey The target host where this snackbar should be displayed.
+ * @property hostKey The target host where this snackbar should be displayed. Defaults to [SnackbarHostKey.Global]
  * @property fallbackKey Optional host to fallback upon if the host key is not registered. Defaults to the Global key.
  */
 data class SnackbarState(
   val message: String,
   val actionState: ActionState? = null,
   val showProgress: Boolean = false,
-  val duration: SnackbarDuration = SnackbarDuration.Long,
-  val hostKey: SnackbarHostKey,
+  val duration: Snackbars.Duration = Snackbars.Duration.SHORT,
+  val hostKey: SnackbarHostKey = SnackbarHostKey.Global,
   val fallbackKey: SnackbarHostKey? = SnackbarHostKey.Global
 ) {
   /**

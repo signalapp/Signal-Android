@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.snackbars
 
-import androidx.compose.material3.SnackbarDuration
 import androidx.core.util.Consumer
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -10,6 +9,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Before
 import org.junit.Test
+import org.signal.core.ui.compose.Snackbars
 
 class SnackbarStateConsumerRegistryTest {
 
@@ -256,7 +256,7 @@ class SnackbarStateConsumerRegistryTest {
       message = "Test message",
       hostKey = hostKey,
       fallbackKey = fallbackKey,
-      duration = SnackbarDuration.Short
+      duration = Snackbars.Duration.SHORT
     )
   }
 

@@ -31,7 +31,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SecondaryTabRow
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Tab
@@ -78,6 +77,7 @@ import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
 import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
 import org.signal.core.ui.compose.copied.androidx.compose.dragContainer
 import org.signal.core.ui.compose.copied.androidx.compose.rememberDragDropState
+import org.signal.core.ui.compose.showSnackbar
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
@@ -625,7 +625,7 @@ private fun SnackbarHost(
     if (snackbarMessage != null) {
       val result = hostState.showSnackbar(
         message = snackbarMessage,
-        duration = SnackbarDuration.Short,
+        duration = Snackbars.Duration.SHORT,
         withDismissAction = false
       )
 

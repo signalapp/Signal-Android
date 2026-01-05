@@ -26,7 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.WorkerThread;
-import androidx.compose.material3.SnackbarDuration;
+import org.signal.core.ui.compose.Snackbars;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.signal.core.util.concurrent.LifecycleDisposable;
@@ -152,7 +152,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment
                       }
                   ),
                   false,
-                  SnackbarDuration.Long,
+                  Snackbars.Duration.LONG,
                   MainSnackbarHostKey.MainChrome.INSTANCE,
                   null
               ));
