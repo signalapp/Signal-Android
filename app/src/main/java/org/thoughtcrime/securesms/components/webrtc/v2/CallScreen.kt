@@ -252,7 +252,11 @@ fun CallScreen(
       }
 
       val isCompactPortrait = !currentWindowAdaptiveInfo().windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND)
-      if (webRtcCallState.isPreJoinOrNetworkUnavailable) {
+      if (webRtcCallState.isPreJoinOrNetworkUnavailable ||
+        webRtcCallState == WebRtcViewModel.State.CALL_OUTGOING ||
+        webRtcCallState == WebRtcViewModel.State.CALL_RINGING ||
+        (webRtcCallState.inOngoingCall && callParticipantsPagerState.callParticipants.isEmpty())
+      ) {
         if (localParticipant.isVideoEnabled) {
           LargeLocalVideoRenderer(
             localParticipant = localParticipant,
@@ -260,23 +264,18 @@ fun CallScreen(
           )
         }
 
-        CallScreenPreJoinOverlay(
-          callRecipient = callRecipient,
-          callStatus = callScreenState.callStatus,
-          onNavigationClick = onNavigationClick,
-          onCallInfoClick = onCallInfoClick,
-          onCameraToggleClick = callScreenControlsListener::onCameraDirectionChanged,
-          isLocalVideoEnabled = localParticipant.isVideoEnabled,
-          isMoreThanOneCameraAvailable = localParticipant.isMoreThanOneCameraAvailable,
-          modifier = Modifier.padding(bottom = padding)
-        )
-      } else if (webRtcCallState.inOngoingCall && callParticipantsPagerState.callParticipants.isEmpty()) {
-        if (localParticipant.isVideoEnabled) {
-          LargeLocalVideoRenderer(
-            localParticipant = localParticipant,
-            modifier = if (isCompactPortrait) Modifier.padding(bottom = padding) else Modifier
+        if (webRtcCallState.isPreJoinOrNetworkUnavailable) {
+          CallScreenPreJoinOverlay(
+            callRecipient = callRecipient,
+            callStatus = callScreenState.callStatus,
+            onNavigationClick = onNavigationClick,
+            onCallInfoClick = onCallInfoClick,
+            onCameraToggleClick = callScreenControlsListener::onCameraDirectionChanged,
+            isLocalVideoEnabled = localParticipant.isVideoEnabled,
+            isMoreThanOneCameraAvailable = localParticipant.isMoreThanOneCameraAvailable,
+            modifier = Modifier.padding(bottom = padding)
           )
-
+        } else {
           CallScreenTopBar(
             callRecipient = callRecipient,
             callStatus = callScreenState.callStatus,
@@ -320,7 +319,11 @@ fun CallScreen(
             )
           },
           raiseHandSlot = {
-            raiseHandSnackbar(Modifier.fillMaxWidth().padding(bottom = 16.dp))
+            raiseHandSnackbar(
+              Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp)
+            )
           },
           callLinkBarSlot = {
             val state = remember(callScreenState.pendingParticipantsState) {
@@ -331,7 +334,8 @@ fun CallScreen(
               PendingParticipants(
                 pendingParticipantsState = state,
                 pendingParticipantsListener = pendingParticipantsListener,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                  .fillMaxWidth()
                   .padding(horizontal = 16.dp)
                   .padding(bottom = 16.dp)
               )
@@ -384,7 +388,11 @@ fun CallScreen(
         }
       }
 
-      Box(modifier = Modifier.fillMaxSize().padding(bottom = padding)) {
+      Box(
+        modifier = Modifier
+          .fillMaxSize()
+          .padding(bottom = padding)
+      ) {
         AnimatedCallStateUpdate(
           callControlsChange = callScreenState.callControlsChange,
           modifier = Modifier
