@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.main
 
+import android.os.Build
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.animateFloat
@@ -202,7 +203,8 @@ class ChatNavGraphState private constructor(
   private var hasWrittenToGraphicsLayer: Boolean by mutableStateOf(false)
 
   suspend fun writeGraphicsLayerToBitmap() {
-    if (!windowSizeClass.isSplitPane() && hasWrittenToGraphicsLayer) {
+    // toImageBitmap() uses LayerSnapshot which has format compatibility issues on Android 7 and below
+    if (Build.VERSION.SDK_INT >= 26 && !windowSizeClass.isSplitPane() && hasWrittenToGraphicsLayer) {
       chatBitmap = graphicsLayer.toImageBitmap()
     }
   }
