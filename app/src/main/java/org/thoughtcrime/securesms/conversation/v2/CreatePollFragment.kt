@@ -67,6 +67,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeDialogFragment
 import org.thoughtcrime.securesms.polls.Poll
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -78,6 +79,7 @@ class CreatePollFragment : ComposeDialogFragment() {
   companion object {
     private val TAG = Log.tag(CreatePollFragment::class)
 
+    val MAX_QUESTION_CHARACTER_LENGTH = if (RemoteConfig.pollsV2) 200 else 100
     const val MAX_CHARACTER_LENGTH = 100
     const val MAX_OPTIONS = 10
     const val MIN_OPTIONS = 2
@@ -222,7 +224,7 @@ private fun CreatePollScreen(
           TextFieldWithCountdown(
             value = question,
             label = { Text(text = stringResource(R.string.CreatePollFragment__ask_a_question)) },
-            onValueChange = { question = it.substring(0, minOf(it.length, CreatePollFragment.MAX_CHARACTER_LENGTH)) },
+            onValueChange = { question = it.substring(0, minOf(it.length, CreatePollFragment.MAX_QUESTION_CHARACTER_LENGTH)) },
             keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
             colors = TextFieldDefaults.colors(
               unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -232,6 +234,7 @@ private fun CreatePollScreen(
               .fillMaxWidth()
               .onFocusChanged { focusState -> if (focusState.isFocused) focusedOption = -1 }
               .focusRequester(focusRequester),
+            maxCharacterLength = CreatePollFragment.MAX_QUESTION_CHARACTER_LENGTH,
             countdownThreshold = CreatePollFragment.CHARACTER_COUNTDOWN_THRESHOLD
           )
 
@@ -266,6 +269,7 @@ private fun CreatePollScreen(
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
               )
             },
+            maxCharacterLength = CreatePollFragment.MAX_CHARACTER_LENGTH,
             countdownThreshold = CreatePollFragment.CHARACTER_COUNTDOWN_THRESHOLD
           )
         }
@@ -316,9 +320,10 @@ private fun TextFieldWithCountdown(
   colors: TextFieldColors,
   modifier: Modifier,
   trailingIcon: @Composable () -> Unit = {},
+  maxCharacterLength: Int,
   countdownThreshold: Int
 ) {
-  val charactersRemaining = CreatePollFragment.MAX_CHARACTER_LENGTH - value.length
+  val charactersRemaining = maxCharacterLength - value.length
   val displayCountdown = charactersRemaining <= countdownThreshold
 
   Box(modifier = Modifier.padding(start = 24.dp, end = 24.dp, bottom = 16.dp)) {

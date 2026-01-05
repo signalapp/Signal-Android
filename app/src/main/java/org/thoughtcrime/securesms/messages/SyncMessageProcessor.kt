@@ -1744,18 +1744,9 @@ object SyncMessageProcessor {
     sent: Sent,
     senderRecipient: Recipient
   ): Long {
-    if (!RemoteConfig.receivePolls) {
-      log(envelope.timestamp!!, "Sync poll create not allowed due to remote config.")
-    }
-
     log(envelope.timestamp!!, "Synchronize sent poll creation message.")
 
     val recipient = getSyncMessageDestination(sent)
-    if (!recipient.isGroup) {
-      warn(envelope.timestamp!!, "Poll creation messages should only be synced in groups. Dropping.")
-      return -1
-    }
-
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
 
     val expiresInMillis = message.expireTimerDuration.inWholeMilliseconds
@@ -1777,8 +1768,12 @@ object SyncMessageProcessor {
       question = poll.question!!
     )
 
-    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null).messageId
-    updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
+    val receiptStatus = if (recipient.isGroup) GroupReceiptTable.STATUS_UNKNOWN else GroupReceiptTable.STATUS_UNDELIVERED
+    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, receiptStatus, null).messageId
+
+    if (recipient.isGroup) {
+      updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
+    }
 
     log(envelope.timestamp!!, "Inserted sync poll create message as messageId $messageId")
 
@@ -1799,18 +1794,9 @@ object SyncMessageProcessor {
     senderRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ): Long {
-    if (!RemoteConfig.receivePolls) {
-      log(envelope.timestamp!!, "Sync poll end not allowed due to remote config.")
-    }
-
     log(envelope.timestamp!!, "Synchronize sent poll terminate message")
 
     val recipient = getSyncMessageDestination(sent)
-    if (!recipient.isGroup) {
-      warn(envelope.timestamp!!, "Poll termination messages should only be synced in groups. Dropping.")
-      return -1
-    }
-
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
 
     val expiresInMillis = message.expireTimerDuration.inWholeMilliseconds
@@ -1847,7 +1833,8 @@ object SyncMessageProcessor {
       )
     )
 
-    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null).messageId
+    val receiptStatus = if (recipient.isGroup) GroupReceiptTable.STATUS_UNKNOWN else GroupReceiptTable.STATUS_UNDELIVERED
+    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, receiptStatus, null).messageId
     SignalDatabase.messages.markAsSent(messageId, true)
 
     log(envelope.timestamp!!, "Inserted sync poll end message as messageId $messageId")

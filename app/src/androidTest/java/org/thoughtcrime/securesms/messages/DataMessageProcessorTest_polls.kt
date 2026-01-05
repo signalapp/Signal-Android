@@ -4,8 +4,6 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import io.mockk.every
-import io.mockk.mockkStatic
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -23,7 +21,6 @@ import org.thoughtcrime.securesms.testing.GroupTestingUtils
 import org.thoughtcrime.securesms.testing.GroupTestingUtils.asMember
 import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.internal.push.DataMessage
 
@@ -42,10 +39,6 @@ class DataMessageProcessorTest_polls {
 
   @Before
   fun setUp() {
-    mockkStatic(RemoteConfig::class)
-
-    every { RemoteConfig.receivePolls } returns true
-
     alice = Recipient.resolved(harness.others[0])
     bob = Recipient.resolved(harness.others[1])
     charlie = Recipient.resolved(harness.others[2])

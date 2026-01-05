@@ -131,7 +131,7 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
   private fun updateButtonsAvailable(recipient: Recipient) {
     val paymentsValues = SignalStore.payments
     val isPaymentsAvailable = paymentsValues.paymentsAvailability.isSendAllowed && !recipient.isSelf && !recipient.isGroup && recipient.isRegistered
-    val isPollsAvailable = recipient.isPushV2Group && RemoteConfig.polls
+    val isPollsAvailable = recipient.isPushV2Group || RemoteConfig.pollsV2
 
     if (!isPaymentsAvailable && !isPollsAvailable) {
       attachmentKeyboardView.filterAttachmentKeyboardButtons(removePaymentFilter.and(removePollFilter))

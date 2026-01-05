@@ -8941,7 +8941,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">End poll?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Group members will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Waiting for network…</string>
     <!-- Header when creating a new poll -->

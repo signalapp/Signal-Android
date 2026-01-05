@@ -50,11 +50,11 @@ class EnvelopeContentValidatorTest {
   }
 
   @Test
-  fun `validate - ensure polls with a question exceeding 100 characters are marked invalid`() {
+  fun `validate - ensure polls with a question exceeding 200 characters are marked invalid`() {
     val content = Content(
       dataMessage = DataMessage(
         pollCreate = DataMessage.PollCreate(
-          question = "abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyz",
+          question = "abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyz",
           options = listOf("option1", "option2"),
           allowMultiple = true
         )

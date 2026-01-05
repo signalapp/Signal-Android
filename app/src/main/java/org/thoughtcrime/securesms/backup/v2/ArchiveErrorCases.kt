@@ -135,10 +135,6 @@ object ExportSkips {
     return log(sentTimestamp, "Poll option was invalid.")
   }
 
-  fun pollNotInGroupChat(sentTimestamp: Long): String {
-    return log(sentTimestamp, "Poll was not in a group chat.")
-  }
-
   fun pinMessageIsInvalid(sentTimestamp: Long): String {
     return log(sentTimestamp, "Pin message update was invalid.")
   }

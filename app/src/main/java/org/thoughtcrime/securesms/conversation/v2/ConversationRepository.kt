@@ -218,12 +218,11 @@ class ConversationRepository(
       val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(messageRecord.threadId)!!
       val pollSentTimestamp = messageRecord.dateSent
 
-      if (threadRecipient.groupId.getOrNull()?.isV2 != true) {
+      if (threadRecipient.isPushV2Group && threadRecipient.groupId.getOrNull()?.isV2 != true) {
         Log.w(TAG, "Missing group id")
         emitter.tryOnError(Exception("Poll terminate failed"))
       }
 
-      val groupId = threadRecipient.requireGroupId().requireV2()
       val message = OutgoingMessage.pollTerminateMessage(
         threadRecipient = threadRecipient,
         sentTimeMillis = System.currentTimeMillis(),
@@ -233,12 +232,17 @@ class ConversationRepository(
 
       Log.i(TAG, "Sending poll terminate to " + message.threadRecipient.id + ", thread: " + messageRecord.threadId)
 
-      val possibleTargets: List<Recipient> = SignalDatabase.groups.getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)
-        .map { it.resolve() }
-        .distinctBy { it.id }
+      val possibleTargets: List<Recipient> = if (threadRecipient.isPushV2Group) {
+        SignalDatabase.groups.getGroupMembers(threadRecipient.requireGroupId().requireV2(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)
+          .map { it.resolve() }
+          .distinctBy { it.id }
+      } else {
+        listOf(threadRecipient)
+      }
+      val isSelf = threadRecipient.isSelf
 
       val eligibleTargets: List<Recipient> = RecipientUtil.getEligibleForSending(possibleTargets)
-      val results = sendEndPoll(threadRecipient, message, eligibleTargets, poll.messageId)
+      val results = sendEndPoll(threadRecipient, message, eligibleTargets, isSelf, poll.messageId)
       val sendResults = GroupSendJobHelper.getCompletedSends(eligibleTargets, results)
 
       if (sendResults.completed.isNotEmpty() || possibleTargets.isEmpty()) {
@@ -271,9 +275,9 @@ class ConversationRepository(
   }
 
   @Throws(IOException::class, GroupNotAMemberException::class, UndeliverableMessageException::class)
-  fun sendEndPoll(group: Recipient, message: OutgoingMessage, destinations: List<Recipient>, messageId: Long): List<SendMessageResult?> {
-    val groupId = group.requireGroupId().requireV2()
-    val groupRecord: GroupRecord? = SignalDatabase.groups.getGroup(group.requireGroupId()).getOrNull()
+  fun sendEndPoll(threadRecipient: Recipient, message: OutgoingMessage, destinations: List<Recipient>, isSelf: Boolean, messageId: Long): List<SendMessageResult?> {
+    val groupId = if (threadRecipient.isPushV2Group) threadRecipient.requireGroupId().requireV2() else null
+    val groupRecord: GroupRecord? = if (threadRecipient.isPushV2Group) SignalDatabase.groups.getGroup(threadRecipient.requireGroupId()).getOrNull() else null
 
     if (groupRecord != null && groupRecord.isAnnouncementGroup && !groupRecord.isAdmin(Recipient.self())) {
       throw UndeliverableMessageException("Non-admins cannot send messages in announcement groups!")
@@ -281,29 +285,35 @@ class ConversationRepository(
 
     val builder = newBuilder()
 
-    GroupUtil.setDataMessageGroupContext(AppDependencies.application, builder, groupId)
+    if (groupId != null) {
+      GroupUtil.setDataMessageGroupContext(AppDependencies.application, builder, groupId)
+    }
 
     val sentTime = System.currentTimeMillis()
-    val groupMessage = builder
+    val message = builder
       .withTimestamp(sentTime)
       .withExpiration((message.expiresIn / 1000).toInt())
       .withProfileKey(ProfileKeyUtil.getSelfProfileKey().serialize())
       .withPollTerminate(SignalServiceDataMessage.PollTerminate(message.messageExtras!!.pollTerminate!!.targetTimestamp))
       .build()
 
-    return GroupSendUtil.sendResendableDataMessage(
-      applicationContext,
-      groupId,
-      null,
-      destinations,
-      false,
-      ContentHint.RESENDABLE,
-      MessageId(messageId),
-      groupMessage,
-      true,
-      false,
-      null
-    ) { System.currentTimeMillis() - sentTime > POLL_TERMINATE_TIMEOUT.inWholeMilliseconds }
+    return if (isSelf) {
+      listOf(AppDependencies.signalServiceMessageSender.sendSyncMessage(message))
+    } else {
+      GroupSendUtil.sendResendableDataMessage(
+        applicationContext,
+        groupId,
+        null,
+        destinations,
+        false,
+        ContentHint.RESENDABLE,
+        MessageId(messageId),
+        message,
+        true,
+        false,
+        null
+      ) { System.currentTimeMillis() - sentTime > POLL_TERMINATE_TIMEOUT.inWholeMilliseconds }
+    }
   }
 
   fun getPinnedMessages(threadId: Long): List<MmsMessageRecord> {

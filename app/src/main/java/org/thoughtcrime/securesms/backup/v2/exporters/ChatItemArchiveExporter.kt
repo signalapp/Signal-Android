@@ -122,6 +122,7 @@ private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
 private val MAX_INLINED_BODY_SIZE = 128.kibiBytes.bytes.toInt()
 private val MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER = 2.kibiBytes.bytes.toInt()
 private val MAX_INLINED_QUOTE_BODY_SIZE = 2.kibiBytes.bytes.toInt()
+private const val MAX_POLL_QUESTION_CHARACTER_LENGTH = 200
 private const val MAX_POLL_CHARACTER_LENGTH = 100
 private const val MAX_POLL_OPTIONS = 10
 
@@ -398,13 +399,8 @@ class ChatItemArchiveExporter(
         }
 
         extraData.pollsById[record.id] != null -> {
-          if (exportState.threadIdToRecipientId[builder.chatId] !in exportState.groupRecipientIds) {
-            Log.w(TAG, ExportSkips.pollNotInGroupChat(record.dateSent))
-            continue
-          }
-
           val poll = extraData.pollsById[record.id]!!
-          if (poll.question.isEmpty() || poll.question.length > MAX_POLL_CHARACTER_LENGTH) {
+          if (poll.question.isEmpty() || poll.question.length > MAX_POLL_QUESTION_CHARACTER_LENGTH) {
             Log.w(TAG, ExportSkips.invalidPollQuestion(record.dateSent))
             continue
           }

@@ -1166,14 +1166,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  @JvmStatic
-  @get:JvmName("polls")
-  val polls: Boolean by remoteBoolean(
-    key = "android.polls.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** Whether or not to send over binary service ids (alongside string service ids). */
   @JvmStatic
   @get:JvmName("useBinaryId")
@@ -1181,14 +1173,6 @@ object RemoteConfig {
     key = "android.useBinaryServiceId",
     defaultValue = Environment.IS_STAGING,
     hotSwappable = false
-  )
-
-  @JvmStatic
-  @get:JvmName("receivePolls")
-  val receivePolls: Boolean by remoteBoolean(
-    key = "android.receivePolls",
-    defaultValue = false,
-    hotSwappable = true
   )
 
   @JvmStatic
@@ -1236,6 +1220,17 @@ object RemoteConfig {
   val callQualitySurveyPPM: String by remoteString(
     key = "android.callQualitySurveyPPM",
     defaultValue = "*:10000",
+    hotSwappable = true
+  )
+
+  /**
+   * Whether or not to allow 1:1 polls and a higher character limit for questions
+   */
+  @JvmStatic
+  @get:JvmName("pollsV2")
+  val pollsV2: Boolean by remoteBoolean(
+    key = "android.pollsV2",
+    defaultValue = false,
     hotSwappable = true
   )
   // endregion

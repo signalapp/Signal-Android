@@ -29,6 +29,7 @@ import org.whispersystems.signalservice.internal.util.Util
  */
 object EnvelopeContentValidator {
 
+  private const val MAX_POLL_QUESTION_CHARACTER_LENGTH = 200
   private const val MAX_POLL_CHARACTER_LENGTH = 100
   private const val MIN_POLL_OPTIONS = 2
 
@@ -167,7 +168,7 @@ object EnvelopeContentValidator {
   }
 
   private fun DataMessage.PollCreate.hasInvalidPollQuestion(): Boolean {
-    return this.question.isNullOrBlank() || this.question.length > MAX_POLL_CHARACTER_LENGTH
+    return this.question.isNullOrBlank() || this.question.length > MAX_POLL_QUESTION_CHARACTER_LENGTH
   }
 
   private fun DataMessage.PollCreate.hasInvalidPollOptions(): Boolean {

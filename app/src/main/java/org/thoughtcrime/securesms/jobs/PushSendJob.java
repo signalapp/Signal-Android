@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
+import org.thoughtcrime.securesms.polls.Poll;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -484,6 +485,23 @@ public abstract class PushSendJob extends SendJob {
 
   protected @Nullable List<BodyRange> getBodyRanges(@NonNull OutgoingMessage message) {
     return getBodyRanges(message.getBodyRanges());
+  }
+
+  protected @Nullable SignalServiceDataMessage.PollCreate getPollCreate(OutgoingMessage message) {
+    Poll poll = message.getPoll();
+    if (poll == null) {
+      return null;
+    }
+
+    return new SignalServiceDataMessage.PollCreate(poll.getQuestion(), poll.getAllowMultipleVotes(), poll.getPollOptions());
+  }
+
+  protected @Nullable SignalServiceDataMessage.PollTerminate getPollTerminate(OutgoingMessage message) {
+    if (message.getMessageExtras() == null || message.getMessageExtras().pollTerminate == null) {
+      return null;
+    }
+
+    return new SignalServiceDataMessage.PollTerminate(message.getMessageExtras().pollTerminate.targetTimestamp);
   }
 
   protected @Nullable List<BodyRange> getBodyRanges(@Nullable BodyRangeList bodyRanges) {

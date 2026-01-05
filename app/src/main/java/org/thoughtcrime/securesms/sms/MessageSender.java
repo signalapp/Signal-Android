@@ -265,11 +265,10 @@ public class MessageSender {
       long         messageId         = insertResult.getMessageId();
 
       if (!recipient.isPushV2Group()) {
-        Log.w(TAG, "Can only send polls to groups.");
-        return threadId;
+        SignalLocalMetrics.IndividualMessageSend.onInsertedIntoDatabase(messageId, metricId);
+      } else {
+        SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
       }
-
-      SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
 
       sendMessageInternal(context, recipient, sendType, messageId, insertResult.getQuoteAttachmentId(), Collections.emptyList());
       onMessageSent();

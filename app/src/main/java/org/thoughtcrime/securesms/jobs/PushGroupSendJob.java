@@ -37,7 +37,6 @@ import org.thoughtcrime.securesms.messages.StorySendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
-import org.thoughtcrime.securesms.polls.Poll;
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -285,8 +284,8 @@ public final class PushGroupSendJob extends PushSendJob {
       List<SignalServicePreview>                       previews           = getPreviewsFor(message);
       List<SignalServiceDataMessage.Mention>           mentions           = getMentionsFor(message.getMentions());
       List<BodyRange>                                  bodyRanges         = getBodyRanges(message);
-      Optional<SignalServiceDataMessage.PollCreate>    pollCreate         = getPollCreate(message);
-      Optional<SignalServiceDataMessage.PollTerminate> pollTerminate      = getPollTerminate(message);
+      SignalServiceDataMessage.PollCreate              pollCreate         = getPollCreate(message);
+      SignalServiceDataMessage.PollTerminate           pollTerminate      = getPollTerminate(message);
       SignalServiceDataMessage.PinnedMessage           pinnedMessage      = getPinnedMessage(message);
       List<Attachment>                                 attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>                    attachmentPointers = getAttachmentPointersFor(attachments);
@@ -371,8 +370,8 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                       .withPreviews(previews)
                                                                       .withMentions(mentions)
                                                                       .withBodyRanges(bodyRanges)
-                                                                      .withPollCreate(pollCreate.orElse(null))
-                                                                      .withPollTerminate(pollTerminate.orElse(null))
+                                                                      .withPollCreate(pollCreate)
+                                                                      .withPollTerminate(pollTerminate)
                                                                       .withPinnedMessage(pinnedMessage);
 
         if (message.getParentStoryId() != null) {
@@ -417,23 +416,6 @@ public final class PushGroupSendJob extends PushSendJob {
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
     }
-  }
-
-  private Optional<SignalServiceDataMessage.PollCreate> getPollCreate(OutgoingMessage message) {
-    Poll poll = message.getPoll();
-    if (poll == null) {
-      return Optional.empty();
-    }
-
-    return Optional.of(new SignalServiceDataMessage.PollCreate(poll.getQuestion(), poll.getAllowMultipleVotes(), poll.getPollOptions()));
-  }
-
-  private Optional<SignalServiceDataMessage.PollTerminate> getPollTerminate(OutgoingMessage message) {
-    if (message.getMessageExtras() == null || message.getMessageExtras().pollTerminate == null) {
-      return Optional.empty();
-    }
-
-    return Optional.of(new SignalServiceDataMessage.PollTerminate(message.getMessageExtras().pollTerminate.targetTimestamp));
   }
 
   public static long getMessageId(@Nullable byte[] serializedData) {
