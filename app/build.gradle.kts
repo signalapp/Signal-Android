@@ -1,10 +1,17 @@
 @file:Suppress("UnstableApiUsage")
 
 import com.android.build.api.dsl.ManagedVirtualDevice
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.ValueSource
+import org.gradle.api.provider.ValueSourceParameters
+import org.gradle.api.tasks.InputDirectory
+import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.Optional
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import java.io.FileInputStream
-import java.text.SimpleDateFormat
-import java.util.Date
+import java.io.File
 import java.util.Properties
 
 plugins {
@@ -30,7 +37,17 @@ val maxHotfixVersions = 100
 // We don't want versions to ever end in 0 so that they don't conflict with nightly versions
 val possibleHotfixVersions = (0 until maxHotfixVersions).toList().filter { it % 10 != 0 }
 
-val keystores: Map<String, Properties?> = mapOf("debug" to loadKeystoreProperties("keystore.debug.properties"))
+val debugKeystorePropertiesProvider = providers.of(PropertiesFileValueSource::class.java) {
+  parameters.file.set(rootProject.layout.projectDirectory.file("keystore.debug.properties"))
+}
+
+val languagesProvider = providers.of(LanguageListValueSource::class.java) {
+  parameters.resDir.set(layout.projectDirectory.dir("src/main/res"))
+}
+
+val languagesForBuildConfigProvider = languagesProvider.map { languages ->
+  languages.joinToString(separator = ", ") { language -> "\"$language\"" }
+}
 
 val selectableVariants = listOf(
   "nightlyBackupRelease",
@@ -94,7 +111,7 @@ android {
     suppressWarnings = true
   }
 
-  keystores["debug"]?.let { properties ->
+  debugKeystorePropertiesProvider.orNull?.let { properties ->
     signingConfigs.getByName("debug").apply {
       storeFile = file("${project.rootDir}/${properties.getProperty("storeFile")}")
       storePassword = properties.getProperty("storePassword")
@@ -219,7 +236,7 @@ android {
     buildConfigField("String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"AMhf5ywVwITZMsff/eCyudZx9JDmkkkbV6PInzG4p8x3VqVJSFiMvnvlEKWuRob/1eaIetR31IYeAbm0NdOuHH8Qi+Rexi1wLlpzIo1gstHWBfZzy1+qHRV5A4TqPp15YzBPm0WSggW6PbSn+F4lf57VCnHF7p8SvzAA2ZZJPYJURt8X7bbg+H3i+PEjH9DXItNEqs2sNcug37xZQDLm7X36nOoGPs54XsEGzPdEV+itQNGUFEjY6X9Uv+Acuks7NpyGvCoKxGwgKgE5XyJ+nNKlyHHOLb6N1NuHyBrZrgtY/JYJHRooo5CEqYKBqdFnmbTVGEkCvJKxLnjwKWf+fEPoWeQFj5ObDjcKMZf2Jm2Ae69x+ikU5gBXsRmoF94GXTLfN0/vLt98KDPnxwAQL9j5V1jGOY8jQl6MLxEs56cwXN0dqCnImzVH3TZT1cJ8SW1BRX6qIVxEzjsSGx3yxF3suAilPMqGRp4ffyopjMD1JXiKR2RwLKzizUe5e8XyGOy9fplzhw3jVzTRyUZTRSZKkMLWcQ/gv0E4aONNqs4P+NameAZYOD12qRkxosQQP5uux6B2nRyZ7sAV54DgFyLiRcq1FvwKw2EPQdk4HDoePrO/RNUbyNddnM/mMgj4FW65xCoT1LmjrIjsv/Ggdlx46ueczhMgtBunx1/w8k8V+l8LVZ8gAT6wkU5J+DPQalQguMg12Jzug3q4TbdHiGCmD9EunCwOmsLuLJkz6EcSYXtrlDEnAM+hicw7iergYLLlMXpfTdGxJCWJmP4zqUFeTTmsmhsjGBt7NiEB/9pFFEB3pSbf4iiUukw63Eo8Aqnf4iwob6X1QviCWuc8t0LUlT9vALgh/f2DPVOOmR0RW6bgRvc7DSF20V/omg+YBw==\"")
     buildConfigField("String", "GENERIC_SERVER_PUBLIC_PARAMS", "\"AByD873dTilmOSG0TjKrvpeaKEsUmIO8Vx9BeMmftwUs9v7ikPwM8P3OHyT0+X3EUMZrSe9VUp26Wai51Q9I8mdk0hX/yo7CeFGJyzoOqn8e/i4Ygbn5HoAyXJx5eXfIbqpc0bIxzju4H/HOQeOpt6h742qii5u/cbwOhFZCsMIbElZTaeU+BWMBQiZHIGHT5IE0qCordQKZ5iPZom0HeFa8Yq0ShuEyAl0WINBiY6xE3H/9WnvzXBbMuuk//eRxXgzO8ieCeK8FwQNxbfXqZm6Ro1cMhCOF3u7xoX83QhpN\"")
     buildConfigField("String", "BACKUP_SERVER_PUBLIC_PARAMS", "\"AJwNSU55fsFCbgaxGRD11wO1juAs8Yr5GF8FPlGzzvdJJIKH5/4CC7ZJSOe3yL2vturVaRU2Cx0n751Vt8wkj1bozK3CBV1UokxV09GWf+hdVImLGjXGYLLhnI1J2TWEe7iWHyb553EEnRb5oxr9n3lUbNAJuRmFM7hrr0Al0F0wrDD4S8lo2mGaXe0MJCOM166F8oYRQqpFeEHfiLnxA1O8ZLh7vMdv4g9jI5phpRBTsJ5IjiJrWeP0zdIGHEssUeprDZ9OUJ14m0v61eYJMKsf59Bn+mAT2a7YfB+Don9O\"")
-    buildConfigField("String[]", "LANGUAGES", "new String[]{ ${languageList().map { "\"$it\"" }.joinToString(separator = ", ")} }")
+    buildConfigField("String[]", "LANGUAGES", "new String[]{ ${languagesForBuildConfigProvider.get()} }")
     buildConfigField("int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode")
     buildConfigField("String", "DEFAULT_CURRENCIES", "\"EUR,AUD,GBP,CAD,CNY\"")
     buildConfigField("String", "GIPHY_API_KEY", "\"3o6ZsYH6U6Eri53TXy\"")
@@ -258,7 +275,7 @@ android {
 
   buildTypes {
     getByName("debug") {
-      if (keystores["debug"] != null) {
+      if (debugKeystorePropertiesProvider.orNull != null) {
         signingConfig = signingConfigs["debug"]
       }
       isDefault = true
@@ -366,7 +383,7 @@ android {
 
     create("nightly") {
       dimension = "distribution"
-      versionNameSuffix = "-nightly-untagged-${getDateSuffix()}"
+      versionNameSuffix = "-nightly-untagged-${getGitHash()}"
       buildConfigField("boolean", "MANAGES_APP_UPDATES", "false")
       buildConfigField("String", "APK_UPDATE_MANIFEST_URL", "null")
       buildConfigField("String", "BUILD_DISTRIBUTION_TYPE", "\"nightly\"")
@@ -432,43 +449,33 @@ android {
     disable += "LintError"
   }
 
-  applicationVariants.all {
-    outputs
-      .map { it as com.android.build.gradle.internal.api.ApkVariantOutputImpl }
-      .forEach { output ->
-        if (output.baseName.contains("nightly")) {
-          var tag = getNightlyTagForCurrentCommit()
-          if (!tag.isNullOrEmpty()) {
-            if (tag.startsWith("v")) {
-              tag = tag.substring(1)
-            }
-            output.versionNameOverride = tag
-            output.outputFileName = output.outputFileName.replace(".apk", "-${output.versionNameOverride}.apk")
-
-            // We add a multiple of maxHotfixVersions to nightlies to ensure we're always at least that many versions ahead
-            val nightlyBuffer = (5 * maxHotfixVersions)
-            output.versionCodeOverride = (canonicalVersionCode * maxHotfixVersions) + (getNightlyBuildNumber(tag) * 10) + nightlyBuffer
-          } else {
-            output.outputFileName = output.outputFileName.replace(".apk", "-$versionName.apk")
-          }
-        } else {
-          output.outputFileName = output.outputFileName.replace(".apk", "-$versionName.apk")
-
-          if (currentHotfixVersion >= maxHotfixVersions) {
-            throw AssertionError("Hotfix version is too large!")
-          }
-        }
-      }
-  }
-
   androidComponents {
     beforeVariants { variant ->
       variant.enable = variant.name in selectableVariants
     }
-    onVariants { variant ->
+    onVariants(selector().all()) { variant: com.android.build.api.variant.ApplicationVariant ->
       // Include the test-only library on debug builds.
       if (variant.buildType != "instrumentation") {
         variant.packaging.jniLibs.excludes.add("**/libsignal_jni_testing.so")
+      }
+
+      // Version overrides
+      if (variant.name.contains("nightly", ignoreCase = true)) {
+        var tag = getNightlyTagForCurrentCommit()
+        if (!tag.isNullOrEmpty()) {
+          if (tag.startsWith("v")) {
+            tag = tag.substring(1)
+          }
+
+          // We add a multiple of maxHotfixVersions to nightlies to ensure we're always at least that many versions ahead
+          val nightlyBuffer = (5 * maxHotfixVersions)
+          val nightlyVersionCode = (canonicalVersionCode * maxHotfixVersions) + (getNightlyBuildNumber(tag) * 10) + nightlyBuffer
+
+          variant.outputs.forEach { output ->
+            output.versionName.set(tag)
+            output.versionCode.set(nightlyVersionCode)
+          }
+        }
       }
     }
   }
@@ -662,31 +669,19 @@ tasks.withType<Test>().configureEach {
   }
 }
 
-fun assertIsGitRepo() {
-  if (!file("${project.rootDir}/.git").exists()) {
-    throw IllegalStateException("Must be a git repository to guarantee reproducible builds! (git hash is part of APK)")
-  }
-}
-
 fun getLastCommitTimestamp(): String {
-  assertIsGitRepo()
-
   return providers.exec {
     commandLine("git", "log", "-1", "--pretty=format:%ct")
   }.standardOutput.asText.get() + "000"
 }
 
 fun getGitHash(): String {
-  assertIsGitRepo()
-
   return providers.exec {
     commandLine("git", "rev-parse", "HEAD")
   }.standardOutput.asText.get().trim().substring(0, 12)
 }
 
 fun getNightlyTagForCurrentCommit(): String? {
-  assertIsGitRepo()
-
   val output = providers.exec {
     commandLine("git", "tag", "--points-at", "HEAD")
   }.standardOutput.asText.get().trim()
@@ -708,45 +703,60 @@ fun getNightlyBuildNumber(tag: String?): Int {
   return match?.groupValues?.get(1)?.toIntOrNull() ?: 0
 }
 
-fun loadKeystoreProperties(filename: String): Properties? {
-  val keystorePropertiesFile = file("${project.rootDir}/$filename")
-
-  return if (keystorePropertiesFile.exists()) {
-    val keystoreProperties = Properties()
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-    keystoreProperties
-  } else {
-    null
-  }
-}
-
-fun getDateSuffix(): String {
-  return SimpleDateFormat("yyyy-MM-dd-HH:mm").format(Date())
-}
-
 fun getMapsKey(): String {
-  val mapKey = file("${project.rootDir}/maps.key")
+  return providers
+    .gradleProperty("mapsKey")
+    .orElse(providers.environmentVariable("MAPS_KEY"))
+    .orElse("AIzaSyCSx9xea86GwDKGznCAULE9Y5a8b-TfN9U")
+    .get()
+}
 
-  return if (mapKey.exists()) {
-    mapKey.readLines()[0]
-  } else {
-    "AIzaSyCSx9xea86GwDKGznCAULE9Y5a8b-TfN9U"
+abstract class LanguageListValueSource : ValueSource<List<String>, LanguageListValueSource.Params> {
+  interface Params : ValueSourceParameters {
+    @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    val resDir: DirectoryProperty
+  }
+
+  override fun obtain(): List<String> {
+    // In API 35, language codes for Hebrew and Indonesian now use the ISO 639-1 code ("he" and "id").
+    // However, the value resources still only support the outdated code ("iw" and "in") so we have
+    // to manually indicate that we support these languages.
+    val updatedLanguageCodes = listOf("he", "id")
+
+    val resRoot = parameters.resDir.asFile.get()
+
+    val languages = resRoot
+      .walkTopDown()
+      .filter { it.isFile && it.name == "strings.xml" }
+      .mapNotNull { stringFile -> stringFile.parentFile?.name }
+      .map { valuesFolderName -> valuesFolderName.removePrefix("values-") }
+      .filter { valuesFolderName -> valuesFolderName != "values" }
+      .map { languageCode -> languageCode.replace("-r", "_") }
+      .toList()
+      .distinct()
+      .sorted()
+
+    return languages + updatedLanguageCodes + "en"
   }
 }
 
-fun Project.languageList(): List<String> {
-  // In API 35, language codes for Hebrew and Indonesian now use the ISO 639-1 code ("he" and "id").
-  // However, the value resources still only support the outdated code ("iw" and "in") so we have
-  // to manually indicate that we support these languages.
-  val updatedLanguageCodes = listOf("he", "id")
+abstract class PropertiesFileValueSource : ValueSource<Properties?, PropertiesFileValueSource.Params> {
+  interface Params : ValueSourceParameters {
+    @get:InputFile
+    @get:Optional
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    val file: RegularFileProperty
+  }
 
-  return fileTree("src/main/res") { include("**/strings.xml") }
-    .map { stringFile -> stringFile.parentFile.name }
-    .map { valuesFolderName -> valuesFolderName.replace("values-", "") }
-    .filter { valuesFolderName -> valuesFolderName != "values" }
-    .map { languageCode -> languageCode.replace("-r", "_") }
-    .distinct()
-    .sorted() + updatedLanguageCodes + "en"
+  override fun obtain(): Properties? {
+    val f: File = parameters.file.asFile.get()
+    if (!f.exists()) return null
+
+    return Properties().apply {
+      f.inputStream().use { load(it) }
+    }
+  }
 }
 
 fun String.capitalize(): String {
