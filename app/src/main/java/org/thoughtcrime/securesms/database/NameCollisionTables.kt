@@ -392,7 +392,7 @@ class NameCollisionTables(
 
     return try {
       val digest = MessageDigest.getInstance("MD5")
-      val names = collisionRecipients.map { it.recipient.getDisplayName(context) }
+      val names = collisionRecipients.map { it.recipient.getDisplayName(context) }.sorted()
       names.forEach { digest.update(it.encodeToByteArray()) }
       Hex.toStringCondensed(digest.digest())
     } catch (e: NoSuchAlgorithmException) {
