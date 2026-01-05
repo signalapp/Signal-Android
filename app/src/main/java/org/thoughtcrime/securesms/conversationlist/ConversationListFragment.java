@@ -253,7 +253,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     super.onCreate(icicle);
     startupStopwatch        = new Stopwatch("startup");
     mainToolbarViewModel    = new ViewModelProvider(requireActivity()).get(MainToolbarViewModel.class);
-    mainNavigationViewModel = new ViewModelProvider(requireActivity()).get(MainNavigationViewModel.class);
+    mainNavigationViewModel = new ViewModelProvider(requireActivity(), new MainNavigationViewModel.Factory()).get(MainNavigationViewModel.class);
   }
 
   @Override

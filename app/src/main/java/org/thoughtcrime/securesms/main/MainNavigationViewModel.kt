@@ -9,8 +9,12 @@ import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
 import androidx.compose.material3.adaptive.navigation.BackNavigationBehavior
 import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.CreationExtras
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -34,13 +38,30 @@ import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.util.delegate
 import org.thoughtcrime.securesms.window.AppScaffoldNavigator
 import java.util.Optional
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 class MainNavigationViewModel(
+  private val savedStateHandle: SavedStateHandle,
   initialListLocation: MainNavigationListLocation = MainNavigationListLocation.CHATS
 ) : ViewModel(), MainNavigationRouter {
+
+  companion object {
+    private const val LOCK_PANE_TO_SECONDARY = "lock_pane_to_secondary"
+  }
+
+  class Factory(
+    private val initialListLocation: MainNavigationListLocation = MainNavigationListLocation.CHATS
+  ) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
+      val savedStateHandle = extras.createSavedStateHandle()
+      @Suppress("UNCHECKED_CAST")
+      return MainNavigationViewModel(savedStateHandle, initialListLocation) as T
+    }
+  }
+
   private val megaphoneRepository = AppDependencies.megaphoneRepository
 
   private var navigator: AppScaffoldNavigator<Any>? = null
@@ -94,7 +115,7 @@ class MainNavigationViewModel(
    * where the user can change configurations (such as opening a foldable) and we will restore state and errantly
    * take them back into a PRIMARY pane. This boolean helps avoid these cases.
    */
-  private var lockPaneToSecondary = false
+  private var lockPaneToSecondary: Boolean by savedStateHandle.delegate(LOCK_PANE_TO_SECONDARY, false)
 
   val snackbarRegistry = SnackbarStateConsumerRegistry()
 
