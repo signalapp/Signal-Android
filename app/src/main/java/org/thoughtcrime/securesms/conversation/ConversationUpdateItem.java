@@ -817,7 +817,7 @@ public final class ConversationUpdateItem extends FrameLayout
 
   private void presentTimer(UpdateDescription updateDescription) {
     if (updateDescription.hasExpiration() && messageRecord.getExpiresIn() > 0) {
-      timer = new ExpirationTimer(messageRecord.getTimestamp(), messageRecord.getExpiresIn());
+      timer = new ExpirationTimer(messageRecord.getExpireStarted(), messageRecord.getExpiresIn());
       handler.post(timerUpdateRunnable);
     } else {
       latestFrame = 0;
