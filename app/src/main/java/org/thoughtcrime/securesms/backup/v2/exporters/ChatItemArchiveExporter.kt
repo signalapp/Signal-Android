@@ -19,6 +19,8 @@ import org.signal.core.util.UuidUtil
 import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.emptyIfNull
+import org.signal.core.util.isEmpty
+import org.signal.core.util.isNotEmpty
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
@@ -1375,10 +1377,10 @@ private fun ByteArray.toRemoteBodyRanges(dateSent: Long): List<BackupBodyRange> 
     return emptyList()
   }
 
-  return decoded.ranges.map {
-    val mention = it.mentionUuid?.let { uuid -> UuidUtil.parseOrThrow(uuid) }?.toByteArray()?.toByteString()
+  return decoded.ranges.map { range ->
+    val mention = range.mentionUuid?.let { UuidUtil.parseOrNull(it) }?.toByteArray()?.toByteString()?.takeIf { it.isNotEmpty() }
     val style = if (mention == null) {
-      it.style?.toRemote() ?: BackupBodyRange.Style.NONE
+      range.style?.toRemote() ?: BackupBodyRange.Style.NONE
     } else {
       null
     }
@@ -1388,8 +1390,8 @@ private fun ByteArray.toRemoteBodyRanges(dateSent: Long): List<BackupBodyRange> 
     }
 
     BackupBodyRange(
-      start = it.start,
-      length = it.length,
+      start = range.start,
+      length = range.length,
       mentionAci = mention,
       style = style
     )
