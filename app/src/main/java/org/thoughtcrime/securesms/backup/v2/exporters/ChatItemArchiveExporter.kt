@@ -1667,6 +1667,11 @@ private fun ChatItem.validateChatItem(exportState: ExportState, selfRecipientId:
     return null
   }
 
+  if (this.updateMessage != null && this.updateMessage.isOnlyForGroupChats() && exportState.threadIdToRecipientId[this.chatId] !in exportState.groupRecipientIds) {
+    Log.w(TAG, ExportSkips.groupChatUpdateInWrongTypeOfChat(this.dateSent))
+    return null
+  }
+
   if (this.updateMessage != null && this.updateMessage.canOnlyBeAuthoredBySelf() && this.authorId != selfRecipientId.toLong()) {
     Log.w(TAG, ExportSkips.individualChatUpdateNotAuthoredBySelf(this.dateSent))
     return null
@@ -1691,6 +1696,10 @@ private fun ChatUpdateMessage.isOnlyForIndividualChats(): Boolean {
     this.simpleUpdate?.type == SimpleChatUpdate.Type.CHAT_SESSION_REFRESH ||
     this.simpleUpdate?.type == SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST ||
     this.simpleUpdate?.type == SimpleChatUpdate.Type.PAYMENTS_ACTIVATED
+}
+
+private fun ChatUpdateMessage.isOnlyForGroupChats(): Boolean {
+  return this.groupChange != null
 }
 
 private fun ChatUpdateMessage.canOnlyBeAuthoredBySelf(): Boolean {

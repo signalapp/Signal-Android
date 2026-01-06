@@ -143,6 +143,10 @@ object ExportSkips {
     return log(sentTimestamp, "A chat update that only makes sense for individual chats was found in a different kind of chat.")
   }
 
+  fun groupChatUpdateInWrongTypeOfChat(sentTimestamp: Long): String {
+    return log(sentTimestamp, "A chat update that only makes sense for group chats was found in a different kind of chat.")
+  }
+
   fun individualChatUpdateNotAuthoredBySelf(sentTimestamp: Long): String {
     return log(sentTimestamp, "A chat update that only makes sense to be authored by self has a different author.")
   }
