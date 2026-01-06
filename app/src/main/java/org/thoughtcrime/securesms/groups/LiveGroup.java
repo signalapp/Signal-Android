@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.signal.core.models.ServiceId;
 
+import java.text.Collator;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -37,10 +38,11 @@ import java.util.Set;
 
 public final class LiveGroup {
 
+  private static final Collator                                        collator          = Collator.getInstance();
   private static final Comparator<GroupMemberEntry.FullMember>         LOCAL_FIRST       = (m1, m2) -> Boolean.compare(m2.getMember().isSelf(), m1.getMember().isSelf());
   private static final Comparator<GroupMemberEntry.FullMember>         ADMIN_FIRST       = (m1, m2) -> Boolean.compare(m2.isAdmin(), m1.isAdmin());
   private static final Comparator<GroupMemberEntry.FullMember>         HAS_DISPLAY_NAME  = (m1, m2) -> Boolean.compare(m2.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()), m1.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()));
-  private static final Comparator<GroupMemberEntry.FullMember>         ALPHABETICAL      = (m1, m2) -> m1.getMember().getDisplayName(AppDependencies.getApplication()).compareToIgnoreCase(m2.getMember().getDisplayName(AppDependencies.getApplication()));
+  private static final Comparator<GroupMemberEntry.FullMember>         ALPHABETICAL      = (m1, m2) -> collator.compare(m1.getMember().getDisplayName(AppDependencies.getApplication()).toLowerCase(), m2.getMember().getDisplayName(AppDependencies.getApplication()).toLowerCase());
   private static final Comparator<? super GroupMemberEntry.FullMember> MEMBER_ORDER      = ComparatorCompat.chain(LOCAL_FIRST)
                                                                                                            .thenComparing(ADMIN_FIRST)
                                                                                                            .thenComparing(HAS_DISPLAY_NAME)
@@ -62,6 +64,8 @@ public final class LiveGroup {
     this.groupRecord       = LiveDataUtil.filterNotNull(LiveDataUtil.mapAsync(recipient, groupRecipient -> groupDatabase.getGroup(groupRecipient.getId()).orElse(null)));
     this.fullMembers       = mapToFullMembers(this.groupRecord);
     this.requestingMembers = mapToRequestingMembers(this.groupRecord);
+
+    collator.setStrength(Collator.PRIMARY);
 
     if (groupId.isV2()) {
       LiveData<GroupTable.V2GroupProperties> v2Properties = Transformations.map(this.groupRecord, GroupRecord::requireV2GroupProperties);
