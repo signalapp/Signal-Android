@@ -311,7 +311,7 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isSessionSwitchoverType(record.type) -> {
-          builder.updateMessage = record.toRemoteSessionSwitchoverUpdate(record.dateSent)
+          builder.updateMessage = record.toRemoteSessionSwitchoverUpdate(record.dateSent) ?: continue
           transformTimer.emit("sse")
         }
 
@@ -679,7 +679,7 @@ private fun BackupMessageRecord.toRemoteProfileChangeUpdate(): ChatUpdateMessage
   }
 }
 
-private fun BackupMessageRecord.toRemoteSessionSwitchoverUpdate(sentTimestamp: Long): ChatUpdateMessage {
+private fun BackupMessageRecord.toRemoteSessionSwitchoverUpdate(sentTimestamp: Long): ChatUpdateMessage? {
   if (this.body == null) {
     return ChatUpdateMessage(sessionSwitchover = SessionSwitchoverChatUpdate())
   }
@@ -687,10 +687,10 @@ private fun BackupMessageRecord.toRemoteSessionSwitchoverUpdate(sentTimestamp: L
   return ChatUpdateMessage(
     sessionSwitchover = try {
       val event = SessionSwitchoverEvent.ADAPTER.decode(Base64.decodeOrThrow(this.body))
-      val e164 = event.e164.e164ToLong() ?: return ChatUpdateMessage(sessionSwitchover = SessionSwitchoverChatUpdate()).logW(TAG, ExportOddities.invalidE164InSessionSwitchover(sentTimestamp))
+      val e164 = event.e164.e164ToLong() ?: return null.logW(TAG, ExportSkips.invalidE164InSessionSwitchover(sentTimestamp))
       SessionSwitchoverChatUpdate(e164)
     } catch (e: IOException) {
-      SessionSwitchoverChatUpdate()
+      null
     }
   )
 }
