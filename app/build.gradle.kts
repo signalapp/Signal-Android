@@ -459,6 +459,12 @@ android {
         variant.packaging.jniLibs.excludes.add("**/libsignal_jni_testing.so")
       }
 
+      // Starting with minSdk 23, Android leaves native libraries uncompressed, which is fine for the Play Store, but not for our self-distributed APKs.
+      // This reverts it to the legacy behavior, compressing the native libraries, and drastically reducing the APK file size.
+      if (variant.name.contains("website", ignoreCase = true)) {
+        variant.packaging.jniLibs.useLegacyPackaging.set(true)
+      }
+
       // Version overrides
       if (variant.name.contains("nightly", ignoreCase = true)) {
         var tag = getNightlyTagForCurrentCommit()
