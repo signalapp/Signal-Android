@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
@@ -285,6 +286,10 @@ fun StickerManagementScreen(
 
   val pagerState = rememberPagerState(pageCount = { pages.size })
   val coroutineScope = rememberCoroutineScope()
+
+  BackHandler(enabled = uiState.multiSelectEnabled) {
+    onSetMultiSelectModeEnabled(false)
+  }
 
   Scaffold(
     topBar = {

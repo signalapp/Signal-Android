@@ -7,12 +7,14 @@ package org.thoughtcrime.securesms.stickers
 
 import android.app.Dialog
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -52,6 +54,12 @@ class StickerManagementBottomSheet : ComposeBottomSheetDialogFragment() {
 
   private val viewModel by viewModel { StickerManagementViewModel() }
 
+  private val multiSelectBackPressCallback = object : OnBackPressedCallback(enabled = false) {
+    override fun handleOnBackPressed() {
+      viewModel.setMultiSelectEnabled(false)
+    }
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
@@ -67,12 +75,18 @@ class StickerManagementBottomSheet : ComposeBottomSheetDialogFragment() {
     return dialog.apply {
       behavior.skipCollapsed = true
       behavior.state = BottomSheetBehavior.STATE_EXPANDED
+      onBackPressedDispatcher.addCallback(multiSelectBackPressCallback)
     }
   }
 
   @Composable
   override fun SheetContent() {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(uiState.multiSelectEnabled) {
+      multiSelectBackPressCallback.isEnabled = uiState.multiSelectEnabled
+    }
+
     Column {
       Box(
         modifier = Modifier
