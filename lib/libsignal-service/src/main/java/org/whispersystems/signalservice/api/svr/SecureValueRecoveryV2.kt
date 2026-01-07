@@ -30,6 +30,7 @@ import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.io.IOException
+import kotlin.time.Duration.Companion.seconds
 import org.signal.svr2.proto.BackupResponse as ProtoBackupResponse
 import org.signal.svr2.proto.ExposeResponse as ProtoExposeResponse
 import org.signal.svr2.proto.RestoreResponse as ProtoRestoreResponse
@@ -220,10 +221,10 @@ class SecureValueRecoveryV2(
         }
       } catch (e: NonSuccessfulResponseCodeException) {
         Log.w(TAG, "[Set] Failed with a non-successful response code exception!", e)
-        if (e.code == 404) {
-          BackupResponse.EnclaveNotFound
-        } else {
-          BackupResponse.ApplicationError(e)
+        when (e.code) {
+          404 -> BackupResponse.EnclaveNotFound
+          429 -> BackupResponse.RateLimited(e.headers["retry-after"]?.toLongOrNull()?.seconds)
+          else -> BackupResponse.ApplicationError(e)
         }
       } catch (e: IOException) {
         Log.w(TAG, "[Set] Failed with a network exception!", e)

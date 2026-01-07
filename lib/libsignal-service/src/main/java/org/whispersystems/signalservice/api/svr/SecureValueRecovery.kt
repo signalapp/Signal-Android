@@ -9,6 +9,7 @@ import org.signal.core.models.MasterKey
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import java.io.IOException
 import kotlin.jvm.Throws
+import kotlin.time.Duration
 
 interface SecureValueRecovery {
 
@@ -87,6 +88,9 @@ interface SecureValueRecovery {
 
     /** There as a network error. Not a bad response, but rather interference or some other inability to make a network request. */
     data class NetworkError(val exception: IOException) : BackupResponse()
+
+    /** The client request was rate-limited. */
+    data class RateLimited(val retryAfter: Duration?) : BackupResponse()
 
     /** Something went wrong when making the request that is related to application logic. */
     data class ApplicationError(val exception: Throwable) : BackupResponse()

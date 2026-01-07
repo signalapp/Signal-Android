@@ -257,6 +257,7 @@ object SvrRepository {
           BackupResponse.ExposeFailure -> it
           is BackupResponse.NetworkError -> it
           BackupResponse.ServerRejected -> it
+          is BackupResponse.RateLimited -> it
           BackupResponse.EnclaveNotFound -> null
           is BackupResponse.Success -> null
         }

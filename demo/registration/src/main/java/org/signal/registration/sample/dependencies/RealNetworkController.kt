@@ -23,6 +23,7 @@ import org.signal.registration.NetworkController.RegisterAccountError
 import org.signal.registration.NetworkController.RegisterAccountResponse
 import org.signal.registration.NetworkController.RegistrationLockResponse
 import org.signal.registration.NetworkController.RegistrationNetworkResult
+import org.signal.registration.NetworkController.RegistrationNetworkResult.*
 import org.signal.registration.NetworkController.RequestVerificationCodeError
 import org.signal.registration.NetworkController.SessionMetadata
 import org.signal.registration.NetworkController.SubmitVerificationCodeError
@@ -465,27 +466,30 @@ class RealNetworkController(
       when (response) {
         is BackupResponse.Success -> {
           Log.i(TAG, "[backupMasterKeyToSvr] Successfully backed up master key to SVR2")
-          RegistrationNetworkResult.Success(Unit)
+          Success(Unit)
         }
         is BackupResponse.ApplicationError -> {
           Log.w(TAG, "[backupMasterKeyToSvr] Application error", response.exception)
-          RegistrationNetworkResult.ApplicationError(response.exception)
+          ApplicationError(response.exception)
         }
         is BackupResponse.NetworkError -> {
           Log.w(TAG, "[backupMasterKeyToSvr] Network error", response.exception)
-          RegistrationNetworkResult.NetworkError(response.exception)
+          NetworkError(response.exception)
         }
         is BackupResponse.EnclaveNotFound -> {
           Log.w(TAG, "[backupMasterKeyToSvr] Enclave not found")
-          RegistrationNetworkResult.Failure(NetworkController.BackupMasterKeyError.EnclaveNotFound)
+          Failure(NetworkController.BackupMasterKeyError.EnclaveNotFound)
         }
         is BackupResponse.ExposeFailure -> {
           Log.w(TAG, "[backupMasterKeyToSvr] Expose failure -- per spec, treat as success.")
-          RegistrationNetworkResult.Success(Unit)
+          Success(Unit)
         }
         is BackupResponse.ServerRejected -> {
           Log.w(TAG, "[backupMasterKeyToSvr] Server rejected")
-          RegistrationNetworkResult.NetworkError(IOException("Server rejected backup request"))
+          NetworkError(IOException("Server rejected backup request"))
+        }
+        is BackupResponse.RateLimited -> {
+          NetworkError(IOException("Rate limited"))
         }
       }
     } catch (e: IOException) {

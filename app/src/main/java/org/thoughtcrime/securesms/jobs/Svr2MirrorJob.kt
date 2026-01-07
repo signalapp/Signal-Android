@@ -19,6 +19,7 @@ import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSes
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2
 import kotlin.concurrent.withLock
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Ensures a user's SVR data is written to SVR2.
@@ -108,6 +109,11 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
         BackupResponse.ExposeFailure -> {
           Log.w(TAG, "Failed to expose the backup. Giving up.")
           Result.success()
+        }
+        is BackupResponse.RateLimited -> {
+          val backoff = response.retryAfter ?: defaultBackoff().milliseconds
+          Log.w(TAG, "Hit rate limit. Retrying in $backoff")
+          Result.retry(backoff.inWholeMilliseconds)
         }
         is BackupResponse.NetworkError -> {
           Log.w(TAG, "Hit a network error. Retrying.", response.exception)
