@@ -23,7 +23,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.zIndex
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
@@ -161,14 +163,11 @@ internal constructor(
       }
       draggingItemIndex = targetItem.index
     } else {
-      val overscroll =
-        when {
-          draggingItemDraggedDelta > 0 ->
-            (endOffset - state.layoutInfo.viewportEndOffset).coerceAtLeast(0f)
-          draggingItemDraggedDelta < 0 ->
-            (startOffset - state.layoutInfo.viewportStartOffset).coerceAtMost(0f)
-          else -> 0f
-        }
+      val overscroll = when {
+        draggingItemDraggedDelta > 0 -> (endOffset - state.layoutInfo.viewportEndOffset).coerceAtLeast(0f)
+        draggingItemDraggedDelta < 0 -> (startOffset - state.layoutInfo.viewportStartOffset).coerceAtMost(0f)
+        else -> 0f
+      }
       if (overscroll != 0f) {
         scrollChannel.trySend(overscroll)
       }
@@ -198,21 +197,34 @@ sealed interface DragAndDropEvent {
   data object OnDragCancel : DragAndDropEvent
 }
 
+/**
+ * Enables drag-to-reorder functionality within a container.
+ *
+ * @param dragDropState The state managing the drag operation.
+ * @param dragHandleWidth Width of the draggable area (positioned at the end of the container).
+ */
+@Composable
 fun Modifier.dragContainer(
   dragDropState: DragDropState,
-  leftDpOffset: Dp,
-  rightDpOffset: Dp
+  dragHandleWidth: Dp
 ): Modifier {
-  return pointerInput(dragDropState) {
+  val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
+  return pointerInput(dragDropState, dragHandleWidth, isRtl) {
+    val containerWidthPx = size.width.toFloat()
+    val handleWidthPx = dragHandleWidth.toPx()
+
+    val dragHandleXRange = if (isRtl) {
+      0f..handleWidthPx
+    } else {
+      (containerWidthPx - handleWidthPx)..containerWidthPx
+    }
+
     detectDragGestures(
-      onDrag = { change, offset ->
-        dragDropState.onDrag(offset = offset, change = change)
-      },
+      dragHandleXRange = dragHandleXRange,
+      onDrag = { change, offset -> dragDropState.onDrag(offset = offset, change = change) },
       onDragStart = { offset -> dragDropState.onDragStart(offset) },
       onDragEnd = { dragDropState.onDragEnd() },
-      onDragCancel = { dragDropState.onDragCancel() },
-      leftDpOffset = leftDpOffset,
-      rightDpOffset = rightDpOffset
+      onDragCancel = { dragDropState.onDragCancel() }
     )
   }
 }
@@ -227,11 +239,13 @@ fun LazyItemScope.DraggableItem(
   val dragging = index == dragDropState.draggingItemIndex
   val draggingModifier =
     if (dragging) {
-      Modifier.zIndex(1f).graphicsLayer { translationY = dragDropState.draggingItemOffset }
+      Modifier
+        .zIndex(1f)
+        .graphicsLayer { translationY = dragDropState.draggingItemOffset }
     } else if (index == dragDropState.previousIndexOfDraggedItem) {
-      Modifier.zIndex(1f).graphicsLayer {
-        translationY = dragDropState.previousItemOffset.value
-      }
+      Modifier
+        .zIndex(1f)
+        .graphicsLayer { translationY = dragDropState.previousItemOffset.value }
     } else {
       Modifier.animateItem(fadeInSpec = null, fadeOutSpec = null)
     }

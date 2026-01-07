@@ -40,8 +40,6 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -154,8 +152,6 @@ private fun CreatePollScreen(
   var focusedOption by remember { mutableStateOf(-1) }
 
   // Drag and drop
-  val screenWidth = LocalConfiguration.current.screenWidthDp.dp
-  val isRtl = ViewUtil.isRtl(LocalContext.current)
   val listState = rememberLazyListState()
   val dragDropState = rememberDragDropState(listState, includeHeader = true, includeFooter = true, onEvent = { event ->
     when (event) {
@@ -164,6 +160,7 @@ private fun CreatePollScreen(
         options[event.fromIndex] = options[event.toIndex]
         options[event.toIndex] = oldIndex
       }
+
       is DragAndDropEvent.OnItemDrop, is DragAndDropEvent.OnDragCancel -> Unit
     }
   })
@@ -208,8 +205,7 @@ private fun CreatePollScreen(
         .imePadding()
         .dragContainer(
           dragDropState = dragDropState,
-          leftDpOffset = if (isRtl) 0.dp else screenWidth - 56.dp,
-          rightDpOffset = if (isRtl) 56.dp else screenWidth
+          dragHandleWidth = 56.dp
         ),
       state = listState
     ) {

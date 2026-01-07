@@ -15,8 +15,6 @@ import androidx.compose.ui.input.pointer.changedToUp
 import androidx.compose.ui.input.pointer.changedToUpIgnoreConsumed
 import androidx.compose.ui.input.pointer.isOutOfBounds
 import androidx.compose.ui.input.pointer.positionChange
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastAll
 import androidx.compose.ui.util.fastAny
 import androidx.compose.ui.util.fastFirstOrNull
@@ -25,21 +23,22 @@ import kotlinx.coroutines.CancellationException
 
 /**
  * Modified version of detectDragGesturesAfterLongPress from [androidx.compose.foundation.gestures.DragGestureDetector]
- * that allows you to optionally offset the starting and ending position of the draggable area
+ * that initiates drags when the touch starts within a specified x coordinate range.
+ *
+ * @param dragHandleXRange The x coordinate range (in pixels) where drags can be initiated.
  */
 suspend fun PointerInputScope.detectDragGestures(
+  dragHandleXRange: ClosedFloatingPointRange<Float>,
   onDragStart: (Offset) -> Unit = { },
   onDragEnd: () -> Unit = { },
   onDragCancel: () -> Unit = { },
-  onDrag: (change: PointerInputChange, dragAmount: Offset) -> Unit,
-  leftDpOffset: Dp = 0.dp,
-  rightDpOffset: Dp
+  onDrag: (change: PointerInputChange, dragAmount: Offset) -> Unit
 ) {
   awaitEachGesture {
     try {
       val down = awaitFirstDown(requireUnconsumed = false)
       val drag = awaitLongPressOrCancellation(down.id)
-      if (drag != null && (drag.position.x > leftDpOffset.toPx()) && (drag.position.x < rightDpOffset.toPx())) {
+      if (drag != null && down.position.x in dragHandleXRange) {
         onDragStart.invoke(drag.position)
 
         if (

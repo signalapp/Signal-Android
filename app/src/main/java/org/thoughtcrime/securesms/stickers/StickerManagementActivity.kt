@@ -49,17 +49,14 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -484,8 +481,6 @@ private fun InstalledStickersContent(
     val listState = rememberLazyListState()
     val dragDropState = rememberDragDropState(lazyListState = listState, includeHeader = true, includeFooter = false, onEvent = callbacks::onDragAndDropEvent)
 
-    val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
-    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
     val density = LocalDensity.current
     val haptics = LocalHapticFeedback.current
 
@@ -503,8 +498,7 @@ private fun InstalledStickersContent(
           .fillMaxHeight()
           .dragContainer(
             dragDropState = dragDropState,
-            leftDpOffset = if (isRtl) 0.dp else screenWidth - 56.dp,
-            rightDpOffset = if (isRtl) 56.dp else screenWidth
+            dragHandleWidth = 56.dp
           )
       ) {
         item(key = "installed_section_header") {

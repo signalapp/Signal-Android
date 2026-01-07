@@ -31,8 +31,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -60,7 +58,6 @@ import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -127,8 +124,6 @@ fun FoldersScreen(
   onDeleteDismissed: () -> Unit = {},
   onDragAndDropEvent: (DragAndDropEvent) -> Unit = {}
 ) {
-  val screenWidth = LocalConfiguration.current.screenWidthDp.dp
-  val isRtl = ViewUtil.isRtl(LocalContext.current)
   val listState = rememberLazyListState()
   val dragDropState = rememberDragDropState(listState, includeHeader = true, includeFooter = true, onEvent = onDragAndDropEvent)
 
@@ -153,8 +148,7 @@ fun FoldersScreen(
   LazyColumn(
     modifier = Modifier.dragContainer(
       dragDropState = dragDropState,
-      leftDpOffset = if (isRtl) 0.dp else screenWidth - 48.dp,
-      rightDpOffset = if (isRtl) 48.dp else screenWidth
+      dragHandleWidth = 56.dp
     ),
     state = listState
   ) {
@@ -220,6 +214,7 @@ fun FoldersScreen(
                 onAdd = { onAdd(chatFolder) }
               )
             }
+
             ChatFolderRecord.FolderType.INDIVIDUAL -> {
               val title: String = stringResource(R.string.ChatFoldersFragment__one_on_one_chats)
               FolderRow(
@@ -229,6 +224,7 @@ fun FoldersScreen(
                 onAdd = { onAdd(chatFolder) }
               )
             }
+
             ChatFolderRecord.FolderType.GROUP -> {
               val title: String = stringResource(R.string.ChatFoldersFragment__groups)
               FolderRow(
@@ -238,9 +234,11 @@ fun FoldersScreen(
                 onAdd = { onAdd(chatFolder) }
               )
             }
+
             ChatFolderRecord.FolderType.ALL -> {
               error("All chats should not be suggested")
             }
+
             ChatFolderRecord.FolderType.CUSTOM -> {
               error("Custom folders should not be suggested")
             }
