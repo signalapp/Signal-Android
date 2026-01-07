@@ -80,7 +80,9 @@ fun RemoteParticipantContent(
   renderInPip: Boolean,
   raiseHandAllowed: Boolean,
   onInfoMoreInfoClick: (() -> Unit)?,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  mirrorVideo: Boolean = false,
+  showAudioIndicator: Boolean = true
 ) {
   val context = LocalContext.current
   val recipient = participant.recipient
@@ -138,15 +140,18 @@ fun RemoteParticipantContent(
           participant = participant,
           onFirstFrameRendered = { isVideoReady = true },
           showLetterboxing = isVideoReady,
+          mirror = mirrorVideo,
           modifier = Modifier.fillMaxSize()
         )
       }
 
-      AudioIndicator(
-        participant = participant,
-        selfPipMode = SelfPipMode.NOT_SELF_PIP,
-        modifier = Modifier.align(Alignment.BottomStart)
-      )
+      if (showAudioIndicator) {
+        AudioIndicator(
+          participant = participant,
+          selfPipMode = SelfPipMode.NOT_SELF_PIP,
+          modifier = Modifier.align(Alignment.BottomStart)
+        )
+      }
 
       if (raiseHandAllowed && !renderInPip && participant.isHandRaised) {
         RaiseHandIndicator(
@@ -457,7 +462,7 @@ private fun VideoRenderer(
 }
 
 @Composable
-private fun AudioIndicator(
+internal fun AudioIndicator(
   participant: CallParticipant,
   selfPipMode: SelfPipMode,
   modifier: Modifier = Modifier
@@ -468,6 +473,7 @@ private fun AudioIndicator(
     SelfPipMode.MINI_SELF_PIP -> 10.dp
     SelfPipMode.FOCUSED_SELF_PIP -> 12.dp
     SelfPipMode.NOT_SELF_PIP -> 12.dp
+    SelfPipMode.OVERLAY_SELF_PIP -> 0.dp
   }
 
   AndroidView(
@@ -662,7 +668,8 @@ enum class SelfPipMode {
   NORMAL_SELF_PIP,
   EXPANDED_SELF_PIP,
   MINI_SELF_PIP,
-  FOCUSED_SELF_PIP
+  FOCUSED_SELF_PIP,
+  OVERLAY_SELF_PIP
 }
 
 @NightPreview

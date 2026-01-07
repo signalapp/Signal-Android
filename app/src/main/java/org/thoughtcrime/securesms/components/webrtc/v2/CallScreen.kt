@@ -31,7 +31,6 @@ import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -51,7 +50,6 @@ import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import androidx.window.core.layout.WindowSizeClass
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.AllNightPreviews
@@ -251,7 +249,23 @@ fun CallScreen(
         }
       }
 
-      val isCompactPortrait = !currentWindowAdaptiveInfo().windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND)
+      @Composable
+      fun PendingParticipantsInternal(modifier: Modifier = Modifier) {
+        val state = remember(callScreenState.pendingParticipantsState) {
+          callScreenState.pendingParticipantsState
+        }
+
+        if (state != null) {
+          PendingParticipants(
+            pendingParticipantsState = state,
+            pendingParticipantsListener = pendingParticipantsListener,
+            modifier = Modifier
+              .fillMaxWidth()
+              .then(modifier)
+          )
+        }
+      }
+
       if (webRtcCallState.isPreJoinOrNetworkUnavailable ||
         webRtcCallState == WebRtcViewModel.State.CALL_OUTGOING ||
         webRtcCallState == WebRtcViewModel.State.CALL_RINGING ||
@@ -259,8 +273,7 @@ fun CallScreen(
       ) {
         if (localParticipant.isVideoEnabled) {
           LargeLocalVideoRenderer(
-            localParticipant = localParticipant,
-            modifier = if (isCompactPortrait) Modifier.padding(bottom = padding) else Modifier
+            localParticipant = localParticipant
           )
         }
 
@@ -268,20 +281,27 @@ fun CallScreen(
           CallScreenPreJoinOverlay(
             callRecipient = callRecipient,
             callStatus = callScreenState.callStatus,
+            localParticipant = localParticipant,
             onNavigationClick = onNavigationClick,
             onCallInfoClick = onCallInfoClick,
             onCameraToggleClick = callScreenControlsListener::onCameraDirectionChanged,
             isLocalVideoEnabled = localParticipant.isVideoEnabled,
             isMoreThanOneCameraAvailable = localParticipant.isMoreThanOneCameraAvailable,
-            modifier = Modifier.padding(bottom = padding)
+            bottomSheetPadding = padding
           )
         } else {
-          CallScreenTopBar(
+          CallScreenJoiningOverlay(
             callRecipient = callRecipient,
             callStatus = callScreenState.callStatus,
+            localParticipant = localParticipant,
+            isLocalVideoEnabled = localParticipant.isVideoEnabled,
+            isMoreThanOneCameraAvailable = localParticipant.isMoreThanOneCameraAvailable,
+            isWaitingToBeLetIn = callScreenState.isWaitingToBeLetIn,
+            bottomSheetPadding = padding,
             onNavigationClick = onNavigationClick,
             onCallInfoClick = onCallInfoClick,
-            modifier = Modifier.padding(bottom = padding)
+            onCameraToggleClick = callScreenControlsListener::onCameraDirectionChanged,
+            pendingParticipantsSlot = ::PendingParticipantsInternal
           )
         }
       } else if (webRtcCallState.isPassedPreJoin) {
@@ -326,20 +346,7 @@ fun CallScreen(
             )
           },
           callLinkBarSlot = {
-            val state = remember(callScreenState.pendingParticipantsState) {
-              callScreenState.pendingParticipantsState
-            }
-
-            if (state != null) {
-              PendingParticipants(
-                pendingParticipantsState = state,
-                pendingParticipantsListener = pendingParticipantsListener,
-                modifier = Modifier
-                  .fillMaxWidth()
-                  .padding(horizontal = 16.dp)
-                  .padding(bottom = 16.dp)
-              )
-            }
+            PendingParticipantsInternal(modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 16.dp))
           },
           callOverflowSlot = {
             val metrics = rememberCallScreenMetrics()
@@ -417,6 +424,7 @@ fun CallScreen(
 
 /**
  * Full-screen local video renderer displayed when the user is in pre-call state.
+ * Audio indicator is handled by the overlay composables.
  */
 @Composable
 private fun LargeLocalVideoRenderer(
@@ -427,6 +435,8 @@ private fun LargeLocalVideoRenderer(
     participant = localParticipant,
     renderInPip = false,
     raiseHandAllowed = false,
+    mirrorVideo = true,
+    showAudioIndicator = false,
     onInfoMoreInfoClick = null,
     modifier = modifier
       .fillMaxSize()

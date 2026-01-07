@@ -1117,7 +1117,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("newCallUi")
   val newCallUi: Boolean by remoteBoolean(
-    key = "android.newCallUi",
+    key = "android.newCallUi.2",
     defaultValue = false,
     hotSwappable = false
   )

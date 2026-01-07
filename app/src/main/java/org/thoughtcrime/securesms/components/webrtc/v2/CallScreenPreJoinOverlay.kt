@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.components.webrtc.v2
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,16 +27,21 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowWidthSizeClass
@@ -44,7 +50,11 @@ import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
+import org.thoughtcrime.securesms.compose.SignalTheme
+import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.rememberRecipientField
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 
 /**
  * Pre-join call screen overlay.
@@ -56,78 +66,147 @@ import org.thoughtcrime.securesms.recipients.Recipient
 fun CallScreenPreJoinOverlay(
   callRecipient: Recipient,
   callStatus: String?,
+  localParticipant: CallParticipant,
   isMoreThanOneCameraAvailable: Boolean,
   isLocalVideoEnabled: Boolean,
+  bottomSheetPadding: Dp = 0.dp,
   modifier: Modifier = Modifier,
   onNavigationClick: () -> Unit = {},
   onCallInfoClick: () -> Unit = {},
   onCameraToggleClick: () -> Unit = {}
 ) {
-  Column(
-    horizontalAlignment = Alignment.CenterHorizontally,
+  val showCameraToggle = isLocalVideoEnabled && isMoreThanOneCameraAvailable
+  val showInfoCard = callRecipient.isCallLink
+
+  Box(
     modifier = Modifier
       .fillMaxSize()
       .background(color = Color(0f, 0f, 0f, 0.4f))
       .then(modifier)
   ) {
-    CallScreenTopAppBar(
-      onNavigationClick = onNavigationClick,
-      onCallInfoClick = onCallInfoClick
-    )
-
-    AvatarImage(
-      recipient = callRecipient,
-      modifier = Modifier
-        .padding(top = 8.dp)
-        .size(96.dp)
-    )
-
-    Text(
-      text = callRecipient.getDisplayName(LocalContext.current),
-      style = MaterialTheme.typography.headlineMedium,
-      color = Color.White,
-      modifier = Modifier.padding(top = 16.dp)
-    )
-
-    if (callStatus != null) {
-      Text(
-        text = callStatus,
-        style = MaterialTheme.typography.bodyMedium,
-        color = Color.White,
-        modifier = Modifier.padding(top = 8.dp)
+    Column(
+      horizontalAlignment = Alignment.CenterHorizontally,
+      modifier = Modifier.fillMaxSize()
+    ) {
+      CallScreenTopAppBar(
+        onNavigationClick = onNavigationClick,
+        onCallInfoClick = onCallInfoClick
       )
-    }
 
-    if (!isLocalVideoEnabled) {
-      Spacer(modifier = Modifier.weight(1f))
+      AvatarImage(
+        recipient = callRecipient,
+        modifier = Modifier
+          .padding(top = 8.dp)
+          .size(96.dp)
+      )
 
-      val isCompactWidth = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
-      if (isCompactWidth) {
-        YourCameraIsOff(spacedBy = 8.dp)
-      } else {
-        Row(
-          horizontalArrangement = spacedBy(12.dp),
-          verticalAlignment = Alignment.CenterVertically
-        ) {
-          YourCameraIsOff()
-        }
-      }
+      Text(
+        text = callRecipient.getDisplayName(LocalContext.current),
+        style = MaterialTheme.typography.headlineMedium,
+        color = Color.White,
+        modifier = Modifier.padding(top = 16.dp)
+      )
 
-      Spacer(modifier = Modifier.weight(1f))
-    }
-
-    if (isLocalVideoEnabled && isMoreThanOneCameraAvailable) {
-      Spacer(modifier = Modifier.weight(1f))
-
-      Box(modifier = Modifier.fillMaxWidth()) {
-        CallCameraDirectionToggle(
-          onClick = onCameraToggleClick,
-          modifier = Modifier
-            .align(Alignment.BottomEnd)
-            .padding(16.dp)
+      if (callStatus != null) {
+        Text(
+          text = callStatus,
+          style = MaterialTheme.typography.bodyMedium,
+          color = Color.White,
+          modifier = Modifier.padding(top = 8.dp)
         )
       }
+
+      if (!isLocalVideoEnabled) {
+        Spacer(modifier = Modifier.weight(1f))
+
+        val isCompactWidth = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+        if (isCompactWidth) {
+          YourCameraIsOff(spacedBy = 8.dp)
+        } else {
+          Row(
+            horizontalArrangement = spacedBy(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+          ) {
+            YourCameraIsOff()
+          }
+        }
+
+        Spacer(modifier = Modifier.weight(1f))
+      }
     }
+
+    // Bottom controls in a separate layer for proper screen-edge positioning
+    if (showCameraToggle || showInfoCard || isLocalVideoEnabled) {
+      BottomControlsWithOptionalBar(
+        bottomSheetPadding = bottomSheetPadding,
+        modifier = Modifier
+          .align(Alignment.BottomCenter)
+          .fillMaxWidth()
+          .padding(horizontal = 16.dp),
+        controlsRow = {
+          if (showCameraToggle || isLocalVideoEnabled) {
+            Row(
+              modifier = Modifier
+                .layoutId(BottomControlsLayoutId.CONTROLS)
+                .fillMaxWidth(),
+              horizontalArrangement = Arrangement.SpaceBetween,
+              verticalAlignment = Alignment.Bottom
+            ) {
+              if (isLocalVideoEnabled) {
+                AudioIndicator(
+                  participant = localParticipant,
+                  selfPipMode = SelfPipMode.OVERLAY_SELF_PIP
+                )
+              }
+
+              if (showCameraToggle) {
+                CallCameraDirectionToggle(onClick = onCameraToggleClick)
+              }
+            }
+          }
+        },
+        barSlot = {
+          if (showInfoCard) {
+            CallLinkInfoCard(
+              modifier = Modifier.layoutId(BottomControlsLayoutId.BAR)
+            )
+          }
+        }
+      )
+    }
+  }
+}
+
+@Composable
+private fun CallLinkInfoCard(
+  modifier: Modifier = Modifier
+) {
+  val isPhoneNumberSharingEnabled: Boolean by if (LocalInspectionMode.current) {
+    remember { mutableStateOf(false) }
+  } else {
+    rememberRecipientField(Recipient.self()) { phoneNumberSharing.enabled }
+  }
+
+  val text = if (isPhoneNumberSharingEnabled) {
+    stringResource(R.string.WebRtcCallView__anyone_who_joins_pnp_disabled)
+  } else {
+    stringResource(R.string.WebRtcCallView__anyone_who_joins_pnp_enabled)
+  }
+
+  Box(
+    modifier = modifier
+      .background(
+        color = SignalTheme.colors.colorSurface1,
+        shape = MaterialTheme.shapes.medium
+      )
+      .padding(horizontal = 16.dp, vertical = 13.dp)
+  ) {
+    Text(
+      text = text,
+      style = MaterialTheme.typography.bodyMedium,
+      textAlign = TextAlign.Center,
+      color = MaterialTheme.colorScheme.onSurface
+    )
   }
 }
 
@@ -151,7 +230,7 @@ private fun YourCameraIsOff(
 }
 
 @Composable
-private fun CallCameraDirectionToggle(
+internal fun CallCameraDirectionToggle(
   onClick: () -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -254,6 +333,7 @@ fun CallScreenPreJoinOverlayPreview() {
     CallScreenPreJoinOverlay(
       callRecipient = Recipient(systemContactName = "Test User"),
       callStatus = stringResource(R.string.Recipient_unknown),
+      localParticipant = CallParticipant.EMPTY,
       isLocalVideoEnabled = false,
       isMoreThanOneCameraAvailable = false
     )
@@ -267,6 +347,29 @@ fun CallScreenPreJoinOverlayWithTogglePreview() {
     CallScreenPreJoinOverlay(
       callRecipient = Recipient(systemContactName = "Test User"),
       callStatus = stringResource(R.string.Recipient_unknown),
+      localParticipant = CallParticipant.EMPTY.copy(
+        isVideoEnabled = true,
+        isMicrophoneEnabled = true,
+        audioLevel = CallParticipant.AudioLevel.MEDIUM
+      ),
+      isLocalVideoEnabled = true,
+      isMoreThanOneCameraAvailable = true
+    )
+  }
+}
+
+@AllNightPreviews
+@Composable
+fun CallScreenPreJoinOverlayWithCallLinkPreview() {
+  Previews.Preview {
+    CallScreenPreJoinOverlay(
+      callRecipient = Recipient(systemContactName = "Test User", callLinkRoomId = CallLinkRoomId.fromBytes(byteArrayOf(1, 2, 3))),
+      callStatus = stringResource(R.string.Recipient_unknown),
+      localParticipant = CallParticipant.EMPTY.copy(
+        isVideoEnabled = true,
+        isMicrophoneEnabled = true,
+        audioLevel = CallParticipant.AudioLevel.MEDIUM
+      ),
       isLocalVideoEnabled = true,
       isMoreThanOneCameraAvailable = true
     )

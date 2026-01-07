@@ -261,6 +261,9 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   override fun updateCallParticipants(callParticipantsViewState: CallParticipantsViewState) {
     callScreenViewModel.callParticipantsViewState.update { callParticipantsViewState }
     setStatusFromCallParticipantsState(activity, callParticipantsViewState)
+
+    val isWaitingToBeLetIn = callParticipantsViewState.callParticipantsState.groupCallState == WebRtcViewModel.GroupCallState.CONNECTED_AND_PENDING
+    callScreenViewModel.callScreenState.update { it.copy(isWaitingToBeLetIn = isWaitingToBeLetIn) }
   }
 
   override fun maybeDismissAudioPicker() {

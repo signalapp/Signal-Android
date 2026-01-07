@@ -32,6 +32,7 @@ data class CallScreenState(
   val pendingParticipantsState: PendingParticipantsState? = null,
   val isParticipantUpdatePopupEnabled: Boolean = true,
   val isCallStateUpdatePopupEnabled: Boolean = false,
+  val isWaitingToBeLetIn: Boolean = false,
   val reactions: PersistentList<String> = persistentListOf()
 ) {
   fun isDisplayingControlMenu(): Boolean = isDisplayingAudioToggleSheet || displayAdditionalActionsDialog

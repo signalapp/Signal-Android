@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
@@ -28,7 +27,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.offset
-import androidx.window.core.layout.WindowSizeClass
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
@@ -50,7 +48,6 @@ fun CallElementsLayout(
   modifier: Modifier = Modifier
 ) {
   val isPortrait = LocalConfiguration.current.orientation != Configuration.ORIENTATION_LANDSCAPE
-  val isCompactPortrait = !currentWindowAdaptiveInfo().windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND)
   val isFocused = localRenderState == WebRtcLocalRenderState.FOCUSED
 
   @Composable
@@ -66,17 +63,13 @@ fun CallElementsLayout(
     (rememberSelfPipSize(localRenderState) + DpSize(32.dp, 0.dp)).toSize()
   }
 
-  val bottomInsetPx = with(density) {
-    if (isCompactPortrait) 0 else bottomInset.roundToPx()
-  }
+  val bottomInsetPx = with(density) { bottomInset.roundToPx() }
 
   val bottomSheetWidthPx = with(density) {
     bottomSheetWidth.roundToPx()
   }
 
-  val layoutModifier = if (isCompactPortrait) Modifier.padding(bottom = bottomInset).then(modifier) else modifier
-
-  Box(modifier = layoutModifier) {
+  Box(modifier = modifier) {
     BlurrableContentLayer(
       isFocused = isFocused,
       isPortrait = isPortrait,
