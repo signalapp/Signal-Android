@@ -23,6 +23,7 @@ class RecipientIdDatabaseDetectorTest {
         )
       )
       .issues(RecipientIdDatabaseDetector.RECIPIENT_ID_DATABASE_REFERENCE_ISSUE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -52,6 +53,7 @@ class RecipientIdDatabaseDetectorTest {
         )
       )
       .issues(RecipientIdDatabaseDetector.RECIPIENT_ID_DATABASE_REFERENCE_ISSUE)
+      .allowMissingSdk()
       .run()
       .expectClean()
   }

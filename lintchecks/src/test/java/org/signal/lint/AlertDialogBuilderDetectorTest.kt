@@ -13,6 +13,7 @@ class AlertDialogBuilderDetectorTest {
   fun androidAlertDialogBuilderUsed_LogAlertDialogBuilderUsage_1_arg() {
     TestLintTask.lint()
       .files(
+        androidAlertDialogStub,
         java(
           """
           package foo;
@@ -26,6 +27,7 @@ class AlertDialogBuilderDetectorTest {
         )
       )
       .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -49,6 +51,7 @@ class AlertDialogBuilderDetectorTest {
   fun androidAlertDialogBuilderUsed_LogAlertDialogBuilderUsage_2_arg() {
     TestLintTask.lint()
       .files(
+        androidAlertDialogStub,
         java(
           """
           package foo;
@@ -62,6 +65,7 @@ class AlertDialogBuilderDetectorTest {
         )
       )
       .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -85,6 +89,7 @@ class AlertDialogBuilderDetectorTest {
   fun androidAlertDialogBuilderUsed_withAssignment_LogAlertDialogBuilderUsage_1_arg() {
     TestLintTask.lint()
       .files(
+        androidAlertDialogStub,
         java(
           """
           package foo;
@@ -99,6 +104,7 @@ class AlertDialogBuilderDetectorTest {
         )
       )
       .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -136,6 +142,7 @@ class AlertDialogBuilderDetectorTest {
         )
       )
       .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
       """
@@ -173,6 +180,7 @@ class AlertDialogBuilderDetectorTest {
         )
       )
       .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -211,6 +219,7 @@ class AlertDialogBuilderDetectorTest {
         )
       )
       .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
       """
@@ -231,6 +240,7 @@ class AlertDialogBuilderDetectorTest {
   }
 
   companion object {
+    private val androidAlertDialogStub = kotlin(readResourceAsString("AndroidAlertDialogStub.kt"))
     private val appCompatAlertDialogStub = kotlin(readResourceAsString("AppCompatAlertDialogStub.kt"))
 
     private fun readResourceAsString(@Suppress("SameParameterValue") resourceName: String): String {

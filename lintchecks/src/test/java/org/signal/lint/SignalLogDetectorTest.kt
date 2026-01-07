@@ -14,6 +14,7 @@ class SignalLogDetectorTest {
   fun androidLogUsed_LogNotSignal_2_args() {
     TestLintTask.lint()
       .files(
+        androidLogStub,
         java(
           """
           package foo;
@@ -27,6 +28,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.LOG_NOT_SIGNAL)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -50,6 +52,7 @@ class SignalLogDetectorTest {
   fun androidLogUsed_LogNotSignal_3_args() {
     TestLintTask.lint()
       .files(
+        androidLogStub,
         java(
           """
           package foo;
@@ -63,6 +66,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.LOG_NOT_SIGNAL)
+      .allowMissingSdk()
       .run()
       .expect(
       """
@@ -100,6 +104,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.LOG_NOT_APP)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -137,6 +142,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.LOG_NOT_APP)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -175,6 +181,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.INLINE_TAG)
+      .allowMissingSdk()
       .run()
       .expectClean()
   }
@@ -198,6 +205,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.INLINE_TAG)
+      .allowMissingSdk()
       .skipTestModes(TestMode.REORDER_ARGUMENTS)
       .run()
       .expectClean()
@@ -225,6 +233,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.INLINE_TAG)
+      .allowMissingSdk()
       .skipTestModes(TestMode.REORDER_ARGUMENTS)
       .run()
       .expectClean()
@@ -248,6 +257,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.INLINE_TAG)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -278,6 +288,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.INLINE_TAG)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -308,6 +319,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.LOG_NOT_SIGNAL)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -328,6 +340,7 @@ class SignalLogDetectorTest {
   }
 
   companion object {
+    private val androidLogStub = kotlin(readResourceAsString("AndroidLogStub.kt"))
     private val serviceLogStub = kotlin(readResourceAsString("ServiceLogStub.kt"))
     private val appLogStub = kotlin(readResourceAsString("AppLogStub.kt"))
     private val glideLogStub = kotlin(readResourceAsString("GlideLogStub.kt"))

@@ -13,6 +13,7 @@ class VersionCodeDetectorTest {
   fun version_code_constant_referenced_in_code() {
     TestLintTask.lint()
       .files(
+        androidBuildStub,
         java(
           """
           package foo;
@@ -28,6 +29,7 @@ class VersionCodeDetectorTest {
         )
       )
       .issues(VersionCodeDetector.VERSION_CODE_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -51,6 +53,7 @@ class VersionCodeDetectorTest {
   fun numeric_value_referenced_in_code() {
     TestLintTask.lint()
       .files(
+        androidBuildStub,
         java(
         """
         package foo;
@@ -66,6 +69,7 @@ class VersionCodeDetectorTest {
         )
       )
       .issues(VersionCodeDetector.VERSION_CODE_USAGE)
+      .allowMissingSdk()
       .run()
       .expectClean()
   }
@@ -74,6 +78,7 @@ class VersionCodeDetectorTest {
   fun non_version_code_constant_referenced_in_code() {
     TestLintTask.lint()
       .files(
+        androidBuildStub,
         java(
           """
           package foo;
@@ -90,6 +95,7 @@ class VersionCodeDetectorTest {
         )
       )
       .issues(VersionCodeDetector.VERSION_CODE_USAGE)
+      .allowMissingSdk()
       .run()
       .expectClean()
   }
@@ -98,6 +104,8 @@ class VersionCodeDetectorTest {
   fun version_code_constant_referenced_in_TargetApi_attribute_and_inner_class_import() {
     TestLintTask.lint()
       .files(
+        androidBuildStub,
+        androidAnnotationStub,
         java(
           """
           package foo;
@@ -112,6 +120,7 @@ class VersionCodeDetectorTest {
         )
       )
       .issues(VersionCodeDetector.VERSION_CODE_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -135,6 +144,8 @@ class VersionCodeDetectorTest {
   fun version_code_constant_referenced_in_RequiresApi_attribute_with_named_parameter() {
     TestLintTask.lint()
       .files(
+        androidBuildStub,
+        androidAnnotationStub,
         requiresApiStub,
         java(
           """
@@ -150,6 +161,7 @@ class VersionCodeDetectorTest {
         )
       )
       .issues(VersionCodeDetector.VERSION_CODE_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -170,6 +182,8 @@ class VersionCodeDetectorTest {
   }
 
   companion object {
+    private val androidBuildStub = kotlin(readResourceAsString("AndroidBuildStub.kt"))
+    private val androidAnnotationStub = kotlin(readResourceAsString("AndroidAnnotationStub.kt"))
     private val requiresApiStub = kotlin(readResourceAsString("RequiresApiStub.kt"))
 
     private fun readResourceAsString(@Suppress("SameParameterValue") resourceName: String): String {

@@ -27,6 +27,7 @@ class CardViewDetectorTest {
         )
       )
       .issues(CardViewDetector.CARD_VIEW_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -64,6 +65,7 @@ class CardViewDetectorTest {
         )
       )
       .issues(CardViewDetector.CARD_VIEW_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
       """
@@ -102,6 +104,7 @@ class CardViewDetectorTest {
         )
       )
       .issues(CardViewDetector.CARD_VIEW_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
       """
