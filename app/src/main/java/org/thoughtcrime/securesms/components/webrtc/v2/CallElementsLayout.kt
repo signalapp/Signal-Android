@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalConfiguration
@@ -50,6 +51,7 @@ fun CallElementsLayout(
 ) {
   val isPortrait = LocalConfiguration.current.orientation != Configuration.ORIENTATION_LANDSCAPE
   val isCompactPortrait = !currentWindowAdaptiveInfo().windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND)
+  val isFocused = localRenderState == WebRtcLocalRenderState.FOCUSED
 
   @Composable
   fun Bars() {
@@ -72,71 +74,117 @@ fun CallElementsLayout(
     bottomSheetWidth.roundToPx()
   }
 
+  val layoutModifier = if (isCompactPortrait) Modifier.padding(bottom = bottomInset).then(modifier) else modifier
+
+  Box(modifier = layoutModifier) {
+    BlurrableContentLayer(
+      isFocused = isFocused,
+      isPortrait = isPortrait,
+      bottomInsetPx = bottomInsetPx,
+      barsSlot = { Bars() },
+      callGridSlot = callGridSlot,
+      reactionsSlot = reactionsSlot,
+      callOverflowSlot = callOverflowSlot
+    )
+
+    PipLayer(
+      pictureInPictureSlot = pictureInPictureSlot,
+      localRenderState = localRenderState,
+      bottomInsetPx = bottomInsetPx,
+      pipSizePx = pipSizePx,
+      bottomSheetWidthPx = bottomSheetWidthPx
+    )
+  }
+}
+
+@Composable
+private fun BlurrableContentLayer(
+  isFocused: Boolean,
+  isPortrait: Boolean,
+  bottomInsetPx: Int,
+  barsSlot: @Composable () -> Unit,
+  callGridSlot: @Composable () -> Unit,
+  reactionsSlot: @Composable () -> Unit,
+  callOverflowSlot: @Composable () -> Unit
+) {
+  BlurContainer(
+    isBlurred = isFocused,
+    modifier = Modifier.fillMaxSize()
+  ) {
+    Layout(
+      contents = listOf(barsSlot, callGridSlot, reactionsSlot, callOverflowSlot),
+      modifier = Modifier.fillMaxSize()
+    ) { measurables, constraints ->
+      val looseConstraints = constraints.copy(minWidth = 0, minHeight = 0)
+      val overflowPlaceables = measurables[3].map { it.measure(looseConstraints) }
+      val constrainedHeightOffset = if (isPortrait) overflowPlaceables.maxOfOrNull { it.height } ?: 0 else 0
+      val constrainedWidthOffset = if (isPortrait) { 0 } else overflowPlaceables.maxOfOrNull { it.width } ?: 0
+
+      val nonOverflowConstraints = looseConstraints.offset(horizontal = -constrainedWidthOffset, vertical = -constrainedHeightOffset)
+      val gridPlaceables = measurables[1].map { it.measure(nonOverflowConstraints) }
+
+      val barConstraints = if (bottomInsetPx > constrainedHeightOffset) {
+        looseConstraints.offset(-constrainedWidthOffset, -bottomInsetPx)
+      } else {
+        nonOverflowConstraints
+      }
+
+      val barsPlaceables = measurables[0].map { it.measure(barConstraints) }
+
+      val barsHeightOffset = barsPlaceables.sumOf { it.height }
+      val reactionsConstraints = barConstraints.offset(vertical = -barsHeightOffset)
+      val reactionsPlaceables = measurables[2].map { it.measure(reactionsConstraints) }
+
+      layout(looseConstraints.maxWidth, looseConstraints.maxHeight) {
+        overflowPlaceables.forEach {
+          if (isPortrait) {
+            it.place(0, looseConstraints.maxHeight - it.height)
+          } else {
+            it.place(looseConstraints.maxWidth - it.width, 0)
+          }
+        }
+
+        gridPlaceables.forEach {
+          it.place(0, 0)
+        }
+
+        barsPlaceables.forEach {
+          it.place(0, barConstraints.maxHeight - it.height)
+        }
+
+        reactionsPlaceables.forEach {
+          it.place(0, 0)
+        }
+      }
+    }
+  }
+}
+
+@Composable
+private fun PipLayer(
+  pictureInPictureSlot: @Composable () -> Unit,
+  localRenderState: WebRtcLocalRenderState,
+  bottomInsetPx: Int,
+  pipSizePx: Size,
+  bottomSheetWidthPx: Int
+) {
   Layout(
-    contents = listOf(::Bars, callGridSlot, reactionsSlot, pictureInPictureSlot, callOverflowSlot),
-    modifier = if (isCompactPortrait) { Modifier.padding(bottom = bottomInset).then(modifier) } else modifier
+    content = pictureInPictureSlot,
+    modifier = Modifier.fillMaxSize()
   ) { measurables, constraints ->
     val looseConstraints = constraints.copy(minWidth = 0, minHeight = 0)
-    val overflowPlaceables = measurables[4].map { it.measure(looseConstraints) }
-    val constrainedHeightOffset = if (isPortrait) overflowPlaceables.maxOfOrNull { it.height } ?: 0 else 0
-    val constrainedWidthOffset = if (isPortrait) { 0 } else overflowPlaceables.maxOfOrNull { it.width } ?: 0
-
-    val nonOverflowConstraints = looseConstraints.offset(horizontal = -constrainedWidthOffset, vertical = -constrainedHeightOffset)
-    val gridPlaceables = measurables[1].map { it.measure(nonOverflowConstraints) }
-
-    val barConstraints = if (bottomInsetPx > constrainedHeightOffset) {
-      looseConstraints.offset(-constrainedWidthOffset, -bottomInsetPx)
-    } else {
-      nonOverflowConstraints
-    }
-
-    val barsPlaceables = measurables[0].map { it.measure(barConstraints) }
-
-    val barsHeightOffset = barsPlaceables.sumOf { it.height }
-    val reactionsConstraints = barConstraints.offset(vertical = -barsHeightOffset)
-    val reactionsPlaceables = measurables[2].map { it.measure(reactionsConstraints) }
 
     val pictureInPictureConstraints: Constraints = when (localRenderState) {
       WebRtcLocalRenderState.GONE, WebRtcLocalRenderState.SMALLER_RECTANGLE, WebRtcLocalRenderState.LARGE, WebRtcLocalRenderState.LARGE_NO_VIDEO, WebRtcLocalRenderState.FOCUSED -> constraints
       WebRtcLocalRenderState.SMALL_RECTANGLE, WebRtcLocalRenderState.EXPANDED -> {
-        val hasBars = barsPlaceables.sumOf { it.width } > 0
-        if (hasBars) {
-          looseConstraints.offset(vertical = reactionsConstraints.maxHeight - looseConstraints.maxHeight)
-        } else if (bottomInsetPx > 0) {
-          if (looseConstraints.maxWidth - pipSizePx.width - pipSizePx.width - bottomSheetWidthPx < 0) {
-            looseConstraints.offset(vertical = -bottomInsetPx)
-          } else {
-            looseConstraints
-          }
-        } else {
-          looseConstraints
-        }
+        val shouldOffset = bottomInsetPx > 0 && looseConstraints.maxWidth - pipSizePx.width - pipSizePx.width - bottomSheetWidthPx < 0
+        looseConstraints.offset(vertical = if (shouldOffset) -bottomInsetPx else 0)
       }
     }
 
-    val pictureInPicturePlaceables = measurables[3].map { it.measure(pictureInPictureConstraints) }
+    val pictureInPicturePlaceables = measurables.map { it.measure(pictureInPictureConstraints) }
 
     layout(looseConstraints.maxWidth, looseConstraints.maxHeight) {
-      overflowPlaceables.forEach {
-        if (isPortrait) {
-          it.place(0, looseConstraints.maxHeight - it.height)
-        } else {
-          it.place(looseConstraints.maxWidth - it.width, 0)
-        }
-      }
-
-      gridPlaceables.forEach {
-        it.place(0, 0)
-      }
-
-      barsPlaceables.forEach {
-        it.place(0, barConstraints.maxHeight - it.height)
-      }
-
-      reactionsPlaceables.forEach {
-        it.place(0, 0)
-      }
-
       pictureInPicturePlaceables.forEach {
         it.place(0, 0)
       }
