@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.stickers
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -58,10 +60,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.window.core.layout.WindowSizeClass
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
@@ -86,11 +91,13 @@ import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
+import org.thoughtcrime.securesms.stickers.StickerManagementActivity.Companion.createIntent
 import org.thoughtcrime.securesms.util.viewModel
+import org.thoughtcrime.securesms.window.getWindowSizeClass
 import java.text.NumberFormat
 
 /**
- * Displays all of the available and installed sticker packs, enabling installation, uninstallation, and sorting.
+ * Displays all the available and installed sticker packs, enabling installation, uninstallation, and sorting.
  */
 class StickerManagementActivity : PassphraseRequiredActivity() {
   companion object {
@@ -117,28 +124,32 @@ class StickerManagementActivity : PassphraseRequiredActivity() {
           uiState = uiState,
           onNavigateBack = ::supportFinishAfterTransition,
           onSetMultiSelectModeEnabled = viewModel::setMultiSelectEnabled,
-          onSnackbarDismiss = { viewModel.onSnackbarDismiss() },
-          availableTabCallbacks = object : AvailableStickersContentCallbacks {
-            override fun onForwardClick(pack: AvailableStickerPack) = openShareSheet(pack.id, pack.key)
-            override fun onInstallClick(pack: AvailableStickerPack) = viewModel.installStickerPack(pack)
-            override fun onShowPreviewClick(pack: AvailableStickerPack) = navigateToStickerPreview(pack.id, pack.key)
-          },
-          installedTabCallbacks = object : InstalledStickersContentCallbacks {
-            override fun onForwardClick(pack: InstalledStickerPack) = openShareSheet(pack.id, pack.key)
-            override fun onRemoveClick(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksRequested(packIds)
-            override fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksConfirmed(packIds)
-            override fun onRemoveStickerPacksCanceled() = viewModel.onUninstallStickerPacksCanceled()
-            override fun onSelectionToggle(pack: InstalledStickerPack) = viewModel.toggleSelection(pack)
-            override fun onSelectAllToggle() = viewModel.toggleSelectAll()
-            override fun onDragAndDropEvent(event: DragAndDropEvent) {
-              when (event) {
-                is DragAndDropEvent.OnItemMove -> viewModel.updatePosition(event.fromIndex, event.toIndex)
-                is DragAndDropEvent.OnItemDrop -> viewModel.saveInstalledPacksSortOrder()
-                is DragAndDropEvent.OnDragCancel -> {}
-              }
+          onSnackbarDismiss = viewModel::onSnackbarDismiss,
+          availableTabCallbacks = remember {
+            object : AvailableStickersContentCallbacks {
+              override fun onForwardClick(pack: AvailableStickerPack) = openShareSheet(pack.id, pack.key)
+              override fun onInstallClick(pack: AvailableStickerPack) = viewModel.installStickerPack(pack)
+              override fun onShowPreviewClick(pack: AvailableStickerPack) = navigateToStickerPreview(pack.id, pack.key)
             }
+          },
+          installedTabCallbacks = remember {
+            object : InstalledStickersContentCallbacks {
+              override fun onForwardClick(pack: InstalledStickerPack) = openShareSheet(pack.id, pack.key)
+              override fun onRemoveClick(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksRequested(packIds)
+              override fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksConfirmed(packIds)
+              override fun onRemoveStickerPacksCanceled() = viewModel.onUninstallStickerPacksCanceled()
+              override fun onSelectionToggle(pack: InstalledStickerPack) = viewModel.toggleSelection(pack)
+              override fun onSelectAllToggle() = viewModel.toggleSelectAll()
+              override fun onDragAndDropEvent(event: DragAndDropEvent) {
+                when (event) {
+                  is DragAndDropEvent.OnItemMove -> viewModel.updatePosition(event.fromIndex, event.toIndex)
+                  is DragAndDropEvent.OnItemDrop -> viewModel.saveInstalledPacksSortOrder()
+                  is DragAndDropEvent.OnDragCancel -> {}
+                }
+              }
 
-            override fun onShowPreviewClick(pack: InstalledStickerPack) = navigateToStickerPreview(pack.id, pack.key)
+              override fun onShowPreviewClick(pack: InstalledStickerPack) = navigateToStickerPreview(pack.id, pack.key)
+            }
           }
         )
       }
@@ -203,10 +214,43 @@ interface InstalledStickersContentCallbacks {
   }
 }
 
+object StickerManagementScreen {
+  /**
+   * Shows the screen as a bottom sheet on large devices (tablets/foldables), activity on phones.
+   */
+  @JvmStatic
+  fun show(activity: FragmentActivity) {
+    if (showAsBottomSheet(activity.resources)) {
+      StickerManagementBottomSheet.show(activity.supportFragmentManager)
+    } else {
+      activity.startActivity(createIntent(activity))
+    }
+  }
+
+  /**
+   * Shows the screen as a bottom sheet on large devices (tablets/foldables), activity on phones.
+   */
+  fun show(fragment: Fragment) {
+    if (showAsBottomSheet(fragment.resources)) {
+      StickerManagementBottomSheet.show(fragment.parentFragmentManager)
+    } else {
+      fragment.startActivity(createIntent(fragment.requireContext()))
+    }
+  }
+
+  private fun showAsBottomSheet(resources: Resources): Boolean {
+    return resources.getWindowSizeClass().isAtLeastBreakpoint(
+      widthDpBreakpoint = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND,
+      heightDpBreakpoint = WindowSizeClass.HEIGHT_DP_MEDIUM_LOWER_BOUND
+    )
+  }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun StickerManagementScreen(
+fun StickerManagementScreen(
   uiState: StickerManagementUiState,
+  showNavigateBack: Boolean = true,
   onNavigateBack: () -> Unit = {},
   onSetMultiSelectModeEnabled: (Boolean) -> Unit = {},
   onSnackbarDismiss: () -> Unit = {},
@@ -252,6 +296,7 @@ private fun StickerManagementScreen(
         )
       } else {
         TopAppBar(
+          showNavigateBack = showNavigateBack,
           onBackPress = onNavigateBack,
           showMenuButton = isInstalledTabActive,
           onSetMultiSelectModeEnabled = onSetMultiSelectModeEnabled
@@ -300,6 +345,7 @@ private fun StickerManagementScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopAppBar(
+  showNavigateBack: Boolean = true,
   showMenuButton: Boolean = false,
   onBackPress: () -> Unit,
   onSetMultiSelectModeEnabled: (Boolean) -> Unit
@@ -307,9 +353,21 @@ private fun TopAppBar(
   Scaffolds.DefaultTopAppBar(
     title = stringResource(R.string.StickerManagement_title_stickers),
     titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
-    navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
-    onNavigationClick = onBackPress,
+    navigationIconContent = {
+      if (showNavigateBack) {
+        IconButton(
+          onClick = onBackPress,
+          modifier = Modifier.padding(end = 16.dp)
+        ) {
+          Icon(
+            imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+            contentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description)
+          )
+        }
+      } else {
+        Spacer(modifier = Modifier.padding(end = 16.dp))
+      }
+    },
     actions = {
       if (showMenuButton) {
         val menuController = remember { DropdownMenus.MenuController() }
@@ -605,7 +663,9 @@ private fun SnackbarHost(
 
   val snackbarMessage = when (actionConfirmation) {
     is StickerManagementConfirmation.InstalledPack -> stringResource(R.string.StickerManagement_installed_pack_s, actionConfirmation.packTitle)
+
     is StickerManagementConfirmation.UninstalledPack -> stringResource(R.string.StickerManagement_deleted_pack_s, actionConfirmation.packTitle)
+
     is StickerManagementConfirmation.UninstalledPacks -> pluralStringResource(
       R.plurals.StickerManagement_deleted_n_packs,
       actionConfirmation.numPacksUninstalled,

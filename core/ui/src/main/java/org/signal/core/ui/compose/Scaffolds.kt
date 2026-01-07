@@ -72,7 +72,7 @@ object Scaffolds {
   }
 
   /**
-   * Top app bar that takes an ImageVector
+   * Top app bar that takes an ImageVector navigation icon.
    */
   @Composable
   fun DefaultTopAppBar(
@@ -84,11 +84,10 @@ object Scaffolds {
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
   ) {
-    TopAppBar(
-      title = {
-        titleContent(scrollBehavior.state.contentOffset, title)
-      },
-      navigationIcon = {
+    DefaultTopAppBar(
+      title = title,
+      titleContent = titleContent,
+      navigationIconContent = {
         if (navigationIcon != null) {
           IconButton(
             onClick = onNavigationClick,
@@ -101,6 +100,25 @@ object Scaffolds {
           }
         }
       },
+      actions = actions,
+      scrollBehavior = scrollBehavior
+    )
+  }
+
+  /**
+   * Top app bar that takes composable navigation icon.
+   */
+  @Composable
+  fun DefaultTopAppBar(
+    title: String,
+    titleContent: @Composable (Float, String) -> Unit,
+    navigationIconContent: @Composable () -> Unit,
+    actions: @Composable RowScope.() -> Unit = {},
+    scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+  ) {
+    TopAppBar(
+      title = { titleContent(scrollBehavior.state.contentOffset, title) },
+      navigationIcon = navigationIconContent,
       scrollBehavior = scrollBehavior,
       colors = TopAppBarDefaults.topAppBarColors(
         scrolledContainerColor = SignalTheme.colors.colorSurface2

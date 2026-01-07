@@ -321,7 +321,7 @@ import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.stickers.StickerLocator
-import org.thoughtcrime.securesms.stickers.StickerManagementActivity
+import org.thoughtcrime.securesms.stickers.StickerManagementScreen
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
@@ -895,7 +895,7 @@ class ConversationFragment :
   }
 
   override fun onStickerManagementClicked() {
-    startActivity(StickerManagementActivity.createIntent(requireContext()))
+    StickerManagementScreen.show(this)
     container.hideInput()
   }
 

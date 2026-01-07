@@ -32,6 +32,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -106,11 +107,13 @@ class StickerPackPreviewActivityV2 : PassphraseRequiredActivity() {
       SignalTheme {
         StickerPackPreviewScreen(
           uiState = uiState,
-          callbacks = object : StickerPackPreviewScreenCallbacks {
-            override fun onNavigateTo(target: NavTarget) = navigateToTarget(target)
-            override fun onForwardClick(params: StickerPackParams) = openShareSheet(params)
-            override fun onInstallClick(params: StickerPackParams) = viewModel.installStickerPack(params)
-            override fun onUninstallClick(params: StickerPackParams) = viewModel.uninstallStickerPack(params)
+          callbacks = remember {
+            object : StickerPackPreviewScreenCallbacks {
+              override fun onNavigateTo(target: NavTarget) = navigateToTarget(target)
+              override fun onForwardClick(params: StickerPackParams) = openShareSheet(params)
+              override fun onInstallClick(params: StickerPackParams) = viewModel.installStickerPack(params)
+              override fun onUninstallClick(params: StickerPackParams) = viewModel.uninstallStickerPack(params)
+            }
           }
         )
       }
