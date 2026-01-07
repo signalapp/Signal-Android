@@ -312,7 +312,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
 
     val cdnMismatches = SignalDatabase.backupMediaSnapshots.getMediaObjectsWithNonMatchingCdn(mediaObjectsOnBothRemoteAndLocal)
     if (cdnMismatches.isNotEmpty()) {
-      Log.w(TAG, "Found ${cdnMismatches.size} items with CDNs that differ from what we have locally. Updating our local store.")
+      Log.w(TAG, "Found ${cdnMismatches.size} items with CDNs that differ from what we have locally. Updating our local store.", true)
       for (mismatch in cdnMismatches) {
         SignalDatabase.attachments.setArchiveCdnByPlaintextHashAndRemoteKey(mismatch.plaintextHash, mismatch.remoteKey, mismatch.cdn)
       }
@@ -333,16 +333,16 @@ class ArchiveAttachmentReconciliationJob private constructor(
       is NetworkResult.NetworkError -> return null to Result.retry(defaultBackoff())
       is NetworkResult.StatusCodeError -> {
         if (result.code == 429) {
-          Log.w(TAG, "Rate limited while attempting to list media objects. Retrying later.")
+          Log.w(TAG, "Rate limited while attempting to list media objects. Retrying later.", true)
           return null to Result.retry(result.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
         } else {
-          Log.w(TAG, "Failed to list remote media objects with code: ${result.code}. Unable to proceed.", result.getCause())
+          Log.w(TAG, "Failed to list remote media objects with code: ${result.code}. Unable to proceed.", result.getCause(), true)
           return null to Result.failure()
         }
       }
 
       is NetworkResult.ApplicationError -> {
-        Log.w(TAG, "Failed to list remote media objects due to a crash.", result.getCause())
+        Log.w(TAG, "Failed to list remote media objects due to a crash.", result.getCause(), true)
         return null to Result.fatalFailure(RuntimeException(result.getCause()))
       }
     }
@@ -357,7 +357,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
   private fun validateAndDeleteFromRemote(deletes: Set<ArchivedMediaObject>): Result? {
     val stopwatch = Stopwatch("remote-delete")
     val validatedDeletes = SignalDatabase.attachments.getMediaObjectsThatCantBeFound(deletes)
-    Log.d(TAG, "Found that ${validatedDeletes.size}/${deletes.size} requested remote deletes were valid based on current attachment table state.")
+    Log.d(TAG, "Found that ${validatedDeletes.size}/${deletes.size} requested remote deletes were valid based on current attachment table state.", true)
     stopwatch.split("validate")
 
     if (validatedDeletes.isEmpty()) {
@@ -366,7 +366,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
 
     val deleteResult = ArchiveCommitAttachmentDeletesJob.deleteMediaObjectsFromCdn(TAG, validatedDeletes, this::defaultBackoff, this::isCanceled)
     if (deleteResult != null) {
-      Log.w(TAG, "Failed to delete orphaned attachments from the CDN. Returning failure.")
+      Log.w(TAG, "Failed to delete orphaned attachments from the CDN. Returning failure.", true)
       return deleteResult
     }
     stopwatch.split("network")
