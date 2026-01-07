@@ -83,6 +83,10 @@ object ArchiveUploadProgress {
       if (pendingMediaUploadBytes <= 0) {
         Log.i(TAG, "No more pending bytes. Done!")
         Log.d(TAG, "Upload finished! " + buildDebugStats(debugAttachmentStartTime, debugTotalAttachments.get(), debugTotalBytes.get()))
+        if (uploadProgress.mediaTotalBytes > 0) {
+          Log.i(TAG, "We uploaded media as part of the backup. We should enqueue another backup now to ensure that CDN info is properly written.")
+          BackupMessagesJob.enqueue()
+        }
         return@map PROGRESS_NONE
       }
 
