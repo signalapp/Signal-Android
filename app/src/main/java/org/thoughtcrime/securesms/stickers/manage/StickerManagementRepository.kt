@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.stickers
+package org.thoughtcrime.securesms.stickers.manage
 
 import androidx.annotation.Discouraged
 import kotlinx.coroutines.CoroutineScope
@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackOperationJob
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.stickers.BlessedPacks
 
 /**
  * Handles the retrieval and modification of sticker pack data.

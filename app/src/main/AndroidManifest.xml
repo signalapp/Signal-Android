@@ -620,7 +620,7 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name=".stickers.StickerManagementActivity"
+            android:name=".stickers.manage.StickerManagementActivity"
             android:exported="false"
             android:theme="@style/Signal.DayNight.NoActionBar" />
 

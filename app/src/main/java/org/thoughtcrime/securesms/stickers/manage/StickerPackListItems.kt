@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.stickers
+package org.thoughtcrime.securesms.stickers.manage
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandHorizontally
@@ -42,7 +42,8 @@ import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressIn
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressState
 import org.thoughtcrime.securesms.compose.GlideImage
 import org.thoughtcrime.securesms.mms.DecryptableUri
-import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
+import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
+import org.thoughtcrime.securesms.stickers.manage.AvailableStickerPack.DownloadStatus
 import org.thoughtcrime.securesms.util.DeviceProperties
 
 @Composable

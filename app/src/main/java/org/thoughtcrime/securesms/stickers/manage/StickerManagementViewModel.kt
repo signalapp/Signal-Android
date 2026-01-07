@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.stickers
+package org.thoughtcrime.securesms.stickers.manage
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,7 +19,8 @@ import org.signal.core.util.swap
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
-import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
+import org.thoughtcrime.securesms.stickers.BlessedPacks
+import org.thoughtcrime.securesms.stickers.manage.AvailableStickerPack.DownloadStatus
 
 class StickerManagementViewModel : ViewModel() {
   private val stickerManagementRepo = StickerManagementRepository

@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.model.StickerPackParams
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewUiState.ContentState
+import org.thoughtcrime.securesms.stickers.manage.StickerManagementRepository
 import kotlin.jvm.optionals.getOrElse
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
