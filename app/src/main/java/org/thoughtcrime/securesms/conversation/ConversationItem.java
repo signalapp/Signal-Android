@@ -1407,7 +1407,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         mediaThumbnailStub.require().setConversationColor(Color.TRANSPARENT);
         if (doAnySlidesLackData(slideDeck)) {
           mediaThumbnailStub.require().setStartTransferClickListener(downloadClickListener);
-        } else {
+        } else if (slideDeck.getSlides().stream().anyMatch(it -> it.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_FAILED)) {
           mediaThumbnailStub.require().setStartTransferClickListener(new ResendClickListener(messageRecord));
         }
       }
