@@ -2,7 +2,6 @@ import groovy.util.Node
 import groovy.xml.XmlParser
 import org.signal.buildtools.SmartlingClient
 import org.signal.buildtools.StaticIpResolver
-import java.io.File
 import java.util.Properties
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
@@ -23,6 +22,7 @@ import java.util.concurrent.Future
 tasks.register("pushTranslations") {
   group = "Translations"
   description = "Pushes the main strings.xml file to Smartling for translation"
+  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
 
   doLast {
     val client = createSmartlingClient()
@@ -50,6 +50,7 @@ tasks.register("pullTranslations") {
   group = "Translations"
   description = "Pulls translated strings.xml files from Smartling for all locales"
   mustRunAfter("pushTranslations")
+  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
 
   doLast {
     val client = createSmartlingClient()
@@ -104,6 +105,7 @@ tasks.register("replaceEllipsis") {
   group = "Static Files"
   description = "Process strings for ellipsis characters."
   mustRunAfter("pullTranslations")
+  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
   doLast {
     allStringsResourceFiles { f ->
       val before = f.readText()
@@ -120,6 +122,7 @@ tasks.register("cleanApostropheErrors") {
   group = "Static Files"
   description = "Fix smartling apostrophe string errors."
   mustRunAfter("pullTranslations")
+  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
   doLast {
     val pattern = Regex("""([^\\=08])(')""")
     allStringsResourceFiles { f ->
@@ -139,6 +142,7 @@ tasks.register("excludeNonTranslatables") {
   group = "Static Files"
   description = "Remove strings that are marked \"translatable\"=\"false\" or are ExtraTranslations."
   mustRunAfter("pullTranslations")
+  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
   doLast {
     val englishFile = file("src/main/res/values/strings.xml")
 
@@ -198,6 +202,7 @@ tasks.register("excludeNonTranslatables") {
 tasks.register("resolveStaticIps") {
   group = "Static Files"
   description = "Fetches static IPs for core hosts and writes them to static-ips.gradle"
+  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
   doLast {
     val staticIpResolver = StaticIpResolver()
     val tripleQuote = "\"\"\""
