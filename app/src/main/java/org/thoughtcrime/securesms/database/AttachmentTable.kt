@@ -2393,6 +2393,81 @@ class AttachmentTable(
       .run()
   }
 
+  /**
+   * For attachments that match the given media objects (by computing mediaId from plaintextHash + remoteKey),
+   * update their archive transfer state to FINISHED and set the archive CDN.
+   *
+   * This is used during reconciliation to fix attachments that were restored from a backup but didn't
+   * have the correct archive state because the archive upload hadn't completed when the backup was made.
+   *
+   * @return the number of unique (plaintextHash, remoteKey) pairs that were updated
+   */
+  fun setArchiveFinishedForMatchingMediaObjects(objects: Set<ArchivedMediaObject>): Int {
+    if (objects.isEmpty()) {
+      return 0
+    }
+
+    val objectsByMediaId: Map<String, ArchivedMediaObject> = objects.associateBy { it.mediaId }
+
+    // Collect updates grouped by CDN: Map<cdn, List<Pair<plaintextHash, remoteKey>>>
+    val updatesByCdn: MutableMap<Int, MutableList<Pair<String, String>>> = mutableMapOf()
+
+    readableDatabase
+      .select(DATA_HASH_END, REMOTE_KEY)
+      .from(TABLE_NAME)
+      .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL AND $ARCHIVE_TRANSFER_STATE != ?", ArchiveTransferState.FINISHED.value)
+      .groupBy("$DATA_HASH_END, $REMOTE_KEY")
+      .run()
+      .forEach { cursor ->
+        val remoteKeyStr = cursor.requireNonNullString(REMOTE_KEY)
+        val plaintextHashStr = cursor.requireNonNullString(DATA_HASH_END)
+        val remoteKey = Base64.decode(remoteKeyStr)
+        val plaintextHash = Base64.decode(plaintextHashStr)
+
+        val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey)
+          .toMediaId(SignalStore.backup.mediaRootBackupKey)
+          .encode()
+
+        val matchingObject = objectsByMediaId[mediaId]
+        if (matchingObject != null) {
+          updatesByCdn.getOrPut(matchingObject.cdn) { mutableListOf() }
+            .add(plaintextHashStr to remoteKeyStr)
+        }
+      }
+
+    if (updatesByCdn.isEmpty()) {
+      return 0
+    }
+
+    var updatedCount = 0
+
+    writableDatabase.withinTransaction { db ->
+      for ((cdn, pairs) in updatesByCdn) {
+        // Batch updates - each pair uses 2 query args, so chunk accordingly
+        for (batch in pairs.chunked(500)) {
+          val whereClause = batch.joinToString(" OR ") { "($DATA_HASH_END = ? AND $REMOTE_KEY = ?)" }
+          val whereArgs = batch.flatMap { listOf(it.first, it.second) }.toTypedArray()
+
+          db.update(TABLE_NAME)
+            .values(
+              ARCHIVE_TRANSFER_STATE to ArchiveTransferState.FINISHED.value,
+              ARCHIVE_CDN to cdn
+            )
+            .where(whereClause, *whereArgs)
+            .run()
+
+          updatedCount += batch.size
+        }
+      }
+    }
+
+    if (updatedCount > 0) {
+      AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
+    }
+
+    return updatedCount
+  }
+
   fun clearArchiveData(attachmentId: AttachmentId) {
     writableDatabase
       .update(TABLE_NAME)

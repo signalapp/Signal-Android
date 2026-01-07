@@ -19,6 +19,7 @@ import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.models.backup.MediaName
 import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.copyTo
@@ -28,6 +29,8 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
+import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.MediaStream
 import org.thoughtcrime.securesms.mms.SentMediaQuality
@@ -412,6 +415,126 @@ class AttachmentTableTest {
     // Verify Attachment 1 and 2 are updated as FINISHED
     assertThat(dbAttachment1.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.FINISHED)
     assertThat(dbAttachment2.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.FINISHED)
+  }
+
+  @Test
+  fun givenAttachmentsWithMatchingMediaId_whenISetArchiveFinishedForMatchingMediaObjects_thenIExpectThoseAttachmentsToBeMarkedFinished() {
+    // GIVEN
+    val data = byteArrayOf(1, 2, 3, 4, 5)
+
+    val attachment1 = createAttachmentPointer("remote-key-1".toByteArray(), data.size)
+    val attachment2 = createAttachmentPointer("remote-key-2".toByteArray(), data.size)
+    val attachment3 = createAttachmentPointer("remote-key-3".toByteArray(), data.size)
+
+    // Insert messages with attachments
+    val message1Result = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = 0.days, attachment = attachment1)).get()
+    val attachment1Id = message1Result.insertedAttachments!![attachment1]!!
+    SignalDatabase.attachments.setTransferState(message1Result.messageId, attachment1Id, AttachmentTable.TRANSFER_PROGRESS_STARTED)
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(message1Result.messageId, attachment1Id, ByteArrayInputStream(data))
+
+    val message2Result = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = 1.days, attachment = attachment2)).get()
+    val attachment2Id = message2Result.insertedAttachments!![attachment2]!!
+    SignalDatabase.attachments.setTransferState(message2Result.messageId, attachment2Id, AttachmentTable.TRANSFER_PROGRESS_STARTED)
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(message2Result.messageId, attachment2Id, ByteArrayInputStream(data))
+
+    val message3Result = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = 2.days, attachment = attachment3)).get()
+    val attachment3Id = message3Result.insertedAttachments!![attachment3]!!
+    SignalDatabase.attachments.setTransferState(message3Result.messageId, attachment3Id, AttachmentTable.TRANSFER_PROGRESS_STARTED)
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(message3Result.messageId, attachment3Id, ByteArrayInputStream(data))
+
+    // Ensure attachments are in NONE state
+    assertThat(SignalDatabase.attachments.getAttachment(attachment1Id)!!.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
+    assertThat(SignalDatabase.attachments.getAttachment(attachment2Id)!!.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
+    assertThat(SignalDatabase.attachments.getAttachment(attachment3Id)!!.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
+
+    // Build media objects only for attachments 1 and 2 (not 3)
+    val dbAttachment1 = SignalDatabase.attachments.getAttachment(attachment1Id)!!
+    val dbAttachment2 = SignalDatabase.attachments.getAttachment(attachment2Id)!!
+
+    val mediaId1 = MediaName.fromPlaintextHashAndRemoteKey(
+      dbAttachment1.dataHash!!.decodeBase64OrThrow(),
+      dbAttachment1.remoteKey!!.decodeBase64OrThrow()
+    ).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+
+    val mediaId2 = MediaName.fromPlaintextHashAndRemoteKey(
+      dbAttachment2.dataHash!!.decodeBase64OrThrow(),
+      dbAttachment2.remoteKey!!.decodeBase64OrThrow()
+    ).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+
+    val archivedMediaObjects = setOf(
+      ArchivedMediaObject(mediaId = mediaId1, cdn = 5),
+      ArchivedMediaObject(mediaId = mediaId2, cdn = 6)
+    )
+
+    // WHEN
+    val updatedCount = SignalDatabase.attachments.setArchiveFinishedForMatchingMediaObjects(archivedMediaObjects)
+
+    // THEN
+    assertThat(updatedCount).isEqualTo(2)
+
+    val resultAttachment1 = SignalDatabase.attachments.getAttachment(attachment1Id)!!
+    val resultAttachment2 = SignalDatabase.attachments.getAttachment(attachment2Id)!!
+    val resultAttachment3 = SignalDatabase.attachments.getAttachment(attachment3Id)!!
+
+    // Attachments 1 and 2 should be FINISHED with their respective CDNs
+    assertThat(resultAttachment1.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.FINISHED)
+    assertThat(resultAttachment1.archiveCdn).isEqualTo(5)
+
+    assertThat(resultAttachment2.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.FINISHED)
+    assertThat(resultAttachment2.archiveCdn).isEqualTo(6)
+
+    // Attachment 3 should still be NONE (not in the set)
+    assertThat(resultAttachment3.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
+  }
+
+  @Test
+  fun givenEmptyMediaObjectsSet_whenISetArchiveFinishedForMatchingMediaObjects_thenIExpectZeroUpdates() {
+    // GIVEN
+    val data = byteArrayOf(1, 2, 3, 4, 5)
+    val attachment = createAttachmentPointer("remote-key-1".toByteArray(), data.size)
+
+    val messageResult = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = 0.days, attachment = attachment)).get()
+    val attachmentId = messageResult.insertedAttachments!![attachment]!!
+    SignalDatabase.attachments.setTransferState(messageResult.messageId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_STARTED)
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageResult.messageId, attachmentId, ByteArrayInputStream(data))
+
+    // WHEN
+    val updatedCount = SignalDatabase.attachments.setArchiveFinishedForMatchingMediaObjects(emptySet())
+
+    // THEN
+    assertThat(updatedCount).isEqualTo(0)
+    assertThat(SignalDatabase.attachments.getAttachment(attachmentId)!!.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
+  }
+
+  @Test
+  fun givenAlreadyFinishedAttachment_whenISetArchiveFinishedForMatchingMediaObjects_thenIExpectNoUpdate() {
+    // GIVEN
+    val data = byteArrayOf(1, 2, 3, 4, 5)
+    val attachment = createAttachmentPointer("remote-key-1".toByteArray(), data.size)
+
+    val messageResult = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = 0.days, attachment = attachment)).get()
+    val attachmentId = messageResult.insertedAttachments!![attachment]!!
+    SignalDatabase.attachments.setTransferState(messageResult.messageId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_STARTED)
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageResult.messageId, attachmentId, ByteArrayInputStream(data))
+
+    // Mark as already FINISHED
+    SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
+
+    val dbAttachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
+    val mediaId = MediaName.fromPlaintextHashAndRemoteKey(
+      dbAttachment.dataHash!!.decodeBase64OrThrow(),
+      dbAttachment.remoteKey!!.decodeBase64OrThrow()
+    ).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+
+    val archivedMediaObjects = setOf(
+      ArchivedMediaObject(mediaId = mediaId, cdn = 5)
+    )
+
+    // WHEN
+    val updatedCount = SignalDatabase.attachments.setArchiveFinishedForMatchingMediaObjects(archivedMediaObjects)
+
+    // THEN - should not update since already FINISHED
+    assertThat(updatedCount).isEqualTo(0)
   }
 
   private fun createIncomingMessage(

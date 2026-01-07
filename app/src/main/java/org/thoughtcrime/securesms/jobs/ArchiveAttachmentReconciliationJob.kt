@@ -352,6 +352,9 @@ class ArchiveAttachmentReconciliationJob private constructor(
    * Deletes attachments from the archive CDN, after verifying that they also can't be found anywhere in [org.thoughtcrime.securesms.database.AttachmentTable]
    * either. Checking the attachment table is very expensive and independent of query size, which is why we batch the lookups.
    *
+   * Also fixes archive transfer state for attachments that ARE found locally but may have incorrect state
+   * (e.g., restored from a backup before archive upload completed).
+   *
    * @return A non-successful [Result] in the case of failure, otherwise null for success.
    */
   private fun validateAndDeleteFromRemote(deletes: Set<ArchivedMediaObject>): Result? {
@@ -359,6 +362,17 @@ class ArchiveAttachmentReconciliationJob private constructor(
     val validatedDeletes = SignalDatabase.attachments.getMediaObjectsThatCantBeFound(deletes)
     Log.d(TAG, "Found that ${validatedDeletes.size}/${deletes.size} requested remote deletes were valid based on current attachment table state.", true)
     stopwatch.split("validate")
+
+    // Fix archive state for attachments that are found locally but weren't in the latest snapshot.
+    // This can happen when restoring from a backup that was made before archive upload completed. The files would be uploaded, but no CDN info would be in the backup.
+    val foundLocally = deletes - validatedDeletes
+    if (foundLocally.isNotEmpty()) {
+      val fixedCount = SignalDatabase.attachments.setArchiveFinishedForMatchingMediaObjects(foundLocally)
+      if (fixedCount > 0) {
+        Log.i(TAG, "Fixed archive transfer state for $fixedCount attachment groups that were found on CDN but had incorrect local state.", true)
+      }
+    }
+    stopwatch.split("fix-state")
 
     if (validatedDeletes.isEmpty()) {
       return null
