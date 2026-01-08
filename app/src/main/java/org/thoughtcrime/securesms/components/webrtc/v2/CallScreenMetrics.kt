@@ -30,6 +30,11 @@ class CallScreenMetrics @RememberInComposition constructor(
      * Shape of self renderer when in large group calls.
      */
     val OverflowParticipantRendererShape = RoundedCornerShape(OverflowParticipantRendererCornerSize)
+
+    /**
+     * Maximum width of the bottom sheet and related UI bars on the call screen.
+     */
+    val SheetMaxWidth = 540.dp
   }
 
   /**

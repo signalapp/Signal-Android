@@ -15,9 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -112,7 +110,6 @@ fun CallScreenJoiningOverlay(
   }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun WaitingToBeLetInBar(
   modifier: Modifier = Modifier
@@ -121,7 +118,7 @@ private fun WaitingToBeLetInBar(
     horizontalArrangement = Arrangement.spacedBy(12.dp),
     verticalAlignment = Alignment.CenterVertically,
     modifier = modifier
-      .widthIn(max = BottomSheetDefaults.SheetMaxWidth)
+      .widthIn(max = CallScreenMetrics.SheetMaxWidth)
       .fillMaxWidth()
       .background(
         color = SignalTheme.colors.colorSurface1,

@@ -52,7 +52,7 @@ fun CallElementsLayout(
 
   @Composable
   fun Bars() {
-    Column {
+    Column(modifier = Modifier.fillMaxWidth()) {
       raiseHandSlot()
       callLinkBarSlot()
     }
@@ -74,6 +74,7 @@ fun CallElementsLayout(
       isFocused = isFocused,
       isPortrait = isPortrait,
       bottomInsetPx = bottomInsetPx,
+      bottomSheetWidthPx = bottomSheetWidthPx,
       barsSlot = { Bars() },
       callGridSlot = callGridSlot,
       reactionsSlot = reactionsSlot,
@@ -95,6 +96,7 @@ private fun BlurrableContentLayer(
   isFocused: Boolean,
   isPortrait: Boolean,
   bottomInsetPx: Int,
+  bottomSheetWidthPx: Int,
   barsSlot: @Composable () -> Unit,
   callGridSlot: @Composable () -> Unit,
   reactionsSlot: @Composable () -> Unit,
@@ -122,7 +124,11 @@ private fun BlurrableContentLayer(
         nonOverflowConstraints
       }
 
-      val barsPlaceables = measurables[0].map { it.measure(barConstraints) }
+      // Cap bars width to sheet max width (bars can be narrower if content doesn't fill)
+      val barsMaxWidth = minOf(barConstraints.maxWidth, bottomSheetWidthPx)
+      val barsConstrainedToSheet = barConstraints.copy(maxWidth = barsMaxWidth)
+
+      val barsPlaceables = measurables[0].map { it.measure(barsConstrainedToSheet) }
 
       val barsHeightOffset = barsPlaceables.sumOf { it.height }
       val reactionsConstraints = barConstraints.offset(vertical = -barsHeightOffset)
@@ -142,7 +148,8 @@ private fun BlurrableContentLayer(
         }
 
         barsPlaceables.forEach {
-          it.place(0, barConstraints.maxHeight - it.height)
+          val barsX = (looseConstraints.maxWidth - it.width) / 2
+          it.place(barsX, barConstraints.maxHeight - it.height)
         }
 
         reactionsPlaceables.forEach {
@@ -258,7 +265,7 @@ private fun CallElementsLayoutPreview() {
         )
       },
       bottomInset = 120.dp,
-      bottomSheetWidth = 640.dp,
+      bottomSheetWidth = CallScreenMetrics.SheetMaxWidth,
       localRenderState = localRenderState
     )
   }

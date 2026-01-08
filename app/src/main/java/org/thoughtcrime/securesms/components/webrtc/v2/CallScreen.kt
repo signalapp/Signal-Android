@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
@@ -181,7 +180,7 @@ fun CallScreen(
       sheetPeekHeight = peekHeight.dp,
       sheetContainerColor = SignalTheme.colors.colorSurface1,
       containerColor = Color.Black,
-      sheetMaxWidth = 540.dp,
+      sheetMaxWidth = CallScreenMetrics.SheetMaxWidth,
       sheetContent = {
         BottomSheets.Handle(modifier = Modifier.align(Alignment.CenterHorizontally))
 
@@ -339,11 +338,14 @@ fun CallScreen(
             )
           },
           raiseHandSlot = {
-            raiseHandSnackbar(
-              Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp)
-            )
+            Box(
+              modifier = Modifier.fillMaxWidth(),
+              contentAlignment = Alignment.CenterEnd
+            ) {
+              raiseHandSnackbar(
+                Modifier.padding(bottom = 16.dp)
+              )
+            }
           },
           callLinkBarSlot = {
             PendingParticipantsInternal(modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 16.dp))
@@ -375,7 +377,7 @@ fun CallScreen(
             }
           },
           bottomInset = padding,
-          bottomSheetWidth = BottomSheetDefaults.SheetMaxWidth,
+          bottomSheetWidth = CallScreenMetrics.SheetMaxWidth,
           localRenderState = localRenderState,
           modifier = Modifier.fillMaxSize()
         )
