@@ -1718,6 +1718,7 @@ class ConversationFragment :
   }
 
   private fun showPinForDialog(conversationMessage: ConversationMessage) {
+    val threadRecipient = viewModel.recipientSnapshot ?: return
     var selection = 1
     val labels = resources.getStringArray(R.array.ConversationFragment__pinned_for_labels)
     val values = resources.getIntArray(R.array.ConversationFragment__pinned_for_values)
@@ -1736,7 +1737,7 @@ class ConversationFragment :
           .pinMessage(
             messageRecord = conversationMessage.messageRecord,
             duration = if (values[selection] == -1) kotlin.time.Duration.INFINITE else values[selection].days,
-            threadRecipient = conversationMessage.threadRecipient
+            threadRecipient = threadRecipient
           )
           .doOnSubscribe {
             handler.postDelayed({ showSpinner() }, PIN_SPINNER_DELAY.inWholeMilliseconds)
