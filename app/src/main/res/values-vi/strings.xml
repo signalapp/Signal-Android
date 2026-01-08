@@ -948,6 +948,10 @@
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Vừa xong</string>
     <string name="DateUtils_minutes_ago">%1$dph</string>
+    <!-- Content description when describing how many minutes ago something has happened -->
+    <plurals name="DateUtils_minutes_ago_content_description">
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
     <string name="DateUtils_today">Hôm nay</string>
     <string name="DateUtils_yesterday">Hôm qua</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
@@ -1590,6 +1594,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Không thể tham gia nhóm. Vui lòng thử lại sau.</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Lỗi mạng.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Đường dẫn nhóm không khả dụng</string>
+    <!-- Toast message shown when trying to join a group by link but the group is full -->
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Không thể tham gia nhóm</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -3844,7 +3850,7 @@
     <string name="preferences__pref_use_address_book_photos">Sử dụng hình ảnh trong danh bạ</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Hiển thị hình ảnh của liên lạc từ danh bạ nếu có</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Giữ cuộc trò chuyện đã tắt tiếng trong mục lưu trữ</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Các cuộc trò chuyện đã tắt tiếng vẫn sẽ ở trong mục lưu trữ khi có tin nhắn mới được gửi đến.</string>
     <string name="preferences__generate_link_previews">Tạo xem trước liên kết</string>
@@ -4063,6 +4069,8 @@
     <string name="preferences_normal">Bình thường</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Gọn</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
 
 
     <string name="configurable_single_select__customize_option">Sửa cài đặt</string>
@@ -6069,14 +6077,14 @@
     <string name="ManageDonationsFragment__my_support">Hổ trợ của tôi</string>
     <string name="ManageDonationsFragment__manage_subscription">Quản lý Gói Ủng hộ</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Biên lai các khoản ủng hộ</string>
+    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
     <string name="ManageDonationsFragment__badges">Huy hiệu</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">Câu hỏi thường gặp về Nhà Ủng hộ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Các cách ủng hộ khác</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Ủng hộ thay cho một người bạn</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Không thể xác nhận khoản ủng hộ</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -8741,7 +8749,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Kết thúc hỏi ý kiến?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Các thành viên nhóm sẽ không còn có thể bình chọn trong cuộc hỏi ý kiến này nữa.</string>
+    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Đang chờ kết nối mạng…</string>
     <!-- Header when creating a new poll -->
@@ -8798,7 +8806,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Khác</string>
+    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Mô tả vấn đề của bạn</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->

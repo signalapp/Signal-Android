@@ -1028,6 +1028,14 @@
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Anois</string>
     <string name="DateUtils_minutes_ago">%1$dm</string>
+    <!-- Content description when describing how many minutes ago something has happened -->
+    <plurals name="DateUtils_minutes_ago_content_description">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="two">%1$d minutes</item>
+        <item quantity="few">%1$d minutes</item>
+        <item quantity="many">%1$d minutes</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
     <string name="DateUtils_today">Inniu</string>
     <string name="DateUtils_yesterday">Inné</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
@@ -1762,6 +1770,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Ní féidir dul isteach sa ghrúpa. Triail arís níos déanaí</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Tharla earráid líonra</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Níl an nasc chuig an mbaicle sin gníomhach</string>
+    <!-- Toast message shown when trying to join a group by link but the group is full -->
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Ní féidir dul isteach sa ghrúpa</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -4292,7 +4302,7 @@
     <string name="preferences__pref_use_address_book_photos">Úsáid grianghraif sa leabhar seoltaí</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Taispeáin grianghraif na dteagmhálacha ó do leabhar seoltaí má tá siad ar fáil</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Coinnigh comhráite balbhaithe sa chartlann</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Fanfaidh comhráite balbhaithe sa chartlann fós nuair a thagann teachtaireacht nua isteach.</string>
     <string name="preferences__generate_link_previews">Gin réamhamharcanna ar naisc</string>
@@ -4519,6 +4529,8 @@
     <string name="preferences_normal">Normálta</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Dlúth</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
 
 
     <string name="configurable_single_select__customize_option">Saincheap rogha</string>
@@ -6649,14 +6661,14 @@
     <string name="ManageDonationsFragment__my_support">My Support</string>
     <string name="ManageDonationsFragment__manage_subscription">Bainistigh síntiús</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Admhálacha Tabhartas</string>
+    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
     <string name="ManageDonationsFragment__badges">Suaitheantais</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">CCanna do thabharthóirí</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Other Ways to Give</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Tabhair airgead ar son Cara</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Níorbh fhéidir an tabhartas a dheimhniú</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -9485,7 +9497,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Cuir deireadh leis an suirbhé?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Ní bheidh baill an ghrúpa in ann vóta a chaitheamh sa suirbhé seo a thuilleadh.</string>
+    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Ag feitheamh le líonra…</string>
     <!-- Header when creating a new poll -->
@@ -9542,7 +9554,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Rud éigin eile</string>
+    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Déan cur síos ar an bhfadhb</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->

@@ -948,6 +948,10 @@
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Sekarang</string>
     <string name="DateUtils_minutes_ago">%1$dmenit</string>
+    <!-- Content description when describing how many minutes ago something has happened -->
+    <plurals name="DateUtils_minutes_ago_content_description">
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
     <string name="DateUtils_today">Hari ini</string>
     <string name="DateUtils_yesterday">Kemarin</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
@@ -1590,6 +1594,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Tidak dapat bergabung ke grup. Mohon coba lagi nanti</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Terjadi kesalahan jaringan.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tautan grup ini tidak aktif</string>
+    <!-- Toast message shown when trying to join a group by link but the group is full -->
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Tidak dapat bergabung dengan grup</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -3844,7 +3850,7 @@
     <string name="preferences__pref_use_address_book_photos">Gunakan foto dari kontak</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Tampilkan foto dari kontak jika tersedia</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Biarkan Obrolan yang Dibisukan tetap Diarsipkan</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Obrolan dibisukan yang diarsipkan akan tetap diarsipkan saat ada pesan baru yang masuk.</string>
     <string name="preferences__generate_link_previews">Buat pratinjau tautan</string>
@@ -4063,6 +4069,8 @@
     <string name="preferences_normal">Normal</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Ringkas</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
 
 
     <string name="configurable_single_select__customize_option">Sesuaikan opsi</string>
@@ -6015,9 +6023,9 @@
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s mendukung Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s mendukung Signal dengan donasi bulanan. Signal adalah organisasi nirlaba tanpa pengiklan dan investor, didukung hanya oleh orang seperti Anda.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s mendukung Signal dengan donasi bulanan. Signal adalah organisasi nirlaba tanpa pengiklan atau investor, hanya didukung orang baik seperti Anda.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s mendukung Signal dengan donasi. Signal adalah lembaga nirlaba tanpa pengiklan dan investor, didukung hanya oleh orang-orang seperti Anda.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s mendukung Signal dengan donasi. Signal adalah organisasi nirlaba tanpa pengiklan atau investor, hanya didukung orang baik seperti Anda.</string>
 
     <string name="ImageView__badge">Lencana</string>
 
@@ -6069,14 +6077,14 @@
     <string name="ManageDonationsFragment__my_support">Dukungan saya</string>
     <string name="ManageDonationsFragment__manage_subscription">Kelola langganan</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Resi Donasi</string>
+    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
     <string name="ManageDonationsFragment__badges">Lencana</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">Pertanyaan Umum tentang Donatur</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Cara lain untuk memberi</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donasi untuk Teman</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Tidak dapat mengonfirmasi donasi</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -8741,7 +8749,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Akhiri polling?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Anggota grup sudah tidak bisa memilih dalam polling ini.</string>
+    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Menunggu jaringan …</string>
     <!-- Header when creating a new poll -->
@@ -8798,7 +8806,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Lainnya</string>
+    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Jelaskan masalah yang Anda alami</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->

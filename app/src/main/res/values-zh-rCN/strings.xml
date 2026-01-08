@@ -948,6 +948,10 @@
     <!-- DateUtils -->
     <string name="DateUtils_just_now">刚刚</string>
     <string name="DateUtils_minutes_ago">%1$d 分钟</string>
+    <!-- Content description when describing how many minutes ago something has happened -->
+    <plurals name="DateUtils_minutes_ago_content_description">
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
     <string name="DateUtils_today">今天</string>
     <string name="DateUtils_yesterday">昨天</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
@@ -1590,6 +1594,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">无法加入群组，请稍候再试</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">网络出错。</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">此群组链接未激活</string>
+    <!-- Toast message shown when trying to join a group by link but the group is full -->
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">无法加入群组</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -3844,7 +3850,7 @@
     <string name="preferences__pref_use_address_book_photos">使用通讯录图片</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">显示通讯录中联系人图片（若可用）</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">继续存档静音聊天</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">当收到新消息时，已存档的静音聊天将会保持存档状态。</string>
     <string name="preferences__generate_link_previews">生成链接预览</string>
@@ -4063,6 +4069,8 @@
     <string name="preferences_normal">正常</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">紧凑</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
 
 
     <string name="configurable_single_select__customize_option">自定义选项</string>
@@ -6069,14 +6077,14 @@
     <string name="ManageDonationsFragment__my_support">我的赞助</string>
     <string name="ManageDonationsFragment__manage_subscription">管理定期捐款</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">捐款收据</string>
+    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
     <string name="ManageDonationsFragment__badges">徽章</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">捐款人常见问题解答</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">其他赞助方式</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">代朋友捐款</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">无法确认捐款</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -8741,7 +8749,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">要结束投票？</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">群组成员将无法再参与此投票。</string>
+    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">正在等待网络连接…</string>
     <!-- Header when creating a new poll -->
@@ -8798,7 +8806,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">其他</string>
+    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">请描述您遇到的问题</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->

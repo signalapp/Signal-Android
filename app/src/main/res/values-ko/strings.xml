@@ -158,7 +158,7 @@
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">새 메시지가 있을 수 있음</string>
+    <string name="FcmFetchManager__you_may_have_messages">새 메시지가 있을 수 있어요</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">차단한 사용자</string>
@@ -172,9 +172,9 @@
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
-    <string name="CreditCardFragment__credit_or_debit_card">신용 또는 직불 카드</string>
+    <string name="CreditCardFragment__credit_or_debit_card">신용카드 또는 체크카드</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">카드 세부 정보를 입력하세요. Signal은 개인 정보를 수집하거나 저장하지 않습니다.</string>
+    <string name="CreditCardFragment__enter_your_card_details">카드 세부 정보를 입력하세요. Signal은 개인정보를 수집하거나 저장하지 않습니다.</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">카드 번호</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -213,8 +213,8 @@
     <string name="OneTimeDonationPreference__donation_processing">기부 처리 중</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">%1$s을(를) 차단하고 나갈까요?</string>
-    <string name="BlockUnblockDialog_block_s">%1$s을(를) 차단할까요?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">%1$s 그룹을 차단하고 나갈까요?</string>
+    <string name="BlockUnblockDialog_block_s">%1$s 그룹을 차단할까요?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">이제 이 그룹에서 메시지나 업데이트를 받을 수 없으며, 다른 멤버가 다시 나를 그룹에 초대할 수 없습니다.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">그룹 멤버가 다시 나를 그룹에 초대할 수 없습니다.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">그룹 멤버가 나를 다시 초대할 수 있습니다.</string>
@@ -222,13 +222,13 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">서로 메시지를 보내고 전화를 걸 수 있으며, 나의 이름과 사진이 공유됩니다.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">이제 서로 메시지를 주고받을 수 있습니다.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">차단한 사용자는 나에게 전화를 걸거나 메세지를 보낼 수 없습니다.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">차단한 사용자는 나에게 전화를 걸거나 메시지를 보낼 수 없습니다.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">차단한 사용자는 나에게 메시지를 보낼 수 없습니다.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal의 업데이트와 새로운 소식을 차단합니다.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal의 업데이트와 새로운 소식 다시 받기</string>
-    <string name="BlockUnblockDialog_unblock_s">%1$s을(를) 차단 해제할까요?</string>
+    <string name="BlockUnblockDialog_unblock_s">%1$s 그룹을 차단 해제할까요?</string>
     <string name="BlockUnblockDialog_block">차단</string>
     <string name="BlockUnblockDialog_block_and_leave">차단하고 나가기</string>
     <!-- Dialog button label to report as spam and block the person -->
@@ -238,11 +238,11 @@
     <!-- Dialog button to report as spam only -->
     <string name="BlockUnblockDialog_report_spam">스팸 신고</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal에 이 사람이 스팸을 보내는 것 같다는 알림이 전송됩니다. Signal은 대화의 내용을 볼 수 없습니다.</string>
+    <string name="BlockUnblockDialog_report_spam_description">해당 사용자에 대한 스팸 신고가 Signal에 전달됩니다. Signal은 대화 내용을 확인할 수 없습니다.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal에 나를 이 그룹에 초대한 %1$s 님이 스팸을 보내는 것 같다는 알림이 전송됩니다. Signal은 대화의 내용을 볼 수 없습니다.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">그룹 초대를 보낸 %1$s 님에 대한 스팸 신고가 Signal에 전달됩니다. Signal은 대화 내용을 확인할 수 없습니다.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal에 나를 이 그룹에 초대한 사람이 스팸을 보내는 것 같다는 알림이 전송됩니다. Signal은 대화의 내용을 볼 수 없습니다.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">그룹 초대를 보낸 해당 사용자에 대한 스팸 신고가 Signal에 전달됩니다. Signal은 대화 내용을 확인할 수 없습니다.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">오늘</string>
@@ -265,7 +265,7 @@
     <!-- Unknown people row icon content description -->
     <string name="CallInfoView__more_information">자세한 정보</string>
     <!-- Unknown people row info dialog message -->
-    <string name="CallInfoView__before_joining_a_call">통화에 참여하기 전에는 휴대폰 연락처, 그룹에 함께 속한 사용자, 1:1 대화를 한 적 있는 사용자의 이름만 표시됩니다. 통화에 참여하면 모든 이름과 사진이 표시됩니다.</string>
+    <string name="CallInfoView__before_joining_a_call">통화에 참여하기 전에는 휴대폰 연락처, 같은 그룹 멤버, 또는 1:1 대화 이력이 있는 사람의 이름만 표시됩니다. 통화에 참여하면 모든 이름과 사진이 표시됩니다.</string>
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">확인</string>
 
@@ -298,17 +298,17 @@
     <!-- Text explaining why Signal needs camera access to scan QR codes -->
     <string name="CameraXFragment_to_scan_qr_code_allow_camera">QR 코드를 스캔하려면 Signal에 카메라 접근을 허용해 주세요.</string>
     <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
-    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">사진을 찍으려면 Signal에 카메라 접근 권한이 필요합니다.</string>
+    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">사진을 촬영하려면 Signal에 카메라 접근 권한이 필요합니다.</string>
     <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
     <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">QR 코드를 스캔하려면 Signal에 카메라 접근 권한이 필요합니다.</string>
     <!-- Toast dialog explaining why Signal needs microphone permissions -->
-    <string name="CameraXFragment_signal_needs_microphone_access_video">동영상을 찍으려면 Signal에 마이크 접근 권한이 필요합니다.</string>
+    <string name="CameraXFragment_signal_needs_microphone_access_video">동영상을 촬영하려면 Signal에 마이크 접근 권한이 필요합니다.</string>
     <!-- Dialog description that explains the steps needed to give camera permission -->
-    <string name="CameraXFragment_to_capture_photos">Signal에서 사진을 찍으려면 다음을 수행하세요.</string>
+    <string name="CameraXFragment_to_capture_photos">Signal에서 사진을 촬영하려면 다음 단계를 따라주세요.</string>
     <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
     <string name="CameraXFragment_to_capture_photos_videos">Signal에서 사진과 동영상을 찍으려면 다음을 수행하세요.</string>
     <!-- Dialog description that explains the steps needed to give microphone permission -->
-    <string name="CameraXFragment_to_capture_videos">소리와 함께 동영상을 찍으려면 다음을 수행하세요.</string>
+    <string name="CameraXFragment_to_capture_videos">소리가 포함된 동영상을 촬영하려면 다음 단계를 따라주세요.</string>
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">QR 코드를 스캔하려면 다음을 수행하세요.</string>
 
@@ -349,10 +349,10 @@
     <string name="CommunicationActions_no_browser_found">웹 브라우저를 찾을 수 없습니다.</string>
     <string name="CommunicationActions_send_email">이메일 보내기</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">이미 셀룰러 데이터 통화를 사용하고 있습니다.</string>
-    <string name="CommunicationActions_start_voice_call">음성 통화를 시작하시겠어요?</string>
+    <string name="CommunicationActions_start_voice_call">음성 통화를 시작할까요?</string>
     <string name="CommunicationActions_cancel">취소</string>
     <string name="CommunicationActions_call">전화</string>
-    <string name="CommunicationActions_insecure_call">안전하지 않은 통화</string>
+    <string name="CommunicationActions_insecure_call">비보안 통화</string>
     <string name="CommunicationActions_carrier_charges_may_apply">통신사 요금이 부과될 수 있습니다. 현재 통화하려는 번호는 Signal에 등록되어 있지 않아, 인터넷이 아닌 모바일 통신사를 통해 연결됩니다.</string>
     <string name="CommunicationActions_cant_join_call">통화에 참여할 수 없습니다.</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">이 통화 링크는 더 이상 유효하지 않습니다.</string>
@@ -363,7 +363,7 @@
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">이미 통화에 참여 중입니다.</string>
     <!-- Title on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_title">계정을 새 기기로 이전하시겠습니까?</string>
+    <string name="CommunicationActions__transfer_dialog_title">계정을 새 기기로 이전할까요?</string>
     <!-- Message on dialog when quick restore qr code is scanned in system camera -->
     <string name="CommunicationActions__transfer_dialog_message">이 계정을 새로운 기기로 이전하려면 \'계속\'을 탭한 다음 Signal 카메라로 QR 코드를 다시 스캔하세요. Signal에서 직접 제공한 QR 코드만 스캔하세요.</string>
     <string name="CommunicationActions__dont_transfer">이전 안 함</string>
@@ -948,6 +948,10 @@
     <!-- DateUtils -->
     <string name="DateUtils_just_now">지금</string>
     <string name="DateUtils_minutes_ago">%1$d분</string>
+    <!-- Content description when describing how many minutes ago something has happened -->
+    <plurals name="DateUtils_minutes_ago_content_description">
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
     <string name="DateUtils_today">오늘</string>
     <string name="DateUtils_yesterday">어제</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
@@ -1432,7 +1436,7 @@
     <string name="ManageGroupActivity_legacy_group_upgrade">레거시 그룹입니다. @멘션 및 관리자와 같은 새로운 기능에 액세스하려면</string>
     <string name="ManageGroupActivity_legacy_group_too_large">레거시 그룹의 규모가 너무 커서 새 그룹으로 업그레이드할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
     <string name="ManageGroupActivity_upgrade_this_group">그룹을 업그레이드하세요.</string>
-    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">안전하지 않은 MMS 그룹입니다. 비공개로 대화하려면 연락처를 Signal에 초대하세요.</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">보안이 적용되지 않은 MMS 그룹입니다. 비공개로 대화하려면 연락처를 Signal에 초대하세요.</string>
     <string name="ManageGroupActivity_invite_now">지금 초대하기</string>
     <string name="ManageGroupActivity_more">더</string>
     <string name="ManageGroupActivity_add_group_description">그룹 설명 추가하기…</string>
@@ -1590,6 +1594,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">그룹에 참가가 불가능합니다. 나중에 다시 시도해 주세요.</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">이 그룹 링크가 비활성화 되었습니다.</string>
+    <!-- Toast message shown when trying to join a group by link but the group is full -->
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">그룹에 참가할 수 없습니다.</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -1981,8 +1987,8 @@
     <!-- End of GV2 specific update messages -->
 
     <string name="MessageRecord_your_safety_number_with_s_has_changed">%1$s 님과의 안전 번호가 변경되었습니다.</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%1$s 님과의 안전 번호를 인증됨 상태로 표시했습니다.</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%1$s 님과의 안전 번호를 다른 기기에서 인증됨 상태로 표시했습니다.</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%1$s 님과의 안전 번호를 인증 완료 상태로 표시했습니다.</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%1$s 님과의 안전 번호를 다른 기기에서 인증 완료 상태로 표시했습니다.</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%1$s 님과의 안전 번호를 인증되지 않음 상태로 표시했습니다.</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%1$s 님과의 안전 번호를 다른 기기에서 인증되지 않음 상태로 표시했습니다.</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s 님의 메시지를 전달할 수 없습니다.</string>
@@ -3690,7 +3696,7 @@
     <string name="verify_display_fragment__successful_match">일치 확인</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">안전 번호 확인에 실패함</string>
     <string name="verify_display_fragment__loading">로드 중…</string>
-    <string name="verify_display_fragment__mark_as_verified">검증으로 표시</string>
+    <string name="verify_display_fragment__mark_as_verified">인증 완료로 표시</string>
     <string name="verify_display_fragment__clear_verification">인증 초기화하기</string>
 
     <!-- verity_scan_fragment -->
@@ -3844,7 +3850,7 @@
     <string name="preferences__pref_use_address_book_photos">주소록 사진 사용하기</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">가능할 경우 주소록에 있는 연락처 사진들을 보이기</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">알림 끈 대화를 보관 상태로 유지</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">알림을 꺼서 보관한 대화는 새 메시지가 도착해도 보관 상태로 유지됩니다.</string>
     <string name="preferences__generate_link_previews">링크 미리보기 생성</string>
@@ -4063,6 +4069,8 @@
     <string name="preferences_normal">보통</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">작게</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
 
 
     <string name="configurable_single_select__customize_option">맞춤 옵션 설정하기</string>
@@ -5787,7 +5795,7 @@
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">알림 끄기</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">알림 꺼지지 않음</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">알림 켜짐</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">멘션</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">항상 알림</string>
     <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
@@ -6069,14 +6077,14 @@
     <string name="ManageDonationsFragment__my_support">내 지원</string>
     <string name="ManageDonationsFragment__manage_subscription">구독 관리</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">기부 영수증</string>
+    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
     <string name="ManageDonationsFragment__badges">배지</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">기부자 FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">다른 기여 방법</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">친구를 대신해 기부하세요.</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">기부를 확인할 수 없습니다</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -6130,7 +6138,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">부스트 배지가 만료되어 더 이상 프로필에 표시되지 않습니다.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">일회성 기부를 통해 부스트 배지를 다음 30일 동안 재활성화하세요.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal을 계속 사용할 수는 있지만 사용자를 위해 설계된 Signal의 기술을 지지하고 싶다면 월간 기부를 통해 기여자가 되어주세요.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal은 계속 이용하실 수 있지만, 매월 소액의 후원으로 함께해 주시면 Signal의 지속적인 운영에 큰 힘이 될 수 있어요.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">후원자 되기</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">부스트 추가</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">나중에</string>
@@ -6201,7 +6209,7 @@
     <string name="DonationsErrors__your_payment_is_still">기부를 아직 처리하는 중입니다. 연결에 따라 몇 분이 소요될 수 있습니다.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">구독을 취소하지 못했습니다.</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">구독을 취소하려면 인터넷 연결이 필요합니다.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">기기가 앱 내 기부를 지원하지 않으므로 구독을 통해 배지를 획득할 수 없습니다. 하지만 원하신다면 웹사이트에서 기부하여 Signal을 지원해 주실 수 있습니다.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">이 기기는 앱 내 기부를 지원하지 않아 프로필 배지를 받을 수 없습니다. 대신 웹사이트에서 기부하여 Signal을 후원하는 방법도 있으니 참고해 주세요.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">네트워크 오류. 연결을 확인하고 다시 시도하세요.</string>
     <string name="NetworkFailure__retry">재시도</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6813,7 +6821,7 @@
     <string name="GiftFlowStartFragment__donate_for_a_friend">친구를 대신해 기부하세요.</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
-        <item quantity="other">Signal을 사용하는 친구나 가족을 대신해 기부하여 Signal을 지지해 주세요. %1$d일 동안 프로필에 게시할 수 있는 배지가 제공됩니다.</item>
+        <item quantity="other">Signal을 사용하는 친구나 가족을 대신해 Signal을 후원해 보세요. 해당 사용자는 %1$d일 동안 프로필에 배지를 표시할 수 있습니다.</item>
     </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">다음</string>
@@ -6836,9 +6844,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">따뜻한 응원에 감사드려요!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s 님이 귀하를 대신하여 Signal에 기부했습니다! 프로필에서 Signal에 대한 지지를 표현해 주세요.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s 님이 나를 대신해 Signal에 후원해 주셨어요! Signal에 대한 응원의 마음을 프로필에 표시해 보세요.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">%1$s 님을 대신하여 Signal에 기부했습니다. 프로필을 통해 지지를 표현할 옵션이 제공됩니다.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">%1$s 님을 대신해 Signal에 후원금을 보냈어요. 해당 사용자는 Signal 후원 사실을 프로필 배지로 표시할 수 있어요.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">사용</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -6846,13 +6854,13 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">배지를 사용하는 중…</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">%1$s 님을 대신하여 Signal에 기부했습니다. 프로필을 통해 지지를 표현할 옵션이 제공됩니다.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">%1$s 님을 대신해 Signal에 후원금을 보냈어요. 해당 사용자는 Signal 후원 사실을 프로필 배지로 표시할 수 있어요.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">배지가 만료되었습니다.</string>
     <!-- Expired gift sheet top description text -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">배지가 만료되어 더 이상 프로필에 표시되지 않습니다.</string>
     <!-- Expired gift sheet bottom description text -->
-    <string name="ExpiredGiftSheetConfiguration__to_continue">사용자를 위해 설계된 기술을 계속 지원하고 싶다면 Signal의 월간 기여자가 되어주세요.</string>
+    <string name="ExpiredGiftSheetConfiguration__to_continue">매월 소액의 후원으로 함께해 주시면 Signal의 지속적인 운영에 큰 힘이 될 수 있어요.</string>
     <!-- Expired gift sheet make a monthly donation button -->
     <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">월간 기부하기</string>
     <!-- Expired gift sheet not now button -->
@@ -7056,11 +7064,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Signal은 이익보다 개인정보보호를 우선시합니다.</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">이익보다 개인정보 보호를 우선시하는 앱</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">계속</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">사용자의 기부로 운영되는 개인정보를 보호하는 메신저. 광고와 트래커, 타협에서 자유로운 앱. 지금 기부를 통해 Signal을 지지해 주세요.</string>
+    <string name="DonateToSignalFragment__private_messaging">Signal은 사용자의 후원으로 운영되는 개인정보 보호 메신저입니다. 그래서 광고와 트래킹, 타협에서 자유롭죠. 이 가치를 지지하신다면 후원을 통해 Signal을 응원해 주세요.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">보류 중인 기부가 있습니다.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7097,7 +7105,7 @@
     <!-- Button label for paying with a bank transfer -->
     <string name="GatewaySelectorBottomSheet__bank_transfer">송금</string>
     <!-- Button label for paying with a credit card -->
-    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">신용 또는 직불 카드</string>
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">신용카드 또는 체크카드</string>
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">친구를 대신해 기부하세요.</string>
     <!-- Button label for paying with iDEAL -->
@@ -7931,7 +7939,7 @@
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">신용 또는 직불 카드</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">신용카드 또는 체크카드</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7973,7 +7981,7 @@
     <!-- Dialog button text to learn more about enabling Google Play services -->
     <string name="GooglePlayServicesAvailability__learn_more">자세히 알아보기</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
-    <string name="GooglePlayServicesAvailability__service_invalid_message">휴대폰이 Google Play 서비스를 지원하지 않으므로 Signal 안전 백업을 구독할 수 없습니다. 휴대폰 제조업체에 문의하여 도움을 받으세요.</string>
+    <string name="GooglePlayServicesAvailability__service_invalid_message">휴대전화에서 Google Play 서비스를 지원하지 않아 Signal 안전 백업을 구독할 수 없습니다. 자세한 내용은 해당 휴대전화 제조사에 문의해 주세요.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -8416,7 +8424,7 @@
     <!-- Screen headline -->
     <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">백업 플랜 선택</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">모든 백업 내용은 엔드투엔드로 암호화됩니다. Signal은 비영리 단체입니다. 백업 요금은 Signal의 사명을 지원하는 데 사용됩니다.</string>
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">모든 백업 내용은 엔드투엔드로 암호화됩니다. Signal은 비영리 단체로, 백업을 유료로 이용하시면 Signal의 사명을 이어가는 데 도움이 됩니다.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">자세히 알아보기</string>
     <!-- Primary action button label without a current selection -->
@@ -8741,7 +8749,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">설문조사를 종료하시겠어요?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">그룹 구성원이 더 이상 이 설문조사에서 투표할 수 없습니다.</string>
+    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">네트워크를 기다리는 중…</string>
     <!-- Header when creating a new poll -->
@@ -8798,7 +8806,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">기타</string>
+    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">어떤 문제가 있었는지 알려주세요</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->

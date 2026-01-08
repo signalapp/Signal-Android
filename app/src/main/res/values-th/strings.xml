@@ -948,6 +948,10 @@
     <!-- DateUtils -->
     <string name="DateUtils_just_now">ตอนนี้</string>
     <string name="DateUtils_minutes_ago">%1$d m</string>
+    <!-- Content description when describing how many minutes ago something has happened -->
+    <plurals name="DateUtils_minutes_ago_content_description">
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
     <string name="DateUtils_today">วันนี้</string>
     <string name="DateUtils_yesterday">เมื่อวาน</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
@@ -1590,6 +1594,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ไม่สามารถเข้าร่วมกลุ่ม กรุณาลองอีกครั้งภายหลัง</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ลิงก์กลุ่มนี้ไม่ได้เปิดให้ใช้</string>
+    <!-- Toast message shown when trying to join a group by link but the group is full -->
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">เข้าร่วมกลุ่มไม่ได้</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -3844,7 +3850,7 @@
     <string name="preferences__pref_use_address_book_photos">ใช้รูปภาพของรายชื่อผู้ติดต่อปัจจุบัน</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">แสดงรูปภาพผู้ติดต่อจากรายชื่อผู้ติดต่อปัจจุบันหากสามารถทำได้</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">เก็บแชทที่ปิดเสียงถาวร</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">แชทที่ปิดเสียงไว้ในที่เก็บถาวรจะยังคงเก็บถาวรอยู่เมื่อมีข้อความใหม่มาถึง</string>
     <string name="preferences__generate_link_previews">กำลังสร้างภาพตัวอย่างลิงก์</string>
@@ -4063,6 +4069,8 @@
     <string name="preferences_normal">ปกติ</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">กะทัดรัด</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
 
 
     <string name="configurable_single_select__customize_option">กำหนดการตั้งค่า</string>
@@ -6069,14 +6077,14 @@
     <string name="ManageDonationsFragment__my_support">การสนับสนุนของฉัน</string>
     <string name="ManageDonationsFragment__manage_subscription">จัดการการเป็นสมาชิก</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">ใบเสร็จรับเงินบริจาค</string>
+    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
     <string name="ManageDonationsFragment__badges">โล่</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">คำถามที่พบบ่อยสำหรับผู้บริจาค</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">วิธีอื่นๆ ในการมอบ</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">บริจาคในนามของเพื่อน</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">ไม่สามารถยืนยันการบริจาคได้</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -8741,7 +8749,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">ปิดโพลใช่หรือไม่</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">สมาชิกในกลุ่มจะไม่สามารถโหวตในโพลนี้ได้อีกต่อไป</string>
+    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">กำลังรอการเชื่อมต่อเครือข่าย…</string>
     <!-- Header when creating a new poll -->
@@ -8798,7 +8806,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">อย่างอื่น</string>
+    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">อธิบายถึงปัญหาที่คุณพบ</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
