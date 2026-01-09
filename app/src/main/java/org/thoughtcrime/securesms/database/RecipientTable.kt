@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteConstraintException
+import android.database.sqlite.SQLiteException
 import android.net.Uri
 import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
@@ -3350,6 +3351,17 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val updates: MutableMap<RecipientId, ChatColors> = HashMap()
 
     db.beginTransaction()
+
+    // It can occur that the recipient table is created without a color column,
+    // before this migration has been run.
+    // Ref: https://github.com/signalapp/Signal-Android/issues/14228
+    try {
+      db.execSQL("ALTER TABLE ${TABLE_NAME} ADD COLUMN color TEXT DEFAULT NULL")
+      Log.w(TAG, "Restored legacy color column to modernised recipient table")
+    } catch (e: SQLiteException) {
+      null
+    }
+
     try {
       db.query(TABLE_NAME, arrayOf(ID, "color", CHAT_COLORS, CUSTOM_CHAT_COLORS_ID, SYSTEM_JOINED_NAME), "$SYSTEM_JOINED_NAME IS NOT NULL AND $SYSTEM_JOINED_NAME != \'\'", null, null, null, null).use { cursor ->
         while (cursor != null && cursor.moveToNext()) {
