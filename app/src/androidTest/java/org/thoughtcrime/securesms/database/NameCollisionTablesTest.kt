@@ -217,6 +217,7 @@ class NameCollisionTablesTest {
 
   private fun setProfileName(recipientId: RecipientId, name: ProfileName) {
     SignalDatabase.recipients.setProfileName(recipientId, name)
+    Recipient.live(recipientId).refresh()
     SignalDatabase.nameCollisions.handleIndividualNameCollision(recipientId)
   }
 
