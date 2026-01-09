@@ -3288,9 +3288,13 @@ class AttachmentTable(
     )
   }
 
+  /**
+   * IMPORTANT: This query may match against rows that have no associated message (like a wallpaper attachment).
+   * This needs to be accounted by allowing nulls when reading any message table row.
+   */
   private fun buildAttachmentsThatCanArchiveQuery(archiveTransferStateFilter: String, includeOptimized: Boolean = false): String {
     val notReleaseChannelClause = SignalStore.releaseChannel.releaseChannelRecipientId?.let {
-      "(${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} != ${it.toLong()}) AND"
+      "(${MessageTable.FROM_RECIPIENT_ID} IS NULL OR ${MessageTable.FROM_RECIPIENT_ID} != ${it.toLong()}) AND"
     } ?: ""
 
     val dataFileClause = if (includeOptimized) {
@@ -3311,11 +3315,11 @@ class AttachmentTable(
       $REMOTE_KEY NOT NULL AND
       $DATA_HASH_END NOT NULL AND
       $transferStateClause AND
-      (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND 
-      (${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} <= 0 OR ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds}) AND
+      (${MessageTable.STORY_TYPE} IS NULL OR ${MessageTable.STORY_TYPE} = 0) AND 
+      (${MessageTable.EXPIRES_IN} IS NULL OR ${MessageTable.EXPIRES_IN} <= 0 OR ${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds}) AND
+      (${MessageTable.VIEW_ONCE} IS NULL OR ${MessageTable.VIEW_ONCE} = 0) AND
       $notReleaseChannelClause
-      $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}' AND
-      ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0
+      $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}'
     """
   }
 
