@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.stickers;
+package org.thoughtcrime.securesms.stickers.preview;
 
 import android.app.Application;
 import android.text.TextUtils;
@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository.StickerManifestResult;
+import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewRepository.StickerManifestResult;
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementRepository;
 
 import java.util.Optional;

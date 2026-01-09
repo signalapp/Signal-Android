@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.stickers
+package org.thoughtcrime.securesms.stickers.preview
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,8 +14,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.model.StickerPackParams
-import org.thoughtcrime.securesms.stickers.StickerPackPreviewUiState.ContentState
+import org.thoughtcrime.securesms.stickers.StickerManifest
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementRepository
+import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.ContentState
 import kotlin.jvm.optionals.getOrElse
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds

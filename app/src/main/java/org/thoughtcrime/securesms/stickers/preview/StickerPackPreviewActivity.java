@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.stickers;
+package org.thoughtcrime.securesms.stickers.preview;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -27,7 +27,11 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.glide.cache.ApngOptions;
 import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
+import org.thoughtcrime.securesms.stickers.StickerManifest;
 import org.thoughtcrime.securesms.stickers.StickerManifest.Sticker;
+import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
+import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener;
+import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementRepository;
 import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;

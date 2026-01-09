@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.stickers;
+package org.thoughtcrime.securesms.stickers.preview;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.signal.core.util.Hex;
+import org.thoughtcrime.securesms.stickers.StickerManifest;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
 

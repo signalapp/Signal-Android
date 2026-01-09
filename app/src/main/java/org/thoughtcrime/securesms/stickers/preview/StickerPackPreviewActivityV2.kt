@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.stickers
+package org.thoughtcrime.securesms.stickers.preview
 
 import android.content.Intent
 import android.os.Bundle
@@ -65,8 +65,13 @@ import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackParams
 import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
-import org.thoughtcrime.securesms.stickers.StickerPackPreviewUiState.ContentState
-import org.thoughtcrime.securesms.stickers.StickerPackPreviewUiState.NavTarget
+import org.thoughtcrime.securesms.stickers.BlessedPacks
+import org.thoughtcrime.securesms.stickers.StickerManifest
+import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
+import org.thoughtcrime.securesms.stickers.StickerRemoteUri
+import org.thoughtcrime.securesms.stickers.StickerUrl
+import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.ContentState
+import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.NavTarget
 import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.viewModel
 import java.text.NumberFormat

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.stickers;
+package org.thoughtcrime.securesms.stickers.preview;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +15,8 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.glide.cache.ApngOptions;
 import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.thoughtcrime.securesms.stickers.StickerManifest;
+import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 
 import java.util.ArrayList;
 import java.util.List;
