@@ -217,8 +217,12 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
         ArchiveDatabaseExecutor.throttledNotifyAttachmentObservers()
       }
 
-      if (!isCanceled && !attachment.quote) {
-        ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
+      if (!isCanceled) {
+        if (!attachment.quote) {
+          ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
+        } else {
+          Log.d(TAG, "[$attachmentId] Refusing to enqueue thumb for quote attachment.")
+        }
       } else {
         Log.d(TAG, "[$attachmentId] Refusing to enqueue thumb for canceled upload.")
       }
