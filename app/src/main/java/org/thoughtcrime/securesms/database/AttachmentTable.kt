@@ -1677,6 +1677,10 @@ class AttachmentTable(
         values.put(DATA_RANDOM, fileWriteResult.random)
         values.put(DATA_HASH_START, fileWriteResult.hash)
         values.put(DATA_HASH_END, fileWriteResult.hash)
+
+        if (archiveRestore) {
+          values.put(ARCHIVE_TRANSFER_STATE, ArchiveTransferState.FINISHED.value)
+        }
       }
 
       val visualHashString = existingPlaceholder.getVisualHashStringOrNull()
