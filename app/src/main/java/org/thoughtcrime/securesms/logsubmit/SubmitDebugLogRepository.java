@@ -322,7 +322,7 @@ public class SubmitDebugLogRepository {
     try (Response response = client.newCall(new Request.Builder().url(API_ENDPOINT).get().build()).execute()) {
       ResponseBody body = response.body();
 
-      if (!response.isSuccessful() || body == null) {
+      if (!response.isSuccessful()) {
         throw new IOException("Unsuccessful response: " + response);
       }
 
@@ -344,6 +344,10 @@ public class SubmitDebugLogRepository {
 
       try (Response postResponse = client.newCall(new Request.Builder().url(url).post(post.build()).build()).execute()) {
         if (!postResponse.isSuccessful()) {
+          if (RemoteConfig.internalUser()) {
+            Log.w(TAG, "Internal user failed to upload log: " + postResponse);
+            Log.w(TAG, "debuglogs.org response: " + json.toString(2));
+          }
           throw new IOException("Bad response: " + postResponse);
         }
       }
