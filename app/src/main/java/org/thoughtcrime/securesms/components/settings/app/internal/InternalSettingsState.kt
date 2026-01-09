@@ -30,6 +30,5 @@ data class InternalSettingsState(
   val useConversationItemV2ForMedia: Boolean,
   val hasPendingOneTimeDonation: Boolean,
   val hevcEncoding: Boolean,
-  val newCallingUi: Boolean,
   val forceSplitPane: Boolean
 )

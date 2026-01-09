@@ -15,11 +15,11 @@ import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.ringrtc.CameraState
 import org.thoughtcrime.securesms.service.webrtc.collections.ParticipantCollection
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.concurrent.TimeUnit
 
 /**
@@ -83,7 +83,7 @@ data class CallParticipantsState(
       } else {
         listParticipants.addAll(remoteParticipants.listParticipants)
       }
-      if (foldableState.isFlat && !SignalStore.internal.newCallingUi) {
+      if (foldableState.isFlat && !RemoteConfig.newCallUi) {
         listParticipants.add(CallParticipant.EMPTY)
       }
       listParticipants.reverse()

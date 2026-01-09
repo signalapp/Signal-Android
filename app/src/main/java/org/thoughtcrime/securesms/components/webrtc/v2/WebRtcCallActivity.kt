@@ -182,7 +182,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     initializePendingParticipantFragmentListener()
 
-    if (!SignalStore.internal.newCallingUi) {
+    if (!RemoteConfig.newCallUi) {
       WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_dark_colorSurface))
     }
 
@@ -460,7 +460,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
   private fun initializeViewModel() {
     val orientation: Orientation = resolveOrientationFromContext()
-    if (orientation == Orientation.PORTRAIT_BOTTOM_EDGE && !SignalStore.internal.newCallingUi) {
+    if (orientation == Orientation.PORTRAIT_BOTTOM_EDGE && !RemoteConfig.newCallUi) {
       WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_dark_colorSurface2))
       WindowUtil.clearTranslucentNavigationBar(window)
     }

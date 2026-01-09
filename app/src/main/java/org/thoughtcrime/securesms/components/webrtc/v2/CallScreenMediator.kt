@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantListUpdate
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
 import org.thoughtcrime.securesms.events.WebRtcViewModel
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
@@ -92,7 +91,7 @@ interface CallScreenMediator {
 
   companion object {
     fun create(activity: WebRtcCallActivity, viewModel: WebRtcCallViewModel): CallScreenMediator {
-      return if (RemoteConfig.newCallUi || (RemoteConfig.internalUser && SignalStore.internal.newCallingUi)) {
+      return if (RemoteConfig.newCallUi) {
         ComposeCallScreenMediator(activity, viewModel)
       } else {
         ViewCallScreenMediator(activity, viewModel)
