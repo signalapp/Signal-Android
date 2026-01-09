@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.service
 
 import android.app.ForegroundServiceStartNotAllowedException
+import android.app.Notification
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
@@ -231,12 +232,17 @@ class GenericForegroundService : Service() {
     lastPosted = active
 
     try {
+      val progressMax = Notification.ProgressStyle.Segment(active.progressMax)
       startForeground(
         NOTIFICATION_ID,
         NotificationCompat.Builder(this, active.channelId)
           .setSmallIcon(active.iconRes)
           .setContentTitle(active.title)
-          .setProgress(active.progressMax, active.progress, active.indeterminate)
+          .setStyle(
+            NotificationCompat.ProgressStyle().setProgress(active.progress)
+              .setProgressIndeterminate(active.indeterminate)
+              .setProgressSegments(listOf(progressMax))
+          )
           .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), mutable()))
           .setVibrate(longArrayOf(0))
           .build()

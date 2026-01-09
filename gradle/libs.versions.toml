@@ -3,7 +3,7 @@
 
 [versions]
 # SDK & Build Versions
-buildTools = "35.0.0"
+buildTools = "36.1.0-rc1"
 compileSdk = "android-36"
 targetSdk = "35"
 minSdk = "23"
@@ -87,7 +87,7 @@ ktlint-twitter-compose = "com.twitter.compose.rules:ktlint:0.0.26"
 # Android X
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
-androidx-core-ktx = "androidx.core:core-ktx:1.15.0"
+androidx-core-ktx = "androidx.core:core-ktx:1.17.0"
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
 androidx-fragment-testing = { module = "androidx.fragment:fragment-testing", version.ref = "androidx-fragment" }
 androidx-fragment-compose = { module = "androidx.fragment:fragment-compose", version.ref = "androidx-fragment" }

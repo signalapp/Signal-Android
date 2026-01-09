@@ -180,7 +180,11 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     val notification = NotificationCompat.Builder(applicationContext, id)
       .setContentTitle(title)
       .setTicker(title)
-      .setProgress(100, progress, progress <= 0)
+      .setStyle(
+        NotificationCompat.ProgressStyle()
+          .setProgress(progress)
+          .setProgressIndeterminate(progress <= 0)
+      )
       .setSmallIcon(R.drawable.ic_work_notification)
       .setOngoing(true)
       .setContentIntent(pendingIntent)

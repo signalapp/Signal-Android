@@ -149,7 +149,7 @@ class FcmFetchForegroundService : Service() {
         .setSmallIcon(R.drawable.ic_signal_refresh)
         .setContentTitle(getString(R.string.BackgroundMessageRetriever_checking_for_messages))
         .setCategory(NotificationCompat.CATEGORY_SERVICE)
-        .setProgress(0, 0, true)
+        .setStyle(NotificationCompat.ProgressStyle().setProgress(0).setProgressIndeterminate(true))
         .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), PendingIntentFlags.mutable()))
         .setVibrate(longArrayOf(0))
         .build()
