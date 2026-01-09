@@ -420,27 +420,29 @@ class AttachmentTableTest {
   @Test
   fun givenAttachmentsWithMatchingMediaId_whenISetArchiveFinishedForMatchingMediaObjects_thenIExpectThoseAttachmentsToBeMarkedFinished() {
     // GIVEN
-    val data = byteArrayOf(1, 2, 3, 4, 5)
+    val data1 = byteArrayOf(1, 2, 3, 4, 5)
+    val data2 = byteArrayOf(6, 7, 8, 9, 10)
+    val data3 = byteArrayOf(11, 12, 13, 14, 15)
 
-    val attachment1 = createAttachmentPointer("remote-key-1".toByteArray(), data.size)
-    val attachment2 = createAttachmentPointer("remote-key-2".toByteArray(), data.size)
-    val attachment3 = createAttachmentPointer("remote-key-3".toByteArray(), data.size)
+    val attachment1 = createAttachmentPointer("remote-key-1".toByteArray(), data1.size)
+    val attachment2 = createAttachmentPointer("remote-key-2".toByteArray(), data2.size)
+    val attachment3 = createAttachmentPointer("remote-key-3".toByteArray(), data3.size)
 
     // Insert messages with attachments
     val message1Result = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = 0.days, attachment = attachment1)).get()
     val attachment1Id = message1Result.insertedAttachments!![attachment1]!!
     SignalDatabase.attachments.setTransferState(message1Result.messageId, attachment1Id, AttachmentTable.TRANSFER_PROGRESS_STARTED)
-    SignalDatabase.attachments.finalizeAttachmentAfterDownload(message1Result.messageId, attachment1Id, ByteArrayInputStream(data))
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(message1Result.messageId, attachment1Id, ByteArrayInputStream(data1))
 
     val message2Result = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = 1.days, attachment = attachment2)).get()
     val attachment2Id = message2Result.insertedAttachments!![attachment2]!!
     SignalDatabase.attachments.setTransferState(message2Result.messageId, attachment2Id, AttachmentTable.TRANSFER_PROGRESS_STARTED)
-    SignalDatabase.attachments.finalizeAttachmentAfterDownload(message2Result.messageId, attachment2Id, ByteArrayInputStream(data))
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(message2Result.messageId, attachment2Id, ByteArrayInputStream(data2))
 
     val message3Result = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = 2.days, attachment = attachment3)).get()
     val attachment3Id = message3Result.insertedAttachments!![attachment3]!!
     SignalDatabase.attachments.setTransferState(message3Result.messageId, attachment3Id, AttachmentTable.TRANSFER_PROGRESS_STARTED)
-    SignalDatabase.attachments.finalizeAttachmentAfterDownload(message3Result.messageId, attachment3Id, ByteArrayInputStream(data))
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(message3Result.messageId, attachment3Id, ByteArrayInputStream(data3))
 
     // Ensure attachments are in NONE state
     assertThat(SignalDatabase.attachments.getAttachment(attachment1Id)!!.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
