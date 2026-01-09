@@ -123,7 +123,11 @@ class AttachmentProgressService : SafeForegroundService() {
     return NotificationCompat.Builder(this, NotificationChannels.getInstance().OTHER)
       .setSmallIcon(R.drawable.ic_notification)
       .setContentTitle(title)
-      .setProgress(100, (progress * 100).toInt(), indeterminate)
+      .setStyle(
+        NotificationCompat.ProgressStyle()
+          .setProgress((progress * 100).toInt())
+          .setProgressIndeterminate(indeterminate)
+      )
       .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), PendingIntentFlags.mutable()))
       .setVibrate(longArrayOf(0))
       .build()
