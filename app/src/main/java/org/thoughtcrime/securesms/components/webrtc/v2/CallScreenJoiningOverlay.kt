@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,15 +17,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.window.core.layout.WindowSizeClass
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
@@ -64,6 +70,21 @@ fun CallScreenJoiningOverlay(
       onNavigationClick = onNavigationClick,
       onCallInfoClick = onCallInfoClick
     )
+
+    if (!isLocalVideoEnabled) {
+      val isCompactWidth = !currentWindowAdaptiveInfo().windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND)
+
+      if (isCompactWidth) {
+        YourCameraIsOff(
+          spacedBy = 8.dp,
+          modifier = Modifier.align(Alignment.Center)
+        )
+      } else {
+        YourCameraIsOffLandscape(
+          modifier = Modifier.align(Alignment.Center)
+        )
+      }
+    }
 
     val showCameraToggle = isLocalVideoEnabled && isMoreThanOneCameraAvailable
 
@@ -140,6 +161,51 @@ private fun WaitingToBeLetInBar(
   }
 }
 
+@Composable
+private fun YourCameraIsOff(
+  spacedBy: Dp = 0.dp,
+  modifier: Modifier = Modifier
+) {
+  Column(
+    horizontalAlignment = Alignment.CenterHorizontally,
+    modifier = modifier
+  ) {
+    Icon(
+      painter = painterResource(id = R.drawable.symbol_video_slash_24),
+      contentDescription = null,
+      tint = Color.White,
+      modifier = Modifier.padding(bottom = spacedBy)
+    )
+
+    Text(
+      text = stringResource(id = R.string.CallScreenPreJoinOverlay__your_camera_is_off),
+      color = Color.White
+    )
+  }
+}
+
+@Composable
+private fun YourCameraIsOffLandscape(
+  modifier: Modifier = Modifier
+) {
+  Row(
+    horizontalArrangement = spacedBy(12.dp),
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = modifier
+  ) {
+    Icon(
+      painter = painterResource(id = R.drawable.symbol_video_slash_24),
+      contentDescription = null,
+      tint = Color.White
+    )
+
+    Text(
+      text = stringResource(id = R.string.CallScreenPreJoinOverlay__your_camera_is_off),
+      color = Color.White
+    )
+  }
+}
+
 @AllNightPreviews
 @Composable
 private fun CallScreenJoiningOverlayPreview() {
@@ -188,6 +254,21 @@ private fun CallScreenJoiningOverlayWaitingPreview() {
       ),
       isLocalVideoEnabled = true,
       isMoreThanOneCameraAvailable = true,
+      isWaitingToBeLetIn = true
+    )
+  }
+}
+
+@AllNightPreviews
+@Composable
+private fun CallScreenJoiningOverlayWaitingCameraOffPreview() {
+  Previews.Preview {
+    CallScreenJoiningOverlay(
+      callRecipient = Recipient(systemContactName = "Test User"),
+      callStatus = "Waiting to be let in...",
+      localParticipant = CallParticipant.EMPTY,
+      isLocalVideoEnabled = false,
+      isMoreThanOneCameraAvailable = false,
       isWaitingToBeLetIn = true
     )
   }
