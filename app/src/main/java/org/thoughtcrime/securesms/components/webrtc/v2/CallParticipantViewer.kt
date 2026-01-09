@@ -39,13 +39,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.NightPreview
@@ -61,6 +63,7 @@ import org.thoughtcrime.securesms.compose.GlideImageScaleType
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.webrtc.RendererCommon
 
 /**
@@ -154,11 +157,14 @@ fun RemoteParticipantContent(
       }
 
       if (raiseHandAllowed && !renderInPip && participant.isHandRaised) {
+        val shortName by rememberRecipientField(participant.recipient) { getShortDisplayName(context) }
+
         RaiseHandIndicator(
-          name = participant.getShortRecipientDisplayName(context),
+          name = shortName,
+          iconSize = 40.dp,
           modifier = Modifier
             .align(Alignment.TopStart)
-            .padding(start = 8.dp, top = 8.dp)
+            .padding(start = 12.dp, top = 12.dp)
         )
       }
     }
@@ -239,7 +245,7 @@ private fun SelfPipCameraOffContent(
     )
 
     Icon(
-      painter = painterResource(id = R.drawable.symbol_video_slash_fill_24),
+      imageVector = ImageVector.vectorResource(id = R.drawable.symbol_video_slash_fill_24),
       contentDescription = null,
       tint = Color.White,
       modifier = Modifier
@@ -291,6 +297,16 @@ fun OverflowParticipantContent(
           .align(Alignment.Center)
       )
     }
+
+    if (participant.isHandRaised) {
+      RaiseHandIndicator(
+        name = "",
+        iconSize = 32.dp,
+        modifier = Modifier
+          .align(Alignment.TopStart)
+          .padding(10.dp)
+      )
+    }
   }
 }
 
@@ -308,7 +324,9 @@ private fun BlurredBackgroundAvatar(
       Image(
         painter = painterResource(R.drawable.ic_avatar_abstract_02),
         contentDescription = null,
-        modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.background)
+        modifier = Modifier
+          .fillMaxSize()
+          .background(color = MaterialTheme.colorScheme.background)
       )
     } else {
       val photo = remember(recipient.isSelf, recipient.contactPhoto) {
@@ -555,37 +573,32 @@ private fun SwitchCameraButton(
 @Composable
 private fun RaiseHandIndicator(
   name: String,
+  iconSize: Dp,
   modifier: Modifier = Modifier
 ) {
   Row(
-    modifier = modifier,
+    modifier = modifier
+      .background(
+        color = colorResource(R.color.signal_light_colorSurface),
+        shape = RoundedCornerShape(percent = 50)
+      ),
     verticalAlignment = Alignment.CenterVertically
   ) {
-    Box(
-      modifier = Modifier
-        .size(40.dp)
-        .background(
-          color = colorResource(R.color.signal_light_colorSurface),
-          shape = CircleShape
-        ),
-      contentAlignment = Alignment.Center
-    ) {
-      Icon(
-        painter = painterResource(id = R.drawable.symbol_raise_hand_24),
-        contentDescription = null,
-        tint = Color.Unspecified, // Let the drawable use its default color
-        modifier = Modifier.size(24.dp)
+    Icon(
+      painter = painterResource(id = R.drawable.symbol_raise_hand_24),
+      contentDescription = null,
+      tint = Color.Unspecified, // Let the drawable use its default color
+      modifier = Modifier.size(iconSize).padding(vertical = 6.dp).padding(start = 6.dp, end = if (name.isNotBlank()) 4.dp else 6.dp)
+    )
+
+    if (name.isNotBlank()) {
+      Text(
+        text = name,
+        color = colorResource(R.color.signal_light_colorOnSurface),
+        style = MaterialTheme.typography.bodyMedium,
+        modifier = Modifier.padding(end = 12.dp)
       )
     }
-
-    Spacer(modifier = Modifier.width(8.dp))
-
-    Text(
-      text = name,
-      color = colorResource(R.color.signal_light_colorOnPrimary),
-      fontSize = 14.sp,
-      style = MaterialTheme.typography.bodyMedium
-    )
   }
 }
 
@@ -886,6 +899,22 @@ private fun OverflowParticipantPreview() {
         recipient = Recipient(isResolving = false, systemContactName = "Eve Wilson"),
         isMicrophoneEnabled = true,
         audioLevel = CallParticipant.AudioLevel.MEDIUM
+      ),
+      modifier = Modifier.size(rememberCallScreenMetrics().overflowParticipantRendererDpSize)
+    )
+  }
+}
+
+@NightPreview
+@Composable
+private fun OverflowParticipantRaisedHandPreview() {
+  Previews.Preview {
+    OverflowParticipantContent(
+      participant = CallParticipant.EMPTY.copy(
+        recipient = Recipient(isResolving = false, systemContactName = "Frank Miller"),
+        isMicrophoneEnabled = true,
+        audioLevel = CallParticipant.AudioLevel.HIGH,
+        handRaisedTimestamp = System.currentTimeMillis()
       ),
       modifier = Modifier.size(rememberCallScreenMetrics().overflowParticipantRendererDpSize)
     )
