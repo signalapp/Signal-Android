@@ -3470,12 +3470,14 @@ class AttachmentTable(
           val plaintextHash = Base64.decode(cursor.requireNonNullString(DATA_HASH_END))
           val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).value.toByteString()
           val mediaIdThumbnail = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).value.toByteString()
+          val isQuote = cursor.requireBoolean(QUOTE)
+          val messageId = cursor.requireLong(MESSAGE_ID)
 
           if (mediaId in byteStringMediaIds) {
             found.add(getAttachment(cursor) to false)
           }
 
-          if (mediaIdThumbnail in byteStringMediaIds) {
+          if (mediaIdThumbnail in byteStringMediaIds && !isQuote && messageId != WALLPAPER_MESSAGE_ID) {
             found.add(getAttachment(cursor) to true)
           }
 
@@ -3516,7 +3518,7 @@ class AttachmentTable(
         .readToSingleLong(0)
     }
 
-    val uniqueEligibleMediaNamesWithThumbnailsCount = readableDatabase.query("SELECT COUNT(*) FROM (SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY FROM $TABLE_NAME WHERE $DATA_HASH_END NOT NULL AND $REMOTE_KEY NOT NULL AND $THUMBNAIL_FILE NOT NULL)").readToSingleLong(-1L)
+    val uniqueEligibleMediaNamesWithThumbnailsCount = readableDatabase.query("SELECT COUNT(*) FROM (SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY FROM $TABLE_NAME WHERE $DATA_HASH_END NOT NULL AND $REMOTE_KEY NOT NULL AND $THUMBNAIL_FILE NOT NULL AND $QUOTE = 0 AND $MESSAGE_ID != $WALLPAPER_MESSAGE_ID)").readToSingleLong(-1L)
     val archiveStatusMediaNameThumbnailCounts: Map<ArchiveTransferState, Long> = ArchiveTransferState.entries.associateWith { state ->
       readableDatabase.query(
         """
