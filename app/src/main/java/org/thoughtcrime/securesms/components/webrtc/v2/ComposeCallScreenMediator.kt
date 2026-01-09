@@ -5,7 +5,10 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import android.graphics.Color
+import android.os.Build
 import android.widget.Toast
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
@@ -75,7 +78,15 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
     WindowUtil.clearTranslucentNavigationBar(activity.window)
     WindowUtil.clearTranslucentStatusBar(activity.window)
 
-    activity.enableEdgeToEdge()
+    activity.enableEdgeToEdge(
+      statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+      navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT)
+    )
+
+    if (Build.VERSION.SDK_INT >= 29) {
+      activity.window.isNavigationBarContrastEnforced = false
+      activity.window.isStatusBarContrastEnforced = false
+    }
 
     lifecycleDisposable.bindTo(activity)
     activity.supportFragmentManager.setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, activity) { resultKey, bundle ->
