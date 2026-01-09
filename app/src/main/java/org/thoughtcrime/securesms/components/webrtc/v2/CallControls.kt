@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
 import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
-import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
@@ -225,12 +224,6 @@ data class CallControlsState(
       webRtcControls: WebRtcControls,
       groupMemberCount: Int
     ): CallControlsState {
-      val isGroupRingingEnabled = if (callParticipantsState.callState == WebRtcViewModel.State.CALL_PRE_JOIN) {
-        callParticipantsState.groupCallState.isNotIdle
-      } else {
-        callParticipantsState.ringGroup
-      }
-
       return CallControlsState(
         isEarpieceAvailable = webRtcControls.isEarpieceAvailableForAudioToggle,
         isBluetoothHeadsetAvailable = webRtcControls.isBluetoothHeadsetAvailableForAudioToggle,
@@ -243,7 +236,7 @@ data class CallControlsState(
         displayMicToggle = webRtcControls.displayMuteAudio(),
         isMicEnabled = callParticipantsState.localParticipant.isMicrophoneEnabled,
         displayGroupRingingToggle = webRtcControls.displayRingToggle(),
-        isGroupRingingEnabled = isGroupRingingEnabled,
+        isGroupRingingEnabled = callParticipantsState.ringGroup,
         isGroupRingingAllowed = groupMemberCount <= RemoteConfig.maxGroupCallRingSize,
         displayAdditionalActions = webRtcControls.displayOverflow(),
         displayStartCallButton = webRtcControls.displayStartCallControls(),
