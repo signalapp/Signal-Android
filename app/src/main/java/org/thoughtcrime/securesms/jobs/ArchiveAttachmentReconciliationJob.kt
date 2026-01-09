@@ -232,7 +232,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
             newBackupJobRequired = true
             bookkeepingErrorCount++
           } else {
-            Log.w(TAG, "[Fullsize] Did not need to reset the the transfer state by hash/key because the attachment either no longer exists or the upload is already in-progress.", true)
+            Log.w(TAG, "[Fullsize] Did not need to reset the transfer state by hash/key because the attachment either no longer exists or the upload is already in-progress.", true)
           }
         }
       }
