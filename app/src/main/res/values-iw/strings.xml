@@ -1010,10 +1010,10 @@
     <string name="DateUtils_minutes_ago">%1$d ד\'</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="two">%1$d minutes</item>
-        <item quantity="many">%1$d minutes</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">דקה %1$d</item>
+        <item quantity="two">%1$d דקות</item>
+        <item quantity="many">%1$d דקות</item>
+        <item quantity="other">%1$d דקות</item>
     </plurals>
     <string name="DateUtils_today">היום</string>
     <string name="DateUtils_yesterday">אתמול</string>
@@ -4189,7 +4189,7 @@
     <string name="preferences__pref_use_address_book_photos">השתמש בתמונות של פנקס הכתובות</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">הצג תמונות אנשי קשר מפנקס הכתובות אם זמינות</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">השארת צ׳אטים מושתקים בארכיון</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">צ׳אטים מושתקים שמאוחסנים בארכיון יישארו בארכיון כשהודעה חדשה מגיעה.</string>
     <string name="preferences__generate_link_previews">חולל תצוגות מקדימות של קישורים</string>
@@ -6515,14 +6515,14 @@
     <string name="ManageDonationsFragment__my_support">התמיכה שלי</string>
     <string name="ManageDonationsFragment__manage_subscription">ניהול מנוי</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">קבלות על תרומות</string>
     <string name="ManageDonationsFragment__badges">תגים</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">שאלות נפוצות של תורמים</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">דרכים אחרות לתת</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">ביצוע תרומה בשביל חבר/ה</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">לא היה ניתן לאשר את התרומה</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->

@@ -970,8 +970,8 @@
     <string name="DateUtils_minutes_ago">%1$dm</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$d minutë</item>
+        <item quantity="other">%1$d minuta</item>
     </plurals>
     <string name="DateUtils_today">Sot</string>
     <string name="DateUtils_yesterday">Dje</string>
@@ -3963,7 +3963,7 @@
     <string name="preferences__pref_use_address_book_photos">Përdor foto libri adresash</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Shfaqni foto kontaktesh prej librit tuaj të adresave, në pastë</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Mbaj të arkivuara bisedat pa zë</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Bisedat e arkivuara pa zë do të mbeten të tilla, edhe kur të vijë mesazh i ri.</string>
     <string name="preferences__generate_link_previews">Prodho lidhje për paraparje</string>
@@ -6223,14 +6223,14 @@
     <string name="ManageDonationsFragment__my_support">Përkrahja ime</string>
     <string name="ManageDonationsFragment__manage_subscription">Menaxho abonimin</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">Faturat e dhurimit</string>
     <string name="ManageDonationsFragment__badges">Distinktivët</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">Pyetje të shpeshta të dhuruesve</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Rrugë të tjera për të dhuruar</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Dhuro për një mik</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Dhurimi nuk mund të konfirmohej</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->

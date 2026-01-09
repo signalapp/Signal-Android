@@ -1010,10 +1010,10 @@
     <string name="DateUtils_minutes_ago">%1$dm</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="few">%1$d minutes</item>
-        <item quantity="many">%1$d minutes</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$d minuta</item>
+        <item quantity="few">%1$d minuty</item>
+        <item quantity="many">%1$d minut</item>
+        <item quantity="other">%1$d minut</item>
     </plurals>
     <string name="DateUtils_today">Dnes</string>
     <string name="DateUtils_yesterday">Včera</string>
@@ -4189,7 +4189,7 @@
     <string name="preferences__pref_use_address_book_photos">Použít fotografii z adresáře</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Pokud je k dispozici, zobrazit fotografii kontaktu z adresáře</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Ponechat ztlumené chaty archivované</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ztlumené chaty, které jsou archivovány, zůstanou archivovány i po příchodu nové zprávy.</string>
     <string name="preferences__generate_link_previews">Vygenerovat náhledy odkazů</string>
@@ -6515,14 +6515,14 @@
     <string name="ManageDonationsFragment__my_support">Má podpora</string>
     <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">Potvrzení o příspěvku</string>
     <string name="ManageDonationsFragment__badges">Odznaky</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">Časté dotazy dárců</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Jiné možnosti podpory</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Přispět za přítele</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Příspěvek nebylo možné potvrdit</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->

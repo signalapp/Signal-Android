@@ -970,8 +970,8 @@
     <string name="DateUtils_minutes_ago">%1$dਮਿੰ</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$dਮਿੰਟ</item>
+        <item quantity="other">%1$d ਮਿੰਟ</item>
     </plurals>
     <string name="DateUtils_today">ਅੱਜ</string>
     <string name="DateUtils_yesterday">ਕੱਲ੍ਹ</string>
@@ -3963,7 +3963,7 @@
     <string name="preferences__pref_use_address_book_photos">ਐਡਰੈਸ ਬੁੱਕ ਫੋਟੋਆਂ ਵਰਤੋਂ</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">ਤੁਹਾਡੀ ਐਡਰੈਸ ਬੁੱਕ ਤੋਂ ਸੰਪਰਕ ਤਸਵੀਰ ਵੇਖਾਓ, ਜੇ ਉਪਲਬਧ ਹੋਣ</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">ਮਿਊਟ ਕੀਤੀਆਂ ਗਈਆਂ ਚੈਟਾਂ ਨੂੰ ਆਰਕਾਈਵ ਵਿੱਚ ਹੀ ਰੱਖੋ</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">ਨਵਾਂ ਸੁਨੇਹਾ ਆਉਣ \'ਤੇ ਆਰਕਾਈਵ ਵਿੱਚ ਮੌਜੂਦ ਮਿਊਟ ਕੀਤੀਆਂ ਗਈਆਂ ਚੈਟਾਂ, ਆਰਕਾਈਵ ਵਿੱਚ ਹੀ ਰਹਿਣਗੀਆਂ।</string>
     <string name="preferences__generate_link_previews">ਲਿੰਕ ਝਲਕ ਤਿਆਰ ਕਰੋ</string>
@@ -6223,14 +6223,14 @@
     <string name="ManageDonationsFragment__my_support">ਮੇਰਾ ਸਹਿਯੋਗ</string>
     <string name="ManageDonationsFragment__manage_subscription">ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਪ੍ਰਬੰਧਿਤ ਕਰੋ</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">ਦਾਨ ਦੀਆਂ ਰਸੀਦਾਂ</string>
     <string name="ManageDonationsFragment__badges">ਬੈਜ</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">ਦਾਨੀਆਂ ਵੱਲੋਂ ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">ਦਾਨ ਦੇਣ ਦੇ ਹੋਰ ਤਰੀਕੇ</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">ਕਿਸੇ ਦੋਸਤ ਦੀ ਤਰਫ਼ ਤੋਂ ਦਾਨ ਦਿਓ</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">ਦਾਨ ਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->

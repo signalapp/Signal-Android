@@ -950,7 +950,7 @@
     <string name="DateUtils_minutes_ago">%1$dនាទី</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="other">%1$d នាទី</item>
     </plurals>
     <string name="DateUtils_today">ថ្ងៃនេះ</string>
     <string name="DateUtils_yesterday">ម្សិលមិញ</string>
@@ -3850,7 +3850,7 @@
     <string name="preferences__pref_use_address_book_photos">ប្រើប្រាស់រូបភាពសៀវភៅអាសយដ្ឋាន</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">បង្ហាញរូបភាពលេខទំនាក់ទំនងចេញពីសៀវភៅអាសយដ្ឋានរបស់អ្នក ប្រសិនបើមាន</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">បន្តទុកក្នុងបណ្ណសារនូវការជជែកដែលបិទសំឡេង</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">ការជជែកដែលបានបិទសំឡេងដែលត្រូវបានទុកក្នុងបណ្ណសារនឹងនៅតែរក្សាទុកក្នុងបណ្ណសារដដែល នៅពេលសារថ្មីមកដល់។</string>
     <string name="preferences__generate_link_previews">បង្កើតការមើលមុនតំណភ្ជាប់</string>
@@ -6077,14 +6077,14 @@
     <string name="ManageDonationsFragment__my_support">ការគាំទ្ររបស់ខ្ញុំ</string>
     <string name="ManageDonationsFragment__manage_subscription">គ្រប់គ្រងការជាវ</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">បង្កាន់ដៃបរិច្ចាគ</string>
     <string name="ManageDonationsFragment__badges">ស្លាក</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">សំណួរសួរញឹកញាប់អំពីម្ចាស់ជំនួយ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">វិធីផ្សេងទៀតក្នុងការផ្តល់ជូន</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">បរិច្ចាគសម្រាប់មិត្តភក្តិម្នាក់</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">មិនអាចបញ្ជាក់ការបរិច្ចាគបានទេ</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->

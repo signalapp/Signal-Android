@@ -1010,10 +1010,10 @@
     <string name="DateUtils_minutes_ago">%1$d min.</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="few">%1$d minutes</item>
-        <item quantity="many">%1$d minutes</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$d minutė</item>
+        <item quantity="few">%1$d minutės</item>
+        <item quantity="many">%1$d minučių</item>
+        <item quantity="other">%1$d minučių</item>
     </plurals>
     <string name="DateUtils_today">Šiandien</string>
     <string name="DateUtils_yesterday">Vakar</string>
@@ -4189,7 +4189,7 @@
     <string name="preferences__pref_use_address_book_photos">Naudoti adresų knygos nuotraukas</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Jei prieinama, rodyti adresatų nuotraukas iš jūsų adresų knygos</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Laikyti nutildytus pokalbius suarchyvuotus</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Suarchyvuoti nutildyti pokalbiai gavus naują žinutę liks suarchyvuoti.</string>
     <string name="preferences__generate_link_previews">Generuoti nuorodų peržiūras</string>
@@ -6515,14 +6515,14 @@
     <string name="ManageDonationsFragment__my_support">Mano palaikymas</string>
     <string name="ManageDonationsFragment__manage_subscription">Tvarkyti prenumeratą</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">Paramos kvitai</string>
     <string name="ManageDonationsFragment__badges">Ženkleliai</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">Rėmėjų DUK</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Kiti aukojimo būdai</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Skirk paramą draugo vardu</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Nepavyko patvirtinti paramos</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->

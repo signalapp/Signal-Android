@@ -970,8 +970,8 @@
     <string name="DateUtils_minutes_ago">%1$dწ</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$d წუთი</item>
+        <item quantity="other">%1$d წუთი</item>
     </plurals>
     <string name="DateUtils_today">დღეს</string>
     <string name="DateUtils_yesterday">გუშინ</string>
@@ -3963,7 +3963,7 @@
     <string name="preferences__pref_use_address_book_photos">მისამართების წიგნაკის ფოტოების გამოყენება</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">აჩვენე საკონტაქტო ფოტოები შენი მისამართების წიგნიდან, თუ ეს შესაძლებელია</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">შეინახე დადუმებული ჩატები არქივში</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">ახალი წერილის მიღებისას, დაარქივებული დადუმებული ჩატები არქივში დარჩება.</string>
     <string name="preferences__generate_link_previews">ბმულსი წინასწარი ნახვის გენერირება</string>
@@ -6223,14 +6223,14 @@
     <string name="ManageDonationsFragment__my_support">ჩემი მხარდაჭერა</string>
     <string name="ManageDonationsFragment__manage_subscription">გამოწერის მართვა</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">დონაციის ქვითრები</string>
     <string name="ManageDonationsFragment__badges">ემბლემები</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">დონორის FAQ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">გაცემის სხვა გზები</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">გააკეთე დონაცია მეგობრისთვის</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">დონაციის დადასტურება ვერ მოხერხდა</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->

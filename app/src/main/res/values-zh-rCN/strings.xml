@@ -950,7 +950,7 @@
     <string name="DateUtils_minutes_ago">%1$d 分钟</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="other">%1$d 分钟</item>
     </plurals>
     <string name="DateUtils_today">今天</string>
     <string name="DateUtils_yesterday">昨天</string>
@@ -3850,7 +3850,7 @@
     <string name="preferences__pref_use_address_book_photos">使用通讯录图片</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">显示通讯录中联系人图片（若可用）</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">继续存档静音聊天</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">当收到新消息时，已存档的静音聊天将会保持存档状态。</string>
     <string name="preferences__generate_link_previews">生成链接预览</string>
@@ -6077,14 +6077,14 @@
     <string name="ManageDonationsFragment__my_support">我的赞助</string>
     <string name="ManageDonationsFragment__manage_subscription">管理定期捐款</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">捐款收据</string>
     <string name="ManageDonationsFragment__badges">徽章</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">捐款人常见问题解答</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">其他赞助方式</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">代朋友捐款</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">无法确认捐款</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->

@@ -1030,11 +1030,11 @@
     <string name="DateUtils_minutes_ago">%1$dm</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="two">%1$d minutes</item>
-        <item quantity="few">%1$d minutes</item>
-        <item quantity="many">%1$d minutes</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$dnóiméad amháin</item>
+        <item quantity="two">%1$d nóiméad </item>
+        <item quantity="few">%1$dnóiméad</item>
+        <item quantity="many">%1$dnóiméid</item>
+        <item quantity="other">%1$d nóiméad</item>
     </plurals>
     <string name="DateUtils_today">Inniu</string>
     <string name="DateUtils_yesterday">Inné</string>
@@ -4302,7 +4302,7 @@
     <string name="preferences__pref_use_address_book_photos">Úsáid grianghraif sa leabhar seoltaí</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Taispeáin grianghraif na dteagmhálacha ó do leabhar seoltaí má tá siad ar fáil</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Coinnigh comhráite balbhaithe sa chartlann</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Fanfaidh comhráite balbhaithe sa chartlann fós nuair a thagann teachtaireacht nua isteach.</string>
     <string name="preferences__generate_link_previews">Gin réamhamharcanna ar naisc</string>
@@ -6661,14 +6661,14 @@
     <string name="ManageDonationsFragment__my_support">My Support</string>
     <string name="ManageDonationsFragment__manage_subscription">Bainistigh síntiús</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">Admhálacha Tabhartas</string>
     <string name="ManageDonationsFragment__badges">Suaitheantais</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">CCanna do thabharthóirí</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Other Ways to Give</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Tabhair airgead ar son cara</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Níorbh fhéidir an tabhartas a dheimhniú</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->

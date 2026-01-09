@@ -970,8 +970,8 @@
     <string name="DateUtils_minutes_ago">%1$d min</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$d minuut</item>
+        <item quantity="other">%1$d minuten</item>
     </plurals>
     <string name="DateUtils_today">Vandaag</string>
     <string name="DateUtils_yesterday">Gisteren</string>
@@ -3963,7 +3963,7 @@
     <string name="preferences__pref_use_address_book_photos">Profielfoto\'s uit telefooncontacten gebruiken</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto\'s uit de contactenlijst van je telefoon weer</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Gedempte chats gearchiveerd houden</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Gedempte chats die zijn gearchiveerd, blijven gearchiveerd als er een nieuw bericht binnenkomt.</string>
     <string name="preferences__generate_link_previews">Linkvoorbeelden meesturen</string>
@@ -6223,14 +6223,14 @@
     <string name="ManageDonationsFragment__my_support">Mijn bijdrage</string>
     <string name="ManageDonationsFragment__manage_subscription">Maandelijkse donatie beheren</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">Donatiebewijzen</string>
     <string name="ManageDonationsFragment__badges">Badges</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">Veelgestelde vragen over doneren</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Andere manieren om bij te dragen</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Doneer voor een vriend(in)</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Kan donatie niet bevestigen</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->

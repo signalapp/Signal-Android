@@ -970,8 +970,8 @@
     <string name="DateUtils_minutes_ago">%1$dλ</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$d λεπτό</item>
+        <item quantity="other">%1$d λεπτά</item>
     </plurals>
     <string name="DateUtils_today">Σήμερα</string>
     <string name="DateUtils_yesterday">Χθες</string>
@@ -3963,7 +3963,7 @@
     <string name="preferences__pref_use_address_book_photos">Χρήση φωτογραφιών λίστας επαφών</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Εμφάνιση φωτογραφιών επαφών από τη λίστα επαφών αν είναι διαθέσιμες</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Διατήρηση αρχειοθέτησης συνομιλιών σε σίγαση</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Οι συνομιλίες σε σίγαση που είναι αρχειοθετημένες, θα παραμείνουν σε αρχειοθέτηση όταν λάβεις νέα μηνύματα.</string>
     <string name="preferences__generate_link_previews">Προεπισκόπηση συνδέσμων</string>
@@ -6223,14 +6223,14 @@
     <string name="ManageDonationsFragment__my_support">Η υποστήριξή μου</string>
     <string name="ManageDonationsFragment__manage_subscription">Διαχείριση συνδρομής</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">Αποδείξεις δωρεών</string>
     <string name="ManageDonationsFragment__badges">Σήματα</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">Συχνές ερωτήσεις για δωρεές</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Άλλοι τρόποι δωρεάς</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Κάνε δωρεά για έναν φίλο ή φίλη</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Δεν ήταν δυνατή η επιβεβαίωση της δωρεάς</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
