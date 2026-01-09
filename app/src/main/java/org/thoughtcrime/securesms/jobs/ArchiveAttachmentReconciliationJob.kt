@@ -126,6 +126,11 @@ class ArchiveAttachmentReconciliationJob private constructor(
       return Result.success()
     }
 
+    if (!AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)) {
+      Log.i(TAG, "There are still uploads in progress. Retrying later.")
+      return Result.retry(defaultBackoff())
+    }
+
     // It's possible a new backup could be started while this job is running. If we don't keep a consistent view of the snapshot version, the logic
     // we use to determine which attachments need to be re-uploaded will possibly result in us unnecessarily re-uploading attachments.
     snapshotVersion = snapshotVersion ?: SignalDatabase.backupMediaSnapshots.getCurrentSnapshotVersion()
