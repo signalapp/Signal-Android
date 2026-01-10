@@ -200,6 +200,8 @@ private fun RecipientSearchResultsList(
     currentFragment?.isRefreshing = isRefreshing
     if (wasRefreshing && !isRefreshing) {
       currentFragment?.onDataRefreshed()
+      currentFragment?.setQueryFilter("")
+      currentFragment?.setQueryFilter(searchQuery)
     }
     wasRefreshing = isRefreshing
   }
