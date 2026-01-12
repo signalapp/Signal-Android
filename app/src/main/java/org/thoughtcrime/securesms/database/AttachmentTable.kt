@@ -1448,14 +1448,15 @@ class AttachmentTable(
 
     val filesInDb: MutableSet<String> = HashSet(filesOnDisk.size)
 
-    readableDatabase
-      .select(DATA_FILE, THUMBNAIL_FILE)
-      .from(TABLE_NAME)
-      .run()
-      .forEach { cursor ->
-        cursor.requireString(DATA_FILE)?.let { filesInDb += it }
-        cursor.requireString(THUMBNAIL_FILE)?.let { filesInDb += it }
-      }
+    readableDatabase.withinTransaction { db ->
+      db.select(DATA_FILE, THUMBNAIL_FILE)
+        .from(TABLE_NAME)
+        .run()
+        .forEach { cursor ->
+          cursor.requireString(DATA_FILE)?.let { filesInDb += it }
+          cursor.requireString(THUMBNAIL_FILE)?.let { filesInDb += it }
+        }
+    }
 
     filesInDb += SignalDatabase.stickers.getAllStickerFiles()
 
