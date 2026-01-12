@@ -367,6 +367,7 @@ import org.thoughtcrime.securesms.util.toMillis
 import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
+import org.thoughtcrime.securesms.verify.VerifyAutomaticallyEducationSheet
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
@@ -661,6 +662,7 @@ class ConversationFragment :
     presentGroupConversationSubtitle(createGroupSubtitleString(viewModel.titleViewParticipantsSnapshot))
     presentActionBarMenu()
     presentStoryRing()
+    presentVerifyAutomaticallySheet()
 
     observeConversationThread()
 
@@ -1411,6 +1413,12 @@ class ConversationFragment :
         .build()
 
       startActivity(StoryViewerActivity.createIntent(requireContext(), args))
+    }
+  }
+
+  private fun presentVerifyAutomaticallySheet() {
+    if (RemoteConfig.keyTransparency && !SignalStore.uiHints.hasSeenVerifyAutomaticallySheet() && viewModel.recipientSnapshot?.isIndividual == true) {
+      VerifyAutomaticallyEducationSheet.show(parentFragmentManager)
     }
   }
 

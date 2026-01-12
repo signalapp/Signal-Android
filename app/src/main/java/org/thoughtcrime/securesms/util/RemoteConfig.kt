@@ -1233,5 +1233,18 @@ object RemoteConfig {
     defaultValue = false,
     hotSwappable = true
   )
+
+  /**
+   * Whether or not to show any UI related to key transparency
+   */
+  @JvmStatic
+  @get:JvmName("keyTransparency")
+  val keyTransparency: Boolean by remoteBoolean(
+    key = "android.keyTransparency",
+    active = false,
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   // endregion
 }

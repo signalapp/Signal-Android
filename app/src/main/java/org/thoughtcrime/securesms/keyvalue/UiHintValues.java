@@ -31,6 +31,7 @@ public class UiHintValues extends SignalStoreValues {
   private static final String HAS_SEEN_LINK_DEVICE_QR_EDUCATION_SHEET  = "uihints.has_seen_link_device_qr_education_sheet";
   private static final String HAS_DISMISSED_SAVE_STORAGE_WARNING       = "uihints.has_dismissed_save_storage_warning";
   private static final String HAS_SEEN_PINNED_MESSAGE_SHEET            = "uihints.has_seen_pinned_message_sheet";
+  private static final String HAS_SEEN_VERIFY_AUTO_SHEET               = "uihints.has_seen_verify_auto_sheet";
 
   UiHintValues(@NonNull KeyValueStore store) {
     super(store);
@@ -231,5 +232,13 @@ public class UiHintValues extends SignalStoreValues {
 
   private int getSeenPinnedSheetCount() {
     return getInteger(HAS_SEEN_PINNED_MESSAGE_SHEET, 0);
+  }
+
+  public boolean hasSeenVerifyAutomaticallySheet() {
+    return getBoolean(HAS_SEEN_VERIFY_AUTO_SHEET, false);
+  }
+
+  public void setSeenVerifyAutomaticallySheet() {
+    putBoolean(HAS_SEEN_VERIFY_AUTO_SHEET, true);
   }
 }
