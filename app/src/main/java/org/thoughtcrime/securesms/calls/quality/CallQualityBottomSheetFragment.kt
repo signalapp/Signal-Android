@@ -76,6 +76,12 @@ class CallQualityBottomSheetFragment : ComposeBottomSheetDialogFragment() {
       )
     }
 
+    override fun viewDiagnostics() {
+      CallQualityDiagnosticsFragment.create(
+        viewModel.getRequestSnapshot()
+      ).show(parentFragmentManager, null)
+    }
+
     override fun onUserSatisfiedWithCall(isUserSatisfiedWithCall: Boolean) {
       viewModel.setUserSatisfiedWithCall(isUserSatisfiedWithCall)
     }
