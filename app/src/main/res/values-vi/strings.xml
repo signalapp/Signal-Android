@@ -1595,7 +1595,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Lỗi mạng.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Đường dẫn nhóm không khả dụng</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
-    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Đã đạt giới hạn của nhóm, không thể tham gia nhóm</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Không thể tham gia nhóm</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -4070,7 +4070,7 @@
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Gọn</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">Ứng dụng sẽ khởi động lại để áp dụng cài đặt ngôn ngữ mới.</string>
 
 
     <string name="configurable_single_select__customize_option">Sửa cài đặt</string>
@@ -8749,7 +8749,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Kết thúc hỏi ý kiến?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Thành viên của cuộc trò chuyện này sẽ không còn có thể bình chọn trong cuộc hỏi ý kiến này nữa.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Đang chờ kết nối mạng…</string>
     <!-- Header when creating a new poll -->
@@ -8806,7 +8806,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
+    <string name="CallQualitySomethingElseScreen__title">Mô tả vấn đề</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Mô tả vấn đề của bạn</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->

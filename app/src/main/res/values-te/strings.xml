@@ -1639,7 +1639,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">నెట్‌వర్క్ లోపాన్ని ఎదుర్కొంది.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ఈ సమూహ లింక్ సక్రియంగా లేదు</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
-    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">గ్రూప్ పరిమితిని చేరుకుంది, గ్రూప్‌లో చేరడం సాధ్యం కాలేదు</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">గ్రూపులో చేరలేరు</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -4185,7 +4185,7 @@
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">సంక్షిప్తము</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">కొత్త భాషా సెట్టింగ్‌ను వర్తింపజేయడానికి యాప్ పునఃప్రారంభించబడుతుంది.</string>
 
 
     <string name="configurable_single_select__customize_option">అనుకూలీకరించు ఎంపిక</string>
@@ -8936,7 +8936,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">పోల్‌ను ముగించాలా?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">ఈ చాట్ సభ్యులు ఇకపై ఈ పోల్‌లో ఓటు వేయలేరు.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">నెట్వర్క్ కోసం వేచి ఉంది…</string>
     <!-- Header when creating a new poll -->
@@ -8993,7 +8993,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
+    <string name="CallQualitySomethingElseScreen__title">సమస్యను వివరించండి</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">మీ సమస్యను వివరించండి</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->

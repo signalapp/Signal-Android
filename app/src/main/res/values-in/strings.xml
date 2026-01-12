@@ -950,7 +950,7 @@
     <string name="DateUtils_minutes_ago">%1$dmenit</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="other">%1$dmenit</item>
+        <item quantity="other">%1$d menit</item>
     </plurals>
     <string name="DateUtils_today">Hari ini</string>
     <string name="DateUtils_yesterday">Kemarin</string>
@@ -6077,7 +6077,7 @@
     <string name="ManageDonationsFragment__my_support">Dukungan saya</string>
     <string name="ManageDonationsFragment__manage_subscription">Kelola langganan</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Resi Donasi</string>
+    <string name="ManageDonationsFragment__donation_receipts">Struk donasi</string>
     <string name="ManageDonationsFragment__badges">Lencana</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">Pertanyaan Umum tentang Donatur</string>

@@ -426,7 +426,7 @@
     <string name="ConversationItem_copied_text">%1$s 복사됨</string>
     <string name="ConversationItem_from_s">발신: %1$s</string>
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
-    <string name="ConversationItem_to_s">수신: %1$s</string>
+    <string name="ConversationItem_to_s">수신인: %1$s</string>
     <string name="ConversationItem_read_more">  더 보기</string>
     <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  더 다운로드하기</string>
@@ -434,7 +434,7 @@
     <string name="ConversationItem_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
     <string name="ConversationItem_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
-    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">메시지를 다운로드할 수 없습니다. %1$s 님이 다시 공유해야 합니다.</string>
+    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">메시지를 다운로드할 수 없습니다. %1$s 님이 다시 전송해야 합니다.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">이미지를 다운로드할 수 없습니다. %1$s 님이 다시 공유해야 합니다.</string>
     <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -484,7 +484,7 @@
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
     <string name="ConversationActivity_transport_signal">Signal 메시지</string>
     <!-- The content description for button to send a message in a conversation -->
-    <string name="ConversationActivity_send_message_content_description">문자 보내기</string>
+    <string name="ConversationActivity_send_message_content_description">메시지 전송</string>
     <string name="ConversationActivity_lets_switch_to_signal">Signal로 같이 옮겨요! %1$s</string>
     <string name="ConversationActivity_specify_recipient">연락처를 선택해 주세요.</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">첨부 파일이 전송 메시지의 사이즈 제한을 초과합니다.</string>
@@ -538,7 +538,7 @@
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
     <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">통화를 시작하려면 Signal에서 마이크를 사용할 수 있도록 허용하세요.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">통화를 시작하려면 Signal에서 마이크를 사용할 수 있어야 합니다.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">통화를 시작하려면 Signal에 마이크 접근 권한이 필요합니다.</string>
 
 
     <string name="ConversationActivity_join">참가</string>
@@ -602,7 +602,7 @@
     <string name="ConversationFragment_quoted_message_not_found">원본 메시지를 찾을 수 없음</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">원본 메시지를 더 이상 볼 수 없음</string>
     <string name="ConversationFragment_failed_to_open_message">메시지 열기 실패</string>
-    <string name="ConversationFragment_you_can_swipe_to_the_right_reply">메시지를 오른쪽으로 쓸어서 빨리 답장할 수 있습니다.</string>
+    <string name="ConversationFragment_you_can_swipe_to_the_right_reply">메시지에 빠르게 답변하려면 오른쪽으로 화면을 쓸어보세요.</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">메시지를 왼쪽으로 쓸어서 빨리 답장할 수 있습니다.</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">한 번만 볼 수 있는 미디어는 전송 후 삭제됩니다.</string>
     <string name="ConversationFragment_you_already_viewed_this_message">이 메시지를 이미 읽었습니다.</string>
@@ -627,7 +627,7 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">차단함</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">시그널 최신 버전으로 업데이트</string>
+    <string name="ConversationFragment__update_build">Signal 업데이트</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Signal 다시 등록</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
@@ -635,7 +635,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Signal 열기</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">더 이상 유효하지 않음</string>
+    <string name="ConversationFragment__no_longer_verified">인증이 해제되었어요</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
     <string name="ConversationFragment_safety_tips">안전 팁</string>
     <!-- Menu option to report spam in a conversation -->
@@ -655,7 +655,7 @@
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">스팸으로 신고함</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">스팸으로 신고하고 차단했습니다.</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">스팸으로 신고하고 차단했습니다</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$s 님이 보낸 메시지 요청을 수락했습니다. 실수로 수락한 경우 아래에서 조치를 선택할 수 있습니다.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
@@ -829,7 +829,7 @@
     <string name="CreateProfileActivity__profile">프로필</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">프로필 사진 설정 중 오류 발생</string>
     <string name="CreateProfileActivity_problem_setting_profile">프로필 설정 중 오류 발생</string>
-    <string name="CreateProfileActivity_set_up_your_profile">프로필을 설정하세요.</string>
+    <string name="CreateProfileActivity_set_up_your_profile">프로필을 설정하세요</string>
     <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">프로필과 프로필 변경 사항은 메시지를 주고받는 상대와 연락처, 그룹에 표시됩니다.</string>
     <string name="CreateProfileActivity_set_avatar_description">아바타 설정</string>
 

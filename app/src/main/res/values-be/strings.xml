@@ -1727,7 +1727,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Адбылася памылка сеткі.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Гэта спасылка на групу неактыўная</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
-    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Ліміт групы дасягнуты: далучыцца да яе немагчыма</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Немагчыма далучыцца да групы</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -4415,7 +4415,7 @@
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Кампактны</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">Каб пераключыцца на новую мову, неабходна перазапусціць праграму.</string>
 
 
     <string name="configurable_single_select__customize_option">Наладзіць опцыю</string>
@@ -5067,7 +5067,7 @@
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Паўторна адправіць код (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Звярнуцца да службы падтрымкі Signal</string>
-    <string name="RegistrationActivity_code_support_subject">Рэгістрацыя Signal - Код праверкі для Android</string>
+    <string name="RegistrationActivity_code_support_subject">Рэгістрацыя Signal - Праверачны код для Android</string>
     <string name="RegistrationActivity_incorrect_code">Няправільны код</string>
     <string name="BackupUtil_never">Ніколі</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
@@ -7033,7 +7033,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Пакуль няма праглядаў</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Уключыце апавяшчэнні аб праглядах, каб ведаць, хто прагледзеў вашы гісторыі.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Уключыце «Прагледзець даныя праглядаў», каб ведаць, хто прагледзеў вашы гісторыі.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Перайсці ў налады</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -7513,7 +7513,7 @@
     <string name="StoriesPrivacySettingsFragment__stories">Гісторыі</string>
     <!-- Story views header -->
     <!-- Story view receipts toggle title -->
-    <string name="StoriesPrivacySettingsFragment__view_receipts">Апавяшчэнні аб праглядзе</string>
+    <string name="StoriesPrivacySettingsFragment__view_receipts">Прагледзець даныя праглядаў</string>
     <!-- Story view receipts toggle message -->
     <string name="StoriesPrivacySettingsFragment__see_and_share">Даведвайцеся і абагульвайце інфармацыю аб праглядах гісторый. Калі гэта функцыя адключана, вы не будзеце ведаць, што нехта прагледзеў вашу гісторыю.</string>
 
@@ -9310,7 +9310,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Завяршыць апытанне?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Удзельнікі гэтага чата больш не змогуць аддаваць галасы ў дадзеным апытанні.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Чакаем сетку…</string>
     <!-- Header when creating a new poll -->
@@ -9367,7 +9367,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
+    <string name="CallQualitySomethingElseScreen__title">Апішыце праблему</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Апішыце сваю праблему</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->

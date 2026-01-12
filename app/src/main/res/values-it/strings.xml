@@ -1639,7 +1639,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Si è verificato un errore di rete.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Questo link del gruppo non è attivo</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
-    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Limite del gruppo raggiunto, impossibile unirsi</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Impossibile unirsi al gruppo</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -4185,7 +4185,7 @@
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Compatta</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">L\'app verrà riavviata per applicare le nuove preferenze sulla lingua.</string>
 
 
     <string name="configurable_single_select__customize_option">Personalizza opzione</string>
@@ -6223,7 +6223,7 @@
     <string name="ManageDonationsFragment__my_support">Il mio supporto</string>
     <string name="ManageDonationsFragment__manage_subscription">Gestisci contributo</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Ricevute donazioni</string>
+    <string name="ManageDonationsFragment__donation_receipts">Ricevute delle donazioni</string>
     <string name="ManageDonationsFragment__badges">Badge</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">FAQ sulle donazioni</string>
@@ -8936,7 +8936,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Terminare il sondaggio?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Chi fa parte di questa chat non potrà più votare in questo sondaggio.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">In attesa di una connessione…</string>
     <!-- Header when creating a new poll -->
@@ -8993,7 +8993,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
+    <string name="CallQualitySomethingElseScreen__title">Descrivi il problema</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Descrivi il tuo problema</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->

@@ -2733,7 +2733,7 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Nous allons vous envoyer un code de vérification à ce numéro. Des frais d\'opérateur peuvent s\'appliquer.</string>
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Vous recevrez un code de confirmation. Les frais de l’opérateur peuvent s’appliquer.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Nous vous enverrons un code de vérification à ce numéro. Des frais d’opérateur peuvent s’appliquer.</string>
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Sélectionner un pays</string>
     <!-- Hint text explaining that this is where the country code should go -->
@@ -3133,7 +3133,7 @@
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal. Le format de son code QR est incompatible avec votre version. Installez une mise à jour Signal pour confirmer son numéro de sécurité.</string>
-    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Le format du code QR que vous avez scanné ne correspond pas à celui d\'un code de confirmation de numéro de sécurité. Veuillez le rescanner.</string>
+    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Le format du code QR que vous avez scanné ne correspond pas à celui d\'un code de vérification de numéro de sécurité. Veuillez le rescanner.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Partager le numéro de sécurité via…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Notre numéro de sécurité Signal :</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">Aucune appli disponible pour le partage.</string>
@@ -4683,7 +4683,7 @@
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Saisissez votre PIN</string>
-    <string name="RegistrationLockFragment__enter_the_pin_you_created">Saisissez le code PIN que vous avez créé pour votre compte. Il ne s’agit pas du code de confirmation reçu par SMS.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created">Saisissez le code PIN que vous avez créé pour votre compte. Il ne s’agit pas du code de vérification reçu par SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Saisissez le code PIN que vous avez créé pour votre compte Signal.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
@@ -4819,7 +4819,7 @@
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Renvoyer un code (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contacter l\'assistance Signal</string>
-    <string name="RegistrationActivity_code_support_subject">Inscription à Signal – Code de confirmation pour Android</string>
+    <string name="RegistrationActivity_code_support_subject">Inscription à Signal – Code de vérification pour Android</string>
     <string name="RegistrationActivity_incorrect_code">Code incorrect</string>
     <string name="BackupUtil_never">Jamais</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
