@@ -111,14 +111,6 @@ object CallQuality {
         return false
       }
 
-      val callLength = callSummary.endTime.milliseconds - callSummary.startTime.milliseconds
-      val isLongerThanTenMinutes = callLength > 10.minutes
-      val isLessThanOneMinute = callLength < 1.minutes
-
-      if (isLongerThanTenMinutes || isLessThanOneMinute) {
-        return true
-      }
-
       val chance = LocaleRemoteConfig.getCallQualitySurveyPartsPerMillion()
       val roll = (0 until 1_000_000).random()
 

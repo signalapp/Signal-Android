@@ -30,7 +30,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
-import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.json.JSONArray
 import org.json.JSONException
@@ -3426,7 +3425,7 @@ class AttachmentTable(
       else -> null
     }
   }
-  
+
   fun debugGetAttachmentDataForMediaIds(mediaIds: Collection<MediaId>): List<ArchiveAttachmentMatch> {
     if (mediaIds.isEmpty()) return emptyList()
     val mediaIdByteStrings = mediaIds.map { it.value.toByteString() }.toSet()
@@ -4102,7 +4101,7 @@ class AttachmentTable(
     val messageRecord: MessageRecord?
   ) {
     override fun toString(): String {
-      return "attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, isThumbnail=${isThumbnail}, contentType=${attachment.contentType}, quote=${attachment.quote}, wallpaper=${isWallpaper}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}, dateSent=${messageRecord?.dateSent}, messageType=${messageRecord?.type}, messageFrom=${messageRecord?.fromRecipient?.id}, messageTo=${messageRecord?.toRecipient?.id}, expiresIn=${messageRecord?.expiresIn}, expireStarted=${messageRecord?.expireStarted}"
+      return "attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, isThumbnail=$isThumbnail, contentType=${attachment.contentType}, quote=${attachment.quote}, wallpaper=$isWallpaper, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}, dateSent=${messageRecord?.dateSent}, messageType=${messageRecord?.type}, messageFrom=${messageRecord?.fromRecipient?.id}, messageTo=${messageRecord?.toRecipient?.id}, expiresIn=${messageRecord?.expiresIn}, expireStarted=${messageRecord?.expireStarted}"
     }
   }
 }
