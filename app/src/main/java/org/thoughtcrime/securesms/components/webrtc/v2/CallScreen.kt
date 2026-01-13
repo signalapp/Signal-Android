@@ -114,7 +114,10 @@ fun CallScreen(
   onLocalPictureInPictureClicked: () -> Unit,
   onLocalPictureInPictureFocusClicked: () -> Unit,
   onControlsToggled: (Boolean) -> Unit,
-  onCallScreenDialogDismissed: () -> Unit = {}
+  onCallScreenDialogDismissed: () -> Unit = {},
+  onWifiToCellularPopupDismissed: () -> Unit = {},
+  onSwipeToSpeakerHintDismissed: () -> Unit = {},
+  onRemoteMuteToastDismissed: () -> Unit = {}
 ) {
   if (webRtcCallState == WebRtcViewModel.State.CALL_INCOMING) {
     IncomingCallScreen(
@@ -420,6 +423,30 @@ fun CallScreen(
         .fillMaxWidth()
     )
   }
+
+  WifiToCellularPopup(
+    visible = callScreenState.displayWifiToCellularPopup,
+    onDismiss = onWifiToCellularPopupDismissed,
+    modifier = Modifier
+      .statusBarsPadding()
+      .fillMaxWidth()
+  )
+
+  SwipeToSpeakerHintPopup(
+    visible = callScreenState.displaySwipeToSpeakerHint,
+    onDismiss = onSwipeToSpeakerHintDismissed,
+    modifier = Modifier
+      .statusBarsPadding()
+      .fillMaxWidth()
+  )
+
+  RemoteMuteToastPopup(
+    message = callScreenState.remoteMuteToastMessage,
+    onDismiss = onRemoteMuteToastDismissed,
+    modifier = Modifier
+      .statusBarsPadding()
+      .fillMaxWidth()
+  )
 
   CallScreenDialog(callScreenDialogType, onCallScreenDialogDismissed)
 }

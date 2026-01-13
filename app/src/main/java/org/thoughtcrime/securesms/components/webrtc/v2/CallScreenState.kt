@@ -27,6 +27,7 @@ data class CallScreenState(
   val displayVideoTooltip: Boolean = false,
   val displaySwipeToSpeakerHint: Boolean = false,
   val displayWifiToCellularPopup: Boolean = false,
+  val remoteMuteToastMessage: String? = null,
   val displayAdditionalActionsDialog: Boolean = false,
   val displayMissingPermissionsNotice: Boolean = false,
   val pendingParticipantsState: PendingParticipantsState? = null,

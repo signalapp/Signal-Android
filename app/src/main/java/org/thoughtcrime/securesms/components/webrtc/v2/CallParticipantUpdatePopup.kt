@@ -5,27 +5,16 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -37,10 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.delay
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
@@ -48,7 +34,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSmall
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantListUpdate
-import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow
 import org.thoughtcrime.securesms.components.webrtc.v2.CallParticipantUpdatePopupController.DisplayState
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipantId
@@ -65,36 +50,16 @@ fun CallParticipantUpdatePopup(
   controller: CallParticipantUpdatePopupController,
   modifier: Modifier = Modifier
 ) {
-  val transitionState = remember { MutableTransitionState(controller.displayState != DisplayState.NONE) }
-  transitionState.targetState = controller.displayState != DisplayState.NONE
-
-  LaunchedEffect(transitionState.isIdle) {
-    if (transitionState.isIdle && !transitionState.targetState) {
-      controller.updateDisplay()
-    }
-  }
-
-  AnimatedVisibility(
-    visibleState = transitionState,
-    enter = slideInVertically { fullHeight -> -fullHeight } + fadeIn(),
-    exit = slideOutVertically { fullHeight -> -fullHeight } + fadeOut(),
+  CallScreenPopup(
+    visible = controller.displayState != DisplayState.NONE,
+    onDismiss = { controller.hide() },
+    displayDuration = controller.displayDuration,
+    onTransitionComplete = { controller.updateDisplay() },
     modifier = modifier
-      .heightIn(min = 96.dp)
-      .fillMaxWidth()
   ) {
-    LaunchedEffect(controller.displayState, controller.participants) {
-      if (controller.displayState != DisplayState.NONE) {
-        delay(controller.displayDuration)
-        controller.hide()
-      }
-    }
-
     PopupContent(
       displayState = controller.displayState,
-      participants = controller.participants,
-      onClick = {
-        controller.hide()
-      }
+      participants = controller.participants
     )
   }
 }
@@ -105,8 +70,7 @@ fun CallParticipantUpdatePopup(
 @Composable
 private fun PopupContent(
   displayState: DisplayState,
-  participants: Set<CallParticipantListUpdate.Wrapper>,
-  onClick: () -> Unit
+  participants: Set<CallParticipantListUpdate.Wrapper>
 ) {
   val context = LocalContext.current
 
@@ -135,7 +99,7 @@ private fun PopupContent(
       previousDisplayState = displayStateForDescription
 
       if (participants.isNotEmpty()) {
-        previousDescription = CallParticipantsListUpdatePopupWindow.getDescriptionForRecipients(
+        previousDescription = getDescriptionForRecipients(
           context,
           participants,
           displayStateForDescription == DisplayState.ADD
@@ -147,18 +111,7 @@ private fun PopupContent(
   }
 
   Row(
-    verticalAlignment = Alignment.CenterVertically,
-    modifier = Modifier
-      .wrapContentSize()
-      .padding(start = 12.dp, top = 30.dp, end = 12.dp)
-      .background(
-        color = colorResource(R.color.signal_light_colorSecondaryContainer),
-        shape = RoundedCornerShape(percent = 50)
-      )
-      .clickable(
-        onClick = onClick,
-        role = Role.Button
-      )
+    verticalAlignment = Alignment.CenterVertically
   ) {
     Box(
       modifier = Modifier.size(48.dp)
@@ -173,7 +126,8 @@ private fun PopupContent(
 
       BadgeImageSmall(
         badge = avatarRecipient.featuredBadge,
-        modifier = Modifier.padding(top = 28.dp, start = 28.dp)
+        modifier = Modifier
+          .padding(top = 28.dp, start = 28.dp)
           .size(16.dp)
       )
     }
@@ -181,9 +135,46 @@ private fun PopupContent(
     Text(
       text = description,
       color = colorResource(R.color.signal_light_colorOnSecondaryContainer),
-      modifier = Modifier.padding(vertical = 14.dp).padding(start = 10.dp, end = 24.dp)
+      modifier = Modifier
+        .padding(vertical = 14.dp)
+        .padding(start = 10.dp, end = 24.dp)
     )
   }
+}
+
+private fun getDescriptionForRecipients(
+  context: Context,
+  recipients: Set<CallParticipantListUpdate.Wrapper>,
+  isAdded: Boolean
+): String {
+  val iterator = recipients.iterator()
+  return when (recipients.size) {
+    0 -> throw IllegalArgumentException("Recipients must contain 1 or more entries")
+    1 -> context.getString(getOneMemberDescriptionResourceId(isAdded), getNextDisplayName(context, iterator))
+    2 -> context.getString(getTwoMemberDescriptionResourceId(isAdded), getNextDisplayName(context, iterator), getNextDisplayName(context, iterator))
+    3 -> context.getString(getThreeMemberDescriptionResourceId(isAdded), getNextDisplayName(context, iterator), getNextDisplayName(context, iterator), getNextDisplayName(context, iterator))
+    else -> context.resources.getQuantityString(getManyMemberDescriptionResourceId(isAdded), recipients.size - 2, getNextDisplayName(context, iterator), getNextDisplayName(context, iterator), recipients.size - 2)
+  }
+}
+
+private fun getNextDisplayName(context: Context, iterator: Iterator<CallParticipantListUpdate.Wrapper>): String {
+  return iterator.next().callParticipant.getRecipientDisplayName(context)
+}
+
+private fun getOneMemberDescriptionResourceId(isAdded: Boolean): Int {
+  return if (isAdded) R.string.CallParticipantsListUpdatePopupWindow__s_joined else R.string.CallParticipantsListUpdatePopupWindow__s_left
+}
+
+private fun getTwoMemberDescriptionResourceId(isAdded: Boolean): Int {
+  return if (isAdded) R.string.CallParticipantsListUpdatePopupWindow__s_and_s_joined else R.string.CallParticipantsListUpdatePopupWindow__s_and_s_left
+}
+
+private fun getThreeMemberDescriptionResourceId(isAdded: Boolean): Int {
+  return if (isAdded) R.string.CallParticipantsListUpdatePopupWindow__s_s_and_s_joined else R.string.CallParticipantsListUpdatePopupWindow__s_s_and_s_left
+}
+
+private fun getManyMemberDescriptionResourceId(isAdded: Boolean): Int {
+  return if (isAdded) R.plurals.CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined else R.plurals.CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left
 }
 
 /**
@@ -265,8 +256,7 @@ private fun PopupContentPreview() {
   Previews.Preview {
     PopupContent(
       displayState = DisplayState.ADD,
-      participants = participants.take(1).map { CallParticipantListUpdate.createWrapper(it) }.toSet(),
-      onClick = {}
+      participants = participants.take(1).map { CallParticipantListUpdate.createWrapper(it) }.toSet()
     )
   }
 }

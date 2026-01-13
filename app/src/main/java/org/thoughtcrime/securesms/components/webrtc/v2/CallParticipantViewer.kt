@@ -70,8 +70,6 @@ import org.webrtc.RendererCommon
  * Displays a remote participant (or local participant in pre-join screen).
  * Handles both full-size grid view and system PIP mode.
  *
- * This is a Compose reimplementation of [org.thoughtcrime.securesms.components.webrtc.CallParticipantView].
- *
  * @param participant The call participant to display
  * @param renderInPip Whether rendering in system PIP mode (smaller, simplified UI)
  * @param raiseHandAllowed Whether to show raise hand indicator

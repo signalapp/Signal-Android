@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;

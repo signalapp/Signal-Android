@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.ringrtc.CameraState
 import org.thoughtcrime.securesms.service.webrtc.collections.ParticipantCollection
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.concurrent.TimeUnit
 
 /**
@@ -83,9 +82,7 @@ data class CallParticipantsState(
       } else {
         listParticipants.addAll(remoteParticipants.listParticipants)
       }
-      if (foldableState.isFlat && !RemoteConfig.newCallUi) {
-        listParticipants.add(CallParticipant.EMPTY)
-      }
+
       listParticipants.reverse()
       return listParticipants
     }

@@ -56,8 +56,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.sensors.Orientation
 import org.thoughtcrime.securesms.components.webrtc.CallLinkProfileKeySender
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
-import org.thoughtcrime.securesms.components.webrtc.CallReactionScrubber
-import org.thoughtcrime.securesms.components.webrtc.CallToastPopupWindow
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil
 import org.thoughtcrime.securesms.components.webrtc.InCallStatus
 import org.thoughtcrime.securesms.components.webrtc.PendingParticipantsBottomSheet
@@ -87,7 +85,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import org.thoughtcrime.securesms.util.VibrateUtil
-import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager.ChosenAudioDeviceIdentifier
@@ -102,6 +99,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     private const val STANDARD_DELAY_FINISH = 1000L
     private const val VIBRATE_DURATION = 50
+    private const val CUSTOM_REACTION_BOTTOM_SHEET_TAG = "CallReaction"
   }
 
   private lateinit var callScreen: CallScreenMediator
@@ -181,10 +179,6 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     requestNewSizesThrottle = ThrottledDebouncer(1.seconds.inWholeMilliseconds)
 
     initializePendingParticipantFragmentListener()
-
-    if (!RemoteConfig.newCallUi) {
-      WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_dark_colorSurface))
-    }
 
     if (!hasCameraPermission() && !hasAudioPermission()) {
       askCameraAudioPermissions {
@@ -460,10 +454,6 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
   private fun initializeViewModel() {
     val orientation: Orientation = resolveOrientationFromContext()
-    if (orientation == Orientation.PORTRAIT_BOTTOM_EDGE && !RemoteConfig.newCallUi) {
-      WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_dark_colorSurface2))
-      WindowUtil.clearTranslucentNavigationBar(window)
-    }
 
     AppDependencies.signalCallManager.orientationChanged(true, orientation.degrees)
 
@@ -624,7 +614,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
   private fun registerSystemPipChangeListeners() {
     addOnPictureInPictureModeChangedListener {
-      CallReactionScrubber.dismissCustomEmojiBottomSheet(supportFragmentManager)
+      (supportFragmentManager.findFragmentByTag(CUSTOM_REACTION_BOTTOM_SHEET_TAG) as? ReactWithAnyEmojiBottomSheetDialogFragment)?.dismissNow()
     }
   }
 
@@ -879,8 +869,8 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       is CallEvent.StartCall -> startCall(event.isVideoCall)
       is CallEvent.ShowGroupCallSafetyNumberChange -> SafetyNumberBottomSheet.forGroupCall(event.identityRecords).show(supportFragmentManager)
       is CallEvent.SwitchToSpeaker -> callScreen.switchToSpeakerView()
-      is CallEvent.ShowSwipeToSpeakerHint -> CallToastPopupWindow.show(rootView())
-      is CallEvent.ShowRemoteMuteToast -> CallToastPopupWindow.show(rootView(), R.drawable.ic_mic_off_solid_18, event.getDescription(this))
+      is CallEvent.ShowSwipeToSpeakerHint -> callScreen.showSpeakerViewHint()
+      is CallEvent.ShowRemoteMuteToast -> callScreen.showRemoteMuteToast(event.getDescription(this))
       is CallEvent.ShowVideoTooltip -> {
         if (isInPipMode()) return
 
@@ -1104,12 +1094,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     private val fullScreenHelper: FullscreenHelper = FullscreenHelper(this@WebRtcCallActivity)
 
     init {
-      fullScreenHelper.showAndHideWithSystemUI(
-        window,
-        findViewById(R.id.call_screen_header_gradient),
-        findViewById(R.id.webrtc_call_view_toolbar_text),
-        findViewById(R.id.webrtc_call_view_toolbar_no_text)
-      )
+      fullScreenHelper.showAndHideWithSystemUI(window)
     }
 
     override fun onShown() {
