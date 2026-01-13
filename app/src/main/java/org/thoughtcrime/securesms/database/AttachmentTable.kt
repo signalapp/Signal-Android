@@ -100,6 +100,7 @@ import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
@@ -3425,6 +3426,51 @@ class AttachmentTable(
       else -> null
     }
   }
+  
+  fun debugGetAttachmentDataForMediaIds(mediaIds: Collection<MediaId>): List<ArchiveAttachmentMatch> {
+    if (mediaIds.isEmpty()) return emptyList()
+    val mediaIdByteStrings = mediaIds.map { it.value.toByteString() }.toSet()
+
+    val found: MutableList<ArchiveAttachmentMatch> = mutableListOf()
+
+    readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL")
+      .groupBy("$DATA_HASH_END, $REMOTE_KEY")
+      .run()
+      .forEach { cursor ->
+        val remoteKey = Base64.decode(cursor.requireNonNullString(REMOTE_KEY))
+        val plaintextHash = Base64.decode(cursor.requireNonNullString(DATA_HASH_END))
+        val messageId = cursor.requireLong(MESSAGE_ID)
+
+        val mediaId = MediaName
+          .fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey)
+          .toMediaId(SignalStore.backup.mediaRootBackupKey)
+          .value
+          .toByteString()
+
+        val mediaIdThumbnail = MediaName
+          .fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey)
+          .toMediaId(SignalStore.backup.mediaRootBackupKey)
+          .value
+          .toByteString()
+
+        if (mediaId in mediaIdByteStrings) {
+          val attachment = getAttachment(cursor)
+          val messageRecord = messages.getMessageRecordOrNull(messageId)
+          found.add(ArchiveAttachmentMatch(attachment = attachment, isThumbnail = false, isWallpaper = messageId == WALLPAPER_MESSAGE_ID, messageRecord = messageRecord))
+        }
+
+        if (mediaIdThumbnail in mediaIdByteStrings) {
+          val attachment = getAttachment(cursor)
+          val messageRecord = messages.getMessageRecordOrNull(messageId)
+          found.add(ArchiveAttachmentMatch(attachment = attachment, isThumbnail = true, isWallpaper = messageId == WALLPAPER_MESSAGE_ID, messageRecord = messageRecord))
+        }
+      }
+
+    return found
+  }
 
   fun getMediaObjectsThatCantBeFound(objects: Set<ArchivedMediaObject>): Set<ArchivedMediaObject> {
     if (objects.isEmpty()) {
@@ -3450,43 +3496,6 @@ class AttachmentTable(
       }
 
     return objectsByMediaId.values.toSet()
-  }
-
-  /**
-   * Important: This is an expensive query that involves iterating over every row in the table. Only call this for debug stuff!
-   */
-  fun debugGetAttachmentsForMediaIds(mediaIds: Set<MediaId>, limit: Int): List<Pair<DatabaseAttachment, Boolean>> {
-    val byteStringMediaIds: Set<ByteString> = mediaIds.map { it.value.toByteString() }.toSet()
-    val found = mutableListOf<Pair<DatabaseAttachment, Boolean>>()
-
-    run {
-      readableDatabase
-        .select(*PROJECTION)
-        .from(TABLE_NAME)
-        .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL")
-        .groupBy("$DATA_HASH_END, $REMOTE_KEY")
-        .run()
-        .forEach { cursor ->
-          val remoteKey = Base64.decode(cursor.requireNonNullString(REMOTE_KEY))
-          val plaintextHash = Base64.decode(cursor.requireNonNullString(DATA_HASH_END))
-          val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).value.toByteString()
-          val mediaIdThumbnail = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).value.toByteString()
-          val isQuote = cursor.requireBoolean(QUOTE)
-          val messageId = cursor.requireLong(MESSAGE_ID)
-
-          if (mediaId in byteStringMediaIds) {
-            found.add(getAttachment(cursor) to false)
-          }
-
-          if (mediaIdThumbnail in byteStringMediaIds && !isQuote && messageId != WALLPAPER_MESSAGE_ID) {
-            found.add(getAttachment(cursor) to true)
-          }
-
-          if (found.size >= limit) return@run
-        }
-    }
-
-    return found
   }
 
   fun debugGetAttachmentStats(): DebugAttachmentStats {
@@ -4085,4 +4094,15 @@ class AttachmentTable(
     val contentType: String?,
     val isThumbnail: Boolean
   )
+
+  data class ArchiveAttachmentMatch(
+    val attachment: DatabaseAttachment,
+    val isThumbnail: Boolean,
+    val isWallpaper: Boolean,
+    val messageRecord: MessageRecord?
+  ) {
+    override fun toString(): String {
+      return "attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, isThumbnail=${isThumbnail}, contentType=${attachment.contentType}, quote=${attachment.quote}, wallpaper=${isWallpaper}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}, dateSent=${messageRecord?.dateSent}, messageType=${messageRecord?.type}, messageFrom=${messageRecord?.fromRecipient?.id}, messageTo=${messageRecord?.toRecipient?.id}, expiresIn=${messageRecord?.expiresIn}, expireStarted=${messageRecord?.expireStarted}"
+    }
+  }
 }

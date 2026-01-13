@@ -250,16 +250,15 @@ class ArchiveAttachmentReconciliationJob private constructor(
       if (internalUser && mediaIdsThatNeedUpload.isNotEmpty()) {
         Log.w(TAG, "Starting internal-only lookup of matching attachments. May take a while!", true)
 
-        val matchingAttachments = SignalDatabase.attachments.debugGetAttachmentsForMediaIds(mediaIdsThatNeedUpload, limit = 10_000)
+        val matchingAttachments = SignalDatabase.attachments.debugGetAttachmentDataForMediaIds(mediaIdsThatNeedUpload)
         Log.w(TAG, "Found ${matchingAttachments.size} out of the ${mediaIdsThatNeedUpload.size} attachments we looked up (capped lookups to 10k).", true)
 
-        matchingAttachments.forEach { pair ->
-          val (attachment, isThumbnail) = pair
-          if (isThumbnail) {
-            val thumbnailTransferState = SignalDatabase.attachments.getArchiveThumbnailTransferState(attachment.attachmentId)
-            Log.w(TAG, "[Thumbnail] Needed Upload: attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, contentType=${attachment.contentType}, quote=${attachment.quote}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, archiveThumbnailTransferState=$thumbnailTransferState, hasData=${attachment.hasData}", true)
+        matchingAttachments.forEach { match ->
+          if (match.isThumbnail) {
+            val thumbnailTransferState = SignalDatabase.attachments.getArchiveThumbnailTransferState(match.attachment.attachmentId)
+            Log.w(TAG, "[Thumbnail] Needed Upload: $match, archiveThumbnailTransferState: $thumbnailTransferState", true)
           } else {
-            Log.w(TAG, "[Fullsize] Needed Upload: attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, contentType=${attachment.contentType}, quote=${attachment.quote}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}", true)
+            Log.w(TAG, "[Fullsize] Needed Upload: $match", true)
           }
         }
         stopwatch.split("internal-lookup")
@@ -378,6 +377,14 @@ class ArchiveAttachmentReconciliationJob private constructor(
       }
     }
     stopwatch.split("fix-state")
+
+    if (RemoteConfig.internalUser && foundLocally.isNotEmpty()) {
+      Log.w(TAG, "Starting internal-only lookup of attachments that we thought we could delete remotely, but still had record of locally.", true)
+      val matches = SignalDatabase.attachments.debugGetAttachmentDataForMediaIds(foundLocally.map { MediaId(it.mediaId) })
+      for (match in matches) {
+        Log.w(TAG, "[PreventedDelete] $match")
+      }
+    }
 
     if (validatedDeletes.isEmpty()) {
       return null
