@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.groups.v2.processing
 
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupChangeLog
 
 /**

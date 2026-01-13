@@ -14,15 +14,15 @@ import org.signal.core.util.Base64;
 import org.signal.core.util.Hex;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
-import org.signal.storageservice.protos.groups.AvatarUploadAttributes;
-import org.signal.storageservice.protos.groups.Group;
-import org.signal.storageservice.protos.groups.GroupChange;
-import org.signal.storageservice.protos.groups.GroupChangeResponse;
-import org.signal.storageservice.protos.groups.GroupChanges;
-import org.signal.storageservice.protos.groups.GroupExternalCredential;
-import org.signal.storageservice.protos.groups.GroupJoinInfo;
-import org.signal.storageservice.protos.groups.GroupResponse;
-import org.signal.storageservice.protos.groups.Member;
+import org.signal.storageservice.storage.protos.groups.AvatarUploadAttributes;
+import org.signal.storageservice.storage.protos.groups.Group;
+import org.signal.storageservice.storage.protos.groups.GroupChange;
+import org.signal.storageservice.storage.protos.groups.GroupChangeResponse;
+import org.signal.storageservice.storage.protos.groups.GroupChanges;
+import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
+import org.signal.storageservice.storage.protos.groups.GroupJoinInfo;
+import org.signal.storageservice.storage.protos.groups.GroupResponse;
+import org.signal.storageservice.storage.protos.groups.Member;
 import org.whispersystems.signalservice.api.NetworkResult;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
@@ -2066,7 +2066,7 @@ public class PushServiceSocket {
                                                 null,
                                                 GROUPS_V2_GET_CURRENT_HANDLER))
     {
-      return Member.ADAPTER.decode(readBodyBytes(response)).joinedAtRevision;
+      return Member.ADAPTER.decode(readBodyBytes(response)).joinedAtVersion;
     }
   }
 
@@ -2084,7 +2084,7 @@ public class PushServiceSocket {
     }
   }
 
-  public GroupExternalCredential getGroupExternalCredential(GroupsV2AuthorizationString authorization)
+  public ExternalGroupCredential getExternalGroupCredential(GroupsV2AuthorizationString authorization)
       throws NonSuccessfulResponseCodeException, PushNetworkException, IOException, MalformedResponseException
   {
     try (Response response = makeStorageRequest(authorization.toString(),
@@ -2093,7 +2093,7 @@ public class PushServiceSocket {
                                                 null,
                                                 NO_HANDLER))
     {
-      return GroupExternalCredential.ADAPTER.decode(readBodyBytes(response));
+      return ExternalGroupCredential.ADAPTER.decode(readBodyBytes(response));
     }
   }
 

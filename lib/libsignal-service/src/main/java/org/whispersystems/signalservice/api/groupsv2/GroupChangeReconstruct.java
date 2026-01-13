@@ -1,15 +1,15 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
-import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedString;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedApproveMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberRole;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMemberRemoval;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedString;
 
 import java.util.ArrayList;
 import java.util.Collection;

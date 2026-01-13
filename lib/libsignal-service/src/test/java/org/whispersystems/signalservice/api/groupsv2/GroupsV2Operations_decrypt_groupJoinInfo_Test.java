@@ -5,9 +5,9 @@ import org.junit.Test;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
-import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.GroupJoinInfo;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
+import org.signal.storageservice.storage.protos.groups.AccessControl;
+import org.signal.storageservice.storage.protos.groups.GroupJoinInfo;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupJoinInfo;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
@@ -102,7 +102,7 @@ public final class GroupsV2Operations_decrypt_groupJoinInfo_Test {
   @Test
   public void revision_passed_though_6() {
     GroupJoinInfo groupJoinInfo = new GroupJoinInfo.Builder()
-                                               .revision(11)
+                                               .version(11)
                                                .build();
 
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);

@@ -1,15 +1,15 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import org.signal.storageservice.protos.groups.GroupChange;
-import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
-import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.storage.protos.groups.GroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedApproveMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberRole;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMemberRemoval;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,24 +29,24 @@ public final class GroupChangeUtil {
            change.deleteMembers.size() == 0 &&                  // field 4
            change.modifyMemberRoles.size() == 0 &&              // field 5
            change.modifyMemberProfileKeys.size() == 0 &&        // field 6
-           change.addPendingMembers.size() == 0 &&              // field 7
-           change.deletePendingMembers.size() == 0 &&           // field 8
-           change.promotePendingMembers.size() == 0 &&          // field 9
+           change.addMembersPendingProfileKey.size() == 0 &&              // field 7
+           change.deleteMembersPendingProfileKey.size() == 0 &&           // field 8
+           change.promoteMembersPendingProfileKey.size() == 0 &&          // field 9
            change.modifyTitle == null &&                        // field 10
            change.modifyAvatar == null &&                       // field 11
-           change.modifyDisappearingMessagesTimer == null &&    // field 12
+           change.modifyDisappearingMessageTimer == null &&    // field 12
            change.modifyAttributesAccess == null &&             // field 13
            change.modifyMemberAccess == null &&                 // field 14
            change.modifyAddFromInviteLinkAccess == null &&      // field 15
-           change.addRequestingMembers.size() == 0 &&           // field 16
-           change.deleteRequestingMembers.size() == 0 &&        // field 17
-           change.promoteRequestingMembers.size() == 0 &&       // field 18
+           change.addMembersPendingAdminApproval.size() == 0 &&           // field 16
+           change.deleteMembersPendingAdminApproval.size() == 0 &&        // field 17
+           change.promoteMembersPendingAdminApproval.size() == 0 &&       // field 18
            change.modifyInviteLinkPassword == null &&           // field 19
            change.modifyDescription == null &&                  // field 20
-           change.modifyAnnouncementsOnly == null &&            // field 21
-           change.addBannedMembers.size() == 0 &&               // field 22
-           change.deleteBannedMembers.size() == 0 &&            // field 23
-           change.promotePendingPniAciMembers.size() == 0;      // field 24
+           change.modify_announcements_only == null &&            // field 21
+           change.add_members_banned.size() == 0 &&               // field 22
+           change.delete_members_banned.size() == 0 &&            // field 23
+           change.promote_members_pending_pni_aci_profile_key.size() == 0;      // field 24
   }
 
   /**
@@ -58,7 +58,7 @@ public final class GroupChangeUtil {
    * Membership additions and removals also respect last writer wins and are removed if they have
    * already been applied. e.g. you add someone but they are already added.
    * <p>
-   * Membership additions will be altered to {@link GroupChange.Actions.PromotePendingMemberAction}
+   * Membership additions will be altered to {@link GroupChange.Actions.PromoteMemberPendingProfileKeyAction}
    * if someone has invited them since.
    *
    * @param groupState        Latest group state in plaintext.

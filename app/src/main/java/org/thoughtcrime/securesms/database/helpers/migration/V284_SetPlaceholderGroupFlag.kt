@@ -10,7 +10,7 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullBlob
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**

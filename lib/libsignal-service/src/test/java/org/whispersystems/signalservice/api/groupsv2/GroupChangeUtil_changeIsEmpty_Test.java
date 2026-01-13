@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
 import org.junit.Test;
-import org.signal.storageservice.protos.groups.GroupChange;
+import org.signal.storageservice.storage.protos.groups.GroupChange;
 
 import java.util.List;
 
@@ -69,7 +69,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_add_pending_members_field_7() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .addPendingMembers(List.of(new GroupChange.Actions.AddPendingMemberAction()))
+        .addMembersPendingProfileKey(List.of(new GroupChange.Actions.AddMemberPendingProfileKeyAction()))
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));
@@ -78,7 +78,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_delete_pending_members_field_8() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .deletePendingMembers(List.of(new GroupChange.Actions.DeletePendingMemberAction()))
+        .deleteMembersPendingProfileKey(List.of(new GroupChange.Actions.DeleteMemberPendingProfileKeyAction()))
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));
@@ -87,7 +87,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_promote_delete_pending_members_field_9() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .promotePendingMembers(List.of(new GroupChange.Actions.PromotePendingMemberAction()))
+        .promoteMembersPendingProfileKey(List.of(new GroupChange.Actions.PromoteMemberPendingProfileKeyAction()))
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));
@@ -114,7 +114,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_modify_disappearing_message_timer_field_12() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .modifyDisappearingMessagesTimer(new GroupChange.Actions.ModifyDisappearingMessagesTimerAction())
+        .modifyDisappearingMessageTimer(new GroupChange.Actions.ModifyDisappearingMessageTimerAction())
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));
@@ -150,7 +150,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_add_requesting_members_field_16() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .addRequestingMembers(List.of(new GroupChange.Actions.AddRequestingMemberAction()))
+        .addMembersPendingAdminApproval(List.of(new GroupChange.Actions.AddMemberPendingAdminApprovalAction()))
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));
@@ -159,7 +159,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_delete_requesting_members_field_17() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .deleteRequestingMembers(List.of(new GroupChange.Actions.DeleteRequestingMemberAction()))
+        .deleteMembersPendingAdminApproval(List.of(new GroupChange.Actions.DeleteMemberPendingAdminApprovalAction()))
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));
@@ -168,7 +168,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_promote_requesting_members_field_18() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .promoteRequestingMembers(List.of(new GroupChange.Actions.PromoteRequestingMemberAction()))
+        .promoteMembersPendingAdminApproval(List.of(new GroupChange.Actions.PromoteMemberPendingAdminApprovalAction()))
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));
@@ -195,7 +195,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_modify_description_field_21() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .modifyAnnouncementsOnly(new GroupChange.Actions.ModifyAnnouncementsOnlyAction())
+        .modify_announcements_only(new GroupChange.Actions.ModifyAnnouncementsOnlyAction())
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));
@@ -204,7 +204,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_add_banned_member_field_22() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .addBannedMembers(List.of(new GroupChange.Actions.AddBannedMemberAction()))
+        .add_members_banned(List.of(new GroupChange.Actions.AddMemberBannedAction()))
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));
@@ -213,7 +213,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_delete_banned_member_field_23() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .deleteBannedMembers(List.of(new GroupChange.Actions.DeleteBannedMemberAction()))
+        .delete_members_banned(List.of(new GroupChange.Actions.DeleteMemberBannedAction()))
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));
@@ -222,7 +222,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_promote_pending_pni_aci_members_field_24() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .promotePendingPniAciMembers(List.of(new GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction()))
+        .promote_members_pending_pni_aci_profile_key(List.of(new GroupChange.Actions.PromoteMemberPendingPniAciProfileKeyAction()))
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));

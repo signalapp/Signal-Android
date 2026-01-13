@@ -16,20 +16,20 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKeyCommitment;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialPresentation;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
-import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.GroupChange;
-import org.signal.storageservice.protos.groups.Member;
-import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
-import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedString;
-import org.signal.storageservice.protos.groups.local.DecryptedTimer;
-import org.signal.storageservice.protos.groups.local.EnabledState;
+import org.signal.storageservice.storage.protos.groups.AccessControl;
+import org.signal.storageservice.storage.protos.groups.GroupChange;
+import org.signal.storageservice.storage.protos.groups.Member;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedApproveMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberRole;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMemberRemoval;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedString;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer;
+import org.signal.storageservice.storage.protos.groups.local.EnabledState;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.models.ServiceId.PNI;
 import org.signal.core.util.UuidUtil;
@@ -90,7 +90,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
   @Test
   public void can_pass_revision_through_encrypt_and_decrypt_methods() {
     assertDecryption(new GroupChange.Actions.Builder()
-                         .revision(1),
+                         .version(1),
                      new DecryptedGroupChange.Builder()
                          .revision(1));
   }
@@ -103,7 +103,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     GroupCandidate groupCandidate = groupCandidate(newMember, profileKey);
 
     assertDecryption(groupOperations.createModifyGroupMembershipChange(Collections.singleton(groupCandidate), Collections.emptySet(), self)
-                                    .revision(10),
+                                    .version(10),
                      new DecryptedGroupChange.Builder()
                          .revision(10)
                          .newMembers(List.of(new DecryptedMember.Builder()
@@ -121,7 +121,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     GroupCandidate groupCandidate = groupCandidate(newMember, profileKey);
 
     assertDecryption(groupOperations.createGroupJoinDirect(groupCandidate.getExpiringProfileKeyCredential().get())
-                                    .revision(10),
+                                    .version(10),
                      new DecryptedGroupChange.Builder()
                          .revision(10)
                          .newMembers(List.of(new DecryptedMember.Builder()
@@ -140,7 +140,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     GroupCandidate groupCandidate = groupCandidate(newMember, profileKey);
 
     assertDecryption(groupOperations.createModifyGroupMembershipChange(Collections.singleton(groupCandidate), Collections.emptySet(), self)
-                                    .revision(10),
+                                    .version(10),
                      new DecryptedGroupChange.Builder()
                          .revision(10)
                          .newMembers(List.of(new DecryptedMember.Builder()
@@ -167,7 +167,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     ACI oldMember = ACI.from(UUID.randomUUID());
 
     assertDecryption(groupOperations.createRemoveMembersChange(Collections.singleton(oldMember), false, Collections.emptyList())
-                                    .revision(10),
+                                    .version(10),
                      new DecryptedGroupChange.Builder()
                          .revision(10)
                          .deleteMembers(List.of(oldMember.toByteString())));
@@ -213,7 +213,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     GroupCandidate groupCandidate = groupCandidate(self, profileKey);
 
     assertDecryption(groupOperations.createUpdateProfileKeyCredentialChange(groupCandidate.getExpiringProfileKeyCredential().get())
-                                    .revision(10),
+                                    .version(10),
                      new DecryptedGroupChange.Builder()
                          .revision(10)
                          .modifiedProfileKeys(List.of(new DecryptedMember.Builder()
@@ -231,7 +231,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     GroupCandidate groupCandidate = new GroupCandidate(newMember, Optional.empty());
 
     assertDecryption(groupOperations.createModifyGroupMembershipChange(Collections.singleton(groupCandidate), Collections.emptySet(), self)
-                                    .revision(13),
+                                    .version(13),
                      new DecryptedGroupChange.Builder()
                          .revision(13)
                          .newPendingMembers(List.of(new DecryptedPendingMember.Builder()
@@ -260,7 +260,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     byte[] uuidCiphertext = Util.getSecretBytes(60);
 
     assertDecryption(new GroupChange.Actions.Builder()
-                         .deletePendingMembers(List.of(new GroupChange.Actions.DeletePendingMemberAction.Builder()
+                         .deleteMembersPendingProfileKey(List.of(new GroupChange.Actions.DeleteMemberPendingProfileKeyAction.Builder()
                                                            .deletedUserId(ByteString.of(uuidCiphertext)).build())),
                      new DecryptedGroupChange.Builder()
                          .deletePendingMembers(List.of(new DecryptedPendingMemberRemoval.Builder()
@@ -342,7 +342,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     GroupCandidate groupCandidate      = groupCandidate(newRequestingMember, profileKey);
 
     assertDecryption(groupOperations.createGroupJoinRequest(groupCandidate.getExpiringProfileKeyCredential().get())
-                                    .revision(10),
+                                    .version(10),
                      new DecryptedGroupChange.Builder()
                          .revision(10)
                          .newRequestingMembers(List.of(new DecryptedRequestingMember.Builder()
@@ -356,7 +356,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     ACI newRequestingMember = ACI.from(UUID.randomUUID());
 
     assertDecryption(groupOperations.createRefuseGroupJoinRequest(Collections.singleton(newRequestingMember), true, Collections.emptyList())
-                                    .revision(10),
+                                    .version(10),
                      new DecryptedGroupChange.Builder()
                          .revision(10)
                          .deleteRequestingMembers(List.of(newRequestingMember.toByteString()))
@@ -368,7 +368,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     UUID newRequestingMember = UUID.randomUUID();
 
     assertDecryption(groupOperations.createApproveGroupJoinRequest(Collections.singleton(newRequestingMember))
-                                    .revision(15),
+                                    .version(15),
                      new DecryptedGroupChange.Builder()
                          .revision(15)
                          .promoteRequestingMembers(List.of(new DecryptedApproveMember.Builder()
@@ -399,8 +399,8 @@ public final class GroupsV2Operations_decrypt_change_Test {
   @Test
   public void can_pass_through_new_announcment_only_field21() {
     assertDecryption(new GroupChange.Actions.Builder()
-                         .modifyAnnouncementsOnly(new GroupChange.Actions.ModifyAnnouncementsOnlyAction.Builder()
-                                                      .announcementsOnly(true)
+                         .modify_announcements_only(new GroupChange.Actions.ModifyAnnouncementsOnlyAction.Builder()
+                                                      .announcements_only(true)
                                                       .build()),
                      new DecryptedGroupChange.Builder()
                          .newIsAnnouncementGroup(EnabledState.ENABLED));
@@ -411,7 +411,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     ACI ban = ACI.from(UUID.randomUUID());
 
     assertDecryption(groupOperations.createBanServiceIdsChange(Collections.singleton(ban), false, Collections.emptyList())
-                                    .revision(13),
+                                    .version(13),
                      new DecryptedGroupChange.Builder()
                          .revision(13)
                          .newBannedMembers(List.of(new DecryptedBannedMember.Builder()
@@ -424,7 +424,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     ACI ban = ACI.from(UUID.randomUUID());
 
     assertDecryption(groupOperations.createUnbanServiceIdsChange(Collections.singleton(ban))
-                                    .revision(13),
+                                    .version(13),
                      new DecryptedGroupChange.Builder()
                          .revision(13)
                          .deleteBannedMembers(List.of(new DecryptedBannedMember.Builder()
@@ -438,12 +438,12 @@ public final class GroupsV2Operations_decrypt_change_Test {
     ProfileKey profileKey = newProfileKey();
 
     GroupChange.Actions.Builder builder = new GroupChange.Actions.Builder()
-        .sourceServiceId(groupOperations.encryptServiceId(memberPni))
-        .revision(5)
-        .promotePendingPniAciMembers(List.of(new GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.Builder()
-                                                 .userId(groupOperations.encryptServiceId(memberAci))
+        .sourceUserId(groupOperations.encryptServiceId(memberPni))
+        .version(5)
+        .promote_members_pending_pni_aci_profile_key(List.of(new GroupChange.Actions.PromoteMemberPendingPniAciProfileKeyAction.Builder()
+                                                 .user_id(groupOperations.encryptServiceId(memberAci))
                                                  .pni(groupOperations.encryptServiceId(memberPni))
-                                                 .profileKey(encryptProfileKey(memberAci, profileKey))
+                                                 .profile_key(encryptProfileKey(memberAci, profileKey))
                                                  .build()));
 
     assertDecryptionWithEditorSet(builder,
@@ -498,7 +498,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
                         DecryptedGroupChange.Builder expectedDecrypted)
   {
     ACI editor = ACI.from(UUID.randomUUID());
-    assertDecryptionWithEditorSet(inputChange.sourceServiceId(groupOperations.encryptServiceId(editor)), expectedDecrypted.editorServiceIdBytes(editor.toByteString()));
+    assertDecryptionWithEditorSet(inputChange.sourceUserId(groupOperations.encryptServiceId(editor)), expectedDecrypted.editorServiceIdBytes(editor.toByteString()));
   }
 
   void assertDecryptionWithEditorSet(GroupChange.Actions.Builder inputChange,

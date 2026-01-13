@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.sms;
 import androidx.annotation.NonNull;
 
 import org.junit.Test;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.groups.v2.ChangeBuilder;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;

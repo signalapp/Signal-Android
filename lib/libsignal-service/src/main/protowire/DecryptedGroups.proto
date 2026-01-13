@@ -5,7 +5,9 @@
  */
 syntax = "proto3";
 
-option java_package        = "org.signal.storageservice.protos.groups.local";
+package signal;
+
+option java_package        = "org.signal.storageservice.storage.protos.groups.local";
 option java_multiple_files = true;
 
 import "Groups.proto";

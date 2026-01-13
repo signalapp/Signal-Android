@@ -1,8 +1,8 @@
 package org.whispersystems.signalservice.api.groupsv2
 
-import org.signal.storageservice.protos.groups.GroupChange
-import org.signal.storageservice.protos.groups.GroupChange.Actions.AddMemberAction
-import org.signal.storageservice.protos.groups.GroupChange.Actions.AddRequestingMemberAction
+import org.signal.storageservice.storage.protos.groups.GroupChange
+import org.signal.storageservice.storage.protos.groups.GroupChange.Actions.AddMemberAction
+import org.signal.storageservice.storage.protos.groups.GroupChange.Actions.AddMemberPendingAdminApprovalAction
 
 internal class GroupChangeActionsBuilderChangeSetModifier(private val result: GroupChange.Actions.Builder) : ChangeSetModifier {
   override fun removeAddMembers(i: Int) {
@@ -12,7 +12,7 @@ internal class GroupChangeActionsBuilderChangeSetModifier(private val result: Gr
   override fun moveAddToPromote(i: Int) {
     val addMemberAction: AddMemberAction = result.addMembers[i]
     result.addMembers = result.addMembers.removeIndex(i)
-    result.promotePendingMembers += GroupChange.Actions.PromotePendingMemberAction.Builder().presentation(addMemberAction.added!!.presentation).build()
+    result.promoteMembersPendingProfileKey += GroupChange.Actions.PromoteMemberPendingProfileKeyAction.Builder().presentation(addMemberAction.added!!.presentation).build()
   }
 
   override fun removeDeleteMembers(i: Int) {
@@ -28,15 +28,15 @@ internal class GroupChangeActionsBuilderChangeSetModifier(private val result: Gr
   }
 
   override fun removeAddPendingMembers(i: Int) {
-    result.addPendingMembers = result.addPendingMembers.removeIndex(i)
+    result.addMembersPendingProfileKey = result.addMembersPendingProfileKey.removeIndex(i)
   }
 
   override fun removeDeletePendingMembers(i: Int) {
-    result.deletePendingMembers = result.deletePendingMembers.removeIndex(i)
+    result.deleteMembersPendingProfileKey = result.deleteMembersPendingProfileKey.removeIndex(i)
   }
 
   override fun removePromotePendingMembers(i: Int) {
-    result.promotePendingMembers = result.promotePendingMembers.removeIndex(i)
+    result.promoteMembersPendingProfileKey = result.promoteMembersPendingProfileKey.removeIndex(i)
   }
 
   override fun clearModifyTitle() {
@@ -48,7 +48,7 @@ internal class GroupChangeActionsBuilderChangeSetModifier(private val result: Gr
   }
 
   override fun clearModifyDisappearingMessagesTimer() {
-    result.modifyDisappearingMessagesTimer = null
+    result.modifyDisappearingMessageTimer= null
   }
 
   override fun clearModifyAttributesAccess() {
@@ -64,21 +64,21 @@ internal class GroupChangeActionsBuilderChangeSetModifier(private val result: Gr
   }
 
   override fun removeAddRequestingMembers(i: Int) {
-    result.addRequestingMembers = result.addRequestingMembers.removeIndex(i)
+    result.addMembersPendingAdminApproval = result.addMembersPendingAdminApproval.removeIndex(i)
   }
 
   override fun moveAddRequestingMembersToPromote(i: Int) {
-    val addMemberAction: AddRequestingMemberAction = result.addRequestingMembers[i]
-    result.addRequestingMembers = result.addRequestingMembers.removeIndex(i)
-    result.promotePendingMembers += GroupChange.Actions.PromotePendingMemberAction.Builder().presentation(addMemberAction.added!!.presentation).build()
+    val addMemberAction: AddMemberPendingAdminApprovalAction = result.addMembersPendingAdminApproval[i]
+    result.addMembersPendingAdminApproval = result.addMembersPendingAdminApproval.removeIndex(i)
+    result.promoteMembersPendingProfileKey += GroupChange.Actions.PromoteMemberPendingProfileKeyAction.Builder().presentation(addMemberAction.added!!.presentation).build()
   }
 
   override fun removeDeleteRequestingMembers(i: Int) {
-    result.deleteRequestingMembers = result.deleteRequestingMembers.removeIndex(i)
+    result.deleteMembersPendingAdminApproval = result.deleteMembersPendingAdminApproval.removeIndex(i)
   }
 
   override fun removePromoteRequestingMembers(i: Int) {
-    result.promoteRequestingMembers = result.promoteRequestingMembers.removeIndex(i)
+    result.promoteMembersPendingAdminApproval = result.promoteMembersPendingAdminApproval.removeIndex(i)
   }
 
   override fun clearModifyDescription() {
@@ -86,19 +86,19 @@ internal class GroupChangeActionsBuilderChangeSetModifier(private val result: Gr
   }
 
   override fun clearModifyAnnouncementsOnly() {
-    result.modifyAnnouncementsOnly = null
+    result.modify_announcements_only = null
   }
 
   override fun removeAddBannedMembers(i: Int) {
-    result.addBannedMembers = result.addBannedMembers.removeIndex(i)
+    result.add_members_banned = result.add_members_banned.removeIndex(i)
   }
 
   override fun removeDeleteBannedMembers(i: Int) {
-    result.deleteBannedMembers = result.deleteBannedMembers.removeIndex(i)
+    result.delete_members_banned = result.delete_members_banned.removeIndex(i)
   }
 
   override fun removePromotePendingPniAciMembers(i: Int) {
-    result.promotePendingPniAciMembers = result.promotePendingPniAciMembers.removeIndex(i)
+    result.promote_members_pending_pni_aci_profile_key = result.promote_members_pending_pni_aci_profile_key.removeIndex(i)
   }
 
   private fun <T> List<T>.removeIndex(i: Int): List<T> {

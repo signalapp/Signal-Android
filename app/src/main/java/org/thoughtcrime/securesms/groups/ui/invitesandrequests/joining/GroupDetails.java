@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
+import org.signal.storageservice.storage.protos.groups.AccessControl;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupJoinInfo;
 
 public final class GroupDetails {
   private final DecryptedGroupJoinInfo joinInfo;

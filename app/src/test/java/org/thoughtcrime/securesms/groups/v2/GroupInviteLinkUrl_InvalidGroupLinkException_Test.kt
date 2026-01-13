@@ -11,7 +11,7 @@ import okio.ByteString
 import org.junit.Test
 import org.signal.core.util.Base64.encodeUrlSafeWithoutPadding
 import org.signal.libsignal.zkgroup.InvalidInputException
-import org.signal.storageservice.protos.groups.GroupInviteLink
+import org.signal.storageservice.storage.protos.groups.GroupInviteLink
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl.InvalidGroupLinkException
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl.UnknownGroupLinkVersionException
 import org.thoughtcrime.securesms.util.Util
@@ -116,7 +116,7 @@ class GroupInviteLinkUrl_InvalidGroupLinkException_Test {
     ): String {
       return encodeUrlSafeWithoutPadding(
         GroupInviteLink.Builder()
-          .v1Contents(
+          .contentsV1(
             GroupInviteLink.GroupInviteLinkContentsV1.Builder()
               .groupMasterKey(ByteString.of(*groupMasterKey))
               .inviteLinkPassword(ByteString.of(*passwordBytes))

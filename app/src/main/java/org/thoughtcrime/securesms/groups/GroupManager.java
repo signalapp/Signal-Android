@@ -11,8 +11,8 @@ import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groups.UuidCiphertext;
-import org.signal.storageservice.protos.groups.GroupExternalCredential;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
+import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupJoinInfo;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
@@ -395,11 +395,11 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static @NonNull GroupExternalCredential getGroupExternalCredential(@NonNull Context context,
+  public static @NonNull ExternalGroupCredential getExternalGroupCredential(@NonNull Context context,
                                                                             @NonNull GroupId.V2 groupId)
       throws IOException, VerificationFailedException
   {
-    return new GroupManagerV2(context).getGroupExternalCredential(groupId);
+    return new GroupManagerV2(context).getExternalGroupCredential(groupId);
   }
 
   @WorkerThread

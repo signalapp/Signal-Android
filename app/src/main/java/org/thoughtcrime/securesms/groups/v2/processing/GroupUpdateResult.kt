@@ -4,7 +4,7 @@
  */
 package org.thoughtcrime.securesms.groups.v2.processing
 
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 
 /**
  * Result of updating a local group state via P2P group change or a server pull.

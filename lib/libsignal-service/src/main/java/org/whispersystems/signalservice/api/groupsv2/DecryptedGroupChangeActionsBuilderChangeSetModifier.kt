@@ -1,11 +1,11 @@
 package org.whispersystems.signalservice.api.groupsv2
 
-import org.signal.storageservice.protos.groups.AccessControl
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
-import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
-import org.signal.storageservice.protos.groups.local.EnabledState
+import org.signal.storageservice.storage.protos.groups.AccessControl
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember
+import org.signal.storageservice.storage.protos.groups.local.EnabledState
 
 internal class DecryptedGroupChangeActionsBuilderChangeSetModifier(private val result: DecryptedGroupChange.Builder) : ChangeSetModifier {
   override fun removeAddMembers(i: Int) {

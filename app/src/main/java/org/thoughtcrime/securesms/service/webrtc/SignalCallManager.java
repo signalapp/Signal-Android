@@ -34,7 +34,7 @@ import org.signal.ringrtc.HttpHeader;
 import org.signal.ringrtc.NetworkRoute;
 import org.signal.ringrtc.PeekInfo;
 import org.signal.ringrtc.Remote;
-import org.signal.storageservice.protos.groups.GroupExternalCredential;
+import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
 import org.thoughtcrime.securesms.calls.quality.CallQuality;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
@@ -466,7 +466,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       try {
         Recipient               group      = Recipient.resolved(id);
         GroupId.V2              groupId    = group.requireGroupId().requireV2();
-        GroupExternalCredential credential = GroupManager.getGroupExternalCredential(context, groupId);
+        ExternalGroupCredential credential = GroupManager.getExternalGroupCredential(context, groupId);
 
         List<GroupCall.GroupMemberInfo> members = Stream.of(GroupManager.getUuidCipherTexts(context, groupId))
                                                         .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
@@ -506,7 +506,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       try {
         Recipient               group      = Recipient.resolved(info.getRecipientId());
         GroupId.V2              groupId    = group.requireGroupId().requireV2();
-        GroupExternalCredential credential = GroupManager.getGroupExternalCredential(context, groupId);
+        ExternalGroupCredential credential = GroupManager.getExternalGroupCredential(context, groupId);
 
         List<GroupCall.GroupMemberInfo> members = GroupManager.getUuidCipherTexts(context, groupId)
                                                               .entrySet()
@@ -527,7 +527,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   void requestGroupMembershipToken(@NonNull GroupId.V2 groupId, int groupCallHashCode) {
     networkExecutor.execute(() -> {
       try {
-        GroupExternalCredential credential = GroupManager.getGroupExternalCredential(context, groupId);
+        ExternalGroupCredential credential = GroupManager.getExternalGroupCredential(context, groupId);
         process((s, p) -> p.handleGroupMembershipProofResponse(s, groupCallHashCode, credential.token.getBytes(Charsets.UTF_8)));
       } catch (IOException e) {
         Log.w(TAG, "Unable to get group membership proof from service", e);

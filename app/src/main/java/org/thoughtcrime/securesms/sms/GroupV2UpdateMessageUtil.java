@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.sms;
 
 import androidx.annotation.NonNull;
 
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.signal.core.models.ServiceId;

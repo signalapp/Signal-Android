@@ -16,17 +16,17 @@ import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groups.UuidCiphertext;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.GroupChange;
-import org.signal.storageservice.protos.groups.GroupChangeResponse;
-import org.signal.storageservice.protos.groups.GroupExternalCredential;
-import org.signal.storageservice.protos.groups.Member;
-import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.storage.protos.groups.AccessControl;
+import org.signal.storageservice.storage.protos.groups.GroupChange;
+import org.signal.storageservice.storage.protos.groups.GroupChangeResponse;
+import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
+import org.signal.storageservice.storage.protos.groups.Member;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupJoinInfo;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -150,7 +150,7 @@ final class GroupManagerV2 {
   }
 
   @WorkerThread
-  @NonNull GroupExternalCredential getGroupExternalCredential(@NonNull GroupId.V2 groupId)
+  @NonNull ExternalGroupCredential getExternalGroupCredential(@NonNull GroupId.V2 groupId)
       throws IOException, VerificationFailedException
   {
     GroupMasterKey groupMasterKey = SignalDatabase.groups()
@@ -160,7 +160,7 @@ final class GroupManagerV2 {
 
     GroupSecretParams groupSecretParams = GroupSecretParams.deriveFromMasterKey(groupMasterKey);
 
-    return groupsV2Api.getGroupExternalCredential(authorization.getAuthorizationForToday(serviceIds, groupSecretParams));
+    return groupsV2Api.getExternalGroupCredential(authorization.getAuthorizationForToday(serviceIds, groupSecretParams));
   }
 
   @WorkerThread
@@ -589,7 +589,7 @@ final class GroupManagerV2 {
         throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
     {
       boolean refetchedAddMemberCredentials = false;
-      change.sourceServiceId(UuidUtil.toByteString(authServiceId.getRawUuid()));
+      change.sourceUserId(UuidUtil.toByteString(authServiceId.getRawUuid()));
 
       for (int attempt = 0; attempt < 5; attempt++) {
         try {
@@ -677,7 +677,7 @@ final class GroupManagerV2 {
       final GroupRecord                  groupRecord       = groupDatabase.requireGroup(groupId);
       final GroupTable.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
       final int                          nextRevision      = v2GroupProperties.getGroupRevision() + 1;
-      final GroupChange.Actions          changeActions     = change.revision(nextRevision).build();
+      final GroupChange.Actions          changeActions     = change.version(nextRevision).build();
       final DecryptedGroupChange         decryptedChange;
       final DecryptedGroup               decryptedGroupState;
       final DecryptedGroup               previousGroupState;
@@ -689,7 +689,7 @@ final class GroupManagerV2 {
       previousGroupState  = v2GroupProperties.getDecryptedGroup();
 
       GroupChangeResponse changeResponse    = commitToServer(changeActions);
-      GroupChange         signedGroupChange = changeResponse.groupChange;
+      GroupChange         signedGroupChange = changeResponse.group_change;
       try {
         decryptedChange     = groupOperations.decryptChange(signedGroupChange, DecryptChangeVerificationMode.alreadyTrusted()).get();
         decryptedGroupState = DecryptedGroupUtil.apply(previousGroupState, decryptedChange);
@@ -698,7 +698,7 @@ final class GroupManagerV2 {
         throw new IOException(e);
       }
 
-      groupDatabase.update(groupId, decryptedGroupState, groupsV2Operations.forGroup(groupSecretParams).receiveGroupSendEndorsements(selfAci, decryptedGroupState, changeResponse.groupSendEndorsementsResponse));
+      groupDatabase.update(groupId, decryptedGroupState, groupsV2Operations.forGroup(groupSecretParams).receiveGroupSendEndorsements(selfAci, decryptedGroupState, changeResponse.group_send_endorsements_response));
 
       GroupMutation      groupMutation      = new GroupMutation(previousGroupState, decryptedChange, decryptedGroupState);
       RecipientAndThread recipientAndThread = sendGroupUpdateHelper.sendGroupUpdate(groupMasterKey, groupMutation, signedGroupChange, sendToMembers);
@@ -885,7 +885,7 @@ final class GroupManagerV2 {
 
       try {
         groupChangeResponse = joinGroupOnServer(requestToJoin, joinInfo.revision);
-        signedGroupChange   = groupChangeResponse.groupChange;
+        signedGroupChange   = groupChangeResponse.group_change;
 
         if (requestToJoin) {
           Log.i(TAG, String.format("Successfully requested to join %s on server", groupId));
@@ -1086,7 +1086,7 @@ final class GroupManagerV2 {
       GroupChange.Actions.Builder change = requestToJoin ? groupOperations.createGroupJoinRequest(expiringProfileKeyCredential)
                                                          : groupOperations.createGroupJoinDirect(expiringProfileKeyCredential);
 
-      change.sourceServiceId(selfAci.toByteString());
+      change.sourceUserId(selfAci.toByteString());
 
       return commitJoinChangeWithConflictResolution(currentRevision, change);
     }
@@ -1096,13 +1096,13 @@ final class GroupManagerV2 {
     {
       for (int attempt = 0; attempt < 5; attempt++) {
         try {
-          GroupChange.Actions changeActions = change.revision(currentRevision + 1)
+          GroupChange.Actions changeActions = change.version(currentRevision + 1)
                                                     .build();
 
-          Log.i(TAG, "Trying to join group at V" + changeActions.revision);
+          Log.i(TAG, "Trying to join group at V" + changeActions.version);
           GroupChangeResponse changeResponse = commitJoinToServer(changeActions);
 
-          Log.i(TAG, "Successfully joined group at V" + changeActions.revision);
+          Log.i(TAG, "Successfully joined group at V" + changeActions.version);
           return changeResponse;
         } catch (GroupPatchNotAcceptedException e) {
           Log.w(TAG, "Patch not accepted", e);
@@ -1225,13 +1225,13 @@ final class GroupManagerV2 {
 
       for (int attempt = 0; attempt < 5; attempt++) {
         try {
-          GroupChange.Actions changeActions = change.revision(currentRevision + 1)
+          GroupChange.Actions changeActions = change.version(currentRevision + 1)
                                                     .build();
 
-          Log.i(TAG, "Trying to cancel request group at V" + changeActions.revision);
-          GroupChange signedGroupChange = commitJoinToServer(changeActions).groupChange;
+          Log.i(TAG, "Trying to cancel request group at V" + changeActions.version);
+          GroupChange signedGroupChange = commitJoinToServer(changeActions).group_change;
 
-          Log.i(TAG, "Successfully cancelled group join at V" + changeActions.revision);
+          Log.i(TAG, "Successfully cancelled group join at V" + changeActions.version);
           return signedGroupChange;
         } catch (GroupPatchNotAcceptedException e) {
           throw new GroupChangeFailedException(e);
