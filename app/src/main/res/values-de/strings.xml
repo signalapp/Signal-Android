@@ -4362,7 +4362,7 @@
     <string name="PaymentsTransferFragment__next">Weiter</string>
     <string name="PaymentsTransferFragment__invalid_address">Ungültige Adresse</string>
     <string name="PaymentsTransferFragment__check_the_wallet_address">Überprüfe die Wallet-Adresse, an die du überweisen möchtest, und versuche es erneut.</string>
-    <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Du kannst nicht an die Adresse deines eigenen Signal-Wallets überweisen. Gib die Wallet-Adresse deines Kontos bei einer unterstützen Handelsplattform ein.</string>
+    <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Du kannst nicht an die Adresse deines eigenen Signal-Wallets überweisen. Gib die Wallet-Adresse deines Kontos bei einer unterstützten Handelsplattform ein.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Um QR-Codes einzuscannen, benötigt Signal Zugriff auf deine Kamera</string>
     <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal benötigt die Berechtigung »Kamera« für das Einscannen von QR-Codes. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Um QR-Codes einzuscannen, benötigt Signal Zugriff auf deine Kamera</string>
