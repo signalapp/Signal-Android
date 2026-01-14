@@ -25,7 +25,7 @@ fun Frame.getAllReferencedArchiveAttachmentInfos(): Set<ArchiveAttachmentInfo> {
 }
 
 private fun AccountData.getAllReferencedArchiveAttachmentInfos(): Set<ArchiveAttachmentInfo> {
-  val info = this.accountSettings?.defaultChatStyle?.wallpaperPhoto?.toArchiveAttachmentInfo()
+  val info = this.accountSettings?.defaultChatStyle?.wallpaperPhoto?.toArchiveAttachmentInfo(isWallpaper = true)
 
   return if (info != null) {
     setOf(info)
