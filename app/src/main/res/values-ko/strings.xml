@@ -1595,7 +1595,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">이 그룹 링크가 비활성화 되었습니다.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
-    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">그룹 제한에 도달하여 그룹에 참가할 수 없음</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">그룹에 참가할 수 없습니다.</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -1814,11 +1814,11 @@
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s 님이 그룹을 업데이트했습니다.</string>
     <string name="MessageRecord_s_joined_signal">%1$s 님이 Signal에 가입했어요!</string>
-    <string name="MessageRecord_you_disabled_disappearing_messages">사라지는 메시지 기능을 비활성화했습니다.</string>
-    <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 님이 사라지는 메시지 기능을 비활성화했습니다.</string>
-    <string name="MessageRecord_you_set_disappearing_message_time_to_s">사라지는 메시지 시간을 %1$s(으)로 설정했습니다.</string>
-    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 님이 사라지는 메시지 시간을 %2$s(으)로 설정했습니다.</string>
-    <string name="MessageRecord_disappearing_message_time_set_to_s">사라지는 메시지 타이머가 %1$s(으)로 설정되었습니다.</string>
+    <string name="MessageRecord_you_disabled_disappearing_messages">자동 삭제 메시지 기능을 비활성화했습니다.</string>
+    <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 님이 자동 삭제 메시지 기능을 비활성화했습니다.</string>
+    <string name="MessageRecord_you_set_disappearing_message_time_to_s">자동 삭제 메시지 시간을 %1$s(으)로 설정했습니다.</string>
+    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 님이 자동 삭제 메시지 시간을 %2$s(으)로 설정했습니다.</string>
+    <string name="MessageRecord_disappearing_message_time_set_to_s">자동 삭제 메시지 시간이 %1$s(으)로 설정되었습니다.</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">그룹이 새 그룹으로 업데이트되었습니다.</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">귀하를 새 그룹에 추가할 수 없었으며 가입하도록 초대되었습니다.</string>
     <string name="MessageRecord_chat_session_refreshed">대화 세션을 새로 고침</string>
@@ -2613,6 +2613,12 @@
     <!-- Content description for the button that switches between front and back camera during a call -->
     <string name="SwitchCameraButton__switch_camera_direction">카메라 방향 전환</string>
 
+    <!-- CallQualityDiagnosticsScreen -->
+    <!-- Title for the call quality diagnostics screen -->
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Diagnostic information</string>
+    <!-- Content description for the close/back navigation button -->
+    <string name="CallQualityDiagnosticsScreen__close">Close</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">스와이프하여 화면 공유 보기</string>
 
@@ -2927,8 +2933,8 @@
     <!-- Displayed in the notification when the recipient can accept payments -->
     <string name="ThreadRecord_can_accept_payments">%1$s 님이 이제 결제를 수락할 수 있습니다.</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s 님이 Signal에 가입했어요!</string>
-    <string name="ThreadRecord_disappearing_messages_disabled">사라지는 메시지 기능이 비활성화됨</string>
-    <string name="ThreadRecord_disappearing_message_time_updated_to_s">사라지는 메시지 시간을 %1$s(으)로 설정했습니다.</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">자동 삭제 메시지 기능이 비활성화됨</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">자동 삭제 메시지 시간을 %1$s(으)로 설정했습니다.</string>
     <string name="ThreadRecord_safety_number_changed">안전 번호가 변경됨</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">%1$s 님과의 안전 번호가 변경되었습니다.</string>
     <string name="ThreadRecord_you_marked_verified">인증됨으로 표시했습니다.</string>
@@ -3699,6 +3705,15 @@
     <string name="verify_display_fragment__mark_as_verified">인증 완료로 표시</string>
     <string name="verify_display_fragment__clear_verification">인증 초기화하기</string>
 
+    <!-- Title for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal now auto-verifies end-to-end encryption</string>
+    <!-- Body for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__body">When you verify a safety number, Signal will automatically confirm whether the connection is secure using a process called key transparency. You can still verify connections manually using a QR code or number.</string>
+    <!-- Button to learn more about automatic verification -->
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Learn more</string>
+    <!-- Button to go to verification page -->
+    <string name="VerifyAutomaticallyEducationSheet__verify">Verify</string>
+
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">연락처의 기기에서 QR 코드를 스캔하세요.</string>
 
@@ -3850,7 +3865,7 @@
     <string name="preferences__pref_use_address_book_photos">주소록 사진 사용하기</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">가능할 경우 주소록에 있는 연락처 사진들을 보이기</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">알림을 끈 대화 보관 상태로 유지</string>
+    <string name="preferences__pref_keep_muted_chats_archived">음소거된 채팅 보관 상태로 유지</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">알림을 꺼서 보관한 대화는 새 메시지가 도착해도 보관 상태로 유지됩니다.</string>
     <string name="preferences__generate_link_previews">링크 미리보기 생성</string>
@@ -4070,7 +4085,7 @@
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">작게</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">앱을 다시 시작하여 새 언어 설정을 적용합니다.</string>
 
 
     <string name="configurable_single_select__customize_option">맞춤 옵션 설정하기</string>
@@ -4349,7 +4364,7 @@
     <!-- Button to save a message attachment (image, file etc.) -->
 
     <!-- conversation_expiring_off -->
-    <string name="conversation_expiring_off__disappearing_messages">사라지는 메시지</string>
+    <string name="conversation_expiring_off__disappearing_messages">자동 삭제 메시지</string>
 
     <!-- conversation_selection -->
     <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -5587,7 +5602,7 @@
         <item quantity="other">연락처 또는 그룹 %1$d개</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">메시징</string>
-    <string name="PrivacySettingsFragment__disappearing_messages">사라지는 메시지</string>
+    <string name="PrivacySettingsFragment__disappearing_messages">자동 삭제 메시지</string>
     <string name="PrivacySettingsFragment__app_security">애플리케이션 보안</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">최근 사용 목록과 앱 내 스크린샷 차단</string>
@@ -5756,7 +5771,7 @@
     <string name="ConversationSettingsFragment__muted">알림 꺼짐</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">검색</string>
-    <string name="ConversationSettingsFragment__disappearing_messages">사라지는 메시지</string>
+    <string name="ConversationSettingsFragment__disappearing_messages">자동 삭제 메시지</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">소리 &amp; 알림</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">휴대폰 연락처 정보</string>
@@ -8749,7 +8764,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">설문조사를 종료하시겠어요?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">이 채팅의 멤버는 더 이상 설문조사에 투표할 수 없습니다.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">네트워크를 기다리는 중…</string>
     <!-- Header when creating a new poll -->
@@ -8806,7 +8821,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
+    <string name="CallQualitySomethingElseScreen__title">어떤 문제가 있었는지 알려주세요</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">어떤 문제가 있었는지 알려주세요</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
@@ -8836,11 +8851,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">더 나은 서비스를 제공할 수 있도록 도와주세요</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">진단 정보를 보내주시면 통화 품질을 개선하는 데 도움이 됩니다. </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Submitting will share your feedback along with</string>
+    <!-- Clickable text to launch diagnostic fragment -->
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">diagnostic information about your call</string>
+    <!-- End of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix">You can optionally share a debug log to help us improve call quality.</string>
+    <!-- Text explaining the debug log -->
+    <string name="CallQualitySheet__information_shared_with_us">Information shared with us contains low level app information and does not include the contents of your calls.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">디버그 로그를 확인한 후</string>
-    <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> 로그를 제출해 주세요.</string>
+    <string name="CallQualitySheet__view_debug_log">View debug log</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">디버그 로그 공유</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->

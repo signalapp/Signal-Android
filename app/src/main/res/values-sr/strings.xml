@@ -2702,6 +2702,12 @@
     <!-- Content description for the button that switches between front and back camera during a call -->
     <string name="SwitchCameraButton__switch_camera_direction">Промени смер камере</string>
 
+    <!-- CallQualityDiagnosticsScreen -->
+    <!-- Title for the call quality diagnostics screen -->
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Diagnostic information</string>
+    <!-- Content description for the close/back navigation button -->
+    <string name="CallQualityDiagnosticsScreen__close">Close</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Превуците да видите дељење екрана</string>
 
@@ -3810,6 +3816,15 @@
     <string name="verify_display_fragment__loading">Учитава се…</string>
     <string name="verify_display_fragment__mark_as_verified">Означи као верификовано</string>
     <string name="verify_display_fragment__clear_verification">Избриши верификацију</string>
+
+    <!-- Title for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal now auto-verifies end-to-end encryption</string>
+    <!-- Body for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__body">When you verify a safety number, Signal will automatically confirm whether the connection is secure using a process called key transparency. You can still verify connections manually using a QR code or number.</string>
+    <!-- Button to learn more about automatic verification -->
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Learn more</string>
+    <!-- Button to go to verification page -->
+    <string name="VerifyAutomaticallyEducationSheet__verify">Verify</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Скенирајте QR код приказан на уређају вашег контакта.</string>
@@ -9023,11 +9038,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Помозите нам да се побољшамо</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Слање дијагностичких података нам помаже да побољшамо квалитет позива. Можете да </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Submitting will share your feedback along with</string>
+    <!-- Clickable text to launch diagnostic fragment -->
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">diagnostic information about your call</string>
+    <!-- End of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix">You can optionally share a debug log to help us improve call quality.</string>
+    <!-- Text explaining the debug log -->
+    <string name="CallQualitySheet__information_shared_with_us">Information shared with us contains low level app information and does not include the contents of your calls.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">видите извештај о грешкама</string>
-    <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> пре слања.</string>
+    <string name="CallQualitySheet__view_debug_log">View debug log</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Пошаљи извештај о грешкама</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->

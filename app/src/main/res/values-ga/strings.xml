@@ -1030,10 +1030,10 @@
     <string name="DateUtils_minutes_ago">%1$dm</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="one">%1$dnóiméad amháin</item>
-        <item quantity="two">%1$d nóiméad </item>
-        <item quantity="few">%1$dnóiméad</item>
-        <item quantity="many">%1$dnóiméid</item>
+        <item quantity="one">%1$d nóiméad amháin</item>
+        <item quantity="two">%1$d nóiméad</item>
+        <item quantity="few">%1$d nóiméad</item>
+        <item quantity="many">%1$d nóiméad</item>
         <item quantity="other">%1$d nóiméad</item>
     </plurals>
     <string name="DateUtils_today">Inniu</string>
@@ -1771,7 +1771,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Tharla earráid líonra</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Níl an nasc chuig an mbaicle sin gníomhach</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
-    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Teorainn an ghrúpa bainte amach, ní féidir leat dul isteach sa ghrúpa</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Ní féidir dul isteach sa ghrúpa</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -2969,6 +2969,12 @@
     <!-- Content description for the button that switches between front and back camera during a call -->
     <string name="SwitchCameraButton__switch_camera_direction">Athraigh treo an cheamara</string>
 
+    <!-- CallQualityDiagnosticsScreen -->
+    <!-- Title for the call quality diagnostics screen -->
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Diagnostic information</string>
+    <!-- Content description for the close/back navigation button -->
+    <string name="CallQualityDiagnosticsScreen__close">Close</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Svaidhpeáil le hamharc ar chomhroinnt scáileáin</string>
 
@@ -4147,6 +4153,15 @@
     <string name="verify_display_fragment__mark_as_verified">Marcáil Deimhnithe</string>
     <string name="verify_display_fragment__clear_verification">Glan an Deimhniú</string>
 
+    <!-- Title for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal now auto-verifies end-to-end encryption</string>
+    <!-- Body for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__body">When you verify a safety number, Signal will automatically confirm whether the connection is secure using a process called key transparency. You can still verify connections manually using a QR code or number.</string>
+    <!-- Button to learn more about automatic verification -->
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Learn more</string>
+    <!-- Button to go to verification page -->
+    <string name="VerifyAutomaticallyEducationSheet__verify">Verify</string>
+
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scan an Cód QR ar ghléas do theagmhálaí.</string>
 
@@ -4530,7 +4545,7 @@
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Dlúth</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">Atosófar an aip leis an socrú teanga nua a chur i bhfeidhm.</string>
 
 
     <string name="configurable_single_select__customize_option">Saincheap rogha</string>
@@ -6661,7 +6676,7 @@
     <string name="ManageDonationsFragment__my_support">My Support</string>
     <string name="ManageDonationsFragment__manage_subscription">Bainistigh síntiús</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Admhálacha Tabhartas</string>
+    <string name="ManageDonationsFragment__donation_receipts">Admhálacha tabhartas</string>
     <string name="ManageDonationsFragment__badges">Suaitheantais</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">CCanna do thabharthóirí</string>
@@ -9497,7 +9512,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Cuir deireadh leis an suirbhé?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Ní bheidh baill den chomhrá seo in ann vóta a chaitheamh sa suirbhé seo a thuilleadh.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Ag feitheamh le líonra…</string>
     <!-- Header when creating a new poll -->
@@ -9554,7 +9569,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
+    <string name="CallQualitySomethingElseScreen__title">Déan cur síos ar an bhfadhb</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Déan cur síos ar an bhfadhb</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
@@ -9584,11 +9599,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Cabhraigh linn feabhsú</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Má sheolann tú d\'fhaisnéis dhiagnóiseach chugainn, cabhrófar linn caighdeán na nglaonna a fheabhsú. Is féidir leat </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Submitting will share your feedback along with</string>
+    <!-- Clickable text to launch diagnostic fragment -->
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">diagnostic information about your call</string>
+    <!-- End of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix">You can optionally share a debug log to help us improve call quality.</string>
+    <!-- Text explaining the debug log -->
+    <string name="CallQualitySheet__information_shared_with_us">Information shared with us contains low level app information and does not include the contents of your calls.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">féachaint ar do loga dífhabhtaithe</string>
-    <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> sula gcuireann tú isteach é.</string>
+    <string name="CallQualitySheet__view_debug_log">View debug log</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Comhroinn an loga dífhabhtaithe</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->

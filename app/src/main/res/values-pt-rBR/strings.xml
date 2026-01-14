@@ -1639,7 +1639,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Ocorreu um erro de rede.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este link do grupo não está ativo</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
-    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Limite do grupo atingido, não é possível participar do grupo</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Não foi possível entrar no grupo</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -2701,6 +2701,12 @@
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
     <string name="SwitchCameraButton__switch_camera_direction">Mudar a direção da câmera</string>
+
+    <!-- CallQualityDiagnosticsScreen -->
+    <!-- Title for the call quality diagnostics screen -->
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Diagnostic information</string>
+    <!-- Content description for the close/back navigation button -->
+    <string name="CallQualityDiagnosticsScreen__close">Close</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Deslize para ver o compartilhamento de tela</string>
@@ -3811,6 +3817,15 @@
     <string name="verify_display_fragment__mark_as_verified">Marcar como verificado</string>
     <string name="verify_display_fragment__clear_verification">Apagar verificação</string>
 
+    <!-- Title for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal now auto-verifies end-to-end encryption</string>
+    <!-- Body for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__body">When you verify a safety number, Signal will automatically confirm whether the connection is secure using a process called key transparency. You can still verify connections manually using a QR code or number.</string>
+    <!-- Button to learn more about automatic verification -->
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Learn more</string>
+    <!-- Button to go to verification page -->
+    <string name="VerifyAutomaticallyEducationSheet__verify">Verify</string>
+
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Escanear o Código QR no aparelho da outra pessoa.</string>
 
@@ -3963,7 +3978,7 @@
     <string name="preferences__pref_use_address_book_photos">Usar fotos da lista de contatos do aparelho</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Exibir fotos de contatos oriundas da lista de contatos do aparelho, se disponíveis</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Manter os chats silenciados arquivados</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Manter as conversas silenciadas arquivadas</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Chats silenciados que estão arquivados permanecerão arquivados quando uma nova mensagem chegar.</string>
     <string name="preferences__generate_link_previews">Gerar pré-visualização de links</string>
@@ -4185,7 +4200,7 @@
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Compacta</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">O app será reiniciado para aplicar a nova configuração de idioma.</string>
 
 
     <string name="configurable_single_select__customize_option">Opção para personalizar</string>
@@ -6230,7 +6245,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Outros métodos de doar</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Doar para um amigo</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Doe em nome de outra pessoa</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Não foi possível confirmar a doação</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -8936,7 +8951,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Encerrar enquete?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Os membros desta conversa não poderão mais votar nesta enquete.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Esperando pela rede…</string>
     <!-- Header when creating a new poll -->
@@ -8993,7 +9008,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
+    <string name="CallQualitySomethingElseScreen__title">Descreva o problema</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Descreva seu problema</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
@@ -9023,11 +9038,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Ajude-nos a melhorar</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Ao compartilhar informações de diagnóstico, você nos ajuda a melhorar a qualidade das chamadas. Você pode </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Submitting will share your feedback along with</string>
+    <!-- Clickable text to launch diagnostic fragment -->
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">diagnostic information about your call</string>
+    <!-- End of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix">You can optionally share a debug log to help us improve call quality.</string>
+    <!-- Text explaining the debug log -->
+    <string name="CallQualitySheet__information_shared_with_us">Information shared with us contains low level app information and does not include the contents of your calls.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">ver seu registro de depuração</string>
-    <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> antes de enviar.</string>
+    <string name="CallQualitySheet__view_debug_log">View debug log</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Compartilhar registro de depuração</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->

@@ -1639,7 +1639,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">नेटवर्क से जुड़ी कोई गड़बड़ी हुई।</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">यह ग्रुप लिंक ऐक्टिव नहीं है</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
-    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">ग्रुप में जगह नहीं बची है, इसलिए इसे जॉइन नहीं किया जा सकता</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">ग्रुप में शामिल नहीं किया जा सकता</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -2701,6 +2701,12 @@
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
     <string name="SwitchCameraButton__switch_camera_direction">कैमरे की दिशा बदलें</string>
+
+    <!-- CallQualityDiagnosticsScreen -->
+    <!-- Title for the call quality diagnostics screen -->
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Diagnostic information</string>
+    <!-- Content description for the close/back navigation button -->
+    <string name="CallQualityDiagnosticsScreen__close">Close</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">शेयर की जा रही स्क्रीन देखने के लिए स्वाइप करें</string>
@@ -3811,6 +3817,15 @@
     <string name="verify_display_fragment__mark_as_verified">वेरिफ़ाइड के तौर पर मार्क करें</string>
     <string name="verify_display_fragment__clear_verification">वेरिफ़िकेशन हटाएं</string>
 
+    <!-- Title for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal now auto-verifies end-to-end encryption</string>
+    <!-- Body for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__body">When you verify a safety number, Signal will automatically confirm whether the connection is secure using a process called key transparency. You can still verify connections manually using a QR code or number.</string>
+    <!-- Button to learn more about automatic verification -->
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Learn more</string>
+    <!-- Button to go to verification page -->
+    <string name="VerifyAutomaticallyEducationSheet__verify">Verify</string>
+
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">अपने कॉन्टैक्ट के डिवाइ पर QR कोड स्कैन करें।</string>
 
@@ -4185,7 +4200,7 @@
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">कॉम्पैक्ट</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">नई भाषा सेटिंग लागू करने के लिए ऐप रीस्टार्ट होगा।</string>
 
 
     <string name="configurable_single_select__customize_option">कस्टमाइज़ करने का विकल्प</string>
@@ -6223,7 +6238,7 @@
     <string name="ManageDonationsFragment__my_support">मेरे लिए सपोर्ट</string>
     <string name="ManageDonationsFragment__manage_subscription">सब्सक्रिप्शन मैनेज करें</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">दान की रसीदें</string>
+    <string name="ManageDonationsFragment__donation_receipts">डोनेशन की रसीद</string>
     <string name="ManageDonationsFragment__badges">बैज</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">डोनर से जुड़े अक्सर पूछे जाने वाले सवाल</string>
@@ -8936,7 +8951,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">पोल खत्म करना है?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">अब इस चैट में मौजूद लोग इस पोल में वोट नहीं कर पाएंगे।</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">नेटवर्क का इंतज़ार किया जा रहा है…</string>
     <!-- Header when creating a new poll -->
@@ -8993,7 +9008,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
+    <string name="CallQualitySomethingElseScreen__title">समस्या के बारे में बताएं</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">अपनी समस्या बताएं</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
@@ -9023,11 +9038,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Signal को बेहतर बनाने में हमारी मदद करें</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">आप हमें अपनी समस्या से जुड़ी जो जानकारी भेजते हैं, उससे हमें कॉल की क्वालिटी को बेहतर बनाने में मदद मिलती है। आप चाहें, तो </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Submitting will share your feedback along with</string>
+    <!-- Clickable text to launch diagnostic fragment -->
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">diagnostic information about your call</string>
+    <!-- End of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix">You can optionally share a debug log to help us improve call quality.</string>
+    <!-- Text explaining the debug log -->
+    <string name="CallQualitySheet__information_shared_with_us">Information shared with us contains low level app information and does not include the contents of your calls.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">अपना डीबग लॉग देखें</string>
-    <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> और फिर सबमिट करें।</string>
+    <string name="CallQualitySheet__view_debug_log">View debug log</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">डीबग लॉग शेयर करें</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->

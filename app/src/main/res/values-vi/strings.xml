@@ -2613,6 +2613,12 @@
     <!-- Content description for the button that switches between front and back camera during a call -->
     <string name="SwitchCameraButton__switch_camera_direction">Đổi hướng camera</string>
 
+    <!-- CallQualityDiagnosticsScreen -->
+    <!-- Title for the call quality diagnostics screen -->
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Diagnostic information</string>
+    <!-- Content description for the close/back navigation button -->
+    <string name="CallQualityDiagnosticsScreen__close">Close</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Vuốt để xem chia sẻ màn hình</string>
 
@@ -3698,6 +3704,15 @@
     <string name="verify_display_fragment__loading">Đang tải…</string>
     <string name="verify_display_fragment__mark_as_verified">Đánh dấu đã xác minh</string>
     <string name="verify_display_fragment__clear_verification">Xóa xác nhận</string>
+
+    <!-- Title for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal now auto-verifies end-to-end encryption</string>
+    <!-- Body for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__body">When you verify a safety number, Signal will automatically confirm whether the connection is secure using a process called key transparency. You can still verify connections manually using a QR code or number.</string>
+    <!-- Button to learn more about automatic verification -->
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Learn more</string>
+    <!-- Button to go to verification page -->
+    <string name="VerifyAutomaticallyEducationSheet__verify">Verify</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Quét Mã QR trên thiết bị của người liên hệ của bạn.</string>
@@ -5144,11 +5159,11 @@
     <string name="ChatWallpaperFragment__reset_chat_colors">Đặt lại màu cuộc trò chuyện</string>
     <string name="ChatWallpaperFragment__reset_chat_color">Đặt lại màu cuộc trò chuyện</string>
     <string name="ChatWallpaperFragment__reset_chat_color_question">Đặt lại màu cuộc trò chuyện?</string>
-    <string name="ChatWallpaperFragment__set_wallpaper">Chọn ảnh nền</string>
-    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Chế độ tối làm mờ màn hình nền</string>
+    <string name="ChatWallpaperFragment__set_wallpaper">Chọn hình nền</string>
+    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Làm mờ hình nền trong chế độ tối</string>
     <string name="ChatWallpaperFragment__contact_name">Tên liên hệ</string>
     <string name="ChatWallpaperFragment__reset">Đặt lại</string>
-    <string name="ChatWallpaperFragment__wallpaper_preview_description">Xem trước ảnh nền</string>
+    <string name="ChatWallpaperFragment__wallpaper_preview_description">Xem trước hình nền</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Bạn có muốn ghi đè tất cả các màu cuộc trò chuyện?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Bạn có muốn ghi đè tất cả các màu cuộc trò chuyện?</string>
     <string name="ChatWallpaperFragment__reset_default_colors">Đặt lại màu mặc định</string>
@@ -5165,19 +5180,19 @@
 
     <!-- ChatWallpaperPreviewActivity -->
     <string name="ChatWallpaperPreviewActivity__preview">Xem trước</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper">Cài ảnh nền</string>
-    <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Vuốt để xem trước thêm ảnh nền</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Cài ảnh nền cho tất cả cuộc trò chuyện</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Cài ảnh nền cho %1$s</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper">Đặt làm hình nền</string>
+    <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Vuốt để xem trước thêm hình nền</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Đặt làm hình nền cho mọi cuộc trò chuyện</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Đặt làm hình nền cho %1$s</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Cần quyền truy cập bộ nhớ để xem bộ sưu tập.</string>
 
     <!-- WallpaperImageSelectionActivity -->
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Dùng hai ngón để phóng to, kéo để tuỳ chỉnh.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Cài ảnh nền cho tất cả cuộc trò chuyện.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_s">Cài ảnh nền cho %1$s.</string>
-    <string name="WallpaperCropActivity__error_setting_wallpaper">Lỗi cài ảnh nền.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Đặt làm hình nền cho mọi cuộc trò chuyện.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_s">Đặt làm hình nền cho %1$s.</string>
+    <string name="WallpaperCropActivity__error_setting_wallpaper">Lỗi khi đặt hình nền.</string>
     <string name="WallpaperCropActivity__blur_photo">Mờ ảnh</string>
 
     <!-- InfoCard -->
@@ -5696,7 +5711,7 @@
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Nhấn để thay thế emoji</string>
     <string name="EditReactionsFragment__reset">Đặt lại</string>
     <string name="EditReactionsFragment_save">Lưu</string>
-    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Tự động tương thích màu với màn hình nền</string>
+    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Tự động tương thích màu với hình nền</string>
     <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Kéo để thay đổi chiều hướng của nhiệt độ màu</string>
 
     <!-- AddAProfilePhotoMegaphone -->
@@ -8836,11 +8851,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Giúp chúng tôi cải thiện</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Thông tin chẩn đoán bạn gửi có thể giúp chúng tôi cải thiện chất lượng cuộc gọi. Bạn có thể </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Submitting will share your feedback along with</string>
+    <!-- Clickable text to launch diagnostic fragment -->
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">diagnostic information about your call</string>
+    <!-- End of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix">You can optionally share a debug log to help us improve call quality.</string>
+    <!-- Text explaining the debug log -->
+    <string name="CallQualitySheet__information_shared_with_us">Information shared with us contains low level app information and does not include the contents of your calls.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">xem nhật ký gỡ lỗi của bạn</string>
-    <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> trước khi gửi.</string>
+    <string name="CallQualitySheet__view_debug_log">View debug log</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Chia sẻ nhật ký gỡ lỗi</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
