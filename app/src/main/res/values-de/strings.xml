@@ -4109,7 +4109,7 @@
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Möchtest du wirklich alle Nachrichtenverläufe löschen?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle Nachrichtenverläufe werden dauerhaft gelöscht. Dies kann nicht rückgängig gemacht werden.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Alle Nachrichtenverläufe werden dauerhaft von allen Geräten gelöscht Dies kann nicht rückgängig gemacht werden.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Alle Nachrichtenverläufe werden dauerhaft von allen Geräten gelöscht. Dies kann nicht rückgängig gemacht werden.</string>
     <string name="preferences_storage__delete_all_now">Alle jetzt löschen</string>
     <!-- Option for keeping messages forever when managing storage -->
     <string name="preferences_storage__forever">Für immer</string>
