@@ -588,7 +588,7 @@
             android:noHistory="true" />
 
         <activity
-            android:name=".registration.olddevice.TransferAccountActivity"
+            android:name=".registration.olddevice.QuickTransferOldDeviceActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"
             android:theme="@style/Theme.Signal.DayNight.NoActionBar" />

@@ -88,6 +88,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   val state: StateFlow<RemoteBackupsSettingsState> = _state
   val restoreState: StateFlow<BackupRestoreState> = _restoreState
 
+  private var forQuickRestore = false
+
   init {
     ArchiveUploadProgress.triggerUpdate()
 
@@ -172,6 +174,10 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         .collect { current ->
           if (previous != null && previous != current.state && current.state == ArchiveUploadProgressState.State.None) {
             Log.d(TAG, "Refreshing state after archive upload.")
+            if (forQuickRestore) {
+              Log.d(TAG, "Backup completed with the forQuickRestore flag on. Refreshing state.")
+              _state.value = _state.value.copy(dialog = RemoteBackupsSettingsState.Dialog.READY_TO_TRANSFER)
+            }
             refreshState(null)
           }
           previous = current.state
@@ -275,8 +281,9 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     }
   }
 
-  fun onBackupNowClick() {
+  fun onBackupNowClick(forQuickRestore: Boolean) {
     BackupMessagesJob.enqueue()
+    this.forQuickRestore = forQuickRestore
   }
 
   fun cancelUpload() {

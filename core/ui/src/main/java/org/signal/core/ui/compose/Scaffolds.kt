@@ -5,6 +5,7 @@
 
 package org.signal.core.ui.compose
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
@@ -31,6 +32,49 @@ import org.signal.core.ui.compose.theme.SignalTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 object Scaffolds {
+
+  /**
+   * Simple scaffold with a TopAppBar containing a navigation icon and optional title.
+   *
+   * @param onNavigationClick Callback when navigation icon is clicked.
+   * @param navigationIconRes Drawable resource for the navigation icon.
+   * @param navigationContentDescription Content description for the navigation icon.
+   * @param title Optional title text for the app bar.
+   * @param modifier Modifier for the scaffold.
+   * @param content Content to display in the scaffold.
+   */
+  @Composable
+  fun Default(
+    onNavigationClick: () -> Unit,
+    @DrawableRes navigationIconRes: Int,
+    navigationContentDescription: String? = null,
+    title: String? = null,
+    modifier: Modifier = Modifier,
+    content: @Composable (PaddingValues) -> Unit
+  ) {
+    Scaffold(
+      modifier = modifier,
+      topBar = {
+        TopAppBar(
+          title = {
+            if (title != null) {
+              Text(text = title)
+            }
+          },
+          navigationIcon = {
+            IconButton(onClick = onNavigationClick) {
+              Icon(
+                painter = painterResource(navigationIconRes),
+                tint = MaterialTheme.colorScheme.onSurface,
+                contentDescription = navigationContentDescription
+              )
+            }
+          }
+        )
+      },
+      content = content
+    )
+  }
 
   /**
    * Settings scaffold that takes an icon as an ImageVector.

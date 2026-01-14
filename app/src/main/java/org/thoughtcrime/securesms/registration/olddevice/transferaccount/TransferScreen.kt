@@ -3,15 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.registration.olddevice
+package org.thoughtcrime.securesms.registration.olddevice.transferaccount
 
-import android.content.Context
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.compose.setContent
-import androidx.activity.result.ActivityResultLauncher
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -31,8 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -41,10 +32,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.mapNotNull
-import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
@@ -52,177 +39,23 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
-import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.BiometricDeviceAuthentication
-import org.thoughtcrime.securesms.BiometricDeviceLockContract
-import org.thoughtcrime.securesms.MainActivity
-import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.SignalTheme
-import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity
 import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.fonts.SignalSymbols.SignalSymbol
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
+import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
+import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceState
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
-import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.viewModel
-import org.whispersystems.signalservice.api.provisioning.RestoreMethod
-
-/**
- * Launched after scanning QR code from new device to start the transfer/reregistration process from
- * old phone to new phone.
- */
-class TransferAccountActivity : PassphraseRequiredActivity() {
-
-  companion object {
-    private val TAG = Log.tag(TransferAccountActivity::class)
-
-    private const val KEY_URI = "URI"
-
-    const val LEARN_MORE_URL = "https://support.signal.org/hc/articles/360007059752-Backup-and-Restore-Messages"
-
-    fun intent(context: Context, uri: String): Intent {
-      return Intent(context, TransferAccountActivity::class.java).apply {
-        putExtra(KEY_URI, uri)
-      }
-    }
-  }
-
-  private val theme: DynamicTheme = DynamicNoActionBarTheme()
-
-  private val viewModel: TransferAccountViewModel by viewModel {
-    TransferAccountViewModel(intent.getStringExtra(KEY_URI)!!)
-  }
-
-  private lateinit var biometricAuth: BiometricDeviceAuthentication
-  private lateinit var biometricDeviceLockLauncher: ActivityResultLauncher<String>
-
-  override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    super.onCreate(savedInstanceState, ready)
-    theme.onCreate(this)
-
-    if (!SignalStore.account.isRegistered) {
-      finish()
-    }
-
-    biometricDeviceLockLauncher = registerForActivityResult(BiometricDeviceLockContract()) { result: Int ->
-      if (result == BiometricDeviceAuthentication.AUTHENTICATED) {
-        Log.i(TAG, "Device authentication succeeded via contract")
-        transferAccount()
-      }
-    }
-
-    val promptInfo = BiometricPrompt.PromptInfo.Builder()
-      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
-      .setTitle(getString(R.string.TransferAccount_unlock_to_transfer))
-      .setConfirmationRequired(true)
-      .build()
-
-    biometricAuth = BiometricDeviceAuthentication(
-      BiometricManager.from(this),
-      BiometricPrompt(this, BiometricAuthenticationListener()),
-      promptInfo
-    )
-
-    lifecycleScope.launch {
-      val restoreMethodSelected = viewModel
-        .state
-        .mapNotNull { it.restoreMethodSelected }
-        .firstOrNull()
-
-      when (restoreMethodSelected) {
-        RestoreMethod.DEVICE_TRANSFER -> {
-          startActivities(
-            arrayOf(
-              MainActivity.clearTop(this@TransferAccountActivity),
-              Intent(this@TransferAccountActivity, OldDeviceTransferActivity::class.java)
-            )
-          )
-        }
-
-        RestoreMethod.REMOTE_BACKUP,
-        RestoreMethod.LOCAL_BACKUP,
-        RestoreMethod.DECLINE,
-        null -> startActivity(MainActivity.clearTop(this@TransferAccountActivity))
-      }
-    }
-
-    setContent {
-      val state by viewModel.state.collectAsState()
-
-      SignalTheme {
-        TransferToNewDevice(
-          state = state,
-          onTransferAccount = this::authenticate,
-          onContinueOnOtherDeviceDismiss = {
-            finish()
-            viewModel.clearReRegisterResult()
-          },
-          onErrorDismiss = viewModel::clearReRegisterResult,
-          onBackClicked = { finish() }
-        )
-      }
-    }
-  }
-
-  override fun onPause() {
-    super.onPause()
-    biometricAuth.cancelAuthentication()
-  }
-
-  override fun onResume() {
-    super.onResume()
-    theme.onResume(this)
-  }
-
-  private fun authenticate() {
-    val canAuthenticate = biometricAuth.authenticate(this, true) {
-      biometricDeviceLockLauncher.launch(getString(R.string.TransferAccount_unlock_to_transfer))
-    }
-
-    if (!canAuthenticate) {
-      Log.w(TAG, "Device authentication not available")
-      transferAccount()
-    }
-  }
-
-  private fun transferAccount() {
-    Log.d(TAG, "transferAccount()")
-
-    viewModel.transferAccount()
-  }
-
-  private inner class BiometricAuthenticationListener : BiometricPrompt.AuthenticationCallback() {
-    override fun onAuthenticationError(errorCode: Int, errorString: CharSequence) {
-      Log.w(TAG, "Device authentication error: $errorCode")
-      onAuthenticationFailed()
-    }
-
-    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-      Log.i(TAG, "Device authentication succeeded")
-      transferAccount()
-    }
-
-    override fun onAuthenticationFailed() {
-      Log.w(TAG, "Device authentication failed")
-    }
-  }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TransferToNewDevice(
-  state: TransferAccountViewModel.TransferAccountState,
-  onTransferAccount: () -> Unit = {},
-  onContinueOnOtherDeviceDismiss: () -> Unit = {},
-  onErrorDismiss: () -> Unit = {},
-  onBackClicked: () -> Unit = {}
+fun TransferAccountScreen(
+  state: QuickTransferOldDeviceState,
+  emitter: (TransferScreenEvents) -> Unit = {}
 ) {
   Scaffold(
-    topBar = { TopAppBarContent(onBackClicked = onBackClicked) }
+    topBar = { TopAppBarContent(onBackClicked = { emitter(TransferScreenEvents.NavigateBack) }) }
   ) { contentPadding ->
     Column(
       horizontalAlignment = Alignment.CenterHorizontally,
@@ -239,7 +72,7 @@ fun TransferToNewDevice(
       val context = LocalContext.current
       val learnMore = stringResource(id = R.string.TransferAccount_learn_more)
       val fullString = stringResource(id = R.string.TransferAccount_body, learnMore)
-      val spanned = SpanUtil.urlSubsequence(fullString, learnMore, TransferAccountActivity.LEARN_MORE_URL)
+      val spanned = SpanUtil.urlSubsequence(fullString, learnMore, QuickTransferOldDeviceActivity.LEARN_MORE_URL)
       Texts.LinkifiedText(
         textWithUrlSpans = spanned,
         onUrlClick = { CommunicationActions.openBrowserLink(context, it) },
@@ -256,7 +89,7 @@ fun TransferToNewDevice(
           CircularProgressIndicator()
         } else {
           Buttons.LargeTonal(
-            onClick = onTransferAccount,
+            onClick = { emitter(TransferScreenEvents.TransferClicked) },
             modifier = Modifier.fillMaxWidth()
           ) {
             Text(text = stringResource(id = R.string.TransferAccount_button))
@@ -282,7 +115,7 @@ fun TransferToNewDevice(
       QuickRegistrationRepository.TransferAccountResult.SUCCESS -> {
         ModalBottomSheet(
           dragHandle = null,
-          onDismissRequest = onContinueOnOtherDeviceDismiss,
+          onDismissRequest = { emitter(TransferScreenEvents.ContinueOnOtherDeviceDismiss) },
           sheetState = sheetState
         ) {
           ContinueOnOtherDevice()
@@ -293,7 +126,7 @@ fun TransferToNewDevice(
         Dialogs.SimpleMessageDialog(
           message = stringResource(R.string.RegistrationActivity_unable_to_connect_to_service),
           dismiss = stringResource(android.R.string.ok),
-          onDismiss = onErrorDismiss
+          onDismiss = { emitter(TransferScreenEvents.ErrorDialogDismissed) }
         )
       }
 
@@ -304,9 +137,9 @@ fun TransferToNewDevice(
 
 @DayNightPreviews
 @Composable
-private fun TransferToNewDevicePreview() {
+private fun TransferAccountScreenPreview() {
   Previews.Preview {
-    TransferToNewDevice(state = TransferAccountViewModel.TransferAccountState("sgnl://rereg"))
+    TransferAccountScreen(state = QuickTransferOldDeviceState("sgnl://rereg"))
   }
 }
 

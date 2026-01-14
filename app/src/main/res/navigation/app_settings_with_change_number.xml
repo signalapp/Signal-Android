@@ -733,7 +733,12 @@
         app:popEnterAnim="@anim/fragment_close_enter"
         app:popExitAnim="@anim/fragment_close_exit"
         app:popUpTo="@id/app_settings"
-        app:popUpToInclusive="true" />
+        app:popUpToInclusive="true">
+        <argument
+            android:name="forQuickRestore"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </action>
 
     <action
         android:id="@+id/action_direct_to_chatFoldersFragment"
@@ -1180,6 +1185,11 @@
 
         <argument
             android:name="backup_later_selected"
+            app:argType="boolean"
+            android:defaultValue="false" />
+
+        <argument
+            android:name="forQuickRestore"
             app:argType="boolean"
             android:defaultValue="false" />
     </fragment>
