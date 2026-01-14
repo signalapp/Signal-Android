@@ -1170,7 +1170,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("backupsBetaMegaphone")
   val backupsBetaMegaphone: Boolean by remoteBoolean(
-    key = "android.backupsBetaMegaphone",
+    key = "android.backupsBetaMegaphone.2",
     defaultValue = false,
     hotSwappable = true
   )
