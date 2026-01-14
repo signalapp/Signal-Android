@@ -119,6 +119,10 @@ object ArchiveUploadProgress {
     }
   }
 
+  fun triggerUpdate() {
+    _progress.tryEmit(Unit)
+  }
+
   fun cancel() {
     updateState {
       ArchiveUploadProgressState(

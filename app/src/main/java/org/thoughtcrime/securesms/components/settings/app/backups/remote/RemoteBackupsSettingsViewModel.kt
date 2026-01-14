@@ -89,6 +89,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   val restoreState: StateFlow<BackupRestoreState> = _restoreState
 
   init {
+    ArchiveUploadProgress.triggerUpdate()
+
     viewModelScope.launch(Dispatchers.IO) {
       val isBillingApiAvailable = AppDependencies.billingApi.getApiAvailability().isSuccess
       if (isBillingApiAvailable) {
