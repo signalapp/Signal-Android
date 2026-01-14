@@ -6,6 +6,7 @@
 package org.signal.core.models.backup
 
 import org.signal.core.util.Base64
+import org.signal.core.util.Hex
 
 /**
  * Safe typing around a mediaId, which is a 15-byte array.
@@ -22,5 +23,9 @@ value class MediaId(val value: ByteArray) {
   /** Encode media-id for use in a URL/request */
   fun encode(): String {
     return Base64.encodeUrlSafeWithPadding(value)
+  }
+
+  override fun toString(): String {
+    return "MediaId::${Hex.toStringCondensed(value)}"
   }
 }

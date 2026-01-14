@@ -3426,7 +3426,7 @@ class AttachmentTable(
     }
   }
 
-  fun debugGetAttachmentDataForMediaIds(mediaIds: Collection<MediaId>): List<ArchiveAttachmentMatch> {
+  fun getAttachmentDataForMediaIds(mediaIds: Collection<MediaId>): List<ArchiveAttachmentMatch> {
     if (mediaIds.isEmpty()) return emptyList()
     val mediaIdByteStrings = mediaIds.map { it.value.toByteString() }.toSet()
 
@@ -3458,19 +3458,22 @@ class AttachmentTable(
         if (mediaId in mediaIdByteStrings) {
           val attachment = getAttachment(cursor)
           val messageRecord = messages.getMessageRecordOrNull(messageId)
-          found.add(ArchiveAttachmentMatch(attachment = attachment, isThumbnail = false, isWallpaper = messageId == WALLPAPER_MESSAGE_ID, messageRecord = messageRecord))
+          found.add(ArchiveAttachmentMatch(attachment = attachment, mediaId = MediaId(mediaId.toByteArray()), isThumbnail = false, isWallpaper = messageId == WALLPAPER_MESSAGE_ID, messageRecord = messageRecord))
         }
 
         if (mediaIdThumbnail in mediaIdByteStrings) {
           val attachment = getAttachment(cursor)
           val messageRecord = messages.getMessageRecordOrNull(messageId)
-          found.add(ArchiveAttachmentMatch(attachment = attachment, isThumbnail = true, isWallpaper = messageId == WALLPAPER_MESSAGE_ID, messageRecord = messageRecord))
+          found.add(ArchiveAttachmentMatch(attachment = attachment, mediaId = MediaId(mediaIdThumbnail.toByteArray()), isThumbnail = true, isWallpaper = messageId == WALLPAPER_MESSAGE_ID, messageRecord = messageRecord))
         }
       }
 
     return found
   }
 
+  /**
+   * Given a set of media objects, this will return all of the items in the set that could not be found locally.
+   */
   fun getMediaObjectsThatCantBeFound(objects: Set<ArchivedMediaObject>): Set<ArchivedMediaObject> {
     if (objects.isEmpty()) {
       return emptySet()
@@ -4096,12 +4099,13 @@ class AttachmentTable(
 
   data class ArchiveAttachmentMatch(
     val attachment: DatabaseAttachment,
+    val mediaId: MediaId,
     val isThumbnail: Boolean,
     val isWallpaper: Boolean,
     val messageRecord: MessageRecord?
   ) {
     override fun toString(): String {
-      return "attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, isThumbnail=$isThumbnail, contentType=${attachment.contentType}, quote=${attachment.quote}, wallpaper=$isWallpaper, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}, dateSent=${messageRecord?.dateSent}, messageType=${messageRecord?.type}, messageFrom=${messageRecord?.fromRecipient?.id}, messageTo=${messageRecord?.toRecipient?.id}, expiresIn=${messageRecord?.expiresIn}, expireStarted=${messageRecord?.expireStarted}"
+      return "attachmentId=${attachment.attachmentId}, mediaId=$mediaId, messageId=${attachment.mmsId}, isThumbnail=$isThumbnail, contentType=${attachment.contentType}, quote=${attachment.quote}, wallpaper=$isWallpaper, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}, dateSent=${messageRecord?.dateSent}, messageType=${messageRecord?.type}, messageFrom=${messageRecord?.fromRecipient?.id}, messageTo=${messageRecord?.toRecipient?.id}, expiresIn=${messageRecord?.expiresIn}, expireStarted=${messageRecord?.expireStarted}"
     }
   }
 }

@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.backup.MediaId
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -12,6 +14,7 @@ import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import java.lang.RuntimeException
 import kotlin.time.Duration.Companion.days
@@ -38,6 +41,11 @@ class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Paramete
      * @return Null if successful, or a [Result] indicating the failure.
      */
     fun deleteMediaObjectsFromCdn(tag: String, attachmentsToDelete: Set<ArchivedMediaObject>, backoffGenerator: () -> Long, cancellationSignal: () -> Boolean): Result? {
+      if (RemoteConfig.internalUser) {
+        val mediaIds = attachmentsToDelete.take(250).map { MediaId(Base64.decode(it.mediaId)) }
+        Log.w(TAG, "Deleting MediaIds (showing ${mediaIds.size}/${attachmentsToDelete.size}): ${mediaIds.joinToString() }")
+      }
+
       attachmentsToDelete.chunked(REMOTE_DELETE_BATCH_SIZE).forEach { chunk ->
         if (cancellationSignal()) {
           Log.w(tag, "Job cancelled while deleting attachments from the CDN.", true)
