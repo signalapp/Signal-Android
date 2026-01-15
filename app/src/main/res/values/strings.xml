@@ -413,7 +413,7 @@
     <string name="ContactShareEditActivity_type_work">Work</string>
     <string name="ContactShareEditActivity_type_missing">Other</string>
     <string name="ContactShareEditActivity_invalid_contact">Selected contact was invalid</string>
-    <!-- Content descrption for name edit button on contact share edit activity -->
+    <!-- Content description for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">Edit name</string>
     <!-- Content description for user avatar in edit activity -->
     <string name="ContactShareEditActivity__avatar">Avatar</string>
