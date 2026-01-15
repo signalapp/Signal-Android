@@ -58,6 +58,8 @@ class WebRtcCallViewModel : ViewModel() {
   private val internalMicrophoneEnabled = MutableStateFlow(true)
   private val remoteMutedBy = MutableStateFlow<CallParticipant?>(null)
   private val isInPipMode = MutableStateFlow(false)
+  private val _savedLocalParticipantLandscape = MutableStateFlow(false)
+  val savedLocalParticipantLandscape: StateFlow<Boolean> = _savedLocalParticipantLandscape
   private val webRtcControls = MutableStateFlow(WebRtcControls.NONE)
   private val foldableState = MutableStateFlow(WebRtcControls.FoldableState.flat())
   private val identityChangedRecipients = MutableStateFlow<Collection<RecipientId>>(Collections.emptyList())
@@ -231,6 +233,10 @@ class WebRtcCallViewModel : ViewModel() {
   fun setIsInPipMode(isInPipMode: Boolean) {
     this.isInPipMode.update { isInPipMode }
     participantsState.update { CallParticipantsState.update(it, isInPipMode) }
+  }
+
+  fun setSavedLocalParticipantLandscape(isLandscape: Boolean) {
+    _savedLocalParticipantLandscape.update { isLandscape }
   }
 
   fun setIsLandscapeEnabled(isLandscapeEnabled: Boolean) {

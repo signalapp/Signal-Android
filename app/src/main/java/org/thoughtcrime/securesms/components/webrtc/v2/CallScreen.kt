@@ -89,6 +89,7 @@ fun CallScreen(
   webRtcCallState: WebRtcViewModel.State,
   isRemoteVideoOffer: Boolean,
   isInPipMode: Boolean,
+  savedLocalParticipantLandscape: Boolean = false,
   callScreenState: CallScreenState,
   callControlsState: CallControlsState,
   callScreenController: CallScreenController = CallScreenController.rememberCallScreenController(
@@ -132,8 +133,10 @@ fun CallScreen(
 
   if (isInPipMode) {
     PictureInPictureCallScreen(
+      localParticipant = localParticipant,
+      pendingParticipantsCount = callScreenState.pendingParticipantsState?.pendingParticipantCollection?.getUnresolvedPendingParticipants()?.size ?: 0,
       callParticipantsPagerState = callParticipantsPagerState,
-      callScreenController = callScreenController
+      savedLocalParticipantLandscape = savedLocalParticipantLandscape
     )
 
     return
@@ -328,6 +331,7 @@ fun CallScreen(
             MoveableLocalVideoRenderer(
               localParticipant = localParticipant,
               localRenderState = localRenderState,
+              savedLocalParticipantLandscape = savedLocalParticipantLandscape,
               onClick = onLocalPictureInPictureClicked,
               onToggleCameraDirectionClick = callScreenControlsListener::onCameraDirectionChanged,
               onFocusLocalParticipantClick = onLocalPictureInPictureFocusClicked,

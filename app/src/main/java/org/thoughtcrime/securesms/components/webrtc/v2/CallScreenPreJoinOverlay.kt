@@ -134,7 +134,7 @@ fun CallScreenPreJoinOverlay(
               verticalAlignment = Alignment.Bottom
             ) {
               if (isLocalVideoEnabled) {
-                AudioIndicator(
+                ParticipantAudioIndicator(
                   participant = localParticipant,
                   selfPipMode = SelfPipMode.OVERLAY_SELF_PIP
                 )

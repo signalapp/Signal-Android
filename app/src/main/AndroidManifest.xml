@@ -122,7 +122,6 @@
         <!-- ======================================= -->
         <activity
             android:name=".components.webrtc.v2.WebRtcCallActivity"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout"
             android:excludeFromRecents="true"
             android:exported="false"
             android:launchMode="singleTask"

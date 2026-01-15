@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.events.CallParticipant
 fun MoveableLocalVideoRenderer(
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
+  savedLocalParticipantLandscape: Boolean,
   onClick: () -> Unit,
   onToggleCameraDirectionClick: () -> Unit,
   onFocusLocalParticipantClick: () -> Unit,
@@ -65,6 +66,10 @@ fun MoveableLocalVideoRenderer(
   val size = rememberSelfPipSize(localRenderState)
   val isFocused = localRenderState == WebRtcLocalRenderState.FOCUSED
 
+  val localAspectRatio = rememberParticipantAspectRatio(localParticipant.videoSink)
+  val configurationLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
+  val isVideoLandscape = localAspectRatio?.let { it > 1f } ?: configurationLandscape
+
   BoxWithConstraints(
     modifier = Modifier
       .fillMaxSize()
@@ -72,12 +77,11 @@ fun MoveableLocalVideoRenderer(
       .statusBarsPadding()
       .displayCutoutPadding()
   ) {
-    val orientation = LocalConfiguration.current.orientation
-    val focusedSize = remember(maxWidth, maxHeight, orientation) {
+    val focusedSize = remember(maxWidth, maxHeight, isVideoLandscape) {
       val desiredWidth = maxWidth - 32.dp
       val desiredHeight = maxHeight - 32.dp
 
-      val aspectRatio = if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+      val aspectRatio = if (isVideoLandscape) {
         16f / 9f
       } else {
         9f / 16f
@@ -93,7 +97,7 @@ fun MoveableLocalVideoRenderer(
       }
     }
 
-    val targetSize = if (isFocused) focusedSize else size.rotateForConfiguration()
+    val targetSize = if (isFocused) focusedSize else size.rotateForVideoOrientation(isVideoLandscape)
 
     val state = remember { PictureInPictureState(initialContentSize = targetSize) }
     state.animateTo(targetSize)
@@ -208,6 +212,7 @@ private fun MoveableLocalVideoRendererPreview() {
           CallParticipant()
         },
         localRenderState = localRenderState,
+        savedLocalParticipantLandscape = false,
         onClick = {
           localRenderState = when (localRenderState) {
             WebRtcLocalRenderState.SMALL_RECTANGLE -> {
@@ -253,16 +258,17 @@ fun rememberSelfPipSize(
 }
 
 /**
- * Sets the proper DpSize rotation based off the window configuration.
+ * Sets the proper DpSize rotation based off the video aspect ratio.
  *
  * Call-Screen DpSizes for the movable pip are expected to be in portrait by default.
+ * When the video is landscape (aspect ratio > 1), the width and height are swapped.
+ *
+ * @param isVideoLandscape Whether the video is in landscape orientation (width > height)
  */
-@Composable
-private fun DpSize.rotateForConfiguration(): DpSize {
-  val orientation = LocalConfiguration.current.orientation
-
-  return when (orientation) {
-    Configuration.ORIENTATION_LANDSCAPE -> DpSize(this.height, this.width)
-    else -> this
+private fun DpSize.rotateForVideoOrientation(isVideoLandscape: Boolean): DpSize {
+  return if (isVideoLandscape) {
+    DpSize(this.height, this.width)
+  } else {
+    this
   }
 }

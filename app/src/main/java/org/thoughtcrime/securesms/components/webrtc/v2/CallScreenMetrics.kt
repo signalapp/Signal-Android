@@ -50,6 +50,11 @@ class CallScreenMetrics @RememberInComposition constructor(
     medium = 56.dp
   )
 
+  val overflowInfoIconSize: Dp = forWindowSizeClass(
+    compact = 24.dp,
+    medium = 28.dp
+  )
+
   private val normalRendererDpWidth: Dp = forWindowSizeClass(
     compact = 96.dp,
     medium = 132.dp

@@ -158,6 +158,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
       }
 
       val pendingParticipantsListener by this.pendingParticipantsViewListener.collectAsStateWithLifecycle()
+      val savedLocalParticipantLandscape by viewModel.savedLocalParticipantLandscape.collectAsStateWithLifecycle()
 
       val callScreenController = CallScreenController.rememberCallScreenController(
         skipHiddenState = callControlsState.skipHiddenState,
@@ -178,6 +179,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           webRtcCallState = webRtcCallState,
           isRemoteVideoOffer = viewModel.isAnswerWithVideoAvailable(),
           isInPipMode = rememberIsInPipMode(),
+          savedLocalParticipantLandscape = savedLocalParticipantLandscape,
           callScreenState = callScreenState,
           callControlsState = callControlsState,
           callScreenController = callScreenController,

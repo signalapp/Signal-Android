@@ -49,7 +49,7 @@ fun BlurContainer(
   val blur by animateDpAsState(blurRadius)
 
   Box(
-    modifier = modifier.blur(blur, edgeTreatment = BlurredEdgeTreatment.Unbounded)
+    modifier = modifier.blur(blur, edgeTreatment = BlurredEdgeTreatment.Rectangle)
   ) {
     content()
 

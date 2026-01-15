@@ -56,7 +56,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageLarge
-import org.thoughtcrime.securesms.components.webrtc.AudioIndicatorView
 import org.thoughtcrime.securesms.components.webrtc.TextureViewRenderer
 import org.thoughtcrime.securesms.compose.GlideImage
 import org.thoughtcrime.securesms.compose.GlideImageScaleType
@@ -119,16 +118,13 @@ fun RemoteParticipantContent(
         label = "video-ready-crossfade"
       ) { shouldShowAvatar ->
         if (shouldShowAvatar) {
-          if (renderInPip) {
-            PipAvatar(
-              recipient = recipient,
-              modifier = Modifier.fillMaxSize()
-            )
-          } else {
-            Box(
-              modifier = Modifier.fillMaxSize(),
-              contentAlignment = Alignment.Center
-            ) {
+          Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+          ) {
+            if (renderInPip) {
+              SystemPipAvatar(recipient = recipient)
+            } else {
               AvatarWithBadge(recipient = recipient)
             }
           }
@@ -148,7 +144,7 @@ fun RemoteParticipantContent(
       }
 
       if (showAudioIndicator) {
-        AudioIndicator(
+        ParticipantAudioIndicator(
           participant = participant,
           selfPipMode = SelfPipMode.NOT_SELF_PIP,
           modifier = Modifier.align(Alignment.BottomStart)
@@ -186,7 +182,8 @@ fun SelfPipContent(
   selfPipMode: SelfPipMode,
   isMoreThanOneCameraAvailable: Boolean,
   onSwitchCameraClick: (() -> Unit)?,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  showAudioIndicator: Boolean = true
 ) {
   if (participant.isVideoEnabled) {
     Box(modifier = modifier) {
@@ -196,11 +193,13 @@ fun SelfPipContent(
         modifier = Modifier.fillMaxSize()
       )
 
-      AudioIndicator(
-        participant = participant,
-        selfPipMode = selfPipMode,
-        modifier = Modifier.align(Alignment.BottomStart)
-      )
+      if (showAudioIndicator) {
+        ParticipantAudioIndicator(
+          participant = participant,
+          selfPipMode = selfPipMode,
+          modifier = Modifier.align(Alignment.BottomStart)
+        )
+      }
 
       if (isMoreThanOneCameraAvailable) {
         SwitchCameraButton(
@@ -252,7 +251,7 @@ private fun SelfPipCameraOffContent(
         .align(Alignment.Center)
     )
 
-    AudioIndicator(
+    ParticipantAudioIndicator(
       participant = participant,
       selfPipMode = selfPipMode,
       modifier = Modifier.align(Alignment.BottomStart)
@@ -279,22 +278,31 @@ fun OverflowParticipantContent(
   val recipient = participant.recipient
 
   Box(modifier = modifier) {
+    val isBlocked = recipient.isBlocked
+    val isMissingMediaKeys = !participant.isMediaKeysReceived &&
+      (System.currentTimeMillis() - participant.addedToCallTime) > 5000
+    val infoMode = isBlocked || isMissingMediaKeys
+
     BlurredBackgroundAvatar(recipient = recipient)
 
-    val hasContentToRender = participant.isVideoEnabled || participant.isScreenSharing
-
-    if (hasContentToRender) {
-      VideoRenderer(
-        participant = participant,
-        modifier = Modifier.fillMaxSize()
-      )
+    if (infoMode) {
+      OverflowInfoOverlay(isBlocked = isBlocked)
     } else {
-      PipAvatar(
-        recipient = recipient,
-        modifier = Modifier
-          .size(rememberCallScreenMetrics().overflowParticipantRendererAvatarSize)
-          .align(Alignment.Center)
-      )
+      val hasContentToRender = participant.isVideoEnabled || participant.isScreenSharing
+
+      if (hasContentToRender) {
+        VideoRenderer(
+          participant = participant,
+          modifier = Modifier.fillMaxSize()
+        )
+      } else {
+        OverflowAvatar(
+          recipient = recipient,
+          modifier = Modifier
+            .size(rememberCallScreenMetrics().overflowParticipantRendererAvatarSize)
+            .align(Alignment.Center)
+        )
+      }
     }
 
     if (participant.isHandRaised) {
@@ -310,7 +318,7 @@ fun OverflowParticipantContent(
 }
 
 @Composable
-private fun BlurredBackgroundAvatar(
+fun BlurredBackgroundAvatar(
   recipient: Recipient,
   modifier: Modifier = Modifier
 ) {
@@ -348,6 +356,19 @@ private fun BlurredBackgroundAvatar(
 }
 
 @Composable
+private fun SystemPipAvatar(
+  recipient: Recipient,
+  modifier: Modifier = Modifier
+) {
+  Box(modifier = modifier) {
+    AvatarImage(
+      recipient = recipient,
+      modifier = Modifier.size(64.dp)
+    )
+  }
+}
+
+@Composable
 private fun AvatarWithBadge(
   recipient: Recipient,
   modifier: Modifier = Modifier
@@ -368,7 +389,7 @@ private fun AvatarWithBadge(
 }
 
 @Composable
-private fun PipAvatar(
+private fun OverflowAvatar(
   recipient: Recipient,
   modifier: Modifier = Modifier
 ) {
@@ -479,7 +500,7 @@ private fun VideoRenderer(
 }
 
 @Composable
-internal fun AudioIndicator(
+internal fun ParticipantAudioIndicator(
   participant: CallParticipant,
   selfPipMode: SelfPipMode,
   modifier: Modifier = Modifier
@@ -493,16 +514,16 @@ internal fun AudioIndicator(
     SelfPipMode.OVERLAY_SELF_PIP -> 0.dp
   }
 
-  AndroidView(
-    factory = { context ->
-      AudioIndicatorView(context, null)
-    },
-    update = { view ->
-      view.bind(participant.isMicrophoneEnabled, participant.audioLevel)
-    },
+  AudioIndicator(
+    participant = participant,
     modifier = modifier
       .padding(margin)
       .size(28.dp)
+      .background(
+        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.7f),
+        shape = CircleShape
+      )
+      .padding(6.dp)
   )
 }
 
@@ -620,8 +641,8 @@ private fun InfoOverlay(
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
       Icon(
-        painter = painterResource(
-          id = if (isBlocked) R.drawable.ic_block_tinted_24 else R.drawable.ic_error_solid_24
+        imageVector = ImageVector.vectorResource(
+          id = if (isBlocked) R.drawable.ic_block_tinted_24 else R.drawable.ic_error_outline_24
         ),
         contentDescription = null,
         tint = Color.White,
@@ -672,6 +693,33 @@ private fun InfoOverlay(
         }
       }
     }
+  }
+}
+
+/**
+ * Simplified info overlay for overflow participant tiles.
+ * Shows only the icon (blocked or error) centered on a semi-transparent background.
+ */
+@Composable
+private fun OverflowInfoOverlay(
+  isBlocked: Boolean
+) {
+  val metrics = rememberCallScreenMetrics()
+
+  Box(
+    modifier = Modifier
+      .fillMaxSize()
+      .background(Color(0x66000000)),
+    contentAlignment = Alignment.Center
+  ) {
+    Icon(
+      imageVector = ImageVector.vectorResource(
+        id = if (isBlocked) R.drawable.ic_block_tinted_24 else R.drawable.ic_error_outline_24
+      ),
+      contentDescription = null,
+      tint = Color.White,
+      modifier = Modifier.size(metrics.overflowInfoIconSize)
+    )
   }
 }
 
@@ -914,6 +962,41 @@ private fun OverflowParticipantRaisedHandPreview() {
         isMicrophoneEnabled = true,
         audioLevel = CallParticipant.AudioLevel.HIGH,
         handRaisedTimestamp = System.currentTimeMillis()
+      ),
+      modifier = Modifier.size(rememberCallScreenMetrics().overflowParticipantRendererDpSize)
+    )
+  }
+}
+
+@NightPreview
+@Composable
+private fun OverflowParticipantBlockedPreview() {
+  Previews.Preview {
+    OverflowParticipantContent(
+      participant = CallParticipant.EMPTY.copy(
+        recipient = Recipient(
+          isResolving = false,
+          systemContactName = "Blocked Contact",
+          isBlocked = true
+        )
+      ),
+      modifier = Modifier.size(rememberCallScreenMetrics().overflowParticipantRendererDpSize)
+    )
+  }
+}
+
+@NightPreview
+@Composable
+private fun OverflowParticipantVideoErrorPreview() {
+  Previews.Preview {
+    OverflowParticipantContent(
+      participant = CallParticipant.EMPTY.copy(
+        recipient = Recipient(
+          isResolving = false,
+          systemContactName = "Error Contact"
+        ),
+        isMediaKeysReceived = false,
+        addedToCallTime = System.currentTimeMillis() - 10000
       ),
       modifier = Modifier.size(rememberCallScreenMetrics().overflowParticipantRendererDpSize)
     )

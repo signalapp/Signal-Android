@@ -214,10 +214,11 @@ private fun CallElementsLayoutPreview() {
           localParticipant = CallParticipant(
             recipient = Recipient(id = RecipientId.from(1L), isResolving = false, systemContactName = "Test")
           ),
+          localRenderState = localRenderState,
+          savedLocalParticipantLandscape = false,
           onClick = {},
           onFocusLocalParticipantClick = {},
-          onToggleCameraDirectionClick = {},
-          localRenderState = localRenderState
+          onToggleCameraDirectionClick = {}
         )
       },
       reactionsSlot = {
