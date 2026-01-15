@@ -94,6 +94,7 @@ import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserExce
 import org.whispersystems.signalservice.internal.push.SyncMessage;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -929,6 +930,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         Log.w(TAG, "onSendCallMessageToGroup failed", e);
       }
     });
+  }
+
+  @Override
+  public void onSendCallMessageToAdhocGroup(@NonNull byte[] message, @NonNull CallManager.CallMessageUrgency urgency, Instant expiration, @NonNull Map<UUID, byte[]> recipientsToEndorsements) {
+    Log.w(TAG, "onSendCallMessageToAdhocGroup(): not handled yet!");
   }
 
   @Override
