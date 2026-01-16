@@ -4371,7 +4371,7 @@
     <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
     <string name="PaymentsDetailsFragment__sent_payment">Sent payment</string>
     <string name="PaymentsDetailsFragment__received_payment">Received payment</string>
-    <string name="PaymentsDeatilsFragment__payment_completed_s">Payment completed %1$s</string>
+    <string name="PaymentsDetailsFragment__payment_completed_s">Payment completed %1$s</string>
     <string name="PaymentsDetailsFragment__block_number">Block number</string>
 
     <!-- PaymentsTransferFragment -->
