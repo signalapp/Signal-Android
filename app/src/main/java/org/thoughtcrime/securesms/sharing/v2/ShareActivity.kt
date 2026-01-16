@@ -283,9 +283,13 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
           .asBorderless(multiShareArgs.isBorderless)
           .withShareDataTimestamp(System.currentTimeMillis())
 
-        val mainActivityIntent = MainActivity.clearTop(this)
+        val conversationIntent = conversationIntentBuilder.build()
+        val mainActivityIntent = MainActivity.clearTop(this).apply {
+          action = ConversationIntents.ACTION
+          putExtras(conversationIntent)
+        }
         finish()
-        startActivities(arrayOf(mainActivityIntent, conversationIntentBuilder.build()))
+        startActivity(mainActivityIntent)
       }
   }
 
