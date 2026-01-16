@@ -735,6 +735,12 @@ class AttachmentTable(
       .readToList { AttachmentId(it.requireLong(ID)) }
   }
 
+  private data class AttachmentKeyDupeData(
+    val id: AttachmentId,
+    val quote: Boolean,
+    val sticker: Boolean
+  )
+
   /**
    * At archive creation time, we need to ensure that all relevant attachments have populated [REMOTE_KEY]s.
    * This does that.
@@ -744,7 +750,7 @@ class AttachmentTable(
     var notQuoteOrStickerDupeNotFoundCount = 0
     var notQuoteOrStickerDupeFoundCount = 0
 
-    val missingKeys = readableDatabase
+    val missingKeys: Map<String, List<AttachmentKeyDupeData>> = readableDatabase
       .select(ID, DATA_FILE, QUOTE, STICKER_ID)
       .from(TABLE_NAME)
       .where(
@@ -756,10 +762,16 @@ class AttachmentTable(
         """
       )
       .run()
-      .readToList { Triple(AttachmentId(it.requireLong(ID)), it.requireBoolean(QUOTE), it.requireInt(STICKER_ID) >= 0) to it.requireNonNullString(DATA_FILE) }
+      .readToList {
+        AttachmentKeyDupeData(
+          id = AttachmentId(it.requireLong(ID)),
+          quote = it.requireBoolean(QUOTE),
+          sticker = it.requireInt(STICKER_ID) >= 0
+        ) to it.requireNonNullString(DATA_FILE)
+      }
       .groupBy({ (_, dataFile) -> dataFile }, { (record, _) -> record })
 
-    missingKeys.forEach { dataFile, ids ->
+    missingKeys.forEach { (dataFile, dupeData) ->
       val duplicateAttachmentWithRemoteData = readableDatabase
         .select()
         .from(TABLE_NAME)
@@ -777,7 +789,7 @@ class AttachmentTable(
       if (duplicateAttachmentWithRemoteData != null) {
         val (duplicateAttachment, duplicateAttachmentDataInfo) = duplicateAttachmentWithRemoteData
 
-        ids.forEach { (attachmentId, isQuote, isSticker) ->
+        dupeData.forEach { (attachmentId, isQuote, isSticker) ->
           Log.w(TAG, "[createRemoteKeyForAttachmentsThatNeedArchiveUpload][$attachmentId] Missing key but found same data file with remote data. Updating. isQuote:$isQuote isSticker:$isSticker")
 
           writableDatabase
@@ -805,10 +817,13 @@ class AttachmentTable(
           totalCount++
         }
       } else {
-        ids.forEach { (attachmentId, isQuote, isSticker) ->
-          Log.w(TAG, "[createRemoteKeyForAttachmentsThatNeedArchiveUpload][$attachmentId] Missing key. Generating. isQuote:$isQuote isSticker:$isSticker")
+        val key = Util.getSecretBytes(64)
+        if (dupeData.size > 1) {
+          Log.w(TAG, "[createRemoteKeyForAttachmentsThatNeedArchiveUpload] Generated new key for: ${dupeData.joinToString { it.id.toString() }}")
+        }
 
-          val key = Util.getSecretBytes(64)
+        dupeData.forEach { (attachmentId, isQuote, isSticker) ->
+          Log.w(TAG, "[createRemoteKeyForAttachmentsThatNeedArchiveUpload][$attachmentId] Missing key. Assigning new one. isQuote:$isQuote isSticker:$isSticker")
 
           writableDatabase.update(TABLE_NAME)
             .values(REMOTE_KEY to Base64.encodeWithPadding(key))
