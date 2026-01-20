@@ -76,6 +76,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
       canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
       canRestoreUsingCellular = SignalStore.backup.restoreWithCellular,
+      internalUser = RemoteConfig.internalUser,
       includeDebuglog = SignalStore.internal.includeDebuglogInBackup.takeIf { RemoteConfig.internalUser },
       backupCreationError = SignalStore.backup.backupCreationError,
       lastMessageCutoffTime = SignalStore.backup.lastUsedMessageCutoffTime

@@ -28,6 +28,7 @@ data class RemoteBackupsSettingsState(
   val lastBackupTimestamp: Long = 0,
   val dialog: Dialog = Dialog.NONE,
   val snackbar: Snackbar = Snackbar.NONE,
+  val internalUser: Boolean = false,
   val includeDebuglog: Boolean? = null,
   val canBackupMessagesJobRun: Boolean = false,
   val backupMediaDetails: BackupMediaDetails? = null,

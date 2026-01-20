@@ -895,17 +895,6 @@ private fun LazyListScope.appendBackupDetailsItems(
     Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
   }
 
-  if (state.backupMediaDetails != null) {
-    item {
-      Column(modifier = Modifier.horizontalGutters()) {
-        Text("[Internal Only] Backup Media Details")
-        Text("Awaiting Restore: ${state.backupMediaDetails.awaitingRestore.toUnitString()}")
-        Text("Offloaded: ${state.backupMediaDetails.offloaded.toUnitString()}")
-        Text("Last Proto Size: ${state.backupMediaDetails.protoFileSize.toUnitString()}")
-      }
-    }
-  }
-
   if (state.backupCreationError != null) {
     item {
       BackupCreateErrorRow(
@@ -931,12 +920,6 @@ private fun LazyListScope.appendBackupDetailsItems(
           onDownloadClick = contentCallbacks::onStartMediaRestore
         )
       }
-    }
-  }
-
-  if (state.includeDebuglog != null) {
-    item {
-      IncludeDebuglogRow(state.includeDebuglog) { contentCallbacks.onIncludeDebuglogClick(it) }
     }
   }
 
@@ -1006,6 +989,29 @@ private fun LazyListScope.appendBackupDetailsItems(
       onClick = contentCallbacks::onViewBackupKeyClick,
       enabled = state.canViewBackupKey
     )
+  }
+
+  if (state.internalUser) {
+    item {
+      Texts.SectionHeader(text = "INTERNAL ONLY")
+    }
+
+    if (state.includeDebuglog != null) {
+      item {
+        IncludeDebuglogRow(state.includeDebuglog) { contentCallbacks.onIncludeDebuglogClick(it) }
+      }
+    }
+
+    if (state.backupMediaDetails != null) {
+      item {
+        Column(modifier = Modifier.horizontalGutters()) {
+          Text("Backup Media Details")
+          Text("Awaiting Restore: ${state.backupMediaDetails.awaitingRestore.toUnitString()}")
+          Text("Offloaded: ${state.backupMediaDetails.offloaded.toUnitString()}")
+          Text("Last Proto Size: ${state.backupMediaDetails.protoFileSize.toUnitString()}")
+        }
+      }
+    }
   }
 
   item {
@@ -1543,7 +1549,7 @@ private fun IncludeDebuglogRow(
 ) {
   Rows.ToggleRow(
     checked = enabled,
-    text = "[INTERNAL ONLY] Include debuglog?",
+    text = "Include debuglog?",
     label = "If enabled, we will capture a debuglog and include it in the backup file.",
     onCheckChanged = onToggle
   )
@@ -1882,6 +1888,7 @@ private fun RemoteBackupsSettingsInternalUserContentPreview() {
         ),
         hasRedemptionError = false,
         isOutOfStorageSpace = false,
+        internalUser = true,
         includeDebuglog = true
       ),
       statusBarColorNestedScrollConnection = null,
