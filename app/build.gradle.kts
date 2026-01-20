@@ -495,6 +495,14 @@ android {
       java.srcDir(path)
     }
   }
+
+  applicationVariants.configureEach {
+    outputs.configureEach {
+      if (this is com.android.build.gradle.internal.api.BaseVariantOutputImpl) {
+        outputFileName = outputFileName.replace(".apk", "-$versionName.apk")
+      }
+    }
+  }
 }
 
 dependencies {
