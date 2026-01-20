@@ -64,6 +64,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
+import org.thoughtcrime.securesms.ringrtc.CameraState
 import org.webrtc.RendererCommon
 
 /**
@@ -191,7 +192,7 @@ fun SelfPipContent(
     Box(modifier = modifier) {
       VideoRenderer(
         participant = participant,
-        mirror = true,
+        mirror = participant.cameraDirection == CameraState.Direction.FRONT,
         modifier = Modifier.fillMaxSize()
       )
 
