@@ -2704,9 +2704,9 @@
 
     <!-- CallQualityDiagnosticsScreen -->
     <!-- Title for the call quality diagnostics screen -->
-    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Diagnostic information</string>
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Diagnostiikkatiedot</string>
     <!-- Content description for the close/back navigation button -->
-    <string name="CallQualityDiagnosticsScreen__close">Close</string>
+    <string name="CallQualityDiagnosticsScreen__close">Sulje</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Pyyhkäise nähdäksesi näytönjaon</string>
@@ -3818,13 +3818,13 @@
     <string name="verify_display_fragment__clear_verification">Poista varmennus</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal now auto-verifies end-to-end encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal vahvistaa nyt päästä päähän -salauksen automaattisesti</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">When you verify a safety number, Signal will automatically confirm whether the connection is secure using a process called key transparency. You can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Kun vahvistat turvanumeron, Signal vahvistaa yhteyden suojauksen automaattisesti avaimen läpinäkyvyydeksi kutsutulla prosessilla. Voit edelleen vahvistaa yhteydet manuaalisesti QR-koodilla tai numerolla.</string>
     <!-- Button to learn more about automatic verification -->
-    <string name="VerifyAutomaticallyEducationSheet__learn_more">Learn more</string>
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Lue lisää</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__verify">Verify</string>
+    <string name="VerifyAutomaticallyEducationSheet__verify">Vahvista</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skannaa yhteystietosi laitteessa näkyvä QR-koodi.</string>
@@ -8951,7 +8951,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Lopetetaanko kysely?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Tämän keskustelun jäsenet eivät voi enää äänestää kyselyssä.</string>
+    <string name="Poll__end_poll_body">Keskustelun jäsenet eivät voi enää äänestää kyselyssä.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Odotetaan verkkoa…</string>
     <!-- Header when creating a new poll -->
@@ -9038,15 +9038,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Auta meitä parantamaan</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Submitting will share your feedback along with</string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Lähettämällä jaat palautteesi sekä</string>
     <!-- Clickable text to launch diagnostic fragment -->
-    <string name="CallQualitySheet__diagnostic_information_about_your_call">diagnostic information about your call</string>
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">puhelusi diagnostiikkatiedot</string>
     <!-- End of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix">You can optionally share a debug log to help us improve call quality.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix">Voit halutessasi jakaa vianetsintälokin, joka auttaa meitä parantamaan puheluiden laatua.</string>
     <!-- Text explaining the debug log -->
-    <string name="CallQualitySheet__information_shared_with_us">Information shared with us contains low level app information and does not include the contents of your calls.</string>
+    <string name="CallQualitySheet__information_shared_with_us">Meille jaetut tiedot sisältävät matalan tason sovellustietoja, eivätkä ne sisällä puheluidesi sisältöä.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_debug_log">View debug log</string>
+    <string name="CallQualitySheet__view_debug_log">Näytä vianetsintäloki</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Jaa vianetsintäloki</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->

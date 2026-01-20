@@ -681,7 +681,7 @@
     <!-- Dialog option to keep message pin forever -->
     <string name="ConversationFragment__forever">계속</string>
     <!-- Dialog title when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_title">가장 오래된 고정 항목을 교체하시겠습니까?</string>
+    <string name="ConversationFragment__replace_title">가장 오래된 고정 항목을 교체할까요?</string>
     <!-- Dialog body when replacing the oldest pin -->
     <string name="ConversationFragment__replace_body">고정 메시지가 가장 오래된 메시지를 대체합니다</string>
     <!-- Dialog button when replacing the oldest pin -->
@@ -1151,7 +1151,7 @@
     <string name="NewLinkedDeviceNotification__a_new_device_was_linked">%1$s 새 기기를 계정에 연결했습니다. 탭하여 확인하세요.</string>
 
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">\"%1$s\" 기기의 연결을 해제하시겠습니까?</string>
+    <string name="DeviceListActivity_unlink_s">\'%1$s\' 기기의 연결을 해제할까요?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">기기를 연결 해제하면 메시지를 보내거나 받을 수 없습니다.</string>
     <string name="DeviceListActivity_network_connection_failed">네트워크 연결 실패</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
@@ -1383,11 +1383,11 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">이 사용자를 레거시 그룹에 추가할 수 없습니다.</string>
 
     <!-- Confirmation text when adding one member to a group. %1$s is the member\'s name, %2$s is the group name. -->
-    <string name="AddMembersActivity__add_member_to_s">%1$s을 %2$s에 추가하시겠습니까?</string>
+    <string name="AddMembersActivity__add_member_to_s">%1$s 님을 \'%2$s\'에 추가할까요?</string>
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="other">구성원 %1$d명을 \'%2$s\'에 추가하시겠습니까?</item>
+        <item quantity="other">멤버 %1$d명을 \'%2$s\'에 추가할까요?</item>
     </plurals>
 
     <string name="AddMembersActivity__add">추가</string>
@@ -1607,7 +1607,7 @@
     <!-- Message shown when you try to get information for a group via link but an unknown issue occurred -->
     <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">해당 링크를 통한 그룹 참여에 실패했습니다. 나중에 다시 시도해보십시오.</string>
 
-    <string name="GroupJoinBottomSheetDialogFragment_direct_join">그룹에 참가하고 그룹 멤버에게 내 이름과 사진을 공유하시겠습니까?</string>
+    <string name="GroupJoinBottomSheetDialogFragment_direct_join">그룹에 참여하고 내 이름과 사진을 멤버들과 공유하시겠어요?</string>
     <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">이 그룹에 가입하려면 그룹의 관리자가 요청을 승인해야 합니다. 가입을 요청하면 내 이름과 사진이 공유됩니다.</string>
     <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
         <item quantity="other">그룹: 멤버 %1$d명</item>
@@ -1667,7 +1667,7 @@
     <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
     <string name="InviteActivity_send_sms">SMS 보내기 (%1$d)</string>
     <plurals name="InviteActivity_send_sms_invites">
-        <item quantity="other">SMS 초대 %1$d개를 보내시겠습니까?</item>
+        <item quantity="other">SMS 초대 %1$d개를 보내시겠어요?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Signal로 같이 옮겨요! %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
@@ -1693,7 +1693,7 @@
     <string name="MediaOverviewActivity_Audio">오디오</string>
     <string name="MediaOverviewActivity_All">모두</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="other">선택한 항목을 삭제하시겠습니까?</item>
+        <item quantity="other">선택한 항목을 삭제할까요?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="other">&lt;mrk id=\'314\' mtype=\'seg\'&gt;선택한 파일 %1$d개가 모두 영구 삭제됩니다.&lt;/mrk&gt; &lt;mrk id=\'315\' mtype=\'seg\'&gt;이 항목들과 관련된 모든 메시지의 텍스트도 삭제됩니다.&lt;/mrk&gt;</item>
@@ -2118,7 +2118,7 @@
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">이 레거시 그룹은 더 이상 사용할 수 없습니다. 새 그룹을 만들어 @멘션 및 관리자와 같은 새로운 기능을 활성화하세요.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">레거시 그룹의 규모가 너무 커서 더 이상 사용할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s 님과 대화를 계속하고 이름과 사진을 공유하시겠어요?</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">그룹에 가입하고 멤버들과 이름과 사진을 공유하시겠습니까? 귀하가 수락할 때까지 귀하가 자신의 메시지를 본 것을 알지 못합니다.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">그룹에 참여하고 내 이름과 사진을 멤버들과 공유하시겠어요? 수락하기 전까지는 상대방에게 메시지를 확인했다는 사실이 표시되지 않습니다.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">이 그룹에 참가하여 그룹 멤버에게 내 이름과 사진을 공유하시겠어요? 수락하기 전까지는 멤버의 메시지가 표시되지 않습니다.</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">이 그룹에 참가하시겠습니까? 수락하기 전까지 상대는 내가 메시지를 보았는지 알 수 없습니다.</string>
@@ -2615,9 +2615,9 @@
 
     <!-- CallQualityDiagnosticsScreen -->
     <!-- Title for the call quality diagnostics screen -->
-    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Diagnostic information</string>
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">진단 정보</string>
     <!-- Content description for the close/back navigation button -->
-    <string name="CallQualityDiagnosticsScreen__close">Close</string>
+    <string name="CallQualityDiagnosticsScreen__close">닫기</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">스와이프하여 화면 공유 보기</string>
@@ -3706,13 +3706,13 @@
     <string name="verify_display_fragment__clear_verification">인증 초기화하기</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal now auto-verifies end-to-end encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">이제 Signal이 엔드투엔드 암호화를 자동으로 확인합니다</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">When you verify a safety number, Signal will automatically confirm whether the connection is secure using a process called key transparency. You can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">안전 번호를 인증하면 Signal이 키 투명성이라는 프로세스를 통해 연결이 안전한지 자동으로 확인합니다. QR 코드나 숫자를 사용하여 수동으로도 연결을 확인하실 수 있습니다.</string>
     <!-- Button to learn more about automatic verification -->
-    <string name="VerifyAutomaticallyEducationSheet__learn_more">Learn more</string>
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">자세히 알아보기</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__verify">Verify</string>
+    <string name="VerifyAutomaticallyEducationSheet__verify">확인</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">연락처의 기기에서 QR 코드를 스캔하세요.</string>
@@ -3996,7 +3996,7 @@
     <string name="preferences_storage__files">파일</string>
     <string name="preferences_storage__audio">오디오</string>
     <string name="preferences_storage__review_storage">저장 공간 검토하기</string>
-    <string name="preferences_storage__delete_older_messages">오래된 메시지를 삭제하시겠습니까?</string>
+    <string name="preferences_storage__delete_older_messages">오래된 메시지를 삭제할까요?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
     <string name="preferences_storage__delete_message_history">메시지 기록을 삭제하시겠습니까?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$s보다 오래된 모든 메시지 기록과 미디어를 기기에서 영구적으로 삭제합니다.</string>
@@ -4672,7 +4672,7 @@
     <string name="RegistrationActivity_incorrect_backup_passphrase">잘못된 백업 암호</string>
     <string name="RegistrationActivity_checking">확인 중…</string>
     <string name="RegistrationActivity_d_messages_so_far">현재 메시지 %1$d개 처리됨…</string>
-    <string name="RegistrationActivity_restore_from_backup">백업으로 복원하시겠습니까?</string>
+    <string name="RegistrationActivity_restore_from_backup">백업에서 복원할까요?</string>
     <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">로컬 백업에서 메시지와 미디어를 복원합니다. 지금 복원하지 않으면 이후에는 복원할 수 없습니다.</string>
     <string name="RegistrationActivity_backup_size_s">백업 사이즈: %1$s</string>
     <string name="RegistrationActivity_backup_timestamp_s">백업 시간: %1$s</string>
@@ -4822,7 +4822,7 @@
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
     <string name="preferences_account_delete_all_data">모든 데이터 삭제</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">모든 데이터를 삭제하시겠습니까?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">모든 데이터를 삭제할까요?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
     <string name="preferences_account_delete_all_data_confirmation_message">앱을 초기화하고 모든 메시지를 삭제합니다. 이 프로세스를 완료하면 앱을 종료합니다.</string>
     <!-- Confirmation action to proceed with application data deletion -->
@@ -5202,7 +5202,7 @@
     <string name="payment_info_card_you_can_add_funds_for_use_in">MobileCoin을 지갑 주소로 전송하여 Signal에서 사용할 자금을 추가할 수 있습니다.</string>
     <string name="payment_info_card_cashing_out">현금화</string>
     <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin을 지원하는 거래소에서 언제든지 MobileCoin을 현금화할 수 있습니다. 해당 거래소에서 계좌로 이체하기만 하면 됩니다.</string>
-    <string name="payment_info_card_hide_this_card">이 카드를 숨기시겠습니까?</string>
+    <string name="payment_info_card_hide_this_card">이 카드를 숨길까요?</string>
     <string name="payment_info_card_hide">숨기기</string>
     <!-- Title of save recovery phrase card -->
     <string name="payment_info_card_save_recovery_phrase">복구 문구 저장</string>
@@ -7946,7 +7946,7 @@
     <string name="BackupStatusRow__learn_more">자세히 알아보기</string>
 
     <!-- Dialog title to prompt resuming media restore over cellular -->
-    <string name="ResumeRestoreCellular_resume_using_cellular_title">셀룰러 데이터를 사용하여 계속하시겠습니까?</string>
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">셀룰러 데이터를 사용하여 계속할까요?</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
     <string name="ResumeRestoreCellular_resume_using_cellular_message">셀룰러 데이터를 사용하여 미디어를 복원하면 데이터 요금이 부과될 수 있습니다. Wi-Fi 네트워크에 연결하여 자동으로 계속할 수 있습니다.</string>
 
@@ -8243,7 +8243,7 @@
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">다운로드</string>
     <!-- Dialog title for skipping download of backed up media -->
-    <string name="RemoteBackupsSettingsFragment__skip_download_question">다운로드를 건너뛰시겠습니까?</string>
+    <string name="RemoteBackupsSettingsFragment__skip_download_question">다운로드를 건너뛸까요?</string>
     <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="other">다운로드를 건너뛰면 백업의 남은 미디어와 첨부 파일이 %1$d일 후 삭제됩니다.</item>
@@ -8851,15 +8851,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">더 나은 서비스를 제공할 수 있도록 도와주세요</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Submitting will share your feedback along with</string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">피드백을 제출하면</string>
     <!-- Clickable text to launch diagnostic fragment -->
-    <string name="CallQualitySheet__diagnostic_information_about_your_call">diagnostic information about your call</string>
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">통화에 대한 진단 정보가 함께 공유됩니다.</string>
     <!-- End of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix">You can optionally share a debug log to help us improve call quality.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix">통화 품질 개선을 위해 디버그 로그를 공유해 주셔도 좋습니다.</string>
     <!-- Text explaining the debug log -->
-    <string name="CallQualitySheet__information_shared_with_us">Information shared with us contains low level app information and does not include the contents of your calls.</string>
+    <string name="CallQualitySheet__information_shared_with_us">Signal에 공유되는 정보는 앱의 기본적인 사용 정보에 한하며, 통화 내용은 수집되지 않습니다.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_debug_log">View debug log</string>
+    <string name="CallQualitySheet__view_debug_log">디버그 로그 보기</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">디버그 로그 공유</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->

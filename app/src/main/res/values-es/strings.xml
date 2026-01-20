@@ -1118,7 +1118,7 @@
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">Aceptar</string>
     <!-- Dialog title shown when you don\'t have enough storage space -->
-    <string name="LinkDeviceFragment__not_enough_storage_space">No hay suficiente espacio de almacenamiento</string>
+    <string name="LinkDeviceFragment__not_enough_storage_space">No hay suficiente espacio disponible</string>
     <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
     <string name="LinkDeviceFragment__you_dont_have_enough">No tienes suficiente espacio de almacenamiento libre en tu dispositivo para transferir tus mensajes. Libera espacio y vuelve a intentarlo, o vincula tu dispositivo sin transferir tus mensajes.</string>
 
@@ -2704,9 +2704,9 @@
 
     <!-- CallQualityDiagnosticsScreen -->
     <!-- Title for the call quality diagnostics screen -->
-    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Diagnostic information</string>
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Información de diagnóstico</string>
     <!-- Content description for the close/back navigation button -->
-    <string name="CallQualityDiagnosticsScreen__close">Close</string>
+    <string name="CallQualityDiagnosticsScreen__close">Cerrar</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Desliza para ver la pantalla compartida</string>
@@ -3818,13 +3818,13 @@
     <string name="verify_display_fragment__clear_verification">Retirar marca de verificación</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal now auto-verifies end-to-end encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal ahora comprueba automáticamente el cifrado de extremo a extremo</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">When you verify a safety number, Signal will automatically confirm whether the connection is secure using a process called key transparency. You can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Cuando verifiques un número de seguridad, Signal confirmará automáticamente si la conexión es segura usando un proceso llamado transparencia de clave. Si lo prefieres, puedes seguir verificando tus contactos manualmente usando un código QR o un número de seguridad.</string>
     <!-- Button to learn more about automatic verification -->
-    <string name="VerifyAutomaticallyEducationSheet__learn_more">Learn more</string>
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Más información</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__verify">Verify</string>
+    <string name="VerifyAutomaticallyEducationSheet__verify">Verificar</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Escanea el código QR que se muestra en el dispositivo de tu contacto.</string>
@@ -7838,7 +7838,7 @@
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Ahora no</string>
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
-    <string name="TurnOnSignalBackups__toast_not_now">Puedes activar las copias de seguridad en Ajustes</string>
+    <string name="TurnOnSignalBackups__toast_not_now">Puedes habilitar las copias de seguridad en Ajustes</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Verifica tu clave de recuperación</string>
@@ -8583,7 +8583,7 @@
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
     <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">¿Salir de los ajustes de las copias de seguridad?</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
-    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">No has terminado de configurar tus copias de seguridad y no se ha creado ninguna copia de seguridad. Puedes activar las copias de seguridad en Ajustes.</string>
+    <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">No has terminado de configurar tus copias de seguridad y no se ha creado ninguna copia de seguridad. Puedes habilitar las copias de seguridad en Ajustes.</string>
     <!-- Dialog confirmation button to exit backup setup -->
     <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Salir de ajustes</string>
 
@@ -8994,7 +8994,7 @@
     <!-- Label for audio stuttering/choppy audio issue -->
     <string name="CallQualityIssue__audio_stuttering">Audio entrecortado</string>
     <!-- Label for audio cutting out/dropping issue -->
-    <string name="CallQualityIssue__audio_cut_out">El audio se cortaba</string>
+    <string name="CallQualityIssue__audio_cut_out">El audio se detuvo</string>
     <!-- Label for echo heard by the user -->
     <string name="CallQualityIssue__i_heard_echo">Oía un eco</string>
     <!-- Label for echo heard by other call participants -->
@@ -9038,15 +9038,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Ayúdanos a mejorar</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Submitting will share your feedback along with</string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Si seleccionas Enviar, también se compartirán tus comentarios junto con la</string>
     <!-- Clickable text to launch diagnostic fragment -->
-    <string name="CallQualitySheet__diagnostic_information_about_your_call">diagnostic information about your call</string>
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">información de diagnóstico de tu llamada</string>
     <!-- End of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix">You can optionally share a debug log to help us improve call quality.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix">De manera opcional, puedes compartir tu registro de depuración para ayudarnos a mejorar la calidad de las llamadas.</string>
     <!-- Text explaining the debug log -->
-    <string name="CallQualitySheet__information_shared_with_us">Information shared with us contains low level app information and does not include the contents of your calls.</string>
+    <string name="CallQualitySheet__information_shared_with_us">La información que compartes con nosotros contiene únicamente datos técnicos de la aplicación y nunca incluye el contenido de tus llamadas.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_debug_log">View debug log</string>
+    <string name="CallQualitySheet__view_debug_log">Ver registro de depuración</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Compartir registro de depuración</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->

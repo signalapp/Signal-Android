@@ -2704,9 +2704,9 @@
 
     <!-- CallQualityDiagnosticsScreen -->
     <!-- Title for the call quality diagnostics screen -->
-    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Diagnostic information</string>
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">డయాగ్నస్టిక్ సమాచారం</string>
     <!-- Content description for the close/back navigation button -->
-    <string name="CallQualityDiagnosticsScreen__close">Close</string>
+    <string name="CallQualityDiagnosticsScreen__close">మూసివెయ్యి</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">స్క్రీన్ షేర్ వీక్షించడానికి స్వైప్ చేయండి</string>
@@ -3818,13 +3818,13 @@
     <string name="verify_display_fragment__clear_verification">ధృవీకరణను క్లియర్ చేయండి</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal now auto-verifies end-to-end encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal ఇప్పుడు ఎండ్-టు-ఎండ్ గుప్తీకరణను స్వయంచాలకంగా ధృవీకరిస్తుంది</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">When you verify a safety number, Signal will automatically confirm whether the connection is secure using a process called key transparency. You can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">మీరు భద్రతా సంఖ్యను ధృవీకరించినప్పుడు, Signal కీ పారదర్శకత అనే ప్రక్రియను ఉపయోగించి కనెక్షన్ సురక్షితంగా ఉందో లేదో స్వయంచాలకంగా నిర్ధారిస్తుంది. మీరు ఇప్పటికీ QR కోడ్ లేదా నంబర్‌ను ఉపయోగించి కనెక్షన్‌లను మాన్యువల్‌గా ధృవీకరించవచ్చు.</string>
     <!-- Button to learn more about automatic verification -->
-    <string name="VerifyAutomaticallyEducationSheet__learn_more">Learn more</string>
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">మరింత తెలుసుకోండి</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__verify">Verify</string>
+    <string name="VerifyAutomaticallyEducationSheet__verify">ధృవీకరించండి</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">మీ సంప్రదింపు పరికరంలో QR కోడ్‌ను స్కాన్ చేయండి.</string>
@@ -9038,15 +9038,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">మెరుగుపరచడంలో మాకు సహాయం చేయండి</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Submitting will share your feedback along with</string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">సమర్పించడం వలన ఇక్కడ పేర్కొన్న దానితో పాటు మీ అభిప్రాయం పంచుకోబడుతుంది</string>
     <!-- Clickable text to launch diagnostic fragment -->
-    <string name="CallQualitySheet__diagnostic_information_about_your_call">diagnostic information about your call</string>
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">మీ కాల్ గురించిన డయాగ్నస్టిక్ సమాచారం</string>
     <!-- End of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix">You can optionally share a debug log to help us improve call quality.</string>
+    <string name="CallQualitySheet__help_us_improve_description_suffix">మీరు కాల్ నాణ్యతను మెరుగుపరచడంలో మాకు సహాయపడటానికి ఐచ్ఛికంగా డీబగ్ లాగ్‌ను పంచుకోవచ్చు.</string>
     <!-- Text explaining the debug log -->
-    <string name="CallQualitySheet__information_shared_with_us">Information shared with us contains low level app information and does not include the contents of your calls.</string>
+    <string name="CallQualitySheet__information_shared_with_us">మాతో పంచుకోబడిన సమాచారం తక్కువ స్థాయి యాప్ సమాచారం కలిగి ఉంటుంది, ఇందులో మీ కాల్‌లకు సంబంధించిన విషయాలు ఉండవు.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_debug_log">View debug log</string>
+    <string name="CallQualitySheet__view_debug_log">డీబగ్ లాగ్‌ను వీక్షించండి</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">డీబగ్ లాగ్‌ను పంచుకోండి</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
