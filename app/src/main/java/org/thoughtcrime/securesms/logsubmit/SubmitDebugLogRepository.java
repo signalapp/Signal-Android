@@ -345,8 +345,9 @@ public class SubmitDebugLogRepository {
       try (Response postResponse = client.newCall(new Request.Builder().url(url).post(post.build()).build()).execute()) {
         if (!postResponse.isSuccessful()) {
           if (RemoteConfig.internalUser()) {
-            Log.w(TAG, "Internal user failed to upload log: " + postResponse);
+            Log.w(TAG, "Internal user failed to upload log: " + postResponse + ", body: " + postResponse.body().string());
             Log.w(TAG, "debuglogs.org response: " + json.toString(2));
+            Log.w(TAG, "RequestBody length: " + requestBody.contentLength());
           }
           throw new IOException("Bad response: " + postResponse);
         }
