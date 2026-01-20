@@ -9,6 +9,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.media.TransformProperties
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -80,7 +81,7 @@ class UploadDependencyGraphTest {
       UriAttachmentBuilder.build(
         id = 10,
         contentType = MediaUtil.IMAGE_JPEG,
-        transformProperties = AttachmentTable.TransformProperties(false, true, increment, increment + 1, SentMediaQuality.STANDARD.code, false)
+        transformProperties = TransformProperties(false, true, increment, increment + 1, SentMediaQuality.STANDARD.code, false)
       )
     }
 
@@ -122,7 +123,7 @@ class UploadDependencyGraphTest {
       UriAttachmentBuilder.build(
         id = 10,
         contentType = MediaUtil.IMAGE_JPEG,
-        transformProperties = if (it != 1) AttachmentTable.TransformProperties(false, true, 1, 2, SentMediaQuality.STANDARD.code, false) else null
+        transformProperties = if (it != 1) TransformProperties(false, true, 1, 2, SentMediaQuality.STANDARD.code, false) else null
       )
     }
 
@@ -182,7 +183,7 @@ class UploadDependencyGraphTest {
       UriAttachmentBuilder.build(
         1L,
         contentType = MediaUtil.IMAGE_JPEG,
-        transformProperties = AttachmentTable.TransformProperties.forVideoTrim(it.toLong(), it.toLong() + 1)
+        transformProperties = TransformProperties.forVideoTrim(it.toLong(), it.toLong() + 1)
       )
     }
 

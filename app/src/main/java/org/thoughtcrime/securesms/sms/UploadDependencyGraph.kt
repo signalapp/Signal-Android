@@ -1,12 +1,11 @@
 package org.thoughtcrime.securesms.sms
 
 import androidx.annotation.WorkerThread
+import org.signal.core.models.media.TransformProperties
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
-import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
@@ -44,7 +43,7 @@ class UploadDependencyGraph private constructor(
    */
   private data class AttachmentKey<A : Attachment>(
     val attachment: A,
-    private val transformProperties: AttachmentTable.TransformProperties = attachment.transformProperties ?: AttachmentTable.TransformProperties.empty()
+    private val transformProperties: TransformProperties = attachment.transformProperties ?: TransformProperties.empty()
   )
 
   private var hasConsumedJobQueue = false

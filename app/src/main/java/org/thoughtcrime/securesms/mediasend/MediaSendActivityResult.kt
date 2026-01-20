@@ -6,6 +6,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parceler
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
+import org.signal.core.models.media.Media
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.database.model.Mention

@@ -1,11 +1,15 @@
-package org.thoughtcrime.securesms.mediasend
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.core.models.media
 
 import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
-import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
-import org.thoughtcrime.securesms.serialization.UriSerializer
+import org.signal.core.models.UriSerializer
 
 /**
  * Represents a piece of media that the user has on their device.

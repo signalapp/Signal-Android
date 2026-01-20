@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.mediapreview
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import org.signal.core.models.media.Media
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.adapter.StableIdGenerator
 

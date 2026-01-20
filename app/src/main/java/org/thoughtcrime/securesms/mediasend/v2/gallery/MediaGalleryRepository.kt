@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.mediasend.v2.gallery
 
 import android.content.Context
-import org.thoughtcrime.securesms.mediasend.Media
+import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.mediasend.MediaFolder
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 

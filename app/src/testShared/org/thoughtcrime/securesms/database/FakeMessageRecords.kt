@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.database
 
+import org.signal.core.models.media.TransformProperties
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -56,7 +57,7 @@ object FakeMessageRecords {
     stickerLocator: StickerLocator? = null,
     blurHash: BlurHash? = null,
     audioHash: AudioHash? = null,
-    transformProperties: AttachmentTable.TransformProperties? = null,
+    transformProperties: TransformProperties? = null,
     displayOrder: Int = 0,
     uploadTimestamp: Long = 200,
     dataHash: String? = null,

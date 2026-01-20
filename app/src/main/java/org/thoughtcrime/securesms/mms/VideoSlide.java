@@ -26,6 +26,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.signal.core.models.media.TransformProperties;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -36,11 +37,11 @@ public class VideoSlide extends Slide {
     this(context, uri, dataSize, gif, null, null);
   }
 
-  public VideoSlide(Context context, Uri uri, long dataSize, boolean gif, @Nullable String caption, @Nullable AttachmentTable.TransformProperties transformProperties) {
+  public VideoSlide(Context context, Uri uri, long dataSize, boolean gif, @Nullable String caption, @Nullable TransformProperties transformProperties) {
     super(constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, 0, 0, MediaUtil.hasVideoThumbnail(context, uri), null, caption, null, null, null, false, false, gif, false, transformProperties));
   }
 
-  public VideoSlide(Context context, Uri uri, long dataSize, boolean gif, int width, int height, @Nullable String caption, @Nullable AttachmentTable.TransformProperties transformProperties) {
+  public VideoSlide(Context context, Uri uri, long dataSize, boolean gif, int width, int height, @Nullable String caption, @Nullable TransformProperties transformProperties) {
     super(constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, width, height, MediaUtil.hasVideoThumbnail(context, uri), null, caption, null, null, null, false, false, gif, false, transformProperties));
   }
 

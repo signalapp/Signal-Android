@@ -21,6 +21,8 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.signal.core.models.media.Media;
+import org.signal.core.models.media.TransformProperties;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -277,7 +279,7 @@ public class MediaRepository {
         long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
         long   duration    = !isImage ? cursor.getInt(cursor.getColumnIndexOrThrow(Video.Media.DURATION)) : 0;
 
-        media.add(fixMimeType(context, new Media(uri, mimetype, date, width, height, size, duration, false, false, bucketId, null, AttachmentTable.TransformProperties.forSentMediaQuality(SignalStore.settings().getSentMediaQuality().getCode()), null)));
+        media.add(fixMimeType(context, new Media(uri, mimetype, date, width, height, size, duration, false, false, bucketId, null, TransformProperties.forSentMediaQuality(SignalStore.settings().getSentMediaQuality().getCode()), null)));
       }
     }
 

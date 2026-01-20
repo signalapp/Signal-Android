@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import org.thoughtcrime.securesms.mediasend.Media
+import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 
 class AttachmentKeyboardViewModel(

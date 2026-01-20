@@ -12,8 +12,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.media.Media
+import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.testutil.EmptyLogger
 import org.thoughtcrime.securesms.util.MediaUtil
 

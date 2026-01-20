@@ -100,6 +100,8 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.signal.core.models.media.Media
+import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.ByteLimitInputFilter
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.Result
@@ -228,7 +230,6 @@ import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewMo
 import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
-import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.DraftTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
@@ -279,7 +280,6 @@ import org.thoughtcrime.securesms.main.MainSnackbarHostKey
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
@@ -1487,7 +1487,7 @@ class ConversationFragment :
         isVideoGif = videoGif,
         bucketId = null,
         caption = null,
-        transformProperties = AttachmentTable.TransformProperties.forSentMediaQuality(SignalStore.settings.sentMediaQuality.code),
+        transformProperties = TransformProperties.forSentMediaQuality(SignalStore.settings.sentMediaQuality.code),
         fileName = null
       )
       conversationActivityResultContracts.launchMediaEditor(listOf(media), recipientId, composeText.textTrimmed)

@@ -10,20 +10,19 @@ import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.media.Media
+import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.HeaderAction
-import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.OutgoingMessage
@@ -243,11 +242,12 @@ object Stories {
     }
 
     private fun getContentDuration(media: Media): DurationResult {
+      val transforms = media.transformProperties
       return if (MediaUtil.isVideo(media.contentType)) {
-        val mediaDuration = if (media.duration == 0L && media.transformProperties?.shouldSkipTransform() ?: true) {
+        val mediaDuration = if (media.duration == 0L && transforms?.shouldSkipTransform() ?: true) {
           getVideoDuration(media.uri)
-        } else if (media.transformProperties?.videoTrim ?: false) {
-          TimeUnit.MICROSECONDS.toMillis(media.transformProperties.videoTrimEndTimeUs - media.transformProperties.videoTrimStartTimeUs)
+        } else if (transforms?.videoTrim ?: false) {
+          TimeUnit.MICROSECONDS.toMillis(transforms.videoTrimEndTimeUs - transforms.videoTrimStartTimeUs)
         } else {
           media.duration
         }
@@ -341,11 +341,11 @@ object Stories {
           error("Illegal clip: $startTimeUs > $endTimeUs for clip $clipIndex")
         }
 
-        AttachmentTable.TransformProperties(false, true, startTimeUs, endTimeUs, SentMediaQuality.STANDARD.code, false)
+        TransformProperties(false, true, startTimeUs, endTimeUs, SentMediaQuality.STANDARD.code, false)
       }.map { transformMedia(media, it) }
     }
 
-    private fun transformMedia(media: Media, transformProperties: AttachmentTable.TransformProperties): Media {
+    private fun transformMedia(media: Media, transformProperties: TransformProperties): Media {
       Log.d(TAG, "Transforming media clip: ${transformProperties.videoTrimStartTimeUs.microseconds.inWholeSeconds}s to ${transformProperties.videoTrimEndTimeUs.microseconds.inWholeSeconds}s")
       return Media(
         uri = media.uri,

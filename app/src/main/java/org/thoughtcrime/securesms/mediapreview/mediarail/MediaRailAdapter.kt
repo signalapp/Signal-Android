@@ -8,9 +8,9 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.target.Target
+import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThumbnailView
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder

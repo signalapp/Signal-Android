@@ -40,6 +40,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import org.signal.core.models.media.Media
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
@@ -61,7 +62,6 @@ import org.thoughtcrime.securesms.mediapreview.caption.ExpandingCaptionView
 import org.thoughtcrime.securesms.mediapreview.mediarail.CenterDecoration
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter.ImageLoadingListener
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.recipients.Recipient

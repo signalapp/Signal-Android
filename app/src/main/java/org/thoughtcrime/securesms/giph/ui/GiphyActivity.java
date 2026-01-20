@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Fragment;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel;
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
-import org.thoughtcrime.securesms.mediasend.Media;
+import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
 import org.thoughtcrime.securesms.mms.SlideFactory;
 import org.thoughtcrime.securesms.providers.BlobProvider;

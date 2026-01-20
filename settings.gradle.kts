@@ -68,6 +68,7 @@ include(":app")
 include(":core:util")
 include(":core:util-jvm")
 include(":core:models")
+include(":core:models-jvm")
 include(":core:ui")
 
 // Lib modules

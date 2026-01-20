@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.signal.core.models.media.Media;
 import org.signal.imageeditor.core.model.EditorModel;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mediasend.v2.gallery.MediaGalleryFragment;

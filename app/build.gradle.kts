@@ -525,6 +525,7 @@ dependencies {
   implementation(project(":lib:photoview"))
   implementation(project(":core:ui"))
   implementation(project(":core:models"))
+  implementation(project(":core:models-jvm"))
 
   implementation(libs.androidx.fragment.ktx)
   implementation(libs.androidx.appcompat) {

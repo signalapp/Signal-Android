@@ -13,8 +13,8 @@ import android.view.WindowManager
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.gallery.MediaGalleryFragment
 
 /**

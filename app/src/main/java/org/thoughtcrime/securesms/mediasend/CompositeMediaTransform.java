@@ -4,6 +4,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.models.media.Media;
+
 /**
  * Allow multiple transforms to operate on {@link Media}. Care should
  * be taken on the order and implementation of combined transformers to prevent

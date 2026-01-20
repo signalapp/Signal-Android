@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.mediasend.v2.capture
 
-import org.thoughtcrime.securesms.mediasend.Media
+import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.recipients.Recipient
 
 sealed interface MediaCaptureEvent {

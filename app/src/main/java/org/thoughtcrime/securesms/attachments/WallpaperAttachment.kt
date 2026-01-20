@@ -6,8 +6,8 @@
 package org.thoughtcrime.securesms.attachments
 
 import android.os.Parcel
+import org.signal.core.models.media.TransformProperties
 import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.util.MediaUtil
 
 /**

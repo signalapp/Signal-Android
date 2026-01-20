@@ -13,11 +13,12 @@ import assertk.assertions.isTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.StreamUtil
 import org.thoughtcrime.securesms.attachments.UriAttachment
-import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.UriAttachmentBuilder
+import org.thoughtcrime.securesms.database.transformPropertiesForSentMediaQuality
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.mms.SentMediaQuality
@@ -41,7 +42,7 @@ class AttachmentCompressionJobTest {
 
     val blob = BlobProvider.getInstance().forData(imageBytes).createForSingleSessionOnDisk(AppDependencies.application)
 
-    val firstPreUpload = createAttachment(1, blob, AttachmentTable.TransformProperties.empty())
+    val firstPreUpload = createAttachment(1, blob, TransformProperties.empty())
     val firstDatabaseAttachment = SignalDatabase.attachments.insertAttachmentForPreUpload(firstPreUpload)
 
     val firstCompressionJob: AttachmentCompressionJob = AttachmentCompressionJob.fromAttachment(firstDatabaseAttachment, false, -1)
@@ -62,7 +63,7 @@ class AttachmentCompressionJobTest {
     }
 
     jobThread.start()
-    val secondPreUpload = createAttachment(1, blob, AttachmentTable.TransformProperties.forSentMediaQuality(Optional.empty(), SentMediaQuality.HIGH))
+    val secondPreUpload = createAttachment(1, blob, transformPropertiesForSentMediaQuality(Optional.empty(), SentMediaQuality.HIGH))
     val secondDatabaseAttachment = SignalDatabase.attachments.insertAttachmentForPreUpload(secondPreUpload)
     secondCompressionJob = AttachmentCompressionJob.fromAttachment(secondDatabaseAttachment, false, -1)
 
@@ -74,7 +75,7 @@ class AttachmentCompressionJobTest {
     assertThat(secondJobResult!!.isSuccess).isTrue()
   }
 
-  private fun createAttachment(id: Long, uri: Uri, transformProperties: AttachmentTable.TransformProperties): UriAttachment {
+  private fun createAttachment(id: Long, uri: Uri, transformProperties: TransformProperties): UriAttachment {
     return UriAttachmentBuilder.build(
       id,
       uri = uri,

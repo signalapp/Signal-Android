@@ -7,8 +7,8 @@ import androidx.annotation.NonNull
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.media.Media
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig

@@ -4,24 +4,16 @@
  */
 
 plugins {
-  id("java-library")
-  id("org.jetbrains.kotlin.jvm")
-  id("ktlint")
+  id("signal-library")
+  id("kotlin-parcelize")
+  alias(libs.plugins.kotlinx.serialization)
 }
 
-java {
-  sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
-  targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
-}
-
-kotlin {
-  jvmToolchain {
-    languageVersion = JavaLanguageVersion.of(libs.versions.kotlinJvmTarget.get())
-  }
+android {
+  namespace = "org.signal.core.models"
 }
 
 dependencies {
-  implementation(libs.libsignal.client)
-  implementation(libs.square.okio)
-  implementation(project(":core:util-jvm"))
+  implementation(libs.kotlinx.serialization.json)
+  implementation(libs.jackson.core)
 }

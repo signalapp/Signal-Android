@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.databinding.CreateProfileFragmentBinding;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.mediasend.Media;
+import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanFindMeByPhoneNumberFragment;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;

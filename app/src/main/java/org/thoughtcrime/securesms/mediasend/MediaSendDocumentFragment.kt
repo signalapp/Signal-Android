@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import org.signal.core.models.media.Media
 import org.signal.core.util.bytes
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log

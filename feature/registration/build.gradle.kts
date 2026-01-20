@@ -26,7 +26,7 @@ dependencies {
   // Project dependencies
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
-  implementation(project(":core:models"))
+  implementation(project(":core:models-jvm"))
   implementation(libs.libsignal.android)
 
   // Compose BOM

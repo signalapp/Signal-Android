@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.avatar
 import android.content.Context
 import android.net.Uri
 import android.webkit.MimeTypeMap
+import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.storage.FileStorage

@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
 import android.net.Uri
+import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.videos.VideoTrimData
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SentMediaQuality

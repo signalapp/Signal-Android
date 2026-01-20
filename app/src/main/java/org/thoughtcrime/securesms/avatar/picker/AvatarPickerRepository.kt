@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.widget.Toast
 import io.reactivex.rxjava3.core.Single
+import org.signal.core.models.media.Media
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient

@@ -15,12 +15,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
+import org.signal.core.models.media.Media
 import org.signal.core.util.Stopwatch
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.conversation.ManageContextMenu
 import org.thoughtcrime.securesms.databinding.V2MediaGalleryFragmentBinding
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaGalleryGridItemTouchListener

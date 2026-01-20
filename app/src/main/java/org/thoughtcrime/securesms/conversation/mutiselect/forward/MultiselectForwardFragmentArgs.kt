@@ -7,6 +7,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.annotation.WorkerThread
 import kotlinx.parcelize.Parcelize
+import org.signal.core.models.media.Media
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.stories.Stories
