@@ -1194,7 +1194,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("sendPinnedMessages")
   val sendPinnedMessages: Boolean by remoteBoolean(
-    key = "android.sendPinnedMessages",
+    key = "android.sendPinnedMessages.2",
     defaultValue = false,
     hotSwappable = true
   )
