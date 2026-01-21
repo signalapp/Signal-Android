@@ -68,6 +68,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.Stopwatch;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
@@ -158,7 +159,7 @@ import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
-import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
+import org.thoughtcrime.securesms.components.SignalProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
@@ -230,6 +231,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
   private   ChatListBackHandler                   chatListBackHandler;
 
   private BannerManager bannerManager;
+  private SignalProgressDialog progressDialog;
 
   protected MainNavigationViewModel mainNavigationViewModel;
 
@@ -463,6 +465,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
     activeAdapter  = null;
     defaultAdapter = null;
     searchAdapter  = null;
+
+    dismissProgressDialog();
 
     super.onDestroyView();
   }
@@ -968,16 +972,23 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   @SuppressLint("StaticFieldLeak")
-  private void handleArchive(@NonNull Collection<Long> ids, boolean showProgress) {
+  private void handleArchive(@NonNull Collection<Long> ids) {
     Set<Long> selectedConversations = new HashSet<>(ids);
     int       count                 = selectedConversations.size();
     String    snackBarTitle         = getResources().getQuantityString(getArchivedSnackbarTitleRes(), count, count);
+    boolean   showProgress          = count > 1;
+
+    dismissProgressDialog();
+    if (showProgress) {
+      progressDialog = SignalProgressDialog.show(requireContext(), null, null, true, false, null);
+    }
 
     lifecycleDisposable.add(Completable
         .fromAction(() -> archiveThreads(selectedConversations))
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(() -> {
+          dismissProgressDialog();
           endActionModeIfActive();
 
           mainNavigationViewModel.getSnackbarRegistry().emit(new SnackbarState(
@@ -986,16 +997,36 @@ public class ConversationListFragment extends MainFragment implements Conversati
                   getString(R.string.ConversationListFragment_undo),
                   R.color.amber_500,
                   () -> {
-                    SignalExecutors.BOUNDED_IO.execute(() -> reverseArchiveThreads(selectedConversations));
+                    handleUnarchive(selectedConversations);
                     return Unit.INSTANCE;
                   }
               ),
-              showProgress,
               Snackbars.Duration.LONG,
               MainSnackbarHostKey.MainChrome.INSTANCE,
               null
           ));
         }));
+  }
+
+  private void handleUnarchive(@NonNull Set<Long> threadIds) {
+    boolean showProgress = threadIds.size() > 1;
+
+    dismissProgressDialog();
+    if (showProgress) {
+      progressDialog = SignalProgressDialog.show(requireContext(), null, null, true, false, null);
+    }
+
+    SignalExecutors.BOUNDED_IO.execute(() -> {
+      reverseArchiveThreads(threadIds);
+      ThreadUtil.runOnMain(this::dismissProgressDialog);
+    });
+  }
+
+  private void dismissProgressDialog() {
+    if (progressDialog != null) {
+      progressDialog.dismiss();
+      progressDialog = null;
+    }
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -1074,7 +1105,6 @@ public class ConversationListFragment extends MainFragment implements Conversati
       mainNavigationViewModel.getSnackbarRegistry().emit(new SnackbarState(
           getString(R.string.conversation_list__you_can_only_pin_up_to_d_chats, MAXIMUM_PINNED_CONVERSATIONS),
           null,
-          false,
           Snackbars.Duration.LONG,
           MainSnackbarHostKey.MainChrome.INSTANCE,
           null
@@ -1120,7 +1150,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   private void updateMute(@NonNull Collection<Conversation> conversations, long until) {
-    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(requireContext(), 250, 250);
+    dismissProgressDialog();
+    progressDialog = SignalProgressDialog.show(requireContext(), null, null, true, false, null);
 
     SimpleTask.run(SignalExecutors.BOUNDED, () -> {
       List<RecipientId> recipientIds = conversations.stream()
@@ -1132,7 +1163,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       return null;
     }, unused -> {
       endActionModeIfActive();
-      dialog.dismiss();
+      dismissProgressDialog();
     });
   }
 
@@ -1245,7 +1276,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     }));
 
     if (conversation.getThreadRecord().isArchived()) {
-      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(id, false)));
+      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(id)));
     } else {
       if (viewModel.getCurrentFolder().getFolderType() == ChatFolderRecord.FolderType.ALL &&
           (conversation.getThreadRecord().getRecipient().isIndividual() ||
@@ -1257,7 +1288,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       } else if (viewModel.getCurrentFolder().getFolderType() != ChatFolderRecord.FolderType.ALL) {
         items.add(new ActionItem(R.drawable.symbol_folder_minus, getString(R.string.ConversationListFragment_remove_from_folder), () -> viewModel.removeChatFromFolder(conversation.getThreadRecord().getThreadId())));
       }
-      items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(id, false)));
+      items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(id)));
     }
 
     items.add(new ActionItem(R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(id)));
@@ -1360,9 +1391,9 @@ public class ConversationListFragment extends MainFragment implements Conversati
     }
 
     if (isArchived()) {
-      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(selectionIds, true)));
+      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(selectionIds)));
     } else {
-      items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(selectionIds, true)));
+      items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(selectionIds)));
     }
 
     items.add(new ActionItem(R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(selectionIds)));
@@ -1440,7 +1471,6 @@ public class ConversationListFragment extends MainFragment implements Conversati
                         return Unit.INSTANCE;
                       }
                   ),
-                  false,
                   Snackbars.Duration.LONG,
                   MainSnackbarHostKey.MainChrome.INSTANCE,
                   null

@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.R
  *
  * @property message The text message to display in the snackbar.
  * @property actionState Optional action button configuration.
- * @property showProgress Whether to show a progress indicator in the snackbar.
  * @property duration How long the snackbar should be displayed.
  * @property hostKey The target host where this snackbar should be displayed. Defaults to [SnackbarHostKey.Global]
  * @property fallbackKey Optional host to fallback upon if the host key is not registered. Defaults to the Global key.
@@ -22,7 +21,6 @@ import org.thoughtcrime.securesms.R
 data class SnackbarState(
   val message: String,
   val actionState: ActionState? = null,
-  val showProgress: Boolean = false,
   val duration: Snackbars.Duration = Snackbars.Duration.SHORT,
   val hostKey: SnackbarHostKey = SnackbarHostKey.Global,
   val fallbackKey: SnackbarHostKey? = SnackbarHostKey.Global

@@ -151,7 +151,6 @@ public class ConversationListArchiveFragment extends ConversationListFragment
                         return Unit.INSTANCE;
                       }
                   ),
-                  false,
                   Snackbars.Duration.LONG,
                   MainSnackbarHostKey.MainChrome.INSTANCE,
                   null

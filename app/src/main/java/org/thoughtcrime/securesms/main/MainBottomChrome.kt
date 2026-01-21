@@ -21,12 +21,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import org.signal.core.ui.compose.AllDevicePreviews
-import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.showSnackbar
 import org.thoughtcrime.securesms.components.snackbars.SnackbarHostKey
-import org.thoughtcrime.securesms.components.snackbars.SnackbarState
 import org.thoughtcrime.securesms.components.snackbars.rememberSnackbarState
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
@@ -118,17 +116,13 @@ fun MainSnackbar(
   hostKey: SnackbarHostKey = MainSnackbarHostKey.MainChrome
 ) {
   val hostState = remember { SnackbarHostState() }
-  val state: SnackbarState? by rememberSnackbarState(hostKey)
-  val snackbarState = state
+  val stateHolder = rememberSnackbarState(hostKey)
+  val snackbarState = stateHolder.value
 
   Snackbars.Host(
     hostState,
     modifier = modifier
   )
-
-  if (snackbarState?.showProgress == true) {
-    Dialogs.IndeterminateProgressDialog()
-  }
 
   LaunchedEffect(snackbarState) {
     if (snackbarState != null) {
@@ -143,6 +137,7 @@ fun MainSnackbar(
         SnackbarResult.ActionPerformed -> snackbarState.actionState?.onActionClick?.invoke()
       }
 
+      stateHolder.clear()
       onDismissed()
     }
   }
