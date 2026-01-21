@@ -76,6 +76,7 @@ import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.ArchiveUploadProgress;
 import org.thoughtcrime.securesms.backup.RestoreState;
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress;
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState;
@@ -87,12 +88,13 @@ import org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomS
 import org.thoughtcrime.securesms.badges.self.expired.MonthlyDonationCanceledBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.banner.Banner;
 import org.thoughtcrime.securesms.banner.BannerManager;
+import org.thoughtcrime.securesms.banner.banners.ArchiveUploadStatusBanner;
 import org.thoughtcrime.securesms.banner.banners.CdsPermanentErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.CdsTemporaryErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.DeprecatedSdkBanner;
 import org.thoughtcrime.securesms.banner.banners.DozeBanner;
-import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner;
+import org.thoughtcrime.securesms.banner.banners.ArchiveRestoreStatusBanner;
 import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.ServiceOutageBanner;
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner;
@@ -745,7 +747,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
           }
           return Unit.INSTANCE;
         }),
-        new MediaRestoreProgressBanner(new MediaRestoreProgressBanner.RestoreProgressBannerListener() {
+        new ArchiveRestoreStatusBanner(new ArchiveRestoreStatusBanner.RestoreProgressBannerListener() {
           @Override
           public void onBannerClick() {
             startActivity(AppSettingsActivity.backupsSettings(requireContext()));
@@ -772,6 +774,30 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
           @Override
           public void onDismissComplete() {
+            bannerManager.updateContent(bannerView.get());
+          }
+        }),
+        new ArchiveUploadStatusBanner(new ArchiveUploadStatusBanner.UploadProgressBannerListener() {
+          @Override
+          public void onBannerClick() {
+            startActivity(AppSettingsActivity.remoteBackups(requireContext()));
+          }
+
+          @Override
+          public void onCancelClicked() {
+            new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.CancelBackupDialog_title)
+                .setMessage(R.string.CancelBackupDialog_body)
+                .setNegativeButton(R.string.CancelBackupDialog_continue_action, null)
+                .setPositiveButton(R.string.CancelBackupDialog_cancel_action, (d, w) -> {
+                  ArchiveUploadProgress.INSTANCE.cancel();
+                  bannerManager.updateContent(bannerView.get());
+                })
+                .show();
+          }
+
+          @Override
+          public void onHidden() {
             bannerManager.updateContent(bannerView.get());
           }
         })

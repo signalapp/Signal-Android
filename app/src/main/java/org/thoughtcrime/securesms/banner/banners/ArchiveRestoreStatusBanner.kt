@@ -13,11 +13,11 @@ import kotlinx.coroutines.flow.filter
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState.RestoreStatus
-import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusBanner
+import org.thoughtcrime.securesms.backup.v2.ui.status.ArchiveRestoreStatusBanner
 import org.thoughtcrime.securesms.banner.Banner
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerListener = EmptyListener) : Banner<ArchiveRestoreProgressState>() {
+class ArchiveRestoreStatusBanner(private val listener: RestoreProgressBannerListener) : Banner<ArchiveRestoreProgressState>() {
 
   override val enabled: Boolean
     get() = ArchiveRestoreProgress.state.let { it.restoreState.isMediaRestoreOperation || it.restoreStatus == RestoreStatus.FINISHED }
@@ -32,7 +32,7 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
 
   @Composable
   override fun DisplayBanner(model: ArchiveRestoreProgressState, contentPadding: PaddingValues) {
-    BackupStatusBanner(
+    ArchiveRestoreStatusBanner(
       data = model,
       onBannerClick = listener::onBannerClick,
       onActionClick = listener::onActionClick,
@@ -47,11 +47,5 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
     fun onBannerClick()
     fun onActionClick(data: ArchiveRestoreProgressState)
     fun onDismissComplete()
-  }
-
-  private object EmptyListener : RestoreProgressBannerListener {
-    override fun onBannerClick() = Unit
-    override fun onActionClick(data: ArchiveRestoreProgressState) = Unit
-    override fun onDismissComplete() = Unit
   }
 }

@@ -8080,6 +8080,15 @@
     <!-- Status action label for resume restore from a paused state -->
     <string name="BackupStatus__resume">Resume</string>
 
+    <!-- Status subtitle for banner when we are creating a backup file -->
+    <string name="BackupStatus__status_creating_backup">Creating backup…</string>
+    <!-- Status title for banner when user is actively uploading backup data -->
+    <string name="BackupStatus__uploading_backup">Uploading backup</string>
+    <!-- Status title for banner when user is temporarily unable to upload a backup -->
+    <string name="BackupStatus__upload_paused">Backup paused</string>
+    <!-- Status title for banner when user has finished creating a backup -->
+    <string name="BackupStatus__upload_complete">Backup complete</string>
+
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
@@ -8088,6 +8097,10 @@
     <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s of %2$s</string>
+    <!-- Label for a context menu item that, when pressed, will hide a banner so it will no longer be shown. -->
+    <string name="BackupStatus__hide">Hide</string>
+    <!-- Label for a context menu item that, when pressed, will cancel the ongoing backup. -->
+    <string name="BackupStatus__cancel_upload">Cancel backup</string>
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
@@ -8129,6 +8142,15 @@
     <string name="ResumeRestoreCellular_resume_using_cellular_title">Resume using cellular data?</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
     <string name="ResumeRestoreCellular_resume_using_cellular_message">Restoring your media using cellular data may result in data charges. You can connect to a Wi-Fi network to automatically resume.</string>
+
+    <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_title">Cancel backup?</string>
+    <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_body">Canceling your backup will not delete your backup. You can resume your backup at any time from Backup Settings.</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
+    <string name="CancelBackupDialog_cancel_action">Cancel backup</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
+    <string name="CancelBackupDialog_continue_action">Continue backup</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->

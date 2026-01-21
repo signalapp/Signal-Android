@@ -52,7 +52,7 @@ private const val NONE = -1
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun BackupStatusBanner(
+fun ArchiveRestoreStatusBanner(
   data: ArchiveRestoreProgressState,
   onBannerClick: () -> Unit = {},
   onActionClick: (ArchiveRestoreProgressState) -> Unit = {},
@@ -311,46 +311,46 @@ private fun ArchiveRestoreProgressState.actionResource(): Int {
 
 @DayNightPreviews
 @Composable
-fun BackupStatusBannerPreview() {
+private fun ArchiveRestoreStatusBannerPreview() {
   Previews.Preview {
     Column {
-      BackupStatusBanner(
+      ArchiveRestoreStatusBanner(
         data = ArchiveRestoreProgressState(restoreState = RestoreState.RESTORING_MEDIA, restoreStatus = RestoreStatus.RESTORING, remainingRestoreSize = 800.mebiBytes, totalRestoreSize = 1024.mebiBytes)
       )
 
       HorizontalDivider()
 
-      BackupStatusBanner(
+      ArchiveRestoreStatusBanner(
         data = ArchiveRestoreProgressState(restoreState = RestoreState.CALCULATING_MEDIA, restoreStatus = RestoreStatus.RESTORING, remainingRestoreSize = 1024.mebiBytes, totalRestoreSize = 1024.mebiBytes)
       )
 
       HorizontalDivider()
 
-      BackupStatusBanner(
+      ArchiveRestoreStatusBanner(
         data = ArchiveRestoreProgressState(restoreState = RestoreState.CANCELING_MEDIA, restoreStatus = RestoreStatus.RESTORING, remainingRestoreSize = 200.mebiBytes, totalRestoreSize = 1024.mebiBytes)
       )
 
       HorizontalDivider()
 
-      BackupStatusBanner(
+      ArchiveRestoreStatusBanner(
         data = ArchiveRestoreProgressState(restoreState = RestoreState.RESTORING_MEDIA, restoreStatus = RestoreStatus.WAITING_FOR_WIFI, remainingRestoreSize = 800.mebiBytes, totalRestoreSize = 1024.mebiBytes)
       )
 
       HorizontalDivider()
 
-      BackupStatusBanner(
+      ArchiveRestoreStatusBanner(
         data = ArchiveRestoreProgressState(restoreState = RestoreState.RESTORING_MEDIA, restoreStatus = RestoreStatus.WAITING_FOR_INTERNET, remainingRestoreSize = 800.mebiBytes, totalRestoreSize = 1024.mebiBytes)
       )
 
       HorizontalDivider()
 
-      BackupStatusBanner(
+      ArchiveRestoreStatusBanner(
         data = ArchiveRestoreProgressState(restoreState = RestoreState.NONE, restoreStatus = RestoreStatus.FINISHED, remainingRestoreSize = 0.mebiBytes, totalRestoreSize = 0.mebiBytes, totalToRestoreThisRun = 1024.mebiBytes)
       )
 
       HorizontalDivider()
 
-      BackupStatusBanner(
+      ArchiveRestoreStatusBanner(
         data = ArchiveRestoreProgressState(restoreState = RestoreState.RESTORING_MEDIA, restoreStatus = RestoreStatus.NOT_ENOUGH_DISK_SPACE, remainingRestoreSize = 500.mebiBytes, totalRestoreSize = 1024.mebiBytes)
       )
     }

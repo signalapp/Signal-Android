@@ -47,6 +47,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_LAST_CHECK_IN_MILLIS = "backup.lastCheckInMilliseconds"
     private const val KEY_LAST_CHECK_IN_SNOOZE_MILLIS = "backup.lastCheckInSnoozeMilliseconds"
     private const val KEY_FIRST_APP_VERSION = "backup.firstAppVersion"
+    private const val KEY_FINISHED_INITIAL_BACKUP = "backup.finishedInitialBackup"
 
     private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
@@ -103,6 +104,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_NEW_LOCAL_BACKUPS_DIRECTORY = "backup.new_local_backups_directory"
     private const val KEY_NEW_LOCAL_BACKUPS_LAST_BACKUP_TIME = "backup.new_local_backups_last_backup_time"
 
+    private const val KEY_UPLOAD_BANNER_VISIBLE = "backup.upload_banner_visible"
+
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
 
     private val lock = ReentrantLock()
@@ -157,6 +160,16 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         _lastBackupTimeFlow.value.tryEmit(value)
       }
     }
+
+  /**
+   * Whether or not the user has completed their initial backup. This if enabling backups for the first time or going from free -> paid tier.
+   * It is initialized to 'true' to account for pre-existing backup users.
+   * Users who newly-enable backups will set this to 'false' via the aforementioned mechanism.
+   */
+  var finishedInitialBackup: Boolean by booleanValue(KEY_FINISHED_INITIAL_BACKUP, true)
+
+  /** Whether or not the user chose to hide the uplaod banner that appears on the chat list. */
+  var uploadBannerVisible: Boolean by booleanValue(KEY_UPLOAD_BANNER_VISIBLE, false)
 
   private val _lastBackupTimeFlow: Lazy<MutableStateFlow<Long>> = lazy { MutableStateFlow(lastBackupTime) }
   val lastBackupTimeFlow by lazy { _lastBackupTimeFlow.value }
@@ -268,6 +281,13 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
           clearNotEnoughRemoteStorageSpace()
           clearMessageBackupFailureSheetWatermark()
           backupCreationError = null
+
+          if (storedValue == null) {
+            Log.i(TAG, "Enabling backups. Resetting 'finished initial backup' state.")
+          } else if (value == MessageBackupTier.PAID) {
+            Log.i(TAG, "Moving to PAID backups. Resetting 'finished initial backup' state.")
+            finishedInitialBackup = false
+          }
         }
 
         deletionState = DeletionState.NONE
