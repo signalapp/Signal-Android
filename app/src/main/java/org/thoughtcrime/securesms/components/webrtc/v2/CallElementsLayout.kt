@@ -129,6 +129,13 @@ fun CallElementsLayout(
   }
 }
 
+private enum class BlurrableContentSlot {
+  BARS,
+  GRID,
+  REACTIONS,
+  OVERFLOW
+}
+
 @Composable
 private fun BlurrableContentLayer(
   isFocused: Boolean,
@@ -144,17 +151,17 @@ private fun BlurrableContentLayer(
     isBlurred = isFocused,
     modifier = Modifier.fillMaxSize()
   ) {
-    Layout(
-      contents = listOf(barsSlot, callGridSlot, reactionsSlot, callOverflowSlot),
-      modifier = Modifier.fillMaxSize()
-    ) { measurables, constraints ->
+    SubcomposeLayout(modifier = Modifier.fillMaxSize()) { constraints ->
       val looseConstraints = constraints.copy(minWidth = 0, minHeight = 0)
-      val overflowPlaceables = measurables[3].map { it.measure(looseConstraints) }
+
+      val overflowPlaceables = subcompose(BlurrableContentSlot.OVERFLOW, callOverflowSlot)
+        .map { it.measure(looseConstraints) }
       val constrainedHeightOffset = if (isPortrait) overflowPlaceables.maxOfOrNull { it.height } ?: 0 else 0
-      val constrainedWidthOffset = if (isPortrait) { 0 } else overflowPlaceables.maxOfOrNull { it.width } ?: 0
+      val constrainedWidthOffset = if (isPortrait) 0 else overflowPlaceables.maxOfOrNull { it.width } ?: 0
 
       val nonOverflowConstraints = looseConstraints.offset(horizontal = -constrainedWidthOffset, vertical = -constrainedHeightOffset)
-      val gridPlaceables = measurables[1].map { it.measure(nonOverflowConstraints) }
+      val gridPlaceables = subcompose(BlurrableContentSlot.GRID, callGridSlot)
+        .map { it.measure(nonOverflowConstraints) }
 
       val barConstraints = if (bottomInsetPx > constrainedHeightOffset) {
         looseConstraints.offset(-constrainedWidthOffset, -bottomInsetPx)
@@ -166,11 +173,13 @@ private fun BlurrableContentLayer(
       val barsMaxWidth = minOf(barConstraints.maxWidth, bottomSheetWidthPx)
       val barsConstrainedToSheet = barConstraints.copy(maxWidth = barsMaxWidth)
 
-      val barsPlaceables = measurables[0].map { it.measure(barsConstrainedToSheet) }
+      val barsPlaceables = subcompose(BlurrableContentSlot.BARS, barsSlot)
+        .map { it.measure(barsConstrainedToSheet) }
 
       val barsHeightOffset = barsPlaceables.sumOf { it.height }
       val reactionsConstraints = barConstraints.offset(vertical = -barsHeightOffset)
-      val reactionsPlaceables = measurables[2].map { it.measure(reactionsConstraints) }
+      val reactionsPlaceables = subcompose(BlurrableContentSlot.REACTIONS, reactionsSlot)
+        .map { it.measure(reactionsConstraints) }
 
       layout(looseConstraints.maxWidth, looseConstraints.maxHeight) {
         overflowPlaceables.forEach {
