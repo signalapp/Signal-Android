@@ -559,6 +559,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       callScreen.enableCallStateUpdatePopup(!info.isInPictureInPictureMode)
       if (info.isInPictureInPictureMode) {
         callScreen.maybeDismissAudioPicker()
+
+        if (!EventBus.getDefault().isRegistered(this)) {
+          EventBus.getDefault().register(this)
+        }
       }
       viewModel.setIsLandscapeEnabled(info.isInPictureInPictureMode)
     }
