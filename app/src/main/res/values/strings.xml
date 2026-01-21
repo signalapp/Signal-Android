@@ -8849,7 +8849,7 @@
     <string name="PrepareDevice_back_up_now">Back up now</string>
     <!-- Prepare Device screen skip and continue button -->
     <string name="PrepareDevice_skip_and_continue">Skip and continue</string>
-    <!-- A string describing the last time the user's backup was made. The placeholder represents a date-time. An example would be "Your last backup was made on July 18, 2025 at 9:00am." -->
+    <!-- A string describing the last time the user\'s backup was made. The placeholder represents a date-time. An example would be "Your last backup was made on July 18, 2025 at 9:00am." -->
     <string name="PrepareDevice_last_backup_description">Your last backup was made %1$s. </string>
 
     <!-- Restore Complete bottom sheet dialog title -->
