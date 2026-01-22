@@ -241,6 +241,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
         eventListener?.onAudioDeviceChanged(AudioDeviceMapping.fromPlatformType(candidate.type), availableCommunicationDevices.map { AudioDeviceMapping.fromPlatformType(it.type) }.toSet())
       } else {
         Log.w(TAG, "Failed to set ${candidate.id} of type ${getDeviceTypeName(candidate.type)} as communication device.")
+        eventListener?.onAudioDeviceChangeFailed()
       }
     } else {
       val searchOrder: List<AudioDevice> = listOf(AudioDevice.BLUETOOTH, AudioDevice.WIRED_HEADSET, defaultAudioDevice, AudioDevice.EARPIECE, AudioDevice.SPEAKER_PHONE, AudioDevice.NONE).distinct()
@@ -264,6 +265,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
             eventListener?.onAudioDeviceChanged(AudioDeviceMapping.fromPlatformType(candidate.type), availableCommunicationDevices.map { AudioDeviceMapping.fromPlatformType(it.type) }.toSet())
           } else {
             Log.w(TAG, "Failed to set ${candidate.id} as communication device.")
+            eventListener?.onAudioDeviceChangeFailed()
           }
         }
       }

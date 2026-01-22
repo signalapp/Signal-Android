@@ -40,6 +40,7 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
                        .changeLocalDeviceState()
                        .setActiveDevice(activeDevice)
                        .setAvailableDevices(availableDevices)
+                       .setAudioDeviceChangePending(false)
                        .build();
   }
 
@@ -50,7 +51,10 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
     RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
     webRtcInteractor.setUserAudioDevice(activePeer != null ? activePeer.getId() : null, userDevice);
 
-    return currentState;
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .setAudioDeviceChangePending(true)
+                       .build();
   }
 
   @Override

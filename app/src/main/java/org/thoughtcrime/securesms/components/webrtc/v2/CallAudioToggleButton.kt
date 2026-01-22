@@ -55,7 +55,8 @@ fun CallAudioToggleButton(
   contentDescription: String,
   onSheetDisplayChanged: (Boolean) -> Unit,
   pickerController: AudioOutputPickerController,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  enabled: Boolean = true
 ) {
   val buttonSize = dimensionResource(id = R.dimen.webrtc_button_size)
 
@@ -79,9 +80,12 @@ fun CallAudioToggleButton(
     onClick = {
       pickerController.show()
     },
+    enabled = enabled,
     colors = IconButtons.iconButtonColors(
       containerColor = containerColor,
-      contentColor = contentColor
+      contentColor = contentColor,
+      disabledContainerColor = containerColor.copy(alpha = 0.38f),
+      disabledContentColor = contentColor.copy(alpha = 0.38f)
     ),
     modifier = modifier.size(buttonSize)
   ) {

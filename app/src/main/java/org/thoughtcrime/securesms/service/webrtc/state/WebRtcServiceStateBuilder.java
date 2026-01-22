@@ -140,6 +140,11 @@ public class WebRtcServiceStateBuilder {
       return this;
     }
 
+    public @NonNull LocalDeviceStateBuilder setAudioDeviceChangePending(boolean isAudioDeviceChangePending) {
+      toBuild.setAudioDeviceChangePending(isAudioDeviceChangePending);
+      return this;
+    }
+
     public @NonNull LocalDeviceStateBuilder setNetworkConnectionType(@NonNull PeerConnection.AdapterType type) {
       toBuild.setNetworkConnectionType(type);
       return this;

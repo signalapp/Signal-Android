@@ -76,7 +76,8 @@ fun CallControls(
         CallAudioToggleButton(
           contentDescription = stringResource(id = R.string.WebRtcAudioOutputToggle__audio_output),
           onSheetDisplayChanged = callScreenSheetDisplayListener::onAudioDeviceSheetDisplayChanged,
-          pickerController = audioOutputPickerController
+          pickerController = audioOutputPickerController,
+          enabled = !callControlsState.isAudioOutputChangePending
         )
       }
 
@@ -202,6 +203,7 @@ data class CallControlsState(
   val skipHiddenState: Boolean = true,
   val displayAudioOutputToggle: Boolean = false,
   val audioOutput: WebRtcAudioOutput = WebRtcAudioOutput.HANDSET,
+  val isAudioOutputChangePending: Boolean = false,
   val displayVideoToggle: Boolean = false,
   val isVideoEnabled: Boolean = false,
   val displayMicToggle: Boolean = false,
@@ -222,7 +224,8 @@ data class CallControlsState(
     fun fromViewModelData(
       callParticipantsState: CallParticipantsState,
       webRtcControls: WebRtcControls,
-      groupMemberCount: Int
+      groupMemberCount: Int,
+      isAudioDeviceChangePending: Boolean = false
     ): CallControlsState {
       return CallControlsState(
         isEarpieceAvailable = webRtcControls.isEarpieceAvailableForAudioToggle,
@@ -231,6 +234,7 @@ data class CallControlsState(
         skipHiddenState = !(webRtcControls.isFadeOutEnabled || webRtcControls == WebRtcControls.PIP || webRtcControls.displayErrorControls()),
         displayAudioOutputToggle = webRtcControls.displayAudioToggle(),
         audioOutput = webRtcControls.audioOutput,
+        isAudioOutputChangePending = isAudioDeviceChangePending,
         displayVideoToggle = webRtcControls.displayVideoToggle(),
         isVideoEnabled = callParticipantsState.localParticipant.isVideoEnabled,
         displayMicToggle = webRtcControls.displayMuteAudio(),

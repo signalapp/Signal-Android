@@ -497,6 +497,14 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  public @NonNull WebRtcServiceState handleAudioDeviceChangeFailed(@NonNull WebRtcServiceState currentState) {
+    Log.i(tag, "handleAudioDeviceChangeFailed(): clearing pending state");
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .setAudioDeviceChangePending(false)
+                       .build();
+  }
+
   public @NonNull WebRtcServiceState handleBluetoothPermissionDenied(@NonNull WebRtcServiceState currentState) {
     return currentState.builder()
                        .changeLocalDeviceState()

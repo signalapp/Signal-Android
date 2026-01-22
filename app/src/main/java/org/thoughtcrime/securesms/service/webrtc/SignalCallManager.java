@@ -360,6 +360,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleAudioDeviceChanged(s, activeDevice, availableDevices));
   }
 
+  public void onAudioDeviceChangeFailed() {
+    process((s, p) -> p.handleAudioDeviceChangeFailed(s));
+  }
+
   public void onBluetoothPermissionDenied() {
     process((s, p) -> p.handleBluetoothPermissionDenied(s));
   }
