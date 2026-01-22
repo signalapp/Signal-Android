@@ -9,9 +9,11 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,6 +35,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.R
@@ -105,6 +108,7 @@ object DropdownMenus {
     Row(
       verticalAlignment = Alignment.CenterVertically,
       modifier = Modifier
+        .fillMaxWidth()
         .clickable(onClick = {
           onClick()
           menuController.hide()
@@ -146,5 +150,25 @@ object DropdownMenus {
     }
 
     fun isShown() = isMenuShown
+  }
+}
+
+@Preview
+@Composable
+private fun ItemPreview() {
+  val controller = remember { DropdownMenus.MenuController().apply { show() } }
+  Previews.Preview {
+    Column {
+      DropdownMenus.Item(
+        text = { Text("Edit") },
+        onClick = { }
+      )
+      DropdownMenus.ItemWithIcon(
+        menuController = controller,
+        drawableResId = R.drawable.symbol_phone_24,
+        stringResId = android.R.string.ok,
+        onClick = { }
+      )
+    }
   }
 }
