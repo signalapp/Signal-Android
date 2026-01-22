@@ -53,7 +53,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.window.core.layout.WindowHeightSizeClass;
 
 import com.airbnb.lottie.SimpleColorFilter;
 import com.annimon.stream.Stream;
@@ -162,6 +161,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.components.SignalProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
+import org.thoughtcrime.securesms.window.WindowSizeClassExtensionsKt;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.lang.ref.WeakReference;
@@ -317,7 +317,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     searchAdapter = contactSearchMediator.getAdapter();
 
-    if (getWindowSizeClass(getResources()).getWindowHeightSizeClass() == WindowHeightSizeClass.COMPACT) {
+    if (WindowSizeClassExtensionsKt.isHeightCompact(getWindowSizeClass(getResources()))) {
       ViewUtil.setBottomMargin(bottomActionBar, ViewUtil.getNavigationBarHeight(bottomActionBar));
     }
 
@@ -392,7 +392,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     initializeVoiceNotePlayer();
     initializeBanners();
     maybeScheduleRefreshProfileJob();
-    ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(this, mainNavigationViewModel .getDetailLocation());
+    ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(this, mainNavigationViewModel.getDetailLocation());
 
     String query = contactSearchMediator.getFilter();
     if (query != null) {

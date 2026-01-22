@@ -12,8 +12,7 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.window.core.layout.WindowWidthSizeClass
-import org.thoughtcrime.securesms.window.isAtLeast
+import androidx.window.core.layout.WindowSizeClass
 
 /**
  * Displays the screen title for split-pane UIs on tablets and foldable devices.
@@ -31,7 +30,7 @@ fun ScreenTitlePane(
     color = MaterialTheme.colorScheme.onSurface,
     modifier = modifier
       .padding(
-        start = if (windowSizeClass.windowWidthSizeClass.isAtLeast(WindowWidthSizeClass.EXPANDED)) 80.dp else 20.dp,
+        start = if (windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND)) 80.dp else 20.dp,
         end = 20.dp,
         bottom = 12.dp
       )

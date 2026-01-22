@@ -14,8 +14,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.window.core.layout.WindowWidthSizeClass
-import org.thoughtcrime.securesms.window.isAtLeast
+import androidx.window.core.layout.WindowSizeClass
 import org.thoughtcrime.securesms.window.isSplitPane
 
 private val MEDIUM_CONTENT_CORNERS = 18.dp
@@ -58,7 +57,7 @@ data class MainContentLayoutData(
     return remember(maxWidth, windowSizeClass) {
       when {
         !windowSizeClass.isSplitPane() -> maxWidth
-        windowSizeClass.windowWidthSizeClass.isAtLeast(WindowWidthSizeClass.EXPANDED) -> 416.dp
+        windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND) -> 416.dp
         else -> (maxWidth - extraPadding) / 2f
       }
     }
@@ -73,24 +72,27 @@ data class MainContentLayoutData(
       val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
       return remember(windowSizeClass, mode) {
+        val isSplitPane = windowSizeClass.isSplitPane()
+        val isWidthExpanded = windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND)
+
         MainContentLayoutData(
           shape = when {
-            !windowSizeClass.isSplitPane() -> RectangleShape
-            windowSizeClass.windowWidthSizeClass.isAtLeast(WindowWidthSizeClass.EXPANDED) -> RoundedCornerShape(EXTENDED_CONTENT_CORNERS)
+            !isSplitPane -> RectangleShape
+            isWidthExpanded -> RoundedCornerShape(EXTENDED_CONTENT_CORNERS)
             else -> RoundedCornerShape(MEDIUM_CONTENT_CORNERS)
           },
           navigationBarShape = when {
-            !windowSizeClass.isSplitPane() -> RectangleShape
-            windowSizeClass.windowWidthSizeClass.isAtLeast(WindowWidthSizeClass.EXPANDED) -> RoundedCornerShape(0.dp, 0.dp, EXTENDED_CONTENT_CORNERS, EXTENDED_CONTENT_CORNERS)
+            !isSplitPane -> RectangleShape
+            isWidthExpanded -> RoundedCornerShape(0.dp, 0.dp, EXTENDED_CONTENT_CORNERS, EXTENDED_CONTENT_CORNERS)
             else -> RoundedCornerShape(0.dp, 0.dp, MEDIUM_CONTENT_CORNERS, MEDIUM_CONTENT_CORNERS)
           },
           partitionWidth = when {
-            !windowSizeClass.isSplitPane() -> 0.dp
-            windowSizeClass.windowWidthSizeClass.isAtLeast(WindowWidthSizeClass.EXPANDED) -> 24.dp
+            !isSplitPane -> 0.dp
+            isWidthExpanded -> 24.dp
             else -> 13.dp
           },
           listPaddingStart = when {
-            !windowSizeClass.isSplitPane() -> 0.dp
+            !isSplitPane -> 0.dp
             else -> {
               when (mode) {
                 MainToolbarMode.SEARCH -> 24.dp
@@ -99,8 +101,8 @@ data class MainContentLayoutData(
             }
           },
           detailPaddingEnd = when {
-            !windowSizeClass.isSplitPane() -> 0.dp
-            windowSizeClass.windowWidthSizeClass.isAtLeast(WindowWidthSizeClass.EXPANDED) -> 24.dp
+            !isSplitPane -> 0.dp
+            isWidthExpanded -> 24.dp
             else -> 12.dp
           }
         )

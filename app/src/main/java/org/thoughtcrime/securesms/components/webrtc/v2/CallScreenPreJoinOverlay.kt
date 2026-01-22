@@ -44,7 +44,6 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.window.core.layout.WindowWidthSizeClass
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
@@ -55,6 +54,7 @@ import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
+import org.thoughtcrime.securesms.window.isWidthCompact
 import kotlin.math.max
 
 /**
@@ -85,7 +85,7 @@ fun CallScreenPreJoinOverlay(
       .background(color = Color(0f, 0f, 0f, 0.4f))
       .then(modifier)
   ) {
-    val isCompactWidth = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+    val isCompactWidth = currentWindowAdaptiveInfo().windowSizeClass.isWidthCompact
 
     if (!isLocalVideoEnabled) {
       TopWithCenteredContentLayout(
