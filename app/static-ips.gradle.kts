@@ -1,5 +1,5 @@
 rootProject.extra["service_ips"] = """new String[]{"13.248.212.111","76.223.92.165"}"""
-rootProject.extra["storage_ips"] = """new String[]{"142.250.69.147"}"""
+rootProject.extra["storage_ips"] = """new String[]{"142.250.69.115"}"""
 rootProject.extra["cdn_ips"] = """new String[]{"13.225.196.60","13.225.196.76","13.225.196.77","13.225.196.9"}"""
 rootProject.extra["cdn2_ips"] = """new String[]{"104.18.10.47","104.18.11.47"}"""
 rootProject.extra["cdn3_ips"] = """new String[]{"104.18.10.47","104.18.11.47"}"""

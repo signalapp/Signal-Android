@@ -1654,7 +1654,7 @@
     <!-- Dialog message explaining their action cannot be reversed -->
     <string name="InputPanel__this_action_cant_be_undone">이 작업은 취소할 수 없습니다.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
-    <string name="InputPanel__discard">파기</string>
+    <string name="InputPanel__discard">삭제하기</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">공유</string>
@@ -2106,10 +2106,10 @@
     <string name="MessageRequestBottomView_block">차단</string>
     <string name="MessageRequestBottomView_unblock">차단 해제</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s 님이 내게 메시지를 보내도록 허용하고, 내 이름과 사진을 공유할까요? 이 사용자는 귀하가 이전에 제거한 사용자입니다.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s 님에게 메시지를 보내고 이름과 사진을 공유할 수 있도록 하시겠습니까? 귀하가 수락할 때까지 귀하가 자신의 메시지를 본 것을 알지 못합니다.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s 님이 나에게 메시지를 보내고, 내 이름과 사진을 공유하도록 허용할까요? 이 사용자는 내가 이전에 삭제했던 사용자입니다.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s 님이 나에게 메시지를 보내고, 내 이름과 사진을 공유하도록 허용할까요? 내가 수락하기 전까지는 상대방이 내가 메시지를 확인했는지 알 수 없어요.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s 님이 내게 메시지를 보내고 내 이름과 사진을 공유할 수 있도록 허용할까요? 차단을 해제할 때까지 모든 메시지를 차단합니다.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s 님이 나에게 메시지를 보내고, 내 이름과 사진을 공유할 수 있도록 허용할까요? 차단을 해제하기 전까지는 메시지가 전달되지 않습니다.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s 님이 내게 메시지를 보내도록 허용할까요? 차단을 해제할 때까지 모든 메시지를 차단합니다.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
@@ -5561,7 +5561,7 @@
     <!-- Alert dialog description explaining that any changes made will be discarded -->
     <string name="CreateFoldersFragment__you_will_lose_changes">이 폴더에 적용한 변경 내용이 취소됩니다.</string>
     <!-- Alert dialog confirmation text to discard the changes -->
-    <string name="CreateFoldersFragment__discard">파기</string>
+    <string name="CreateFoldersFragment__discard">삭제하기</string>
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">폴더 삭제</string>
     <!-- Alert dialog title to delete the current folder -->
@@ -6004,7 +6004,7 @@
     <string name="MediaReviewSelectedItem__tap_to_remove">탭하여 제거</string>
     <string name="MediaReviewSelectedItem__tap_to_select">탭하여 선택</string>
 
-    <string name="MediaReviewImagePageFragment__discard">파기</string>
+    <string name="MediaReviewImagePageFragment__discard">삭제하기</string>
     <string name="MediaReviewImagePageFragment__discard_changes">변경 내용을 취소할까요?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">이 사진에 적용한 모든 변경 내용이 손실됩니다.</string>
 
