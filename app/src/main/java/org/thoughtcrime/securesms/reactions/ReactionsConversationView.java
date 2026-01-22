@@ -37,6 +37,7 @@ public class ReactionsConversationView extends LinearLayout {
   private boolean              outgoing;
   private List<ReactionRecord> records;
   private int                  bubbleWidth;
+  private boolean              isSettingBubbleWidth;
 
   public ReactionsConversationView(Context context) {
     super(context);
@@ -65,7 +66,7 @@ public class ReactionsConversationView extends LinearLayout {
 
   @Override
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-    if (w != oldw) {
+    if (w != oldw && !isSettingBubbleWidth) {
       int bubbleWidth = this.bubbleWidth;
       this.bubbleWidth = -1;
 
@@ -78,38 +79,43 @@ public class ReactionsConversationView extends LinearLayout {
       return false;
     }
 
-    this.bubbleWidth = bubbleWidth;
+    isSettingBubbleWidth = true;
+    try {
+      this.bubbleWidth = bubbleWidth;
 
-    for (int i = 0; i < getChildCount(); i++) {
-      View pill = getChildAt(i);
-      pill.setVisibility(bubbleWidth == 0 ? INVISIBLE : VISIBLE);
-    }
-
-    measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
-
-    int railWidth = getMeasuredWidth();
-
-    if (railWidth < (bubbleWidth - OUTER_MARGIN)) {
-      int margin = (bubbleWidth - railWidth - OUTER_MARGIN);
-
-      if (outgoing) {
-        setEndMargin(margin);
-      } else {
-        setStartMargin(margin);
+      for (int i = 0; i < getChildCount(); i++) {
+        View pill = getChildAt(i);
+        pill.setVisibility(bubbleWidth == 0 ? INVISIBLE : VISIBLE);
       }
-    } else {
-      if (outgoing) {
-        setEndMargin(OUTER_MARGIN);
+
+      measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+
+      int railWidth = getMeasuredWidth();
+
+      if (railWidth < (bubbleWidth - OUTER_MARGIN)) {
+        int margin = (bubbleWidth - railWidth - OUTER_MARGIN);
+
+        if (outgoing) {
+          setEndMargin(margin);
+        } else {
+          setStartMargin(margin);
+        }
       } else {
-        setStartMargin(OUTER_MARGIN);
+        if (outgoing) {
+          setEndMargin(OUTER_MARGIN);
+        } else {
+          setStartMargin(OUTER_MARGIN);
+        }
       }
-    }
 
-    if (!isInLayout()) {
-      requestLayout();
-    }
+      if (!isInLayout()) {
+        requestLayout();
+      }
 
-    return true;
+      return true;
+    } finally {
+      isSettingBubbleWidth = false;
+    }
   }
 
   public boolean setReactions(@NonNull List<ReactionRecord> records) {
