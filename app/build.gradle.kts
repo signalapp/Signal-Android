@@ -513,7 +513,7 @@ dependencies {
   implementation(project(":lib:libsignal-service"))
   implementation(project(":lib:paging"))
   implementation(project(":core:util"))
-  implementation(project(":lib:glide-config"))
+  implementation(project(":lib:glide"))
   implementation(project(":lib:video"))
   implementation(project(":lib:device-transfer"))
   implementation(project(":lib:image-editor"))

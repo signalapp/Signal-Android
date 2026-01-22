@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.glide.cache;
+package org.signal.glide.apng;
 
 import com.bumptech.glide.load.Option;
 

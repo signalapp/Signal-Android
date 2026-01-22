@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.compose
+package org.signal.glide.compose
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
@@ -27,7 +27,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
-import org.thoughtcrime.securesms.glide.cache.ApngOptions
+import org.signal.glide.apng.ApngOptions
 
 /**
  * Our very own GlideImage. The GlideImage composable provided by the bumptech library is not suitable because it was is using our encrypted cache decoder/encoder.
