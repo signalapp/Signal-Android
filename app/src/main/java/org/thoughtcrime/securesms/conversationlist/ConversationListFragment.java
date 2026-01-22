@@ -455,6 +455,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   @Override
   public void onDestroyView() {
+    if (activeContextMenu != null) {
+      activeContextMenu.dismiss();
+      activeContextMenu = null;
+    }
+
     coordinator             = null;
     list                    = null;
     bottomActionBar         = null;
@@ -1299,7 +1304,9 @@ public class ConversationListFragment extends MainFragment implements Conversati
         .onDismiss(() -> {
           activeContextMenu = null;
           view.setSelected(false);
-          list.suppressLayout(false);
+          if (list != null) {
+            list.suppressLayout(false);
+          }
         })
         .show(items);
 
