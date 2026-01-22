@@ -523,7 +523,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                thread.isOutgoingVideoCall() ||
                thread.isVerificationStatusChange() ||
                thread.isScheduledMessage() ||
-               thread.getRecipient().isBlocked())
+               thread.getRecipient().isBlocked() ||
+               MessageTypes.isPinnedMessageUpdate(thread.getType()))
     {
       deliveryStatusIndicator.setNone();
       alertView.setNone();
