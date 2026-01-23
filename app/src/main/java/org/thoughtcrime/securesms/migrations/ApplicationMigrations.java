@@ -191,9 +191,10 @@ public class ApplicationMigrations {
     static final int EMOJI_ENGLISH_SEARCH          = 147;
     static final int AEP_ROTATE_FIX                = 148;
     static final int ATTACHMENT_HASH_BACKFILL_2    = 149;
+    static final int SVR2_ENCLAVE_UPDATE_5         = 150;
   }
 
-  public static final int CURRENT_VERSION = 149;
+  public static final int CURRENT_VERSION = 150;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -882,6 +883,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.ATTACHMENT_HASH_BACKFILL_2) {
       jobs.put(Version.ATTACHMENT_HASH_BACKFILL_2, new AttachmentHashBackfillMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SVR2_ENCLAVE_UPDATE_5) {
+      jobs.put(Version.SVR2_ENCLAVE_UPDATE_5, new Svr2MirrorMigrationJob());
     }
 
     return jobs;
