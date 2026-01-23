@@ -4918,7 +4918,7 @@
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">데이터 이전 중</string>
-    <string name="DeviceTransfer__keep_both_devices_near_each_other">두 기기를 서로 가까이 둔 채로 유지해 주세요. 기기를 끄지 말고 Signal을 계속 열어 두세요. 이전 과정은 엔드투엔드 암호화로 보호됩니다.</string>
+    <string name="DeviceTransfer__keep_both_devices_near_each_other">두 기기를 서로 가까이 두고 Signal을 계속 열어 두세요. 모든 과정은 엔드투엔드 암호화로 안전하게 보호됩니다.</string>
     <string name="DeviceTransfer__d_messages_so_far">지금까지 %1$d개의 메시지…</string>
     <!-- Filled in with total percentage of messages transferred -->
     <string name="DeviceTransfer__s_of_messages_so_far">현재까지 메시지 %1$s%% 전송 완료</string>
@@ -8289,11 +8289,11 @@
 
     <!-- ReadyToTransferBottomSheet -->
     <!-- Title for a bottom sheet letting people know that they can transfer their back to their new device  -->
-    <string name="RemoteBackupsSettingsFragment__ready_to_transfer">Ready to transfer</string>
+    <string name="RemoteBackupsSettingsFragment__ready_to_transfer">이전 준비 완료</string>
     <!-- Body for bottom sheet telling the user to scan a QR code to continue transferring their backup to a new device -->
-    <string name="RemoteBackupsSettingsFragment__use_this_device_to_scan_qr">Use this device to scan the QR code on the device you want to transfer to</string>
+    <string name="RemoteBackupsSettingsFragment__use_this_device_to_scan_qr">이 기기를 사용하여 이전하려는 기기의 QR 코드를 스캔하세요</string>
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
-    <string name="RemoteBackupsSettingsFragment__scan_qr_code">Scan QR code</string>
+    <string name="RemoteBackupsSettingsFragment__scan_qr_code">QR 코드 스캔</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8651,15 +8651,15 @@
     <string name="TransferAccount_continue_on_your_other_device_details">다른 기기에서 계정 전송을 계속하세요.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
-    <string name="PrepareDevice_title">Getting your device ready</string>
+    <string name="PrepareDevice_title">기기 준비하기</string>
     <!-- Prepare Device screen body text explaining backup recommendation -->
     <string name="PrepareDevice_body">Back up now before transferring. You may have received messages that haven\'t been backed up yet.</string>
     <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
-    <string name="PrepareDevice_last_backup">Your last backup was made on %1$s at %2$s.</string>
+    <string name="PrepareDevice_last_backup">마지막 백업이 완료된 시간은 %1$s %2$s입니다.</string>
     <!-- Prepare Device screen back up now button -->
-    <string name="PrepareDevice_back_up_now">Back up now</string>
+    <string name="PrepareDevice_back_up_now">지금 백업</string>
     <!-- Prepare Device screen skip and continue button -->
-    <string name="PrepareDevice_skip_and_continue">Skip and continue</string>
+    <string name="PrepareDevice_skip_and_continue">건너뛰고 계속하기</string>
     <!-- A string describing the last time the user\'s backup was made. The placeholder represents a date-time. An example would be "Your last backup was made on July 18, 2025 at 9:00am." -->
     <string name="PrepareDevice_last_backup_description">Your last backup was made %1$s. </string>
 

@@ -8471,11 +8471,11 @@
 
     <!-- ReadyToTransferBottomSheet -->
     <!-- Title for a bottom sheet letting people know that they can transfer their back to their new device  -->
-    <string name="RemoteBackupsSettingsFragment__ready_to_transfer">Ready to transfer</string>
+    <string name="RemoteBackupsSettingsFragment__ready_to_transfer">Bereit zum Übertragen</string>
     <!-- Body for bottom sheet telling the user to scan a QR code to continue transferring their backup to a new device -->
-    <string name="RemoteBackupsSettingsFragment__use_this_device_to_scan_qr">Use this device to scan the QR code on the device you want to transfer to</string>
+    <string name="RemoteBackupsSettingsFragment__use_this_device_to_scan_qr">Verwende dieses Gerät, um den QR-Code auf dem Gerät zu scannen, auf das du übertragen möchtest</string>
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
-    <string name="RemoteBackupsSettingsFragment__scan_qr_code">Scan QR code</string>
+    <string name="RemoteBackupsSettingsFragment__scan_qr_code">QR-Code scannen</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8835,15 +8835,15 @@
     <string name="TransferAccount_continue_on_your_other_device_details">Fahre damit fort, dein Konto auf dein anderes Gerät zu übertragen.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
-    <string name="PrepareDevice_title">Getting your device ready</string>
+    <string name="PrepareDevice_title">Bereite dein Gerät vor</string>
     <!-- Prepare Device screen body text explaining backup recommendation -->
     <string name="PrepareDevice_body">Back up now before transferring. You may have received messages that haven\'t been backed up yet.</string>
     <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
-    <string name="PrepareDevice_last_backup">Your last backup was made on %1$s at %2$s.</string>
+    <string name="PrepareDevice_last_backup">Dein letztes Backup wurde am %1$s um %2$s durchgeführt.</string>
     <!-- Prepare Device screen back up now button -->
-    <string name="PrepareDevice_back_up_now">Back up now</string>
+    <string name="PrepareDevice_back_up_now">Jetzt sichern</string>
     <!-- Prepare Device screen skip and continue button -->
-    <string name="PrepareDevice_skip_and_continue">Skip and continue</string>
+    <string name="PrepareDevice_skip_and_continue">Überspringen und Weiter</string>
     <!-- A string describing the last time the user\'s backup was made. The placeholder represents a date-time. An example would be "Your last backup was made on July 18, 2025 at 9:00am." -->
     <string name="PrepareDevice_last_backup_description">Your last backup was made %1$s. </string>
 
