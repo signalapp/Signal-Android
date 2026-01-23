@@ -2756,7 +2756,8 @@
     <string name="RegistrationActivity_i_understand">I understand</string>
     <string name="RegistrationActivity_play_services_error">Play Services Error</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services is updating or temporarily unavailable. Please try again.</string>
-    <string name="RegistrationActivity_terms_and_privacy">Terms &amp; Privacy Policy</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal needs the contacts and media permissions to help you connect with friends and send messages. Your contacts are uploaded using Signal\'s private contact discovery, which means they are end-to-end encrypted and never visible to the Signal service.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal needs the contacts permission to help you connect with friends. Your contacts are uploaded using Signal\'s private contact discovery, which means they are end-to-end encrypted and never visible to the Signal service.</string>
     <string name="RegistrationActivity_rate_limited_to_service">You\'ve made too many attempts to register this number. Please try again later.</string>
@@ -5798,6 +5799,8 @@
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terms &amp; Privacy Policy</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
@@ -6185,7 +6188,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donate now</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donate</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -6213,13 +6216,15 @@
     <string name="Subscription__expires_s">Expires %1$s</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal is different.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">As an independent nonprofit, Signal is committed to private messaging and calls. No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Private messaging. No ads, no trackers, no surveillance.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal is supported by donations, meaning that your privacy is at the center of everything we do. Signal is built for you; not your data and not for profit.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Get an optional badge on your profile when you donate</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">If you can, please donate today to keep Signal fun, dependable, and available for everyone.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">Your privacy is our mission</string>
+    <!-- Fourth small text blurb on learn more sheet. Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit. US donations are tax deductible.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Thanks for your Support!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -7249,11 +7254,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Privacy over profit</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Proudly Nonprofit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Continue</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Private messaging, funded by you. No ads, no tracking, no compromise. Donate now to support Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Donate to support private messaging. Keep Signal independent and ad-free.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->

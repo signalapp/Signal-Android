@@ -117,6 +117,8 @@ class HelpSettingsFragment : ComposeFragment() {
                 append(getString(R.string.HelpFragment__copyright_signal_messenger))
                 append("\n")
                 append(getString(R.string.HelpFragment__licenced_under_the_agplv3))
+                append("\n")
+                append(getString(R.string.HelpSettingsFragment__signal_is_a_501c3))
               }.toString()
             )
           }
