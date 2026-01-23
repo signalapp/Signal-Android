@@ -693,7 +693,7 @@
     <!-- Dialog title when replacing the oldest pin -->
     <string name="ConversationFragment__replace_title">Oudste vastgezette bericht vervangen?</string>
     <!-- Dialog body when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_body">Je oudste vastgezette bericht wordt vervangen door het nieuwe bericht</string>
+    <string name="ConversationFragment__replace_body">Je oudste vastgezette bericht wordt vervangen door het nieuwe bericht.</string>
     <!-- Dialog button when replacing the oldest pin -->
     <string name="ConversationFragment__replace">Vervangen</string>
 
