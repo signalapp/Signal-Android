@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
@@ -331,7 +332,12 @@ public final class PushGroupSendJob extends PushSendJob {
 
           ByteString groupChange = groupContext.groupChange;
           if (groupChange != null) {
-            builder.withSignedGroupChange(groupChange.toByteArray());
+            byte[] serializedGroupChange = groupChange.toByteArray();
+            if (serializedGroupChange.length <= ByteUnit.KILOBYTES.toBytes(2)) {
+              builder.withSignedGroupChange(serializedGroupChange);
+            } else {
+              Log.w(TAG, "Group update is too large to attach! Size: " + serializedGroupChange.length + " bytes");
+            }
           }
 
           SignalServiceGroupV2 group = builder.build();
