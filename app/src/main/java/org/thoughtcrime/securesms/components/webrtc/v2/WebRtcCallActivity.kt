@@ -137,14 +137,6 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     lifecycleDisposable.bindTo(this)
 
-    if (Build.VERSION.SDK_INT >= 27) {
-      setShowWhenLocked(true)
-      setTurnScreenOn(true)
-    } else {
-      @Suppress("DEPRECATION")
-      window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
-    }
-
     super.onCreate(savedInstanceState)
 
     requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -397,6 +389,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     callScreen.setRecipient(event.recipient)
     event.isRemoteVideoOffer
     callScreen.setWebRtcCallState(event.state)
+
+    if (event.state != previousCallState) {
+      setTurnScreenOnForCallState(event.state)
+    }
 
     when (event.state) {
       WebRtcViewModel.State.IDLE -> Unit
@@ -1060,6 +1056,33 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
     } else {
       window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+    }
+  }
+
+  /**
+   * Controls lock screen and screen-on behavior based on call state.
+   * - Show over lock screen: Only for incoming ringing calls, so user can answer.
+   * - Turn screen on: For any ongoing call state, so screen stays on during call.
+   */
+  private fun setTurnScreenOnForCallState(callState: WebRtcViewModel.State) {
+    val isIncomingRinging = callState == WebRtcViewModel.State.CALL_INCOMING
+    val isOngoingCall = callState.inOngoingCall
+    if (Build.VERSION.SDK_INT >= 27) {
+      setShowWhenLocked(isIncomingRinging)
+      setTurnScreenOn(isOngoingCall)
+    } else {
+      @Suppress("DEPRECATION")
+      if (isIncomingRinging) {
+        window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
+      } else {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
+      }
+
+      if (isOngoingCall) {
+        window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
+      } else {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
+      }
     }
   }
 
