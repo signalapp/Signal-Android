@@ -105,7 +105,12 @@ class SafetyNumberQrView : ConstraintLayout {
     }
 
     clipToOutline = true
-    setSafetyNumberType(false)
+
+    ImageViewCompat.setImageTintList(shareButton, ColorStateList.valueOf(ContextCompat.getColor(context, R.color.signal_dark_colorOnSurface)))
+    setBackgroundColor(ContextCompat.getColor(context, R.color.safety_number_card_blue))
+    codes.forEach {
+      it.setTextColor(ContextCompat.getColor(context, R.color.signal_light_colorOnPrimary))
+    }
   }
 
   fun setFingerprintViews(fingerprint: Fingerprint, animate: Boolean) {
@@ -129,22 +134,6 @@ class SafetyNumberQrView : ConstraintLayout {
       qrCode.visibility = VISIBLE
       tapLabel.visibility = VISIBLE
       loading.visibility = GONE
-    }
-  }
-
-  fun setSafetyNumberType(newType: Boolean) {
-    if (newType) {
-      ImageViewCompat.setImageTintList(shareButton, ColorStateList.valueOf(ContextCompat.getColor(context, R.color.signal_dark_colorOnSurface)))
-      setBackgroundColor(ContextCompat.getColor(context, R.color.safety_number_card_blue))
-      codes.forEach {
-        it.setTextColor(ContextCompat.getColor(context, R.color.signal_light_colorOnPrimary))
-      }
-    } else {
-      ImageViewCompat.setImageTintList(shareButton, ColorStateList.valueOf(ContextCompat.getColor(context, R.color.signal_light_colorOnSurface)))
-      setBackgroundColor(ContextCompat.getColor(context, R.color.safety_number_card_grey))
-      codes.forEach {
-        it.setTextColor(ContextCompat.getColor(context, R.color.signal_light_colorOnSurfaceVariant))
-      }
     }
   }
 

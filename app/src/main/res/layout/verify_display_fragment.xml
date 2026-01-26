@@ -44,22 +44,12 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/verify_view_pager"
-                android:layout_marginTop="48dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/dot_indicators"
-                android:layout_width="match_parent"
+            <org.thoughtcrime.securesms.components.verify.SafetyNumberQrView
+                android:id="@+id/safety_qr_view"
+                android:layout_marginTop="24dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:tabBackground="@drawable/safety_dot_indicator"
-                app:tabGravity="center"
-                app:tabPaddingEnd="10dp"
-                app:tabPaddingStart="10dp"
-                app:tabIndicatorHeight="0dp"/>
+                android:layout_gravity="center"/>
 
             <org.thoughtcrime.securesms.util.views.LearnMoreTextView
                 android:id="@+id/description"

@@ -17,20 +17,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireParcelableCompat
 import org.signal.libsignal.protocol.fingerprint.Fingerprint
-import org.signal.libsignal.protocol.fingerprint.FingerprintVersionMismatchException
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
-import org.thoughtcrime.securesms.components.verify.SafetyNumberQrView
 import org.thoughtcrime.securesms.components.verify.SafetyNumberQrView.Companion.getSegments
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable
 import org.thoughtcrime.securesms.databinding.VerifyDisplayFragmentBinding
@@ -39,10 +32,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.visible
 import java.nio.charset.StandardCharsets
 import java.util.Locale
-import kotlin.math.max
 
 /**
  * Fragment to display a user's identity key.
@@ -51,10 +42,6 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
   private lateinit var viewModel: VerifySafetyNumberViewModel
 
   private val binding by ViewBinderDelegate(VerifyDisplayFragmentBinding::bind)
-
-  private lateinit var safetyNumberAdapter: SafetyNumberAdapter
-
-  private var selectedFingerPrint = 0
 
   private var callback: Callback? = null
 
@@ -89,32 +76,9 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
     binding.toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
     binding.toolbar.setTitle(R.string.AndroidManifest__verify_safety_number)
 
-    safetyNumberAdapter = SafetyNumberAdapter()
-    binding.verifyViewPager.adapter = safetyNumberAdapter
-    binding.verifyViewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
-      override fun onPageSelected(position: Int) {
-        selectedFingerPrint = position
-      }
-    })
-    val peekSize = resources.getDimensionPixelSize(R.dimen.safety_number_qr_peek)
-    val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
-      val remainingWidth = (max(0, page.width - ((page as ViewGroup).getChildAt(0).width))) / 2f
-      val peekWidth = peekSize.toFloat().coerceAtMost(remainingWidth / 2f)
-      page.translationX = -position * (peekWidth + remainingWidth)
-    }
-    binding.verifyViewPager.setPageTransformer(pageTransformer)
-    binding.verifyViewPager.offscreenPageLimit = 1
-    TabLayoutMediator(binding.dotIndicators, binding.verifyViewPager) { _: TabLayout.Tab?, _: Int -> }.attach()
-
     viewModel.recipient.observe(this) { recipient: Recipient -> setRecipientText(recipient) }
-    viewModel.getFingerprints().observe(viewLifecycleOwner) { fingerprints: List<SafetyNumberFingerprint>? ->
-      if (fingerprints == null) {
-        return@observe
-      }
-      val multipleCards = fingerprints.size > 1
-      binding.dotIndicators.visible = multipleCards
-
-      if (fingerprints.isEmpty()) {
+    viewModel.getFingerprint().observe(viewLifecycleOwner) { fingerprint: SafetyNumberFingerprint? ->
+      if (fingerprint == null) {
         val resolved = viewModel.recipient.resolve()
         Log.w(TAG, String.format(Locale.ENGLISH, "Could not show proper verification! verifyV2: %s, hasUuid: %s, hasE164: %s", RemoteConfig.verifyV2, resolved.serviceId.isPresent, resolved.e164.isPresent))
         MaterialAlertDialogBuilder(requireContext())
@@ -127,9 +91,12 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
           .show()
         return@observe
       }
-      safetyNumberAdapter.setFingerprints(fingerprints)
+
+      binding.safetyQrView.setFingerprintViews(fingerprint.fingerprint, animateCodeChanges)
+      binding.safetyQrView.shareButton.setOnClickListener { v: View? -> handleShare(fingerprint.fingerprint) }
+      binding.safetyQrView.qrCodeContainer.setOnClickListener { v: View? -> callback!!.onQrCodeContainerClicked() }
+      registerForContextMenu(binding.safetyQrView.numbersContainer)
     }
-    binding.verifyViewPager.currentItem = selectedFingerPrint
   }
 
   private fun initializeViewModel() {
@@ -143,22 +110,15 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
   override fun onResume() {
     super.onResume()
     setRecipientText(viewModel.recipient.get())
-    val selectedSnapshot = selectedFingerPrint
     if (animateSuccessOnDraw) {
       animateSuccessOnDraw = false
       ThreadUtil.postToMain {
-        animateSuccess(selectedSnapshot)
-      }
-      ThreadUtil.postToMain {
-        binding.verifyViewPager.currentItem = selectedSnapshot
+        animateSuccess()
       }
     } else if (animateFailureOnDraw) {
       animateFailureOnDraw = false
       ThreadUtil.postToMain {
-        animateFailure(selectedSnapshot)
-      }
-      ThreadUtil.postToMain {
-        binding.verifyViewPager.currentItem = selectedSnapshot
+        animateFailure()
       }
     }
     ThreadUtil.postToMain { onScrollChanged() }
@@ -170,8 +130,8 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
     menuInfo: ContextMenuInfo?
   ) {
     super.onCreateContextMenu(menu, view, menuInfo)
-    val fingerprints = viewModel.getFingerprints().value
-    if (!fingerprints.isNullOrEmpty()) {
+    val fingerprint = viewModel.getFingerprint().value
+    if (fingerprint != null) {
       val inflater = requireActivity().menuInflater
       inflater.inflate(R.menu.verify_display_fragment_context_menu, menu)
     }
@@ -192,39 +152,25 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
 
   private val currentFingerprint: Fingerprint?
     get() {
-      val fingerprints = viewModel.getFingerprints().value ?: return null
-      return fingerprints[binding.verifyViewPager.currentItem].fingerprint
+      return viewModel.getFingerprint().value?.fingerprint
     }
 
   fun setScannedFingerprint(scanned: String) {
     animateCodeChanges = false
 
-    val fingerprints = viewModel.getFingerprints().value
-    var haveMatchingVersion = false
-    if (fingerprints != null) {
-      for (i in fingerprints.indices) {
-        try {
-          if (fingerprints[i].fingerprint.scannableFingerprint.compareTo(scanned.toByteArray(StandardCharsets.ISO_8859_1))) {
-            animateSuccessOnDraw = true
-          } else {
-            animateFailureOnDraw = true
-          }
-          haveMatchingVersion = true
-          selectedFingerPrint = i
-          break
-        } catch (e: FingerprintVersionMismatchException) {
-          Log.w(TAG, e)
-        } catch (e: Exception) {
-          Log.w(TAG, e)
-          showAlertDialog(R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number)
+    currentFingerprint?.let {
+      try {
+        if (currentFingerprint!!.scannableFingerprint.compareTo(scanned.toByteArray(StandardCharsets.ISO_8859_1))) {
+          animateSuccessOnDraw = true
+        } else {
           animateFailureOnDraw = true
-          return
         }
+      } catch (e: Exception) {
+        Log.w(TAG, e)
+        showAlertDialog(R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number)
+        animateFailureOnDraw = true
+        return
       }
-    }
-    if (!haveMatchingVersion) {
-      showAlertDialog(R.string.VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal)
-      animateFailureOnDraw = true
     }
   }
 
@@ -262,34 +208,21 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
       showAlertDialog(R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard)
       return
     }
-    var success = false
-    val fingerprints = viewModel.getFingerprints().value
-    if (fingerprints != null) {
-      for (i in fingerprints.indices) {
-        val (_, _, _, _, _, fingerprint1) = fingerprints[i]
-        if (fingerprint1.displayableFingerprint.displayText == numericClipboardData) {
-          binding.verifyViewPager.currentItem = i
-          animateSuccess(i)
-          success = true
-          break
-        }
-      }
-    }
-    if (!success) {
-      animateFailure(selectedFingerPrint)
+    if (currentFingerprint?.displayableFingerprint?.displayText == numericClipboardData) {
+      animateSuccess()
+    } else {
+      animateFailure()
     }
   }
 
-  private fun animateSuccess(position: Int) {
+  private fun animateSuccess() {
     animateCodeChanges = false
-
-    safetyNumberAdapter.notifyItemChanged(position, true)
+    binding.safetyQrView.animateVerifiedSuccess()
   }
 
-  private fun animateFailure(position: Int) {
+  private fun animateFailure() {
     animateCodeChanges = false
-
-    safetyNumberAdapter.notifyItemChanged(position, false)
+    binding.safetyQrView.animateVerifiedFailure()
   }
 
   private fun handleShare(fingerprint: Fingerprint) {
@@ -329,8 +262,7 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
   }
 
   override fun onScrollChanged() {
-    val fingerprints = viewModel.getFingerprints().value
-    if (binding.scrollView.canScrollVertically(-1) && fingerprints != null && fingerprints.size <= 1) {
+    if (binding.scrollView.canScrollVertically(-1) && currentFingerprint != null) {
       if (binding.toolbarShadow.visibility != View.VISIBLE) {
         ViewUtil.fadeIn(binding.toolbarShadow, 250)
       }
@@ -350,65 +282,6 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
 
   internal interface Callback {
     fun onQrCodeContainerClicked()
-  }
-
-  private class SafetyNumberQrViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val safetyNumberQrView: SafetyNumberQrView
-
-    init {
-      safetyNumberQrView = itemView.findViewById(R.id.safety_qr_view)
-    }
-  }
-
-  private inner class SafetyNumberAdapter : RecyclerView.Adapter<SafetyNumberQrViewHolder>() {
-    private var fingerprints: List<SafetyNumberFingerprint>? = null
-
-    fun setFingerprints(fingerprints: List<SafetyNumberFingerprint>?) {
-      if (fingerprints == this.fingerprints) {
-        return
-      }
-      this.fingerprints = fingerprints?.let { ArrayList(it) }
-      notifyDataSetChanged()
-    }
-
-    init {
-      setHasStableIds(true)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SafetyNumberQrViewHolder {
-      return SafetyNumberQrViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.safety_number_qr_page_fragment, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: SafetyNumberQrViewHolder, position: Int) {
-      val (version, _, _, _, _, fingerprint1) = fingerprints!![position]
-      holder.safetyNumberQrView.setFingerprintViews(fingerprint1, animateCodeChanges)
-      holder.safetyNumberQrView.setSafetyNumberType(version == 2)
-      holder.safetyNumberQrView.shareButton.setOnClickListener { v: View? -> handleShare(fingerprints!![position].fingerprint) }
-      holder.safetyNumberQrView.qrCodeContainer.setOnClickListener { v: View? -> callback!!.onQrCodeContainerClicked() }
-      registerForContextMenu(holder.safetyNumberQrView.numbersContainer)
-    }
-
-    override fun onBindViewHolder(holder: SafetyNumberQrViewHolder, position: Int, payloads: List<Any>) {
-      super.onBindViewHolder(holder, position, payloads)
-      for (payload in payloads) {
-        if (payload is Boolean) {
-          if (payload) {
-            holder.safetyNumberQrView.animateVerifiedSuccess()
-          } else {
-            holder.safetyNumberQrView.animateVerifiedFailure()
-          }
-          break
-        }
-      }
-    }
-
-    override fun getItemId(position: Int): Long {
-      return fingerprints!![position].version.toLong()
-    }
-
-    override fun getItemCount(): Int {
-      return if (fingerprints != null) fingerprints!!.size else 0
-    }
   }
 
   companion object {

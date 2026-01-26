@@ -38,7 +38,7 @@ class VerifySafetyNumberViewModel(
 
   val recipient: LiveRecipient = Recipient.live(recipientId)
 
-  private val fingerprintListLiveData = MutableLiveData<List<SafetyNumberFingerprint>>()
+  private val fingerprintLiveData = MutableLiveData<SafetyNumberFingerprint?>()
 
   init {
     initializeFingerprints()
@@ -48,7 +48,6 @@ class VerifySafetyNumberViewModel(
     SignalExecutors.UNBOUNDED.execute {
       val resolved = recipient.resolve()
 
-      val fingerprintList: MutableList<SafetyNumberFingerprint> = ArrayList(2)
       val generator = NumericFingerprintGenerator(5200)
 
       var aciFingerprint: SafetyNumberFingerprint? = null
@@ -61,15 +60,13 @@ class VerifySafetyNumberViewModel(
       }
 
       if (aciFingerprint != null) {
-        fingerprintList.add(aciFingerprint)
+        fingerprintLiveData.postValue(aciFingerprint)
       }
-
-      fingerprintListLiveData.postValue(fingerprintList)
     }
   }
 
-  fun getFingerprints(): LiveData<List<SafetyNumberFingerprint>> {
-    return fingerprintListLiveData
+  fun getFingerprint(): LiveData<SafetyNumberFingerprint?> {
+    return fingerprintLiveData
   }
 
   fun updateSafetyNumberVerification(verified: Boolean) {
