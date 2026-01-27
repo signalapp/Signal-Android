@@ -219,6 +219,8 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       if (previous != serviceState) {
         if (serviceState.getCallInfoState().getCallState() != WebRtcViewModel.State.IDLE) {
           postStateUpdate(serviceState);
+        } else if (previous.getCallInfoState().getCallState() != WebRtcViewModel.State.IDLE) {
+          EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
         }
       }
     });
