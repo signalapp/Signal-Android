@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.ByteSize;
@@ -89,6 +90,20 @@ public class DocumentView extends FrameLayout {
       downloadButton.setColorFilter(downloadTint, PorterDuff.Mode.MULTIPLY);
       downloadProgress.setBarColor(downloadTint);
     }
+  }
+
+  @Override
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    if (!EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().register(this);
+    }
+  }
+
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    EventBus.getDefault().unregister(this);
   }
 
   public void setDownloadClickListener(@Nullable SlideClickListener listener) {
