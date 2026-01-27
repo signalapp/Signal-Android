@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.widget.ImageViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import com.google.android.material.button.MaterialButton
 import org.signal.core.util.dp
 import org.signal.libsignal.protocol.fingerprint.Fingerprint
 import org.thoughtcrime.securesms.R
@@ -65,6 +66,7 @@ class SafetyNumberQrView : ConstraintLayout {
   val qrCodeContainer: View
 
   val shareButton: ImageView
+  val verifyButton: MaterialButton
 
   private val loading: View
   private val qrCode: ImageView
@@ -97,6 +99,7 @@ class SafetyNumberQrView : ConstraintLayout {
     )
 
     shareButton = findViewById(R.id.share)
+    verifyButton = findViewById(R.id.verify_button)
 
     outlineProvider = object : ViewOutlineProvider() {
       override fun getOutline(view: View, outline: Outline) {

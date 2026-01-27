@@ -39,6 +39,7 @@ class VerifySafetyNumberViewModel(
   val recipient: LiveRecipient = Recipient.live(recipientId)
 
   private val fingerprintLiveData = MutableLiveData<SafetyNumberFingerprint?>()
+  private val automaticVerificationLiveData = MutableLiveData(AutomaticVerificationStatus.NONE)
 
   init {
     initializeFingerprints()
@@ -67,6 +68,10 @@ class VerifySafetyNumberViewModel(
 
   fun getFingerprint(): LiveData<SafetyNumberFingerprint?> {
     return fingerprintLiveData
+  }
+
+  fun getAutomaticVerification(): LiveData<AutomaticVerificationStatus> {
+    return automaticVerificationLiveData
   }
 
   fun updateSafetyNumberVerification(verified: Boolean) {
@@ -158,4 +163,12 @@ data class SafetyNumberFingerprint(
     result = 31 * result + fingerprint.hashCode()
     return result
   }
+}
+
+enum class AutomaticVerificationStatus {
+  NONE,
+  VERIFYING,
+  UNAVAILABLE_PERMANENT,
+  UNAVAILABLE_TEMPORARY,
+  VERIFIED
 }

@@ -21,21 +21,13 @@
         app:titleTextAppearance="@style/Signal.Text.TitleLarge"
         tools:title="@string/AndroidManifest__verify_safety_number" />
 
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/header_barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="toolbar"/>
-
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/header_barrier"
-        app:layout_constraintBottom_toTopOf="@id/verify_button_container">
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -65,44 +57,78 @@
                 android:text="@string/verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s"
                 android:textColor="@color/signal_colorOnSurfaceVariant"
                 android:textColorLink="@color/signal_colorPrimary" />
+
+            <LinearLayout
+                android:id="@+id/automatic_verification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Signal.Text.TitleSmall"
+                android:layout_marginStart="24dp"
+                android:layout_marginVertical="12dp"
+                android:text="@string/verify_display_fragment__automatic" />
+
+            <LinearLayout
+                android:id="@+id/auto_verify_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_rectangle_38"
+                android:backgroundTint="@color/signal_colorSurface1"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="20dp"
+                android:gravity="center_vertical"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:id="@+id/auto_verify_spinner"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/signal_colorOutline"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/auto_verify_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/symbol_key_24" />
+
+                <TextView
+                    android:id="@+id/auto_verify_text"
+                    style="@style/Signal.Text.BodyLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/verify_display_fragment__verify_automatic" />
+
+                <ImageView
+                    android:id="@+id/auto_verify_more"
+                    android:src="@drawable/symbol_chevron_right_compact_bold_16"
+                    android:layout_marginStart="2dp"
+                    app:tint="@color/signal_colorOutline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+                android:id="@+id/caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:paddingHorizontal="@dimen/gutter"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textColor="@color/signal_colorOnSurfaceVariant" />
+
+            </LinearLayout>
+
         </LinearLayout>
+
     </ScrollView>
 
-    <View
-        android:id="@+id/toolbar_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:visibility="gone"
-        android:background="@drawable/toolbar_shadow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_barrier"
-        tools:visibility="visible" />
-
-    <View
-        android:id="@+id/verify_identity_bottom_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@drawable/bottom_toolbar_shadow"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/verify_button_container" />
-    <FrameLayout
-        android:id="@+id/verify_button_container"
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="parent">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/verify_button"
-            style="@style/Signal.Widget.Button.Large.Tonal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dsl_settings_gutter"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="@dimen/dsl_settings_gutter"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/verify_display_fragment__mark_as_verified"
-            android:textAllCaps="false" />
-    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

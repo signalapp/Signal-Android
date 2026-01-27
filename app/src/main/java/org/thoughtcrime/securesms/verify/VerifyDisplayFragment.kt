@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.ContextMenu
@@ -12,9 +13,9 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver.OnScrollChangedListener
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -32,13 +33,14 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.visible
 import java.nio.charset.StandardCharsets
 import java.util.Locale
 
 /**
  * Fragment to display a user's identity key.
  */
-class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
+class VerifyDisplayFragment : Fragment() {
   private lateinit var viewModel: VerifySafetyNumberViewModel
 
   private val binding by ViewBinderDelegate(VerifyDisplayFragmentBinding::bind)
@@ -71,10 +73,18 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
 
     updateVerifyButton(requireArguments().getBoolean(VERIFIED_STATE, false), false)
 
-    binding.verifyButton.setOnClickListener { updateVerifyButton(!currentVerifiedState, true) }
-    binding.scrollView.viewTreeObserver?.addOnScrollChangedListener(this)
+    binding.automaticVerification.visible = RemoteConfig.keyTransparency
+    binding.safetyQrView.verifyButton.setOnClickListener { updateVerifyButton(!currentVerifiedState, true) }
     binding.toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
     binding.toolbar.setTitle(R.string.AndroidManifest__verify_safety_number)
+
+    binding.caption.text = getString(R.string.verify_display_fragment__auto_verify_not_available)
+    binding.caption.setLink(getString(R.string.verify_display_fragment__link))
+    binding.caption.setLinkColor(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))
+
+    viewModel.getAutomaticVerification().observe(viewLifecycleOwner) { status ->
+      updateStatus(status)
+    }
 
     viewModel.recipient.observe(this) { recipient: Recipient -> setRecipientText(recipient) }
     viewModel.getFingerprint().observe(viewLifecycleOwner) { fingerprint: SafetyNumberFingerprint? ->
@@ -99,6 +109,48 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
     }
   }
 
+  private fun updateStatus(status: AutomaticVerificationStatus) {
+    when (status) {
+      AutomaticVerificationStatus.NONE -> {
+        binding.autoVerifyText.text = getString(R.string.verify_display_fragment__verify_automatic)
+        binding.autoVerifyIcon.setImageResource(R.drawable.symbol_key_24)
+        binding.autoVerifyIcon.imageTintList = null
+        binding.autoVerifyMore.visible = false
+      }
+      AutomaticVerificationStatus.VERIFYING -> {
+        binding.autoVerifyText.text = getString(R.string.verify_display_fragment__verifying)
+        binding.autoVerifyMore.visible = false
+      }
+      AutomaticVerificationStatus.UNAVAILABLE_PERMANENT -> {
+        binding.autoVerifyText.text = getString(R.string.verify_display_fragment__encryption_unavailable)
+        binding.autoVerifyIcon.setImageResource(R.drawable.symbol_info_24)
+        ImageViewCompat.setImageTintList(binding.autoVerifyIcon, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant)))
+        binding.autoVerifyMore.visible = true
+      }
+      AutomaticVerificationStatus.UNAVAILABLE_TEMPORARY -> {
+        binding.autoVerifyText.text = getString(R.string.verify_display_fragment__encryption_unavailable)
+        binding.autoVerifyIcon.setImageResource(R.drawable.symbol_info_24)
+        ImageViewCompat.setImageTintList(binding.autoVerifyIcon, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant)))
+        binding.autoVerifyMore.visible = true
+      }
+      AutomaticVerificationStatus.VERIFIED -> {
+        binding.autoVerifyText.text = getString(R.string.verify_display_fragment__encryption_verified)
+        binding.autoVerifyIcon.setImageResource(R.drawable.symbol_check_filled_circle_24)
+        binding.autoVerifyIcon.imageTintList = null
+        binding.autoVerifyMore.visible = true
+      }
+    }
+
+    if (status == AutomaticVerificationStatus.VERIFYING) {
+      binding.autoVerifySpinner.visible = true
+      binding.autoVerifyIcon.visible = false
+    } else {
+      binding.autoVerifySpinner.visible = false
+      binding.autoVerifyIcon.visible = true
+    }
+    binding.autoVerifyMore.setOnClickListener { EncryptionVerifiedSheet.show(parentFragmentManager, status, viewModel.recipient.resolve().getDisplayName(requireContext())) }
+  }
+
   private fun initializeViewModel() {
     val recipientId = requireArguments().requireParcelableCompat(RECIPIENT_ID, RecipientId::class.java)
     val localIdentity = requireArguments().requireParcelableCompat(LOCAL_IDENTITY, IdentityKeyParcelable::class.java).get()!!
@@ -121,7 +173,6 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
         animateFailure()
       }
     }
-    ThreadUtil.postToMain { onScrollChanged() }
   }
 
   override fun onCreateContextMenu(
@@ -252,31 +303,12 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
   private fun updateVerifyButton(verified: Boolean, update: Boolean) {
     currentVerifiedState = verified
     if (verified) {
-      binding.verifyButton.setText(R.string.verify_display_fragment__clear_verification)
+      binding.safetyQrView.verifyButton.setText(R.string.verify_display_fragment__clear_verification)
     } else {
-      binding.verifyButton.setText(R.string.verify_display_fragment__mark_as_verified)
+      binding.safetyQrView.verifyButton.setText(R.string.verify_display_fragment__mark_as_verified)
     }
     if (update) {
       viewModel.updateSafetyNumberVerification(verified)
-    }
-  }
-
-  override fun onScrollChanged() {
-    if (binding.scrollView.canScrollVertically(-1) && currentFingerprint != null) {
-      if (binding.toolbarShadow.visibility != View.VISIBLE) {
-        ViewUtil.fadeIn(binding.toolbarShadow, 250)
-      }
-    } else {
-      if (binding.toolbarShadow.visibility != View.GONE) {
-        ViewUtil.fadeOut(binding.toolbarShadow, 250)
-      }
-    }
-    if (binding.scrollView.canScrollVertically(1)) {
-      if (binding.verifyIdentityBottomShadow.visibility != View.VISIBLE) {
-        ViewUtil.fadeIn(binding.verifyIdentityBottomShadow, 250)
-      }
-    } else {
-      ViewUtil.fadeOut(binding.verifyIdentityBottomShadow, 250)
     }
   }
 
