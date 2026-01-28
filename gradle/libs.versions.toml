@@ -17,7 +17,7 @@ android-gradle-plugin = "8.13.2"
 # Other versions
 androidx-appcompat = "1.7.0"
 androidx-activity = "1.12.0"
-androidx-camera = "1.3.4"
+androidx-camera = "1.5.2"
 androidx-fragment = "1.8.5"
 androidx-lifecycle = "2.8.7"
 androidx-lifecycle-navigation3 = "2.10.0"
@@ -58,6 +58,7 @@ androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive"}
 androidx-compose-material3-adaptive-layout = { module = "androidx.compose.material3.adaptive:adaptive-layout"}
 androidx-compose-material3-adaptive-navigation = { module = "androidx.compose.material3.adaptive:adaptive-navigation"}
+androidx-compose-material-icons-extended = "androidx.compose.material:material-icons-extended:1.7.8"
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-ui-tooling-core = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
@@ -126,6 +127,8 @@ androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.r
 androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "androidx-camera" }
 androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "androidx-camera" }
 androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "androidx-camera" }
+androidx-camera-video = { module = "androidx.camera:camera-video", version.ref = "androidx-camera" }
+androidx-camera-compose = { module = "androidx.camera:camera-compose", version.ref = "androidx-camera" }
 androidx-concurrent-futures = "androidx.concurrent:concurrent-futures:1.2.0"
 androidx-autofill = "androidx.autofill:autofill:1.1.0"
 androidx-biometric = "androidx.biometric:biometric:1.1.0"

@@ -89,6 +89,7 @@ include(":lib:debuglogs-viewer")
 
 // Feature modules
 include(":feature:registration")
+include(":feature:camera")
 
 // Demo apps
 include(":demo:paging")
@@ -101,6 +102,7 @@ include(":demo:video")
 include(":demo:image-editor")
 include(":demo:debuglogs-viewer")
 include(":demo:registration")
+include(":demo:camera")
 
 // Testing/Lint modules
 include(":lintchecks")

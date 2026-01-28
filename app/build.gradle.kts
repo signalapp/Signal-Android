@@ -526,6 +526,7 @@ dependencies {
   implementation(project(":core:ui"))
   implementation(project(":core:models"))
   implementation(project(":core:models-jvm"))
+  implementation(project(":feature:camera"))
 
   implementation(libs.androidx.fragment.ktx)
   implementation(libs.androidx.appcompat) {
