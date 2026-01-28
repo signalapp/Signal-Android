@@ -14,9 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -32,6 +30,7 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.showSnackbar
 import org.thoughtcrime.securesms.R
@@ -161,7 +160,7 @@ private fun AdvancedPinSettingsFragmentContent(
 ) {
   Scaffolds.Settings(
     title = stringResource(R.string.preferences__advanced_pin_settings_title),
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back),
     onNavigationClick = onNavigationClick,
     snackbarHost = {

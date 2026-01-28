@@ -14,15 +14,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.AnnotatedString
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.Hex.fromStringCondensed
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -57,7 +56,7 @@ fun InternalConversationSettingsScreen(
   Scaffolds.Settings(
     title = stringResource(R.string.ConversationSettingsFragment__internal_details),
     onNavigationClick = callbacks::onNavigationClick,
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back)
   ) { paddingValues ->
     LazyColumn(

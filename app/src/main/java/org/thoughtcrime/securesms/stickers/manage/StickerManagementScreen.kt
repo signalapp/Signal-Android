@@ -67,6 +67,7 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
 import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
@@ -81,6 +82,7 @@ import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
 import org.thoughtcrime.securesms.stickers.manage.AvailableStickerPack.DownloadStatus
 import org.thoughtcrime.securesms.window.getWindowSizeClass
 import java.text.NumberFormat
+import org.signal.core.ui.R as CoreUiR
 
 object StickerManagementScreen {
   /**
@@ -277,7 +279,7 @@ private fun TopAppBar(
           modifier = Modifier.padding(end = 16.dp)
         ) {
           Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+            imageVector = SignalIcons.ArrowStart.imageVector,
             contentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description)
           )
         }
@@ -325,7 +327,7 @@ private fun MultiSelectTopAppBar(
   Scaffolds.DefaultTopAppBar(
     title = pluralStringResource(R.plurals.StickerManagement_title_n_selected, selectedItemCount, NumberFormat.getInstance().format(selectedItemCount)),
     titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_x_24),
+    navigationIcon = SignalIcons.X.imageVector,
     navigationContentDescription = stringResource(R.string.StickerManagement_accessibility_exit_multi_select_mode),
     onNavigationClick = onExitClick
   )
@@ -546,7 +548,7 @@ private fun InstalledStickersContent(
         visible = multiSelectEnabled,
         items = listOf(
           ActionItem(
-            iconRes = R.drawable.symbol_check_circle_24,
+            iconRes = CoreUiR.drawable.symbol_check_circle_24,
             title = if (selectedPackIds.size == packs.size) {
               stringResource(R.string.StickerManagement_action_deselect_all)
             } else {
@@ -555,7 +557,7 @@ private fun InstalledStickersContent(
             action = callbacks::onSelectAllToggle
           ),
           ActionItem(
-            iconRes = R.drawable.symbol_trash_24,
+            iconRes = CoreUiR.drawable.symbol_trash_24,
             title = stringResource(R.string.StickerManagement_action_delete_selected),
             action = { callbacks.onRemoveClick(selectedPackIds) }
           )

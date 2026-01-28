@@ -21,7 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Represents a "Feature" included for a specify tier of message backups
@@ -64,7 +64,7 @@ private fun MessageBackupsTypeFeatureRowPreview() {
   Previews.Preview {
     MessageBackupsTypeFeatureRow(
       messageBackupsTypeFeature = MessageBackupsTypeFeature(
-        iconResourceId = R.drawable.symbol_edit_24,
+        iconResourceId = CoreUiR.drawable.symbol_edit_24,
         label = "Content Label"
       )
     )

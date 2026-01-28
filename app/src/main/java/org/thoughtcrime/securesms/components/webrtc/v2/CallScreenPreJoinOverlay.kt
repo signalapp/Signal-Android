@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.compose.SignalTheme
@@ -394,7 +395,7 @@ fun CallScreenTopAppBar(
         onClick = onNavigationClick
       ) {
         Icon(
-          painter = painterResource(id = R.drawable.symbol_arrow_start_24),
+          painter = SignalIcons.ArrowStart.painter,
           contentDescription = stringResource(id = R.string.CallScreenTopBar__go_back),
           tint = Color.White
         )
@@ -406,7 +407,7 @@ fun CallScreenTopAppBar(
         modifier = Modifier.padding(16.dp)
       ) {
         Icon(
-          painter = painterResource(id = R.drawable.symbol_info_24),
+          painter = SignalIcons.Info.painter,
           contentDescription = stringResource(id = R.string.CallScreenTopBar__call_information),
           tint = Color.White
         )

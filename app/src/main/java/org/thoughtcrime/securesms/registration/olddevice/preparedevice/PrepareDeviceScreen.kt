@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceState
 import org.thoughtcrime.securesms.util.DateUtils
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 @Composable
 fun PrepareDeviceScreen(
@@ -43,7 +44,7 @@ fun PrepareDeviceScreen(
 ) {
   Scaffolds.Default(
     onNavigationClick = { emitter(PrepareDeviceScreenEvents.NavigateBack) },
-    navigationIconRes = R.drawable.symbol_arrow_start_24
+    navigationIconRes = CoreUiR.drawable.symbol_arrow_start_24
   ) { contentPadding ->
     Column(
       horizontalAlignment = Alignment.CenterHorizontally,

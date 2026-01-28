@@ -7,6 +7,7 @@ import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * A context menu shown when handling selected media only permissions.
@@ -46,7 +47,7 @@ object ManageContextMenu {
   ) {
     val actions = mutableListOf<ActionItem>().apply {
       add(
-        ActionItem(R.drawable.symbol_settings_android_24, context.getString(R.string.AttachmentKeyboard_go_to_settings)) {
+        ActionItem(CoreUiR.drawable.symbol_settings_android_24, context.getString(R.string.AttachmentKeyboard_go_to_settings)) {
           callbacks.onSettings()
         }
       )

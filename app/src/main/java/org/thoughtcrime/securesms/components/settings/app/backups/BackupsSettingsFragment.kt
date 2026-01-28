@@ -29,12 +29,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -46,6 +43,7 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
@@ -121,7 +119,7 @@ private fun BackupsSettingsContent(
 ) {
   Scaffolds.Settings(
     title = stringResource(R.string.preferences_chats__backups),
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
     onNavigationClick = onNavigationClick
   ) { paddingValues ->
     LazyColumn(
@@ -129,7 +127,7 @@ private fun BackupsSettingsContent(
     ) {
       if (backupsSettingsState.showBackupTierInternalOverride) {
         item {
-          Column(modifier = Modifier.padding(horizontal = dimensionResource(id = org.signal.core.ui.R.dimen.gutter))) {
+          Column(modifier = Modifier.padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))) {
             Text(
               text = "ALPHA ONLY",
               style = MaterialTheme.typography.titleMedium
@@ -270,7 +268,7 @@ private fun NeverEnabledBackupsRow(
           .align(Alignment.Top)
       ) {
         Icon(
-          painter = painterResource(R.drawable.symbol_backup_24),
+          painter = SignalIcons.Backup.painter,
           contentDescription = null
         )
       }
@@ -338,7 +336,7 @@ private fun InactiveBackupsRow(
     },
     icon = {
       Icon(
-        imageVector = ImageVector.vectorResource(R.drawable.symbol_backup_24),
+        imageVector = SignalIcons.Backup.imageVector,
         contentDescription = stringResource(R.string.preferences_chats__backups),
         tint = MaterialTheme.colorScheme.onSurface,
         modifier = Modifier
@@ -362,7 +360,7 @@ private fun NotFoundBackupRow(
           .align(Alignment.Top)
       ) {
         Icon(
-          painter = painterResource(R.drawable.symbol_backup_24),
+          painter = SignalIcons.Backup.painter,
           contentDescription = null
         )
       }
@@ -448,7 +446,7 @@ private fun LocalStoreBackupRow(
           .align(Alignment.Top)
       ) {
         Icon(
-          painter = painterResource(R.drawable.symbol_backup_24),
+          painter = SignalIcons.Backup.painter,
           contentDescription = null
         )
       }
@@ -493,7 +491,7 @@ private fun ActiveBackupsRow(
           .align(Alignment.Top)
       ) {
         Icon(
-          painter = painterResource(R.drawable.symbol_backup_24),
+          painter = SignalIcons.Backup.painter,
           contentDescription = null
         )
       }

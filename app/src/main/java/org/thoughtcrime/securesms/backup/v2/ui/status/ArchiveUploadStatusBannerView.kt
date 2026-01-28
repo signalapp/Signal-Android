@@ -41,8 +41,10 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displays a "heads up" widget containing information about the current
@@ -60,7 +62,7 @@ fun ArchiveUploadStatusBannerView(
     is ArchiveUploadStatusBannerViewState.Uploading -> R.drawable.symbol_backup_light
     is ArchiveUploadStatusBannerViewState.PausedMissingWifi -> R.drawable.symbol_backup_light
     is ArchiveUploadStatusBannerViewState.PausedNoInternet -> R.drawable.symbol_backup_light
-    is ArchiveUploadStatusBannerViewState.Finished -> R.drawable.symbol_check_circle_24
+    is ArchiveUploadStatusBannerViewState.Finished -> CoreUiR.drawable.symbol_check_circle_24
   }
 
   val iconColor: Color = when (state) {
@@ -188,7 +190,7 @@ fun ArchiveUploadStatusBannerView(
         val interactionSource = remember { MutableInteractionSource() }
 
         Icon(
-          painter = painterResource(id = R.drawable.symbol_x_24),
+          painter = SignalIcons.X.painter,
           contentDescription = stringResource(R.string.Material3SearchToolbar__close),
           tint = MaterialTheme.colorScheme.onSurfaceVariant,
           modifier = Modifier

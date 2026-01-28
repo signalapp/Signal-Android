@@ -52,6 +52,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
 import org.signal.glide.compose.GlideImage
@@ -235,7 +236,7 @@ private fun TopAppBar(
   Scaffolds.DefaultTopAppBar(
     title = "", // TODO collapse title into top app bar on scroll
     titleContent = { _, text -> Text(text = text, style = MaterialTheme.typography.titleLarge) },
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
     onNavigationClick = onNavigateUp,
     actions = {
@@ -245,7 +246,7 @@ private fun TopAppBar(
           modifier = Modifier.padding(horizontal = 8.dp)
         ) {
           Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.symbol_forward_24),
+            imageVector = SignalIcons.Forward.imageVector,
             contentDescription = stringResource(R.string.StickerManagement_menu_forward_pack)
           )
         }

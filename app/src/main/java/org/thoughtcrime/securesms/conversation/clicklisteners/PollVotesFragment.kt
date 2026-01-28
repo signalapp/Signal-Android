@@ -45,6 +45,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -94,7 +95,7 @@ class PollVotesFragment : ComposeDialogFragment(), RecipientBottomSheetDialogFra
     Scaffolds.Settings(
       title = stringResource(if (state.poll?.hasEnded == true) R.string.Poll__poll_results else R.string.Poll__poll_details),
       onNavigationClick = this::dismissAllowingStateLoss,
-      navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_x_24),
+      navigationIcon = SignalIcons.X.imageVector,
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { paddingValues ->
       if (state.poll == null) {

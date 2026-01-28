@@ -55,6 +55,7 @@ import org.signal.core.ui.compose.IconButtons.IconButton
 import org.signal.core.ui.compose.LargeFontPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 
 /**
@@ -77,7 +78,7 @@ fun CountryCodeSelectScreen(
           Text(text = title, style = MaterialTheme.typography.titleLarge)
         },
         onNavigationClick = onDismissed,
-        navigationIcon = ImageVector.vectorResource(R.drawable.symbol_x_24),
+        navigationIcon = SignalIcons.X.imageVector,
         navigationContentDescription = stringResource(R.string.Material3SearchToolbar__close)
       )
     }
@@ -236,7 +237,7 @@ private fun SearchBar(
       if (text.isNotEmpty()) {
         IconButton(onClick = { onSearch("") }) {
           Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.symbol_x_24),
+            imageVector = SignalIcons.X.imageVector,
             contentDescription = null
           )
         }
@@ -247,7 +248,7 @@ private fun SearchBar(
         }) {
           if (showKeyboard) {
             Icon(
-              imageVector = ImageVector.vectorResource(R.drawable.symbol_keyboard_24),
+              imageVector = SignalIcons.Keyboard.imageVector,
               contentDescription = null
             )
           } else {

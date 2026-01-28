@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.util.hasTextSlide
 import org.thoughtcrime.securesms.util.requireTextSlide
 import java.io.IOException
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Bottom sheet dialog to view all scheduled messages within a given thread.
@@ -156,9 +157,9 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
   private fun getMenuActionItems(message: ConversationMessage): List<ActionItem> {
     val canCopy = message.multiselectCollection.toSet().any { it !is Attachments && message.messageRecord.body.isNotEmpty() }
     val items: MutableList<ActionItem> = ArrayList()
-    items.add(ActionItem(R.drawable.symbol_trash_24, resources.getString(R.string.conversation_selection__menu_delete), action = { handleDeleteMessage(message.messageRecord) }))
+    items.add(ActionItem(CoreUiR.drawable.symbol_trash_24, resources.getString(R.string.conversation_selection__menu_delete), action = { handleDeleteMessage(message.messageRecord) }))
     if (canCopy) {
-      items.add(ActionItem(R.drawable.symbol_copy_android_24, resources.getString(R.string.conversation_selection__menu_copy), action = { handleCopyMessage(message) }))
+      items.add(ActionItem(CoreUiR.drawable.symbol_copy_android_24, resources.getString(R.string.conversation_selection__menu_copy), action = { handleCopyMessage(message) }))
     }
     items.add(ActionItem(R.drawable.symbol_send_24, resources.getString(R.string.ScheduledMessagesBottomSheet_menu_send_now), action = { handleSendMessageNow(message.messageRecord) }))
     items.add(ActionItem(R.drawable.symbol_calendar_24, resources.getString(R.string.ScheduledMessagesBottomSheet_menu_reschedule), action = { handleRescheduleMessage(message.messageRecord) }))

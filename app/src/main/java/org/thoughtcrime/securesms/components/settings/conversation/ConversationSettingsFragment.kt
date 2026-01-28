@@ -107,6 +107,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 private const val REQUEST_CODE_VIEW_CONTACT = 1
 private const val REQUEST_CODE_ADD_CONTACT = 2
@@ -429,7 +430,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
               Permissions.with(this@ConversationSettingsFragment)
                 .request(Manifest.permission.CAMERA)
                 .ifNecessary()
-                .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.symbol_camera_24)
+                .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), CoreUiR.drawable.symbol_camera_24)
                 .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos_videos, getParentFragmentManager())
                 .onAllGranted { addToGroupStoryDelegate.addToStory(state.recipient.id) }
                 .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
@@ -539,7 +540,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       if (state.recipient.isIndividual && !state.recipient.isSelf) {
         clickPref(
           title = DSLSettingsText.from(R.string.NicknameActivity__nickname),
-          icon = DSLSettingsIcon.from(R.drawable.symbol_edit_24),
+          icon = DSLSettingsIcon.from(CoreUiR.drawable.symbol_edit_24),
           onClick = {
             nicknameLauncher.launch(
               NicknameActivity.Args(

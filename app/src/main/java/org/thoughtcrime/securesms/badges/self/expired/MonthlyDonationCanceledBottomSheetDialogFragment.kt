@@ -21,11 +21,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,6 +32,7 @@ import androidx.fragment.app.FragmentManager
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
@@ -152,7 +151,7 @@ private fun MonthlyDonationCanceled(
         )
 
         Image(
-          imageVector = ImageVector.vectorResource(id = R.drawable.symbol_error_circle_fill_24),
+          imageVector = SignalIcons.ErrorCircle.imageVector,
           contentScale = ContentScale.Inside,
           contentDescription = null,
           colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.error),

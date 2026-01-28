@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
@@ -142,7 +143,7 @@ private fun OnboardingMegaphoneListItem(
         modifier = Modifier.align(Alignment.TopEnd)
       ) {
         Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_x_24),
+          imageVector = SignalIcons.X.imageVector,
           tint = colorResource(R.color.signal_light_colorOutline),
           contentDescription = stringResource(R.string.Material3SearchToolbar__close)
         )

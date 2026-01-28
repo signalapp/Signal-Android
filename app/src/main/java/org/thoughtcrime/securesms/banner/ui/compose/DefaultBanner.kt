@@ -28,14 +28,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.R
 
@@ -148,7 +147,7 @@ fun DefaultBanner(
                 modifier = Modifier.size(48.dp)
               ) {
                 Icon(
-                  imageVector = ImageVector.vectorResource(id = R.drawable.symbol_x_24),
+                  imageVector = SignalIcons.X.imageVector,
                   contentDescription = stringResource(id = R.string.InviteActivity_cancel),
                   tint = when (importance) {
                     Importance.NORMAL -> MaterialTheme.colorScheme.onSurfaceVariant

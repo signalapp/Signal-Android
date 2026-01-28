@@ -55,7 +55,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -63,12 +62,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -82,6 +79,7 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
@@ -448,7 +446,7 @@ private fun RemoteBackupsSettingsContent(
           Text(text = title, style = MaterialTheme.typography.titleLarge)
         },
         onNavigationClick = contentCallbacks::onNavigationClick,
-        navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+        navigationIcon = SignalIcons.ArrowStart.imageVector,
         navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
         scrollBehavior = scrollBehavior
       )
@@ -1178,7 +1176,7 @@ private fun OutOfStorageSpaceBlock(
       .padding(vertical = 12.dp)
   ) {
     Icon(
-      imageVector = ImageVector.vectorResource(R.drawable.symbol_error_circle_fill_24),
+      imageVector = SignalIcons.ErrorCircle.imageVector,
       tint = MaterialTheme.colorScheme.error,
       contentDescription = null,
       modifier = Modifier
@@ -1485,7 +1483,7 @@ private fun ArchiveProgressIndicator(
     if (isCancelable) {
       IconButton(onClick = cancel) {
         Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_x_24),
+          imageVector = SignalIcons.X.imageVector,
           contentDescription = stringResource(R.string.RemoteBackupsSettingsFragment__cancel_upload)
         )
       }

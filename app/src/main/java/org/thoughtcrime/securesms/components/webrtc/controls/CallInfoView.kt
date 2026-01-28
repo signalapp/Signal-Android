@@ -55,6 +55,7 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarImage
@@ -177,7 +178,7 @@ private fun CallInfo(
       item {
         Rows.TextRow(
           text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
-          icon = painterResource(id = R.drawable.symbol_link_24),
+          icon = SignalIcons.Link.painter,
           iconModifier = Modifier
             .background(
               color = MaterialTheme.colorScheme.surfaceVariant,
@@ -552,7 +553,7 @@ private fun UnknownMembersRow(
     var displayDialog by remember { mutableStateOf(false) }
 
     Icon(
-      painter = painterResource(id = R.drawable.symbol_info_24),
+      painter = SignalIcons.Info.painter,
       contentDescription = stringResource(id = R.string.CallInfoView__more_information),
       modifier = Modifier.clickable(onClick = {
         displayDialog = true

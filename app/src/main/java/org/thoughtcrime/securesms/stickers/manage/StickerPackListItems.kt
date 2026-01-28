@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.nullIfBlank
 import org.signal.glide.compose.GlideImage
@@ -131,7 +132,7 @@ fun AvailableStickerPackRow(
       )
 
       MenuItem(
-        icon = ImageVector.vectorResource(R.drawable.symbol_forward_24),
+        icon = SignalIcons.Forward.imageVector,
         text = stringResource(R.string.StickerManagement_menu_forward_pack),
         onClick = {
           onForwardClick(pack)
@@ -199,7 +200,7 @@ fun InstalledStickerPackRow(
       modifier = modifier.background(SignalTheme.colors.colorSurface2)
     ) {
       MenuItem(
-        icon = ImageVector.vectorResource(R.drawable.symbol_forward_24),
+        icon = SignalIcons.Forward.imageVector,
         text = stringResource(R.string.StickerManagement_menu_forward_pack),
         onClick = {
           onForwardClick(pack)
@@ -208,7 +209,7 @@ fun InstalledStickerPackRow(
       )
 
       MenuItem(
-        icon = ImageVector.vectorResource(R.drawable.symbol_check_circle_24),
+        icon = SignalIcons.CheckCircle.imageVector,
         text = stringResource(R.string.StickerManagement_menu_select_pack),
         onClick = {
           onSelectionToggle(pack)
@@ -217,7 +218,7 @@ fun InstalledStickerPackRow(
       )
 
       MenuItem(
-        icon = ImageVector.vectorResource(R.drawable.symbol_trash_24),
+        icon = SignalIcons.Trash.imageVector,
         text = stringResource(R.string.StickerManagement_menu_remove_pack),
         onClick = {
           onRemoveClick(pack)
@@ -402,7 +403,7 @@ private fun MenuItem(
 @Composable
 private fun MenuItemPreview() = Previews.Preview {
   MenuItem(
-    icon = ImageVector.vectorResource(R.drawable.symbol_forward_24),
+    icon = SignalIcons.Forward.imageVector,
     text = "Forward",
     onClick = { }
   )

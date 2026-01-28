@@ -35,6 +35,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.signal.core.ui.R as CoreUiR
 
@@ -50,7 +51,7 @@ fun MessageBackupsKeyEducationScreen(
 
   Scaffolds.Settings(
     title = "",
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
     onNavigationClick = onNavigationClick
   ) {
     Column(
@@ -82,7 +83,7 @@ fun MessageBackupsKeyEducationScreen(
       )
 
       InfoRow(
-        R.drawable.symbol_lock_24,
+        CoreUiR.drawable.symbol_lock_24,
         R.string.MessageBackupsKeyEducationScreen__store_your_recovery
       )
 

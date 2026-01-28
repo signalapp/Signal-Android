@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.setRelativeDrawables
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * RecyclerView Adapter for the Call Log screen
@@ -390,7 +391,7 @@ class CallLogAdapter(
     private fun presentCallType(model: CallModel) {
       when (model.call.record.type) {
         CallTable.Type.AUDIO_CALL -> {
-          binding.callType.setImageResource(R.drawable.symbol_phone_24)
+          binding.callType.setImageResource(CoreUiR.drawable.symbol_phone_24)
           binding.callType.contentDescription = context.getString(R.string.CallLogAdapter__start_a_voice_call)
           binding.callType.setOnClickListener { onStartAudioCallClicked(model.call.peer) }
           binding.callType.visible = true

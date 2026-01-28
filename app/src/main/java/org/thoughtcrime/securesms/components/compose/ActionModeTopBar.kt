@@ -14,12 +14,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 
 /**
@@ -40,7 +39,7 @@ fun ActionModeTopBar(
     navigationIcon = {
       IconButtons.IconButton(onClick = onCloseClick) {
         Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_x_24),
+          imageVector = SignalIcons.X.imageVector,
           contentDescription = stringResource(R.string.CallScreenTopBar__go_back)
         )
       }

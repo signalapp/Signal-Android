@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.nio.charset.StandardCharsets
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Fragment to display a user's identity key.
@@ -123,13 +124,13 @@ class VerifyDisplayFragment : Fragment() {
       }
       AutomaticVerificationStatus.UNAVAILABLE_PERMANENT -> {
         binding.autoVerifyText.text = getString(R.string.verify_display_fragment__encryption_unavailable)
-        binding.autoVerifyIcon.setImageResource(R.drawable.symbol_info_24)
+        binding.autoVerifyIcon.setImageResource(CoreUiR.drawable.symbol_info_24)
         ImageViewCompat.setImageTintList(binding.autoVerifyIcon, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant)))
         binding.autoVerifyMore.visible = true
       }
       AutomaticVerificationStatus.UNAVAILABLE_TEMPORARY -> {
         binding.autoVerifyText.text = getString(R.string.verify_display_fragment__encryption_unavailable)
-        binding.autoVerifyIcon.setImageResource(R.drawable.symbol_info_24)
+        binding.autoVerifyIcon.setImageResource(CoreUiR.drawable.symbol_info_24)
         ImageViewCompat.setImageTintList(binding.autoVerifyIcon, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant)))
         binding.autoVerifyMore.visible = true
       }

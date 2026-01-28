@@ -65,6 +65,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.ThreadUtil;
@@ -1301,7 +1302,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       }
     }
 
-    items.add(new ActionItem(R.drawable.symbol_check_circle_24, getString(R.string.ConversationListFragment_select), () -> {
+    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_check_circle_24, getString(R.string.ConversationListFragment_select), () -> {
       viewModel.startSelection(conversation);
       startActionMode();
     }));
@@ -1322,7 +1323,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(id)));
     }
 
-    items.add(new ActionItem(R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(id)));
+    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(id)));
 
     activeContextMenu = new SignalContextMenu.Builder(view, list)
         .offsetX(ViewUtil.dpToPx(12))
@@ -1429,7 +1430,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(selectionIds)));
     }
 
-    items.add(new ActionItem(R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(selectionIds)));
+    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(selectionIds)));
 
     if (hasUnmuted) {
       items.add(new ActionItem(R.drawable.symbol_bell_slash_24, getResources().getString(R.string.ConversationListFragment_mute), () -> handleMute(viewModel.currentSelectedConversations())));
@@ -1437,7 +1438,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       items.add(new ActionItem(R.drawable.symbol_bell_24, getResources().getString(R.string.ConversationListFragment_unmute), () -> handleUnmute(viewModel.currentSelectedConversations())));
     }
 
-    items.add(new ActionItem(R.drawable.symbol_check_circle_24, getString(R.string.ConversationListFragment_select_all), viewModel::onSelectAllClick));
+    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_check_circle_24, getString(R.string.ConversationListFragment_select_all), viewModel::onSelectAllClick));
 
     if (!isArchived()) {
       items.add(new ActionItem(R.drawable.symbol_folder_add, getString(R.string.ConversationListFragment_add_to_folder), () -> {

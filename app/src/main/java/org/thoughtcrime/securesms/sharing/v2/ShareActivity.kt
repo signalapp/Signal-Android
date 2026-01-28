@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.TimeUnit
+import org.signal.core.ui.R as CoreUiR
 
 class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.Callback {
 
@@ -109,7 +110,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
 
     if (intent?.getBooleanExtra(EXTRA_NAVIGATION, false) == true) {
       toolbar.setTitle(getTitleFromExtras())
-      toolbar.setNavigationIcon(R.drawable.symbol_arrow_start_24)
+      toolbar.setNavigationIcon(CoreUiR.drawable.symbol_arrow_start_24)
       toolbar.setNavigationOnClickListener { finish() }
     } else {
       toolbar.visible = false

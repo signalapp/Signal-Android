@@ -22,6 +22,7 @@ import com.airbnb.lottie.SimpleColorFilter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.EditTextUtil;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SimpleTask;
@@ -46,6 +47,7 @@ import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.EXCLUDE_SYSTEM;
 import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.GROUP_ID;
@@ -296,7 +298,7 @@ public class CreateProfileFragment extends LoggingFragment {
         binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_everyone);
         break;
       case NOT_DISCOVERABLE:
-        binding.whoCanFindMeIcon.setImageResource(R.drawable.symbol_lock_24);
+        binding.whoCanFindMeIcon.setImageResource(org.signal.core.ui.R.drawable.symbol_lock_24);
         binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_nobody);
         break;
     }

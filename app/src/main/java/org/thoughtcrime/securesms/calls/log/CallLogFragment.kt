@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.window.getWindowSizeClass
 import org.thoughtcrime.securesms.window.isSplitPane
 import java.util.Objects
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Call Log tab.
@@ -161,13 +162,13 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     binding.bottomActionBar.setItems(
       listOf(
         ActionItem(
-          iconRes = R.drawable.symbol_check_circle_24,
+          iconRes = CoreUiR.drawable.symbol_check_circle_24,
           title = getString(R.string.CallLogFragment__select_all)
         ) {
           viewModel.selectAll()
         },
         ActionItem(
-          iconRes = R.drawable.symbol_trash_24,
+          iconRes = CoreUiR.drawable.symbol_trash_24,
           title = getString(R.string.CallLogFragment__delete),
           action = this::handleDeleteSelectedRows
         )

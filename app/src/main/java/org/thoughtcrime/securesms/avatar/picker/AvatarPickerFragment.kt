@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Primary Avatar picker fragment, displays current user avatar and a list of recently used avatars and defaults.
@@ -231,7 +232,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
           val intent = AvatarSelectionActivity.getIntentForCameraCapture(requireContext())
           startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
         }
-        .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_allow_camera), R.drawable.symbol_camera_24)
+        .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_allow_camera), CoreUiR.drawable.symbol_camera_24)
         .withPermanentDenialDialog(getString(R.string.AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos, getParentFragmentManager())
         .onAnyDenied { Toast.makeText(requireContext(), R.string.AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission, Toast.LENGTH_SHORT).show() }
         .execute()

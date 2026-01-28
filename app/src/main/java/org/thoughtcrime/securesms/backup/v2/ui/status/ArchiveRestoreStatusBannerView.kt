@@ -37,12 +37,14 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.mebiBytes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState.RestoreStatus
 import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
+import org.signal.core.ui.R as CoreUiR
 
 private const val NONE = -1
 
@@ -136,7 +138,7 @@ fun ArchiveRestoreStatusBanner(
       val interactionSource = remember { MutableInteractionSource() }
 
       Icon(
-        painter = painterResource(id = R.drawable.symbol_x_24),
+        painter = SignalIcons.X.painter,
         contentDescription = stringResource(R.string.Material3SearchToolbar__close),
         tint = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier
@@ -164,14 +166,14 @@ private fun ArchiveRestoreProgressState.iconResource(): Int {
         RestoreStatus.LOW_BATTERY -> R.drawable.symbol_backup_light
 
         RestoreStatus.NOT_ENOUGH_DISK_SPACE -> R.drawable.symbol_backup_error_24
-        RestoreStatus.FINISHED -> R.drawable.symbol_check_circle_24
+        RestoreStatus.FINISHED -> CoreUiR.drawable.symbol_check_circle_24
         RestoreStatus.NONE -> throw IllegalStateException()
       }
     }
 
     RestoreState.NONE -> {
       if (this.restoreStatus == RestoreStatus.FINISHED) {
-        R.drawable.symbol_check_circle_24
+        CoreUiR.drawable.symbol_check_circle_24
       } else {
         throw IllegalStateException()
       }

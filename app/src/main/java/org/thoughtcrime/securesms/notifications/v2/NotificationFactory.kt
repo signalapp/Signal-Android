@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Given a notification state consisting of conversations of messages, show appropriate system notifications.
@@ -432,7 +433,7 @@ object NotificationFactory {
 
     builder.apply {
       setSmallIcon(R.drawable.ic_notification)
-      setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.symbol_info_24))
+      setLargeIcon(BitmapFactory.decodeResource(context.resources, CoreUiR.drawable.symbol_info_24))
       setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_paused))
       setContentText(context.getString(R.string.MessageNotifier_verify_to_continue_messaging_on_signal))
       setContentIntent(NotificationPendingIntentHelper.getActivity(context, 0, intent, PendingIntentFlags.mutable()))

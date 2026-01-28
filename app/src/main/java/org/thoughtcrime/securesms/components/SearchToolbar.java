@@ -18,10 +18,13 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.ui.compose.SignalIcons;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.util.EditTextExtensionsKt;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import java.util.Objects;
 
 public class SearchToolbar extends LinearLayout {
 
@@ -50,7 +53,7 @@ public class SearchToolbar extends LinearLayout {
 
     Toolbar toolbar = findViewById(R.id.toolbar);
 
-    Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.symbol_arrow_start_24);
+    Drawable drawable = ContextCompat.getDrawable(getContext(), org.signal.core.ui.R.drawable.symbol_arrow_start_24);
     toolbar.setNavigationIcon(drawable);
     toolbar.setCollapseIcon(drawable);
     toolbar.inflateMenu(R.menu.conversation_list_search);

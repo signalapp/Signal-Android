@@ -17,13 +17,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.thoughtcrime.securesms.R
+import org.signal.core.ui.compose.SignalIcons
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3AdaptiveApi::class)
 @AllDevicePreviews
@@ -39,7 +37,7 @@ private fun AppScaffoldWithTopBarPreview() {
         Scaffolds.DefaultTopAppBar(
           title = "Hello World!",
           titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
-          navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+          navigationIcon = SignalIcons.ArrowStart.imageVector,
           navigationContentDescription = "",
           onNavigationClick = { }
         )

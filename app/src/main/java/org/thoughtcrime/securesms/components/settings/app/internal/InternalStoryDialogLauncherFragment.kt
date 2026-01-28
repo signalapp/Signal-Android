@@ -7,14 +7,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.SignalTheme
@@ -101,7 +100,7 @@ fun InternalStoryDialogLauncherScreen(
   Scaffolds.Settings(
     title = stringResource(R.string.preferences__internal_stories_dialog_launcher),
     onNavigationClick = callback::onNavigationClick,
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24)
+    navigationIcon = SignalIcons.ArrowStart.imageVector
   ) { paddingValues ->
     LazyColumn(
       modifier = Modifier.padding(paddingValues)

@@ -11,12 +11,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 
 /**
@@ -41,7 +41,7 @@ object Permissions {
   ): Controller {
     return permissionHandler(
       permission = android.Manifest.permission.CAMERA,
-      icon = painterResource(id = R.drawable.symbol_camera_24),
+      icon = SignalIcons.Camera.painter,
       rationale = rationale,
       onPermissionGranted = onPermissionGranted
     )

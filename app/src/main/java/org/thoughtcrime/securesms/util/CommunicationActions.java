@@ -421,7 +421,7 @@ public class CommunicationActions {
     callContext.getPermissionsBuilder()
                .request(Manifest.permission.RECORD_AUDIO)
                .ifNecessary()
-               .withRationaleDialog(callContext.getContext().getString(R.string.ConversationActivity_allow_access_microphone), callContext.getContext().getString(R.string.ConversationActivity__to_call_signal_needs_access_to_your_microphone), R.drawable.symbol_phone_24)
+               .withRationaleDialog(callContext.getContext().getString(R.string.ConversationActivity_allow_access_microphone), callContext.getContext().getString(R.string.ConversationActivity__to_call_signal_needs_access_to_your_microphone), org.signal.core.ui.R.drawable.symbol_phone_24)
                .withPermanentDenialDialog(callContext.getContext().getString(R.string.ConversationActivity__to_call_signal_needs_access_to_your_microphone), null, R.string.ConversationActivity_allow_access_microphone, R.string.ConversationActivity__to_start_call, callContext.getFragmentManager())
                .onAnyDenied(() -> Toast.makeText(callContext.getContext(), R.string.ConversationActivity_signal_needs_microphone_access_voice_call, Toast.LENGTH_LONG).show())
                .onAllGranted(() -> {

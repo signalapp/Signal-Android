@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Context menu for row items on the Call Log screen.
@@ -88,7 +89,7 @@ class CallLogContextMenu(
     }
 
     return ActionItem(
-      iconRes = R.drawable.symbol_phone_24,
+      iconRes = CoreUiR.drawable.symbol_phone_24,
       title = fragment.getString(R.string.CallContextMenu__audio_call)
     ) {
       CommunicationActions.startVoiceCall(fragment, call.peer) {
@@ -114,7 +115,7 @@ class CallLogContextMenu(
 
   private fun getInfoActionItem(peer: Recipient, messageIds: LongArray): ActionItem {
     return ActionItem(
-      iconRes = R.drawable.symbol_info_24,
+      iconRes = CoreUiR.drawable.symbol_info_24,
       title = fragment.getString(R.string.CallContextMenu__info)
     ) {
       val intent = when {
@@ -127,7 +128,7 @@ class CallLogContextMenu(
 
   private fun getSelectActionItem(call: CallLogRow): ActionItem {
     return ActionItem(
-      iconRes = R.drawable.symbol_check_circle_24,
+      iconRes = CoreUiR.drawable.symbol_check_circle_24,
       title = fragment.getString(R.string.CallContextMenu__select)
     ) {
       callbacks.startSelection(call)
@@ -140,7 +141,7 @@ class CallLogContextMenu(
     }
 
     return ActionItem(
-      iconRes = R.drawable.symbol_trash_24,
+      iconRes = CoreUiR.drawable.symbol_trash_24,
       title = fragment.getString(R.string.CallContextMenu__delete)
     ) {
       callbacks.deleteCall(call)

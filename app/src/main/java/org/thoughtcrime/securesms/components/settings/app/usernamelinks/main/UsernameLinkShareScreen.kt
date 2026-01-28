@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,6 +35,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeBadge
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import java.util.UUID
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * A screen that shows all the data around your username link and how to share it, including a QR code.
@@ -149,12 +150,12 @@ private fun ButtonBar(
     Buttons.ActionButton(
       enabled = linkState is UsernameLinkState.Present,
       onClick = onLinkClicked,
-      iconResId = R.drawable.symbol_link_24,
+      iconResId = CoreUiR.drawable.symbol_link_24,
       labelResId = R.string.UsernameLinkSettings_link_button_label
     )
     Buttons.ActionButton(
       onClick = onShareClicked,
-      iconResId = R.drawable.symbol_share_android_24,
+      iconResId = CoreUiR.drawable.symbol_share_android_24,
       labelResId = R.string.UsernameLinkSettings_share_button_label
     )
     Buttons.ActionButton(
@@ -189,7 +190,7 @@ private fun LinkRow(linkState: UsernameLinkState, onClick: () -> Unit = {}) {
       .alpha(if (linkState is UsernameLinkState.Present) 1.0f else 0.6f)
   ) {
     Image(
-      painter = painterResource(id = R.drawable.symbol_link_24),
+      painter = SignalIcons.Link.painter,
       contentDescription = null,
       colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
     )

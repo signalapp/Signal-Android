@@ -40,12 +40,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -65,6 +63,7 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.BiometricDeviceLockContract
@@ -189,7 +188,7 @@ class LinkDeviceFragment : ComposeFragment() {
     Scaffolds.Settings(
       title = stringResource(id = R.string.preferences__linked_devices),
       onNavigationClick = { navController.popOrFinish() },
-      navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24),
+      navigationIcon = SignalIcons.ArrowStart.imageVector,
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding: PaddingValues ->
       DeviceListScreen(
@@ -470,7 +469,7 @@ fun DeviceListScreen(
         val inlineContentMap = mapOf(
           "icon" to InlineTextContent(Placeholder(16.sp, 16.sp, PlaceholderVerticalAlign.Center)) {
             Image(
-              imageVector = ImageVector.vectorResource(id = R.drawable.symbol_lock_24),
+              imageVector = SignalIcons.Lock.imageVector,
               contentDescription = null,
               modifier = Modifier.fillMaxSize(),
               colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
@@ -572,7 +571,7 @@ fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit, onEditDevice:
               modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
             ) {
               Icon(
-                painter = painterResource(id = R.drawable.symbol_edit_24),
+                painter = SignalIcons.Edit.painter,
                 contentDescription = null,
                 modifier = Modifier.size(24.dp)
               )

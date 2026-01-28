@@ -23,9 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
@@ -33,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.compose.ComposeFragment
 
 /**
@@ -45,7 +44,7 @@ class InviteFragment : ComposeFragment() {
     Scaffolds.Settings(
       title = stringResource(id = R.string.AndroidManifest__invite_friends),
       onNavigationClick = { requireActivity().onNavigateUp() },
-      navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24),
+      navigationIcon = SignalIcons.ArrowStart.imageVector,
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding: PaddingValues ->
       InviteScreen(
@@ -100,7 +99,7 @@ fun InviteScreen(
         .padding(vertical = 16.dp)
     ) {
       Icon(
-        imageVector = ImageVector.vectorResource(R.drawable.symbol_share_android_24),
+        imageVector = SignalIcons.Share.imageVector,
         contentDescription = stringResource(R.string.InviteActivity_share)
       )
 

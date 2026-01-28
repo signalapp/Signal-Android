@@ -42,6 +42,7 @@ import androidx.core.widget.TextViewCompat
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.AvatarPreviewActivity
@@ -220,7 +221,7 @@ private fun Content(
       val textColor = LocalContentColor.current
 
       AboutRow(
-        startIcon = ImageVector.vectorResource(R.drawable.symbol_edit_24),
+        startIcon = SignalIcons.Edit.imageVector,
         text = {
           Row {
             AndroidView(factory = ::EmojiTextView) {
@@ -289,7 +290,7 @@ private fun Content(
 
     if (model.formattedE164.isNotNullOrBlank()) {
       AboutRow(
-        startIcon = ImageVector.vectorResource(R.drawable.symbol_phone_24),
+        startIcon = SignalIcons.Phone.imageVector,
         text = model.formattedE164,
         modifier = Modifier.fillMaxWidth()
       )

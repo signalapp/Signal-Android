@@ -37,10 +37,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -65,6 +63,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.BaseActivity
@@ -352,7 +351,7 @@ private fun BackupAvailableContent(
         )
       } else {
         Icon(
-          imageVector = ImageVector.vectorResource(id = R.drawable.symbol_backup_24),
+          imageVector = SignalIcons.Backup.imageVector,
           contentDescription = null,
           tint = MaterialTheme.colorScheme.primary,
           modifier = Modifier

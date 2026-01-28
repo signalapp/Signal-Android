@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.logging.Log;
 import org.signal.imageeditor.core.ImageEditorView;
 import org.signal.imageeditor.core.model.EditorElement;
@@ -102,7 +103,7 @@ public final class WallpaperCropActivity extends BaseActivity {
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     ActionBar supportActionBar = Objects.requireNonNull(getSupportActionBar());
-    supportActionBar.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.symbol_arrow_start_24));
+    supportActionBar.setHomeAsUpIndicator(ContextCompat.getDrawable(this, org.signal.core.ui.R.drawable.symbol_arrow_start_24));
     supportActionBar.setDisplayHomeAsUpEnabled(true);
 
     blur.setOnCheckedChangeListener((v, checked) -> viewModel.setBlur(checked));

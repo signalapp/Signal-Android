@@ -42,12 +42,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
@@ -68,6 +66,7 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.util.E164Util
 import org.signal.core.util.getParcelableExtraCompat
@@ -134,7 +133,7 @@ class FindByActivity : PassphraseRequiredActivity() {
             Scaffolds.Settings(
               title = stringResource(id = title),
               onNavigationClick = { finishAfterTransition() },
-              navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
+              navigationIcon = SignalIcons.ArrowStart.imageVector
             ) {
               Content(
                 paddingValues = it,
@@ -390,7 +389,7 @@ private fun Content(
         contentAlignment = Alignment.Center
       ) {
         Buttons.Small(onClick = onQrCodeScanClicked) {
-          Icon(painter = painterResource(id = R.drawable.symbol_qrcode_24), contentDescription = stringResource(id = R.string.FindByActivity__qr_scan_button))
+          Icon(painter = SignalIcons.QrCode.painter, contentDescription = stringResource(id = R.string.FindByActivity__qr_scan_button))
           Spacer(modifier = Modifier.width(10.dp))
           Text(
             text = stringResource(id = R.string.FindByActivity__qr_scan_button),

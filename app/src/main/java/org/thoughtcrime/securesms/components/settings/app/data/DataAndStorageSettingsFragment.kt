@@ -8,11 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
@@ -22,6 +20,7 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.R
@@ -114,7 +113,7 @@ private fun DataAndStorageSettingsScreen(
   Scaffolds.Settings(
     title = stringResource(R.string.preferences__data_and_storage),
     onNavigationClick = callbacks::onNavigationClick,
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24)
+    navigationIcon = SignalIcons.ArrowStart.imageVector
   ) { paddingValues ->
     LazyColumn(
       modifier = Modifier

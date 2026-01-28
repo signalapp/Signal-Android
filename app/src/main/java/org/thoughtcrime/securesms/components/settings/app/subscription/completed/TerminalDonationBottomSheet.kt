@@ -28,7 +28,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -38,6 +37,7 @@ import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -172,7 +172,7 @@ private fun DonationPaymentFailureBottomSheet(
       )
 
       Icon(
-        painter = painterResource(id = R.drawable.symbol_error_circle_fill_24),
+        painter = SignalIcons.ErrorCircle.painter,
         tint = MaterialTheme.colorScheme.error,
         contentDescription = null,
         modifier = Modifier.align(Alignment.TopEnd)

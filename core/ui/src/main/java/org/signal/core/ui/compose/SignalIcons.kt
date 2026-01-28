@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.R
 
@@ -30,10 +31,28 @@ import org.signal.core.ui.R
  * Signal icon library with all available icons.
  */
 enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
-  Keyboard(icon(R.drawable.ic_keyboard_24)),
+  ArrowStart(icon(R.drawable.symbol_arrow_start_24)),
+  At(icon(R.drawable.symbol_at_24)),
+  Backup(icon(R.drawable.symbol_backup_24)),
   Camera(icon(R.drawable.symbol_camera_24)),
+  CheckCircle(icon(R.drawable.symbol_check_circle_24)),
+  Copy(icon(R.drawable.symbol_copy_android_24)),
+  Edit(icon(R.drawable.symbol_edit_24)),
+  ErrorCircle(icon(R.drawable.symbol_error_circle_fill_24)),
+  Forward(icon(R.drawable.symbol_forward_24)),
+  Info(icon(R.drawable.symbol_info_24)),
+  Keyboard(icon(R.drawable.ic_keyboard_24)),
+  Link(icon(R.drawable.symbol_link_24)),
+  Lock(icon(R.drawable.symbol_lock_24)),
+  MoreVertical(icon(R.drawable.symbol_more_vertical_24)),
   Phone(icon(R.drawable.symbol_phone_24)),
-  QrCode(icon(R.drawable.symbol_qrcode_24))
+  Plus(icon(R.drawable.symbol_plus_24)),
+  QrCode(icon(R.drawable.symbol_qrcode_24)),
+  Search(icon(R.drawable.symbol_search_24)),
+  Settings(icon(R.drawable.symbol_settings_android_24)),
+  Share(icon(R.drawable.symbol_share_android_24)),
+  Trash(icon(R.drawable.symbol_trash_24)),
+  X(icon(R.drawable.symbol_x_24))
 }
 
 private fun icon(@DrawableRes id: Int) = SignalIcon.DrawableIcon(id)
@@ -43,6 +62,9 @@ sealed interface SignalIcon {
   @get:Composable
   val painter: Painter
 
+  @get:Composable
+  val imageVector: ImageVector
+
   /**
    * Icon backed by an XML drawable resource.
    */
@@ -51,6 +73,10 @@ sealed interface SignalIcon {
     @get:Composable
     override val painter: Painter
       get() = painterResource(drawableId)
+
+    @get:Composable
+    override val imageVector: ImageVector
+      get() = ImageVector.vectorResource(drawableId)
   }
 
   /**
@@ -61,6 +87,10 @@ sealed interface SignalIcon {
     @get:Composable
     override val painter: Painter
       get() = rememberVectorPainter(image)
+
+    @get:Composable
+    override val imageVector: ImageVector
+      get() = image
   }
 }
 

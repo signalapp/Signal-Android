@@ -18,12 +18,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.mebiBytes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.RestoreState
@@ -89,7 +89,7 @@ fun BackupStatusRow(
           onClick = onCancelClick
         ) {
           Icon(
-            painter = painterResource(R.drawable.symbol_x_24),
+            painter = SignalIcons.X.painter,
             contentDescription = stringResource(R.string.BackupStatusRow__cancel_download)
           )
         }

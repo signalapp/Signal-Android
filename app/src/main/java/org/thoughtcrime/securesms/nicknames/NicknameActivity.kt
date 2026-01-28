@@ -37,11 +37,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
@@ -51,6 +49,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
@@ -217,7 +216,7 @@ private fun NicknameContent(
   Scaffolds.Settings(
     title = stringResource(id = R.string.NicknameActivity__nickname),
     onNavigationClick = callback::onNavigationClick,
-    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
+    navigationIcon = SignalIcons.ArrowStart.imageVector
   ) { paddingValues ->
 
     val firstNameFocusRequester = remember { FocusRequester() }

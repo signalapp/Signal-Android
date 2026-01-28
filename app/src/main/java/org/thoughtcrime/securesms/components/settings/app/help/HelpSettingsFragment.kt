@@ -24,6 +24,7 @@ import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Rows.TextAndLabel
 import org.signal.core.ui.compose.Rows.defaultPadding
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -41,7 +42,7 @@ class HelpSettingsFragment : ComposeFragment() {
     Scaffolds.Settings(
       title = stringResource(R.string.preferences__help),
       onNavigationClick = { navController.popBackStack() },
-      navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24),
+      navigationIcon = SignalIcons.ArrowStart.imageVector,
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding ->
       LazyColumn(

@@ -14,9 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -31,6 +29,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
@@ -158,7 +157,7 @@ private fun AddAllowedMembersContent(
   Scaffolds.Settings(
     title = "",
     onNavigationClick = callbacks::onNavigationClick,
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
     snackbarHost = {
       Snackbars.Host(snackbarHostState)
     }
@@ -229,7 +228,7 @@ private fun AddAllowedMembersContent(
           Rows.ToggleRow(
             checked = state.profile.allowAllCalls,
             text = stringResource(R.string.AddAllowedMembers__allow_all_calls),
-            icon = ImageVector.vectorResource(R.drawable.symbol_phone_24),
+            icon = SignalIcons.Phone.imageVector,
             onCheckChanged = callbacks::onAllowAllCallsChanged
           )
         }
@@ -238,7 +237,7 @@ private fun AddAllowedMembersContent(
           Rows.ToggleRow(
             checked = state.profile.allowAllMentions,
             text = stringResource(R.string.AddAllowedMembers__notify_for_all_mentions),
-            icon = ImageVector.vectorResource(R.drawable.symbol_at_24),
+            icon = SignalIcons.At.imageVector,
             onCheckChanged = callbacks::onNotifyForAllMentionsChanged
           )
         }

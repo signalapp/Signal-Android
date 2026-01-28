@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.isPoll
 import org.thoughtcrime.securesms.util.isViewOnceMessage
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * A context menu shown when long pressing on a pinned messages
@@ -70,7 +71,7 @@ object PinnedContextMenu {
         !message.hasGiftBadge()
       ) {
         add(
-          ActionItem(R.drawable.symbol_copy_android_24, context.getString(R.string.conversation_selection__menu_copy)) {
+          ActionItem(CoreUiR.drawable.symbol_copy_android_24, context.getString(R.string.conversation_selection__menu_copy)) {
             callbacks.onCopy()
           }
         )
@@ -78,7 +79,7 @@ object PinnedContextMenu {
 
       if (!message.isRemoteDelete) {
         add(
-          ActionItem(R.drawable.symbol_trash_24, context.getString(R.string.conversation_selection__menu_delete)) {
+          ActionItem(CoreUiR.drawable.symbol_trash_24, context.getString(R.string.conversation_selection__menu_delete)) {
             callbacks.onDelete()
           }
         )
