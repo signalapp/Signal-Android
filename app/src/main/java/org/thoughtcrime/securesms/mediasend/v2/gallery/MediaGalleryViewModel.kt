@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.mediasend.v2.gallery
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import org.thoughtcrime.securesms.mediasend.MediaFolder
+import org.signal.core.models.media.MediaFolder
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class MediaGalleryViewModel(bucketId: String?, bucketTitle: String?, private val repository: MediaGalleryRepository) : ViewModel() {

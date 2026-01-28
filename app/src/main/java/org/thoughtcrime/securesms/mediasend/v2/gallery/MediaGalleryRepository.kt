@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.mediasend.v2.gallery
 
 import android.content.Context
 import org.signal.core.models.media.Media
-import org.thoughtcrime.securesms.mediasend.MediaFolder
+import org.signal.core.models.media.MediaFolder
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 
 class MediaGalleryRepository(context: Context, private val mediaRepository: MediaRepository) {

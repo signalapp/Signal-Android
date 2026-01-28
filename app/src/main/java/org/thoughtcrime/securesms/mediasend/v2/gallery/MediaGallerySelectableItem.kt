@@ -15,10 +15,10 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.imageview.ShapeableImageView
 import org.signal.core.models.media.Media
+import org.signal.core.models.media.MediaFolder
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mediasend.MediaFolder
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaGalleryGridItemTouchListener
 import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.mms.PartAuthority

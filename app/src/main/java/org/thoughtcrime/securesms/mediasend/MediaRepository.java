@@ -22,6 +22,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.signal.core.models.media.Media;
+import org.signal.core.models.media.MediaFolder;
 import org.signal.core.models.media.TransformProperties;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -154,14 +155,15 @@ public class MediaRepository {
 
     String            cameraBucketId = imageFolders.getCameraBucketId() != null ? imageFolders.getCameraBucketId() : videoFolders.getCameraBucketId();
     FolderData        cameraFolder   = cameraBucketId != null ? folders.remove(cameraBucketId) : null;
-    List<MediaFolder> mediaFolders   = Stream.of(folders.values()).map(folder -> new MediaFolder(folder.getThumbnail(),
-                                                                                                 folder.getTitle(),
-                                                                                                 folder.getCount(),
-                                                                                                 folder.getBucketId(),
-                                                                                                 MediaFolder.FolderType.NORMAL))
-                                                                  .filter(folder -> folder.getTitle() != null)
-                                                                  .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase()))
-                                                                  .toList();
+    List<MediaFolder> mediaFolders   = Stream.of(folders.values())
+                                             .filter(folder -> folder.getTitle() != null)
+                                             .map(folder -> new MediaFolder(folder.getThumbnail(),
+                                                                            folder.getTitle(),
+                                                                            folder.getCount(),
+                                                                            folder.getBucketId(),
+                                                                            MediaFolder.FolderType.NORMAL))
+                                             .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase()))
+                                             .toList();
 
     Uri allMediaThumbnail = imageFolders.getThumbnailTimestamp() > videoFolders.getThumbnailTimestamp() ? imageFolders.getThumbnail() : videoFolders.getThumbnail();
 
