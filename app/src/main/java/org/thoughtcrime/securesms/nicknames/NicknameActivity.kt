@@ -10,7 +10,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,12 +19,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -36,21 +32,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ClearableTextField
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
-import org.signal.core.ui.compose.TextFields
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -292,7 +286,8 @@ private fun NicknameContent(
             onValueChange = callback::onNoteChanged,
             keyboardActions = KeyboardActions.Default,
             keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
-            charactersRemaining = state.noteCharactersRemaining,
+            charactersRemainingBeforeLimit = state.noteCharactersRemaining,
+            countdownConfig = ClearableTextField.CountdownConfig(displayThreshold = 100, warnThreshold = 5),
             modifier = Modifier
               .focusRequester(noteFocusRequester)
               .fillMaxWidth()
@@ -354,135 +349,6 @@ private fun NicknameContent(
           firstNameFocusRequester.requestFocus()
         }
       }
-    }
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun ClearableTextFieldPreview() {
-  Previews.Preview {
-    val focusRequester = remember { FocusRequester() }
-
-    Column(modifier = Modifier.padding(16.dp)) {
-      ClearableTextField(
-        value = "",
-        hint = "Without content",
-        enabled = true,
-        onValueChange = {},
-        clearContentDescription = ""
-      )
-      Spacer(modifier = Modifier.size(16.dp))
-      ClearableTextField(
-        value = "Test",
-        hint = "With Content",
-        enabled = true,
-        onValueChange = {},
-        clearContentDescription = ""
-      )
-      Spacer(modifier = Modifier.size(16.dp))
-      ClearableTextField(
-        value = "",
-        hint = "Disabled",
-        enabled = false,
-        onValueChange = {},
-        clearContentDescription = ""
-      )
-      Spacer(modifier = Modifier.size(16.dp))
-      ClearableTextField(
-        value = "",
-        hint = "Focused",
-        enabled = true,
-        onValueChange = {},
-        modifier = Modifier.focusRequester(focusRequester),
-        clearContentDescription = ""
-      )
-    }
-
-    LaunchedEffect(Unit) {
-      focusRequester.requestFocus()
-    }
-  }
-}
-
-@Composable
-private fun ClearableTextField(
-  value: String,
-  hint: String,
-  clearContentDescription: String,
-  enabled: Boolean,
-  onValueChange: (String) -> Unit,
-  modifier: Modifier = Modifier,
-  singleLine: Boolean = false,
-  clearable: Boolean = true,
-  charactersRemaining: Int = Int.MAX_VALUE,
-  keyboardActions: KeyboardActions = KeyboardActions.Default,
-  keyboardOptions: KeyboardOptions = KeyboardOptions.Default
-) {
-  var focused by remember { mutableStateOf(false) }
-
-  val displayCountdown = charactersRemaining <= 100
-
-  val clearButton: @Composable () -> Unit = {
-    ClearButton(
-      visible = focused,
-      onClick = { onValueChange("") },
-      contentDescription = clearContentDescription
-    )
-  }
-
-  Box(modifier = modifier) {
-    TextFields.TextField(
-      value = value,
-      onValueChange = onValueChange,
-      label = {
-        Text(text = hint)
-      },
-      enabled = enabled,
-      singleLine = singleLine,
-      keyboardActions = keyboardActions,
-      keyboardOptions = keyboardOptions,
-      modifier = Modifier
-        .fillMaxWidth()
-        .onFocusChanged { focused = it.hasFocus && clearable },
-      colors = TextFieldDefaults.colors(
-        unfocusedLabelColor = MaterialTheme.colorScheme.outline,
-        unfocusedIndicatorColor = MaterialTheme.colorScheme.outline
-      ),
-      trailingIcon = if (clearable) clearButton else null,
-      contentPadding = TextFieldDefaults.contentPaddingWithLabel(end = if (displayCountdown) 48.dp else 16.dp)
-    )
-
-    AnimatedVisibility(
-      visible = displayCountdown,
-      modifier = Modifier
-        .align(Alignment.BottomEnd)
-        .padding(bottom = 10.dp, end = 12.dp)
-    ) {
-      Text(
-        text = "$charactersRemaining",
-        style = MaterialTheme.typography.bodySmall,
-        color = if (charactersRemaining <= 5) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outline
-      )
-    }
-  }
-}
-
-@Composable
-private fun ClearButton(
-  visible: Boolean,
-  onClick: () -> Unit,
-  contentDescription: String
-) {
-  AnimatedVisibility(visible = visible) {
-    IconButton(
-      onClick = onClick
-    ) {
-      Icon(
-        painter = painterResource(id = R.drawable.symbol_x_circle_fill_24),
-        contentDescription = contentDescription,
-        tint = MaterialTheme.colorScheme.outline
-      )
     }
   }
 }

@@ -52,7 +52,8 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   Settings(icon(R.drawable.symbol_settings_android_24)),
   Share(icon(R.drawable.symbol_share_android_24)),
   Trash(icon(R.drawable.symbol_trash_24)),
-  X(icon(R.drawable.symbol_x_24))
+  X(icon(R.drawable.symbol_x_24)),
+  XCircleFill(icon(R.drawable.symbol_x_circle_fill_24))
 }
 
 private fun icon(@DrawableRes id: Int) = SignalIcon.DrawableIcon(id)
