@@ -21,6 +21,7 @@ import org.signal.core.util.exists
 import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalString
+import org.signal.core.util.orNull
 import org.signal.core.util.readToList
 import org.signal.core.util.readToMap
 import org.signal.core.util.readToSingleInt
@@ -54,6 +55,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupId.Push
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -1270,6 +1272,17 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
         .filterNotNull()
         .sortedBy { it.toString() }
         .toList()
+    }
+
+    /**
+     * Gets the member label for a specific member in the group, or null if the member is not found.
+     */
+    fun memberLabel(aci: ACI): MemberLabel? {
+      return decryptedGroup
+        .members
+        .findMemberByAci(aci)
+        .orNull()
+        ?.let { member -> MemberLabel(member.labelEmoji, member.labelString) }
     }
   }
 

@@ -35,6 +35,8 @@ message Member {
   bytes profileKey = 3;
   bytes presentation = 4;
   uint32 joinedAtVersion = 5;
+  bytes labelEmoji = 6; // decrypts to a UTF-8 string
+  bytes labelString = 7; // decrypts to a UTF-8 string
 }
 
 message MemberPendingProfileKey {
@@ -139,6 +141,12 @@ message GroupChange {
     message ModifyMemberRoleAction {
       bytes userId = 1;
       Member.Role role = 2;
+    }
+
+    message ModifyMemberLabelAction {
+      bytes userId = 1;
+      bytes labelEmoji = 2; // decrypts to a UTF-8 string
+      bytes labelString = 3; // decrypts to a UTF-8 string
     }
 
     message ModifyMemberProfileKeyAction {
@@ -253,7 +261,8 @@ message GroupChange {
     repeated AddMemberBannedAction add_members_banned = 22;  // change epoch = 4
     repeated DeleteMemberBannedAction delete_members_banned = 23;  // change epoch = 4
     repeated PromoteMemberPendingPniAciProfileKeyAction promote_members_pending_pni_aci_profile_key = 24;  // change epoch = 5
-    // next: 26
+    repeated ModifyMemberLabelAction modifyMemberLabel = 26; // change epoch = 6;
+    // next: 27
   }
 
   bytes actions = 1;

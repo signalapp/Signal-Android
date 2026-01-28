@@ -8,6 +8,7 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMemb
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberLabel;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMemberRemoval;
@@ -25,6 +26,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import javax.annotation.Nonnull;
 
 import okio.ByteString;
 
@@ -159,7 +162,7 @@ public final class DecryptedGroupUtil {
     return Optional.ofNullable(change != null ? ServiceId.parseOrNull(change.editorServiceIdBytes) : null);
   }
 
-  public static Optional<DecryptedMember> findMemberByAci(Collection<DecryptedMember> members, ACI aci) {
+  public static Optional<DecryptedMember> findMemberByAci(@Nonnull Collection<DecryptedMember> members, @Nonnull ACI aci) {
     ByteString aciBytes = aci.toByteString();
 
     for (DecryptedMember member : members) {
@@ -334,6 +337,8 @@ public final class DecryptedGroupUtil {
     applyDeleteBannedMembersActions(builder, change.deleteBannedMembers);
 
     applyPromotePendingPniAciMemberActions(builder, change.promotePendingPniAciMembers);
+
+    DecryptedGroupExtensionsKt.setModifyMemberLabelActions(builder, change.modifyMemberLabel);
 
     return builder.build();
   }
@@ -747,7 +752,8 @@ public final class DecryptedGroupUtil {
            isEmpty(change.newIsAnnouncementGroup) &&       // field 21
            change.newBannedMembers.size() == 0 &&          // field 22
            change.deleteBannedMembers.size() == 0 &&       // field 23
-           change.promotePendingPniAciMembers.size() == 0; // field 24
+           change.promotePendingPniAciMembers.size() == 0 && // field 24
+           change.modifyMemberLabel.isEmpty();          // field 26
   }
 
   public static boolean changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(DecryptedGroupChange change) {
@@ -770,7 +776,8 @@ public final class DecryptedGroupUtil {
            change.newInviteLinkPassword.size() == 0 &&     // field 19
            change.newDescription == null &&                // field 20
            isEmpty(change.newIsAnnouncementGroup) &&       // field 21
-           change.promotePendingPniAciMembers.size() == 0; // field 24
+           change.promotePendingPniAciMembers.size() == 0 && // field 24
+           change.modifyMemberLabel.isEmpty();          // field 26
   }
 
   static boolean isEmpty(AccessControl.AccessRequired newAttributeAccess) {

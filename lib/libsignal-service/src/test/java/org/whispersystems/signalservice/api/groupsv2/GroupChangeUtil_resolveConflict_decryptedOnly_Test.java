@@ -1,15 +1,16 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
 import org.junit.Test;
+import org.signal.core.util.UuidUtil;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberLabel;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedString;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer;
 import org.signal.storageservice.storage.protos.groups.local.EnabledState;
-import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.List;
@@ -32,8 +33,8 @@ import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.rando
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.requestingMember;
 import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
 
+@SuppressWarnings("NewClassNamingConvention")
 public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
-
   /**
    * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
    * <p>
@@ -44,7 +45,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 24, maxFieldFound);
+                 26, maxFieldFound);
   }
 
   /**
@@ -672,5 +673,58 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
         .build();
 
     assertEquals(expected, resolvedChanges);
+  }
+
+  @Test
+  public void field_26__modify_member_label__remove_if_label_already_matches() {
+    UUID memberUuid = UUID.fromString("d1d1d1d1-0000-4000-8000-000000000001");
+
+    DecryptedMember existingMember = member(memberUuid)
+        .newBuilder()
+        .labelEmoji("🔥")
+        .labelString("Already Set")
+        .build();
+
+    DecryptedModifyMemberLabel modifyLabelAction = new DecryptedModifyMemberLabel.Builder()
+        .aciBytes(UuidUtil.toByteString(memberUuid))
+        .labelEmoji("🔥")
+        .labelString("Already Set")
+        .build();
+
+    DecryptedGroup existingGroup = new DecryptedGroup.Builder()
+        .revision(10)
+        .members(List.of(existingMember))
+        .build();
+
+    DecryptedGroupChange conflictingChange = new DecryptedGroupChange.Builder()
+        .modifyMemberLabel(List.of(modifyLabelAction))
+        .build();
+
+    DecryptedGroupChange.Builder resolved = GroupChangeUtil.resolveConflict(existingGroup, conflictingChange);
+    assertTrue(resolved.build().modifyMemberLabel.isEmpty());
+  }
+
+  @Test
+  public void field_26__modify_member_label__remove_if_member_not_in_group() {
+    UUID memberUuid = UUID.fromString("d1d1d1d1-0000-4000-8000-000000000001");
+    UUID notInGroupUuid = UUID.fromString("d2d2d2d2-0000-4000-8000-000000000002");
+
+    DecryptedGroup existingGroup = new DecryptedGroup.Builder()
+        .revision(10)
+        .members(List.of(member(memberUuid)))
+        .build();
+
+    DecryptedModifyMemberLabel modifyLabelAction = new DecryptedModifyMemberLabel.Builder()
+        .aciBytes(UuidUtil.toByteString(notInGroupUuid))
+        .labelEmoji("🔥")
+        .labelString("Test")
+        .build();
+
+    DecryptedGroupChange conflictingChange = new DecryptedGroupChange.Builder()
+        .modifyMemberLabel(List.of(modifyLabelAction))
+        .build();
+
+    DecryptedGroupChange.Builder resolved = GroupChangeUtil.resolveConflict(existingGroup, conflictingChange);
+    assertTrue(resolved.build().modifyMemberLabel.isEmpty());
   }
 }

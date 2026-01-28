@@ -10,8 +10,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
 
+@SuppressWarnings("NewClassNamingConvention")
 public final class GroupChangeUtil_changeIsEmpty_Test {
-
   /**
    * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
    * <p>
@@ -22,7 +22,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(GroupChange.Actions.class);
 
     assertEquals("GroupChangeUtil and its tests need updating to account for new fields on " + GroupChange.Actions.class.getName(),
-                 25, maxFieldFound);
+                 26, maxFieldFound);
   }
 
   @Test
@@ -223,6 +223,15 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   public void not_empty_with_promote_pending_pni_aci_members_field_24() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
         .promote_members_pending_pni_aci_profile_key(List.of(new GroupChange.Actions.PromoteMemberPendingPniAciProfileKeyAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_member_label_field_26() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyMemberLabel(List.of(new GroupChange.Actions.ModifyMemberLabelAction()))
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));

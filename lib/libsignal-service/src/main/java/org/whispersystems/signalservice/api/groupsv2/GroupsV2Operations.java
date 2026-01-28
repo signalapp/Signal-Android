@@ -31,6 +31,7 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupJoinInfo;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberLabel;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMemberRemoval;
@@ -44,6 +45,7 @@ import org.signal.core.models.ServiceId.PNI;
 import org.signal.core.util.UuidUtil;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,6 +57,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.Objects;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -72,7 +75,7 @@ public final class GroupsV2Operations {
   public static final UUID UNKNOWN_UUID = UuidUtil.UNKNOWN_UUID;
 
   /** Highest change epoch this class knows now to decrypt */
-  public static final int HIGHEST_KNOWN_EPOCH = 5;
+  public static final int HIGHEST_KNOWN_EPOCH = 6;
 
   private final ServerPublicParams        serverPublicParams;
   private final ClientZkProfileOperations clientZkProfileOperations;
@@ -754,6 +757,19 @@ public final class GroupsV2Operations {
       }
       builder.promotePendingPniAciMembers(promotePendingPniAciMembers);
 
+      // Field 26
+      List<DecryptedModifyMemberLabel> modifyMemberLabels = new ArrayList<>(actions.modifyMemberLabel.size());
+      for (GroupChange.Actions.ModifyMemberLabelAction action : actions.modifyMemberLabel) {
+        modifyMemberLabels.add(
+            new DecryptedModifyMemberLabel.Builder()
+                .aciBytes(decryptAciToBinary(action.userId))
+                .labelEmoji(Objects.requireNonNullElse(decryptString(action.labelEmoji), ""))
+                .labelString(Objects.requireNonNullElse(decryptString(action.labelString), ""))
+                .build()
+        );
+      }
+      builder.modifyMemberLabel(modifyMemberLabels);
+
       if (editorServiceId instanceof ServiceId.PNI) {
         if (actions.addMembers.size() == 1 && builder.newMembers.size() == 1) {
           GroupChange.Actions.AddMemberAction addMemberAction = actions.addMembers.get(0);
@@ -790,14 +806,19 @@ public final class GroupsV2Operations {
     private DecryptedMember.Builder decryptMember(Member member)
         throws InvalidGroupStateException, VerificationFailedException, InvalidInputException
     {
+      String labelEmoji  = Objects.requireNonNullElse(decryptString(member.labelEmoji), "");
+      String labelString = Objects.requireNonNullElse(decryptString(member.labelString), "");
+
       if (member.presentation.size() == 0) {
         ACI aci = decryptAci(member.userId);
 
         return new DecryptedMember.Builder()
-                                  .aciBytes(aci.toByteString())
-                                  .joinedAtRevision(member.joinedAtVersion)
-                                  .profileKey(decryptProfileKeyToByteString(member.profileKey, aci))
-                                  .role(member.role);
+            .aciBytes(aci.toByteString())
+            .joinedAtRevision(member.joinedAtVersion)
+            .profileKey(decryptProfileKeyToByteString(member.profileKey, aci))
+            .role(member.role)
+            .labelEmoji(labelEmoji)
+            .labelString(labelString);
       } else {
         ProfileKeyCredentialPresentation profileKeyCredentialPresentation = new ProfileKeyCredentialPresentation(member.presentation.toByteArray());
 
@@ -810,10 +831,12 @@ public final class GroupsV2Operations {
         ProfileKey profileKey = clientZkGroupCipher.decryptProfileKey(profileKeyCredentialPresentation.getProfileKeyCiphertext(), aci.getLibSignalAci());
 
         return new DecryptedMember.Builder()
-                                  .aciBytes(aci.toByteString())
-                                  .joinedAtRevision(member.joinedAtVersion)
-                                  .profileKey(ByteString.of(profileKey.serialize()))
-                                  .role(member.role);
+            .aciBytes(aci.toByteString())
+            .joinedAtRevision(member.joinedAtVersion)
+            .profileKey(ByteString.of(profileKey.serialize()))
+            .role(member.role)
+            .labelEmoji(labelEmoji)
+            .labelString(labelString);
       }
     }
 
@@ -1011,6 +1034,34 @@ public final class GroupsV2Operations {
     }
 
     /**
+     * Encrypts a string as raw UTF-8 bytes for member-specific attributes.
+     */
+    private ByteString encryptString(@Nullable String value) {
+      if (value == null || value.isEmpty()) {
+        return ByteString.EMPTY;
+      }
+
+      try {
+        return ByteString.of(clientZkGroupCipher.encryptBlob(value.getBytes(StandardCharsets.UTF_8)));
+      } catch (VerificationFailedException e) {
+        throw new AssertionError(e);
+      }
+    }
+
+    /**
+     * Decrypts a string from raw UTF-8 bytes for member-specific attributes.
+     */
+    @Nullable
+    private String decryptString(@Nullable ByteString cipherText) throws VerificationFailedException {
+      if (cipherText == null || cipherText.size() == 0) {
+        return null;
+      }
+
+      byte[] decryptedBytes = clientZkGroupCipher.decryptBlob(cipherText.toByteArray());
+      return new String(decryptedBytes, StandardCharsets.UTF_8);
+    }
+
+    /**
      * Verifies signature and parses actions on a group change.
      */
     private GroupChange.Actions getVerifiedActions(GroupChange groupChange)
@@ -1044,6 +1095,18 @@ public final class GroupsV2Operations {
       return new GroupChange.Actions.Builder().modifyMemberRoles(Collections.singletonList(
           new GroupChange.Actions.ModifyMemberRoleAction.Builder().userId(encryptServiceId(memberAci)).role(role).build()
       ));
+    }
+
+    public GroupChange.Actions.Builder createChangeMemberLabel(@Nonnull ACI memberAci, @Nonnull String labelString, @Nullable String labelEmoji) {
+      return new GroupChange.Actions.Builder().modifyMemberLabel(
+          Collections.singletonList(
+              new GroupChange.Actions.ModifyMemberLabelAction.Builder()
+                  .userId(encryptServiceId(memberAci))
+                  .labelEmoji(encryptString(labelEmoji))
+                  .labelString(encryptString(labelString))
+                  .build()
+          )
+      );
     }
 
     public List<ServiceId> decryptAddMembers(List<GroupChange.Actions.AddMemberAction> addMembers) throws InvalidGroupStateException, InvalidInputException, VerificationFailedException {

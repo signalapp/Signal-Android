@@ -101,6 +101,10 @@ internal class GroupChangeActionsBuilderChangeSetModifier(private val result: Gr
     result.promote_members_pending_pni_aci_profile_key = result.promote_members_pending_pni_aci_profile_key.removeIndex(i)
   }
 
+  override fun removeModifyMemberLabels(i: Int) {
+    result.modifyMemberLabel = result.modifyMemberLabel.removeIndex(i)
+  }
+
   private fun <T> List<T>.removeIndex(i: Int): List<T> {
     val modifiedList = this.toMutableList()
     modifiedList.removeAt(i)

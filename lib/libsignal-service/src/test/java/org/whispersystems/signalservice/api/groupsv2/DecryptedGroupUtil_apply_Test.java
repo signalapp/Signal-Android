@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
 import org.junit.Test;
+import org.signal.core.util.UuidUtil;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.signal.storageservice.storage.protos.groups.Member;
@@ -9,6 +10,7 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMemb
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberLabel;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMemberRemoval;
@@ -16,7 +18,6 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedRequesting
 import org.signal.storageservice.storage.protos.groups.local.DecryptedString;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer;
 import org.signal.storageservice.storage.protos.groups.local.EnabledState;
-import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.List;
@@ -38,8 +39,8 @@ import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.reque
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.withProfileKey;
 import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
 
+@SuppressWarnings("NewClassNamingConvention")
 public final class DecryptedGroupUtil_apply_Test {
-
   /**
    * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
    * <p>
@@ -50,7 +51,7 @@ public final class DecryptedGroupUtil_apply_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("DecryptedGroupUtil and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 24, maxFieldFound);
+                 26, maxFieldFound);
   }
 
   @Test
@@ -955,5 +956,100 @@ public final class DecryptedGroupUtil_apply_Test {
                      .members(List.of(member1, member2))
                      .build(),
                  newGroup);
+  }
+
+  @Test
+  public void apply_modify_member_label() throws NotAbleToApplyGroupV2ChangeException {
+    UUID            memberUuid     = UUID.fromString("d1d1d1d1-0000-4000-8000-000000000001");
+    DecryptedMember existingMember = member(memberUuid);
+
+    DecryptedModifyMemberLabel modifyLabelAction = new DecryptedModifyMemberLabel.Builder()
+        .aciBytes(UuidUtil.toByteString(memberUuid))
+        .labelEmoji("🎉")
+        .labelString("Test Label")
+        .build();
+
+    DecryptedGroup actualResult = DecryptedGroupUtil.apply(
+        new DecryptedGroup.Builder()
+            .revision(10)
+            .members(List.of(existingMember))
+            .build(),
+
+        new DecryptedGroupChange.Builder()
+            .revision(11)
+            .modifyMemberLabel(List.of(modifyLabelAction))
+            .build()
+    );
+
+    List<DecryptedMember> expectedMembers = List.of(
+        existingMember.newBuilder()
+                      .labelEmoji("🎉")
+                      .labelString("Test Label")
+                      .build()
+    );
+
+    DecryptedGroup expectedResult = new DecryptedGroup.Builder()
+        .revision(11)
+        .members(expectedMembers)
+        .build();
+
+    assertEquals(expectedResult, actualResult);
+  }
+
+  @Test
+  public void apply_modify_member_label_clear() throws NotAbleToApplyGroupV2ChangeException {
+    UUID memberUuid = UUID.fromString("d1d1d1d1-0000-4000-8000-000000000001");
+    DecryptedMember member = member(memberUuid)
+        .newBuilder()
+        .labelEmoji("🎉")
+        .labelString("Test Label")
+        .build();
+
+    DecryptedModifyMemberLabel modifyLabelAction = new DecryptedModifyMemberLabel.Builder()
+        .aciBytes(UuidUtil.toByteString(memberUuid))
+        .labelEmoji("")
+        .labelString("")
+        .build();
+
+    DecryptedGroup actualResult = DecryptedGroupUtil.apply(
+        new DecryptedGroup.Builder()
+            .revision(10)
+            .members(List.of(member))
+            .build(),
+
+        new DecryptedGroupChange.Builder()
+            .revision(11)
+            .modifyMemberLabel(List.of(modifyLabelAction))
+            .build());
+
+    DecryptedGroup expectedResult = new DecryptedGroup.Builder()
+        .revision(11)
+        .members(List.of(member(memberUuid)))
+        .build();
+
+    assertEquals(expectedResult, actualResult);
+  }
+
+  @Test(expected = NotAbleToApplyGroupV2ChangeException.class)
+  public void apply_modify_member_label_for_non_member() throws NotAbleToApplyGroupV2ChangeException {
+    UUID            memberUuid    = UUID.fromString("d1d1d1d1-0000-4000-8000-000000000001");
+    UUID            nonMemberUuid = UUID.fromString("d2d2d2d2-0000-4000-8000-000000000002");
+    DecryptedMember member1       = member(memberUuid);
+
+    DecryptedModifyMemberLabel modifyLabelAction = new DecryptedModifyMemberLabel.Builder()
+        .aciBytes(UuidUtil.toByteString(nonMemberUuid))
+        .labelEmoji("🎉")
+        .labelString("Test Label")
+        .build();
+
+    DecryptedGroupUtil.apply(
+        new DecryptedGroup.Builder()
+            .revision(10)
+            .members(List.of(member1))
+            .build(),
+        new DecryptedGroupChange.Builder()
+            .revision(11)
+            .modifyMemberLabel(List.of(modifyLabelAction))
+            .build());
   }
 }

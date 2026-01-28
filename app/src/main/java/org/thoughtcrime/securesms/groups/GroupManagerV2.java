@@ -359,6 +359,14 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
+    @NonNull
+    GroupManager.GroupActionResult updateMemberLabel(@NonNull String labelString, @NonNull String labelEmoji)
+        throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
+    {
+      return commitChangeWithConflictResolution(selfAci, groupOperations.createChangeMemberLabel(selfAci, labelString, labelEmoji));
+    }
+
+    @WorkerThread
     @NonNull GroupManager.GroupActionResult revokeInvites(@NonNull ServiceId authServiceId, @NonNull Collection<UuidCiphertext> uuidCipherTexts, boolean sendToMembers)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {

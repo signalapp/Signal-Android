@@ -7,7 +7,9 @@ package org.whispersystems.signalservice.api.groupsv2
 
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberLabel
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
 import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember
 import java.util.Optional
@@ -30,4 +32,25 @@ fun Collection<DecryptedRequestingMember>.findRequestingByAci(aci: ACI): Optiona
 
 fun Collection<DecryptedPendingMember>.findPendingByServiceId(serviceId: ServiceId): Optional<DecryptedPendingMember> {
   return DecryptedGroupUtil.findPendingByServiceId(this, serviceId)
+}
+
+@Throws(NotAbleToApplyGroupV2ChangeException::class)
+fun DecryptedGroup.Builder.setModifyMemberLabelActions(
+  actions: List<DecryptedModifyMemberLabel>
+) {
+  val updatedMembers = members.toMutableList()
+  actions.forEach { action ->
+    val modifiedMemberIndex = updatedMembers.indexOfFirst { it.aciBytes == action.aciBytes }
+    if (modifiedMemberIndex < 0) {
+      throw NotAbleToApplyGroupV2ChangeException()
+    }
+
+    updatedMembers[modifiedMemberIndex] = updatedMembers[modifiedMemberIndex]
+      .newBuilder()
+      .labelEmoji(action.labelEmoji)
+      .labelString(action.labelString)
+      .build()
+  }
+
+  members = updatedMembers
 }

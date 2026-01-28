@@ -110,6 +110,10 @@ internal class DecryptedGroupChangeActionsBuilderChangeSetModifier(private val r
     result.promotePendingPniAciMembers = result.promotePendingPniAciMembers.removeIndex(i)
   }
 
+  override fun removeModifyMemberLabels(i: Int) {
+    result.modifyMemberLabel = result.modifyMemberLabel.removeIndex(i)
+  }
+
   private fun <T> List<T>.removeIndex(i: Int): List<T> {
     val modifiedList = this.toMutableList()
     modifiedList.removeAt(i)

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.models.ServiceId;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
-import org.signal.core.models.ServiceId;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -230,6 +230,19 @@ public final class GroupManager {
 
     try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
       editor.updateGroupTimer(expirationTime);
+    }
+  }
+
+  @WorkerThread
+  public static void updateMemberLabel(@NonNull Context context, @NonNull GroupId.V2 groupId, @NonNull String labelString, @NonNull String labelEmoji)
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
+  {
+    if (!groupId.isV2()) {
+      throw new GroupChangeFailedException("Not gv2");
+    }
+
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId)) {
+      editor.updateMemberLabel(labelString, labelEmoji);
     }
   }
 

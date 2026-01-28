@@ -1,15 +1,16 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
 import org.junit.Test;
+import org.signal.core.util.UuidUtil;
 import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedApproveMember;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberLabel;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedString;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer;
 import org.signal.storageservice.storage.protos.groups.local.EnabledState;
-import org.signal.core.util.UuidUtil;
 
 import java.util.List;
 import java.util.UUID;
@@ -27,8 +28,8 @@ import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.promo
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.randomProfileKey;
 import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
 
+@SuppressWarnings("NewClassNamingConvention")
 public final class DecryptedGroupUtil_empty_Test {
-
   /**
    * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
    * <p>
@@ -39,7 +40,7 @@ public final class DecryptedGroupUtil_empty_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("DecryptedGroupUtil and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 24, maxFieldFound);
+                 26, maxFieldFound);
   }
 
   @Test
@@ -265,5 +266,22 @@ public final class DecryptedGroupUtil_empty_Test {
 
     assertFalse(DecryptedGroupUtil.changeIsEmpty(change));
     assertFalse(DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(change));
+  }
+
+  @Test
+  public void not_empty_with_modify_member_label_field_26() {
+    DecryptedModifyMemberLabel modifyLabelAction = new DecryptedModifyMemberLabel.Builder()
+        .aciBytes(UuidUtil.toByteString(UUID.randomUUID()))
+        .labelEmoji("🔥")
+        .labelString("Test")
+        .build();
+
+    DecryptedGroupChange change = new DecryptedGroupChange.Builder()
+        .modifyMemberLabel(List.of(modifyLabelAction))
+        .build();
+
+    assertFalse(DecryptedGroupUtil.changeIsEmpty(change));
+    assertFalse(DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(change));
+    assertFalse(DecryptedGroupUtil.changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(change));
   }
 }

@@ -6,6 +6,7 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMemb
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberLabel;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMemberRemoval;
@@ -13,6 +14,9 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedRequesting
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
 
 import okio.ByteString;
 
@@ -46,7 +50,8 @@ public final class GroupChangeUtil {
            change.modify_announcements_only == null &&            // field 21
            change.add_members_banned.size() == 0 &&               // field 22
            change.delete_members_banned.size() == 0 &&            // field 23
-           change.promote_members_pending_pni_aci_profile_key.size() == 0;      // field 24
+           change.promote_members_pending_pni_aci_profile_key.size() == 0 && // field 24
+           change.modifyMemberLabel.isEmpty();                 // field 26
   }
 
   /**
@@ -149,6 +154,7 @@ public final class GroupChangeUtil {
     resolveField22AddBannedMembers               (conflictingChange, changeSetModifier, bannedMembersByServiceId);
     resolveField23DeleteBannedMembers            (conflictingChange, changeSetModifier, bannedMembersByServiceId);
     resolveField24PromotePendingPniAciMembers    (conflictingChange, changeSetModifier, fullMembersByUuid);
+    resolveField26ModifyMemberLabels             (conflictingChange, changeSetModifier, fullMembersByUuid);
   }
 
   private static void resolveField3AddMembers(DecryptedGroupChange conflictingChange, ChangeSetModifier result, HashMap<ByteString, DecryptedMember> fullMembersByUuid, HashMap<ByteString, DecryptedPendingMember> pendingMembersByServiceId) {
@@ -363,6 +369,24 @@ public final class GroupChangeUtil {
 
       if (fullMembersByAci.containsKey(member.aciBytes)) {
         result.removePromotePendingPniAciMembers(i);
+      }
+    }
+  }
+
+  private static void resolveField26ModifyMemberLabels(
+      @Nonnull DecryptedGroupChange conflictingChange,
+      @Nonnull ChangeSetModifier result,
+      @Nonnull Map<ByteString, DecryptedMember> fullMembersByAci
+  )
+  {
+    List<DecryptedModifyMemberLabel> actions = conflictingChange.modifyMemberLabel;
+
+    for (int i = actions.size() - 1; i >= 0; i--) {
+      DecryptedModifyMemberLabel action = actions.get(i);
+      DecryptedMember            member = fullMembersByAci.get(action.aciBytes);
+
+      if (member == null || (action.labelEmoji.equals(member.labelEmoji) && action.labelString.equals(member.labelString))) {
+        result.removeModifyMemberLabels(i);
       }
     }
   }
