@@ -2751,7 +2751,8 @@
     <string name="RegistrationActivity_i_understand">எனக்கு புரிகிறது</string>
     <string name="RegistrationActivity_play_services_error">சேவைகளில் பிழை</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play சேவைகள் புதுப்பித்தல் அல்லது தற்காலிகமாக கிடைக்கவில்லை. தயவு செய்து மீண்டும் முயற்சிக்கவும்.</string>
-    <string name="RegistrationActivity_terms_and_privacy">விதிமுறைகள் &amp; ஆம்ப்; தனியுரிமைக் கொள்கை</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">உங்கள் நண்பர்களுடன் இணைவதற்கும் செய்திகளை அனுப்புவதற்கும் உதவ சிக்னலுக்கு தொடர்புகள் மற்றும் மீடியா அனுமதிகள் தேவை. உங்கள் தொடர்புகள் சிக்னலின் தனிப்பட்ட தொடர்பு கண்டறிதலைப் பயன்படுத்தி பதிவேற்றப்படுகின்றன, அதாவது அவை முடிவிலிருந்து-முடிவுவரை மறையாக்கப்பட்டவை மற்றும் சிக்னல் சேவைக்கு ஒருபோதும் தெரியப்படுவதில்லை.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">நண்பர்களுடன் நீங்கள் இணைவதற்கு உதவ சிக்னலுக்கு தொடர்புகளின் அனுமதி தேவை. உங்கள் தொடர்புகள் சிக்னலின் தனிப்பட்ட தொடர்பு கண்டறிதலைப் பயன்படுத்தி பதிவேற்றப்படுகின்றன, அதாவது அவை முடிவிலிருந்து-முடிவுவரை மறையாக்கப்பட்டவை மற்றும் சிக்னல் சேவைக்கு ஒருபோதும் தெரியப்படுவதில்லை.</string>
     <string name="RegistrationActivity_rate_limited_to_service">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.</string>
@@ -3816,6 +3817,32 @@
     <string name="verify_display_fragment__loading">ஏற்றுதல் …</string>
     <string name="verify_display_fragment__mark_as_verified">சரிபார்க்கப்பட்டதாகக் குறிக்கவும்</string>
     <string name="verify_display_fragment__clear_verification">சரிபார்ப்பை நீக்கவும்</string>
+    <!-- Header title for automatic key verification -->
+    <string name="verify_display_fragment__automatic">Automatic Key Verification</string>
+    <!-- Button text to verify automatically    -->
+    <string name="verify_display_fragment__verify_automatic">Verify automatically</string>
+    <!-- Loading text when verifying -->
+    <string name="verify_display_fragment__verifying">Verifying encryption…</string>
+    <!-- Success text shown when encryption is verified -->
+    <string name="verify_display_fragment__encryption_verified">Encryption verified</string>
+    <!-- Text shown when verification fails -->
+    <string name="verify_display_fragment__encryption_unavailable">Auto-verification unavailable</string>
+    <!-- Caption text explaining more about automatic verification   -->
+    <string name="verify_display_fragment__auto_verify_not_available">Auto-verification is not available for all chats.</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://signal.org/redirect/safety-numbers</string> -->
+
+    <!-- Bottom sheet title when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_success">Encryption was auto-verified for this chat</string>
+    <!-- Bottom sheet body when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_success">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <!-- Bottom sheet title when encryption is no longer auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Auto-verification is no longer available for this chat</string>
+    <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal can no longer automatically verify the encryption for this chat. This is likely because %1$s changed their phone number. Verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <!-- Bottom sheet title when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_unavailable">Auto-verification not available for this chat</string>
+    <!-- Bottom sheet body when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_unavailable">Signal can only automatically verify the encryption in chats where you’re connected to someone via a phone number. If the chat was started with a username or a group in common, verify end-to-end encryption by comparing the numbers on the previous screen or scanning the code on their device.</string>
 
     <!-- Title for auto verification education sheet -->
     <string name="VerifyAutomaticallyEducationSheet__title">சிக்னல் இப்போது முழுமையான மறையாக்கத்தைத் தானாகவே சரிபார்க்கிறது</string>
@@ -5793,6 +5820,8 @@
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">விதிமுறைகள் &amp; ஆம்ப்; தனியுரிமைக் கொள்கை</string>
     <string name="HelpFragment__copyright_signal_messenger">பதிப்புரிமை Signal தூதர்</string>
     <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 இன் கீழ் உரிமம் பெற்றது</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">மீடியா தரம்</string>
@@ -6180,7 +6209,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">சுயவிவரத்தைப் புதுப்பிக்க இயலவில்லை</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">நன்கொடை அளிக்கவும்</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donate</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s Signalஐ ஆதரிக்கிறார்</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -6208,13 +6237,15 @@
     <string name="Subscription__expires_s">%1$s ஆம் தேதி காலாவதியாகிறது</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal வித்தியாசமானது.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">As an independent nonprofit, Signal is committed to private messaging and calls. No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">தனிப்பட்ட செய்தி அனுப்புதல். விளம்பரங்கள் இல்லை, டிராக்கர்கள் இல்லை, கண்காணிப்பு இல்லை.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal நன்கொடைகளால் ஆதரிக்கப்படுகிறது, அதாவது நாங்கள் செய்யும் எல்லாவற்றிலும் உங்கள் தனியுரிமை மையமாக உள்ளது. Signal உங்களுக்காக கட்டப்பட்டுள்ளது; உங்கள் தரவினாலும் அல்ல, லாபத்திற்காகவும் அல்ல.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Get an optional badge on your profile when you donate</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">உங்களால் முடிந்தால், Signal ஜாலியாகவும், நம்பகத்தன்மையுடனும், அனைவருக்கும் கிடைக்கக்கூடியதாகவும் வைத்திருக்க இன்றே நன்கொடை அளிக்கவும்.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">Your privacy is our mission</string>
+    <!-- Fourth small text blurb on learn more sheet. Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit. US donations are tax deductible.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">உங்கள் ஆதரவுக்கு நன்றி!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -7244,11 +7275,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">லாபத்தைவிட தனியுரிமை</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Proudly Nonprofit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">தொடரவும்</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">உங்களால் நிதியளிக்கப்பட்ட தனிப்பட்ட செய்தியிடல். விளம்பரங்கள் இல்லை, கண்காணிப்பு இல்லை, சமரசம் இல்லை. Signalஐ ஆதரிக்க இப்போதே நன்கொடை அளியுங்கள்.</string>
+    <string name="DonateToSignalFragment__private_messaging">Donate to support private messaging. Keep Signal independent and ad-free.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">உங்களிடம் ஒரு நன்கொடை நிலுவையில் உள்ளது</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -8075,6 +8106,15 @@
     <!-- Status action label for resume restore from a paused state -->
     <string name="BackupStatus__resume">தொடர்க</string>
 
+    <!-- Status subtitle for banner when we are creating a backup file -->
+    <string name="BackupStatus__status_creating_backup">Creating backup…</string>
+    <!-- Status title for banner when user is actively uploading backup data -->
+    <string name="BackupStatus__uploading_backup">Uploading backup</string>
+    <!-- Status title for banner when user is temporarily unable to upload a backup -->
+    <string name="BackupStatus__upload_paused">Backup paused</string>
+    <!-- Status title for banner when user has finished creating a backup -->
+    <string name="BackupStatus__upload_complete">Backup complete</string>
+
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi-க்காக காத்துக்கொண்டிருக்கிறது…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
@@ -8083,6 +8123,10 @@
     <string name="BackupStatus__status_device_has_low_battery">சாதனத்தின் பேட்டரி குறைவாக உள்ளது</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%2$s இன் %1$s</string>
+    <!-- Label for a context menu item that, when pressed, will hide a banner so it will no longer be shown. -->
+    <string name="BackupStatus__hide">Hide</string>
+    <!-- Label for a context menu item that, when pressed, will cancel the ongoing backup. -->
+    <string name="BackupStatus__cancel_upload">Cancel backup</string>
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
@@ -8124,6 +8168,15 @@
     <string name="ResumeRestoreCellular_resume_using_cellular_title">செல்லுலார் தரவைப் பயன்படுத்தித் தொடரவா?</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
     <string name="ResumeRestoreCellular_resume_using_cellular_message">செல்லுலார் தரவைப் பயன்படுத்தி உங்கள் ஊடகத்தை மீட்டெடுப்பது தரவு கட்டணங்களை விதிப்பதற்கு வழிவகுக்கும். தானாகவே தொடங்க நீங்கள் Wi-Fi நெட்வொர்க்குடன் இணைக்கலாம்.</string>
+
+    <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_title">Cancel backup?</string>
+    <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_body">Canceling your backup will not delete your backup. You can resume your backup at any time from Backup Settings.</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
+    <string name="CancelBackupDialog_cancel_action">Cancel backup</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
+    <string name="CancelBackupDialog_continue_action">Continue backup</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8471,7 +8524,7 @@
 
     <!-- ReadyToTransferBottomSheet -->
     <!-- Title for a bottom sheet letting people know that they can transfer their back to their new device  -->
-    <string name="RemoteBackupsSettingsFragment__ready_to_transfer">Ready to transfer</string>
+    <string name="RemoteBackupsSettingsFragment__ready_to_transfer">இடமாற்றத் தயார்</string>
     <!-- Body for bottom sheet telling the user to scan a QR code to continue transferring their backup to a new device -->
     <string name="RemoteBackupsSettingsFragment__use_this_device_to_scan_qr">கணக்கை மாற்ற விரும்பும் சாதனத்தில் உள்ள QR குறியீட்டை ஸ்கேன் செய்ய இச்சாதனத்தைப் பயன்படுத்தவும்</string>
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
@@ -8835,17 +8888,17 @@
     <string name="TransferAccount_continue_on_your_other_device_details">உங்களின் மற்ற சாதனத்தில் கணக்கு இடமாற்றம் செய்வதைத் தொடரவும்.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
-    <string name="PrepareDevice_title">Getting your device ready</string>
+    <string name="PrepareDevice_title">உங்கள் சாதனத்தைத் தயார் செய்கிறது</string>
     <!-- Prepare Device screen body text explaining backup recommendation -->
-    <string name="PrepareDevice_body">Back up now before transferring. You may have received messages that haven\'t been backed up yet.</string>
+    <string name="PrepareDevice_body">இடமாற்றுவதற்கு முன் இப்போதே காப்புப் பிரதி செய்யவும். இன்னும் காப்பிப் பிரதி செய்து முடிக்காத மெசேஜ்களை நீங்கள் பெறலாம்.</string>
     <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
     <string name="PrepareDevice_last_backup">உங்களின் கடைசி காப்புப் பிரதி %1$sஅன்று %2$s மணிக்கு செய்யப்பட்டது.</string>
     <!-- Prepare Device screen back up now button -->
     <string name="PrepareDevice_back_up_now">இப்பொழது பாதுகாப்பிற்காக சேமித்து வை காப்புப்பதிவு பயனர் தரவு</string>
     <!-- Prepare Device screen skip and continue button -->
-    <string name="PrepareDevice_skip_and_continue">Skip and continue</string>
+    <string name="PrepareDevice_skip_and_continue">தவிர்த்து, தொடர்க</string>
     <!-- A string describing the last time the user\'s backup was made. The placeholder represents a date-time. An example would be "Your last backup was made on July 18, 2025 at 9:00am." -->
-    <string name="PrepareDevice_last_backup_description">Your last backup was made %1$s. </string>
+    <string name="PrepareDevice_last_backup_description">நீங்கள் கடைசியாக %1$s மணிக்கு காப்புப் பிரதி எடுத்துள்ளீர்கள். </string>
 
     <!-- Restore Complete bottom sheet dialog title -->
     <string name="RestoreCompleteBottomSheet_restore_complete">உங்களின் மற்றொரு சாதனத்தில் முடியுங்கள்</string>
