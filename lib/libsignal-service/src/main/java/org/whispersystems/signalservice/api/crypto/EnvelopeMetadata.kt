@@ -8,5 +8,6 @@ class EnvelopeMetadata(
   val sourceDeviceId: Int,
   val sealedSender: Boolean,
   val groupId: ByteArray?,
-  val destinationServiceId: ServiceId
+  val destinationServiceId: ServiceId,
+  val ciphertextMessageType: Int
 )
