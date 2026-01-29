@@ -3,9 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.mms
+package org.signal.glide.decryptableuri
 
-import android.content.Context
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.data.DataFetcher
@@ -15,7 +14,6 @@ import org.signal.glide.common.io.InputStreamFactory
  * A Glide [DataFetcher] that retrieves an [InputStreamFactory] for a [DecryptableUri].
  */
 class DecryptableUriStreamFetcher(
-  private val context: Context,
   private val decryptableUri: DecryptableUri
 ) : DataFetcher<InputStreamFactory> {
 
@@ -24,7 +22,7 @@ class DecryptableUriStreamFetcher(
 
   override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in InputStreamFactory>) {
     try {
-      callback.onDataReady(InputStreamFactory.build(context, decryptableUri.uri))
+      callback.onDataReady(InputStreamFactory.build(decryptableUri.uri))
     } catch (e: Exception) {
       callback.onLoadFailed(e)
     }

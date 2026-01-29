@@ -56,6 +56,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
 import org.signal.glide.compose.GlideImage
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.SignalTheme
@@ -64,7 +65,6 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackParams
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.stickers.BlessedPacks
 import org.thoughtcrime.securesms.stickers.StickerManifest

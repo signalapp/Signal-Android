@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;

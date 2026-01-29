@@ -12,7 +12,6 @@ import com.bumptech.glide.load.engine.bitmap_recycle.ArrayPool
 import com.bumptech.glide.load.resource.bitmap.RecyclableBufferedInputStream
 import org.signal.glide.common.io.GlideStreamConfig
 import org.signal.glide.common.io.InputStreamFactory
-import org.thoughtcrime.securesms.util.BitmapUtil
 import java.io.IOException
 import java.io.InputStream
 import java.nio.ByteBuffer
@@ -172,7 +171,9 @@ object ImageHeaderParserUtils {
     )
     if (orientationFromParsers != ImageHeaderParser.UNKNOWN_ORIENTATION) return orientationFromParsers
 
-    val orientationFromExif = BitmapUtil.getExifOrientation(ExifInterface(inputStreamFactory.createRecyclable(byteArrayPool)))
+    val orientationFromExif = ExifInterface(inputStreamFactory.createRecyclable(byteArrayPool))
+      .getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
+
     if (orientationFromExif != ImageHeaderParser.UNKNOWN_ORIENTATION) return orientationFromExif
 
     return ImageHeaderParser.UNKNOWN_ORIENTATION

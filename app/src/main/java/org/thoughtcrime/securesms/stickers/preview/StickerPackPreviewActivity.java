@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
 import org.signal.glide.apng.ApngOptions;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.thoughtcrime.securesms.stickers.StickerManifest;
 import org.thoughtcrime.securesms.stickers.StickerManifest.Sticker;

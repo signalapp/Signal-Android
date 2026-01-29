@@ -32,7 +32,7 @@ import org.signal.imageeditor.core.RendererContext;
 import org.signal.imageeditor.core.SelectableRenderer;
 import org.signal.imageeditor.core.model.EditorElement;
 import org.signal.imageeditor.core.model.EditorModel;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.util.concurrent.ExecutionException;

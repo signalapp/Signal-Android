@@ -9,11 +9,11 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.setPadding
 import com.airbnb.lottie.SimpleColorFilter
 import com.bumptech.glide.Glide
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.AvatarRenderer
 import org.thoughtcrime.securesms.avatar.Avatars
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel

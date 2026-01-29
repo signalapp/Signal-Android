@@ -11,13 +11,13 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import org.signal.core.util.DimensionUnit
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.DebouncedOnClickListener

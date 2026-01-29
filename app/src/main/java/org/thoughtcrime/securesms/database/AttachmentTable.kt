@@ -64,6 +64,7 @@ import org.signal.core.util.select
 import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -102,7 +103,6 @@ import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.jobs.GenerateAudioWaveFormJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.mms.MediaStream
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.PartAuthority

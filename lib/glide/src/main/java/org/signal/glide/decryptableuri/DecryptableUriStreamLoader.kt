@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.mms
+package org.signal.glide.decryptableuri
 
 import android.content.Context
 import com.bumptech.glide.load.Options
@@ -29,7 +29,7 @@ class DecryptableUriStreamLoader(
     options: Options
   ): ModelLoader.LoadData<InputStreamFactory> {
     val sourceKey = ObjectKey(model)
-    val dataFetcher = DecryptableUriStreamFetcher(context, model)
+    val dataFetcher = DecryptableUriStreamFetcher(model)
     return ModelLoader.LoadData(sourceKey, dataFetcher)
   }
 

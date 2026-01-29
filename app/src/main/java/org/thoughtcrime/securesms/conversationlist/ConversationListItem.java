@@ -73,7 +73,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
 import org.thoughtcrime.securesms.glide.targets.GlideLiveDataTarget;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;

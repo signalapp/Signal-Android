@@ -64,7 +64,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;

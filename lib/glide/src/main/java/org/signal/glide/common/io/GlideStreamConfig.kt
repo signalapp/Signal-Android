@@ -11,9 +11,9 @@ import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
 import org.signal.core.util.gibiBytes
 import org.signal.core.util.mebiBytes
+import org.signal.glide.SignalGlideDependencies
 import org.signal.glide.common.io.GlideStreamConfig.MAX_MARK_LIMIT
 import org.signal.glide.common.io.GlideStreamConfig.MIN_MARK_LIMIT
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 
 object GlideStreamConfig {
   private val MIN_MARK_LIMIT: ByteSize = 5.mebiBytes // Glide default
@@ -23,7 +23,7 @@ object GlideStreamConfig {
   private val HIGH_MEMORY_THRESHOLD: ByteSize = 12.gibiBytes
 
   @JvmStatic
-  val markReadLimitBytes: Int by lazy { calculateScaledMarkLimit(context = AppDependencies.application).inWholeBytes.toInt() }
+  val markReadLimitBytes: Int by lazy { calculateScaledMarkLimit(context = SignalGlideDependencies.application).inWholeBytes.toInt() }
 
   /**
    * Calculates buffer size, scaling proportionally from [MIN_MARK_LIMIT] to [MAX_MARK_LIMIT] based on how much memory the device has.

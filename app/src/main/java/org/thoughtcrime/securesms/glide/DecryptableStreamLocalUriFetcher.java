@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.glide.common.io;
+package org.thoughtcrime.securesms.glide;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -14,6 +14,7 @@ import kotlin.Pair;
 import com.bumptech.glide.load.data.StreamLocalUriFetcher;
 
 import org.signal.core.util.logging.Log;
+import org.signal.glide.common.io.GlideStreamConfig;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;

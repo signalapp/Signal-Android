@@ -49,7 +49,7 @@ import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist;
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;

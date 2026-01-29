@@ -39,7 +39,7 @@ import org.thoughtcrime.securesms.components.settings.app.privacy.expire.ExpireT
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.signal.core.models.media.Media;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;

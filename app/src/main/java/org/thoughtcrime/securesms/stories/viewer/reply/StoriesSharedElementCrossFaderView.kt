@@ -13,11 +13,11 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.card.MaterialCardView
 import org.signal.core.util.DimensionUnit
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.transitions.CrossfaderTransition
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import kotlin.reflect.KProperty
 

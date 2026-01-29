@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.fonts.SignalSymbols;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.stories.StoryTextPostModel;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.io.IOException;

@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.mms.AudioSlide;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;

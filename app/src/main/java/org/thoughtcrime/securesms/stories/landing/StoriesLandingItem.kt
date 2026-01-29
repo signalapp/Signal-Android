@@ -14,11 +14,11 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import org.signal.core.util.logging.Log
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu

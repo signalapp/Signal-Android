@@ -9,6 +9,7 @@ import org.signal.core.util.concurrent.DeadlockDetector
 import org.signal.core.util.concurrent.LatestValueObservable
 import org.signal.core.util.orNull
 import org.signal.core.util.resettableLazy
+import org.signal.glide.SignalGlideDependencies
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
@@ -95,6 +96,8 @@ object AppDependencies {
 
     _application = application
     AppDependencies.provider = provider
+
+    SignalGlideDependencies.init(application, SignalGlideDependenciesProvider)
   }
 
   @JvmStatic

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.mms
+package org.signal.glide.decryptableuri
 
 import android.net.Uri
 import com.bumptech.glide.load.Key
