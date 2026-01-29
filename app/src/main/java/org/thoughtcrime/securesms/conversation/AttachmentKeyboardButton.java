@@ -16,6 +16,7 @@ public enum AttachmentKeyboardButton {
 
   private final int titleRes;
   private final int iconRes;
+  // TODO: add contentDescription to the icon resource for improved accessibility
 
   AttachmentKeyboardButton(@StringRes int titleRes, @DrawableRes int iconRes) {
     this.titleRes = titleRes;
