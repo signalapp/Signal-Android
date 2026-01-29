@@ -43,9 +43,9 @@ import org.signal.camera.CameraScreenEvents
 import org.signal.camera.CameraScreenViewModel
 import org.signal.camera.VideoCaptureResult
 import org.signal.camera.VideoOutput
-import org.signal.camera.hud.StringResources
 import org.signal.camera.hud.StandardCameraHud
 import org.signal.camera.hud.StandardCameraHudEvents
+import org.signal.camera.hud.StringResources
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment

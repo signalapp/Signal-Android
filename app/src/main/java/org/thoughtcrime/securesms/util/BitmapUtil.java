@@ -174,47 +174,6 @@ public class BitmapUtil {
     }
   }
 
-  @WorkerThread
-  public static <T> Bitmap createScaledBitmap(Context context, T model, int maxWidth, int maxHeight)
-      throws BitmapDecodingException
-  {
-    try {
-      return Glide.with(context.getApplicationContext())
-                     .asBitmap()
-                     .load(model)
-                     .centerInside()
-                     .submit(maxWidth, maxHeight)
-                     .get();
-    } catch (InterruptedException | ExecutionException e) {
-      throw new BitmapDecodingException(e);
-    }
-  }
-
-  @WorkerThread
-  public static Bitmap createScaledBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
-    if (bitmap.getWidth() <= maxWidth && bitmap.getHeight() <= maxHeight) {
-      return bitmap;
-    }
-
-    if (maxWidth <= 0 || maxHeight <= 0) {
-      return bitmap;
-    }
-
-    int newWidth  = maxWidth;
-    int newHeight = maxHeight;
-
-    float widthRatio  = bitmap.getWidth()  / (float) maxWidth;
-    float heightRatio = bitmap.getHeight() / (float) maxHeight;
-
-    if (widthRatio > heightRatio) {
-      newHeight = (int) (bitmap.getHeight() / widthRatio);
-    } else {
-      newWidth = (int) (bitmap.getWidth() / heightRatio);
-    }
-
-    return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
-  }
-
   public static @NonNull CompressFormat getCompressFormatForContentType(@Nullable String contentType) {
     if (contentType == null) return CompressFormat.JPEG;
 

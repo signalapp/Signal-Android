@@ -1,4 +1,9 @@
-package org.thoughtcrime.securesms.scribbles;
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.imageeditor.core.renderers;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -25,6 +30,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import org.signal.core.util.BitmapExtensionsKt;
 import org.signal.core.util.logging.Log;
 import org.signal.imageeditor.core.Bounds;
 import org.signal.imageeditor.core.Renderer;
@@ -33,7 +39,6 @@ import org.signal.imageeditor.core.SelectableRenderer;
 import org.signal.imageeditor.core.model.EditorElement;
 import org.signal.imageeditor.core.model.EditorModel;
 import org.signal.glide.decryptableuri.DecryptableUri;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.util.concurrent.ExecutionException;
 
@@ -256,7 +261,7 @@ public final class UriGlideRenderer implements SelectableRenderer {
   private static @NonNull Bitmap blur(Bitmap bitmap, Context context, float blurRadius) {
     Point  previewSize = scaleKeepingAspectRatio(new Point(bitmap.getWidth(), bitmap.getHeight()), PREVIEW_DIMENSION_LIMIT);
     Point  blurSize    = scaleKeepingAspectRatio(new Point(previewSize.x / 2, previewSize.y / 2 ), MAX_BLUR_DIMENSION);
-    Bitmap small       = BitmapUtil.createScaledBitmap(bitmap, blurSize.x, blurSize.y);
+    Bitmap small       = BitmapExtensionsKt.scaleWithAspectRatio(bitmap, blurSize.x, blurSize.y);
 
     Log.d(TAG, "Bitmap: " + bitmap.getWidth() + "x" + bitmap.getHeight() + ", Blur: " + blurSize.x + "x" + blurSize.y);
 

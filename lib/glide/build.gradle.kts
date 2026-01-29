@@ -15,7 +15,7 @@ android {
 dependencies {
   implementation(project(":core:util"))
 
-  implementation(libs.glide.glide)
+  api(libs.glide.glide)
   ksp(libs.glide.ksp)
 
   implementation(platform(libs.androidx.compose.bom))

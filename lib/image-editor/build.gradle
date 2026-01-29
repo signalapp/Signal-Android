@@ -8,4 +8,5 @@ android {
 
 dependencies {
     implementation(project(":core:util"))
+    implementation(project(":lib:glide"))
 }
