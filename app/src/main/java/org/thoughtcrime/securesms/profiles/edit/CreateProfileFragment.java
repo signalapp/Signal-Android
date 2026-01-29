@@ -62,8 +62,8 @@ import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.SHO
 public class CreateProfileFragment extends LoggingFragment {
 
   private static final String TAG                    = Log.tag(CreateProfileFragment.class);
-  private static final int    MAX_DESCRIPTION_GLYPHS = 480;
-  private static final int    MAX_DESCRIPTION_BYTES  = 8192;
+  private static final int    MAX_DESCRIPTION_GLYPHS = 3840;
+  private static final int    MAX_DESCRIPTION_BYTES  = 65536;
 
   private Intent nextIntent;
 
