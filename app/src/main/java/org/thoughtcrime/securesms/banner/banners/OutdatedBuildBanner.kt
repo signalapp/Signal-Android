@@ -7,6 +7,10 @@ package org.thoughtcrime.securesms.banner.banners
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -46,24 +50,25 @@ class OutdatedBuildBanner : Banner<Int>() {
   @Composable
   override fun DisplayBanner(model: Int, contentPadding: PaddingValues) {
     val context = LocalContext.current
+    var dismissed by remember { mutableStateOf(false) }
+
+    if (dismissed) return
 
     Banner(
       contentPadding = contentPadding,
       daysUntilExpiry = model,
       onUpdateClicked = {
         PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(context)
+      },
+      onDismissClicked = {
+        dismissed = true
       }
     )
   }
-
-  data class Model(
-    val daysUntilExpiry: Int,
-    val isClientDeprecated: Boolean
-  )
 }
 
 @Composable
-private fun Banner(contentPadding: PaddingValues, daysUntilExpiry: Int, onUpdateClicked: () -> Unit = {}) {
+private fun Banner(contentPadding: PaddingValues, daysUntilExpiry: Int, onUpdateClicked: () -> Unit = {},onDismissClicked: () -> Unit = {}) {
   val bodyText = if (daysUntilExpiry == 0) {
     stringResource(id = R.string.OutdatedBuildReminder_your_version_of_signal_will_expire_today)
   } else {
@@ -81,6 +86,9 @@ private fun Banner(contentPadding: PaddingValues, daysUntilExpiry: Int, onUpdate
     actions = listOf(
       Action(R.string.ExpiredBuildReminder_update_now) {
         onUpdateClicked()
+      },
+      Action(R.string.SetUpYourUsername__dismiss) {
+        onDismissClicked()
       }
     ),
     paddingValues = contentPadding
