@@ -66,9 +66,10 @@ class EmojiSource(
 
         var overallIndex = 0
         page.displayEmoji.forEach { emoji: Emoji ->
+          val emojiIndex = overallIndex++
           emoji.variations.forEachIndexed { variationIndex, variation ->
             val raw = emoji.getRawVariation(variationIndex)
-            tree.add(variation, EmojiDrawInfo(emojiPage, overallIndex++, variation, raw, jumboPages[raw]))
+            tree.add(variation, EmojiDrawInfo(emojiPage, emojiIndex, variation, raw, jumboPages[raw]))
           }
         }
       }
