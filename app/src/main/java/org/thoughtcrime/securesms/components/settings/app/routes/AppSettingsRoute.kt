@@ -65,7 +65,7 @@ sealed interface AppSettingsRoute : Parcelable {
   sealed interface BackupsRoute : AppSettingsRoute {
     data object Backups : BackupsRoute
     data object Local : BackupsRoute
-    data class Remote(val backupLaterSelected: Boolean = false) : BackupsRoute
+    data class Remote(val backupLaterSelected: Boolean = false, val forQuickRestore: Boolean = false) : BackupsRoute
     data object DisplayKey : BackupsRoute
   }
 

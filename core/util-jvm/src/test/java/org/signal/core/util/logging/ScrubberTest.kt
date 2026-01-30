@@ -32,19 +32,19 @@ class ScrubberTest(private val input: String, private val expected: String) {
       return listOf(
         arrayOf(
           "An E164 number +15551234567",
-          "An E164 number E164:<9f683>"
+          "An E164 number E164:<9f6833c8>"
         ),
         arrayOf(
           "A UK number +447700900000",
-          "A UK number E164:<cad1f>"
+          "A UK number E164:<cad1f43d>"
         ),
         arrayOf(
           "A Japanese number 08011112222",
-          "A Japanese number E164:<d3f26>"
+          "A Japanese number E164:<d3f264bd>"
         ),
         arrayOf(
           "A Japanese number (08011112222)",
-          "A Japanese number (E164:<d3f26>)"
+          "A Japanese number (E164:<d3f264bd>)"
         ),
         arrayOf(
           "Not a Japanese number 08011112222333344445555",
@@ -56,11 +56,11 @@ class ScrubberTest(private val input: String, private val expected: String) {
         ),
         arrayOf(
           "An avatar filename: file:///data/user/0/org.thoughtcrime.securesms/files/avatars/%2B447700900099",
-          "An avatar filename: file:///data/user/0/org.thoughtcrime.securesms/files/avatars/E164:<3106a>"
+          "An avatar filename: file:///data/user/0/org.thoughtcrime.securesms/files/avatars/E164:<3106a51b>"
         ),
         arrayOf(
           "Multiple numbers +447700900001 +447700900002",
-          "Multiple numbers E164:<87035> E164:<1e488>"
+          "Multiple numbers E164:<87035e22> E164:<1e488ca0>"
         ),
         arrayOf(
           "One less than shortest number +155556",
@@ -68,11 +68,11 @@ class ScrubberTest(private val input: String, private val expected: String) {
         ),
         arrayOf(
           "Shortest number +1555567",
-          "Shortest number E164:<8edd2>"
+          "Shortest number E164:<8edd240f>"
         ),
         arrayOf(
           "Longest number +155556789012345",
-          "Longest number E164:<90596>"
+          "Longest number E164:<90596670>"
         ),
         arrayOf(
           "An E164 number KEEP_E164::+15551234567",
@@ -92,7 +92,7 @@ class ScrubberTest(private val input: String, private val expected: String) {
         ),
         arrayOf(
           "One more than longest number +1234567890123456",
-          "One more than longest number E164:<78d5b>6"
+          "One more than longest number E164:<78d5bea7>6"
         ),
         arrayOf(
           "abc@def.com",
@@ -120,7 +120,7 @@ class ScrubberTest(private val input: String, private val expected: String) {
         ),
         arrayOf(
           "An email and a number abc@def.com +155556789012345",
-          "An email and a number a...@... E164:<90596>"
+          "An email and a number a...@... E164:<90596670>"
         ),
         arrayOf(
           "__textsecure_group__!000102030405060708090a0b0c0d0e0f",
@@ -152,7 +152,7 @@ class ScrubberTest(private val input: String, private val expected: String) {
         ),
         arrayOf(
           "A PNI:a37cb654-c9e0-4c1e-93df-3d11ca3c97f4 surrounded with text",
-          "A PNI:<bdf84> surrounded with text"
+          "A PNI:<bdf84cf4> surrounded with text"
         ),
         arrayOf(
           "JOB::a37cb654-c9e0-4c1e-93df-3d11ca3c97f4",
@@ -160,7 +160,7 @@ class ScrubberTest(private val input: String, private val expected: String) {
         ),
         arrayOf(
           "All patterns in a row __textsecure_group__!abcdefg1234567890 +123456789012345 abc@def.com a37cb654-c9e0-4c1e-93df-3d11ca3c97f4 nl.motorsport.com 192.168.1.1 with text after",
-          "All patterns in a row GV1::***890 E164:<78d5b> a...@... ********-****-****-****-*********7f4 ***.com ...ipv4... with text after"
+          "All patterns in a row GV1::***890 E164:<78d5bea7> a...@... ********-****-****-****-*********7f4 ***.com ...ipv4... with text after"
         ),
         arrayOf(
           "java.net.UnknownServiceException: CLEARTEXT communication to nl.motorsport.com not permitted by network security policy",
@@ -265,6 +265,34 @@ class ScrubberTest(private val input: String, private val expected: String) {
         arrayOf(
           "https://debuglogs.org/android/7.47.2/2b5ccf4e3e58e44f12b3c92cfd5b526a2432f1dd0f81c8f89dededb176f1122d",
           "https://debuglogs.org/android/7.47.2/2b5ccf4e3e58e44f12b3c92cfd5b526a2432f1dd0f81c8f89dededb176f1122d"
+        ),
+        arrayOf(
+          "A media ID MediaId::0123456789abcdef0123456789abcd",
+          "A media ID MediaId::<cad309e5>"
+        ),
+        arrayOf(
+          "MediaId::abcdefabcdefabcdefabcdefabcdef surrounded with text",
+          "MediaId::<1a076ecf> surrounded with text"
+        ),
+        arrayOf(
+          "Multiple media IDs MediaId::000000000000000000000000000001 and MediaId::000000000000000000000000000002",
+          "Multiple media IDs MediaId::<9f0d2177> and MediaId::<7f96bb4c>"
+        ),
+        arrayOf(
+          "Not a media ID (too short) MediaId::0123456789abcdef012345678",
+          "Not a media ID (too short) MediaId::0123456789abcdef012345678"
+        ),
+        arrayOf(
+          "One more than media ID length MediaId::0123456789abcdef0123456789abcdef",
+          "One more than media ID length MediaId::<cad309e5>ef"
+        ),
+        arrayOf(
+          "Not a media ID (uppercase) MediaId::0123456789ABCDEF0123456789ABCD",
+          "Not a media ID (uppercase) MediaId::0123456789ABCDEF0123456789ABCD"
+        ),
+        arrayOf(
+          "Not a media ID (invalid chars) MediaId::0123456789ghijkl0123456789abcd",
+          "Not a media ID (invalid chars) MediaId::0123456789ghijkl0123456789abcd"
         )
       )
     }

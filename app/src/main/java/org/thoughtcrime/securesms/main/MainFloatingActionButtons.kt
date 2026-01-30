@@ -38,10 +38,12 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.window.NavigationType
 import kotlin.math.roundToInt
+import org.signal.core.ui.R as CoreUiR
 
 private val ACTION_BUTTON_SIZE = 56.dp
 private val ACTION_BUTTON_SPACING = 16.dp
@@ -185,10 +187,10 @@ private fun PrimaryActionButton(
     icon = {
       AnimatedContent(destination) { targetState ->
         val (icon, contentDescriptionId) = when (targetState) {
-          MainNavigationListLocation.ARCHIVE -> R.drawable.symbol_edit_24 to R.string.conversation_list_fragment__fab_content_description
-          MainNavigationListLocation.CHATS -> R.drawable.symbol_edit_24 to R.string.conversation_list_fragment__fab_content_description
+          MainNavigationListLocation.ARCHIVE -> CoreUiR.drawable.symbol_edit_24 to R.string.conversation_list_fragment__fab_content_description
+          MainNavigationListLocation.CHATS -> CoreUiR.drawable.symbol_edit_24 to R.string.conversation_list_fragment__fab_content_description
           MainNavigationListLocation.CALLS -> R.drawable.symbol_phone_plus_24 to R.string.CallLogFragment__start_a_new_call
-          MainNavigationListLocation.STORIES -> R.drawable.symbol_camera_24 to R.string.conversation_list_fragment__open_camera_description
+          MainNavigationListLocation.STORIES -> CoreUiR.drawable.symbol_camera_24 to R.string.conversation_list_fragment__open_camera_description
         }
 
         Icon(
@@ -211,7 +213,7 @@ private fun CameraButton(
     onClick = onClick,
     icon = {
       Icon(
-        imageVector = ImageVector.vectorResource(R.drawable.symbol_camera_24),
+        imageVector = SignalIcons.Camera.imageVector,
         contentDescription = stringResource(R.string.conversation_list_fragment__open_camera_description)
       )
     },

@@ -57,6 +57,7 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
 import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
 import org.signal.core.ui.compose.copied.androidx.compose.dragContainer
@@ -107,7 +108,7 @@ class CreatePollFragment : ComposeDialogFragment() {
       onNavigationClick = {
         dismissAllowingStateLoss()
       },
-      navigationIcon = ImageVector.vectorResource(R.drawable.symbol_x_24),
+      navigationIcon = SignalIcons.X.imageVector,
       navigationContentDescription = stringResource(R.string.Material3SearchToolbar__close)
     ) { paddingValues ->
       CreatePollScreen(

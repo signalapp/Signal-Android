@@ -68,11 +68,12 @@ include(":app")
 include(":core:util")
 include(":core:util-jvm")
 include(":core:models")
+include(":core:models-jvm")
 include(":core:ui")
 
 // Lib modules
 include(":lib:libsignal-service")
-include(":lib:glide-config")
+include(":lib:glide")
 include(":lib:photoview")
 include(":lib:sticky-header-grid")
 include(":lib:billing")

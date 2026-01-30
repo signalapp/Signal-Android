@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.api.messages
 import okio.ByteString
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
+import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -33,8 +34,8 @@ object EnvelopeContentValidator {
   private const val MAX_POLL_CHARACTER_LENGTH = 100
   private const val MIN_POLL_OPTIONS = 2
 
-  fun validate(envelope: Envelope, content: Content, localAci: ACI): Result {
-    if (envelope.type == Envelope.Type.PLAINTEXT_CONTENT) {
+  fun validate(envelope: Envelope, content: Content, localAci: ACI, ciphertextMessageType: Int): Result {
+    if (envelope.type == Envelope.Type.PLAINTEXT_CONTENT || ciphertextMessageType == CiphertextMessage.PLAINTEXT_CONTENT_TYPE) {
       validatePlaintextContent(content)?.let { return it }
     }
 

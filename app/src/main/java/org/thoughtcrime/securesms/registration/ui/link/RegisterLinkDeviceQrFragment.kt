@@ -39,7 +39,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -60,6 +59,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCode
@@ -235,17 +235,17 @@ private fun RegisterLinkDeviceQrScreen(
           .widthIn(160.dp, 320.dp)
       ) {
         InstructionRow(
-          icon = painterResource(R.drawable.symbol_settings_android_24),
+          icon = SignalIcons.Settings.painter,
           instruction = "Open Signal Settings on your device"
         )
 
         InstructionRow(
-          icon = painterResource(R.drawable.symbol_link_24),
+          icon = SignalIcons.Link.painter,
           instruction = "Tap \"Linked devices\""
         )
 
         InstructionRow(
-          icon = painterResource(R.drawable.symbol_qrcode_24),
+          icon = SignalIcons.QrCode.painter,
           instruction = "Tap \"Link a new device\" and scan this code"
         )
       }
@@ -310,7 +310,7 @@ private fun InstructionRow(
 private fun InstructionRowPreview() {
   Previews.Preview {
     InstructionRow(
-      icon = painterResource(R.drawable.symbol_phone_24),
+      icon = SignalIcons.Phone.painter,
       instruction = "Instruction!"
     )
   }

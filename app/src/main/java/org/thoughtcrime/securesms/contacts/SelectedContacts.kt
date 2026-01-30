@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
+import org.signal.core.ui.R as CoreUiR
 
 object SelectedContacts {
   @JvmStatic
@@ -65,11 +66,11 @@ object SelectedContacts {
       if (model.selectedContact.chatType == ChatType.INDIVIDUAL) {
         chip.text = context.getString(R.string.ChatFoldersFragment__one_on_one_chats)
         chip.chipIcon = AppCompatResources.getDrawable(context, R.drawable.symbol_person_light_24)
-        chip.chipIconTint = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.signal_colorOnSurface))
+        chip.chipIconTint = ColorStateList.valueOf(ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurface))
       } else {
         chip.text = context.getString(R.string.ChatFoldersFragment__groups)
         chip.chipIcon = AppCompatResources.getDrawable(context, R.drawable.symbol_group_light_20)
-        chip.chipIconTint = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.signal_colorOnSurface))
+        chip.chipIconTint = ColorStateList.valueOf(ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurface))
       }
       chip.setContact(model.selectedContact)
       chip.isCloseIconVisible = true

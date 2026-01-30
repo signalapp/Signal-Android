@@ -5,7 +5,9 @@
  */
 syntax = "proto3";
 
-option java_package        = "org.signal.storageservice.protos.groups.local";
+package signal;
+
+option java_package        = "org.signal.storageservice.storage.protos.groups.local";
 option java_multiple_files = true;
 
 import "Groups.proto";
@@ -18,6 +20,8 @@ message DecryptedMember {
   bytes       profileKey       = 3;
   uint32      joinedAtRevision = 5;
   bytes       pniBytes         = 6;
+  string      labelEmoji       = 7;
+  string      labelString      = 8;
 }
 
 message DecryptedPendingMember {
@@ -52,6 +56,12 @@ message DecryptedApproveMember {
 message DecryptedModifyMemberRole {
   bytes       aciBytes = 1;
   Member.Role role     = 2;
+}
+
+message DecryptedModifyMemberLabel {
+  bytes  aciBytes    = 1;
+  string labelEmoji  = 2;
+  string labelString = 3;
 }
 
 // Decrypted version of message Group
@@ -100,6 +110,7 @@ message DecryptedGroupChange {
   repeated DecryptedBannedMember         newBannedMembers            = 22;
   repeated DecryptedBannedMember         deleteBannedMembers         = 23;
   repeated DecryptedMember               promotePendingPniAciMembers = 24;
+  repeated DecryptedModifyMemberLabel    modifyMemberLabel           = 26;
 }
 
 message DecryptedString {
@@ -126,4 +137,3 @@ enum EnabledState {
   ENABLED  = 1;
   DISABLED = 2;
 }
-

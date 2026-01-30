@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.testing
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId.ACI
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.Recipient

@@ -6,7 +6,7 @@
 package org.whispersystems.signalservice.api.groupsv2
 
 import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsementsResponse
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 
 /**
  * Decrypted response from server operations that includes our global group state and

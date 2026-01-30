@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
@@ -90,6 +89,7 @@ fun CallScreen(
   webRtcCallState: WebRtcViewModel.State,
   isRemoteVideoOffer: Boolean,
   isInPipMode: Boolean,
+  savedLocalParticipantLandscape: Boolean = false,
   callScreenState: CallScreenState,
   callControlsState: CallControlsState,
   callScreenController: CallScreenController = CallScreenController.rememberCallScreenController(
@@ -115,7 +115,10 @@ fun CallScreen(
   onLocalPictureInPictureClicked: () -> Unit,
   onLocalPictureInPictureFocusClicked: () -> Unit,
   onControlsToggled: (Boolean) -> Unit,
-  onCallScreenDialogDismissed: () -> Unit = {}
+  onCallScreenDialogDismissed: () -> Unit = {},
+  onWifiToCellularPopupDismissed: () -> Unit = {},
+  onSwipeToSpeakerHintDismissed: () -> Unit = {},
+  onRemoteMuteToastDismissed: () -> Unit = {}
 ) {
   if (webRtcCallState == WebRtcViewModel.State.CALL_INCOMING) {
     IncomingCallScreen(
@@ -130,8 +133,10 @@ fun CallScreen(
 
   if (isInPipMode) {
     PictureInPictureCallScreen(
+      localParticipant = localParticipant,
+      pendingParticipantsCount = callScreenState.pendingParticipantsState?.pendingParticipantCollection?.getUnresolvedPendingParticipants()?.size ?: 0,
       callParticipantsPagerState = callParticipantsPagerState,
-      callScreenController = callScreenController
+      savedLocalParticipantLandscape = savedLocalParticipantLandscape
     )
 
     return
@@ -181,7 +186,7 @@ fun CallScreen(
       sheetPeekHeight = peekHeight.dp,
       sheetContainerColor = SignalTheme.colors.colorSurface1,
       containerColor = Color.Black,
-      sheetMaxWidth = 540.dp,
+      sheetMaxWidth = CallScreenMetrics.SheetMaxWidth,
       sheetContent = {
         BottomSheets.Handle(modifier = Modifier.align(Alignment.CenterHorizontally))
 
@@ -326,6 +331,7 @@ fun CallScreen(
             MoveableLocalVideoRenderer(
               localParticipant = localParticipant,
               localRenderState = localRenderState,
+              savedLocalParticipantLandscape = savedLocalParticipantLandscape,
               onClick = onLocalPictureInPictureClicked,
               onToggleCameraDirectionClick = callScreenControlsListener::onCameraDirectionChanged,
               onFocusLocalParticipantClick = onLocalPictureInPictureFocusClicked,
@@ -339,11 +345,14 @@ fun CallScreen(
             )
           },
           raiseHandSlot = {
-            raiseHandSnackbar(
-              Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp)
-            )
+            Box(
+              modifier = Modifier.fillMaxWidth(),
+              contentAlignment = Alignment.CenterEnd
+            ) {
+              raiseHandSnackbar(
+                Modifier.padding(bottom = 16.dp)
+              )
+            }
           },
           callLinkBarSlot = {
             PendingParticipantsInternal(modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 16.dp))
@@ -375,7 +384,7 @@ fun CallScreen(
             }
           },
           bottomInset = padding,
-          bottomSheetWidth = BottomSheetDefaults.SheetMaxWidth,
+          bottomSheetWidth = CallScreenMetrics.SheetMaxWidth,
           localRenderState = localRenderState,
           modifier = Modifier.fillMaxSize()
         )
@@ -419,6 +428,30 @@ fun CallScreen(
     )
   }
 
+  WifiToCellularPopup(
+    visible = callScreenState.displayWifiToCellularPopup,
+    onDismiss = onWifiToCellularPopupDismissed,
+    modifier = Modifier
+      .statusBarsPadding()
+      .fillMaxWidth()
+  )
+
+  SwipeToSpeakerHintPopup(
+    visible = callScreenState.displaySwipeToSpeakerHint,
+    onDismiss = onSwipeToSpeakerHintDismissed,
+    modifier = Modifier
+      .statusBarsPadding()
+      .fillMaxWidth()
+  )
+
+  RemoteMuteToastPopup(
+    message = callScreenState.remoteMuteToastMessage,
+    onDismiss = onRemoteMuteToastDismissed,
+    modifier = Modifier
+      .statusBarsPadding()
+      .fillMaxWidth()
+  )
+
   CallScreenDialog(callScreenDialogType, onCallScreenDialogDismissed)
 }
 
@@ -435,7 +468,7 @@ private fun LargeLocalVideoRenderer(
     participant = localParticipant,
     renderInPip = false,
     raiseHandAllowed = false,
-    mirrorVideo = true,
+    mirrorVideo = localParticipant.cameraDirection == CameraState.Direction.FRONT,
     showAudioIndicator = false,
     onInfoMoreInfoClick = null,
     modifier = modifier

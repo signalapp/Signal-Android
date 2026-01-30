@@ -271,7 +271,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       restoredModel = null;
     }
 
-    @ColorInt int blackoutColor = ContextCompat.getColor(requireContext(), R.color.signal_colorBackground);
+    @ColorInt int blackoutColor = ContextCompat.getColor(requireContext(), org.signal.core.ui.R.color.signal_colorBackground);
     if (editorModel == null) {
       switch (mode) {
         case AVATAR_EDIT:

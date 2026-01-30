@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.safety.SafetyNumberBucketRowItem
 import org.thoughtcrime.securesms.safety.SafetyNumberRecipientRowItem
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.verify.VerifyIdentityFragment
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Full-screen fragment which displays the list of users who have safety number changes.
@@ -60,7 +61,7 @@ class SafetyNumberReviewConnectionsFragment : DSLSettingsFragment(
         title = DSLSettingsText.from(
           resources.getQuantityString(R.plurals.SafetyNumberReviewConnectionsFragment__d_recipients_may_have, recipientCount, recipientCount),
           DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
-          DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant))
         )
       )
 
@@ -110,7 +111,7 @@ class SafetyNumberReviewConnectionsFragment : DSLSettingsFragment(
                     ActionItem(
                       iconRes = R.drawable.ic_circle_x_24,
                       title = getString(R.string.SafetyNumberReviewConnectionsFragment__remove),
-                      tintRes = R.color.signal_colorOnSurface,
+                      tintRes = CoreUiR.color.signal_colorOnSurface,
                       action = {
                         viewModel.removeDestination(model.recipient.id)
                       }
@@ -134,7 +135,7 @@ class SafetyNumberReviewConnectionsFragment : DSLSettingsFragment(
           ActionItem(
             iconRes = R.drawable.ic_circle_x_24,
             title = getString(R.string.SafetyNumberReviewConnectionsFragment__remove_all),
-            tintRes = R.color.signal_colorOnSurface,
+            tintRes = CoreUiR.color.signal_colorOnSurface,
             action = {
               viewModel.removeAll(bucket)
             }

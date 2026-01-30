@@ -53,7 +53,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.window.core.layout.WindowHeightSizeClass;
 
 import com.airbnb.lottie.SimpleColorFilter;
 import com.annimon.stream.Stream;
@@ -66,8 +65,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.Stopwatch;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
@@ -76,6 +77,7 @@ import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.ArchiveUploadProgress;
 import org.thoughtcrime.securesms.backup.RestoreState;
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress;
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState;
@@ -87,12 +89,13 @@ import org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomS
 import org.thoughtcrime.securesms.badges.self.expired.MonthlyDonationCanceledBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.banner.Banner;
 import org.thoughtcrime.securesms.banner.BannerManager;
+import org.thoughtcrime.securesms.banner.banners.ArchiveUploadStatusBanner;
 import org.thoughtcrime.securesms.banner.banners.CdsPermanentErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.CdsTemporaryErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.DeprecatedSdkBanner;
 import org.thoughtcrime.securesms.banner.banners.DozeBanner;
-import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner;
+import org.thoughtcrime.securesms.banner.banners.ArchiveRestoreStatusBanner;
 import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.ServiceOutageBanner;
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner;
@@ -158,9 +161,10 @@ import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
-import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
+import org.thoughtcrime.securesms.components.SignalProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
+import org.thoughtcrime.securesms.window.WindowSizeClassExtensionsKt;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.lang.ref.WeakReference;
@@ -230,6 +234,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
   private   ChatListBackHandler                   chatListBackHandler;
 
   private BannerManager bannerManager;
+  private SignalProgressDialog progressDialog;
 
   protected MainNavigationViewModel mainNavigationViewModel;
 
@@ -315,7 +320,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     searchAdapter = contactSearchMediator.getAdapter();
 
-    if (getWindowSizeClass(getResources()).getWindowHeightSizeClass() == WindowHeightSizeClass.COMPACT) {
+    if (WindowSizeClassExtensionsKt.isHeightCompact(getWindowSizeClass(getResources()))) {
       ViewUtil.setBottomMargin(bottomActionBar, ViewUtil.getNavigationBarHeight(bottomActionBar));
     }
 
@@ -390,7 +395,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     initializeVoiceNotePlayer();
     initializeBanners();
     maybeScheduleRefreshProfileJob();
-    ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(this, mainNavigationViewModel .getDetailLocation());
+    ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(this, mainNavigationViewModel.getDetailLocation());
 
     String query = contactSearchMediator.getFilter();
     if (query != null) {
@@ -453,6 +458,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   @Override
   public void onDestroyView() {
+    if (activeContextMenu != null) {
+      activeContextMenu.dismiss();
+      activeContextMenu = null;
+    }
+
     coordinator             = null;
     list                    = null;
     bottomActionBar         = null;
@@ -463,6 +473,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
     activeAdapter  = null;
     defaultAdapter = null;
     searchAdapter  = null;
+
+    dismissProgressDialog();
 
     super.onDestroyView();
   }
@@ -736,7 +748,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
           }
           return Unit.INSTANCE;
         }),
-        new MediaRestoreProgressBanner(new MediaRestoreProgressBanner.RestoreProgressBannerListener() {
+        new ArchiveRestoreStatusBanner(new ArchiveRestoreStatusBanner.RestoreProgressBannerListener() {
           @Override
           public void onBannerClick() {
             startActivity(AppSettingsActivity.backupsSettings(requireContext()));
@@ -763,6 +775,30 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
           @Override
           public void onDismissComplete() {
+            bannerManager.updateContent(bannerView.get());
+          }
+        }),
+        new ArchiveUploadStatusBanner(new ArchiveUploadStatusBanner.UploadProgressBannerListener() {
+          @Override
+          public void onBannerClick() {
+            startActivity(AppSettingsActivity.remoteBackups(requireContext()));
+          }
+
+          @Override
+          public void onCancelClicked() {
+            new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.CancelBackupDialog_title)
+                .setMessage(R.string.CancelBackupDialog_body)
+                .setNegativeButton(R.string.CancelBackupDialog_continue_action, null)
+                .setPositiveButton(R.string.CancelBackupDialog_cancel_action, (d, w) -> {
+                  ArchiveUploadProgress.INSTANCE.cancel();
+                  bannerManager.updateContent(bannerView.get());
+                })
+                .show();
+          }
+
+          @Override
+          public void onHidden() {
             bannerManager.updateContent(bannerView.get());
           }
         })
@@ -968,16 +1004,23 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   @SuppressLint("StaticFieldLeak")
-  private void handleArchive(@NonNull Collection<Long> ids, boolean showProgress) {
+  private void handleArchive(@NonNull Collection<Long> ids) {
     Set<Long> selectedConversations = new HashSet<>(ids);
     int       count                 = selectedConversations.size();
     String    snackBarTitle         = getResources().getQuantityString(getArchivedSnackbarTitleRes(), count, count);
+    boolean   showProgress          = count > 1;
+
+    dismissProgressDialog();
+    if (showProgress) {
+      progressDialog = SignalProgressDialog.show(requireContext(), null, null, true, false, null);
+    }
 
     lifecycleDisposable.add(Completable
         .fromAction(() -> archiveThreads(selectedConversations))
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(() -> {
+          dismissProgressDialog();
           endActionModeIfActive();
 
           mainNavigationViewModel.getSnackbarRegistry().emit(new SnackbarState(
@@ -986,16 +1029,36 @@ public class ConversationListFragment extends MainFragment implements Conversati
                   getString(R.string.ConversationListFragment_undo),
                   R.color.amber_500,
                   () -> {
-                    SignalExecutors.BOUNDED_IO.execute(() -> reverseArchiveThreads(selectedConversations));
+                    handleUnarchive(selectedConversations);
                     return Unit.INSTANCE;
                   }
               ),
-              showProgress,
               Snackbars.Duration.LONG,
               MainSnackbarHostKey.MainChrome.INSTANCE,
               null
           ));
         }));
+  }
+
+  private void handleUnarchive(@NonNull Set<Long> threadIds) {
+    boolean showProgress = threadIds.size() > 1;
+
+    dismissProgressDialog();
+    if (showProgress) {
+      progressDialog = SignalProgressDialog.show(requireContext(), null, null, true, false, null);
+    }
+
+    SignalExecutors.BOUNDED_IO.execute(() -> {
+      reverseArchiveThreads(threadIds);
+      ThreadUtil.runOnMain(this::dismissProgressDialog);
+    });
+  }
+
+  private void dismissProgressDialog() {
+    if (progressDialog != null) {
+      progressDialog.dismiss();
+      progressDialog = null;
+    }
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -1074,7 +1137,6 @@ public class ConversationListFragment extends MainFragment implements Conversati
       mainNavigationViewModel.getSnackbarRegistry().emit(new SnackbarState(
           getString(R.string.conversation_list__you_can_only_pin_up_to_d_chats, MAXIMUM_PINNED_CONVERSATIONS),
           null,
-          false,
           Snackbars.Duration.LONG,
           MainSnackbarHostKey.MainChrome.INSTANCE,
           null
@@ -1120,7 +1182,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   private void updateMute(@NonNull Collection<Conversation> conversations, long until) {
-    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(requireContext(), 250, 250);
+    dismissProgressDialog();
+    progressDialog = SignalProgressDialog.show(requireContext(), null, null, true, false, null);
 
     SimpleTask.run(SignalExecutors.BOUNDED, () -> {
       List<RecipientId> recipientIds = conversations.stream()
@@ -1132,7 +1195,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       return null;
     }, unused -> {
       endActionModeIfActive();
-      dialog.dismiss();
+      dismissProgressDialog();
     });
   }
 
@@ -1239,13 +1302,13 @@ public class ConversationListFragment extends MainFragment implements Conversati
       }
     }
 
-    items.add(new ActionItem(R.drawable.symbol_check_circle_24, getString(R.string.ConversationListFragment_select), () -> {
+    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_check_circle_24, getString(R.string.ConversationListFragment_select), () -> {
       viewModel.startSelection(conversation);
       startActionMode();
     }));
 
     if (conversation.getThreadRecord().isArchived()) {
-      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(id, false)));
+      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(id)));
     } else {
       if (viewModel.getCurrentFolder().getFolderType() == ChatFolderRecord.FolderType.ALL &&
           (conversation.getThreadRecord().getRecipient().isIndividual() ||
@@ -1257,10 +1320,10 @@ public class ConversationListFragment extends MainFragment implements Conversati
       } else if (viewModel.getCurrentFolder().getFolderType() != ChatFolderRecord.FolderType.ALL) {
         items.add(new ActionItem(R.drawable.symbol_folder_minus, getString(R.string.ConversationListFragment_remove_from_folder), () -> viewModel.removeChatFromFolder(conversation.getThreadRecord().getThreadId())));
       }
-      items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(id, false)));
+      items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(id)));
     }
 
-    items.add(new ActionItem(R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(id)));
+    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(id)));
 
     activeContextMenu = new SignalContextMenu.Builder(view, list)
         .offsetX(ViewUtil.dpToPx(12))
@@ -1268,7 +1331,9 @@ public class ConversationListFragment extends MainFragment implements Conversati
         .onDismiss(() -> {
           activeContextMenu = null;
           view.setSelected(false);
-          list.suppressLayout(false);
+          if (list != null) {
+            list.suppressLayout(false);
+          }
         })
         .show(items);
 
@@ -1360,12 +1425,12 @@ public class ConversationListFragment extends MainFragment implements Conversati
     }
 
     if (isArchived()) {
-      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(selectionIds, true)));
+      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(selectionIds)));
     } else {
-      items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(selectionIds, true)));
+      items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(selectionIds)));
     }
 
-    items.add(new ActionItem(R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(selectionIds)));
+    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(selectionIds)));
 
     if (hasUnmuted) {
       items.add(new ActionItem(R.drawable.symbol_bell_slash_24, getResources().getString(R.string.ConversationListFragment_mute), () -> handleMute(viewModel.currentSelectedConversations())));
@@ -1373,7 +1438,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       items.add(new ActionItem(R.drawable.symbol_bell_24, getResources().getString(R.string.ConversationListFragment_unmute), () -> handleUnmute(viewModel.currentSelectedConversations())));
     }
 
-    items.add(new ActionItem(R.drawable.symbol_check_circle_24, getString(R.string.ConversationListFragment_select_all), viewModel::onSelectAllClick));
+    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_check_circle_24, getString(R.string.ConversationListFragment_select_all), viewModel::onSelectAllClick));
 
     if (!isArchived()) {
       items.add(new ActionItem(R.drawable.symbol_folder_add, getString(R.string.ConversationListFragment_add_to_folder), () -> {
@@ -1440,7 +1505,6 @@ public class ConversationListFragment extends MainFragment implements Conversati
                         return Unit.INSTANCE;
                       }
                   ),
-                  false,
                   Snackbars.Duration.LONG,
                   MainSnackbarHostKey.MainChrome.INSTANCE,
                   null
@@ -1676,7 +1740,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
         if (absoluteDx > 0) {
           if (archiveDrawable == null) {
             archiveDrawable = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), getArchiveIconRes()));
-            archiveDrawable.setColorFilter(new SimpleColorFilter(ContextCompat.getColor(requireContext(), R.color.signal_colorOnPrimary)));
+            archiveDrawable.setColorFilter(new SimpleColorFilter(ContextCompat.getColor(requireContext(), org.signal.core.ui.R.color.signal_colorOnPrimary)));
             archiveDrawable.setBounds(0, 0, archiveDrawable.getIntrinsicWidth(), archiveDrawable.getIntrinsicHeight());
           }
 

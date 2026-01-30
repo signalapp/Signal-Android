@@ -1,19 +1,20 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
 import org.junit.Test;
-import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.BannedMember;
-import org.signal.storageservice.protos.groups.GroupChange;
-import org.signal.storageservice.protos.groups.Member;
-import org.signal.storageservice.protos.groups.PendingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedString;
-import org.signal.storageservice.protos.groups.local.DecryptedTimer;
-import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.signal.core.util.UuidUtil;
+import org.signal.libsignal.zkgroup.profiles.ProfileKey;
+import org.signal.storageservice.storage.protos.groups.AccessControl;
+import org.signal.storageservice.storage.protos.groups.GroupChange;
+import org.signal.storageservice.storage.protos.groups.Member;
+import org.signal.storageservice.storage.protos.groups.MemberBanned;
+import org.signal.storageservice.storage.protos.groups.MemberPendingProfileKey;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberLabel;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedString;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer;
+import org.signal.storageservice.storage.protos.groups.local.EnabledState;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.List;
@@ -40,8 +41,8 @@ import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.rando
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.requestingMember;
 import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
 
+@SuppressWarnings("NewClassNamingConvention")
 public final class GroupChangeUtil_resolveConflict_Test {
-
   /**
    * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
    * <p>
@@ -52,7 +53,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 24, maxFieldFound);
+                 26, maxFieldFound);
   }
 
   /**
@@ -65,7 +66,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + GroupChange.class.getName(),
-                 24, maxFieldFound);
+                 26, maxFieldFound);
   }
 
   /**
@@ -250,15 +251,15 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .addPendingMembers(List.of(new GroupChange.Actions.AddPendingMemberAction.Builder().added(new PendingMember.Builder().member(encryptedMember(member1, randomProfileKey())).build()).build(),
-                                   new GroupChange.Actions.AddPendingMemberAction.Builder().added(new PendingMember.Builder().member(encryptedMember(member2, profileKey2)).build()).build(),
-                                   new GroupChange.Actions.AddPendingMemberAction.Builder().added(new PendingMember.Builder().member(encryptedMember(member3, randomProfileKey())).build()).build()))
+        .addMembersPendingProfileKey(List.of(new GroupChange.Actions.AddMemberPendingProfileKeyAction.Builder().added(new MemberPendingProfileKey.Builder().member(encryptedMember(member1, randomProfileKey())).build()).build(),
+                                   new GroupChange.Actions.AddMemberPendingProfileKeyAction.Builder().added(new MemberPendingProfileKey.Builder().member(encryptedMember(member2, profileKey2)).build()).build(),
+                                   new GroupChange.Actions.AddMemberPendingProfileKeyAction.Builder().added(new MemberPendingProfileKey.Builder().member(encryptedMember(member3, randomProfileKey())).build()).build()))
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     GroupChange.Actions expected = new GroupChange.Actions.Builder()
-        .addPendingMembers(List.of(new GroupChange.Actions.AddPendingMemberAction.Builder().added(new PendingMember.Builder().member(encryptedMember(member2, profileKey2)).build()).build()))
+        .addMembersPendingProfileKey(List.of(new GroupChange.Actions.AddMemberPendingProfileKeyAction.Builder().added(new MemberPendingProfileKey.Builder().member(encryptedMember(member2, profileKey2)).build()).build()))
         .build();
 
     assertEquals(expected, resolvedActions);
@@ -280,15 +281,15 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .deletePendingMembers(List.of(new GroupChange.Actions.DeletePendingMemberAction.Builder().deletedUserId(encrypt(member1)).build(),
-                                      new GroupChange.Actions.DeletePendingMemberAction.Builder().deletedUserId(encrypt(member2)).build(),
-                                      new GroupChange.Actions.DeletePendingMemberAction.Builder().deletedUserId(encrypt(member3)).build()))
+        .deleteMembersPendingProfileKey(List.of(new GroupChange.Actions.DeleteMemberPendingProfileKeyAction.Builder().deletedUserId(encrypt(member1)).build(),
+                                      new GroupChange.Actions.DeleteMemberPendingProfileKeyAction.Builder().deletedUserId(encrypt(member2)).build(),
+                                      new GroupChange.Actions.DeleteMemberPendingProfileKeyAction.Builder().deletedUserId(encrypt(member3)).build()))
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     GroupChange.Actions expected = new GroupChange.Actions.Builder()
-        .deletePendingMembers(List.of(new GroupChange.Actions.DeletePendingMemberAction.Builder().deletedUserId(encrypt(member2)).build()))
+        .deleteMembersPendingProfileKey(List.of(new GroupChange.Actions.DeleteMemberPendingProfileKeyAction.Builder().deletedUserId(encrypt(member2)).build()))
         .build();
 
     assertEquals(expected, resolvedActions);
@@ -311,16 +312,16 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .promotePendingMembers(List.of(new GroupChange.Actions.PromotePendingMemberAction.Builder().presentation(presentation(member1, randomProfileKey())).build(),
-                                       new GroupChange.Actions.PromotePendingMemberAction.Builder().presentation(presentation(member2, profileKey2)).build(),
-                                       new GroupChange.Actions.PromotePendingMemberAction.Builder().presentation(presentation(member3, randomProfileKey())).build()))
+        .promoteMembersPendingProfileKey(List.of(new GroupChange.Actions.PromoteMemberPendingProfileKeyAction.Builder().presentation(presentation(member1, randomProfileKey())).build(),
+                                       new GroupChange.Actions.PromoteMemberPendingProfileKeyAction.Builder().presentation(presentation(member2, profileKey2)).build(),
+                                       new GroupChange.Actions.PromoteMemberPendingProfileKeyAction.Builder().presentation(presentation(member3, randomProfileKey())).build()))
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
 
     GroupChange.Actions expected = new GroupChange.Actions.Builder()
-        .promotePendingMembers(List.of(new GroupChange.Actions.PromotePendingMemberAction.Builder().presentation(presentation(member2, profileKey2)).build()))
+        .promoteMembersPendingProfileKey(List.of(new GroupChange.Actions.PromoteMemberPendingProfileKeyAction.Builder().presentation(presentation(member2, profileKey2)).build()))
         .build();
 
     assertEquals(expected, resolvedActions);
@@ -346,7 +347,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     GroupChange.Actions expected = new GroupChange.Actions.Builder()
-        .promotePendingMembers(List.of(new GroupChange.Actions.PromotePendingMemberAction.Builder().presentation(presentation(member1, profileKey1)).build()))
+        .promoteMembersPendingProfileKey(List.of(new GroupChange.Actions.PromoteMemberPendingProfileKeyAction.Builder().presentation(presentation(member1, profileKey1)).build()))
         .build();
 
     assertEquals(expected, resolvedActions);
@@ -439,7 +440,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .modifyDisappearingMessagesTimer(new GroupChange.Actions.ModifyDisappearingMessagesTimerAction.Builder().timer(ByteString.EMPTY).build())
+        .modifyDisappearingMessageTimer(new GroupChange.Actions.ModifyDisappearingMessageTimerAction.Builder().timer(ByteString.EMPTY).build())
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
@@ -458,7 +459,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .modifyDisappearingMessagesTimer(new GroupChange.Actions.ModifyDisappearingMessagesTimerAction.Builder().timer(ByteString.EMPTY).build())
+        .modifyDisappearingMessageTimer(new GroupChange.Actions.ModifyDisappearingMessageTimerAction.Builder().timer(ByteString.EMPTY).build())
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
@@ -567,15 +568,15 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .addRequestingMembers(List.of(new GroupChange.Actions.AddRequestingMemberAction.Builder().added(encryptedRequestingMember(member1, randomProfileKey())).build(),
-                                      new GroupChange.Actions.AddRequestingMemberAction.Builder().added(encryptedRequestingMember(member2, profileKey2)).build(),
-                                      new GroupChange.Actions.AddRequestingMemberAction.Builder().added(encryptedRequestingMember(member3, randomProfileKey())).build()))
+        .addMembersPendingAdminApproval(List.of(new GroupChange.Actions.AddMemberPendingAdminApprovalAction.Builder().added(encryptedRequestingMember(member1, randomProfileKey())).build(),
+                                      new GroupChange.Actions.AddMemberPendingAdminApprovalAction.Builder().added(encryptedRequestingMember(member2, profileKey2)).build(),
+                                      new GroupChange.Actions.AddMemberPendingAdminApprovalAction.Builder().added(encryptedRequestingMember(member3, randomProfileKey())).build()))
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     GroupChange.Actions expected = new GroupChange.Actions.Builder()
-        .addRequestingMembers(List.of(new GroupChange.Actions.AddRequestingMemberAction.Builder().added(encryptedRequestingMember(member2, profileKey2)).build()))
+        .addMembersPendingAdminApproval(List.of(new GroupChange.Actions.AddMemberPendingAdminApprovalAction.Builder().added(encryptedRequestingMember(member2, profileKey2)).build()))
         .build();
 
     assertEquals(expected, resolvedActions);
@@ -599,17 +600,17 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .addRequestingMembers(List.of(new GroupChange.Actions.AddRequestingMemberAction.Builder().added(encryptedRequestingMember(member1, profileKey1)).build(),
-                                      new GroupChange.Actions.AddRequestingMemberAction.Builder().added(encryptedRequestingMember(member2, profileKey2)).build(),
-                                      new GroupChange.Actions.AddRequestingMemberAction.Builder().added(encryptedRequestingMember(member3, profileKey3)).build()))
+        .addMembersPendingAdminApproval(List.of(new GroupChange.Actions.AddMemberPendingAdminApprovalAction.Builder().added(encryptedRequestingMember(member1, profileKey1)).build(),
+                                      new GroupChange.Actions.AddMemberPendingAdminApprovalAction.Builder().added(encryptedRequestingMember(member2, profileKey2)).build(),
+                                      new GroupChange.Actions.AddMemberPendingAdminApprovalAction.Builder().added(encryptedRequestingMember(member3, profileKey3)).build()))
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     GroupChange.Actions expected = new GroupChange.Actions.Builder()
-        .promotePendingMembers(List.of(new GroupChange.Actions.PromotePendingMemberAction.Builder().presentation(presentation(member3, profileKey3)).build(),
-                                       new GroupChange.Actions.PromotePendingMemberAction.Builder().presentation(presentation(member1, profileKey1)).build()))
-        .addRequestingMembers(List.of(new GroupChange.Actions.AddRequestingMemberAction.Builder().added(encryptedRequestingMember(member2, profileKey2)).build()))
+        .promoteMembersPendingProfileKey(List.of(new GroupChange.Actions.PromoteMemberPendingProfileKeyAction.Builder().presentation(presentation(member3, profileKey3)).build(),
+                                       new GroupChange.Actions.PromoteMemberPendingProfileKeyAction.Builder().presentation(presentation(member1, profileKey1)).build()))
+        .addMembersPendingAdminApproval(List.of(new GroupChange.Actions.AddMemberPendingAdminApprovalAction.Builder().added(encryptedRequestingMember(member2, profileKey2)).build()))
         .build();
 
     assertEquals(expected, resolvedActions);
@@ -630,15 +631,15 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .deleteRequestingMembers(List.of(new GroupChange.Actions.DeleteRequestingMemberAction.Builder().deletedUserId(encrypt(member1)).build(),
-                                         new GroupChange.Actions.DeleteRequestingMemberAction.Builder().deletedUserId(encrypt(member2)).build(),
-                                         new GroupChange.Actions.DeleteRequestingMemberAction.Builder().deletedUserId(encrypt(member3)).build()))
+        .deleteMembersPendingAdminApproval(List.of(new GroupChange.Actions.DeleteMemberPendingAdminApprovalAction.Builder().deletedUserId(encrypt(member1)).build(),
+                                         new GroupChange.Actions.DeleteMemberPendingAdminApprovalAction.Builder().deletedUserId(encrypt(member2)).build(),
+                                         new GroupChange.Actions.DeleteMemberPendingAdminApprovalAction.Builder().deletedUserId(encrypt(member3)).build()))
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     GroupChange.Actions expected = new GroupChange.Actions.Builder()
-        .deleteRequestingMembers(List.of(new GroupChange.Actions.DeleteRequestingMemberAction.Builder().deletedUserId(encrypt(member2)).build()))
+        .deleteMembersPendingAdminApproval(List.of(new GroupChange.Actions.DeleteMemberPendingAdminApprovalAction.Builder().deletedUserId(encrypt(member2)).build()))
         .build();
 
     assertEquals(expected, resolvedActions);
@@ -660,15 +661,15 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .promoteRequestingMembers(List.of(new GroupChange.Actions.PromoteRequestingMemberAction.Builder().role(Member.Role.DEFAULT).userId(UuidUtil.toByteString(member1)).build(),
-                                          new GroupChange.Actions.PromoteRequestingMemberAction.Builder().role(Member.Role.DEFAULT).userId(UuidUtil.toByteString(member2)).build(),
-                                          new GroupChange.Actions.PromoteRequestingMemberAction.Builder().role(Member.Role.DEFAULT).userId(UuidUtil.toByteString(member3)).build()))
+        .promoteMembersPendingAdminApproval(List.of(new GroupChange.Actions.PromoteMemberPendingAdminApprovalAction.Builder().role(Member.Role.DEFAULT).userId(UuidUtil.toByteString(member1)).build(),
+                                          new GroupChange.Actions.PromoteMemberPendingAdminApprovalAction.Builder().role(Member.Role.DEFAULT).userId(UuidUtil.toByteString(member2)).build(),
+                                          new GroupChange.Actions.PromoteMemberPendingAdminApprovalAction.Builder().role(Member.Role.DEFAULT).userId(UuidUtil.toByteString(member3)).build()))
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     GroupChange.Actions expected = new GroupChange.Actions.Builder()
-        .promoteRequestingMembers(List.of(new GroupChange.Actions.PromoteRequestingMemberAction.Builder().role(Member.Role.DEFAULT).userId(UuidUtil.toByteString(member2)).build()))
+        .promoteMembersPendingAdminApproval(List.of(new GroupChange.Actions.PromoteMemberPendingAdminApprovalAction.Builder().role(Member.Role.DEFAULT).userId(UuidUtil.toByteString(member2)).build()))
         .build();
 
     assertEquals(expected, resolvedActions);
@@ -741,7 +742,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .newIsAnnouncementGroup(EnabledState.ENABLED)
         .build();
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .modifyAnnouncementsOnly(new GroupChange.Actions.ModifyAnnouncementsOnlyAction.Builder().announcementsOnly(true).build())
+        .modify_announcements_only(new GroupChange.Actions.ModifyAnnouncementsOnlyAction.Builder().announcements_only(true).build())
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
@@ -758,7 +759,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .newIsAnnouncementGroup(EnabledState.ENABLED)
         .build();
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .modifyAnnouncementsOnly(new GroupChange.Actions.ModifyAnnouncementsOnlyAction.Builder().announcementsOnly(true).build())
+        .modify_announcements_only(new GroupChange.Actions.ModifyAnnouncementsOnlyAction.Builder().announcements_only(true).build())
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
@@ -783,16 +784,16 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .addBannedMembers(List.of(new GroupChange.Actions.AddBannedMemberAction.Builder().added(new BannedMember.Builder().userId(encrypt(member1)).build()).build(),
-                                  new GroupChange.Actions.AddBannedMemberAction.Builder().added(new BannedMember.Builder().userId(encrypt(member2)).build()).build(),
-                                  new GroupChange.Actions.AddBannedMemberAction.Builder().added(new BannedMember.Builder().userId(encrypt(member3)).build()).build()))
+        .add_members_banned(List.of(new GroupChange.Actions.AddMemberBannedAction.Builder().added(new MemberBanned.Builder().userId(encrypt(member1)).build()).build(),
+                                  new GroupChange.Actions.AddMemberBannedAction.Builder().added(new MemberBanned.Builder().userId(encrypt(member2)).build()).build(),
+                                  new GroupChange.Actions.AddMemberBannedAction.Builder().added(new MemberBanned.Builder().userId(encrypt(member3)).build()).build()))
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     GroupChange.Actions expected = new GroupChange.Actions.Builder()
-        .addBannedMembers(List.of(new GroupChange.Actions.AddBannedMemberAction.Builder().added(new BannedMember.Builder().userId(encrypt(member1)).build()).build(),
-                                  new GroupChange.Actions.AddBannedMemberAction.Builder().added(new BannedMember.Builder().userId(encrypt(member2)).build()).build()))
+        .add_members_banned(List.of(new GroupChange.Actions.AddMemberBannedAction.Builder().added(new MemberBanned.Builder().userId(encrypt(member1)).build()).build(),
+                                  new GroupChange.Actions.AddMemberBannedAction.Builder().added(new MemberBanned.Builder().userId(encrypt(member2)).build()).build()))
         .build();
 
     assertEquals(expected, resolvedActions);
@@ -814,15 +815,15 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .deleteBannedMembers(List.of(new GroupChange.Actions.DeleteBannedMemberAction.Builder().deletedUserId(encrypt(member1)).build(),
-                                     new GroupChange.Actions.DeleteBannedMemberAction.Builder().deletedUserId(encrypt(member2)).build(),
-                                     new GroupChange.Actions.DeleteBannedMemberAction.Builder().deletedUserId(encrypt(member3)).build()))
+        .delete_members_banned(List.of(new GroupChange.Actions.DeleteMemberBannedAction.Builder().deletedUserId(encrypt(member1)).build(),
+                                     new GroupChange.Actions.DeleteMemberBannedAction.Builder().deletedUserId(encrypt(member2)).build(),
+                                     new GroupChange.Actions.DeleteMemberBannedAction.Builder().deletedUserId(encrypt(member3)).build()))
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     GroupChange.Actions expected = new GroupChange.Actions.Builder()
-        .deleteBannedMembers(List.of(new GroupChange.Actions.DeleteBannedMemberAction.Builder().deletedUserId(encrypt(member2)).build()))
+        .delete_members_banned(List.of(new GroupChange.Actions.DeleteMemberBannedAction.Builder().deletedUserId(encrypt(member2)).build()))
         .build();
 
     assertEquals(expected, resolvedActions);
@@ -843,15 +844,68 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     GroupChange.Actions change = new GroupChange.Actions.Builder()
-        .promotePendingPniAciMembers(List.of(new GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.Builder().presentation(presentation(member1.pniBytes, member1.profileKey)).build(),
-                                             new GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.Builder().presentation(presentation(member2.pniBytes, member2.profileKey)).build()))
+        .promote_members_pending_pni_aci_profile_key(List.of(new GroupChange.Actions.PromoteMemberPendingPniAciProfileKeyAction.Builder().presentation(presentation(member1.pniBytes, member1.profileKey)).build(),
+                                             new GroupChange.Actions.PromoteMemberPendingPniAciProfileKeyAction.Builder().presentation(presentation(member2.pniBytes, member2.profileKey)).build()))
         .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     GroupChange.Actions expected = new GroupChange.Actions.Builder()
-        .promotePendingPniAciMembers(List.of(new GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.Builder().presentation(presentation(member2.pniBytes, member2.profileKey)).build()))
+        .promote_members_pending_pni_aci_profile_key(List.of(new GroupChange.Actions.PromoteMemberPendingPniAciProfileKeyAction.Builder().presentation(presentation(member2.pniBytes, member2.profileKey)).build()))
         .build();
     assertEquals(expected, resolvedActions);
+  }
+
+  @Test
+  public void field_26__modify_member_label__remove_if_label_already_matches() {
+    UUID memberUuid = UUID.fromString("d1d1d1d1-0000-4000-8000-000000000001");
+
+    DecryptedMember existingMember = member(memberUuid)
+        .newBuilder()
+        .labelEmoji("🔥")
+        .labelString("matching label")
+        .build();
+
+    DecryptedGroup existingGroup = new DecryptedGroup.Builder()
+        .revision(10)
+        .members(List.of(existingMember))
+        .build();
+
+    DecryptedModifyMemberLabel modifyLabelAction = new DecryptedModifyMemberLabel.Builder()
+        .aciBytes(UuidUtil.toByteString(memberUuid))
+        .labelEmoji("🔥")
+        .labelString("matching label")
+        .build();
+
+    DecryptedGroupChange conflictingChange = new DecryptedGroupChange.Builder()
+        .modifyMemberLabel(List.of(modifyLabelAction))
+        .build();
+
+    DecryptedGroupChange.Builder resolvedActions = GroupChangeUtil.resolveConflict(existingGroup, conflictingChange);
+    assertTrue(resolvedActions.build().modifyMemberLabel.isEmpty());
+  }
+
+  @Test
+  public void field_26__modify_member_label__remove_if_member_not_in_group() {
+    UUID memberUuuid = UUID.fromString("d1d1d1d1-0000-4000-8000-000000000001");
+    UUID nonMemberUuid = UUID.fromString("d2d2d2d2-0000-4000-8000-000000000002");
+
+    DecryptedGroup existingGroup = new DecryptedGroup.Builder()
+        .revision(10)
+        .members(List.of(member(memberUuuid)))
+        .build();
+
+    DecryptedModifyMemberLabel modifyLabelAction = new org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberLabel.Builder()
+        .aciBytes(UuidUtil.toByteString(nonMemberUuid))
+        .labelEmoji("🔥")
+        .labelString("foo bar")
+        .build();
+
+    DecryptedGroupChange conflictingChange = new DecryptedGroupChange.Builder()
+        .modifyMemberLabel(List.of(modifyLabelAction))
+        .build();
+
+    DecryptedGroupChange.Builder resolved = GroupChangeUtil.resolveConflict(existingGroup, conflictingChange);
+    assertTrue(resolved.build().modifyMemberLabel.isEmpty());
   }
 }

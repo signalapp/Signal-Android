@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * A bottom sheet that shows some simple recipient details, as well as some actions (like calling,
@@ -230,7 +231,7 @@ class RecipientBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
           requireContext(),
           SignalSymbols.Weight.BOLD,
           if (isLtr) SignalSymbols.Glyph.CHEVRON_RIGHT else SignalSymbols.Glyph.CHEVRON_LEFT,
-          R.color.signal_colorOutline
+          CoreUiR.color.signal_colorOutline
         )
 
         if (isLtr) {

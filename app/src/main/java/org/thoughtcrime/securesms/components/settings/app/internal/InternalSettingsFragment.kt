@@ -579,14 +579,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       sectionHeaderPref(DSLSettingsText.from("Calling options"))
 
-      switchPref(
-        title = DSLSettingsText.from("Use new calling UI"),
-        isChecked = state.newCallingUi,
-        onClick = {
-          viewModel.setUseNewCallingUi(!state.newCallingUi)
-        }
-      )
-
       clickPref(
         title = DSLSettingsText.from("Display call quality survey"),
         onClick = {

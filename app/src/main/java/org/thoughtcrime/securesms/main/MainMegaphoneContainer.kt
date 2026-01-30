@@ -13,13 +13,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.fragment.app.DialogFragment
-import androidx.window.core.layout.WindowHeightSizeClass
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.MegaphoneComponent
 import org.thoughtcrime.securesms.megaphone.Megaphones
+import org.thoughtcrime.securesms.window.isHeightCompact
 
 data class MainMegaphoneState(
   val megaphone: Megaphone = Megaphone.NONE,
@@ -47,7 +47,7 @@ fun MainMegaphoneContainer(
 ) {
   val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
   val visible = remember(windowSizeClass, state) {
-    !(state.megaphone == Megaphone.NONE || state.mainToolbarMode != MainToolbarMode.FULL || windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT)
+    !(state.megaphone == Megaphone.NONE || state.mainToolbarMode != MainToolbarMode.FULL || windowSizeClass.isHeightCompact)
   }
 
   AnimatedVisibility(visible = visible) {
@@ -58,7 +58,7 @@ fun MainMegaphoneContainer(
   }
 
   LaunchedEffect(state, windowSizeClass) {
-    if (state.megaphone == Megaphone.NONE || state.mainToolbarMode == MainToolbarMode.BASIC || windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT) {
+    if (state.megaphone == Megaphone.NONE || state.mainToolbarMode == MainToolbarMode.BASIC || windowSizeClass.isHeightCompact) {
       return@LaunchedEffect
     }
 

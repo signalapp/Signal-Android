@@ -110,14 +110,16 @@ class CallScreenController private constructor(
           isEarpieceAvailable = callControlsState.isEarpieceAvailable
           isWiredHeadsetAvailable = callControlsState.isWiredHeadsetAvailable
           isBluetoothHeadsetAvailable = callControlsState.isBluetoothHeadsetAvailable
+          setCurrentOutput(callControlsState.audioOutput)
         }
       }
 
-      LaunchedEffect(callControlsState.isEarpieceAvailable, callControlsState.isWiredHeadsetAvailable, callControlsState.isBluetoothHeadsetAvailable) {
+      LaunchedEffect(callControlsState.isEarpieceAvailable, callControlsState.isWiredHeadsetAvailable, callControlsState.isBluetoothHeadsetAvailable, callControlsState.audioOutput) {
         audioOutputPickerOutputState.apply {
           isEarpieceAvailable = callControlsState.isEarpieceAvailable
           isWiredHeadsetAvailable = callControlsState.isWiredHeadsetAvailable
           isBluetoothHeadsetAvailable = callControlsState.isBluetoothHeadsetAvailable
+          setCurrentOutput(callControlsState.audioOutput)
         }
       }
 

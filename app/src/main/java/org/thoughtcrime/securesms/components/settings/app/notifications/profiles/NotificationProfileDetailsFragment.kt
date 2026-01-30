@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.util.orderOfDaysInWeek
 import java.time.DayOfWeek
 import java.time.format.TextStyle
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 private const val MEMBER_COUNT_TO_SHOW_EXPAND: Int = 5
 
@@ -180,7 +181,7 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
       switchPref(
         title = DSLSettingsText.from(R.string.NotificationProfileDetails__allow_all_calls),
         isChecked = profile.allowAllCalls,
-        icon = DSLSettingsIcon.from(R.drawable.symbol_phone_24),
+        icon = DSLSettingsIcon.from(CoreUiR.drawable.symbol_phone_24),
         onClick = {
           lifecycleDisposable += viewModel.toggleAllowAllCalls()
             .subscribe()
@@ -188,7 +189,7 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
       )
       switchPref(
         title = DSLSettingsText.from(R.string.NotificationProfileDetails__notify_for_all_mentions),
-        icon = DSLSettingsIcon.from(R.drawable.symbol_at_24),
+        icon = DSLSettingsIcon.from(CoreUiR.drawable.symbol_at_24),
         isChecked = profile.allowAllMentions,
         onClick = {
           lifecycleDisposable += viewModel.toggleAllowAllMentions()
@@ -199,7 +200,7 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
       dividerPref()
       clickPref(
         title = DSLSettingsText.from(R.string.NotificationProfileDetails__delete_profile, ContextCompat.getColor(requireContext(), R.color.signal_alert_primary)),
-        icon = DSLSettingsIcon.from(R.drawable.symbol_trash_24, R.color.signal_alert_primary),
+        icon = DSLSettingsIcon.from(CoreUiR.drawable.symbol_trash_24, R.color.signal_alert_primary),
         onClick = {
           MaterialAlertDialogBuilder(requireContext())
             .setMessage(R.string.NotificationProfileDetails__permanently_delete_profile)

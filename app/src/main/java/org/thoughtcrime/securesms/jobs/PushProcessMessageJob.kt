@@ -4,6 +4,7 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException
@@ -47,7 +48,8 @@ class PushProcessMessageJob private constructor(
         sourceDeviceId = metadata.sourceDeviceId,
         sealedSender = metadata.sealedSender,
         groupId = if (metadata.groupId != null) metadata.groupId!!.toByteString() else null,
-        destinationServiceId = ByteString.of(*metadata.destinationServiceId.toByteArray())
+        destinationServiceId = ByteString.of(*metadata.destinationServiceId.toByteArray()),
+        ciphertextMessageType = metadata.ciphertextMessageType
       ),
       serverDeliveredTimestamp = serverDeliveredTimestamp
     ).encode()
@@ -84,7 +86,8 @@ class PushProcessMessageJob private constructor(
             sourceDeviceId = completeMessage.metadata.sourceDeviceId,
             sealedSender = completeMessage.metadata.sealedSender,
             groupId = completeMessage.metadata.groupId?.toByteArray(),
-            destinationServiceId = ServiceId.parseOrThrow(completeMessage.metadata.destinationServiceId.toByteArray())
+            destinationServiceId = ServiceId.parseOrThrow(completeMessage.metadata.destinationServiceId.toByteArray()),
+            ciphertextMessageType = completeMessage.metadata.ciphertextMessageType ?: CiphertextMessage.WHISPER_TYPE
           ),
           serverDeliveredTimestamp = completeMessage.serverDeliveredTimestamp
         )

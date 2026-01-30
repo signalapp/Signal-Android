@@ -127,7 +127,7 @@ public class UsernameEditFragment extends LoggingFragment {
       return false;
     });
 
-    binding.usernameDescription.setLinkColor(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary));
+    binding.usernameDescription.setLinkColor(ContextCompat.getColor(requireContext(), org.signal.core.ui.R.color.signal_colorPrimary));
     binding.usernameDescription.setLearnMoreVisible(true);
     binding.usernameDescription.setOnLinkClickListener(this::onLearnMore);
 
@@ -185,7 +185,7 @@ public class UsernameEditFragment extends LoggingFragment {
       case DISCRIMINATOR_CANNOT_START_WITH_0 -> getString(R.string.UsernameEditFragment__this_number_cant_start_with_0);
     };
 
-    int colorRes = error != null ? R.color.signal_colorError : R.color.signal_colorPrimary;
+    int colorRes = error != null ? org.signal.core.ui.R.color.signal_colorError : org.signal.core.ui.R.color.signal_colorPrimary;
     int color = ContextCompat.getColor(requireContext(), colorRes);
 
     binding.usernameTextFocusedStroke.setBackgroundColor(color);

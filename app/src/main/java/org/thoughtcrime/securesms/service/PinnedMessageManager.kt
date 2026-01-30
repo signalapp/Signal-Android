@@ -1,14 +1,11 @@
 package org.thoughtcrime.securesms.service
 
 import android.app.Application
-import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.WorkerThread
-import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -75,13 +72,10 @@ class PinnedMessageManager(
 
   @WorkerThread
   override fun scheduleAlarm(application: Application, event: Event, delay: Long) {
-    val conversationIntent = ConversationIntents.createBuilderSync(application, event.recipientId, event.threadId).build()
-
-    trySetExactAlarm(
+    setAlarm(
       application,
       System.currentTimeMillis() + delay,
-      PinnedMessagesAlarm::class.java,
-      PendingIntent.getActivity(application, 0, conversationIntent, PendingIntentFlags.mutable())
+      PinnedMessagesAlarm::class.java
     )
   }
 

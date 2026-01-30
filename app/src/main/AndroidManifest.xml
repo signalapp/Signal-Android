@@ -122,7 +122,6 @@
         <!-- ======================================= -->
         <activity
             android:name=".components.webrtc.v2.WebRtcCallActivity"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout"
             android:excludeFromRecents="true"
             android:exported="false"
             android:launchMode="singleTask"
@@ -208,7 +207,7 @@
         </activity>
 
         <activity
-            android:name=".stickers.StickerPackPreviewActivity"
+            android:name=".stickers.preview.StickerPackPreviewActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="true"
             android:launchMode="singleTask"
@@ -589,7 +588,7 @@
             android:noHistory="true" />
 
         <activity
-            android:name=".registration.olddevice.TransferAccountActivity"
+            android:name=".registration.olddevice.QuickTransferOldDeviceActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"
             android:theme="@style/Theme.Signal.DayNight.NoActionBar" />
@@ -620,7 +619,7 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name=".stickers.StickerManagementActivity"
+            android:name=".stickers.manage.StickerManagementActivity"
             android:exported="false"
             android:theme="@style/Signal.DayNight.NoActionBar" />
 

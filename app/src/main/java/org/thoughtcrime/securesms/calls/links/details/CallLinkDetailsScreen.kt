@@ -21,9 +21,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.FragmentActivity
@@ -37,6 +35,7 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.ringrtc.CallLinkState.Restrictions
@@ -199,7 +198,7 @@ fun CallLinkDetailsScreen(
     },
     onNavigationClick = callback::onNavigationClicked,
     navigationIcon = if (showNavigationIcon) {
-      ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
+      SignalIcons.ArrowStart.imageVector
     } else {
       null
     }
@@ -253,7 +252,7 @@ fun CallLinkDetailsScreen(
       item {
         Rows.TextRow(
           text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__share_link_via_signal),
-          icon = ImageVector.vectorResource(id = R.drawable.symbol_forward_24),
+          icon = SignalIcons.Forward.imageVector,
           onClick = callback::onShareLinkViaSignalClicked
         )
       }
@@ -261,7 +260,7 @@ fun CallLinkDetailsScreen(
       item {
         Rows.TextRow(
           text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__copy_link),
-          icon = ImageVector.vectorResource(id = R.drawable.symbol_copy_android_24),
+          icon = SignalIcons.Copy.imageVector,
           onClick = callback::onCopyClicked
         )
       }
@@ -269,7 +268,7 @@ fun CallLinkDetailsScreen(
       item {
         Rows.TextRow(
           text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
-          icon = ImageVector.vectorResource(id = R.drawable.symbol_link_24),
+          icon = SignalIcons.Link.imageVector,
           onClick = callback::onShareClicked
         )
       }
@@ -277,7 +276,7 @@ fun CallLinkDetailsScreen(
       item {
         Rows.TextRow(
           text = stringResource(id = R.string.CallLinkDetailsFragment__delete_call_link),
-          icon = ImageVector.vectorResource(id = R.drawable.symbol_trash_24),
+          icon = SignalIcons.Trash.imageVector,
           foregroundTint = MaterialTheme.colorScheme.error,
           onClick = callback::onDeleteClicked
         )

@@ -41,10 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.activityViewModels
@@ -66,6 +63,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.R
@@ -180,7 +178,7 @@ private fun RestoreViaQrScreen(
 
         IconButton(onClick = { controller.toggle() }) {
           Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.symbol_more_vertical_24),
+            imageVector = SignalIcons.MoreVertical.imageVector,
             contentDescription = null
           )
         }
@@ -302,17 +300,17 @@ private fun RestoreViaQrScreen(
           .widthIn(160.dp, 320.dp)
       ) {
         InstructionRow(
-          icon = painterResource(R.drawable.symbol_phone_24),
+          icon = SignalIcons.Phone.painter,
           instruction = stringResource(R.string.RestoreViaQr_instruction_1)
         )
 
         InstructionRow(
-          icon = painterResource(R.drawable.symbol_camera_24),
+          icon = SignalIcons.Camera.painter,
           instruction = stringResource(R.string.RestoreViaQr_instruction_2)
         )
 
         InstructionRow(
-          icon = painterResource(R.drawable.symbol_qrcode_24),
+          icon = SignalIcons.QrCode.painter,
           instruction = stringResource(R.string.RestoreViaQr_instruction_3)
         )
       }
@@ -430,7 +428,7 @@ private fun InstructionRow(
 private fun InstructionRowPreview() {
   Previews.Preview {
     InstructionRow(
-      icon = painterResource(R.drawable.symbol_phone_24),
+      icon = SignalIcons.Phone.painter,
       instruction = "Instruction!"
     )
   }

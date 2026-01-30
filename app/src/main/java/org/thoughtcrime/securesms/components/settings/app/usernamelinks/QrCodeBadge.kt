@@ -38,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 
 /**
@@ -137,7 +138,7 @@ fun QrCodeBadge(
       ) {
         if (usernameCopyable) {
           Image(
-            painter = painterResource(id = R.drawable.symbol_copy_android_24),
+            painter = SignalIcons.Copy.painter,
             contentDescription = null,
             colorFilter = if (colorScheme == UsernameQrCodeColorScheme.White) {
               ColorFilter.tint(Color.Black)

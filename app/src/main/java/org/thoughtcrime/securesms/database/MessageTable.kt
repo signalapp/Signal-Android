@@ -3699,6 +3699,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       notifyStickerListeners()
       notifyStickerPackListeners()
       OptimizeMessageSearchIndexJob.enqueue()
+
+      if (updateThread) {
+        notifyConversationListListeners()
+      }
     }
 
     return threadDeleted

@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import java.io.ByteArrayInputStream
+import org.signal.core.ui.R as CoreUiR
 
 object StoryContextMenu {
 
@@ -204,7 +205,7 @@ object StoryContextMenu {
           )
         } else {
           add(
-            ActionItem(R.drawable.symbol_check_circle_24, context.getString(R.string.StoriesLandingItem__unhide_story)) {
+            ActionItem(CoreUiR.drawable.symbol_check_circle_24, context.getString(R.string.StoriesLandingItem__unhide_story)) {
               callbacks.onUnhide()
             }
           )
@@ -213,17 +214,17 @@ object StoryContextMenu {
 
       if (isFromSelf) {
         add(
-          ActionItem(R.drawable.symbol_forward_24, context.getString(R.string.StoriesLandingItem__forward)) {
+          ActionItem(CoreUiR.drawable.symbol_forward_24, context.getString(R.string.StoriesLandingItem__forward)) {
             callbacks.onForward()
           }
         )
         add(
-          ActionItem(R.drawable.symbol_share_android_24, context.getString(R.string.StoriesLandingItem__share)) {
+          ActionItem(CoreUiR.drawable.symbol_share_android_24, context.getString(R.string.StoriesLandingItem__share)) {
             callbacks.onShare()
           }
         )
         add(
-          ActionItem(R.drawable.symbol_trash_24, context.getString(R.string.delete)) {
+          ActionItem(CoreUiR.drawable.symbol_trash_24, context.getString(R.string.delete)) {
             callbacks.onDelete()
           }
         )
@@ -243,7 +244,7 @@ object StoryContextMenu {
       }
 
       add(
-        ActionItem(R.drawable.symbol_info_24, context.getString(R.string.StoriesLandingItem__info)) {
+        ActionItem(CoreUiR.drawable.symbol_info_24, context.getString(R.string.StoriesLandingItem__info)) {
           callbacks.onInfo()
         }
       )

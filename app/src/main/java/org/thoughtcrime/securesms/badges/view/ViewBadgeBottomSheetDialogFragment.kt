@@ -57,7 +57,6 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       binding.action.visible = false
     }
 
-    @Suppress("CascadeIf")
     if (!InAppDonations.hasAtLeastOnePaymentMethodAvailable()) {
       binding.noSupport.visible = true
       binding.action.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_open_20)
@@ -65,12 +64,10 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       binding.action.setOnClickListener {
         CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url))
       }
-    } else if (Recipient.self().badges.none { it.category == Badge.Category.Donor && !it.isBoost() && !it.isExpired() }) {
+    } else {
       binding.action.setOnClickListener {
         startActivity(AppSettingsActivity.subscriptions(requireContext()))
       }
-    } else {
-      binding.action.visible = false
     }
 
     val adapter = MappingAdapter()

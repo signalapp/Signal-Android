@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.BottomSheetUtil
+import org.signal.core.ui.R as CoreUiR
 
 class BecomeASustainerFragment : DSLSettingsBottomSheetFragment() {
 
@@ -46,7 +47,7 @@ class BecomeASustainerFragment : DSLSettingsBottomSheetFragment() {
           R.string.BecomeASustainerFragment__signal_is_a_non_profit,
           DSLSettingsText.CenterModifier,
           DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
-          DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant))
         )
       )
 

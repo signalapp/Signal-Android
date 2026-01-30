@@ -58,6 +58,10 @@ class CallQualityScreenViewModel(
       return
     }
 
+    AppDependencies.jobManager.add(CallQualitySurveySubmissionJob(getRequestSnapshot(), state.value.isShareDebugLogSelected))
+  }
+
+  fun getRequestSnapshot(): SubmitCallQualitySurveyRequest {
     val stateSnapshot = state.value
     val somethingElseDescription: String? = if (stateSnapshot.selectedQualityIssues.contains(CallQualityIssue.SOMETHING_ELSE)) {
       stateSnapshot.somethingElseDescription.takeIf { it.isNotEmpty() }
@@ -65,12 +69,10 @@ class CallQualityScreenViewModel(
       null
     }
 
-    val requestToSubmitToJob = initialRequest.newBuilder()
+    return initialRequest.newBuilder()
       .user_satisfied(stateSnapshot.isUserSatisfiedWithCall)
       .call_quality_issues(stateSnapshot.selectedQualityIssues.map { it.code })
       .additional_issues_description(somethingElseDescription)
       .build()
-
-    AppDependencies.jobManager.add(CallQualitySurveySubmissionJob(requestToSubmitToJob, stateSnapshot.isShareDebugLogSelected))
   }
 }

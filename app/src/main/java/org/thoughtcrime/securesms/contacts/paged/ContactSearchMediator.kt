@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import java.util.concurrent.TimeUnit
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * This mediator serves as the delegate for interacting with the ContactSearch* framework.
@@ -225,7 +226,7 @@ class ContactSearchMediator(
       MaterialAlertDialogBuilder(fragment.requireContext())
         .setTitle(R.string.ContactSearchMediator__delete_story)
         .setMessage(fragment.getString(R.string.ContactSearchMediator__delete_the_custom, story.recipient.getDisplayName(fragment.requireContext())))
-        .setPositiveButton(SpanUtil.color(ContextCompat.getColor(fragment.requireContext(), R.color.signal_colorError), fragment.getString(R.string.ContactSearchMediator__delete))) { _, _ -> viewModel.deletePrivateStory(story) }
+        .setPositiveButton(SpanUtil.color(ContextCompat.getColor(fragment.requireContext(), CoreUiR.color.signal_colorError), fragment.getString(R.string.ContactSearchMediator__delete))) { _, _ -> viewModel.deletePrivateStory(story) }
         .setNegativeButton(android.R.string.cancel) { _, _ -> }
         .show()
     }

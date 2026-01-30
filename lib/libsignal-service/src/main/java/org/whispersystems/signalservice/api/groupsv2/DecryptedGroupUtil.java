@@ -1,18 +1,19 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
 import org.signal.libsignal.protocol.logging.Log;
-import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.Member;
-import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
-import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
-import org.signal.storageservice.protos.groups.local.EnabledState;
+import org.signal.storageservice.storage.protos.groups.AccessControl;
+import org.signal.storageservice.storage.protos.groups.Member;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedApproveMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberLabel;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberRole;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMemberRemoval;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.storage.protos.groups.local.EnabledState;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceIds;
@@ -25,6 +26,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import javax.annotation.Nonnull;
 
 import okio.ByteString;
 
@@ -159,7 +162,7 @@ public final class DecryptedGroupUtil {
     return Optional.ofNullable(change != null ? ServiceId.parseOrNull(change.editorServiceIdBytes) : null);
   }
 
-  public static Optional<DecryptedMember> findMemberByAci(Collection<DecryptedMember> members, ACI aci) {
+  public static Optional<DecryptedMember> findMemberByAci(@Nonnull Collection<DecryptedMember> members, @Nonnull ACI aci) {
     ByteString aciBytes = aci.toByteString();
 
     for (DecryptedMember member : members) {
@@ -299,11 +302,11 @@ public final class DecryptedGroupUtil {
 
     applyModifyMemberProfileKeyActions(builder, change.modifiedProfileKeys);
 
-    applyAddPendingMemberActions(builder, change.newPendingMembers);
+    applyAddMemberPendingProfileKeyActions(builder, change.newPendingMembers);
 
-    applyDeletePendingMemberActions(builder, change.deletePendingMembers);
+    applyDeleteMemberPendingProfileKeyActions(builder, change.deletePendingMembers);
 
-    applyPromotePendingMemberActions(builder, change.promotePendingMembers);
+    applyPromoteMemberPendingProfileKeyActions(builder, change.promotePendingMembers);
 
     applyModifyTitleAction(builder, change);
 
@@ -325,7 +328,7 @@ public final class DecryptedGroupUtil {
 
     applyDeleteRequestingMembers(builder, change.deleteRequestingMembers);
 
-    applyPromoteRequestingMemberActions(builder, change.promoteRequestingMembers);
+    applyPromoteMemberPendingAdminApprovalActions(builder, change.promoteRequestingMembers);
 
     applyInviteLinkPassword(builder, change);
 
@@ -334,6 +337,8 @@ public final class DecryptedGroupUtil {
     applyDeleteBannedMembersActions(builder, change.deleteBannedMembers);
 
     applyPromotePendingPniAciMemberActions(builder, change.promotePendingPniAciMembers);
+
+    DecryptedGroupExtensionsKt.setModifyMemberLabelActions(builder, change.modifyMemberLabel);
 
     return builder.build();
   }
@@ -409,7 +414,7 @@ public final class DecryptedGroupUtil {
     builder.members(members);
   }
 
-  private static void applyAddPendingMemberActions(DecryptedGroup.Builder builder, List<DecryptedPendingMember> newPendingMembersList) throws NotAbleToApplyGroupV2ChangeException {
+  private static void applyAddMemberPendingProfileKeyActions(DecryptedGroup.Builder builder, List<DecryptedPendingMember> newPendingMembersList) throws NotAbleToApplyGroupV2ChangeException {
     Set<ByteString>              fullMemberSet            = getMemberAciSet(builder.members);
     Set<ByteString>              pendingMemberCipherTexts = getPendingMemberCipherTextSet(builder.pendingMembers);
     List<DecryptedPendingMember> pendingMembers           = new ArrayList<>(builder.pendingMembers);
@@ -427,7 +432,7 @@ public final class DecryptedGroupUtil {
     builder.pendingMembers(pendingMembers);
   }
 
-  private static void applyDeletePendingMemberActions(DecryptedGroup.Builder builder, List<DecryptedPendingMemberRemoval> deletePendingMembersList) {
+  private static void applyDeleteMemberPendingProfileKeyActions(DecryptedGroup.Builder builder, List<DecryptedPendingMemberRemoval> deletePendingMembersList) {
     List<DecryptedPendingMember> pendingMembers = new ArrayList<>(builder.pendingMembers);
 
     for (DecryptedPendingMemberRemoval removedMember : deletePendingMembersList) {
@@ -444,7 +449,7 @@ public final class DecryptedGroupUtil {
     builder.pendingMembers(pendingMembers);
   }
 
-  private static void applyPromotePendingMemberActions(DecryptedGroup.Builder builder, List<DecryptedMember> promotePendingMembersList) throws NotAbleToApplyGroupV2ChangeException {
+  private static void applyPromoteMemberPendingProfileKeyActions(DecryptedGroup.Builder builder, List<DecryptedMember> promotePendingMembersList) throws NotAbleToApplyGroupV2ChangeException {
     List<DecryptedMember>        members        = new ArrayList<>(builder.members);
     List<DecryptedPendingMember> pendingMembers = new ArrayList<>(builder.pendingMembers);
 
@@ -541,7 +546,7 @@ public final class DecryptedGroupUtil {
     builder.requestingMembers(requestingMembers);
   }
 
-  private static void applyPromoteRequestingMemberActions(DecryptedGroup.Builder builder, List<DecryptedApproveMember> promoteRequestingMembers) throws NotAbleToApplyGroupV2ChangeException {
+  private static void applyPromoteMemberPendingAdminApprovalActions(DecryptedGroup.Builder builder, List<DecryptedApproveMember> promoteRequestingMembers) throws NotAbleToApplyGroupV2ChangeException {
     List<DecryptedMember>           members           = new ArrayList<>(builder.members);
     List<DecryptedRequestingMember> requestingMembers = new ArrayList<>(builder.requestingMembers);
 
@@ -747,7 +752,8 @@ public final class DecryptedGroupUtil {
            isEmpty(change.newIsAnnouncementGroup) &&       // field 21
            change.newBannedMembers.size() == 0 &&          // field 22
            change.deleteBannedMembers.size() == 0 &&       // field 23
-           change.promotePendingPniAciMembers.size() == 0; // field 24
+           change.promotePendingPniAciMembers.size() == 0 && // field 24
+           change.modifyMemberLabel.isEmpty();          // field 26
   }
 
   public static boolean changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(DecryptedGroupChange change) {
@@ -770,7 +776,8 @@ public final class DecryptedGroupUtil {
            change.newInviteLinkPassword.size() == 0 &&     // field 19
            change.newDescription == null &&                // field 20
            isEmpty(change.newIsAnnouncementGroup) &&       // field 21
-           change.promotePendingPniAciMembers.size() == 0; // field 24
+           change.promotePendingPniAciMembers.size() == 0 && // field 24
+           change.modifyMemberLabel.isEmpty();          // field 26
   }
 
   static boolean isEmpty(AccessControl.AccessRequired newAttributeAccess) {

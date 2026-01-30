@@ -10,9 +10,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantListUpdate
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
 import org.thoughtcrime.securesms.events.WebRtcViewModel
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage
 
@@ -53,6 +51,7 @@ interface CallScreenMediator {
   fun enableParticipantUpdatePopup(enabled: Boolean)
   fun enableCallStateUpdatePopup(enabled: Boolean)
   fun showWifiToCellularPopupWindow()
+  fun showRemoteMuteToast(message: String)
   fun hideMissingPermissionsNotice()
 
   fun setStatusFromGroupCallState(context: Context, groupCallState: WebRtcViewModel.GroupCallState) {
@@ -92,11 +91,7 @@ interface CallScreenMediator {
 
   companion object {
     fun create(activity: WebRtcCallActivity, viewModel: WebRtcCallViewModel): CallScreenMediator {
-      return if (RemoteConfig.newCallUi || (RemoteConfig.internalUser && SignalStore.internal.newCallingUi)) {
-        ComposeCallScreenMediator(activity, viewModel)
-      } else {
-        ViewCallScreenMediator(activity, viewModel)
-      }
+      return ComposeCallScreenMediator(activity, viewModel)
     }
   }
 }

@@ -90,7 +90,7 @@ public class FromTextView extends SimpleEmojiTextView {
   }
 
   private Drawable getPinned() {
-    return getDrawable(R.drawable.symbol_pin_16, R.color.signal_colorOnSurface);
+    return getDrawable(R.drawable.symbol_pin_16, org.signal.core.ui.R.color.signal_colorOnSurface);
   }
 
   private Drawable getDrawable(@DrawableRes int drawable, int colorRes) {

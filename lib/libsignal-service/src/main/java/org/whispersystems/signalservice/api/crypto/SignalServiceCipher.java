@@ -153,7 +153,8 @@ public class SignalServiceCipher {
                 plaintext.metadata.getSenderDevice(),
                 plaintext.metadata.isNeedsReceipt(),
                 plaintext.metadata.getGroupId().orElse(null),
-                localAddress.getServiceId()
+                localAddress.getServiceId(),
+                plaintext.getCiphertextMessageType()
             )
         );
       } else {
@@ -180,6 +181,7 @@ public class SignalServiceCipher {
 
       byte[]                paddedMessage;
       SignalServiceMetadata metadata;
+      int                   ciphertextMessageType;
 
       if (sourceServiceId == null && envelope.type != Envelope.Type.UNIDENTIFIED_SENDER) {
         throw new InvalidMessageStructureException("Non-UD envelope is missing a UUID!");
@@ -189,19 +191,22 @@ public class SignalServiceCipher {
         SignalProtocolAddress sourceAddress = new SignalProtocolAddress(sourceServiceId.toString(), envelope.sourceDevice);
         SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
 
-        paddedMessage = sessionCipher.decrypt(new PreKeySignalMessage(envelope.content.toByteArray()));
-        metadata      = new SignalServiceMetadata(getSourceAddress(envelope), envelope.sourceDevice, envelope.timestamp, envelope.serverTimestamp, serverDeliveredTimestamp, false, serverGuid, Optional.empty(), destinationStr);
+        paddedMessage         = sessionCipher.decrypt(new PreKeySignalMessage(envelope.content.toByteArray()));
+        metadata              = new SignalServiceMetadata(getSourceAddress(envelope), envelope.sourceDevice, envelope.timestamp, envelope.serverTimestamp, serverDeliveredTimestamp, false, serverGuid, Optional.empty(), destinationStr);
+        ciphertextMessageType = CiphertextMessage.PREKEY_TYPE;
 
         signalProtocolStore.clearSenderKeySharedWith(Collections.singleton(sourceAddress));
       } else if (envelope.type == Envelope.Type.CIPHERTEXT) {
         SignalProtocolAddress sourceAddress = new SignalProtocolAddress(sourceServiceId.toString(), envelope.sourceDevice);
         SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
 
-        paddedMessage = sessionCipher.decrypt(new SignalMessage(envelope.content.toByteArray()));
-        metadata      = new SignalServiceMetadata(getSourceAddress(envelope), envelope.sourceDevice, envelope.timestamp, envelope.serverTimestamp, serverDeliveredTimestamp, false, serverGuid, Optional.empty(), destinationStr);
+        paddedMessage         = sessionCipher.decrypt(new SignalMessage(envelope.content.toByteArray()));
+        metadata              = new SignalServiceMetadata(getSourceAddress(envelope), envelope.sourceDevice, envelope.timestamp, envelope.serverTimestamp, serverDeliveredTimestamp, false, serverGuid, Optional.empty(), destinationStr);
+        ciphertextMessageType = CiphertextMessage.WHISPER_TYPE;
       } else if (envelope.type == Envelope.Type.PLAINTEXT_CONTENT) {
-        paddedMessage = new PlaintextContent(envelope.content.toByteArray()).getBody();
-        metadata      = new SignalServiceMetadata(getSourceAddress(envelope), envelope.sourceDevice, envelope.timestamp, envelope.serverTimestamp, serverDeliveredTimestamp, false, serverGuid, Optional.empty(), destinationStr);
+        paddedMessage         = new PlaintextContent(envelope.content.toByteArray()).getBody();
+        metadata              = new SignalServiceMetadata(getSourceAddress(envelope), envelope.sourceDevice, envelope.timestamp, envelope.serverTimestamp, serverDeliveredTimestamp, false, serverGuid, Optional.empty(), destinationStr);
+        ciphertextMessageType = CiphertextMessage.PLAINTEXT_CONTENT_TYPE;
       } else if (envelope.type == Envelope.Type.UNIDENTIFIED_SENDER) {
         SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().getRawUuid(), localAddress.getNumber().orElse(null), localDeviceId));
         DecryptionResult          result              = sealedSessionCipher.decrypt(certificateValidator, envelope.content.toByteArray(), envelope.serverTimestamp);
@@ -214,7 +219,9 @@ public class SignalServiceCipher {
           needsReceipt = false;
         }
 
-        if (result.getCiphertextMessageType() == CiphertextMessage.PREKEY_TYPE) {
+        ciphertextMessageType = result.getCiphertextMessageType();
+
+        if (ciphertextMessageType == CiphertextMessage.PREKEY_TYPE) {
           signalProtocolStore.clearSenderKeySharedWith(Collections.singleton(new SignalProtocolAddress(result.getSenderUuid(), result.getDeviceId())));
         }
 
@@ -227,7 +234,7 @@ public class SignalServiceCipher {
       PushTransportDetails transportDetails = new PushTransportDetails();
       byte[]               data             = transportDetails.getStrippedPaddingMessageBody(paddedMessage);
 
-      return new Plaintext(metadata, data);
+      return new Plaintext(metadata, data, ciphertextMessageType);
     } catch (DuplicateMessageException e) {
       throw new ProtocolDuplicateMessageException(e, sourceServiceId.toString(), envelope.sourceDevice);
     } catch (LegacyMessageException e) {
@@ -253,11 +260,13 @@ public class SignalServiceCipher {
 
   private static class Plaintext {
     private final SignalServiceMetadata metadata;
-    private final byte[]   data;
+    private final byte[]                data;
+    private final int                   ciphertextMessageType;
 
-    private Plaintext(SignalServiceMetadata metadata, byte[] data) {
-      this.metadata = metadata;
-      this.data     = data;
+    private Plaintext(SignalServiceMetadata metadata, byte[] data, int ciphertextMessageType) {
+      this.metadata              = metadata;
+      this.data                  = data;
+      this.ciphertextMessageType = ciphertextMessageType;
     }
 
     public SignalServiceMetadata getMetadata() {
@@ -266,6 +275,10 @@ public class SignalServiceCipher {
 
     public byte[] getData() {
       return data;
+    }
+
+    public int getCiphertextMessageType() {
+      return ciphertextMessageType;
     }
   }
 }

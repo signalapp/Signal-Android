@@ -2,15 +2,15 @@ package org.whispersystems.signalservice.api.groupsv2;
 
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.signal.storageservice.protos.groups.Member;
-import org.signal.storageservice.protos.groups.RequestingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
-import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.storage.protos.groups.Member;
+import org.signal.storageservice.storage.protos.groups.MemberPendingAdminApproval;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedApproveMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedModifyMemberRole;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMemberRemoval;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
 import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -88,8 +88,8 @@ final class ProtoTestUtils {
         .build();
   }
 
-  static RequestingMember encryptedRequestingMember(UUID uuid, ProfileKey profileKey) {
-    return new RequestingMember.Builder()
+  static MemberPendingAdminApproval encryptedRequestingMember(UUID uuid, ProfileKey profileKey) {
+    return new MemberPendingAdminApproval.Builder()
         .presentation(presentation(uuid, profileKey))
         .build();
   }

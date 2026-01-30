@@ -48,6 +48,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.signal.core.models.media.Media;
 import org.signal.qr.QrProcessor;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;

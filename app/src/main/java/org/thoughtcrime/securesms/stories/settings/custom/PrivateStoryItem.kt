@@ -11,13 +11,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
@@ -136,7 +135,7 @@ object PrivateStoryItem {
       },
       icon = {
         Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_plus_24),
+          imageVector = SignalIcons.Plus.imageVector,
           contentDescription = null,
           modifier = Modifier
             .size(40.dp)

@@ -1115,14 +1115,6 @@ object RemoteConfig {
   )
 
   @JvmStatic
-  @get:JvmName("newCallUi")
-  val newCallUi: Boolean by remoteBoolean(
-    key = "android.newCallUi.2",
-    defaultValue = false,
-    hotSwappable = false
-  )
-
-  @JvmStatic
   @get:JvmName("useHevcEncoder")
   val useHevcEncoder: Boolean by remoteBoolean(
     key = "android.useHevcEncoder",
@@ -1178,7 +1170,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("backupsBetaMegaphone")
   val backupsBetaMegaphone: Boolean by remoteBoolean(
-    key = "android.backupsBetaMegaphone",
+    key = "android.backupsBetaMegaphone.2",
     defaultValue = false,
     hotSwappable = true
   )
@@ -1202,7 +1194,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("sendPinnedMessages")
   val sendPinnedMessages: Boolean by remoteBoolean(
-    key = "android.sendPinnedMessages",
+    key = "android.sendPinnedMessages.2",
     defaultValue = false,
     hotSwappable = true
   )
@@ -1233,5 +1225,18 @@ object RemoteConfig {
     defaultValue = false,
     hotSwappable = true
   )
+
+  /**
+   * Whether or not to show any UI related to key transparency
+   */
+  @JvmStatic
+  @get:JvmName("keyTransparency")
+  val keyTransparency: Boolean by remoteBoolean(
+    key = "android.keyTransparency",
+    active = false,
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   // endregion
 }

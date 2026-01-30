@@ -12,8 +12,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -217,6 +217,7 @@ class NameCollisionTablesTest {
 
   private fun setProfileName(recipientId: RecipientId, name: ProfileName) {
     SignalDatabase.recipients.setProfileName(recipientId, name)
+    Recipient.live(recipientId).refresh()
     SignalDatabase.nameCollisions.handleIndividualNameCollision(recipientId)
   }
 

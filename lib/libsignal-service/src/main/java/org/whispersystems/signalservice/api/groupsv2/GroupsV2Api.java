@@ -10,18 +10,18 @@ import org.signal.libsignal.zkgroup.calllinks.CallLinkAuthCredentialResponse;
 import org.signal.libsignal.zkgroup.groups.ClientZkGroupCipher;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsementsResponse;
-import org.signal.storageservice.protos.groups.AvatarUploadAttributes;
-import org.signal.storageservice.protos.groups.Group;
-import org.signal.storageservice.protos.groups.GroupAttributeBlob;
-import org.signal.storageservice.protos.groups.GroupChange;
-import org.signal.storageservice.protos.groups.GroupChangeResponse;
-import org.signal.storageservice.protos.groups.GroupChanges;
-import org.signal.storageservice.protos.groups.GroupExternalCredential;
-import org.signal.storageservice.protos.groups.GroupJoinInfo;
-import org.signal.storageservice.protos.groups.GroupResponse;
-import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
+import org.signal.storageservice.storage.protos.groups.AvatarUploadAttributes;
+import org.signal.storageservice.storage.protos.groups.Group;
+import org.signal.storageservice.storage.protos.groups.GroupAttributeBlob;
+import org.signal.storageservice.storage.protos.groups.GroupChange;
+import org.signal.storageservice.storage.protos.groups.GroupChangeResponse;
+import org.signal.storageservice.storage.protos.groups.GroupChanges;
+import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
+import org.signal.storageservice.storage.protos.groups.GroupJoinInfo;
+import org.signal.storageservice.storage.protos.groups.GroupResponse;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupJoinInfo;
 import org.whispersystems.signalservice.api.NetworkResult;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.models.ServiceId.PNI;
@@ -88,14 +88,14 @@ public class GroupsV2Api {
       String cdnKey = uploadAvatar(newGroup.getAvatar().get(), newGroup.getGroupSecretParams(), authorization);
 
       group = group.newBuilder()
-                   .avatar(cdnKey)
+                   .avatarUrl(cdnKey)
                    .build();
     }
 
     GroupResponse response = socket.putNewGroupsV2Group(group, authorization);
 
     return groupsOperations.forGroup(newGroup.getGroupSecretParams())
-                           .decryptGroup(Objects.requireNonNull(response.group), response.groupSendEndorsementsResponse.toByteArray());
+                           .decryptGroup(Objects.requireNonNull(response.group), response.group_send_endorsements_response.toByteArray());
   }
 
   public NetworkResult<DecryptedGroupResponse> getGroupAsResult(GroupSecretParams groupSecretParams, GroupsV2AuthorizationString authorization) {
@@ -109,7 +109,7 @@ public class GroupsV2Api {
     GroupResponse response = socket.getGroupsV2Group(authorization);
 
     return groupsOperations.forGroup(groupSecretParams)
-                           .decryptGroup(Objects.requireNonNull(response.group), response.groupSendEndorsementsResponse.toByteArray());
+                           .decryptGroup(Objects.requireNonNull(response.group), response.group_send_endorsements_response.toByteArray());
   }
 
   public GroupHistoryPage getGroupHistoryPage(GroupSecretParams groupSecretParams,
@@ -130,7 +130,7 @@ public class GroupsV2Api {
       result.add(new DecryptedGroupChangeLog(decryptedGroup, decryptedChange));
     }
 
-    byte[]                        groupSendEndorsementsResponseBytes = group.getGroupChanges().groupSendEndorsementsResponse.toByteArray();
+    byte[]                        groupSendEndorsementsResponseBytes = group.getGroupChanges().group_send_endorsements_response.toByteArray();
     GroupSendEndorsementsResponse groupSendEndorsementsResponse      = groupSendEndorsementsResponseBytes.length > 0 ? new GroupSendEndorsementsResponse(groupSendEndorsementsResponseBytes) : null;
 
     return new GroupHistoryPage(result, groupSendEndorsementsResponse, GroupHistoryPage.PagingData.forGroupHistory(group));
@@ -182,10 +182,10 @@ public class GroupsV2Api {
     return socket.patchGroupsV2Group(groupChange, authorization.toString(), groupLinkPassword);
   }
 
-  public GroupExternalCredential getGroupExternalCredential(GroupsV2AuthorizationString authorization)
+  public ExternalGroupCredential getExternalGroupCredential(GroupsV2AuthorizationString authorization)
       throws IOException
   {
-    return socket.getGroupExternalCredential(authorization);
+    return socket.getExternalGroupCredential(authorization);
   }
 
   private static CredentialResponseMaps parseCredentialResponse(CredentialResponse credentialResponse)

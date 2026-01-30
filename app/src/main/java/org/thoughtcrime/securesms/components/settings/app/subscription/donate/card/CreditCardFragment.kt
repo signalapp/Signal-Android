@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
+import org.signal.core.ui.R as CoreUiR
 
 class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
 
@@ -85,7 +86,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       }
     }
 
-    binding.description.setLinkColor(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))
+    binding.description.setLinkColor(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorPrimary))
     binding.description.setLearnMoreVisible(true)
     binding.description.setOnLinkClickListener {
       findNavController().safeNavigate(CreditCardFragmentDirections.actionCreditCardFragmentToYourInformationIsPrivateBottomSheet())

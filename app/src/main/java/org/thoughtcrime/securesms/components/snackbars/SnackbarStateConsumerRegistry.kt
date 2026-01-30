@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.components.snackbars
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -27,11 +27,30 @@ val LocalSnackbarStateConsumerRegistry = staticCompositionLocalOf<SnackbarStateC
   error("No SnackbarStateConsumerRegistry provided")
 }
 
+/**
+ * Holder for snackbar state that allows clearing the state after consumption.
+ */
+@Stable
+class SnackbarStateHolder(
+  private val state: MutableState<SnackbarState?>
+) {
+  val value: SnackbarState?
+    get() = state.value
+
+  /**
+   * Clears the current snackbar state. Should be called after the snackbar has been consumed/dismissed.
+   */
+  fun clear() {
+    state.value = null
+  }
+}
+
 @Composable
 fun rememberSnackbarState(
   key: SnackbarHostKey
-): State<SnackbarState?> {
+): SnackbarStateHolder {
   val state: MutableState<SnackbarState?> = remember(key) { mutableStateOf(null) }
+  val holder = remember(key, state) { SnackbarStateHolder(state) }
 
   val registry = LocalSnackbarStateConsumerRegistry.current
   DisposableEffect(registry, key) {
@@ -44,7 +63,7 @@ fun rememberSnackbarState(
     }
   }
 
-  return state
+  return holder
 }
 
 /**

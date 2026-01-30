@@ -9,18 +9,18 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.core.Flowable
+import org.signal.core.models.media.Media
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.mediasend.CameraFragment
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.registration.olddevice.TransferAccountActivity
+import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -102,7 +102,7 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
         }
 
         is MediaCaptureEvent.ReregistrationScannedFromQrCode -> {
-          startActivity(TransferAccountActivity.intent(requireContext(), event.data))
+          startActivity(QuickTransferOldDeviceActivity.intent(requireContext(), event.data))
           requireActivity().finish()
         }
       }

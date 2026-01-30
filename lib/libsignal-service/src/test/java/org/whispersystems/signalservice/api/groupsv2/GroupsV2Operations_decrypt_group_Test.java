@@ -8,18 +8,18 @@ import org.signal.libsignal.zkgroup.groups.ClientZkGroupCipher;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.BannedMember;
-import org.signal.storageservice.protos.groups.Group;
-import org.signal.storageservice.protos.groups.Member;
-import org.signal.storageservice.protos.groups.PendingMember;
-import org.signal.storageservice.protos.groups.RequestingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
-import org.signal.storageservice.protos.groups.local.EnabledState;
+import org.signal.storageservice.storage.protos.groups.AccessControl;
+import org.signal.storageservice.storage.protos.groups.MemberBanned;
+import org.signal.storageservice.storage.protos.groups.Group;
+import org.signal.storageservice.storage.protos.groups.Member;
+import org.signal.storageservice.storage.protos.groups.MemberPendingProfileKey;
+import org.signal.storageservice.storage.protos.groups.MemberPendingAdminApproval;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.storage.protos.groups.local.EnabledState;
 import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
@@ -75,7 +75,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
   @Test
   public void avatar_field_passed_through_3() throws VerificationFailedException, InvalidGroupStateException {
     Group group = new Group.Builder()
-        .avatar("AvatarCdnKey")
+        .avatarUrl("AvatarCdnKey")
         .build();
 
     DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
@@ -113,7 +113,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
   @Test
   public void set_revision_field_6() throws VerificationFailedException, InvalidGroupStateException {
     Group group = new Group.Builder()
-        .revision(99)
+        .version(99)
         .build();
 
     DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
@@ -132,13 +132,13 @@ public final class GroupsV2Operations_decrypt_group_Test {
         .members(List.of(new Member.Builder()
                              .role(Member.Role.ADMINISTRATOR)
                              .userId(groupOperations.encryptServiceId(admin1))
-                             .joinedAtRevision(4)
+                             .joinedAtVersion(4)
                              .profileKey(encryptProfileKey(admin1, adminProfileKey))
                              .build(),
                          new Member.Builder()
                              .role(Member.Role.DEFAULT)
                              .userId(groupOperations.encryptServiceId(member1))
-                             .joinedAtRevision(7)
+                             .joinedAtVersion(7)
                              .profileKey(encryptProfileKey(member1, memberProfileKey))
                              .build()))
         .build();
@@ -171,7 +171,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
     ACI inviter2 = ACI.from(UUID.randomUUID());
 
     Group group = new Group.Builder()
-        .pendingMembers(List.of(new PendingMember.Builder()
+        .membersPendingProfileKey(List.of(new MemberPendingProfileKey.Builder()
                                     .addedByUserId(groupOperations.encryptServiceId(inviter1))
                                     .timestamp(100)
                                     .member(new Member.Builder()
@@ -179,7 +179,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
                                                 .userId(groupOperations.encryptServiceId(admin1))
                                                 .build())
                                     .build(),
-                                new PendingMember.Builder()
+                                new MemberPendingProfileKey.Builder()
                                     .addedByUserId(groupOperations.encryptServiceId(inviter1))
                                     .timestamp(200)
                                     .member(new Member.Builder()
@@ -187,7 +187,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
                                                 .userId(groupOperations.encryptServiceId(member1))
                                                 .build())
                                     .build(),
-                                new PendingMember.Builder()
+                                new MemberPendingProfileKey.Builder()
                                     .addedByUserId(groupOperations.encryptServiceId(inviter2))
                                     .timestamp(1500)
                                     .member(new Member.Builder()
@@ -232,12 +232,12 @@ public final class GroupsV2Operations_decrypt_group_Test {
     ProfileKey memberProfileKey = newProfileKey();
 
     Group group = new Group.Builder()
-        .requestingMembers(List.of(new RequestingMember.Builder()
+        .membersPendingAdminApproval(List.of(new MemberPendingAdminApproval.Builder()
                                        .userId(groupOperations.encryptServiceId(admin1))
                                        .profileKey(encryptProfileKey(admin1, adminProfileKey))
                                        .timestamp(5000)
                                        .build(),
-                                   new RequestingMember.Builder()
+                                   new MemberPendingAdminApproval.Builder()
                                        .userId(groupOperations.encryptServiceId(member1))
                                        .profileKey(encryptProfileKey(member1, memberProfileKey))
                                        .timestamp(15000)
@@ -288,7 +288,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
   @Test
   public void decrypt_announcements_field_12() throws VerificationFailedException, InvalidGroupStateException {
     Group group = new Group.Builder()
-        .announcementsOnly(true)
+        .announcements_only(true)
         .build();
 
     DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
@@ -301,7 +301,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
     ACI member1 = ACI.from(UUID.randomUUID());
 
     Group group = new Group.Builder()
-        .bannedMembers(List.of(new BannedMember.Builder().userId(groupOperations.encryptServiceId(member1)).build()))
+        .members_banned(List.of(new MemberBanned.Builder().userId(groupOperations.encryptServiceId(member1)).build()))
         .build();
 
     DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);

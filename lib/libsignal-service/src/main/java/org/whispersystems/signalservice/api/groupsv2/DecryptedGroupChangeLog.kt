@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.groupsv2
 
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange
 
 /**
  * A changelog from the server representing a specific group state revision. The

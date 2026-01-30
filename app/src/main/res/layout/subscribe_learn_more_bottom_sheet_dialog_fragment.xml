@@ -44,52 +44,60 @@
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
-                android:gravity="center"
                 android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different"
-                android:textAppearance="@style/Signal.Text.HeadlineMedium"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_heart" />
 
             <TextView
-                android:id="@+id/subscribe_bottom_sheet_subhead"
+                android:id="@+id/subscribe_bottom_sheet_donate_badge"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
-                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__private_messaging"
+                android:drawableStart="@drawable/symbol_badge_multi_24"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_headline" />
 
             <TextView
-                android:id="@+id/subscribe_bottom_sheet_the_team"
+                android:id="@+id/subscribe_bottom_sheet_privacy_mission"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
-                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by"
+                android:drawableStart="@drawable/symbol_lock_24"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_subhead" />
+                app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_donate_badge" />
 
             <TextView
-                android:id="@+id/subscribe_bottom_sheet_your_contribution"
+                android:id="@+id/subscribe_bottom_sheet_nonprofit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:drawableStart="@drawable/symbol_heart_24"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
                 android:paddingBottom="36dp"
-                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__if_you_can"
+                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_the_team" />
+                app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_privacy_mission" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

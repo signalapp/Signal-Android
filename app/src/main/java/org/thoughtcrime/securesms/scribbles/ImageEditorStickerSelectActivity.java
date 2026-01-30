@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment;
 import org.thoughtcrime.securesms.scribbles.stickers.FeatureSticker;
 import org.thoughtcrime.securesms.scribbles.stickers.ScribbleStickersFragment;
 import org.thoughtcrime.securesms.stickers.StickerEventListener;
-import org.thoughtcrime.securesms.stickers.StickerManagementScreen;
+import org.thoughtcrime.securesms.stickers.manage.StickerManagementScreen;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public final class ImageEditorStickerSelectActivity extends AppCompatActivity implements StickerEventListener, MediaKeyboard.MediaKeyboardListener, StickerKeyboardPageFragment.Callback, ScribbleStickersFragment.Callback {

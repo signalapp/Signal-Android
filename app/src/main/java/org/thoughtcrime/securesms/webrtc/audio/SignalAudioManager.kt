@@ -141,6 +141,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   interface EventListener {
     @JvmSuppressWildcards
     fun onAudioDeviceChanged(activeDevice: AudioDevice, devices: Set<AudioDevice>)
+    fun onAudioDeviceChangeFailed()
     fun onBluetoothPermissionDenied()
   }
 }
@@ -354,8 +355,11 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     if (newAudioDevice != selectedAudioDevice || audioDeviceSetUpdated) {
       setAudioDevice(newAudioDevice)
       Log.i(TAG, "New device status: available: $audioDevices, selected: $newAudioDevice")
-      eventListener?.onAudioDeviceChanged(selectedAudioDevice, audioDevices)
     }
+
+    // Always notify listener to clear any pending audio device change state,
+    // even if the device didn't actually change
+    eventListener?.onAudioDeviceChanged(selectedAudioDevice, audioDevices)
   }
 
   override fun setDefaultAudioDevice(recipientId: RecipientId?, newDefaultDevice: AudioDevice, clearUserEarpieceSelection: Boolean) {

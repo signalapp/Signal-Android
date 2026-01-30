@@ -28,6 +28,7 @@ data class RemoteBackupsSettingsState(
   val lastBackupTimestamp: Long = 0,
   val dialog: Dialog = Dialog.NONE,
   val snackbar: Snackbar = Snackbar.NONE,
+  val internalUser: Boolean = false,
   val includeDebuglog: Boolean? = null,
   val canBackupMessagesJobRun: Boolean = false,
   val backupMediaDetails: BackupMediaDetails? = null,
@@ -55,7 +56,8 @@ data class RemoteBackupsSettingsState(
     CANCEL_MEDIA_RESTORE_PROTECTION,
     RESTORE_OVER_CELLULAR_PROTECTION,
     FREE_TIER_MEDIA_EXPLAINER,
-    KEY_ROTATION_LIMIT_REACHED
+    KEY_ROTATION_LIMIT_REACHED,
+    READY_TO_TRANSFER
   }
 
   enum class Snackbar {

@@ -2922,6 +2922,40 @@ public class SignalServiceMessageSender {
 
     if (content.dataMessage != null) {
       message.append("Data message;");
+      if (content.dataMessage.body != null && !content.dataMessage.body.isEmpty()) {
+        message.append("Body(").append(content.dataMessage.body.length()).append(");");
+      }
+      if (content.dataMessage.groupV2 != null) {
+        if (content.dataMessage.groupV2.groupChange != null) {
+          message.append("GroupV2Change(").append(content.dataMessage.groupV2.groupChange.size()).append(");");
+        } else {
+          message.append("GroupV2NoChange;");
+        }
+      }
+      if (content.dataMessage.giftBadge != null) {
+        message.append("GiftBadge;");
+      }
+      if (content.dataMessage.pollCreate != null) {
+        message.append("PollCreate;");
+      }
+      if (content.dataMessage.pollTerminate != null) {
+        message.append("PollTerminate;");
+      }
+      if (content.dataMessage.pollVote != null) {
+        message.append("PollVote;");
+      }
+      if (content.dataMessage.pinMessage != null) {
+        message.append("PinMessage;");
+      }
+      if (content.dataMessage.unpinMessage != null) {
+        message.append("UnpinMessage;");
+      }
+      if (content.dataMessage.reaction != null) {
+        message.append("Reaction;");
+      }
+      if (content.dataMessage.profileKey != null && content.dataMessage.profileKey.size() > 0) {
+        message.append("ProfileKey(").append(content.dataMessage.profileKey.size()).append(");");
+      }
       if (content.dataMessage.payment != null) {
         message.append("Payment;");
       }
@@ -2932,7 +2966,7 @@ public class SignalServiceMessageSender {
         message.append("Contacts(").append(content.dataMessage.contact.size()).append(");");
       }
       if (!content.dataMessage.bodyRanges.isEmpty()) {
-        message.append("Contacts(").append(content.dataMessage.bodyRanges.size()).append(");");
+        message.append("Ranges(").append(content.dataMessage.bodyRanges.size()).append(");");
       }
       if (content.dataMessage.quote != null) {
         if (content.dataMessage.quote.text != null) {

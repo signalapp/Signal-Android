@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
+import org.signal.core.models.media.TransformProperties;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -149,11 +150,11 @@ public final class AttachmentCompressionJob extends BaseJob {
       throw new UndeliverableMessageException("Cannot find the specified attachment.");
     }
 
-    AttachmentTable.TransformProperties transformProperties = databaseAttachment.transformProperties;
+    TransformProperties transformProperties = databaseAttachment.transformProperties;
 
     if (transformProperties == null) {
       Log.i(TAG, "TransformProperties were null! Using empty TransformProperties.");
-      transformProperties = AttachmentTable.TransformProperties.empty();
+      transformProperties = TransformProperties.empty();
     }
 
     if (transformProperties.shouldSkipTransform()) {
@@ -227,7 +228,7 @@ public final class AttachmentCompressionJob extends BaseJob {
       throw new UndeliverableMessageException("Job is canceled!");
     }
 
-    AttachmentTable.TransformProperties transformProperties = attachment.transformProperties;
+    TransformProperties transformProperties = attachment.transformProperties;
 
     boolean allowSkipOnFailure = false;
 

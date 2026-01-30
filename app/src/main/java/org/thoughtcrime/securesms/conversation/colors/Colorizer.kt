@@ -7,6 +7,7 @@ import org.signal.core.models.ServiceId
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Helper class for all things ChatColors.
@@ -42,27 +43,27 @@ class Colorizer {
   @ColorInt
   fun getIncomingBodyTextColor(context: Context, hasWallpaper: Boolean): Int {
     return if (hasWallpaper) {
-      ContextCompat.getColor(context, R.color.signal_colorNeutralInverse)
+      ContextCompat.getColor(context, CoreUiR.color.signal_colorNeutralInverse)
     } else {
-      ContextCompat.getColor(context, R.color.signal_colorOnSurface)
+      ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurface)
     }
   }
 
   @ColorInt
   fun getIncomingFooterTextColor(context: Context, hasWallpaper: Boolean): Int {
     return if (hasWallpaper) {
-      ContextCompat.getColor(context, R.color.signal_colorNeutralVariantInverse)
+      ContextCompat.getColor(context, CoreUiR.color.signal_colorNeutralVariantInverse)
     } else {
-      ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant)
+      ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurfaceVariant)
     }
   }
 
   @ColorInt
   fun getIncomingFooterIconColor(context: Context, hasWallpaper: Boolean): Int {
     return if (hasWallpaper) {
-      ContextCompat.getColor(context, R.color.signal_colorNeutralVariantInverse)
+      ContextCompat.getColor(context, CoreUiR.color.signal_colorNeutralVariantInverse)
     } else {
-      ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant)
+      ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurfaceVariant)
     }
   }
 

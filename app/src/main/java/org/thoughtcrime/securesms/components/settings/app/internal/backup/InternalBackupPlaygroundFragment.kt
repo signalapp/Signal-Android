@@ -44,7 +44,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -63,13 +62,13 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.TextFields.TextField
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.MainActivity
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
@@ -308,7 +307,7 @@ fun Tabs(
           navigationIcon = {
             IconButton(onClick = onBack) {
               Icon(
-                painter = painterResource(R.drawable.symbol_arrow_start_24),
+                painter = SignalIcons.ArrowStart.painter,
                 tint = MaterialTheme.colorScheme.onSurface,
                 contentDescription = null
               )

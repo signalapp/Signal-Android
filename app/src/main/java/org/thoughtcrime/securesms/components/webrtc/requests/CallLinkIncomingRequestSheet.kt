@@ -37,6 +37,7 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
@@ -166,7 +167,7 @@ private fun CallLinkIncomingRequestSheetContent(
     item {
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkIncomingRequestSheet__approve_entry),
-        icon = painterResource(R.drawable.symbol_check_circle_24),
+        icon = SignalIcons.CheckCircle.painter,
         onClick = onApproveEntry
       )
     }

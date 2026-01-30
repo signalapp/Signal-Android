@@ -56,8 +56,11 @@ class WebRtcCallViewModel : ViewModel() {
   private val callPeerRepository = CallPeerRepository(viewModelScope)
 
   private val internalMicrophoneEnabled = MutableStateFlow(true)
+  private val isAudioDeviceChangePending = MutableStateFlow(false)
   private val remoteMutedBy = MutableStateFlow<CallParticipant?>(null)
   private val isInPipMode = MutableStateFlow(false)
+  private val _savedLocalParticipantLandscape = MutableStateFlow(false)
+  val savedLocalParticipantLandscape: StateFlow<Boolean> = _savedLocalParticipantLandscape
   private val webRtcControls = MutableStateFlow(WebRtcControls.NONE)
   private val foldableState = MutableStateFlow(WebRtcControls.FoldableState.flat())
   private val identityChangedRecipients = MutableStateFlow<Collection<RecipientId>>(Collections.emptyList())
@@ -175,8 +178,10 @@ class WebRtcCallViewModel : ViewModel() {
       callParticipantsState,
       getWebRtcControls(),
       groupSize,
-      CallControlsState::fromViewModelData
-    )
+      isAudioDeviceChangePending
+    ) { participantsState, controls, groupMemberCount, audioChangePending ->
+      CallControlsState.fromViewModelData(participantsState, controls, groupMemberCount, audioChangePending)
+    }
   }
 
   val callParticipantsState: Flow<CallParticipantsState> get() = participantsState
@@ -231,6 +236,10 @@ class WebRtcCallViewModel : ViewModel() {
   fun setIsInPipMode(isInPipMode: Boolean) {
     this.isInPipMode.update { isInPipMode }
     participantsState.update { CallParticipantsState.update(it, isInPipMode) }
+  }
+
+  fun setSavedLocalParticipantLandscape(isLandscape: Boolean) {
+    _savedLocalParticipantLandscape.update { isLandscape }
   }
 
   fun setIsLandscapeEnabled(isLandscapeEnabled: Boolean) {
@@ -305,6 +314,7 @@ class WebRtcCallViewModel : ViewModel() {
     }
 
     internalMicrophoneEnabled.value = localParticipant.isMicrophoneEnabled
+    isAudioDeviceChangePending.value = webRtcViewModel.isAudioDeviceChangePending
 
     if (internalMicrophoneEnabled.value) {
       remoteMutedBy.update { null }

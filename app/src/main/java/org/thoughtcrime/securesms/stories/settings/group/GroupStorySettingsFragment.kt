@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.settings.custom.PrivateStoryItem
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displays who can see a group story and gives the user an option to remove it.
@@ -86,7 +87,7 @@ class GroupStorySettingsFragment : DSLSettingsFragment(menuId = R.menu.story_gro
         title = DSLSettingsText.from(
           getString(R.string.GroupStorySettingsFragment__members_of_the_group_s, state.name),
           DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
-          DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant))
         )
       )
 
@@ -95,7 +96,7 @@ class GroupStorySettingsFragment : DSLSettingsFragment(menuId = R.menu.story_gro
       clickPref(
         title = DSLSettingsText.from(
           R.string.GroupStorySettingsFragment__remove_group_story,
-          DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorError))
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorError))
         ),
         onClick = {
           StoryDialogs.removeGroupStory(

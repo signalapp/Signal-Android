@@ -1327,6 +1327,9 @@ object DataMessageProcessor {
 
     return if (insertResult != null) {
       log(envelope.timestamp!!, "Inserted a pinned message update at ${insertResult.messageId}")
+      if (duration != MessageTable.PIN_FOREVER) {
+        AppDependencies.pinnedMessageManager.scheduleIfNecessary()
+      }
       insertResult
     } else {
       null

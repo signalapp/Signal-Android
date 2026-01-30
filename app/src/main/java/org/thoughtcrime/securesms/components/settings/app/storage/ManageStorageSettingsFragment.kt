@@ -32,12 +32,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.integerArrayResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -61,6 +58,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Rows.TextAndLabel
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.R
@@ -275,7 +273,7 @@ private fun ManageStorageSettingsScreen(
   Scaffolds.Settings(
     title = stringResource(id = R.string.preferences__storage),
     onNavigationClick = onNavigationClick,
-    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
+    navigationIcon = SignalIcons.ArrowStart.imageVector
   ) { contentPadding ->
     Column(
       modifier = Modifier
@@ -380,7 +378,7 @@ private fun SetKeepMessagesScreen(
   Scaffolds.Settings(
     title = stringResource(id = R.string.preferences__keep_messages),
     onNavigationClick = onNavigationClick,
-    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
+    navigationIcon = SignalIcons.ArrowStart.imageVector
   ) { contentPadding ->
     Column(
       modifier = Modifier
@@ -420,7 +418,7 @@ private fun SetChatLengthLimitScreen(
   Scaffolds.Settings(
     title = stringResource(id = R.string.preferences__conversation_length_limit),
     onNavigationClick = onNavigationClick,
-    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
+    navigationIcon = SignalIcons.ArrowStart.imageVector
   ) { contentPadding ->
     Column(
       modifier = Modifier
@@ -467,7 +465,7 @@ private fun SetChatLengthLimitScreen(
             )
 
             Icon(
-              painter = painterResource(id = R.drawable.symbol_settings_android_24),
+              painter = SignalIcons.Settings.painter,
               contentDescription = null,
               modifier = Modifier
                 .clickable { onCustomSelected(currentLimit) }

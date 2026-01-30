@@ -40,6 +40,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import org.signal.core.models.media.Media
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
@@ -61,7 +62,6 @@ import org.thoughtcrime.securesms.mediapreview.caption.ExpandingCaptionView
 import org.thoughtcrime.securesms.mediapreview.mediarail.CenterDecoration
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter.ImageLoadingListener
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -78,6 +78,7 @@ import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
+import org.signal.core.ui.R as CoreUiR
 
 class MediaPreviewV2Fragment :
   LoggingFragment(R.layout.fragment_media_preview_v2),
@@ -480,7 +481,7 @@ class MediaPreviewV2Fragment :
     }
     val builder = SpannableStringBuilder(text)
 
-    val onSurfaceColor = ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurface)
+    val onSurfaceColor = ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurface)
     val chevron = ContextUtil.requireDrawable(requireContext(), R.drawable.ic_chevron_end_24)
     chevron.colorFilter = PorterDuffColorFilter(onSurfaceColor, PorterDuff.Mode.SRC_IN)
 

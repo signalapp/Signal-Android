@@ -42,6 +42,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
+import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;

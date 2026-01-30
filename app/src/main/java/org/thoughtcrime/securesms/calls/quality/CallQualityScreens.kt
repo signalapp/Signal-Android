@@ -141,6 +141,7 @@ fun CallQualitySheet(
           CallQualitySheetNavEntry.HelpUsImprove -> HelpUsImprove(
             isShareDebugLogSelected = state.isShareDebugLogSelected,
             onViewDebugLogClick = callback::viewDebugLog,
+            onViewDiagnosticsClick = callback::viewDiagnostics,
             onCancelClick = callback::dismiss,
             onShareDebugLogChanged = callback::onShareDebugLogChanged,
             onSubmitClick = callback::submit
@@ -431,6 +432,7 @@ private fun IssueChip(
 private fun HelpUsImprove(
   isShareDebugLogSelected: Boolean,
   onShareDebugLogChanged: (Boolean) -> Unit,
+  onViewDiagnosticsClick: () -> Unit,
   onViewDebugLogClick: () -> Unit,
   onCancelClick: () -> Unit,
   onSubmitClick: () -> Unit
@@ -443,12 +445,12 @@ private fun HelpUsImprove(
 
       withLink(
         link = LinkAnnotation.Clickable(
-          "view-your-debug-log",
-          linkInteractionListener = { onViewDebugLogClick() },
+          "view-diagnostics",
+          linkInteractionListener = { onViewDiagnosticsClick() },
           styles = TextLinkStyles(style = SpanStyle(color = MaterialTheme.colorScheme.primary))
         )
       ) {
-        append(stringResource(R.string.CallQualitySheet__view_your_debug_log))
+        append(stringResource(R.string.CallQualitySheet__diagnostic_information_about_your_call))
       }
 
       append(" ")
@@ -463,7 +465,20 @@ private fun HelpUsImprove(
   )
 
   Text(
-    text = stringResource(R.string.CallQualitySheet__debug_log_privacy_notice),
+    text = buildAnnotatedString {
+      append(stringResource(R.string.CallQualitySheet__information_shared_with_us))
+      append(" ")
+
+      withLink(
+        link = LinkAnnotation.Clickable(
+          "view-debug-log",
+          linkInteractionListener = { onViewDebugLogClick() },
+          styles = TextLinkStyles(style = SpanStyle(color = MaterialTheme.colorScheme.primary))
+        )
+      ) {
+        append(stringResource(R.string.CallQualitySheet__view_debug_log))
+      }
+    },
     style = MaterialTheme.typography.bodyMedium,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier
@@ -688,6 +703,7 @@ private fun HelpUsImprovePreview() {
     Column {
       HelpUsImprove(
         isShareDebugLogSelected = true,
+        onViewDiagnosticsClick = {},
         onViewDebugLogClick = {},
         onCancelClick = {},
         onShareDebugLogChanged = {},
@@ -728,6 +744,7 @@ data class CallQualitySheetState(
 interface CallQualitySheetCallback {
   fun dismiss()
   fun viewDebugLog()
+  fun viewDiagnostics()
   fun onUserSatisfiedWithCall(isUserSatisfiedWithCall: Boolean)
   fun describeYourIssue()
   fun onCallQualityIssueSelectionChanged(selection: Set<CallQualityIssue>)
@@ -738,6 +755,7 @@ interface CallQualitySheetCallback {
   object Empty : CallQualitySheetCallback {
     override fun dismiss() = Unit
     override fun viewDebugLog() = Unit
+    override fun viewDiagnostics() = Unit
     override fun onUserSatisfiedWithCall(isUserSatisfiedWithCall: Boolean) = Unit
     override fun describeYourIssue() = Unit
     override fun onCallQualityIssueSelectionChanged(selection: Set<CallQualityIssue>) = Unit

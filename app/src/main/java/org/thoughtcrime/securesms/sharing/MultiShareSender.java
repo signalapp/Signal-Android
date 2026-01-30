@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.signal.core.models.media.TransformProperties;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
@@ -31,7 +32,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.keyvalue.StorySend;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
-import org.thoughtcrime.securesms.mediasend.Media;
+import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryBackgroundColors;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
@@ -352,7 +353,7 @@ public final class MultiShareSender {
 
   private static Slide ensureDefaultQuality(@NonNull Context context, @NonNull ImageSlide imageSlide) {
     Attachment attachment = imageSlide.asAttachment();
-    final AttachmentTable.TransformProperties transformProperties = attachment.transformProperties;
+    final TransformProperties transformProperties = attachment.transformProperties;
     if (transformProperties != null && transformProperties.sentMediaQuality == SentMediaQuality.HIGH.getCode()) {
       return new ImageSlide(
           context,
@@ -364,7 +365,7 @@ public final class MultiShareSender {
           attachment.borderless,
           attachment.caption,
           attachment.blurHash,
-          AttachmentTable.TransformProperties.empty()
+          TransformProperties.empty()
       );
     } else {
       return imageSlide;

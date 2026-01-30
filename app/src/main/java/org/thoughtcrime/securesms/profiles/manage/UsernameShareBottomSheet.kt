@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.FragmentResultContract
 import org.thoughtcrime.securesms.util.Util
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Allows the user to either share their username directly or to copy it to their clipboard.
@@ -54,7 +55,7 @@ class UsernameShareBottomSheet : DSLSettingsBottomSheetFragment() {
           DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
           DSLSettingsText.CenterModifier,
           DSLSettingsText.ColorModifier(
-            ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant)
+            ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant)
           )
         )
       )

@@ -183,6 +183,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private static final int MAX_MEASURE_CALLS         = 3;
   private static final int FOOTER_POSITION_THRESHOLD = ViewUtil.dpToPx(8);
+  private static final int TEXT_FOOTER_SPACING       = ViewUtil.dpToPx(12);
 
   private static final Rect SWIPE_RECT = new Rect();
 
@@ -583,8 +584,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (bodyText.isSingleLine() && !messageRecord.isFailed()) {
         int maxBubbleWidth  = hasBigImageLinkPreview(messageRecord) || hasThumbnail(messageRecord) ? readDimen(R.dimen.media_bubble_max_width) : getMaxBubbleWidth();
         int bodyMargins     = ViewUtil.getLeftMargin(bodyText) + ViewUtil.getRightMargin(bodyText);
-        int sizeWithMargins = bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins;
-        int minSize         = Math.min(maxBubbleWidth, Math.max(bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins, bodyBubble.getMeasuredWidth()));
+        int sizeWithMargins = bodyText.getMeasuredWidth() + TEXT_FOOTER_SPACING + footerWidth + bodyMargins;
+        int minSize         = Math.min(maxBubbleWidth, Math.max(bodyText.getMeasuredWidth() + TEXT_FOOTER_SPACING + footerWidth + bodyMargins, bodyBubble.getMeasuredWidth()));
 
         if (hasQuote(messageRecord) && sizeWithMargins < availableWidth) {
           ViewUtil.setTopMargin(footer, collapsedTopMargin, false);
@@ -607,7 +608,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       // prevent footer flickering from small measurement variations
       if (!updatingFooter && !messageRecord.isFailed()) {
         int currentLineWidth = bodyText.getLastLineWidth();
-        int requiredSpace    = currentLineWidth + ViewUtil.dpToPx(6) + footerWidth;
+        int requiredSpace    = currentLineWidth + TEXT_FOOTER_SPACING + footerWidth;
         int availableSpace   = bodyText.getMeasuredWidth();
 
         boolean lineWidthChangedSlightly = (lastFooterDecisionLineWidth > 0 &&
@@ -946,7 +947,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         }
       } else {
         audioViewStub.get().setTint(getContext().getResources().getColor(R.color.conversation_item_outgoing_audio_foreground_tint));
-        audioViewStub.get().setProgressAndPlayBackgroundTint(getContext().getResources().getColor(R.color.signal_colorTransparent2));
+        audioViewStub.get().setProgressAndPlayBackgroundTint(getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorTransparent2));
       }
     }
   }
@@ -1234,8 +1235,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       CallLinks.CallLinkParseResult callLinkParseResult = CallLinks.isCallLink(linkPreview.getUrl()) ? CallLinks.parseUrl(linkPreview.getUrl()) : null;
       if (callLinkParseResult != null) {
         joinCallLinkStub.setVisibility(View.VISIBLE);
-        joinCallLinkStub.get().setTextColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? R.color.signal_light_colorOnPrimary : R.color.signal_colorOnPrimaryContainer));
-        joinCallLinkStub.get().setBackgroundColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? R.color.signal_light_colorTransparent2 : R.color.signal_colorOnPrimary));
+        joinCallLinkStub.get().setTextColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? org.signal.core.ui.R.color.signal_light_colorOnPrimary : org.signal.core.ui.R.color.signal_colorOnPrimaryContainer));
+        joinCallLinkStub.get().setBackgroundColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? org.signal.core.ui.R.color.signal_light_colorTransparent2 : org.signal.core.ui.R.color.signal_colorOnPrimary));
         joinCallLinkStub.get().setOnClickListener(v -> {
           if (eventListener != null) {
             eventListener.onJoinCallLink(callLinkParseResult.getRootKey(), callLinkParseResult.getEpoch());

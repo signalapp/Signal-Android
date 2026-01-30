@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.net.Uri
+import org.signal.core.models.media.TransformProperties
 import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.blurhash.BlurHash
@@ -24,7 +25,7 @@ object UriAttachmentBuilder {
     stickerLocator: StickerLocator? = null,
     blurHash: BlurHash? = null,
     audioHash: AudioHash? = null,
-    transformProperties: AttachmentTable.TransformProperties? = null,
+    transformProperties: TransformProperties? = null,
     uuid: UUID? = UUID.randomUUID()
   ): UriAttachment {
     return UriAttachment(

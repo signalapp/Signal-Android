@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemUtils.isThumbnailAtBottomOfBubble
 import org.thoughtcrime.securesms.util.hasNoBubble
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Color information for conversation items.
@@ -25,7 +26,7 @@ class V2ConversationItemTheme(
   @ColorInt
   fun getReplyIconBackgroundColor(): Int {
     return if (conversationContext.hasWallpaper()) {
-      ContextCompat.getColor(context, R.color.signal_colorSurface1)
+      ContextCompat.getColor(context, CoreUiR.color.signal_colorSurface1)
     } else {
       Color.TRANSPARENT
     }
@@ -36,7 +37,7 @@ class V2ConversationItemTheme(
     conversationMessage: ConversationMessage
   ): Int {
     if (conversationMessage.messageRecord.isThumbnailAtBottomOfBubble(context)) {
-      return ContextCompat.getColor(context, R.color.signal_colorOnCustom)
+      return ContextCompat.getColor(context, CoreUiR.color.signal_colorOnCustom)
     }
 
     if (conversationMessage.messageRecord.isOutgoing && conversationMessage.messageRecord.hasNoBubble(context) && !conversationContext.hasWallpaper()) {

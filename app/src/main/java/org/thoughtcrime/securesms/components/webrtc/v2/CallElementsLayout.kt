@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Constraints
@@ -52,7 +53,7 @@ fun CallElementsLayout(
 
   @Composable
   fun Bars() {
-    Column {
+    Column(modifier = Modifier.fillMaxWidth()) {
       raiseHandSlot()
       callLinkBarSlot()
     }
@@ -69,25 +70,70 @@ fun CallElementsLayout(
     bottomSheetWidth.roundToPx()
   }
 
-  Box(modifier = modifier) {
-    BlurrableContentLayer(
-      isFocused = isFocused,
-      isPortrait = isPortrait,
-      bottomInsetPx = bottomInsetPx,
-      barsSlot = { Bars() },
-      callGridSlot = callGridSlot,
-      reactionsSlot = reactionsSlot,
-      callOverflowSlot = callOverflowSlot
-    )
+  SubcomposeLayout(modifier = modifier) { constraints ->
+    // First, measure the bars to get their height
+    val looseConstraints = constraints.copy(minWidth = 0, minHeight = 0)
 
-    PipLayer(
-      pictureInPictureSlot = pictureInPictureSlot,
-      localRenderState = localRenderState,
-      bottomInsetPx = bottomInsetPx,
-      pipSizePx = pipSizePx,
-      bottomSheetWidthPx = bottomSheetWidthPx
-    )
+    // Measure overflow to determine constraints for bars
+    val overflowPlaceables = subcompose("overflow_measure", callOverflowSlot).map { it.measure(looseConstraints) }
+    val constrainedHeightOffset = if (isPortrait) overflowPlaceables.maxOfOrNull { it.height } ?: 0 else 0
+    val constrainedWidthOffset = if (isPortrait) { 0 } else overflowPlaceables.maxOfOrNull { it.width } ?: 0
+
+    val nonOverflowConstraints = looseConstraints.offset(horizontal = -constrainedWidthOffset, vertical = -constrainedHeightOffset)
+
+    val barConstraints = if (bottomInsetPx > constrainedHeightOffset) {
+      looseConstraints.offset(-constrainedWidthOffset, -bottomInsetPx)
+    } else {
+      nonOverflowConstraints
+    }
+
+    val barsMaxWidth = minOf(barConstraints.maxWidth, bottomSheetWidthPx)
+    val barsConstrainedToSheet = barConstraints.copy(maxWidth = barsMaxWidth)
+
+    val barsPlaceables = subcompose("bars_measure") { Bars() }.map { it.measure(barsConstrainedToSheet) }
+    val barsHeightPx = barsPlaceables.sumOf { it.height }
+    val barsWidthPx = barsPlaceables.maxOfOrNull { it.width } ?: 0
+
+    // Now compose and measure the actual layers with the bars height available
+    val blurrableLayerPlaceable = subcompose("blurrable") {
+      BlurrableContentLayer(
+        isFocused = isFocused,
+        isPortrait = isPortrait,
+        bottomInsetPx = bottomInsetPx,
+        bottomSheetWidthPx = bottomSheetWidthPx,
+        barsSlot = { Bars() },
+        callGridSlot = callGridSlot,
+        reactionsSlot = reactionsSlot,
+        callOverflowSlot = callOverflowSlot
+      )
+    }.map { it.measure(constraints) }
+
+    // Use the wider of bars or bottom sheet for space calculation
+    val centeredContentWidthPx = maxOf(barsWidthPx, bottomSheetWidthPx)
+
+    val pipLayerPlaceable = subcompose("pip") {
+      PipLayer(
+        pictureInPictureSlot = pictureInPictureSlot,
+        localRenderState = localRenderState,
+        bottomInsetPx = bottomInsetPx,
+        barsHeightPx = barsHeightPx,
+        pipSizePx = pipSizePx,
+        centeredContentWidthPx = centeredContentWidthPx
+      )
+    }.map { it.measure(constraints) }
+
+    layout(constraints.maxWidth, constraints.maxHeight) {
+      blurrableLayerPlaceable.forEach { it.place(0, 0) }
+      pipLayerPlaceable.forEach { it.place(0, 0) }
+    }
   }
+}
+
+private enum class BlurrableContentSlot {
+  BARS,
+  GRID,
+  REACTIONS,
+  OVERFLOW
 }
 
 @Composable
@@ -95,6 +141,7 @@ private fun BlurrableContentLayer(
   isFocused: Boolean,
   isPortrait: Boolean,
   bottomInsetPx: Int,
+  bottomSheetWidthPx: Int,
   barsSlot: @Composable () -> Unit,
   callGridSlot: @Composable () -> Unit,
   reactionsSlot: @Composable () -> Unit,
@@ -104,17 +151,17 @@ private fun BlurrableContentLayer(
     isBlurred = isFocused,
     modifier = Modifier.fillMaxSize()
   ) {
-    Layout(
-      contents = listOf(barsSlot, callGridSlot, reactionsSlot, callOverflowSlot),
-      modifier = Modifier.fillMaxSize()
-    ) { measurables, constraints ->
+    SubcomposeLayout(modifier = Modifier.fillMaxSize()) { constraints ->
       val looseConstraints = constraints.copy(minWidth = 0, minHeight = 0)
-      val overflowPlaceables = measurables[3].map { it.measure(looseConstraints) }
+
+      val overflowPlaceables = subcompose(BlurrableContentSlot.OVERFLOW, callOverflowSlot)
+        .map { it.measure(looseConstraints) }
       val constrainedHeightOffset = if (isPortrait) overflowPlaceables.maxOfOrNull { it.height } ?: 0 else 0
-      val constrainedWidthOffset = if (isPortrait) { 0 } else overflowPlaceables.maxOfOrNull { it.width } ?: 0
+      val constrainedWidthOffset = if (isPortrait) 0 else overflowPlaceables.maxOfOrNull { it.width } ?: 0
 
       val nonOverflowConstraints = looseConstraints.offset(horizontal = -constrainedWidthOffset, vertical = -constrainedHeightOffset)
-      val gridPlaceables = measurables[1].map { it.measure(nonOverflowConstraints) }
+      val gridPlaceables = subcompose(BlurrableContentSlot.GRID, callGridSlot)
+        .map { it.measure(nonOverflowConstraints) }
 
       val barConstraints = if (bottomInsetPx > constrainedHeightOffset) {
         looseConstraints.offset(-constrainedWidthOffset, -bottomInsetPx)
@@ -122,11 +169,17 @@ private fun BlurrableContentLayer(
         nonOverflowConstraints
       }
 
-      val barsPlaceables = measurables[0].map { it.measure(barConstraints) }
+      // Cap bars width to sheet max width (bars can be narrower if content doesn't fill)
+      val barsMaxWidth = minOf(barConstraints.maxWidth, bottomSheetWidthPx)
+      val barsConstrainedToSheet = barConstraints.copy(maxWidth = barsMaxWidth)
+
+      val barsPlaceables = subcompose(BlurrableContentSlot.BARS, barsSlot)
+        .map { it.measure(barsConstrainedToSheet) }
 
       val barsHeightOffset = barsPlaceables.sumOf { it.height }
       val reactionsConstraints = barConstraints.offset(vertical = -barsHeightOffset)
-      val reactionsPlaceables = measurables[2].map { it.measure(reactionsConstraints) }
+      val reactionsPlaceables = subcompose(BlurrableContentSlot.REACTIONS, reactionsSlot)
+        .map { it.measure(reactionsConstraints) }
 
       layout(looseConstraints.maxWidth, looseConstraints.maxHeight) {
         overflowPlaceables.forEach {
@@ -142,7 +195,8 @@ private fun BlurrableContentLayer(
         }
 
         barsPlaceables.forEach {
-          it.place(0, barConstraints.maxHeight - it.height)
+          val barsX = (looseConstraints.maxWidth - it.width) / 2
+          it.place(barsX, barConstraints.maxHeight - it.height)
         }
 
         reactionsPlaceables.forEach {
@@ -158,8 +212,9 @@ private fun PipLayer(
   pictureInPictureSlot: @Composable () -> Unit,
   localRenderState: WebRtcLocalRenderState,
   bottomInsetPx: Int,
+  barsHeightPx: Int,
   pipSizePx: Size,
-  bottomSheetWidthPx: Int
+  centeredContentWidthPx: Int
 ) {
   Layout(
     content = pictureInPictureSlot,
@@ -170,8 +225,11 @@ private fun PipLayer(
     val pictureInPictureConstraints: Constraints = when (localRenderState) {
       WebRtcLocalRenderState.GONE, WebRtcLocalRenderState.SMALLER_RECTANGLE, WebRtcLocalRenderState.LARGE, WebRtcLocalRenderState.LARGE_NO_VIDEO, WebRtcLocalRenderState.FOCUSED -> constraints
       WebRtcLocalRenderState.SMALL_RECTANGLE, WebRtcLocalRenderState.EXPANDED -> {
-        val shouldOffset = bottomInsetPx > 0 && looseConstraints.maxWidth - pipSizePx.width - pipSizePx.width - bottomSheetWidthPx < 0
-        looseConstraints.offset(vertical = if (shouldOffset) -bottomInsetPx else 0)
+        // Check if there's enough space on either side of the centered content (bars/sheet)
+        val spaceOnEachSide = (looseConstraints.maxWidth - centeredContentWidthPx) / 2
+        val shouldOffset = centeredContentWidthPx > 0 && spaceOnEachSide < pipSizePx.width
+        val offsetAmount = bottomInsetPx + barsHeightPx
+        looseConstraints.offset(vertical = if (shouldOffset) -offsetAmount else 0)
       }
     }
 
@@ -207,10 +265,11 @@ private fun CallElementsLayoutPreview() {
           localParticipant = CallParticipant(
             recipient = Recipient(id = RecipientId.from(1L), isResolving = false, systemContactName = "Test")
           ),
+          localRenderState = localRenderState,
+          savedLocalParticipantLandscape = false,
           onClick = {},
           onFocusLocalParticipantClick = {},
-          onToggleCameraDirectionClick = {},
-          localRenderState = localRenderState
+          onToggleCameraDirectionClick = {}
         )
       },
       reactionsSlot = {
@@ -258,7 +317,7 @@ private fun CallElementsLayoutPreview() {
         )
       },
       bottomInset = 120.dp,
-      bottomSheetWidth = 640.dp,
+      bottomSheetWidth = CallScreenMetrics.SheetMaxWidth,
       localRenderState = localRenderState
     )
   }

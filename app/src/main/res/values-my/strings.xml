@@ -408,7 +408,7 @@
     <string name="ContactShareEditActivity_type_work">အလုပ်</string>
     <string name="ContactShareEditActivity_type_missing">အခြား</string>
     <string name="ContactShareEditActivity_invalid_contact">ရွေးချယ်ထားသောအဆက်အသွယ် မှားယွင်းနေပါသည်</string>
-    <!-- Content descrption for name edit button on contact share edit activity -->
+    <!-- Content description for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">အမည်ပြင်ရန်</string>
     <!-- Content description for user avatar in edit activity -->
     <string name="ContactShareEditActivity__avatar">ရုပ်ပုံ</string>
@@ -950,7 +950,7 @@
     <string name="DateUtils_minutes_ago">%1$dမိနစ်</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="other">%1$d မိနစ်</item>
     </plurals>
     <string name="DateUtils_today">ယနေ့</string>
     <string name="DateUtils_yesterday">မနေ့က</string>
@@ -1595,7 +1595,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ကွန်ယက် မှားယွင်းချက် တစ်ခုနှင့် ကြုံတွေ့ခဲ့ရသည်</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">၎င်းအဖွဲ့လင့်ခ်သည် အသက်မဝင်ပါ</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
-    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">အဖွဲ့ဝင်အရေအတွက် ကန့်သတ်ချက် ပြည့်သွားသဖြင့် အဖွဲ့ထဲဝင်၍မရတော့ပါ</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">အဖွဲ့တွင် ပါဝင်၍ မရနိုင်ပါ</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -2613,6 +2613,12 @@
     <!-- Content description for the button that switches between front and back camera during a call -->
     <string name="SwitchCameraButton__switch_camera_direction">ကင်မရာ ဦးတည်ချက်ကို ပြောင်းရန်</string>
 
+    <!-- CallQualityDiagnosticsScreen -->
+    <!-- Title for the call quality diagnostics screen -->
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">ချွတ်ယွင်းချက်ဆိုင်ရာ အချက်အလက်</string>
+    <!-- Content description for the close/back navigation button -->
+    <string name="CallQualityDiagnosticsScreen__close">ပိတ်မည်</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">စခရင် မျှဝေမှုကို ကြည့်ရန် ပွတ်ဆွဲပါ</string>
 
@@ -2656,7 +2662,8 @@
     <string name="RegistrationActivity_i_understand">နားလည် လက်ခံပါသည်</string>
     <string name="RegistrationActivity_play_services_error">Google Play အသုံးပြု၍မရပါ</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Serivice ကို အဆင့်မြှင့်တင်နေခြင်း၊ သို့၊ အသုံးပြု၍ မရခြင်းဖြစ်နေပါသည်။ ပြန်လည် စမ်းသပ်ကြည့်ပါ။</string>
-    <string name="RegistrationActivity_terms_and_privacy">လိုက်နာဆောင်ရွက်ရမည့် အချက်များ</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal သည် သင့်အား မိတ်ဆွေများနှင့် ဆက်သွယ်ပေးနိုင်ရန်နှင့် မက်ဆေ့ချ်များ ပေးပို့နိုင်စေရန်အတွက် ကူညီပေးရန် အဆက်အသွယ်နှင့် မီဒီယာ ခွင့်ပြုချက်များ လိုအပ်ပါသည်။ သင့်အဆက်အသွယ်များကို End-to-end ကုဒ်ပြောင်းဝှက်ထားသော Signal ၏ သီးသန့် အဆက်အသွယ် ရှာဖွေရေးကို သုံး၍ အပ်လုဒ်လုပ်ထားသောကြောင့် Signal ဝန်ဆောင်မှုတွင် မည်သည့်အခါမျှ မြင်ရမည် မဟုတ်ပါ။</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal သည် သင့်အား မိတ်ဆွေများနှင့် ဆက်သွယ်ပေးရန်အတွက် အဆက်အသွယ် ခွင့်ပြုချက် လိုအပ်ပါသည်။ သင့်အဆက်အသွယ်များကို End-to-end ကုဒ်ပြောင်းဝှက်ထားသော Signal ၏ သီးသန့် အဆက်အသွယ် ရှာဖွေရေးကို သုံး၍ အပ်လုဒ်လုပ်ထားသောကြောင့် Signal ဝန်ဆောင်မှုတွင် မည်သည့်အခါမျှ မြင်ရမည် မဟုတ်ပါ။</string>
     <string name="RegistrationActivity_rate_limited_to_service">ဤနံပတ်ဖြင့် မှတ်ပုံတင်ခြင်းကို အကြိမ်ပေါင်းများစွာ ကြိုးစားပြီးပါပြီ။ ကျေးဇူးပြူ၍ နောင်အခါမှ ပြန်လည်ကြိုးစားပါ။</string>
@@ -3698,6 +3705,41 @@
     <string name="verify_display_fragment__loading">လုပ်ဆောင်နေသည်…</string>
     <string name="verify_display_fragment__mark_as_verified">Mark as verified</string>
     <string name="verify_display_fragment__clear_verification">အတည်ပြုမှု ရှင်းလင်းရန်</string>
+    <!-- Header title for automatic key verification -->
+    <string name="verify_display_fragment__automatic">Automatic Key Verification</string>
+    <!-- Button text to verify automatically    -->
+    <string name="verify_display_fragment__verify_automatic">Verify automatically</string>
+    <!-- Loading text when verifying -->
+    <string name="verify_display_fragment__verifying">Verifying encryption…</string>
+    <!-- Success text shown when encryption is verified -->
+    <string name="verify_display_fragment__encryption_verified">Encryption verified</string>
+    <!-- Text shown when verification fails -->
+    <string name="verify_display_fragment__encryption_unavailable">Auto-verification unavailable</string>
+    <!-- Caption text explaining more about automatic verification   -->
+    <string name="verify_display_fragment__auto_verify_not_available">Auto-verification is not available for all chats.</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://signal.org/redirect/safety-numbers</string> -->
+
+    <!-- Bottom sheet title when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_success">Encryption was auto-verified for this chat</string>
+    <!-- Bottom sheet body when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_success">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <!-- Bottom sheet title when encryption is no longer auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Auto-verification is no longer available for this chat</string>
+    <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal can no longer automatically verify the encryption for this chat. This is likely because %1$s changed their phone number. Verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <!-- Bottom sheet title when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_unavailable">Auto-verification not available for this chat</string>
+    <!-- Bottom sheet body when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_unavailable">Signal can only automatically verify the encryption in chats where you’re connected to someone via a phone number. If the chat was started with a username or a group in common, verify end-to-end encryption by comparing the numbers on the previous screen or scanning the code on their device.</string>
+
+    <!-- Title for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal သည် ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ခြင်းကို အလိုအလျောက် အတည်ပြုပေးသည်</string>
+    <!-- Body for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__body">လုံခြုံရေးနံပါတ်တစ်ခုကို အတည်ပြုသောအခါ ကီးပွင့်လင်းမြင်သာမှုဟုခေါ်သော လုပ်ငန်းစဉ်ကို အသုံးပြု၍ ချိတ်ဆက်မှုလုံခြုံခြင်းရှိမရှိ Signal သည် အလိုအလျောက်အတည်ပြုပေးပါမည်။ QR ကုဒ် သို့မဟုတ် နံပါတ်ကို အသုံးပြု၍ ချိတ်ဆက်မှုများကို ကိုယ်တိုင် အတည်ပြုနိုင်ဆဲဖြစ်သည်။</string>
+    <!-- Button to learn more about automatic verification -->
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">ပိုမိုလေ့လာရန်</string>
+    <!-- Button to go to verification page -->
+    <string name="VerifyAutomaticallyEducationSheet__verify">စစ်ဆေးအတည်ပြုမည်</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">တဖက်လူ၏ ဖုန်း/ကွန်ပျူတာပေါ်တွင် QR ကုတ်ကို စကန်ဖတ်ပါ။</string>
@@ -3850,7 +3892,7 @@
     <string name="preferences__pref_use_address_book_photos">လိပ်စာစာအုပ်ဓာတ်ပုံများကို သုံးပါ</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">ဖြစ်နိုင်လျှင် စနစ်ထဲရှိ အဆက်အသွယ်များ၏ ရုပ်ပုံများကို ပြသပါ</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">အသံပိတ်ထားသည့် ချက်(တ်)များကို ဆက်လက်စုစည်းရန်</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">မက်ဆေ့ချ်အသစ် ရောက်လာချိန်တွင် စုစည်းပြီးသော အသံပိတ်ထားသည့် ချက်(တ်)များသည် စုစည်းလျက်သား ဆက်ရှိနေပါမည်။</string>
     <string name="preferences__generate_link_previews">ကြိုတင်ကြည့်ရှုရန် လင့်ခ်များ ထုတ်လုပ်ပါ</string>
@@ -4070,7 +4112,7 @@
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">ကျစ်လျစ်</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">ဘာသာစကားဆက်တင်အသစ်ကို အသုံးပြုရန်အတွက် အက်ပ်သည် ပြန်လည်စတင်ပါလိမ့်မည်။</string>
 
 
     <string name="configurable_single_select__customize_option">ရွေးချယ်မှုကို စိတ်ကြိုက်ပြင်ဆင်မယ်</string>
@@ -5641,6 +5683,8 @@
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">လိုက်နာဆောင်ရွက်ရမည့် အချက်များ</string>
     <string name="HelpFragment__copyright_signal_messenger">မူပိုင်ခွင့် Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 အတိုင်း ခွင့်ပြုထားသည်</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">ဓာတ်ပုံ အရည်အသွေး</string>
@@ -6019,7 +6063,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">ပရိုဖိုင် အပ်ဒိတ်လုပ်ရန် မအောင်မြင်ခဲ့ပါ</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">ယခု လှူဒါန်းရန်</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">လှူဒါန်းရန်</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s သည် Signal ကို ပံ့ပိုးပေးပါသည်</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -6047,13 +6091,15 @@
     <string name="Subscription__expires_s">· %1$s သက်တမ်းကုန်ပါမည်</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal သည် မတူကွဲပြားသည်။</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">As an independent nonprofit, Signal is committed to private messaging and calls. No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">သီးသန့် မက်ဆေ့ချ်လုပ်ဆောင်ချက်။ ကြော်ငြာများ မရှိ၊ ခြေရာခံခြင်း မရှိ၊ စောင့်ကြည့်ခြင်း မရှိ။</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal ကို လှူဒါန်းမှုများဖြင့် ပံ့ပိုးထားပါသည်၊ ဆိုလိုသည်မှာ သင်၏ ကိုယ်ပိုင်အချက်အလက်သည် ကျွန်ုပ်တို့ လုပ်ဆောင်မှုတိုင်း၏ ဗဟိုချက်ဖြစ်သည်။ Signal ကို သင့်အတွက် ဖန်တီးပေးထားပါသည်၊ သင့်ဒေတာများနှင့် အကျိုးအမြတ်အတွက် မဟုတ်ပါ။</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Get an optional badge on your profile when you donate</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">သင်တတ်နိုင်လျှင် Signal ကို ဆက်လက်ပြီး ပျော်စရာကောင်းစေရန်၊ အားထားနိုင်စေရန်နှင့် အားလုံးအတွက် ရနိုင်ရန် လှူဒါန်းပေးပါ။</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">Your privacy is our mission</string>
+    <!-- Fourth small text blurb on learn more sheet. Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit. US donations are tax deductible.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">သင့်ပံ့ပိုးကူညီမှုအတွက် ကျေးဇူးတင်ပါသည်။</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -6077,14 +6123,14 @@
     <string name="ManageDonationsFragment__my_support">My Support</string>
     <string name="ManageDonationsFragment__manage_subscription">ပုံမှန်လှူဒါန်းငွေကို စီမံရန်</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">လှူဒါန်းမှု ပြေစာများ</string>
     <string name="ManageDonationsFragment__badges">ဘဲ့ဂျ်များ</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">လှူဒါန်းသူ မေးဖြေများ</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">အခြားလှူဒါန်းမှုနည်းလမ်းများ</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">မိတ်ဆွေတစ်ယောက်အတွက် လှူရန်</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">လှူဒါန်းမှုကို အတည်ပြုနိုင်ခြင်းမရှိပါ</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -7064,11 +7110,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">ကိုယ်ပိုင်အချက်အလက်သည် အကျိုးအမြတ်ထက် ပိုအရေးကြီးပါသည်</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Proudly Nonprofit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">ဆက်လုပ်ရန်</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">သင် ငွေကြေးထောက်ပံ့ထားသည့် သီးသန့် မက်ဆေ့ချ်လုပ်ဆောင်ချက်။ ကြော်ငြာများ မရှိ၊ ခြေရာခံခြင်း မရှိ၊ အပေးအယူ မရှိ။ Signal ကို ပံ့ပိုးရန် ယခုပင် လှူဒါန်းလိုက်ပါ။</string>
+    <string name="DonateToSignalFragment__private_messaging">Donate to support private messaging. Keep Signal independent and ad-free.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">သင့်တွင် လုပ်ဆောင်နေဆဲ လှူဒါန်းမှုတစ်ခု ရှိပါသည်</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7885,6 +7931,15 @@
     <!-- Status action label for resume restore from a paused state -->
     <string name="BackupStatus__resume">ပြန်ဆက်လုပ်မည်</string>
 
+    <!-- Status subtitle for banner when we are creating a backup file -->
+    <string name="BackupStatus__status_creating_backup">Creating backup…</string>
+    <!-- Status title for banner when user is actively uploading backup data -->
+    <string name="BackupStatus__uploading_backup">Uploading backup</string>
+    <!-- Status title for banner when user is temporarily unable to upload a backup -->
+    <string name="BackupStatus__upload_paused">Backup paused</string>
+    <!-- Status title for banner when user has finished creating a backup -->
+    <string name="BackupStatus__upload_complete">Backup complete</string>
+
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi ကို စောင့်နေသည်…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
@@ -7893,6 +7948,10 @@
     <string name="BackupStatus__status_device_has_low_battery">ဘက်ထရီအားနည်းနေသည်</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s ၏ %2$s</string>
+    <!-- Label for a context menu item that, when pressed, will hide a banner so it will no longer be shown. -->
+    <string name="BackupStatus__hide">ဝှက်ပါ</string>
+    <!-- Label for a context menu item that, when pressed, will cancel the ongoing backup. -->
+    <string name="BackupStatus__cancel_upload">Cancel backup</string>
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
@@ -7934,6 +7993,15 @@
     <string name="ResumeRestoreCellular_resume_using_cellular_title">ဆယ်လူလာဒေတာကို ပြန်လည်အသုံးပြုမလား။</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
     <string name="ResumeRestoreCellular_resume_using_cellular_message">ဆယ်လူလာဒေတာကို အသုံးပြု၍ သင်၏မီဒီယာကို ပြန်လည်ရယူခြင်းသည် ဒေတာအတွက် ငွေကုန်ကျနိုင်သည်။ အလိုအလျောက်ပြန်လည်စတင်ရန် Wi-Fi ကို ချိတ်ဆက်နိုင်သည်။</string>
+
+    <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_title">Cancel backup?</string>
+    <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_body">Canceling your backup will not delete your backup. You can resume your backup at any time from Backup Settings.</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
+    <string name="CancelBackupDialog_cancel_action">Cancel backup</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
+    <string name="CancelBackupDialog_continue_action">Continue backup</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8271,6 +8339,14 @@
     <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">သင့်ဘက်ခ်အပ်အစီအစဉ်တွင် ထည့်သွင်းထားသည့် သိုလှောင်မှုကန့်သတ်ချက် %1$s သို့ သင်ရောက်ရှိသွားပါပြီ။ ချက်(တ်)အသစ်များနှင့် မီဒီယာများကို ဘက်ခ်အပ်လုပ်ရန် နေရာလွတ်ထွက်လာအောင် ရှင်းထုတ်ပါ။</string>
     <!-- Button label to open storage management screen -->
     <string name="RemoteBackupsSettingsFragment__manage_storage">သိုလှောင်မှုကိုစီမံပါ</string>
+
+    <!-- ReadyToTransferBottomSheet -->
+    <!-- Title for a bottom sheet letting people know that they can transfer their back to their new device  -->
+    <string name="RemoteBackupsSettingsFragment__ready_to_transfer">လွှဲပြောင်းရန် အသင့်ဖြစ်ပါပြီ</string>
+    <!-- Body for bottom sheet telling the user to scan a QR code to continue transferring their backup to a new device -->
+    <string name="RemoteBackupsSettingsFragment__use_this_device_to_scan_qr">သင်လွှဲပြောင်းလိုသော စက်တွင် QR ကုဒ်ကို စကင်န်ဖတ်ရန် ဤစက်ကို အသုံးပြုပါ</string>
+    <!-- Button label to open QR scanner to scan a device and transfer a backup -->
+    <string name="RemoteBackupsSettingsFragment__scan_qr_code">QR ကုဒ်ကို စကင်န်ဖတ်မည်</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8627,6 +8703,19 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">သင့်အကောင့်ကို သင့်အခြားစက်ပေါ်တွင် ဆက်လက်လွှဲပြောင်းပါ။</string>
 
+    <!-- Prepare Device screen title for quick restore flow -->
+    <string name="PrepareDevice_title">သင့်စက်ကို အသင့်ပြင်ခြင်း</string>
+    <!-- Prepare Device screen body text explaining backup recommendation -->
+    <string name="PrepareDevice_body">လွှဲပြောင်းခြင်းမပြုမီ ယခုပင် ဘက်ခ်အပ်ပြုလုပ်ပါ။ သင်သည် ဘက်ခ်အပ်မလုပ်ရသေးသော မက်ဆေ့ချ်များကို လက်ခံရရှိထားနိုင်ပါသည်။</string>
+    <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
+    <string name="PrepareDevice_last_backup">သင်၏နောက်ဆုံး ဘက်ခ်အပ်ကို %1$s တွင် %2$s အချိန်က ပြုလုပ်ခဲ့သည်။</string>
+    <!-- Prepare Device screen back up now button -->
+    <string name="PrepareDevice_back_up_now">ဘက်ခ်အပ် အခုလုပ်မည်</string>
+    <!-- Prepare Device screen skip and continue button -->
+    <string name="PrepareDevice_skip_and_continue">ကျော်ပြီး ဆက်လုပ်ပါ</string>
+    <!-- A string describing the last time the user\'s backup was made. The placeholder represents a date-time. An example would be "Your last backup was made on July 18, 2025 at 9:00am." -->
+    <string name="PrepareDevice_last_backup_description">သင်၏နောက်ဆုံး ဘက်ခ်အပ်ကို %1$s တွင် ပြုလုပ်ခဲ့သည်။ </string>
+
     <!-- Restore Complete bottom sheet dialog title -->
     <string name="RestoreCompleteBottomSheet_restore_complete">သင်၏အခြားစက်တွင် အပြီးသတ်ပါ</string>
     <!-- Restore Complete bottom sheet dialog message -->
@@ -8749,7 +8838,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">စစ်တမ်းကို အဆုံးသတ်မလား။</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">ဤချက်(တ်)အဖွဲ့၀င်များသည် ဤစစ်တမ်းတွင် မဲပေးနိုင်တော့မည်မဟုတ်ပါ။</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">ကွန်ရက်ကို စောင့်နေသည်…</string>
     <!-- Header when creating a new poll -->
@@ -8806,7 +8895,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
+    <string name="CallQualitySomethingElseScreen__title">ပြဿနာကို ဖော်ပြပါ</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">သင့်ပြဿနာကို ဖော်ပြပါ</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
@@ -8836,11 +8925,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">ပိုမိုကောင်းမွန်စေရန် ကူညီပေးပါ</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">သင့်ခေါ်ဆိုမှု အတွေ့အကြုံကို ကျွန်ုပ်တို့ထံ ပေးပို့ခြင်းက ခေါ်ဆိုမှုအရည်အသွေးကို မြှင့်တင်ပေးပါသည်။ မတင်ပြမီ သင်၏ </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">တင်သွင်းရာတွင် သင့်တုံ့ပြန်ချက်ကို</string>
+    <!-- Clickable text to launch diagnostic fragment -->
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">သင့်ခေါ်ဆိုမှုနှင့်ပတ်သက်သည့် ချွတ်ယွင်းချက်အချက်အလက်နှင့်အတူ မျှဝေပါမည်</string>
+    <!-- End of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix">ဖုန်းခေါ်ဆိုမှု အရည်အသွေး မြှင့်တင်ရေးတွင် ကူညီပေးရန်အတွက် ပြစ်ချက်မှတ်တမ်းတစ်ခုကို ရွေးချယ်၍ မျှဝေနိုင်ပါသည်။</string>
+    <!-- Text explaining the debug log -->
+    <string name="CallQualitySheet__information_shared_with_us">ကျွန်ုပ်တို့နှင့်မျှဝေထားသော အရာများတွင် သာမန်အက်ပ်အချက်အလက်များသာပါဝင်ပြီး သင့်ဖုန်းခေါ်ဆိုမှုများ၏ အကြောင်းအရာများ မပါဝင်ပါ။</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">ပြစ်ချက်မှတ်တမ်းကို ကြည့်ရှု</string>
-    <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> နိုင်သည်။</string>
+    <string name="CallQualitySheet__view_debug_log">ပြစ်ချက်မှတ်တမ်းကို ကြည့်ရှုရန်</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">ပြစ်ချက်မှတ်တမ်း မျှဝေရန်</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->

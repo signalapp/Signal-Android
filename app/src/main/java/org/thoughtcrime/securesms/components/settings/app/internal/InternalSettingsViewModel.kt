@@ -196,7 +196,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     useConversationItemV2ForMedia = SignalStore.internal.useConversationItemV2Media,
     hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null,
     hevcEncoding = SignalStore.internal.hevcEncoding,
-    newCallingUi = SignalStore.internal.newCallingUi,
     forceSplitPane = SignalStore.internal.forceSplitPane
   )
 
@@ -206,11 +205,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     Stories.onStorySettingsChanged(Recipient.self().id)
     refresh()
     StoryOnboardingDownloadJob.enqueueIfNeeded()
-  }
-
-  fun setUseNewCallingUi(newCallingUi: Boolean) {
-    SignalStore.internal.newCallingUi = newCallingUi
-    refresh()
   }
 
   fun setForceSplitPane(forceSplitPane: Boolean) {

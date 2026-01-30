@@ -37,9 +37,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
+import org.signal.glide.compose.GlideImage
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
-import org.thoughtcrime.securesms.compose.GlideImage
 import org.thoughtcrime.securesms.recipients.Recipient
 
 private val textShadow = Shadow(

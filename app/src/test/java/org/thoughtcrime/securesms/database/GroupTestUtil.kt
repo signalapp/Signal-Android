@@ -3,17 +3,17 @@ package org.thoughtcrime.securesms.database
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
-import org.signal.storageservice.protos.groups.AccessControl
-import org.signal.storageservice.protos.groups.GroupChange
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
-import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
-import org.signal.storageservice.protos.groups.local.DecryptedString
-import org.signal.storageservice.protos.groups.local.DecryptedTimer
-import org.signal.storageservice.protos.groups.local.EnabledState
+import org.signal.storageservice.storage.protos.groups.AccessControl
+import org.signal.storageservice.storage.protos.groups.GroupChange
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedString
+import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer
+import org.signal.storageservice.storage.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -80,12 +80,12 @@ class GroupChangeData(private val revision: Int, private val groupOperations: Gr
     get() {
       return groupChangeBuilder
         .changeEpoch(changeEpoch)
-        .actions(actionsBuilder.revision(revision).build().encodeByteString())
+        .actions(actionsBuilder.version(revision).build().encodeByteString())
         .build()
     }
 
   fun source(serviceId: ServiceId) {
-    actionsBuilder.sourceServiceId = groupOperations.encryptServiceId(serviceId)
+    actionsBuilder.sourceUserId = groupOperations.encryptServiceId(serviceId)
   }
 
   fun deleteMember(serviceId: ServiceId) {

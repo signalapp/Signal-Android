@@ -22,6 +22,7 @@ import com.airbnb.lottie.SimpleColorFilter
 import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import org.signal.core.models.media.Media
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.AvatarPreviewActivity
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.databinding.EditProfileFragmentBinding
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.profiles.manage.EditProfileViewModel.AvatarState
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import java.util.Arrays
 import java.util.Optional
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Fragment for editing your profile after you're already registered.
@@ -320,13 +321,13 @@ class EditProfileFragment : LoggingFragment() {
 
   private fun presentAboutEmoji(aboutEmoji: String?) {
     if (aboutEmoji.isNullOrEmpty()) {
-      binding.manageProfileAboutIcon.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.symbol_edit_24, null))
+      binding.manageProfileAboutIcon.setImageDrawable(ResourcesCompat.getDrawable(resources, CoreUiR.drawable.symbol_edit_24, null))
     } else {
       val emoji = EmojiUtil.convertToDrawable(requireContext(), aboutEmoji)
       if (emoji != null) {
         binding.manageProfileAboutIcon.setImageDrawable(emoji)
       } else {
-        binding.manageProfileAboutIcon.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.symbol_edit_24, null))
+        binding.manageProfileAboutIcon.setImageDrawable(ResourcesCompat.getDrawable(resources, CoreUiR.drawable.symbol_edit_24, null))
       }
     }
   }

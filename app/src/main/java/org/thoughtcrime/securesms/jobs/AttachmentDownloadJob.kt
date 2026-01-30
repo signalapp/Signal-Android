@@ -98,11 +98,11 @@ class AttachmentDownloadJob private constructor(
         AttachmentTable.TRANSFER_PROGRESS_PENDING,
         AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
           if (SignalStore.backup.backsUpMedia && (databaseAttachment.remoteLocation == null || databaseAttachment.remoteDigest == null)) {
-            if (databaseAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
+            if (databaseAttachment.dataHash != null) {
               Log.i(TAG, "Trying to restore attachment from archive cdn")
               RestoreAttachmentJob.forManualRestore(databaseAttachment)
             } else {
-              Log.w(TAG, "No remote location, and the archive transfer state is unfinished. Can't download.")
+              Log.w(TAG, "No remote location and no plaintext hash. Can't download.")
               null
             }
           } else {

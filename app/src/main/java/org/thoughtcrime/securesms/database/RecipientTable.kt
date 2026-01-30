@@ -47,7 +47,7 @@ import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.thoughtcrime.securesms.badges.Badges.toDatabaseBadge
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.color.MaterialColor
@@ -1220,7 +1220,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val out: MutableMap<RecipientId, StorageId> = HashMap()
 
     readableDatabase
-      .select(ID, STORAGE_SERVICE_ID, TYPE)
+      .select(ID, STORAGE_SERVICE_ID, TYPE, ACI_COLUMN, PNI_COLUMN)
       .from(TABLE_NAME)
       .where(
         """
@@ -1251,7 +1251,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           val key = Base64.decodeOrThrow(encodedKey)
 
           when (recipientType) {
-            RecipientType.INDIVIDUAL -> out[id] = StorageId.forContact(key)
+            RecipientType.INDIVIDUAL -> {
+              val aci = ACI.parseOrNull(cursor.requireString(ACI_COLUMN))
+              val pni = PNI.parseOrNull(cursor.requireString(PNI_COLUMN))
+              if (aci == null && pni == null) {
+                Log.w(TAG, "All identifiers are null! Skipping. Before parsing, ACI: ${cursor.requireString(ACI_COLUMN) != null}, PNI: ${cursor.requireString(PNI_COLUMN) != null}")
+              } else {
+                out[id] = StorageId.forContact(key)
+              }
+            }
             RecipientType.GV1 -> out[id] = StorageId.forGroupV1(key)
             RecipientType.DISTRIBUTION_LIST -> out[id] = StorageId.forStoryDistributionList(key)
             RecipientType.CALL_LINK -> out[id] = StorageId.forCallLink(key)

@@ -42,7 +42,7 @@ class GroupsV2Operations_ban_Test {
       emptyList()
     )
 
-    assertThat(banUuidsChange.addBannedMembers)
+    assertThat(banUuidsChange.add_members_banned)
       .single()
       .transform { it.added?.userId }
       .isEqualTo(groupOperations.encryptServiceId(ban))
@@ -62,7 +62,7 @@ class GroupsV2Operations_ban_Test {
       alreadyBanned
     )
 
-    assertThat(banUuidsChange.addBannedMembers)
+    assertThat(banUuidsChange.add_members_banned)
       .single()
       .transform { it.added?.userId }
       .isEqualTo(groupOperations.encryptServiceId(toBan))
@@ -89,12 +89,12 @@ class GroupsV2Operations_ban_Test {
     )
 
     val oldest = alreadyBanned.minBy { it.timestamp }
-    assertThat(banUuidsChange.deleteBannedMembers)
+    assertThat(banUuidsChange.delete_members_banned)
       .single()
       .transform { it.deletedUserId }
       .isEqualTo(groupOperations.encryptServiceId(ServiceId.parseOrThrow(oldest.serviceIdBytes)))
 
-    assertThat(banUuidsChange.addBannedMembers)
+    assertThat(banUuidsChange.add_members_banned)
       .single()
       .transform { it.added?.userId }
       .isEqualTo(groupOperations.encryptServiceId(toBan))
@@ -125,7 +125,7 @@ class GroupsV2Operations_ban_Test {
       .subList(0, 2)
       .map { groupOperations.encryptServiceId(ServiceId.parseOrThrow(it.serviceIdBytes)) }
       .toTypedArray()
-    assertThat(banUuidsChange.deleteBannedMembers)
+    assertThat(banUuidsChange.delete_members_banned)
       .transform { members ->
         members.map { member ->
           member.deletedUserId
@@ -136,7 +136,7 @@ class GroupsV2Operations_ban_Test {
     val newBans = (0..1).map { i ->
       groupOperations.encryptServiceId(toBan[i])
     }.toTypedArray()
-    assertThat(banUuidsChange.addBannedMembers)
+    assertThat(banUuidsChange.add_members_banned)
       .transform { members ->
         members.map { member ->
           member.added?.userId

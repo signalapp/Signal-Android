@@ -5,8 +5,6 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
-import androidx.compose.material3.BottomSheetDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.Layout
@@ -36,7 +34,6 @@ internal enum class BottomControlsLayoutId {
  * Usage: Apply `Modifier.layoutId(BottomControlsLayoutId.CONTROLS)` to the controls content
  * and `Modifier.layoutId(BottomControlsLayoutId.BAR)` to the bar content.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun BottomControlsWithOptionalBar(
   bottomSheetPadding: Dp,
@@ -44,7 +41,7 @@ internal fun BottomControlsWithOptionalBar(
   controlsRow: @Composable () -> Unit,
   barSlot: @Composable () -> Unit
 ) {
-  val sheetMaxWidthPx = with(LocalDensity.current) { BottomSheetDefaults.SheetMaxWidth.roundToPx() }
+  val sheetMaxWidthPx = with(LocalDensity.current) { CallScreenMetrics.SheetMaxWidth.roundToPx() }
   val spacingPx = with(LocalDensity.current) { 16.dp.roundToPx() }
   val elementBottomPaddingPx = with(LocalDensity.current) { 16.dp.roundToPx() }
   val bottomSheetPaddingPx = with(LocalDensity.current) { bottomSheetPadding.roundToPx() }
@@ -79,7 +76,7 @@ internal fun BottomControlsWithOptionalBar(
     val controlsPlaceable = controlsMeasurable?.measure(constraints.copy(minWidth = 0, minHeight = 0))
     val controlsHeight = controlsPlaceable?.height ?: 0
 
-    if (controlsCanBeAtScreenEdge) {
+    if (controlsCanBeAtScreenEdge && barHeight > 0) {
       // Controls at screen edge with 16dp bottom padding, bar above sheet with 16dp bottom padding
       val controlsTotalHeight = controlsHeight + elementBottomPaddingPx
       val barTotalHeight = barHeight + elementBottomPaddingPx
@@ -92,7 +89,14 @@ internal fun BottomControlsWithOptionalBar(
         controlsPlaceable?.placeRelative(0, controlsY)
         barPlaceable?.placeRelative(barX, barY)
       }
-    } else if (barPlaceable != null) {
+    } else if (controlsCanBeAtScreenEdge) {
+      // Controls at screen edge with 16dp bottom padding, no bar
+      val totalHeight = max(controlsHeight + elementBottomPaddingPx, bottomSheetPaddingPx)
+
+      layout(constraints.maxWidth, totalHeight) {
+        controlsPlaceable?.placeRelative(0, totalHeight - controlsHeight - elementBottomPaddingPx)
+      }
+    } else if (barHeight > 0) {
       // Not enough gutter space, controls stacked above bar, both above sheet with 16dp bottom padding
       val contentHeight = controlsHeight + (if (controlsHeight > 0) spacingPx else 0) + barHeight
       val totalHeight = contentHeight + elementBottomPaddingPx + bottomSheetPaddingPx
@@ -102,7 +106,7 @@ internal fun BottomControlsWithOptionalBar(
 
       layout(constraints.maxWidth, totalHeight) {
         controlsPlaceable?.placeRelative(0, controlsY)
-        barPlaceable.placeRelative(barX, barY)
+        barPlaceable?.placeRelative(barX, barY)
       }
     } else {
       // No bar, not enough gutter space - controls above sheet with 16dp bottom padding

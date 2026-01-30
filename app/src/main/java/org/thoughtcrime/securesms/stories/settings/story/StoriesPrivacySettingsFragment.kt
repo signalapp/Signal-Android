@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Allows the user to view their stories they can send to and modify settings.
@@ -111,7 +112,7 @@ class StoriesPrivacySettingsFragment :
           title = DSLSettingsText.from(
             R.string.StoriesPrivacySettingsFragment__story_updates_automatically_disappear,
             DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
-            DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
+            DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant))
           )
         )
 
@@ -173,7 +174,7 @@ class StoriesPrivacySettingsFragment :
           summary = DSLSettingsText.from(
             R.string.StoriesPrivacySettingsFragment__if_you_opt_out,
             DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
-            DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
+            DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant))
           ),
           onClick = {
             StoryDialogs.disableStories(requireContext(), viewModel.userHasActiveStories) {

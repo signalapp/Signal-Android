@@ -11,12 +11,13 @@ package signalservice;
 option java_package = "org.whispersystems.signalservice.api.crypto.protos";
 
 message EnvelopeMetadata {
-  required bytes  sourceServiceId      = 1;
-  optional string sourceE164           = 2;
-  required int32  sourceDeviceId       = 3;
-  required bool   sealedSender         = 4;
-  optional bytes  groupId              = 5;
-  required bytes  destinationServiceId = 6;
+  required bytes  sourceServiceId       = 1;
+  optional string sourceE164            = 2;
+  required int32  sourceDeviceId        = 3;
+  required bool   sealedSender          = 4;
+  optional bytes  groupId               = 5;
+  required bytes  destinationServiceId  = 6;
+  optional int32  ciphertextMessageType = 7;
 }
 
 message CompleteMessage {

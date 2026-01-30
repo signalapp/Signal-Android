@@ -10,6 +10,7 @@ import org.signal.core.util.Hex
 import org.signal.core.util.isNotNullOrBlank
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+import kotlin.io.path.Path
 
 /** Given a [Matcher], update the [StringBuilder] with the scrubbed output you want for a given match. */
 private typealias MatchProcessor = (Matcher, StringBuilder) -> Unit
@@ -29,6 +30,8 @@ object Scrubber {
   /** The second group will be censored.*/
   private val CRUDE_EMAIL_PATTERN = Pattern.compile("\\b([^\\s/,()])([^\\s/,()]*@[^\\s]+\\.[^\\s]+)")
   private const val EMAIL_CENSOR = "...@..."
+
+  private val MEDIA_ID_PATTERN = Pattern.compile("MediaId::([a-f0-9]{30})")
 
   /** The middle group will be censored. */
   private val GROUP_ID_V1_PATTERN = Pattern.compile("(__textsecure_group__!)([^\\s]+)([^\\s]{3})")
@@ -101,6 +104,7 @@ object Scrubber {
       .scrubIpv6()
       .scrubCallLinkKeys()
       .scrubCallLinkRoomIds()
+      .scrubMediaIds()
   }
 
   private fun CharSequence.scrubE164(): CharSequence {
@@ -230,6 +234,14 @@ object Scrubber {
     }
   }
 
+  private fun CharSequence.scrubMediaIds(): CharSequence {
+    return scrub(this, MEDIA_ID_PATTERN) { matcher, output ->
+      output
+        .append("MediaId::")
+        .append(hash(matcher.group(1)))
+    }
+  }
+
   private fun String.censorMiddle(leading: Int, trailing: Int): String {
     val totalKept = leading + trailing
     if (this.length < totalKept) {
@@ -266,6 +278,6 @@ object Scrubber {
 
     val key: ByteArray = identifierHmacKey ?: return "<redacted>"
     val hash = CryptoUtil.hmacSha256(key, value.toByteArray())
-    return "<${Hex.toStringCondensed(hash).take(5)}>"
+    return "<${Hex.toStringCondensed(hash).take(8)}>"
   }
 }

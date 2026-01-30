@@ -68,7 +68,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
         AppSettingsRoute.LinkDeviceRoute.LinkDevice -> AppSettingsFragmentDirections.actionDirectToDevices()
         AppSettingsRoute.UsernameLinkRoute.UsernameLink -> AppSettingsFragmentDirections.actionDirectToUsernameLinkSettings()
         is AppSettingsRoute.AccountRoute.Username -> AppSettingsFragmentDirections.actionDirectToUsernameRecovery()
-        is AppSettingsRoute.BackupsRoute.Remote -> AppSettingsFragmentDirections.actionDirectToRemoteBackupsSettingsFragment()
+        is AppSettingsRoute.BackupsRoute.Remote -> AppSettingsFragmentDirections.actionDirectToRemoteBackupsSettingsFragment().setForQuickRestore(appSettingsRoute.forQuickRestore)
         AppSettingsRoute.ChatFoldersRoute.ChatFolders -> AppSettingsFragmentDirections.actionDirectToChatFoldersFragment()
         is AppSettingsRoute.ChatFoldersRoute.CreateChatFolders -> AppSettingsFragmentDirections.actionDirectToCreateFoldersFragment(
           appSettingsRoute.folderId,
@@ -204,7 +204,8 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     fun usernameRecovery(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.AccountRoute.Username(mode = UsernameEditMode.RECOVERY))
 
     @JvmStatic
-    fun remoteBackups(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.BackupsRoute.Remote())
+    @JvmOverloads
+    fun remoteBackups(context: Context, forQuickRestore: Boolean = false): Intent = getIntentForStartLocation(context, AppSettingsRoute.BackupsRoute.Remote(forQuickRestore = forQuickRestore))
 
     @JvmStatic
     fun chatFolders(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.ChatFoldersRoute.ChatFolders)

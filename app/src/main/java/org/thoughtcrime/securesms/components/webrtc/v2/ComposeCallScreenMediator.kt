@@ -5,7 +5,10 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import android.graphics.Color
+import android.os.Build
 import android.widget.Toast
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
@@ -34,7 +37,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantListUpdate
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
-import org.thoughtcrime.securesms.components.webrtc.CallReactionScrubber.Companion.CUSTOM_REACTION_BOTTOM_SHEET_TAG
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
 import org.thoughtcrime.securesms.components.webrtc.controls.CallInfoView
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel
@@ -58,6 +60,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
 
   companion object {
     private val TAG = Log.tag(ComposeCallScreenMediator::class)
+    private const val CUSTOM_REACTION_BOTTOM_SHEET_TAG = "CallReaction"
   }
 
   private val callScreenViewModel = ViewModelProvider(activity)[CallScreenViewModel::class]
@@ -75,7 +78,15 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
     WindowUtil.clearTranslucentNavigationBar(activity.window)
     WindowUtil.clearTranslucentStatusBar(activity.window)
 
-    activity.enableEdgeToEdge()
+    activity.enableEdgeToEdge(
+      statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+      navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT)
+    )
+
+    if (Build.VERSION.SDK_INT >= 29) {
+      activity.window.isNavigationBarContrastEnforced = false
+      activity.window.isStatusBarContrastEnforced = false
+    }
 
     lifecycleDisposable.bindTo(activity)
     activity.supportFragmentManager.setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, activity) { resultKey, bundle ->
@@ -147,6 +158,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
       }
 
       val pendingParticipantsListener by this.pendingParticipantsViewListener.collectAsStateWithLifecycle()
+      val savedLocalParticipantLandscape by viewModel.savedLocalParticipantLandscape.collectAsStateWithLifecycle()
 
       val callScreenController = CallScreenController.rememberCallScreenController(
         skipHiddenState = callControlsState.skipHiddenState,
@@ -167,6 +179,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           webRtcCallState = webRtcCallState,
           isRemoteVideoOffer = viewModel.isAnswerWithVideoAvailable(),
           isInPipMode = rememberIsInPipMode(),
+          savedLocalParticipantLandscape = savedLocalParticipantLandscape,
           callScreenState = callScreenState,
           callControlsState = callControlsState,
           callScreenController = callScreenController,
@@ -201,6 +214,9 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           onLocalPictureInPictureFocusClicked = viewModel::onLocalPictureInPictureFocusClicked,
           onControlsToggled = onControlsToggled,
           onCallScreenDialogDismissed = { callScreenViewModel.dialog.update { CallScreenDialogType.NONE } },
+          onWifiToCellularPopupDismissed = { callScreenViewModel.callScreenState.update { it.copy(displayWifiToCellularPopup = false) } },
+          onSwipeToSpeakerHintDismissed = { callScreenViewModel.callScreenState.update { it.copy(displaySwipeToSpeakerHint = false) } },
+          onRemoteMuteToastDismissed = { callScreenViewModel.callScreenState.update { it.copy(remoteMuteToastMessage = null) } },
           callParticipantUpdatePopupController = callParticipantUpdatePopupController
         )
       }
@@ -342,6 +358,10 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
 
   override fun showWifiToCellularPopupWindow() {
     callScreenViewModel.callScreenState.update { it.copy(displayWifiToCellularPopup = true) }
+  }
+
+  override fun showRemoteMuteToast(message: String) {
+    callScreenViewModel.callScreenState.update { it.copy(remoteMuteToastMessage = message) }
   }
 
   override fun hideMissingPermissionsNotice() {

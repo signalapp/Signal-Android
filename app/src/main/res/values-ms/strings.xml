@@ -408,7 +408,7 @@
     <string name="ContactShareEditActivity_type_work">Kerja</string>
     <string name="ContactShareEditActivity_type_missing">Lain-lain</string>
     <string name="ContactShareEditActivity_invalid_contact">Kenalan dipilih tidak sah</string>
-    <!-- Content descrption for name edit button on contact share edit activity -->
+    <!-- Content description for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">Edit nama</string>
     <!-- Content description for user avatar in edit activity -->
     <string name="ContactShareEditActivity__avatar">Avatar</string>
@@ -950,7 +950,7 @@
     <string name="DateUtils_minutes_ago">%1$dmin</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="other">%1$d minit</item>
     </plurals>
     <string name="DateUtils_today">Hari ini</string>
     <string name="DateUtils_yesterday">Semalam</string>
@@ -1595,7 +1595,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Menghadapi ralat rangkaian.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Pautan kumpulan ini tidak aktif</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
-    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Had kumpulan dicapai, tidak dapat menyertai kumpulan</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Tidak boleh menyertai kumpulan</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -2613,6 +2613,12 @@
     <!-- Content description for the button that switches between front and back camera during a call -->
     <string name="SwitchCameraButton__switch_camera_direction">Tukar Arah Kamera</string>
 
+    <!-- CallQualityDiagnosticsScreen -->
+    <!-- Title for the call quality diagnostics screen -->
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Maklumat diagnostik</string>
+    <!-- Content description for the close/back navigation button -->
+    <string name="CallQualityDiagnosticsScreen__close">Tutup</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Leret untuk melihat kongsi skrin</string>
 
@@ -2656,7 +2662,8 @@
     <string name="RegistrationActivity_i_understand">Saya faham</string>
     <string name="RegistrationActivity_play_services_error">Ralat Perkhidmatan Play</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Perkhidmatan Google Play sedang dikemas kini atau tidak tersedia sementara waktu. Sila cuba sekali lagi.</string>
-    <string name="RegistrationActivity_terms_and_privacy">Terma &amp; Dasar Privasi</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal memerlukan kebenaran dari kenalan dan pihak media untuk membantu anda berhubung dengan rakan dan menghantar mesej. Kenalan anda dimuat naik menggunakan penemuan kenalan peribadi Signal, yang bermaksud mereka dienkripsikan dari hujung ke hujung dan tidak dipaparkan kepada perkhidmatan Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal memerlukan kebenaran perhubungan untuk membantu anda berhubung dengan kenalan anda. Maklumat kenalan anda akan dimuat naik menggunakan ciri penerokaan kenalan peribadi Signal, yang bermakna ia dienkripsi hujung ke hujung dan tidak ditunjukkan kepada perkhidmatan Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Anda telah membuat terlalu banyak percubaan untuk mendaftar nombor ini. Sila cuba lagi kemudian.</string>
@@ -3698,6 +3705,41 @@
     <string name="verify_display_fragment__loading">Memuatkan…</string>
     <string name="verify_display_fragment__mark_as_verified">Tanda sebagai disahkan</string>
     <string name="verify_display_fragment__clear_verification">Kosongkan pengesahan</string>
+    <!-- Header title for automatic key verification -->
+    <string name="verify_display_fragment__automatic">Automatic Key Verification</string>
+    <!-- Button text to verify automatically    -->
+    <string name="verify_display_fragment__verify_automatic">Verify automatically</string>
+    <!-- Loading text when verifying -->
+    <string name="verify_display_fragment__verifying">Verifying encryption…</string>
+    <!-- Success text shown when encryption is verified -->
+    <string name="verify_display_fragment__encryption_verified">Encryption verified</string>
+    <!-- Text shown when verification fails -->
+    <string name="verify_display_fragment__encryption_unavailable">Auto-verification unavailable</string>
+    <!-- Caption text explaining more about automatic verification   -->
+    <string name="verify_display_fragment__auto_verify_not_available">Auto-verification is not available for all chats.</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://signal.org/redirect/safety-numbers</string> -->
+
+    <!-- Bottom sheet title when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_success">Encryption was auto-verified for this chat</string>
+    <!-- Bottom sheet body when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_success">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <!-- Bottom sheet title when encryption is no longer auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Auto-verification is no longer available for this chat</string>
+    <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal can no longer automatically verify the encryption for this chat. This is likely because %1$s changed their phone number. Verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <!-- Bottom sheet title when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_unavailable">Auto-verification not available for this chat</string>
+    <!-- Bottom sheet body when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_unavailable">Signal can only automatically verify the encryption in chats where you’re connected to someone via a phone number. If the chat was started with a username or a group in common, verify end-to-end encryption by comparing the numbers on the previous screen or scanning the code on their device.</string>
+
+    <!-- Title for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal kini mengesahkan penyulitan hujung ke hujung secara automatik</string>
+    <!-- Body for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__body">Apabila anda mengesahkan nombor keselamatan, Signal akan mengesahkan secara automatik sama ada sambungan itu selamat menggunakan proses yang dipanggil ketelusan kunci. Anda masih boleh mengesahkan sambungan secara manual menggunakan kod atau nombor QR.</string>
+    <!-- Button to learn more about automatic verification -->
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Ketahui lebih lanjut</string>
+    <!-- Button to go to verification page -->
+    <string name="VerifyAutomaticallyEducationSheet__verify">Sahkan</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Imbas Kod QR pada peranti kenalan anda.</string>
@@ -3850,7 +3892,7 @@
     <string name="preferences__pref_use_address_book_photos">Gunakan foto buku alamat</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Paparkan foto kenalan daripada buku alamat anda sekiranya tersedia</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Kekalkan sembang yang diredam dalam arkib</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Sembang yang diredam yang telah diarkibkan akan kekal diarkibkan apabila mesej baru masuk.</string>
     <string name="preferences__generate_link_previews">Hasilkan pratonton pautan</string>
@@ -4070,7 +4112,7 @@
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Padat</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">Aplikasi akan dimulakan semula untuk menggunakan tetapan bahasa baharu.</string>
 
 
     <string name="configurable_single_select__customize_option">Sesuaikan pilihan</string>
@@ -5641,6 +5683,8 @@
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terma &amp; Dasar Privasi</string>
     <string name="HelpFragment__copyright_signal_messenger">Hak Cipta Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">Berlesen di bawah GNU AGPLv3</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Kualiti media</string>
@@ -6019,7 +6063,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Gagal mengemaskini profil</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Derma Sekarang</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Derma</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s menyokong Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -6047,13 +6091,15 @@
     <string name="Subscription__expires_s">Tamat tempoh pada %1$s</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal adalah berbeza.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">As an independent nonprofit, Signal is committed to private messaging and calls. No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Pemesejan peribadi. Tiada iklan, tiada penjejak, tiada pengawasan.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal disokong oleh derma, bermakna bahawa privasi anda adalah keutamaan dalam semua yang kami lakukan. Signal dibina untuk anda; bukan data anda dan bukan untuk keuntungan.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Get an optional badge on your profile when you donate</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Jika anda boleh, sila derma hari ini untuk memastikan Signal terus menjadi aplikasi yang menyeronokkan, boleh dipercayai dan tersedia untuk semua orang.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">Your privacy is our mission</string>
+    <!-- Fourth small text blurb on learn more sheet. Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit. US donations are tax deductible.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih atas Sokongan anda!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -6077,14 +6123,14 @@
     <string name="ManageDonationsFragment__my_support">Sokongan saya</string>
     <string name="ManageDonationsFragment__manage_subscription">Urus langganan</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">Resit Derma</string>
     <string name="ManageDonationsFragment__badges">Lencana</string>
     <!-- Label that externally links to Signal Donor FAQ page -->
     <string name="ManageDonationsFragment__subscription_faq">Soalan Lazim Penderma</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Cara lain untuk derma</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Derma untuk rakan</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Tidak dapat mengesahkan derma</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -7064,11 +7110,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Privasi dan bukan keuntungan</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Proudly Nonprofit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Teruskan</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Pemesejan peribadi, dibiayai oleh anda. Tiada iklan, tiada penjejakan, tiada kompromi. Derma sekarang untuk menyokong Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Donate to support private messaging. Keep Signal independent and ad-free.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Anda mempunyai derma yang belum selesai</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7885,6 +7931,15 @@
     <!-- Status action label for resume restore from a paused state -->
     <string name="BackupStatus__resume">Sambung semula</string>
 
+    <!-- Status subtitle for banner when we are creating a backup file -->
+    <string name="BackupStatus__status_creating_backup">Creating backup…</string>
+    <!-- Status title for banner when user is actively uploading backup data -->
+    <string name="BackupStatus__uploading_backup">Uploading backup</string>
+    <!-- Status title for banner when user is temporarily unable to upload a backup -->
+    <string name="BackupStatus__upload_paused">Backup paused</string>
+    <!-- Status title for banner when user has finished creating a backup -->
+    <string name="BackupStatus__upload_complete">Backup complete</string>
+
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Menunggu Wi-Fi…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
@@ -7893,6 +7948,10 @@
     <string name="BackupStatus__status_device_has_low_battery">Bateri peranti lemah</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s daripada %2$s</string>
+    <!-- Label for a context menu item that, when pressed, will hide a banner so it will no longer be shown. -->
+    <string name="BackupStatus__hide">Sembunyikan</string>
+    <!-- Label for a context menu item that, when pressed, will cancel the ongoing backup. -->
+    <string name="BackupStatus__cancel_upload">Batalkan Sandaran</string>
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
@@ -7934,6 +7993,15 @@
     <string name="ResumeRestoreCellular_resume_using_cellular_title">Sambung semula menggunakan data selular?</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
     <string name="ResumeRestoreCellular_resume_using_cellular_message">Pemulihan media melalui data mudah alih mungkin dikenakan caj. Anda boleh menyambung ke rangkaian Wi-Fi untuk menyambung semula secara automatik.</string>
+
+    <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_title">Cancel backup?</string>
+    <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_body">Canceling your backup will not delete your backup. You can resume your backup at any time from Backup Settings.</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
+    <string name="CancelBackupDialog_cancel_action">Batalkan Sandaran</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
+    <string name="CancelBackupDialog_continue_action">Continue backup</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8271,6 +8339,14 @@
     <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Anda telah mencapai had storan %1$s yang disertakan dengan pelan sandaran anda. Untuk membuat sandaran sembang dan media baharu, sila kosongkan ruang</string>
     <!-- Button label to open storage management screen -->
     <string name="RemoteBackupsSettingsFragment__manage_storage">Uruskan penyimpanan</string>
+
+    <!-- ReadyToTransferBottomSheet -->
+    <!-- Title for a bottom sheet letting people know that they can transfer their back to their new device  -->
+    <string name="RemoteBackupsSettingsFragment__ready_to_transfer">Sedia untuk Dipindahkan</string>
+    <!-- Body for bottom sheet telling the user to scan a QR code to continue transferring their backup to a new device -->
+    <string name="RemoteBackupsSettingsFragment__use_this_device_to_scan_qr">Gunakan peranti ini untuk mengimbas kod QR pada peranti yang anda ingin pindahkan</string>
+    <!-- Button label to open QR scanner to scan a device and transfer a backup -->
+    <string name="RemoteBackupsSettingsFragment__scan_qr_code">Imbas Kod QR</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8627,6 +8703,19 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Teruskan memindahkan akaun anda pada peranti anda yang lain.</string>
 
+    <!-- Prepare Device screen title for quick restore flow -->
+    <string name="PrepareDevice_title">Menyediakan Peranti Anda</string>
+    <!-- Prepare Device screen body text explaining backup recommendation -->
+    <string name="PrepareDevice_body">Sandarkan sekarang sebelum memindahkan. Anda mungkin telah menerima mesej yang belum disandarkan lagi.</string>
+    <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
+    <string name="PrepareDevice_last_backup">Sandaran terakhir anda telah dibuat pada %1$s pada %2$s.</string>
+    <!-- Prepare Device screen back up now button -->
+    <string name="PrepareDevice_back_up_now">Sandaran Sekarang</string>
+    <!-- Prepare Device screen skip and continue button -->
+    <string name="PrepareDevice_skip_and_continue">Langkau dan Teruskan</string>
+    <!-- A string describing the last time the user\'s backup was made. The placeholder represents a date-time. An example would be "Your last backup was made on July 18, 2025 at 9:00am." -->
+    <string name="PrepareDevice_last_backup_description">Sandaran terakhir anda dibuat pada %1$s. </string>
+
     <!-- Restore Complete bottom sheet dialog title -->
     <string name="RestoreCompleteBottomSheet_restore_complete">Selesaikan pada peranti anda yang lain</string>
     <!-- Restore Complete bottom sheet dialog message -->
@@ -8749,7 +8838,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Tamatkan undian?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Members of this chat will no longer be able to vote in this poll.</string>
+    <string name="Poll__end_poll_body">Ahli sembang ini tidak lagi dapat mengundi dalam undian ini.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Menunggu rangkaian…</string>
     <!-- Header when creating a new poll -->
@@ -8806,7 +8895,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Describe issue</string>
+    <string name="CallQualitySomethingElseScreen__title">Terangkan isu</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Nyatakan isu anda</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
@@ -8836,11 +8925,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Bantu kami menjadi lebih baik</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Menghantar maklumat diagnostik anda membantu kami menambah baik kualiti panggilan. Anda boleh </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Apabila dihantar, maklum balas anda akan dikongsi bersama</string>
+    <!-- Clickable text to launch diagnostic fragment -->
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">maklumat diagnostik mengenai panggilan anda</string>
+    <!-- End of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix">Anda boleh berkongsi log nyahpepijat secara pilihan untuk membantu kami meningkatkan kualiti panggilan.</string>
+    <!-- Text explaining the debug log -->
+    <string name="CallQualitySheet__information_shared_with_us">Maklumat yang dikongsi dengan kami mengandungi maklumat aplikasi peringkat rendah dan tidak termasuk kandungan panggilan anda.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">melihat log nyahpepijat anda</string>
-    <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> sebelum menghantar.</string>
+    <string name="CallQualitySheet__view_debug_log">Lihat log nyahpepijat</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Kongsi log nyahpepijat</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->

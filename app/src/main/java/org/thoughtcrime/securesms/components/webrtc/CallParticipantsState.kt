@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.ringrtc.CameraState
 import org.thoughtcrime.securesms.service.webrtc.collections.ParticipantCollection
@@ -83,9 +82,7 @@ data class CallParticipantsState(
       } else {
         listParticipants.addAll(remoteParticipants.listParticipants)
       }
-      if (foldableState.isFlat && !SignalStore.internal.newCallingUi) {
-        listParticipants.add(CallParticipant.EMPTY)
-      }
+
       listParticipants.reverse()
       return listParticipants
     }

@@ -32,11 +32,11 @@ import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
-import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.signal.storageservice.protos.groups.local.DecryptedString
-import org.signal.storageservice.protos.groups.local.DecryptedTimer
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedString
+import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer
 import org.thoughtcrime.securesms.database.GroupStateTestData
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable

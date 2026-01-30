@@ -12,10 +12,10 @@ import org.junit.Test
 import org.signal.core.models.ServiceId
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
-import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.signal.storageservice.protos.groups.local.DecryptedString
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedString
 import org.thoughtcrime.securesms.testutil.LogRecorder
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupChangeLog
 import java.util.UUID

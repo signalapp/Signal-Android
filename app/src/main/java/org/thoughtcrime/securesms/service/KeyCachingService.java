@@ -32,6 +32,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -49,6 +50,7 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -274,12 +276,12 @@ public class KeyCachingService extends Service {
     builder.setContentTitle(getString(R.string.KeyCachingService_passphrase_cached));
     builder.setContentText(getString(R.string.KeyCachingService_signal_passphrase_cached));
     builder.setSmallIcon(R.drawable.ic_notification_unlocked);
-    builder.setColor(ContextCompat.getColor(this, R.color.signal_light_colorSecondary));
+    builder.setColor(ContextCompat.getColor(this, org.signal.core.ui.R.color.signal_light_colorSecondary));
     builder.setWhen(0);
     builder.setPriority(Notification.PRIORITY_MIN);
     builder.setOngoing(true);
 
-    builder.addAction(R.drawable.symbol_lock_24, getString(R.string.KeyCachingService_lock), buildLockIntent());
+    builder.addAction(org.signal.core.ui.R.drawable.symbol_lock_24, getString(R.string.KeyCachingService_lock), buildLockIntent());
     builder.setContentIntent(buildLaunchIntent());
 
     stopForeground(true);

@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.util.WindowUtil
+import org.signal.core.ui.R as CoreUiR
 
 class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
 
@@ -124,7 +125,7 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
 
     voiceNoteMediaController = VoiceNoteMediaController(this, false)
 
-    val systemBarColor = ContextCompat.getColor(this, R.color.signal_dark_colorSurface)
+    val systemBarColor = ContextCompat.getColor(this, CoreUiR.color.signal_dark_colorSurface)
     window.statusBarColor = systemBarColor
     window.navigationBarColor = systemBarColor
     WindowUtil.clearLightStatusBar(window)

@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -35,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
@@ -44,10 +44,10 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.window.core.layout.WindowWidthSizeClass
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.compose.SignalTheme
@@ -55,6 +55,8 @@ import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
+import org.thoughtcrime.securesms.window.isWidthCompact
+import kotlin.math.max
 
 /**
  * Pre-join call screen overlay.
@@ -84,55 +86,35 @@ fun CallScreenPreJoinOverlay(
       .background(color = Color(0f, 0f, 0f, 0.4f))
       .then(modifier)
   ) {
-    Column(
-      horizontalAlignment = Alignment.CenterHorizontally,
-      modifier = Modifier.fillMaxSize()
-    ) {
-      CallScreenTopAppBar(
+    val isCompactWidth = currentWindowAdaptiveInfo().windowSizeClass.isWidthCompact
+
+    if (!isLocalVideoEnabled) {
+      TopWithCenteredContentLayout(
+        topSlot = {
+          PreJoinHeader(
+            callRecipient = callRecipient,
+            callStatus = callStatus,
+            onNavigationClick = onNavigationClick,
+            onCallInfoClick = onCallInfoClick
+          )
+        },
+        centerSlot = {
+          if (isCompactWidth) {
+            YourCameraIsOff(spacedBy = 8.dp)
+          } else {
+            YourCameraIsOffLandscape()
+          }
+        },
+        modifier = Modifier
+          .fillMaxSize()
+      )
+    } else {
+      PreJoinHeader(
+        callRecipient = callRecipient,
+        callStatus = callStatus,
         onNavigationClick = onNavigationClick,
         onCallInfoClick = onCallInfoClick
       )
-
-      AvatarImage(
-        recipient = callRecipient,
-        modifier = Modifier
-          .padding(top = 8.dp)
-          .size(96.dp)
-      )
-
-      Text(
-        text = callRecipient.getDisplayName(LocalContext.current),
-        style = MaterialTheme.typography.headlineMedium,
-        color = Color.White,
-        modifier = Modifier.padding(top = 16.dp)
-      )
-
-      if (callStatus != null) {
-        Text(
-          text = callStatus,
-          style = MaterialTheme.typography.bodyMedium,
-          color = Color.White,
-          modifier = Modifier.padding(top = 8.dp)
-        )
-      }
-
-      if (!isLocalVideoEnabled) {
-        Spacer(modifier = Modifier.weight(1f))
-
-        val isCompactWidth = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
-        if (isCompactWidth) {
-          YourCameraIsOff(spacedBy = 8.dp)
-        } else {
-          Row(
-            horizontalArrangement = spacedBy(12.dp),
-            verticalAlignment = Alignment.CenterVertically
-          ) {
-            YourCameraIsOff()
-          }
-        }
-
-        Spacer(modifier = Modifier.weight(1f))
-      }
     }
 
     // Bottom controls in a separate layer for proper screen-edge positioning
@@ -153,7 +135,7 @@ fun CallScreenPreJoinOverlay(
               verticalAlignment = Alignment.Bottom
             ) {
               if (isLocalVideoEnabled) {
-                AudioIndicator(
+                ParticipantAudioIndicator(
                   participant = localParticipant,
                   selfPipMode = SelfPipMode.OVERLAY_SELF_PIP
                 )
@@ -172,6 +154,95 @@ fun CallScreenPreJoinOverlay(
             )
           }
         }
+      )
+    }
+  }
+}
+
+@Composable
+private fun PreJoinHeader(
+  callRecipient: Recipient,
+  callStatus: String?,
+  onNavigationClick: () -> Unit,
+  onCallInfoClick: () -> Unit
+) {
+  Column(
+    horizontalAlignment = Alignment.CenterHorizontally,
+    modifier = Modifier.fillMaxWidth()
+  ) {
+    CallScreenTopAppBar(
+      onNavigationClick = onNavigationClick,
+      onCallInfoClick = onCallInfoClick
+    )
+
+    AvatarImage(
+      recipient = callRecipient,
+      modifier = Modifier
+        .padding(top = 8.dp)
+        .size(96.dp)
+    )
+
+    Text(
+      text = callRecipient.getDisplayName(LocalContext.current),
+      style = MaterialTheme.typography.headlineMedium,
+      color = Color.White,
+      modifier = Modifier.padding(top = 16.dp)
+    )
+
+    if (callStatus != null) {
+      Text(
+        text = callStatus,
+        style = MaterialTheme.typography.bodyMedium,
+        color = Color.White,
+        modifier = Modifier.padding(top = 8.dp)
+      )
+    }
+  }
+}
+
+private object TopWithCenteredContentLayoutId {
+  const val TOP = "top"
+  const val CENTER = "center"
+}
+
+/**
+ * A layout that places content at the top and centers other content in the viewport.
+ * If the centered content would overlap with the top content, it is pushed down to stay below.
+ */
+@Composable
+private fun TopWithCenteredContentLayout(
+  topSlot: @Composable () -> Unit,
+  centerSlot: @Composable () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  Layout(
+    content = {
+      Box(modifier = Modifier.layoutId(TopWithCenteredContentLayoutId.TOP)) { topSlot() }
+      Box(modifier = Modifier.layoutId(TopWithCenteredContentLayoutId.CENTER)) { centerSlot() }
+    },
+    modifier = modifier
+  ) { measurables, constraints ->
+    val looseConstraints = constraints.copy(minHeight = 0, minWidth = 0)
+    val topPlaceable = measurables.first { it.layoutId == TopWithCenteredContentLayoutId.TOP }.measure(looseConstraints)
+    val centerPlaceable = measurables.first { it.layoutId == TopWithCenteredContentLayoutId.CENTER }.measure(looseConstraints)
+
+    val layoutHeight = if (constraints.hasBoundedHeight) {
+      constraints.maxHeight
+    } else {
+      topPlaceable.height + centerPlaceable.height
+    }
+
+    layout(constraints.maxWidth, layoutHeight) {
+      topPlaceable.placeRelative(
+        x = (constraints.maxWidth - topPlaceable.width) / 2,
+        y = 0
+      )
+
+      val viewportCenterY = (layoutHeight - centerPlaceable.height) / 2
+      val minY = topPlaceable.height
+      centerPlaceable.placeRelative(
+        x = (constraints.maxWidth - centerPlaceable.width) / 2,
+        y = max(viewportCenterY, minY)
       )
     }
   }
@@ -212,21 +283,51 @@ private fun CallLinkInfoCard(
 
 @Composable
 private fun YourCameraIsOff(
-  spacedBy: Dp = 0.dp
+  spacedBy: Dp = 0.dp,
+  modifier: Modifier = Modifier
 ) {
-  Icon(
-    painter = painterResource(
-      id = R.drawable.symbol_video_slash_24
-    ),
-    contentDescription = null,
-    tint = Color.White,
-    modifier = Modifier.padding(bottom = spacedBy)
-  )
+  Column(
+    horizontalAlignment = Alignment.CenterHorizontally,
+    modifier = modifier
+  ) {
+    Icon(
+      painter = painterResource(
+        id = R.drawable.symbol_video_slash_24
+      ),
+      contentDescription = null,
+      tint = Color.White,
+      modifier = Modifier.padding(bottom = spacedBy)
+    )
 
-  Text(
-    text = stringResource(id = R.string.CallScreenPreJoinOverlay__your_camera_is_off),
-    color = Color.White
-  )
+    Text(
+      text = stringResource(id = R.string.CallScreenPreJoinOverlay__your_camera_is_off),
+      color = Color.White
+    )
+  }
+}
+
+@Composable
+private fun YourCameraIsOffLandscape(
+  modifier: Modifier = Modifier
+) {
+  Row(
+    horizontalArrangement = spacedBy(12.dp),
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = modifier
+  ) {
+    Icon(
+      painter = painterResource(
+        id = R.drawable.symbol_video_slash_24
+      ),
+      contentDescription = null,
+      tint = Color.White
+    )
+
+    Text(
+      text = stringResource(id = R.string.CallScreenPreJoinOverlay__your_camera_is_off),
+      color = Color.White
+    )
+  }
 }
 
 @Composable
@@ -294,7 +395,7 @@ fun CallScreenTopAppBar(
         onClick = onNavigationClick
       ) {
         Icon(
-          painter = painterResource(id = R.drawable.symbol_arrow_start_24),
+          painter = SignalIcons.ArrowStart.painter,
           contentDescription = stringResource(id = R.string.CallScreenTopBar__go_back),
           tint = Color.White
         )
@@ -306,7 +407,7 @@ fun CallScreenTopAppBar(
         modifier = Modifier.padding(16.dp)
       ) {
         Icon(
-          painter = painterResource(id = R.drawable.symbol_info_24),
+          painter = SignalIcons.Info.painter,
           contentDescription = stringResource(id = R.string.CallScreenTopBar__call_information),
           tint = Color.White
         )

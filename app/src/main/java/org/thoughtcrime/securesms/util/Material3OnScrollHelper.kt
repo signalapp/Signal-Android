@@ -12,8 +12,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.animation.ArgbEvaluatorCompat
 import com.google.android.material.appbar.AppBarLayout
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.views.Stub
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Sets the view's isActivated state when the content of the attached recycler can scroll up.
@@ -42,14 +42,14 @@ open class Material3OnScrollHelper(
   }
 
   open val activeColorSet: ColorSet = ColorSet(
-    toolbarColorRes = R.color.signal_colorSurface2,
-    statusBarColorRes = R.color.signal_colorSurface2,
-    chatFolderColorRes = R.color.signal_colorBackground
+    toolbarColorRes = CoreUiR.color.signal_colorSurface2,
+    statusBarColorRes = CoreUiR.color.signal_colorSurface2,
+    chatFolderColorRes = CoreUiR.color.signal_colorBackground
   )
   open val inactiveColorSet: ColorSet = ColorSet(
-    toolbarColorRes = R.color.signal_colorBackground,
-    statusBarColorRes = R.color.signal_colorBackground,
-    chatFolderColorRes = R.color.signal_colorSurface2
+    toolbarColorRes = CoreUiR.color.signal_colorBackground,
+    statusBarColorRes = CoreUiR.color.signal_colorBackground,
+    chatFolderColorRes = CoreUiR.color.signal_colorSurface2
   )
 
   protected var previousStatusBarColor: Int = getStatusBarColor()

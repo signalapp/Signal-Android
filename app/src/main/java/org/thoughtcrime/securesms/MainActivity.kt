@@ -189,6 +189,7 @@ import org.thoughtcrime.securesms.window.NavigationType
 import org.thoughtcrime.securesms.window.isSplitPane
 import org.thoughtcrime.securesms.window.rememberThreePaneScaffoldNavigatorDelegate
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
+import org.signal.core.ui.R as CoreUiR
 
 class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner, MainNavigator.NavigatorProvider, Material3OnScrollHelperBinder, ConversationListFragment.Callback, CallLogFragment.Callback, GooglePayComponent {
 
@@ -1104,7 +1105,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       Permissions.with(this@MainActivity)
         .request(Manifest.permission.CAMERA)
         .ifNecessary()
-        .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.symbol_camera_24)
+        .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), CoreUiR.drawable.symbol_camera_24)
         .withPermanentDenialDialog(
           getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos),
           null,

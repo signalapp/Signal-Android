@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.protos.BackupDownloadNotifierState
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Notifies the user of an issue with their backup.
@@ -161,7 +162,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
       .create()
       .apply {
         setOnShowListener {
-          getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(requireContext(), R.color.signal_colorError))
+          getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorError))
         }
       }
       .show()

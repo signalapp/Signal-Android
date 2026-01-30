@@ -14,6 +14,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import org.signal.core.models.backup.MediaId
+import org.signal.core.util.Base64.decodeBase64
 import org.signal.core.util.EventTimer
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.Stopwatch
@@ -23,6 +24,7 @@ import org.signal.core.util.nullIfBlank
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -34,6 +36,7 @@ import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.wallpaper.WallpaperStorage
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
 import kotlin.time.Duration.Companion.days
@@ -126,6 +129,11 @@ class ArchiveAttachmentReconciliationJob private constructor(
       return Result.success()
     }
 
+    if (!AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)) {
+      Log.i(TAG, "There are still uploads in progress. Retrying later.")
+      return Result.retry(defaultBackoff())
+    }
+
     // It's possible a new backup could be started while this job is running. If we don't keep a consistent view of the snapshot version, the logic
     // we use to determine which attachments need to be re-uploaded will possibly result in us unnecessarily re-uploading attachments.
     snapshotVersion = snapshotVersion ?: SignalDatabase.backupMediaSnapshots.getCurrentSnapshotVersion()
@@ -211,23 +219,27 @@ class ArchiveAttachmentReconciliationJob private constructor(
           mediaIdsThatNeedUpload += MediaId(entry.mediaId)
         }
 
+        val mediaIdLog = if (internalUser) "[${MediaId(entry.mediaId)}]" else ""
+
         if (entry.isThumbnail) {
           thumbnailMismatchFound = true
           val wasReset = SignalDatabase.attachments.resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
           if (wasReset) {
+            Log.w(TAG, "[Thumbnail]$mediaIdLog Reset transfer state by hash/key.", true)
             newBackupJobRequired = true
             bookkeepingErrorCount++
           } else {
-            Log.w(TAG, "[Thumbnail] Did not need to reset the transfer state by hash/key because the thumbnail either no longer exists or the upload is already in-progress.", true)
+            Log.i(TAG, "[Thumbnail]$mediaIdLog Did not need to reset the transfer state by hash/key because the thumbnail either no longer exists or the upload is already in-progress.", true)
           }
         } else {
           fullSizeMismatchFound = true
           val wasReset = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
           if (wasReset) {
+            Log.w(TAG, "[Fullsize]$mediaIdLog Reset transfer state by hash/key.", true)
             newBackupJobRequired = true
             bookkeepingErrorCount++
           } else {
-            Log.w(TAG, "[Fullsize] Did not need to reset the the transfer state by hash/key because the attachment either no longer exists or the upload is already in-progress.", true)
+            Log.i(TAG, "[Fullsize]$mediaIdLog Did not need to reset the transfer state by hash/key because the attachment either no longer exists or the upload is already in-progress.", true)
           }
         }
       }
@@ -243,18 +255,17 @@ class ArchiveAttachmentReconciliationJob private constructor(
       stopwatch.split("stats-after")
 
       if (internalUser && mediaIdsThatNeedUpload.isNotEmpty()) {
-        Log.w(TAG, "Starting internal-only lookup of matching attachments. May take a while!", true)
+        Log.w(TAG, "Starting internal-only lookup of matching attachments. Looking up (showing ${mediaIdsThatNeedUpload.size.coerceAtMost(250)}/${mediaIdsThatNeedUpload.size}): ${mediaIdsThatNeedUpload.take(250).joinToString()}", true)
 
-        val matchingAttachments = SignalDatabase.attachments.debugGetAttachmentsForMediaIds(mediaIdsThatNeedUpload, limit = 10_000)
-        Log.w(TAG, "Found ${matchingAttachments.size} out of the ${mediaIdsThatNeedUpload.size} attachments we looked up (capped lookups to 10k).", true)
+        val matchingAttachments = SignalDatabase.attachments.getAttachmentDataForMediaIds(mediaIdsThatNeedUpload)
+        Log.w(TAG, "Found ${matchingAttachments.size} out of the ${mediaIdsThatNeedUpload.size} attachments we looked up (limiting log input to the first 250).", true)
 
-        matchingAttachments.forEach { pair ->
-          val (attachment, isThumbnail) = pair
-          if (isThumbnail) {
-            val thumbnailTransferState = SignalDatabase.attachments.getArchiveThumbnailTransferState(attachment.attachmentId)
-            Log.w(TAG, "[Thumbnail] Needed Upload: attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, contentType=${attachment.contentType}, quote=${attachment.quote}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, archiveThumbnailTransferState=$thumbnailTransferState, hasData=${attachment.hasData}", true)
+        matchingAttachments.take(250).forEach { match ->
+          if (match.isThumbnail) {
+            val thumbnailTransferState = SignalDatabase.attachments.getArchiveThumbnailTransferState(match.attachment.attachmentId)
+            Log.w(TAG, "[Thumbnail] Needed Upload: $match, archiveThumbnailTransferState: $thumbnailTransferState", true)
           } else {
-            Log.w(TAG, "[Fullsize] Needed Upload: attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, contentType=${attachment.contentType}, quote=${attachment.quote}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}", true)
+            Log.w(TAG, "[Fullsize] Needed Upload: $match", true)
           }
         }
         stopwatch.split("internal-lookup")
@@ -358,21 +369,52 @@ class ArchiveAttachmentReconciliationJob private constructor(
    * @return A non-successful [Result] in the case of failure, otherwise null for success.
    */
   private fun validateAndDeleteFromRemote(deletes: Set<ArchivedMediaObject>): Result? {
+    if (RemoteConfig.internalUser) {
+      val mediaIds = deletes.take(250).map { MediaId(it.mediaId.decodeBase64()!!) }
+      Log.w(TAG, "Want to delete (showing ${mediaIds.size}/${deletes.size}): ${mediaIds.take(250).joinToString() }")
+    }
+
     val stopwatch = Stopwatch("remote-delete")
-    val validatedDeletes = SignalDatabase.attachments.getMediaObjectsThatCantBeFound(deletes)
-    Log.d(TAG, "Found that ${validatedDeletes.size}/${deletes.size} requested remote deletes were valid based on current attachment table state.", true)
+    val validatedDeletes: MutableSet<ArchivedMediaObject> = SignalDatabase.attachments.getMediaObjectsThatCantBeFound(deletes).toMutableSet()
+    Log.d(TAG, "Found that ${validatedDeletes.size}/${deletes.size} requested remote deletes have no data at all locally, and are therefore safe to delete.", true)
     stopwatch.split("validate")
 
     // Fix archive state for attachments that are found locally but weren't in the latest snapshot.
     // This can happen when restoring from a backup that was made before archive upload completed. The files would be uploaded, but no CDN info would be in the backup.
     val foundLocally = deletes - validatedDeletes
+
     if (foundLocally.isNotEmpty()) {
-      val fixedCount = SignalDatabase.attachments.setArchiveFinishedForMatchingMediaObjects(foundLocally)
+      Log.w(TAG, "Starting lookup of attachments that we thought we could delete remotely, but still had record of locally. It may be that we can actually delete them.", true)
+      val matches = SignalDatabase.attachments.getAttachmentDataForMediaIds(foundLocally.map { MediaId(it.mediaId) })
+      for (match in matches) {
+        if (match.messageRecord?.fromRecipient != null && match.messageRecord.fromRecipient.id == SignalStore.releaseChannel.releaseChannelRecipientId) {
+          Log.i(TAG, "[${match.attachment.attachmentId}] Attachment is from the release channel. We can delete it remotely.")
+          val stringMediaId = match.mediaId.encode()
+          validatedDeletes += foundLocally.first { it.mediaId == stringMediaId }
+        } else if (match.attachment.mmsId == AttachmentTable.WALLPAPER_MESSAGE_ID && match.isThumbnail) {
+          Log.i(TAG, "[${match.attachment.attachmentId}] Attachment is a wallpaper thumbnail. We can delete it remotely.")
+          val stringMediaId = match.mediaId.encode()
+          validatedDeletes += foundLocally.first { it.mediaId == stringMediaId }
+        } else if (match.attachment.mmsId == AttachmentTable.WALLPAPER_MESSAGE_ID && !WallpaperStorage.isWallpaperUriUsed(match.attachment.uri!!)) {
+          Log.i(TAG, "[${match.attachment.attachmentId}] Attachment is an unused wallpaper. We can delete it remotely. We'll also delete it locally.")
+          val stringMediaId = match.mediaId.encode()
+          validatedDeletes += foundLocally.first { it.mediaId == stringMediaId }
+          SignalDatabase.attachments.deleteAttachment(match.attachment.attachmentId)
+        } else if (RemoteConfig.internalUser) {
+          Log.w(TAG, "[PreventedDelete] $match")
+        }
+      }
+      stopwatch.split("lookup")
+    }
+
+    val updatedFoundLocally = deletes - validatedDeletes
+    if (updatedFoundLocally.isNotEmpty()) {
+      val fixedCount = SignalDatabase.attachments.setArchiveFinishedForMatchingMediaObjects(updatedFoundLocally)
       if (fixedCount > 0) {
         Log.i(TAG, "Fixed archive transfer state for $fixedCount attachment groups that were found on CDN but had incorrect local state.", true)
       }
+      stopwatch.split("fix-state")
     }
-    stopwatch.split("fix-state")
 
     if (validatedDeletes.isEmpty()) {
       return null

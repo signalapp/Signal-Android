@@ -105,7 +105,6 @@
         android:layout_marginBottom="49dp"
         android:layout_marginHorizontal="24dp"
         app:layout_constraintTop_toBottomOf="@id/qr_code_container"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:clickable="true"
@@ -228,5 +227,24 @@
         android:visibility="gone"
         android:layout_margin="24dp"
         />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/verify_button"
+        style="@style/Signal.Widget.Button.Base.Tonal"
+        android:backgroundTint="@color/signal_colorSurface1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/verify_display_fragment__mark_as_verified"
+        app:layout_constraintTop_toBottomOf="@id/number_table"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        app:layout_constraintTop_toBottomOf="@id/verify_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </merge>

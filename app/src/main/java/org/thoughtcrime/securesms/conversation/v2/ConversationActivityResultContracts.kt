@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.core.content.IntentCompat
 import androidx.fragment.app.Fragment
+import org.signal.core.models.media.Media
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.location.SignalPlace
@@ -26,12 +27,12 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityResultContracts.Callbacks
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity
 import org.thoughtcrime.securesms.maps.PlacePickerActivity
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * This encapsulates the logic for interacting with other activities used throughout a conversation. The gist
@@ -82,7 +83,7 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
       Permissions.with(fragment)
         .request(Manifest.permission.CAMERA)
         .ifNecessary()
-        .withRationaleDialog(fragment.getString(R.string.CameraXFragment_allow_access_camera), fragment.getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.symbol_camera_24)
+        .withRationaleDialog(fragment.getString(R.string.CameraXFragment_allow_access_camera), fragment.getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), CoreUiR.drawable.symbol_camera_24)
         .withPermanentDenialDialog(fragment.getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos_videos, fragment.parentFragmentManager)
         .onAllGranted {
           cameraLauncher.launch(MediaSelectionInput(emptyList(), recipientId, null, isReply))

@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 
+import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.ByteSize;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.LifecycleDisposable;
@@ -374,8 +375,8 @@ public final class MediaOverviewPageFragment extends LoggingFragment
                     .subscribe(this::exitMultiSelect)
             );
           }),
-          new ActionItem(R.drawable.symbol_check_circle_24, getString(R.string.MediaOverviewActivity_select_all), this::handleSelectAllMedia),
-          new ActionItem(R.drawable.symbol_trash_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_delete_plural, selectionCount), this::handleDeleteSelectedMedia)
+          new ActionItem(org.signal.core.ui.R.drawable.symbol_check_circle_24, getString(R.string.MediaOverviewActivity_select_all), this::handleSelectAllMedia),
+          new ActionItem(org.signal.core.ui.R.drawable.symbol_trash_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_delete_plural, selectionCount), this::handleDeleteSelectedMedia)
       ));
     }
   }

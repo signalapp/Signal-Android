@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.animation.AnimationCompleteListener
 import org.thoughtcrime.securesms.animation.ResizeAnimation
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 private const val REVEAL_DURATION = 250L
 
@@ -110,9 +111,9 @@ class KeyboardPageSearchView @JvmOverloads constructor(
   fun showRequested(): Boolean = state == State.SHOW_REQUESTED
 
   fun enableBackNavigation(enable: Boolean = true) {
-    navButton.setImageResource(if (enable) R.drawable.symbol_arrow_start_24 else R.drawable.ic_search_24)
+    navButton.setImageResource(if (enable) CoreUiR.drawable.symbol_arrow_start_24 else R.drawable.ic_search_24)
     if (enable) {
-      navButton.setImageResource(R.drawable.symbol_arrow_start_24)
+      navButton.setImageResource(CoreUiR.drawable.symbol_arrow_start_24)
       navButton.setOnClickListener { callbacks?.onNavigationClicked() }
     } else {
       navButton.setImageResource(R.drawable.ic_search_24)

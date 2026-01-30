@@ -6,13 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.models.ServiceId;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groups.UuidCiphertext;
-import org.signal.storageservice.protos.groups.GroupExternalCredential;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
+import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupJoinInfo;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
-import org.signal.core.models.ServiceId;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -234,6 +234,19 @@ public final class GroupManager {
   }
 
   @WorkerThread
+  public static void updateMemberLabel(@NonNull Context context, @NonNull GroupId.V2 groupId, @NonNull String labelString, @NonNull String labelEmoji)
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
+  {
+    if (!groupId.isV2()) {
+      throw new GroupChangeFailedException("Not gv2");
+    }
+
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId)) {
+      editor.updateMemberLabel(labelString, labelEmoji);
+    }
+  }
+
+  @WorkerThread
   public static void revokeInvites(@NonNull Context context,
                                    @NonNull ServiceId authServiceId,
                                    @NonNull GroupId.V2 groupId,
@@ -395,11 +408,11 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static @NonNull GroupExternalCredential getGroupExternalCredential(@NonNull Context context,
+  public static @NonNull ExternalGroupCredential getExternalGroupCredential(@NonNull Context context,
                                                                             @NonNull GroupId.V2 groupId)
       throws IOException, VerificationFailedException
   {
-    return new GroupManagerV2(context).getGroupExternalCredential(groupId);
+    return new GroupManagerV2(context).getExternalGroupCredential(groupId);
   }
 
   @WorkerThread

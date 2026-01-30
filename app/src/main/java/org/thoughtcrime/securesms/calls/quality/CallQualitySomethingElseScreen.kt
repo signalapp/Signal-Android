@@ -23,12 +23,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
@@ -41,7 +40,7 @@ fun CallQualitySomethingElseScreen(
 ) {
   Scaffolds.Settings(
     title = stringResource(R.string.CallQualitySomethingElseScreen__title),
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
     onNavigationClick = onCancelClick,
     navigationContentDescription = stringResource(R.string.CallQualitySomethingElseScreen__back),
     modifier = Modifier.imePadding()

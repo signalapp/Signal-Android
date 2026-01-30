@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Renders a Recipient as a row item with an icon, avatar, status, and admin state
@@ -88,7 +89,7 @@ object RecipientPreference {
         if (recipient.isSystemContact) {
           SpannableStringBuilder(recipient.getDisplayName(context)).apply {
             val drawable = ContextUtil.requireDrawable(context, R.drawable.symbol_person_circle_24).apply {
-              setTint(ContextCompat.getColor(context, R.color.signal_colorOnSurface))
+              setTint(ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurface))
             }
             SpanUtil.appendCenteredImageSpan(this, drawable, 16, 16)
           }
