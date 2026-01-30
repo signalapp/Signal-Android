@@ -977,7 +977,7 @@ public final class DecryptedGroupUtil_apply_Test {
 
         new DecryptedGroupChange.Builder()
             .revision(11)
-            .modifyMemberLabel(List.of(modifyLabelAction))
+            .modifyMemberLabels(List.of(modifyLabelAction))
             .build()
     );
 
@@ -1019,7 +1019,7 @@ public final class DecryptedGroupUtil_apply_Test {
 
         new DecryptedGroupChange.Builder()
             .revision(11)
-            .modifyMemberLabel(List.of(modifyLabelAction))
+            .modifyMemberLabels(List.of(modifyLabelAction))
             .build());
 
     DecryptedGroup expectedResult = new DecryptedGroup.Builder()
@@ -1049,7 +1049,7 @@ public final class DecryptedGroupUtil_apply_Test {
             .build(),
         new DecryptedGroupChange.Builder()
             .revision(11)
-            .modifyMemberLabel(List.of(modifyLabelAction))
+            .modifyMemberLabels(List.of(modifyLabelAction))
             .build());
   }
 }

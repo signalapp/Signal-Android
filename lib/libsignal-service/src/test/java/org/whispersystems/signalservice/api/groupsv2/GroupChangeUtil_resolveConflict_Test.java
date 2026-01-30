@@ -878,11 +878,11 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     DecryptedGroupChange conflictingChange = new DecryptedGroupChange.Builder()
-        .modifyMemberLabel(List.of(modifyLabelAction))
+        .modifyMemberLabels(List.of(modifyLabelAction))
         .build();
 
     DecryptedGroupChange.Builder resolvedActions = GroupChangeUtil.resolveConflict(existingGroup, conflictingChange);
-    assertTrue(resolvedActions.build().modifyMemberLabel.isEmpty());
+    assertTrue(resolvedActions.build().modifyMemberLabels.isEmpty());
   }
 
   @Test
@@ -902,10 +902,10 @@ public final class GroupChangeUtil_resolveConflict_Test {
         .build();
 
     DecryptedGroupChange conflictingChange = new DecryptedGroupChange.Builder()
-        .modifyMemberLabel(List.of(modifyLabelAction))
+        .modifyMemberLabels(List.of(modifyLabelAction))
         .build();
 
     DecryptedGroupChange.Builder resolved = GroupChangeUtil.resolveConflict(existingGroup, conflictingChange);
-    assertTrue(resolved.build().modifyMemberLabel.isEmpty());
+    assertTrue(resolved.build().modifyMemberLabels.isEmpty());
   }
 }

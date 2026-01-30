@@ -338,7 +338,7 @@ public final class DecryptedGroupUtil {
 
     applyPromotePendingPniAciMemberActions(builder, change.promotePendingPniAciMembers);
 
-    DecryptedGroupExtensionsKt.setModifyMemberLabelActions(builder, change.modifyMemberLabel);
+    DecryptedGroupExtensionsKt.setModifyMemberLabelActions(builder, change.modifyMemberLabels);
 
     return builder.build();
   }
@@ -753,7 +753,7 @@ public final class DecryptedGroupUtil {
            change.newBannedMembers.size() == 0 &&          // field 22
            change.deleteBannedMembers.size() == 0 &&       // field 23
            change.promotePendingPniAciMembers.size() == 0 && // field 24
-           change.modifyMemberLabel.isEmpty();          // field 26
+           change.modifyMemberLabels.isEmpty();          // field 26
   }
 
   public static boolean changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(DecryptedGroupChange change) {
@@ -777,7 +777,7 @@ public final class DecryptedGroupUtil {
            change.newDescription == null &&                // field 20
            isEmpty(change.newIsAnnouncementGroup) &&       // field 21
            change.promotePendingPniAciMembers.size() == 0 && // field 24
-           change.modifyMemberLabel.isEmpty();          // field 26
+           change.modifyMemberLabels.isEmpty();          // field 26
   }
 
   static boolean isEmpty(AccessControl.AccessRequired newAttributeAccess) {

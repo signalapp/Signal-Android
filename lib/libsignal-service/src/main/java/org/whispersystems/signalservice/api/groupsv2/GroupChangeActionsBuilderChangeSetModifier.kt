@@ -102,7 +102,7 @@ internal class GroupChangeActionsBuilderChangeSetModifier(private val result: Gr
   }
 
   override fun removeModifyMemberLabels(i: Int) {
-    result.modifyMemberLabel = result.modifyMemberLabel.removeIndex(i)
+    result.modifyMemberLabels = result.modifyMemberLabels.removeIndex(i)
   }
 
   private fun <T> List<T>.removeIndex(i: Int): List<T> {

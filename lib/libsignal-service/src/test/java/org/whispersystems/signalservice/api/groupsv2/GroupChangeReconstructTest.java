@@ -431,10 +431,10 @@ public final class GroupChangeReconstructTest {
 
     DecryptedGroupChange change = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(1, change.modifyMemberLabel.size());
-    assertEquals(UuidUtil.toByteString(memberUuid), change.modifyMemberLabel.get(0).aciBytes);
-    assertEquals("🎉", change.modifyMemberLabel.get(0).labelEmoji);
-    assertEquals("New Label", change.modifyMemberLabel.get(0).labelString);
+    assertEquals(1, change.modifyMemberLabels.size());
+    assertEquals(UuidUtil.toByteString(memberUuid), change.modifyMemberLabels.get(0).aciBytes);
+    assertEquals("🎉", change.modifyMemberLabels.get(0).labelEmoji);
+    assertEquals("New Label", change.modifyMemberLabels.get(0).labelString);
   }
 
   @Test
@@ -457,9 +457,9 @@ public final class GroupChangeReconstructTest {
 
     DecryptedGroupChange change = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(1, change.modifyMemberLabel.size());
-    assertEquals(UuidUtil.toByteString(memberUuid), change.modifyMemberLabel.get(0).aciBytes);
-    assertEquals("", change.modifyMemberLabel.get(0).labelEmoji);
-    assertEquals("", change.modifyMemberLabel.get(0).labelString);
+    assertEquals(1, change.modifyMemberLabels.size());
+    assertEquals(UuidUtil.toByteString(memberUuid), change.modifyMemberLabels.get(0).aciBytes);
+    assertEquals("", change.modifyMemberLabels.get(0).labelEmoji);
+    assertEquals("", change.modifyMemberLabels.get(0).labelString);
   }
 }

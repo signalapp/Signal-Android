@@ -277,7 +277,7 @@ public final class DecryptedGroupUtil_empty_Test {
         .build();
 
     DecryptedGroupChange change = new DecryptedGroupChange.Builder()
-        .modifyMemberLabel(List.of(modifyLabelAction))
+        .modifyMemberLabels(List.of(modifyLabelAction))
         .build();
 
     assertFalse(DecryptedGroupUtil.changeIsEmpty(change));

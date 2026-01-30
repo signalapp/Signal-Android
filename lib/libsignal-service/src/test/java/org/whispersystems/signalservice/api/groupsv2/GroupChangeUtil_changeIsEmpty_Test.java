@@ -231,7 +231,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   @Test
   public void not_empty_with_modify_member_label_field_26() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
-        .modifyMemberLabel(List.of(new GroupChange.Actions.ModifyMemberLabelAction()))
+        .modifyMemberLabels(List.of(new GroupChange.Actions.ModifyMemberLabelAction()))
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));

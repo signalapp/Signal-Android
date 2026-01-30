@@ -758,8 +758,8 @@ public final class GroupsV2Operations {
       builder.promotePendingPniAciMembers(promotePendingPniAciMembers);
 
       // Field 26
-      List<DecryptedModifyMemberLabel> modifyMemberLabels = new ArrayList<>(actions.modifyMemberLabel.size());
-      for (GroupChange.Actions.ModifyMemberLabelAction action : actions.modifyMemberLabel) {
+      List<DecryptedModifyMemberLabel> modifyMemberLabels = new ArrayList<>(actions.modifyMemberLabels.size());
+      for (GroupChange.Actions.ModifyMemberLabelAction action : actions.modifyMemberLabels) {
         modifyMemberLabels.add(
             new DecryptedModifyMemberLabel.Builder()
                 .aciBytes(decryptAciToBinary(action.userId))
@@ -768,7 +768,7 @@ public final class GroupsV2Operations {
                 .build()
         );
       }
-      builder.modifyMemberLabel(modifyMemberLabels);
+      builder.modifyMemberLabels(modifyMemberLabels);
 
       if (editorServiceId instanceof ServiceId.PNI) {
         if (actions.addMembers.size() == 1 && builder.newMembers.size() == 1) {
@@ -1098,7 +1098,7 @@ public final class GroupsV2Operations {
     }
 
     public GroupChange.Actions.Builder createChangeMemberLabel(@Nonnull ACI memberAci, @Nonnull String labelString, @Nullable String labelEmoji) {
-      return new GroupChange.Actions.Builder().modifyMemberLabel(
+      return new GroupChange.Actions.Builder().modifyMemberLabels(
           Collections.singletonList(
               new GroupChange.Actions.ModifyMemberLabelAction.Builder()
                   .userId(encryptServiceId(memberAci))

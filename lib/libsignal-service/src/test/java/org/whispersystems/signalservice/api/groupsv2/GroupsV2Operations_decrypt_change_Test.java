@@ -472,7 +472,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
 
     assertDecryption(
         groupOperations.createChangeMemberLabel(aci, "Label Text", "🔥"),
-        new DecryptedGroupChange.Builder().modifyMemberLabel(List.of(modifyLabelAction))
+        new DecryptedGroupChange.Builder().modifyMemberLabels(List.of(modifyLabelAction))
     );
   }
 

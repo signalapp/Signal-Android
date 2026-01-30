@@ -261,7 +261,7 @@ message GroupChange {
     repeated AddMemberBannedAction add_members_banned = 22;  // change epoch = 4
     repeated DeleteMemberBannedAction delete_members_banned = 23;  // change epoch = 4
     repeated PromoteMemberPendingPniAciProfileKeyAction promote_members_pending_pni_aci_profile_key = 24;  // change epoch = 5
-    repeated ModifyMemberLabelAction modifyMemberLabel = 26; // change epoch = 6;
+    repeated ModifyMemberLabelAction modifyMemberLabels = 26; // change epoch = 6;
     // next: 27
   }
 

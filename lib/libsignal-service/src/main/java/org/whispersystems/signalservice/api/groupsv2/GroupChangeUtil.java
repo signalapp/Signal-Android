@@ -51,7 +51,7 @@ public final class GroupChangeUtil {
            change.add_members_banned.size() == 0 &&               // field 22
            change.delete_members_banned.size() == 0 &&            // field 23
            change.promote_members_pending_pni_aci_profile_key.size() == 0 && // field 24
-           change.modifyMemberLabel.isEmpty();                 // field 26
+           change.modifyMemberLabels.isEmpty();                 // field 26
   }
 
   /**
@@ -379,7 +379,7 @@ public final class GroupChangeUtil {
       @Nonnull Map<ByteString, DecryptedMember> fullMembersByAci
   )
   {
-    List<DecryptedModifyMemberLabel> actions = conflictingChange.modifyMemberLabel;
+    List<DecryptedModifyMemberLabel> actions = conflictingChange.modifyMemberLabels;
 
     for (int i = actions.size() - 1; i >= 0; i--) {
       DecryptedModifyMemberLabel action = actions.get(i);

@@ -143,7 +143,7 @@ public final class GroupChangeReconstruct {
     }
     builder.modifyMemberRoles(modifiedMemberRoles);
     builder.modifiedProfileKeys(modifiedProfileKeys);
-    builder.modifyMemberLabel(modifiedMemberLabels);
+    builder.modifyMemberLabels(modifiedMemberLabels);
 
     if (fromState.accessControl == null || (toState.accessControl != null && !fromState.accessControl.addFromInviteLink.equals(toState.accessControl.addFromInviteLink))) {
       if (toState.accessControl != null) {
