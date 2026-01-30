@@ -81,7 +81,8 @@ data class RecipientRecord(
   val callLinkRoomId: CallLinkRoomId?,
   val phoneNumberSharing: PhoneNumberSharingState,
   val nickname: ProfileName,
-  val note: String?
+  val note: String?,
+  val keyTransparencyData: ByteArray? = null
 ) {
 
   fun e164Only(): Boolean {

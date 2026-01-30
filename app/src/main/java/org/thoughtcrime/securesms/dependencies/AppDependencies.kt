@@ -369,6 +369,9 @@ object AppDependencies {
   val donationsApi: DonationsApi
     get() = networkModule.donationsApi
 
+  val keyTransparencyApi: KeyTransparencyApi
+    get() = networkModule.keyTransparencyApi
+
   @JvmStatic
   val okHttpClient: OkHttpClient
     get() = networkModule.okHttpClient
@@ -463,5 +466,6 @@ object AppDependencies {
     fun provideRemoteConfigApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): RemoteConfigApi
     fun provideDonationsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): DonationsApi
     fun provideSvrBApi(libSignalNetwork: Network): SvrBApi
+    fun provideKeyTransparencyApi(unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): KeyTransparencyApi
   }
 }

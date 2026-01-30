@@ -202,7 +202,8 @@ object RecipientCreator {
       groupRecord = groupRecord,
       phoneNumberSharing = record.phoneNumberSharing,
       nickname = record.nickname,
-      note = record.note
+      note = record.note,
+      keyTransparencyData = record.keyTransparencyData
     )
   }
 

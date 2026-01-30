@@ -199,6 +199,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val SORT_NAME = "sort_name"
     const val IDENTITY_STATUS = "identity_status"
     const val IDENTITY_KEY = "identity_key"
+    const val KEY_TRANSPARENCY_DATA = "key_transparency_data"
 
     @JvmField
     val CREATE_TABLE =
@@ -267,7 +268,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $NICKNAME_FAMILY_NAME TEXT DEFAULT NULL,
         $NICKNAME_JOINED_NAME TEXT DEFAULT NULL,
         $NOTE TEXT DEFAULT NULL,
-        $MESSAGE_EXPIRATION_TIME_VERSION INTEGER DEFAULT 1 NOT NULL
+        $MESSAGE_EXPIRATION_TIME_VERSION INTEGER DEFAULT 1 NOT NULL,
+        $KEY_TRANSPARENCY_DATA BLOB DEFAULT NULL
       )
       """
 
@@ -331,7 +333,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       PHONE_NUMBER_SHARING,
       NICKNAME_GIVEN_NAME,
       NICKNAME_FAMILY_NAME,
-      NOTE
+      NOTE,
+      KEY_TRANSPARENCY_DATA
     )
 
     private val ID_PROJECTION = arrayOf(ID)
@@ -4024,6 +4027,25 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .where(ID_WHERE, id)
       .run()
       .readToSingleLong(0L)
+  }
+
+  fun getKeyTransparencyData(aci: ACI): ByteArray? {
+    return readableDatabase
+      .select(KEY_TRANSPARENCY_DATA)
+      .from(TABLE_NAME)
+      .where("$ACI_COLUMN = ?", aci.toString())
+      .run()
+      .readToSingleObject { cursor ->
+        cursor.requireBlob(KEY_TRANSPARENCY_DATA)
+      }
+  }
+
+  fun setKeyTransparencyData(aci: ACI, data: ByteArray?) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(KEY_TRANSPARENCY_DATA to data)
+      .where("$ACI_COLUMN = ?", aci.toString())
+      .run()
   }
 
   /**

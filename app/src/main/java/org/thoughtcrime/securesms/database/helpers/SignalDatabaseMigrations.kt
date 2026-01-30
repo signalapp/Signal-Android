@@ -153,6 +153,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V296_RemovePollVote
 import org.thoughtcrime.securesms.database.helpers.migration.V297_AddPinnedMessageColumns
 import org.thoughtcrime.securesms.database.helpers.migration.V298_DoNotBackupReleaseNotes
 import org.thoughtcrime.securesms.database.helpers.migration.V299_AddAttachmentMetadataTable
+import org.thoughtcrime.securesms.database.helpers.migration.V300_AddKeyTransparencyColumn
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -312,10 +313,11 @@ object SignalDatabaseMigrations {
     296 to V296_RemovePollVoteConstraint,
     297 to V297_AddPinnedMessageColumns,
     298 to V298_DoNotBackupReleaseNotes,
-    299 to V299_AddAttachmentMetadataTable
+    299 to V299_AddAttachmentMetadataTable,
+    300 to V300_AddKeyTransparencyColumn
   )
 
-  const val DATABASE_VERSION = 299
+  const val DATABASE_VERSION = 300
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {

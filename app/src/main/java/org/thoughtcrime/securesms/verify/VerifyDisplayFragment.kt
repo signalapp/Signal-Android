@@ -84,6 +84,13 @@ class VerifyDisplayFragment : Fragment() {
     binding.caption.setLinkColor(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorPrimary))
 
     viewModel.getAutomaticVerification().observe(viewLifecycleOwner) { status ->
+      if (status == AutomaticVerificationStatus.NONE) {
+        binding.autoVerifyContainer.setOnClickListener {
+          viewModel.verifyAutomatically()
+        }
+      } else {
+        binding.autoVerifyContainer.setOnClickListener(null)
+      }
       updateStatus(status)
     }
 

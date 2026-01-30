@@ -165,7 +165,8 @@ object RecipientTableCursorUtil {
       callLinkRoomId = cursor.requireString(RecipientTable.CALL_LINK_ROOM_ID)?.let { CallLinkRoomId.DatabaseSerializer.deserialize(it) },
       phoneNumberSharing = cursor.requireInt(RecipientTable.PHONE_NUMBER_SHARING).let { RecipientTable.PhoneNumberSharingState.fromId(it) },
       nickname = ProfileName.fromParts(cursor.requireString(RecipientTable.NICKNAME_GIVEN_NAME), cursor.requireString(RecipientTable.NICKNAME_FAMILY_NAME)),
-      note = cursor.requireString(RecipientTable.NOTE)
+      note = cursor.requireString(RecipientTable.NOTE),
+      keyTransparencyData = cursor.requireBlob(RecipientTable.KEY_TRANSPARENCY_DATA)
     )
   }
 

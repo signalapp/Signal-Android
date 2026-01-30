@@ -225,6 +225,10 @@ class NetworkDependenciesModule(
     provider.provideSvrBApi(libsignalNetwork)
   }
 
+  val keyTransparencyApi: KeyTransparencyApi by lazy {
+    provider.provideKeyTransparencyApi(unauthWebSocket)
+  }
+
   val okHttpClient: OkHttpClient by lazy {
     OkHttpClient.Builder()
       .addInterceptor(StandardUserAgentInterceptor())

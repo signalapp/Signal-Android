@@ -120,7 +120,8 @@ class Recipient(
   private val groupRecord: Optional<GroupRecord> = Optional.empty(),
   val phoneNumberSharing: PhoneNumberSharingState = PhoneNumberSharingState.UNKNOWN,
   val nickname: ProfileName = ProfileName.EMPTY,
-  val note: String? = null
+  val note: String? = null,
+  val keyTransparencyData: ByteArray? = null
 ) {
 
   /** The recipient's [ServiceId], which could be either an [ACI] or [PNI]. */
@@ -822,7 +823,8 @@ class Recipient(
       callLinkRoomId == other.callLinkRoomId &&
       phoneNumberSharing == other.phoneNumberSharing &&
       nickname == other.nickname &&
-      note == other.note
+      note == other.note &&
+      keyTransparencyData.contentEquals(other.keyTransparencyData)
   }
 
   override fun equals(other: Any?): Boolean {
