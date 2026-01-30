@@ -35,6 +35,17 @@ import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
+/**
+ * Enum identifying each slot in the BlurrableContentLayer.
+ * Used as subcomposition keys to ensure each slot is only composed once.
+ */
+private enum class BlurrableContentSlot {
+  BARS,
+  GRID,
+  REACTIONS,
+  OVERFLOW
+}
+
 @Composable
 fun CallElementsLayout(
   callGridSlot: @Composable () -> Unit,
@@ -71,30 +82,14 @@ fun CallElementsLayout(
   }
 
   SubcomposeLayout(modifier = modifier) { constraints ->
-    // First, measure the bars to get their height
     val looseConstraints = constraints.copy(minWidth = 0, minHeight = 0)
 
-    // Measure overflow to determine constraints for bars
-    val overflowPlaceables = subcompose("overflow_measure", callOverflowSlot).map { it.measure(looseConstraints) }
-    val constrainedHeightOffset = if (isPortrait) overflowPlaceables.maxOfOrNull { it.height } ?: 0 else 0
-    val constrainedWidthOffset = if (isPortrait) { 0 } else overflowPlaceables.maxOfOrNull { it.width } ?: 0
+    // Holder to capture measurements from BlurrableContentLayer
+    var measuredBarsHeightPx = 0
+    var measuredBarsWidthPx = 0
 
-    val nonOverflowConstraints = looseConstraints.offset(horizontal = -constrainedWidthOffset, vertical = -constrainedHeightOffset)
-
-    val barConstraints = if (bottomInsetPx > constrainedHeightOffset) {
-      looseConstraints.offset(-constrainedWidthOffset, -bottomInsetPx)
-    } else {
-      nonOverflowConstraints
-    }
-
-    val barsMaxWidth = minOf(barConstraints.maxWidth, bottomSheetWidthPx)
-    val barsConstrainedToSheet = barConstraints.copy(maxWidth = barsMaxWidth)
-
-    val barsPlaceables = subcompose("bars_measure") { Bars() }.map { it.measure(barsConstrainedToSheet) }
-    val barsHeightPx = barsPlaceables.sumOf { it.height }
-    val barsWidthPx = barsPlaceables.maxOfOrNull { it.width } ?: 0
-
-    // Now compose and measure the actual layers with the bars height available
+    // Subcompose and measure the blurrable layer first - it will measure all content internally
+    // and report back the bars dimensions via the onMeasured callback
     val blurrableLayerPlaceable = subcompose("blurrable") {
       BlurrableContentLayer(
         isFocused = isFocused,
@@ -104,19 +99,23 @@ fun CallElementsLayout(
         barsSlot = { Bars() },
         callGridSlot = callGridSlot,
         reactionsSlot = reactionsSlot,
-        callOverflowSlot = callOverflowSlot
+        callOverflowSlot = callOverflowSlot,
+        onMeasured = { barsHeight, barsWidth ->
+          measuredBarsHeightPx = barsHeight
+          measuredBarsWidthPx = barsWidth
+        }
       )
     }.map { it.measure(constraints) }
 
     // Use the wider of bars or bottom sheet for space calculation
-    val centeredContentWidthPx = maxOf(barsWidthPx, bottomSheetWidthPx)
+    val centeredContentWidthPx = maxOf(measuredBarsWidthPx, bottomSheetWidthPx)
 
     val pipLayerPlaceable = subcompose("pip") {
       PipLayer(
         pictureInPictureSlot = pictureInPictureSlot,
         localRenderState = localRenderState,
         bottomInsetPx = bottomInsetPx,
-        barsHeightPx = barsHeightPx,
+        barsHeightPx = measuredBarsHeightPx,
         pipSizePx = pipSizePx,
         centeredContentWidthPx = centeredContentWidthPx
       )
@@ -129,13 +128,14 @@ fun CallElementsLayout(
   }
 }
 
-private enum class BlurrableContentSlot {
-  BARS,
-  GRID,
-  REACTIONS,
-  OVERFLOW
-}
-
+/**
+ * A layer that contains content which can be blurred when the local participant video is focused.
+ * All slots are subcomposed here ONCE to avoid duplicate subcomposition that would cause
+ * IllegalArgumentException when slots contain SubcomposeLayout (like BoxWithConstraints).
+ *
+ * @param onMeasured Callback invoked during measurement with (barsHeight, barsWidth) to report
+ *                   dimensions needed by the parent layout for PipLayer positioning.
+ */
 @Composable
 private fun BlurrableContentLayer(
   isFocused: Boolean,
@@ -145,7 +145,8 @@ private fun BlurrableContentLayer(
   barsSlot: @Composable () -> Unit,
   callGridSlot: @Composable () -> Unit,
   reactionsSlot: @Composable () -> Unit,
-  callOverflowSlot: @Composable () -> Unit
+  callOverflowSlot: @Composable () -> Unit,
+  onMeasured: (barsHeight: Int, barsWidth: Int) -> Unit
 ) {
   BlurContainer(
     isBlurred = isFocused,
@@ -176,8 +177,13 @@ private fun BlurrableContentLayer(
       val barsPlaceables = subcompose(BlurrableContentSlot.BARS, barsSlot)
         .map { it.measure(barsConstrainedToSheet) }
 
-      val barsHeightOffset = barsPlaceables.sumOf { it.height }
-      val reactionsConstraints = barConstraints.offset(vertical = -barsHeightOffset)
+      val barsHeightPx = barsPlaceables.sumOf { it.height }
+      val barsWidthPx = barsPlaceables.maxOfOrNull { it.width } ?: 0
+
+      // Report measurements to parent for PipLayer positioning
+      onMeasured(barsHeightPx, barsWidthPx)
+
+      val reactionsConstraints = barConstraints.offset(vertical = -barsHeightPx)
       val reactionsPlaceables = subcompose(BlurrableContentSlot.REACTIONS, reactionsSlot)
         .map { it.measure(reactionsConstraints) }
 
