@@ -74,7 +74,7 @@ class PinEntryForRegistrationLockViewModelTest {
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = true) } returns
       NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
-    coEvery { mockRepository.registerAccount(any(), any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(registerResponse to keyMaterial)
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
@@ -200,7 +200,7 @@ class PinEntryForRegistrationLockViewModelTest {
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = true) } returns
       NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
-    coEvery { mockRepository.registerAccount(any(), any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Failure(
         NetworkController.RegisterAccountError.RegistrationLock(registrationLockData)
       )
@@ -220,7 +220,7 @@ class PinEntryForRegistrationLockViewModelTest {
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = true) } returns
       NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
-    coEvery { mockRepository.registerAccount(any(), any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Failure(
         NetworkController.RegisterAccountError.RateLimited(retryAfter)
       )
@@ -242,7 +242,7 @@ class PinEntryForRegistrationLockViewModelTest {
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = true) } returns
       NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
-    coEvery { mockRepository.registerAccount(any(), any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Failure(
         NetworkController.RegisterAccountError.InvalidRequest("Bad request")
       )
@@ -261,7 +261,7 @@ class PinEntryForRegistrationLockViewModelTest {
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = true) } returns
       NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
-    coEvery { mockRepository.registerAccount(any(), any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Failure(
         NetworkController.RegisterAccountError.DeviceTransferPossible
       )
@@ -280,7 +280,7 @@ class PinEntryForRegistrationLockViewModelTest {
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = true) } returns
       NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
-    coEvery { mockRepository.registerAccount(any(), any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.NetworkError(java.io.IOException("Network error"))
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
@@ -297,7 +297,7 @@ class PinEntryForRegistrationLockViewModelTest {
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = true) } returns
       NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
-    coEvery { mockRepository.registerAccount(any(), any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected"))
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)

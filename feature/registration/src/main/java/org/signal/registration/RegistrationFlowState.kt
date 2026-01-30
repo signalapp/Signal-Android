@@ -5,44 +5,24 @@
 
 package org.signal.registration
 
-import android.os.Parcel
 import android.os.Parcelable
-import kotlinx.parcelize.Parceler
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.registration.util.AccountEntropyPoolParceler
+import org.signal.registration.util.MasterKeyParceler
 
 @Parcelize
 @TypeParceler<MasterKey?, MasterKeyParceler>
-@TypeParceler<AccountEntropyPool?, AepParceler>
+@TypeParceler<AccountEntropyPool?, AccountEntropyPoolParceler>
 data class RegistrationFlowState(
   val backStack: List<RegistrationRoute> = listOf(RegistrationRoute.Welcome),
   val sessionMetadata: NetworkController.SessionMetadata? = null,
   val sessionE164: String? = null,
   val accountEntropyPool: AccountEntropyPool? = null,
   val temporaryMasterKey: MasterKey? = null,
-  val registrationLockProof: String? = null
+  val registrationLockProof: String? = null,
+  val preExistingRegistrationData: PreExistingRegistrationData? = null
 ) : Parcelable
 
-object MasterKeyParceler : Parceler<MasterKey?> {
-  override fun create(parcel: Parcel): MasterKey? {
-    val bytes = parcel.createByteArray()
-    return bytes?.let { MasterKey(it) }
-  }
-
-  override fun MasterKey?.write(parcel: Parcel, flags: Int) {
-    parcel.writeByteArray(this?.serialize())
-  }
-}
-
-object AepParceler : Parceler<AccountEntropyPool?> {
-  override fun create(parcel: Parcel): AccountEntropyPool? {
-    val aep = parcel.readString()
-    return aep?.let { AccountEntropyPool(it) }
-  }
-
-  override fun AccountEntropyPool?.write(parcel: Parcel, flags: Int) {
-    parcel.writeString(this?.value)
-  }
-}

@@ -178,7 +178,7 @@ class PinSettingsViewModel(
         ),
         name = null,
         pniRegistrationId = RegistrationPreferences.pniRegistrationId,
-        recoveryPassword = null
+        recoveryPassword = RegistrationPreferences.masterKey?.deriveRegistrationRecoveryPassword()
       )
 
       when (val result = networkController.setAccountAttributes(attributes)) {

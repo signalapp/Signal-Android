@@ -289,6 +289,9 @@ class RealNetworkController(
     fcmToken: String?,
     skipDeviceTransfer: Boolean
   ): RegistrationNetworkResult<RegisterAccountResponse, RegisterAccountError> = withContext(Dispatchers.IO) {
+    check(sessionId != null || recoveryPassword != null) { "Either sessionId or recoveryPassword must be provided" }
+    check(sessionId == null || recoveryPassword == null) { "Either sessionId or recoveryPassword must be provided, but not both" }
+
     try {
       val serviceAttributes = attributes.toServiceAccountAttributes()
       val serviceAciPreKeys = aciPreKeys.toServicePreKeyCollection()

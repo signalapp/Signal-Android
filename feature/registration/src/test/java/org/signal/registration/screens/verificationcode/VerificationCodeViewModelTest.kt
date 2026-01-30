@@ -198,7 +198,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccount(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(registerResponse to keyMaterial)
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"))
@@ -266,7 +266,7 @@ class VerificationCodeViewModelTest {
       NetworkController.RegistrationNetworkResult.Failure(
         NetworkController.SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested(verifiedSession)
       )
-    coEvery { mockRepository.registerAccount(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(registerResponse to keyMaterial)
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"))
@@ -373,7 +373,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccount(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Failure(
         NetworkController.RegisterAccountError.DeviceTransferPossible
       )
@@ -395,7 +395,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccount(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Failure(
         NetworkController.RegisterAccountError.RateLimited(30.seconds)
       )
@@ -422,7 +422,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccount(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Failure(
         NetworkController.RegisterAccountError.InvalidRequest("Bad request")
       )
@@ -446,7 +446,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccount(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Failure(
         NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
       )
@@ -470,7 +470,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccount(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.NetworkError(java.io.IOException("Network error"))
 
     val result = viewModel.applyEvent(
@@ -492,7 +492,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccount(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected"))
 
     val result = viewModel.applyEvent(

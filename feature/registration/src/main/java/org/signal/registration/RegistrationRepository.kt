@@ -109,6 +109,30 @@ class RegistrationRepository(val networkController: NetworkController, val stora
   }
 
   /**
+   * Registers a new account using a recovery password derived from the user's [MasterKey].
+   *
+   * This method:
+   * 1. Generates and stores all required cryptographic key material
+   * 2. Creates account attributes with registration IDs and capabilities
+   * 3. Calls the network controller to register the account
+   * 4. On success, saves the registration data to persistent storage
+   *
+   * @param e164 The phone number in E.164 format (used for basic auth)
+   * @param recoveryPassword The recovery password, derived from the user's [MasterKey], which allows us to forgo session creation.
+   * @param registrationLock The registration lock token derived from the master key (if unlocking a reglocked account)
+   * @param skipDeviceTransfer Whether to skip device transfer flow
+   * @return The registration result containing account information or an error
+   */
+  suspend fun registerAccountWithRecoveryPassword(
+    e164: String,
+    recoveryPassword: String,
+    registrationLock: String? = null,
+    skipDeviceTransfer: Boolean = true
+  ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
+    registerAccount(e164, sessionId = null, recoveryPassword, registrationLock, skipDeviceTransfer)
+  }
+
+  /**
    * Registers a new account after successful phone number verification.
    *
    * This method:
@@ -123,12 +147,41 @@ class RegistrationRepository(val networkController: NetworkController, val stora
    * @param skipDeviceTransfer Whether to skip device transfer flow
    * @return The registration result containing account information or an error
    */
-  suspend fun registerAccount(
+  suspend fun registerAccountWithSession(
     e164: String,
     sessionId: String,
     registrationLock: String? = null,
     skipDeviceTransfer: Boolean = true
   ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
+    registerAccount(e164, sessionId, recoveryPassword = null, registrationLock, skipDeviceTransfer)
+  }
+
+  /**
+   * Registers a new account.
+   *
+   * This method:
+   * 1. Generates and stores all required cryptographic key material
+   * 2. Creates account attributes with registration IDs and capabilities
+   * 3. Calls the network controller to register the account
+   * 4. On success, saves the registration data to persistent storage
+   *
+   * @param e164 The phone number in E.164 format (used for basic auth)
+   * @param sessionId The verified session ID from phone number verification. Must provide if you're not using [recoveryPassword].
+   * @param recoveryPassword The recovery password, derived from the user's [MasterKey], which allows us to forgo session creation. Must provide if you're not using [sessionId].
+   * @param registrationLock The registration lock token derived from the master key (if unlocking a reglocked account)
+   * @param skipDeviceTransfer Whether to skip device transfer flow
+   * @return The registration result containing account information or an error
+   */
+  private suspend fun registerAccount(
+    e164: String,
+    sessionId: String?,
+    recoveryPassword: String?,
+    registrationLock: String? = null,
+    skipDeviceTransfer: Boolean = true
+  ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
+    check(sessionId != null || recoveryPassword != null) { "Either sessionId or recoveryPassword must be provided" }
+    check(sessionId == null || recoveryPassword == null) { "Either sessionId or recoveryPassword must be provided, but not both" }
+
     val keyMaterial = storageController.generateAndStoreKeyMaterial()
     val fcmToken = networkController.getFcmToken()
 
@@ -150,7 +203,7 @@ class RegistrationRepository(val networkController: NetworkController, val stora
       ),
       name = null,
       pniRegistrationId = keyMaterial.pniRegistrationId,
-      recoveryPassword = null
+      recoveryPassword = keyMaterial.accountEntropyPool.deriveMasterKey().deriveRegistrationRecoveryPassword()
     )
 
     val aciPreKeys = PreKeyCollection(
@@ -169,7 +222,7 @@ class RegistrationRepository(val networkController: NetworkController, val stora
       e164 = e164,
       password = keyMaterial.servicePassword,
       sessionId = sessionId,
-      recoveryPassword = null,
+      recoveryPassword = recoveryPassword,
       attributes = accountAttributes,
       aciPreKeys = aciPreKeys,
       pniPreKeys = pniPreKeys,
@@ -204,5 +257,9 @@ class RegistrationRepository(val networkController: NetworkController, val stora
     }
 
     result
+  }
+
+  suspend fun getPreExistingRegistrationData(): PreExistingRegistrationData? {
+    return storageController.getPreExistingRegistrationData()
   }
 }

@@ -127,7 +127,7 @@ class PinEntryForRegistrationLockViewModel(
     }
 
     Log.d(TAG, "[PinEntered] Attempting to register with registration lock token...")
-    val registerResult = repository.registerAccount(
+    val registerResult = repository.registerAccountWithSession(
       e164 = e164,
       sessionId = sessionId,
       registrationLock = registrationLockToken,

@@ -130,7 +130,7 @@ class VerificationCodeViewModel(
     }
 
     // Attempt to register
-    val registerResult = repository.registerAccount(e164 = state.e164, sessionId = sessionMetadata.id, skipDeviceTransfer = true)
+    val registerResult = repository.registerAccountWithSession(e164 = state.e164, sessionId = sessionMetadata.id, skipDeviceTransfer = true)
 
     return when (registerResult) {
       is NetworkController.RegistrationNetworkResult.Success -> {
@@ -174,8 +174,9 @@ class VerificationCodeViewModel(
             state.copy(oneTimeEvent = OneTimeEvent.RegistrationError)
           }
           is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
-            Log.w(TAG, "[Register] Registration recovery password incorrect: ${registerResult.error.message}")
-            state.copy(oneTimeEvent = OneTimeEvent.RegistrationError)
+            Log.w(TAG, "[Register] Got told the registration recovery password incorrect. We don't use the RRP in this flow, and should never get this error. Resetting. Message: ${registerResult.error.message}")
+            parentEventEmitter(RegistrationFlowEvent.ResetState)
+            state
           }
         }
       }

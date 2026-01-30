@@ -11,10 +11,12 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.createSavedStateHandle
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.util.logging.Log
 import kotlin.reflect.KClass
@@ -33,6 +35,14 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
   val state: StateFlow<RegistrationFlowState> = _state.asStateFlow()
 
   val resultBus = ResultEventBus()
+
+  init {
+    viewModelScope.launch {
+      repository.getPreExistingRegistrationData()?.let {
+        _state.value = _state.value.copy(preExistingRegistrationData = it)
+      }
+    }
+  }
 
   fun onEvent(event: RegistrationFlowEvent) {
     _state.value = applyEvent(_state.value, event)

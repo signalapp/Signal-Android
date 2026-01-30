@@ -28,12 +28,6 @@ class RegistrationActivity : ComponentActivity() {
     )
   }
 
-  private val viewModel: RegistrationViewModel by viewModels(factoryProducer = {
-    RegistrationViewModel.Factory(
-      repository = repository
-    )
-  })
-
   @OptIn(ExperimentalPermissionsApi::class)
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

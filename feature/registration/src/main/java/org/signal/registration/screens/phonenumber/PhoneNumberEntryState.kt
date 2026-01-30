@@ -6,6 +6,7 @@
 package org.signal.registration.screens.phonenumber
 
 import org.signal.registration.NetworkController.SessionMetadata
+import org.signal.registration.PreExistingRegistrationData
 import kotlin.time.Duration
 
 data class PhoneNumberEntryState(
@@ -13,9 +14,11 @@ data class PhoneNumberEntryState(
   val countryCode: String = "1",
   val nationalNumber: String = "",
   val formattedNumber: String = "",
+  val sessionE164: String? = null,
   val sessionMetadata: SessionMetadata? = null,
   val showFullScreenSpinner: Boolean = false,
-  val oneTimeEvent: OneTimeEvent? = null
+  val oneTimeEvent: OneTimeEvent? = null,
+  val preExistingRegistrationData: PreExistingRegistrationData? = null
 ) {
   sealed interface OneTimeEvent {
     data object NetworkError : OneTimeEvent

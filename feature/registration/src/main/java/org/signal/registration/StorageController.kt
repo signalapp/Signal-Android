@@ -5,6 +5,9 @@
 
 package org.signal.registration
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.TypeParceler
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
@@ -12,6 +15,12 @@ import org.signal.core.models.ServiceId.PNI
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
+import org.signal.registration.util.ACIParceler
+import org.signal.registration.util.AccountEntropyPoolParceler
+import org.signal.registration.util.IdentityKeyPairParceler
+import org.signal.registration.util.KyberPreKeyRecordParceler
+import org.signal.registration.util.PNIParceler
+import org.signal.registration.util.SignedPreKeyRecordParceler
 
 interface StorageController {
 
@@ -63,6 +72,11 @@ interface StorageController {
 /**
  * Container for all cryptographic key material generated during registration.
  */
+@Parcelize
+@TypeParceler<IdentityKeyPair, IdentityKeyPairParceler>
+@TypeParceler<SignedPreKeyRecord, SignedPreKeyRecordParceler>
+@TypeParceler<KyberPreKeyRecord, KyberPreKeyRecordParceler>
+@TypeParceler<AccountEntropyPool, AccountEntropyPoolParceler>
 data class KeyMaterial(
   /** Identity key pair for the Account Identity (ACI). */
   val aciIdentityKeyPair: IdentityKeyPair,
@@ -86,7 +100,7 @@ data class KeyMaterial(
   val servicePassword: String,
   /** Account entropy pool for key derivation. */
   val accountEntropyPool: AccountEntropyPool
-)
+) : Parcelable
 
 data class NewRegistrationData(
   val e164: String,
@@ -96,10 +110,14 @@ data class NewRegistrationData(
   val aep: AccountEntropyPool
 )
 
+@Parcelize
+@TypeParceler<AccountEntropyPool, AccountEntropyPoolParceler>
+@TypeParceler<ACI, ACIParceler>
+@TypeParceler<PNI, PNIParceler>
 data class PreExistingRegistrationData(
   val e164: String,
   val aci: ACI,
   val pni: PNI,
   val servicePassword: String,
   val aep: AccountEntropyPool
-)
+) : Parcelable
