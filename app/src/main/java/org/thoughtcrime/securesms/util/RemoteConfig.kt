@@ -1238,5 +1238,16 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /**
+   * Whether or not the new UX for unified local backups is enabled
+   */
+  @JvmStatic
+  @get:JvmName("unifiedLocalBackups")
+  val unifiedLocalBackups: Boolean by remoteBoolean(
+    key = "android.unifiedLocalBackups",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   // endregion
 }

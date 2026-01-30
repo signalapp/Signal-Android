@@ -29,9 +29,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -56,6 +58,7 @@ import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.math.BigDecimal
 import java.util.Currency
@@ -101,7 +104,13 @@ class BackupsSettingsFragment : ComposeFragment() {
           }
         }
       },
-      onOnDeviceBackupsRowClick = { findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_backupsPreferenceFragment) },
+      onOnDeviceBackupsRowClick = {
+        if (SignalStore.backup.newLocalBackupsEnabled || RemoteConfig.unifiedLocalBackups && !SignalStore.settings.isBackupEnabled) {
+          findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_localBackupsFragment)
+        } else {
+          findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_backupsPreferenceFragment)
+        }
+      },
       onNewOnDeviceBackupsRowClick = { findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_internalLocalBackupFragment) },
       onBackupTierInternalOverrideChanged = { viewModel.onBackupTierInternalOverrideChanged(it) }
     )
@@ -228,6 +237,7 @@ private fun BackupsSettingsContent(
       item {
         Rows.TextRow(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__on_device_backups),
+          icon = ImageVector.vectorResource(R.drawable.symbol_device_phone_24),
           label = stringResource(R.string.RemoteBackupsSettingsFragment__save_your_backups_to),
           onClick = onOnDeviceBackupsRowClick
         )

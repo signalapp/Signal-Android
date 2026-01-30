@@ -6,9 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.ActivityResultLauncher
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -27,13 +24,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.BiometricDeviceAuthentication
-import org.thoughtcrime.securesms.BiometricDeviceLockContract
-import org.thoughtcrime.securesms.DevicePinAuthEducationSheet
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.EnterKeyScreen
+import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
 import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -46,8 +40,6 @@ import kotlin.random.nextInt
 class VerifyBackupKeyActivity : PassphraseRequiredActivity() {
 
   companion object {
-    private val TAG = Log.tag(VerifyBackupKeyActivity::class)
-
     @JvmStatic
     fun createIntent(context: Context): Intent {
       return Intent(context, VerifyBackupKeyActivity::class.java)
@@ -56,25 +48,29 @@ class VerifyBackupKeyActivity : PassphraseRequiredActivity() {
     const val REQUEST_CODE = 1204
   }
 
-  private lateinit var biometricDeviceAuthentication: BiometricDeviceAuthentication
-  private lateinit var biometricDeviceLockLauncher: ActivityResultLauncher<String>
-
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     enableEdgeToEdge()
 
     setContent {
       SignalTheme {
+        val context = LocalContext.current
+        val biometrics = rememberBiometricsAuthentication(
+          promptTitle = stringResource(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key),
+          educationSheetMessage = stringResource(R.string.RemoteBackupsSettingsFragment__to_view_your_key),
+          onAuthenticationFailed = {
+            // Matches existing behavior: show a generic "authentication required" toast.
+            Toast.makeText(
+              context,
+              R.string.RemoteBackupsSettingsFragment__authenticatino_required,
+              Toast.LENGTH_SHORT
+            ).show()
+          }
+        )
+
         VerifyBackupPinScreen(
           backupKey = SignalStore.account.accountEntropyPool.displayValue,
           onForgotKeyClick = {
-            if (biometricDeviceAuthentication.shouldShowEducationSheet(this)) {
-              DevicePinAuthEducationSheet.show(getString(R.string.RemoteBackupsSettingsFragment__to_view_your_key), supportFragmentManager)
-              supportFragmentManager.setFragmentResultListener(DevicePinAuthEducationSheet.REQUEST_KEY, this) { _, _ ->
-                if (!biometricDeviceAuthentication.authenticate(this, true) { biometricDeviceLockLauncher.launch(getString(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key)) }) {
-                  displayBackupKey()
-                }
-              }
-            } else if (!biometricDeviceAuthentication.authenticate(this, true) { biometricDeviceLockLauncher.launch(getString(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key)) }) {
+            biometrics.withBiometricsAuthentication {
               displayBackupKey()
             }
           },
@@ -88,23 +84,6 @@ class VerifyBackupKeyActivity : PassphraseRequiredActivity() {
         )
       }
     }
-
-    initializeBiometricAuth()
-  }
-
-  private fun initializeBiometricAuth() {
-    val biometricPrompt = BiometricPrompt(this, AuthListener())
-    val promptInfo: BiometricPrompt.PromptInfo = BiometricPrompt.PromptInfo.Builder()
-      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
-      .setTitle(getString(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key))
-      .build()
-
-    biometricDeviceAuthentication = BiometricDeviceAuthentication(BiometricManager.from(this), biometricPrompt, promptInfo)
-    biometricDeviceLockLauncher = registerForActivityResult(BiometricDeviceLockContract()) { result: Int ->
-      if (result == BiometricDeviceAuthentication.AUTHENTICATED) {
-        displayBackupKey()
-      }
-    }
   }
 
   private fun displayBackupKey() {
@@ -113,23 +92,6 @@ class VerifyBackupKeyActivity : PassphraseRequiredActivity() {
       .add(android.R.id.content, ForgotBackupKeyFragment())
       .addToBackStack(null)
       .commit()
-  }
-
-  private inner class AuthListener : BiometricPrompt.AuthenticationCallback() {
-    override fun onAuthenticationFailed() {
-      Log.w(TAG, "onAuthenticationFailed")
-      Toast.makeText(this@VerifyBackupKeyActivity, R.string.RemoteBackupsSettingsFragment__authenticatino_required, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-      Log.i(TAG, "onAuthenticationSucceeded")
-      displayBackupKey()
-    }
-
-    override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-      Log.w(TAG, "onAuthenticationError: $errorCode, $errString")
-      onAuthenticationFailed()
-    }
   }
 }
 

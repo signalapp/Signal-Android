@@ -79,10 +79,6 @@ class ChatsSettingsFragment : ComposeFragment() {
     override fun onEnterKeySendsChanged(enabled: Boolean) {
       viewModel.setEnterKeySends(enabled)
     }
-
-    override fun onChatBackupsClick() {
-      findNavController().safeNavigate(R.id.action_chatsSettingsFragment_to_backupsPreferenceFragment)
-    }
   }
 }
 
@@ -95,7 +91,6 @@ private interface ChatsSettingsCallbacks {
   fun onAddOrEditFoldersClick() = Unit
   fun onUseSystemEmojiChanged(enabled: Boolean) = Unit
   fun onEnterKeySendsChanged(enabled: Boolean) = Unit
-  fun onChatBackupsClick() = Unit
 
   object Empty : ChatsSettingsCallbacks
 }

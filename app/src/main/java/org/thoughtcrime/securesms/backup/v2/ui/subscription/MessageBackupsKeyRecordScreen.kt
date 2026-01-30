@@ -58,12 +58,17 @@ import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.fonts.MonoTypeface
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.storage.AndroidCredentialRepository
 import org.thoughtcrime.securesms.util.storage.CredentialManagerError
 import org.thoughtcrime.securesms.util.storage.CredentialManagerResult
 import org.signal.core.ui.R as CoreUiR
+
+private const val CLIPBOARD_TIMEOUT_SECONDS = 60
 
 @Stable
 sealed interface MessageBackupsKeyRecordMode {
@@ -74,6 +79,40 @@ sealed interface MessageBackupsKeyRecordMode {
     val isOptimizedStorageEnabled: Boolean,
     val canRotateKey: Boolean
   ) : MessageBackupsKeyRecordMode
+}
+
+/**
+ * More self-contained version of [MessageBackupsKeyRecordScreen] to try to improve reusability.
+ * This version is not built to be previewed but covers a lot of the repetitive boilerplate seen
+ * elsewhere.
+ */
+@Composable
+fun MessageBackupsKeyRecordScreen(
+  backupKey: String,
+  keySaveState: BackupKeySaveState?,
+  backupKeyCredentialManagerHandler: BackupKeyCredentialManagerHandler,
+  mode: MessageBackupsKeyRecordMode
+) {
+  val context = LocalContext.current
+  val passwordManagerSettingsIntent = remember {
+    AndroidCredentialRepository.getCredentialManagerSettingsIntent(context)
+  }
+
+  val onBackPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+
+  MessageBackupsKeyRecordScreen(
+    backupKey = backupKey,
+    keySaveState = keySaveState,
+    canOpenPasswordManagerSettings = passwordManagerSettingsIntent != null,
+    onNavigationClick = { onBackPressedDispatcher?.onBackPressed() },
+    onCopyToClipboardClick = { Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS) },
+    onRequestSaveToPasswordManager = backupKeyCredentialManagerHandler::onBackupKeySaveRequested,
+    onConfirmSaveToPasswordManager = backupKeyCredentialManagerHandler::onBackupKeySaveConfirmed,
+    onSaveToPasswordManagerComplete = backupKeyCredentialManagerHandler::onBackupKeySaveCompleted,
+    mode = mode,
+    onGoToPasswordManagerSettingsClick = { context.startActivity(passwordManagerSettingsIntent) },
+    notifyKeyIsSameAsOnDeviceBackupKey = SignalStore.backup.newLocalBackupsEnabled
+  )
 }
 
 /**
@@ -91,7 +130,8 @@ fun MessageBackupsKeyRecordScreen(
   onConfirmSaveToPasswordManager: () -> Unit = {},
   onSaveToPasswordManagerComplete: (CredentialManagerResult) -> Unit = {},
   onGoToPasswordManagerSettingsClick: () -> Unit = {},
-  mode: MessageBackupsKeyRecordMode = MessageBackupsKeyRecordMode.Next(onNextClick = {})
+  mode: MessageBackupsKeyRecordMode = MessageBackupsKeyRecordMode.Next(onNextClick = {}),
+  notifyKeyIsSameAsOnDeviceBackupKey: Boolean = false
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
   val backupKeyString = remember(backupKey) {
@@ -142,8 +182,14 @@ fun MessageBackupsKeyRecordScreen(
           }
 
           item {
+            val text = if (notifyKeyIsSameAsOnDeviceBackupKey) {
+              stringResource(R.string.MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key)
+            } else {
+              stringResource(R.string.MessageBackupsKeyRecordScreen__this_key_is_required_to_recover)
+            }
+
             Text(
-              text = stringResource(R.string.MessageBackupsKeyRecordScreen__this_key_is_required_to_recover),
+              text = text,
               textAlign = TextAlign.Center,
               style = MaterialTheme.typography.bodyLarge,
               color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -199,23 +245,14 @@ fun MessageBackupsKeyRecordScreen(
           }
         }
 
-        if (mode is MessageBackupsKeyRecordMode.Next) {
-          Box(
-            modifier = Modifier
-              .fillMaxWidth()
-              .padding(bottom = 24.dp)
-          ) {
-            Buttons.LargeTonal(
-              onClick = mode.onNextClick,
-              modifier = Modifier.align(Alignment.BottomEnd)
-            ) {
-              Text(
-                text = stringResource(R.string.MessageBackupsKeyRecordScreen__next)
-              )
-            }
+        when (mode) {
+          is MessageBackupsKeyRecordMode.Next -> {
+            NextButton(onNextClick = mode.onNextClick)
           }
-        } else if (mode is MessageBackupsKeyRecordMode.CreateNewKey) {
-          CreateNewKeyButton(mode)
+
+          is MessageBackupsKeyRecordMode.CreateNewKey -> {
+            CreateNewKeyButton(mode)
+          }
         }
       }
 
@@ -255,6 +292,24 @@ fun MessageBackupsKeyRecordScreen(
 
         null -> Unit
       }
+    }
+  }
+}
+
+@Composable
+private fun NextButton(onNextClick: () -> Unit) {
+  Box(
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(bottom = 24.dp)
+  ) {
+    Buttons.LargeTonal(
+      onClick = onNextClick,
+      modifier = Modifier.align(Alignment.BottomEnd)
+    ) {
+      Text(
+        text = stringResource(R.string.MessageBackupsKeyRecordScreen__next)
+      )
     }
   }
 }
@@ -501,6 +556,20 @@ private fun MessageBackupsKeyRecordScreenPreview() {
         isOptimizedStorageEnabled = true,
         canRotateKey = true
       )
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun MessageBackupsKeyRecordScreenSameAsOnDeviceKeyPreview() {
+  Previews.Preview {
+    MessageBackupsKeyRecordScreen(
+      backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0",
+      keySaveState = null,
+      canOpenPasswordManagerSettings = true,
+      mode = MessageBackupsKeyRecordMode.Next(onNextClick = {}),
+      notifyKeyIsSameAsOnDeviceBackupKey = true
     )
   }
 }

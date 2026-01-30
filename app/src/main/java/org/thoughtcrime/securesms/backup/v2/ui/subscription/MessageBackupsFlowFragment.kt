@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.Nav
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.Util
@@ -159,7 +160,8 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           onRequestSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
           onConfirmSaveToPasswordManager = viewModel::onBackupKeySaveConfirmed,
           onSaveToPasswordManagerComplete = viewModel::onBackupKeySaveCompleted,
-          onGoToPasswordManagerSettingsClick = { requireContext().startActivity(passwordManagerSettingsIntent) }
+          onGoToPasswordManagerSettingsClick = { requireContext().startActivity(passwordManagerSettingsIntent) },
+          notifyKeyIsSameAsOnDeviceBackupKey = SignalStore.backup.newLocalBackupsEnabled
         )
       }
 
