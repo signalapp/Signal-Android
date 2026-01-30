@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.viewModel
 
 /**
@@ -152,6 +153,17 @@ class AdvancedPrivacySettingsFragment : ComposeFragment() {
         getString(R.string.AdvancedPrivacySettingsFragment__sealed_sender_link)
       )
     }
+
+    override fun onAllowAutomaticVerificationChanged(enabled: Boolean) {
+      viewModel.setAllowAutomaticVerification(enabled)
+    }
+
+    override fun onAutomaticVerificationLearnMoreClick() {
+      CommunicationActions.openBrowserLink(
+        requireContext(),
+        getString(R.string.verify_display_fragment__link)
+      )
+    }
   }
 }
 
@@ -163,6 +175,8 @@ private interface AdvancedPrivacySettingsCallbacks {
   fun onShowStatusIconForSealedSenderChanged(enabled: Boolean) = Unit
   fun onAllowSealedSenderFromAnyoneChanged(enabled: Boolean) = Unit
   fun onSealedSenderLearnMoreClick() = Unit
+  fun onAutomaticVerificationLearnMoreClick() = Unit
+  fun onAllowAutomaticVerificationChanged(enabled: Boolean) = Unit
 
   object Empty : AdvancedPrivacySettingsCallbacks
 }
@@ -284,6 +298,33 @@ private fun AdvancedPrivacySettingsScreen(
           text = sealedSenderSummary
         )
       }
+
+      if (RemoteConfig.keyTransparency) {
+        item {
+          Dividers.Default()
+        }
+
+        item {
+          val label = buildAnnotatedString {
+            append(stringResource(R.string.preferences_automatic_key_verification_body))
+            append(" ")
+            withLink(
+              LinkAnnotation.Clickable("learn-more", linkInteractionListener = {
+                callbacks.onAutomaticVerificationLearnMoreClick()
+              })
+            ) {
+              append(stringResource(R.string.LearnMoreTextView_learn_more))
+            }
+          }
+
+          Rows.ToggleRow(
+            checked = state.allowAutomaticKeyVerification,
+            text = AnnotatedString(stringResource(R.string.preferences_automatic_key_verification)),
+            label = label,
+            onCheckChanged = callbacks::onAllowAutomaticVerificationChanged
+          )
+        }
+      }
     }
   }
 }
@@ -300,7 +341,8 @@ private fun AdvancedPrivacySettingsScreenPreview() {
         censorshipCircumventionEnabled = false,
         showSealedSenderStatusIcon = false,
         allowSealedSenderFromAnyone = false,
-        showProgressSpinner = false
+        showProgressSpinner = false,
+        allowAutomaticKeyVerification = false
       ),
       callbacks = AdvancedPrivacySettingsCallbacks.Empty
     )

@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.verify.SafetyNumberQrView.Companion.getSegments
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable
 import org.thoughtcrime.securesms.databinding.VerifyDisplayFragmentBinding
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -74,7 +75,7 @@ class VerifyDisplayFragment : Fragment() {
 
     updateVerifyButton(requireArguments().getBoolean(VERIFIED_STATE, false), false)
 
-    binding.automaticVerification.visible = RemoteConfig.keyTransparency
+    binding.automaticVerification.visible = RemoteConfig.keyTransparency && SignalStore.settings.automaticVerificationEnabled
     binding.safetyQrView.verifyButton.setOnClickListener { updateVerifyButton(!currentVerifiedState, true) }
     binding.toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
     binding.toolbar.setTitle(R.string.AndroidManifest__verify_safety_number)

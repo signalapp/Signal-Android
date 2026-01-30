@@ -1418,7 +1418,7 @@ class ConversationFragment :
   }
 
   private fun presentVerifyAutomaticallySheet() {
-    if (RemoteConfig.keyTransparency && !SignalStore.uiHints.hasSeenVerifyAutomaticallySheet() && viewModel.recipientSnapshot?.isIndividual == true) {
+    if (RemoteConfig.keyTransparency && SignalStore.settings.automaticVerificationEnabled && !SignalStore.uiHints.hasSeenVerifyAutomaticallySheet() && viewModel.recipientSnapshot?.isIndividual == true) {
       VerifyAutomaticallyEducationSheet.show(parentFragmentManager)
     }
   }

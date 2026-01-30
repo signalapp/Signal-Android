@@ -4048,6 +4048,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .run()
   }
 
+  fun clearAllKeyTransparencyData() {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(KEY_TRANSPARENCY_DATA to null)
+      .where("$KEY_TRANSPARENCY_DATA IS NOT NULL")
+      .run()
+  }
+
   /**
    * Will update the database with the content values you specified. It will make an intelligent
    * query such that this will only return true if a row was *actually* updated.

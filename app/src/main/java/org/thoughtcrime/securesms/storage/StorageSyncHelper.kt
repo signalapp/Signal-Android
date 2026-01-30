@@ -195,6 +195,7 @@ object StorageSyncHelper {
       }
 
       safeSetPayments(SignalStore.payments.mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.payments.paymentsEntropy).map { obj: Entropy -> obj.bytes }.orElse(null))
+      automaticKeyVerificationDisabled = !SignalStore.settings.automaticVerificationEnabled
     }
 
     return accountRecord.toSignalAccountRecord(StorageId.forAccount(storageId)).toSignalStorageRecord()
@@ -257,6 +258,11 @@ object StorageSyncHelper {
     SignalStore.story.isFeatureDisabled = update.new.proto.storiesDisabled
     SignalStore.story.userHasSeenGroupStoryEducationSheet = update.new.proto.hasSeenGroupStoryEducationSheet
     SignalStore.uiHints.setHasCompletedUsernameOnboarding(update.new.proto.hasCompletedUsernameOnboarding)
+
+    if (SignalStore.settings.automaticVerificationEnabled && update.new.proto.automaticKeyVerificationDisabled) {
+      SignalDatabase.recipients.clearAllKeyTransparencyData()
+    }
+    SignalStore.settings.automaticVerificationEnabled = !update.new.proto.automaticKeyVerificationDisabled
 
     if (update.new.proto.storyViewReceiptsEnabled == OptionalBool.UNSET) {
       SignalStore.story.viewedReceiptsEnabled = update.new.proto.readReceipts
