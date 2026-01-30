@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Handles the retrieval and modification of group member labels.
@@ -41,14 +42,11 @@ class MemberLabelRepository(
    * Sets the group member label for the current user.
    */
   suspend fun setLabel(label: MemberLabel): Unit = withContext(Dispatchers.IO) {
-    GroupManager.updateMemberLabel(context, groupId, label.text, label.emoji ?: "")
-  }
+    if (!RemoteConfig.sendMemberLabels) {
+      throw IllegalStateException("Set member label not allowed due to remote config.")
+    }
 
-  /**
-   * Clears the group member label for the current user.
-   */
-  suspend fun removeLabel(): Unit = withContext(Dispatchers.IO) {
-    GroupManager.updateMemberLabel(context, groupId, "", "")
+    GroupManager.updateMemberLabel(context, groupId, label.text, label.emoji.orEmpty())
   }
 }
 

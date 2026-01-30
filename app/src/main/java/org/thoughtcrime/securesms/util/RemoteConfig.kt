@@ -1249,5 +1249,16 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /**
+   * Whether to enable modifying group member labels.
+   */
+  @JvmStatic
+  @get:JvmName("sendMemberLabels")
+  val sendMemberLabels: Boolean by remoteBoolean(
+    key = "android.sendMemberLabels",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   // endregion
 }

@@ -100,6 +100,7 @@ import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -804,6 +805,18 @@ class ConversationSettingsFragment : DSLSettingsFragment(
               navController.safeNavigate(ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToShareableGroupLinkFragment(groupState.groupId.requireV2().toString()))
             }
           )
+
+          if (RemoteConfig.sendMemberLabels) {
+            clickPref(
+              title = DSLSettingsText.from(R.string.ConversationSettingsFragment__group_member_label),
+              icon = DSLSettingsIcon.from(R.drawable.symbol_tag_24),
+              isEnabled = !state.isDeprecatedOrUnregistered,
+              onClick = {
+                val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToMemberLabelFragment(groupState.groupId)
+                navController.safeNavigate(action)
+              }
+            )
+          }
 
           clickPref(
             title = DSLSettingsText.from(R.string.ConversationSettingsFragment__requests_and_invites),

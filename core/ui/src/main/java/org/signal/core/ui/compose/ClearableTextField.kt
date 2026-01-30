@@ -67,6 +67,7 @@ fun ClearableTextField(
   keyboardActions: KeyboardActions = KeyboardActions.Default,
   singleLine: Boolean = false,
   clearable: Boolean = true,
+  onClear: () -> Unit = { onValueChange("") },
   charactersRemainingBeforeLimit: Int = Int.MAX_VALUE,
   countdownConfig: ClearableTextField.CountdownConfig? = null,
   colors: TextFieldColors = defaultTextFieldColors()
@@ -84,6 +85,7 @@ fun ClearableTextField(
     keyboardActions = keyboardActions,
     singleLine = singleLine,
     clearable = clearable,
+    onClear = onClear,
     charactersRemaining = charactersRemainingBeforeLimit,
     countdownConfig = countdownConfig,
     colors = colors
@@ -104,11 +106,13 @@ fun ClearableTextField(
   enabled: Boolean = true,
   textStyle: TextStyle = LocalTextStyle.current,
   label: @Composable (() -> Unit)? = null,
+  placeholder: @Composable (() -> Unit)? = null,
   leadingIcon: @Composable (() -> Unit)? = null,
   keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
   keyboardActions: KeyboardActions = KeyboardActions.Default,
   singleLine: Boolean = false,
   clearable: Boolean = true,
+  onClear: () -> Unit = { onValueChange("") },
   charactersRemaining: Int = Int.MAX_VALUE,
   countdownConfig: ClearableTextField.CountdownConfig? = null,
   colors: TextFieldColors = defaultTextFieldColors()
@@ -119,7 +123,7 @@ fun ClearableTextField(
   val clearButton: @Composable () -> Unit = {
     ClearButton(
       visible = focused,
-      onClick = { onValueChange("") },
+      onClick = onClear,
       contentDescription = clearContentDescription
     )
   }
@@ -130,6 +134,7 @@ fun ClearableTextField(
       onValueChange = onValueChange,
       textStyle = textStyle,
       label = label,
+      placeholder = placeholder,
       enabled = enabled,
       singleLine = singleLine,
       keyboardActions = keyboardActions,
@@ -140,7 +145,11 @@ fun ClearableTextField(
       colors = colors,
       leadingIcon = leadingIcon,
       trailingIcon = if (clearable) clearButton else null,
-      contentPadding = TextFieldDefaults.contentPaddingWithLabel(end = if (displayCountdown) 48.dp else 16.dp)
+      contentPadding = if (label == null) {
+        TextFieldDefaults.contentPaddingWithoutLabel(end = if (displayCountdown) 48.dp else 16.dp)
+      } else {
+        TextFieldDefaults.contentPaddingWithLabel(end = if (displayCountdown) 48.dp else 16.dp)
+      }
     )
 
     AnimatedVisibility(
@@ -170,9 +179,9 @@ private fun ClearButton(
       onClick = onClick
     ) {
       Icon(
-        painter = SignalIcons.XCircleFill.painter,
+        painter = SignalIcons.X.painter,
         contentDescription = contentDescription,
-        tint = MaterialTheme.colorScheme.outline
+        tint = MaterialTheme.colorScheme.onSurface
       )
     }
   }

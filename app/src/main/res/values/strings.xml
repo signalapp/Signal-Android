@@ -5973,6 +5973,8 @@
     <string name="ConversationSettingsFragment__permissions">Permissions</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Requests &amp; invites</string>
     <string name="ConversationSettingsFragment__group_link">Group link</string>
+    <!-- Label for button that opens the group member label permissions screen. -->
+    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Add as a contact</string>
     <string name="ConversationSettingsFragment__unmute">Unmute</string>
@@ -9272,6 +9274,21 @@
     <string name="PinnedMessage__couldnt_unpin_all">Couldn\'t unpin messages</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">Check your connection and try again.</string>
+
+    <!-- Group member label screen title. -->
+    <string name="GroupMemberLabel__title">Member label</string>
+    <!-- Group member label text field placeholder. -->
+    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <!-- Group member label preview section header. -->
+    <string name="GroupMemberLabel__preview_section_header">Preview</string>
+    <!-- Group member label save button label. -->
+    <string name="GroupMemberLabel__save">Save</string>
+    <!-- Accessibility label for the button to open the group member label emoji picker. -->
+    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <!-- Accessibility label for the group member label close screen button. -->
+    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <!-- Accessibility label for the group member label text field clear button. -->
+    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
 
     <!-- EOF -->
 </resources>
