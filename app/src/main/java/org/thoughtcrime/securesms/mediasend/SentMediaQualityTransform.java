@@ -15,7 +15,7 @@ import static org.thoughtcrime.securesms.database.TransformPropertiesUtilKt.tran
 
 
 /**
- * Add a {@link SentMediaQuality} value for {@link TransformProperties#getSentMediaQuality()} on the
+ * Add a {@link SentMediaQuality} value for {@link TransformProperties#sentMediaQuality} on the
  * transformed media. Safe to use in a pipeline with other transforms.
  */
 public final class SentMediaQualityTransform implements MediaTransform {
