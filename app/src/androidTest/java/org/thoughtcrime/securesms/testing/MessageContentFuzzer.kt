@@ -5,6 +5,7 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.toByteArray
+import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.buildWith
@@ -58,7 +59,8 @@ object MessageContentFuzzer {
       sourceDeviceId = sourceDeviceId,
       sealedSender = true,
       groupId = groupId?.decodedId,
-      destinationServiceId = Recipient.resolved(destination).requireServiceId()
+      destinationServiceId = Recipient.resolved(destination).requireServiceId(),
+      ciphertextMessageType = CiphertextMessage.WHISPER_TYPE
     )
   }
 

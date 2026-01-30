@@ -8,6 +8,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -99,7 +100,7 @@ class DataMessageProcessorTest_polls {
       envelope = MessageContentFuzzer.envelope(200),
       message = DataMessage(pollTerminate = DataMessage.PollTerminate(targetSentTimestamp = 100)),
       senderRecipient = alice,
-      metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId()),
+      metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId(), CiphertextMessage.WHISPER_TYPE),
       threadRecipient = bob,
       groupId = groupId,
       receivedTime = 200
@@ -120,7 +121,7 @@ class DataMessageProcessorTest_polls {
       envelope = MessageContentFuzzer.envelope(200),
       message = DataMessage(pollTerminate = DataMessage.PollTerminate(200)),
       senderRecipient = alice,
-      metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId()),
+      metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId(), CiphertextMessage.WHISPER_TYPE),
       threadRecipient = bob,
       groupId = groupId,
       receivedTime = 200
@@ -138,7 +139,7 @@ class DataMessageProcessorTest_polls {
       envelope = MessageContentFuzzer.envelope(200),
       message = DataMessage(pollTerminate = DataMessage.PollTerminate(100)),
       senderRecipient = bob,
-      metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId()),
+      metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId(), CiphertextMessage.WHISPER_TYPE),
       threadRecipient = bob,
       groupId = groupId,
       receivedTime = 200
@@ -154,7 +155,7 @@ class DataMessageProcessorTest_polls {
       envelope = MessageContentFuzzer.envelope(200),
       message = DataMessage(pollTerminate = DataMessage.PollTerminate(100)),
       senderRecipient = alice,
-      metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId()),
+      metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId(), CiphertextMessage.WHISPER_TYPE),
       threadRecipient = bob,
       groupId = groupId,
       receivedTime = 200
@@ -299,7 +300,7 @@ class DataMessageProcessorTest_polls {
       groupId = groupId,
       receivedTime = 0,
       context = ApplicationProvider.getApplicationContext(),
-      metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId())
+      metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId(), CiphertextMessage.WHISPER_TYPE)
     )
   }
 
