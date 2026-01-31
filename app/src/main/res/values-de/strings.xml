@@ -9096,7 +9096,7 @@
     <!-- Title asking user how their call was -->
     <string name="CallQualitySheet__how_was_your_call">Wie war dein Anruf?</string>
     <!-- Subtitle explaining that feedback helps improve Signal and no PII is stored -->
-    <string name="CallQualitySheet__how_was_your_call_subtitle">Das hilft uns, Anrufe in Signal zu verbessern. Es werden keine personenbezogenen Daten gespeichert.</string>
+    <string name="CallQualitySheet__how_was_your_call_subtitle">Deine Rückmeldung hilft uns, Anrufe in Signal zu verbessern. Es werden keine personenbezogenen Daten gespeichert.</string>
     <!-- Button label indicating the call had issues -->
     <string name="CallQualitySheet__had_issues">Gab Probleme</string>
     <!-- Button label indicating the call was great -->
@@ -9114,7 +9114,7 @@
     <!-- First part of description explaining diagnostics help improve call quality -->
     <string name="CallQualitySheet__help_us_improve_description_prefix">Bei der Übermittlung werden dein Feedback und</string>
     <!-- Clickable text to launch diagnostic fragment -->
-    <string name="CallQualitySheet__diagnostic_information_about_your_call">Diagnose-Informationen zu deinem Anruf weitergegeben</string>
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">Diagnose-Informationen zu deinem Anruf an uns gesendet</string>
     <!-- End of description explaining diagnostics help improve call quality -->
     <string name="CallQualitySheet__help_us_improve_description_suffix">Du kannst optional ein Diagnoseprotokoll mit uns teilen, um uns dabei zu helfen, die Anrufqualität zu verbessern.</string>
     <!-- Text explaining the debug log -->

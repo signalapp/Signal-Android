@@ -2663,7 +2663,7 @@
     <string name="RegistrationActivity_play_services_error">Play مۇلازىمەتلىرى خاتالىقى</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play مۇلازىمەتلىرى يېڭىلىنىۋاتىدۇ ياكى ئۇلارنى ۋاقىتلىق ئىشلەتكىلى بولمايدۇ. سەل تۇرۇپ قايتا سىناڭ.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
+    <string name="RegistrationActivity_terms_and_privacy">Signal پايدا ئالمايدىغان تەشكىلات \n شەرتلەر ۋە مەخپىيەتلىك سىياسىتى</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">دوستلىرىڭىز بىلەن ئالاقە قىلىش ۋە ئۇلارغا ئۇچۇر يوللاش ئۈچۈن Signal ئالاقىداشلار ۋە مېدىيا ھوقۇقىنى تەلەپ قىلىدۇ. ئالاقىداشلىرىڭىز Signal نىڭ «شەخسىي ئالاقىداشلارنى بايقاش» ئىقتىدارى ئارقىلىق يۈكلەنگەن بولۇپ، ئۇلار تېرمىنالدىن تېرمىنالغا مەخپىيەلەشتۈرۈلگەن، Signal مۇلازىمىتى ئۇلارنى كۆرەلمەيدۇ.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">دوستلىرىڭىز بىلەن ئۇلىنىش ئۈچۈن Signal ئالاقىداشلار ھوقۇقىنى تەلەپ قىلىدۇ. ئالاقىداشلىرىڭىز Signal نىڭ «شەخسىي ئالاقىداشلارنى بايقاش» ئىقتىدارى ئارقىلىق يۈكلەنگەن بولۇپ، ئۇلار تېرمىنالدىن تېرمىنالغا مەخپىيەلەشتۈرۈلگەن، Signal مۇلازىمىتى ئۇلارنى كۆرەلمەيدۇ.</string>
     <string name="RegistrationActivity_rate_limited_to_service">سىز بۇ نومۇرنى تىزىملىتىشقا بەك كۆپ قېتىم ئۇرۇندىڭىز. كېيىنرەك قايتا سىناڭ.</string>
@@ -3706,31 +3706,31 @@
     <string name="verify_display_fragment__mark_as_verified">دەلىللەندى بەلگىسى سال</string>
     <string name="verify_display_fragment__clear_verification">دەلىللەشنى تازىلا</string>
     <!-- Header title for automatic key verification -->
-    <string name="verify_display_fragment__automatic">Automatic Key Verification</string>
+    <string name="verify_display_fragment__automatic">ئاپتوماتىك ئاچقۇچ دەلىللەش</string>
     <!-- Button text to verify automatically    -->
-    <string name="verify_display_fragment__verify_automatic">Verify automatically</string>
+    <string name="verify_display_fragment__verify_automatic">ئاپتوماتىك دەلىللەش</string>
     <!-- Loading text when verifying -->
-    <string name="verify_display_fragment__verifying">Verifying encryption…</string>
+    <string name="verify_display_fragment__verifying">شىفىرلاشتۇرۇش دەلىللەنمەكتە…</string>
     <!-- Success text shown when encryption is verified -->
-    <string name="verify_display_fragment__encryption_verified">Encryption verified</string>
+    <string name="verify_display_fragment__encryption_verified">شىفىرلاشتۇرۇش دەلىللەندى</string>
     <!-- Text shown when verification fails -->
-    <string name="verify_display_fragment__encryption_unavailable">Auto-verification unavailable</string>
+    <string name="verify_display_fragment__encryption_unavailable">ئاپتوماتىك دەلىللەشنى ئىشلەتكىلى بولمايدۇ</string>
     <!-- Caption text explaining more about automatic verification   -->
-    <string name="verify_display_fragment__auto_verify_not_available">Auto-verification is not available for all chats.</string>
+    <string name="verify_display_fragment__auto_verify_not_available">ئاپتوماتىك دەلىللەشنى ھېچقانداق پاراڭغا ئىشلەتكىلى بولمايدۇ.</string>
   <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://signal.org/redirect/safety-numbers</string> -->
 
     <!-- Bottom sheet title when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_success">Encryption was auto-verified for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_success">بۇ سۆھبەت ئۈچۈن شىفىرلاشتۇرۇش ئاپتوماتىك دەلىللەندى</string>
     <!-- Bottom sheet body when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_success">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_success">تېلېفون نومۇرى ئارقىلىق باغلانغان ئالاقىلاشقۇچىلىرىڭىز ئۈچۈن، Signal، ئاچقۇچ ئاشكارىلىقى دەپ ئاتىلىدىغان جەريان ئارقىلىق ئۇلىنىشنىڭ بىخەتەر ياكى ئەمەسلىكىنى ئاپتوماتىك جەزملەشتۈرەلەيدۇ. بىخەتەرلىكنى ئاشۇرۇش ئۈچۈن، ئالدىنقى ئېكراندىكى سانلارنى سېلىشتۇرۇش ياكى ئۇلارنىڭ ئۈسكۈنىسىدىكى كودنى سىكانىرلاش ئارقىلىق ئاخىرغىچە شىفىرلاشنى قولدا دەلىللەڭ.</string>
     <!-- Bottom sheet title when encryption is no longer auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Auto-verification is no longer available for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">بۇ سۆھبەت ئۈچۈن ئاپتوماتىك دەلىللەشنى ئەمدى ئىشلەتكىلى بولمايدۇ</string>
     <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
-    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal can no longer automatically verify the encryption for this chat. This is likely because %1$s changed their phone number. Verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal ئەمدى بۇ سۆھبەتنىڭ شىفىرلاشتۇرۇلىشىنى ئاپتوماتىك دەلىللىيەلمەيدۇ. بۇنىڭ سەۋەبى %1$s نىڭ تېلېفون نومۇرىنى ئۆزگەرتكەنلىكى بولۇشى مۇمكىن. ئالدىنقى ئېكراندىكى نۇمۇرلارنى سېلىشتۇرۇش ياكى ئۈسكۈنىدىكى كودنى سىكانىرلاش ئارقىلىق ئاخىرغىچە شىفىرلاشتۇرۇشنى قولدا دەلىللەڭ.</string>
     <!-- Bottom sheet title when encryption cannot be auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_unavailable">Auto-verification not available for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_unavailable">بۇ سۆھبەت ئۈچۈن ئاپتوماتىك دەلىللەشنى ئىشلەتكىلى بولمايدۇ</string>
     <!-- Bottom sheet body when encryption cannot be auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_unavailable">Signal can only automatically verify the encryption in chats where you’re connected to someone via a phone number. If the chat was started with a username or a group in common, verify end-to-end encryption by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_unavailable">Signal پەقەت تېلېفون نومۇرى ئارقىلىق بىرەيلەن بىلەن باغلىنىشلىق بولغان پاراڭلاردىلا شىفىرلاشتۇرۇشنى ئاپتوماتىك دەلىللىيەلەيدۇ. ئەگەر پاراڭ، ئىشلەتكۈچى نامى ياكى ئورتاق بىر گۇرۇپپىدىكى بىىرى بىلەن باشلانغان بولسا، ئالدىنقى ئېكراندىكى سانلارنى سېلىشتۇرۇش ياكى ئۇلارنىڭ ئۈسكۈنىسىدىكى كودنى سىكانىرلاش ئارقىلىق ئاخىرغىچە شىفىرلاشتۇرۇشنى دەلىللەڭ.</string>
 
     <!-- Title for auto verification education sheet -->
     <string name="VerifyAutomaticallyEducationSheet__title">Signal ھازىر ئاخىرىغىچە شىفىرلاشتۇرۇشنى ئاپتوماتىك دەلىللەيدۇ</string>
@@ -5684,7 +5684,7 @@
     <string name="HelpFragment__copyright_signal_messenger">‫Signal Messenger نەشر ھوقۇقىغا ئىگە</string>
     <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 غا ئ‍اساسەن ئىجازەت قىلىنغان</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal پايدا ئالمايدىغان بىر تەشكىلات</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">ۋاسىتە سۈپىتى</string>
@@ -6091,15 +6091,15 @@
     <string name="Subscription__expires_s">مۇددىتى %1$s</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">As an independent nonprofit, Signal is committed to private messaging and calls. No ads, no trackers, no surveillance. Donate today to support Signal.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">مۇستەقىل پايدا ئالمايدىغان تەشكىلات بولۇش سۈپىتى بىلەن، Signal شەخسىي ئۇچۇر ۋە تېلېفونلىشىشقا كاپالەتلىك قىلىدۇ. ئېلان، ئىز قوغلاش، نازارەت قىلىنىشتىن خالىي. Signalنى قوللاش ئۈچۈن بۈگۈنلا ئىئانە قىلىڭ.</string>
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Get an optional badge on your profile when you donate</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">ئىئانە قىلىش ئارقىلىق قوشۇمچە بىر ئىزنەك تاپشۇرۇۋالىسىز</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">Your privacy is our mission</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">سىزنىڭ مەخپىيەتلىكىڭىزنى قوغداش بىزنىڭ ۋەزىپىمىز</string>
     <!-- Fourth small text blurb on learn more sheet. Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit. US donations are tax deductible.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal پايدا ئالمايدىغان بىر تەشكىلات. Signal پايدا ئالمايدىغان بىر تەشكىلات.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">قوللىغانلىقىڭىزغا رەھمەت!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -7110,11 +7110,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Proudly Nonprofit</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">پايدا ئالمايدىغان تەشكىلات بولغانلىقىمىزدىن پەخىرلىنىمىز</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">داۋاملاشتۇر</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Donate to support private messaging. Keep Signal independent and ad-free.</string>
+    <string name="DonateToSignalFragment__private_messaging">شەخسىي ئۇچۇرلىشىشنى قوللاش ئۈچۈن ئىئانە قىلىڭ. Signalنى مۇستەقىل ۋە ئېلاندىن خالىي قىلىشقا ياردەملىشىڭ.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">بىر ئىئانىڭىز بىر تەرەپ قىلىنىۋاتىدۇ</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7932,13 +7932,13 @@
     <string name="BackupStatus__resume">ئەسلىگە كەلتۈرۈش</string>
 
     <!-- Status subtitle for banner when we are creating a backup file -->
-    <string name="BackupStatus__status_creating_backup">Creating backup…</string>
+    <string name="BackupStatus__status_creating_backup">زاپاسلاش قۇرۇلۇۋاتىدۇ…</string>
     <!-- Status title for banner when user is actively uploading backup data -->
-    <string name="BackupStatus__uploading_backup">Uploading backup</string>
+    <string name="BackupStatus__uploading_backup">زاپاسنى يۈكلەۋاتىدۇ</string>
     <!-- Status title for banner when user is temporarily unable to upload a backup -->
-    <string name="BackupStatus__upload_paused">Backup paused</string>
+    <string name="BackupStatus__upload_paused">زاپاسلاش توختىتىلدى</string>
     <!-- Status title for banner when user has finished creating a backup -->
-    <string name="BackupStatus__upload_complete">Backup complete</string>
+    <string name="BackupStatus__upload_complete">زاپاسلاش تاماملاندى</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi نى ساقلاۋاتىدۇ…</string>
@@ -7995,13 +7995,13 @@
     <string name="ResumeRestoreCellular_resume_using_cellular_message">مېدىيانى ئەسلىگە كەلتۈرۈش ئۈچۈن يانفۇنىڭىزنىڭ ئېقىمىنى ئشلەتسىڭىزھەق ئېلىنىشى مۇمكىن. ئاپتوماتىك ئەسلىگە كېلىشى ئۈچۈن Wi-Fi تورىغا ئۇلاڭ.</string>
 
     <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
-    <string name="CancelBackupDialog_title">Cancel backup?</string>
+    <string name="CancelBackupDialog_title">زاپاسلاشنى ئەمەلدىن قالدۇرامسىز؟</string>
     <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
-    <string name="CancelBackupDialog_body">Canceling your backup will not delete your backup. You can resume your backup at any time from Backup Settings.</string>
+    <string name="CancelBackupDialog_body">زاپاسلاشنى بىكار قىلسىڭىز، زاپىسىڭىز ئۆچۈرۈلمەيدۇ. زاپاسلاش تەڭشەكلىرىدىن زاپاسلاشنى خالىغان ۋاقىتتا داۋاملاشتۇرالايسىز.</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
     <string name="CancelBackupDialog_cancel_action">زاپاسلاشنى ئەمەلدىن قالدۇرۇش</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
-    <string name="CancelBackupDialog_continue_action">Continue backup</string>
+    <string name="CancelBackupDialog_continue_action">زاپاسلاشنى داۋاملاشتۇرۇش</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
