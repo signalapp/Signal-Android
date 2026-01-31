@@ -226,7 +226,7 @@ def compare_resources_arsc(first_entry_bytes: bytes, second_entry_bytes: bytes) 
             pkg1 = packages1[i]
             pkg2 = packages2[i]
 
-            if type(pkg1) != type(pkg2):
+            if type(pkg1) is not type(pkg2):
                 print(f"Element type mismatch at index {i}: {type(pkg1).__name__} vs {type(pkg2).__name__}")
                 success = False
                 continue
