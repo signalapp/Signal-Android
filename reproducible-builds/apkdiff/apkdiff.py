@@ -134,11 +134,11 @@ def compare_android_xml(bytes1: bytes, bytes2: bytes) -> bool:
     bad_differences = []
 
     for diff in all_differences:
-        is_split_attr = diff.diff_type == "attribute" and diff.path in ["manifest", "manifest/application"] and "split" in diff.attribute_name.lower()
+        is_split_attr = diff.diff_type == "attribute" and diff.path in ["manifest", "manifest/application"] and diff.attribute_name is not None and "split" in diff.attribute_name.lower()
         is_meta_attr = diff.diff_type == "attribute" and diff.path == "manifest/application/meta-data"
         is_meta_child_count = diff.diff_type == "child_count" and diff.child_tag == "meta-data"
 
-        if not is_split_attr and not is_meta_attr and not is_meta_child_count and not is_meta_attr:
+        if not is_split_attr and not is_meta_attr and not is_meta_child_count:
             bad_differences.append(diff)
 
     if bad_differences:
@@ -286,7 +286,7 @@ def compare_xml(bytes1: bytes, bytes2: bytes) -> list[XmlDifference]:
     entry_text_2 = printer.get_xml().decode("utf-8")
 
     if entry_text_1 == entry_text_2:
-        return True
+        return []
 
     root1 = ET.fromstring(entry_text_1)
     root2 = ET.fromstring(entry_text_2)
@@ -329,11 +329,11 @@ def compare_xml_elements(elem1: Element, elem2: Element, path: str = "") -> list
     children2 = list(elem2)
 
     # Try to match children by tag name for comparison
-    children1_by_tag = {}
+    children1_by_tag: dict[str, list[Element]] = {}
     for child in children1:
         children1_by_tag.setdefault(child.tag, []).append(child)
 
-    children2_by_tag = {}
+    children2_by_tag: dict[str, list[Element]] = {}
     for child in children2:
         children2_by_tag.setdefault(child.tag, []).append(child)
 
