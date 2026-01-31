@@ -56,7 +56,10 @@ def compare(apk1, apk2) -> bool:
     zip1 = ZipFile(apk1, "r")
     zip2 = ZipFile(apk2, "r")
 
-    return compare_entry_names(zip1, zip2) and compare_entry_contents(zip1, zip2) == True
+    entry_names = compare_entry_names(zip1, zip2)
+    entry_contents = compare_entry_contents(zip1, zip2)
+
+    return entry_names and entry_contents
 
 
 def compare_entry_names(zip1: ZipFile, zip2: ZipFile) -> bool:
@@ -70,15 +73,34 @@ def compare_entry_names(zip1: ZipFile, zip2: ZipFile) -> bool:
         while ignoreFile in name_list_sorted_2:
             name_list_sorted_2.remove(ignoreFile)
 
+    success = True
     if len(name_list_sorted_1) != len(name_list_sorted_2):
-        print("Manifest lengths differ!")
+        print(f"Manifest lengths differ! {len(name_list_sorted_1)} vs {len(name_list_sorted_2)}")
+        success = False
 
-    for entry_name_1, entry_name_2 in zip(name_list_sorted_1, name_list_sorted_2):
-        if entry_name_1 != entry_name_2:
-            print("Sorted manifests don't match, %s vs %s" % (entry_name_1, entry_name_2))
-            return False
+    only_in_first = sorted(list(set(name_list_sorted_1) - set(name_list_sorted_2)))
+    only_in_second = sorted(list(set(name_list_sorted_2) - set(name_list_sorted_1)))
 
-    return True
+    if only_in_first:
+        print(f"Files present only in {zip1.filename}:")
+        for name in only_in_first:
+            print(f"  - {name}")
+        success = False
+
+    if only_in_second:
+        print(f"Files present only in {zip2.filename}:")
+        for name in only_in_second:
+            print(f"  - {name}")
+        success = False
+
+    # If sets are identical but ordering differs, still report ordering mismatches
+    if success:
+        for entry_name_1, entry_name_2 in zip(name_list_sorted_1, name_list_sorted_2):
+            if entry_name_1 != entry_name_2:
+                print(f"Sorted manifests don't match: {entry_name_1} vs {entry_name_2}")
+                success = False
+
+    return success
 
 
 def compare_entry_contents(zip1: ZipFile, zip2: ZipFile) -> bool:
@@ -86,11 +108,11 @@ def compare_entry_contents(zip1: ZipFile, zip2: ZipFile) -> bool:
     info_list_1 = list(filter(lambda info: info.filename not in IGNORE_FILES, zip1.infolist()))
     info_list_2 = list(filter(lambda info: info.filename not in IGNORE_FILES, zip2.infolist()))
 
-    if len(info_list_1) != len(info_list_2):
-        print("APK info lists of different length!")
-        return False
-
     success = True
+    if len(info_list_1) != len(info_list_2):
+        print(f"APK info lists of different length! {len(info_list_1)} vs {len(info_list_2)}")
+        success = False
+
     for entry_info_1 in info_list_1:
         for entry_info_2 in list(info_list_2):
             if entry_info_1.filename == entry_info_2.filename:
