@@ -86,6 +86,7 @@ include(":lib:spinner")
 include(":lib:video")
 include(":lib:image-editor")
 include(":lib:debuglogs-viewer")
+include(":lib:blurhash")
 
 // Feature modules
 include(":feature:registration")

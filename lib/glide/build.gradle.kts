@@ -14,6 +14,7 @@ android {
 
 dependencies {
   implementation(project(":core:util"))
+  implementation(project(":lib:blurhash"))
 
   api(libs.glide.glide)
   ksp(libs.glide.ksp)

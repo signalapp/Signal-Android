@@ -1,4 +1,9 @@
-package org.thoughtcrime.securesms.blurhash;
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.glide.blurhash;
 
 import androidx.annotation.NonNull;
 
@@ -10,6 +15,8 @@ import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 import com.bumptech.glide.signature.ObjectKey;
+
+import org.signal.blurhash.BlurHash;
 
 public final class BlurHashModelLoader implements ModelLoader<BlurHash, BlurHash> {
 

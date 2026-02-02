@@ -10,14 +10,12 @@ import kotlin.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.blurhash.BlurHash;
+import org.signal.blurhash.BlurHash;
 import org.signal.core.models.media.TransformProperties;
-import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
-import java.util.Optional;
 
 /**
  * SlideFactory encapsulates logic related to constructing slides from a set of paramaeters as defined

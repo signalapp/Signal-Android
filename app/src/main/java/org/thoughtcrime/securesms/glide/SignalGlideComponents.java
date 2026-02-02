@@ -16,14 +16,14 @@ import com.bumptech.glide.load.resource.gif.ByteBufferGifDecoder;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.load.resource.gif.StreamGifDecoder;
 
+import org.signal.blurhash.BlurHash;
+import org.signal.glide.blurhash.BlurHashModelLoader;
+import org.signal.glide.blurhash.BlurHashResourceDecoder;
 import org.signal.glide.common.io.InputStreamFactory;
 import org.signal.glide.load.resource.apng.decode.APNGDecoder;
 import org.thoughtcrime.securesms.badges.load.BadgeLoader;
 import org.thoughtcrime.securesms.badges.load.GiftBadgeModel;
 import org.thoughtcrime.securesms.badges.models.Badge;
-import org.thoughtcrime.securesms.blurhash.BlurHash;
-import org.thoughtcrime.securesms.blurhash.BlurHashModelLoader;
-import org.thoughtcrime.securesms.blurhash.BlurHashResourceDecoder;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoLoader;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;

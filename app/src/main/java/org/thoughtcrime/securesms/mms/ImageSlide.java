@@ -24,11 +24,11 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.blurhash.BlurHash;
+import org.signal.core.models.media.TransformProperties;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.blurhash.BlurHash;
-import org.signal.core.models.media.TransformProperties;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class ImageSlide extends Slide {

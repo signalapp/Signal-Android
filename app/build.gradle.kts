@@ -532,6 +532,7 @@ dependencies {
   implementation(project(":lib:qr"))
   implementation(project(":lib:sticky-header-grid"))
   implementation(project(":lib:photoview"))
+  implementation(project(":lib:blurhash"))
   implementation(project(":core:ui"))
   implementation(project(":core:models"))
   implementation(project(":core:models-jvm"))

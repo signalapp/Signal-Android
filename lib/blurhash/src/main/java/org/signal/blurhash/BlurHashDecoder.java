@@ -18,20 +18,20 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.thoughtcrime.securesms.blurhash;
+package org.signal.blurhash;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
 import androidx.annotation.Nullable;
 
-import static org.thoughtcrime.securesms.blurhash.BlurHashUtil.linearTosRGB;
-import static org.thoughtcrime.securesms.blurhash.BlurHashUtil.sRGBToLinear;
-import static org.thoughtcrime.securesms.blurhash.BlurHashUtil.signPow;
+import static org.signal.blurhash.BlurHashUtil.linearTosRGB;
+import static org.signal.blurhash.BlurHashUtil.sRGBToLinear;
+import static org.signal.blurhash.BlurHashUtil.signPow;
 
-class BlurHashDecoder {
+public class BlurHashDecoder {
 
-  static @Nullable Bitmap decode(@Nullable String blurHash, int width, int height) {
+  public static @Nullable Bitmap decode(@Nullable String blurHash, int width, int height) {
     return decode(blurHash, width, height, 1f);
   }
 

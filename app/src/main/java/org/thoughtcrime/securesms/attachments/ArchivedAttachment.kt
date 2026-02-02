@@ -7,8 +7,8 @@ package org.thoughtcrime.securesms.attachments
 
 import android.net.Uri
 import android.os.Parcel
+import org.signal.blurhash.BlurHash
 import org.signal.core.util.Base64
-import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import java.util.UUID
