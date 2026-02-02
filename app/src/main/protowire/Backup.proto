@@ -134,6 +134,7 @@ message AccountData {
     AppTheme appTheme = 28;  // If unset, treat the same as "Unknown" case
     CallsUseLessDataSetting callsUseLessDataSetting = 29;  // If unset, treat the same as "Unknown" case
     bool allowSealedSenderFromAnyone = 30;
+    bool allowAutomaticKeyVerification = 31;
   }
 
   message SubscriberData {
@@ -180,6 +181,7 @@ message AccountData {
   AndroidSpecificSettings androidSpecificSettings = 12;
   string bioText = 13;
   string bioEmoji = 14;
+  optional bytes keyTransparencyData = 15;
 }
 
 message Recipient {
@@ -268,6 +270,7 @@ message Contact {
   string systemFamilyName = 19;
   string systemNickname = 20;
   optional AvatarColor avatarColor = 21;
+  optional bytes keyTransparencyData = 22;
 }
 
 message Group {
