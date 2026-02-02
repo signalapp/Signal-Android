@@ -47,7 +47,6 @@ import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.backup.phrase.ClearClipboardAlarmReceiver;
 
@@ -140,10 +139,6 @@ public class Util {
     }
 
     return out.toString();
-  }
-
-  public static boolean isEmpty(ComposeText value) {
-    return value == null || value.getText() == null || TextUtils.isEmpty(value.getTextTrimmed());
   }
 
   public static boolean isEmpty(Collection<?> collection) {
