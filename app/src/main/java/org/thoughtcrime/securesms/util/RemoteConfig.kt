@@ -786,7 +786,7 @@ object RemoteConfig {
 
   /** A comma-separated list of manufacturers that should *not* use CameraX.  */
   val cameraXModelBlocklist: String by remoteString(
-    key = "android.cameraXModelBlockList",
+    key = "android.cameraXModelBlockList.2",
     defaultValue = "",
     hotSwappable = true
   )
