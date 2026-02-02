@@ -264,3 +264,7 @@ message CallQualitySurveySubmissionJobData {
   org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest request = 1;
   bool includeDebugLogs = 2;
 }
+
+message CheckKeyTransparencyJobData{
+  bool showFailure = 1;
+}

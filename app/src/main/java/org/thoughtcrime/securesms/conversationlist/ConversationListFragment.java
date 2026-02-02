@@ -161,8 +161,8 @@ import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
-import org.thoughtcrime.securesms.components.SignalProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
+import org.thoughtcrime.securesms.verify.SelfVerificationFailureSheet;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.window.WindowSizeClassExtensionsKt;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
@@ -400,6 +400,12 @@ public class ConversationListFragment extends MainFragment implements Conversati
     String query = contactSearchMediator.getFilter();
     if (query != null) {
       onSearchQueryUpdated(query);
+    }
+
+    if (SignalStore.settings().getAutomaticVerificationEnabled() &&
+        SignalStore.misc().getHasKeyTransparencyFailure() &&
+        !SignalStore.misc().getHasSeenKeyTransparencyFailure()) {
+      SelfVerificationFailureSheet.show(getParentFragmentManager());
     }
 
     RatingManager.showRatingDialogIfNecessary(requireContext());

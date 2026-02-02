@@ -31,15 +31,14 @@ object VerifySafetyNumberRepository {
     val aci = recipient.requireAci().libSignalAci
     val e164 = recipient.requireE164()
     val unidentifiedAccessKey = ProfileKeyUtil.profileKeyOrNull(recipient.profileKey).let { UnidentifiedAccess.deriveAccessKeyFrom(it) }
-    val monitorMode = if (recipient.isSelf) KeyTransparency.MonitorMode.SELF else KeyTransparency.MonitorMode.OTHER
     val firstSearch = recipient.keyTransparencyData == null
 
     val result = if (firstSearch) {
       Log.i(TAG, "First search in key transparency")
-      SignalNetwork.keyTransparency.search(aci, aciIdentityKey, e164, unidentifiedAccessKey, KeyTransparencyStore)
+      SignalNetwork.keyTransparency.search(aci, aciIdentityKey, e164, unidentifiedAccessKey, usernameHash = null, KeyTransparencyStore)
     } else {
       Log.i(TAG, "Monitoring search in key transparency")
-      SignalNetwork.keyTransparency.monitor(monitorMode, aci, aciIdentityKey, e164, unidentifiedAccessKey, KeyTransparencyStore)
+      SignalNetwork.keyTransparency.monitor(KeyTransparency.MonitorMode.OTHER, aci, aciIdentityKey, e164, unidentifiedAccessKey, usernameHash = null, KeyTransparencyStore)
     }
 
     Log.i(TAG, "Key transparency complete, result: $result")

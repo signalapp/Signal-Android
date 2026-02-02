@@ -26,9 +26,9 @@ class KeyTransparencyApi(private val unauthWebSocket: SignalWebSocket.Unauthenti
   /**
    * Uses KT to verify recipient. This is an unauthenticated and should only be called the first time KT is being requested for this recipient.
    */
-  suspend fun search(aci: ServiceId.Aci, aciIdentityKey: IdentityKey, e164: String, unidentifiedAccessKey: ByteArray, keyTransparencyStore: KeyTransparencyStore): RequestResult<Unit, KeyTransparencyError> {
+  suspend fun search(aci: ServiceId.Aci, aciIdentityKey: IdentityKey, e164: String?, unidentifiedAccessKey: ByteArray?, usernameHash: ByteArray?, keyTransparencyStore: KeyTransparencyStore): RequestResult<Unit, KeyTransparencyError> {
     return unauthWebSocket.runCatchingWithUnauthChatConnection { chatConnection ->
-      chatConnection.keyTransparencyClient().search(aci, aciIdentityKey, e164, unidentifiedAccessKey, null, keyTransparencyStore)
+      chatConnection.keyTransparencyClient().search(aci, aciIdentityKey, e164, unidentifiedAccessKey, usernameHash, keyTransparencyStore)
         .mapWithCancellation(
           onSuccess = { RequestResult.Success(Unit) },
           onError = { throwable ->
@@ -60,9 +60,9 @@ class KeyTransparencyApi(private val unauthWebSocket: SignalWebSocket.Unauthenti
   /**
    * Monitors KT to verify recipient. This is an unauthenticated and should only be called following a successful [search].
    */
-  suspend fun monitor(monitorMode: KeyTransparency.MonitorMode, aci: ServiceId.Aci, aciIdentityKey: IdentityKey, e164: String, unidentifiedAccessKey: ByteArray, keyTransparencyStore: KeyTransparencyStore): RequestResult<Unit, KeyTransparencyError> {
+  suspend fun monitor(monitorMode: KeyTransparency.MonitorMode, aci: ServiceId.Aci, aciIdentityKey: IdentityKey, e164: String?, unidentifiedAccessKey: ByteArray?, usernameHash: ByteArray?, keyTransparencyStore: KeyTransparencyStore): RequestResult<Unit, KeyTransparencyError> {
     return unauthWebSocket.runCatchingWithUnauthChatConnection { chatConnection ->
-      chatConnection.keyTransparencyClient().monitor(monitorMode, aci, aciIdentityKey, e164, unidentifiedAccessKey, null, keyTransparencyStore)
+      chatConnection.keyTransparencyClient().monitor(monitorMode, aci, aciIdentityKey, e164, unidentifiedAccessKey, usernameHash, keyTransparencyStore)
         .mapWithCancellation(
           onSuccess = { RequestResult.Success(Unit) },
           onError = { throwable ->
