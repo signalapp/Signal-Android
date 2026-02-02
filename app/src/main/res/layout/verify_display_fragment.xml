@@ -72,49 +72,55 @@
                 android:layout_marginVertical="12dp"
                 android:text="@string/verify_display_fragment__automatic" />
 
-            <LinearLayout
-                android:id="@+id/auto_verify_container"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/rounded_rectangle_38"
-                android:backgroundTint="@color/signal_colorSurface1"
-                android:paddingVertical="16dp"
-                android:paddingHorizontal="20dp"
-                android:gravity="center_vertical"
-                android:layout_marginHorizontal="16dp"
-                android:orientation="horizontal">
+                android:backgroundTint="@color/signal_colorSurface1" >
 
-                <ProgressBar
-                    android:id="@+id/auto_verify_spinner"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:indeterminate="true"
-                    android:indeterminateTint="@color/signal_colorOutline"
-                    android:visibility="visible" />
-
-                <ImageView
-                    android:id="@+id/auto_verify_icon"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/auto_verify_container"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/symbol_key_24" />
+                    android:paddingVertical="16dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginHorizontal="16dp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/auto_verify_text"
-                    style="@style/Signal.Text.BodyLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="@string/verify_display_fragment__verify_automatic" />
+                    <ProgressBar
+                        android:id="@+id/auto_verify_spinner"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/signal_colorOutline"
+                        android:visibility="visible" />
 
-                <ImageView
-                    android:id="@+id/auto_verify_more"
-                    android:src="@drawable/symbol_chevron_right_compact_bold_16"
-                    android:layout_marginStart="2dp"
-                    app:tint="@color/signal_colorOutline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/auto_verify_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/symbol_key_24" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/auto_verify_text"
+                        style="@style/Signal.Text.BodyLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/verify_display_fragment__verify_automatic" />
+
+                    <ImageView
+                        android:id="@+id/auto_verify_more"
+                        android:src="@drawable/symbol_chevron_right_compact_bold_16"
+                        android:layout_marginStart="2dp"
+                        app:tint="@color/signal_colorOutline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </FrameLayout>
 
             <org.thoughtcrime.securesms.util.views.LearnMoreTextView
                 android:id="@+id/caption"

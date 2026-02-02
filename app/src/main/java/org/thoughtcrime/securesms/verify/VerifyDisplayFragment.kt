@@ -92,7 +92,7 @@ class VerifyDisplayFragment : Fragment() {
       } else {
         binding.autoVerifyContainer.setOnClickListener(null)
       }
-      updateStatus(status)
+      animateStatus(status)
     }
 
     viewModel.recipient.observe(this) { recipient: Recipient -> setRecipientText(recipient) }
@@ -116,6 +116,21 @@ class VerifyDisplayFragment : Fragment() {
       binding.safetyQrView.qrCodeContainer.setOnClickListener { v: View? -> callback!!.onQrCodeContainerClicked() }
       registerForContextMenu(binding.safetyQrView.numbersContainer)
     }
+  }
+
+  private fun animateStatus(status: AutomaticVerificationStatus) {
+    binding.autoVerifyContainer.animate()
+      .alpha(0f)
+      .setDuration(FADE_TIME)
+      .withEndAction {
+        updateStatus(status)
+
+        binding.autoVerifyContainer.animate()
+          .alpha(1f)
+          .setDuration(FADE_TIME)
+          .start()
+      }
+      .start()
   }
 
   private fun updateStatus(status: AutomaticVerificationStatus) {
@@ -333,6 +348,7 @@ class VerifyDisplayFragment : Fragment() {
     private const val LOCAL_IDENTITY = "local_identity"
     private const val LOCAL_NUMBER = "local_number"
     private const val VERIFIED_STATE = "verified_state"
+    private const val FADE_TIME = 250L
 
     fun create(
       recipientId: RecipientId,
