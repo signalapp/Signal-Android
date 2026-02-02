@@ -89,7 +89,15 @@ public final class ViewUtil {
     if (view.isFocused()) {
       view.post(() -> {
         InputMethodManager inputMethodManager = ServiceUtil.getInputMethodManager(view.getContext());
-        inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+        if (!inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)) {
+          /*
+           * Sometimes when animations are disabled, the [InputMethodManager] can end up in a bad state.
+           * To resolve this, we can just cycle the focus of the view.
+           */
+          view.clearFocus();
+          view.requestFocus();
+          inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+        }
       });
     }
   }
