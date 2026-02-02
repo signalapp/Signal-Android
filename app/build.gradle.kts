@@ -70,7 +70,9 @@ val selectableVariants = listOf(
   "playStagingInstrumentation",
   "playStagingRelease",
   "websiteProdSpinner",
-  "websiteProdRelease"
+  "websiteProdRelease",
+  "githubProdSpinner",
+  "githubProdRelease"
 )
 
 wire {
@@ -381,6 +383,13 @@ android {
       buildConfigField("String", "BUILD_DISTRIBUTION_TYPE", "\"website\"")
     }
 
+    create("github") {
+      dimension = "distribution"
+      buildConfigField("boolean", "MANAGES_APP_UPDATES", "false")
+      buildConfigField("String", "APK_UPDATE_MANIFEST_URL", "null")
+      buildConfigField("String", "BUILD_DISTRIBUTION_TYPE", "\"github\"")
+    }
+
     create("nightly") {
       dimension = "distribution"
       versionNameSuffix = "-nightly-untagged-${getGitHash()}"
@@ -461,7 +470,7 @@ android {
 
       // Starting with minSdk 23, Android leaves native libraries uncompressed, which is fine for the Play Store, but not for our self-distributed APKs.
       // This reverts it to the legacy behavior, compressing the native libraries, and drastically reducing the APK file size.
-      if (variant.name.contains("website", ignoreCase = true)) {
+      if (variant.name.contains("website", ignoreCase = true) || variant.name.contains("github", ignoreCase = true)) {
         variant.packaging.jniLibs.useLegacyPackaging.set(true)
       }
 
