@@ -663,7 +663,6 @@ class ConversationFragment :
     presentGroupConversationSubtitle(createGroupSubtitleString(viewModel.titleViewParticipantsSnapshot))
     presentActionBarMenu()
     presentStoryRing()
-    presentVerifyAutomaticallySheet()
 
     observeConversationThread()
 
@@ -1417,12 +1416,6 @@ class ConversationFragment :
     }
   }
 
-  private fun presentVerifyAutomaticallySheet() {
-    if (RemoteConfig.keyTransparency && SignalStore.settings.automaticVerificationEnabled && !SignalStore.uiHints.hasSeenVerifyAutomaticallySheet() && viewModel.recipientSnapshot?.isIndividual == true) {
-      VerifyAutomaticallyEducationSheet.show(parentFragmentManager)
-    }
-  }
-
   private fun presentInputReadyState(inputReadyState: InputReadyState) {
     presentConversationTitle(inputReadyState.conversationRecipient)
 
@@ -1453,6 +1446,17 @@ class ConversationFragment :
 
   private fun presentIdentityRecordsState(identityRecordsState: IdentityRecordsState) {
     binding.conversationTitleView.root.setVerified(identityRecordsState.isVerified)
+
+    if (RemoteConfig.internalUser && SignalStore.settings.automaticVerificationEnabled && !SignalStore.uiHints.hasSeenVerifyAutomaticallySheet() && viewModel.recipientSnapshot?.isIndividual == true) {
+      VerifyAutomaticallyEducationSheet.show(parentFragmentManager)
+
+      parentFragmentManager.setFragmentResultListener(VerifyAutomaticallyEducationSheet.RESULT_KEY, requireActivity()) { _, bundle ->
+        val shouldVerify = bundle.getBoolean(VerifyAutomaticallyEducationSheet.RESULT_KEY, false)
+        if (shouldVerify) {
+          VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireContext(), identityRecordsState.identityRecords.identityRecords.first())
+        }
+      }
+    }
 
     if (identityRecordsState.isUnverified) {
       binding.conversationBanner.showUnverifiedBanner(identityRecordsState.identityRecords)

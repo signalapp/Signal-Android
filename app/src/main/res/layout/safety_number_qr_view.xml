@@ -231,10 +231,11 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/verify_button"
         style="@style/Signal.Widget.Button.Base.Tonal"
-        android:backgroundTint="@color/signal_colorSurface1"
+        android:backgroundTint="@color/core_white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:textColor="@color/signal_light_colorOnSurface"
         android:text="@string/verify_display_fragment__mark_as_verified"
         app:layout_constraintTop_toBottomOf="@id/number_table"
         app:layout_constraintStart_toStartOf="parent"

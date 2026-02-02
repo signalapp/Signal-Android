@@ -18,7 +18,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.setFragmentResult
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
@@ -27,6 +29,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BottomSheetUtil
+import org.thoughtcrime.securesms.util.CommunicationActions
 
 /**
  * Education sheet explaining that conversations now have auto verification
@@ -36,6 +39,8 @@ class VerifyAutomaticallyEducationSheet : ComposeBottomSheetDialogFragment() {
   override val peekHeightPercentage: Float = 0.75f
 
   companion object {
+
+    const val RESULT_KEY = "verify_result_key"
 
     @JvmStatic
     fun show(fragmentManager: FragmentManager) {
@@ -51,8 +56,13 @@ class VerifyAutomaticallyEducationSheet : ComposeBottomSheetDialogFragment() {
   @Composable
   override fun SheetContent() {
     VerifyEducationSheet(
-      onVerify = {}, // TODO(michelle): Plug in to verify fragment
-      onLearnMore = {} // TODO(michelle): Update with support url
+      onVerify = {
+        setFragmentResult(RESULT_KEY, bundleOf(RESULT_KEY to true))
+        dismissAllowingStateLoss()
+      },
+      onLearnMore = {
+        CommunicationActions.openBrowserLink(requireContext(), getString(R.string.verify_display_fragment__link))
+      }
     )
   }
 }

@@ -75,7 +75,7 @@ class VerifyDisplayFragment : Fragment() {
 
     updateVerifyButton(requireArguments().getBoolean(VERIFIED_STATE, false), false)
 
-    binding.automaticVerification.visible = RemoteConfig.keyTransparency && SignalStore.settings.automaticVerificationEnabled
+    binding.automaticVerification.visible = RemoteConfig.internalUser && SignalStore.settings.automaticVerificationEnabled
     binding.safetyQrView.verifyButton.setOnClickListener { updateVerifyButton(!currentVerifiedState, true) }
     binding.toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
     binding.toolbar.setTitle(R.string.AndroidManifest__verify_safety_number)
@@ -119,18 +119,22 @@ class VerifyDisplayFragment : Fragment() {
   }
 
   private fun animateStatus(status: AutomaticVerificationStatus) {
-    binding.autoVerifyContainer.animate()
-      .alpha(0f)
-      .setDuration(FADE_TIME)
-      .withEndAction {
-        updateStatus(status)
+    if (status == AutomaticVerificationStatus.NONE || status == AutomaticVerificationStatus.UNAVAILABLE_PERMANENT) {
+      updateStatus(status)
+    } else {
+      binding.autoVerifyContainer.animate()
+        .alpha(0f)
+        .setDuration(FADE_TIME)
+        .withEndAction {
+          updateStatus(status)
 
-        binding.autoVerifyContainer.animate()
-          .alpha(1f)
-          .setDuration(FADE_TIME)
-          .start()
-      }
-      .start()
+          binding.autoVerifyContainer.animate()
+            .alpha(1f)
+            .setDuration(FADE_TIME)
+            .start()
+        }
+        .start()
+    }
   }
 
   private fun updateStatus(status: AutomaticVerificationStatus) {

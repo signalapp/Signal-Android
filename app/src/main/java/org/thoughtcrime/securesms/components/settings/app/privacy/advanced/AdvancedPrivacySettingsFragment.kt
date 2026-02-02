@@ -299,7 +299,7 @@ private fun AdvancedPrivacySettingsScreen(
         )
       }
 
-      if (RemoteConfig.keyTransparency) {
+      if (RemoteConfig.internalUser) {
         item {
           Dividers.Default()
         }

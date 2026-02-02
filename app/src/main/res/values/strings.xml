@@ -3848,7 +3848,7 @@
     <string name="verify_display_fragment__encryption_unavailable">Auto-verification unavailable</string>
     <!-- Caption text explaining more about automatic verification   -->
     <string name="verify_display_fragment__auto_verify_not_available">Auto-verification is not available for all chats.</string>
-    <string name="verify_display_fragment__link" translatable="false">https://signal.org/redirect/safety-numbers</string>
+    <string name="verify_display_fragment__link" translatable="false">https://support.signal.org/hc/articles/10223569377562</string>
 
     <!-- Bottom sheet title when encryption is auto-verified -->
     <string name="EncryptionVerifiedSheet__title_success">Encryption was auto-verified for this chat</string>

@@ -53,7 +53,7 @@ class VerifySafetyNumberViewModel(
   }
 
   private fun checkAutomaticVerificationEligibility() {
-    if (recipient.get().e164.isEmpty || recipient.get().aci.isEmpty) {
+    if (recipient.get().e164.isEmpty || recipient.get().aci.isEmpty || SignalStore.misc.hasKeyTransparencyFailure) {
       automaticVerificationLiveData.postValue(AutomaticVerificationStatus.UNAVAILABLE_PERMANENT)
     }
   }
