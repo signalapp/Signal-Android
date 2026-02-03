@@ -47,12 +47,13 @@ android {
 
     testOptions {
         managedDevices {
-            devices {
-                create("api31", ManagedVirtualDevice::class) {
+            localDevices {
+                create("api31") {
                     device = "Pixel 6"
+                    testedAbi = "x86_64"
                     apiLevel = 31
                     systemImageSource = "aosp"
-                    require64Bit = false
+                    require64Bit = true
                 }
             }
         }
