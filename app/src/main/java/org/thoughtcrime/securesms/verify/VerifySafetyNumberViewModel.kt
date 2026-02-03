@@ -20,6 +20,7 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.fingerprint.Fingerprint
 import org.signal.libsignal.protocol.fingerprint.NumericFingerprintGenerator
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -53,7 +54,11 @@ class VerifySafetyNumberViewModel(
   }
 
   private fun checkAutomaticVerificationEligibility() {
-    if (recipient.get().e164.isEmpty || recipient.get().aci.isEmpty || SignalStore.misc.hasKeyTransparencyFailure) {
+    if (recipient.get().e164.isEmpty ||
+      recipient.get().aci.isEmpty ||
+      ProfileKeyUtil.profileKeyOrNull(recipient.get().profileKey) == null ||
+      SignalStore.misc.hasKeyTransparencyFailure
+    ) {
       automaticVerificationLiveData.postValue(AutomaticVerificationStatus.UNAVAILABLE_PERMANENT)
     }
   }

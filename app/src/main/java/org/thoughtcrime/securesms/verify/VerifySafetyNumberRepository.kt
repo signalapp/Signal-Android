@@ -22,15 +22,18 @@ object VerifySafetyNumberRepository {
    * Given a recipient will try to verify via search (first time) or monitor (subsequent).
    */
   suspend fun verifyAutomatically(recipient: Recipient): VerifyResult {
-    if (recipient.aci.isEmpty || recipient.e164.isEmpty) {
+    val profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.profileKey)
+    val identityRecord = AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipient.id)
+
+    if (recipient.aci.isEmpty || recipient.e164.isEmpty || profileKey == null || identityRecord.isEmpty) {
+      Log.w(TAG, "Unable to verify automatically because of missing aci, e164, profile key, or identity record.")
       return VerifyResult.UnretryableFailure
     }
 
-    val identityRecord = AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipient.id)
     val aciIdentityKey = identityRecord.get().identityKey
     val aci = recipient.requireAci().libSignalAci
     val e164 = recipient.requireE164()
-    val unidentifiedAccessKey = ProfileKeyUtil.profileKeyOrNull(recipient.profileKey).let { UnidentifiedAccess.deriveAccessKeyFrom(it) }
+    val unidentifiedAccessKey = profileKey.let { UnidentifiedAccess.deriveAccessKeyFrom(it) }
     val firstSearch = recipient.keyTransparencyData == null
 
     val result = if (firstSearch) {
