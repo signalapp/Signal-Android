@@ -68,6 +68,9 @@ fun <T> GlideImage(
           }
           .into(imageView)
       },
+      onReset = {
+        Glide.with(it.context).clear(it)
+      },
       modifier = modifier
     )
   } else {

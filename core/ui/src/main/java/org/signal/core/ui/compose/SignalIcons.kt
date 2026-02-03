@@ -32,6 +32,7 @@ import org.signal.core.ui.R
  */
 enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   ArrowStart(icon(R.drawable.symbol_arrow_start_24)),
+  ArrowEnd(icon(R.drawable.symbol_arrow_end_24)),
   At(icon(R.drawable.symbol_at_24)),
   Backup(icon(R.drawable.symbol_backup_24)),
   Camera(icon(R.drawable.symbol_camera_24)),
@@ -40,6 +41,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   ChevronRight(icon(R.drawable.symbol_chevron_right_24)),
   Copy(icon(R.drawable.symbol_copy_android_24)),
   Edit(icon(R.drawable.symbol_edit_24)),
+  Emoji(icon(R.drawable.symbol_emoji_24)),
   ErrorCircle(icon(R.drawable.symbol_error_circle_fill_24)),
   FlashAuto(icon(R.drawable.symbol_flash_auto_24)),
   FlashOff(icon(R.drawable.symbol_flash_slash_24)),

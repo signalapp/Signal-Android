@@ -31,6 +31,14 @@ public interface CameraFragment {
     }
   }
 
+  static Class<? extends Fragment> getFragmentClass() {
+    if (CameraXUtil.isSupported()) {
+      return CameraXFragment.class;
+    } else {
+      return Camera1Fragment.class;
+    }
+  }
+
   @SuppressLint({ "RestrictedApi", "UnsafeOptInUsageError" })
   static Fragment newInstanceForAvatarCapture() {
     if (CameraXUtil.isSupported()) {

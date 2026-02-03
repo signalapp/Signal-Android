@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 
+import org.signal.core.util.ContentTypeUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -56,23 +57,23 @@ public class MediaUtil {
 
   private static final String TAG = Log.tag(MediaUtil.class);
 
-  public static final String IMAGE_PNG         = "image/png";
-  public static final String IMAGE_JPEG        = "image/jpeg";
-  public static final String IMAGE_HEIC        = "image/heic";
-  public static final String IMAGE_HEIF        = "image/heif";
-  public static final String IMAGE_AVIF        = "image/avif";
-  public static final String IMAGE_WEBP        = "image/webp";
-  public static final String IMAGE_GIF         = "image/gif";
-  public static final String AUDIO_AAC         = "audio/aac";
-  public static final String AUDIO_MP4         = "audio/mp4";
-  public static final String AUDIO_UNSPECIFIED = "audio/*";
-  public static final String VIDEO_MP4         = "video/mp4";
-  public static final String VIDEO_UNSPECIFIED = "video/*";
-  public static final String VCARD             = "text/x-vcard";
-  public static final String LONG_TEXT         = "text/x-signal-plain";
-  public static final String VIEW_ONCE         = "application/x-signal-view-once";
-  public static final String UNKNOWN           = "*/*";
-  public static final String OCTET             = "application/octet-stream";
+  public static final String IMAGE_PNG         = ContentTypeUtil.IMAGE_PNG;
+  public static final String IMAGE_JPEG        = ContentTypeUtil.IMAGE_JPEG;
+  public static final String IMAGE_HEIC        = ContentTypeUtil.IMAGE_HEIC;
+  public static final String IMAGE_HEIF        = ContentTypeUtil.IMAGE_HEIF;
+  public static final String IMAGE_AVIF        = ContentTypeUtil.IMAGE_AVIF;
+  public static final String IMAGE_WEBP        = ContentTypeUtil.IMAGE_WEBP;
+  public static final String IMAGE_GIF         = ContentTypeUtil.IMAGE_GIF;
+  public static final String AUDIO_AAC         = ContentTypeUtil.AUDIO_AAC;
+  public static final String AUDIO_MP4         = ContentTypeUtil.AUDIO_MP4;
+  public static final String AUDIO_UNSPECIFIED = ContentTypeUtil.AUDIO_UNSPECIFIED;
+  public static final String VIDEO_MP4         = ContentTypeUtil.VIDEO_MP4;
+  public static final String VIDEO_UNSPECIFIED = ContentTypeUtil.VIDEO_UNSPECIFIED;
+  public static final String VCARD             = ContentTypeUtil.VCARD;
+  public static final String LONG_TEXT         = ContentTypeUtil.LONG_TEXT;
+  public static final String VIEW_ONCE         = ContentTypeUtil.VIEW_ONCE;
+  public static final String UNKNOWN           = ContentTypeUtil.UNKNOWN;
+  public static final String OCTET             = ContentTypeUtil.OCTET;
 
   public static @NonNull SlideType getSlideTypeFromContentType(@Nullable String contentType) {
     if (isGif(contentType)) {
@@ -286,7 +287,7 @@ public class MediaUtil {
   }
 
   public static boolean isMms(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals("application/mms");
+    return ContentTypeUtil.isMms(contentType);
   }
 
   public static boolean isGif(Attachment attachment) {
@@ -318,39 +319,39 @@ public class MediaUtil {
   }
 
   public static boolean isVideo(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().startsWith("video/");
+    return ContentTypeUtil.isVideo(contentType);
   }
 
   public static boolean isVcard(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(VCARD);
+    return ContentTypeUtil.isVcard(contentType);
   }
 
   public static boolean isGif(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif");
+    return ContentTypeUtil.isGif(contentType);
   }
 
   public static boolean isJpegType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_JPEG);
+    return ContentTypeUtil.isJpegType(contentType);
   }
 
   public static boolean isHeicType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_HEIC);
+    return ContentTypeUtil.isHeicType(contentType);
   }
 
   public static boolean isHeifType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_HEIF);
+    return ContentTypeUtil.isHeifType(contentType);
   }
 
   public static boolean isAvifType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_AVIF);
+    return ContentTypeUtil.isAvifType(contentType);
   }
 
   public static boolean isWebpType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_WEBP);
+    return ContentTypeUtil.isWebpType(contentType);
   }
 
   public static boolean isPngType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_PNG);
+    return ContentTypeUtil.isPngType(contentType);
   }
 
   public static boolean isFile(Attachment attachment) {
@@ -358,7 +359,7 @@ public class MediaUtil {
   }
 
   public static boolean isTextType(String contentType) {
-    return (null != contentType) && contentType.startsWith("text/");
+    return ContentTypeUtil.isTextType(contentType);
   }
 
   public static boolean isNonGifVideo(Media media) {
@@ -366,62 +367,47 @@ public class MediaUtil {
   }
 
   public static boolean isImageType(String contentType) {
-    if (contentType == null) {
-      return false;
-    }
-
-    return (contentType.startsWith("image/") && !contentType.equals("image/svg+xml")) ||
-           contentType.equals(MediaStore.Images.Media.CONTENT_TYPE);
+    return ContentTypeUtil.isImageType(contentType);
   }
 
   public static boolean isAudioType(String contentType) {
-    if (contentType == null) {
-      return false;
-    }
-
-    return contentType.startsWith("audio/") ||
-           contentType.equals(MediaStore.Audio.Media.CONTENT_TYPE);
+    return ContentTypeUtil.isAudioType(contentType);
   }
 
   public static boolean isVideoType(String contentType) {
-    if (contentType == null) {
-      return false;
-    }
-
-    return contentType.startsWith("video/") ||
-           contentType.equals(MediaStore.Video.Media.CONTENT_TYPE);
+    return ContentTypeUtil.isVideoType(contentType);
   }
 
   public static boolean isImageOrVideoType(String contentType) {
-    return isImageType(contentType) || isVideoType(contentType);
+    return ContentTypeUtil.isImageOrVideoType(contentType);
   }
 
   public static boolean isStorySupportedType(String contentType) {
-    return isImageOrVideoType(contentType) && !isGif(contentType);
+    return ContentTypeUtil.isStorySupportedType(contentType);
   }
 
   public static boolean isImageVideoOrAudioType(String contentType) {
-    return isImageOrVideoType(contentType) || isAudioType(contentType);
+    return ContentTypeUtil.isImageVideoOrAudioType(contentType);
   }
 
   public static boolean isImageAndNotGif(@NonNull String contentType) {
-    return isImageType(contentType) && !isGif(contentType);
+    return ContentTypeUtil.isImageAndNotGif(contentType);
   }
 
   public static boolean isLongTextType(String contentType) {
-    return (null != contentType) && contentType.equals(LONG_TEXT);
+    return ContentTypeUtil.isLongTextType(contentType);
   }
 
   public static boolean isViewOnceType(String contentType) {
-    return (null != contentType) && contentType.equals(VIEW_ONCE);
+    return ContentTypeUtil.isViewOnceType(contentType);
   }
 
   public static boolean isOctetStream(@Nullable String contentType) {
-    return OCTET.equals(contentType);
+    return ContentTypeUtil.isOctetStream(contentType);
   }
 
   public static boolean isDocumentType(String contentType) {
-    return !isImageOrVideoType(contentType) && !isGif(contentType) && !isLongTextType(contentType) && !isViewOnceType(contentType);
+    return ContentTypeUtil.isDocumentType(contentType);
   }
 
   public static boolean hasVideoThumbnail(@NonNull Context context, @Nullable Uri uri) {

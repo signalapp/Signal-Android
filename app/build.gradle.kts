@@ -639,6 +639,7 @@ dependencies {
   implementation(libs.kotlinx.serialization.json)
 
   implementation(project(":lib:billing"))
+  implementation(project(":feature:media-send"))
 
   "spinnerImplementation"(project(":lib:spinner"))
 

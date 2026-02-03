@@ -13,6 +13,7 @@ import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -60,3 +61,13 @@ fun Modifier.clickableContainer(
     Modifier
   }
 )
+
+fun Modifier.ensureWidthIsAtLeastHeight(): Modifier {
+  return this.layout { measurable, constraints ->
+    val placeable = measurable.measure(constraints)
+    val size = maxOf(placeable.width, placeable.height)
+    layout(size, size) {
+      placeable.placeRelative((size - placeable.width) / 2, (size - placeable.height) / 2)
+    }
+  }
+}

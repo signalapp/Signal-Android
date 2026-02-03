@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.R;
 import org.signal.core.models.media.Media;
 import org.signal.core.models.media.MediaFolder;
 import org.signal.core.models.media.TransformProperties;
-import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.PartAuthority;

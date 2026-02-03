@@ -129,7 +129,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       this(new Bundle());
     }
 
-    void writeModel(@NonNull EditorModel model) {
+    public void writeModel(@NonNull EditorModel model) {
       byte[] bytes = ParcelUtil.serialize(model);
       bundle.putByteArray("MODEL", bytes);
     }

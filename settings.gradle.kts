@@ -91,6 +91,7 @@ include(":lib:blurhash")
 // Feature modules
 include(":feature:registration")
 include(":feature:camera")
+include(":feature:media-send")
 
 // Demo apps
 include(":demo:paging")

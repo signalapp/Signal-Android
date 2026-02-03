@@ -16,4 +16,5 @@ android {
 dependencies {
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.jackson.core)
+  implementation(libs.jackson.module.kotlin)
 }

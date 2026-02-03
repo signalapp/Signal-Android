@@ -35,6 +35,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val SHOW_ARCHIVE_STATE_HINT: String = "internal.show_archive_state_hint"
     const val INCLUDE_DEBUGLOG_IN_BACKUP: String = "internal.include_debuglog_in_backup"
     const val IMPORTED_BACKUP_DEBUG_INFO: String = "internal.imported_backup_debug_info"
+    const val USE_NEW_MEDIA_ACTIVITY: String = "internal.use_new_media_activity"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -45,6 +46,8 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    * Force split-pane mode on compact landscape
    */
   var forceSplitPane by booleanValue(FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE, false).falseForExternalUsers()
+
+  var useNewMediaActivity by booleanValue(USE_NEW_MEDIA_ACTIVITY, false).falseForExternalUsers()
 
   /**
    * Members will not be added directly to a GV2 even if they could be.

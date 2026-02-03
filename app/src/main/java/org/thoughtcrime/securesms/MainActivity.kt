@@ -88,6 +88,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
+import org.signal.mediasend.MediaSendActivityContract
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.ui.verify.VerifyBackupKeyActivity
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.show
@@ -155,6 +156,7 @@ import org.thoughtcrime.securesms.main.rememberMainNavigationDetailLocation
 import org.thoughtcrime.securesms.main.storiesNavGraphBuilder
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
+import org.thoughtcrime.securesms.mediasend.v3.MediaSendV3ActivityContract
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones
@@ -251,6 +253,8 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
   override val googlePayRepository: GooglePayRepository by lazy { GooglePayRepository(this) }
   override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
 
+  private lateinit var mediaActivityLauncher: ActivityResultLauncher<MediaSendActivityContract.Args>
+
   override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
     return motionEventRelay.offer(ev) || super.dispatchTouchEvent(ev)
   }
@@ -275,6 +279,8 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
     super.onCreate(savedInstanceState, ready)
     navigator = MainNavigator(this, mainNavigationViewModel)
+
+    mediaActivityLauncher = registerForActivityResult(MediaSendV3ActivityContract()) { }
 
     AppForegroundObserver.addListener(object : AppForegroundObserver.Listener {
       override fun onForeground() {
@@ -1088,15 +1094,23 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
   private fun onCameraClick(destination: MainNavigationListLocation, isForQuickRestore: Boolean) {
     val onGranted = {
-      val intent = if (isForQuickRestore) {
-        MediaSelectionActivity.cameraForQuickRestore(context = this@MainActivity)
+      if (isForQuickRestore) {
+        startActivity(MediaSelectionActivity.cameraForQuickRestore(context = this@MainActivity))
+      } else if (SignalStore.internal.useNewMediaActivity) {
+        mediaActivityLauncher.launch(
+          MediaSendActivityContract.Args(
+            isCameraFirst = false,
+            isStory = destination == MainNavigationListLocation.STORIES
+          )
+        )
       } else {
-        MediaSelectionActivity.camera(
-          context = this@MainActivity,
-          isStory = destination == MainNavigationListLocation.STORIES
+        startActivity(
+          MediaSelectionActivity.camera(
+            context = this@MainActivity,
+            isStory = destination == MainNavigationListLocation.STORIES
+          )
         )
       }
-      startActivity(intent)
     }
 
     if (CameraXUtil.isSupported()) {

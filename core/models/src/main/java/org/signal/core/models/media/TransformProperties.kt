@@ -9,35 +9,51 @@ import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.EncodeDefault
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
  * Properties that describe transformations to be applied to media before sending.
  */
+@OptIn(ExperimentalSerializationApi::class)
 @Serializable
 @Parcelize
 data class TransformProperties(
+  @EncodeDefault(EncodeDefault.Mode.ALWAYS)
   @JsonProperty("skipTransform")
+  @SerialName("skipTransform")
   @JvmField
   val skipTransform: Boolean = false,
 
+  @EncodeDefault(EncodeDefault.Mode.ALWAYS)
   @JsonProperty("videoTrim")
+  @SerialName("videoTrim")
   @JvmField
   val videoTrim: Boolean = false,
 
+  @EncodeDefault(EncodeDefault.Mode.ALWAYS)
   @JsonProperty("videoTrimStartTimeUs")
+  @SerialName("videoTrimStartTimeUs")
   @JvmField
   val videoTrimStartTimeUs: Long = 0,
 
+  @EncodeDefault(EncodeDefault.Mode.ALWAYS)
   @JsonProperty("videoTrimEndTimeUs")
+  @SerialName("videoTrimEndTimeUs")
   @JvmField
   val videoTrimEndTimeUs: Long = 0,
 
+  @EncodeDefault(EncodeDefault.Mode.ALWAYS)
   @JsonProperty("sentMediaQuality")
+  @SerialName("sentMediaQuality")
   @JvmField
   val sentMediaQuality: Int = DEFAULT_MEDIA_QUALITY,
 
+  @EncodeDefault(EncodeDefault.Mode.ALWAYS)
   @JsonProperty("mp4Faststart")
+  @SerialName("mp4Faststart")
   @JvmField
   val mp4FastStart: Boolean = false
 ) : Parcelable {
@@ -46,7 +62,9 @@ data class TransformProperties(
   }
 
   @IgnoredOnParcel
+  @EncodeDefault(EncodeDefault.Mode.ALWAYS)
   @JsonProperty("videoEdited")
+  @SerialName("videoEdited")
   val videoEdited: Boolean = videoTrim
 
   fun withSkipTransform(): TransformProperties {

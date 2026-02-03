@@ -15,10 +15,13 @@ import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import org.signal.core.ui.compose.theme.SignalTheme
+import kotlin.random.Random
 
 object Previews {
   /**
@@ -86,6 +89,13 @@ object Previews {
           content()
         }
       }
+    }
+  }
+
+  @Composable
+  fun rememberRandomColor(): Color {
+    return remember {
+      Color(Random.nextFloat(), Random.nextFloat(), Random.nextFloat(), 1f)
     }
   }
 }
