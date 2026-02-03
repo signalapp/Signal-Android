@@ -33,6 +33,7 @@ private enum class Dialog {
   NONE,
   DISABLE_PROFILE_SHARING,
   CLEAR_SENDER_KEY,
+  CLEAR_SENDER_KEY_AND_ARCHIVE_SESSIONS,
   DELETE_SESSIONS,
   ARCHIVE_SESSIONS,
   DELETE_AVATAR,
@@ -207,6 +208,16 @@ fun InternalConversationSettingsScreen(
             }
           )
         }
+
+        item {
+          Rows.TextRow(
+            text = "Clear sender key and archive sessions",
+            label = "Resets any sender key state and archives all sessions for group members, will force creating new sessions and re-distributing sender key material.",
+            onClick = {
+              dialog = Dialog.CLEAR_SENDER_KEY_AND_ARCHIVE_SESSIONS
+            }
+          )
+        }
       } else {
         item {
           Rows.TextRow(
@@ -375,6 +386,9 @@ private fun rememberOnConfirm(
       Dialog.CLEAR_SENDER_KEY -> {
         { callbacks.clearSenderKey(state.recipientId) }
       }
+      Dialog.CLEAR_SENDER_KEY_AND_ARCHIVE_SESSIONS -> {
+        { callbacks.clearSenderKeyAndArchiveSessions(state.recipientId) }
+      }
     }
   }
 }
@@ -473,6 +487,7 @@ interface InternalConversationSettingsScreenCallbacks {
   fun splitAndCreateThreads(recipientId: RecipientId) = Unit
   fun splitWithoutCreatingThreads(recipientId: RecipientId) = Unit
   fun clearSenderKey(recipientId: RecipientId) = Unit
+  fun clearSenderKeyAndArchiveSessions(recipientId: RecipientId) = Unit
 
   object Empty : InternalConversationSettingsScreenCallbacks
 }

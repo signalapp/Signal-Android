@@ -296,6 +296,18 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
     SignalDatabase.senderKeyShared.deleteAllFor(group.distributionId)
   }
 
+  override fun clearSenderKeyAndArchiveSessions(recipientId: RecipientId) {
+    clearSenderKey(recipientId)
+
+    val group = SignalDatabase.groups.getGroup(recipientId).orNull()
+    if (group == null) {
+      Log.w(TAG, "Couldn't find group for recipientId: $recipientId")
+      return
+    }
+
+    group.members.forEach { archiveSessions(it) }
+  }
+
   class InternalViewModel(
     val recipientId: RecipientId
   ) : ViewModel(), RecipientForeverObserver {

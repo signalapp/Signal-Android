@@ -5,7 +5,10 @@
  */
 package org.whispersystems.signalservice.api;
 
+import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.PNI;
 import org.signal.core.util.Base64;
+import org.signal.core.util.UuidUtil;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.IdentityKeyPair;
@@ -68,8 +71,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMes
 import org.whispersystems.signalservice.api.messages.multidevice.ViewedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.DistributionId;
-import org.signal.core.models.ServiceId;
-import org.signal.core.models.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
@@ -84,7 +85,6 @@ import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.api.util.Uint64RangeException;
 import org.whispersystems.signalservice.api.util.Uint64Util;
-import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
@@ -718,7 +718,7 @@ public class SignalServiceMessageSender {
     boolean urgent = false;
 
     if (!aciStore.isMultiDevice()) {
-      Log.w(TAG, "We do not have any linked devices. Skipping.");
+      Log.d(TAG, "We do not have any linked devices. Skipping.");
       return SendMessageResult.success(localAddress, Collections.emptyList(), false, false, 0, Optional.empty());
     }
 
@@ -2113,7 +2113,10 @@ public class SignalServiceMessageSender {
     Log.d(TAG, "[" + timestamp + "] Sending to " + recipients.size() + " recipients.");
     enforceMaxEnvelopeContentSize(content);
 
-    long                                startTime                  = System.currentTimeMillis();
+    long startTime = System.currentTimeMillis();
+
+    eagerlyFetchMissingPreKeys(recipients, sealedSenderAccesses, story);
+
     List<Observable<SendMessageResult>> singleResults              = new LinkedList<>();
     Iterator<SignalServiceAddress>      recipientIterator          = recipients.iterator();
     Iterator<SealedSenderAccess>        sealedSenderAccessIterator = sealedSenderAccesses.iterator();
@@ -2816,6 +2819,81 @@ public class SignalServiceMessageSender {
       return cipher.encrypt(signalProtocolAddress, sealedSenderAccess, plaintext);
     } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
       throw new UntrustedIdentityException("Untrusted on send", recipient.getIdentifier(), e.getUntrustedIdentity());
+    }
+  }
+
+  private void eagerlyFetchMissingPreKeys(List<SignalServiceAddress> recipients, List<SealedSenderAccess> sealedSenderAccesses, boolean story) {
+    long start = System.currentTimeMillis();
+
+    Iterator<SignalServiceAddress> recipientIterator          = recipients.iterator();
+    Iterator<SealedSenderAccess>   sealedSenderAccessIterator = sealedSenderAccesses.iterator();
+    List<Observable<Boolean>>      eagerFetches               = new LinkedList<>();
+
+    while (recipientIterator.hasNext()) {
+      SignalServiceAddress  recipient             = recipientIterator.next();
+      SealedSenderAccess    sealedSenderAccess    = sealedSenderAccessIterator.next();
+      SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(recipient.getIdentifier(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+
+      if (!aciStore.containsSession(signalProtocolAddress)) {
+        Observable<Boolean> thing = Single.fromCallable(() -> {
+                                            eagerlyFetchMissingPreKeys(recipient, sealedSenderAccess, story);
+                                            return true;
+                                          })
+                                          .subscribeOn(scheduler)
+                                          .toObservable();
+
+        eagerFetches.add(thing);
+      }
+    }
+
+    if (eagerFetches.isEmpty()) {
+      return;
+    }
+
+    Log.i(TAG, "[eagerPrefetch] Attempting to fetch prekeys for " + eagerFetches.size() + " recipients");
+
+    try {
+      //noinspection ResultOfMethodCallIgnored
+      Observable.mergeDelayError(eagerFetches, Integer.MAX_VALUE, 1)
+                .observeOn(scheduler)
+                .lastOrError()
+                .blockingGet();
+    } catch (RuntimeException e) {
+      Log.w(TAG, "[eagerPrefetch] Unexpectedly failed eager fetching prekeys", e);
+      return;
+    }
+
+    Log.i(TAG, "[eagerPrefetch] Completed in " + (System.currentTimeMillis() - start) + "ms");
+  }
+
+  private void eagerlyFetchMissingPreKeys(SignalServiceAddress recipient, SealedSenderAccess sealedSenderAccess, boolean story) {
+    SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(recipient.getIdentifier(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+
+    try {
+      List<PreKeyBundle> preKeys = getPreKeys(recipient, sealedSenderAccess, SignalServiceAddress.DEFAULT_DEVICE_ID, story);
+
+      for (PreKeyBundle preKey : preKeys) {
+        Log.d(TAG, "[eagerFetch] Initializing prekey session for " + signalProtocolAddress);
+
+        try {
+          SignalProtocolAddress preKeyAddress  = new SignalProtocolAddress(recipient.getIdentifier(), preKey.getDeviceId());
+          SignalSessionBuilder  sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(aciStore, preKeyAddress));
+          sessionBuilder.process(preKey);
+        } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
+          Log.i(TAG, "[eagerPrefetch] Untrusted identity for recipient");
+          return;
+
+        }
+      }
+
+      if (eventListener.isPresent()) {
+        eventListener.get().onSecurityEvent(recipient);
+      }
+    } catch (IOException e) {
+      Log.i(TAG, "[eagerPrefetch] Network issue encountered");
+    } catch (InvalidKeyException e) {
+      Log.i(TAG, "[eagerPrefetch] Invalid pre-key");
+      return;
     }
   }
 
