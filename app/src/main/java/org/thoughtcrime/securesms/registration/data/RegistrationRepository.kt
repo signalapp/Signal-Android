@@ -245,7 +245,7 @@ object RegistrationRepository {
     PreKeysSyncJob.enqueue()
 
     recipientTable.clearSelfKeyTransparencyData()
-    CheckKeyTransparencyJob.enqueueIfNecessary()
+    CheckKeyTransparencyJob.enqueueIfNecessary(addDelay = true)
 
     val jobManager = AppDependencies.jobManager
 

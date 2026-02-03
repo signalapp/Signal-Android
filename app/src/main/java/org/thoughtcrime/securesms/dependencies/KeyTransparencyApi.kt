@@ -5,6 +5,7 @@ import org.signal.libsignal.keytrans.KeyTransparencyException
 import org.signal.libsignal.keytrans.VerificationFailedException
 import org.signal.libsignal.net.AppExpiredException
 import org.signal.libsignal.net.BadRequestError
+import org.signal.libsignal.net.ChatServiceException
 import org.signal.libsignal.net.KeyTransparency
 import org.signal.libsignal.net.NetworkException
 import org.signal.libsignal.net.NetworkProtocolException
@@ -33,20 +34,19 @@ class KeyTransparencyApi(private val unauthWebSocket: SignalWebSocket.Unauthenti
           onSuccess = { RequestResult.Success(Unit) },
           onError = { throwable ->
             when (throwable) {
-              is TimeoutException,
-              is ServerSideErrorException,
+              is VerificationFailedException,
+              is KeyTransparencyException,
+              is AppExpiredException,
+              is IllegalArgumentException -> {
+                RequestResult.NonSuccess(KeyTransparencyError(throwable))
+              }
+              is ChatServiceException,
               is NetworkException,
               is NetworkProtocolException -> {
                 RequestResult.RetryableNetworkError(throwable, null)
               }
               is RetryLaterException -> {
                 RequestResult.RetryableNetworkError(throwable, throwable.duration)
-              }
-              is VerificationFailedException,
-              is KeyTransparencyException,
-              is AppExpiredException,
-              is IllegalArgumentException -> {
-                RequestResult.NonSuccess(KeyTransparencyError(throwable))
               }
               else -> {
                 RequestResult.ApplicationError(throwable)

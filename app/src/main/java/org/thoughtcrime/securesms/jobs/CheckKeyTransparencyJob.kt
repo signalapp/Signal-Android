@@ -41,7 +41,7 @@ class CheckKeyTransparencyJob private constructor(
     private val TIME_BETWEEN_CHECK = 7.days
 
     @JvmStatic
-    fun enqueueIfNecessary() {
+    fun enqueueIfNecessary(addDelay: Boolean) {
       if (!canRunJob()) {
         return
       }
@@ -54,7 +54,7 @@ class CheckKeyTransparencyJob private constructor(
             showFailure = false,
             parameters = Parameters.Builder()
               .addConstraint(NetworkConstraint.KEY)
-              .setInitialDelay(5.minutes.inWholeMilliseconds)
+              .setInitialDelay(if (addDelay) 5.minutes.inWholeMilliseconds else 0.minutes.inWholeMilliseconds)
               .setGlobalPriority(Parameters.PRIORITY_LOWER)
               .setMaxInstancesForFactory(2)
               .build()

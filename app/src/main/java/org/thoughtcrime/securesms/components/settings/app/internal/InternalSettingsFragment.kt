@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
+import org.thoughtcrime.securesms.jobs.CheckKeyTransparencyJob
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
@@ -304,6 +305,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Run self-check key transparency"),
+        summary = DSLSettingsText.from("Automatically enqueues a job to run KT against yourself without waiting for the elapsed time."),
+        onClick = {
+          SignalStore.misc.lastKeyTransparencyTime = 0
+          CheckKeyTransparencyJob.enqueueIfNecessary(addDelay = false)
         }
       )
 
