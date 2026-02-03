@@ -301,7 +301,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/signal_light_colorPrimary"
+            android:background="@color/signal_colorPrimary"
             android:contentDescription="@string/MediaReviewFragment__send_media_accessibility_label"
             android:padding="4dp"
             android:scaleType="centerInside"

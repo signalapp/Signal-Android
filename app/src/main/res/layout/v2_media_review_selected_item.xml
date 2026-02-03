@@ -40,7 +40,7 @@
         android:visibility="gone"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.MediaSelection.Selected"
         app:srcCompat="@drawable/ic_trash_24"
-        app:strokeColor="@color/signal_light_colorPrimary"
+        app:strokeColor="@color/signal_colorPrimary"
         app:strokeWidth="2dp"
         app:tint="@color/core_white"
         tools:visibility="visible" />
