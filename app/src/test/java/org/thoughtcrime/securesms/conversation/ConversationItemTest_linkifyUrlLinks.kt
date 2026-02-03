@@ -39,6 +39,8 @@ class ConversationItemTest_linkifyUrlLinks(private val input: String, private va
       arrayOf("https://www.google.com%d332", "https://www.google.com"),
 //      arrayOf("https://www.instagram.com/tv/CfImYdngccQ/?igshid=YmMyMTA2M2Y= ", "https://www.instagram.com/tv/CfImYdngccQ/?igshid=YmMyMTA2M2Y="),
       arrayOf("https://www.instagram.com/tv/CfImYdngccQ/?igshid=YmMyMTA2M2Y=\n", "https://www.instagram.com/tv/CfImYdngccQ/?igshid=YmMyMTA2M2Y="),
+      arrayOf("https://example.com/link- word", "https://example.com/link-"),
+      arrayOf("https://example.com/link-\nword.", "https://example.com/link-"),
 //      arrayOf("https://fr.ulule.com/sapins-barbus-la-bd-/ ", "https://fr.ulule.com/sapins-barbus-la-bd-/"),
       arrayOf("https://fr.ulule.com/sapins-barbus-la-bd-/\n", "https://fr.ulule.com/sapins-barbus-la-bd-/"),
       arrayOf("https://de.m.wikipedia.org/wiki/Red_Dawn_(2012)", "https://de.m.wikipedia.org/wiki/Red_Dawn_(2012)")
