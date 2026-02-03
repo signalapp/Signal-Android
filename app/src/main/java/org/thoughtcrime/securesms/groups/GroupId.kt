@@ -13,12 +13,12 @@ import kotlinx.serialization.Transient
 import okio.ByteString
 import org.signal.core.util.DatabaseId
 import org.signal.core.util.Hex
+import org.signal.core.util.LRUCache
 import org.signal.libsignal.protocol.kdf.HKDF
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupIdentifier
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
-import org.thoughtcrime.securesms.util.LRUCache
 import org.thoughtcrime.securesms.util.Util
 import java.io.IOException
 import java.security.SecureRandom

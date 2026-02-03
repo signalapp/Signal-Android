@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.notifications.manual
 
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
+import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -14,7 +15,6 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
-import org.thoughtcrime.securesms.util.BottomSheetUtil
 
 /**
  * BottomSheetDialogFragment that allows a user to select a notification profile to manually enable/disable.

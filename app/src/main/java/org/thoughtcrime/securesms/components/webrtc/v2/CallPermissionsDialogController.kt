@@ -8,10 +8,10 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 import android.Manifest
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import org.signal.core.ui.BottomSheetUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.permissions.PermissionDeniedBottomSheet.Companion.showPermissionFragment
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.util.BottomSheetUtil
 
 /**
  * Shared dialog controller for requesting different permissions specific to calling.

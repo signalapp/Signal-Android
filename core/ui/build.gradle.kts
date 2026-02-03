@@ -36,4 +36,5 @@ dependencies {
   api(libs.androidx.fragment.compose)
   implementation(libs.kotlinx.serialization.json)
   api(libs.google.zxing.core)
+  api(libs.material.material)
 }

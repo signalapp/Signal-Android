@@ -46,6 +46,7 @@ import org.signal.camera.VideoOutput
 import org.signal.camera.hud.StandardCameraHud
 import org.signal.camera.hud.StandardCameraHudEvents
 import org.signal.camera.hud.StringResources
+import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -53,7 +54,6 @@ import org.thoughtcrime.securesms.mediasend.camerax.CameraXModePolicy
 import org.thoughtcrime.securesms.permissions.PermissionDeniedBottomSheet.Companion.showPermissionFragment
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor
 import org.thoughtcrime.securesms.video.VideoUtil
 import java.io.ByteArrayOutputStream

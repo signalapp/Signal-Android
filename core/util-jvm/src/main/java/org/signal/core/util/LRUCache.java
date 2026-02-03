@@ -1,4 +1,9 @@
-package org.thoughtcrime.securesms.util;
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.core.util;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

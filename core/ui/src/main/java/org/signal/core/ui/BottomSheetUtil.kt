@@ -1,9 +1,8 @@
-package org.thoughtcrime.securesms.util
+package org.signal.core.ui
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import org.thoughtcrime.securesms.R
 
 object BottomSheetUtil {
   const val STANDARD_BOTTOM_SHEET_FRAGMENT_TAG = "BOTTOM"

@@ -8,9 +8,9 @@ package org.thoughtcrime.securesms.conversation.v2
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
+import org.signal.core.util.LRUCache
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.util.LRUCache
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime

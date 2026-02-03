@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
+import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.BadgePreview
@@ -13,7 +14,6 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFrag
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.signal.core.ui.R as CoreUiR
 
 class BecomeASustainerFragment : DSLSettingsBottomSheetFragment() {

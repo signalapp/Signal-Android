@@ -26,9 +26,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.BottomSheetUtil;
-import org.thoughtcrime.securesms.util.LRUCache;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.ui.BottomSheetUtil;
+import org.signal.core.util.LRUCache;
 
 import java.lang.ref.WeakReference;
 import java.security.SecureRandom;
@@ -325,7 +324,7 @@ public class Permissions {
     abstract void requestPermissions(int requestCode, String... permissions);
 
     int getWindowWidth() {
-      WindowManager  windowManager = ServiceUtil.getWindowManager(getContext());
+      WindowManager  windowManager = ContextCompat.getSystemService(getContext(), WindowManager.class);
       Display        display       = windowManager.getDefaultDisplay();
       DisplayMetrics metrics       = new DisplayMetrics();
       display.getMetrics(metrics);

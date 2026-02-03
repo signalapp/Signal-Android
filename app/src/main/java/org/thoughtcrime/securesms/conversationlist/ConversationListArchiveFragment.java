@@ -71,7 +71,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment
 
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
 
-    coordinator = view.findViewById(R.id.coordinator);
+    coordinator = view.findViewById(org.signal.core.ui.R.id.coordinator);
     list        = view.findViewById(R.id.list);
     emptyState  = new Stub<>(view.findViewById(R.id.empty_state));
     foldersList = view.findViewById(R.id.chat_folder_list);
