@@ -48,6 +48,8 @@ import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException
 import org.whispersystems.signalservice.api.groupsv2.ReceivedGroupSendEndorsements
+import org.whispersystems.signalservice.api.groupsv2.getChangedFields
+import org.whispersystems.signalservice.api.groupsv2.isSilent
 import org.whispersystems.signalservice.api.push.ServiceIds
 import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException
@@ -633,14 +635,19 @@ class GroupsV2StateProcessor private constructor(
       var runningGroupState = previousGroupState
 
       for (entry in processedLogEntries) {
-        if (entry.change != null && DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(entry.change) && !DecryptedGroupUtil.changeIsEmpty(entry.change)) {
-          Log.d(TAG, "Skipping profile key changes only update message")
-        } else if (entry.change != null && DecryptedGroupUtil.changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(entry.change)) {
-          Log.d(TAG, "Skipping ban changes only update message")
-        } else {
-          if (entry.change != null && DecryptedGroupUtil.changeIsEmpty(entry.change) && runningGroupState != null) {
+        val changedFields = entry.change?.getChangedFields().orEmpty()
+        val changeSilently = entry.change?.isSilent(changedFields) == true
+
+        when {
+          entry.change != null && changeSilently && changedFields.isNotEmpty() -> {
+            Log.d(TAG, "Skipping silent changes: $changedFields")
+          }
+
+          entry.change != null && changedFields.isEmpty() && runningGroupState != null -> {
             Log.w(TAG, "Empty group update message seen. Not inserting.")
-          } else {
+          }
+
+          else -> {
             storeMessage(GroupProtoUtil.createDecryptedGroupV2Context(masterKey, GroupMutation(runningGroupState, entry.change, entry.group), null), runningTimestamp, serverGuid)
             runningTimestamp++
           }

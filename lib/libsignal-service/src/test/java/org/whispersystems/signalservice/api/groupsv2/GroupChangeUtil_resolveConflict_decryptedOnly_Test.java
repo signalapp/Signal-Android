@@ -300,7 +300,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
 
     DecryptedGroupChange resolvedChanges = GroupChangeUtil.resolveConflict(groupState, decryptedChange).build();
 
-    assertTrue(DecryptedGroupUtil.changeIsEmpty(resolvedChanges));
+    assertTrue(DecryptedGroupExtensions.getChangedFields(resolvedChanges).isEmpty());
   }
 
   @Test
@@ -328,7 +328,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
 
     DecryptedGroupChange resolvedChanges = GroupChangeUtil.resolveConflict(groupState, decryptedChange).build();
 
-    assertTrue(DecryptedGroupUtil.changeIsEmpty(resolvedChanges));
+    assertTrue(DecryptedGroupExtensions.getChangedFields(resolvedChanges).isEmpty());
   }
 
   @Test
@@ -356,7 +356,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
 
     DecryptedGroupChange resolvedChanges = GroupChangeUtil.resolveConflict(groupState, decryptedChange).build();
 
-    assertTrue(DecryptedGroupUtil.changeIsEmpty(resolvedChanges));
+    assertTrue(DecryptedGroupExtensions.getChangedFields(resolvedChanges).isEmpty());
   }
 
   @Test
@@ -384,7 +384,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
 
     DecryptedGroupChange resolvedChanges = GroupChangeUtil.resolveConflict(groupState, decryptedChange).build();
 
-    assertTrue(DecryptedGroupUtil.changeIsEmpty(resolvedChanges));
+    assertTrue(DecryptedGroupExtensions.getChangedFields(resolvedChanges).isEmpty());
   }
 
   @Test
@@ -412,7 +412,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
 
     DecryptedGroupChange resolvedChanges = GroupChangeUtil.resolveConflict(groupState, decryptedChange).build();
 
-    assertTrue(DecryptedGroupUtil.changeIsEmpty(resolvedChanges));
+    assertTrue(DecryptedGroupExtensions.getChangedFields(resolvedChanges).isEmpty());
   }
 
   @Test
@@ -426,7 +426,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
 
     DecryptedGroupChange resolvedChanges = GroupChangeUtil.resolveConflict(groupState, decryptedChange).build();
 
-    assertTrue(DecryptedGroupUtil.changeIsEmpty(resolvedChanges));
+    assertTrue(DecryptedGroupExtensions.getChangedFields(resolvedChanges).isEmpty());
   }
 
   @Test
@@ -572,7 +572,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
 
     DecryptedGroupChange resolvedChanges = GroupChangeUtil.resolveConflict(groupState, decryptedChange).build();
 
-    assertTrue(DecryptedGroupUtil.changeIsEmpty(resolvedChanges));
+    assertTrue(DecryptedGroupExtensions.getChangedFields(resolvedChanges).isEmpty());
   }
 
   @Test
@@ -602,7 +602,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
 
     DecryptedGroupChange resolvedChanges = GroupChangeUtil.resolveConflict(groupState, decryptedChange).build();
 
-    assertTrue(DecryptedGroupUtil.changeIsEmpty(resolvedChanges));
+    assertTrue(DecryptedGroupExtensions.getChangedFields(resolvedChanges).isEmpty());
   }
 
   @Test
