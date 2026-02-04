@@ -101,7 +101,7 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
 
       var maxLines = 3
       state.allBadgesVisibleOnProfile.forEach { badge ->
-        val text = badge.resolveDescription(state.recipient.getShortDisplayName(requireContext()))
+        val text = LargeBadge.getDescription(requireContext(), badge.isSubscription(), state.recipient.getShortDisplayName(requireContext()))
         textPaint.getTextBounds(text, 0, text.length, textBounds)
         val estimatedLines = ceil(textBounds.width().toFloat() / textWidth).toInt()
         maxLines = max(maxLines, estimatedLines)
