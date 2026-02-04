@@ -1447,7 +1447,7 @@ class ConversationFragment :
   private fun presentIdentityRecordsState(identityRecordsState: IdentityRecordsState) {
     binding.conversationTitleView.root.setVerified(identityRecordsState.isVerified)
 
-    if (RemoteConfig.internalUser && SignalStore.settings.automaticVerificationEnabled && !SignalStore.uiHints.hasSeenVerifyAutomaticallySheet() && viewModel.recipientSnapshot?.isIndividual == true) {
+    if (RemoteConfig.internalUser && SignalStore.settings.automaticVerificationEnabled && !SignalStore.uiHints.hasSeenVerifyAutomaticallySheet() && viewModel.recipientSnapshot?.isIndividual == true && viewModel.recipientSnapshot?.isSelf == false) {
       VerifyAutomaticallyEducationSheet.show(parentFragmentManager)
 
       parentFragmentManager.setFragmentResultListener(VerifyAutomaticallyEducationSheet.RESULT_KEY, requireActivity()) { _, bundle ->
