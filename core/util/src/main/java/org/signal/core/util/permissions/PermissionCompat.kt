@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.permissions
+package org.signal.core.util.permissions
 
 import android.Manifest
 import android.os.Build

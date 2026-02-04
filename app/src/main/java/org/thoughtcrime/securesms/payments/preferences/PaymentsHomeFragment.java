@@ -23,6 +23,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.signal.core.util.logging.Log;
+import org.signal.core.ui.view.Stub;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.PaymentPreferencesDirections;
 import org.thoughtcrime.securesms.R;
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
-import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

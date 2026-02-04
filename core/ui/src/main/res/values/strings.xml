@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Permissions -->
+    <!-- Button label to confirm and proceed with a permission request -->
+    <string name="Permissions_continue">Continue</string>
+    <!-- Button label to dismiss or defer a permission request -->
+    <string name="Permissions_not_now">Not now</string>
+</resources>

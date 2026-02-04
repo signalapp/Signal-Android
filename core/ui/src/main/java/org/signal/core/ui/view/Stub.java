@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util.views;
+package org.signal.core.ui.view;
 
 
 import android.view.View;

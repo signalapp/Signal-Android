@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.preferences.EditProxyViewModel;
 import org.signal.core.ui.BottomSheetUtil;
 import org.signal.core.util.concurrent.LifecycleDisposable;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.signal.core.ui.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 

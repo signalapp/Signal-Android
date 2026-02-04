@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.permissions.compose
+package org.signal.core.ui.compose
 
+import android.Manifest
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,9 +16,7 @@ import androidx.compose.ui.res.stringResource
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
-import org.signal.core.ui.compose.Dialogs
-import org.signal.core.ui.compose.SignalIcons
-import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R
 
 /**
  * Dialogs and state management for permissions requests in compose screens.
@@ -40,7 +39,7 @@ object Permissions {
     onPermissionGranted: () -> Unit
   ): Controller {
     return permissionHandler(
-      permission = android.Manifest.permission.CAMERA,
+      permission = Manifest.permission.CAMERA,
       icon = SignalIcons.Camera.painter,
       rationale = rationale,
       onPermissionGranted = onPermissionGranted

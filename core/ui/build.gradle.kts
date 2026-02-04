@@ -37,4 +37,5 @@ dependencies {
   implementation(libs.kotlinx.serialization.json)
   api(libs.google.zxing.core)
   api(libs.material.material)
+  api(libs.accompanist.permissions)
 }

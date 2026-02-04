@@ -12,7 +12,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.animation.ArgbEvaluatorCompat
 import com.google.android.material.appbar.AppBarLayout
-import org.thoughtcrime.securesms.util.views.Stub
+import org.signal.core.ui.view.Stub
 import org.signal.core.ui.R as CoreUiR
 
 /**

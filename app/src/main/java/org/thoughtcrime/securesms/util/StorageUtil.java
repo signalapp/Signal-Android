@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.permissions.PermissionCompat;
+import org.signal.core.util.permissions.PermissionCompat;
 import org.thoughtcrime.securesms.permissions.Permissions;
 
 import java.io.File;

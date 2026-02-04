@@ -24,6 +24,7 @@ import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.logging.Log;
+import org.signal.core.ui.view.Stub;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
@@ -45,7 +46,6 @@ import org.thoughtcrime.securesms.stories.StoryTextPostModel;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.io.IOException;
 import java.util.List;

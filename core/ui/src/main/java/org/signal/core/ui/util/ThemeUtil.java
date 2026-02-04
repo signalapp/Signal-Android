@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.signal.core.ui.util;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -16,7 +16,7 @@ import androidx.annotation.StyleRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ContextThemeWrapper;
 
-import org.thoughtcrime.securesms.R;
+import org.signal.core.ui.R;
 
 public class ThemeUtil {
 

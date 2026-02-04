@@ -39,6 +39,7 @@ import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.logging.Log;
 import org.signal.blurhash.BlurHash;
+import org.signal.core.ui.view.Stub;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.signal.glide.load.SignalDownsampleStrategy;
 import org.thoughtcrime.securesms.R;
@@ -59,7 +60,6 @@ import org.thoughtcrime.securesms.stories.StoryTextPostModel;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.util.Arrays;
 import java.util.Collections;

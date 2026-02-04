@@ -198,8 +198,8 @@ public class Permissions {
       MaterialAlertDialogBuilder builder = (rationaleDialogMessage != null)
                                          ? RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogMessage, rationalDialogHeader)
                                          : RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogTitle, rationaleDialogDetails, rationalDialogHeader);
-      builder.setPositiveButton(R.string.Permissions_continue, (dialog, which) -> executePermissionsRequest(request))
-             .setNegativeButton(R.string.Permissions_not_now, (dialog, which) -> executeNoPermissionsRequest(request))
+      builder.setPositiveButton(org.signal.core.ui.R.string.Permissions_continue, (dialog, which) -> executePermissionsRequest(request))
+             .setNegativeButton(org.signal.core.ui.R.string.Permissions_not_now, (dialog, which) -> executeNoPermissionsRequest(request))
              .setBackgroundInsetTop(0)
              .setBackgroundInsetBottom(0)
              .setCancelable(rationaleDialogCancelable);
@@ -426,7 +426,7 @@ public class Permissions {
             .setTitle(R.string.Permissions_permission_required)
             .setMessage(message)
             .setCancelable(false)
-            .setPositiveButton(R.string.Permissions_continue, (dialog, which) -> context.startActivity(getApplicationSettingsIntent(context)))
+            .setPositiveButton(org.signal.core.ui.R.string.Permissions_continue, (dialog, which) -> context.startActivity(getApplicationSettingsIntent(context)))
             .setNegativeButton(android.R.string.cancel, null)
             .setOnDismissListener(d -> {
               if (onDialogDismissed != null) {

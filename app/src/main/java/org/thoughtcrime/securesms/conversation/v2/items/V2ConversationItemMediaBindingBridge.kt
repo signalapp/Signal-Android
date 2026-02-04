@@ -6,10 +6,10 @@
 package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.widget.Space
+import org.signal.core.ui.view.Stub
 import org.thoughtcrime.securesms.components.QuoteView
 import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaIncomingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaOutgoingBinding
-import org.thoughtcrime.securesms.util.views.Stub
 
 /**
  * Pass-through interface for bridging incoming and outgoing media message views.

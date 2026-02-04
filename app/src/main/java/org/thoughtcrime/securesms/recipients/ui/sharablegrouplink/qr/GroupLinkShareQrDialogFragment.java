@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.qr.QrCodeUtil;
 import org.signal.core.ui.BottomSheetUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.signal.core.ui.util.ThemeUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

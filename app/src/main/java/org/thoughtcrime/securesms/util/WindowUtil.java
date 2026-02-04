@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
+import org.signal.core.ui.util.ThemeUtil;
+
 public final class WindowUtil {
 
   private WindowUtil() {

@@ -48,7 +48,7 @@ import androidx.lifecycle.Lifecycle;
 
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
-import org.thoughtcrime.securesms.util.views.Stub;
+import org.signal.core.ui.view.Stub;
 
 public final class ViewUtil {
 

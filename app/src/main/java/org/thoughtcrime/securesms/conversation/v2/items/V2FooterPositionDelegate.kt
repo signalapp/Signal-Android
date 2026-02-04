@@ -7,13 +7,13 @@ package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.view.View
 import android.widget.Space
+import org.signal.core.ui.view.Stub
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.padding
-import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
 import kotlin.math.max
 
