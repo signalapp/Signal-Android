@@ -152,7 +152,7 @@ private fun ViewNoteBottomSheetContent(
       factory = { context ->
         val view = EmojiTextView(context)
 
-        view.setTextAppearance(context, R.style.Signal_Text_BodyLarge)
+        view.setTextAppearance(context, CoreUiR.style.Signal_Text_BodyLarge)
         view.movementMethod = LinkMovementMethodCompat.getInstance()
 
         view

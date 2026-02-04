@@ -52,7 +52,7 @@ class UsernameShareBottomSheet : DSLSettingsBottomSheetFragment() {
       noPadTextPref(
         title = DSLSettingsText.from(
           R.string.UsernameShareBottomSheet__copy_or_share_a_username_link,
-          DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
+          DSLSettingsText.TextAppearanceModifier(CoreUiR.style.Signal_Text_BodyMedium),
           DSLSettingsText.CenterModifier,
           DSLSettingsText.ColorModifier(
             ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant)

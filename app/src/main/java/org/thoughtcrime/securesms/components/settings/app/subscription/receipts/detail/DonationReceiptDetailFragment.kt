@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.donation_receipt_detail_fragment) {
 
@@ -76,7 +77,7 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
       textPref(
         title = DSLSettingsText.from(
           charSequence = FiatMoneyUtil.format(resources, record.amount),
-          DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_Giant),
+          DSLSettingsText.TextAppearanceModifier(CoreUiR.style.Signal_Text_Giant),
           DSLSettingsText.CenterModifier
         )
       )

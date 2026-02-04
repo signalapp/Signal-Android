@@ -46,7 +46,7 @@ class BecomeASustainerFragment : DSLSettingsBottomSheetFragment() {
         title = DSLSettingsText.from(
           R.string.BecomeASustainerFragment__signal_is_a_non_profit,
           DSLSettingsText.CenterModifier,
-          DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
+          DSLSettingsText.TextAppearanceModifier(CoreUiR.style.Signal_Text_BodyMedium),
           DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant))
         )
       )

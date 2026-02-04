@@ -207,7 +207,7 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
 
   private static CharSequence mono(Context context, CharSequence address) {
     SpannableString spannable = new SpannableString(address);
-    spannable.setSpan(new TextAppearanceSpan(context, R.style.TextAppearance_Signal_Mono),
+    spannable.setSpan(new TextAppearanceSpan(context, org.signal.core.ui.R.style.TextAppearance_Signal_Mono),
                       0,
                       address.length(),
                       Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

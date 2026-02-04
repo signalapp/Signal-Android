@@ -120,7 +120,7 @@ class SafetyNumberBottomSheetFragment : DSLSettingsBottomSheetFragment(layoutId 
             state.hasLargeNumberOfUntrustedRecipients -> R.string.SafetyNumberBottomSheetFragment__safety_number_checkup
             else -> R.string.SafetyNumberBottomSheetFragment__safety_number_changes
           },
-          DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_TitleLarge),
+          DSLSettingsText.TextAppearanceModifier(CoreUiR.style.Signal_Text_TitleLarge),
           DSLSettingsText.CenterModifier
         )
       )
@@ -132,7 +132,7 @@ class SafetyNumberBottomSheetFragment : DSLSettingsBottomSheetFragment(layoutId 
             state.hasLargeNumberOfUntrustedRecipients -> resources.getQuantityString(R.plurals.SafetyNumberBottomSheetFragment__you_have_d_connections_plural, args.untrustedRecipients.size, args.untrustedRecipients.size)
             else -> getString(R.string.SafetyNumberBottomSheetFragment__the_following_people)
           },
-          DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyLarge),
+          DSLSettingsText.TextAppearanceModifier(CoreUiR.style.Signal_Text_BodyLarge),
           DSLSettingsText.CenterModifier
         )
       )
@@ -143,7 +143,7 @@ class SafetyNumberBottomSheetFragment : DSLSettingsBottomSheetFragment(layoutId 
         noPadTextPref(
           title = DSLSettingsText.from(
             R.string.SafetyNumberBottomSheetFragment__no_more_recipients_to_show,
-            DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyLarge),
+            DSLSettingsText.TextAppearanceModifier(CoreUiR.style.Signal_Text_BodyLarge),
             DSLSettingsText.CenterModifier,
             DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant))
           )

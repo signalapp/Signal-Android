@@ -95,7 +95,7 @@
     </style>
 
     <style name="Signal.Text.Preview.Secondary">
-        <item name="android:textColor">@color/signal_text_secondary</item>
+        <item name="android:textColor">@color/signal_colorOnSurfaceVariant</item>
     </style>
 
     <style name="Signal.Text.Caption" parent="Base.TextAppearance.AppCompat.Caption">
@@ -106,20 +106,20 @@
     </style>
 
     <style name="Signal.Text.Caption.MessageSent">
-        <item name="android:textColor">@color/signal_text_secondary</item>
+        <item name="android:textColor">@color/signal_colorOnSurfaceVariant</item>
         <item name="android:shadowRadius">0</item>
     </style>
 
     <style name="Signal.Text.Giant" parent="@style/TextAppearance.AppCompat.Display1">
         <item name="android:textSize">48sp</item>
-        <item name="android:textColor">@color/signal_text_primary</item>
+        <item name="android:textColor">@color/signal_colorOnSurface</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="TextAppearance.Signal.Title1" parent="@style/TextAppearance.AppCompat.Title">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">28sp</item>
-        <item name="android:color">@color/signal_text_primary</item>
+        <item name="android:color">@color/signal_colorOnSurface</item>
     </style>
 
     <style name="TextAppearance.Signal.Title2" parent="@style/TextAppearance.AppCompat.Title" />
@@ -177,17 +177,17 @@
 
     <style name="Signal.Text.MessageRequest.Title" parent="Base.TextAppearance.AppCompat.Title">
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/signal_text_primary</item>
+        <item name="android:textColor">@color/signal_colorOnSurface</item>
     </style>
 
     <style name="Signal.Text.MessageRequest.Subtitle" parent="Base.TextAppearance.AppCompat.Caption">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/signal_text_secondary</item>
+        <item name="android:textColor">@color/signal_colorOnSurfaceVariant</item>
     </style>
 
     <style name="Signal.Text.MessageRequest.Description" parent="Base.TextAppearance.AppCompat.Subhead">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/signal_text_secondary</item>
+        <item name="android:textColor">@color/signal_colorOnSurfaceVariant</item>
     </style>
 
     <style name="Signal.Text.Title" parent="Base.TextAppearance.AppCompat.Title">

@@ -165,8 +165,8 @@ class MediaPreviewV2Fragment :
       requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 
-    toolbar.setTitleTextAppearance(requireContext(), R.style.Signal_Text_TitleMedium)
-    toolbar.setSubtitleTextAppearance(requireContext(), R.style.Signal_Text_BodyMedium)
+    toolbar.setTitleTextAppearance(requireContext(), CoreUiR.style.Signal_Text_TitleMedium)
+    toolbar.setSubtitleTextAppearance(requireContext(), CoreUiR.style.Signal_Text_BodyMedium)
     (binding.toolbar.menu as? MenuBuilder)?.setOptionalIconsVisible(true)
     binding.toolbar.inflateMenu(R.menu.media_preview)
   }

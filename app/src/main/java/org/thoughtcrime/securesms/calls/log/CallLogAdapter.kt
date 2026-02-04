@@ -255,7 +255,7 @@ class CallLogAdapter(
 
       binding.callRecipientName.text = SearchUtil.getHighlightedSpan(
         Locale.getDefault(),
-        { arrayOf(TextAppearanceSpan(context, R.style.Signal_Text_TitleSmall)) },
+        { arrayOf(TextAppearanceSpan(context, CoreUiR.style.Signal_Text_TitleSmall)) },
         callLinkName,
         model.callLink.searchQuery,
         SearchUtil.MATCH_ALL
@@ -335,7 +335,7 @@ class CallLogAdapter(
       binding.callRecipientName.text = if (searchQuery != null) {
         SearchUtil.getHighlightedSpan(
           Locale.getDefault(),
-          { arrayOf(TextAppearanceSpan(context, R.style.Signal_Text_TitleSmall)) },
+          { arrayOf(TextAppearanceSpan(context, CoreUiR.style.Signal_Text_TitleSmall)) },
           recipient.getDisplayName(context),
           searchQuery,
           SearchUtil.MATCH_ALL
