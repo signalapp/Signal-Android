@@ -313,8 +313,22 @@
     <string name="CameraXFragment_to_capture_videos">শব্দ সহ ভিডিও ধারণ করতে:</string>
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">QR কোড স্ক্যান করতে:</string>
+    <!-- Error message shown when we try to take a photo, but fail -->
+    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <!-- Accessibility label for the switch camera button -->
+    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <!-- Accessibility label for flash button when flash is off -->
+    <string name="CameraXFragment_flash_off">Flash off</string>
+    <!-- Accessibility label for flash button when flash is on -->
+    <string name="CameraXFragment_flash_on">Flash on</string>
+    <!-- Accessibility label for flash button when flash is set to auto -->
+    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <!-- Accessibility label for the send button in media selection -->
+    <string name="CameraXFragment_send">Send</string>
 
-    <!-- CameraContacts -->
+<!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">সাম্প্রতিক যোগাযোগ</string>
     <string name="CameraContacts_signal_contacts">Signal পরিচিতিসমূহ</string>
     <string name="CameraContacts_signal_groups">Signal গ্রুপসমূহ</string>
@@ -940,7 +954,7 @@
     <string name="BackupsPreferenceFragment__backup_time">ব্যাকআপের সময়</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">ব্যাকআপ পাসফ্রেজ যাচাই করুন</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">আপনার ব্যাকআপ পাসফ্রেজটি পরীক্ষা করুন এবং এটি মিলছে কিনা তা যাচাই করুন</string>
-    <string name="BackupsPreferenceFragment__turn_on">চালু করুন</string>
+    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
     <string name="BackupsPreferenceFragment__turn_off">বন্ধ করুন</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"একটি ব্যাকআপ পুনরুদ্ধার করতে, নতুন করে Signal ইনস্টল করুন। অ্যাপ্লিকেশনটি খুলুন এবং \" ব্যাকআপ পুনরুদ্ধার করুন\" বাটনে আলতো চাপুন, তারপরে ব্যাকআপ ফাইলটি সনাক্ত করুন। %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">আরও জানুন</string>
@@ -2752,7 +2766,7 @@
     <string name="RegistrationActivity_play_services_error">প্লে সার্ভিস সমস্যা</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">গুগল প্লে পরিষেবাদি আপডেট করছে বা অস্থায়ীভাবে অনুপলব্ধ। অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
+    <string name="RegistrationActivity_terms_and_privacy">Signal একটি অলাভজনক প্রতিষ্ঠান\nশর্তাবলী এবং গোপনীয়তার নীতিমালা</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">আপনাকে বন্ধুদের সাথে সংযোগ করতে এবং বার্তা পাঠাতে সাহায্য করার জন্য সিগন্যালের পরিচিতি এবং মিডিয়ার অনুমতির প্রয়োজন হয়। আপনার পরিচিতিগুলি সিগন্যালের ব্যক্তিগত পরিচিতি আবিষ্কার ব্যবহার করে আপলোড করা হয়, যার মানে সেগুলি এন্ড-টু-এন্ড এনক্রিপ্ট করা এবং সিগন্যাল পরিষেবাতে কখনই দৃশ্যমান নয়৷</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">আপনাকে বন্ধুদের সাথে সংযোগ করতে সাহায্য করার জন্য সিগন্যালের পরিচিতির অনুমতির প্রয়োজন হয়। আপনার পরিচিতিগুলি সিগন্যালের ব্যক্তিগত পরিচিতি আবিষ্কার ব্যবহার করে আপলোড করা হয়, যার মানে সেগুলি এন্ড-টু-এন্ড এনক্রিপ্ট করা এবং সিগন্যাল পরিষেবাতে কখনই দৃশ্যমান নয়।</string>
     <string name="RegistrationActivity_rate_limited_to_service">আপনি এই নম্বরটি নিবন্ধন করার জন্য অনেকবার চেষ্টা করেছেন। দয়া করে পরে আবার চেষ্টা করুন।</string>
@@ -3818,40 +3832,54 @@
     <string name="verify_display_fragment__mark_as_verified">যাচাইকৃত হিসাবে চিহ্নিত করুন</string>
     <string name="verify_display_fragment__clear_verification">যাচাইকরণ সম্পূর্ণ করুন</string>
     <!-- Header title for automatic key verification -->
-    <string name="verify_display_fragment__automatic">Automatic Key Verification</string>
+    <string name="verify_display_fragment__automatic">স্বয়ংক্রিয় \'কি\' যাচাইকরণ</string>
     <!-- Button text to verify automatically    -->
-    <string name="verify_display_fragment__verify_automatic">Verify automatically</string>
+    <string name="verify_display_fragment__verify_automatic">স্বয়ংক্রিয়ভাবে যাচাই করুন</string>
     <!-- Loading text when verifying -->
-    <string name="verify_display_fragment__verifying">Verifying encryption…</string>
+    <string name="verify_display_fragment__verifying">এনক্রিপশন যাচাই করা হচ্ছে…</string>
     <!-- Success text shown when encryption is verified -->
-    <string name="verify_display_fragment__encryption_verified">Encryption verified</string>
+    <string name="verify_display_fragment__encryption_verified">এনক্রিপশন যাচাই করা হয়েছে</string>
     <!-- Text shown when verification fails -->
-    <string name="verify_display_fragment__encryption_unavailable">Auto-verification unavailable</string>
+    <string name="verify_display_fragment__encryption_unavailable">স্বয়ংক্রিয়-যাচাইকরণের সুবিধা নেই</string>
     <!-- Caption text explaining more about automatic verification   -->
-    <string name="verify_display_fragment__auto_verify_not_available">Auto-verification is not available for all chats.</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://signal.org/redirect/safety-numbers</string> -->
+    <string name="verify_display_fragment__auto_verify_not_available">সব চ্যাটের ক্ষেত্রে স্বয়ংক্রিয়-যাচাইকরণ সুবিধা নেই।</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://support.signal.org/hc/articles/10223569377562</string> -->
 
     <!-- Bottom sheet title when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_success">Encryption was auto-verified for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_success">এই চ্যাটের ক্ষেত্রে এনক্রিপশন স্বয়ংক্রিয়ভাবে যাচাই করা হয়েছে</string>
     <!-- Bottom sheet body when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_success">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_success">ফোন নম্বরের মাধ্যমে আপনি যেসব কন্টাক্টের সাথে সংযুক্ত আছেন, তাদের জন্য Signal স্বয়ংক্রিয়ভাবে \'কি\' ট্রান্সপারেন্সি নামক একটি প্রক্রিয়া ব্যবহার করে সংযোগটি সুরক্ষিত কিনা তা নিশ্চিত করতে পারে। বাড়তি নিরাপত্তার জন্য, আগের স্ক্রিনে থাকা নম্বর তুলনা করে বা তাদের ডিভাইসে কোড স্ক্যান করে ম্যানুয়ালি এন্ড-টু-এন্ড এনক্রিপশন যাচাই করুন।</string>
     <!-- Bottom sheet title when encryption is no longer auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Auto-verification is no longer available for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">এই চ্যাটের ক্ষেত্রে আর স্বয়ংক্রিয়-যাচাইকরণের সুবিধা নেই</string>
     <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
-    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal can no longer automatically verify the encryption for this chat. This is likely because %1$s changed their phone number. Verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal আর এই চ্যাটের এনক্রিপশন স্বয়ংক্রিয়ভাবে যাচাই করতে পারবে না। এটি ঘটার কারণ সম্ভবত %1$s তার ফোন নম্বর পরিবর্তন করেছেন। আগের স্ক্রিনে থাকা নম্বর তুলনা করে অথবা তাদের ডিভাইসে কোড স্ক্যান করে ম্যানুয়ালি এন্ড-টু-এন্ড এনক্রিপশন যাচাই করুন।</string>
     <!-- Bottom sheet title when encryption cannot be auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_unavailable">Auto-verification not available for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_unavailable">এই চ্যাটের ক্ষেত্রে স্বয়ংক্রিয়-যাচাইকরণের সুবিধা নেই</string>
     <!-- Bottom sheet body when encryption cannot be auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_unavailable">Signal can only automatically verify the encryption in chats where you’re connected to someone via a phone number. If the chat was started with a username or a group in common, verify end-to-end encryption by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_unavailable">Signal কেবলমাত্র সেইসব চ্যাটের এনক্রিপশন স্বয়ংক্রিয়ভাবে যাচাই করতে পারে যাদের সাথে আপনি ফোন নম্বরের মাধ্যমে সংযুক্ত আছেন। যদি চ্যাটটি একটি ব্যবহারকারীর নাম বা একটি সাধারণ গ্ৰুপ দিয়ে শুরু হয়ে থাকে, তাহলে আগের স্ক্রিনে থাকা নম্বর তুলনা করে বা তাদের ডিভাইসে কোড স্ক্যান করে এন্ড-টু-এন্ড এনক্রিপশন যাচাই করুন।</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal এখন এন্ড-টু-এন্ড এনক্রিপশন স্বয়ংক্রিয়ভাবে যাচাই করে</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">যখন আপনি একটি নিরাপত্তা নম্বর যাচাই করেন, তখন Signal স্বয়ংক্রিয়ভাবে \'কি-এর স্বচ্ছতা\' নামক একটি প্রক্রিয়া ব্যবহার করে সংযোগটি সুরক্ষিত কিনা তা নিশ্চিত করবে। আপনি এখনো একটি QR কোড বা নম্বর ব্যবহার করে ম্যানুয়ালি সংযোগ যাচাই করতে পারেন।</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">আরো জানুন</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">যাচাই করুন</string>
+
+    <!-- Title for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <!-- Body for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__body">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <!-- Button to decline submitting logs -->
+    <string name="SelfVerificationFailureSheet__no_thanks">No thanks</string>
+    <!-- Button to submit logs -->
+    <string name="SelfVerificationFailureSheet__submit">Submit</string>
+    <!-- Email subject line when submitting logs following a verification failure -->
+    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+  <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
+    <!-- Link to learn more about debug logs -->
+    <string name="SelfVerificationFailureSheet__learn_more">Learn more</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">আপনার পরিচিতি এর ডিভাইস থেকে প্রদর্শিত কিউআর কোডটি স্ক্যান করুন।</string>
@@ -4228,6 +4256,10 @@
     <string name="preferences_compact">সংক্ষিপ্ত</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">নতুন ভাষার সেটিং প্রয়োগ করতে অ্যাপটি পুনরায় চালু হবে।</string>
+    <!-- Preference title for automatic key verification -->
+    <string name="preferences_automatic_key_verification">Automatic key verification</string>
+    <!-- Preference summary for automatic key verification -->
+    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
 
 
     <string name="configurable_single_select__customize_option">বিকল্পগুলি কাস্টমাইজ করুন</string>
@@ -4795,8 +4827,6 @@
     <string name="ConversationListFragment_loading">লোড হচ্ছে…</string>
     <string name="CallNotificationBuilder_connecting">সংযুক্ত হচ্ছে …</string>
     <string name="Permissions_permission_required">অনুমতি প্রয়োজন</string>
-    <string name="Permissions_continue">চলুন</string>
-    <string name="Permissions_not_now">এখন না</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ডাটাবেস ডাটাবেস স্থানান্তরিত হচ্ছে</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">পাসফ্রেজ ব্যাকঅাপ করুন</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ব্যাকআপগুলি বাহ্যিক স্টোরেজে সংরক্ষণ করা হবে এবং নীচের পাসফ্রেজের সাহায্যে এনক্রিপ্ট করা হবে। ব্যাকঅাপ পুনরুদ্ধার করতে আপনার অবশ্যই এই পাসফ্রেজ থাকতে হবে।</string>
@@ -5821,7 +5851,7 @@
     <string name="HelpFragment__copyright_signal_messenger">Signal Messenger এর কপিরাইট</string>
     <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3-এর অধীনে লাইসেন্সকৃত</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal একটি অলাভজনক প্রতিষ্ঠান</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">মিডিয়ার মান</string>
@@ -5954,6 +5984,8 @@
     <string name="ConversationSettingsFragment__permissions">অনুমতিসমূহ</string>
     <string name="ConversationSettingsFragment__requests_and_invites">অনুরোধ &amp; আমন্ত্রণ</string>
     <string name="ConversationSettingsFragment__group_link">গ্রুপের লিংক</string>
+    <!-- Label for button that opens the group member label permissions screen. -->
+    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">কন্ট্যাক্ট হিসেবে যোগ করুন</string>
     <string name="ConversationSettingsFragment__unmute">আনমিউট করুন</string>
@@ -6237,15 +6269,15 @@
     <string name="Subscription__expires_s">%1$s তারিখে মেয়াদ শেষ হবে</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">As an independent nonprofit, Signal is committed to private messaging and calls. No ads, no trackers, no surveillance. Donate today to support Signal.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">একটি স্বাধীন অলাভজনক প্রতিষ্ঠান হিসেবে, Signal ব্যক্তিগত মেসেজ এবং কলের সার্ভিস প্রদানের জন্য প্রতিশ্রুতিবদ্ধ। নেই কোনো বিজ্ঞাপন, নেই কোনো ট্র্যাকার, নেই কোনো নজরদারি। Signal-কে সহায়তা করার জন্য আজই ডোনেট করুন।</string>
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Get an optional badge on your profile when you donate</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">ডোনেট করার ফলে ইচ্ছা হলে আপনার প্রোফাইলের জন্য একটি ব্যাজ নিতে পারেন</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">Your privacy is our mission</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">আপনার গোপনীয়তা রক্ষাই আমাদের লক্ষ্য</string>
     <!-- Fourth small text blurb on learn more sheet. Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit. US donations are tax deductible.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal একটি অলাভজনক প্রতিষ্ঠান। মার্কিন যুক্তরাষ্ট্রে ডোনেশনের ক্ষেত্রে কর ছাড় পাওয়া যায়।</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">আপনার সহযোগীতার জন্য ধন্যবাদ!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -7275,11 +7307,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Proudly Nonprofit</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">গর্বিত অলাভজনক প্রতিষ্ঠান</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">চালিয়ে যান</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Donate to support private messaging. Keep Signal independent and ad-free.</string>
+    <string name="DonateToSignalFragment__private_messaging">ব্যক্তিগত মেসেজ পাঠানো চালিয়ে যাওয়া সমর্থন করতে ডোনেট করুন। Signal-কে স্বাধীন ও বিজ্ঞাপনমুক্ত রাখুন।</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">আপনার একটি জমা না হওয়া ডোনেশন রয়েছে</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7871,6 +7903,18 @@
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
     <string name="TurnOnSignalBackups__toast_not_now">আপনি \"সেটিংস\"-এ ব্যাকআপ চালু করতে পারেন</string>
 
+    <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <!-- Button of a megaphone that will take the user to the upgrade flow -->
+    <string name="UseNewOnDeviceBackups__upgrade">Upgrade</string>
+    <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__not_now">Not now</string>
+
+    <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">আপনার পুনরুদ্ধার \'কি\' যাচাই করুন</string>
     <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
@@ -8090,6 +8134,12 @@
     <!-- Backup redemption error sheet bullet point 2 -->
     <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">একই সাবস্ক্রিপশন ব্যবহার করুছে এমন অনেকগুলো ডিভাইস আছে।</string>
 
+    <!-- OnDeviceBackupsFragment -->
+    <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
+    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">আপনার মিডিয়া পুনরুদ্ধার করতে %1$s জায়গা খালি করুন।</string>
@@ -8107,13 +8157,13 @@
     <string name="BackupStatus__resume">শুরু করুন</string>
 
     <!-- Status subtitle for banner when we are creating a backup file -->
-    <string name="BackupStatus__status_creating_backup">Creating backup…</string>
+    <string name="BackupStatus__status_creating_backup">ব্যাকআপ তৈরি করা হচ্ছে…</string>
     <!-- Status title for banner when user is actively uploading backup data -->
-    <string name="BackupStatus__uploading_backup">Uploading backup</string>
+    <string name="BackupStatus__uploading_backup">ব্যাকআপ আপলোড করা হচ্ছে</string>
     <!-- Status title for banner when user is temporarily unable to upload a backup -->
-    <string name="BackupStatus__upload_paused">Backup paused</string>
+    <string name="BackupStatus__upload_paused">ব্যাকআপ স্থগিত করা হয়েছে</string>
     <!-- Status title for banner when user has finished creating a backup -->
-    <string name="BackupStatus__upload_complete">Backup complete</string>
+    <string name="BackupStatus__upload_complete">ব্যাকআপ সম্পন্ন হয়েছে</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi-এর জন্য অপেক্ষা করা হচ্ছে…</string>
@@ -8170,13 +8220,13 @@
     <string name="ResumeRestoreCellular_resume_using_cellular_message">সেলুলার ডেটা ব্যবহার করে আপনার মিডিয়া রিস্টোর করলে ডেটা চার্জ প্রযোজ্য হতে পারে। স্বয়ংক্রিয়ভাবে পুনরায় চালু করতে আপনি একটি Wi-Fi নেটওয়ার্কের সাথে সংযোগ করতে পারেন।</string>
 
     <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
-    <string name="CancelBackupDialog_title">Cancel backup?</string>
+    <string name="CancelBackupDialog_title">ব্যাকআপ বাতিল করবেন?</string>
     <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
-    <string name="CancelBackupDialog_body">Canceling your backup will not delete your backup. You can resume your backup at any time from Backup Settings.</string>
+    <string name="CancelBackupDialog_body">আপনার ব্যাকআপ বাতিল করলেও আপনার ব্যাকআপ মুছে যাবে না। আপনি ব্যাকআপ সেটিংস থেকে যেকোনো সময় আপনার ব্যাকআপ পুনরায় শুরু করতে পারেন।</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
     <string name="CancelBackupDialog_cancel_action">ব্যাকআপ বাতিল করুন</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
-    <string name="CancelBackupDialog_continue_action">Continue backup</string>
+    <string name="CancelBackupDialog_continue_action">ব্যাকআপ নেওয়া চালিয়ে যান</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8530,6 +8580,29 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">কিউআর কোড স্ক্যান করুন</string>
 
+    <!-- OnDeviceBackupsImprovementsScreen -->
+    <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <!-- Feature description explaining backups are faster and use less data -->
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <!-- Feature description explaining backups will be saved as a folder with many files -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <!-- Feature description explaining backups remain end-to-end encrypted -->
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <!-- Button text to continue to the next step -->
+    <string name="OnDeviceBackupsImprovementsScreen__continue">Continue</string>
+
+    <!-- OnDeviceBackupsSettingsScreen -->
+    <!-- Card text prompting user to update to a new recovery key for faster backups -->
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <!-- Button text to update to a new recovery key -->
+    <string name="OnDeviceBackupsSettingsScreen__update">Update</string>
+
+    <!-- UnifiedOnDeviceBackupsSettingsScreen -->
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">View backup key</string>
+
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
     <string name="DownloadYourBackupTodayDialog__download_your_backup_today">আজই আপনার ব্যাকআপ ডাউনলোড করুন</string>
@@ -8583,12 +8656,32 @@
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">পুনরুদ্ধার \'কি\'</string>
+    <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <!-- Screen headline shown when the user already has an on-device recovery key set. -->
+    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Your recovery key</string>
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">আপনার পুনরুদ্ধার \'কি\' হলো একটি 64-ক্যারেক্টারের কোড যা আপনার ব্যাকআপ পুনরুদ্ধার করতে প্রয়োজন হবে।</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__store_your_recovery">আপনার পুনরুদ্ধার \'কি\'-টি পাসওয়ার্ড ম্যানেজারের মতো নিরাপদ কোথাও সংরক্ষণ করুন এবং এটি কারো সাথে শেয়ার করবেন না।</string>
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">এটি হারিয়ে ফেললে, আপনি আপনার মেসেজ পুনরুদ্ধার করতে পারবেন না।</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <!-- Label shown above a list of actions that the recovery key can be used for. -->
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">পুনরুদ্ধার \'কি\' দেখুন</string>
 
@@ -8597,6 +8690,8 @@
     <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">আপনার পুনরুদ্ধার \'কি\' সংরক্ষণ করুন</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">আপনার অ্যাকাউন্ট এবং ডেটা পুনরুদ্ধার করতে এই \'কি\' প্রয়োজন। এই \'কি\'-টি নিরাপদ কোথাও সংরক্ষণ করুন। এটি হারিয়ে ফেললে, আপনি আপনার অ্যাকাউন্টের ব্যাকআপ পুনরুদ্ধার করতে পারবেন না।</string>
+    <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি করুন</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9190,6 +9285,21 @@
     <string name="PinnedMessage__couldnt_unpin_all">মেসেজ আনপিন করা যায়নি</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
+
+    <!-- Group member label screen title. -->
+    <string name="GroupMemberLabel__title">Member label</string>
+    <!-- Group member label text field placeholder. -->
+    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <!-- Group member label preview section header. -->
+    <string name="GroupMemberLabel__preview_section_header">Preview</string>
+    <!-- Group member label save button label. -->
+    <string name="GroupMemberLabel__save">Save</string>
+    <!-- Accessibility label for the button to open the group member label emoji picker. -->
+    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <!-- Accessibility label for the group member label close screen button. -->
+    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <!-- Accessibility label for the group member label text field clear button. -->
+    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
 
     <!-- EOF -->
 </resources>

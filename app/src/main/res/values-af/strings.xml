@@ -313,8 +313,22 @@
     <string name="CameraXFragment_to_capture_videos">Om video\'s met klank te neem:</string>
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">Om QR-kodes te skandeer:</string>
+    <!-- Error message shown when we try to take a photo, but fail -->
+    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <!-- Accessibility label for the switch camera button -->
+    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <!-- Accessibility label for flash button when flash is off -->
+    <string name="CameraXFragment_flash_off">Flash off</string>
+    <!-- Accessibility label for flash button when flash is on -->
+    <string name="CameraXFragment_flash_on">Flash on</string>
+    <!-- Accessibility label for flash button when flash is set to auto -->
+    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <!-- Accessibility label for the send button in media selection -->
+    <string name="CameraXFragment_send">Send</string>
 
-    <!-- CameraContacts -->
+<!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">Onlangse kontakte</string>
     <string name="CameraContacts_signal_contacts">Signal-kontakte</string>
     <string name="CameraContacts_signal_groups">Signal-groepe</string>
@@ -940,7 +954,7 @@
     <string name="BackupsPreferenceFragment__backup_time">Tyd vir rugsteun</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verifieer rugsteun-wagwoordfrase</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Toets jou wagwoordfrase en verifieer dat dit ooreenkom</string>
-    <string name="BackupsPreferenceFragment__turn_on">Skakel aan</string>
+    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
     <string name="BackupsPreferenceFragment__turn_off">Skakel af</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om \'n rugsteun te herwin, installeer \'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin vanaf rugsteun\" en spoor dan \'n rugsteunlêer op. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Vind meer uit</string>
@@ -2752,7 +2766,7 @@
     <string name="RegistrationActivity_play_services_error">Play Services Fout</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-dienste word bygewerk of is nie tydelik beskikbaar nie. Probeer asseblief weer.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
+    <string name="RegistrationActivity_terms_and_privacy">Signal is \'n niewinsgewende organisasie\nBepalings &amp; Privaatheidsbeleid</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal benodig kontakte- en mediatoestemmings om jou te help om met vriende te verbind en boodskappe te stuur. Jou kontakte word opgelaai deur middel van Signal se privaatkontak-ontdekking, wat beteken dat hulle end-tot-end geënkripteer is en nooit vir die Signal-diens sigbaar is nie.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal benodig kontakte- en mediatoestemmings om jou te help om met vriende te verbind. Jou kontakte word opgelaai deur middel van Signal se privaatkontak-ontdekking, wat beteken dat hulle end-tot-end geënkripteer is en nooit vir die Signal-diens sigbaar is nie.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Jy het te veel keer probeer om hierdie nommer te registreer. Probeer gerus later weer.</string>
@@ -3818,40 +3832,54 @@
     <string name="verify_display_fragment__mark_as_verified">Merk as geverifieer</string>
     <string name="verify_display_fragment__clear_verification">Maak verifiëring skoon</string>
     <!-- Header title for automatic key verification -->
-    <string name="verify_display_fragment__automatic">Automatic Key Verification</string>
+    <string name="verify_display_fragment__automatic">Outomatiese sleutelverifiëring</string>
     <!-- Button text to verify automatically    -->
-    <string name="verify_display_fragment__verify_automatic">Verify automatically</string>
+    <string name="verify_display_fragment__verify_automatic">Verifieer outomaties</string>
     <!-- Loading text when verifying -->
-    <string name="verify_display_fragment__verifying">Verifying encryption…</string>
+    <string name="verify_display_fragment__verifying">Verifieer tans enkriptering…</string>
     <!-- Success text shown when encryption is verified -->
-    <string name="verify_display_fragment__encryption_verified">Encryption verified</string>
+    <string name="verify_display_fragment__encryption_verified">Enkriptering geverifieer</string>
     <!-- Text shown when verification fails -->
-    <string name="verify_display_fragment__encryption_unavailable">Auto-verification unavailable</string>
+    <string name="verify_display_fragment__encryption_unavailable">Outoverifiëring nie beskikbaar nie</string>
     <!-- Caption text explaining more about automatic verification   -->
-    <string name="verify_display_fragment__auto_verify_not_available">Auto-verification is not available for all chats.</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://signal.org/redirect/safety-numbers</string> -->
+    <string name="verify_display_fragment__auto_verify_not_available">Outoverifiëring is nie vir alle kletse beskikbaar nie.</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://support.signal.org/hc/articles/10223569377562</string> -->
 
     <!-- Bottom sheet title when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_success">Encryption was auto-verified for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_success">Enkriptering vir hierdie klets is geoutoverifieer</string>
     <!-- Bottom sheet body when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_success">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_success">Vir kontakte waarmee jy deur \'n telefoonnommer verbind is, kan Signal outomaties bevestig of die verbinding veilig is deur \'n proses genaamd sleuteldeursigtigheid te gebruik. Vir bykomende sekuriteit, verifieer end-tot-end-enkriptering handmatig deur vergelyking van die nommers op die vorige skerm of deur die kode op hul toestel te skandeer.</string>
     <!-- Bottom sheet title when encryption is no longer auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Auto-verification is no longer available for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Outoverifiëring is nie meer vir hierdie klets beskikbaar nie</string>
     <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
-    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal can no longer automatically verify the encryption for this chat. This is likely because %1$s changed their phone number. Verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal kan nie meer die enkriptering vir hierdie klets outomaties verifieer nie. Dit is waarskynlik omdat %1$s hul telefoonnommer verander het. Verifieer end-tot-end-enkriptering handmatig deur vergelyking van die nommers op die vorige skerm of deur die kode op hul toestel te skandeer.</string>
     <!-- Bottom sheet title when encryption cannot be auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_unavailable">Auto-verification not available for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_unavailable">Outoverifiëring nie vir hierdie klets beskikbaar nie</string>
     <!-- Bottom sheet body when encryption cannot be auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_unavailable">Signal can only automatically verify the encryption in chats where you’re connected to someone via a phone number. If the chat was started with a username or a group in common, verify end-to-end encryption by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_unavailable">Signal kan slegs die enkripsie in kletse outomaties verifieer indien jy via \'n telefoonnommer met iemand verbind is. Indien die klets met \'n gemeenskaplike gebruikersnaam of groep begin is, verifieer end-tot-end-enkriptering deur vergelyking van die nommers op die vorige skerm of deur die kode op hul toestel te skandeer.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal outoverifieer nou end-tot-end enkriptering</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">Wanneer jy \'n veiligheidsnommer verifieer, sal Signal outomaties bevestig of die verbinding veilig is deur \'n proses genaamd sleuteldeursigtigheid te gebruik. Jy kan steeds verbindings handmatig verifieer deur \'n QR-kode of \'n nommer te gebruik.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Vind meer uit</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">Verifieer</string>
+
+    <!-- Title for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <!-- Body for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__body">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <!-- Button to decline submitting logs -->
+    <string name="SelfVerificationFailureSheet__no_thanks">No thanks</string>
+    <!-- Button to submit logs -->
+    <string name="SelfVerificationFailureSheet__submit">Submit</string>
+    <!-- Email subject line when submitting logs following a verification failure -->
+    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+  <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
+    <!-- Link to learn more about debug logs -->
+    <string name="SelfVerificationFailureSheet__learn_more">Learn more</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skandeer die QR-kode op jou kontak se toestel.</string>
@@ -4228,6 +4256,10 @@
     <string name="preferences_compact">Kompak</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">Die toepassing sal herlaai word om die nuwe taalinstelling toe te pas.</string>
+    <!-- Preference title for automatic key verification -->
+    <string name="preferences_automatic_key_verification">Automatic key verification</string>
+    <!-- Preference summary for automatic key verification -->
+    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
 
 
     <string name="configurable_single_select__customize_option">Pasmaak-opsie</string>
@@ -4795,8 +4827,6 @@
     <string name="ConversationListFragment_loading">Laai tans…</string>
     <string name="CallNotificationBuilder_connecting">Verbind…</string>
     <string name="Permissions_permission_required">Toestemming benodig</string>
-    <string name="Permissions_continue">Gaan voort</string>
-    <string name="Permissions_not_now">Nie nou nie</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Besig om Signal-databasis te migreer</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Rugsteun-wagwoordfrase</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Rugsteunkopiëe sal in eksterne stoorruimte gestoor word en met die wagwoordfrase hier onder geënkripteer word. Jy moet hierdie wagwoordfrase hê om \'n rugsteun te herwin.</string>
@@ -5821,7 +5851,7 @@
     <string name="HelpFragment__copyright_signal_messenger">Kopiereg Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">Gelisensieer onder die GNU AGPLv3</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is \'n niewinsgewende organisasie</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
@@ -5954,6 +5984,8 @@
     <string name="ConversationSettingsFragment__permissions">Toestemmings</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Versoeke &amp; uitnodigings</string>
     <string name="ConversationSettingsFragment__group_link">Groepskakel</string>
+    <!-- Label for button that opens the group member label permissions screen. -->
+    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Voeg by as ’n kontak</string>
     <string name="ConversationSettingsFragment__unmute">Ontdemp</string>
@@ -6237,15 +6269,15 @@
     <string name="Subscription__expires_s">Verstryk %1$s</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">As an independent nonprofit, Signal is committed to private messaging and calls. No ads, no trackers, no surveillance. Donate today to support Signal.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">As \'n onafhanklike niewinsgewende organisasie is Signal verbind tot privaat boodskappe en oproepe. Geen advertensies, geen naspoorders, geen observasie nie. Maak vandag \'n skenking om Signal te ondersteun.</string>
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Get an optional badge on your profile when you donate</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Kry \'n opsionele wapen op jou profiel wanneer jy skenk</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">Your privacy is our mission</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">Jou privaatheid is ons missie</string>
     <!-- Fourth small text blurb on learn more sheet. Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit. US donations are tax deductible.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal is \'n niewinsgewende organisasie.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dankie vir jou ondersteuning!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -7275,11 +7307,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Proudly Nonprofit</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Trots niewinsgewend</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Gaan voort</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Donate to support private messaging. Keep Signal independent and ad-free.</string>
+    <string name="DonateToSignalFragment__private_messaging">Skenk om private boodskappe te ondersteun. Hou Signal onafhanklik en advertensievry.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Jy het \'n hangende skenking</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7871,6 +7903,18 @@
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
     <string name="TurnOnSignalBackups__toast_not_now">Jy kan rugsteun in \"Instellings\" aktiveer</string>
 
+    <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <!-- Button of a megaphone that will take the user to the upgrade flow -->
+    <string name="UseNewOnDeviceBackups__upgrade">Upgrade</string>
+    <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__not_now">Not now</string>
+
+    <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Verifieer jou herwinsleutel</string>
     <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
@@ -8090,6 +8134,12 @@
     <!-- Backup redemption error sheet bullet point 2 -->
     <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Te veel toestelle wat dieselfde intekening gebruik.</string>
 
+    <!-- OnDeviceBackupsFragment -->
+    <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
+    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Stel %1$s stoorruimte beskikbaar om jou media af te laai.</string>
@@ -8107,13 +8157,13 @@
     <string name="BackupStatus__resume">Hervat</string>
 
     <!-- Status subtitle for banner when we are creating a backup file -->
-    <string name="BackupStatus__status_creating_backup">Creating backup…</string>
+    <string name="BackupStatus__status_creating_backup">Skep tans rugsteunkopie…</string>
     <!-- Status title for banner when user is actively uploading backup data -->
-    <string name="BackupStatus__uploading_backup">Uploading backup</string>
+    <string name="BackupStatus__uploading_backup">Laai tans rugsteun op</string>
     <!-- Status title for banner when user is temporarily unable to upload a backup -->
-    <string name="BackupStatus__upload_paused">Backup paused</string>
+    <string name="BackupStatus__upload_paused">Rugsteun onderbreek</string>
     <!-- Status title for banner when user has finished creating a backup -->
-    <string name="BackupStatus__upload_complete">Backup complete</string>
+    <string name="BackupStatus__upload_complete">Rugsteun voltooi</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wag tans vir WiFi…</string>
@@ -8126,7 +8176,7 @@
     <!-- Label for a context menu item that, when pressed, will hide a banner so it will no longer be shown. -->
     <string name="BackupStatus__hide">Versteek</string>
     <!-- Label for a context menu item that, when pressed, will cancel the ongoing backup. -->
-    <string name="BackupStatus__cancel_upload">Cancel backup</string>
+    <string name="BackupStatus__cancel_upload">Kanselleer rugsteun</string>
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
@@ -8170,13 +8220,13 @@
     <string name="ResumeRestoreCellular_resume_using_cellular_message">Die herstel van jou media met behulp van mobiele data kan datakoste tot gevolg hê. Jy kan aan \'n Wi-Fi-netwerk konnekteer om outomaties te hervat.</string>
 
     <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
-    <string name="CancelBackupDialog_title">Cancel backup?</string>
+    <string name="CancelBackupDialog_title">Kanselleer rugsteun?</string>
     <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
-    <string name="CancelBackupDialog_body">Canceling your backup will not delete your backup. You can resume your backup at any time from Backup Settings.</string>
+    <string name="CancelBackupDialog_body">Kansellering van jou rugsteun sal nie jou rugsteun skrap nie. Jy kan jou rugsteun te eniger tyd uit Rugsteuninstellings hervat.</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
-    <string name="CancelBackupDialog_cancel_action">Cancel backup</string>
+    <string name="CancelBackupDialog_cancel_action">Kanselleer rugsteun</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
-    <string name="CancelBackupDialog_continue_action">Continue backup</string>
+    <string name="CancelBackupDialog_continue_action">Gaan voort met rugsteun</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8530,6 +8580,29 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">Skandeer QR-kode</string>
 
+    <!-- OnDeviceBackupsImprovementsScreen -->
+    <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <!-- Feature description explaining backups are faster and use less data -->
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <!-- Feature description explaining backups will be saved as a folder with many files -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <!-- Feature description explaining backups remain end-to-end encrypted -->
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <!-- Button text to continue to the next step -->
+    <string name="OnDeviceBackupsImprovementsScreen__continue">Continue</string>
+
+    <!-- OnDeviceBackupsSettingsScreen -->
+    <!-- Card text prompting user to update to a new recovery key for faster backups -->
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <!-- Button text to update to a new recovery key -->
+    <string name="OnDeviceBackupsSettingsScreen__update">Update</string>
+
+    <!-- UnifiedOnDeviceBackupsSettingsScreen -->
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">View backup key</string>
+
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
     <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Laai vandag nog jou rugsteun af</string>
@@ -8583,12 +8656,32 @@
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Herwinsleutel</string>
+    <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <!-- Screen headline shown when the user already has an on-device recovery key set. -->
+    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Your recovery key</string>
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Jou herwinsleutel is \'n 64-karakter-kode wat jy nodig het om jou rugsteun te herstel.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Bêre jou herwinsleutel êrens veilig soos \'n veilige wagwoordbestuurstelsel, en moet dit nie met enigiemand deel nie.</string>
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">As jy dit verloor, sal jy nie jou boodskappe kan herwin nie.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <!-- Label shown above a list of actions that the recovery key can be used for. -->
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Bekyk herwinsleutel</string>
 
@@ -8597,6 +8690,8 @@
     <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Maak \'n aantekening van jou herwinsleutel</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Hierdie sleutel is nodig om jou rekening en data te herstel. Bewaar hierdie sleutel iewers waar dit veilig is. As jy dit verloor, sal jy nie jou rekening kan herstel nie.</string>
+    <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopieer na knipbord</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9190,6 +9285,21 @@
     <string name="PinnedMessage__couldnt_unpin_all">Kon nie merkspeld by boodskappe verwyder nie</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">Gaan jou verbinding na en probeer weer.</string>
+
+    <!-- Group member label screen title. -->
+    <string name="GroupMemberLabel__title">Member label</string>
+    <!-- Group member label text field placeholder. -->
+    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <!-- Group member label preview section header. -->
+    <string name="GroupMemberLabel__preview_section_header">Preview</string>
+    <!-- Group member label save button label. -->
+    <string name="GroupMemberLabel__save">Save</string>
+    <!-- Accessibility label for the button to open the group member label emoji picker. -->
+    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <!-- Accessibility label for the group member label close screen button. -->
+    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <!-- Accessibility label for the group member label text field clear button. -->
+    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
 
     <!-- EOF -->
 </resources>

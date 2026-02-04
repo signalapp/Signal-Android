@@ -61,11 +61,11 @@
     <string name="ApplicationPreferencesActivity_record_phrase">ਸ਼ਬਦ-ਸਮੂਹ ਰਿਕਾਰਡ ਕਰੋ</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਕਿ ਤੁਸੀਂ ਆਪਣਾ PIN ਅਸਮਰੱਥ ਕਰ ਸਕੋ, ਤੁਹਾਨੂੰ ਆਪਣੇ ਭੁਗਤਾਨ ਰਿਕਵਰੀ ਸ਼ਬਦ-ਸਮੂਹ ਨੂੰ ਜ਼ਰੂਰ ਰਿਕਾਰਡ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ ਤਾਂ ਜੋ ਇਹ ਯਕੀਨੀ ਬਣਾਇਆ ਜਾ ਸਕੇ ਕਿ ਤੁਸੀਂ ਆਪਣਾ ਭੁਗਤਾਨ ਖਾਤਾ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰ ਸਕੋ।</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">ਇੱਕ ਨਵੀਂ ਰਿਕਵਰੀ ਕੁੰਜੀ ਬਣਾਓ</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">ਇੱਕ ਨਵੀਂ ਰਿਕਵਰੀ ਕੀ ਬਣਾਓ</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">ਆਪਣਾ PIN ਅਸਮਰੱਥ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤੁਹਾਨੂੰ ਇੱਕ ਨਵੀਂ ਰਿਕਵਰੀ ਕੁੰਜੀ ਬਣਾਉਣੀ ਅਤੇ ਰਿਕਾਰਡ ਕਰਨੀ ਪਵੇਗੀ।</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_body">ਆਪਣਾ PIN ਅਸਮਰੱਥ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤੁਹਾਨੂੰ ਇੱਕ ਨਵੀਂ ਰਿਕਵਰੀ ਕੀ ਬਣਾਉਣੀ ਅਤੇ ਰਿਕਾਰਡ ਕਰਨੀ ਪਵੇਗੀ।</string>
     <!-- The confirmation button for a dialog letting the user know they have to rotate their recovery key if they want to disable PINs. If they click the button, they will be taken to a flow to rotate their key. -->
-    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">ਕੁੰਜੀ ਬਣਾਓ</string>
+    <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">ਕੀ ਬਣਾਓ</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -313,8 +313,22 @@
     <string name="CameraXFragment_to_capture_videos">ਆਵਾਜ਼ ਦੇ ਨਾਲ ਵੀਡੀਓ ਬਣਾਉਣ ਲਈ:</string>
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">QR ਕੋਡ ਸਕੈਨ ਕਰਨ ਲਈ:</string>
+    <!-- Error message shown when we try to take a photo, but fail -->
+    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <!-- Accessibility label for the switch camera button -->
+    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <!-- Accessibility label for flash button when flash is off -->
+    <string name="CameraXFragment_flash_off">Flash off</string>
+    <!-- Accessibility label for flash button when flash is on -->
+    <string name="CameraXFragment_flash_on">Flash on</string>
+    <!-- Accessibility label for flash button when flash is set to auto -->
+    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <!-- Accessibility label for the send button in media selection -->
+    <string name="CameraXFragment_send">Send</string>
 
-    <!-- CameraContacts -->
+<!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">ਤਾਜ਼ਾ ਸੰਪਰਕ</string>
     <string name="CameraContacts_signal_contacts">Signal ਸੰਪਰਕ</string>
     <string name="CameraContacts_signal_groups">Signal ਗਰੁੱਪ</string>
@@ -940,7 +954,7 @@
     <string name="BackupsPreferenceFragment__backup_time">ਬੈਕਅੱਪ ਲੈਣ ਦਾ ਸਮਾਂ</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">ਬੈਕਅੱਪ ਦੇ ਪਾਸਫ਼੍ਰੇਜ਼ ਨੂੰ ਤਸਦੀਕ ਕਰੋ</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">ਆਪਣੇ ਬੈਕਅੱਪ ਦੇ ਪਾਸਫ਼੍ਰੇਜ਼ ਨੂੰ ਜਾਂਚੋ ਅਤੇ ਤਸਦੀਕ ਕਰੋ ਕਿ ਇਹ ਮੇਲ ਖਾਂਦਾ ਹੈ</string>
-    <string name="BackupsPreferenceFragment__turn_on">ਚਾਲੂ ਕਰੋ</string>
+    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
     <string name="BackupsPreferenceFragment__turn_off">ਬੰਦ ਕਰੋ</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"ਬੈਕਅੱਪ ਬਹਾਲ ਕਰਨ ਲਈ, Signal ਦੀ ਨਵੀਂ ਕਾਪੀ ਸਥਾਪਤ ਕਰੋ, ਐਪ ਨੂੰ ਖੋਲ੍ਹੋ ਅਤੇ \"ਬੈਕਅੱਪ ਬਹਾਲ ਕਰੋ\" ਨੂੰ ਟੈਪ ਕਰੋ, ਫਿਰ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਦਾ ਟਿਕਾਣਾ ਲੱਭੋ। %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">ਹੋਰ ਜਾਣੋ</string>
@@ -2752,7 +2766,7 @@
     <string name="RegistrationActivity_play_services_error">Play ਸੇਵਾਵਾਂ ਚ ਤਰੁੱਟੀ</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play ਸੇਵਾਵਾਂ ਅਪਡੇਟ ਹੋ ਰਹੀਆਂ ਹਨ ਜਾਂ ਅਸਥਾਈ ਤੌਰ ’ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹਨ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ ਕਰੋ।</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
+    <string name="RegistrationActivity_terms_and_privacy">Signal ਇੱਕ ਗੈਰ-ਲਾਭਕਾਰੀ ਸੰਸਥਾ ਹੈ\nਸ਼ਰਤਾਂ ਅਤੇ ਪਰਦੇਦਾਰੀ ਨੀਤੀ</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਦੋਸਤਾਂ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਅਤੇ ਸੁਨੇਹੇ ਭੇਜਣ ਦੀ ਸਹੂਲਤ ਦੇਣ ਲਈ Signal ਨੂੰ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਅਤੇ ਮੀਡੀਆ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ। ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਨੂੰ Signal ਦੇ ਪ੍ਰਾਈਵੇਟ ਸੰਪਰਕ ਡਿਸਕਵਰੀ ਫੀਚਰ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਅੱਪਲੋਡ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਜਿਸ ਦਾ ਅਰਥ ਹੈ ਕਿ ਉਹ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟਡ ਹਨ ਅਤੇ Signal ਕਦੇ ਵੀ ਉਹਨਾਂ ਨੂੰ ਦੇਖ ਨਹੀਂ ਸਕਦਾ ਹੈ।</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">ਤੁਹਾਨੂੰ ਦੋਸਤਾਂ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਵਾਸਤੇ Signal ਨੂੰ ਸੰਪਰਕ ਵਾਸਤੇ ਇਜਾਜ਼ਤਾਂ ਦੀ ਲੋੜ ਹੈ। ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਨੂੰ Signal ਦੇ ਪ੍ਰਾਈਵੇਟ ਸੰਪਰਕ ਡਿਸਕਵਰੀ ਵਰਤ ਕੇ ਅੱਪਲੋਡ ਕੀਤੇ ਜਾਂਦੇ ਹਨ, ਜਿਸ ਦਾ ਅਰਥ ਹੈ ਕਿ ਉਹ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇੰਕ੍ਰਿਪਟ ਹਨ ਅਤੇ Signal ਸੇਵਾ ਨੂੰ ਕਦੇ ਦਿਖਾਈ ਨਹੀਂ ਦਿੰਦੇ ਹਨ।</string>
     <string name="RegistrationActivity_rate_limited_to_service">ਤੁਸੀਂ ਇਸ ਨੰਬਰ ਨੂੰ ਰਜਿਸਟਰ ਕਰਨ ਦੀਆਂ ਬਹੁਤ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਕਰ ਲਈਆਂ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
@@ -3818,40 +3832,54 @@
     <string name="verify_display_fragment__mark_as_verified">ਪ੍ਰਮਾਣਿਤ ਵਜੋਂ ਚਿੰਨ੍ਹ ਲਾਓ</string>
     <string name="verify_display_fragment__clear_verification">ਤਸਦੀਕ ਨੂੰ ਮਿਟਾਓ</string>
     <!-- Header title for automatic key verification -->
-    <string name="verify_display_fragment__automatic">Automatic Key Verification</string>
+    <string name="verify_display_fragment__automatic">ਕੀ ਦੀ ਆਪਣੇ-ਆਪ ਤਸਦੀਕ</string>
     <!-- Button text to verify automatically    -->
-    <string name="verify_display_fragment__verify_automatic">Verify automatically</string>
+    <string name="verify_display_fragment__verify_automatic">ਆਪਣੇ-ਆਪ ਤਸਦੀਕ ਕਰੋ</string>
     <!-- Loading text when verifying -->
-    <string name="verify_display_fragment__verifying">Verifying encryption…</string>
+    <string name="verify_display_fragment__verifying">ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਤਸਦੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
     <!-- Success text shown when encryption is verified -->
-    <string name="verify_display_fragment__encryption_verified">Encryption verified</string>
+    <string name="verify_display_fragment__encryption_verified">ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਤਸਦੀਕ ਹੋਈ</string>
     <!-- Text shown when verification fails -->
-    <string name="verify_display_fragment__encryption_unavailable">Auto-verification unavailable</string>
+    <string name="verify_display_fragment__encryption_unavailable">ਸਵੈ-ਤਸਦੀਕ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
     <!-- Caption text explaining more about automatic verification   -->
-    <string name="verify_display_fragment__auto_verify_not_available">Auto-verification is not available for all chats.</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://signal.org/redirect/safety-numbers</string> -->
+    <string name="verify_display_fragment__auto_verify_not_available">ਸਾਰੀਆਂ ਚੈਟਾਂ ਲਈ ਸਵੈ-ਤਸਦੀਕ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://support.signal.org/hc/articles/10223569377562</string> -->
 
     <!-- Bottom sheet title when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_success">Encryption was auto-verified for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_success">ਇਸ ਚੈਟ ਲਈ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਸਵੈ-ਤਸਦੀਕ ਕੀਤੀ ਗਈ ਸੀ।</string>
     <!-- Bottom sheet body when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_success">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_success">ਜਿਹਨਾਂ ਸੰਪਰਕਾਂ ਨਾਲ ਤੁਸੀਂ ਫ਼ੋਨ ਨੰਬਰ ਨਾਲ ਜੁੜੇ ਹੋ, Signal ਆਪਣੇ-ਆਪ ਕੀ ਟ੍ਰਾਂਸਪੇਰੈਂਸੀ ਪ੍ਰਕਿਰਿਆ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਪੁਸ਼ਟੀ ਕਰੇਗਾ ਕਿ ਕਨੈਕਸ਼ਨ ਸੁਰੱਖਿਅਤ ਹੈ ਜਾਂ ਨਹੀਂ। ਵਾਧੂ ਸੁਰੱਖਿਆ ਲਈ, ਪਿਛਲੀ ਸਕ੍ਰੀਨ \'ਤੇ ਮੌਜੂਦ ਨੰਬਰਾਂ ਦੀ ਤੁਲਨਾ ਕਰਕੇ ਜਾਂ ਉਹਨਾਂ ਦੇ ਡਿਵਾਈਸ \'ਤੇ ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰਕੇ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਹੱਥੀਂ ਪੁਸ਼ਟੀ ਕਰੋ।</string>
     <!-- Bottom sheet title when encryption is no longer auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Auto-verification is no longer available for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">ਇਸ ਚੈਟ ਲਈ ਸਵੈ-ਤਸਦੀਕ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
     <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
-    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal can no longer automatically verify the encryption for this chat. This is likely because %1$s changed their phone number. Verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal ਹੁਣ ਇਸ ਚੈਟ ਲਈ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਆਪਣੇ-ਆਪ ਤਸਦੀਕ ਨਹੀਂ ਕਰ ਸਕਦਾ ਹੈ। ਅਜਿਹਾ ਇਸ ਕਾਰਨ ਹੋ ਸਕਦਾ ਹੈ ਕਿਉਂਕਿ %1$s ਨੇ ਆਪਣਾ ਫ਼ੋਨ ਨੰਬਰ ਬਦਲ ਦਿੱਤਾ ਹੈ। ਪਿਛਲੀ ਸਕ੍ਰੀਨ \'ਤੇ ਮੌਜੂਦ ਨੰਬਰਾਂ ਦੀ ਤੁਲਨਾ ਕਰਕੇ ਜਾਂ ਉਹਨਾਂ ਦੇ ਡਿਵਾਈਸ \'ਤੇ ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰਕੇ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਹੱਥੀਂ ਤਸਦੀਕ ਕਰੋ।</string>
     <!-- Bottom sheet title when encryption cannot be auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_unavailable">Auto-verification not available for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_unavailable">ਇਸ ਚੈਟ ਲਈ ਸਵੈ-ਤਸਦੀਕ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
     <!-- Bottom sheet body when encryption cannot be auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_unavailable">Signal can only automatically verify the encryption in chats where you’re connected to someone via a phone number. If the chat was started with a username or a group in common, verify end-to-end encryption by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_unavailable">Signal ਸਿਰਫ਼ ਉਹਨਾਂ ਚੈਟਾਂ ਵਿੱਚ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਆਪਣੇ-ਆਪ ਤਸਦੀਕ ਕਰ ਸਕਦਾ ਹੈ ਜਦੋਂ ਤੁਸੀਂ ਕਿਸੇ ਦਾ ਫ਼ੋਨ ਨੰਬਰ ਸੇਵ ਕਰਕੇ ਉਹਨਾਂ ਨਾਲ ਜੁੜਦੇ ਹੋ। ਜੇਕਰ ਚੈਟ ਨੂੰ ਵਰਤੋਂਕਾਰ ਨਾਂ ਜਾਂ ਕਿਸੇ ਸਾਂਝੇ ਗਰੁੱਪ ਰਾਹੀਂ ਸ਼ੁਰੂ ਕੀਤਾ ਗਿਆ ਸੀ, ਤਾਂ ਪਿਛਲੀ ਸਕ੍ਰੀਨ \'ਤੇ ਮੌਜੂਦ ਨੰਬਰਾਂ ਦੀ ਤੁਲਨਾ ਕਰਕੇ ਜਾਂ ਉਹਨਾਂ ਦੇ ਡਿਵਾਈਸ \'ਤੇ ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰਕੇ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਤਸਦੀਕ ਕਰੋ।</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal ਹੁਣ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਸਵੈ-ਤਸਦੀਕ ਕਰਦਾ ਹੈ</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">ਜਦੋਂ ਤੁਸੀਂ ਕਿਸੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਤਸਦੀਕ ਕਰਦੇ ਹੋ, ਤਾਂ Signal ਆਪਣੇ-ਆਪ ਕੀ ਟ੍ਰਾਂਸਪੇਰੈਂਸੀ ਪ੍ਰਕਿਰਿਆ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਪੁਸ਼ਟੀ ਕਰੇਗਾ ਕਿ ਕਨੈਕਸ਼ਨ ਸੁਰੱਖਿਅਤ ਹੈ ਜਾਂ ਨਹੀਂ। ਤੁਸੀਂ QR ਕੋਡ ਜਾਂ ਨੰਬਰ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਖੁਦ ਵੀ ਕਨੈਕਸ਼ਨਾਂ ਦੀ ਤਸਦੀਕ ਕਰ ਸਕਦੇ ਹੋ।</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">ਹੋਰ ਜਾਣੋ</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">ਤਸਦੀਕ ਕਰੋ</string>
+
+    <!-- Title for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <!-- Body for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__body">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <!-- Button to decline submitting logs -->
+    <string name="SelfVerificationFailureSheet__no_thanks">No thanks</string>
+    <!-- Button to submit logs -->
+    <string name="SelfVerificationFailureSheet__submit">Submit</string>
+    <!-- Email subject line when submitting logs following a verification failure -->
+    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+  <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
+    <!-- Link to learn more about debug logs -->
+    <string name="SelfVerificationFailureSheet__learn_more">Learn more</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">ਆਪਣੇ ਸੰਪਰਕ ਦੇ ਡਿਵਾਈਸ \'ਤੇ QR ਕੋਡ ਸਕੈਨ ਕਰੋ.</string>
@@ -4228,6 +4256,10 @@
     <string name="preferences_compact">ਕੌਮਪੈਕਟ</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">ਭਾਸ਼ਾ ਸੰਬੰਧੀ ਨਵੀਂ ਸੈਟਿੰਗ ਲਾਗੂ ਕਰਨ ਲਈ ਐਪ ਮੁੜ-ਚਾਲੂ ਹੋਵੇਗੀ।</string>
+    <!-- Preference title for automatic key verification -->
+    <string name="preferences_automatic_key_verification">Automatic key verification</string>
+    <!-- Preference summary for automatic key verification -->
+    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
 
 
     <string name="configurable_single_select__customize_option">ਕਸਟਮਾਈਜ਼ ਚੋਣ</string>
@@ -4795,8 +4827,6 @@
     <string name="ConversationListFragment_loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
     <string name="CallNotificationBuilder_connecting">ਕਨੈਕਟ ਕਰ ਰਿਹਾ ਹੈ …</string>
     <string name="Permissions_permission_required">ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ</string>
-    <string name="Permissions_continue">ਜਾਰੀ ਰੱਖੋ</string>
-    <string name="Permissions_not_now">ਹਾਲੇ ਨਹੀਂ</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ਡਾਟਾਬੇਸ ਮਾਈਗ੍ਰੇਟ ਹੋ ਰਿਹਾ ਹੈ</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">ਬੈਕਅਪ ਪਾਸਫ਼੍ਰੇਜ਼</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ਬੈਕਅਪ ਬਾਹਰੀ ਸਟੋਰੇਜ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕੀਤੇ ਜਾਣਗੇ ਅਤੇ ਹੇਠਾਂ ਪਾਸਫ਼੍ਰੇਜ਼ ਨਾਲ ਇਨਕ੍ਰਿਪਟ ਕੀਤੇ ਜਾਣਗੇ. ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਕੋਲ ਇਹ ਪਾਸਫ਼੍ਰੇਜ਼ ਹੋਣਾ ਲਾਜ਼ਮੀ ਹੈ.</string>
@@ -5398,9 +5428,9 @@
         <item quantity="other">ਜੇ ਤੁਸੀਂ ਆਪਣੇ Signal PIN ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ ਤਾਂ Signal ਨੂੰ ਦੁਬਾਰਾ ਇੰਸਟਾਲ ਕਰਨ ਤੋਂ ਬਾਅਦ ਤੁਹਾਡਾ ਬੈਲੈਂਸ ਆਪਣੇ-ਆਪ ਬਹਾਲ ਹੋ ਜਾਵੇਗਾ। ਤੁਸੀਂ ਆਪਣੇ %1$d-ਸ਼ਬਦ ਵਾਲੇ ਵਿਲੱਖਣ ਰਿਕਵਰੀ ਵਾਕ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਵੀ ਆਪਣਾ ਬੈਲੈਂਸ ਬਹਾਲ ਕਰ ਸਕਦੇ ਹੋ। ਇਸ ਵਾਕ ਨੂੰ ਕਿਸੇ ਸੁਰੱਖਿਅਤ ਥਾਂ \'ਤੇ ਲਿਖ ਲਓ ਅਤੇ ਸਟੋਰ ਕਰ ਲਓ।</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">ਤੁਹਾਡੇ ਕੋਲ ਬੈਲੈਂਸ ਹੈ! ਹੁਣ ਤੁਹਾਡੇ ਰਿਕਵਰੀ ਵਾਕ ਨੂੰ ਸੇਵ ਕਰਨ ਦਾ ਸਮਾਂ ਹੈ—24-ਸ਼ਬਦਾਂ ਦੀ ਇੱਕ ਕੁੰਜੀ ਹੈ ਜਿਸਦੀ ਵਰਤੋਂ ਤੁਸੀਂ ਆਪਣਾ ਬੈਲੈਂਸ ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਕਰ ਸਕਦੇ ਹੋ।</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">ਤੁਹਾਡੇ ਕੋਲ ਬੈਲੈਂਸ ਹੈ! ਹੁਣ ਤੁਹਾਡੇ ਰਿਕਵਰੀ ਵਾਕ ਨੂੰ ਸੇਵ ਕਰਨ ਦਾ ਸਮਾਂ ਹੈ—24-ਸ਼ਬਦਾਂ ਦੀ ਇੱਕ ਕੀ ਹੈ ਜਿਸਦੀ ਵਰਤੋਂ ਤੁਸੀਂ ਆਪਣਾ ਬੈਲੈਂਸ ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">ਹੁਣ ਤੁਹਾਡੇ ਰਿਕਵਰੀ ਵਾਕ ਨੂੰ ਸੇਵ ਕਰਨ ਦਾ ਸਮਾਂ ਹੈ—24-ਸ਼ਬਦਾਂ ਦੀ ਇੱਕ ਕੁੰਜੀ ਜਿਸਦੀ ਵਰਤੋਂ ਤੁਸੀਂ ਆਪਣਾ ਬੈਲੈਂਸ ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਕਰ ਸਕਦੇ ਹੋ।</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">ਹੁਣ ਤੁਹਾਡੇ ਰਿਕਵਰੀ ਵਾਕ ਨੂੰ ਸੇਵ ਕਰਨ ਦਾ ਸਮਾਂ ਹੈ—24-ਸ਼ਬਦਾਂ ਦੀ ਇੱਕ ਕੀ ਜਿਸਦੀ ਵਰਤੋਂ ਤੁਸੀਂ ਆਪਣਾ ਬੈਲੈਂਸ ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ਤੁਹਾਡਾ ਰਿਕਵਰੀ ਸ਼ਬਦ-ਸਮੂਹ ਤੁਹਾਡੇ ਲਈ ਵਿਲੱਖਣ ਇੱਕ %1$d-ਸ਼ਬਦਾਂ ਵਾਲਾ ਸ਼ਬਦ-ਸਮੂਹ ਹੁੰਦਾ ਹੈ। ਆਪਣੇ ਬਕਾਏ ਨੂੰ ਬਹਾਲ ਕਰਨ ਲਈ ਇਸ ਸ਼ਬਦ-ਸਮੂਹ ਦੀ ਵਰਤੋਂ ਕਰੋ।</string>
     <string name="PaymentsRecoveryStartFragment__start">ਸ਼ੁਰੂ</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">ਖੁਦ ਦਿਓ</string>
@@ -5821,7 +5851,7 @@
     <string name="HelpFragment__copyright_signal_messenger">ਕਾਪੀਰਾਈਟ Signal ਮੈਸੰਜਰ</string>
     <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 ਅਧੀਨ ਲਾਇਸੰਸ ਦਿੱਤਾ ਗਿਆ</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal ਇੱਕ ਗੈਰ-ਲਾਭਕਾਰੀ ਸੰਸਥਾ ਹੈ</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">ਮੀਡੀਆ ਕੁਆਲਟੀ</string>
@@ -5954,6 +5984,8 @@
     <string name="ConversationSettingsFragment__permissions">ਇਜਾਜ਼ਤਾਂ</string>
     <string name="ConversationSettingsFragment__requests_and_invites">ਬੇਨਤੀਆਂ &amp; ਸੱਦੇ</string>
     <string name="ConversationSettingsFragment__group_link">ਗਰੁੱਪ ਲਿੰਕ</string>
+    <!-- Label for button that opens the group member label permissions screen. -->
+    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">ਸੰਪਰਕ ਵਜੋਂ ਸ਼ਾਮਲ ਕਰੋ</string>
     <string name="ConversationSettingsFragment__unmute">ਅਨਮਿਊਟ ਕਰੋ</string>
@@ -6237,15 +6269,15 @@
     <string name="Subscription__expires_s">ਮਿਆਦ ਪੁੱਗਣ ਦੀ ਮਿਤੀ: %1$s</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">As an independent nonprofit, Signal is committed to private messaging and calls. No ads, no trackers, no surveillance. Donate today to support Signal.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">ਇੱਕ ਸੁਤੰਤਰ ਗੈਰ-ਲਾਭਕਾਰੀ ਸੰਸਥਾ ਹੋਣ ਦੇ ਨਾਤੇ, Signal ਮੈਸੇਜਿੰਗ ਅਤੇ ਕਾਲਾਂ ਨੂੰ ਪ੍ਰਾਈਵੇਟ ਰੱਖਣ ਲਈ ਵਚਨਬੱਧ ਹੈ। ਕੋਈ ਇਸ਼ਤਿਹਾਰ ਨਹੀਂ। ਕੋਈ ਟ੍ਰੈਕਰ ਨਹੀਂ। ਕੋਈ ਜਸੂਸੀ ਨਹੀਂ। ਅੱਜ ਹੀ ਦਾਨ ਦੇ ਕੇ Signal ਨੂੰ ਸਹਿਯੋਗ ਦਿਓ।</string>
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Get an optional badge on your profile when you donate</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">ਦਾਨ ਦੇ ਕੇ ਆਪਣੀ ਪ੍ਰੋਫਾਈਲ \'ਤੇ ਇੱਕ ਵਿਕਲਪਿਕ ਬੈਜ ਪ੍ਰਾਪਤ ਕਰੋ</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">Your privacy is our mission</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">ਤੁਹਾਡੀ ਪਰਦੇਦਾਰੀ ਸਾਡਾ ਮਿਸ਼ਨ ਹੈ</string>
     <!-- Fourth small text blurb on learn more sheet. Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit. US donations are tax deductible.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal ਇੱਕ ਗੈਰ-ਲਾਭਕਾਰੀ ਸੰਸਥਾ ਹੈ।</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ਤੁਹਾਡੇ ਸਹਿਯੋਗ ਲਈ ਧੰਨਵਾਦ ਹੈ!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -7275,11 +7307,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Proudly Nonprofit</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">ਮਾਣ ਨਾਲ ਗੈਰ-ਲਾਭਕਾਰੀ</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">ਜਾਰੀ ਰੱਖੋ</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Donate to support private messaging. Keep Signal independent and ad-free.</string>
+    <string name="DonateToSignalFragment__private_messaging">ਪ੍ਰਾਈਵੇਟ ਮੈਸੇਜਿੰਗ ਨੂੰ ਸਹਿਯੋਗ ਦੇਣ ਲਈ ਦਾਨ ਦਿਓ। Signal ਨੂੰ ਸੁਤੰਤਰ ਅਤੇ ਇਸ਼ਤਿਹਾਰ-ਮੁਕਤ ਰੱਖੋ।</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">ਤੁਹਾਡੇ ਵੱਲੋਂ ਦਾਨ ਦੇਣਾ ਬਾਕੀ ਹੈ</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7871,16 +7903,28 @@
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
     <string name="TurnOnSignalBackups__toast_not_now">ਤੁਸੀਂ \"ਸੈਟਿੰਗਾਂ\" ਵਿੱਚ ਬੈਕਅੱਪ ਨੂੰ ਸਮਰੱਥ ਕਰ ਸਕਦੇ ਹੋ</string>
 
+    <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <!-- Button of a megaphone that will take the user to the upgrade flow -->
+    <string name="UseNewOnDeviceBackups__upgrade">Upgrade</string>
+    <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__not_now">Not now</string>
+
+    <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
-    <string name="VerifyBackupKey__title">ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
+    <string name="VerifyBackupKey__title">ਆਪਣੀ ਰਿਕਵਰੀ ਕੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
     <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
-    <string name="VerifyBackupKey__body">ਅਸੀਂ ਤੁਹਾਨੂੰ ਕਦੇ-ਕਦਾਈਂ ਆਪਣੀ ਕੁੰਜੀ ਦੀ ਤਸਦੀਕ ਕਰਨ ਲਈ ਕਹਾਂਗੇ ਤਾਂ ਜੋ ਇਹ ਯਕੀਨੀ ਬਣਾਇਆ ਜਾ ਸਕੇ ਕਿ ਤੁਹਾਨੂੰ ਇਹ ਯਾਦ ਹੈ</string>
+    <string name="VerifyBackupKey__body">ਅਸੀਂ ਤੁਹਾਨੂੰ ਕਦੇ-ਕਦਾਈਂ ਆਪਣੀ ਕੀ ਦੀ ਤਸਦੀਕ ਕਰਨ ਲਈ ਕਹਾਂਗੇ ਤਾਂ ਜੋ ਇਹ ਯਕੀਨੀ ਬਣਾਇਆ ਜਾ ਸਕੇ ਕਿ ਤੁਹਾਨੂੰ ਇਹ ਯਾਦ ਹੈ</string>
     <!-- Button of a megaphone that will take users to the verify recovery key screen -->
     <string name="VerifyBackupKey__verify">ਤਸਦੀਕ ਕਰੋ</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">ਹਾਲੇ ਨਹੀਂ</string>
     <!-- Snackbar text shown when the recovery key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">ਰਿਕਵਰੀ ਕੁੰਜੀ ਸਹੀ ਹੈ। ਆਪਣੀ ਕੁੰਜੀ ਸੰਭਾਲ ਕੇ ਰੱਖੋ।</string>
+    <string name="VerifyBackupKey__backup_key_correct">ਰਿਕਵਰੀ ਕੀ ਸਹੀ ਹੈ। ਆਪਣੀ ਕੀ ਸੰਭਾਲ ਕੇ ਰੱਖੋ।</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">ਅਸੀਂ ਤੁਹਾਨੂੰ ਇੱਕ ਹਫ਼ਤੇ ਬਾਅਦ ਦੁਬਾਰਾ ਪੁੱਛਾਂਗੇ।</string>
 
@@ -8090,6 +8134,12 @@
     <!-- Backup redemption error sheet bullet point 2 -->
     <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">ਬਹੁਤ ਸਾਰੇ ਡਿਵਾਈਸ ਇੱਕੋ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹਨ।</string>
 
+    <!-- OnDeviceBackupsFragment -->
+    <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
+    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">ਆਪਣਾ ਮੀਡੀਆ ਰੀਸਟੋਰ ਕਰਨ ਲਈ %1$s ਥਾਂ ਖਾਲੀ ਕਰੋ।</string>
@@ -8107,13 +8157,13 @@
     <string name="BackupStatus__resume">ਮੁੜ-ਸ਼ੁਰੂ ਕਰੋ</string>
 
     <!-- Status subtitle for banner when we are creating a backup file -->
-    <string name="BackupStatus__status_creating_backup">Creating backup…</string>
+    <string name="BackupStatus__status_creating_backup">ਬੈਕਅੱਪ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
     <!-- Status title for banner when user is actively uploading backup data -->
-    <string name="BackupStatus__uploading_backup">Uploading backup</string>
+    <string name="BackupStatus__uploading_backup">ਬੈਕਅੱਪ ਅੱਪਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
     <!-- Status title for banner when user is temporarily unable to upload a backup -->
-    <string name="BackupStatus__upload_paused">Backup paused</string>
+    <string name="BackupStatus__upload_paused">ਬੈਕਅੱਪ ਰੋਕਿਆ ਗਿਆ</string>
     <!-- Status title for banner when user has finished creating a backup -->
-    <string name="BackupStatus__upload_complete">Backup complete</string>
+    <string name="BackupStatus__upload_complete">ਬੈਕਅੱਪ ਪੂਰਾ ਹੋਇਆ</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
@@ -8126,7 +8176,7 @@
     <!-- Label for a context menu item that, when pressed, will hide a banner so it will no longer be shown. -->
     <string name="BackupStatus__hide">ਲੁਕਾਓ</string>
     <!-- Label for a context menu item that, when pressed, will cancel the ongoing backup. -->
-    <string name="BackupStatus__cancel_upload">Cancel backup</string>
+    <string name="BackupStatus__cancel_upload">ਬੈਕਅੱਪ ਰੱਦ ਕਰੋ</string>
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
@@ -8170,13 +8220,13 @@
     <string name="ResumeRestoreCellular_resume_using_cellular_message">ਸੈਲੂਲਰ ਡਾਟਾ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਆਪਣੇ ਮੀਡੀਆ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਨਾਲ ਡਾਟਾ ਦਾ ਖਰਚਾ ਪੈ ਸਕਦਾ ਹੈ। ਤੁਸੀਂ ਆਪਣੇ-ਆਪ ਮੁੜ-ਚਾਲੂ ਕਰਨ ਲਈ Wi-Fi ਨੈੱਟਵਰਕ ਨਾਲ ਕਨੈਕਟ ਕਰ ਸਕਦੇ ਹੋ।</string>
 
     <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
-    <string name="CancelBackupDialog_title">Cancel backup?</string>
+    <string name="CancelBackupDialog_title">ਕੀ ਬੈਕਅੱਪ ਨੂੰ ਰੱਦ ਕਰਨਾ ਹੈ?</string>
     <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
-    <string name="CancelBackupDialog_body">Canceling your backup will not delete your backup. You can resume your backup at any time from Backup Settings.</string>
+    <string name="CancelBackupDialog_body">ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਬੈਕਅੱਪ ਨੂੰ ਰੱਦ ਕਰਦੇ ਹੋ ਤਾਂ ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਨੂੰ ਮਿਟਾਇਆ ਨਹੀਂ ਜਾਵੇਗਾ। ਤੁਸੀਂ ਬੈਕਅੱਪ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਜਾ ਕੇ ਕਿਸੇ ਵੀ ਸਮੇਂ ਆਪਣਾ ਬੈਕਅੱਪ ਮੁੜ-ਸ਼ੁਰੂ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
-    <string name="CancelBackupDialog_cancel_action">Cancel backup</string>
+    <string name="CancelBackupDialog_cancel_action">ਬੈਕਅੱਪ ਰੱਦ ਕਰੋ</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
-    <string name="CancelBackupDialog_continue_action">Continue backup</string>
+    <string name="CancelBackupDialog_continue_action">ਬੈਕਅੱਪ ਜਾਰੀ ਰੱਖੋ</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8342,11 +8392,11 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">ਸੈਲੂਲਰ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਬੈਕਅੱਪ ਲਓ</string>
     <!-- Row label for viewing recovery key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">ਰਿਕਵਰੀ ਕੁੰਜੀ ਦੇਖੋ</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">ਰਿਕਵਰੀ ਕੀ ਦੇਖੋ</string>
     <!-- Prompt title for unlocking device to view recovery key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">ਰਿਕਵਰੀ ਕੁੰਜੀ ਦੇਖਣ ਲਈ ਅਨਲੌਕ ਕਰੋ</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">ਰਿਕਵਰੀ ਕੀ ਦੇਖਣ ਲਈ ਅਨਲੌਕ ਕਰੋ</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
-    <string name="RemoteBackupsSettingsFragment__to_view_your_key">ਆਪਣੀ ਕੁੰਜੀ ਦੇਖਣ ਲਈ, ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਇਹ ਤੁਸੀਂ ਹੀ ਹੋ</string>
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">ਆਪਣੀ ਕੀ ਦੇਖਣ ਲਈ, ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਇਹ ਤੁਸੀਂ ਹੀ ਹੋ</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ਬੈਕਅੱਪ ਬੰਦ ਕਰੋ ਅਤੇ ਮਿਟਾਓ</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
@@ -8367,7 +8417,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ਬੈਕਅੱਪ ਰਾਤੋ-ਰਾਤ ਬਣਾਇਆ ਜਾਵੇਗਾ।</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">ਨਵੀਂ ਰਿਕਵਰੀ ਕੁੰਜੀ ਬਣਾਈ ਗਈ</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">ਨਵੀਂ ਰਿਕਵਰੀ ਕੀ ਬਣਾਈ ਗਈ</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਅਕਿਰਿਆਸ਼ੀਲ ਹੈ</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8530,6 +8580,29 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">QR ਕੋਡ ਸਕੈਨ ਕਰੋ</string>
 
+    <!-- OnDeviceBackupsImprovementsScreen -->
+    <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <!-- Feature description explaining backups are faster and use less data -->
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <!-- Feature description explaining backups will be saved as a folder with many files -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <!-- Feature description explaining backups remain end-to-end encrypted -->
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <!-- Button text to continue to the next step -->
+    <string name="OnDeviceBackupsImprovementsScreen__continue">Continue</string>
+
+    <!-- OnDeviceBackupsSettingsScreen -->
+    <!-- Card text prompting user to update to a new recovery key for faster backups -->
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <!-- Button text to update to a new recovery key -->
+    <string name="OnDeviceBackupsSettingsScreen__update">Update</string>
+
+    <!-- UnifiedOnDeviceBackupsSettingsScreen -->
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">View backup key</string>
+
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
     <string name="DownloadYourBackupTodayDialog__download_your_backup_today">ਅੱਜ ਹੀ ਆਪਣਾ ਬੈਕਅੱਪ ਡਾਊਨਲੋਡ ਕਰੋ</string>
@@ -8582,21 +8655,43 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">ਰਿਕਵਰੀ ਕੁੰਜੀ</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">ਰਿਕਵਰੀ ਕੀ</string>
+    <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <!-- Screen headline shown when the user already has an on-device recovery key set. -->
+    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Your recovery key</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">ਤੁਹਾਡੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਇੱਕ 64-ਅੱਖਰਾਂ ਦਾ ਕੋਡ ਹੈ ਜਿਸਦੀ ਲੋੜ ਤੁਹਾਨੂੰ ਆਪਣਾ ਬੈਕਅੱਪ ਰੀਸਟੋਰ ਕਰਨ ਵੇਲੇ ਪਵੇਗੀ।</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">ਤੁਹਾਡੀ ਰਿਕਵਰੀ ਕੀ ਇੱਕ 64-ਅੱਖਰਾਂ ਦਾ ਕੋਡ ਹੈ ਜਿਸਦੀ ਲੋੜ ਤੁਹਾਨੂੰ ਆਪਣਾ ਬੈਕਅੱਪ ਰੀਸਟੋਰ ਕਰਨ ਵੇਲੇ ਪਵੇਗੀ।</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਨੂੰ ਕਿਤੇ ਸੁਰੱਖਿਅਤ ਰੱਖੋ ਜਿਵੇਂ ਕਿ ਸੁਰੱਖਿਅਤ ਪਾਸਵਰਡ ਮੈਨੇਜਰ ਅਤੇ ਇਸਨੂੰ ਕਿਸੇ ਨਾਲ ਵੀ ਸਾਂਝਾ ਨਾ ਕਰੋ।</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">ਆਪਣੀ ਰਿਕਵਰੀ ਕੀ ਨੂੰ ਕਿਤੇ ਸੁਰੱਖਿਅਤ ਰੱਖੋ ਜਿਵੇਂ ਕਿ ਸੁਰੱਖਿਅਤ ਪਾਸਵਰਡ ਮੈਨੇਜਰ ਅਤੇ ਇਸਨੂੰ ਕਿਸੇ ਨਾਲ ਵੀ ਸਾਂਝਾ ਨਾ ਕਰੋ।</string>
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">ਜੇਕਰ ਤੁਸੀਂ ਇਸਨੂੰ ਗੁਆ ਦਿੰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਆਪਣੇ ਸੁਨੇਹੇ ਮੁੜ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <!-- Label shown above a list of actions that the recovery key can be used for. -->
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">ਰਿਕਵਰੀ ਕੁੰਜੀ ਦੇਖੋ</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">ਰਿਕਵਰੀ ਕੀ ਦੇਖੋ</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਰਿਕਾਰਡ ਕਰੋ</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">ਆਪਣੀ ਰਿਕਵਰੀ ਕੀ ਰਿਕਾਰਡ ਕਰੋ</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">ਇਹ ਕੁੰਜੀ ਤੁਹਾਡੇ ਖਾਤੇ ਅਤੇ ਡੇਟਾ ਨੂੰ ਰਿਕਵਰ ਕਰਨ ਲਈ ਲੋੜੀਂਦੀ ਹੈ। ਇਸ ਕੁੰਜੀ ਨੂੰ ਕਿਤੇ ਸੁਰੱਖਿਅਤ ਰੱਖੋ। ਜੇਕਰ ਤੁਸੀਂ ਇਸਨੂੰ ਗੁਆ ਦਿੰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਆਪਣਾ ਖਾਤਾ ਰਿਕਵਰ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">ਇਹ ਕੀ ਤੁਹਾਡੇ ਖਾਤੇ ਅਤੇ ਡੇਟਾ ਨੂੰ ਰਿਕਵਰ ਕਰਨ ਲਈ ਲੋੜੀਂਦੀ ਹੈ। ਇਸ ਕੀ ਨੂੰ ਕਿਤੇ ਸੁਰੱਖਿਅਤ ਰੱਖੋ। ਜੇਕਰ ਤੁਸੀਂ ਇਸਨੂੰ ਗੁਆ ਦਿੰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਆਪਣਾ ਖਾਤਾ ਰਿਕਵਰ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
+    <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ਕਲਿਪਬੋਰਡ \'ਤੇ ਕਾਪੀ ਕਰੋ</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -8604,7 +8699,7 @@
     <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">ਕੀ ਪਾਸਵਰਡ ਮੈਨੇਜਰ ਵਿੱਚ ਸੇਵ ਕਰਨਾ ਹੈ?</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਨੂੰ ਸਿਰਫ਼ ਉਸੇ ਪਾਸਵਰਡ ਮੈਨੇਜਰ ਵਿੱਚ ਸਟੋਰ ਕਰੋ ਜਿਸ ਉੱਤੇ ਤੁਹਾਨੂੰ ਭਰੋਸਾ ਹੈ ਕਿ ਉਹ ਸੁਰੱਖਿਅਤ ਹੈ। Signal ਇਹ ਸਿਫ਼ਾਰਸ਼ ਨਹੀਂ ਕਰਦਾ ਕਿ ਕਿਹੜਾ ਪਾਸਵਰਡ ਮੈਨੇਜਰ ਤੁਹਾਡੇ ਲਈ ਸਹੀ ਹੈ।</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">ਆਪਣੀ ਰਿਕਵਰੀ ਕੀ ਨੂੰ ਸਿਰਫ਼ ਉਸੇ ਪਾਸਵਰਡ ਮੈਨੇਜਰ ਵਿੱਚ ਸਟੋਰ ਕਰੋ ਜਿਸ ਉੱਤੇ ਤੁਹਾਨੂੰ ਭਰੋਸਾ ਹੈ ਕਿ ਉਹ ਸੁਰੱਖਿਅਤ ਹੈ। Signal ਇਹ ਸਿਫ਼ਾਰਸ਼ ਨਹੀਂ ਕਰਦਾ ਕਿ ਕਿਹੜਾ ਪਾਸਵਰਡ ਮੈਨੇਜਰ ਤੁਹਾਡੇ ਲਈ ਸਹੀ ਹੈ।</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal ਸਿਕਿਓਰ ਬੈਕਅੱਪ</string>
     <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
@@ -8620,27 +8715,27 @@
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">ਅੱਗੇ</string>
     <!-- Bottom sheet title -->
-    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">ਆਪਣੀ ਕੁੰਜੀ ਸੁਰੱਖਿਅਤ ਰੱਖੋ</string>
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">ਆਪਣੀ ਕੀ ਸੁਰੱਖਿਅਤ ਰੱਖੋ</string>
     <!-- Bottom sheet subtitle -->
-    <string name="MessageBackupsKeyRecordScreen__signal_will_not">ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੀ ਕੁੰਜੀ ਗੁਆ ਦਿੰਦੇ ਹੋ ਤਾਂ Signal ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਵਿੱਚ ਤੁਹਾਡੀ ਮਦਦ ਨਹੀਂ ਕਰ ਸਕੇਗਾ। ਇਸਨੂੰ ਕਿਸੇ ਸੁਰੱਖਿਅਤ ਥਾਂ \'ਤੇ ਸਟੋਰ ਕਰੋ ਅਤੇ ਇਸਨੂੰ ਦੂਜਿਆਂ ਨਾਲ ਸਾਂਝਾ ਨਾ ਕਰੋ।</string>
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੀ ਕੀ ਗੁਆ ਦਿੰਦੇ ਹੋ ਤਾਂ Signal ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਵਿੱਚ ਤੁਹਾਡੀ ਮਦਦ ਨਹੀਂ ਕਰ ਸਕੇਗਾ। ਇਸਨੂੰ ਕਿਸੇ ਸੁਰੱਖਿਅਤ ਥਾਂ \'ਤੇ ਸਟੋਰ ਕਰੋ ਅਤੇ ਇਸਨੂੰ ਦੂਜਿਆਂ ਨਾਲ ਸਾਂਝਾ ਨਾ ਕਰੋ।</string>
     <!-- Checkbox label -->
-    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">ਮੈਂ ਆਪਣੀ ਕੁੰਜੀ ਰਿਕਾਰਡ ਕਰ ਲਈ ਹੈ</string>
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">ਮੈਂ ਆਪਣੀ ਕੀ ਰਿਕਾਰਡ ਕਰ ਲਈ ਹੈ</string>
     <!-- Sheet action button label -->
     <string name="MessageBackupsKeyRecordScreen__continue">ਜਾਰੀ ਰੱਖੋ</string>
     <!-- Sheet secondary action button label -->
-    <string name="MessageBackupsKeyRecordScreen__see_key_again">ਕੁੰਜੀ ਨੂੰ ਦੁਬਾਰਾ ਦੇਖੋ</string>
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">ਕੀ ਨੂੰ ਦੁਬਾਰਾ ਦੇਖੋ</string>
     <!-- Action label to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_new_key">ਨਵੀਂ ਕੁੰਜੀ ਬਣਾਓ</string>
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">ਨਵੀਂ ਕੀ ਬਣਾਓ</string>
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">ਮੀਡੀਆ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">ਨਵੀਂ ਰਿਕਵਰੀ ਕੁੰਜੀ ਬਣਾਉਣ ਲਈ, ਤੁਹਾਨੂੰ \"ਸਟੋਰੇਜ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਓ\" ਨੂੰ ਬੰਦ ਕਰਨਾ ਪਵੇਗਾ ਅਤੇ ਆਪਣੇ ਮੀਡੀਆ ਦੇ ਡਾਊਨਲੋਡ ਹੋਣ ਤੱਕ ਉਡੀਕ ਕਰਨੀ ਪਵੇਗੀ। ਡਾਊਨਲੋਡ ਪੂਰਾ ਹੋਣ \'ਤੇ, ਤੁਸੀਂ ਇੱਕ ਨਵੀਂ ਕੁੰਜੀ ਬਣਾ ਸਕਦੇ ਹੋ।</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">ਨਵੀਂ ਰਿਕਵਰੀ ਕੀ ਬਣਾਉਣ ਲਈ, ਤੁਹਾਨੂੰ \"ਸਟੋਰੇਜ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਓ\" ਨੂੰ ਬੰਦ ਕਰਨਾ ਪਵੇਗਾ ਅਤੇ ਆਪਣੇ ਮੀਡੀਆ ਦੇ ਡਾਊਨਲੋਡ ਹੋਣ ਤੱਕ ਉਡੀਕ ਕਰਨੀ ਪਵੇਗੀ। ਡਾਊਨਲੋਡ ਪੂਰਾ ਹੋਣ \'ਤੇ, ਤੁਸੀਂ ਇੱਕ ਨਵੀਂ ਕੀ ਬਣਾ ਸਕਦੇ ਹੋ।</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">ਬੰਦ ਕਰੋ ਅਤੇ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">ਇੱਕ ਨਵੀਂ ਰਿਕਵਰੀ ਕੁੰਜੀ ਬਣਾਓ</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">ਇੱਕ ਨਵੀਂ ਰਿਕਵਰੀ ਕੀ ਬਣਾਓ</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">ਨਵੀਂ ਕੁੰਜੀ ਬਣਾਉਣਾ ਸਿਰਫ਼ ਤਾਂ ਹੀ ਜ਼ਰੂਰੀ ਹੈ ਜੇਕਰ ਕਿਸੇ ਹੋਰ ਨੂੰ ਤੁਹਾਡੀ ਕੁੰਜੀ ਬਾਰੇ ਪਤਾ ਹੈ। ਤੁਹਾਨੂੰ ਮੀਡੀਆ ਸਮੇਤ ਆਪਣਾ ਬੈਕਅੱਪ ਦੁਬਾਰਾ ਅੱਪਲੋਡ ਕਰਨਾ ਪਵੇਗਾ। ਜੇਕਰ ਤੁਸੀਂ \"ਸਟੋਰੇਜ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਓ\" ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ ਤਾਂ ਤੁਹਾਨੂੰ ਪਹਿਲਾਂ ਔਫਲੋਡ ਕੀਤਾ ਮੀਡੀਆ ਡਾਊਨਲੋਡ ਕਰਨਾ ਪਵੇਗਾ।</string>
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">ਨਵੀਂ ਕੀ ਬਣਾਉਣਾ ਸਿਰਫ਼ ਤਾਂ ਹੀ ਜ਼ਰੂਰੀ ਹੈ ਜੇਕਰ ਕਿਸੇ ਹੋਰ ਨੂੰ ਤੁਹਾਡੀ ਕੀ ਬਾਰੇ ਪਤਾ ਹੈ। ਤੁਹਾਨੂੰ ਮੀਡੀਆ ਸਮੇਤ ਆਪਣਾ ਬੈਕਅੱਪ ਦੁਬਾਰਾ ਅੱਪਲੋਡ ਕਰਨਾ ਪਵੇਗਾ। ਜੇਕਰ ਤੁਸੀਂ \"ਸਟੋਰੇਜ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਓ\" ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ ਤਾਂ ਤੁਹਾਨੂੰ ਪਹਿਲਾਂ ਔਫਲੋਡ ਕੀਤਾ ਮੀਡੀਆ ਡਾਊਨਲੋਡ ਕਰਨਾ ਪਵੇਗਾ।</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
     <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">ਕੀ ਬੈਕਅੱਪ ਦੇ ਸੈੱਟਅੱਪ ਤੋਂ ਬਾਹਰ ਜਾਣਾ ਹੈ?</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
@@ -8650,33 +8745,33 @@
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">ਕੀ ਕੁੰਜੀ ਬਣਾਉਣਾ ਰੱਦ ਕਰਨਾ ਹੈ?</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">ਕੀ ਕੀ ਬਣਾਉਣਾ ਰੱਦ ਕਰਨਾ ਹੈ?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">ਤੁਹਾਡੀ ਨਵੀਂ ਰਿਕਵਰੀ ਕੁੰਜੀ ਉਦੋਂ ਤੱਕ ਨਹੀਂ ਬਣਾਈ ਜਾਵੇਗੀ ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਇਸਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਕਰਦੇ।</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">ਤੁਹਾਡੀ ਨਵੀਂ ਰਿਕਵਰੀ ਕੀ ਉਦੋਂ ਤੱਕ ਨਹੀਂ ਬਣਾਈ ਜਾਵੇਗੀ ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਇਸਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਕਰਦੇ।</string>
     <!-- Dialog button to continue confirming new recovery key-->
-    <string name="BackupKeyDisplayFragment__confirm_key">ਕੁੰਜੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
+    <string name="BackupKeyDisplayFragment__confirm_key">ਕੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
     <!-- Dialog button to cancel new key creation -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation">ਕੁੰਜੀ ਬਣਾਉਣਾ ਰੱਦ ਕਰੋ</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">ਕੀ ਬਣਾਉਣਾ ਰੱਦ ਕਰੋ</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">ਆਪਣੀ ਰਿਕਵਰੀ ਕੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">ਉਹ ਰਿਕਵਰੀ ਕੁੰਜੀ ਦਰਜ ਕਰੋ ਜੋ ਤੁਸੀਂ ਹੁਣੇ ਰਿਕਾਰਡ ਕੀਤੀ ਹੈ</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">ਉਹ ਰਿਕਵਰੀ ਕੀ ਦਰਜ ਕਰੋ ਜੋ ਤੁਸੀਂ ਹੁਣੇ ਰਿਕਾਰਡ ਕੀਤੀ ਹੈ</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">ਰਿਕਵਰੀ ਕੁੰਜੀ</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">ਰਿਕਵਰੀ ਕੀ</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">ਰਿਕਵਰੀ ਕੁੰਜੀ ਗਲਤ ਹੈ</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">ਰਿਕਵਰੀ ਕੀ ਗਲਤ ਹੈ</string>
     <!-- Confirm your key button text to return to record key screen. -->
-    <string name="MessageBackupsKeyVerifyScreen__see_key_again">ਕੁੰਜੀ ਨੂੰ ਦੁਬਾਰਾ ਦੇਖੋ</string>
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">ਕੀ ਨੂੰ ਦੁਬਾਰਾ ਦੇਖੋ</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">ਅੱਗੇ</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਦਰਜ ਕਰੋ</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">ਆਪਣੀ ਰਿਕਵਰੀ ਕੀ ਦਰਜ ਕਰੋ</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ਬੈਕਅੱਪ ਚਾਲੂ ਕਰਦੇ ਸਮੇਂ ਰਿਕਾਰਡ ਕੀਤਾ ਗਿਆ 64-ਅੱਖਰਾਂ ਵਾਲਾ ਕੋਡ ਦਰਜ ਕਰੋ।</string>
     <!-- Button text when you forget your recovery key -->
-    <string name="VerifyBackupPinScreen__forgot_key">ਕੁੰਜੀ ਭੁੱਲ ਗਏ ਹੋ?</string>
+    <string name="VerifyBackupPinScreen__forgot_key">ਕੀ ਭੁੱਲ ਗਏ ਹੋ?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8786,43 +8881,43 @@
     <string name="RestoreLocalBackup_subtitle">ਆਪਣੇ ਡਿਵਾਈਸ \'ਤੇ ਸੇਵ ਕੀਤੇ ਬੈਕਅੱਪ ਵਿੱਚੋਂ ਆਪਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਰੀਸਟੋਰ ਕਰੋ। ਜੇਕਰ ਤੁਸੀਂ ਹੁਣੇ ਰੀਸਟੋਰ ਨਹੀਂ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਰੀਸਟੋਰ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
 
     <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਦਰਜ ਕਰੋ</string>
+    <string name="EnterBackupKey_title">ਆਪਣੀ ਰਿਕਵਰੀ ਕੀ ਦਰਜ ਕਰੋ</string>
     <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">ਤੁਹਾਡੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਤੁਹਾਡੇ ਖਾਤੇ ਅਤੇ ਡਾਟਾ ਨੂੰ ਰਿਕਵਰ ਕਰਨ ਲਈ ਲੋੜੀਂਦਾ 64-ਅੱਖਰਾਂ ਵਾਲਾ ਕੋਡ ਹੈ।</string>
+    <string name="EnterBackupKey_subtitle">ਤੁਹਾਡੀ ਰਿਕਵਰੀ ਕੀ ਤੁਹਾਡੇ ਖਾਤੇ ਅਤੇ ਡਾਟਾ ਨੂੰ ਰਿਕਵਰ ਕਰਨ ਲਈ ਲੋੜੀਂਦਾ 64-ਅੱਖਰਾਂ ਵਾਲਾ ਕੋਡ ਹੈ।</string>
     <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">ਕੀ ਤੁਹਾਡੇ ਕੋਲ ਰਿਕਵਰੀ ਕੁੰਜੀ ਨਹੀਂ ਹੈ?</string>
+    <string name="EnterBackupKey_no_backup_key">ਕੀ ਤੁਹਾਡੇ ਕੋਲ ਰਿਕਵਰੀ ਕੀ ਨਹੀਂ ਹੈ?</string>
     <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">ਰਿਕਵਰੀ ਕੁੰਜੀ</string>
+    <string name="EnterBackupKey_backup_key">ਰਿਕਵਰੀ ਕੀ</string>
     <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">64-ਅੱਖਰਾਂ ਵਾਲੇ ਰਿਕਵਰੀ ਕੋਡ ਤੋਂ ਬਿਨਾਂ ਬੈਕਅੱਪ ਰਿਕਵਰ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਗੁਆ ਦਿੱਤੀ ਹੈ ਤਾਂ Signal ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਵਿੱਚ ਮਦਦ ਨਹੀਂ ਕਰ ਸਕਦਾ।</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">64-ਅੱਖਰਾਂ ਵਾਲੇ ਰਿਕਵਰੀ ਕੋਡ ਤੋਂ ਬਿਨਾਂ ਬੈਕਅੱਪ ਰਿਕਵਰ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੀ ਰਿਕਵਰੀ ਕੀ ਗੁਆ ਦਿੱਤੀ ਹੈ ਤਾਂ Signal ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਵਿੱਚ ਮਦਦ ਨਹੀਂ ਕਰ ਸਕਦਾ।</string>
     <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਤੁਹਾਡਾ ਪੁਰਾਣਾ ਡਿਵਾਈਸ ਹੈ ਤਾਂ ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ &gt; ਬੈਕਅੱਪ ਵਿੱਚ ਜਾ ਕੇ ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਦੇਖ ਸਕਦੇ ਹੋ। ਫਿਰ ਰਿਕਵਰੀ ਕੁੰਜੀ ਦੇਖੋ \'ਤੇ ਟੈਪ ਕਰੋ।</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਤੁਹਾਡਾ ਪੁਰਾਣਾ ਡਿਵਾਈਸ ਹੈ ਤਾਂ ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ &gt; ਬੈਕਅੱਪ ਵਿੱਚ ਜਾ ਕੇ ਆਪਣੀ ਰਿਕਵਰੀ ਕੀ ਦੇਖ ਸਕਦੇ ਹੋ। ਫਿਰ ਰਿਕਵਰੀ ਕੀ ਦੇਖੋ \'ਤੇ ਟੈਪ ਕਰੋ।</string>
     <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">ਹੋਰ ਜਾਣੋ</string>
     <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">ਛੱਡੋ ਅਤੇ ਰੀਸਟੋਰ ਨਾ ਕਰੋ</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">ਰਿਕਵਰੀ ਕੁੰਜੀ ਗਲਤ ਹੈ</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">ਰਿਕਵਰੀ ਕੀ ਗਲਤ ਹੈ</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਸੀਂ ਉਸੇ ਫ਼ੋਨ ਨੰਬਰ ਅਤੇ 64-ਅੱਖਰਾਂ ਵਾਲੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਨਾਲ ਰਜਿਸਟਰ ਕਰ ਰਹੇ ਹੋ ਜਿਸਨੂੰ ਤੁਸੀਂ Signal ਸਿਕਿਓਰ ਬੈਕਅੱਪ ਨੂੰ ਚਾਲੂ ਕਰਨ ਵੇਲੇ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਸੀ। ਇਸ ਕੁੰਜੀ ਤੋਂ ਬਿਨਾਂ ਬੈਕਅੱਪ ਰਿਕਵਰ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ।</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਸੀਂ ਉਸੇ ਫ਼ੋਨ ਨੰਬਰ ਅਤੇ 64-ਅੱਖਰਾਂ ਵਾਲੀ ਰਿਕਵਰੀ ਕੀ ਨਾਲ ਰਜਿਸਟਰ ਕਰ ਰਹੇ ਹੋ ਜਿਸਨੂੰ ਤੁਸੀਂ Signal ਸਿਕਿਓਰ ਬੈਕਅੱਪ ਨੂੰ ਚਾਲੂ ਕਰਨ ਵੇਲੇ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਸੀ। ਇਸ ਕੀ ਤੋਂ ਬਿਨਾਂ ਬੈਕਅੱਪ ਰਿਕਵਰ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ।</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
     <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">ਰਿਕਵਰੀ ਕੁੰਜੀ ਸੰਬੰਧੀ ਮਦਦ</string>
+    <string name="EnterBackupKey_backup_key_help">ਰਿਕਵਰੀ ਕੀ ਸੰਬੰਧੀ ਮਦਦ</string>
     <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">ਰਿਕਵਰੀ ਕੁੰਜੀ ਗਲਤ ਹੈ</string>
+    <string name="EnterBackupKey_incorrect_backup_key_error">ਰਿਕਵਰੀ ਕੀ ਗਲਤ ਹੈ</string>
     <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">ਬਹੁਤ ਲੰਮਾ ਹੈ (%1$d/%2$d)</string>
     <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">ਰਿਕਵਰੀ ਕੁੰਜੀ ਅਵੈਧ ਹੈ</string>
+    <string name="EnterBackupKey_invalid_backup_key_error">ਰਿਕਵਰੀ ਕੀ ਅਵੈਧ ਹੈ</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">ਬੈਕਅੱਪ ਨਹੀਂ ਲੱਭਿਆ</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">ਤੁਹਾਡੇ ਦੁਆਰਾ ਦਰਜ ਕੀਤੀ ਗਈ ਰਿਕਵਰੀ ਕੁੰਜੀ ਸਹੀ ਹੈ, ਪਰ ਇਸਦੇ ਨਾਲ ਕੋਈ ਵੀ ਬੈਕਅੱਪ ਜੁੜਿਆ ਹੋਇਆ ਨਹੀਂ ਹੈ। ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਅਜੇ ਵੀ ਤੁਹਾਡਾ ਪੁਰਾਣਾ ਫ਼ੋਨ ਹੈ, ਤਾਂ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਬੈਕਅੱਪ ਲੈਣ ਦੀ ਸਹੂਲਤ ਚਾਲੂ ਹੈ ਅਤੇ ਇਹ ਵੀ ਦੇਖ ਲਓ ਕਿ ਬੈਕਅੱਪ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ ਅਤੇ ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">ਤੁਹਾਡੇ ਦੁਆਰਾ ਦਰਜ ਕੀਤੀ ਗਈ ਰਿਕਵਰੀ ਕੀ ਸਹੀ ਹੈ, ਪਰ ਇਸਦੇ ਨਾਲ ਕੋਈ ਵੀ ਬੈਕਅੱਪ ਜੁੜਿਆ ਹੋਇਆ ਨਹੀਂ ਹੈ। ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਅਜੇ ਵੀ ਤੁਹਾਡਾ ਪੁਰਾਣਾ ਫ਼ੋਨ ਹੈ, ਤਾਂ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਬੈਕਅੱਪ ਲੈਣ ਦੀ ਸਹੂਲਤ ਚਾਲੂ ਹੈ ਅਤੇ ਇਹ ਵੀ ਦੇਖ ਲਓ ਕਿ ਬੈਕਅੱਪ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ ਅਤੇ ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਸ਼ਾਇਦ ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਗਲਤ ਦਰਜ ਕਰ ਦਿੱਤੀ ਹੈ, ਜਾਂ ਤੁਸੀਂ ਆਪਣੇ ਪੁਰਾਣੇ ਡਿਵਾਈਸ \'ਤੇ ਇੱਕ ਵਾਰ ਵੀ ਬੈਕਅੱਪ ਪੂਰਾ ਨਹੀਂ ਕੀਤਾ ਹੈ।\n\nਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਸੀਂ ਉਸੇ ਫ਼ੋਨ ਨੰਬਰ ਅਤੇ ਰਿਕਵਰੀ ਕੁੰਜੀ ਨਾਲ ਰਜਿਸਟਰ ਕਰ ਰਹੇ ਹੋ ਜਿਸਨੂੰ ਤੁਸੀਂ Signal ਸਿਕਿਓਰ ਬੈਕਅੱਪ ਨੂੰ ਚਾਲੂ ਕਰਨ ਵੇਲੇ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਸੀ, ਅਤੇ ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਆਪਣੇ ਪੁਰਾਣੀ ਡਿਵਾਈਸ ਨੇ ਬੈਕਅੱਪ ਪੂਰਾ ਕਰ ਲਿਆ ਗਿਆ ਹੈ।</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਸ਼ਾਇਦ ਆਪਣੀ ਰਿਕਵਰੀ ਕੀ ਗਲਤ ਦਰਜ ਕਰ ਦਿੱਤੀ ਹੈ, ਜਾਂ ਤੁਸੀਂ ਆਪਣੇ ਪੁਰਾਣੇ ਡਿਵਾਈਸ \'ਤੇ ਇੱਕ ਵਾਰ ਵੀ ਬੈਕਅੱਪ ਪੂਰਾ ਨਹੀਂ ਕੀਤਾ ਹੈ।\n\nਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਸੀਂ ਉਸੇ ਫ਼ੋਨ ਨੰਬਰ ਅਤੇ ਰਿਕਵਰੀ ਕੀ ਨਾਲ ਰਜਿਸਟਰ ਕਰ ਰਹੇ ਹੋ ਜਿਸਨੂੰ ਤੁਸੀਂ Signal ਸਿਕਿਓਰ ਬੈਕਅੱਪ ਨੂੰ ਚਾਲੂ ਕਰਨ ਵੇਲੇ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਸੀ, ਅਤੇ ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਆਪਣੇ ਪੁਰਾਣੀ ਡਿਵਾਈਸ ਨੇ ਬੈਕਅੱਪ ਪੂਰਾ ਕਰ ਲਿਆ ਗਿਆ ਹੈ।</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">ਰਿਕਵਰੀ ਕੁੰਜੀ ਦਰਜ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ ਮਿਲੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਦੀ ਸੀਮਾ ਸਮਾਪਤ ਹੋ ਗਈਆਂ ਹਨ। ਤੁਹਾਡੀ ਸੁਰੱਖਿਆ ਲਈ, ਤੁਹਾਨੂੰ ਰਿਕਵਰੀ ਕੁੰਜੀ ਦਰਜ ਕਰਨ ਲਈ ਸੀਮਤ ਮੌਕੇ ਹੀ ਮਿਲਦੇ ਹਨ। ਇੱਕ ਘੰਟਾ ਉਡੀਕ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">ਰਿਕਵਰੀ ਕੀ ਦਰਜ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ ਮਿਲੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਦੀ ਸੀਮਾ ਸਮਾਪਤ ਹੋ ਗਈਆਂ ਹਨ। ਤੁਹਾਡੀ ਸੁਰੱਖਿਆ ਲਈ, ਤੁਹਾਨੂੰ ਰਿਕਵਰੀ ਕੀ ਦਰਜ ਕਰਨ ਲਈ ਸੀਮਤ ਮੌਕੇ ਹੀ ਮਿਲਦੇ ਹਨ। ਇੱਕ ਘੰਟਾ ਉਡੀਕ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">ਰੀਸਟੋਰ ਕਰਨਾ ਛੱਡੋ</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8925,13 +9020,13 @@
     <string name="NoBackupToRestore_skip_restore">ਰੀਸਟੋਰ ਕਰਨਾ ਛੱਡੋ</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">ਰਿਕਵਰੀ ਕੁੰਜੀ ਦੀ ਸੀਮਾ ਪੂਰੀ ਹੋ ਗਈ</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_title">ਰਿਕਵਰੀ ਕੀ ਦੀ ਸੀਮਾ ਪੂਰੀ ਹੋ ਗਈ</string>
     <!-- Dialog body when the recovery key change limit is reached -->
-    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">ਤੁਸੀਂ ਸਫਲਤਾਪੂਰਵਕ ਇੱਕ ਨਵੀਂ ਰਿਕਵਰੀ ਕੁੰਜੀ ਬਣਾ ਲਈ ਹੈ, ਪਰ ਦੁਰਵਰਤੋਂ ਨੂੰ ਰੋਕਣ ਲਈ ਤੁਹਾਡੇ ਦੁਆਰਾ ਬਣਾਈਆਂ ਜਾ ਸਕਣ ਵਾਲੀਆਂ ਨਵੀਆਂ ਕੁੰਜੀਆਂ ਦੀ ਗਿਣਤੀ ਸੀਮਤ ਹੈ। ਤੁਸੀਂ 7 ਦਿਨਾਂ ਲਈ ਕੋਈ ਹੋਰ ਕੁੰਜੀ ਨਹੀਂ ਬਣਾ ਸਕੋਗੇ। ਆਪਣੀ ਰਿਕਵਰੀ ਕੁੰਜੀ ਨੂੰ ਕਿਤੇ ਸਾਂਭ ਕੇ ਸੁਰੱਖਿਅਤ ਰੱਖੋ।</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_reached_body">ਤੁਸੀਂ ਸਫਲਤਾਪੂਰਵਕ ਇੱਕ ਨਵੀਂ ਰਿਕਵਰੀ ਕੀ ਬਣਾ ਲਈ ਹੈ, ਪਰ ਦੁਰਵਰਤੋਂ ਨੂੰ ਰੋਕਣ ਲਈ ਤੁਹਾਡੇ ਦੁਆਰਾ ਬਣਾਈਆਂ ਜਾ ਸਕਣ ਵਾਲੀਆਂ ਨਵੀਆਂ ਕੀਆਂ ਦੀ ਗਿਣਤੀ ਸੀਮਤ ਹੈ। ਤੁਸੀਂ 7 ਦਿਨਾਂ ਲਈ ਕੋਈ ਹੋਰ ਕੀ ਨਹੀਂ ਬਣਾ ਸਕੋਗੇ। ਆਪਣੀ ਰਿਕਵਰੀ ਕੀ ਨੂੰ ਕਿਤੇ ਸਾਂਭ ਕੇ ਸੁਰੱਖਿਅਤ ਰੱਖੋ।</string>
     <!-- Dialog title when the recovery key change limit is exhausted and you cannot create a new key -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">ਨਵੀਂ ਕੁੰਜੀ ਬਣਾਈ ਨਹੀਂ ਜਾ ਸਕਦੀ</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_title">ਨਵੀਂ ਕੀ ਬਣਾਈ ਨਹੀਂ ਜਾ ਸਕਦੀ</string>
     <!-- Dialog body when the recovery key change limit is exhausted and you cannot create a new key. Placeholder is number of days remaining until they can create a new key. -->
-    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">ਤੁਸੀਂ ਜਿੰਨੀਆਂ ਨਵੀਆਂ ਕੁੰਜੀਆਂ ਬਣਾ ਸਕਦੇ ਸੀ, ਉਹ ਬਣਾ ਚੁੱਕੇ ਹੋ। ਤੁਸੀਂ 7 ਦਿਨਾਂ ਬਾਅਦ ਇੱਕ ਨਵੀਂ ਰਿਕਵਰੀ ਕੁੰਜੀ ਬਣਾ ਸਕੋਗੇ। ਜੇਕਰ ਤੁਹਾਨੂੰ ਲੱਗਦਾ ਹੈ ਕਿ ਕੋਈ ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਤੱਕ ਪਹੁੰਚ ਕਰ ਸਕਦਾ ਹੈ, ਤਾਂ ਤੁਸੀਂ \"ਬੈਕਅੱਪ ਬੰਦ ਕਰਨ ਅਤੇ ਮਿਟਾਉਣ\" ਦੀ ਚੋਣ ਕਰ ਸਕਦੇ ਹੋ।</string>
+    <string name="MessageBackupsKeyRecordScreen__limit_exceeded_body">ਤੁਸੀਂ ਜਿੰਨੀਆਂ ਨਵੀਆਂ ਕੀਆਂ ਬਣਾ ਸਕਦੇ ਸੀ, ਉਹ ਬਣਾ ਚੁੱਕੇ ਹੋ। ਤੁਸੀਂ 7 ਦਿਨਾਂ ਬਾਅਦ ਇੱਕ ਨਵੀਂ ਰਿਕਵਰੀ ਕੀ ਬਣਾ ਸਕੋਗੇ। ਜੇਕਰ ਤੁਹਾਨੂੰ ਲੱਗਦਾ ਹੈ ਕਿ ਕੋਈ ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਤੱਕ ਪਹੁੰਚ ਕਰ ਸਕਦਾ ਹੈ, ਤਾਂ ਤੁਸੀਂ \"ਬੈਕਅੱਪ ਬੰਦ ਕਰਨ ਅਤੇ ਮਿਟਾਉਣ\" ਦੀ ਚੋਣ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <!-- Button to acknowledge and dismiss dialog   -->
     <string name="MessageBackupsKeyRecordScreen__ok">ਠੀਕ ਹੈ</string>
     <!-- Accessibility label for close search button in MainToolbar -->
@@ -9190,6 +9285,21 @@
     <string name="PinnedMessage__couldnt_unpin_all">ਸੁਨੇਹਿਆਂ ਨੂੰ ਅਨਪਿੰਨ ਨਹੀਂ ਕਰ ਸਕੇ</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+
+    <!-- Group member label screen title. -->
+    <string name="GroupMemberLabel__title">Member label</string>
+    <!-- Group member label text field placeholder. -->
+    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <!-- Group member label preview section header. -->
+    <string name="GroupMemberLabel__preview_section_header">Preview</string>
+    <!-- Group member label save button label. -->
+    <string name="GroupMemberLabel__save">Save</string>
+    <!-- Accessibility label for the button to open the group member label emoji picker. -->
+    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <!-- Accessibility label for the group member label close screen button. -->
+    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <!-- Accessibility label for the group member label text field clear button. -->
+    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
 
     <!-- EOF -->
 </resources>

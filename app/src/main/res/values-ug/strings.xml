@@ -311,8 +311,22 @@
     <string name="CameraXFragment_to_capture_videos">ئاۋازلىق سىنغا ئېلىش:</string>
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">QR كودىنى سايىلەش:</string>
+    <!-- Error message shown when we try to take a photo, but fail -->
+    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <!-- Accessibility label for the switch camera button -->
+    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <!-- Accessibility label for flash button when flash is off -->
+    <string name="CameraXFragment_flash_off">Flash off</string>
+    <!-- Accessibility label for flash button when flash is on -->
+    <string name="CameraXFragment_flash_on">Flash on</string>
+    <!-- Accessibility label for flash button when flash is set to auto -->
+    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <!-- Accessibility label for the send button in media selection -->
+    <string name="CameraXFragment_send">Send</string>
 
-    <!-- CameraContacts -->
+<!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">يېقىنقى ئالاقەداشلار</string>
     <string name="CameraContacts_signal_contacts">Signal ئالاقەداشلار</string>
     <string name="CameraContacts_signal_groups">Signal گۇرۇپپىلىرى</string>
@@ -920,7 +934,7 @@
     <string name="BackupsPreferenceFragment__backup_time">زاپاسلاش ۋاقتى</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">زاپاسلاش ئىم ئىبارىسىنى دەلىللەڭ</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">زاپاسلاش ئىم ئىبارىڭىزنى سىناپ بېقىڭ ھەمدە ئۇنىڭ ماس كەلگەن-كەلمىگەنلىكىنى دەلىللەڭ</string>
-    <string name="BackupsPreferenceFragment__turn_on">ئېچىش</string>
+    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
     <string name="BackupsPreferenceFragment__turn_off">تاقا</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"زاپاسلانمىنى ئەسلىگە كەلتۈرۈش ئۈچۈن، Signal نى قايتا قاچىلاڭ. ئاندىن ئەپنى ئېچىپ «زاپاسلانمىنى ئەسلىگە كەلتۈرۈش» نى چېكىڭ، ئاندىن زاپاسلانما ھۆججىتىنى كۆرسىتىپ بېرىڭ. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">كۆپرەك ئۆگىنىش</string>
@@ -3717,7 +3731,7 @@
     <string name="verify_display_fragment__encryption_unavailable">ئاپتوماتىك دەلىللەشنى ئىشلەتكىلى بولمايدۇ</string>
     <!-- Caption text explaining more about automatic verification   -->
     <string name="verify_display_fragment__auto_verify_not_available">ئاپتوماتىك دەلىللەشنى ھېچقانداق پاراڭغا ئىشلەتكىلى بولمايدۇ.</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://signal.org/redirect/safety-numbers</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://support.signal.org/hc/articles/10223569377562</string> -->
 
     <!-- Bottom sheet title when encryption is auto-verified -->
     <string name="EncryptionVerifiedSheet__title_success">بۇ سۆھبەت ئۈچۈن شىفىرلاشتۇرۇش ئاپتوماتىك دەلىللەندى</string>
@@ -3733,13 +3747,27 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal پەقەت تېلېفون نومۇرى ئارقىلىق بىرەيلەن بىلەن باغلىنىشلىق بولغان پاراڭلاردىلا شىفىرلاشتۇرۇشنى ئاپتوماتىك دەلىللىيەلەيدۇ. ئەگەر پاراڭ، ئىشلەتكۈچى نامى ياكى ئورتاق بىر گۇرۇپپىدىكى بىىرى بىلەن باشلانغان بولسا، ئالدىنقى ئېكراندىكى سانلارنى سېلىشتۇرۇش ياكى ئۇلارنىڭ ئۈسكۈنىسىدىكى كودنى سىكانىرلاش ئارقىلىق ئاخىرغىچە شىفىرلاشتۇرۇشنى دەلىللەڭ.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal ھازىر ئاخىرىغىچە شىفىرلاشتۇرۇشنى ئاپتوماتىك دەلىللەيدۇ</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">بىخەتەرلىك نومۇرىنى دەلىللىگەندە، Signal، ئاچقۇچ ئاشكارىلىقى دەپ ئاتىلىدىغان جەريان ئارقىلىق ئۇلىنىشنىڭ بىخەتەر ياكى ئەمەسلىكىنى ئاپتوماتىك جەزملەشتۈرىدۇ. سىز يەنىلا QR كودى ياكى نومۇر ئارقىلىق ئۇلىنىشلارنى قولدا دەلىللىيەلەيسىز.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">تەپسىلاتى</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">دەلىللەش</string>
+
+    <!-- Title for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <!-- Body for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__body">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <!-- Button to decline submitting logs -->
+    <string name="SelfVerificationFailureSheet__no_thanks">No thanks</string>
+    <!-- Button to submit logs -->
+    <string name="SelfVerificationFailureSheet__submit">Submit</string>
+    <!-- Email subject line when submitting logs following a verification failure -->
+    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+  <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
+    <!-- Link to learn more about debug logs -->
+    <string name="SelfVerificationFailureSheet__learn_more">Learn more</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">ئالاقەداشىڭىزنىڭ ئۈسكۈنىسىدىكى QR كودىنى تاراڭ.</string>
@@ -4113,6 +4141,10 @@
     <string name="preferences_compact">ئىخچام</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">يېڭى تىل تەڭشىكىنى قوللىنىش ئۈچۈن ئەپ قايتىدىن قوزغىلىدۇ.</string>
+    <!-- Preference title for automatic key verification -->
+    <string name="preferences_automatic_key_verification">Automatic key verification</string>
+    <!-- Preference summary for automatic key verification -->
+    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
 
 
     <string name="configurable_single_select__customize_option">ئىختىيارىچە تاللاش</string>
@@ -4671,8 +4703,6 @@
     <string name="ConversationListFragment_loading">قاچىلىنىۋاتىدۇ…</string>
     <string name="CallNotificationBuilder_connecting">باغلىنىۋاتىدۇ…</string>
     <string name="Permissions_permission_required">ھوقۇق لازىم</string>
-    <string name="Permissions_continue">داۋاملاشتۇر</string>
-    <string name="Permissions_not_now">ھازىر ئەمەس</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ساندانىنى كۆچۈرۈش</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">زاپاسلاش ئىم ئىبارىسى</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">زاپاس تاشقى ساقلىغۇچتا ساقلىنىدۇ ۋە تۆۋەندىكى ئىم ئىبارىسى بىلەن مەخپىيلەشتۈرىلىدۇ. بىر زاپاسنى ئەسلىگە كەلتۈرۈش ئۈچۈن بۇ ئىم ئىبارىڭىز بولۇشى كېرەك.</string>
@@ -5815,6 +5845,8 @@
     <string name="ConversationSettingsFragment__permissions">ھوقۇقلار</string>
     <string name="ConversationSettingsFragment__requests_and_invites">ئىلتىماس ۋە تەكلىپلەر</string>
     <string name="ConversationSettingsFragment__group_link">گۇرۇپپا ئۇلانمىسى</string>
+    <!-- Label for button that opens the group member label permissions screen. -->
+    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">ئالاقەداش سۈپىتىدە قوش</string>
     <string name="ConversationSettingsFragment__unmute">ئۈنلۈك</string>
@@ -7699,6 +7731,18 @@
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
     <string name="TurnOnSignalBackups__toast_not_now">«تەڭشەك»تىن زاپاسلاشنى قوزغىتالايسىز</string>
 
+    <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <!-- Button of a megaphone that will take the user to the upgrade flow -->
+    <string name="UseNewOnDeviceBackups__upgrade">Upgrade</string>
+    <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__not_now">Not now</string>
+
+    <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى تەكشۈرۈپ بېقىڭ</string>
     <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
@@ -7914,6 +7958,12 @@
     <string name="BackupAlertBottomSheet__reregistered_your_signal_account">سىگنال ھېساباتىڭىزنى قايتا-قايتا تىزىملاتتىڭىز.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
     <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">بەك كۆپ ئۈسكۈنىلەر بىلەن ئوخشاش مۇشتەرىلىكنى ئشلەتتىڭىز.</string>
+
+    <!-- OnDeviceBackupsFragment -->
+    <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
+    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8348,6 +8398,29 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">QR كودىنى سىكانىرلاڭ</string>
 
+    <!-- OnDeviceBackupsImprovementsScreen -->
+    <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <!-- Feature description explaining backups are faster and use less data -->
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <!-- Feature description explaining backups will be saved as a folder with many files -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <!-- Feature description explaining backups remain end-to-end encrypted -->
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <!-- Button text to continue to the next step -->
+    <string name="OnDeviceBackupsImprovementsScreen__continue">Continue</string>
+
+    <!-- OnDeviceBackupsSettingsScreen -->
+    <!-- Card text prompting user to update to a new recovery key for faster backups -->
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <!-- Button text to update to a new recovery key -->
+    <string name="OnDeviceBackupsSettingsScreen__update">Update</string>
+
+    <!-- UnifiedOnDeviceBackupsSettingsScreen -->
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">View backup key</string>
+
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
     <string name="DownloadYourBackupTodayDialog__download_your_backup_today">زاپاس سانلىق مەلۇماتلىرىڭىزنى بۈگۈن چۈشۈرۈڭ</string>
@@ -8401,12 +8474,32 @@
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچى</string>
+    <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <!-- Screen headline shown when the user already has an on-device recovery key set. -->
+    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Your recovery key</string>
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىز، زاپاسلاشنى ئەسلىگە كەلتۈرۈش ئۈچۈن ئىشلىتىلىدىغان 64 خانىلىق كود.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__store_your_recovery">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى، بىخەتەر دەپ قارىغان پارول باشقۇرغۇچىدا ساقلاڭ ھەمدە باشقىلار بىلەن ئورتاقلاشماڭ.</string>
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">ئەگەر ئۇنى يوقىتىپ قويسىڭىز، ئۇچۇرلىرىڭىزنى ئەسلىگە كەلتۈرەلمەيسىز.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <!-- Label shown above a list of actions that the recovery key can be used for. -->
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كۆرۈش</string>
 
@@ -8415,6 +8508,8 @@
     <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى خاتىرىلەڭ</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">بۇ ئاچقۇچ ھېساباتىڭىز ۋە سانلىق مەلۇماتلىرىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن تەلەپ قىلىنىدۇ. بۇ ئاچقۇچنى بىخەتەر جايدا ساقلاڭ. ئەگەر ئۇنى يوقىتىپ قويسىڭىز ، ھېساباتىڭىزنى ئەسلىگە كەلتۈرەلمەيسىز.</string>
+    <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">چاپلاش تاختىسىغا كۆچۈر</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9003,6 +9098,21 @@
     <string name="PinnedMessage__couldnt_unpin_all">ئۇچۇرلارنىڭ مىقىنى ئېلىۋېتىشكە بولمىدى</string>
     <!-- Dialog body when failing to pin a message -->
     <string name="PinnedMessage__check_connection">تور ئۇلىنىشىڭىزنى تەكشۈرۈپ قايتا سىناڭ.</string>
+
+    <!-- Group member label screen title. -->
+    <string name="GroupMemberLabel__title">Member label</string>
+    <!-- Group member label text field placeholder. -->
+    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <!-- Group member label preview section header. -->
+    <string name="GroupMemberLabel__preview_section_header">Preview</string>
+    <!-- Group member label save button label. -->
+    <string name="GroupMemberLabel__save">Save</string>
+    <!-- Accessibility label for the button to open the group member label emoji picker. -->
+    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <!-- Accessibility label for the group member label close screen button. -->
+    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <!-- Accessibility label for the group member label text field clear button. -->
+    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
 
     <!-- EOF -->
 </resources>
