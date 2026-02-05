@@ -736,8 +736,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
           dateLabel = getContext().getString(R.string.ConversationItem_edited_relative_timestamp_footer, dateLabel)
           dateLabelContentDesc = getContext().getString(R.string.ConversationItem_edited_relative_timestamp_footer, dateLabelContentDesc)
         } else {
-          getContext().getString(R.string.ConversationItem_edited_absolute_timestamp_footer, dateLabel)
-          dateLabelContentDesc = dateLabel
+          dateLabel = getContext().getString(R.string.ConversationItem_edited_absolute_timestamp_footer, dateLabel)
+          dateLabelContentDesc = getContext().getString(R.string.ConversationItem_edited_absolute_timestamp_footer, dateLabelContentDesc)
         }
 
         binding.footerDate.setOnClickListener {
