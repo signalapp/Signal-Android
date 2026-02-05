@@ -14,6 +14,10 @@ android {
   composeOptions {
     kotlinCompilerExtensionVersion = "1.5.4"
   }
+
+  testFixtures {
+    enable = true
+  }
 }
 
 dependencies {
@@ -38,4 +42,7 @@ dependencies {
   api(libs.google.zxing.core)
   api(libs.material.material)
   api(libs.accompanist.permissions)
+
+  // JUnit is used by test fixtures
+  testFixturesImplementation(testLibs.junit.junit)
 }

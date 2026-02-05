@@ -475,7 +475,7 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing" />
 
         <activity
-            android:name=".mediasend.v3.MediaSendV3Activity"
+            android:name="org.signal.mediasend.MediaSendActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
             android:exported="false"
             android:launchMode="singleTop"

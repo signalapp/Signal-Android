@@ -16,7 +16,6 @@ object SignalGlideDependencies {
   private lateinit var _application: Application
   private lateinit var _provider: Provider
   
-  @JvmStatic
   @Synchronized
   fun init(application: Application, provider: Provider) {
     if (this::_application.isInitialized || this::_provider.isInitialized) {

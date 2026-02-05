@@ -15,28 +15,11 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.rememberNavBackStack
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.mediasend.preupload.PreUploadManager
-import org.signal.mediasend.select.MediaSelectScreen
 
 /**
- * Abstract base activity for the media sending flow.
- *
- * App-layer implementations must extend this class and provide:
- * - [preUploadCallback] — For pre-upload job management
- * - [repository] — For media validation, sending, and other app-layer operations
- * - UI slots: [CameraSlot], [TextStoryEditorSlot], [MediaSelectSlot], [ImageEditorSlot], [VideoEditorSlot], [SendSlot]
- *
- * The concrete implementation should be registered in the app's manifest.
+ * Activity for the media sending flow.
  */
 abstract class MediaSendActivity : FragmentActivity() {
-
-  /** Pre-upload callback implementation for job management. */
-  protected abstract val preUploadCallback: PreUploadManager.Callback
-
-  /** Repository implementation for app-layer operations. */
-  protected abstract val repository: MediaSendRepository
-
-  /** Contract args extracted from intent. Available after super.onCreate(). */
   protected lateinit var contractArgs: MediaSendActivityContract.Args
     private set
 
@@ -49,11 +32,8 @@ abstract class MediaSendActivity : FragmentActivity() {
     setContent {
       val viewModel by viewModels<MediaSendViewModel>(factoryProducer = {
         MediaSendViewModel.Factory(
-          context = applicationContext,
           args = contractArgs,
-          isMeteredFlow = MeteredConnectivity.isMetered(applicationContext),
-          repository = repository,
-          preUploadCallback = preUploadCallback
+          isMeteredFlow = MeteredConnectivity.isMetered(applicationContext)
         )
       })
 
@@ -62,68 +42,35 @@ abstract class MediaSendActivity : FragmentActivity() {
         if (state.isCameraFirst) MediaSendNavKey.Capture.Camera else MediaSendNavKey.Select
       )
 
-      Theme {
+      SignalTheme {
         Surface {
           MediaSendNavDisplay(
             state = state,
             backStack = backStack,
             callback = viewModel,
             modifier = Modifier.fillMaxSize(),
-            cameraSlot = { CameraSlot() },
-            textStoryEditorSlot = { TextStoryEditorSlot() },
-            mediaSelectSlot = {
-              MediaSelectScreen(
-                state = state,
-                backStack = backStack,
-                callback = viewModel
-              )
-            },
-            videoEditorSlot = { VideoEditorSlot() },
-            sendSlot = { SendSlot() }
+            cameraSlot = {  },
+            textStoryEditorSlot = {  },
+            videoEditorSlot = {  },
+            sendSlot = {  }
           )
         }
       }
     }
   }
 
-  /** Theme wrapper */
-  @Composable
-  protected open fun Theme(content: @Composable () -> Unit) {
-    SignalTheme(incognitoKeyboardEnabled = false) {
-      content()
-    }
-  }
-
-  /** Camera capture UI slot. */
-  @Composable
-  protected abstract fun CameraSlot()
-
-  /** Text story editor UI slot. */
-  @Composable
-  protected abstract fun TextStoryEditorSlot()
-
-  /** Video editor UI slot. */
-  @Composable
-  protected abstract fun VideoEditorSlot()
-
-  /** Send/review UI slot. */
-  @Composable
-  protected abstract fun SendSlot()
-
   companion object {
     /**
-     * Creates an intent for a concrete [MediaSendActivity] subclass.
+     * Creates an intent for [MediaSendActivity].
      *
      * @param context The context.
-     * @param activityClass The concrete activity class to launch.
      * @param args The activity arguments.
      */
-    fun <T : MediaSendActivity> createIntent(
+    fun createIntent(
       context: Context,
-      activityClass: Class<T>,
       args: MediaSendActivityContract.Args = MediaSendActivityContract.Args()
     ): Intent {
-      return Intent(context, activityClass).apply {
+      return Intent(context, MediaSendActivity::class.java).apply {
         putExtra(MediaSendActivityContract.EXTRA_ARGS, args)
       }
     }

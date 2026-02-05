@@ -17,6 +17,7 @@ import androidx.navigationevent.compose.rememberNavigationEventDispatcherOwner
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.mediasend.edit.MediaEditScreen
+import org.signal.mediasend.select.MediaSelectScreen
 
 /**
  * Enforces the following flow of:
@@ -32,7 +33,6 @@ fun MediaSendNavDisplay(
   modifier: Modifier = Modifier,
   cameraSlot: @Composable () -> Unit = {},
   textStoryEditorSlot: @Composable () -> Unit = {},
-  mediaSelectSlot: @Composable () -> Unit = {},
   videoEditorSlot: @Composable () -> Unit = {},
   sendSlot: @Composable () -> Unit = {}
 ) {
@@ -50,7 +50,11 @@ fun MediaSendNavDisplay(
       }
 
       MediaSendNavKey.Select -> NavEntry(key) {
-        mediaSelectSlot()
+        MediaSelectScreen(
+          state = state,
+          backStack = backStack,
+          callback = callback
+        )
       }
 
       is MediaSendNavKey.Edit -> NavEntry(MediaSendNavKey.Edit) {
@@ -82,7 +86,6 @@ private fun MediaSendNavDisplayPreview() {
         callback = MediaSendCallback.Empty,
         cameraSlot = { BoxWithText("Camera Slot") },
         textStoryEditorSlot = { BoxWithText("Text Story Editor Slot") },
-        mediaSelectSlot = { BoxWithText("Media Select Slot") },
         videoEditorSlot = { BoxWithText("Video Editor Slot") },
         sendSlot = { BoxWithText("Send Slot") }
       )

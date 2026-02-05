@@ -20,6 +20,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.ui.CoreUiDependenciesRule
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.registration.screens.util.MockMultiplePermissionsState
 import org.signal.registration.screens.util.MockPermissionsState
@@ -36,6 +37,9 @@ class RegistrationNavigationTest {
 
   @get:Rule
   val composeTestRule = createComposeRule()
+
+  @get:Rule
+  val coreUiDependenciesRule = CoreUiDependenciesRule()
 
   private lateinit var viewModel: RegistrationViewModel
   private lateinit var mockRepository: RegistrationRepository

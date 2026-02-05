@@ -59,6 +59,7 @@ dependencies {
   implementation(libs.google.libphonenumber)
 
   // Testing
+  testImplementation(testFixtures(project(":core:ui")))
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.mockk)
   testImplementation(testLibs.assertk)

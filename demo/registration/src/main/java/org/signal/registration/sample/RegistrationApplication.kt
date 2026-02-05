@@ -9,6 +9,7 @@ import android.app.Application
 import android.os.Build
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.ui.CoreUiDependencies
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
@@ -56,6 +57,10 @@ class RegistrationApplication : Application() {
         storageController = storageController
       )
     )
+
+    CoreUiDependencies.init(object : CoreUiDependencies.Provider {
+      override fun provideIsIncognitoKeyboardEnabled(): Boolean = false
+    })
   }
 
   private fun createPushServiceSocket(configuration: SignalServiceConfiguration): PushServiceSocket {

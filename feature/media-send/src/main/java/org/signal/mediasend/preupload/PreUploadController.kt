@@ -12,6 +12,7 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.MediaRecipientId
+import org.signal.mediasend.MediaSendDependencies
 import java.util.LinkedHashMap
 import java.util.concurrent.Executor
 
@@ -27,12 +28,10 @@ import java.util.concurrent.Executor
  *
  * This class is stateful.
  */
-class PreUploadManager(
-  context: Context,
-  private val callback: Callback
-) {
+class PreUploadController {
 
-  private val context: Context = context.applicationContext
+  private val callback: PreUploadRepository = MediaSendDependencies.preUploadRepository
+  private val context: Context = MediaSendDependencies.application
   private val uploadResults: LinkedHashMap<Media, PreUploadResult> = LinkedHashMap()
   private val executor: Executor =
     SignalExecutors.newCachedSingleThreadExecutor("signal-PreUpload", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD)
@@ -234,74 +233,7 @@ class PreUploadManager(
     }
   }
 
-  /**
-   * Callbacks that perform the real side-effects (DB ops, job scheduling/cancelation, etc).
-   *
-   * This keeps `feature/media-send` free of direct dependencies on app-specific systems.
-   *
-   * Threading: all callback methods are invoked on this manager's serialized background executor
-   * thread (i.e., not the main thread).
-   */
-  interface Callback {
-    /**
-     * Performs pre-upload side-effects (e.g., create attachment state + enqueue jobs).
-     *
-     * @param context Application context.
-     * @param media The media item being pre-uploaded.
-     * @param recipientId Optional recipient identifier, if known.
-     * @return A [PreUploadResult] if enqueued, or `null` if it failed or should not pre-upload.
-     */
-    @WorkerThread
-    fun preUpload(context: Context, media: Media, recipientId: MediaRecipientId?): PreUploadResult?
-
-    /**
-     * Cancels any scheduled/running work for the provided job ids.
-     *
-     * @param context Application context.
-     * @param jobIds Job identifiers to cancel.
-     */
-    @WorkerThread
-    fun cancelJobs(context: Context, jobIds: List<String>)
-
-    /**
-     * Deletes any persisted attachment state for [attachmentId].
-     *
-     * @param context Application context.
-     * @param attachmentId Attachment identifier to delete.
-     */
-    @WorkerThread
-    fun deleteAttachment(context: Context, attachmentId: Long)
-
-    /**
-     * Updates the caption for [attachmentId].
-     *
-     * @param context Application context.
-     * @param attachmentId Attachment identifier.
-     * @param caption New caption (or `null` to clear).
-     */
-    @WorkerThread
-    fun updateAttachmentCaption(context: Context, attachmentId: Long, caption: String?)
-
-    /**
-     * Updates display order for attachments.
-     *
-     * @param context Application context.
-     * @param orderMap Map of attachment id -> display order index.
-     */
-    @WorkerThread
-    fun updateDisplayOrder(context: Context, orderMap: Map<Long, Int>)
-
-    /**
-     * Deletes any pre-uploaded attachments that are no longer referenced.
-     *
-     * @param context Application context.
-     * @return The number of attachments deleted.
-     */
-    @WorkerThread
-    fun deleteAbandonedPreuploadedAttachments(context: Context): Int
-  }
-
   private companion object {
-    private val TAG = Log.tag(PreUploadManager::class.java)
+    private val TAG = Log.tag(PreUploadController::class.java)
   }
 }

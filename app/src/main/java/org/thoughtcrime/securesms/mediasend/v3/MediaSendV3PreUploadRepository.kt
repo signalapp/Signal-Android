@@ -9,7 +9,7 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import org.signal.core.models.media.Media
 import org.signal.mediasend.MediaRecipientId
-import org.signal.mediasend.preupload.PreUploadManager
+import org.signal.mediasend.preupload.PreUploadRepository
 import org.signal.mediasend.preupload.PreUploadResult
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 
-class MediaSendV3PreUploadCallback : PreUploadManager.Callback {
+object MediaSendV3PreUploadRepository : PreUploadRepository {
 
   @WorkerThread
   override fun preUpload(context: Context, media: Media, recipientId: MediaRecipientId?): PreUploadResult? {

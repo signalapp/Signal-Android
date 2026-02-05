@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.mediasend.v3
 
-import android.content.Context
 import android.net.Uri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -48,11 +47,9 @@ import kotlin.time.Duration.Companion.seconds
 /**
  * App-layer implementation of [MediaSendRepository] that bridges to legacy v2 infrastructure.
  */
-class MediaSendV3Repository(
-  context: Context
-) : MediaSendRepository {
+object MediaSendV3Repository : MediaSendRepository {
 
-  private val appContext = context.applicationContext
+  private val appContext = AppDependencies.application
   private val legacyRepository = MediaSelectionRepository(appContext)
   private val mediaRepository = MediaRepository()
 

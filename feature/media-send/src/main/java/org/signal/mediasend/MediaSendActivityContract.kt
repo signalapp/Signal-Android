@@ -30,9 +30,7 @@ import org.signal.core.models.media.Media
  * class MyMediaSendContract : MediaSendActivityContract(MyMediaSendActivity::class.java)
  * ```
  */
-open class MediaSendActivityContract(
-  private val activityClass: Class<out MediaSendActivity>? = null
-) : ActivityResultContract<MediaSendActivityContract.Args, MediaSendActivityContract.Result?>() {
+class MediaSendActivityContract : ActivityResultContract<MediaSendActivityContract.Args, MediaSendActivityContract.Result?>() {
 
   /**
    * Creates the intent to launch the media send activity.
@@ -40,12 +38,7 @@ open class MediaSendActivityContract(
    * Subclasses should override this if not using the constructor parameter.
    */
   override fun createIntent(context: Context, input: Args): Intent {
-    val clazz = activityClass
-      ?: throw IllegalStateException(
-        "MediaSendActivityContract requires either a concrete activity class in the constructor " +
-          "or an overridden createIntent() method. MediaSendActivity is abstract and cannot be launched directly."
-      )
-    return MediaSendActivity.createIntent(context, clazz, input)
+    return MediaSendActivity.createIntent(context, input)
   }
 
   override fun parseResult(resultCode: Int, intent: Intent?): Result? {

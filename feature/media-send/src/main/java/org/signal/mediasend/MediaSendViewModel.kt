@@ -5,7 +5,6 @@
 
 package org.signal.mediasend
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
@@ -38,7 +37,7 @@ import org.signal.core.util.StringUtil
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.renderers.UriGlideRenderer
-import org.signal.mediasend.preupload.PreUploadManager
+import org.signal.mediasend.preupload.PreUploadController
 import java.util.Collections
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -54,7 +53,7 @@ class MediaSendViewModel(
   isMeteredFlow: Flow<Boolean>,
   private val savedStateHandle: SavedStateHandle,
   private val repository: MediaSendRepository,
-  private val preUploadManager: PreUploadManager
+  private val preUploadController: PreUploadController
 ) : ViewModel(), MediaSendCallback {
 
   private val defaultState = MediaSendState(
@@ -309,8 +308,8 @@ class MediaSendViewModel(
     viewModelScope.launch {
       repository.deleteBlobs(media.toList())
     }
-    preUploadManager.cancelUpload(media)
-    preUploadManager.updateDisplayOrder(newSelection)
+    preUploadController.cancelUpload(media)
+    preUploadController.updateDisplayOrder(newSelection)
   }
 
   /**
@@ -323,9 +322,9 @@ class MediaSendViewModel(
     val updatedSelection = snapshot.selectedMedia.map { oldToNew[it] ?: it }
     updateState { copy(selectedMedia = updatedSelection) }
 
-    preUploadManager.applyMediaUpdates(oldToNew, snapshot.recipientId)
-    preUploadManager.updateCaptions(updatedSelection)
-    preUploadManager.updateDisplayOrder(updatedSelection)
+    preUploadController.applyMediaUpdates(oldToNew, snapshot.recipientId)
+    preUploadController.updateCaptions(updatedSelection)
+    preUploadController.updateDisplayOrder(updatedSelection)
   }
 
   /**
@@ -333,7 +332,7 @@ class MediaSendViewModel(
    */
   fun setDisplayOrder(mediaInOrder: List<Media>) {
     updateState { copy(selectedMedia = mediaInOrder) }
-    preUploadManager.updateDisplayOrder(mediaInOrder)
+    preUploadController.updateDisplayOrder(mediaInOrder)
   }
 
   //endregion
@@ -350,9 +349,9 @@ class MediaSendViewModel(
       media.filter { ContentTypeUtil.isStorySupportedType(it.contentType) }
     }
 
-    preUploadManager.startUpload(filteredPreUploadMedia, snapshot.recipientId)
-    preUploadManager.updateCaptions(snapshot.selectedMedia)
-    preUploadManager.updateDisplayOrder(snapshot.selectedMedia)
+    preUploadController.startUpload(filteredPreUploadMedia, snapshot.recipientId)
+    preUploadController.updateCaptions(snapshot.selectedMedia)
+    preUploadController.updateDisplayOrder(snapshot.selectedMedia)
   }
 
   //endregion
@@ -369,7 +368,7 @@ class MediaSendViewModel(
     if (snapshot.sentMediaQuality == sentMediaQuality) return
 
     updateState { copy(sentMediaQuality = sentMediaQuality, isPreUploadEnabled = false) }
-    preUploadManager.cancelAllUploads()
+    preUploadController.cancelAllUploads()
 
     // Re-clamp video durations based on new quality
     val maxVideoDurationUs = getMaxVideoDurationUs()
@@ -404,7 +403,7 @@ class MediaSendViewModel(
     savedStateHandle[KEY_EDITED_VIDEO_URIS] = ArrayList(editedVideoUris)
 
     val media = state.value.selectedMedia.firstOrNull { it.uri == uri } ?: return
-    preUploadManager.cancelUpload(media)
+    preUploadController.cancelUpload(media)
   }
 
   /**
@@ -443,7 +442,7 @@ class MediaSendViewModel(
     if (unedited && durationEdited) {
       val media = snapshot.selectedMedia.firstOrNull { it.uri == uri }
       if (media != null) {
-        preUploadManager.cancelUpload(media)
+        preUploadController.cancelUpload(media)
       }
     }
 
@@ -532,7 +531,7 @@ class MediaSendViewModel(
 
   fun onMediaDragFinished() {
     lastMediaDrag = Pair(0, 0)
-    preUploadManager.updateDisplayOrder(internalState.value.selectedMedia)
+    preUploadController.updateDisplayOrder(internalState.value.selectedMedia)
   }
 
   //endregion
@@ -704,8 +703,8 @@ class MediaSendViewModel(
   //region Lifecycle
 
   override fun onCleared() {
-    preUploadManager.cancelAllUploads()
-    preUploadManager.deleteAbandonedAttachments()
+    preUploadController.cancelAllUploads()
+    preUploadController.deleteAbandonedAttachments()
   }
 
   private fun shouldPreUpload(metered: Boolean): Boolean = !metered
@@ -715,26 +714,22 @@ class MediaSendViewModel(
   //region Factory
 
   class Factory(
-    private val context: Context,
     private val args: MediaSendActivityContract.Args,
     private val identityChangesSince: Long = System.currentTimeMillis(),
-    private val isMeteredFlow: Flow<Boolean>,
-    private val repository: MediaSendRepository,
-    private val preUploadCallback: PreUploadManager.Callback
+    private val isMeteredFlow: Flow<Boolean>
   ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
       val savedStateHandle = extras.createSavedStateHandle()
-      val manager = PreUploadManager(context.applicationContext, preUploadCallback)
 
       return MediaSendViewModel(
         args = args,
         identityChangesSince = identityChangesSince,
         isMeteredFlow = isMeteredFlow,
         savedStateHandle = savedStateHandle,
-        repository = repository,
-        preUploadManager = manager
+        repository = MediaSendDependencies.mediaSendRepository,
+        preUploadController = PreUploadController()
       ) as T
     }
   }
