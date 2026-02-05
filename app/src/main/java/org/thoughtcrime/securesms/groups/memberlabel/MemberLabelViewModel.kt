@@ -134,7 +134,7 @@ data class MemberLabelUiState(
   val isSaveEnabled: Boolean
     get() {
       val isCleared = labelText.isEmpty() && labelEmoji.isEmpty()
-      val hasValidLabel = labelText.length >= MIN_LABEL_TEXT_LENGTH
+      val hasValidLabel = labelText.length in MIN_LABEL_TEXT_LENGTH..MAX_LABEL_TEXT_LENGTH
       return hasChanges && (hasValidLabel || isCleared) && saveState != SaveState.InProgress
     }
 
