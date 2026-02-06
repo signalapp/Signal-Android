@@ -11,8 +11,8 @@ import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.navigation.fragment.findNavController
+import org.signal.core.ui.logging.LoggingFragment
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationCaptchaBinding

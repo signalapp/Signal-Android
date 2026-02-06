@@ -4,6 +4,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.ui.logging.LoggingFragment;
+
 public class MainFragment extends LoggingFragment {
 
   @Override

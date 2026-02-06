@@ -24,7 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.signal.core.util.logging.Log;
 import org.signal.core.ui.view.Stub;
-import org.thoughtcrime.securesms.LoggingFragment;
+import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.PaymentPreferencesDirections;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.banner.BannerManager;

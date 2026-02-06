@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.DialogFragment
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.WindowUtil
 
 /**
@@ -28,9 +26,7 @@ abstract class ComposeFullScreenDialogFragment : DialogFragment() {
     return ComposeView(requireContext()).apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
-        SignalTheme(
-          isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)
-        ) {
+        SignalTheme {
           DialogContent()
         }
       }

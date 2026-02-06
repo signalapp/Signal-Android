@@ -25,7 +25,7 @@ import androidx.navigation.Navigation;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.ResourceUtil;
-import org.thoughtcrime.securesms.LoggingFragment;
+import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.util.CommunicationActions;

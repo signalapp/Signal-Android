@@ -49,11 +49,11 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.SignalIcons
-import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 
 class DataSeedingPlaygroundFragment : ComposeFragment() {

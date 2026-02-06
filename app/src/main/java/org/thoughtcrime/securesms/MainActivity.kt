@@ -781,7 +781,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
     CompositionLocalProvider(LocalSnackbarStateConsumerRegistry provides mainNavigationViewModel.snackbarRegistry) {
-      SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(this)) {
+      SignalTheme {
         val backgroundColor = if (!windowSizeClass.isSplitPane()) {
           MaterialTheme.colorScheme.surface
         } else {

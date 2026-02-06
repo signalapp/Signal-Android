@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 
 import android.Manifest;
+import org.signal.core.ui.logging.LoggingFragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;

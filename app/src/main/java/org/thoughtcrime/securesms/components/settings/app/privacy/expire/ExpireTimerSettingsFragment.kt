@@ -28,6 +28,7 @@ import androidx.navigation.fragment.NavHostFragment
 import kotlinx.coroutines.delay
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.CircularProgressWrapper
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
@@ -36,10 +37,8 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
-import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.livedata.ProcessState
 import org.thoughtcrime.securesms.util.livedata.distinctUntilChanged
@@ -87,7 +86,7 @@ class ExpireTimerSettingsFragment : ComposeFragment() {
     val state by viewModel.state.observeAsState(ExpireTimerSettingsState())
     val callback = remember { DefaultExpireTimerSettingsScreenCallback(viewModel) }
 
-    SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
+    SignalTheme {
       ExpireTimerSettingsScreen(
         state = state,
         callback = callback

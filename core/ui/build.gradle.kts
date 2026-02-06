@@ -23,6 +23,8 @@ android {
 dependencies {
   lintChecks(project(":lintchecks"))
 
+  api(project(":core:util"))
+
   platform(libs.androidx.compose.bom).let { composeBom ->
     api(composeBom)
     androidTestApi(composeBom)

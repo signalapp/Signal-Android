@@ -56,7 +56,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.Emojifier
 import org.thoughtcrime.securesms.main.EmptyMegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones.Event
-import org.thoughtcrime.securesms.util.DynamicTheme
 import kotlin.math.roundToInt
 
 /**
@@ -64,7 +63,7 @@ import kotlin.math.roundToInt
  */
 fun setContent(composeView: ComposeView, megaphone: Megaphone, megaphoneActionController: MegaphoneActionController) {
   composeView.setContent {
-    SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(composeView.context)) {
+    SignalTheme {
       MegaphoneComponent(
         megaphone,
         megaphoneActionController

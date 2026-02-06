@@ -7,8 +7,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
@@ -16,9 +16,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
-import org.thoughtcrime.securesms.util.DynamicTheme
 
 /**
  * Internal tool for testing various story-related dialogs.
@@ -29,7 +27,7 @@ class InternalStoryDialogLauncherFragment : ComposeFragment() {
   override fun FragmentContent() {
     val callback = remember { DefaultInternalStoryDialogLauncherCallback() }
 
-    SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
+    SignalTheme {
       InternalStoryDialogLauncherScreen(
         callback = callback
       )

@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
@@ -145,7 +144,7 @@ class ConversationBannerView @JvmOverloads constructor(
     val view = pinnedMessageStub.get()
     view.apply {
       setContent {
-        SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(context)) {
+        SignalTheme {
           PinnedMessagesBanner(
             messages = messages,
             canUnpin = canUnpin,

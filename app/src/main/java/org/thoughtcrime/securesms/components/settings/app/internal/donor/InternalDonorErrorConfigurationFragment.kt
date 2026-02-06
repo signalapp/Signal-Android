@@ -14,11 +14,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
@@ -28,8 +28,6 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.donations.StripeDeclineCode
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation
-import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.util.DynamicTheme
 
 /**
  * Internal tool for configuring donor error states for testing.
@@ -42,7 +40,7 @@ class InternalDonorErrorConfigurationFragment : ComposeFragment() {
   override fun FragmentContent() {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
+    SignalTheme {
       InternalDonorErrorConfigurationScreen(
         state = state,
         callback = remember { DefaultInternalDonorErrorConfigurationCallback() }

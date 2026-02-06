@@ -26,7 +26,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.LifecycleOwner
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -46,7 +45,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.DynamicTheme
 
 /**
  * Prompts the user to scan a username QR code. Uses the activity result to communicate the recipient that was found, or null if no valid usernames were scanned.
@@ -88,7 +86,7 @@ class UsernameQrScannerActivity : AppCompatActivity() {
       val cameraPermissionState: PermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA)
       val state by viewModel.state
 
-      SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
+      SignalTheme {
         Content(
           lifecycleOwner = this,
           diposables = disposables.disposables,
