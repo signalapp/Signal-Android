@@ -383,6 +383,15 @@ fun CallScreen(
               )
             }
           },
+          audioIndicatorSlot = {
+            if (callParticipantsPagerState.callParticipants.size == 1) {
+              val participant = callParticipantsPagerState.callParticipants.first()
+              ParticipantAudioIndicator(
+                participant = participant,
+                selfPipMode = SelfPipMode.NOT_SELF_PIP
+              )
+            }
+          },
           bottomInset = padding,
           bottomSheetWidth = CallScreenMetrics.SheetMaxWidth,
           localRenderState = localRenderState,

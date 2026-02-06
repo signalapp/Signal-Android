@@ -53,6 +53,7 @@ fun CallParticipantsPager(
           renderInPip = state.isRenderInPip,
           raiseHandAllowed = false,
           onInfoMoreInfoClick = null,
+          showAudioIndicator = state.callParticipants.size > 1,
           modifier = itemModifier
         )
       }

@@ -43,7 +43,8 @@ private enum class BlurrableContentSlot {
   BARS,
   GRID,
   REACTIONS,
-  OVERFLOW
+  OVERFLOW,
+  AUDIO_INDICATOR
 }
 
 @Composable
@@ -54,6 +55,7 @@ fun CallElementsLayout(
   raiseHandSlot: @Composable () -> Unit,
   callLinkBarSlot: @Composable () -> Unit,
   callOverflowSlot: @Composable () -> Unit,
+  audioIndicatorSlot: @Composable () -> Unit,
   bottomInset: Dp,
   bottomSheetWidth: Dp,
   localRenderState: WebRtcLocalRenderState,
@@ -100,6 +102,7 @@ fun CallElementsLayout(
         callGridSlot = callGridSlot,
         reactionsSlot = reactionsSlot,
         callOverflowSlot = callOverflowSlot,
+        audioIndicatorSlot = audioIndicatorSlot,
         onMeasured = { barsHeight, barsWidth ->
           measuredBarsHeightPx = barsHeight
           measuredBarsWidthPx = barsWidth
@@ -146,6 +149,7 @@ private fun BlurrableContentLayer(
   callGridSlot: @Composable () -> Unit,
   reactionsSlot: @Composable () -> Unit,
   callOverflowSlot: @Composable () -> Unit,
+  audioIndicatorSlot: @Composable () -> Unit,
   onMeasured: (barsHeight: Int, barsWidth: Int) -> Unit
 ) {
   BlurContainer(
@@ -187,6 +191,9 @@ private fun BlurrableContentLayer(
       val reactionsPlaceables = subcompose(BlurrableContentSlot.REACTIONS, reactionsSlot)
         .map { it.measure(reactionsConstraints) }
 
+      val audioIndicatorPlaceables = subcompose(BlurrableContentSlot.AUDIO_INDICATOR, audioIndicatorSlot)
+        .map { it.measure(looseConstraints) }
+
       layout(looseConstraints.maxWidth, looseConstraints.maxHeight) {
         overflowPlaceables.forEach {
           if (isPortrait) {
@@ -207,6 +214,17 @@ private fun BlurrableContentLayer(
 
         reactionsPlaceables.forEach {
           it.place(0, 0)
+        }
+
+        audioIndicatorPlaceables.forEach {
+          val gutterWidth = (looseConstraints.maxWidth - bottomSheetWidthPx) / 2
+          val fitsInGutter = gutterWidth >= it.width
+          val y = if (fitsInGutter) {
+            looseConstraints.maxHeight - it.height
+          } else {
+            looseConstraints.maxHeight - bottomInsetPx - barsHeightPx - it.height
+          }
+          it.place(0, y)
         }
       }
     }
@@ -320,6 +338,21 @@ private fun CallElementsLayoutPreview() {
               }
             )
             .background(color = Color.Red)
+        )
+      },
+      audioIndicatorSlot = {
+        val mutedParticipant = CallParticipant(
+          recipient = Recipient(
+            id = RecipientId.from(2L),
+            isResolving = false,
+            systemContactName = "Muted Participant"
+          ),
+          audioLevel = null
+        )
+
+        ParticipantAudioIndicator(
+          participant = mutedParticipant,
+          selfPipMode = SelfPipMode.NOT_SELF_PIP
         )
       },
       bottomInset = 120.dp,
