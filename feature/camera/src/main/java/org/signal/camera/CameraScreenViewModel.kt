@@ -214,6 +214,9 @@ class CameraScreenViewModel : ViewModel() {
   ) {
     val capture = videoCapture ?: return
 
+    camera?.cameraControl?.setZoomRatio(1f)
+    _state.value = _state.value.copy(zoomRatio = 1f)
+
     // Prepare recording based on configuration
     val pendingRecording = when (output) {
       is VideoOutput.FileOutput -> {
@@ -435,13 +438,13 @@ class CameraScreenViewModel : ViewModel() {
     // Clamp linear zoom to valid range
     val clampedLinearZoom = linearZoom.coerceIn(0f, 1f)
 
-    // CameraX setLinearZoom takes 0.0-1.0 and maps to min-max zoom ratio
-    currentCamera.cameraControl.setLinearZoom(clampedLinearZoom)
-
-    // Calculate the actual zoom ratio for state tracking
-    val minZoom = currentCamera.cameraInfo.zoomState.value?.minZoomRatio ?: 1f
+    // Map 0.0-1.0 to the range from 1x to maxZoomRatio.
+    // We use 1x as the base instead of minZoomRatio because minZoomRatio may be less than 1x on devices with an ultrawide lens (e.g. 0.5x).
+    val baseZoom = 1f
     val maxZoom = currentCamera.cameraInfo.zoomState.value?.maxZoomRatio ?: 1f
-    val newZoomRatio = minZoom + (maxZoom - minZoom) * clampedLinearZoom
+    val newZoomRatio = baseZoom + (maxZoom - baseZoom) * clampedLinearZoom
+
+    currentCamera.cameraControl.setZoomRatio(newZoomRatio)
 
     _state.value = state.copy(zoomRatio = newZoomRatio)
   }
