@@ -23,6 +23,9 @@ android {
 
   defaultConfig {
     minSdk = libs.versions.minSdk.get().toInt()
+
+    testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
+
     testInstrumentationRunner = "androidx.benchmark.junit4.AndroidBenchmarkRunner"
   }
 

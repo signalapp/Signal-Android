@@ -1,5 +1,6 @@
 package org.thoughtcrime.benchmark
 
+import androidx.annotation.RequiresApi
 import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.ExperimentalMetricApi
 import androidx.benchmark.macro.StartupMode
@@ -17,6 +18,7 @@ import org.junit.runner.RunWith
  * WARNING! THIS WILL WIPE YOUR SIGNAL INSTALL
  */
 @RunWith(AndroidJUnit4::class)
+@RequiresApi(31)
 class StartupBenchmarks {
   @get:Rule
   val benchmarkRule = MacrobenchmarkRule()

@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUti
 import org.thoughtcrime.securesms.registration.data.RegistrationData
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
@@ -76,7 +77,7 @@ object TestUsers {
     SignalStore.registration.restoreDecisionState = RestoreDecisionState.Skipped
     RegistrationUtil.maybeMarkRegistrationComplete()
     SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts("Tester", "McTesterson"))
-
+    TextSecurePreferences.setPromptedOptimizeDoze(application, true)
     return Recipient.self()
   }
 

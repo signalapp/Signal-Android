@@ -2,6 +2,7 @@ package org.thoughtcrime.benchmark
 
 import android.Manifest
 import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.ExperimentalMetricApi
 import androidx.benchmark.macro.TraceSectionMetric
@@ -14,6 +15,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
+@RequiresApi(31)
 class ConversationBenchmarks {
   @get:Rule
   val benchmarkRule = MacrobenchmarkRule()

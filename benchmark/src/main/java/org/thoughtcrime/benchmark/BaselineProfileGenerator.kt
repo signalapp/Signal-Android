@@ -1,8 +1,6 @@
-@file:OptIn(ExperimentalBaselineProfilesApi::class)
-
 package org.thoughtcrime.benchmark
 
-import androidx.benchmark.macro.ExperimentalBaselineProfilesApi
+import androidx.annotation.RequiresApi
 import androidx.benchmark.macro.junit4.BaselineProfileRule
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.Until
@@ -16,7 +14,7 @@ import org.junit.Test
  *  - start the app
  *  - open a conversation
  */
-@OptIn(ExperimentalBaselineProfilesApi::class)
+@RequiresApi(28)
 class BaselineProfileGenerator {
   @get:Rule
   val baselineProfileRule = BaselineProfileRule()
@@ -24,7 +22,7 @@ class BaselineProfileGenerator {
   @Test
   fun startup() {
     var setup = false
-    baselineProfileRule.collectBaselineProfile(
+    baselineProfileRule.collect(
       packageName = "org.thoughtcrime.securesms",
       profileBlock = {
         if (!setup) {

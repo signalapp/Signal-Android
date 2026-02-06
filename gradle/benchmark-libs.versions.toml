@@ -2,12 +2,12 @@
 # ./gradlew --write-verification-metadata sha256 qa --rerun-tasks
 
 [versions]
-androidx-test-ext-junit = "1.1.5"
+androidx-test-ext-junit = "1.3.0"
 
 [libraries]
 # Macrobench/Baseline profiles
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext-junit" }
-espresso-core = "androidx.test.espresso:espresso-core:3.4.0"
-uiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"
-androidx-benchmark-macro = "androidx.benchmark:benchmark-macro-junit4:1.1.1"
-androidx-benchmark-micro = "androidx.benchmark:benchmark-junit4:1.1.0-beta04"
+espresso-core = "androidx.test.espresso:espresso-core:3.7.0"
+uiautomator = "androidx.test.uiautomator:uiautomator:2.3.0"
+androidx-benchmark-macro = "androidx.benchmark:benchmark-macro-junit4:1.4.1"
+androidx-benchmark-micro = "androidx.benchmark:benchmark-junit4:1.4.1"

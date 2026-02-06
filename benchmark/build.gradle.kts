@@ -32,6 +32,8 @@ android {
 
         missingDimensionStrategy("environment", "prod")
         missingDimensionStrategy("distribution", "play")
+
+        testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
     }
 
     buildTypes {
