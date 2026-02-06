@@ -21,18 +21,23 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
+import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel;
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelRepository;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity;
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -44,6 +49,7 @@ import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import kotlin.Pair;
 
@@ -52,16 +58,17 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 final class RecipientDialogViewModel extends ViewModel {
 
-  private final Context                         context;
-  private final RecipientDialogRepository       recipientDialogRepository;
-  private final LiveData<Recipient>             recipient;
-  private final MutableLiveData<IdentityRecord> identity;
-  private final LiveData<AdminActionStatus>     adminActionStatus;
-  private final LiveData<Boolean>               canAddToAGroup;
-  private final MutableLiveData<Boolean>        adminActionBusy;
-  private final MutableLiveData<StoryViewState> storyViewState;
-  private final CompositeDisposable             disposables;
-  private final boolean                         isDeprecatedOrUnregistered;
+  private final Context                                context;
+  private final RecipientDialogRepository              recipientDialogRepository;
+  private final LiveData<Recipient>                    recipient;
+  private final MutableLiveData<IdentityRecord>        identity;
+  private final LiveData<AdminActionStatus>            adminActionStatus;
+  private final LiveData<Boolean>                      canAddToAGroup;
+  private final MutableLiveData<Boolean>               adminActionBusy;
+  private final MutableLiveData<StoryViewState>        storyViewState;
+  private final MutableLiveData<RecipientDetailsState> recipientDetailsState;
+  private final CompositeDisposable                    disposables;
+  private final boolean                                isDeprecatedOrUnregistered;
   private RecipientDialogViewModel(@NonNull Context context,
                                    @NonNull RecipientDialogRepository recipientDialogRepository)
   {
@@ -70,12 +77,14 @@ final class RecipientDialogViewModel extends ViewModel {
     this.identity                   = new MutableLiveData<>();
     this.adminActionBusy            = new MutableLiveData<>(false);
     this.storyViewState             = new MutableLiveData<>();
+    this.recipientDetailsState      = new MutableLiveData<>();
     this.disposables                = new CompositeDisposable();
     this.isDeprecatedOrUnregistered = SignalStore.misc().isClientDeprecated() || TextSecurePreferences.isUnauthorizedReceived(context);
 
     boolean recipientIsSelf = recipientDialogRepository.getRecipientId().equals(Recipient.self().getId());
 
-    recipient = Recipient.live(recipientDialogRepository.getRecipientId()).getLiveData();
+    final LiveRecipient liveRecipient = Recipient.live(recipientDialogRepository.getRecipientId());
+    recipient = liveRecipient.getLiveData();
 
     if (recipientDialogRepository.getGroupId() != null && recipientDialogRepository.getGroupId().isV2() && !recipientIsSelf) {
       LiveGroup source = new LiveGroup(recipientDialogRepository.getGroupId());
@@ -114,6 +123,35 @@ final class RecipientDialogViewModel extends ViewModel {
                                                         .subscribe(storyViewState::postValue);
 
     disposables.add(storyViewStateDisposable);
+
+    Disposable recipientDisposable = liveRecipient.observable().subscribe(this::updateRecipientDetailsState);
+    disposables.add(recipientDisposable);
+  }
+
+  private void updateRecipientDetailsState(@NonNull Recipient recipient) {
+    GroupId groupId   = recipientDialogRepository.getGroupId();
+    String  aboutText = recipient.isReleaseNotes() ? context.getString(R.string.ReleaseNotes__signal_release_notes_and_news) : recipient.getCombinedAboutAndEmoji();
+
+    if (groupId != null && groupId.isV2() && recipient.isIndividual() && !recipient.isSelf()) {
+      SignalExecutors.BOUNDED.execute(() -> {
+        GroupId.V2        v2GroupId   = (GroupId.V2) groupId;
+        MemberLabel       label       = MemberLabelRepository.getInstance().getLabelJava(v2GroupId, recipient);
+        StyledMemberLabel styledLabel = null;
+
+        if (label != null) {
+          Colorizer             colorizer   = new Colorizer();
+          Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroup(v2GroupId);
+          if (groupRecord.isPresent()) {
+            colorizer.onGroupMembershipChanged(groupRecord.get().requireV2GroupProperties().getMemberServiceIds());
+          }
+          styledLabel = new StyledMemberLabel(label, colorizer.getIncomingGroupSenderColor(context, recipient));
+        }
+
+        recipientDetailsState.postValue(new RecipientDetailsState(styledLabel, aboutText));
+      });
+    } else {
+      recipientDetailsState.setValue(new RecipientDetailsState(null, aboutText));
+    }
   }
 
   @Override protected void onCleared() {
@@ -147,6 +185,10 @@ final class RecipientDialogViewModel extends ViewModel {
 
   LiveData<Boolean> getAdminActionBusy() {
     return adminActionBusy;
+  }
+
+  LiveData<RecipientDetailsState> getRecipientDetails() {
+    return recipientDetailsState;
   }
 
   void onNoteToSelfClicked(@NonNull Activity activity) {

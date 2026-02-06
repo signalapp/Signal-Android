@@ -21,17 +21,10 @@ private const val MIN_LABEL_TEXT_LENGTH = 1
 private const val MAX_LABEL_TEXT_LENGTH = 24
 
 class MemberLabelViewModel(
-  private val memberLabelRepo: MemberLabelRepository,
+  private val memberLabelRepo: MemberLabelRepository = MemberLabelRepository.instance,
+  private val groupId: GroupId.V2,
   private val recipientId: RecipientId
 ) : ViewModel() {
-
-  constructor(
-    groupId: GroupId.V2,
-    recipientId: RecipientId
-  ) : this(
-    memberLabelRepo = MemberLabelRepository(groupId = groupId),
-    recipientId = recipientId
-  )
 
   private var originalLabelEmoji: String = ""
   private var originalLabelText: String = ""
@@ -45,7 +38,7 @@ class MemberLabelViewModel(
 
   private fun loadExistingLabel() {
     viewModelScope.launch(SignalDispatchers.IO) {
-      val memberLabel = memberLabelRepo.getLabel(recipientId)
+      val memberLabel = memberLabelRepo.getLabel(groupId, recipientId)
       originalLabelEmoji = memberLabel?.emoji.orEmpty()
       originalLabelText = memberLabel?.text.orEmpty()
 
@@ -103,6 +96,7 @@ class MemberLabelViewModel(
 
       val currentState = internalUiState.value
       memberLabelRepo.setLabel(
+        groupId = groupId,
         label = MemberLabel(
           emoji = currentState.labelEmoji.ifEmpty { null },
           text = currentState.labelText

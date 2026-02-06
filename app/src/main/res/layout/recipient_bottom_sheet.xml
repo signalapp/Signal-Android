@@ -18,10 +18,10 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:importantForAccessibility="no"
-            app:srcCompat="@drawable/bottom_sheet_handle"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bottom_sheet_handle" />
 
         <org.thoughtcrime.securesms.avatar.view.AvatarView
             android:id="@+id/rbs_recipient_avatar"
@@ -58,17 +58,17 @@
 
         <ProgressBar
             android:id="@+id/rbs_progress_bar"
+            style="?android:attr/progressBarStyleLarge"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:visibility="gone"
             android:indeterminate="true"
-            style="?android:attr/progressBarStyleLarge"
             android:indeterminateTint="@color/signal_colorOnSurfaceVariant"
-            app:layout_constraintTop_toTopOf="@id/rbs_recipient_avatar"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/rbs_recipient_avatar"
-            app:layout_constraintStart_toStartOf="@id/rbs_recipient_avatar"
             app:layout_constraintEnd_toEndOf="@id/rbs_recipient_avatar"
+            app:layout_constraintStart_toStartOf="@id/rbs_recipient_avatar"
+            app:layout_constraintTop_toTopOf="@id/rbs_recipient_avatar"
             tools:visibility="visible" />
 
         <LinearLayout
@@ -115,6 +115,17 @@
             app:layout_constraintTop_toBottomOf="@id/rbs_recipient_avatar"
             tools:text="Gwen Stacy" />
 
+        <org.thoughtcrime.securesms.groups.memberlabel.MemberLabelPillView
+            android:id="@+id/rbs_member_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rbs_full_name"
+            tools:visibility="visible" />
+
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/rbs_about"
             style="@style/Signal.Text.BodyLarge"
@@ -125,7 +136,7 @@
             android:layout_marginEnd="@dimen/dsl_settings_gutter"
             android:gravity="center"
             android:textColor="@color/signal_text_secondary"
-            app:layout_constraintTop_toBottomOf="@id/rbs_full_name"
+            app:layout_constraintTop_toBottomOf="@id/rbs_member_label"
             tools:text="🕷🕷🕷 Hangin' on the web 🕷🕷🕷" />
 
         <TextView
