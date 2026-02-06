@@ -1,11 +1,15 @@
 package org.signal.camera
 
+import android.app.Activity
 import android.content.Context
+import android.content.ContextWrapper
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.view.Window
+import android.view.WindowManager
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
@@ -46,6 +50,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
 import org.signal.core.util.throttleLatest
+import java.lang.ref.WeakReference
 import java.util.EnumMap
 import java.util.concurrent.Executors
 import kotlin.time.Duration.Companion.seconds
@@ -67,6 +72,8 @@ class CameraScreenViewModel : ViewModel() {
   private var imageCapture: ImageCapture? = null
   private var videoCapture: VideoCapture<Recorder>? = null
   private var recording: Recording? = null
+  private var brightnessBeforeFlash: Float = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
+  private var brightnessWindow: WeakReference<Window>? = null
 
   private val _qrCodeDetected = MutableSharedFlow<String>(extraBufferCapacity = 1)
   
@@ -145,8 +152,9 @@ class CameraScreenViewModel : ViewModel() {
     state: CameraScreenState,
     onPhotoCaptured: (Bitmap) -> Unit
   ) {
-    // Show selfie flash
+    // Show selfie flash and maximize screen brightness
     _state.value = state.copy(showSelfieFlash = true)
+    setMaxScreenBrightness(context)
 
     // Wait for screen to brighten, then capture
     viewModelScope.launch {
@@ -199,6 +207,7 @@ class CameraScreenViewModel : ViewModel() {
   private fun hideSelfieFlash() {
     if (_state.value.showSelfieFlash) {
       _state.value = _state.value.copy(showSelfieFlash = false)
+      restoreScreenBrightness()
     }
   }
 
@@ -584,6 +593,33 @@ class CameraScreenViewModel : ViewModel() {
       Log.e(TAG, "Error processing image for QR code: ${e.message}", e)
     }
     imageProxy.close()
+  }
+
+  private fun setMaxScreenBrightness(context: Context) {
+    val window = context.findActivity()?.window ?: return
+
+    brightnessBeforeFlash = window.attributes.screenBrightness
+    brightnessWindow = WeakReference(window)
+    window.attributes = window.attributes.apply {
+      screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_FULL
+    }
+  }
+
+  private fun restoreScreenBrightness() {
+    val window = brightnessWindow?.get() ?: return
+    window.attributes = window.attributes.apply {
+      screenBrightness = brightnessBeforeFlash
+    }
+    brightnessWindow = null
+  }
+
+  private fun Context.findActivity(): Activity? {
+    var context = this
+    while (context is ContextWrapper) {
+      if (context is Activity) return context
+      context = context.baseContext
+    }
+    return null
   }
 
   private fun vibrate(context: Context) {
