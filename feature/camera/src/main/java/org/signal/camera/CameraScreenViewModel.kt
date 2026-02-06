@@ -1,7 +1,9 @@
 package org.signal.camera
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
 import android.content.ContextWrapper
 import android.graphics.Bitmap
 import android.graphics.Matrix
@@ -248,8 +250,16 @@ class CameraScreenViewModel : ViewModel() {
       }
     }
 
-    val activeRecording = pendingRecording
-      .withAudioEnabled()
+    val hasAudioPermission = context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
+
+    val configuredRecording = if (hasAudioPermission) {
+      pendingRecording.withAudioEnabled()
+    } else {
+      Log.w(TAG, "RECORD_AUDIO permission not granted, recording without audio")
+      pendingRecording
+    }
+
+    val activeRecording = configuredRecording
       .start(ContextCompat.getMainExecutor(context)) { recordEvent ->
         when (recordEvent) {
           is VideoRecordEvent.Start -> {
