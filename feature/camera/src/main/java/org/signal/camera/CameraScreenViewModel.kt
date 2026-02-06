@@ -363,14 +363,14 @@ class CameraScreenViewModel : ViewModel() {
   ) {
     val currentCamera = camera ?: return
 
-    val factory = SurfaceOrientedMeteringPointFactory(event.width, event.height)
-    val point = factory.createPoint(event.x, event.y)
+    val factory = SurfaceOrientedMeteringPointFactory(event.surfaceWidth, event.surfaceHeight)
+    val point = factory.createPoint(event.surfaceX, event.surfaceY)
     val action = FocusMeteringAction.Builder(point).build()
 
     currentCamera.cameraControl.startFocusAndMetering(action)
 
     _state.value = state.copy(
-      focusPoint = Offset(event.x, event.y),
+      focusPoint = Offset(event.viewX, event.viewY),
       showFocusIndicator = true
     )
 

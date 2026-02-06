@@ -18,10 +18,12 @@ sealed interface CameraScreenEvents {
 
   /** Focuses the camera on a point. */
   data class TapToFocus(
-    val x: Float,
-    val y: Float,
-    val width: Float,
-    val height: Float
+    val viewX: Float,
+    val viewY: Float,
+    val surfaceX: Float,
+    val surfaceY: Float,
+    val surfaceWidth: Float,
+    val surfaceHeight: Float
   ) : CameraScreenEvents
 
   /** Zoom that happens when you pinch your fingers. */
