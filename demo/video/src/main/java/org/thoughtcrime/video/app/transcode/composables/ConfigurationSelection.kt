@@ -42,10 +42,11 @@ import org.thoughtcrime.video.app.ui.composables.LabeledButton
 import kotlin.math.roundToInt
 
 /**
- * A view that shows the queue of video URIs to encode, and allows you to change the encoding options.
+ * A view that shows the selected video URI and allows you to change the encoding options.
  */
 @Composable
 fun ConfigureEncodingParameters(
+  onTranscodeClicked: () -> Unit,
   hevcCapable: Boolean = DeviceCapabilities.canEncodeHevc(),
   modifier: Modifier = Modifier,
   viewModel: TranscodeTestViewModel = viewModel()
@@ -56,12 +57,12 @@ fun ConfigureEncodingParameters(
     modifier = modifier
   ) {
     Text(
-      text = "Selected videos:",
+      text = "Selected video:",
       modifier = Modifier
         .padding(horizontal = 8.dp)
         .align(Alignment.Start)
     )
-    viewModel.selectedVideos.forEach {
+    viewModel.selectedVideo?.let {
       Text(
         text = it.toString(),
         fontSize = 8.sp,
@@ -70,17 +71,6 @@ fun ConfigureEncodingParameters(
           .padding(horizontal = 8.dp)
           .align(Alignment.Start)
       )
-    }
-    Row(
-      verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier
-        .fillMaxWidth()
-    ) {
-      Checkbox(
-        checked = viewModel.forceSequentialQueueProcessing,
-        onCheckedChange = { viewModel.forceSequentialQueueProcessing = it }
-      )
-      Text(text = "Force Sequential Queue Processing", style = MaterialTheme.typography.bodySmall)
     }
     Row(
       verticalAlignment = Alignment.CenterVertically,
@@ -122,11 +112,7 @@ fun ConfigureEncodingParameters(
     }
     LabeledButton(
       buttonLabel = "Transcode",
-      onClick = {
-        viewModel.transcode()
-        viewModel.selectedVideos = emptyList()
-        viewModel.resetOutputDirectory()
-      },
+      onClick = onTranscodeClicked,
       modifier = Modifier.padding(vertical = 8.dp)
     )
   }
@@ -308,18 +294,17 @@ private fun AudioBitrateSlider(
 
 @Preview(showBackground = true)
 @Composable
-private fun ConfigurationScreenPreviewChecked() {
+private fun ConfigurationScreenPreviewPreset() {
   val vm: TranscodeTestViewModel = viewModel()
-  vm.selectedVideos = listOf(Uri.parse("content://1"), Uri.parse("content://2"))
-  vm.forceSequentialQueueProcessing = true
-  ConfigureEncodingParameters()
+  vm.selectedVideo = Uri.parse("content://media/video/1")
+  ConfigureEncodingParameters(onTranscodeClicked = {})
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun ConfigurationScreenPreviewUnchecked() {
+private fun ConfigurationScreenPreviewCustom() {
   val vm: TranscodeTestViewModel = viewModel()
-  vm.selectedVideos = listOf(Uri.parse("content://1"), Uri.parse("content://2"))
+  vm.selectedVideo = Uri.parse("content://media/video/1")
   vm.useAutoTranscodingSettings = false
-  ConfigureEncodingParameters(hevcCapable = true)
+  ConfigureEncodingParameters(onTranscodeClicked = {}, hevcCapable = true)
 }
