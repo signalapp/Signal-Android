@@ -138,16 +138,21 @@ fun CameraScreen(
             .fillMaxSize()
             .clip(cornerShape)
             .pointerInput(Unit) {
-              detectTapGestures { offset ->
-                emitter(
-                  CameraScreenEvents.TapToFocus(
-                    x = offset.x,
-                    y = offset.y,
-                    width = size.width.toFloat(),
-                    height = size.height.toFloat()
+              detectTapGestures(
+                onDoubleTap = {
+                  emitter(CameraScreenEvents.SwitchCamera(context))
+                },
+                onTap = { offset ->
+                  emitter(
+                    CameraScreenEvents.TapToFocus(
+                      x = offset.x,
+                      y = offset.y,
+                      width = size.width.toFloat(),
+                      height = size.height.toFloat()
+                    )
                   )
-                )
-              }
+                }
+              )
             }
             .pointerInput(Unit) {
               detectTransformGestures { _, _, zoom, _ ->
