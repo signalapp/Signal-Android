@@ -97,6 +97,7 @@ public abstract class DeviceTransferSetupFragment extends LoggingFragment {
       switch (step) {
         case INITIAL:
           status.setText("");
+          // fall through so the INITIAL state checks permissions
         case PERMISSIONS_CHECK:
           requestRequiredPermission();
           break;
