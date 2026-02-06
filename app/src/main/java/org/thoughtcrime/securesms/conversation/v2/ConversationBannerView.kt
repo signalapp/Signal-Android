@@ -17,13 +17,13 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.transition.addListener
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.view.Stub
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.BannerManager
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView
-import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList
 import org.thoughtcrime.securesms.database.model.IdentityRecord

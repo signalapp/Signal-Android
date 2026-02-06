@@ -1,7 +1,6 @@
 package org.signal.core.ui.compose.theme
 
 import android.content.res.Configuration
-import androidx.annotation.Discouraged
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -187,7 +186,6 @@ private val darkSnackbarColors = SnackbarColors(
   dismissActionContentColor = darkColorScheme.onSurfaceVariant
 )
 
-@Discouraged("Use org.thoughtcrime.securesms.compose.SignalTheme instead.")
 @Composable
 fun SignalTheme(
   isDarkMode: Boolean = LocalConfiguration.current.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES,
@@ -268,7 +266,6 @@ private fun TypographyPreview() {
   }
 }
 
-@Discouraged("Use org.thoughtcrime.securesms.compose.SignalTheme instead.")
 object SignalTheme {
   val colors: ExtendedColors
     @Composable

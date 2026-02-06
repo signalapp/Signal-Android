@@ -38,11 +38,11 @@ import com.google.accompanist.permissions.rememberPermissionState
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.permissions.PermissionCompat
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId

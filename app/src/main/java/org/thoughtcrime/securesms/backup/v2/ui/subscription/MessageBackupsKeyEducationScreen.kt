@@ -44,8 +44,8 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.SignalTheme
 import org.signal.core.ui.R as CoreUiR
 
 enum class MessageBackupsKeyEducationScreenMode {
