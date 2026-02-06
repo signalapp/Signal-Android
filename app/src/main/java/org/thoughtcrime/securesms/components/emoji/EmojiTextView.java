@@ -17,6 +17,7 @@ import android.text.TextDirectionHeuristic;
 import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
 import android.text.method.TransformationMethod;
+import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -490,7 +491,7 @@ public class EmojiTextView extends AppCompatTextView {
 
         int          overflowEnd = getLayout().getLineEnd(maxLines);
         CharSequence overflow    = new SpannableString(getText().subSequence(overflowStart, overflowEnd).toString());
-        float        adjust      = overflowText != null ? getPaint().measureText(overflowText, 0, overflowText.length()) : 0f;
+        float        adjust      = overflowText != null ? measureWithSpans(overflowText) : 0f;
         CharSequence ellipsized  = TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END);
 
         SpannableStringBuilder newContent = new SpannableStringBuilder();
@@ -524,6 +525,21 @@ public class EmojiTextView extends AppCompatTextView {
         return Unit.INSTANCE;
       });
     }
+  }
+
+  /**
+   * Measures the width of the given text, applying any {@link CharacterStyle} spans to the paint
+   * so that typeface changes (e.g. bold) are reflected in the measurement.
+   */
+  private float measureWithSpans(@NonNull CharSequence text) {
+    TextPaint measurePaint = new TextPaint(getPaint());
+    if (text instanceof Spanned) {
+      CharacterStyle[] spans = ((Spanned) text).getSpans(0, text.length(), CharacterStyle.class);
+      for (CharacterStyle span : spans) {
+        span.updateDrawState(measurePaint);
+      }
+    }
+    return measurePaint.measureText(text, 0, text.length());
   }
 
   /** Get text but truncated to maxLength, adjusts for end mentions and converts style spans to be exclusive on start and end. */
