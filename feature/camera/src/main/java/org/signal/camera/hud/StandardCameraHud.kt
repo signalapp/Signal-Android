@@ -358,15 +358,14 @@ private fun FlashToggleButton(
   IconButton(
     onClick = onToggle,
     modifier = modifier
+      .size(48.dp)
       .background(Color.Black.copy(alpha = 0.5f), shape = CircleShape)
   ) {
     Icon(
       painter = icon.painter,
       contentDescription = contentDescription,
       tint = Color.White,
-      modifier = Modifier
-        .padding(6.dp)
-        .size(24.dp)
+      modifier = Modifier.size(24.dp)
     )
   }
 }
