@@ -399,6 +399,10 @@ class CameraScreenViewModel : ViewModel() {
   }
 
   private fun handleSwitchCameraEvent(state: CameraScreenState) {
+    if (state.isRecording) {
+      return
+    }
+
     // Toggle between front and back camera
     val newLensFacing = if (state.lensFacing == CameraSelector.LENS_FACING_BACK) {
       CameraSelector.LENS_FACING_FRONT
