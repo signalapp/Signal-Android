@@ -576,6 +576,7 @@ class ConversationFragment :
   private var keyboardEvents: KeyboardEvents? = null
   private var progressDialog: ProgressCardDialogFragment? = null
   private var firstPinRender: Boolean = true
+  private var skipNextBackPressHandling: Boolean = false
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -973,10 +974,35 @@ class ConversationFragment :
     return viewModel.backPressedState.map {
       if (it.shouldHandleBackPressed()) {
         FragmentBackPressedInfo.Enabled({
-          BackPressedCallback().handleOnBackPressed()
+          handleBackPressed()
         })
       } else {
         FragmentBackPressedInfo.Disabled
+      }
+    }
+  }
+
+  private fun handleBackPressed() {
+    if (skipNextBackPressHandling) {
+      skipNextBackPressHandling = false
+      return
+    }
+
+    Log.d(TAG, "handleBackPressed()")
+    val state = viewModel.backPressedState.value
+
+    when {
+      state.isReactionDelegateShowing -> reactionDelegate.hide()
+      state.isSearchRequested -> searchMenuItem?.collapseActionView()
+      state.isInActionMode -> finishActionMode()
+      state.isMediaKeyboardShowing -> container.hideInput()
+      else -> {
+        // State has changed since the back handler was enabled. Let the back press proceed
+        // to the next handler by triggering onBackPressed again after setting a skip flag
+        // to avoid infinite recursion.
+        Log.d(TAG, "handleBackPressed() - state changed, forwarding back press")
+        skipNextBackPressHandling = true
+        requireActivity().onBackPressedDispatcher.onBackPressed()
       }
     }
   }
@@ -2672,18 +2698,7 @@ class ConversationFragment :
 
   private inner class BackPressedCallback : OnBackPressedCallback(false) {
     override fun handleOnBackPressed() {
-      Log.d(TAG, "onBackPressed()")
-      val state = viewModel.backPressedState.value
-
-      if (state.isReactionDelegateShowing) {
-        reactionDelegate.hide()
-      } else if (state.isSearchRequested) {
-        searchMenuItem?.collapseActionView()
-      } else if (state.isInActionMode) {
-        finishActionMode()
-      } else if (state.isMediaKeyboardShowing) {
-        container.hideInput()
-      }
+      handleBackPressed()
     }
   }
 
