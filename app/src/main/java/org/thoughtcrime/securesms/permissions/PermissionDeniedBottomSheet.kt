@@ -25,10 +25,10 @@ import androidx.compose.ui.unit.sp
 import androidx.core.os.bundleOf
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 
 private const val PLACEHOLDER = "__RADIO_BUTTON_PLACEHOLDER__"
 

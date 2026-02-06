@@ -86,6 +86,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.isSplitPane
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
@@ -187,7 +188,6 @@ import org.thoughtcrime.securesms.window.AppScaffold
 import org.thoughtcrime.securesms.window.AppScaffoldAnimationStateFactory
 import org.thoughtcrime.securesms.window.AppScaffoldNavigator
 import org.thoughtcrime.securesms.window.NavigationType
-import org.thoughtcrime.securesms.window.isSplitPane
 import org.thoughtcrime.securesms.window.rememberThreePaneScaffoldNavigatorDelegate
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.signal.core.ui.R as CoreUiR

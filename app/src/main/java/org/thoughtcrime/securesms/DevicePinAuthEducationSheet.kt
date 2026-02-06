@@ -22,9 +22,9 @@ import androidx.fragment.app.setFragmentResult
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 
 /**
  * Education sheet shown before authentication explaining that users should use their device credentials

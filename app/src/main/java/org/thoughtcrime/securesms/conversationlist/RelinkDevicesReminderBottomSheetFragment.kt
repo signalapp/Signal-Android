@@ -18,9 +18,9 @@ import androidx.fragment.app.FragmentManager
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 
 /**
  * Bottom Sheet Dialog to remind a user who has just re-registered to re-link their linked devices.

@@ -8,6 +8,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.window.core.layout.WindowSizeClass
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.ui.isHeightCompact
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.components.ComposeText
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragmentV2
 import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
 import org.thoughtcrime.securesms.util.doOnEachLayout
-import org.thoughtcrime.securesms.window.isHeightCompact
 
 /**
  * Controller for inline search results.

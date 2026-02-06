@@ -60,6 +60,8 @@ class RegistrationApplication : Application() {
 
     CoreUiDependencies.init(object : CoreUiDependencies.Provider {
       override fun provideIsIncognitoKeyboardEnabled(): Boolean = false
+      override fun provideIsScreenSecurityEnabled(): Boolean = false
+      override fun provideForceSplitPane(): Boolean = false
     })
   }
 

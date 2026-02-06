@@ -145,6 +145,8 @@
 
     <style name="TextSecure.BaseLightTheme" parent="@style/Theme.Material3.Light">
         <item name="theme_type">light</item>
+        <item name="fullScreenDialogStyle">@style/Signal.DayNight.Dialog.FullScreen</item>
+        <item name="fixedRoundedCornerBottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
 
@@ -239,6 +241,8 @@
 
     <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.Material3.Dark">
         <item name="theme_type">dark</item>
+        <item name="fullScreenDialogStyle">@style/Signal.DayNight.Dialog.FullScreen</item>
+        <item name="fixedRoundedCornerBottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
 
@@ -437,20 +441,8 @@
         <item name="backgroundTint">@color/react_with_any_background</item>
     </style>
 
-    <style name="Widget.Signal.FixedRoundedCorners" parent="ThemeOverlay.Material3.BottomSheetDialog">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
-        <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet</item>
+    <style name="Widget.Signal.FixedRoundedCorners" parent="Widget.CoreUi.FixedRoundedCorners">
         <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox_dialog</item>
-        <item name="android:windowEnterAnimation">@anim/slide_from_bottom</item>
-        <item name="android:windowExitAnimation">@anim/slide_to_bottom</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/signal_colorSurface1</item>
-    </style>
-
-    <style name="Widget.Signal.FixedRoundedCorners.BottomSheet" parent="Widget.Material3.BottomSheet.Modal">
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
-        <item name="backgroundTint">@color/signal_colorSurface1</item>
-        <item name="android:elevation" tools:ignore="NewApi">0dp</item>
     </style>
 
     <style name="Widget.Signal.FixedRoundedCorners.Messages" parent="Widget.Signal.FixedRoundedCorners">
@@ -469,17 +461,9 @@
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/signal_colorSurface</item>
     </style>
 
-    <style name="Widget.Signal.FixedRoundedCorners.BottomSheet.Stories">
+    <style name="Widget.Signal.FixedRoundedCorners.BottomSheet.Stories" parent="Widget.CoreUi.FixedRoundedCorners.BottomSheet">
         <item name="backgroundTint">@color/signal_colorSurface</item>
         <item name="android:elevation" tools:ignore="NewApi">0dp</item>
-    </style>
-
-    <style name="ShapeAppearanceOverlay.Signal.BottomSheet.Rounded" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopRight">@dimen/bottom_sheet_corner_size</item>
-        <item name="cornerSizeTopLeft">@dimen/bottom_sheet_corner_size</item>
-        <item name="cornerSizeBottomLeft">0dp</item>
-        <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.Signal.Story.Preview" parent="">

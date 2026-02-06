@@ -32,8 +32,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentActivity
+import org.signal.core.ui.compose.ComposeFullScreenDialogFragment
 import org.signal.core.ui.compose.Dividers
-import org.thoughtcrime.securesms.compose.ComposeFullScreenDialogFragment
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsViewModel.AttachmentInfo
 import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsViewModel.ViewState

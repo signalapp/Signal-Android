@@ -1,4 +1,9 @@
-package org.thoughtcrime.securesms.compose
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.core.ui.compose
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -13,8 +18,8 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 
 abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
 

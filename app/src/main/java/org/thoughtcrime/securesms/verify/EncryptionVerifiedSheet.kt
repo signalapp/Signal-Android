@@ -21,12 +21,12 @@ import androidx.fragment.app.FragmentManager
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.util.getSerializableCompat
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 
 /**
  * Bottom sheet info explaining the results of automatic key verification

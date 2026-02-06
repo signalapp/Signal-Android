@@ -103,6 +103,8 @@ import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.ui.BottomSheetUtil
+import org.signal.core.ui.getWindowSizeClass
+import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.ui.util.ThemeUtil
 import org.signal.core.ui.view.Stub
@@ -371,8 +373,6 @@ import org.thoughtcrime.securesms.verify.VerifyAutomaticallyEducationSheet
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
-import org.thoughtcrime.securesms.window.getWindowSizeClass
-import org.thoughtcrime.securesms.window.isSplitPane
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId

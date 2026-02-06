@@ -12,10 +12,10 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.signal.core.ui.BottomSheetUtil.requireCoordinatorLayout
+import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.BottomSheetBehaviorDelegate

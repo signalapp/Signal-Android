@@ -22,5 +22,7 @@ class CoreUiDependenciesRule(
     val isIncognitoKeyboardEnabled: Boolean
   ): CoreUiDependencies.Provider {
     override fun provideIsIncognitoKeyboardEnabled(): Boolean = isIncognitoKeyboardEnabled
+    override fun provideIsScreenSecurityEnabled(): Boolean = false
+    override fun provideForceSplitPane(): Boolean = false
   }
 }

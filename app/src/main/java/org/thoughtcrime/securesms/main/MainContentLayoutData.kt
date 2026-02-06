@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass
-import org.thoughtcrime.securesms.window.isSplitPane
+import org.signal.core.ui.isSplitPane
 
 private val MEDIUM_CONTENT_CORNERS = 18.dp
 private val EXTENDED_CONTENT_CORNERS = 14.dp

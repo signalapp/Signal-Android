@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import org.signal.core.ui.BottomSheetUtil
+import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.databinding.CdsPermanentErrorBottomSheetBinding
 import org.thoughtcrime.securesms.util.CommunicationActions
 

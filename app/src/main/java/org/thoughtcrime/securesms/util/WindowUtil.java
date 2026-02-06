@@ -19,11 +19,7 @@ public final class WindowUtil {
   }
 
   public static void initializeScreenshotSecurity(@NonNull Context context, @NonNull Window window) {
-    if (TextSecurePreferences.isScreenSecurityEnabled(context)) {
-      window.addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-    } else {
-      window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
-    }
+    org.signal.core.ui.WindowExtensionsKt.initializeScreenshotSecurity(window);
   }
 
   public static void setLightNavigationBarFromTheme(@NonNull Activity activity) {

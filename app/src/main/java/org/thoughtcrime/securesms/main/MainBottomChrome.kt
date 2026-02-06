@@ -24,13 +24,13 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.showSnackbar
+import org.signal.core.ui.isSplitPane
 import org.thoughtcrime.securesms.components.snackbars.SnackbarHostKey
 import org.thoughtcrime.securesms.components.snackbars.rememberSnackbarState
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.window.NavigationType
-import org.thoughtcrime.securesms.window.isSplitPane
 
 interface MainBottomChromeCallback : MainFloatingActionButtonsCallback {
   fun onMegaphoneVisible(megaphone: Megaphone)

@@ -1,4 +1,9 @@
-package org.thoughtcrime.securesms.compose
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.core.ui.compose
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,18 +13,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.DialogFragment
+import org.signal.core.ui.R
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.WindowUtil
+import org.signal.core.ui.initializeScreenshotSecurity
+import org.signal.core.ui.util.ThemeUtil
 
 /**
- * Generic ComposeFragment which can be subclassed to build UI with compose.
+ * Generic Compose-based full screen dialog fragment.
+ *
+ * Expects [R.attr.fullScreenDialogStyle] to be defined in your app theme, pointing to a style
+ * suitable for full screen dialogs.
  */
 abstract class ComposeFullScreenDialogFragment : DialogFragment() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_FullScreen)
+    val fullScreenDialogStyle = ThemeUtil.getThemedResourceId(requireContext(), R.attr.fullScreenDialogStyle)
+    setStyle(STYLE_NO_FRAME, fullScreenDialogStyle)
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,7 +45,7 @@ abstract class ComposeFullScreenDialogFragment : DialogFragment() {
 
   override fun onResume() {
     super.onResume()
-    WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().window!!)
+    requireDialog().window?.initializeScreenshotSecurity()
   }
 
   @Composable

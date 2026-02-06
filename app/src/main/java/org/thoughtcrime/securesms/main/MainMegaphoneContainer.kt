@@ -15,11 +15,11 @@ import androidx.compose.runtime.remember
 import androidx.fragment.app.DialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.isHeightCompact
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.MegaphoneComponent
 import org.thoughtcrime.securesms.megaphone.Megaphones
-import org.thoughtcrime.securesms.window.isHeightCompact
 
 data class MainMegaphoneState(
   val megaphone: Megaphone = Megaphone.NONE,

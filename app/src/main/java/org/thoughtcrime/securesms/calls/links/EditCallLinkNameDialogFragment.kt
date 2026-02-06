@@ -43,11 +43,11 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeDialogFragment
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.isSplitPane
 import org.signal.core.util.BreakIteratorCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsViewModel
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
-import org.thoughtcrime.securesms.window.isSplitPane
 
 class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
 

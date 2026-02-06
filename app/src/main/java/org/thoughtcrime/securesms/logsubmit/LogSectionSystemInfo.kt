@@ -7,6 +7,7 @@ import android.provider.Settings
 import android.util.DisplayMetrics
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
+import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.DiskUtil
 import org.signal.core.util.FontUtil.canRenderEmojiAtFontSize
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.VersionTracker.getDaysSinceFirstInstalled
-import org.thoughtcrime.securesms.window.getWindowSizeClass
 import java.util.Locale
 import kotlin.time.Duration.Companion.milliseconds
 

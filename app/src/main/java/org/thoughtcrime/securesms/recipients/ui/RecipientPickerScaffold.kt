@@ -32,11 +32,11 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.detailPaneMaxContentWidth
+import org.signal.core.ui.isSplitPane
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.ScreenTitlePane
 import org.thoughtcrime.securesms.window.AppScaffold
-import org.thoughtcrime.securesms.window.detailPaneMaxContentWidth
-import org.thoughtcrime.securesms.window.isSplitPane
 import org.thoughtcrime.securesms.window.rememberAppScaffoldNavigator
 
 /**

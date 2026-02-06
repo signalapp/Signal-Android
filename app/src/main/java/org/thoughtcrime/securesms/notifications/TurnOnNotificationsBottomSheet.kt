@@ -38,11 +38,11 @@ import androidx.core.os.BundleCompat
 import androidx.core.os.bundleOf
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.R as CoreUiR
 
 private const val PLACEHOLDER = "__TOGGLE_PLACEHOLDER__"

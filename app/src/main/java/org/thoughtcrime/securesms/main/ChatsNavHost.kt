@@ -43,6 +43,7 @@ import androidx.window.core.layout.WindowSizeClass
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.signal.core.ui.isSplitPane
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.compose.FragmentBackHandler
 import org.thoughtcrime.securesms.compose.FragmentBackPressedState
@@ -52,7 +53,6 @@ import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
 import org.thoughtcrime.securesms.serialization.JsonSerializableNavType
 import org.thoughtcrime.securesms.window.AppScaffoldAnimationDefaults
 import org.thoughtcrime.securesms.window.AppScaffoldAnimationState
-import org.thoughtcrime.securesms.window.isSplitPane
 import kotlin.reflect.typeOf
 import kotlin.time.Duration.Companion.milliseconds
 

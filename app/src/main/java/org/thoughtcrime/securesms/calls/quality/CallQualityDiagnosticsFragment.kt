@@ -7,8 +7,8 @@ package org.thoughtcrime.securesms.calls.quality
 
 import androidx.compose.runtime.Composable
 import androidx.core.os.bundleOf
+import org.signal.core.ui.compose.ComposeFullScreenDialogFragment
 import org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest
-import org.thoughtcrime.securesms.compose.ComposeFullScreenDialogFragment
 
 class CallQualityDiagnosticsFragment : ComposeFullScreenDialogFragment() {
 

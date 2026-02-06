@@ -43,6 +43,7 @@ dependencies {
   implementation(libs.kotlinx.serialization.json)
   api(libs.google.zxing.core)
   api(libs.material.material)
+  api(libs.androidx.window.window)
   api(libs.accompanist.permissions)
 
   // JUnit is used by test fixtures

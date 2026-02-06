@@ -164,7 +164,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.verify.SelfVerificationFailureSheet;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
-import org.thoughtcrime.securesms.window.WindowSizeClassExtensionsKt;
+import org.signal.core.ui.WindowSizeClassExtensionsKt;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.lang.ref.WeakReference;
@@ -184,8 +184,8 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.Unit;
 
-import static org.thoughtcrime.securesms.window.WindowSizeClassExtensionsKt.getWindowSizeClass;
-import static org.thoughtcrime.securesms.window.WindowSizeClassExtensionsKt.isSplitPane;
+import static org.signal.core.ui.WindowSizeClassExtensionsKt.getWindowSizeClass;
+import static org.signal.core.ui.WindowSizeClassExtensionsKt.isSplitPane;
 
 
 public class ConversationListFragment extends MainFragment implements ConversationListAdapter.OnConversationClickListener,

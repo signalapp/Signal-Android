@@ -74,13 +74,13 @@ import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
 import org.signal.core.ui.compose.copied.androidx.compose.dragContainer
 import org.signal.core.ui.compose.copied.androidx.compose.rememberDragDropState
 import org.signal.core.ui.compose.showSnackbar
+import org.signal.core.ui.getWindowSizeClass
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
 import org.thoughtcrime.securesms.stickers.manage.AvailableStickerPack.DownloadStatus
-import org.thoughtcrime.securesms.window.getWindowSizeClass
 import java.text.NumberFormat
 import org.signal.core.ui.R as CoreUiR
 
