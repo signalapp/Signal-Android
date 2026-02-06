@@ -28,21 +28,36 @@ object BlessedPacks {
   @JvmField
   val MY_DAILY_LIFE = Pack("ccc89a05dc077856b57351e90697976c", "45730e60f09d5566115223744537a6b7d9ea99ceeacb77a1fbd6801b9607fbcf")
 
+  @JvmField
+  val MY_DAILY_LIFE_2 = Pack("a2414255948558316f37c1d36c64cd28", "fda12937196d236f1ca9e1196a56542e1d1cef6ff84e2be03828717fa20ad366")
+
+  @JvmField
+  val ROCKY_TALK = Pack("42fb75e1827c0c945cfb5ca0975db03c", "eee27e2b9f773e0a55ea24c340b7be858711a6e2bd9b6ee7044343e0e428be65")
+
+  @JvmField
+  val COZY_SEASON = Pack("684d2b7bcfc2eec6f57f2e7be0078e0f", "866e0dcb4a1b25f2b04df270cd742723e4a6555c0a1abc3f3f30dcc5a2010c55")
+
+  @JvmField
+  val CHUG_THE_MOUSE = Pack("f19548e5afa38d1ce4f5c3191eba5e30", "2cb3076740f669aa44c6c063290b249a7d00a4b02ed8f9e9a5b902a37f1bbc41")
+
+  @JvmField
+  val CROCOS_FEELINGS = Pack("3044281a51307306e5442f2e9070953a", "c4caaa84397e1a630a5960f54a0b82753c88a5e52e0defe615ba4dd80f130cbf")
+
   private val packs = listOf(
+    BlessedPackInfo(
+      pack = ROCKY_TALK,
+      installMode = BlessedPackInfo.InstallMode.InstallByDefault
+    ),
+    BlessedPackInfo(
+      pack = MY_DAILY_LIFE,
+      installMode = BlessedPackInfo.InstallMode.InstallByDefault
+    ),
     BlessedPackInfo(
       pack = ZOZO,
       installMode = BlessedPackInfo.InstallMode.InstallByDefault
     ),
     BlessedPackInfo(
-      pack = BANDIT,
-      installMode = BlessedPackInfo.InstallMode.InstallByDefault
-    ),
-    BlessedPackInfo(
-      pack = DAY_BY_DAY,
-      installMode = BlessedPackInfo.InstallMode.InstallByDefault
-    ),
-    BlessedPackInfo(
-      pack = MY_DAILY_LIFE,
+      pack = CROCOS_FEELINGS,
       installMode = BlessedPackInfo.InstallMode.InstallByDefault
     ),
     BlessedPackInfo(
@@ -51,6 +66,26 @@ object BlessedPacks {
     ),
     BlessedPackInfo(
       pack = SWOON_FACES,
+      installMode = BlessedPackInfo.InstallMode.AvailableAsReference
+    ),
+    BlessedPackInfo(
+      pack = MY_DAILY_LIFE_2,
+      installMode = BlessedPackInfo.InstallMode.AvailableAsReference
+    ),
+    BlessedPackInfo(
+      pack = BANDIT,
+      installMode = BlessedPackInfo.InstallMode.AvailableAsReference
+    ),
+    BlessedPackInfo(
+      pack = DAY_BY_DAY,
+      installMode = BlessedPackInfo.InstallMode.AvailableAsReference
+    ),
+    BlessedPackInfo(
+      pack = COZY_SEASON,
+      installMode = BlessedPackInfo.InstallMode.AvailableAsReference
+    ),
+    BlessedPackInfo(
+      pack = CHUG_THE_MOUSE,
       installMode = BlessedPackInfo.InstallMode.AvailableAsReference
     )
   )
