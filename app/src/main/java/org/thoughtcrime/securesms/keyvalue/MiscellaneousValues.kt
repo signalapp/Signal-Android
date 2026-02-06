@@ -46,6 +46,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val LAST_KEY_TRANSPARENCY_TIME = "misc.last_key_transparency_time"
     private const val HAS_KEY_TRANSPARENCY_FAILURE = "misc.has_key_transparency_failure"
     private const val HAS_SEEN_KEY_TRANSPARENCY_FAILURE = "misc.has_seen_key_transparency_failure"
+    private const val CAMERA_FACING_FRONT = "misc.camera_facing_front"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -309,4 +310,9 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * Whether you have seen the dialog on key transparency failure
    */
   var hasSeenKeyTransparencyFailure: Boolean by booleanValue(HAS_SEEN_KEY_TRANSPARENCY_FAILURE, false)
+
+  /**
+   * Whether or not the preferred camera direction is front-facing.
+   */
+  var isCameraFacingFront: Boolean by booleanValue(CAMERA_FACING_FRONT, true)
 }

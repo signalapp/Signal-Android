@@ -51,7 +51,7 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.io.ByteArrayOutputStream;
@@ -107,7 +107,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
 
     display.getSize(displaySize);
 
-    camera        = new Camera1Controller(TextSecurePreferences.getDirectCaptureCameraId(getContext()), displaySize.x, displaySize.y, this);
+    camera        = new Camera1Controller(SignalStore.misc().isCameraFacingFront() ? Camera.CameraInfo.CAMERA_FACING_FRONT : Camera.CameraInfo.CAMERA_FACING_BACK, displaySize.x, displaySize.y, this);
     orderEnforcer = new OrderEnforcer<>(Stage.SURFACE_AVAILABLE, Stage.CAMERA_PROPERTIES_AVAILABLE);
   }
 
@@ -347,7 +347,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
         flipButton.setVisibility(properties.getCameraCount() > 1 ? View.VISIBLE : View.GONE);
         flipButton.setOnClickListener(v -> {
           int newCameraId = camera.flip();
-          TextSecurePreferences.setDirectCaptureCameraId(getContext(), newCameraId);
+          SignalStore.misc().setCameraFacingFront(newCameraId == Camera.CameraInfo.CAMERA_FACING_FRONT);
 
           Animation animation = new RotateAnimation(0, -180, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
           animation.setDuration(200);

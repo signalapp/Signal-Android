@@ -51,7 +51,7 @@ android {
 dependencies {
   // Camera feature module
   implementation(project(":feature:camera"))
-  
+
   // Core modules
   implementation(project(":core:ui"))
 

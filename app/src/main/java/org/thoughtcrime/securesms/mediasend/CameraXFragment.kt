@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.ParcelFileDescriptor
 import android.widget.Toast
+import androidx.camera.core.CameraSelector
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -29,6 +30,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -50,6 +52,7 @@ import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModePolicy
 import org.thoughtcrime.securesms.permissions.PermissionDeniedBottomSheet.Companion.showPermissionFragment
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -101,7 +104,6 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
   private val isQrScanEnabled: Boolean
     get() = requireArguments().getBoolean(IS_QR_SCAN_ENABLED, false)
 
-  // Compose state holders for HUD visibility
   private var controlsVisible = mutableStateOf(true)
   private var selectedMediaCount = mutableIntStateOf(0)
 
@@ -294,6 +296,22 @@ private fun CameraXScreen(
   val cameraViewModel: CameraScreenViewModel = viewModel()
   val cameraState by cameraViewModel.state
   var hasPermission by remember { mutableStateOf(hasCameraPermission()) }
+
+  LaunchedEffect(cameraViewModel) {
+    val lensFacing = if (SignalStore.misc.isCameraFacingFront) {
+      CameraSelector.LENS_FACING_FRONT
+    } else {
+      CameraSelector.LENS_FACING_BACK
+    }
+    cameraViewModel.setLensFacing(lensFacing)
+  }
+
+  LaunchedEffect(cameraViewModel) {
+    snapshotFlow { cameraState.lensFacing }
+      .collect { lensFacing ->
+        SignalStore.misc.isCameraFacingFront = lensFacing == CameraSelector.LENS_FACING_FRONT
+      }
+  }
 
   LaunchedEffect(Unit) {
     if (!hasPermission) {

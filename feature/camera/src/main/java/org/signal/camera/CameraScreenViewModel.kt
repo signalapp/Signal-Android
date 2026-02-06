@@ -398,6 +398,10 @@ class CameraScreenViewModel : ViewModel() {
     _state.value = state.copy(zoomRatio = newZoom)
   }
 
+  fun setLensFacing(lensFacing: Int) {
+    _state.value = _state.value.copy(lensFacing = lensFacing)
+  }
+
   private fun handleSwitchCameraEvent(state: CameraScreenState) {
     if (state.isRecording) {
       return
