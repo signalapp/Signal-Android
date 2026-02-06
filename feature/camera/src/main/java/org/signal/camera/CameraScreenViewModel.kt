@@ -204,6 +204,7 @@ class CameraScreenViewModel : ViewModel() {
 
   /**
    * Start video recording.
+   * If flash is enabled, turns on the torch for the duration of the recording.
    */
   @androidx.annotation.OptIn(markerClass = [androidx.camera.core.ExperimentalGetImage::class])
   @android.annotation.SuppressLint("MissingPermission", "RestrictedApi", "NewApi")
@@ -213,6 +214,13 @@ class CameraScreenViewModel : ViewModel() {
     onVideoCaptured: (VideoCaptureResult) -> Unit
   ) {
     val capture = videoCapture ?: return
+
+    val enableTorch = _state.value.flashMode == FlashMode.On &&
+      _state.value.lensFacing == CameraSelector.LENS_FACING_BACK
+
+    if (enableTorch) {
+      camera?.cameraControl?.enableTorch(true)
+    }
 
     camera?.cameraControl?.setZoomRatio(1f)
     _state.value = _state.value.copy(zoomRatio = 1f)
@@ -241,6 +249,10 @@ class CameraScreenViewModel : ViewModel() {
             vibrate(context)
           }
           is VideoRecordEvent.Finalize -> {
+            if (enableTorch) {
+              camera?.cameraControl?.enableTorch(false)
+            }
+
             val result = if (!recordEvent.hasError()) {
               Log.d(TAG, "Video recording succeeded")
               when (output) {
@@ -278,6 +290,7 @@ class CameraScreenViewModel : ViewModel() {
    * Stop video recording.
    */
   fun stopRecording() {
+    camera?.cameraControl?.enableTorch(false)
     recording?.stop()
     recording = null
   }
