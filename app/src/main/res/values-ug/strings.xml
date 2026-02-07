@@ -324,7 +324,7 @@
     <!-- Accessibility label for flash button when flash is set to auto -->
     <string name="CameraXFragment_flash_auto">Flash auto</string>
     <!-- Accessibility label for the send button in media selection -->
-    <string name="CameraXFragment_send">Send</string>
+    <string name="CameraXFragment_send">ئەۋەت</string>
 
 <!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">يېقىنقى ئالاقەداشلار</string>
@@ -3758,16 +3758,16 @@
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
     <!-- Body for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__body">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <string name="SelfVerificationFailureSheet__body">خاتالىق خاتىرىلىرى بىزنىڭ مەسىلىگە دىئاگنوز قويۇشىمىز ۋە ھەل قىلىشىمىزغا ياردەم بېرىدۇ ، ۋە تونىتىش ئۇچۇرلىرىنى ئۆز ئىچىگە ئالمايدۇ.</string>
     <!-- Button to decline submitting logs -->
-    <string name="SelfVerificationFailureSheet__no_thanks">No thanks</string>
+    <string name="SelfVerificationFailureSheet__no_thanks">ياق، رەھمەت</string>
     <!-- Button to submit logs -->
-    <string name="SelfVerificationFailureSheet__submit">Submit</string>
+    <string name="SelfVerificationFailureSheet__submit">تاپشۇر</string>
     <!-- Email subject line when submitting logs following a verification failure -->
     <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
   <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
     <!-- Link to learn more about debug logs -->
-    <string name="SelfVerificationFailureSheet__learn_more">Learn more</string>
+    <string name="SelfVerificationFailureSheet__learn_more">تەپسىلاتى</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">ئالاقەداشىڭىزنىڭ ئۈسكۈنىسىدىكى QR كودىنى تاراڭ.</string>
@@ -4142,7 +4142,7 @@
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">يېڭى تىل تەڭشىكىنى قوللىنىش ئۈچۈن ئەپ قايتىدىن قوزغىلىدۇ.</string>
     <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatic key verification</string>
+    <string name="preferences_automatic_key_verification">ئاپتوماتىك ئاچقۇچ دەلىللەش</string>
     <!-- Preference summary for automatic key verification -->
     <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
 
@@ -5846,7 +5846,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">ئىلتىماس ۋە تەكلىپلەر</string>
     <string name="ConversationSettingsFragment__group_link">گۇرۇپپا ئۇلانمىسى</string>
     <!-- Label for button that opens the group member label permissions screen. -->
-    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
+    <string name="ConversationSettingsFragment__group_member_label">ئەزا بەلگىسى</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">ئالاقەداش سۈپىتىدە قوش</string>
     <string name="ConversationSettingsFragment__unmute">ئۈنلۈك</string>
@@ -7736,12 +7736,12 @@
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
-    <string name="UseNewOnDeviceBackups__upgrade">Upgrade</string>
+    <string name="UseNewOnDeviceBackups__upgrade">يېڭىلاش</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__not_now">Not now</string>
+    <string name="UseNewOnDeviceBackups__not_now">ھازىر ئەمەس</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"زاپاسلانمىنى ئەسلىگە كەلتۈرۈش ئۈچۈن، Signal نى قايتا قاچىلاڭ. ئاندىن ئەپنى ئېچىپ «زاپاسلانمىنى ئەسلىگە كەلتۈرۈش» نى چېكىڭ، ئاندىن زاپاسلانما ھۆججىتىنى كۆرسىتىپ بېرىڭ."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى تەكشۈرۈپ بېقىڭ</string>
@@ -8410,16 +8410,16 @@
     <!-- Feature description explaining backups remain end-to-end encrypted -->
     <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
     <!-- Button text to continue to the next step -->
-    <string name="OnDeviceBackupsImprovementsScreen__continue">Continue</string>
+    <string name="OnDeviceBackupsImprovementsScreen__continue">داۋاملاشتۇرۇش</string>
 
     <!-- OnDeviceBackupsSettingsScreen -->
     <!-- Card text prompting user to update to a new recovery key for faster backups -->
     <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
     <!-- Button text to update to a new recovery key -->
-    <string name="OnDeviceBackupsSettingsScreen__update">Update</string>
+    <string name="OnDeviceBackupsSettingsScreen__update">يېڭىلا</string>
 
     <!-- UnifiedOnDeviceBackupsSettingsScreen -->
-    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">View backup key</string>
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">زاپاسلاش ئاچقۇچىنى كۆرۈڭ</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8477,7 +8477,7 @@
     <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
     <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
-    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Your recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىز</string>
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىز، زاپاسلاشنى ئەسلىگە كەلتۈرۈش ئۈچۈن ئىشلىتىلىدىغان 64 خانىلىق كود.</string>
     <!-- Screen body part 2 -->
@@ -9100,13 +9100,13 @@
     <string name="PinnedMessage__check_connection">تور ئۇلىنىشىڭىزنى تەكشۈرۈپ قايتا سىناڭ.</string>
 
     <!-- Group member label screen title. -->
-    <string name="GroupMemberLabel__title">Member label</string>
+    <string name="GroupMemberLabel__title">ئەزا بەلگىسى</string>
     <!-- Group member label text field placeholder. -->
     <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
     <!-- Group member label preview section header. -->
-    <string name="GroupMemberLabel__preview_section_header">Preview</string>
+    <string name="GroupMemberLabel__preview_section_header">ئالدىن كۆر</string>
     <!-- Group member label save button label. -->
-    <string name="GroupMemberLabel__save">Save</string>
+    <string name="GroupMemberLabel__save">ساقلاش</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
     <!-- Accessibility label for the group member label close screen button. -->

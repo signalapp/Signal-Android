@@ -332,7 +332,7 @@
     <!-- Accessibility label for flash button when flash is set to auto -->
     <string name="CameraXFragment_flash_auto">Flash auto</string>
     <!-- Accessibility label for the send button in media selection -->
-    <string name="CameraXFragment_send">Send</string>
+    <string name="CameraXFragment_send">Seol</string>
 
 <!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">Teagmhálaithe le déanaí</string>
@@ -4206,16 +4206,16 @@
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
     <!-- Body for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__body">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <string name="SelfVerificationFailureSheet__body">Cabhraíonn logaí dífhabhtaithe linn an fhadhb a dhiagnóisiú agus a réiteach, agus ní bhíonn faisnéis aitheantais iontu.</string>
     <!-- Button to decline submitting logs -->
-    <string name="SelfVerificationFailureSheet__no_thanks">No thanks</string>
+    <string name="SelfVerificationFailureSheet__no_thanks">Níl, go raibh maith agat</string>
     <!-- Button to submit logs -->
-    <string name="SelfVerificationFailureSheet__submit">Submit</string>
+    <string name="SelfVerificationFailureSheet__submit">Seol isteach é</string>
     <!-- Email subject line when submitting logs following a verification failure -->
     <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
   <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
     <!-- Link to learn more about debug logs -->
-    <string name="SelfVerificationFailureSheet__learn_more">Learn more</string>
+    <string name="SelfVerificationFailureSheet__learn_more">Tuilleadh faisnéise</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scan an Cód QR ar ghléas do theagmhálaí.</string>
@@ -4602,7 +4602,7 @@
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">Atosófar an aip leis an socrú teanga nua a chur i bhfeidhm.</string>
     <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Automatic key verification</string>
+    <string name="preferences_automatic_key_verification">Uathfhíorú eochrach</string>
     <!-- Preference summary for automatic key verification -->
     <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
 
@@ -6402,7 +6402,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Requests &amp; Invites</string>
     <string name="ConversationSettingsFragment__group_link">Group Link</string>
     <!-- Label for button that opens the group member label permissions screen. -->
-    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
+    <string name="ConversationSettingsFragment__group_member_label">Lipéad Baill</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Cuir leis mar theagmhálaí</string>
     <string name="ConversationSettingsFragment__unmute">Díbhalbhaigh</string>
@@ -8424,12 +8424,12 @@
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
-    <string name="UseNewOnDeviceBackups__upgrade">Upgrade</string>
+    <string name="UseNewOnDeviceBackups__upgrade">Uasghrádaigh</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__not_now">Not now</string>
+    <string name="UseNewOnDeviceBackups__not_now">Ní anois</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Chun cúltaca a aischur, suiteáil cóip nua de Signal. Oscail an aip agus tapáil Aischuir cúltaca, ansin aimsigh comhad cúltaca."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Fíoraigh d\'eochair athshlánaithe</string>
@@ -9138,16 +9138,16 @@
     <!-- Feature description explaining backups remain end-to-end encrypted -->
     <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
     <!-- Button text to continue to the next step -->
-    <string name="OnDeviceBackupsImprovementsScreen__continue">Continue</string>
+    <string name="OnDeviceBackupsImprovementsScreen__continue">Ar aghaidh</string>
 
     <!-- OnDeviceBackupsSettingsScreen -->
     <!-- Card text prompting user to update to a new recovery key for faster backups -->
     <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
     <!-- Button text to update to a new recovery key -->
-    <string name="OnDeviceBackupsSettingsScreen__update">Update</string>
+    <string name="OnDeviceBackupsSettingsScreen__update">Nuashonraigh</string>
 
     <!-- UnifiedOnDeviceBackupsSettingsScreen -->
-    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">View backup key</string>
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">Amharc ar eochair chúltaca</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -9205,7 +9205,7 @@
     <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
     <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
-    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Your recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">D\'eochair athshlánaithe</string>
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Cód 64 digit is ea d\'eochair athshlánaithe agus beidh an eochair sin de dhíth ort chun do chúltaca a aischur.</string>
     <!-- Screen body part 2 -->
@@ -9848,13 +9848,13 @@
     <string name="PinnedMessage__check_connection">Seiceáil do nasc agus triail arís.</string>
 
     <!-- Group member label screen title. -->
-    <string name="GroupMemberLabel__title">Member label</string>
+    <string name="GroupMemberLabel__title">Lipéad Baill</string>
     <!-- Group member label text field placeholder. -->
     <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
     <!-- Group member label preview section header. -->
-    <string name="GroupMemberLabel__preview_section_header">Preview</string>
+    <string name="GroupMemberLabel__preview_section_header">Réamhamharc</string>
     <!-- Group member label save button label. -->
-    <string name="GroupMemberLabel__save">Save</string>
+    <string name="GroupMemberLabel__save">Sábháil</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
     <!-- Accessibility label for the group member label close screen button. -->

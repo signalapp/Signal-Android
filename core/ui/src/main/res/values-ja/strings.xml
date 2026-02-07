@@ -2,7 +2,7 @@
 <resources>
     <!-- Permissions -->
     <!-- Button label to confirm and proceed with a permission request -->
-    <string name="Permissions_continue">Continue</string>
+    <string name="Permissions_continue">続ける</string>
     <!-- Button label to dismiss or defer a permission request -->
-    <string name="Permissions_not_now">Not now</string>
+    <string name="Permissions_not_now">今はしない</string>
 </resources>
