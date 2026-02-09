@@ -1966,6 +1966,7 @@ class AttachmentTable(
 
       Log.d(TAG, "[updateMessageId] Updated $updatedCount out of $attachmentIdSize ids.")
     }
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(mmsId))
   }
 
   fun createRemoteKeyIfNecessary(attachmentId: AttachmentId) {
