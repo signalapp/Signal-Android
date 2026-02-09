@@ -104,6 +104,7 @@ import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
+import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -241,7 +242,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
   @Override
   public void onForeground() {
     long startTime = System.currentTimeMillis();
-    Log.i(TAG, "App is now visible.");
+    Log.i(TAG, "App is now visible. Battery: " + DeviceProperties.getBatteryLevel(this) + "% (charging: " + DeviceProperties.isCharging(this) + ")");
 
     AppDependencies.getFrameRateTracker().start();
     AppDependencies.getMegaphoneRepository().onAppForegrounded();

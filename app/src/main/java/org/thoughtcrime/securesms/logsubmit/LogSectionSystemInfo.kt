@@ -79,6 +79,7 @@ class LogSectionSystemInfo : LogSection {
       Telecom           : $telecomSupported
       User-Agent        : ${StandardUserAgentInterceptor.USER_AGENT}
       SlowNotifications : ${isHavingDelayedNotifications()}
+      Battery Level     : ${DeviceProperties.getBatteryLevel(context)}% (charging: ${DeviceProperties.isCharging(context)})
       IgnoringBatteryOpt: ${PowerManagerCompat.isIgnoringBatteryOptimizations(context)}
       BkgRestricted     : ${if (Build.VERSION.SDK_INT >= 28) DeviceProperties.isBackgroundRestricted(context) else "N/A"}
       Data Saver        : ${DeviceProperties.getDataSaverState(context)}
