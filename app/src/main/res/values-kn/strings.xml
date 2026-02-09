@@ -314,17 +314,17 @@
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">QR ಕೋಡ್‌ಗಳನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು:</string>
     <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <string name="CameraXFragment_photo_capture_failed">ಫೋಟೋ ಸೆರೆಹಿಡಿಯಲು ವಿಫಲವಾಗಿದೆ. ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <string name="CameraXFragment_photo_processing_failed">ಫೋಟೋ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು ವಿಫಲವಾಗಿದೆ. ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <string name="CameraXFragment_switch_camera">ಕ್ಯಾಮೆರಾ ಬದಲಿಸಿ</string>
     <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">Flash off</string>
+    <string name="CameraXFragment_flash_off">ಫ್ಲ್ಯಾಶ್ ಆಫ್ ಆಗಿದೆ</string>
     <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">Flash on</string>
+    <string name="CameraXFragment_flash_on">ಫ್ಲ್ಯಾಶ್ ಆನ್ ಆಗಿದೆ</string>
     <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <string name="CameraXFragment_flash_auto">ಫ್ಲ್ಯಾಶ್ ಆಟೋ</string>
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">ಕಳುಹಿಸು</string>
 
@@ -954,7 +954,7 @@
     <string name="BackupsPreferenceFragment__backup_time">ಬ್ಯಾಕಪ್ ಸಮಯ</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">ಬ್ಯಾಕಪ್ ಪಾಸ್‌ಫ್ರೇಸ್ ಅನ್ನು ದೃಢೀಕರಿಸಿ</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಪಾಸ್‌ಫ್ರೇಸ್ ಅನ್ನು ಪರೀಕ್ಷಿಸಿ ಮತ್ತು ಇದು ಹೊಂದುತ್ತದೆಯೇ ಎಂದು ದೃಢೀಕರಿಸಿ</string>
-    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
+    <string name="BackupsPreferenceFragment__turn_on">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಆನ್ ಮಾಡಿ</string>
     <string name="BackupsPreferenceFragment__turn_off">ಆಫ್ ಮಾಡಿ</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"ಬ್ಯಾಕಪ್ ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಲು, Signal‌ನ ಹೊಸ ನಕಲನ್ನು ಸ್ಥಾಪಿಸಿ. ಅಪ್ಲಿಕೇಶನ್ ತೆರೆಯಿರಿ ಮತ್ತು \"ಬ್ಯಾಕಪ್ ಮರುಸ್ಥಾಪಿಸು\" ಟ್ಯಾಪ್ ಮಾಡಿ, ನಂತರ ಬ್ಯಾಕಪ್ ಫೈಲ್ ಅನ್ನು ಹುಡುಕಿ. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
@@ -3859,16 +3859,16 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">ನೀವು ಫೋನ್ ಸಂಖ್ಯೆಯ ಮೂಲಕ ಯಾರೊಂದಿಗಾದರೂ ಸಂಪರ್ಕಗೊಂಡಿರುವ ಚಾಟ್‌ಗಳಲ್ಲಿ Signal ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಎನ್‌ಕ್ರಿಪ್ಶನ್ ಅನ್ನು ದೃಢೀಕರಿಸಬಹುದು. ಚಾಟ್ ಅನ್ನು ಯೂಸರ್‌ನೇಮ್ ಅಥವಾ ಸಾಮಾನ್ಯ ಗುಂಪಿನೊಂದಿಗೆ ಪ್ರಾರಂಭಿಸಿದ್ದರೆ, ಹಿಂದಿನ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿರುವ ಸಂಖ್ಯೆಗಳನ್ನು ಹೋಲಿಕೆ ಮಾಡುವ ಮೂಲಕ ಅಥವಾ ಅವರ ಸಾಧನದಲ್ಲಿ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡುವ ಮೂಲಕ ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಶನ್ ಅನ್ನು ದೃಢೀಕರಿಸಿ.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal ಈಗ ಕೀ ಎನ್‌ಕ್ರಿಪ್ಶನ್ ಅನ್ನು ಸ್ವಯಂ-ದೃಢೀಕರಿಸಬಲ್ಲದು</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">ನೀವು ಫೋನ್ ಸಂಖ್ಯೆಯ ಮೂಲಕ ಕನೆಕ್ಟ್ ಆಗಿರುವ ಸಂಪರ್ಕಗಳಿಗೆ, ಕೀ ಟ್ರಾನ್ಸ್‌ಪರೆನ್ಸಿ ಎಂಬ ಪ್ರಕ್ರಿಯೆಯನ್ನು ಬಳಸಿಕೊಂಡು ಕನೆಕ್ಷನ್ ಸುರಕ್ಷಿತವಾಗಿದೆಯೇ ಎಂದು Signal ಸ್ವಯಂಚಾಲಿತವಾಗಿ ದೃಢೀಕರಿಸುತ್ತದೆ. ಹೆಚ್ಚಿನ ಭದ್ರತೆಗಾಗಿ, ನೀವು ಈಗಲೂ QR ಕೋಡ್ ಅಥವಾ ಸಂಖ್ಯೆಯನ್ನು ಬಳಸಿಕೊಂಡು ಕನೆಕ್ಷನ್‌ಗಳನ್ನು ಹಸ್ತಚಾಲಿತವಾಗಿ ದೃಢೀಕರಿಸಬಹುದು.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">ದೃಢೀಕರಿಸಿ</string>
 
     <!-- Title for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <string name="SelfVerificationFailureSheet__title">ನಿಮ್ಮ ಸಾಧನಕ್ಕೆ ಸ್ವಯಂಚಾಲಿತ ಕೀ ದೃಢೀಕರಣವು ಪ್ರಸ್ತುತ ಲಭ್ಯವಿಲ್ಲ. ಡೀಬಗ್ ಲಾಗ್ ಸಲ್ಲಿಸಬೇಕೆ?</string>
     <!-- Body for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__body">ಡೀಬಗ್ ಲಾಗ್‌ಗಳು ಸಮಸ್ಯೆಯನ್ನು ನಿರ್ಣಯಿಸಲು ಮತ್ತು ಸರಿಪಡಿಸಲು ನೆರವಾಗುತ್ತವೆ ಮತ್ತು ಗುರುತಿಸುವ ಮಾಹಿತಿಯನ್ನು ಹೊಂದಿಲ್ಲ.</string>
     <!-- Button to decline submitting logs -->
@@ -3876,7 +3876,7 @@
     <!-- Button to submit logs -->
     <string name="SelfVerificationFailureSheet__submit">ಸಲ್ಲಿಸಿ</string>
     <!-- Email subject line when submitting logs following a verification failure -->
-    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+    <string name="SelfVerificationFailureSheet__email_subject">ಸ್ವಯಂಚಾಲಿತ ಕೀ ದೃಢೀಕರಣ ವೈಫಲ್ಯ</string>
   <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
     <!-- Link to learn more about debug logs -->
     <string name="SelfVerificationFailureSheet__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
@@ -4259,7 +4259,7 @@
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">ಸ್ವಯಂಚಾಲಿತ ಕೀ ದೃಢೀಕರಣ</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
+    <string name="preferences_automatic_key_verification_body">ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ, Signal 1:1 ಚಾಟ್‌ಗಳ ಎನ್‌ಕ್ರಿಪ್ಶನ್ ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ದೃಢೀಕರಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತದೆ.</string>
 
 
     <string name="configurable_single_select__customize_option">ಆಯ್ಕೆಯನ್ನು ಅಗತ್ಯಾನುಗುಣಗೊಳಿಸಿರಿ</string>
@@ -5985,7 +5985,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">ವಿನಂತಿಗಳು ಮತ್ತು ಆಹ್ವಾನಗಳು</string>
     <string name="ConversationSettingsFragment__group_link">ಗುಂಪಿನ ಲಿಂಕ್</string>
     <!-- Label for button that opens the group member label permissions screen. -->
-    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
+    <string name="ConversationSettingsFragment__group_member_label">ಸದಸ್ಯರ ಲೇಬಲ್</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">ಸಂಪರ್ಕವಾಗಿ ಸೇರಿಸಿ</string>
     <string name="ConversationSettingsFragment__unmute">ಅನ್‌ಮ್ಯೂಟ್ ಮಾಡಿ</string>
@@ -7904,16 +7904,16 @@
     <string name="TurnOnSignalBackups__toast_not_now">ನೀವು \'ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ\" ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಬಹುದು</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <string name="UseNewOnDeviceBackups__title">ಹೊಸ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಬಳಸಿ</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <string name="UseNewOnDeviceBackups__body">ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ಗಳು ಈಗ ವೇಗವಾಗಿ ಸೇವ್ ಆಗುತ್ತವೆ ಮತ್ತು ಕಡಿಮೆ ಡೇಟಾ ಬಳಸುತ್ತವೆ.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">ಅಪ್ಗ್ರೇಡ್</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">ಈಗಲ್ಲ</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು, Signal ನ ಹೊಸ ಕಾಪಿಯನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ. ಆ್ಯಪ್ ತೆರೆಯಿರಿ ಮತ್ತು ಬ್ಯಾಕಪ್ ರಿಸ್ಟೋರ್ ಮಾಡಿ ಎಂಬುದನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ, ನಂತರ ಬ್ಯಾಕಪ್ ಫೈಲ್ ಅನ್ನು ಪತ್ತೆಹಚ್ಚಿ."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">ನಿಮ್ಮ ರಿಕವರಿ ಕೀಯನ್ನು ಪರಿಶೀಲಿಸಿ</string>
@@ -8136,9 +8136,9 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <string name="OnDeviceBackupsFragment__backup_key_updated">ಬ್ಯಾಕಪ್‌ ಕೀ ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗಿದೆ</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
-    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+    <string name="OnDeviceBackupsFragment__directory_selected">ಆಯ್ಕೆ ಮಾಡಲಾದ ಡೈರೆಕ್ಟರಿ: %1$s</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8582,21 +8582,21 @@
 
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
-    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ಗಳಿಗೆ ಸುಧಾರಣೆಗಳು</string>
     <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್ ಅನ್ನು ಹೊಸ ರಿಕವರಿ ಕೀ ಬಳಸಿ ಹೊಸ ಫಾರ್ಮ್ಯಾಟ್‌ಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಲಾಗುತ್ತದೆ</string>
     <!-- Feature description explaining backups are faster and use less data -->
-    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">ಬ್ಯಾಕಪ್‌ಗಳು ಈಗ ವೇಗವಾಗಿ ಸೇವ್ ಆಗುತ್ತವೆ ಮತ್ತು ಕಡಿಮೆ ಡೇಟಾ ಬಳಸುತ್ತವೆ</string>
     <!-- Feature description explaining backups will be saved as a folder with many files -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಅನ್ನು ಹಲವು ಫೈಲ್‌ಗಳ ಫೋಲ್ಡರ್ ಆಗಿ ಉಳಿಸಲಾಗುತ್ತದೆ</string>
     <!-- Feature description explaining backups remain end-to-end encrypted -->
-    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">ಎಲ್ಲಾ ಬ್ಯಾಕಪ್‌ಗಳು ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗಿರುತ್ತವೆ</string>
     <!-- Button text to continue to the next step -->
     <string name="OnDeviceBackupsImprovementsScreen__continue">ಮುಂದುವರಿಸಿ</string>
 
     <!-- OnDeviceBackupsSettingsScreen -->
     <!-- Card text prompting user to update to a new recovery key for faster backups -->
-    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">ವೇಗವಾದ ಬ್ಯಾಕಪ್ ಉಳಿಸುವಿಕೆಗಾಗಿ ಹೊಸ ರಿಕವರಿ ಕೀ ಗೆ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</string>
     <!-- Button text to update to a new recovery key -->
     <string name="OnDeviceBackupsSettingsScreen__update">ನವೀಕರಿಸಿ</string>
 
@@ -8657,7 +8657,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">ರಿಕವರಿ ಕೀ</string>
     <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
-    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">ನಿಮ್ಮ ಹೊಸ ರಿಕವರಿ ಕೀ</string>
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
     <string name="MessageBackupsKeyEducationScreen__your_recovery_key">ನಿಮ್ಮ ರಿಕವರಿ ಕೀ</string>
     <!-- Screen body part 1 -->
@@ -8669,19 +8669,19 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">ಈ ಕೀ ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ಗಾಗಿ ಕೀಯನ್ನು ಬದಲಾಯಿಸುತ್ತದೆ.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">ಇದು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್ ಕೀಯಂತೆಯೇ ಇರುತ್ತದೆ.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
-    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">ಈ ಕೆಳಗಿನವುಗಳಿಗೆ ಈ ಕೀ ಬಳಸಿ:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಿ</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಿ</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">ನಿಮ್ಮ Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಿ</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">ರಿಕವರಿ ಕೀ ವೀಕ್ಷಿಸಿ</string>
 
@@ -8691,7 +8691,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">ನಿಮ್ಮ ಖಾತೆ ಮತ್ತು ಡೇಟಾವನ್ನು ರಿಕವರ್ ಮಾಡಲು ಈ ಕೀ ಅಗತ್ಯವಿದೆ. ಈ ಕೀಯನ್ನು ಎಲ್ಲಾದರೂ ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಿ. ನೀವು ಅದನ್ನು ಕಳೆದುಕೊಂಡರೆ, ನಿಮ್ಮ ಖಾತೆಯನ್ನು ರಿಕವರ್ ಮಾಡಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">ಈ ಕೀ ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್ ಕೀಯಂತೆಯೇ ಇರುತ್ತದೆ. ನಿಮ್ಮ ಖಾತೆ ಮತ್ತು ಡೇಟಾವನ್ನು ರಿಕವರ್ ಮಾಡಲು ಇದು ಅಗತ್ಯವಿದೆ.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸು</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9287,19 +9287,19 @@
     <string name="PinnedMessage__check_connection">ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಇನ್ನೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
 
     <!-- Group member label screen title. -->
-    <string name="GroupMemberLabel__title">Member label</string>
+    <string name="GroupMemberLabel__title">ಸದಸ್ಯರ ಲೇಬಲ್</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <string name="GroupMemberLabel__label_text_placeholder">ನಿಮ್ಮ ಪಾತ್ರವನ್ನು ಸೇರಿಸಿ</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">ಪ್ರಿವ್ಯೂ</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">ಉಳಿಸಿ</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
-    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <string name="GroupMemberLabel__accessibility_select_emoji">ಎಮೋಜಿ ಆಯ್ಕೆಮಾಡಿ</string>
     <!-- Accessibility label for the group member label close screen button. -->
-    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <string name="GroupMemberLabel__accessibility_close_screen">ಸ್ಕ್ರೀನ್ ಮುಚ್ಚಿ</string>
     <!-- Accessibility label for the group member label text field clear button. -->
-    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
+    <string name="GroupMemberLabel__accessibility_clear_label">ಲೇಬಲ್ ತೆರವುಗೊಳಿಸಿ</string>
 
     <!-- EOF -->
 </resources>

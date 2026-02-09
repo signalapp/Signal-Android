@@ -312,17 +312,17 @@
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">Để quét mã QR:</string>
     <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <string name="CameraXFragment_photo_capture_failed">Chụp ảnh không thành công. Vui lòng thử lại.</string>
     <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <string name="CameraXFragment_photo_processing_failed">Xử lý ảnh không thành công. Vui lòng thử lại.</string>
     <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <string name="CameraXFragment_switch_camera">Chuyển camera</string>
     <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">Flash off</string>
+    <string name="CameraXFragment_flash_off">Tắt flash</string>
     <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">Flash on</string>
+    <string name="CameraXFragment_flash_on">Bật flash</string>
     <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <string name="CameraXFragment_flash_auto">Flash tự động</string>
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Gửi</string>
 
@@ -934,7 +934,7 @@
     <string name="BackupsPreferenceFragment__backup_time">Thời gian sao lưu</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Xác minh mật khẩu sao lưu</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Kiểm tra mật khẩu sao lưu của bạn xem có khớp không</string>
-    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
+    <string name="BackupsPreferenceFragment__turn_on">Bật sao lưu</string>
     <string name="BackupsPreferenceFragment__turn_off">Tắt</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Để khôi phục bản sao lưu, hãy cài đặt phiên bản mới nhất của Signal. Sau đó, mở ứng dụng và nhấn vào \"Khôi phục bản sao lưu\" rồi chọn vị trí bản sao lưu. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Tìm hiểu thêm</string>
@@ -3747,16 +3747,16 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal chỉ có thể tự động xác minh mã hóa trong các cuộc trò chuyện mà bạn được kết nối với ai đó thông qua số điện thoại. Nếu cuộc trò chuyện được bắt đầu với tên người dùng hoặc một nhóm chung, hãy xác minh mã hóa đầu cuối bằng cách so sánh các số trên màn hình trước đó hoặc quét mã trên thiết bị của họ.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal nay có thể tự động xác minh mã hóa của mã khóa</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Đối với các liên hệ bạn đã kết nối thông qua số điện thoại, Signal có thể tự động xác nhận xem kết nối có an toàn hay không bằng cách sử dụng quy trình gọi là độ minh bạch của mã khóa. Để tăng độ bảo mật, bạn vẫn có thể xác minh thủ công các kết nối bằng mã QR hoặc số.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Tìm hiểu thêm</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">Xác minh</string>
 
     <!-- Title for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <string name="SelfVerificationFailureSheet__title">Xác minh mã khóa tự động hiện không khả dụng cho thiết bị của bạn. Gửi nhật ký gỡ lỗi?</string>
     <!-- Body for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__body">Nhật ký gỡ lỗi giúp chúng tôi xác định và khắc phục vấn đề, và không chứa thông tin nhận dạng.</string>
     <!-- Button to decline submitting logs -->
@@ -3764,7 +3764,7 @@
     <!-- Button to submit logs -->
     <string name="SelfVerificationFailureSheet__submit">Gửi</string>
     <!-- Email subject line when submitting logs following a verification failure -->
-    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+    <string name="SelfVerificationFailureSheet__email_subject">Xác minh mã khóa tự động không thành công</string>
   <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
     <!-- Link to learn more about debug logs -->
     <string name="SelfVerificationFailureSheet__learn_more">Tìm hiểu thêm</string>
@@ -4144,7 +4144,7 @@
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Xác minh mã khóa tự động</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
+    <string name="preferences_automatic_key_verification_body">Khi được bật, Signal sẽ cố gắng tự động xác minh mã hóa của các cuộc trò chuyện 1:1.</string>
 
 
     <string name="configurable_single_select__customize_option">Sửa cài đặt</string>
@@ -7732,16 +7732,16 @@
     <string name="TurnOnSignalBackups__toast_not_now">Bạn có thể bật sao lưu trong \"Cài đặt\"</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <string name="UseNewOnDeviceBackups__title">Sử dụng bản sao lưu trên thiết bị mới</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <string name="UseNewOnDeviceBackups__body">Giờ đây bản sao lưu trên thiết bị lưu nhanh hơn và sử dụng ít dữ liệu hơn.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">Nâng cấp</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">Để sau</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Để khôi phục bản sao lưu, hãy cài đặt mới Signal. Mở ứng dụng và nhấn Khôi phục bản sao lưu, sau đó tìm tập tin sao lưu."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Xác minh mã khóa khôi phục</string>
@@ -7961,9 +7961,9 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Đã cập nhật mã khóa sao lưu</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
-    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+    <string name="OnDeviceBackupsFragment__directory_selected">Thư mục đã chọn: %1$s</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8400,21 +8400,21 @@
 
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
-    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Cải tiến đối với sao lưu trên thiết bị</string>
     <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Bản sao lưu trên thiết bị của bạn sẽ được nâng cấp lên định dạng mới bằng mã khóa khôi phục mới</string>
     <!-- Feature description explaining backups are faster and use less data -->
-    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Giờ đây bản sao lưu lưu nhanh hơn và sử dụng ít dữ liệu hơn</string>
     <!-- Feature description explaining backups will be saved as a folder with many files -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Bản sao lưu của bạn sẽ được lưu dưới dạng một thư mục với nhiều tập tin</string>
     <!-- Feature description explaining backups remain end-to-end encrypted -->
-    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">Tất cả bản sao lưu vẫn được mã hóa đầu cuối</string>
     <!-- Button text to continue to the next step -->
     <string name="OnDeviceBackupsImprovementsScreen__continue">Tiếp tục</string>
 
     <!-- OnDeviceBackupsSettingsScreen -->
     <!-- Card text prompting user to update to a new recovery key for faster backups -->
-    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Cập nhật mã khóa khôi phục mới để lưu bản sao lưu nhanh hơn</string>
     <!-- Button text to update to a new recovery key -->
     <string name="OnDeviceBackupsSettingsScreen__update">Cập nhật</string>
 
@@ -8475,7 +8475,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Mã khóa khôi phục</string>
     <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
-    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Mã khóa khôi phục mới của bạn</string>
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
     <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Mã khóa khôi phục</string>
     <!-- Screen body part 1 -->
@@ -8487,19 +8487,19 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Mã khóa này sẽ thay thế mã khóa cho bản sao lưu trên thiết bị của bạn.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Mã khóa này giống với mã khóa sao lưu trên thiết bị của bạn.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
-    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Sử dụng mã khóa này để:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Khôi phục bản sao lưu trên thiết bị</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Khôi phục bản Sao lưu bảo mật Signal</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Khôi phục bản Sao lưu bảo mật Signal</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Xem mã khóa khôi phục</string>
 
@@ -8509,7 +8509,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Cần có mã khóa này để khôi phục tài khoản và dữ liệu của bạn. Lưu mã này ở nơi an toàn. Nếu để mất, bạn sẽ không thể khôi phục tài khoản của mình.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">Mã khóa này giống với mã khóa sao lưu trên thiết bị của bạn. Cần có mã khóa này để khôi phục tài khoản và dữ liệu của bạn.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Sao chép vào clipboard</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9102,17 +9102,17 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Nhãn thành viên</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Thêm vai trò của bạn</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Xem trước</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">Lưu</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
-    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <string name="GroupMemberLabel__accessibility_select_emoji">Chọn emoji</string>
     <!-- Accessibility label for the group member label close screen button. -->
-    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <string name="GroupMemberLabel__accessibility_close_screen">Đóng màn hình</string>
     <!-- Accessibility label for the group member label text field clear button. -->
-    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
+    <string name="GroupMemberLabel__accessibility_clear_label">Xóa nhãn</string>
 
     <!-- EOF -->
 </resources>

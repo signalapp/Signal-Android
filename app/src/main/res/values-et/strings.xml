@@ -314,17 +314,17 @@
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">QR-koodide skannimiseks:</string>
     <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <string name="CameraXFragment_photo_capture_failed">Fotot ei saanud jäädvustada. Palun proovi uuesti.</string>
     <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <string name="CameraXFragment_photo_processing_failed">Fotot ei saanud töödelda. Palun proovi uuesti.</string>
     <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <string name="CameraXFragment_switch_camera">Vaheta kaamerat</string>
     <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">Flash off</string>
+    <string name="CameraXFragment_flash_off">Välk väljas</string>
     <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">Flash on</string>
+    <string name="CameraXFragment_flash_on">Välk sees</string>
     <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <string name="CameraXFragment_flash_auto">Automaatne välk</string>
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Saada</string>
 
@@ -954,7 +954,7 @@
     <string name="BackupsPreferenceFragment__backup_time">Varukoopia aeg</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Kinnita varukoopia salasõna</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Testi varukoopia salaväljendit ja kontrolli, et see vastaks.</string>
-    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
+    <string name="BackupsPreferenceFragment__turn_on">Lülita varukoopiad sisse</string>
     <string name="BackupsPreferenceFragment__turn_off">Lülita välja</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Varukoopiast taastamiseks paigalda uus Signali koopia. Ava rakendus ja klõpsa \"Taasta varukoopia\", seejärel vali varukoopia fail. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Rohkem infot</string>
@@ -3859,16 +3859,16 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal saab krüpteeringut automaatselt kontrollida ainult vestlustes, kus oled kellegagi telefoninumbri kaudu ühendatud. Kui vestlust alustati ühise kasutajanime või grupiga, kontrolli otspunktkrüpteeringut, võrreldes eelmisel kuval olevaid numbreid või skannides tema seadmes kuvatavat koodi.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal saab nüüd võtme krüptimist automaatselt kontrollida</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Kontaktide puhul, kellega lõid ühenduse telefoninumbri kaudu, kinnitab Signal automaatselt, kas ühendus on turvaline, kasutades protsessi nimega võtme läbipaistvus. Täiendava turvalisuse eesmärgil saab ühendusi endiselt kinnitada ka käsitsi QR-koodi või numbri abil.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Rohkem teavet</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">Kontrolli</string>
 
     <!-- Title for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <string name="SelfVerificationFailureSheet__title">Automaatne võtme kinnitamine pole sinu seadme jaoks praegu saadaval. Kas saata silumislogi?</string>
     <!-- Body for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__body">Silumislogid aitavad meil probleemi diagnoosida ja lahendada ega sisalda isikuandmeid.</string>
     <!-- Button to decline submitting logs -->
@@ -3876,7 +3876,7 @@
     <!-- Button to submit logs -->
     <string name="SelfVerificationFailureSheet__submit">Saada</string>
     <!-- Email subject line when submitting logs following a verification failure -->
-    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+    <string name="SelfVerificationFailureSheet__email_subject">Automaatse võtme kontrollimise tõrge</string>
   <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
     <!-- Link to learn more about debug logs -->
     <string name="SelfVerificationFailureSheet__learn_more">Rohkem teavet</string>
@@ -4259,7 +4259,7 @@
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Võtme automaatne kontroll</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
+    <string name="preferences_automatic_key_verification_body">Kui see on lubatud, proovib Signal automaatselt kontrollida üks-ühele vestluste krüptimist.</string>
 
 
     <string name="configurable_single_select__customize_option">Kohanda valikut</string>
@@ -5985,7 +5985,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Taotlused &amp; kutsed</string>
     <string name="ConversationSettingsFragment__group_link">Grupilink</string>
     <!-- Label for button that opens the group member label permissions screen. -->
-    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
+    <string name="ConversationSettingsFragment__group_member_label">Liikmesilt</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Lisa kontaktina</string>
     <string name="ConversationSettingsFragment__unmute">Eemalda vaigistus</string>
@@ -7904,16 +7904,16 @@
     <string name="TurnOnSignalBackups__toast_not_now">Varukoopiad saad lubada menüüs „Sätted“.</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <string name="UseNewOnDeviceBackups__title">Kasuta uusi seadmesiseseid varukoopiaid</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <string name="UseNewOnDeviceBackups__body">Seadmesiseseid varukoopiaid salvestatakse nüüd kiiremini ja selleks kulub vähem andmemahtu.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">Uuenda</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">Mitte praegu</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Varukoopia taastamiseks paigalda Signali uus versioon. Ava rakendus ja klõpsa „Taasta varukoopia“, seejärel vali varukoopia fail."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Kinnita oma varukoopia võti</string>
@@ -8136,9 +8136,9 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Varukoopia võti on uuendatud</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
-    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+    <string name="OnDeviceBackupsFragment__directory_selected">Valitud kataloog: %1$s</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8582,21 +8582,21 @@
 
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
-    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Seadmesiseste varukoopiate parendused</string>
     <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Teie seadmesisese varukoopia vormingut uuendatakse uue varukoopia võtme abil</string>
     <!-- Feature description explaining backups are faster and use less data -->
-    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Varukoopiaid salvestatakse nüüd kiiremini ja selleks kulub vähem andmemahtu</string>
     <!-- Feature description explaining backups will be saved as a folder with many files -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Sinu varukoopia salvestatakse paljude failidega kaustana</string>
     <!-- Feature description explaining backups remain end-to-end encrypted -->
-    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">Kõik varukoopiad on endiselt otspunktkrüptitud</string>
     <!-- Button text to continue to the next step -->
     <string name="OnDeviceBackupsImprovementsScreen__continue">Jätka</string>
 
     <!-- OnDeviceBackupsSettingsScreen -->
     <!-- Card text prompting user to update to a new recovery key for faster backups -->
-    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Varukoopiate kiiremaks salvestamiseks värskenda uuele varukoopia võtmele</string>
     <!-- Button text to update to a new recovery key -->
     <string name="OnDeviceBackupsSettingsScreen__update">Uuenda</string>
 
@@ -8657,7 +8657,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Varukoopia võti</string>
     <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
-    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Sinu uus varukoopia võti</string>
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
     <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Sinu varukoopia võti</string>
     <!-- Screen body part 1 -->
@@ -8669,19 +8669,19 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">See võti asendab sinu seadmesisese varukoopia võtme.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">See on sama, nagu sinu seadmes olev varukoopia võti.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
-    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Kasuta seda võtit järgmisteks tegevusteks.</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Seadmesisese varukoopia taastamine</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Taasta Signali turvaline varukoopia</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Signali turvalise varukoopia taastamine</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Vaata varukoopia võtit</string>
 
@@ -8691,7 +8691,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Seda võtit on vaja sinu andmete ja konto taastamiseks. Hoia seda turvalises kohas. Kui selle kaotad, ei ole sul võimalik oma kontot taastada.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">See võti on sama, nagu sinu seadmesisene varukoopia võti. Seda võtit on vaja sinu andmete ja konto taastamiseks.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopeeri lõikelauale</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9287,19 +9287,19 @@
     <string name="PinnedMessage__check_connection">Kontrolli oma ühendust ja proovi uuesti.</string>
 
     <!-- Group member label screen title. -->
-    <string name="GroupMemberLabel__title">Member label</string>
+    <string name="GroupMemberLabel__title">Liikmesilt</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Lisa oma roll</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Eelvaade</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">Salvesta</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
-    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <string name="GroupMemberLabel__accessibility_select_emoji">Vali emoji</string>
     <!-- Accessibility label for the group member label close screen button. -->
-    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <string name="GroupMemberLabel__accessibility_close_screen">Sulge ekraan</string>
     <!-- Accessibility label for the group member label text field clear button. -->
-    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
+    <string name="GroupMemberLabel__accessibility_clear_label">Tühjenda silt</string>
 
     <!-- EOF -->
 </resources>

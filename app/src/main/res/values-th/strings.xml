@@ -312,17 +312,17 @@
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">เพื่อสแกนคิวอาร์โค้ด:</string>
     <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <string name="CameraXFragment_photo_capture_failed">ไม่สามารถถ่ายภาพได้ โปรดลองอีกครั้ง</string>
     <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <string name="CameraXFragment_photo_processing_failed">ไม่สามารถประมวลผลรูปภาพได้ โปรดลองอีกครั้ง</string>
     <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <string name="CameraXFragment_switch_camera">สลับกล้อง</string>
     <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">Flash off</string>
+    <string name="CameraXFragment_flash_off">ปิดแฟลชอยู่</string>
     <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">Flash on</string>
+    <string name="CameraXFragment_flash_on">เปิดแฟลชอยู่</string>
     <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <string name="CameraXFragment_flash_auto">แฟลชอัตโนมัติ</string>
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">ส่ง</string>
 
@@ -934,7 +934,7 @@
     <string name="BackupsPreferenceFragment__backup_time">เวลาสำรองข้อมูล</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">ตรวจยืนยันวลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">ทดสอบวลีรหัสผ่านสำหรับข้อมูลสำรองของคุณและตรวจยืนยันว่ามันตรงกัน</string>
-    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
+    <string name="BackupsPreferenceFragment__turn_on">เปิดใช้งานการสำรองข้อมูล</string>
     <string name="BackupsPreferenceFragment__turn_off">ปิด</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"เพื่อกู้คืนข้อมูลสำรอง คุณต้องติดตั้ง Signal ใหม่ เปิดแอป แตะ \"กู้คืนข้อมูลสำรอง\" และระบุแฟ้มสำรองข้อมูล %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">เรียนรู้เพิ่มเติม</string>
@@ -3747,16 +3747,16 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal จะสามารถตรวจยืนยันการเข้ารหัสโดยอัตโนมัติได้เฉพาะในแชทที่คุณและผู้ติดต่อเชื่อมโยงกันผ่านทางหมายเลขโทรศัพท์เท่านั้น ในกรณีของแชทที่เริ่มต้นผ่านทางชื่อผู้ใช้หรือการมีกลุ่มร่วมกัน คุณสามารถตรวจยืนยันการเข้ารหัสตั้งแต่ต้นทางถึงปลายทางโดยเทียบหมายเลขซึ่งแสดงในหน้าที่แล้วหรือสแกนคิวอาร์โค้ดบนอุปกรณ์ของผู้ติดต่อ</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal สามารถตรวจยืนยันการเข้ารหัสโดยอัตโนมัติได้แล้ว</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">หากคุณและผู้ติดต่อเชื่อมโยงกันผ่านทางหมายเลขโทรศัพท์ Signal จะสามารถใช้ขั้นตอนที่เรียกว่า Key Transparency ในการยืนยันความปลอดภัยของเครือข่ายโดยอัตโนมัติ เพื่อความปลอดภัยยิ่งขึ้น คุณยังคงสามารถตรวจยืนยันเครือข่ายด้วยตนเองผ่านทางคิวอาร์โค้ดหรือหมายเลขความปลอดภัย</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">ตรวจยืนยัน</string>
 
     <!-- Title for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <string name="SelfVerificationFailureSheet__title">ไม่สามารถใช้การตรวจยืนยันโดยอัตโนมัติได้บนอุปกรณ์ของคุณ คุณต้องการส่งบันทึกดีบักหรือไม่</string>
     <!-- Body for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__body">บันทึกดีบักจะช่วยให้เราสามารถตรวจสอบและแก้ไขปัญหาได้ โดยที่ในบันทึกจะไม่มีข้อมูลที่ใช้ระบุตัวตน</string>
     <!-- Button to decline submitting logs -->
@@ -3764,7 +3764,7 @@
     <!-- Button to submit logs -->
     <string name="SelfVerificationFailureSheet__submit">ส่ง</string>
     <!-- Email subject line when submitting logs following a verification failure -->
-    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+    <string name="SelfVerificationFailureSheet__email_subject">ดำเนินการตรวจยืนยันโดยอัตโนมัติไม่สำเร็จ</string>
   <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
     <!-- Link to learn more about debug logs -->
     <string name="SelfVerificationFailureSheet__learn_more">เรียนรู้เพิ่มเติม</string>
@@ -4144,7 +4144,7 @@
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">การตรวจยืนยันโดยอัตโนมัติ</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
+    <string name="preferences_automatic_key_verification_body">หากเปิดใช้งาน Signal จะพยายามตรวจยืนยันการเข้ารหัสของแชทส่วนตัวโดยอัตโนมัติ</string>
 
 
     <string name="configurable_single_select__customize_option">กำหนดการตั้งค่า</string>
@@ -7732,16 +7732,16 @@
     <string name="TurnOnSignalBackups__toast_not_now">คุณสามารถเปิดใช้งานการสำรองข้อมูลได้ใน \"การตั้งค่า\"</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <string name="UseNewOnDeviceBackups__title">อัปเกรดการสำรองข้อมูลไว้บนอุปกรณ์เป็นรูปแบบใหม่</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <string name="UseNewOnDeviceBackups__body">ปรับปรุงการสำรองข้อมูลไว้บนอุปกรณ์ให้บันทึกข้อมูลได้เร็วขึ้นและใช้อินเทอร์เน็ตน้อยลง</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">อัปเกรด</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">ไว้ทีหลัง</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"กู้คืนข้อมูลสำรองด้วยการติดตั้ง Signal ใหม่ โดยเปิดแอปแล้วแตะเลือกกู้คืนจากข้อมูลสำรอง จากนั้นจึงไปที่ไฟล์ข้อมูลสำรอง"</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">ตรวจยืนยันกุญแจกู้คืนของคุณ</string>
@@ -7961,9 +7961,9 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <string name="OnDeviceBackupsFragment__backup_key_updated">อัปเดตกุญแจสำรองแล้ว</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
-    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+    <string name="OnDeviceBackupsFragment__directory_selected">โฟลเดอร์ที่เลือก: %1$s</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8400,21 +8400,21 @@
 
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
-    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">เราพัฒนาการสำรองข้อมูลไว้บนอุปกรณ์ให้ดียิ่งขึ้น</string>
     <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">การสำรองข้อมูลไว้บนอุปกรณ์ของคุณจะได้รับการอัปเกรดรูปแบบไปเป็นการใช้กุญแจกู้คืนใหม่</string>
     <!-- Feature description explaining backups are faster and use less data -->
-    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">บันทึกข้อมูลสำรองได้รวดเร็วยิ่งขึ้นและใช้อินเทอร์เน็ตน้อยลง</string>
     <!-- Feature description explaining backups will be saved as a folder with many files -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">ข้อมูลสำรองจะถูกบันทึกเป็นโฟลเดอร์ที่ประกอบไปด้วยหลายไฟล์</string>
     <!-- Feature description explaining backups remain end-to-end encrypted -->
-    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">การสำรองข้อมูลทั้งหมดยังคงถูกเข้ารหัสตั้งแต่ต้นทางถึงปลายทางเช่นเดิม</string>
     <!-- Button text to continue to the next step -->
     <string name="OnDeviceBackupsImprovementsScreen__continue">ดำเนินการต่อ</string>
 
     <!-- OnDeviceBackupsSettingsScreen -->
     <!-- Card text prompting user to update to a new recovery key for faster backups -->
-    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">อัปเดตไปใช้กุญแจกู้คืนใหม่เพื่อการบันทึกข้อมูลสำรองที่รวดเร็วขึ้น</string>
     <!-- Button text to update to a new recovery key -->
     <string name="OnDeviceBackupsSettingsScreen__update">อัปเดต</string>
 
@@ -8475,7 +8475,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">กุญแจกู้คืน</string>
     <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
-    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">กุญแจกู้คืนใหม่ของคุณ</string>
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
     <string name="MessageBackupsKeyEducationScreen__your_recovery_key">กุญแจกู้คืนของคุณ</string>
     <!-- Screen body part 1 -->
@@ -8487,19 +8487,19 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">กุญแจนี้จะถูกใช้แทนที่กุญแจในการสำรองข้อมูลไว้บนอุปกรณ์ที่มีอยู่เดิม</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">นี่เป็นกุญแจเดียวกันกับกุญแจสำรองที่คุณใช้ในการสำรองข้อมูลไว้บนอุปกรณ์</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
-    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">ใช้กุญแจนี้ในการ:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">กู้คืนจากการสำรองข้อมูลไว้บนอุปกรณ์</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">กู้คืนจากแพ็กเกจสำรองข้อมูลที่ปลอดภัยของ Signal</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">กู้คืนจากแพ็กเกจสำรองข้อมูลที่ปลอดภัยของ Signal</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">ดูกุญแจกู้คืน</string>
 
@@ -8509,7 +8509,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">คุณจำเป็นต้องใช้กุญแจนี้ในการกู้คืนบัญชีและข้อมูล โปรดเก็บกุญแจนี้ไว้ในที่ปลอดภัย คุณจะไม่สามารถกู้คืนบัญชีได้หากทำกุญแจหาย</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">นี่เป็นกุญแจเดียวกันกับกุญแจสำรองที่คุณใช้ในการสำรองข้อมูลไว้บนอุปกรณ์ คุณจำเป็นต้องใช้กุญแจนี้ในการกู้คืนบัญชีและข้อมูล</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9102,17 +9102,17 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">ป้ายกำกับสมาชิก</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <string name="GroupMemberLabel__label_text_placeholder">เพิ่มคำบรรยายบทบาทของคุณ</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">ภาพตัวอย่าง</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">บันทึก</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
-    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <string name="GroupMemberLabel__accessibility_select_emoji">เลือกอีโมจิ</string>
     <!-- Accessibility label for the group member label close screen button. -->
-    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <string name="GroupMemberLabel__accessibility_close_screen">ปิดหน้าต่าง</string>
     <!-- Accessibility label for the group member label text field clear button. -->
-    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
+    <string name="GroupMemberLabel__accessibility_clear_label">ล้างป้ายกำกับ</string>
 
     <!-- EOF -->
 </resources>

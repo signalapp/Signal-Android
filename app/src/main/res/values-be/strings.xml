@@ -318,17 +318,17 @@
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">Каб сканаваць QR-коды:</string>
     <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <string name="CameraXFragment_photo_capture_failed">Не атрымалася зрабіць фота. Паўтарыце спробу.</string>
     <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <string name="CameraXFragment_photo_processing_failed">Не атрымалася апрацаваць фота. Паўтарыце спробу.</string>
     <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <string name="CameraXFragment_switch_camera">Пераключыць камеру</string>
     <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">Flash off</string>
+    <string name="CameraXFragment_flash_off">Успышка адключана</string>
     <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">Flash on</string>
+    <string name="CameraXFragment_flash_on">Успышка ўключана</string>
     <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <string name="CameraXFragment_flash_auto">Аўтаматычная ўспышка</string>
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Адправіць</string>
 
@@ -994,7 +994,7 @@
     <string name="BackupsPreferenceFragment__backup_time">Час для рэзервовага капіравання</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Праверце парольную фразу для рэзервовай копіі</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Пратэсціруйце парольную фразу для рэзервовай копіі, каб праверыць яе на адпаведнасць</string>
-    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
+    <string name="BackupsPreferenceFragment__turn_on">Уключыць функцыю «Рэзервовае капіраванне»</string>
     <string name="BackupsPreferenceFragment__turn_off">Адключыць</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Каб аднавіць рэзервовую копію, усталюйце новую копію Signal. Адкрыйце праграму і націсніце «Аднавіць рэзервовую копію», потым выберыце файл рэзервовай копіі. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Даведацца больш</string>
@@ -4083,16 +4083,16 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal можа аўтаматычна правяраць шыфраванне толькі ў тых чатах, дзе вы падключаны да кагосьці праз нумар тэлефона. Калі чат пачынаецца з агульным імем карыстальніка або агульнай групай, праверце ўручную скразное шыфраванне: для гэтага трэба параўнаць лічбы на папярэднім экране або прасканаваць код на прыладзе суразмоўцы.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Цяпер Signal можа аўтаматычна правяраць шыфраванне ключоў</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Адносна кантактаў, з якімі вы звязаны па нумары тэлефона, Signal можа аўтаматычна пацвердзіць надзейнасць злучэння з дапамогай механізма празрыстасці ключоў. Для большай надзейнасці вы па-ранейшаму можаце праверыць злучэнне ўручную з дапамогай QR-кода або кода.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Даведацца больш</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">Праверыць</string>
 
     <!-- Title for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <string name="SelfVerificationFailureSheet__title">Аўтаматычная праверка шыфравання ключоў зараз недаступная для вашай прылады. Адправіць журнал адладкі?</string>
     <!-- Body for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__body">Журналы адладкі дапамагаюць нам дыягнаставаць і выправіць праблему і не змяшчаюць ідэнтыфікацыйнай інфармацыі.</string>
     <!-- Button to decline submitting logs -->
@@ -4100,7 +4100,7 @@
     <!-- Button to submit logs -->
     <string name="SelfVerificationFailureSheet__submit">Адправіць</string>
     <!-- Email subject line when submitting logs following a verification failure -->
-    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+    <string name="SelfVerificationFailureSheet__email_subject">Памылка падчас аўтаматычнай праверкі шыфравання ключоў</string>
   <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
     <!-- Link to learn more about debug logs -->
     <string name="SelfVerificationFailureSheet__learn_more">Даведацца больш</string>
@@ -4489,7 +4489,7 @@
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Аўтаматычная праверка кода</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
+    <string name="preferences_automatic_key_verification_body">Калі гэта функцыя ўключана, Signal будзе спрабаваць аўтаматычна правяраць шыфраванне прыватных чатаў.</string>
 
 
     <string name="configurable_single_select__customize_option">Наладзіць опцыю</string>
@@ -8248,9 +8248,9 @@
     <string name="TurnOnSignalBackups__toast_not_now">Вы можаце ўключыць рэзервовае капіраванне ў «Наладах»</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <string name="UseNewOnDeviceBackups__title">Выкарыстоўвайце новае рэзервовае капіраванне на прыладзе</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <string name="UseNewOnDeviceBackups__body">Цяпер рэзервовае капіраванне на прыладзе захоўвае файлы хутчэй і выкарыстоўвае менш трафіку.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">Абнавіць</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
@@ -8260,7 +8260,7 @@
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Каб аднавіць рэзервовую копію, усталюйце новую копію Signal. Адкрыйце праграму і націсніце «Аднавіць рэзервовую копію», потым выберыце файл рэзервовай копіі."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
-    <string name="VerifyBackupKey__title">Праверце свой ключ для аднаўлення</string>
+    <string name="VerifyBackupKey__title">Праверце свой код для аднаўлення</string>
     <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__body">Час ад часу мы будзем прасіць вас праверыць свой ключ, каб быць упэўненымі, што вы яго ведаеце</string>
     <!-- Button of a megaphone that will take users to the verify recovery key screen -->
@@ -8268,7 +8268,7 @@
     <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">Не зараз</string>
     <!-- Snackbar text shown when the recovery key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Ключ для аднаўлення правільны. Захоўвайце свой ключ у бяспецы.</string>
+    <string name="VerifyBackupKey__backup_key_correct">Код для аднаўлення правільны. Захоўвайце свой код у бяспецы.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Мы запытаем у вас яшчэ раз праз тыдзень.</string>
 
@@ -8486,9 +8486,9 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Ключ для рэзервовага капіравання абноўлены</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
-    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+    <string name="OnDeviceBackupsFragment__directory_selected">Выбраны каталог: %1$s</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8748,9 +8748,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Рэзервовае капіраванне з мабільным інтэрнэтам</string>
     <!-- Row label for viewing recovery key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">Прагледзець ключ для аднаўлення</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Прагледзець код для аднаўлення</string>
     <!-- Prompt title for unlocking device to view recovery key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Разблакіруйце, каб прагледзець ключ для аднаўлення</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Разблакіруйце, каб прагледзець код для аднаўлення</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">Каб прагледзець свой ключ, трэба пацвердзіць сваю асобу</string>
     <!-- Row label for cancelling and deleting backup -->
@@ -8775,7 +8775,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Рэзервовая копія будзе створана на працягу ночы.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Новы ключ для аднаўлення створаны</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Новы код для аднаўлення створаны</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Падпіска неактыўная</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8946,21 +8946,21 @@
 
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
-    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Паляпшэнне рэзервовага капіравання на прыладзе</string>
     <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Рэзервовае капіраванне на прыладзе будзе абноўлена да новага фармату з выкарыстаннем новага кода для аднаўлення</string>
     <!-- Feature description explaining backups are faster and use less data -->
-    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Цяпер рэзервовае капіраванне захоўвае файлы хутчэй і выкарыстоўвае менш трафіку</string>
     <!-- Feature description explaining backups will be saved as a folder with many files -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Ваша рэзервовая копія будзе захавана ў выглядзе папкі з мноствам файлаў</string>
     <!-- Feature description explaining backups remain end-to-end encrypted -->
-    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">Усе рэзервовыя копіі застаюцца абароненымі скразным шыфраваннем</string>
     <!-- Button text to continue to the next step -->
     <string name="OnDeviceBackupsImprovementsScreen__continue">Працягнуць</string>
 
     <!-- OnDeviceBackupsSettingsScreen -->
     <!-- Card text prompting user to update to a new recovery key for faster backups -->
-    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Абнавіце да новага кода для аднаўлення, каб больш хутка захоўваць рэзервовыя копіі</string>
     <!-- Button text to update to a new recovery key -->
     <string name="OnDeviceBackupsSettingsScreen__update">Абнавіць</string>
 
@@ -9021,9 +9021,9 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Код для аднаўлення</string>
     <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
-    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Ваш новы код для аднаўлення</string>
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
-    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Ваш ключ для аднаўлення</string>
+    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Ваш код для аднаўлення</string>
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Ваш код для аднаўлення – гэта 64-значны код, які дазваляе аднавіць рэзервовую копію.</string>
     <!-- Screen body part 2 -->
@@ -9033,29 +9033,29 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Гэты код заменіць ключ для рэзервовага капіравання на прыладзе.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Гэта тое ж самае, што і ваш ключ для рэзервовага капіравання на прыладзе.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
-    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Выкарыстоўвайце гэты ключ, каб:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Аднавіць рэзервовую копію на прыладзе</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Аднавіць функцыю «Бяспечнае рэзервовае капіраванне Signal»</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Аднавіць функцыю «Бяспечнае рэзервовае капіраванне Signal»</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Прагледзець код для аднаўлення</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Запішыце свой ключ для аднаўлення</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Запішыце свой код для аднаўлення</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Гэты ключ патрэбны, каб аднавіць ваш уліковы запіс і вашы даныя. Захоўвайце гэты ключ у бяспечным месцы. Калі вы забудзеце яго, вы больш не зможаце аднавіць свой уліковы запіс.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">Гэта тое ж самае, што і ваш ключ для рэзервовага капіравання на прыладзе. Гэта неабходна, каб аднавіць ваш уліковы запіс і вашы даныя.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Скапіраваць у буфер абмену</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9063,7 +9063,7 @@
     <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Захаваць у менеджары пароляў?</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Захоўвайце ключ для аднаўлення толькі ў надзейным менеджары пароляў. Signal не раіць вам адносна таго, які менеджар пароляў падыходзіць менавіта вам.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Захоўвайце код для аднаўлення толькі ў надзейным менеджары пароляў. Signal не раіць вам адносна таго, які менеджар пароляў падыходзіць менавіта вам.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Бяспечнае рэзервовае капіраванне Signal</string>
     <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
@@ -9093,11 +9093,11 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">Спампаваць медыяфайлы</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Каб стварыць новы ключ для аднаўлення, трэба адключыць функцыю «Аптымізаваць сховішча» і пачакаць, пакуль медыяфайлы не будуць спампаваны. Пасля спампоўкі вы зможаце стварыць новы ключ.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Каб стварыць новы код для аднаўлення, трэба адключыць функцыю «Аптымізаваць сховішча» і пачакаць, пакуль медыяфайлы не будуць спампаваны. Пасля спампоўкі вы зможаце стварыць новы код.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Адключыць і спампаваць</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Стварыце новы ключ для аднаўлення</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Стварыце новы код для аднаўлення</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Ствараць новы ключ неабходна толькі тады, калі нехта ведае ваш ключ. Вам патрэбна будзе зноў запампаваць сваю рэзервовую копію, у тым ліку медыяфайлы. Калі вы ўключылі функцыю «Аптымізаваць сховішча», вам патрэбна будзе спачатку спампаваць выгружаныя медыяфайлы.</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
@@ -9111,27 +9111,27 @@
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Скасаваць стварэнне ключа?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Ваш новы ключ для аднаўлення будзе створаны толькі тады, калі вы яго пацвердзіце.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Ваш новы код для аднаўлення будзе створаны толькі тады, калі вы яго пацвердзіце.</string>
     <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">Пацвердзіць ключ</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">Скасаваць стварэнне ключа</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Пацвердзіце свой ключ для аднаўлення</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Пацвердзіце свой код для аднаўлення</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Увядзіце ключ для аднаўлення, што вы зараз запісалі</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Увядзіце код для аднаўлення, што вы зараз запісалі</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Ключ для аднаўлення</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Код для аднаўлення</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Няправільны ключ для аднаўлення</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Няправільны код для аднаўлення</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Прагледзець ключ яшчэ раз</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Далей</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">Увядзіце свой ключ для аднаўлення</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Увядзіце свой код для аднаўлення</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Увядзіце 64-значны код, што вы запісалі, калі ўключылі рэзервовае капіраванне.</string>
     <!-- Button text when you forget your recovery key -->
@@ -9249,39 +9249,39 @@
     <string name="RestoreLocalBackup_subtitle">Аднавіце паведамленні з рэзервовай копіі, што вы захавалі на сваёй прыладзе. Калі вы не зробіце гэта зараз, пазней аднавіць іх ужо не атрымаецца.</string>
 
     <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Увядзіце свой ключ для аднаўлення</string>
+    <string name="EnterBackupKey_title">Увядзіце свой код для аднаўлення</string>
     <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Ваш ключ для аднаўлення – гэта 64-значны код, які неабходны для аднаўлення вашага ўліковага запісу і даных.</string>
+    <string name="EnterBackupKey_subtitle">Ваш код для аднаўлення – гэта 64-значны код, які неабходны для аднаўлення вашага ўліковага запісу і даных.</string>
     <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Няма ключа для аднаўлення?</string>
+    <string name="EnterBackupKey_no_backup_key">Няма кода для аднаўлення?</string>
     <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Ключ для аднаўлення</string>
+    <string name="EnterBackupKey_backup_key">Код для аднаўлення</string>
     <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Без 64-значнага кода аднаўлення немагчыма аднавіць рэзервовыя копіі. Калі вы згубіце свой ключ для аднаўлення, Signal не зможа аднавіць вашу рэзервовую копію.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Без 64-значнага кода аднаўлення немагчыма аднавіць рэзервовыя копіі. Калі вы згубіце свой код для аднаўлення, Signal не зможа аднавіць вашу рэзервовую копію.</string>
     <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">На вашай старой прыладзе вы можаце прагледзець свой ключ для аднаўлення ў меню Налады &gt; Рэзервовыя копіі. Потым націсніце «Прагледзець ключ для аднаўлення».</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">На вашай старой прыладзе вы можаце прагледзець свой код для аднаўлення ў меню Налады &gt; Рэзервовыя копіі. Потым націсніце «Прагледзець код для аднаўлення».</string>
     <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Даведацца больш</string>
     <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Прапусціць і не аднаўляць</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Няправільны ключ для аднаўлення</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Няправільны код для аднаўлення</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Праверце падчас рэгістрацыі, што вы ўжываеце той жа нумар тэлефона і 64-значны ключ для аднаўлення, які вы захавалі, калі ўключалі бяспечнае рэзервовае капіраванне Signal. Без гэтага ключа немагчыма аднавіць рэзервовыя копіі.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Праверце падчас рэгістрацыі, што вы ўжываеце той жа нумар тэлефона і 64-значны код для аднаўлення, які вы захавалі, калі ўключалі бяспечнае рэзервовае капіраванне Signal. Без гэтага кода немагчыма аднавіць рэзервовыя копіі.</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Паўтарыць спробу</string>
     <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Падтрымка па ключу для аднаўлення</string>
+    <string name="EnterBackupKey_backup_key_help">Падтрымка па коду для аднаўлення</string>
     <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Няправільны ключ для аднаўлення</string>
+    <string name="EnterBackupKey_incorrect_backup_key_error">Няправільны код для аднаўлення</string>
     <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">Занадта доўгі (%1$d/%2$d)</string>
     <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Несапраўдны ключ для аднаўлення</string>
+    <string name="EnterBackupKey_invalid_backup_key_error">Несапраўдны код для аднаўлення</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Рэзервовая копія не знойдзена</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Ключ для аднаўлення, што вы ўвялі, правільны, але няма рэзервовых копій, з якімі ён суадносіцца. Калі вы яшчэ маеце свой стары тэлефон, праверце, каб былі ўключаны рэзервовыя копіі і каб было завершана рэзервовае капіраванне, потым паспрабуйце яшчэ раз.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Код для аднаўлення, што вы ўвялі, правільны, але няма рэзервовых копій, з якімі ён суадносіцца. Калі вы яшчэ маеце свой стары тэлефон, праверце, каб былі ўключаны рэзервовыя копіі і каб было завершана рэзервовае капіраванне, потым паспрабуйце яшчэ раз.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Магчыма, вы няправільна ўвялі код для аднаўлення або не зрабілі, як мінімум, адну рэзервовую копію на сваёй старой прыладзе.\n\nПраверце падчас рэгістрацыі, што вы ўжываеце той жа нумар тэлефона і код для аднаўлення, які вы захавалі, калі ўключалі «Бяспечнае рэзервовае капіраванне Signal», і пацвердзіце, што ваша старая прылада завяршыла рэзервовае капіраванне.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
@@ -9663,17 +9663,17 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Метка ўдзельніка</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Дадаць сваю ролю</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Папярэдні прагляд</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">Захаваць</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
-    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <string name="GroupMemberLabel__accessibility_select_emoji">Выбраць эмодзі</string>
     <!-- Accessibility label for the group member label close screen button. -->
-    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <string name="GroupMemberLabel__accessibility_close_screen">Закрыць экран</string>
     <!-- Accessibility label for the group member label text field clear button. -->
-    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
+    <string name="GroupMemberLabel__accessibility_clear_label">Ачысціць метку</string>
 
     <!-- EOF -->
 </resources>

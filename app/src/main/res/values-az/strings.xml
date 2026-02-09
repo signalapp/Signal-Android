@@ -314,17 +314,17 @@
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">QR kodlarını skan etmək üçün:</string>
     <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <string name="CameraXFragment_photo_capture_failed">Foto çəkmək mümkün olmadı. Yenidən cəhd edin.</string>
     <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <string name="CameraXFragment_photo_processing_failed">Foto emal olunmadı. Yenidən cəhd edin.</string>
     <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <string name="CameraXFragment_switch_camera">Kameranı dəyişin</string>
     <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">Flash off</string>
+    <string name="CameraXFragment_flash_off">Fləş sönülüdür</string>
     <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">Flash on</string>
+    <string name="CameraXFragment_flash_on">Fləş yanılıdır</string>
     <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <string name="CameraXFragment_flash_auto">Fləş avtomatik rejimdədir</string>
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Göndər</string>
 
@@ -954,7 +954,7 @@
     <string name="BackupsPreferenceFragment__backup_time">Ehtiyat nüsxə çıxarma vaxtı</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Nüsxə parolunu təsdiqləyin</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Nüsxə parolunuzu test edin və uyğun gəldiyini təsdiqləyin</string>
-    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
+    <string name="BackupsPreferenceFragment__turn_on">Ehtiyat nüsxələri aç</string>
     <string name="BackupsPreferenceFragment__turn_off">Söndür</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Bir nüsxəni geri yükləmək üçün, Signal-ın yeni bir kopyasını quraşdırın. Tətbiqi açıb \"Nüsxəni geri yüklə\"yə toxunun, daha sonra nüsxə faylını tapın. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Daha ətraflı</string>
@@ -3859,16 +3859,16 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal yalnız telefon nömrəsindən biri ilə əlaqə saxladığınız zaman çatlardakı şifrələməni avtomatik yoxlaya bilər. Çat bir istifadəçi adı və ya ümumi bir qrupla başladıqda, tam şifrələməni əvvəlki ekranda çıxan nömrələri müqayisə edərək və ya onun cihazındakı kodu skan edərək yoxlayın.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Artıq Signal açar şifrələməsini avtomatik yoxlaya bilir</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Telefon nömrəsi ilə əlaqə saxladığınız kontaktlar üçün Signal “açar şəffaflığı” adlanan proses vasitəsilə bağlantının təhlükəsiz olduğunu avtomatik təsdiqləyə bilər. Əlavə təhlükəsizlik üçün QR kod və ya nömrədən istifadə etməklə bağlantıları əlinizlə yoxlaya bilərsiniz.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Daha ətraflı</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">Yoxla</string>
 
     <!-- Title for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <string name="SelfVerificationFailureSheet__title">Avtomatik şifrə yoxlama cihazınız üçün hazırda qeyri-aktivdir. Sazlama jurnalı göndərilsin?</string>
     <!-- Body for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__body">Sazlama jurnalları bizə problemi təyin edib, aradan qaldırmaqda kömək edir və kimlik məlumatlarını əhatə etmir.</string>
     <!-- Button to decline submitting logs -->
@@ -3876,7 +3876,7 @@
     <!-- Button to submit logs -->
     <string name="SelfVerificationFailureSheet__submit">Təqdim et</string>
     <!-- Email subject line when submitting logs following a verification failure -->
-    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+    <string name="SelfVerificationFailureSheet__email_subject">Avtomatik Şifrə Yoxlama Xətası</string>
   <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
     <!-- Link to learn more about debug logs -->
     <string name="SelfVerificationFailureSheet__learn_more">Daha ətraflı</string>
@@ -4259,7 +4259,7 @@
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Avtomatik şifrə yoxlaması</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
+    <string name="preferences_automatic_key_verification_body">Aktivləşdirildikdə, Signal 1:1 çatların şifrələməsini avtomatik yoxlamağa cəhd edəcək.</string>
 
 
     <string name="configurable_single_select__customize_option">Seçimi özəlləşdir</string>
@@ -5985,7 +5985,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Tələb və dəvətlər</string>
     <string name="ConversationSettingsFragment__group_link">Qrup bağlantısı</string>
     <!-- Label for button that opens the group member label permissions screen. -->
-    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
+    <string name="ConversationSettingsFragment__group_member_label">Üzv etiketi</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Bir əlaqə kimi əlavə et</string>
     <string name="ConversationSettingsFragment__unmute">Səsi aç</string>
@@ -7904,16 +7904,16 @@
     <string name="TurnOnSignalBackups__toast_not_now">Ehtiyat nüsxələrini \"Parametrlər\"də aktivləşdirə bilərsiniz</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <string name="UseNewOnDeviceBackups__title">Yeni cihaz daxili ehtiyat nüsxələrdən istifadə edin</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <string name="UseNewOnDeviceBackups__body">Cihaz daxili ehtiyat nüsxələr artıq daha tez yaddaşda saxlanılır və daha az data istifadə edir.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">Yüksəlt</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">İndi yox</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Ehtiyat nüsxəni bərpa etmək üçün Signal-ın yeni versiyasını quraşdırın. Tətbiqi açıb, \"Ehtiyat nüsxəni bərpa et\" seçiminə toxunun, sonra ehtiyat nüsxə faylını tapın."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Bərpa şifrənizi yoxlayın</string>
@@ -8136,9 +8136,9 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Ehtiyat nüsxə şifrəsi yeniləndi</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
-    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+    <string name="OnDeviceBackupsFragment__directory_selected">Kataloq seçildi: %1$s</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8582,21 +8582,21 @@
 
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
-    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Cihaz daxili ehtiyat nüsxələrin təkmilləşdirilməsi</string>
     <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Cihaz daxili ehtiyat nüsxəniz yeni bərpa şifrəsindən istifadə edərək yenilənəcək</string>
     <!-- Feature description explaining backups are faster and use less data -->
-    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Artıq ehtiyat nüsxələr daha tez yaddaşda saxlanılır və daha az data istifadə edir</string>
     <!-- Feature description explaining backups will be saved as a folder with many files -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Ehtiyat nüsxəniz bir çox fayla malik bir qovluq kimi yaddaşda saxlanılacaq</string>
     <!-- Feature description explaining backups remain end-to-end encrypted -->
-    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">Bütün ehtiyat nüsxələr ucdan-uca şifrələnmiş qalır</string>
     <!-- Button text to continue to the next step -->
     <string name="OnDeviceBackupsImprovementsScreen__continue">Davam et</string>
 
     <!-- OnDeviceBackupsSettingsScreen -->
     <!-- Card text prompting user to update to a new recovery key for faster backups -->
-    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Ehtiyat nüsxənin daha sürətli yaddaşda saxlanılması üçün yeni bərpa şifrəsi təyin edin</string>
     <!-- Button text to update to a new recovery key -->
     <string name="OnDeviceBackupsSettingsScreen__update">Yenilə</string>
 
@@ -8657,7 +8657,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Bərpa şifrəsi</string>
     <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
-    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Yeni bərpa şifrəniz</string>
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
     <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Bərpa şifrəniz</string>
     <!-- Screen body part 1 -->
@@ -8669,19 +8669,19 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Bu şifrə cihaz daxili ehtiyat nüsxənin şifrəsini əvəz edəcək.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Bu, sizin cihazdakı ehtiyat nüsxə şifrənizlə eynidir.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
-    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Bu şifrədən aşağıdakılar üçün istifadə edin:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Cihaz daxili ehtiyat nüsxəsini bərpa edin</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Signal təhlükəsiz ehtiyat nüsxəsini bərpa edin</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Signal təhlükəsiz ehtiyat nüsxəsini bərpa edin</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Bərpa şifrəsinə bax</string>
 
@@ -8691,7 +8691,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Bu şifrə hesabınızı və verilənlərinizi bərpa etmək üçün tələb olunur. Bu şifrəni etibarlı bir yerdə saxlayın. Onu itirsəniz, hesabınızı bərpa edə bilməyəcəksiniz.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">Bu şifrə sizin cihazdakı ehtiyat nüsxə şifrənizlə eynidir. Hesabınızı və məlumatınızı bərpa etməyiniz tələb olunur.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Lövhəyə kopyala</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9287,19 +9287,19 @@
     <string name="PinnedMessage__check_connection">Bağlantınızı yoxlayıb yenidən cəhd edin.</string>
 
     <!-- Group member label screen title. -->
-    <string name="GroupMemberLabel__title">Member label</string>
+    <string name="GroupMemberLabel__title">Üzv etiketi</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Rolunuzu əlavə edin</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Önbaxış</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">Saxla</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
-    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <string name="GroupMemberLabel__accessibility_select_emoji">Emoji seçin</string>
     <!-- Accessibility label for the group member label close screen button. -->
-    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <string name="GroupMemberLabel__accessibility_close_screen">Ekranı bağlayın</string>
     <!-- Accessibility label for the group member label text field clear button. -->
-    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
+    <string name="GroupMemberLabel__accessibility_clear_label">Etiketi silin</string>
 
     <!-- EOF -->
 </resources>

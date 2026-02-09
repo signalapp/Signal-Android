@@ -4142,7 +4142,7 @@
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">Aplikasi akan dimulai ulang untuk menerapkan pengaturan bahasa baru.</string>
     <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Verifikasi Kunci Otomatis</string>
+    <string name="preferences_automatic_key_verification">Verifikasi kunci otomatis</string>
     <!-- Preference summary for automatic key verification -->
     <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
 
@@ -7736,9 +7736,9 @@
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
-    <string name="UseNewOnDeviceBackups__upgrade">Perbarui</string>
+    <string name="UseNewOnDeviceBackups__upgrade">Upgrade</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__not_now">Nanti</string>
+    <string name="UseNewOnDeviceBackups__not_now">Lain kali</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
@@ -8419,7 +8419,7 @@
     <string name="OnDeviceBackupsSettingsScreen__update">Perbarui</string>
 
     <!-- UnifiedOnDeviceBackupsSettingsScreen -->
-    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">Lihat kunci pencadangan</string>
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">Lihat kunci cadangan</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -9100,7 +9100,7 @@
     <string name="PinnedMessage__check_connection">Periksa koneksi Anda dan coba lagi.</string>
 
     <!-- Group member label screen title. -->
-    <string name="GroupMemberLabel__title">Label Anggota</string>
+    <string name="GroupMemberLabel__title">Label anggota</string>
     <!-- Group member label text field placeholder. -->
     <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
     <!-- Group member label preview section header. -->

@@ -4,5 +4,5 @@
     <!-- Button label to confirm and proceed with a permission request -->
     <string name="Permissions_continue">បន្ត</string>
     <!-- Button label to dismiss or defer a permission request -->
-    <string name="Permissions_not_now">ពេលក្រោយ</string>
+    <string name="Permissions_not_now">ឥឡូវកុំទាន់</string>
 </resources>

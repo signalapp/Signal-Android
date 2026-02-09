@@ -318,17 +318,17 @@
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">Za skeniranje QR kod:</string>
     <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <string name="CameraXFragment_photo_capture_failed">Fotografije ni bilo mogoče zajeti. Poskusite znova.</string>
     <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <string name="CameraXFragment_photo_processing_failed">Obdelava fotografije ni uspela. Poskusite znova.</string>
     <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <string name="CameraXFragment_switch_camera">Preklopi kamero</string>
     <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">Flash off</string>
+    <string name="CameraXFragment_flash_off">Bliskavica izklopljena</string>
     <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">Flash on</string>
+    <string name="CameraXFragment_flash_on">Bliskavica vklopljena</string>
     <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <string name="CameraXFragment_flash_auto">Samodejna bliskavica</string>
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Pošlji</string>
 
@@ -994,7 +994,7 @@
     <string name="BackupsPreferenceFragment__backup_time">Čas ustvarjanja varnostne kopije</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Potrdi geslo za varnostno kopijo</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Preizkusite geslo svoje varnostne kopije, da vidite, če se ujema</string>
-    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
+    <string name="BackupsPreferenceFragment__turn_on">Vklopi varnostne kopije</string>
     <string name="BackupsPreferenceFragment__turn_off">Izklopi</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Za obnovo iz varnostne kopije morate najprej namestiti novo kopijo aplikacije Signal. Nato odprite aplikacijo in tapnite \"Obnovi iz varnostne kopije\", ter poiščite svojo varnostno kopijo. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Izvedite več</string>
@@ -4083,16 +4083,16 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal lahko samodejno preveri šifriranje le v klepetih, kjer ste z nekom povezani prek telefonske številke. Če je bil klepet začet z uporabniškim imenom ali skupno skupino, preverite šifriranje od konca do konca tako, da primerjate številke na prejšnjem zaslonu ali skenirate kodo na njegovi/-ni napravi.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal lahko zdaj samodejno preveri šifriranje ključev</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Za stike, s katerimi ste povezani prek telefonske številke, lahko Signal samodejno potrdi, ali je povezava varna, z uporabo postopka, imenovanega preglednost ključa. Za dodatno varnost lahko povezave še vedno preverite ročno s QR kodo ali številko.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Preberite več</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">Potrdi</string>
 
     <!-- Title for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <string name="SelfVerificationFailureSheet__title">Samodejno preverjanje ključa trenutno ni na voljo za vašo napravo. Želite poslati sistemsko zabeležbo?</string>
     <!-- Body for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__body">Sistemske zabeležbe nam pomagajo diagnosticirati in odpraviti težavo ter ne vsebujejo identifikacijskih podatkov.</string>
     <!-- Button to decline submitting logs -->
@@ -4100,7 +4100,7 @@
     <!-- Button to submit logs -->
     <string name="SelfVerificationFailureSheet__submit">Oddaj</string>
     <!-- Email subject line when submitting logs following a verification failure -->
-    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+    <string name="SelfVerificationFailureSheet__email_subject">Napaka pri samodejnem preverjanju ključa</string>
   <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
     <!-- Link to learn more about debug logs -->
     <string name="SelfVerificationFailureSheet__learn_more">Preberite več</string>
@@ -4489,7 +4489,7 @@
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Samodejno preverjanje ključa</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
+    <string name="preferences_automatic_key_verification_body">Ko je omogočeno, bo Signal poskušal samodejno preveriti šifriranje klepetov 1:1.</string>
 
 
     <string name="configurable_single_select__customize_option">Nastavitve po meri</string>
@@ -6263,7 +6263,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Prošnje &amp; vabila</string>
     <string name="ConversationSettingsFragment__group_link">Povezava do skupine</string>
     <!-- Label for button that opens the group member label permissions screen. -->
-    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
+    <string name="ConversationSettingsFragment__group_member_label">Vloga člana</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Dodaj kot stik</string>
     <string name="ConversationSettingsFragment__unmute">Prekini utišanje</string>
@@ -8248,16 +8248,16 @@
     <string name="TurnOnSignalBackups__toast_not_now">Varnostne kopije lahko omogočite v »Nastavitvah«</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <string name="UseNewOnDeviceBackups__title">Uporabite nove varnostne kopije v napravi</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <string name="UseNewOnDeviceBackups__body">Varnostne kopije v napravi se zdaj shranjujejo hitreje in porabijo manj podatkov.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">Posodobi</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">Ne zdaj</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Za obnovo varnostne kopije morate najprej namestiti novo kopijo Signala. Nato odprite aplikacijo, tapnite »Obnovi varnostno kopijo« in poiščite mapo varnostne kopije."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Potrdite svoj obnovitveni ključ</string>
@@ -8486,9 +8486,9 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Varnostni ključ posodobljen</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
-    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+    <string name="OnDeviceBackupsFragment__directory_selected">Izbrana mapa: %1$s</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8946,21 +8946,21 @@
 
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
-    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Izboljšave varnostnih kopij v napravi</string>
     <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Vaša varnostna kopija v napravi bo nadgrajena v novo obliko z novim obnovitvenim ključem</string>
     <!-- Feature description explaining backups are faster and use less data -->
-    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Varnostne kopije se zdaj shranjujejo hitreje in porabijo manj podatkov</string>
     <!-- Feature description explaining backups will be saved as a folder with many files -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Vaša varnostna kopija bo shranjena kot mapa z veliko datotekami</string>
     <!-- Feature description explaining backups remain end-to-end encrypted -->
-    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">Vse varnostne kopije ostanejo šifrirane od konca do konca</string>
     <!-- Button text to continue to the next step -->
     <string name="OnDeviceBackupsImprovementsScreen__continue">Nadaljuj</string>
 
     <!-- OnDeviceBackupsSettingsScreen -->
     <!-- Card text prompting user to update to a new recovery key for faster backups -->
-    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Posodobite na nov obnovitveni ključ za hitrejše shranjevanje varnostnih kopij</string>
     <!-- Button text to update to a new recovery key -->
     <string name="OnDeviceBackupsSettingsScreen__update">Posodobitev</string>
 
@@ -9021,7 +9021,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Obnovitveni ključ</string>
     <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
-    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Nov obnovitveni ključ</string>
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
     <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Vaš obnovitveni ključ</string>
     <!-- Screen body part 1 -->
@@ -9033,19 +9033,19 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Ta ključ bo nadomestil ključ za varnostno kopiranje v napravi.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">To je enako kot vaš varnostni ključ v napravi.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
-    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Uporabite ta ključ za:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Obnovitev varnostne kopije v napravi</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Obnovitev Varne varnostne kopije</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Obnovitev vaše Varne varnostne kopije</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Ogled obnovitvenega ključa</string>
 
@@ -9055,7 +9055,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Ta ključ je potreben za obnovitev računa in podatkov. Ta ključ shranite na varno. Če ga izgubite, računa ne boste mogli obnoviti.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">To je enako kot vaš varnostni ključ v napravi. To je potrebno za obnovitev vašega računa in podatkov.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopiraj v odložišče</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9661,19 +9661,19 @@
     <string name="PinnedMessage__check_connection">Preverite povezavo in poskusite znova.</string>
 
     <!-- Group member label screen title. -->
-    <string name="GroupMemberLabel__title">Member label</string>
+    <string name="GroupMemberLabel__title">Vloga člana</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Dodaj vlogo</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Predogled</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">Shrani</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
-    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <string name="GroupMemberLabel__accessibility_select_emoji">Izberi emoji</string>
     <!-- Accessibility label for the group member label close screen button. -->
-    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <string name="GroupMemberLabel__accessibility_close_screen">Zapri zaslon</string>
     <!-- Accessibility label for the group member label text field clear button. -->
-    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
+    <string name="GroupMemberLabel__accessibility_clear_label">Počisti vlogo</string>
 
     <!-- EOF -->
 </resources>

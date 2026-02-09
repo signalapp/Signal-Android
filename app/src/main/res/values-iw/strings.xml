@@ -318,17 +318,17 @@
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">כדי לסרוק קודי QR:</string>
     <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <string name="CameraXFragment_photo_capture_failed">לכידת התמונה נכשלה. נא לנסות שוב.</string>
     <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <string name="CameraXFragment_photo_processing_failed">עיבוד התמונה נכשל. נא לנסות שוב.</string>
     <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <string name="CameraXFragment_switch_camera">החלפת מצלמה</string>
     <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">Flash off</string>
+    <string name="CameraXFragment_flash_off">פלאש כבוי</string>
     <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">Flash on</string>
+    <string name="CameraXFragment_flash_on">פלאש פועל</string>
     <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <string name="CameraXFragment_flash_auto">פלאש אוטומטי</string>
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">שלח</string>
 
@@ -994,7 +994,7 @@
     <string name="BackupsPreferenceFragment__backup_time">זמן גיבוי</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">וודא משפט־סיסמת גיבוי</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">בחן את משפט־סיסמת הגיבוי שלך ווודא שהוא תואם</string>
-    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
+    <string name="BackupsPreferenceFragment__turn_on">הפעלת גיבויים</string>
     <string name="BackupsPreferenceFragment__turn_off">כבה</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"כדי לשחזר גיבוי, התקן עותק חדש של Signal. פתח את היישום והקש על \"שחזר גיבוי\", לאחר מכן אתר קובץ גיבוי. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">למד עוד</string>
@@ -4083,16 +4083,16 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal יכולה לאמת אוטומטית את ההצפנה רק הצ׳אטים שבהם החיבור עם הצד השני מתבצע באמצעות מספר טלפון. אם הצ׳אט התחיל באמצעות שם משתמש או קבוצה משותפת, יש לאמת את ההצפנה מקצה לקצה באמצעות השוואת המספרים במסך הקודם או סריקת הקוד במכשיר שלו או שלה.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal יכולה כעת לאמת אוטומטית הצפנת מפתחות</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">עבור אנשי קשר שהחיבור איתם נוצר באמצעות מספר טלפון, Signal יכולה לאשר אוטומטית שהחיבור מאובטח באמצעות שימוש בתהליך הנקרא שקיפות מפתחות. לבטיחות משופרת, עדיין אפשר לאמת חיבורים ידנית באמצעות קוד QR או מספר.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">למידע נוסף</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">אימות</string>
 
     <!-- Title for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <string name="SelfVerificationFailureSheet__title">אימות מפתח אוטומטי אינו זמין כרגע עבור המכשיר שלך. להגיש יומן ניפוי באגים?</string>
     <!-- Body for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__body">יומני ניפוי באגים עוזרים לנו לאבחן ולתקן את הבעיה ולא מכילים מידע מזהה.</string>
     <!-- Button to decline submitting logs -->
@@ -4100,7 +4100,7 @@
     <!-- Button to submit logs -->
     <string name="SelfVerificationFailureSheet__submit">הגש</string>
     <!-- Email subject line when submitting logs following a verification failure -->
-    <string name="SelfVerificationFailureSheet__email_subject">AutomaticKeyVerificationFailure</string>
+    <string name="SelfVerificationFailureSheet__email_subject">כשל באימות מפתח אוטומטי</string>
   <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
     <!-- Link to learn more about debug logs -->
     <string name="SelfVerificationFailureSheet__learn_more">למידע נוסף</string>
@@ -4489,7 +4489,7 @@
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">אימות מפתח אוטומטי</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
+    <string name="preferences_automatic_key_verification_body">כשהאפשרות הזו מופעלת, Signal תנסה לאמת אוטומטית את ההצפנה של צ׳אטים אישיים.</string>
 
 
     <string name="configurable_single_select__customize_option">התאם אישית אפשרות</string>
@@ -8248,16 +8248,16 @@
     <string name="TurnOnSignalBackups__toast_not_now">אפשר להפעיל גיבויים ב״הגדרות״</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <string name="UseNewOnDeviceBackups__title">כדאי לנסות גיבויים מקומיים חדשים</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <string name="UseNewOnDeviceBackups__body">גיבויים במכשיר נשמרים כעת מהר יותר ומשתמשים בפחות נתונים.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">שדרג</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">לא עכשיו</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"כדי לשחזר גיבוי, יש להתקין עותק חדש של Signal. צריך לפתוח את האפליקציה וללחוץ על ״שחזור גיבוי״, ואז לאתר את תיקיית הגיבוי."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">אימות מפתח השחזור שלך</string>
@@ -8486,9 +8486,9 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <string name="OnDeviceBackupsFragment__backup_key_updated">מפתח גיבוי עודכן</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
-    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+    <string name="OnDeviceBackupsFragment__directory_selected">תיקייה שנבחרה: %1$s</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8946,21 +8946,21 @@
 
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
-    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">שיפורי גיבויים במכשיר</string>
     <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">הגיבוי במכשיר שלך ישודרג לפורמט חדש באמצעות מפתח שחזור חדש</string>
     <!-- Feature description explaining backups are faster and use less data -->
-    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">גיבויים נשמרים כעת מהר יותר ומשתמשים בפחות נתונים</string>
     <!-- Feature description explaining backups will be saved as a folder with many files -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">הגיבוי שלך יישמר כתיקייה עם קבצים רבים</string>
     <!-- Feature description explaining backups remain end-to-end encrypted -->
-    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">כל הגיבויים נשארים מוצפנים מקצה לקצה</string>
     <!-- Button text to continue to the next step -->
     <string name="OnDeviceBackupsImprovementsScreen__continue">המשך</string>
 
     <!-- OnDeviceBackupsSettingsScreen -->
     <!-- Card text prompting user to update to a new recovery key for faster backups -->
-    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">כדאי לעדכן למפתח שחזור חדש לשמירת גיבויים מהירה יותר</string>
     <!-- Button text to update to a new recovery key -->
     <string name="OnDeviceBackupsSettingsScreen__update">עדכן</string>
 
@@ -9021,7 +9021,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">מפתח שחזור</string>
     <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
-    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">מפתח השחזור החדש שלך</string>
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
     <string name="MessageBackupsKeyEducationScreen__your_recovery_key">מפתח השחזור שלך</string>
     <!-- Screen body part 1 -->
@@ -9033,19 +9033,19 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">המפתח הזה יחליף את המפתח לגיבוי במכשיר שלך.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">זהו אותו מפתח כמו מפתח הגיבוי המקומי שלך.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
-    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">אפשר להשתמש במפתח הזה כדי:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">לשחזר את הגיבוי המקומי במכשיר שלך</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">לשחזר גיבוי Signal מאובטח</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">לשחזר את גיבוי Signal המאובטח שלך</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">הצגת מפתח שחזור</string>
 
@@ -9055,7 +9055,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">המפתח הזה נדרש כדי לשחזר את החשבון והנתונים שלך. חשוב לאחסן את המפתח הזה במקום בטוח. אם הוא נאבד, אי אפשר לשחזר את החשבון שלך.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">זה אותו מפתח כמו זה שמקושר לגיבוי במכשיר שלך. הוא נדרש כדי לשחזר את החשבון והנתונים שלך.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">העתק ללוח העריכה</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9663,17 +9663,17 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">תוויות</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <string name="GroupMemberLabel__label_text_placeholder">הוספת התפקיד שלך</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">תצוגה מקדימה</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">שמירה</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
-    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <string name="GroupMemberLabel__accessibility_select_emoji">בחירת אימוג׳י</string>
     <!-- Accessibility label for the group member label close screen button. -->
-    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <string name="GroupMemberLabel__accessibility_close_screen">סגירת מסך</string>
     <!-- Accessibility label for the group member label text field clear button. -->
-    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
+    <string name="GroupMemberLabel__accessibility_clear_label">מחיקת תווית</string>
 
     <!-- EOF -->
 </resources>

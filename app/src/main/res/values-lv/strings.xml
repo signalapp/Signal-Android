@@ -316,17 +316,17 @@
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">Lai skenētu QR kodus:</string>
     <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">Failed to capture photo. Please try again.</string>
+    <string name="CameraXFragment_photo_capture_failed">Neizdevās uzņemt fotoattēlu. Lūdzu, mēģiniet vēlreiz.</string>
     <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">Failed to process photo. Please try again.</string>
+    <string name="CameraXFragment_photo_processing_failed">Neizdevās apstrādāt fotoattēlu. Lūdzu, mēģiniet vēlreiz.</string>
     <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">Switch camera</string>
+    <string name="CameraXFragment_switch_camera">Pārslēgt kameru</string>
     <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">Flash off</string>
+    <string name="CameraXFragment_flash_off">Zibspuldze izslēgta</string>
     <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">Flash on</string>
+    <string name="CameraXFragment_flash_on">Zibspuldze ieslēgta</string>
     <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">Flash auto</string>
+    <string name="CameraXFragment_flash_auto">Zibspuldzes automātiskais režīms</string>
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Sūtīt</string>
 
@@ -974,7 +974,7 @@
     <string name="BackupsPreferenceFragment__backup_time">Dublēšanas laiks</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Pārbaudiet rezerves kopijas paroles frāzi</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Pārbaudiet rezerves kopijas paroles frāzi, un pārliecinieties, ka tā sakrīt</string>
-    <string name="BackupsPreferenceFragment__turn_on">Turn on backups</string>
+    <string name="BackupsPreferenceFragment__turn_on">Ieslēgt rezerves kopijas</string>
     <string name="BackupsPreferenceFragment__turn_off">Izslēgt</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Lai atjaunotu rezerves kopiju, instalējiet Signal no jauna. Atveriet lietotni un pieskarieties “Atjaunot rezerves kopiju”, pēc tam norādiet rezerves kopijas failu. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Lasīt vairāk</string>
@@ -3971,16 +3971,16 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal var automātiski pārbaudīt šifrēšanu tikai tajās sarunās, kurās esat savienoti ar kādu personu, izmantojot tālruņa numuru. Ja saruna tika sākta ar kopīgu lietotājvārdu vai grupu, pārbaudiet pilnīgo šifrēšanu, salīdzinot iepriekšējā ekrānā redzamos ciparus vai skenējot kodu otras personas ierīcē.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify key encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal tagad var automātiski verificēt atslēgas šifrēšanu</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Signal automātiski pārbaudīs savienojuma drošību kontaktpersonām, kas pievienotas ar tālruņa numuru, izmantojot procesu, ko sauc par atslēgu caurskatāmību. Papildu drošībai savienojumus joprojām varat verificēt manuāli, izmantojot QR kodu vai numuru.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Uzzināt vairāk</string>
     <!-- Button to go to verification page -->
     <string name="VerifyAutomaticallyEducationSheet__verify">Verificēt</string>
 
     <!-- Title for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>
+    <string name="SelfVerificationFailureSheet__title">Automātiskā atslēgu verifikācija jūsu ierīcē pašlaik nav pieejama. Vai iesniegt atkļūdošanas žurnālu?</string>
     <!-- Body for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__body">Atkļūdošanas žurnāli palīdz mums diagnosticēt un novērst problēmu, un tie nesatur identificējošu informāciju.</string>
     <!-- Button to decline submitting logs -->
@@ -4374,7 +4374,7 @@
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Automātiskā atslēgas verifikācija</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">When enabled, Signal will attempt to automatically verify the encryption of 1:1 chats.</string>
+    <string name="preferences_automatic_key_verification_body">Pēc tās iespējošanas Signal mēģinās automātiski verificēt 1:1 sarunu šifrēšanu.</string>
 
 
     <string name="configurable_single_select__customize_option">Pielāgot opciju</string>
@@ -6124,7 +6124,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Pieprasījumi un uzaicinājumi</string>
     <string name="ConversationSettingsFragment__group_link">Grupas saite</string>
     <!-- Label for button that opens the group member label permissions screen. -->
-    <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
+    <string name="ConversationSettingsFragment__group_member_label">Lietotāja emblēma</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Pievienot kā kontaktpersonu</string>
     <string name="ConversationSettingsFragment__unmute">Ieslēgt</string>
@@ -8076,16 +8076,16 @@
     <string name="TurnOnSignalBackups__toast_not_now">Rezerves kopijas var iespējot sadaļā \"Iestatījumi\".</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
+    <string name="UseNewOnDeviceBackups__title">Izmantojiet jaunas rezerves kopijas atslēgas ierīcē</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
+    <string name="UseNewOnDeviceBackups__body">Ierīcē izveidotas rezerves kopijas tagad tiek saglabātas ātrāk un izmanto mazāk datu.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">Paaugstināt versiju</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">Ne tagad</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Lai atjaunotu rezerves kopiju, instalējiet Signal no jauna. Atveriet lietotni un pieskarieties pie \"Atjaunot rezerves kopiju\". Tad atlasiet rezerves kopijas failu."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Pārbaudiet savu atkopšanas atslēgu</string>
@@ -8311,9 +8311,9 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Rezerves kopijas atslēga ir atjaunināta</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
-    <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
+    <string name="OnDeviceBackupsFragment__directory_selected">Atlasītais direktorijs: %1$s</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8764,21 +8764,21 @@
 
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
-    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Ierīcē veikto rezerves kopiju uzlabojumi</string>
     <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Your on-device backup will be upgraded to a new format using a new recovery key</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Ierīcē veiktās rezerves kopijas tiks atjauninātas uz jaunu formātu, izmantojot jaunu atkopšanas atslēgu</string>
     <!-- Feature description explaining backups are faster and use less data -->
-    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Backups now save faster and use less data</string>
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Rezerves kopijas tagad tiek saglabātas ātrāk un izmanto mazāk datu</string>
     <!-- Feature description explaining backups will be saved as a folder with many files -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Your backup will be saved as a folder with many files</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Rezerves kopija tiks saglabāta kā mape ar vairākiem failiem</string>
     <!-- Feature description explaining backups remain end-to-end encrypted -->
-    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">All backups remain end-to-end encrypted</string>
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">Visas rezerves kopijas ir pilnībā šifrētas</string>
     <!-- Button text to continue to the next step -->
     <string name="OnDeviceBackupsImprovementsScreen__continue">Turpināt</string>
 
     <!-- OnDeviceBackupsSettingsScreen -->
     <!-- Card text prompting user to update to a new recovery key for faster backups -->
-    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Update to a new recovery key for faster backup saves</string>
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Atjauniniet uz jaunu atkopšanas atslēgu ātrākai rezerves kopiju saglabāšanai</string>
     <!-- Button text to update to a new recovery key -->
     <string name="OnDeviceBackupsSettingsScreen__update">Aktualizēt</string>
 
@@ -8839,7 +8839,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Atkopšanas atslēga</string>
     <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
-    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Your new recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Jūsu jaunā atkopšanas atslēga</string>
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
     <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Jūsu atkopšanas atslēga</string>
     <!-- Screen body part 1 -->
@@ -8851,19 +8851,19 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Šī atslēga aizstās ierīcē esošās rezerves kopijas atslēgu.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Šī atslēga ir tāda pati kā ierīces rezerves kopijas atslēga.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
-    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Izmantojiet šo atslēgu, lai:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restore your on-device backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">atjaunotu rezerves kopiju ierīcē.</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restore a Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Signal drošās rezerves kopijas atjaunošana</string>
     <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
-    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restore your Signal Secure Backup</string>
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">atjaunotu Signal drošo rezerves kopiju;</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Skatīt atkopšanas atslēgu</string>
 
@@ -8873,7 +8873,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Šī atslēga ir nepieciešama, lai atgūtu jūsu kontu un datus. Noglabājiet šo atslēgu drošā vietā. Ja to pazaudēsiet, nevarēsiet atgūt savu kontu.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">Šī atslēga ir tāda pati kā ierīces rezerves kopijas atslēga. Tā ir nepieciešama, lai atgūtu jūsu kontu un datus.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopēt starpliktuvē</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9474,19 +9474,19 @@
     <string name="PinnedMessage__check_connection">Pārbaudiet savienojumu un mēģiniet vēlreiz.</string>
 
     <!-- Group member label screen title. -->
-    <string name="GroupMemberLabel__title">Member label</string>
+    <string name="GroupMemberLabel__title">Lietotāja emblēma</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your role</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Pievienot savu lomu</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Priekšskatīt</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">Saglabāt</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
-    <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
+    <string name="GroupMemberLabel__accessibility_select_emoji">Atlasīt emocijzīmi</string>
     <!-- Accessibility label for the group member label close screen button. -->
-    <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
+    <string name="GroupMemberLabel__accessibility_close_screen">Aizvērt ekrānu</string>
     <!-- Accessibility label for the group member label text field clear button. -->
-    <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
+    <string name="GroupMemberLabel__accessibility_clear_label">Noņemt emblēmu</string>
 
     <!-- EOF -->
 </resources>

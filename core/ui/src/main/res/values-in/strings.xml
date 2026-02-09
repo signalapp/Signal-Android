@@ -4,5 +4,5 @@
     <!-- Button label to confirm and proceed with a permission request -->
     <string name="Permissions_continue">Lanjutkan</string>
     <!-- Button label to dismiss or defer a permission request -->
-    <string name="Permissions_not_now">Nanti saja</string>
+    <string name="Permissions_not_now">Lain kali</string>
 </resources>

@@ -4,5 +4,5 @@
     <!-- Button label to confirm and proceed with a permission request -->
     <string name="Permissions_continue">ရှေ့ဆက်ပါ</string>
     <!-- Button label to dismiss or defer a permission request -->
-    <string name="Permissions_not_now">အခုမဟုတ်သေးပါ။</string>
+    <string name="Permissions_not_now">အခုမဟုတ်သေးပါ</string>
 </resources>
