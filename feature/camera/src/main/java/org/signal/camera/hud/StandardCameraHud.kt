@@ -104,6 +104,7 @@ fun BoxScope.StandardCameraHud(
   modifier: Modifier = Modifier,
   maxRecordingDurationMs: Long = DEFAULT_MAX_RECORDING_DURATION_MS,
   mediaSelectionCount: Int = 0,
+  hasAudioPermission: () -> Boolean = { true },
   stringResources: StringResources = StringResources(0, 0)
 ) {
   val context = LocalContext.current
@@ -131,6 +132,7 @@ fun BoxScope.StandardCameraHud(
     modifier = modifier,
     maxRecordingDurationMs = maxRecordingDurationMs,
     mediaSelectionCount = mediaSelectionCount,
+    hasAudioPermission = hasAudioPermission,
     stringResources = stringResources
   )
 }
@@ -142,6 +144,7 @@ private fun BoxScope.StandardCameraHudContent(
   modifier: Modifier = Modifier,
   maxRecordingDurationMs: Long = DEFAULT_MAX_RECORDING_DURATION_MS,
   mediaSelectionCount: Int = 0,
+  hasAudioPermission: () -> Boolean = { true },
   stringResources: StringResources = StringResources()
 ) {
   val configuration = LocalConfiguration.current
@@ -177,6 +180,7 @@ private fun BoxScope.StandardCameraHudContent(
     },
     mediaSelectionCount = mediaSelectionCount,
     emitter = emitter,
+    hasAudioPermission = hasAudioPermission,
     stringResources = stringResources,
     modifier = modifier.align(if (isLandscape) Alignment.CenterEnd else Alignment.BottomCenter)
   )
@@ -209,6 +213,7 @@ private fun CameraControls(
   recordingProgress: Float,
   mediaSelectionCount: Int,
   emitter: (StandardCameraHudEvents) -> Unit,
+  hasAudioPermission: () -> Boolean,
   stringResources: StringResources,
   modifier: Modifier = Modifier
 ) {
@@ -229,7 +234,13 @@ private fun CameraControls(
       isRecording = isRecording,
       recordingProgress = recordingProgress,
       onTap = { emitter(StandardCameraHudEvents.PhotoCaptureTriggered) },
-      onLongPressStart = { emitter(StandardCameraHudEvents.VideoCaptureStarted) },
+      onLongPressStart = {
+        if (hasAudioPermission()) {
+          emitter(StandardCameraHudEvents.VideoCaptureStarted)
+        } else {
+          emitter(StandardCameraHudEvents.AudioPermissionRequired)
+        }
+      },
       onLongPressEnd = { emitter(StandardCameraHudEvents.VideoCaptureStopped) },
       onZoomChange = { emitter(StandardCameraHudEvents.SetZoomLevel(it)) }
     )

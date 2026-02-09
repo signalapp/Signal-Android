@@ -37,4 +37,9 @@ sealed interface StandardCameraHudEvents {
    * Emitted when a capture error should be cleared (after displaying to user).
    */
   data object ClearCaptureError : StandardCameraHudEvents
+
+  /**
+   * Emitted when the user attempts to start video recording but audio permission has not been granted.
+   */
+  data object AudioPermissionRequired : StandardCameraHudEvents
 }

@@ -147,6 +147,9 @@ fun MainScreen(
                 is StandardCameraHudEvents.MediaSelectionClick -> {
                   // Doesn't need to be handled
                 }
+                is StandardCameraHudEvents.AudioPermissionRequired -> {
+                  // Doesn't need to be handled
+                }
               }
             }
           )

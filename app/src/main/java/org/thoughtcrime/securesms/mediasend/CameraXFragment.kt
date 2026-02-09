@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mediasend
 import android.Manifest
 import android.content.Context
 import android.content.pm.ActivityInfo
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
@@ -139,6 +140,7 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
       selectedMediaCount = selectedMediaCount.intValue,
       onCheckPermissions = { checkPermissions(isVideoEnabled) },
       hasCameraPermission = { hasCameraPermission() },
+      onRequestMicPermission = { requestMicPermission() },
       createVideoFileDescriptor = { createVideoFileDescriptor() },
       getMaxVideoDurationInSeconds = { getMaxVideoDurationInSeconds() },
       cameraDisplay = CameraDisplay.getDisplay(requireActivity())
@@ -242,6 +244,16 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
     return Permissions.hasAll(requireContext(), Manifest.permission.CAMERA)
   }
 
+  private fun requestMicPermission() {
+    Permissions.with(this)
+      .request(Manifest.permission.RECORD_AUDIO)
+      .ifNecessary()
+      .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_microphone), getString(R.string.CameraXFragment_to_capture_videos_with_sound), R.drawable.ic_mic_24)
+      .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_recording_permissions_to_capture_video), null, R.string.CameraXFragment_allow_access_microphone, R.string.CameraXFragment_to_capture_videos, parentFragmentManager)
+      .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_microphone_access_video, Toast.LENGTH_LONG).show() }
+      .execute()
+  }
+
   private fun createVideoFileDescriptor(): ParcelFileDescriptor? {
     if (Build.VERSION.SDK_INT < 26) {
       throw IllegalStateException("Video capture requires API 26 or higher")
@@ -287,6 +299,7 @@ private fun CameraXScreen(
   selectedMediaCount: Int,
   onCheckPermissions: () -> Unit,
   hasCameraPermission: () -> Boolean,
+  onRequestMicPermission: () -> Unit,
   createVideoFileDescriptor: () -> ParcelFileDescriptor?,
   getMaxVideoDurationInSeconds: () -> Int,
   cameraDisplay: CameraDisplay,
@@ -400,6 +413,7 @@ private fun CameraXScreen(
               modifier = Modifier.padding(bottom = hudBottomPaddingInsideViewport),
               maxRecordingDurationMs = getMaxVideoDurationInSeconds() * 1000L,
               mediaSelectionCount = selectedMediaCount,
+              hasAudioPermission = { context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED },
               emitter = { event ->
                 handleHudEvent(
                   event = event,
@@ -407,6 +421,7 @@ private fun CameraXScreen(
                   cameraViewModel = cameraViewModel,
                   controller = controller,
                   isVideoEnabled = isVideoEnabled,
+                  onRequestMicPermission = onRequestMicPermission,
                   createVideoFileDescriptor = createVideoFileDescriptor
                 )
               },
@@ -470,6 +485,7 @@ private fun handleHudEvent(
   cameraViewModel: CameraScreenViewModel,
   controller: CameraFragment.Controller?,
   isVideoEnabled: Boolean,
+  onRequestMicPermission: () -> Unit,
   createVideoFileDescriptor: () -> ParcelFileDescriptor?
 ) {
   when (event) {
@@ -528,6 +544,10 @@ private fun handleHudEvent(
     is StandardCameraHudEvents.SetZoomLevel -> {
       cameraViewModel.onEvent(CameraScreenEvents.LinearZoom(event.zoomLevel))
     }
+
+    is StandardCameraHudEvents.AudioPermissionRequired -> {
+      onRequestMicPermission()
+    }
   }
 }
 
@@ -579,6 +599,7 @@ private fun CameraXScreenPreview_20_9() {
       selectedMediaCount = 0,
       onCheckPermissions = {},
       hasCameraPermission = { true },
+      onRequestMicPermission = { },
       createVideoFileDescriptor = { null },
       getMaxVideoDurationInSeconds = { 60 },
       cameraDisplay = CameraDisplay.DISPLAY_20_9,
@@ -604,6 +625,7 @@ private fun CameraXScreenPreview_19_9() {
       selectedMediaCount = 0,
       onCheckPermissions = {},
       hasCameraPermission = { true },
+      onRequestMicPermission = { },
       createVideoFileDescriptor = { null },
       getMaxVideoDurationInSeconds = { 60 },
       cameraDisplay = CameraDisplay.DISPLAY_19_9,
@@ -629,6 +651,7 @@ private fun CameraXScreenPreview_18_9() {
       selectedMediaCount = 0,
       onCheckPermissions = {},
       hasCameraPermission = { true },
+      onRequestMicPermission = { },
       createVideoFileDescriptor = { null },
       getMaxVideoDurationInSeconds = { 60 },
       cameraDisplay = CameraDisplay.DISPLAY_18_9,
@@ -654,6 +677,7 @@ private fun CameraXScreenPreview_16_9() {
       selectedMediaCount = 0,
       onCheckPermissions = {},
       hasCameraPermission = { true },
+      onRequestMicPermission = { },
       createVideoFileDescriptor = { null },
       getMaxVideoDurationInSeconds = { 60 },
       cameraDisplay = CameraDisplay.DISPLAY_16_9,
@@ -679,6 +703,7 @@ private fun CameraXScreenPreview_6_5() {
       selectedMediaCount = 0,
       onCheckPermissions = {},
       hasCameraPermission = { true },
+      onRequestMicPermission = { },
       createVideoFileDescriptor = { null },
       getMaxVideoDurationInSeconds = { 60 },
       cameraDisplay = CameraDisplay.DISPLAY_6_5,
