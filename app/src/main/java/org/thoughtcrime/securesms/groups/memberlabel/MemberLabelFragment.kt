@@ -131,6 +131,13 @@ private fun MemberLabelScreenUi(
         .padding(paddingValues)
         .fillMaxSize()
     ) {
+      Text(
+        text = stringResource(R.string.GroupMemberLabel__description),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(start = 24.dp, end = 24.dp, top = 8.dp, bottom = 24.dp)
+      )
+
       LabelTextField(
         labelEmoji = state.labelEmoji,
         labelText = state.labelText,
@@ -140,7 +147,7 @@ private fun MemberLabelScreenUi(
         onClear = callbacks::onClearLabelClicked,
         onSave = callbacks::onSaveClicked,
         modifier = Modifier
-          .padding(start = 24.dp, end = 24.dp, top = 8.dp, bottom = 40.dp)
+          .padding(horizontal = 24.dp)
           .focusRequester(focusRequester)
       )
 
