@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import org.signal.glide.compose.GlideImage
@@ -67,6 +68,7 @@ fun GalleryThumbnailButton(
     if (thumbnailUri != null) {
       GlideImage(
         model = thumbnailUri,
+        imageSize = DpSize(52.dp, 52.dp),
         scaleType = GlideImageScaleType.CENTER_CROP,
         modifier = Modifier
           .size(52.dp)
