@@ -10,6 +10,8 @@ import android.graphics.Matrix
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.view.OrientationEventListener
+import android.view.Surface
 import android.view.Window
 import android.view.WindowManager
 import androidx.camera.core.AspectRatio
@@ -76,6 +78,7 @@ class CameraScreenViewModel : ViewModel() {
   private var recording: Recording? = null
   private var brightnessBeforeFlash: Float = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
   private var brightnessWindow: WeakReference<Window>? = null
+  private var orientationListener: OrientationEventListener? = null
 
   private val _qrCodeDetected = MutableSharedFlow<String>(extraBufferCapacity = 1)
   
@@ -317,6 +320,8 @@ class CameraScreenViewModel : ViewModel() {
   override fun onCleared() {
     super.onCleared()
     stopRecording()
+    orientationListener?.disable()
+    orientationListener = null
   }
 
   private fun handleBindCameraEvent(
@@ -384,9 +389,31 @@ class CameraScreenViewModel : ViewModel() {
       cameraProvider = event.cameraProvider
       imageCapture = imageCaptureUseCase
       videoCapture = videoCaptureUseCase
+
+      setupOrientationListener(event.context)
     } catch (e: Exception) {
       Log.e(TAG, "Use case binding failed", e)
     }
+  }
+
+  private fun setupOrientationListener(context: Context) {
+    orientationListener?.disable()
+
+    orientationListener = object : OrientationEventListener(context) {
+      override fun onOrientationChanged(orientation: Int) {
+        if (orientation == ORIENTATION_UNKNOWN) return
+
+        val targetRotation = when {
+          orientation > 315 || orientation < 45 -> Surface.ROTATION_0
+          orientation < 135 -> Surface.ROTATION_270
+          orientation < 225 -> Surface.ROTATION_180
+          else -> Surface.ROTATION_90
+        }
+
+        imageCapture?.targetRotation = targetRotation
+        videoCapture?.targetRotation = targetRotation
+      }
+    }.also { it.enable() }
   }
 
   private fun handleTapToFocusEvent(
