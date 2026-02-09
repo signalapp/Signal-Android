@@ -2104,6 +2104,7 @@ class ConversationFragment :
     val keyboardMode: TextSecurePreferences.MediaKeyboardMode = TextSecurePreferences.getMediaKeyboardMode(requireContext())
     val stickerIntro: Boolean = !TextSecurePreferences.hasSeenStickerIntroTooltip(requireContext())
 
+    keyboardPagerViewModel.resetPages()
     inputPanel.showMediaKeyboardToggle(true)
 
     val keyboardPage = when (keyboardMode) {
