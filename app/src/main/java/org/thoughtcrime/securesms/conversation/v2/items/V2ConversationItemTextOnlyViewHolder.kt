@@ -241,7 +241,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     }
 
     if (ConversationAdapterBridge.PAYLOAD_NAME_COLORS in payload) {
-      presentSenderNameColor()
+      presentSender()
       hasProcessedSupportedPayload = true
     }
 
@@ -263,8 +263,6 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     presentFooterEndPadding()
     presentAlert()
     presentSender()
-    presentSenderNameColor()
-    presentSenderNameBackground()
     presentReactions()
 
     bodyBubbleDrawable.setCorners(shapeDelegate.cornersLTR)
@@ -547,42 +545,26 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     }
   }
 
-  private fun presentSenderNameBackground() {
-    if (binding.senderName == null || !shape.isStartingShape || !conversationMessage.threadRecipient.isGroup || !conversationMessage.messageRecord.hasNoBubble(context)) {
-      return
-    }
-
-    if (conversationContext.hasWallpaper()) {
-      senderDrawable.setCorners(footerCorners)
-      senderDrawable.setLocalChatColors(ChatColors.forColor(ChatColors.Id.BuiltIn, themeDelegate.getFooterBubbleColor(conversationMessage)))
-
-      binding.senderName.background = senderDrawable
+  private fun presentSender() {
+    if (conversationMessage.threadRecipient.isGroup) {
+      presentSenderPhoto()
+      presentSenderBadge()
+      presentSenderNameWithLabel()
     } else {
-      binding.senderName.background = null
+      binding.senderPhoto?.visible = false
+      binding.senderBadge?.visible = false
+      binding.senderNameWithLabel?.visible = false
     }
   }
 
-  private fun presentSender() {
-    if (binding.senderName == null || binding.senderPhoto == null || binding.senderBadge == null) {
-      return
-    }
+  private fun presentSenderPhoto() {
+    val photoView = binding.senderPhoto ?: return
 
-    if (conversationMessage.threadRecipient.isGroup) {
-      val sender = conversationMessage.messageRecord.fromRecipient
+    photoView.apply {
+      visibility = if (shape.isEndingShape) View.VISIBLE else View.INVISIBLE
+      setAvatar(conversationContext.requestManager, conversationMessage.messageRecord.fromRecipient, false)
 
-      binding.senderPhoto.visibility = if (shape.isEndingShape) {
-        View.VISIBLE
-      } else {
-        View.INVISIBLE
-      }
-
-      binding.senderName.visible = shape.isStartingShape
-      binding.senderBadge.visible = shape.isEndingShape
-
-      binding.senderName.text = sender.getDisplayName(context)
-      binding.senderPhoto.setAvatar(conversationContext.requestManager, sender, false)
-      binding.senderBadge.setBadgeFromRecipient(sender, conversationContext.requestManager)
-      binding.senderPhoto.setOnClickListener {
+      setOnClickListener {
         if (conversationContext.selectedItems.isEmpty()) {
           conversationContext.clickListener.onGroupMemberClicked(
             conversationMessage.messageRecord.fromRecipient.id,
@@ -592,20 +574,56 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
           conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
         }
       }
-    } else {
-      binding.senderName.visible = false
-      binding.senderPhoto.visible = false
-      binding.senderBadge.visible = false
     }
   }
 
-  private fun presentSenderNameColor() {
-    if (binding.senderName == null || !conversationMessage.threadRecipient.isGroup) {
+  private fun presentSenderBadge() {
+    val badgeView = binding.senderBadge ?: return
+
+    badgeView.apply {
+      visible = shape.isEndingShape
+      setBadgeFromRecipient(conversationMessage.messageRecord.fromRecipient, conversationContext.requestManager)
+    }
+  }
+
+  private fun presentSenderNameWithLabel() {
+    val nameWithLabelView = binding.senderNameWithLabel ?: return
+
+    if (!shape.isStartingShape) {
+      nameWithLabelView.visible = false
+
+      binding.body.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+        topMargin = context.resources.getDimensionPixelSize(R.dimen.message_bubble_top_padding)
+      }
       return
     }
 
     val sender = conversationMessage.messageRecord.fromRecipient
-    binding.senderName.setTextColor(conversationContext.getColorizer().getIncomingGroupSenderColor(context, sender))
+    val tintColor = conversationContext.getColorizer().getIncomingGroupSenderColor(context, sender)
+
+    nameWithLabelView.apply {
+      setSender(sender.getDisplayName(context), tintColor)
+      setLabel(conversationMessage.memberLabel)
+      visible = true
+    }
+
+    binding.body.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+      topMargin = 0
+    }
+
+    presentSenderNameBackground()
+  }
+
+  private fun presentSenderNameBackground() {
+    val nameWithLabelView = binding.senderNameWithLabel ?: return
+
+    if (shape.isStartingShape && conversationMessage.messageRecord.hasNoBubble(context) && conversationContext.hasWallpaper()) {
+      senderDrawable.setCorners(footerCorners)
+      senderDrawable.setLocalChatColors(ChatColors.forColor(ChatColors.Id.BuiltIn, themeDelegate.getFooterBubbleColor(conversationMessage)))
+      nameWithLabelView.background = senderDrawable
+    } else {
+      nameWithLabelView.background = null
+    }
   }
 
   private fun presentAlert() {
@@ -795,15 +813,19 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       conversationContext.selectedItems.isNotEmpty() -> {
         conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
       }
+
       messageRecord.isFailed -> {
         conversationContext.clickListener.onMessageWithErrorClicked(messageRecord)
       }
+
       messageRecord.isRateLimited && SignalStore.rateLimit.needsRecaptcha() -> {
         conversationContext.clickListener.onMessageWithRecaptchaNeededClicked(messageRecord)
       }
+
       messageRecord.isOutgoing && messageRecord.isIdentityMismatchFailure -> {
         conversationContext.clickListener.onIncomingIdentityMismatchClicked(messageRecord.fromRecipient.id)
       }
+
       else -> {
         conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
       }

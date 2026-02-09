@@ -72,22 +72,15 @@
         app:layout_goneMarginStart="16dp"
         tools:background="@color/black">
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-            android:id="@+id/group_message_sender"
-            style="@style/TextAppearance.Signal.Subtitle"
+        <org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView
+            android:id="@+id/group_sender_name_with_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="4sp"
-            android:layout_marginBottom="-6dp"
-            android:ellipsize="end"
-            android:maxLines="1"
+            android:layout_marginTop="@dimen/message_bubble_top_padding"
             android:paddingStart="@dimen/message_bubble_horizontal_padding"
             android:paddingEnd="@dimen/message_bubble_horizontal_padding"
-            android:textColor="@color/signal_text_primary"
-            android:textStyle="bold"
-            tools:text="+14152222222"
-            tools:visibility="gone" />
+            android:visibility="gone"
+            tools:visibility="visible" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/conversation_item_body"

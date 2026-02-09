@@ -41,7 +41,7 @@
         android:layout_alignEnd="@id/body_bubble"
         android:layout_alignTop="@id/body_bubble"
         android:layout_alignBottom="@id/body_bubble"
-        android:layout_marginEnd="-42dp" >
+        android:layout_marginEnd="-42dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/go_to_pinned_indicator"
@@ -100,32 +100,15 @@
         android:orientation="vertical"
         tools:backgroundTint="@color/conversation_blue">
 
-        <LinearLayout
-            android:id="@+id/group_sender_holder"
+        <org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView
+            android:id="@+id/group_sender_name_with_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:layout_marginBottom="-6dp"
-            android:orientation="horizontal"
             android:paddingStart="@dimen/message_bubble_horizontal_padding"
             android:paddingEnd="@dimen/message_bubble_horizontal_padding"
             android:visibility="gone"
-            tools:visibility="visible">
-
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-                android:id="@+id/group_message_sender"
-                style="@style/TextAppearance.Signal.Subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4sp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@color/signal_text_primary"
-                android:textStyle="bold"
-                tools:text="+14152222222"
-                tools:visibility="visible" />
-
-        </LinearLayout>
+            tools:visibility="visible" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/conversation_item_body"
