@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.OneTimeEven
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.QrCodeState
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.notifications.NotificationIds
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.link.TransferArchiveError
@@ -39,7 +40,7 @@ class LinkDeviceViewModel : ViewModel() {
     val TAG = Log.tag(LinkDeviceViewModel::class)
   }
 
-  private val _state = MutableStateFlow(LinkDeviceSettingsState())
+  private val _state = MutableStateFlow(LinkDeviceSettingsState(isInternalUser = RemoteConfig.internalUser))
   val state = _state.asStateFlow()
   private val submitDebugLogRepository: SubmitDebugLogRepository = SubmitDebugLogRepository()
 

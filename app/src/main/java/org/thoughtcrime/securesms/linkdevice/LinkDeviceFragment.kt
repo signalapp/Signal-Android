@@ -448,7 +448,7 @@ fun DeviceListScreen(
         )
       } else {
         state.devices.forEach { device ->
-          DeviceRow(device, onDeviceSelectedForRemoval, onEditDevice)
+          DeviceRow(device, state.isInternalUser, onDeviceSelectedForRemoval, onEditDevice)
         }
       }
     }
@@ -492,7 +492,7 @@ fun DeviceListScreen(
 }
 
 @Composable
-fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit, onEditDevice: (Device) -> Unit) {
+fun DeviceRow(device: Device, isInternalUser: Boolean, setDeviceToRemove: (Device) -> Unit, onEditDevice: (Device) -> Unit) {
   val titleString = if (device.name.isNullOrEmpty()) stringResource(R.string.DeviceListItem_unnamed_device) else device.name
   val linkedDate = device.createdMillis?.let { DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.createdMillis) }
   val lastActive = DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.lastSeenMillis)
@@ -523,6 +523,9 @@ fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit, onEditDevice:
         .weight(1f)
     ) {
       Text(text = titleString, style = MaterialTheme.typography.bodyLarge)
+      if (isInternalUser) {
+        Text("[Internal] DeviceId: ${device.id}", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+      }
       if (linkedDate != null) {
         Text(stringResource(R.string.DeviceListItem_linked_s, linkedDate), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
       }
