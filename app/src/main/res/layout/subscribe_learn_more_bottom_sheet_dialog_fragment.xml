@@ -62,6 +62,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
+                app:drawableTint="@color/signal_colorOnSurface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_headline" />
@@ -78,6 +79,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
+                app:drawableTint="@color/signal_colorOnSurface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_donate_badge" />
@@ -95,6 +97,7 @@
                 android:paddingBottom="36dp"
                 android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
+                app:drawableTint="@color/signal_colorOnSurface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_privacy_mission" />
