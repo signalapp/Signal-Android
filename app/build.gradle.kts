@@ -456,6 +456,7 @@ android {
     ignoreWarnings = true
     quiet = true
     disable += "LintError"
+    lintConfig = rootProject.file("lint.xml")
   }
 
   androidComponents {

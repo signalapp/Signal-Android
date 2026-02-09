@@ -43,7 +43,7 @@ class SpinnerTestSqliteOpenHelper(context: Context) : SQLiteOpenHelper(context, 
     }
 
   override fun compileStatement(sql: String): SupportSQLiteStatement {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override fun beginTransaction() {
@@ -96,11 +96,11 @@ class SpinnerTestSqliteOpenHelper(context: Context) : SQLiteOpenHelper(context, 
   }
 
   override fun query(query: SupportSQLiteQuery): Cursor {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override fun query(query: SupportSQLiteQuery, cancellationSignal: CancellationSignal?): Cursor {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override fun insert(table: String, conflictAlgorithm: Int, values: ContentValues): Long {

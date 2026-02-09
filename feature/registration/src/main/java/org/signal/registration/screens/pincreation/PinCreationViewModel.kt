@@ -72,7 +72,8 @@ class PinCreationViewModel(
         )
       }
       is PinCreationScreenEvents.LearnMore -> {
-        TODO("Show learn more dialog or navigate to help screen")
+        // TODO [registration] - Show learn more dialog or navigate to help screen
+        throw NotImplementedError("Show learn more dialog or navigate to help screen")
       }
     }
   }
@@ -104,7 +105,8 @@ class PinCreationViewModel(
         when (result.error) {
           is NetworkController.BackupMasterKeyError.EnclaveNotFound -> {
             Log.w(TAG, "[PinSubmitted] SVR enclave not found.")
-            TODO("Report to UI and indicate to library user that pin could not be created")
+            // TODO [registration] - Report to UI and indicate to library user that pin could not be created
+            throw NotImplementedError("Report to UI and indicate to library user that pin could not be created")
           }
           is NetworkController.BackupMasterKeyError.NotRegistered -> {
             Log.w(TAG, "[PinSubmitted] Account not registered. This should not happen. Resetting.")
@@ -115,11 +117,13 @@ class PinCreationViewModel(
       }
       is NetworkController.RegistrationNetworkResult.NetworkError -> {
         Log.w(TAG, "[PinSubmitted] Network error when backing up master key.", result.exception)
-        TODO("Report to UI and indicate to library user that pin could not be created")
+        // TODO [registration] - Report to UI and indicate to library user that pin could not be created
+        throw NotImplementedError("Report to UI and indicate to library user that pin could not be created")
       }
       is NetworkController.RegistrationNetworkResult.ApplicationError -> {
         Log.w(TAG, "[PinSubmitted] Application error when backing up master key.", result.exception)
-        TODO("Report to UI and indicate to library user that pin could not be created")
+        // TODO [registration] - Report to UI and indicate to library user that pin could not be created
+        throw NotImplementedError("Report to UI and indicate to library user that pin could not be created")
       }
     }
   }

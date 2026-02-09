@@ -273,7 +273,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Country Code Picker
   entry<RegistrationRoute.CountryCodePicker> {
     // We'll also want this to be some sort of launch-for-result flow as well
-    TODO()
+    // TODO [registration] - display country code picker
+    throw NotImplementedError("Country Code Picker not implemented")
   }
 
   // -- Captcha Screen

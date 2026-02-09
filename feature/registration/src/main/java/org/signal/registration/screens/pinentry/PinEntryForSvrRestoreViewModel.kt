@@ -146,7 +146,8 @@ class PinEntryForSvrRestoreViewModel(
   }
 
   private fun handleSkip() {
-    TODO("Handle skip")
+    // TODO [registration] - Handle skip
+    throw NotImplementedError("Handle skip")
   }
 
   class Factory(

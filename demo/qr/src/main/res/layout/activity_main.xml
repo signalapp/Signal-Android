@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="HardcodedText" >
 
     <Button
         android:id="@+id/camera_switch"

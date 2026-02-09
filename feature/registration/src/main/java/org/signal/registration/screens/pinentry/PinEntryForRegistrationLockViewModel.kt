@@ -147,7 +147,8 @@ class PinEntryForRegistrationLockViewModel(
         when (registerResult.error) {
           is NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified -> {
             Log.w(TAG, "[PinEntered] Session not found or verified: ${registerResult.error.message}")
-            TODO()
+            // TODO [registration] - Handle session not found or verified.
+            throw NotImplementedError("Handle session not found or verified")
           }
           is NetworkController.RegisterAccountError.RegistrationLock -> {
             Log.w(TAG, "[PinEntered] Still getting registration lock error after providing token. This shouldn't happen. Resetting state.")
@@ -168,7 +169,8 @@ class PinEntryForRegistrationLockViewModel(
           }
           is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
             Log.w(TAG, "[PinEntered] Registration recovery password incorrect: ${registerResult.error.message}")
-            TODO()
+            // TODO [registration] - Handle incorrect password
+            throw NotImplementedError("Handle incorrect password")
           }
         }
       }
@@ -185,7 +187,7 @@ class PinEntryForRegistrationLockViewModel(
 
   private fun handleSkip() {
     Log.d(TAG, "Skip requested - this will result in account data loss after timeRemaining: $timeRemaining ms")
-    // TODO: Show confirmation dialog warning about data loss, then proceed without PIN
+    // TODO [registration] - Show confirmation dialog warning about data loss, then proceed without PIN
   }
 
   class Factory(

@@ -388,7 +388,8 @@ class PhoneNumberEntryViewModel(
             state
           }
           is NetworkController.RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified -> {
-            TODO()
+            // TODO [registration] - Error handling not implemented
+            throw NotImplementedError()
           }
           is NetworkController.RequestVerificationCodeError.SessionNotFound -> {
             parentEventEmitter(RegistrationFlowEvent.ResetState)

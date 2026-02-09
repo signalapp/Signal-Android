@@ -30,11 +30,11 @@ private class PreviewNewtorkController : NetworkController {
     mcc: String?,
     mnc: String?
   ): NetworkController.RegistrationNetworkResult<NetworkController.SessionMetadata, NetworkController.CreateSessionError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun getSession(sessionId: String): NetworkController.RegistrationNetworkResult<NetworkController.SessionMetadata, NetworkController.GetSessionStatusError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun updateSession(
@@ -42,7 +42,7 @@ private class PreviewNewtorkController : NetworkController {
     pushChallengeToken: String?,
     captchaToken: String?
   ): NetworkController.RegistrationNetworkResult<NetworkController.SessionMetadata, NetworkController.UpdateSessionError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun requestVerificationCode(
@@ -51,14 +51,14 @@ private class PreviewNewtorkController : NetworkController {
     androidSmsRetrieverSupported: Boolean,
     transport: NetworkController.VerificationCodeTransport
   ): NetworkController.RegistrationNetworkResult<NetworkController.SessionMetadata, NetworkController.RequestVerificationCodeError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun submitVerificationCode(
     sessionId: String,
     verificationCode: String
   ): NetworkController.RegistrationNetworkResult<NetworkController.SessionMetadata, NetworkController.SubmitVerificationCodeError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun registerAccount(
@@ -72,74 +72,74 @@ private class PreviewNewtorkController : NetworkController {
     fcmToken: String?,
     skipDeviceTransfer: Boolean
   ): NetworkController.RegistrationNetworkResult<NetworkController.RegisterAccountResponse, NetworkController.RegisterAccountError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun getFcmToken(): String? {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun awaitPushChallengeToken(): String? {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override fun getCaptchaUrl(): String {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun restoreMasterKeyFromSvr(
     svr2Credentials: NetworkController.SvrCredentials,
     pin: String
   ): NetworkController.RegistrationNetworkResult<NetworkController.MasterKeyResponse, NetworkController.RestoreMasterKeyError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun setPinAndMasterKeyOnSvr(
     pin: String,
     masterKey: MasterKey
   ): NetworkController.RegistrationNetworkResult<Unit, NetworkController.BackupMasterKeyError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun enableRegistrationLock(): NetworkController.RegistrationNetworkResult<Unit, NetworkController.SetRegistrationLockError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun disableRegistrationLock(): NetworkController.RegistrationNetworkResult<Unit, NetworkController.SetRegistrationLockError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun getSvrCredentials(): NetworkController.RegistrationNetworkResult<NetworkController.SvrCredentials, NetworkController.GetSvrCredentialsError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun setAccountAttributes(attributes: NetworkController.AccountAttributes): NetworkController.RegistrationNetworkResult<Unit, NetworkController.SetAccountAttributesError> {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 }
 
 private class PreviewStorageController : StorageController {
   override suspend fun generateAndStoreKeyMaterial(): KeyMaterial {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun saveNewRegistrationData(newRegistrationData: NewRegistrationData) {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun getPreExistingRegistrationData(): PreExistingRegistrationData? {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun saveValidatedPinAndTemporaryMasterKey(pin: String, isAlphanumeric: Boolean, masterKey: MasterKey, registrationLockEnabled: Boolean) {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun saveNewlyCreatedPin(pin: String, isAlphanumeric: Boolean) {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override suspend fun clearAllData() {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 }

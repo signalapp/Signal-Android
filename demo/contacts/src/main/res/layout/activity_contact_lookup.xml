@@ -21,7 +21,8 @@
       android:layout_height="wrap_content"
       android:text="Lookup"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent"/>
+      app:layout_constraintTop_toTopOf="parent"
+      tools:ignore="HardcodedText" />
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/list"

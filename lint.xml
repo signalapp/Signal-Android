@@ -22,7 +22,9 @@
 
     <issue id="CanvasSize" severity="error" />
     <issue id="HardcodedText" severity="error" />
-    <issue id="VectorRaster" severity="error" />
+    <issue id="VectorRaster" severity="error">
+        <ignore path="*/donate_with_googlepay_button_content.xml" /> <!-- Externally provided by Google -->
+    </issue>
     <issue id="ButtonOrder" severity="error" />
     <issue id="ExtraTranslation" severity="warning" />
     <issue id="UnspecifiedImmutableFlag" severity="error" />

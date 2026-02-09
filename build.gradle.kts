@@ -135,18 +135,17 @@ tasks.register("checkStopship") {
   doLast {
     val excludedFiles = listOf(
       "build.gradle.kts",
-      "app/lint.xml"
+      "lint.xml"
     )
 
     val excludedDirectories = listOf(
-      "app/build",
-      "libsignal-service/build",
       ".idea"
     )
 
     val allowedExtensions = setOf("kt", "kts", "java", "xml")
 
     val allFiles = cachedProjectDir.walkTopDown()
+      .onEnter { it.name != "build" || it.relativeTo(cachedProjectDir).path.contains("src") }
       .asSequence()
       .filter { it.isFile && it.extension in allowedExtensions }
       .filterNot {

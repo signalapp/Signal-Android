@@ -30,15 +30,15 @@ class AssetTemplateLoader(private val context: Context) : TemplateLoader {
   }
 
   override fun setPrefix(prefix: String) {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override fun setSuffix(suffix: String) {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override fun setCharset(charset: Charset?) {
-    TODO("Not yet implemented")
+    throw NotImplementedError()
   }
 
   override fun getCharset(): Charset {
