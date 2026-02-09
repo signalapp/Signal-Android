@@ -5,6 +5,7 @@ import android.media.MediaCodecInfo;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.Surface;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,8 @@ final class VideoTrackConverter {
     private static final String MEDIA_FORMAT_KEY_DISPLAY_HEIGHT = "display-height";
 
     private static final float FRAME_RATE_TOLERANCE = 0.05f; // tolerance for transcoding VFR -> CFR
+
+    private static final String VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY = "vendor.dolby.codec.transfer.value";
 
     private final long mTimeFrom;
     private final long mTimeTo;
@@ -156,26 +159,11 @@ final class VideoTrackConverter {
 
         // Set some properties. Failing to specify some of these can cause the MediaCodec
         // configure() call to throw an unhelpful exception.
-
-        // Apply extracted color info to encoder
-        if (colorInfo.colorStandard != null) {
-            outputVideoFormat.setInteger(MediaFormat.KEY_COLOR_STANDARD, colorInfo.colorStandard);
-        }
-        if (colorInfo.colorTransfer != null) {
-            outputVideoFormat.setInteger(MediaFormat.KEY_COLOR_TRANSFER, colorInfo.colorTransfer);
-        }
-        if (colorInfo.colorRange != null) {
-            outputVideoFormat.setInteger(MediaFormat.KEY_COLOR_RANGE, colorInfo.colorRange);
-        }
-
         outputVideoFormat.setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface);
         outputVideoFormat.setInteger(MediaFormat.KEY_BIT_RATE, videoBitrate);
         outputVideoFormat.setInteger(MediaFormat.KEY_BITRATE_MODE, MediaCodecInfo.EncoderCapabilities.BITRATE_MODE_CBR);
         outputVideoFormat.setInteger(MediaFormat.KEY_FRAME_RATE, OUTPUT_VIDEO_FRAME_RATE);
         outputVideoFormat.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, OUTPUT_VIDEO_IFRAME_INTERVAL);
-        if (Build.VERSION.SDK_INT >= 31 && isHdr(inputVideoFormat)) {
-            outputVideoFormat.setInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST, MediaFormat.COLOR_TRANSFER_SDR_VIDEO);
-        }
         if (VERBOSE) Log.d(TAG, "video format: " + outputVideoFormat);
 
         // Create a MediaCodec for the desired codec, then configure it as an encoder with
@@ -573,6 +561,19 @@ final class VideoTrackConverter {
             final @NonNull Surface surface) {
         final Pair<MediaCodec, MediaFormat> decoderPair = MediaCodecCompat.findDecoder(inputFormat);
         final MediaCodec                    decoder     = decoderPair.getFirst();
+
+        // Try to use the Dolby Vision decoder, but if it doesn't support the transfer parameter, the decoded video buffer
+        // is HLG and in-app tone mapping has to be used instead
+        if (Build.VERSION.SDK_INT >= 31) {
+          MediaCodec.ParameterDescriptor descriptor = decoder.getParameterDescriptor(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY);
+          if (descriptor != null) {
+            Bundle transferBundle = new Bundle();
+            transferBundle.putString(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY, "transfer.sdr.normal");
+            decoder.setParameters(transferBundle);
+          } else {
+            decoderPair.getSecond().setInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST, MediaFormat.COLOR_TRANSFER_SDR_VIDEO);
+          }
+        }
         decoder.configure(decoderPair.getSecond(), surface, null, 0);
         decoder.start();
         return decoder;
