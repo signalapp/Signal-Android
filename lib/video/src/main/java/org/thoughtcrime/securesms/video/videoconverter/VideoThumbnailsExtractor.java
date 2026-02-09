@@ -5,6 +5,8 @@ import android.media.MediaCodec;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.opengl.GLES20;
+import android.os.Build;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -86,6 +88,17 @@ final class VideoThumbnailsExtractor {
         outputSurface = new OutputSurface(outputWidthRotated, outputHeightRotated, true);
 
         decoder = MediaCodec.createDecoderByType(mime);
+        if (Build.VERSION.SDK_INT >= 31) {
+          final String VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY = "vendor.dolby.codec.transfer.value";
+          MediaCodec.ParameterDescriptor descriptor = decoder.getParameterDescriptor(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY);
+          if (descriptor != null) {
+            Bundle transferBundle = new Bundle();
+            transferBundle.putString(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY, "transfer.sdr.normal");
+            decoder.setParameters(transferBundle);
+          } else {
+            mediaFormat.setInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST, MediaFormat.COLOR_TRANSFER_SDR_VIDEO);
+          }
+        }
         decoder.configure(mediaFormat, outputSurface.getSurface(), null, 0);
         decoder.start();
 
