@@ -194,7 +194,8 @@ private fun LabelTextField(
       imeAction = ImeAction.Done
     ),
     keyboardActions = KeyboardActions(onDone = { onSave() }),
-    charactersRemaining = remainingCharacters,
+    hasClearableContent = { labelText.isNotEmpty() || !labelEmoji.isNullOrEmpty() },
+    charactersRemainingBeforeLimit = remainingCharacters,
     countdownConfig = ClearableTextField.CountdownConfig(displayThreshold = 9, warnThreshold = 5),
     colors = TextFieldDefaults.colors(
       unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,

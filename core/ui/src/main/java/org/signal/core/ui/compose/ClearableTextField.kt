@@ -6,7 +6,8 @@
 package org.signal.core.ui.compose
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.Box
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -68,6 +69,7 @@ fun ClearableTextField(
   singleLine: Boolean = false,
   clearable: Boolean = true,
   onClear: () -> Unit = { onValueChange("") },
+  hasClearableContent: () -> Boolean = { value.isNotEmpty() },
   charactersRemainingBeforeLimit: Int = Int.MAX_VALUE,
   countdownConfig: ClearableTextField.CountdownConfig? = null,
   colors: TextFieldColors = defaultTextFieldColors()
@@ -86,7 +88,8 @@ fun ClearableTextField(
     singleLine = singleLine,
     clearable = clearable,
     onClear = onClear,
-    charactersRemaining = charactersRemainingBeforeLimit,
+    hasClearableContent = hasClearableContent,
+    charactersRemainingBeforeLimit = charactersRemainingBeforeLimit,
     countdownConfig = countdownConfig,
     colors = colors
   )
@@ -113,22 +116,23 @@ fun ClearableTextField(
   singleLine: Boolean = false,
   clearable: Boolean = true,
   onClear: () -> Unit = { onValueChange("") },
-  charactersRemaining: Int = Int.MAX_VALUE,
+  hasClearableContent: () -> Boolean = { value.isNotEmpty() },
+  charactersRemainingBeforeLimit: Int = Int.MAX_VALUE,
   countdownConfig: ClearableTextField.CountdownConfig? = null,
   colors: TextFieldColors = defaultTextFieldColors()
 ) {
   var focused by remember { mutableStateOf(false) }
-  val displayCountdown = countdownConfig != null && charactersRemaining <= countdownConfig.displayThreshold
+  val displayCountdown = countdownConfig != null && charactersRemainingBeforeLimit <= countdownConfig.displayThreshold
 
   val clearButton: @Composable () -> Unit = {
     ClearButton(
-      visible = focused,
+      visible = focused && hasClearableContent(),
       onClick = onClear,
       contentDescription = clearContentDescription
     )
   }
 
-  Box(modifier = modifier) {
+  Column(modifier = modifier) {
     TextFields.TextField(
       value = value,
       onValueChange = onValueChange,
@@ -144,25 +148,19 @@ fun ClearableTextField(
         .onFocusChanged { focused = it.hasFocus && clearable },
       colors = colors,
       leadingIcon = leadingIcon,
-      trailingIcon = if (clearable) clearButton else null,
-      contentPadding = if (label == null) {
-        TextFieldDefaults.contentPaddingWithoutLabel(end = if (displayCountdown) 48.dp else 16.dp)
-      } else {
-        TextFieldDefaults.contentPaddingWithLabel(end = if (displayCountdown) 48.dp else 16.dp)
-      }
+      trailingIcon = if (clearable) clearButton else null
     )
 
     AnimatedVisibility(
       visible = displayCountdown,
-      modifier = Modifier
-        .align(Alignment.BottomEnd)
-        .padding(bottom = 10.dp, end = 12.dp)
+      modifier = Modifier.align(Alignment.End)
     ) {
-      val errorThresholdExceeded = countdownConfig != null && charactersRemaining <= countdownConfig.warnThreshold
+      val errorThresholdExceeded = countdownConfig != null && charactersRemainingBeforeLimit <= countdownConfig.warnThreshold
       Text(
-        text = "$charactersRemaining",
+        text = "$charactersRemainingBeforeLimit",
         style = MaterialTheme.typography.bodySmall,
-        color = if (errorThresholdExceeded) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outline
+        color = if (errorThresholdExceeded) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outline,
+        modifier = Modifier.padding(top = 4.dp, end = 16.dp)
       )
     }
   }
@@ -174,7 +172,11 @@ private fun ClearButton(
   onClick: () -> Unit,
   contentDescription: String
 ) {
-  AnimatedVisibility(visible = visible) {
+  AnimatedVisibility(
+    visible = visible,
+    enter = fadeIn(),
+    exit = fadeOut()
+  ) {
     IconButton(
       onClick = onClick
     ) {
@@ -261,14 +263,21 @@ private fun ClearableTextFieldCharacterCountPreview() {
 
       Spacer(modifier = Modifier.size(16.dp))
 
+      val focusRequester = remember { FocusRequester() }
+
       ClearableTextField(
         value = "Very long text showing the character count warning state",
         onValueChange = {},
         hint = "countdown warning",
         clearContentDescription = "Clear",
         charactersRemainingBeforeLimit = 8,
-        countdownConfig = countdownConfig
+        countdownConfig = countdownConfig,
+        modifier = Modifier.focusRequester(focusRequester)
       )
+
+      LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+      }
 
       Spacer(modifier = Modifier.size(16.dp))
 
