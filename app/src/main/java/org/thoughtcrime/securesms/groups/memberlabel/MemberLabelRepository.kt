@@ -60,6 +60,27 @@ class MemberLabelRepository private constructor(
   }
 
   /**
+   * Gets member labels for a list of recipients in a group.
+   *
+   * Returns a map of [RecipientId] to [MemberLabel] for members that have labels.
+   */
+  suspend fun getLabels(groupId: GroupId.V2, recipients: List<Recipient>): Map<RecipientId, MemberLabel> = withContext(Dispatchers.IO) {
+    if (!RemoteConfig.receiveMemberLabels) {
+      return@withContext emptyMap()
+    }
+
+    val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext emptyMap()
+    val labelsByAci = groupRecord.requireV2GroupProperties().memberLabelsByAci()
+
+    buildMap {
+      recipients.forEach { recipient ->
+        val aci = recipient.serviceId.orNull() as? ServiceId.ACI
+        labelsByAci[aci]?.let { label -> put(recipient.id, label) }
+      }
+    }
+  }
+
+  /**
    * Sets the group member label for the current user.
    */
   suspend fun setLabel(groupId: GroupId.V2, label: MemberLabel): Unit = withContext(Dispatchers.IO) {
@@ -70,11 +91,3 @@ class MemberLabelRepository private constructor(
     GroupManager.updateMemberLabel(context, groupId, label.text, label.emoji.orEmpty())
   }
 }
-
-/**
- * A member's custom label within a group.
- */
-data class MemberLabel(
-  val emoji: String?,
-  val text: String
-)

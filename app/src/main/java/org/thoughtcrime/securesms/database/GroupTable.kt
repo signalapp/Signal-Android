@@ -1289,6 +1289,18 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
         null
       }
     }
+
+    /**
+     * Gets all member labels in the group. Only includes members that have a non-blank label.
+     */
+    fun memberLabelsByAci(): Map<ACI, MemberLabel> = buildMap {
+      decryptedGroup.members.forEach { member ->
+        if (member.labelString.isNotBlank()) {
+          val aci = ACI.parseOrNull(member.aciBytes) ?: return@forEach
+          put(aci, MemberLabel(member.labelEmoji, member.labelString))
+        }
+      }
+    }
   }
 
   @Throws(BadGroupIdException::class)

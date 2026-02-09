@@ -31,7 +31,9 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
 import org.thoughtcrime.securesms.groups.SelectionLimits
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelRepository
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
+import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
 import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
@@ -358,6 +360,10 @@ sealed class ConversationSettingsViewModel(
         val groupState = state.requireGroupSettingsState()
         val canShowMore = !groupState.groupMembersExpanded && fullMembers.size > 6
 
+        if (groupId.isV2) {
+          loadMemberLabels(groupId.requireV2(), fullMembers)
+        }
+
         state.copy(
           specificSettingsState = groupState.copy(
             allMembers = fullMembers,
@@ -500,6 +506,19 @@ sealed class ConversationSettingsViewModel(
 
     override fun unblock() {
       repository.unblock(groupId)
+    }
+
+    private fun loadMemberLabels(v2GroupId: GroupId.V2, groupMembers: List<GroupMemberEntry.FullMember>) = viewModelScope.launch(SignalDispatchers.IO) {
+      val labelsByRecipientId = MemberLabelRepository.instance
+        .getLabels(v2GroupId, groupMembers.map { it.member })
+
+      store.update { state ->
+        state.copy(
+          specificSettingsState = state.requireGroupSettingsState().copy(
+            memberLabelsByRecipientId = labelsByRecipientId
+          )
+        )
+      }
     }
   }
 

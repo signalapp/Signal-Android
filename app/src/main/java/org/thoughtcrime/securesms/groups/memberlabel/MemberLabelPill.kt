@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
@@ -66,7 +67,8 @@ fun MemberLabelPill(
         text = text,
         color = textColor,
         style = textStyle,
-        maxLines = 1
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
       )
     }
   }

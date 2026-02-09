@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel;
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelRepository;
+import org.thoughtcrime.securesms.groups.memberlabel.StyledMemberLabel;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity;
@@ -69,6 +70,7 @@ final class RecipientDialogViewModel extends ViewModel {
   private final MutableLiveData<RecipientDetailsState> recipientDetailsState;
   private final CompositeDisposable                    disposables;
   private final boolean                                isDeprecatedOrUnregistered;
+
   private RecipientDialogViewModel(@NonNull Context context,
                                    @NonNull RecipientDialogRepository recipientDialogRepository)
   {
@@ -198,8 +200,8 @@ final class RecipientDialogViewModel extends ViewModel {
       activity.startActivity(StoryViewerActivity.createIntent(
           activity,
           new StoryViewerArgs.Builder(recipientDialogRepository.getRecipientId(), recipient.getValue().getShouldHideStory())
-                             .isFromQuote(true)
-                             .build()));
+              .isFromQuote(true)
+              .build()));
     }
   }
 
@@ -238,65 +240,65 @@ final class RecipientDialogViewModel extends ViewModel {
       activity.startActivity(StoryViewerActivity.createIntent(
           activity,
           new StoryViewerArgs.Builder(recipientDialogRepository.getRecipientId(), recipient.getValue().getShouldHideStory())
-                             .isFromQuote(true)
-                             .build()));
+              .isFromQuote(true)
+              .build()));
     }
   }
 
   void onMakeGroupAdminClicked(@NonNull Activity activity) {
     new MaterialAlertDialogBuilder(activity)
-                   .setMessage(context.getString(R.string.RecipientBottomSheet_s_will_be_able_to_edit_group, Objects.requireNonNull(recipient.getValue()).getDisplayName(context)))
-                   .setPositiveButton(R.string.RecipientBottomSheet_make_admin,
-                                      (dialog, which) -> {
-                                        adminActionBusy.setValue(true);
-                                        recipientDialogRepository.setMemberAdmin(true, result -> {
-                                          adminActionBusy.setValue(false);
-                                          if (!result) {
-                                            Toast.makeText(activity, R.string.ManageGroupActivity_failed_to_update_the_group, Toast.LENGTH_SHORT).show();
-                                          }
-                                        },
-                                        this::showErrorToast);
-                                      })
-                   .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
-                   .show();
+        .setMessage(context.getString(R.string.RecipientBottomSheet_s_will_be_able_to_edit_group, Objects.requireNonNull(recipient.getValue()).getDisplayName(context)))
+        .setPositiveButton(R.string.RecipientBottomSheet_make_admin,
+                           (dialog, which) -> {
+                             adminActionBusy.setValue(true);
+                             recipientDialogRepository.setMemberAdmin(true, result -> {
+                                                                        adminActionBusy.setValue(false);
+                                                                        if (!result) {
+                                                                          Toast.makeText(activity, R.string.ManageGroupActivity_failed_to_update_the_group, Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                      },
+                                                                      this::showErrorToast);
+                           })
+        .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
+        .show();
   }
 
   void onRemoveGroupAdminClicked(@NonNull Activity activity) {
     new MaterialAlertDialogBuilder(activity)
-                   .setMessage(context.getString(R.string.RecipientBottomSheet_remove_s_as_group_admin, Objects.requireNonNull(recipient.getValue()).getDisplayName(context)))
-                   .setPositiveButton(R.string.RecipientBottomSheet_remove_as_admin,
-                                      (dialog, which) -> {
-                                        adminActionBusy.setValue(true);
-                                        recipientDialogRepository.setMemberAdmin(false, result -> {
-                                          adminActionBusy.setValue(false);
-                                          if (!result) {
-                                            Toast.makeText(activity, R.string.ManageGroupActivity_failed_to_update_the_group, Toast.LENGTH_SHORT).show();
-                                          }
-                                        },
-                                        this::showErrorToast);
-                                      })
-                   .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
-                   .show();
+        .setMessage(context.getString(R.string.RecipientBottomSheet_remove_s_as_group_admin, Objects.requireNonNull(recipient.getValue()).getDisplayName(context)))
+        .setPositiveButton(R.string.RecipientBottomSheet_remove_as_admin,
+                           (dialog, which) -> {
+                             adminActionBusy.setValue(true);
+                             recipientDialogRepository.setMemberAdmin(false, result -> {
+                                                                        adminActionBusy.setValue(false);
+                                                                        if (!result) {
+                                                                          Toast.makeText(activity, R.string.ManageGroupActivity_failed_to_update_the_group, Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                      },
+                                                                      this::showErrorToast);
+                           })
+        .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
+        .show();
   }
 
   void onRemoveFromGroupClicked(@NonNull Activity activity, boolean isLinkActive, @NonNull Runnable onSuccess) {
     new MaterialAlertDialogBuilder(activity)
-                   .setMessage(context.getString(isLinkActive ? R.string.RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin
-                                                              : R.string.RecipientBottomSheet_remove_s_from_the_group,
-                                                 Objects.requireNonNull(recipient.getValue()).getDisplayName(context)))
-                   .setPositiveButton(R.string.RecipientBottomSheet_remove,
-                                      (dialog, which) -> {
-                                        adminActionBusy.setValue(true);
-                                        recipientDialogRepository.removeMember(result -> {
-                                          adminActionBusy.setValue(false);
-                                          if (result) {
-                                            onSuccess.run();
-                                          }
-                                        },
-                                        this::showErrorToast);
-                                      })
-                   .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
-                   .show();
+        .setMessage(context.getString(isLinkActive ? R.string.RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin
+                                                   : R.string.RecipientBottomSheet_remove_s_from_the_group,
+                                      Objects.requireNonNull(recipient.getValue()).getDisplayName(context)))
+        .setPositiveButton(R.string.RecipientBottomSheet_remove,
+                           (dialog, which) -> {
+                             adminActionBusy.setValue(true);
+                             recipientDialogRepository.removeMember(result -> {
+                                                                      adminActionBusy.setValue(false);
+                                                                      if (result) {
+                                                                        onSuccess.run();
+                                                                      }
+                                                                    },
+                                                                    this::showErrorToast);
+                           })
+        .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
+        .show();
   }
 
   void refreshRecipient() {
