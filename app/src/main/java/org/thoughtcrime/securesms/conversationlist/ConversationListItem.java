@@ -662,12 +662,12 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       String time = ExpirationUtil.getExpirationDisplayValue(context, seconds);
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_disappearing_message_time_updated_to_s, time), Glyph.TIMER, defaultTint);
     } else if (MessageTypes.isIdentityUpdate(thread.getType())) {
-      return emphasisAdded(recipientToStringAsync(thread.getRecipient().getId(), r -> {
-        if (r.isGroup()) {
-          return new SpannableString(context.getString(R.string.ThreadRecord_safety_number_changed));
-        } else {
-          return new SpannableString(context.getString(R.string.ThreadRecord_your_safety_number_with_s_has_changed, r.getDisplayName(context)));
-        }
+      RecipientId individualRecipientId = thread.getIndividualRecipientId();
+      if (individualRecipientId.isUnknown() || !thread.getRecipient().isGroup()) {
+        return emphasisAdded(context, context.getString(R.string.ThreadRecord_safety_number_changed), defaultTint);
+      }
+      return emphasisAdded(recipientToStringAsync(individualRecipientId, r -> {
+        return new SpannableString(context.getString(R.string.ThreadRecord_your_safety_number_with_s_has_changed, r.getDisplayName(context)));
       }));
     } else if (MessageTypes.isIdentityVerified(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_you_marked_verified), defaultTint);
