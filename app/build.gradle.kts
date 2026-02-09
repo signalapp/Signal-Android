@@ -176,7 +176,8 @@ android {
         "META-INF/LICENSE-notice.md",
         "META-INF/proguard/androidx-annotations.pro",
         "**/*.dylib",
-        "**/*.dll"
+        "**/*.dll",
+        "**/*.proto"
       )
     }
   }
