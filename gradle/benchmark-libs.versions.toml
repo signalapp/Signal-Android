@@ -3,6 +3,10 @@
 
 [versions]
 androidx-test-ext-junit = "1.3.0"
+baselineprofile = "1.4.1"
+
+[plugins]
+baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
 
 [libraries]
 # Macrobench/Baseline profiles

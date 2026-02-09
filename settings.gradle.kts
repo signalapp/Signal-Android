@@ -109,6 +109,7 @@ include(":demo:camera")
 // Testing/Lint modules
 include(":lintchecks")
 include(":benchmark")
+include(":baseline-profile")
 include(":microbenchmark")
 
 // App project name

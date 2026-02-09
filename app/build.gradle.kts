@@ -20,6 +20,7 @@ plugins {
   alias(libs.plugins.ktlint)
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.kotlinx.serialization)
+  alias(benchmarkLibs.plugins.baselineprofile)
   id("androidx.navigation.safeargs")
   id("kotlin-parcelize")
   id("com.squareup.wire")
@@ -60,6 +61,8 @@ val selectableVariants = listOf(
   "playProdSpinner",
   "playProdCanary",
   "playProdPerf",
+  "playProdMocked",
+  "playProdNonMinifiedMocked",
   "playProdBenchmark",
   "playProdInstrumentation",
   "playProdRelease",
@@ -359,6 +362,16 @@ android {
       buildConfigField("boolean", "TRACING_ENABLED", "true")
     }
 
+    create("mocked") {
+      initWith(getByName("debug"))
+      isDefault = false
+      isDebuggable = false
+      isMinifyEnabled = true
+      matchingFallbacks += "debug"
+      buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Benchmark\"")
+      buildConfigField("boolean", "TRACING_ENABLED", "true")
+    }
+
     create("canary") {
       initWith(getByName("debug"))
       isDefault = false
@@ -507,6 +520,18 @@ android {
     }
   }
 
+  sourceSets {
+    getByName("mocked") {
+      java.srcDir("$projectDir/src/benchmarkShared/java")
+      manifest.srcFile("$projectDir/src/benchmarkShared/AndroidManifest.xml")
+    }
+
+    getByName("benchmark") {
+      java.srcDir("$projectDir/src/benchmarkShared/java")
+      manifest.srcFile("$projectDir/src/benchmarkShared/AndroidManifest.xml")
+    }
+  }
+
   applicationVariants.configureEach {
     outputs.configureEach {
       if (this is com.android.build.gradle.internal.api.BaseVariantOutputImpl) {
@@ -514,6 +539,20 @@ android {
       }
     }
   }
+}
+
+baselineProfile {
+  warnings {
+    disabledVariants = false
+  }
+
+  mergeIntoMain = true
+
+  variants.create("mocked") {
+    from(project(":baseline-profile"))
+  }
+
+  dexLayoutOptimization = false
 }
 
 dependencies {
