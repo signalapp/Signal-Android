@@ -1267,6 +1267,10 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   @Override
   public boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view) {
+    return showConversationContextMenu(conversation, view, false);
+  }
+
+  private boolean showConversationContextMenu(@NonNull Conversation conversation, @NonNull View view, boolean isFromSearch) {
     if (list == null) {
       Log.w(TAG, "List is null, ignoring long click.");
       return true;
@@ -1308,23 +1312,27 @@ public class ConversationListFragment extends MainFragment implements Conversati
       }
     }
 
-    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_check_circle_24, getString(R.string.ConversationListFragment_select), () -> {
-      viewModel.startSelection(conversation);
-      startActionMode();
-    }));
+    if (!isFromSearch) {
+      items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_check_circle_24, getString(R.string.ConversationListFragment_select), () -> {
+        viewModel.startSelection(conversation);
+        startActionMode();
+      }));
+    }
 
     if (conversation.getThreadRecord().isArchived()) {
       items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(id)));
     } else {
-      if (viewModel.getCurrentFolder().getFolderType() == ChatFolderRecord.FolderType.ALL &&
-          (conversation.getThreadRecord().getRecipient().isIndividual() ||
-           conversation.getThreadRecord().getRecipient().isPushV2Group()))
-      {
-        items.add(new ActionItem(R.drawable.symbol_folder_add, getString(R.string.ConversationListFragment_add_to_folder), () ->
-            showAddToFolderBottomSheet(conversation)
-        ));
-      } else if (viewModel.getCurrentFolder().getFolderType() != ChatFolderRecord.FolderType.ALL) {
-        items.add(new ActionItem(R.drawable.symbol_folder_minus, getString(R.string.ConversationListFragment_remove_from_folder), () -> viewModel.removeChatFromFolder(conversation.getThreadRecord().getThreadId())));
+      if (!isFromSearch) {
+        if (viewModel.getCurrentFolder().getFolderType() == ChatFolderRecord.FolderType.ALL &&
+            (conversation.getThreadRecord().getRecipient().isIndividual() ||
+             conversation.getThreadRecord().getRecipient().isPushV2Group()))
+        {
+          items.add(new ActionItem(R.drawable.symbol_folder_add, getString(R.string.ConversationListFragment_add_to_folder), () ->
+              showAddToFolderBottomSheet(conversation)
+          ));
+        } else if (viewModel.getCurrentFolder().getFolderType() != ChatFolderRecord.FolderType.ALL) {
+          items.add(new ActionItem(R.drawable.symbol_folder_minus, getString(R.string.ConversationListFragment_remove_from_folder), () -> viewModel.removeChatFromFolder(conversation.getThreadRecord().getThreadId())));
+        }
       }
       items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(id)));
     }
@@ -1843,6 +1851,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
     @Override
     public void onThreadClicked(@NonNull View view, @NonNull ContactSearchData.Thread thread, boolean isSelected) {
       onConversationClicked(thread.getThreadRecord());
+    }
+
+    @Override
+    public boolean onThreadLongClicked(@NonNull View view, @NonNull ContactSearchData.Thread thread) {
+      return showConversationContextMenu(new Conversation(thread.getThreadRecord()), view, true);
     }
 
     @Override
