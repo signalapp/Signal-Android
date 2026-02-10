@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.models.backup.MediaName
 import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decodeBase64
+import org.signal.core.util.Util
 import org.signal.core.util.inRoundedDays
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
@@ -31,7 +32,6 @@ import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.service.AttachmentProgressService
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult

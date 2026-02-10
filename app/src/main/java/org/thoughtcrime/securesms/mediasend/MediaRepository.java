@@ -30,8 +30,8 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.Stopwatch;
-import org.thoughtcrime.securesms.util.StorageUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.ui.util.StorageUtil;
+import org.signal.core.util.Util;
 
 import java.io.IOException;
 import java.util.ArrayList;

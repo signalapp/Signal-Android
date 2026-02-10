@@ -1446,7 +1446,7 @@
             android:exported="false" />
 
         <receiver
-            android:name=".payments.backup.phrase.ClearClipboardAlarmReceiver"
+            android:name="org.signal.core.util.ClearClipboardAlarmReceiver"
             android:exported="false" />
 
         <receiver

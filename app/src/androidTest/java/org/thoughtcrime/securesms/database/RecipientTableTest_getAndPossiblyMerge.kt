@@ -18,6 +18,7 @@ import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.Util
 import org.signal.core.util.exists
 import org.signal.core.util.orNull
 import org.signal.core.util.readToSingleBoolean
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.Util
 import java.util.Optional
 import java.util.UUID
 

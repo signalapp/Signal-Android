@@ -14,8 +14,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.ui.BottomSheetUtil
+import org.signal.core.ui.permissions.PermissionDeniedBottomSheet
+import org.signal.core.ui.permissions.RationaleDialog
 import org.signal.core.util.AppUtil
 import org.signal.core.util.ThreadUtil
+import org.signal.core.util.Util
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
@@ -64,7 +67,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
@@ -186,6 +188,24 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         isChecked = state.forceSplitPane,
         onClick = {
           viewModel.setForceSplitPane(!state.forceSplitPane)
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Display enable permission sheet"),
+        onClick = {
+          PermissionDeniedBottomSheet.showPermissionFragment(
+            titleRes = R.string.app_name,
+            subtitleRes = R.string.app_name,
+            useExtended = true
+          ).show(parentFragmentManager, null)
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Display permission rationale dialog"),
+        onClick = {
+          RationaleDialog.createFor(requireContext(), "Title", "Details", R.drawable.symbol_key_24).show()
         }
       )
 

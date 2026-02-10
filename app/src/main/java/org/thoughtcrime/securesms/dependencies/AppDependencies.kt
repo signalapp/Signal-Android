@@ -5,6 +5,7 @@ import android.app.Application
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import okhttp3.OkHttpClient
 import org.signal.core.ui.CoreUiDependencies
+import org.signal.core.util.CoreUtilDependencies
 import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.concurrent.DeadlockDetector
 import org.signal.core.util.concurrent.LatestValueObservable
@@ -15,6 +16,7 @@ import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.signal.mediasend.MediaSendDependencies
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.components.TypingStatusRepository
 import org.thoughtcrime.securesms.components.TypingStatusSender
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl
@@ -99,7 +101,15 @@ object AppDependencies {
     _application = application
     AppDependencies.provider = provider
 
-    CoreUiDependencies.init(CoreUiDependenciesProvider)
+    CoreUtilDependencies.init(
+      application,
+      CoreUtilDependenciesProvider,
+      CoreUtilDependencies.BuildInfo(
+        canonicalVersionCode = BuildConfig.CANONICAL_VERSION_CODE,
+        buildTimestamp = BuildConfig.BUILD_TIMESTAMP
+      )
+    )
+    CoreUiDependencies.init(application, CoreUiDependenciesProvider)
     SignalGlideDependencies.init(application, SignalGlideDependenciesProvider)
     MediaSendDependencies.init(application, MediaSendDependenciesProvider)
   }

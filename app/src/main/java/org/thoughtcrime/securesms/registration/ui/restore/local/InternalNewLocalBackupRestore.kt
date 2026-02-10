@@ -51,6 +51,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.fonts.MonoTypeface
@@ -61,7 +62,6 @@ import org.thoughtcrime.securesms.registration.ui.restore.BackupKeyVisualTransfo
 import org.thoughtcrime.securesms.registration.ui.restore.attachBackupKeyAutoFillHelper
 import org.thoughtcrime.securesms.registration.ui.restore.backupKeyAutoFillHelper
 import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreen
-import org.thoughtcrime.securesms.util.StorageUtil
 
 /**
  * Internal only registration screen to collect backup folder and AEP. Actual restore will happen

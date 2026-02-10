@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.payments.Wallet;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ProfileUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.payments.Money;
 
 import java.io.IOException;

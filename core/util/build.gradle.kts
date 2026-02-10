@@ -16,6 +16,7 @@ dependencies {
   implementation(libs.androidx.documentfile)
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.jackson.core)
+  implementation(libs.google.libphonenumber)
   testImplementation(libs.androidx.sqlite.framework)
 
   testImplementation(testLibs.junit.junit)

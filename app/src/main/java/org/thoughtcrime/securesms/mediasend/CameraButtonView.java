@@ -20,7 +20,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class CameraButtonView extends View {

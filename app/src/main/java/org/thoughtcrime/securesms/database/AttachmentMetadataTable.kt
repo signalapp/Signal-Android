@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import android.database.Cursor
+import org.signal.core.util.Util
 import org.signal.core.util.delete
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
@@ -19,7 +20,6 @@ import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.attachments.AttachmentMetadata
 import org.thoughtcrime.securesms.attachments.LocalBackupKey
-import org.thoughtcrime.securesms.util.Util
 
 /**
  * Metadata for various attachments. There is a many-to-one relationship with the Attachment table as this metadata

@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.audio.AudioHash;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 
 import java.security.SecureRandom;
 import java.util.Optional;

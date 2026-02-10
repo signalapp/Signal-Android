@@ -4,6 +4,7 @@ import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.signal.core.util.Util
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.groups.GroupId
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.FailingJob
 import org.thoughtcrime.securesms.jobs.SenderKeyDistributionSendJob
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.Util
 import java.util.Optional
 
 class SenderKeyDistributionSendJobRecipientMigrationTest {

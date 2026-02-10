@@ -35,7 +35,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 
 public final class RecyclerViewFastScroller extends LinearLayout {
   private static final int BUBBLE_ANIMATION_DURATION = 100;

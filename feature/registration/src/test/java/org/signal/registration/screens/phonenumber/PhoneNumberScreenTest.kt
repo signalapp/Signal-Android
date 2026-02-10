@@ -7,6 +7,7 @@ package org.signal.registration.screens.phonenumber
 
 import android.app.Application
 import androidx.compose.ui.test.assertIsEnabled
+import androidx.test.core.app.ApplicationProvider
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -31,7 +32,7 @@ class PhoneNumberScreenTest {
   val composeTestRule = createComposeRule()
 
   @get:Rule
-  val coreUiDependenciesRule = CoreUiDependenciesRule()
+  val coreUiDependenciesRule = CoreUiDependenciesRule(ApplicationProvider.getApplicationContext())
 
   @Test
   fun `Next button is disabled when fields are empty`() {

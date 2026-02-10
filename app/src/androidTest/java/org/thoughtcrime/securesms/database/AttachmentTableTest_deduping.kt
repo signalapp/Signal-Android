@@ -14,6 +14,7 @@ import org.junit.runner.RunWith
 import org.signal.core.models.ServiceId
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.Base64
+import org.signal.core.util.Util
 import org.signal.core.util.readFully
 import org.signal.core.util.stream.LimitedInputStream
 import org.signal.core.util.update
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import java.io.File
 import java.util.UUID

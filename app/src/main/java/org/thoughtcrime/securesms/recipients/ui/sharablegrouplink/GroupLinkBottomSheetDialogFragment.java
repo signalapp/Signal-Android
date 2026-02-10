@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.recipients.ui.sharablegrouplink.qr.GroupLinkSh
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.signal.core.ui.BottomSheetUtil;
 import org.signal.core.ui.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.Collections;

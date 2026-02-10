@@ -11,6 +11,7 @@ import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MediaName
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.StreamUtil
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readFully
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.backup.v2.local.proto.FilesFrame
 import org.thoughtcrime.securesms.backup.v2.local.proto.Metadata
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream

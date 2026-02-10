@@ -58,7 +58,8 @@ class RegistrationApplication : Application() {
       )
     )
 
-    CoreUiDependencies.init(object : CoreUiDependencies.Provider {
+    CoreUiDependencies.init(this, object : CoreUiDependencies.Provider {
+      override fun providePackageId(): String = BuildConfig.APPLICATION_ID
       override fun provideIsIncognitoKeyboardEnabled(): Boolean = false
       override fun provideIsScreenSecurityEnabled(): Boolean = false
       override fun provideForceSplitPane(): Boolean = false

@@ -7,6 +7,7 @@ package org.signal.registration
 
 import android.app.Application
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.test.core.app.ApplicationProvider
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -39,7 +40,7 @@ class RegistrationNavigationTest {
   val composeTestRule = createComposeRule()
 
   @get:Rule
-  val coreUiDependenciesRule = CoreUiDependenciesRule()
+  val coreUiDependenciesRule = CoreUiDependenciesRule(ApplicationProvider.getApplicationContext())
 
   private lateinit var viewModel: RegistrationViewModel
   private lateinit var mockRepository: RegistrationRepository

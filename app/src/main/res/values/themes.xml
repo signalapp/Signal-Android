@@ -147,6 +147,7 @@
         <item name="theme_type">light</item>
         <item name="fullScreenDialogStyle">@style/Signal.DayNight.Dialog.FullScreen</item>
         <item name="fixedRoundedCornerBottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners</item>
+        <item name="permissionsRationaleDialogTheme">@style/Theme.Signal.AlertDialog.Light.Cornered</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
 
@@ -243,6 +244,7 @@
         <item name="theme_type">dark</item>
         <item name="fullScreenDialogStyle">@style/Signal.DayNight.Dialog.FullScreen</item>
         <item name="fixedRoundedCornerBottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners</item>
+        <item name="permissionsRationaleDialogTheme">@style/Theme.Signal.AlertDialog.Dark.Cornered</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
 

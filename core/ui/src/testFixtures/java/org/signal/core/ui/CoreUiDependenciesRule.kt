@@ -5,6 +5,7 @@
 
 package org.signal.core.ui
 
+import android.app.Application
 import org.junit.rules.ExternalResource
 
 /**
@@ -12,15 +13,17 @@ import org.junit.rules.ExternalResource
  * [CoreUiDependencies] to be initialized, this rule provides a convenient way to do so.
  */
 class CoreUiDependenciesRule(
+  private val application: Application,
   private val isIncognitoKeyboardEnabled: Boolean = false
 ) : ExternalResource() {
   override fun before() {
-    CoreUiDependencies.init(Provider(isIncognitoKeyboardEnabled))
+    CoreUiDependencies.init(application, Provider(isIncognitoKeyboardEnabled))
   }
 
   private class Provider(
     val isIncognitoKeyboardEnabled: Boolean
   ): CoreUiDependencies.Provider {
+    override fun providePackageId(): String = "org.thoughtcrime.securesms"
     override fun provideIsIncognitoKeyboardEnabled(): Boolean = isIncognitoKeyboardEnabled
     override fun provideIsScreenSecurityEnabled(): Boolean = false
     override fun provideForceSplitPane(): Boolean = false

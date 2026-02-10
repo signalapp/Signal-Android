@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.stories.viewer.info
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import org.signal.core.util.Util
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel

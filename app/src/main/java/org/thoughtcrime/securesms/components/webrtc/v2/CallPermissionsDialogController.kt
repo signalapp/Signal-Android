@@ -9,9 +9,9 @@ import android.Manifest
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.signal.core.ui.BottomSheetUtil
+import org.signal.core.ui.permissions.PermissionDeniedBottomSheet.Companion.showPermissionFragment
+import org.signal.core.ui.permissions.Permissions
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.permissions.PermissionDeniedBottomSheet.Companion.showPermissionFragment
-import org.thoughtcrime.securesms.permissions.Permissions
 
 /**
  * Shared dialog controller for requesting different permissions specific to calling.

@@ -8,13 +8,13 @@ import android.os.Build
 import android.provider.MediaStore
 import androidx.annotation.WorkerThread
 import org.signal.core.models.media.Media
+import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 import java.io.FileDescriptor
 import java.io.FileInputStream

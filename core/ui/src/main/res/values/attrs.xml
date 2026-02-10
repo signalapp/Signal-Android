@@ -3,4 +3,5 @@
     <attr name="theme_type" format="string"/>
     <attr name="fullScreenDialogStyle" format="reference"/>
     <attr name="fixedRoundedCornerBottomSheetStyle" format="reference"/>
+    <attr name="permissionsRationaleDialogTheme" format="reference"/>
 </resources>

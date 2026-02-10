@@ -16,7 +16,7 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMem
 import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedString;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.signal.core.models.ServiceId.ACI;
 
 import kotlin.collections.CollectionsKt;

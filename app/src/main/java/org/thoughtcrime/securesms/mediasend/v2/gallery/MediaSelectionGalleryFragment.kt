@@ -9,13 +9,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.models.media.Media
+import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator.Companion.requestPermissionsForCamera
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaSelectionItemTouchHelper
-import org.thoughtcrime.securesms.permissions.Permissions
 
 private const val MEDIA_GALLERY_TAG = "MEDIA_GALLERY"
 

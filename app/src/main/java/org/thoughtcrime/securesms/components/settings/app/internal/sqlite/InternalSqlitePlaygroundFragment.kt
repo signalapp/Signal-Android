@@ -50,9 +50,9 @@ import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.util.Util
 import org.signal.libsignal.protocol.util.Hex
 import org.thoughtcrime.securesms.components.settings.app.internal.sqlite.InternalSqlitePlaygroundViewModel.QueryResult
-import org.thoughtcrime.securesms.util.Util
 
 class InternalSqlitePlaygroundFragment : ComposeFragment() {
 

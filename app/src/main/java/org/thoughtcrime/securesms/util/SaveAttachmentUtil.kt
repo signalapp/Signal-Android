@@ -19,6 +19,7 @@ import android.webkit.MimeTypeMap
 import androidx.core.content.contentValuesOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logI

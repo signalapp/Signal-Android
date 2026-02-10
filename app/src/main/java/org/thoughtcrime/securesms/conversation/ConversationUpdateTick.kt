@@ -5,8 +5,8 @@ import android.os.Looper
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.util.Util
 import java.util.concurrent.TimeUnit
 
 /**

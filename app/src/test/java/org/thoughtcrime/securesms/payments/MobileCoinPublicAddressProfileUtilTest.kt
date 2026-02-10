@@ -8,8 +8,8 @@ import assertk.assertions.isInstanceOf
 import okio.ByteString
 import org.junit.Before
 import org.junit.Test
+import org.signal.core.util.Util
 import org.signal.libsignal.protocol.IdentityKeyPair
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.test.LibSignalLibraryUtil
 
 class MobileCoinPublicAddressProfileUtilTest {

@@ -10,12 +10,12 @@ import org.signal.core.models.backup.MediaName
 import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decodeBase64
 import org.signal.core.util.Base64.decodeBase64OrThrow
+import org.signal.core.util.Util
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import java.io.IOException

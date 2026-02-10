@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.signal.core.models.media.Media;
-import org.thoughtcrime.securesms.util.StorageUtil;
+import org.signal.core.ui.util.StorageUtil;
 
 import java.util.Arrays;
 import java.util.List;

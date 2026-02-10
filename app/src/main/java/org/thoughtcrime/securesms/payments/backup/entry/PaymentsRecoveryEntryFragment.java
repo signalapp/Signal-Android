@@ -18,7 +18,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.Mnemonic;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 

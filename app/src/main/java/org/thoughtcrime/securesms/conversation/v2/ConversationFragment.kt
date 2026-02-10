@@ -106,6 +106,7 @@ import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.logging.LoggingFragment
+import org.signal.core.ui.permissions.Permissions
 import org.signal.core.ui.util.ThemeUtil
 import org.signal.core.ui.view.Stub
 import org.signal.core.util.ByteLimitInputFilter
@@ -303,7 +304,6 @@ import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.nicknames.NicknameActivity
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
-import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord

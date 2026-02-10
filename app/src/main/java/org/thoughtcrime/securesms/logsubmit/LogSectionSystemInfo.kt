@@ -11,6 +11,7 @@ import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.DiskUtil
 import org.signal.core.util.FontUtil.canRenderEmojiAtFontSize
+import org.signal.core.util.Util
 import org.signal.core.util.bytes
 import org.signal.core.util.roundedString
 import org.thoughtcrime.securesms.BuildConfig
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.util.PowerManagerCompat
 import org.thoughtcrime.securesms.util.ScreenDensity
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.VersionTracker.getDaysSinceFirstInstalled
 import java.util.Locale
 import kotlin.time.Duration.Companion.milliseconds

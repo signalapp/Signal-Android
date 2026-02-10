@@ -9,10 +9,10 @@ import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.util.Base64
+import org.signal.core.util.Util
 import org.thoughtcrime.securesms.MockCursor
 import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.Util
 
 class ArchivedMediaObjectIteratorTest {
   private val cursor = mockk<MockCursor>(relaxed = true) {
