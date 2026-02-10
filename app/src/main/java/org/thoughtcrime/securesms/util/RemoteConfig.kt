@@ -564,6 +564,15 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** The maximum number of pinned conversations a user can have. */
+  @JvmStatic
+  @get:JvmName("pinnedChatLimit")
+  val pinnedChatLimit: Int by remoteInt(
+    key = "global.pinnedChatLimit",
+    defaultValue = 4,
+    hotSwappable = true
+  )
+
   /** The maximum number of grapheme  */
   @JvmStatic
   val maxGroupNameGraphemeLength: Int by remoteValue(
