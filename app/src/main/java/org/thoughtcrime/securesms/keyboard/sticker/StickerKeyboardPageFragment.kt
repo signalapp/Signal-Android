@@ -203,11 +203,20 @@ open class StickerKeyboardPageFragment :
   }
 
   override fun onLayoutChange(v: View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
-    onScreenWidthChanged(view?.width ?: 0)
+    onScreenWidthChanged(right - left)
   }
 
   private fun onScreenWidthChanged(@Px newWidth: Int) {
-    layoutManager.spanCount = calculateColumnCount(newWidth)
+    if (newWidth <= 0) {
+      return
+    }
+
+    val newSpanCount = calculateColumnCount(newWidth)
+    if (layoutManager.spanCount != newSpanCount) {
+      stickerList.post {
+        layoutManager.spanCount = newSpanCount
+      }
+    }
   }
 
   private fun calculateColumnCount(@Px screenWidth: Int): Int {
