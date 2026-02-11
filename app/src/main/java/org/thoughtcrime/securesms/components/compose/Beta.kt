@@ -79,6 +79,7 @@ fun BetaHeader(modifier: Modifier = Modifier) {
         shape = RoundedCornerShape(12.dp)
       )
       .padding(16.dp)
+      .fillMaxWidth()
   ) {
     Icon(
       imageVector = SignalIcons.Info.imageVector,
