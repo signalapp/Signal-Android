@@ -648,7 +648,11 @@ class GroupsV2StateProcessor private constructor(
           }
 
           else -> {
-            storeMessage(GroupProtoUtil.createDecryptedGroupV2Context(masterKey, GroupMutation(runningGroupState, entry.change, entry.group), null), runningTimestamp, serverGuid)
+            storeMessage(
+              decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, GroupMutation(runningGroupState, entry.change, entry.group), null),
+              timestamp = runningTimestamp,
+              serverGuid = serverGuid
+            )
             runningTimestamp++
           }
         }

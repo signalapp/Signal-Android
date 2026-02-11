@@ -106,7 +106,7 @@ class IncomingMessage(
       return IncomingMessage(
         from = from,
         sentTimeMillis = timestamp,
-        receivedTimeMillis = timestamp,
+        receivedTimeMillis = System.currentTimeMillis(),
         serverTimeMillis = timestamp,
         serverGuid = serverGuid,
         groupId = groupId,
