@@ -3870,7 +3870,7 @@
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Learn more</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__verify">Verify</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Automatic Key Verification is currently unavailable for your device. Submit debug log?</string>

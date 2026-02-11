@@ -369,7 +369,6 @@ import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
 import org.thoughtcrime.securesms.util.toMillis
 import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.util.visible
-import org.thoughtcrime.securesms.verify.VerifyAutomaticallyEducationSheet
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
@@ -1472,17 +1471,6 @@ class ConversationFragment :
 
   private fun presentIdentityRecordsState(identityRecordsState: IdentityRecordsState) {
     binding.conversationTitleView.root.setVerified(identityRecordsState.isVerified)
-
-    if (RemoteConfig.internalUser && SignalStore.settings.automaticVerificationEnabled && !SignalStore.uiHints.hasSeenVerifyAutomaticallySheet() && viewModel.recipientSnapshot?.isIndividual == true && viewModel.recipientSnapshot?.isSelf == false) {
-      VerifyAutomaticallyEducationSheet.show(parentFragmentManager)
-
-      parentFragmentManager.setFragmentResultListener(VerifyAutomaticallyEducationSheet.RESULT_KEY, requireActivity()) { _, bundle ->
-        val shouldVerify = bundle.getBoolean(VerifyAutomaticallyEducationSheet.RESULT_KEY, false)
-        if (shouldVerify) {
-          VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireContext(), identityRecordsState.identityRecords.identityRecords.first())
-        }
-      }
-    }
 
     if (identityRecordsState.isUnverified) {
       binding.conversationBanner.showUnverifiedBanner(identityRecordsState.identityRecords)

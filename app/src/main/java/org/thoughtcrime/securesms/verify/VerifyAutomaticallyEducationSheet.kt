@@ -18,9 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.setFragmentResult
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
@@ -40,8 +38,6 @@ class VerifyAutomaticallyEducationSheet : ComposeBottomSheetDialogFragment() {
 
   companion object {
 
-    const val RESULT_KEY = "verify_result_key"
-
     @JvmStatic
     fun show(fragmentManager: FragmentManager) {
       VerifyAutomaticallyEducationSheet().show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
@@ -57,7 +53,6 @@ class VerifyAutomaticallyEducationSheet : ComposeBottomSheetDialogFragment() {
   override fun SheetContent() {
     VerifyEducationSheet(
       onVerify = {
-        setFragmentResult(RESULT_KEY, bundleOf(RESULT_KEY to true))
         dismissAllowingStateLoss()
       },
       onLearnMore = {
@@ -115,7 +110,7 @@ fun VerifyEducationSheet(
       Buttons.LargeTonal(
         onClick = onVerify
       ) {
-        Text(stringResource(id = R.string.VerifyAutomaticallyEducationSheet__verify))
+        Text(stringResource(id = R.string.VerifyAutomaticallyEducationSheet__continue))
       }
     }
   }

@@ -73,6 +73,10 @@ class VerifyDisplayFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     initializeViewModel()
 
+    if (RemoteConfig.internalUser && SignalStore.settings.automaticVerificationEnabled && !SignalStore.uiHints.hasSeenVerifyAutomaticallySheet()) {
+      VerifyAutomaticallyEducationSheet.show(parentFragmentManager)
+    }
+
     updateVerifyButton(requireArguments().getBoolean(VERIFIED_STATE, false), false)
 
     binding.automaticVerification.visible = RemoteConfig.internalUser && SignalStore.settings.automaticVerificationEnabled
