@@ -1725,7 +1725,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                          quote.getAttachment(),
                          isStoryReaction(current) ? current.getBody() : null,
                          quote.getQuoteType(),
-                         false);
+                         false,
+                         conversationMessage.getQuoteMemberLabel());
 
       quoteView.setWallpaperEnabled(hasWallpaper);
       quoteView.setVisibility(View.VISIBLE);

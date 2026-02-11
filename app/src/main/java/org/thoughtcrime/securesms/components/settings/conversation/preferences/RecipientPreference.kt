@@ -125,7 +125,7 @@ object RecipientPreference {
         style = MemberLabelPillView.Style(
           horizontalPadding = 8.dp,
           verticalPadding = 2.dp,
-          textStyle = { MaterialTheme.typography.bodySmall }
+          textStyle = { MaterialTheme.typography.labelSmall }
         )
         setLabel(styledLabel.label, styledLabel.tintColor)
         visible = true

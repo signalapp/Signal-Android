@@ -25,6 +25,9 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 
+private val defaultModifier = Modifier.padding(horizontal = 12.dp, vertical = 2.dp)
+private val defaultTextStyle: @Composable () -> TextStyle = { MaterialTheme.typography.bodyLarge }
+
 /**
  * Displays member label text with an optional emoji.
  */
@@ -33,8 +36,8 @@ fun MemberLabelPill(
   emoji: String?,
   text: String,
   tintColor: Color,
-  modifier: Modifier = Modifier.padding(horizontal = 12.dp, vertical = 2.dp),
-  textStyle: TextStyle = MaterialTheme.typography.bodyLarge
+  modifier: Modifier = defaultModifier,
+  textStyle: TextStyle = defaultTextStyle()
 ) {
   val isDark = isSystemInDarkTheme()
   val backgroundColor = tintColor.copy(alpha = if (isDark) 0.32f else 0.10f)
@@ -45,6 +48,28 @@ fun MemberLabelPill(
     Color.Black.copy(alpha = 0.30f).compositeOver(tintColor)
   }
 
+  MemberLabelPill(
+    emoji = emoji,
+    text = text,
+    textColor = textColor,
+    backgroundColor = backgroundColor,
+    modifier = modifier,
+    textStyle = textStyle
+  )
+}
+
+/**
+ * Displays member label text with an optional emoji.
+ */
+@Composable
+fun MemberLabelPill(
+  emoji: String?,
+  text: String,
+  textColor: Color,
+  backgroundColor: Color,
+  modifier: Modifier = defaultModifier,
+  textStyle: TextStyle = defaultTextStyle()
+) {
   Row(
     modifier = Modifier
       .background(

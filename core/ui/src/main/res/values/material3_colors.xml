@@ -45,6 +45,7 @@
     <color name="signal_colorNeutralVariantInverse">@color/signal_light_colorNeutralVariantInverse</color>
 
     <!-- Inverses -->
+    <color name="signal_colorOnSurfaceInverse">@color/signal_dark_colorOnSurface</color>
     <color name="signal_colorErrorInverse">@color/signal_dark_colorError</color>
     <color name="signal_colorErrorContainerInverse">@color/signal_dark_colorErrorContainer</color>
 
@@ -53,6 +54,7 @@
     <color name="signal_colorSurface_60">#99FBFCFF</color>
     <color name="signal_colorSurfaceVariant_38">#61E7EBF3</color>
     <color name="signal_colorSurfaceVariant_64">#A3E7EBF3</color>
+    <color name="signal_colorOnSurface_8">#141B1B1D</color>
     <color name="signal_colorOnSurface_12">#1F1B1B1D</color>
     <color name="signal_colorOnSurface_50">#801B1B1D</color>
     <color name="signal_colorOnSurfaceVariant_60">#99545863</color>

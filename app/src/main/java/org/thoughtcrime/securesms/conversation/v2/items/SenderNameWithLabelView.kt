@@ -32,6 +32,9 @@ class SenderNameWithLabelView : AbstractComposeView {
 
   private var senderName: String by mutableStateOf("")
   private var senderColor: Color by mutableStateOf(Color.Unspecified)
+  private var labelTextColor: Color by mutableStateOf(Color.Unspecified)
+  private var labelBackgroundColor: Color by mutableStateOf(Color.Unspecified)
+
   private var memberLabel: MemberLabel? by mutableStateOf(null)
 
   fun setSender(name: String, @ColorInt tintColor: Int) {
@@ -39,16 +42,49 @@ class SenderNameWithLabelView : AbstractComposeView {
     senderColor = Color(tintColor)
   }
 
+  /**
+   * Sets the label with colors derived from the sender name tint color.
+   */
   fun setLabel(label: MemberLabel?) {
     memberLabel = label
+    labelTextColor = Color.Unspecified
+    labelBackgroundColor = Color.Unspecified
+  }
+
+  /**
+   * Sets the label with explicit text and background colors.
+   */
+  fun setLabel(label: MemberLabel?, @ColorInt textColor: Int, @ColorInt backgroundColor: Int) {
+    memberLabel = label
+    labelTextColor = Color(textColor)
+    labelBackgroundColor = Color(backgroundColor)
+  }
+
+  /**
+   * Used to update the colors in response to theme changes (e.g., wallpaper enabled/disabled).
+   */
+  fun updateColors(@ColorInt foregroundColor: Int, @ColorInt labelBackgroundColor: Int) {
+    senderColor = Color(foregroundColor)
+    labelTextColor = Color(foregroundColor)
+    this.labelBackgroundColor = Color(labelBackgroundColor)
   }
 
   @Composable
   override fun Content() {
-    SenderNameWithLabel(
-      senderName = senderName,
-      senderColor = senderColor,
-      label = memberLabel
-    )
+    if (labelTextColor != Color.Unspecified || labelBackgroundColor != Color.Unspecified) {
+      SenderNameWithLabel(
+        senderName = senderName,
+        senderColor = senderColor,
+        memberLabel = memberLabel,
+        labelTextColor = labelTextColor,
+        labelBackgroundColor = labelBackgroundColor
+      )
+    } else {
+      SenderNameWithLabel(
+        senderName = senderName,
+        senderColor = senderColor,
+        memberLabel = memberLabel
+      )
+    }
   }
 }

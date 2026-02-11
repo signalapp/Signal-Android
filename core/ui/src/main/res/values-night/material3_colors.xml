@@ -45,6 +45,7 @@
     <color name="signal_colorNeutralVariantInverse">@color/signal_dark_colorNeutralVariantInverse</color>
 
     <!-- Inverses -->
+    <color name="signal_colorOnSurfaceInverse">@color/signal_light_colorOnSurface</color>
     <color name="signal_colorErrorInverse">@color/signal_light_colorError</color>
     <color name="signal_colorErrorContainerInverse">@color/signal_light_colorErrorContainer</color>
 

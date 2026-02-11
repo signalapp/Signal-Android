@@ -50,6 +50,7 @@ public class ConversationMessage {
   @Nullable private final MessageRecord          originalMessage;
   @NonNull  private final ComputedProperties     computedProperties;
   @Nullable private final MemberLabel            memberLabel;
+  @Nullable private final MemberLabel            quoteMemberLabel;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord,
                               @Nullable CharSequence body,
@@ -59,7 +60,8 @@ public class ConversationMessage {
                               @NonNull Recipient threadRecipient,
                               @Nullable MessageRecord originalMessage,
                               @NonNull ComputedProperties computedProperties,
-                              @Nullable MemberLabel memberLabel)
+                              @Nullable MemberLabel memberLabel,
+                              @Nullable MemberLabel quoteMemberLabel)
   {
     this.messageRecord      = messageRecord;
     this.hasBeenQuoted      = hasBeenQuoted;
@@ -69,6 +71,7 @@ public class ConversationMessage {
     this.originalMessage    = originalMessage;
     this.computedProperties = computedProperties;
     this.memberLabel        = memberLabel;
+    this.quoteMemberLabel   = quoteMemberLabel;
 
     if (body != null) {
       this.body = SpannableString.valueOf(body);
@@ -107,6 +110,10 @@ public class ConversationMessage {
 
   public @Nullable MemberLabel getMemberLabel() {
     return memberLabel;
+  }
+
+  public @Nullable MemberLabel getQuoteMemberLabel() {
+    return quoteMemberLabel;
   }
 
   @Override
@@ -242,8 +249,9 @@ public class ConversationMessage {
         }
       }
 
-      FormattedDate formattedDate = getFormattedDate(context, messageRecord);
-      MemberLabel   memberLabel   = getMemberLabel(messageRecord, threadRecipient);
+      FormattedDate formattedDate    = getFormattedDate(context, messageRecord);
+      MemberLabel   memberLabel      = getMemberLabel(messageRecord, threadRecipient);
+      MemberLabel   quoteMemberLabel = getQuoteMemberLabel(messageRecord, threadRecipient);
 
       return new ConversationMessage(messageRecord,
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
@@ -253,7 +261,8 @@ public class ConversationMessage {
                                      threadRecipient,
                                      originalMessage,
                                      new ComputedProperties(formattedDate),
-                                     memberLabel);
+                                     memberLabel,
+                                     quoteMemberLabel);
     }
 
     /**
@@ -297,6 +306,16 @@ public class ConversationMessage {
         return null;
       }
       return MemberLabelRepository.getInstance().getLabelJava(threadRecipient.requireGroupId().requireV2(), messageRecord.getFromRecipient());
+    }
+
+    @WorkerThread
+    private static @Nullable MemberLabel getQuoteMemberLabel(@NonNull MessageRecord messageRecord, @NonNull Recipient threadRecipient) {
+      if (!threadRecipient.isPushV2Group() || !(messageRecord instanceof final MmsMessageRecord mmsMessage) || mmsMessage.getQuote() == null) {
+        return null;
+      }
+
+      Recipient quoteAuthor = Recipient.resolved(mmsMessage.getQuote().getAuthor());
+      return MemberLabelRepository.getInstance().getLabelJava(threadRecipient.requireGroupId().requireV2(), quoteAuthor);
     }
   }
 }
