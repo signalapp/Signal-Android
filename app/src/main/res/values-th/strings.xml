@@ -3747,13 +3747,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal จะสามารถตรวจยืนยันการเข้ารหัสโดยอัตโนมัติได้เฉพาะในแชทที่คุณและผู้ติดต่อเชื่อมโยงกันผ่านทางหมายเลขโทรศัพท์เท่านั้น ในกรณีของแชทที่เริ่มต้นผ่านทางชื่อผู้ใช้หรือการมีกลุ่มร่วมกัน คุณสามารถตรวจยืนยันการเข้ารหัสตั้งแต่ต้นทางถึงปลายทางโดยเทียบหมายเลขซึ่งแสดงในหน้าที่แล้วหรือสแกนคิวอาร์โค้ดบนอุปกรณ์ของผู้ติดต่อ</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal สามารถตรวจยืนยันการเข้ารหัสโดยอัตโนมัติได้แล้ว</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">หากคุณและผู้ติดต่อเชื่อมโยงกันผ่านทางหมายเลขโทรศัพท์ Signal จะสามารถใช้ขั้นตอนที่เรียกว่า Key Transparency ในการยืนยันความปลอดภัยของเครือข่ายโดยอัตโนมัติ เพื่อความปลอดภัยยิ่งขึ้น คุณยังคงสามารถตรวจยืนยันเครือข่ายด้วยตนเองผ่านทางคิวอาร์โค้ดหรือหมายเลขความปลอดภัย</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__verify">ตรวจยืนยัน</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">ไม่สามารถใช้การตรวจยืนยันโดยอัตโนมัติได้บนอุปกรณ์ของคุณ คุณต้องการส่งบันทึกดีบักหรือไม่</string>
@@ -4247,17 +4247,6 @@
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">ส่งรูปภาพ วิดีโอ และไฟล์ต่างๆ จากอุปกรณ์ของคุณ</string>
 
-    <!-- PermissionDeniedBottomSheet -->
-    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. แตะ “การตั้งค่า” ด้านล่างนี้</string>
-    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s อนุญาตสิทธิ์การเข้าถึง</string>
-    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. แตะ “สิทธิ์การเข้าถึง”</string>
-    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s อนุญาตสิทธิ์การเข้าถึง “รูปภาพและวิดีโอ”</string>
-    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">การตั้งค่า</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4702,7 +4691,6 @@
     <!-- transport_selection_list_item -->
     <string name="ConversationListFragment_loading">กำลังโหลด…</string>
     <string name="CallNotificationBuilder_connecting">กำลังเชื่อมต่อ…</string>
-    <string name="Permissions_permission_required">ต้องได้รับอนุญาตก่อน</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">ย้ายฐานข้อมูล Signal</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">วลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ข้อมูลสำรองจะถูกบันทึกไว้ในที่เก็บข้อมูลภายนอก และถูกเข้ารหัสลับด้วยวลีรหัสผ่านด้านล่างนี้ คุณจะต้องใช้วลีรหัสผ่านนี้เพื่อกู้คืนข้อมูลสำรอง</string>
@@ -5086,8 +5074,6 @@
     <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ถึง %2$s</string>
 
-    <!-- StorageUtil -->
-    <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">บล็อก \"%1$s\" แล้ว</string>
     <string name="BlockedUsersActivity__failed_to_block_s">บล็อก \"%1$s\" ไม่สำเร็จ</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">เลิกบล็อก \"%1$s\" แล้ว</string>
@@ -8485,11 +8471,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">คุณจะไม่สามารถกู้คืนข้อความได้หากทำกุญแจหาย</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">กุญแจนี้จะถูกใช้แทนที่กุญแจในการสำรองข้อมูลไว้บนอุปกรณ์ที่มีอยู่เดิม</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">นี่เป็นกุญแจเดียวกันกับกุญแจสำรองที่คุณใช้ในการสำรองข้อมูลไว้บนอุปกรณ์</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9113,6 +9099,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">ปิดหน้าต่าง</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">ล้างป้ายกำกับ</string>
+    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
 
     <!-- EOF -->
 </resources>

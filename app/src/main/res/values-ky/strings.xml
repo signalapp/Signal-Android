@@ -3747,13 +3747,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal маектерде шифрлөөнү кимдир-бирөөгө телефон аркылуу байланышып турсаңыз гана автоматтык түрдө текшере алат. Эгер маек колдонуучу ат же жалпы топ менен башталса, баштан аяк шифрлөө буга чейинки экранда номерлерди салыштыруу же түзмөктөгү кодду скандоо менен текшерилет.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal эми шифрлөө ачкычтарын автоматтык түрдө текшерет</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">Телефон номери аркылуу байланышкан адамдар үчүн Signal байланыштын коопсуздугун \"ачкычтын ачык-айкындыгы\" деген процесс менен текшерет. Кааласаңыз, байланыштарды QR код же номер аркылуу кол менен текшерсеңиз болот.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Кененирээк маалымат</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__verify">Ырастайм</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Түзмөгүңүздө ачкыч автоматтык түрдө текшерилбейт. Мүчүлүштүктөр журналын жөнөтөсүзбү?</string>
@@ -4247,17 +4247,6 @@
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Түзмөгүңүздөн сүрөттөрдү, видеолорду жана файлдарды жөнөтөсүз.</string>
 
-    <!-- PermissionDeniedBottomSheet -->
-    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Төмөнкү \"Параметрлер\" дегенди басыңыз</string>
-    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Уруксат берүү</string>
-    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. “Уруксаттар” дегенди басыңыз</string>
-    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s “Сүрөттөр менен видеолорго” уруксат бериңиз</string>
-    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Параметрлер</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4702,7 +4691,6 @@
     <!-- transport_selection_list_item -->
     <string name="ConversationListFragment_loading">Жүктөлүүдө…</string>
     <string name="CallNotificationBuilder_connecting">Туташуу…</string>
-    <string name="Permissions_permission_required">Уруксат талап кылынат</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal маалыматтык базасын көчүрүү</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Камдык купуя сөз айкашы</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Камдык көчүрмөлөр тышкы сактагычка сакталат жана төмөнкү купуя сөз айкашы менен шифрленет. Камдык көчүрмөнү калыбына келтирүү үчүн сизде бул купуя сөз айкашы болушу керек.</string>
@@ -5086,8 +5074,6 @@
     <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">Кимден: %1$s Кимге: %2$s</string>
 
-    <!-- StorageUtil -->
-    <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" бөгөттөлдү.</string>
     <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" бөгөттөлгөн жок</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" бөгөттөн чыгарылды.</string>
@@ -8485,11 +8471,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Жоготуп алсаңыз, аккаунтуңузду калыбына келтире албай каласыз.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Бул ачкыч түзмөгүңүздөгү камдык көчүрмөнүн ачкычынын ордуна колдонулат.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Түзмөгүңүздөгү камдык көчүрмө ачкычындай.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9113,6 +9099,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Экранды жабуу</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Энбелгини өчүрүү</string>
+    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
 
     <!-- EOF -->
 </resources>

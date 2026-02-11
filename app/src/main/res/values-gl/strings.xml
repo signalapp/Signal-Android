@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal só pode verificar automaticamente a encriptación nas conversas vinculadas cun número de teléfono. Se a conversa comezou a través dun nome de usuario o dun grupo en común, verifica a encriptación de extremo a extremo ao comparar os números da anterior pantalla ou escaneando o código do seu dispositivo.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal agora pode verificar automaticamente a encriptación de claves</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">Signal pode confirmar automaticamente que a conexión é segura nas conversas con contactos vinculados por número de teléfono, mediante un proceso chamado transparencia de claves. Ademais, para maior seguridade, sempre podes verificar a conexión de forma manual cun código QR ou un número.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Máis información</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__verify">Comprobar</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">A verificación automática de claves non está dispoñible nestes momentos para o teu dispositivo. Enviar rexistro de depuración?</string>
@@ -4362,17 +4362,6 @@
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Envía fotos, vídeos e arquivos dende o teu dispositivo.</string>
 
-    <!-- PermissionDeniedBottomSheet -->
-    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Preme «Configuración» máis abaixo</string>
-    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Permite o acceso</string>
-    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Preme «Permisos»</string>
-    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Activa o permiso de acceso para «Fotos e vídeos»</string>
-    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Configuración</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4826,7 +4815,6 @@
     <!-- transport_selection_list_item -->
     <string name="ConversationListFragment_loading">Cargando…</string>
     <string name="CallNotificationBuilder_connecting">Conectando…</string>
-    <string name="Permissions_permission_required">Permiso obrigatorio</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrando a base de datos de Signal</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase de acceso da copia de seguranza</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">As copias de seguranza gardaranse no almacenamento externo e cifraranse cunha frase de acceso. A devandita frase é necesaria para restaurar unha copia de seguranza.</string>
@@ -5210,8 +5198,6 @@
     <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s a %2$s</string>
 
-    <!-- StorageUtil -->
-    <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">Bloqueouse a «%1$s».</string>
     <string name="BlockedUsersActivity__failed_to_block_s">Erro ao bloquear a «%1$s»</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">Desbloqueouse a «%1$s».</string>
@@ -8667,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Se a perdes, non poderás recuperar as túas mensaxes.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Esta chave substituirá a da túa copia de seguranza no dispositivo.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">É a mesma que a túa clave de seguranza no dispositivo.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9300,6 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Pechar pantalla</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Borrar categoría</string>
+    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
 
     <!-- EOF -->
 </resources>

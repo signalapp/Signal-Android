@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">మీరు ఒకరితో ఫోన్ నంబర్ ద్వారా కనెక్ట్ అయినప్పుడు మాత్రమే Signal చాట్‌లలోని గుప్తీకరణను ఆటోమేటిక్‌గా ధృవీకరించగలదు. చాట్ ఒక యూజర్ నేమ్ లేదా ఉమ్మడి గ్రూప్‌తో ప్రారంభించబడి ఉంటే, మునుపటి స్క్రీన్‌లోని నంబర్‌లను పోల్చడం ద్వారా లేదా వారి పరికరంలోని కోడ్‌ను స్కాన్ చేయడం ద్వారా ఎండ్-టు-ఎండ్ గుప్తీకరణను ధృవీకరించండి.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal ఇప్పుడు కీ గుప్తీకరణను స్వయం-ధృవీకరణ చేయగలదు</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">ఫోన్ నంబర్ ద్వారా మీరు కనెక్ట్ అయిన పరిచయాల కోసం, Signal కీ పారదర్శకత అనే ప్రక్రియను ఉపయోగించి కనెక్షన్ సురక్షితంగా ఉందో లేదో ఆటోమేటిక్‌గా నిర్ధారించగలదు. అదనపు భద్రత కోసం, మీరు ఇప్పటికీ QR కోడ్ లేదా నంబర్‌ను ఉపయోగించి కనెక్షన్‌లను మాన్యువల్‌గా ధృవీకరించవచ్చు.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">మరింత తెలుసుకోండి</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__verify">ధృవీకరించండి</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">మీ పరికరానికి ఆటోమేటిక్ కీ ధృవీకరణ ప్రస్తుతం అందుబాటులో లేదు. డీబగ్ లాగ్‌ను సమర్పించేదా?</string>
@@ -4362,17 +4362,6 @@
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">మీ పరికరం నుండి ఫోటోలు, వీడియోలు మరియు ఫైళ్ళను పంపండి.</string>
 
-    <!-- PermissionDeniedBottomSheet -->
-    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. దిగువన “సెట్టింగ్‌లు” తట్టండి</string>
-    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s అనుమతిని ఇవ్వండి</string>
-    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. “అనుమతులు” తట్టండి</string>
-    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s “ఫోటోలు మరియు వీడియోలు” అనుమతిని ఇవ్వండి</string>
-    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">సెట్టింగ్‌లు</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4826,7 +4815,6 @@
     <!-- transport_selection_list_item -->
     <string name="ConversationListFragment_loading">లోడ్…</string>
     <string name="CallNotificationBuilder_connecting">కలుస్తుంది…</string>
-    <string name="Permissions_permission_required">అనుమతి అవసరం</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal దత్తాంశమూల తలరింపడుతోంది.</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">ప్రత్యామ్నాయ పాస్ఫ్రేజ్</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ప్రత్యామ్నాయ బాహ్య నిల్వకి భద్రపరచ బడుతుంది మరియు పాస్ఫ్రేజ్తో గుప్తీకరించబడుతుంది. ప్రత్యామ్నాయను పునరుద్ధరించడానికి మీరు తప్పనిసరిగా ఈ పాస్ఫ్రేజ్ను కలిగి ఉండాలి.</string>
@@ -5210,8 +5198,6 @@
     <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$sకు%2$s</string>
 
-    <!-- StorageUtil -->
-    <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" బ్లాక్ చేయబడినారు.</string>
     <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" ను బ్లాక్ చేయడంలో విఫలమైంది</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" అన్‌బ్లాక్ చేయబడినారు.</string>
@@ -8667,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">ఒకవేళ మీరు దానిని కోల్పోతే, మీరు మీ సందేశాలను తిరిగి పొందలేరు.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">ఈ కీ మీ పరికరంలోని బ్యాకప్ కోసం కీని భర్తీ చేస్తుంది.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">ఇది మీ పరికరంలోని బ్యాకప్ కీ లాంటిదే.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9300,6 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">స్క్రీన్‌ను మూసివేయండి</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">లేబుల్‌ను తొలగించండి</string>
+    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
 
     <!-- EOF -->
 </resources>

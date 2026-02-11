@@ -3747,13 +3747,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal သည် ဖုန်းနံပါတ်မှတစ်ဆင့် ချိတ်ဆက်ထားသူများ၏ ချက်(တ်)များတွင်သာ ကုဒ်ပြောင်းဝှက်ခြင်းကို အလိုအလျောက် အတည်ပြုပေးနိုင်ပါသည်။ ချက်(တ်)ကို သုံးစွဲသူအမည် သို့မဟုတ် အတူတူရှိသော အဖွဲ့တစ်ဖွဲ့ဖြင့် စတင်ခဲ့ပါက ယခင်စခရင်ပေါ်ရှိ နံပါတ်များကို နှိုင်းယှဉ်ခြင်း သို့မဟုတ် ၎င်းတို့၏ စက်ပေါ်ရှိ ကုဒ်ကို စကင်ဖတ်ခြင်းဖြင့် ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ခြင်းကို အတည်ပြုပါ။</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal သည် ကီး ကုဒ်ပြောင်းဝှက်ခြင်းကို အလိုအလျောက် အတည်ပြုနိုင်ပါပြီ</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">ဖုန်းနံပါတ်ဖြင့် ချိတ်ဆက်ထားသော အဆက်အသွယ်များအတွက် Signal သည် ကီး ပွင့်လင်းမြင်သာမှုဟုခေါ်သော လုပ်ငန်းစဉ်ကို အသုံးပြု၍ ချိတ်ဆက်မှု လုံခြုံခြင်းရှိမရှိကို အလိုအလျောက် အတည်ပြုနိုင်သည်။ လုံခြုံရေးပိုမိုရရှိစေရန်အတွက် QR ကုဒ် သို့မဟုတ် နံပါတ်ကို အသုံးပြု၍ ချိတ်ဆက်မှုများကို ကိုယ်တိုင်အတည်ပြုနိုင်ပါသည်။</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__verify">စစ်ဆေးအတည်ပြုမည်</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">အလိုအလျောက် ကီးအတည်ပြုခြင်းကို သင့်စက်အတွက် လောလောဆယ်တွင် မရရှိနိုင်ပါ။ ပြစ်ချက်မှတ်တမ်း ပေးပို့မည်လား။</string>
@@ -4247,17 +4247,6 @@
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">သင့်စက်မှ ဓာတ်ပုံများ၊ ဗီဒီယိုများနှင့် ဖိုင်များကို ပေးပို့လိုက်ပါ။</string>
 
-    <!-- PermissionDeniedBottomSheet -->
-    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. အောက်ပါ \"ဆက်တင်\" ကို နှိပ်ပါ</string>
-    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s ခွင့်ပြုချက်ပေးရန်</string>
-    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. “ခွင့်ပြုချက်များ” ကိုနှိပ်ပါ</string>
-    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s သည် “ဓာတ်ပုံများနှင့် ဗီဒီယိုများ”ကို ခွင့်ပြုပေးသည်</string>
-    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">ဆက်တင်</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4702,7 +4691,6 @@
     <!-- transport_selection_list_item -->
     <string name="ConversationListFragment_loading">လုပ်ဆောင်နေသည်…</string>
     <string name="CallNotificationBuilder_connecting">ချိတ်ဆက်နေသည်…</string>
-    <string name="Permissions_permission_required">ခွင့်ပြုချက် လိုအပ်သည်</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ၏ အချက်အလက်ထိန်းသိမ်းရာနေရာကို ပြောင်းရွှေ့ခြင်း</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">စကားဝှက်ကို အရန်သိမ်းဆည်းထားပါ</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">အရန်သိမ်းထားသည်များကို အပ္ပလီကေးရှင်းပြင်ပ ဖုန်းထဲတွင် သိမ်းပြီး အောက်ပါ စကားဝှက်ဖြင့် လုံခြုံစွာ သိမ်းထားပါမည်။ အရန်သိမ်းထားသောဖိုင်များကို ပြန်ရယူနိုင်ရန် ဤစကားဝှက်ရှိကို ရှိရမည်။</string>
@@ -5086,8 +5074,6 @@
     <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s မှ %2$s သို့</string>
 
-    <!-- StorageUtil -->
-    <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ကို ဘလော့ခ်ထားပါသည်</string>
     <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" ကို ဘလော့ခ်ရန် မအောင်မြင်ပါ</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ကို ဘလော့ခ်ဖြေပြီးပါပြီ။</string>
@@ -8485,11 +8471,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">၎င်းကိုသင်ဆုံးရှုံးသွားပါက သင့်မက်ဆေ့ချ်များကို ပြန်လည်ရယူနိုင်မည်မဟုတ်ပါ။</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-digit code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">ဤကီးသည် သင်၏စက်ပေါ်ရှိ ဘက်ခ်အပ်အတွက် ကီးကို အစားထိုးပေးလိမ့်မည်။</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-digit code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">၎င်းသည် သင်၏ စက်ပေါ်ရှိ ဘက်ခ်အပ်ကီးနှင့် အတူတူပင်ဖြစ်သည်။</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9113,6 +9099,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">စခရင်ပိတ်ရန်</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">အမှတ်တံဆိပ်ကို ရှင်းရန်</string>
+    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
 
     <!-- EOF -->
 </resources>
