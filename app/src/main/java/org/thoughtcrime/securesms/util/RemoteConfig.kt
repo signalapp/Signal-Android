@@ -1252,7 +1252,7 @@ object RemoteConfig {
    * Whether to receive and display group member labels.
    */
   val receiveMemberLabels: Boolean by remoteBoolean(
-    key = "android.receiveMemberLabels",
+    key = "android.receiveMemberLabels.2",
     defaultValue = false,
     hotSwappable = true
   )
