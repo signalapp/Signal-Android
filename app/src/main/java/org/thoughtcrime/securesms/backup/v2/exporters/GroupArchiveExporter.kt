@@ -123,7 +123,13 @@ private fun Member.Role.toRemote(): Group.Member.Role {
 }
 
 private fun DecryptedMember.toRemote(): Group.Member {
-  return Group.Member(userId = aciBytes, role = role.toRemote(), joinedAtVersion = joinedAtRevision)
+  return Group.Member(
+    userId = aciBytes,
+    role = role.toRemote(),
+    joinedAtVersion = joinedAtRevision,
+    labelEmoji = labelEmoji,
+    labelString = labelString
+  )
 }
 
 private fun DecryptedPendingMember.toRemote(): Group.MemberPendingProfileKey {

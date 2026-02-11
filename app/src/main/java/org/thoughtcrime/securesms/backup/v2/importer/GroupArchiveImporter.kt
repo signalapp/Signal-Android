@@ -116,7 +116,13 @@ private fun Group.Member.Role.toLocal(): Member.Role {
 }
 
 private fun Group.Member.toLocal(): DecryptedMember {
-  return DecryptedMember(aciBytes = userId, role = role.toLocal(), joinedAtRevision = joinedAtVersion)
+  return DecryptedMember(
+    aciBytes = userId,
+    role = role.toLocal(),
+    joinedAtRevision = joinedAtVersion,
+    labelEmoji = labelEmoji,
+    labelString = labelString
+  )
 }
 
 private fun Group.MemberPendingAdminApproval.toLocal(): DecryptedRequestingMember {

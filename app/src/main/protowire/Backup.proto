@@ -331,6 +331,8 @@ message Group {
     reserved /*profileKey*/ 3; // This field is ignored in Backups, in favor of Contact frames for members
     reserved /*presentation*/ 4; // This field is deprecated in the context of static group state
     uint32 joinedAtVersion = 5;
+    string labelEmoji = 6;
+    string labelString = 7;
   }
 
   message MemberPendingProfileKey {

@@ -17,11 +17,13 @@ import kotlin.random.Random
  * Helper methods for creating groups for message processing tests et al.
  */
 object GroupTestingUtils {
-  fun member(aci: ACI, revision: Int = 0, role: Member.Role = Member.Role.ADMINISTRATOR): DecryptedMember {
+  fun member(aci: ACI, revision: Int = 0, role: Member.Role = Member.Role.ADMINISTRATOR, labelEmoji: String = "", labelString: String = ""): DecryptedMember {
     return DecryptedMember.Builder()
       .aciBytes(aci.toByteString())
       .joinedAtRevision(revision)
       .role(role)
+      .labelEmoji(labelEmoji)
+      .labelString(labelString)
       .build()
   }
 

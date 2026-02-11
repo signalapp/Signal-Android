@@ -42,15 +42,17 @@ fun DecryptedGroupChange.Builder.addMember(aci: ACI) {
   newMembers += member(aci)
 }
 
-fun member(serviceId: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
-  return member(ACI.from(serviceId), role, joinedAt)
+fun member(serviceId: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0, labelEmoji: String = "", labelString: String = ""): DecryptedMember {
+  return member(ACI.from(serviceId), role, joinedAt, labelEmoji, labelString)
 }
 
-fun member(aci: ACI, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
+fun member(aci: ACI, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0, labelEmoji: String = "", labelString: String = ""): DecryptedMember {
   return DecryptedMember.Builder()
     .role(role)
     .aciBytes(aci.toByteString())
     .joinedAtRevision(joinedAt)
+    .labelEmoji(labelEmoji)
+    .labelString(labelString)
     .build()
 }
 
