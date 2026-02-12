@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.PNI;
 import org.signal.core.util.Base64;
+import org.signal.core.util.ProtoUtil;
 import org.signal.core.util.UuidUtil;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.protocol.IdentityKey;
@@ -2981,6 +2982,7 @@ public class SignalServiceMessageSender {
       } else {
         message = buildContentTooLargeBreadcrumbs(content.getContent().get());
       }
+      Log.w(TAG, "About to crash for exceeding max envelope size (" + size + " > " + maxEnvelopeSize + ")\n" + message);
       throw new ContentTooLargeException(size, message);
     }
   }
@@ -2996,104 +2998,7 @@ public class SignalServiceMessageSender {
   }
 
   private String buildContentTooLargeBreadcrumbs(Content content) {
-    StringBuilder message = new StringBuilder();
-
-    if (content.dataMessage != null) {
-      message.append("Data message;");
-      if (content.dataMessage.body != null && !content.dataMessage.body.isEmpty()) {
-        message.append("Body(").append(content.dataMessage.body.length()).append(");");
-      }
-      if (content.dataMessage.groupV2 != null) {
-        if (content.dataMessage.groupV2.groupChange != null) {
-          message.append("GroupV2Change(").append(content.dataMessage.groupV2.groupChange.size()).append(");");
-        } else {
-          message.append("GroupV2NoChange;");
-        }
-      }
-      if (content.dataMessage.giftBadge != null) {
-        message.append("GiftBadge;");
-      }
-      if (content.dataMessage.pollCreate != null) {
-        message.append("PollCreate;");
-      }
-      if (content.dataMessage.pollTerminate != null) {
-        message.append("PollTerminate;");
-      }
-      if (content.dataMessage.pollVote != null) {
-        message.append("PollVote;");
-      }
-      if (content.dataMessage.pinMessage != null) {
-        message.append("PinMessage;");
-      }
-      if (content.dataMessage.unpinMessage != null) {
-        message.append("UnpinMessage;");
-      }
-      if (content.dataMessage.reaction != null) {
-        message.append("Reaction;");
-      }
-      if (content.dataMessage.profileKey != null && content.dataMessage.profileKey.size() > 0) {
-        message.append("ProfileKey(").append(content.dataMessage.profileKey.size()).append(");");
-      }
-      if (content.dataMessage.payment != null) {
-        message.append("Payment;");
-      }
-      if (!content.dataMessage.attachments.isEmpty()) {
-        message.append("Attachments(").append(content.dataMessage.attachments.size()).append(");");
-      }
-      if (!content.dataMessage.contact.isEmpty()) {
-        message.append("Contacts(").append(content.dataMessage.contact.size()).append(");");
-      }
-      if (!content.dataMessage.bodyRanges.isEmpty()) {
-        message.append("Ranges(").append(content.dataMessage.bodyRanges.size()).append(");");
-      }
-      if (content.dataMessage.quote != null) {
-        if (content.dataMessage.quote.text != null) {
-          message.append("Quote(").append(content.dataMessage.quote.text.length()).append(");");
-        } else {
-          message.append("Quote(No text);");
-        }
-      }
-    }
-
-    if (content.syncMessage != null) {
-      message.append("Sync message;");
-
-      if (content.syncMessage.sent != null) {
-        if (content.syncMessage.sent.storyMessage != null) {
-          message.append("StoryMessage(").append(content.syncMessage.sent.storyMessageRecipients.size()).append(");");
-        }
-        if (!content.syncMessage.sent.storyMessageRecipients.isEmpty()) {
-          message.append("StoryRecipients(").append(content.syncMessage.sent.storyMessageRecipients.size()).append(");");
-        }
-        if (content.syncMessage.blocked != null) {
-          message.append("Blocked-AciString(").append(content.syncMessage.blocked.acis.size()).append(");");
-          message.append("Blocked-AciBinary(").append(content.syncMessage.blocked.acisBinary.size()).append(");");
-          message.append("Blocked-GroupIds(").append(content.syncMessage.blocked.groupIds.size()).append(");");
-          message.append("Blocked-Numbers(").append(content.syncMessage.blocked.numbers.size()).append(");");
-        }
-        if (content.syncMessage.outgoingPayment != null) {
-          message.append("OutgoingPayment");
-        }
-        if (content.syncMessage.deleteForMe != null) {
-          message.append("DeleteForMe-Messages(").append(content.syncMessage.deleteForMe.messageDeletes.size()).append(");");
-          message.append("DeleteForMe-Attachments(").append(content.syncMessage.deleteForMe.attachmentDeletes.size()).append(");");
-          message.append("DeleteForMe-Conversations(").append(content.syncMessage.deleteForMe.conversationDeletes.size()).append(");");
-        }
-        if (!content.syncMessage.read.isEmpty()) {
-          message.append("Read(").append(content.syncMessage.read.size()).append(");");
-        }
-        if (!content.syncMessage.viewed.isEmpty()) {
-          message.append("Viewed(").append(content.syncMessage.read.size()).append(");");
-        }
-      }
-    }
-
-    if (content.receiptMessage != null) {
-      message.append("ReceiptMessage(").append(content.receiptMessage.timestamp.size()).append(");");
-      message.append("ReceiptMessage(").append(content.receiptMessage.type.getValue()).append(");");
-    }
-
-    return message.toString();
+    return ProtoUtil.buildSizeTree(content, "Content");
   }
 
   public interface EventListener {
