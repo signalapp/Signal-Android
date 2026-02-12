@@ -108,12 +108,12 @@ interface NetworkController {
    * This is called when the user encounters a registration lock and needs to prove
    * they know their PIN to proceed with registration.
    *
-   * @param svr2Credentials The SVR2 credentials provided by the server during the registration lock response.
+   * @param svrCredentials The SVR2 credentials provided by the server during the registration lock response.
    * @param pin The user-entered PIN.
    * @return The restored master key on success, or an appropriate error.
    */
   suspend fun restoreMasterKeyFromSvr(
-    svr2Credentials: SvrCredentials,
+    svrCredentials: SvrCredentials,
     pin: String
   ): RegistrationNetworkResult<MasterKeyResponse, RestoreMasterKeyError>
 
@@ -127,7 +127,14 @@ interface NetworkController {
   suspend fun setPinAndMasterKeyOnSvr(
     pin: String,
     masterKey: MasterKey
-  ): RegistrationNetworkResult<Unit, BackupMasterKeyError>
+  ): RegistrationNetworkResult<SvrCredentials?, BackupMasterKeyError>
+
+  /**
+   * Requests that the currently-set PIN and [MasterKey] are backed up to SVR.
+   * It should always be the case that when this is called, you should have a stored PIN and [MasterKey].
+   * If you do not, you should probably crash.
+   */
+  suspend fun enqueueSvrGuessResetJob()
 
   /**
    * Enables registration lock on the account using the registration lock token
@@ -152,6 +159,15 @@ interface NetworkController {
    * @return SVR credentials on success, or an appropriate error.
    */
   suspend fun getSvrCredentials(): RegistrationNetworkResult<SvrCredentials, GetSvrCredentialsError>
+
+  /**
+   * Checks if the SVR2 credentials are valid for the given phone number.
+   *
+   * `POST /v2/svr/auth/check`
+   *
+   * @return A response containing a mapping of which credentials are matches.
+   */
+  suspend fun checkSvrCredentials(e164: String, credentials: List<SvrCredentials>): RegistrationNetworkResult<CheckSvrCredentialsResponse, CheckSvrCredentialsError>
 
   /**
    * Updates account attributes on the server.
@@ -282,6 +298,11 @@ interface NetworkController {
     data object NoServiceCredentialsAvailable : GetSvrCredentialsError()
   }
 
+  sealed class CheckSvrCredentialsError() {
+    data object Unauthorized : CheckSvrCredentialsError()
+    data class InvalidRequest(val message: String) : CheckSvrCredentialsError()
+  }
+
   data class MasterKeyResponse(
     val masterKey: MasterKey
   )
@@ -372,6 +393,43 @@ interface NetworkController {
     val username: String,
     val password: String
   ) : Parcelable
+
+  @Serializable
+  data class CheckSvrCredentialsResponse(
+    val matches: Map<String, String>
+  ) {
+    /**
+     * The first valid credential, if any.
+     *
+     * The response is structured like this:
+     * {
+     *   matches: {
+     *     <token>: "match|no-match|invalid"
+     *   }
+     * }
+     *
+     * So we find the first map entry with "match". The token is "username:password", so we split it apart.
+     * Important: The password can have ":" in it, so we need to make sure to just split on the first ":".
+     */
+    val validCredential: SvrCredentials? by lazy {
+      matches.entries.firstOrNull { it.value == "match" }?.key?.split(":", limit = 2)?.let { SvrCredentials(it[0], it[1]) }
+    }
+  }
+
+  @Serializable
+  data class CheckSvrCredentialsRequest(
+    val number: String,
+    val tokens: List<String>
+  ) {
+    companion object {
+      fun createForCredentials(number: String, credentials: List<SvrCredentials>): CheckSvrCredentialsRequest {
+        return CheckSvrCredentialsRequest(
+          number = number,
+          tokens = credentials.map { "${it.username}:${it.password}" }
+        )
+      }
+    }
+  }
 
   @Serializable
   data class ThirdPartyServiceErrorResponse(

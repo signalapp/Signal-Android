@@ -30,6 +30,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -123,8 +124,11 @@ private fun SampleNavHost(
   backStack: NavBackStack<NavKey>,
   modifier: Modifier = Modifier
 ) {
+  val context = LocalContext.current
+
   val registrationRepository = remember {
     RegistrationRepository(
+      context = context.applicationContext,
       networkController = registrationDependencies.networkController,
       storageController = registrationDependencies.storageController
     )

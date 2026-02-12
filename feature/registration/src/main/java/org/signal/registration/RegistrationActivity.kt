@@ -23,6 +23,7 @@ class RegistrationActivity : ComponentActivity() {
 
   private val repository: RegistrationRepository by lazy {
     RegistrationRepository(
+      context = this.application,
       networkController = RegistrationDependencies.get().networkController,
       storageController = RegistrationDependencies.get().storageController
     )

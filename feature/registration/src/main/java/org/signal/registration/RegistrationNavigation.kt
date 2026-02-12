@@ -45,6 +45,7 @@ import org.signal.registration.screens.phonenumber.PhoneNumberScreen
 import org.signal.registration.screens.pincreation.PinCreationScreen
 import org.signal.registration.screens.pincreation.PinCreationViewModel
 import org.signal.registration.screens.pinentry.PinEntryForRegistrationLockViewModel
+import org.signal.registration.screens.pinentry.PinEntryForSmsBypassViewModel
 import org.signal.registration.screens.pinentry.PinEntryForSvrRestoreViewModel
 import org.signal.registration.screens.pinentry.PinEntryScreen
 import org.signal.registration.screens.restore.RestoreViaQrScreen
@@ -89,6 +90,9 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
     val timeRemaining: Long,
     val svrCredentials: NetworkController.SvrCredentials
   ) : RegistrationRoute
+
+  @Serializable
+  data class PinEntryForSmsBypass(val svrCredentials: NetworkController.SvrCredentials) : RegistrationRoute
 
   @Serializable
   data class AccountLocked(val timeRemainingMs: Long) : RegistrationRoute
@@ -356,6 +360,24 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
         timeRemaining = key.timeRemaining,
+        svrCredentials = key.svrCredentials
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    PinEntryScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- SMS Bypass PIN Entry Screen
+  entry<RegistrationRoute.PinEntryForSmsBypass> { key ->
+    val viewModel: PinEntryForSmsBypassViewModel = viewModel(
+      factory = PinEntryForSmsBypassViewModel.Factory(
+        repository = registrationRepository,
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent,
         svrCredentials = key.svrCredentials
       )
     )

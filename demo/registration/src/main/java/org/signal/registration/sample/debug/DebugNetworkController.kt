@@ -27,6 +27,8 @@ import org.signal.registration.NetworkController.SubmitVerificationCodeError
 import org.signal.registration.NetworkController.SvrCredentials
 import org.signal.registration.NetworkController.UpdateSessionError
 import org.signal.registration.NetworkController.VerificationCodeTransport
+import org.signal.registration.NetworkController.CheckSvrCredentialsError
+import org.signal.registration.NetworkController.CheckSvrCredentialsResponse
 import java.util.Locale
 
 /**
@@ -137,25 +139,30 @@ class DebugNetworkController(
   }
 
   override suspend fun restoreMasterKeyFromSvr(
-    svr2Credentials: SvrCredentials,
+    svrCredentials: SvrCredentials,
     pin: String
   ): RegistrationNetworkResult<MasterKeyResponse, RestoreMasterKeyError> {
     NetworkDebugState.getOverride<RegistrationNetworkResult<MasterKeyResponse, RestoreMasterKeyError>>("restoreMasterKeyFromSvr")?.let {
       Log.d(TAG, "[restoreMasterKeyFromSvr] Returning debug override")
       return it
     }
-    return delegate.restoreMasterKeyFromSvr(svr2Credentials, pin)
+    return delegate.restoreMasterKeyFromSvr(svrCredentials, pin)
   }
 
   override suspend fun setPinAndMasterKeyOnSvr(
     pin: String,
     masterKey: MasterKey
-  ): RegistrationNetworkResult<Unit, BackupMasterKeyError> {
-    NetworkDebugState.getOverride<RegistrationNetworkResult<Unit, BackupMasterKeyError>>("setPinAndMasterKeyOnSvr")?.let {
+  ): RegistrationNetworkResult<SvrCredentials?, BackupMasterKeyError> {
+    NetworkDebugState.getOverride<RegistrationNetworkResult<SvrCredentials?, BackupMasterKeyError>>("setPinAndMasterKeyOnSvr")?.let {
       Log.d(TAG, "[setPinAndMasterKeyOnSvr] Returning debug override")
       return it
     }
     return delegate.setPinAndMasterKeyOnSvr(pin, masterKey)
+  }
+
+  override suspend fun enqueueSvrGuessResetJob() {
+    // No override support for simple value methods
+    delegate.enqueueSvrGuessResetJob()
   }
 
   override suspend fun enableRegistrationLock(): RegistrationNetworkResult<Unit, SetRegistrationLockError> {
@@ -188,5 +195,17 @@ class DebugNetworkController(
       return it
     }
     return delegate.getSvrCredentials()
+  }
+
+  override suspend fun checkSvrCredentials(
+    e164: String,
+    credentials: List<SvrCredentials>
+  ): RegistrationNetworkResult<CheckSvrCredentialsResponse, CheckSvrCredentialsError> {
+    NetworkDebugState.getOverride<RegistrationNetworkResult<CheckSvrCredentialsResponse, CheckSvrCredentialsError>>("checkSvrCredentials")?.let {
+      Log.d(TAG, "[checkSvrCredentials] Returning debug override")
+      return it
+    }
+
+    return delegate.checkSvrCredentials(e164, credentials)
   }
 }

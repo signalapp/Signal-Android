@@ -73,7 +73,8 @@ fun PinEntryScreen(
       val titleString = remember {
         return@remember when (state.mode) {
           PinEntryState.Mode.RegistrationLock -> "Registration Lock"
-          PinEntryState.Mode.SvrRestore -> "Enter your PIN"
+          PinEntryState.Mode.SvrRestore,
+          PinEntryState.Mode.SmsBypass -> "Enter your PIN"
         }
       }
 

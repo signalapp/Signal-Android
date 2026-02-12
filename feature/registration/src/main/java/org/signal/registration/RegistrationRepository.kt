@@ -5,11 +5,14 @@
 
 package org.signal.registration
 
+import android.app.backup.BackupManager
+import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.util.logging.Log
 import org.signal.registration.NetworkController.AccountAttributes
 import org.signal.registration.NetworkController.CreateSessionError
 import org.signal.registration.NetworkController.MasterKeyResponse
@@ -22,9 +25,14 @@ import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.NetworkController.SessionMetadata
 import org.signal.registration.NetworkController.SvrCredentials
 import org.signal.registration.NetworkController.UpdateSessionError
+import org.signal.registration.util.SensitiveLog
 import java.util.Locale
 
-class RegistrationRepository(val networkController: NetworkController, val storageController: StorageController) {
+class RegistrationRepository(val context: Context, val networkController: NetworkController, val storageController: StorageController) {
+
+  companion object {
+    private val TAG = Log.tag(RegistrationRepository::class)
+  }
 
   suspend fun createSession(e164: String): RegistrationNetworkResult<SessionMetadata, CreateSessionError> = withContext(Dispatchers.IO) {
     val fcmToken = networkController.getFcmToken()
@@ -88,24 +96,45 @@ class RegistrationRepository(val networkController: NetworkController, val stora
   }
 
   suspend fun getSvrCredentials(): RegistrationNetworkResult<SvrCredentials, NetworkController.GetSvrCredentialsError> = withContext(Dispatchers.IO) {
-    networkController.getSvrCredentials()
+    networkController.getSvrCredentials().also {
+      if (it is RegistrationNetworkResult.Success) {
+        storageController.appendSvrCredentials(listOf(it.data))
+        BackupManager(context).dataChanged()
+      }
+    }
+  }
+
+  suspend fun getRestoredSvrCredentials(): List<SvrCredentials> = withContext(Dispatchers.IO) {
+    storageController.getRestoredSvrCredentials()
+  }
+
+  suspend fun checkSvrCredentials(e164: String, credentials: List<SvrCredentials>): RegistrationNetworkResult<NetworkController.CheckSvrCredentialsResponse, NetworkController.CheckSvrCredentialsError> = withContext(Dispatchers.IO) {
+    networkController.checkSvrCredentials(e164, credentials)
   }
 
   suspend fun restoreMasterKeyFromSvr(
-    svr2Credentials: SvrCredentials,
+    svrCredentials: SvrCredentials,
     pin: String,
     isAlphanumeric: Boolean,
     forRegistrationLock: Boolean
   ): RegistrationNetworkResult<MasterKeyResponse, RestoreMasterKeyError> = withContext(Dispatchers.IO) {
     networkController.restoreMasterKeyFromSvr(
-      svr2Credentials = svr2Credentials,
+      svrCredentials = svrCredentials,
       pin = pin
     ).also {
       if (it is RegistrationNetworkResult.Success) {
         // TODO consider whether we should save this now, or whether we should keep in app state and then hand it back to the library user at the end of the flow
         storageController.saveValidatedPinAndTemporaryMasterKey(pin, isAlphanumeric, it.data.masterKey, forRegistrationLock)
+        storageController.appendSvrCredentials(listOf(svrCredentials))
       }
     }
+  }
+
+  /**
+   * See [NetworkController.enqueueSvrGuessResetJob]
+   */
+  suspend fun enqueueSvrResetGuessCountJob() {
+    networkController.enqueueSvrGuessResetJob()
   }
 
   /**
@@ -119,7 +148,7 @@ class RegistrationRepository(val networkController: NetworkController, val stora
    *
    * @param e164 The phone number in E.164 format (used for basic auth)
    * @param recoveryPassword The recovery password, derived from the user's [MasterKey], which allows us to forgo session creation.
-   * @param registrationLock The registration lock token derived from the master key (if unlocking a reglocked account)
+   * @param registrationLock The registration lock token derived from the master key, if unlocking a reglocked account. Must be null if the account is not reglocked.
    * @param skipDeviceTransfer Whether to skip device transfer flow
    * @return The registration result containing account information or an error
    */
@@ -127,9 +156,10 @@ class RegistrationRepository(val networkController: NetworkController, val stora
     e164: String,
     recoveryPassword: String,
     registrationLock: String? = null,
-    skipDeviceTransfer: Boolean = true
+    skipDeviceTransfer: Boolean = true,
+    preExistingRegistrationData: PreExistingRegistrationData? = null
   ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
-    registerAccount(e164, sessionId = null, recoveryPassword, registrationLock, skipDeviceTransfer)
+    registerAccount(e164, sessionId = null, recoveryPassword, registrationLock, skipDeviceTransfer, preExistingRegistrationData)
   }
 
   /**
@@ -168,8 +198,9 @@ class RegistrationRepository(val networkController: NetworkController, val stora
    * @param e164 The phone number in E.164 format (used for basic auth)
    * @param sessionId The verified session ID from phone number verification. Must provide if you're not using [recoveryPassword].
    * @param recoveryPassword The recovery password, derived from the user's [MasterKey], which allows us to forgo session creation. Must provide if you're not using [sessionId].
-   * @param registrationLock The registration lock token derived from the master key (if unlocking a reglocked account)
+   * @param registrationLock The registration lock token derived from the master key (if unlocking a reglocked account). Important: if you provide this, the user will be registered with reglock enabled.
    * @param skipDeviceTransfer Whether to skip device transfer flow
+   * @param preExistingRegistrationData If present, we will use the pre-existing key material from this pre-existing registration rather than generating new key material.
    * @return The registration result containing account information or an error
    */
   private suspend fun registerAccount(
@@ -177,13 +208,25 @@ class RegistrationRepository(val networkController: NetworkController, val stora
     sessionId: String?,
     recoveryPassword: String?,
     registrationLock: String? = null,
-    skipDeviceTransfer: Boolean = true
+    skipDeviceTransfer: Boolean = true,
+    preExistingRegistrationData: PreExistingRegistrationData? = null
   ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
     check(sessionId != null || recoveryPassword != null) { "Either sessionId or recoveryPassword must be provided" }
     check(sessionId == null || recoveryPassword == null) { "Either sessionId or recoveryPassword must be provided, but not both" }
 
-    val keyMaterial = storageController.generateAndStoreKeyMaterial()
+    Log.i(TAG, "[registerAccount] Starting registration for $e164. sessionId: ${sessionId != null}, recoveryPassword: ${recoveryPassword != null}, registrationLock: ${registrationLock != null}, skipDeviceTransfer: $skipDeviceTransfer, preExistingRegistrationData: ${preExistingRegistrationData != null}")
+
+    val keyMaterial = storageController.generateAndStoreKeyMaterial(
+      existingAccountEntropyPool = preExistingRegistrationData?.aep,
+      existingAciIdentityKeyPair = preExistingRegistrationData?.aciIdentityKeyPair,
+      existingPniIdentityKeyPair = preExistingRegistrationData?.pniIdentityKeyPair
+    )
     val fcmToken = networkController.getFcmToken()
+
+    val newMasterKey = keyMaterial.accountEntropyPool.deriveMasterKey()
+    val newRecoveryPassword = newMasterKey.deriveRegistrationRecoveryPassword()
+
+    SensitiveLog.d(TAG, "[registerAccount] Using master key [${org.signal.libsignal.protocol.util.Hex.toStringCondensed(newMasterKey.serialize())}] and RRP [$newRecoveryPassword]")
 
     val accountAttributes = AccountAttributes(
       signalingKey = null,
@@ -203,7 +246,7 @@ class RegistrationRepository(val networkController: NetworkController, val stora
       ),
       name = null,
       pniRegistrationId = keyMaterial.pniRegistrationId,
-      recoveryPassword = keyMaterial.accountEntropyPool.deriveMasterKey().deriveRegistrationRecoveryPassword()
+      recoveryPassword = newRecoveryPassword
     )
 
     val aciPreKeys = PreKeyCollection(
@@ -249,11 +292,14 @@ class RegistrationRepository(val networkController: NetworkController, val stora
     pin: String,
     isAlphanumeric: Boolean,
     masterKey: MasterKey
-  ): RegistrationNetworkResult<Unit, NetworkController.BackupMasterKeyError> = withContext(Dispatchers.IO) {
+  ): RegistrationNetworkResult<SvrCredentials?, NetworkController.BackupMasterKeyError> = withContext(Dispatchers.IO) {
     val result = networkController.setPinAndMasterKeyOnSvr(pin, masterKey)
 
     if (result is RegistrationNetworkResult.Success) {
       storageController.saveNewlyCreatedPin(pin, isAlphanumeric)
+      result.data?.let { credential ->
+        storageController.appendSvrCredentials(listOf(credential))
+      }
     }
 
     result

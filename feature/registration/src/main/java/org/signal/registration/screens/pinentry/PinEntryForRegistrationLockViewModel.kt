@@ -113,7 +113,7 @@ class PinEntryForRegistrationLockViewModel(
       }
     }
 
-    parentEventEmitter(RegistrationFlowEvent.MasterKeyRestoredViaRegistrationLock(masterKey))
+    parentEventEmitter(RegistrationFlowEvent.MasterKeyRestoredFromSvr(masterKey))
 
     val registrationLockToken = masterKey.deriveRegistrationLock()
 

@@ -28,9 +28,19 @@ interface StorageController {
    * Generates all key material required for account registration and stores it persistently.
    * This includes ACI identity key, PNI identity key, and their respective pre-keys.
    *
+   * If optional parameters are provided (e.g. from a pre-existing registration), those values
+   * will be re-used instead of generating new ones.
+   *
+   * @param existingAccountEntropyPool If non-null, re-use this AEP instead of generating a new one.
+   * @param existingAciIdentityKeyPair If non-null, re-use this ACI identity key pair instead of generating a new one.
+   * @param existingPniIdentityKeyPair If non-null, re-use this PNI identity key pair instead of generating a new one.
    * @return [KeyMaterial] containing all generated cryptographic material needed for registration.
    */
-  suspend fun generateAndStoreKeyMaterial(): KeyMaterial
+  suspend fun generateAndStoreKeyMaterial(
+    existingAccountEntropyPool: AccountEntropyPool? = null,
+    existingAciIdentityKeyPair: IdentityKeyPair? = null,
+    existingPniIdentityKeyPair: IdentityKeyPair? = null
+  ): KeyMaterial
 
   /**
    * Called after a successful registration to store new registration data.
@@ -43,6 +53,18 @@ interface StorageController {
    * @return Data for the existing registration if registered, otherwise null.
    */
   suspend fun getPreExistingRegistrationData(): PreExistingRegistrationData?
+
+  /**
+   * Retrieves any SVR2 credentials that may have been restored via the OS-level backup/restore service. May be empty.
+   */
+  suspend fun getRestoredSvrCredentials(): List<NetworkController.SvrCredentials>
+
+  // TODO [regV5] Can this just take a single item?
+  /**
+   * Appends known-working SVR credentials to the local store of credentials.
+   * Implementations should limit the number of stored credentials to some reasonable maximum.
+   */
+  suspend fun appendSvrCredentials(credentials: List<NetworkController.SvrCredentials>)
 
   /**
    * Saves a validated PIN, temporary master key, and registration lock status.
@@ -114,10 +136,14 @@ data class NewRegistrationData(
 @TypeParceler<AccountEntropyPool, AccountEntropyPoolParceler>
 @TypeParceler<ACI, ACIParceler>
 @TypeParceler<PNI, PNIParceler>
+@TypeParceler<IdentityKeyPair, IdentityKeyPairParceler>
 data class PreExistingRegistrationData(
   val e164: String,
   val aci: ACI,
   val pni: PNI,
   val servicePassword: String,
-  val aep: AccountEntropyPool
+  val aep: AccountEntropyPool,
+  val registrationLockEnabled: Boolean,
+  val aciIdentityKeyPair: IdentityKeyPair,
+  val pniIdentityKeyPair: IdentityKeyPair
 ) : Parcelable

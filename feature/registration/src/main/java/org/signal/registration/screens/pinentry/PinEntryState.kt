@@ -13,10 +13,12 @@ data class PinEntryState(
   val loading: Boolean = false,
   val triesRemaining: Int? = null,
   val mode: Mode = Mode.SvrRestore,
-  val oneTimeEvent: OneTimeEvent? = null
+  val oneTimeEvent: OneTimeEvent? = null,
+  val e164: String? = null
 ) {
   enum class Mode {
     RegistrationLock,
+    SmsBypass,
     SvrRestore
   }
 

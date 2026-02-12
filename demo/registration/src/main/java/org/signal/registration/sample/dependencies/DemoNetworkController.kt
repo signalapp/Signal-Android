@@ -14,6 +14,7 @@ import okhttp3.Response
 import org.signal.core.models.MasterKey
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.Network
+import org.signal.libsignal.protocol.util.Hex
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.AccountAttributes
 import org.signal.registration.NetworkController.CreateSessionError
@@ -23,8 +24,9 @@ import org.signal.registration.NetworkController.RegisterAccountError
 import org.signal.registration.NetworkController.RegisterAccountResponse
 import org.signal.registration.NetworkController.RegistrationLockResponse
 import org.signal.registration.NetworkController.RegistrationNetworkResult
-import org.signal.registration.NetworkController.RegistrationNetworkResult.*
 import org.signal.registration.NetworkController.RequestVerificationCodeError
+import org.signal.registration.NetworkController.CheckSvrCredentialsRequest
+import org.signal.registration.NetworkController.CheckSvrCredentialsResponse
 import org.signal.registration.NetworkController.SessionMetadata
 import org.signal.registration.NetworkController.SubmitVerificationCodeError
 import org.signal.registration.NetworkController.ThirdPartyServiceErrorResponse
@@ -52,7 +54,7 @@ import kotlin.time.Duration.Companion.seconds
 import org.whispersystems.signalservice.api.account.AccountAttributes as ServiceAccountAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection as ServicePreKeyCollection
 
-class RealNetworkController(
+class DemoNetworkController(
   private val context: android.content.Context,
   private val pushServiceSocket: PushServiceSocket,
   private val serviceConfiguration: SignalServiceConfiguration,
@@ -60,7 +62,7 @@ class RealNetworkController(
 ) : NetworkController {
 
   companion object {
-    private val TAG = Log.tag(RealNetworkController::class)
+    private val TAG = Log.tag(DemoNetworkController::class)
   }
 
   private val json = Json { ignoreUnknownKeys = true }
@@ -367,11 +369,11 @@ class RealNetworkController(
   }
 
   override suspend fun restoreMasterKeyFromSvr(
-    svr2Credentials: NetworkController.SvrCredentials,
+    svrCredentials: NetworkController.SvrCredentials,
     pin: String
   ): RegistrationNetworkResult<NetworkController.MasterKeyResponse, NetworkController.RestoreMasterKeyError> = withContext(Dispatchers.IO) {
     try {
-      val authCredentials = AuthCredentials.create(svr2Credentials.username, svr2Credentials.password)
+      val authCredentials = AuthCredentials.create(svrCredentials.username, svrCredentials.password)
 
       // Create a stub websocket that will never be used for pre-registration restore
       val stubWebSocketFactory = WebSocketFactory { throw UnsupportedOperationException("WebSocket not available during pre-registration") }
@@ -388,7 +390,7 @@ class RealNetworkController(
 
       when (val response = svr2.restoreDataPreRegistration(authCredentials, null, pin)) {
         is RestoreResponse.Success -> {
-          Log.i(TAG, "[restoreMasterKeyFromSvr] Successfully restored master key from SVR2")
+          Log.i(TAG, "[restoreMasterKeyFromSvr] Successfully restored master key from SVR2. Value: ${Hex.toStringCondensed(response.masterKey.serialize())}")
           RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(response.masterKey))
         }
         is RestoreResponse.PinMismatch -> {
@@ -424,7 +426,7 @@ class RealNetworkController(
   override suspend fun setPinAndMasterKeyOnSvr(
     pin: String,
     masterKey: MasterKey
-  ): RegistrationNetworkResult<Unit, NetworkController.BackupMasterKeyError> = withContext(Dispatchers.IO) {
+  ): RegistrationNetworkResult<NetworkController.SvrCredentials?, NetworkController.BackupMasterKeyError> = withContext(Dispatchers.IO) {
     try {
       val aci = RegistrationPreferences.aci
       val pni = RegistrationPreferences.pni
@@ -468,31 +470,31 @@ class RealNetworkController(
 
       when (response) {
         is BackupResponse.Success -> {
-          Log.i(TAG, "[backupMasterKeyToSvr] Successfully backed up master key to SVR2")
-          Success(Unit)
+          Log.i(TAG, "[backupMasterKeyToSvr] Successfully backed up master key to SVR2. Value: ${Hex.toStringCondensed(masterKey.serialize())}")
+          RegistrationNetworkResult.Success(NetworkController.SvrCredentials(response.authorization.username(), response.authorization.password()))
         }
         is BackupResponse.ApplicationError -> {
           Log.w(TAG, "[backupMasterKeyToSvr] Application error", response.exception)
-          ApplicationError(response.exception)
+          RegistrationNetworkResult.ApplicationError(response.exception)
         }
         is BackupResponse.NetworkError -> {
           Log.w(TAG, "[backupMasterKeyToSvr] Network error", response.exception)
-          NetworkError(response.exception)
+          RegistrationNetworkResult.NetworkError(response.exception)
         }
         is BackupResponse.EnclaveNotFound -> {
           Log.w(TAG, "[backupMasterKeyToSvr] Enclave not found")
-          Failure(NetworkController.BackupMasterKeyError.EnclaveNotFound)
+          RegistrationNetworkResult.Failure(NetworkController.BackupMasterKeyError.EnclaveNotFound)
         }
         is BackupResponse.ExposeFailure -> {
           Log.w(TAG, "[backupMasterKeyToSvr] Expose failure -- per spec, treat as success.")
-          Success(Unit)
+          RegistrationNetworkResult.Success(null)
         }
         is BackupResponse.ServerRejected -> {
           Log.w(TAG, "[backupMasterKeyToSvr] Server rejected")
-          NetworkError(IOException("Server rejected backup request"))
+          RegistrationNetworkResult.NetworkError(IOException("Server rejected backup request"))
         }
         is BackupResponse.RateLimited -> {
-          NetworkError(IOException("Rate limited"))
+          RegistrationNetworkResult.NetworkError(IOException("Rate limited"))
         }
       }
     } catch (e: IOException) {
@@ -501,6 +503,16 @@ class RealNetworkController(
     } catch (e: Exception) {
       Log.w(TAG, "[backupMasterKeyToSvr] Exception", e)
       RegistrationNetworkResult.ApplicationError(e)
+    }
+  }
+
+  override suspend fun enqueueSvrGuessResetJob() {
+    val pin = checkNotNull(RegistrationPreferences.pin) { "Pin is not set!" }
+    val masterKey = checkNotNull(RegistrationPreferences.masterKey) { "Master key is not set!" }
+
+    val result = setPinAndMasterKeyOnSvr(pin, masterKey)
+    if (result !is RegistrationNetworkResult.Success) {
+      Log.w(TAG, "Failed to set pin and master key on SVR! A real app would retry. Result: $result")
     }
   }
 
@@ -688,6 +700,49 @@ class RealNetworkController(
       RegistrationNetworkResult.NetworkError(e)
     } catch (e: Exception) {
       Log.w(TAG, "[getSvrCredentials] Exception", e)
+      RegistrationNetworkResult.ApplicationError(e)
+    }
+  }
+
+  override suspend fun checkSvrCredentials(
+    e164: String,
+    credentials: List<NetworkController.SvrCredentials>
+  ): RegistrationNetworkResult<CheckSvrCredentialsResponse, NetworkController.CheckSvrCredentialsError> = withContext(Dispatchers.IO) {
+    try {
+      val baseUrl = serviceConfiguration.signalServiceUrls[0].url
+
+      val requestBody = json.encodeToString(
+        CheckSvrCredentialsRequest.serializer(),
+        CheckSvrCredentialsRequest.createForCredentials(number = e164, credentials)
+      ).toRequestBody("application/json".toMediaType())
+
+      val request = okhttp3.Request.Builder()
+        .url("$baseUrl/v2/svr/auth/check")
+        .post(requestBody)
+        .build()
+
+      okHttpClient.newCall(request).execute().use { response ->
+        when (response.code) {
+          200 -> {
+            val result = json.decodeFromString<CheckSvrCredentialsResponse>(response.body.string())
+            RegistrationNetworkResult.Success(result)
+          }
+          400, 422 -> {
+            RegistrationNetworkResult.Failure(NetworkController.CheckSvrCredentialsError.InvalidRequest(response.body.string()))
+          }
+          401 -> {
+            RegistrationNetworkResult.Failure(NetworkController.CheckSvrCredentialsError.Unauthorized)
+          }
+          else -> {
+            RegistrationNetworkResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body?.string()}"))
+          }
+        }
+      }
+    } catch (e: IOException) {
+      Log.w(TAG, "[checkSvrCredentials] IOException", e)
+      RegistrationNetworkResult.NetworkError(e)
+    } catch (e: Exception) {
+      Log.w(TAG, "[checkSvrCredentials] Exception", e)
       RegistrationNetworkResult.ApplicationError(e)
     }
   }

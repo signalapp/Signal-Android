@@ -72,7 +72,7 @@ class PinEntryForSvrRestoreViewModelTest {
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
 
     assertThat(emittedParentEvents).hasSize(2)
-    assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredViaPostRegisterPinEntry>()
+    assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
     assertThat(emittedParentEvents[1])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
@@ -162,7 +162,7 @@ class PinEntryForSvrRestoreViewModelTest {
   }
 
   @Test
-  fun `PinEntered with no SVR data returns SvrDataMissing event`() = runTest {
+  fun `PinEntered with no SVR data navigates to PinCreate`() = runTest {
     val svrCredentials = NetworkController.SvrCredentials(
       username = "test-username",
       password = "test-password"
@@ -178,8 +178,11 @@ class PinEntryForSvrRestoreViewModelTest {
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
 
-    assertThat(emittedParentEvents).hasSize(0)
-    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PinEntryState.OneTimeEvent.SvrDataMissing)
+    assertThat(emittedParentEvents).hasSize(1)
+    assertThat(emittedParentEvents.first())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.PinCreate>()
   }
 
   @Test

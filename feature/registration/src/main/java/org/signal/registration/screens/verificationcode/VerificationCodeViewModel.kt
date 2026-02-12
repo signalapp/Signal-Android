@@ -108,7 +108,7 @@ class VerificationCodeViewModel(
             }
           }
           is NetworkController.SubmitVerificationCodeError.RateLimited -> {
-            Log.w(TAG, "[SubmitCode] Rate limited.")
+            Log.w(TAG, "[SubmitCode] Rate limited  (retryAfter: ${result.error.retryAfter}).")
             return state.copy(oneTimeEvent = OneTimeEvent.RateLimited(result.error.retryAfter))
           }
         }
@@ -167,7 +167,7 @@ class VerificationCodeViewModel(
             state
           }
           is NetworkController.RegisterAccountError.RateLimited -> {
-            Log.w(TAG, "[Register] Rate limited.")
+            Log.w(TAG, "[Register] Rate limited (retryAfter: ${registerResult.error.retryAfter}).")
             state.copy(oneTimeEvent = OneTimeEvent.RateLimited(registerResult.error.retryAfter))
           }
           is NetworkController.RegisterAccountError.InvalidRequest -> {

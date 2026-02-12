@@ -15,8 +15,8 @@ import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
 import org.signal.registration.RegistrationDependencies
 import org.signal.registration.sample.debug.DebugNetworkController
-import org.signal.registration.sample.dependencies.RealNetworkController
-import org.signal.registration.sample.dependencies.RealStorageController
+import org.signal.registration.sample.dependencies.DemoNetworkController
+import org.signal.registration.sample.dependencies.DemoStorageController
 import org.signal.registration.sample.storage.RegistrationPreferences
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.api.util.CredentialsProvider
@@ -34,7 +34,7 @@ class RegistrationApplication : Application() {
 
   companion object {
     // Staging SVR2 mrEnclave value
-    private const val SVR2_MRENCLAVE = "a75542d82da9f6914a1e31f8a7407053b99cc99a0e7291d8fbd394253e19b036"
+    private const val SVR2_MRENCLAVE = "97f151f6ed078edbbfd72fa9cae694dcc08353f1f5e8d9ccd79a971b10ffc535"
   }
 
   override fun onCreate() {
@@ -47,14 +47,15 @@ class RegistrationApplication : Application() {
     val trustStore = SampleTrustStore()
     val configuration = createServiceConfiguration(trustStore)
     val pushServiceSocket = createPushServiceSocket(configuration)
-    val realNetworkController = RealNetworkController(this, pushServiceSocket, configuration, SVR2_MRENCLAVE)
-    val networkController = DebugNetworkController(realNetworkController)
-    val storageController = RealStorageController(this)
+    val demoNetworkController = DemoNetworkController(this, pushServiceSocket, configuration, SVR2_MRENCLAVE)
+    val networkController = DebugNetworkController(demoNetworkController)
+    val storageController = DemoStorageController(this)
 
     RegistrationDependencies.provide(
       RegistrationDependencies(
         networkController = networkController,
-        storageController = storageController
+        storageController = storageController,
+        sensitiveLogger = LogLogger
       )
     )
 
@@ -116,5 +117,31 @@ class RegistrationApplication : Application() {
     override fun getE164(): String? = null
     override fun getDeviceId(): Int = 1
     override fun getPassword(): String? = null
+  }
+
+  private object LogLogger : Log.Logger() {
+    override fun v(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
+      Log.v(tag, message, t, keepLonger)
+    }
+
+    override fun d(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
+      Log.d(tag, message, t, keepLonger)
+    }
+
+    override fun i(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
+      Log.i(tag, message, t, keepLonger)
+    }
+
+    override fun w(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
+      Log.w(tag, message, t, keepLonger)
+    }
+
+    override fun e(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
+      Log.e(tag, message, t, keepLonger)
+    }
+
+    override fun flush() {
+      Log.blockUntilAllWritesFinished()
+    }
   }
 }

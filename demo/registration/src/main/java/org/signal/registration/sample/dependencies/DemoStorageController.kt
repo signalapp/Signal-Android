@@ -19,6 +19,7 @@ import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.registration.KeyMaterial
+import org.signal.registration.NetworkController
 import org.signal.registration.NewRegistrationData
 import org.signal.registration.PreExistingRegistrationData
 import org.signal.registration.StorageController
@@ -33,14 +34,22 @@ import javax.crypto.spec.SecretKeySpec
  * Implementation of [StorageController] that persists registration data using
  * SharedPreferences for simple key-value data and SQLite for prekeys.
  */
-class RealStorageController(context: Context) : StorageController {
+class DemoStorageController(context: Context) : StorageController {
+
+  companion object {
+    private const val MAX_SVR_CREDENTIALS = 10
+  }
 
   private val db = RegistrationDatabase(context)
 
-  override suspend fun generateAndStoreKeyMaterial(): KeyMaterial = withContext(Dispatchers.IO) {
-    val accountEntropyPool = AccountEntropyPool.generate()
-    val aciIdentityKeyPair = IdentityKeyPair.generate()
-    val pniIdentityKeyPair = IdentityKeyPair.generate()
+  override suspend fun generateAndStoreKeyMaterial(
+    existingAccountEntropyPool: AccountEntropyPool?,
+    existingAciIdentityKeyPair: IdentityKeyPair?,
+    existingPniIdentityKeyPair: IdentityKeyPair?
+  ): KeyMaterial = withContext(Dispatchers.IO) {
+    val accountEntropyPool = existingAccountEntropyPool ?: AccountEntropyPool.generate()
+    val aciIdentityKeyPair = existingAciIdentityKeyPair ?: IdentityKeyPair.generate()
+    val pniIdentityKeyPair = existingPniIdentityKeyPair ?: IdentityKeyPair.generate()
 
     val aciSignedPreKeyId = generatePreKeyId()
     val pniSignedPreKeyId = generatePreKeyId()
@@ -89,6 +98,7 @@ class RealStorageController(context: Context) : StorageController {
 
   override suspend fun clearAllData() = withContext(Dispatchers.IO) {
     RegistrationPreferences.clearAll()
+    RegistrationPreferences.clearRestoredSvr2Credentials()
     db.clearAllPreKeys()
   }
 
@@ -97,6 +107,16 @@ class RealStorageController(context: Context) : StorageController {
     RegistrationPreferences.pinAlphanumeric = isAlphanumeric
     RegistrationPreferences.temporaryMasterKey = masterKey
     RegistrationPreferences.registrationLockEnabled = registrationLockEnabled
+  }
+
+  override suspend fun getRestoredSvrCredentials(): List<NetworkController.SvrCredentials> = withContext(Dispatchers.IO) {
+    RegistrationPreferences.restoredSvr2Credentials
+  }
+
+  override suspend fun appendSvrCredentials(credentials: List<NetworkController.SvrCredentials>) = withContext(Dispatchers.IO) {
+    val existing = RegistrationPreferences.restoredSvr2Credentials
+    val combined = (existing + credentials).distinctBy { it.username }.takeLast(MAX_SVR_CREDENTIALS)
+    RegistrationPreferences.restoredSvr2Credentials = combined
   }
 
   override suspend fun saveNewlyCreatedPin(pin: String, isAlphanumeric: Boolean) {

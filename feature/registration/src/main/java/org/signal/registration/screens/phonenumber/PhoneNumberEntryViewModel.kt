@@ -51,6 +51,14 @@ class PhoneNumberEntryViewModel(
     .onEach { Log.d(TAG, "[State] $it") }
     .stateIn(viewModelScope, SharingStarted.Eagerly, PhoneNumberEntryState())
 
+  init {
+    viewModelScope.launch {
+      _state.value = state.value.copy(
+        restoredSvrCredentials = repository.getRestoredSvrCredentials()
+      )
+    }
+  }
+
   fun onEvent(event: PhoneNumberEntryScreenEvents) {
     viewModelScope.launch {
       val stateEmitter: (PhoneNumberEntryState) -> Unit = { state ->
@@ -92,7 +100,8 @@ class PhoneNumberEntryViewModel(
     return state.copy(
       sessionE164 =  parentState.sessionE164,
       sessionMetadata = parentState.sessionMetadata,
-      preExistingRegistrationData = parentState.preExistingRegistrationData
+      preExistingRegistrationData = parentState.preExistingRegistrationData,
+      restoredSvrCredentials = state.restoredSvrCredentials.takeUnless { parentState.doNotAttemptRecoveryPassword } ?: emptyList()
     )
   }
 
@@ -140,10 +149,11 @@ class PhoneNumberEntryViewModel(
     if (state.preExistingRegistrationData?.e164 == e164) {
       val masterKey = state.preExistingRegistrationData.aep.deriveMasterKey()
       val recoveryPassword = masterKey.deriveRegistrationRecoveryPassword()
-      val registrationLock = masterKey.deriveRegistrationLock()
+      val registrationLock = masterKey.deriveRegistrationLock().takeIf { state.preExistingRegistrationData.registrationLockEnabled }
 
-      when (val registerResult = repository.registerAccountWithRecoveryPassword(e164, recoveryPassword, registrationLock, skipDeviceTransfer = true)) {
+      when (val registerResult = repository.registerAccountWithRecoveryPassword(e164, recoveryPassword, registrationLock, skipDeviceTransfer = true, state.preExistingRegistrationData)) {
         is NetworkController.RegistrationNetworkResult.Success -> {
+          Log.i(TAG, "[Register] Successfully re-registered using RRP from pre-existing data.")
           val (response, keyMaterial) = registerResult.data
 
           parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
@@ -153,6 +163,7 @@ class PhoneNumberEntryViewModel(
           } else {
             parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
           }
+          return state
         }
         is NetworkController.RegistrationNetworkResult.Failure -> {
           when (registerResult.error) {
@@ -167,7 +178,7 @@ class PhoneNumberEntryViewModel(
               return state
             }
             is NetworkController.RegisterAccountError.RegistrationLock -> {
-              Log.w(TAG, "[Register] Reglocked.")
+              Log.w(TAG, "[Register] Reglocked. This implies that the user still had reglock enabled despite the pre-existing data not thinking it was.")
               parentEventEmitter.navigateTo(
                 RegistrationRoute.PinEntryForRegistrationLock(
                   timeRemaining = registerResult.error.data.timeRemaining,
@@ -177,17 +188,17 @@ class PhoneNumberEntryViewModel(
               return state
             }
             is NetworkController.RegisterAccountError.RateLimited -> {
-              Log.w(TAG, "[Register] Rate limited.")
+              Log.w(TAG, "[Register] Rate limited (retryAfter: ${registerResult.error.retryAfter}).")
               return state.copy(oneTimeEvent = OneTimeEvent.RateLimited(registerResult.error.retryAfter))
             }
             is NetworkController.RegisterAccountError.InvalidRequest -> {
               Log.w(TAG, "[Register] Invalid request when registering account with RRP. Ditching pre-existing data and continuing with session creation. Message: ${registerResult.error.message}")
-              // TODO should we clear it in the parent state as well?
+              parentEventEmitter(RegistrationFlowEvent.RecoveryPasswordInvalid)
               state = state.copy(preExistingRegistrationData = null)
             }
             is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
               Log.w(TAG, "[Register] Registration recovery password incorrect. Ditching pre-existing data and continuing with session creation. Message: ${registerResult.error.message}")
-              // TODO should we clear it in the parent state as well?
+              parentEventEmitter(RegistrationFlowEvent.RecoveryPasswordInvalid)
               state = state.copy(preExistingRegistrationData = null)
             }
           }
@@ -199,6 +210,39 @@ class PhoneNumberEntryViewModel(
         is NetworkController.RegistrationNetworkResult.ApplicationError -> {
           Log.w(TAG, "[Register] Unknown error when registering account.", registerResult.exception)
           return state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
+        }
+      }
+    }
+
+    // Detect if we have valid SVR credentials for the current number. If so, we can go right to the PIN entry screen.
+    // If they successfully restore the master key at that screen, we can use that to build the RRP and register without SMS.
+    if (state.restoredSvrCredentials.isNotEmpty()) {
+      when (val result = repository.checkSvrCredentials(e164, state.restoredSvrCredentials)) {
+        is NetworkController.RegistrationNetworkResult.Success -> {
+          Log.i(TAG, "[CheckSVRCredentials] Successfully validated credentials for ${e164}.")
+          val credential = result.data.validCredential
+          if (credential != null) {
+            parentEventEmitter(RegistrationFlowEvent.E164Chosen(e164))
+            parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSmsBypass(credential))
+            return state
+          }
+        }
+        is NetworkController.RegistrationNetworkResult.NetworkError -> {
+          Log.w(TAG, "[CheckSVRCredentials] Network error. Ignoring error and continuing without RRP.", result.exception)
+        }
+        is NetworkController.RegistrationNetworkResult.ApplicationError -> {
+          Log.w(TAG, "[CheckSVRCredentials] Application error. Ignoring error and continuing without RRP.", result.exception)
+        }
+        is NetworkController.RegistrationNetworkResult.Failure -> {
+          when (result.error) {
+            is NetworkController.CheckSvrCredentialsError.InvalidRequest -> {
+              Log.w(TAG, "[CheckSVRCredentials] Invalid request. Ignoring error and continuing without RRP. Message: ${result.error.message}")
+            }
+
+            NetworkController.CheckSvrCredentialsError.Unauthorized -> {
+              Log.w(TAG, "[CheckSVRCredentials] Unauthorized. Ignoring error and continuing without RRP.")
+            }
+          }
         }
       }
     }
