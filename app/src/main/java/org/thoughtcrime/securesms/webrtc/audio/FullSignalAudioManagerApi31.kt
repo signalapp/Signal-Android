@@ -234,16 +234,25 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
     val currentAudioDevice: AudioDeviceInfo? = androidAudioManager.communicationDevice
 
     val availableCommunicationDevices: List<AudioDeviceInfo> = androidAudioManager.availableCommunicationDevices
+
+    if (userSelectedAudioDevice != null && availableCommunicationDevices.none { it.id == userSelectedAudioDevice?.id }) {
+      Log.w(TAG, "User selected device ${userSelectedAudioDevice?.id} of type ${userSelectedAudioDevice?.type?.let { getDeviceTypeName(it) }} is no longer available. Clearing user selection.")
+      userSelectedAudioDevice = null
+    }
+
     var candidate: AudioDeviceInfo? = userSelectedAudioDevice
     if (candidate != null && candidate.id != 0) {
       val result = androidAudioManager.setCommunicationDevice(candidate)
       if (result) {
         eventListener?.onAudioDeviceChanged(AudioDeviceMapping.fromPlatformType(candidate.type), availableCommunicationDevices.map { AudioDeviceMapping.fromPlatformType(it.type) }.toSet())
       } else {
-        Log.w(TAG, "Failed to set ${candidate.id} of type ${getDeviceTypeName(candidate.type)} as communication device.")
-        eventListener?.onAudioDeviceChangeFailed()
+        Log.w(TAG, "Failed to set ${candidate.id} of type ${getDeviceTypeName(candidate.type)} as communication device. Clearing user selection.")
+        userSelectedAudioDevice = null
+        candidate = null
       }
-    } else {
+    }
+
+    if (candidate == null) {
       val searchOrder: List<AudioDevice> = listOf(AudioDevice.BLUETOOTH, AudioDevice.WIRED_HEADSET, defaultAudioDevice, AudioDevice.EARPIECE, AudioDevice.SPEAKER_PHONE, AudioDevice.NONE).distinct()
       for (deviceType in searchOrder) {
         candidate = availableCommunicationDevices.filterNot { it.productName.contains(" Watch", true) }.find { AudioDeviceMapping.fromPlatformType(it.type) == deviceType }
@@ -256,6 +265,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
         null -> {
           Log.e(TAG, "Tried to switch audio devices but could not find suitable device in list of types: ${availableCommunicationDevices.map { getDeviceTypeName(it.type) }.joinToString()}")
           androidAudioManager.clearCommunicationDevice()
+          eventListener?.onAudioDeviceChangeFailed()
         }
         else -> {
           Log.d(TAG, "Switching to new device of type ${getDeviceTypeName(candidate.type)} from ${currentAudioDevice?.type?.let { getDeviceTypeName(it) }}")
