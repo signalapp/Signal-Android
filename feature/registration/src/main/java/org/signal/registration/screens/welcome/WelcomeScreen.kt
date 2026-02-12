@@ -7,19 +7,19 @@
 
 package org.signal.registration.screens.welcome
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,14 +29,20 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.dismissWithAnimation
+import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.registration.R
 import org.signal.registration.test.TestTags
 
 /**
@@ -53,34 +59,70 @@ fun WelcomeScreen(
   Column(
     modifier = modifier
       .fillMaxSize()
-      .padding(24.dp),
-    horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.Center
+      .testTag(TestTags.WELCOME_SCREEN),
+    horizontalAlignment = Alignment.CenterHorizontally
   ) {
-    Text(
-      text = "Welcome to Signal",
-      style = MaterialTheme.typography.headlineLarge,
-      textAlign = TextAlign.Center
+    Image(
+      painter = painterResource(R.drawable.welcome),
+      contentDescription = null,
+      modifier = Modifier
+        .weight(1f)
+        .fillMaxWidth()
+        .padding(16.dp),
+      contentScale = ContentScale.Fit
     )
 
-    Spacer(modifier = Modifier.height(48.dp))
+    Text(
+      text = stringResource(R.string.RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message),
+      style = MaterialTheme.typography.headlineMedium,
+      textAlign = TextAlign.Center,
+      modifier = Modifier
+        .padding(horizontal = 32.dp)
+        .testTag(TestTags.WELCOME_HEADLINE)
+    )
 
-    Button(
+    Spacer(modifier = Modifier.height(40.dp))
+
+    TextButton(
+      onClick = { /* Terms & Privacy link */ },
+      colors = ButtonDefaults.textButtonColors(
+        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+      )
+    ) {
+      Text(
+        text = stringResource(R.string.RegistrationActivity_terms_and_privacy),
+        textAlign = TextAlign.Center
+      )
+    }
+
+    Spacer(modifier = Modifier.height(24.dp))
+
+    Buttons.LargeTonal(
       onClick = { onEvent(WelcomeScreenEvents.Continue) },
       modifier = Modifier
         .fillMaxWidth()
+        .padding(horizontal = 32.dp)
         .testTag(TestTags.WELCOME_GET_STARTED_BUTTON)
     ) {
-      Text("Get Started")
+      Text(stringResource(R.string.RegistrationActivity_continue))
     }
-    OutlinedButton(
+
+    Spacer(modifier = Modifier.height(17.dp))
+
+    Buttons.LargeTonal(
       onClick = { showBottomSheet = true },
+      colors = ButtonDefaults.filledTonalButtonColors(
+        containerColor = SignalTheme.colors.colorSurface2
+      ),
       modifier = Modifier
         .fillMaxWidth()
+        .padding(horizontal = 32.dp)
         .testTag(TestTags.WELCOME_RESTORE_OR_TRANSFER_BUTTON)
     ) {
-      Text("Restore or transfer")
+      Text(stringResource(R.string.registration_activity__restore_or_transfer))
     }
+
+    Spacer(modifier = Modifier.height(48.dp))
   }
 
   if (showBottomSheet) {
@@ -130,9 +172,9 @@ private fun RestoreOrTransferBottomSheetContent(
     modifier = Modifier
       .fillMaxWidth()
       .padding(horizontal = 24.dp, vertical = 16.dp),
-    verticalArrangement = Arrangement.spacedBy(12.dp)
+    horizontalAlignment = Alignment.CenterHorizontally
   ) {
-    Button(
+    Buttons.LargeTonal(
       onClick = {
         sheetState.dismissWithAnimation(scope) {
           onEvent(WelcomeScreenEvents.HasOldPhone)
@@ -145,9 +187,10 @@ private fun RestoreOrTransferBottomSheetContent(
       Text("I have my old phone")
     }
 
-    Button(
+    Spacer(modifier = Modifier.height(12.dp))
+
+    Buttons.LargeTonal(
       onClick = {
-        onEvent(WelcomeScreenEvents.DoesNotHaveOldPhone)
         sheetState.dismissWithAnimation(scope) {
           onEvent(WelcomeScreenEvents.DoesNotHaveOldPhone)
         }

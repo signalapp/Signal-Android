@@ -11,16 +11,20 @@ package org.signal.registration.test
 object TestTags {
 
   // Welcome Screen
+  const val WELCOME_SCREEN = "welcome_screen"
+  const val WELCOME_HEADLINE = "welcome_headline"
   const val WELCOME_GET_STARTED_BUTTON = "welcome_get_started_button"
   const val WELCOME_RESTORE_OR_TRANSFER_BUTTON = "welcome_restore_or_transfer_button"
   const val WELCOME_RESTORE_HAS_OLD_PHONE_BUTTON = "welcome_restore_has_old_phone_button"
   const val WELCOME_RESTORE_NO_OLD_PHONE_BUTTON = "welcome_restore_no_old_phone_button"
 
   // Permissions Screen
+  const val PERMISSIONS_SCREEN = "permissions_screen"
   const val PERMISSIONS_NEXT_BUTTON = "permissions_next_button"
   const val PERMISSIONS_NOT_NOW_BUTTON = "permissions_not_now_button"
 
   // Phone Number Screen
+  const val PHONE_NUMBER_SCREEN = "phone_number_screen"
   const val PHONE_NUMBER_COUNTRY_PICKER = "phone_number_country_picker"
   const val PHONE_NUMBER_COUNTRY_CODE_FIELD = "phone_number_country_code_field"
   const val PHONE_NUMBER_PHONE_FIELD = "phone_number_phone_field"

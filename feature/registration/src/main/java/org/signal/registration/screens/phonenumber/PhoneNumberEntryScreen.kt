@@ -76,7 +76,7 @@ fun PhoneNumberScreen(
     )
   }
 
-  Box(modifier = modifier.fillMaxSize()) {
+  Box(modifier = modifier.fillMaxSize().testTag(TestTags.PHONE_NUMBER_SCREEN)) {
     ScreenContent(state, onEvent)
 
     if (state.showFullScreenSpinner) {

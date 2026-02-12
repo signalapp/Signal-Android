@@ -8,27 +8,31 @@
 package org.signal.registration.screens.permissions
 
 import android.Manifest
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
+import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.registration.R
+import org.signal.registration.screens.shared.RegistrationScreen
 import org.signal.registration.screens.util.MockMultiplePermissionsState
 import org.signal.registration.screens.util.MockPermissionsState
 import org.signal.registration.test.TestTags
@@ -38,7 +42,7 @@ import org.signal.registration.test.TestTags
  * Requests necessary runtime permissions before continuing.
  *
  * @param permissionsState The permissions state managed at the activity level.
- * @param onEvent Callback for screen events.
+ * @param onProceed Callback invoked when the user proceeds (either granting or skipping).
  * @param modifier Modifier to be applied to the root container.
  */
 @Composable
@@ -47,102 +51,60 @@ fun PermissionsScreen(
   onProceed: () -> Unit = {},
   modifier: Modifier = Modifier
 ) {
-  Column(
-    modifier = modifier
-      .fillMaxSize()
-      .padding(24.dp),
-    horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.Center
+  val permissions = permissionsState.permissions.map { it.permission }
+
+  RegistrationScreen(
+    title = stringResource(id = R.string.GrantPermissionsFragment__allow_permissions),
+    subtitle = stringResource(id = R.string.GrantPermissionsFragment__to_help_you_message_people_you_know),
+    modifier = modifier.testTag(TestTags.PERMISSIONS_SCREEN),
+    bottomContent = {
+      Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier.fillMaxWidth()
+      ) {
+        TextButton(
+          modifier = Modifier
+            .weight(weight = 1f, fill = false)
+            .testTag(TestTags.PERMISSIONS_NOT_NOW_BUTTON),
+          onClick = onProceed
+        ) {
+          Text(
+            text = stringResource(id = R.string.GrantPermissionsFragment__not_now)
+          )
+        }
+
+        Spacer(modifier = Modifier.size(24.dp))
+
+        Buttons.LargeTonal(
+          modifier = Modifier.testTag(TestTags.PERMISSIONS_NEXT_BUTTON),
+          onClick = {
+            permissionsState.launchMultiplePermissionRequest()
+            onProceed()
+          }
+        ) {
+          Text(
+            text = stringResource(id = R.string.GrantPermissionsFragment__next)
+          )
+        }
+      }
+    }
   ) {
-    Text(
-      text = "Permissions",
-      style = MaterialTheme.typography.headlineLarge,
-      textAlign = TextAlign.Center
-    )
-
-    Spacer(modifier = Modifier.height(16.dp))
-
-    Text(
-      text = "Signal needs the following permissions to provide the best experience:",
-      style = MaterialTheme.typography.bodyLarge,
-      textAlign = TextAlign.Center,
-      color = MaterialTheme.colorScheme.onSurfaceVariant
-    )
-
-    Spacer(modifier = Modifier.height(24.dp))
-
-    PermissionsList(permissions = permissionsState.permissions.map { it.permission })
-
-    Spacer(modifier = Modifier.height(48.dp))
-
-    Button(
-      onClick = {
-        permissionsState.launchMultiplePermissionRequest()
-        onProceed()
-      },
-      modifier = Modifier
-        .fillMaxWidth()
-        .testTag(TestTags.PERMISSIONS_NEXT_BUTTON)
-    ) {
-      Text("Next")
-    }
-
-    OutlinedButton(
-      onClick = { onProceed() },
-      modifier = Modifier
-        .fillMaxWidth()
-        .testTag(TestTags.PERMISSIONS_NOT_NOW_BUTTON)
-    ) {
-      Text("Not now")
-    }
-  }
-}
-
-/**
- * Displays a list of permission explanations.
- */
-@Composable
-private fun PermissionsList(
-  permissions: List<String>,
-  modifier: Modifier = Modifier
-) {
-  Column(
-    modifier = modifier.fillMaxWidth(),
-    verticalArrangement = Arrangement.spacedBy(12.dp)
-  ) {
-    val permissionDescriptions = getPermissionDescriptions(permissions)
-    permissionDescriptions.forEach { description ->
-      PermissionItem(description = description)
-    }
-  }
-}
-
-/**
- * Individual permission item with description.
- */
-@Composable
-private fun PermissionItem(
-  description: String,
-  modifier: Modifier = Modifier
-) {
-  Text(
-    text = "• $description",
-    style = MaterialTheme.typography.bodyMedium,
-    modifier = modifier.fillMaxWidth()
-  )
-}
-
-/**
- * Converts permission names to user-friendly descriptions.
- */
-private fun getPermissionDescriptions(permissions: List<String>): List<String> {
-  return buildList {
     if (permissions.any { it == Manifest.permission.POST_NOTIFICATIONS }) {
-      add("Notifications - Stay updated with new messages")
+      PermissionRow(
+        imageVector = ImageVector.vectorResource(id = R.drawable.permission_notification),
+        title = stringResource(id = R.string.GrantPermissionsFragment__notifications),
+        subtitle = stringResource(id = R.string.GrantPermissionsFragment__get_notified_when)
+      )
     }
+
     if (permissions.any { it == Manifest.permission.READ_CONTACTS || it == Manifest.permission.WRITE_CONTACTS }) {
-      add("Contacts - Find friends who use Signal")
+      PermissionRow(
+        imageVector = ImageVector.vectorResource(id = R.drawable.permission_contact),
+        title = stringResource(id = R.string.GrantPermissionsFragment__contacts),
+        subtitle = stringResource(id = R.string.GrantPermissionsFragment__find_people_you_know)
+      )
     }
+
     if (permissions.any {
         it == Manifest.permission.READ_EXTERNAL_STORAGE ||
           it == Manifest.permission.WRITE_EXTERNAL_STORAGE ||
@@ -151,11 +113,51 @@ private fun getPermissionDescriptions(permissions: List<String>): List<String> {
           it == Manifest.permission.READ_MEDIA_AUDIO
       }
     ) {
-      add("Photos and media - Share images and videos")
+      PermissionRow(
+        imageVector = ImageVector.vectorResource(id = R.drawable.permission_file),
+        title = stringResource(id = R.string.GrantPermissionsFragment__storage),
+        subtitle = stringResource(id = R.string.GrantPermissionsFragment__send_photos_videos_and_files)
+      )
     }
+
     if (permissions.any { it == Manifest.permission.READ_PHONE_STATE || it == Manifest.permission.READ_PHONE_NUMBERS }) {
-      add("Phone - Verify your phone number")
+      PermissionRow(
+        imageVector = ImageVector.vectorResource(id = R.drawable.permission_phone),
+        title = stringResource(id = R.string.GrantPermissionsFragment__phone_calls),
+        subtitle = stringResource(id = R.string.GrantPermissionsFragment__make_registering_easier)
+      )
     }
+  }
+}
+
+@Composable
+private fun PermissionRow(
+  imageVector: ImageVector,
+  title: String,
+  subtitle: String
+) {
+  Row(modifier = Modifier.padding(bottom = 32.dp)) {
+    Image(
+      imageVector = imageVector,
+      contentDescription = null,
+      modifier = Modifier.size(48.dp)
+    )
+
+    Spacer(modifier = Modifier.size(16.dp))
+
+    Column {
+      Text(
+        text = title,
+        style = MaterialTheme.typography.titleSmall
+      )
+
+      Text(
+        text = subtitle,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+      )
+    }
+
+    Spacer(modifier = Modifier.size(32.dp))
   }
 }
 

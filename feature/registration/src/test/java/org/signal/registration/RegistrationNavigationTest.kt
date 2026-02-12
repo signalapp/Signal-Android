@@ -10,7 +10,6 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.test.core.app.ApplicationProvider
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.lifecycle.SavedStateHandle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -67,7 +66,7 @@ class RegistrationNavigationTest {
     }
 
     // Then - verify Welcome screen is displayed
-    composeTestRule.onNodeWithText("Welcome to Signal").assertIsDisplayed()
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_SCREEN).assertIsDisplayed()
   }
 
   @Test
@@ -89,7 +88,7 @@ class RegistrationNavigationTest {
     composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).performClick()
 
     // Then - verify Permissions screen is displayed
-    composeTestRule.onNodeWithText("Permissions").assertIsDisplayed()
+    composeTestRule.onNodeWithTag(TestTags.PERMISSIONS_SCREEN).assertIsDisplayed()
   }
 
   @Test
@@ -114,7 +113,7 @@ class RegistrationNavigationTest {
     composeTestRule.onNodeWithTag(TestTags.PERMISSIONS_NEXT_BUTTON).performClick()
 
     // Then - verify PhoneNumber screen is displayed
-    composeTestRule.onNodeWithText("You will receive a verification code").assertIsDisplayed()
+    composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_SCREEN).assertIsDisplayed()
   }
 
   @Test
@@ -139,7 +138,7 @@ class RegistrationNavigationTest {
     composeTestRule.onNodeWithTag(TestTags.PERMISSIONS_NOT_NOW_BUTTON).performClick()
 
     // Then - verify PhoneNumber screen is displayed
-    composeTestRule.onNodeWithText("You will receive a verification code").assertIsDisplayed()
+    composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_SCREEN).assertIsDisplayed()
   }
 
   // Note: Back navigation testing in Navigation 3 requires testing through
@@ -168,7 +167,7 @@ class RegistrationNavigationTest {
 
     // Then - verify Permissions screen is displayed
     // (After permissions, user would go to RestoreViaQr screen)
-    composeTestRule.onNodeWithText("Permissions").assertIsDisplayed()
+    composeTestRule.onNodeWithTag(TestTags.PERMISSIONS_SCREEN).assertIsDisplayed()
   }
 
   @Test
