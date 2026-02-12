@@ -185,11 +185,13 @@ class AudioOutputPickerController(
 
     val isLegacy = Build.VERSION.SDK_INT < 31
     if (!willDisplayPicker) {
-      if (isLegacy) {
+      LaunchedEffect(Unit) {
         displaySheet = false
-        onSelectedDeviceChanged(WebRtcAudioDevice(outputState.peekNext(), null))
-      } else {
-        newApiController!!.Picker(threshold = SHOW_PICKER_THRESHOLD)
+        if (isLegacy) {
+          onSelectedDeviceChanged(WebRtcAudioDevice(outputState.peekNext(), null))
+        } else {
+          newApiController!!.cycleToNextDevice()
+        }
       }
       return
     }
