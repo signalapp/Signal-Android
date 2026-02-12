@@ -3877,7 +3877,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun setHasGroupsInCommon(recipientIds: List<RecipientId?>) {
+  fun setHasGroupsInCommon(recipientIds: Collection<RecipientId>) {
     if (recipientIds.isEmpty()) {
       return
     }

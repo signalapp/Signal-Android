@@ -659,7 +659,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     val membershipValues = mutableListOf<ContentValues>()
     val groupRecipientId = recipients.getOrInsertFromGroupId(groupId)
     val members: List<RecipientId> = memberCollection.toSet().sorted()
-    var groupMembers: List<RecipientId> = members
+    var groupMembers: Collection<RecipientId> = members
 
     val values = ContentValues()
 
@@ -815,7 +815,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     val groupMembers = getV2GroupMembers(decryptedGroup, true)
     var groupSendEndorsementRecords: GroupSendEndorsementRecords? = receivedGroupSendEndorsements?.toGroupSendEndorsementRecords() ?: getGroupSendEndorsements(groupId)
 
-    val addedMembers: List<RecipientId> = if (existingGroup.isPresent && existingGroup.get().isV2Group) {
+    val addedMembers: Collection<RecipientId> = if (existingGroup.isPresent && existingGroup.get().isV2Group) {
       val change = GroupChangeReconstruct.reconstructGroupChange(existingGroup.get().requireV2GroupProperties().decryptedGroup, decryptedGroup)
       val removed: List<ServiceId> = DecryptedGroupUtil.removedMembersServiceIdList(change)
 
@@ -1420,7 +1420,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       .toMutableList()
   }
 
-  private fun getV2GroupMembers(decryptedGroup: DecryptedGroup, shouldRetry: Boolean): List<RecipientId> {
+  private fun getV2GroupMembers(decryptedGroup: DecryptedGroup, shouldRetry: Boolean): Set<RecipientId> {
     val ids: List<RecipientId> = decryptedGroup.members.toAciList().toRecipientIds()
 
     return if (RemappedRecords.getInstance().areAnyRemapped(ids)) {
@@ -1433,7 +1433,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
         throw IllegalStateException("Remapped records in group membership!")
       }
     } else {
-      ids
+      ids.toSet()
     }
   }
 
