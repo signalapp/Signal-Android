@@ -212,8 +212,16 @@ class ArchiveThumbnailUploadJob private constructor(
       }
 
       is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "Failed to get an upload spec with status code ${specResult.code}")
-        return Result.retry(defaultBackoff())
+        return when (specResult.code) {
+          429 -> {
+            Log.w(TAG, "Rate limited when getting upload spec.")
+            Result.retry(specResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+          }
+          else -> {
+            Log.w(TAG, "Failed to get an upload spec with status code ${specResult.code}")
+            Result.retry(defaultBackoff())
+          }
+        }
       }
     }
 
@@ -261,8 +269,16 @@ class ArchiveThumbnailUploadJob private constructor(
       }
 
       is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "Hit a status code error of ${result.code} when trying to archive thumbnail for $attachmentId")
-        Result.retry(defaultBackoff())
+        when (result.code) {
+          429 -> {
+            Log.w(TAG, "Rate limited when trying to archive thumbnail for $attachmentId")
+            Result.retry(result.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+          }
+          else -> {
+            Log.w(TAG, "Hit a status code error of ${result.code} when trying to archive thumbnail for $attachmentId")
+            Result.retry(defaultBackoff())
+          }
+        }
       }
 
       is NetworkResult.ApplicationError -> Result.fatalFailure(RuntimeException(result.throwable))

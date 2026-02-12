@@ -364,9 +364,12 @@ class UploadAttachmentToArchiveJob private constructor(
         when (ArchiveMediaUploadFormStatusCodes.from(uploadSpec.code)) {
           ArchiveMediaUploadFormStatusCodes.BadArguments,
           ArchiveMediaUploadFormStatusCodes.InvalidPresentationOrSignature,
-          ArchiveMediaUploadFormStatusCodes.InsufficientPermissions,
-          ArchiveMediaUploadFormStatusCodes.RateLimited -> {
+          ArchiveMediaUploadFormStatusCodes.InsufficientPermissions -> {
             return null to Result.retry(defaultBackoff())
+          }
+          ArchiveMediaUploadFormStatusCodes.RateLimited -> {
+            Log.w(TAG, "[$attachmentId] Rate limited when getting upload form.")
+            return null to Result.retry(uploadSpec.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
           }
 
           ArchiveMediaUploadFormStatusCodes.Unknown -> {

@@ -202,6 +202,10 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
 
             Result.retry(defaultBackoff())
           }
+          429 -> {
+            Log.w(TAG, "[$attachmentId]$mediaIdLog Rate limit exceeded. Retrying.")
+            Result.retry(archiveResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+          }
           else -> {
             Log.w(TAG, "[$attachmentId]$mediaIdLog Got back a non-2xx status code: ${archiveResult.code}. Retrying.")
             Result.retry(defaultBackoff())
