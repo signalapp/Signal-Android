@@ -268,6 +268,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleSetEnableVideo(s, enabled));
   }
 
+  public void setIncomingRingingVanity(boolean enabled) {
+    process((s, p) -> p.handleSetIncomingRingingVanity(s, enabled));
+  }
+
   public void flipCamera() {
     process((s, p) -> p.handleSetCameraFlip(s));
   }

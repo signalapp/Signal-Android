@@ -586,6 +586,10 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcServiceState handleSetIncomingRingingVanity(@NonNull WebRtcServiceState currentState, boolean enabled) {
+    Log.i(tag, "handleSetIncomingRingingVanity not processed");
+    return currentState;
+  }
 
   protected @NonNull WebRtcServiceState handleSelfRaiseHand(@NonNull WebRtcServiceState currentState, boolean raised) {
     Log.i(tag, "raiseHand not processed");

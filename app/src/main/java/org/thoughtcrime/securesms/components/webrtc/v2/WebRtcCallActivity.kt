@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.KeyguardManager
 import android.app.PictureInPictureParams
 import android.content.Context
 import android.content.Intent
@@ -249,6 +250,8 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     if (SignalStore.rateLimit.needsRecaptcha()) {
       RecaptchaProofBottomSheetFragment.show(supportFragmentManager)
     }
+
+    updateIncomingRingingVanity()
   }
 
   override fun onNewIntent(intent: Intent) {
@@ -262,6 +265,8 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   override fun onPause() {
     Log.i(TAG, "onPause")
     super.onPause()
+
+    disableIncomingRingingVanity()
 
     if (!isInPipMode() || isFinishing) {
       EventBus.getDefault().unregister(this)
@@ -402,6 +407,9 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
           Log.d(TAG, "Incoming call directly from network failure state. Recreating activity.")
           recreate()
           return
+        }
+        if (previousCallState != WebRtcViewModel.State.CALL_INCOMING) {
+          updateIncomingRingingVanity()
         }
       }
 
@@ -1048,6 +1056,24 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       callScreen.showSpeakerViewHint()
     } else {
       callScreen.hideSpeakerViewHint()
+    }
+  }
+
+  private fun updateIncomingRingingVanity() {
+    val event = previousEvent ?: return
+    if (event.state != WebRtcViewModel.State.CALL_INCOMING) return
+
+    val keyguardManager = getSystemService(KeyguardManager::class.java)
+    val shouldEnable = keyguardManager == null || !keyguardManager.isKeyguardLocked
+
+    Log.i(TAG, "updateIncomingRingingVanity(): shouldEnable=$shouldEnable, keyguardLocked=${keyguardManager?.isKeyguardLocked}")
+    AppDependencies.signalCallManager.setIncomingRingingVanity(shouldEnable)
+  }
+
+  private fun disableIncomingRingingVanity() {
+    val event = previousEvent ?: return
+    if (event.state == WebRtcViewModel.State.CALL_INCOMING) {
+      AppDependencies.signalCallManager.setIncomingRingingVanity(false)
     }
   }
 

@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.DoNotDisturbUtil;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
@@ -180,7 +181,40 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
   }
 
   @Override
+  protected @NonNull WebRtcServiceState handleSetIncomingRingingVanity(@NonNull WebRtcServiceState currentState, boolean enabled) {
+    boolean cameraAlreadyEnabled = currentState.getLocalDeviceState().getCameraState().isEnabled();
+
+    if (enabled && cameraAlreadyEnabled) {
+      return currentState;
+    }
+
+    if (!enabled && !cameraAlreadyEnabled) {
+      return currentState;
+    }
+
+    Camera camera = currentState.getVideoState().requireCamera();
+
+    if (enabled && !camera.isInitialized()) {
+      Log.i(TAG, "handleSetIncomingRingingVanity(): initializing vanity camera");
+      return WebRtcVideoUtil.initializeVanityCamera(currentState);
+    } else if (enabled) {
+      Log.i(TAG, "handleSetIncomingRingingVanity(): enabling vanity camera");
+      camera.setEnabled(true);
+    } else {
+      Log.i(TAG, "handleSetIncomingRingingVanity(): disabling vanity camera");
+      camera.setEnabled(false);
+    }
+
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .cameraState(camera.getCameraState())
+                       .build();
+  }
+
+  @Override
   protected @NonNull WebRtcServiceState handleAcceptCall(@NonNull WebRtcServiceState currentState, boolean answerWithVideo) {
+    currentState = WebRtcVideoUtil.reinitializeCamera(context, webRtcInteractor.getCameraEventListener(), currentState);
+
     byte[] groupId = currentState.getCallInfoState().getCallRecipient().requireGroupId().getDecodedId();
     GroupCall groupCall = webRtcInteractor.getCallManager().createGroupCall(groupId,
                                                                             SignalStore.internal().getGroupCallingServer(),
@@ -220,13 +254,22 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     try {
       groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireCamera());
-      groupCall.setOutgoingVideoMuted(answerWithVideo);
+      groupCall.setOutgoingVideoMuted(!answerWithVideo);
       groupCall.setOutgoingAudioMuted(!currentState.getLocalDeviceState().isMicrophoneEnabled());
       groupCall.setDataMode(NetworkUtil.getCallingDataMode(context, groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType()));
 
       groupCall.join();
     } catch (CallException e) {
       return groupCallFailure(currentState, "Unable to join group call", e);
+    }
+
+    if (answerWithVideo) {
+      Camera camera = currentState.getVideoState().requireCamera();
+      camera.setEnabled(true);
+      currentState = currentState.builder()
+                                 .changeLocalDeviceState()
+                                 .cameraState(camera.getCameraState())
+                                 .build();
     }
 
     return currentState.builder()

@@ -125,7 +125,8 @@ fun CallScreen(
       callRecipient = callRecipient,
       isVideoCall = isRemoteVideoOffer,
       callStatus = callScreenState.callStatus,
-      callScreenControlsListener = callScreenControlsListener
+      callScreenControlsListener = callScreenControlsListener,
+      localParticipant = localParticipant
     )
 
     return

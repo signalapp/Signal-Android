@@ -40,7 +40,9 @@ import org.signal.core.ui.compose.Previews
 import org.signal.glide.compose.GlideImage
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
+import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.ringrtc.CameraState
 
 private val textShadow = Shadow(
   color = Color(0f, 0f, 0f, 0.25f),
@@ -52,7 +54,8 @@ fun IncomingCallScreen(
   callRecipient: Recipient,
   callStatus: String?,
   isVideoCall: Boolean,
-  callScreenControlsListener: CallScreenControlsListener
+  callScreenControlsListener: CallScreenControlsListener,
+  localParticipant: CallParticipant = CallParticipant.EMPTY
 ) {
   val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
   val callTypePadding = remember(isLandscape) {
@@ -62,24 +65,37 @@ fun IncomingCallScreen(
       PaddingValues(top = 22.dp, bottom = 30.dp)
     }
   }
+  val showLocalVideo = localParticipant.isVideoEnabled
 
   Scaffold { contentPadding ->
 
-    GlideImage(
-      model = callRecipient.contactPhoto,
-      modifier = Modifier
-        .fillMaxSize()
-        .blur(
-          radiusX = 25.dp,
-          radiusY = 25.dp,
-          edgeTreatment = BlurredEdgeTreatment.Rectangle
-        )
-    )
+    if (showLocalVideo) {
+      RemoteParticipantContent(
+        participant = localParticipant,
+        renderInPip = false,
+        raiseHandAllowed = false,
+        mirrorVideo = localParticipant.cameraDirection == CameraState.Direction.FRONT,
+        showAudioIndicator = false,
+        onInfoMoreInfoClick = null,
+        modifier = Modifier.fillMaxSize()
+      )
+    } else {
+      GlideImage(
+        model = callRecipient.contactPhoto,
+        modifier = Modifier
+          .fillMaxSize()
+          .blur(
+            radiusX = 25.dp,
+            radiusY = 25.dp,
+            edgeTreatment = BlurredEdgeTreatment.Rectangle
+          )
+      )
+    }
 
     Box(
       modifier = Modifier
         .fillMaxSize()
-        .background(color = Color.Black.copy(alpha = 0.4f))
+        .background(color = Color.Black.copy(alpha = if (showLocalVideo) 0.2f else 0.4f))
     ) {}
 
     CallScreenTopAppBar(
