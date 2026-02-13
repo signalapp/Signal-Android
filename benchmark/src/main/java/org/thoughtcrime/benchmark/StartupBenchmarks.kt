@@ -15,8 +15,6 @@ import org.junit.runner.RunWith
 
 /**
  * Macrobenchmark benchmarks for app startup performance.
- *
- * WARNING! THIS WILL WIPE YOUR SIGNAL INSTALL
  */
 @RunWith(AndroidJUnit4::class)
 @RequiresApi(31)
@@ -38,7 +36,7 @@ class StartupBenchmarks {
   private fun measureStartup(iterations: Int, compilationMode: CompilationMode) {
     var setup = false
     benchmarkRule.measureRepeated(
-      packageName = "org.thoughtcrime.securesms",
+      packageName = "org.thoughtcrime.securesms.benchmark",
       metrics = listOf(StartupTimingMetric(), TraceSectionMetric("ConversationListDataSource#load")),
       iterations = iterations,
       startupMode = StartupMode.COLD,

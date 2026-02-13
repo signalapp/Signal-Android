@@ -7,8 +7,6 @@ package org.signal.benchmark.setup
 
 import org.signal.benchmark.setup.Generator.toEnvelope
 import org.signal.core.models.ServiceId
-import org.signal.core.util.readToSingleInt
-import org.signal.core.util.select
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SessionBuilder
@@ -23,16 +21,14 @@ import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.SessionRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.libsignal.protocol.util.KeyHelper
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
-import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
-import org.thoughtcrime.securesms.database.KyberPreKeyTable
-import org.thoughtcrime.securesms.database.OneTimePreKeyTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.SignedPreKeyTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.SignalSessionLock
+import org.whispersystems.signalservice.api.crypto.EnvelopeContent
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.SignalSessionBuilder
@@ -46,12 +42,10 @@ import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
- * Welcome to Bob's Client.
- *
- * Bob is a "fake" client that can start a session with the running app's user, referred to as Alice in this
+ * This is a "fake" client that can start a session with the running app's user, referred to as Alice in this
  * code.
  */
-class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair: IdentityKeyPair, val profileKey: ProfileKey) {
+class OtherClient(val serviceId: ServiceId, val e164: String, val identityKeyPair: IdentityKeyPair, val profileKey: ProfileKey) {
 
   private val serviceAddress = SignalServiceAddress(serviceId, e164)
   private val registrationId = KeyHelper.generateRegistrationId(false)
@@ -67,9 +61,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
   }
 
   /** Inspired by SignalServiceMessageSender#getEncryptedMessage */
-  fun encrypt(now: Long): Envelope {
-    val envelopeContent = Generator.encryptedTextMessage(now)
-
+  fun encrypt(envelopeContent: EnvelopeContent): Envelope {
     val cipher = SignalServiceCipher(serviceAddress, 1, aciStore, sessionLock, null)
 
     if (!aciStore.containsSession(getAliceProtocolAddress())) {
@@ -81,16 +73,22 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
       .toEnvelope(envelopeContent.content.get().dataMessage!!.timestamp!!, getAliceServiceId())
   }
 
-  fun decrypt(envelope: Envelope, serverDeliveredTimestamp: Long) {
-    val cipher = SignalServiceCipher(serviceAddress, 1, aciStore, sessionLock, SealedSenderAccessUtil.getCertificateValidator())
-    cipher.decrypt(envelope, serverDeliveredTimestamp)
-  }
-
   fun generateInboundEnvelopes(count: Int): List<Envelope> {
     val envelopes = ArrayList<Envelope>(count)
     var now = System.currentTimeMillis()
     for (i in 0 until count) {
-      envelopes += encrypt(now)
+      envelopes += encrypt(Generator.encryptedTextMessage(now))
+      now += 3
+    }
+
+    return envelopes
+  }
+
+  fun generateInboundGroupEnvelopes(count: Int, groupMasterKey: GroupMasterKey): List<Envelope> {
+    val envelopes = ArrayList<Envelope>(count)
+    var now = System.currentTimeMillis()
+    for (i in 0 until count) {
+      envelopes += encrypt(Generator.encryptedTextMessage(now, groupMasterKey = groupMasterKey))
       now += 3
     }
 
@@ -102,45 +100,22 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
   }
 
   private fun getAlicePreKeyBundle(): PreKeyBundle {
-    val alicePreKeyId = SignalDatabase.rawDatabase
-      .select(OneTimePreKeyTable.KEY_ID)
-      .from(OneTimePreKeyTable.TABLE_NAME)
-      .where("${OneTimePreKeyTable.ACCOUNT_ID} = ?", getAliceServiceId().toString())
-      .run()
-      .readToSingleInt(-1)
+    val aliceSignedPreKeyRecord = SignalDatabase.signedPreKeys.getAll(getAliceServiceId()).first()
 
-    val alicePreKeyRecord = SignalDatabase.oneTimePreKeys.get(getAliceServiceId(), alicePreKeyId)!!
-
-    val aliceSignedPreKeyId = SignalDatabase.rawDatabase
-      .select(SignedPreKeyTable.KEY_ID)
-      .from(SignedPreKeyTable.TABLE_NAME)
-      .where("${SignedPreKeyTable.ACCOUNT_ID} = ?", getAliceServiceId().toString())
-      .run()
-      .readToSingleInt(-1)
-
-    val aliceSignedPreKeyRecord = SignalDatabase.signedPreKeys.get(getAliceServiceId(), aliceSignedPreKeyId)!!
-
-    val aliceSignedKyberPreKeyId = SignalDatabase.rawDatabase
-      .select(KyberPreKeyTable.KEY_ID)
-      .from(KyberPreKeyTable.TABLE_NAME)
-      .where("${KyberPreKeyTable.ACCOUNT_ID} = ?", getAliceServiceId().toString())
-      .run()
-      .readToSingleInt(-1)
-
-    val aliceSignedKyberPreKeyRecord = SignalDatabase.kyberPreKeys.get(getAliceServiceId(), aliceSignedKyberPreKeyId)!!.record
+    val aliceSignedKyberPreKeyRecord = SignalDatabase.kyberPreKeys.getAllLastResort(getAliceServiceId()).first().record
 
     return PreKeyBundle(
-      SignalStore.account.registrationId,
-      1,
-      alicePreKeyId,
-      alicePreKeyRecord.keyPair.publicKey,
-      aliceSignedPreKeyId,
-      aliceSignedPreKeyRecord.keyPair.publicKey,
-      aliceSignedPreKeyRecord.signature,
-      getAlicePublicKey(),
-      aliceSignedKyberPreKeyId,
-      aliceSignedKyberPreKeyRecord.keyPair.publicKey,
-      aliceSignedKyberPreKeyRecord.signature
+      registrationId = SignalStore.account.registrationId,
+      deviceId = 1,
+      preKeyId = PreKeyBundle.NULL_PRE_KEY_ID,
+      preKeyPublic = null,
+      signedPreKeyId = aliceSignedPreKeyRecord.id,
+      signedPreKeyPublic = aliceSignedPreKeyRecord.keyPair.publicKey,
+      signedPreKeySignature = aliceSignedPreKeyRecord.signature,
+      identityKey = getAlicePublicKey(),
+      kyberPreKeyId = aliceSignedKyberPreKeyRecord.id,
+      kyberPreKeyPublic = aliceSignedKyberPreKeyRecord.keyPair.publicKey,
+      kyberPreKeySignature = aliceSignedKyberPreKeyRecord.signature
     )
   }
 

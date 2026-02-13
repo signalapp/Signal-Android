@@ -373,6 +373,8 @@ android {
       isDebuggable = false
       isMinifyEnabled = true
       matchingFallbacks += "debug"
+      applicationIdSuffix = ".benchmark"
+
       buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Benchmark\"")
       buildConfigField("boolean", "TRACING_ENABLED", "true")
       buildConfigField("String[]", "UNIDENTIFIED_SENDER_TRUST_ROOTS", "new String[]{ \"BVT/2gHqbrG1xzuIypLIOjFgMtihrMld1/5TGADL6Dhv\"}")

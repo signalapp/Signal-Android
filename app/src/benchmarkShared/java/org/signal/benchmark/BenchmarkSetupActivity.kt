@@ -16,6 +16,7 @@ class BenchmarkSetupActivity : BaseActivity() {
       "cold-start" -> setupColdStart()
       "conversation-open" -> setupConversationOpen()
       "message-send" -> setupMessageSend()
+      "group-message-send" -> setupGroupMessageSend()
     }
 
     val textView: TextView = TextView(this).apply {
@@ -60,6 +61,11 @@ class BenchmarkSetupActivity : BaseActivity() {
 
   private fun setupMessageSend() {
     TestUsers.setupSelf()
-    TestUsers.setupBob()
+    TestUsers.setupTestClients(1)
+  }
+
+  private fun setupGroupMessageSend() {
+    TestUsers.setupSelf()
+    TestUsers.setupGroup()
   }
 }

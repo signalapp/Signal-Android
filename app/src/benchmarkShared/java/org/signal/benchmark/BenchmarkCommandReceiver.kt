@@ -12,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.signal.benchmark.network.BenchmarkWebSocketConnection
+import org.signal.benchmark.setup.Generator
 import org.signal.benchmark.setup.Harness
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
@@ -43,17 +44,20 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     when (command) {
       "individual-send" -> handlePrepareIndividualSend()
-      "release-messages" -> BenchmarkWebSocketConnection.instance.releaseMessages()
+      "group-send" -> handlePrepareGroupSend()
+      "release-messages" -> {
+        BenchmarkWebSocketConnection.instance.startWholeBatchTrace = true
+        BenchmarkWebSocketConnection.instance.releaseMessages()
+      }
       else -> Log.w(TAG, "Unknown command: $command")
     }
   }
 
   private fun handlePrepareIndividualSend() {
-    val bobClient = Harness.bobClient
+    val client = Harness.otherClients[0]
 
     // Send message from Bob to Self
-    val firstPreKeyMessageTimestamp = System.currentTimeMillis()
-    val encryptedEnvelope = bobClient.encrypt(firstPreKeyMessageTimestamp)
+    val encryptedEnvelope = client.encrypt(Generator.encryptedTextMessage(System.currentTimeMillis()))
 
     runBlocking {
       launch(Dispatchers.IO) {
@@ -70,11 +74,43 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     // Have Bob generate N messages that will be received by Alice
     val messageCount = 100
-    val envelopes = bobClient.generateInboundEnvelopes(messageCount)
+    val envelopes = client.generateInboundEnvelopes(messageCount)
 
     val messages = envelopes.map { e -> e.toWebSocketPayload() }
 
     BenchmarkWebSocketConnection.instance.addPendingMessages(messages)
+    BenchmarkWebSocketConnection.instance.addQueueEmptyMessage()
+  }
+
+  private fun handlePrepareGroupSend() {
+    val clients = Harness.otherClients.take(5)
+
+    // Send message from others to Self in the group
+    val encryptedEnvelopes = clients.map { it.encrypt(Generator.encryptedTextMessage(System.currentTimeMillis(), groupMasterKey = Harness.groupMasterKey)) }
+
+    runBlocking {
+      launch(Dispatchers.IO) {
+        BenchmarkWebSocketConnection.instance.run {
+          Log.i(TAG, "Sending initial group messages from client to establish sessions.")
+          addPendingMessages(encryptedEnvelopes.map { it.toWebSocketPayload() })
+          releaseMessages()
+
+          // Sleep briefly to let the messages be processed.
+          ThreadUtil.sleep(1000)
+        }
+      }
+    }
+
+    // Have clients generate N group messages that will be received by Alice
+    clients.forEach { client ->
+      val messageCount = 100
+      val envelopes = client.generateInboundGroupEnvelopes(messageCount, Harness.groupMasterKey)
+
+      val messages = envelopes.map { e -> e.toWebSocketPayload() }
+
+      BenchmarkWebSocketConnection.instance.addPendingMessages(messages)
+    }
+    BenchmarkWebSocketConnection.instance.addQueueEmptyMessage()
   }
 
   private fun Envelope.toWebSocketPayload(): WebSocketRequestMessage {

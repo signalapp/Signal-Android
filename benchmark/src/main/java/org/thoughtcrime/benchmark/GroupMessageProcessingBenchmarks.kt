@@ -24,12 +24,12 @@ import org.junit.runner.RunWith
 @OptIn(ExperimentalMetricApi::class)
 @RunWith(AndroidJUnit4::class)
 @RequiresApi(31)
-class MessageProcessingBenchmarks {
+class GroupMessageProcessingBenchmarks {
   @get:Rule
   val benchmarkRule = MacrobenchmarkRule()
 
   @Test
-  fun individualMessageReceiveOnConversationList() {
+  fun groupMessageReceiveOnConversationList() {
     run(withConversationOpen = false)
   }
 
@@ -62,15 +62,15 @@ class MessageProcessingBenchmarks {
       iterations = 5,
       compilationMode = CompilationMode.Partial(),
       setupBlock = {
-        BenchmarkSetup.setup("message-send", device)
+        BenchmarkSetup.setup("group-message-send", device)
 
         killProcess()
         startActivityAndWait()
         device.waitForIdle()
 
-        BenchmarkSetup.setupIndividualSend(device)
+        BenchmarkSetup.setupGroupSend(device)
 
-        val uiObject = device.wait(Until.findObject(By.textContains("Buddy")), 5_000)
+        val uiObject = device.wait(Until.findObject(By.textContains("Title")), 5_000)
         if (withConversationOpen) {
           uiObject.click()
         }
@@ -79,7 +79,7 @@ class MessageProcessingBenchmarks {
 
       BenchmarkSetup.releaseMessages(device)
 
-      device.wait(Until.hasObject(By.textContains("101")), 10_000L)
+      device.wait(Until.hasObject(By.textContains("505")),10_000L)
     }
   }
 }

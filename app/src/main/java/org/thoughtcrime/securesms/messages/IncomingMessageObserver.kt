@@ -457,6 +457,7 @@ class IncomingMessageObserver(
                 SignalLocalMetrics.PushWebsocketFetch.onProcessedBatch()
 
                 if (!hasMore && !decryptionDrained) {
+                  SignalTrace.endSection()
                   Log.i(TAG, "Decryptions newly-drained.")
                   decryptionDrained = true
 

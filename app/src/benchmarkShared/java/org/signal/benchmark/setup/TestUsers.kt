@@ -4,10 +4,17 @@ import android.app.Application
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import kotlinx.coroutines.runBlocking
+import okio.ByteString
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Util
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.signal.storageservice.storage.protos.groups.AccessControl
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer
+import org.signal.storageservice.storage.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
@@ -140,17 +147,70 @@ object TestUsers {
     return others
   }
 
-  fun setupBob(): Recipient {
-    val recipientId = RecipientId.from(SignalServiceAddress(Harness.BOB_ACI, Harness.BOB_E164))
-    SignalDatabase.recipients.setProfileName(recipientId, ProfileName.fromParts("Bob", "Boberson"))
+  fun setupTestClients(othersCount: Int): List<RecipientId> {
+    val others = mutableListOf<RecipientId>()
+    synchronized(this) {
+      for (i in 0 until othersCount) {
+        val otherClient = Harness.otherClients[i]
 
-    SignalDatabase.recipients.setProfileKeyIfAbsent(recipientId, Harness.BOB_PROFILE_KEY)
-    SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true))
-    SignalDatabase.recipients.setProfileSharing(recipientId, true)
-    SignalDatabase.recipients.markRegistered(recipientId, Harness.BOB_ACI)
+        val recipientId = RecipientId.from(SignalServiceAddress(otherClient.serviceId, otherClient.e164))
+        SignalDatabase.recipients.setProfileName(recipientId, ProfileName.fromParts("Buddy", "#$i"))
+        SignalDatabase.recipients.setProfileKeyIfAbsent(recipientId, otherClient.profileKey)
+        SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true))
+        SignalDatabase.recipients.setProfileSharing(recipientId, true)
+        SignalDatabase.recipients.markRegistered(recipientId, otherClient.serviceId)
+        AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(otherClient.serviceId.toString(), 1), otherClient.identityKeyPair.publicKey)
 
-    AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(Harness.BOB_ACI.toString(), 1), Harness.BOB_IDENTITY_KEY.publicKey)
+        others += recipientId
+      }
 
-    return Recipient.resolved(recipientId)
+      generatedOthers += othersCount
+    }
+
+    return others
+  }
+
+  fun setupGroup() {
+    val members = setupTestClients(5)
+    val self = Recipient.self()
+
+    val fullMembers = buildList {
+      add(member(aci = self.requireAci()))
+      addAll(members.map { member(aci = Recipient.resolved(it).requireAci()) })
+    }
+
+    val group = DecryptedGroup(
+      title = "Title",
+      avatar = "",
+      disappearingMessagesTimer = DecryptedTimer(),
+      accessControl = AccessControl(),
+      revision = 1,
+      members = fullMembers,
+      pendingMembers = emptyList(),
+      requestingMembers = emptyList(),
+      inviteLinkPassword = ByteString.EMPTY,
+      description = "Description",
+      isAnnouncementGroup = EnabledState.DISABLED,
+      bannedMembers = emptyList(),
+      isPlaceholderGroup = false
+    )
+
+    val groupId = SignalDatabase.groups.create(
+      groupMasterKey = Harness.groupMasterKey,
+      groupState = group,
+      groupSendEndorsements = null
+    )
+
+    SignalDatabase.recipients.setProfileSharing(Recipient.externalGroupExact(groupId!!).id, true)
+  }
+
+  private fun member(aci: ACI, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0, labelEmoji: String = "", labelString: String = ""): DecryptedMember {
+    return DecryptedMember(
+      role = role,
+      aciBytes = aci.toByteString(),
+      joinedAtRevision = joinedAt,
+      labelEmoji = labelEmoji,
+      labelString = labelString
+    )
   }
 }

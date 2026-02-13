@@ -8,6 +8,8 @@ package org.signal.benchmark.network
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import okio.IOException
+import org.thoughtcrime.securesms.util.SignalTrace
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
@@ -47,6 +49,8 @@ class BenchmarkWebSocketConnection : WebSocketConnection {
   private val incomingRequests = LinkedList<WebSocketRequestMessage>()
   private val incomingSemaphore = Semaphore(0)
 
+  var startWholeBatchTrace = false
+
   @Volatile
   private var isShutdown = false
 
@@ -77,7 +81,7 @@ class BenchmarkWebSocketConnection : WebSocketConnection {
       if (isShutdown) {
         throw SocketException("WebSocket connection closed")
       }
-      return incomingRequests.removeFirst()
+      return getNextRequest()
     }
 
     throw TimeoutException("Timeout exceeded")
@@ -85,10 +89,19 @@ class BenchmarkWebSocketConnection : WebSocketConnection {
 
   override fun readRequestIfAvailable(): Optional<WebSocketRequestMessage> {
     return if (incomingSemaphore.tryAcquire()) {
-      Optional.of(incomingRequests.removeFirst())
+      Optional.of(getNextRequest())
     } else {
       Optional.empty()
     }
+  }
+
+  private fun getNextRequest(): WebSocketRequestMessage {
+    if (startWholeBatchTrace) {
+      startWholeBatchTrace = false
+      SignalTrace.beginSection("IncomingMessageObserver#totalProcessing")
+    }
+
+    return incomingRequests.removeFirst()
   }
 
   override fun sendResponse(response: WebSocketResponseMessage) = Unit
@@ -105,10 +118,21 @@ class BenchmarkWebSocketConnection : WebSocketConnection {
     request: WebSocketRequestMessage,
     timeoutSeconds: Long
   ): Single<WebsocketResponse> {
-    error("Not yet implemented")
+    return Single.error(IOException("fake timeout"))
   }
 
   override fun sendKeepAlive() {
     error("Not yet implemented")
+  }
+
+  fun addQueueEmptyMessage() {
+    addPendingMessages(
+      listOf(
+        WebSocketRequestMessage(
+          verb = "PUT",
+          path = "/api/v1/queue/empty"
+        )
+      )
+    )
   }
 }
