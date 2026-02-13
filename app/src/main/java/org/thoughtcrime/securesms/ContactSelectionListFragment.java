@@ -574,6 +574,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
   public void reset() {
     contactSearchMediator.clearSelection();
+    contactSearchMediator.refresh();
     fastScroller.setVisibility(View.GONE);
     headerActionView.setVisibility(View.GONE);
   }
