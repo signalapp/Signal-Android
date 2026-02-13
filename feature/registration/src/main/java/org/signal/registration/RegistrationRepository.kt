@@ -30,10 +30,6 @@ import java.util.Locale
 
 class RegistrationRepository(val context: Context, val networkController: NetworkController, val storageController: StorageController) {
 
-  companion object {
-    private val TAG = Log.tag(RegistrationRepository::class)
-  }
-
   suspend fun createSession(e164: String): RegistrationNetworkResult<SessionMetadata, CreateSessionError> = withContext(Dispatchers.IO) {
     val fcmToken = networkController.getFcmToken()
     networkController.createSession(
@@ -307,5 +303,9 @@ class RegistrationRepository(val context: Context, val networkController: Networ
 
   suspend fun getPreExistingRegistrationData(): PreExistingRegistrationData? {
     return storageController.getPreExistingRegistrationData()
+  }
+
+  companion object {
+    private val TAG = Log.tag(RegistrationRepository::class)
   }
 }

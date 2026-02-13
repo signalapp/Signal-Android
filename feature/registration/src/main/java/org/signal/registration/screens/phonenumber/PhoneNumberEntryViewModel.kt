@@ -74,6 +74,9 @@ class PhoneNumberEntryViewModel(
       is PhoneNumberEntryScreenEvents.CountryCodeChanged -> {
         stateEmitter(applyCountryCodeChanged(state, event.value))
       }
+      is PhoneNumberEntryScreenEvents.CountrySelected -> {
+        stateEmitter(applyCountrySelected(state, event.countryCode, event.regionCode, event.countryName, event.countryEmoji))
+      }
       is PhoneNumberEntryScreenEvents.PhoneNumberChanged -> {
         stateEmitter(applyPhoneNumberChanged(state, event.value))
       }
@@ -102,6 +105,22 @@ class PhoneNumberEntryViewModel(
       sessionMetadata = parentState.sessionMetadata,
       preExistingRegistrationData = parentState.preExistingRegistrationData,
       restoredSvrCredentials = state.restoredSvrCredentials.takeUnless { parentState.doNotAttemptRecoveryPassword } ?: emptyList()
+    )
+  }
+
+  private fun applyCountrySelected(state: PhoneNumberEntryState, countryCode: Int, regionCode: String, countryName: String, countryEmoji: String): PhoneNumberEntryState {
+    val countryCodeStr = countryCode.toString()
+    if (countryCodeStr == state.countryCode && regionCode == state.regionCode) return state
+
+    formatter = phoneNumberUtil.getAsYouTypeFormatter(regionCode)
+    val formattedNumber = formatNumber(state.nationalNumber)
+
+    return state.copy(
+      countryCode = countryCodeStr,
+      regionCode = regionCode,
+      countryName = countryName,
+      countryEmoji = countryEmoji,
+      formattedNumber = formattedNumber
     )
   }
 

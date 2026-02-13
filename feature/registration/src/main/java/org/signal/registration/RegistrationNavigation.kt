@@ -38,6 +38,10 @@ import org.signal.registration.screens.accountlocked.AccountLockedState
 import org.signal.registration.screens.captcha.CaptchaScreen
 import org.signal.registration.screens.captcha.CaptchaScreenEvents
 import org.signal.registration.screens.captcha.CaptchaState
+import org.signal.registration.screens.countrycode.Country
+import org.signal.registration.screens.countrycode.CountryCodePickerRepository
+import org.signal.registration.screens.countrycode.CountryCodePickerScreen
+import org.signal.registration.screens.countrycode.CountryCodePickerViewModel
 import org.signal.registration.screens.permissions.PermissionsScreen
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryScreenEvents
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryViewModel
@@ -117,6 +121,7 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
 }
 
 private const val CAPTCHA_RESULT = "captcha_token"
+private const val COUNTRY_CODE_RESULT = "country_code_result"
 
 /**
  * Sets up the navigation graph for the registration flow using Navigation 3.
@@ -268,6 +273,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       }
     }
 
+    ResultEffect<Country?>(registrationViewModel.resultBus, COUNTRY_CODE_RESULT) { country ->
+      if (country != null) {
+        viewModel.onEvent(PhoneNumberEntryScreenEvents.CountrySelected(country.countryCode, country.regionCode, country.name, country.emoji))
+      }
+    }
+
     PhoneNumberScreen(
       state = state,
       onEvent = { viewModel.onEvent(it) }
@@ -276,9 +287,20 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Country Code Picker
   entry<RegistrationRoute.CountryCodePicker> {
-    // We'll also want this to be some sort of launch-for-result flow as well
-    // TODO [registration] - display country code picker
-    throw NotImplementedError("Country Code Picker not implemented")
+    val viewModel: CountryCodePickerViewModel = viewModel(
+      factory = CountryCodePickerViewModel.Factory(
+        repository = CountryCodePickerRepository(),
+        parentEventEmitter = parentEventEmitter,
+        resultBus = registrationViewModel.resultBus,
+        resultKey = COUNTRY_CODE_RESULT
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    CountryCodePickerScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
   }
 
   // -- Captcha Screen

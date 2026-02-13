@@ -13,6 +13,8 @@ import kotlin.time.Duration
 data class PhoneNumberEntryState(
   val regionCode: String = "US",
   val countryCode: String = "1",
+  val countryName: String = "United States",
+  val countryEmoji: String = "\uD83C\uDDFA\uD83C\uDDF8",
   val nationalNumber: String = "",
   val formattedNumber: String = "",
   val sessionE164: String? = null,

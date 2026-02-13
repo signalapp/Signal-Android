@@ -87,9 +87,8 @@ fun PhoneNumberScreen(
 
 @Composable
 private fun ScreenContent(state: PhoneNumberEntryState, onEvent: (PhoneNumberEntryScreenEvents) -> Unit) {
-  // TODO: These should come from state once country picker is implemented
-  var selectedCountry by remember { mutableStateOf("United States") }
-  var selectedCountryEmoji by remember { mutableStateOf("🇺🇸") }
+  val selectedCountry = state.countryName
+  val selectedCountryEmoji = state.countryEmoji
 
   // Track the phone number text field value with cursor position
   var phoneNumberTextFieldValue by remember { mutableStateOf(TextFieldValue(state.formattedNumber)) }

@@ -32,4 +32,14 @@
     <string name="GrantPermissionsFragment__storage">Storage</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">Your country</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">Close</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">Search by name or number</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">Unknown country</string>
 </resources>

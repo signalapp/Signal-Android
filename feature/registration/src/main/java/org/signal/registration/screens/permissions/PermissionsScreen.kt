@@ -10,13 +10,19 @@ package org.signal.registration.screens.permissions
 import android.Manifest
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -31,8 +37,8 @@ import com.google.accompanist.permissions.MultiplePermissionsState
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.horizontalGutters
 import org.signal.registration.R
-import org.signal.registration.screens.shared.RegistrationScreen
 import org.signal.registration.screens.util.MockMultiplePermissionsState
 import org.signal.registration.screens.util.MockPermissionsState
 import org.signal.registration.test.TestTags
@@ -53,79 +59,119 @@ fun PermissionsScreen(
 ) {
   val permissions = permissionsState.permissions.map { it.permission }
 
-  RegistrationScreen(
-    title = stringResource(id = R.string.GrantPermissionsFragment__allow_permissions),
-    subtitle = stringResource(id = R.string.GrantPermissionsFragment__to_help_you_message_people_you_know),
-    modifier = modifier.testTag(TestTags.PERMISSIONS_SCREEN),
-    bottomContent = {
-      Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier.fillMaxWidth()
+  Surface(modifier = modifier.testTag(TestTags.PERMISSIONS_SCREEN)) {
+    Column(
+      verticalArrangement = Arrangement.SpaceBetween,
+      modifier = Modifier
+        .fillMaxWidth()
+        .fillMaxHeight()
+    ) {
+      val scrollState = rememberScrollState()
+
+      Column(
+        modifier = Modifier
+          .verticalScroll(scrollState)
+          .weight(weight = 1f, fill = false)
+          .padding(bottom = 16.dp)
+          .horizontalGutters()
       ) {
-        TextButton(
-          modifier = Modifier
-            .weight(weight = 1f, fill = false)
-            .testTag(TestTags.PERMISSIONS_NOT_NOW_BUTTON),
-          onClick = onProceed
-        ) {
-          Text(
-            text = stringResource(id = R.string.GrantPermissionsFragment__not_now)
+        Spacer(Modifier.height(40.dp))
+
+        Text(
+          text = stringResource(id = R.string.GrantPermissionsFragment__allow_permissions),
+          style = MaterialTheme.typography.headlineMedium,
+          modifier = Modifier.fillMaxWidth()
+        )
+
+        Text(
+          text = stringResource(id = R.string.GrantPermissionsFragment__to_help_you_message_people_you_know),
+          style = MaterialTheme.typography.bodyLarge,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          modifier = Modifier.padding(top = 16.dp)
+        )
+
+        Spacer(modifier = Modifier.height(40.dp))
+
+        if (permissions.any { it == Manifest.permission.POST_NOTIFICATIONS }) {
+          PermissionRow(
+            imageVector = ImageVector.vectorResource(id = R.drawable.permission_notification),
+            title = stringResource(id = R.string.GrantPermissionsFragment__notifications),
+            subtitle = stringResource(id = R.string.GrantPermissionsFragment__get_notified_when)
           )
         }
 
-        Spacer(modifier = Modifier.size(24.dp))
+        if (permissions.any { it == Manifest.permission.READ_CONTACTS || it == Manifest.permission.WRITE_CONTACTS }) {
+          PermissionRow(
+            imageVector = ImageVector.vectorResource(id = R.drawable.permission_contact),
+            title = stringResource(id = R.string.GrantPermissionsFragment__contacts),
+            subtitle = stringResource(id = R.string.GrantPermissionsFragment__find_people_you_know)
+          )
+        }
 
-        Buttons.LargeTonal(
-          modifier = Modifier.testTag(TestTags.PERMISSIONS_NEXT_BUTTON),
-          onClick = {
-            permissionsState.launchMultiplePermissionRequest()
-            onProceed()
+        if (permissions.any {
+            it == Manifest.permission.READ_EXTERNAL_STORAGE ||
+              it == Manifest.permission.WRITE_EXTERNAL_STORAGE ||
+              it == Manifest.permission.READ_MEDIA_IMAGES ||
+              it == Manifest.permission.READ_MEDIA_VIDEO ||
+              it == Manifest.permission.READ_MEDIA_AUDIO
           }
         ) {
-          Text(
-            text = stringResource(id = R.string.GrantPermissionsFragment__next)
+          PermissionRow(
+            imageVector = ImageVector.vectorResource(id = R.drawable.permission_file),
+            title = stringResource(id = R.string.GrantPermissionsFragment__storage),
+            subtitle = stringResource(id = R.string.GrantPermissionsFragment__send_photos_videos_and_files)
+          )
+        }
+
+        if (permissions.any { it == Manifest.permission.READ_PHONE_STATE || it == Manifest.permission.READ_PHONE_NUMBERS }) {
+          PermissionRow(
+            imageVector = ImageVector.vectorResource(id = R.drawable.permission_phone),
+            title = stringResource(id = R.string.GrantPermissionsFragment__phone_calls),
+            subtitle = stringResource(id = R.string.GrantPermissionsFragment__make_registering_easier)
           )
         }
       }
-    }
-  ) {
-    if (permissions.any { it == Manifest.permission.POST_NOTIFICATIONS }) {
-      PermissionRow(
-        imageVector = ImageVector.vectorResource(id = R.drawable.permission_notification),
-        title = stringResource(id = R.string.GrantPermissionsFragment__notifications),
-        subtitle = stringResource(id = R.string.GrantPermissionsFragment__get_notified_when)
-      )
-    }
 
-    if (permissions.any { it == Manifest.permission.READ_CONTACTS || it == Manifest.permission.WRITE_CONTACTS }) {
-      PermissionRow(
-        imageVector = ImageVector.vectorResource(id = R.drawable.permission_contact),
-        title = stringResource(id = R.string.GrantPermissionsFragment__contacts),
-        subtitle = stringResource(id = R.string.GrantPermissionsFragment__find_people_you_know)
-      )
-    }
+      Surface(
+        shadowElevation = if (scrollState.canScrollForward) 8.dp else 0.dp,
+        modifier = Modifier.fillMaxWidth()
+      ) {
+        Box(
+          modifier = Modifier
+            .padding(top = 8.dp, bottom = 24.dp)
+            .horizontalGutters()
+        ) {
+          Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+          ) {
+            TextButton(
+              modifier = Modifier
+                .weight(weight = 1f, fill = false)
+                .testTag(TestTags.PERMISSIONS_NOT_NOW_BUTTON),
+              onClick = onProceed
+            ) {
+              Text(
+                text = stringResource(id = R.string.GrantPermissionsFragment__not_now)
+              )
+            }
 
-    if (permissions.any {
-        it == Manifest.permission.READ_EXTERNAL_STORAGE ||
-          it == Manifest.permission.WRITE_EXTERNAL_STORAGE ||
-          it == Manifest.permission.READ_MEDIA_IMAGES ||
-          it == Manifest.permission.READ_MEDIA_VIDEO ||
-          it == Manifest.permission.READ_MEDIA_AUDIO
+            Spacer(modifier = Modifier.size(24.dp))
+
+            Buttons.LargeTonal(
+              modifier = Modifier.testTag(TestTags.PERMISSIONS_NEXT_BUTTON),
+              onClick = {
+                permissionsState.launchMultiplePermissionRequest()
+                onProceed()
+              }
+            ) {
+              Text(
+                text = stringResource(id = R.string.GrantPermissionsFragment__next)
+              )
+            }
+          }
+        }
       }
-    ) {
-      PermissionRow(
-        imageVector = ImageVector.vectorResource(id = R.drawable.permission_file),
-        title = stringResource(id = R.string.GrantPermissionsFragment__storage),
-        subtitle = stringResource(id = R.string.GrantPermissionsFragment__send_photos_videos_and_files)
-      )
-    }
-
-    if (permissions.any { it == Manifest.permission.READ_PHONE_STATE || it == Manifest.permission.READ_PHONE_NUMBERS }) {
-      PermissionRow(
-        imageVector = ImageVector.vectorResource(id = R.drawable.permission_phone),
-        title = stringResource(id = R.string.GrantPermissionsFragment__phone_calls),
-        subtitle = stringResource(id = R.string.GrantPermissionsFragment__make_registering_easier)
-      )
     }
   }
 }
