@@ -445,7 +445,12 @@ public final class MultiShareSender {
       slideDeck.addSlide(new StickerSlide(context, multiShareArgs.getDataUri(), 0, multiShareArgs.getStickerLocator(), multiShareArgs.getDataType()));
     } else if (!multiShareArgs.getMedia().isEmpty()) {
       for (Media media : multiShareArgs.getMedia()) {
-        Slide slide = SlideFactory.getSlide(context, media.getContentType(), media.getUri(), media.getWidth(), media.getHeight(), media.getTransformProperties());
+        Slide slide;
+        if (media.isBorderless() && MediaUtil.isImageType(media.getContentType())) {
+          slide = new ImageSlide(context, media.getUri(), media.getContentType(), media.getSize(), media.getWidth(), media.getHeight(), true, media.getCaption(), null, media.getTransformProperties());
+        } else {
+          slide = SlideFactory.getSlide(context, media.getContentType(), media.getUri(), media.getWidth(), media.getHeight(), media.getTransformProperties());
+        }
         if (slide != null) {
           slideDeck.addSlide(slide);
         } else {
