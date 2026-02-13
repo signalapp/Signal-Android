@@ -35,18 +35,6 @@ import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
-/**
- * Enum identifying each slot in the BlurrableContentLayer.
- * Used as subcomposition keys to ensure each slot is only composed once.
- */
-private enum class BlurrableContentSlot {
-  BARS,
-  GRID,
-  REACTIONS,
-  OVERFLOW,
-  AUDIO_INDICATOR
-}
-
 @Composable
 fun CallElementsLayout(
   callGridSlot: @Composable () -> Unit,
@@ -84,8 +72,6 @@ fun CallElementsLayout(
   }
 
   SubcomposeLayout(modifier = modifier) { constraints ->
-    val looseConstraints = constraints.copy(minWidth = 0, minHeight = 0)
-
     // Holder to capture measurements from BlurrableContentLayer
     var measuredBarsHeightPx = 0
     var measuredBarsWidthPx = 0
@@ -133,8 +119,8 @@ fun CallElementsLayout(
 
 /**
  * A layer that contains content which can be blurred when the local participant video is focused.
- * All slots are subcomposed here ONCE to avoid duplicate subcomposition that would cause
- * IllegalArgumentException when slots contain SubcomposeLayout (like BoxWithConstraints).
+ * Uses a single multi-content Layout pass to avoid re-subcomposing slots that contain
+ * SubcomposeLayout (like BoxWithConstraints), which can trigger duplicate key crashes.
  *
  * @param onMeasured Callback invoked during measurement with (barsHeight, barsWidth) to report
  *                   dimensions needed by the parent layout for PipLayer positioning.
@@ -156,17 +142,26 @@ private fun BlurrableContentLayer(
     isBlurred = isFocused,
     modifier = Modifier.fillMaxSize()
   ) {
-    SubcomposeLayout(modifier = Modifier.fillMaxSize()) { constraints ->
+    Layout(
+      contents = listOf(
+        { callOverflowSlot() },
+        { callGridSlot() },
+        { barsSlot() },
+        { reactionsSlot() },
+        { audioIndicatorSlot() }
+      ),
+      modifier = Modifier.fillMaxSize()
+    ) { measurables, constraints ->
       val looseConstraints = constraints.copy(minWidth = 0, minHeight = 0)
 
-      val overflowPlaceables = subcompose(BlurrableContentSlot.OVERFLOW, callOverflowSlot)
-        .map { it.measure(looseConstraints) }
+      val (overflowMeasurables, gridMeasurables, barsMeasurables, reactionsMeasurables, audioIndicatorMeasurables) = measurables
+
+      val overflowPlaceables = overflowMeasurables.map { it.measure(looseConstraints) }
       val constrainedHeightOffset = if (isPortrait) overflowPlaceables.maxOfOrNull { it.height } ?: 0 else 0
       val constrainedWidthOffset = if (isPortrait) 0 else overflowPlaceables.maxOfOrNull { it.width } ?: 0
 
       val nonOverflowConstraints = looseConstraints.offset(horizontal = -constrainedWidthOffset, vertical = -constrainedHeightOffset)
-      val gridPlaceables = subcompose(BlurrableContentSlot.GRID, callGridSlot)
-        .map { it.measure(nonOverflowConstraints) }
+      val gridPlaceables = gridMeasurables.map { it.measure(nonOverflowConstraints) }
 
       val barConstraints = if (bottomInsetPx > constrainedHeightOffset) {
         looseConstraints.offset(-constrainedWidthOffset, -bottomInsetPx)
@@ -178,9 +173,7 @@ private fun BlurrableContentLayer(
       val barsMaxWidth = minOf(barConstraints.maxWidth, bottomSheetWidthPx)
       val barsConstrainedToSheet = barConstraints.copy(maxWidth = barsMaxWidth)
 
-      val barsPlaceables = subcompose(BlurrableContentSlot.BARS, barsSlot)
-        .map { it.measure(barsConstrainedToSheet) }
-
+      val barsPlaceables = barsMeasurables.map { it.measure(barsConstrainedToSheet) }
       val barsHeightPx = barsPlaceables.sumOf { it.height }
       val barsWidthPx = barsPlaceables.maxOfOrNull { it.width } ?: 0
 
@@ -188,17 +181,17 @@ private fun BlurrableContentLayer(
       onMeasured(barsHeightPx, barsWidthPx)
 
       val reactionsConstraints = barConstraints.offset(vertical = -barsHeightPx)
-      val reactionsPlaceables = subcompose(BlurrableContentSlot.REACTIONS, reactionsSlot)
-        .map { it.measure(reactionsConstraints) }
+      val reactionsPlaceables = reactionsMeasurables.map { it.measure(reactionsConstraints) }
 
-      val audioIndicatorPlaceables = subcompose(BlurrableContentSlot.AUDIO_INDICATOR, audioIndicatorSlot)
-        .map { it.measure(looseConstraints) }
+      val audioIndicatorPlaceables = audioIndicatorMeasurables.map { it.measure(looseConstraints) }
 
       layout(looseConstraints.maxWidth, looseConstraints.maxHeight) {
-        overflowPlaceables.forEach {
-          if (isPortrait) {
+        if (isPortrait) {
+          overflowPlaceables.forEach {
             it.place(0, looseConstraints.maxHeight - it.height)
-          } else {
+          }
+        } else {
+          overflowPlaceables.forEach {
             it.place(looseConstraints.maxWidth - it.width, 0)
           }
         }

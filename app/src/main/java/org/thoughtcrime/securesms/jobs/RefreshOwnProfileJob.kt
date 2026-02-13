@@ -383,9 +383,11 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
     if (userHasVisibleBadges && userHasInvisibleBadges) {
       val displayBadgesOnProfile = SignalStore.inAppPayments.getDisplayBadgesOnProfile()
       Log.d(
-        TAG, "Detected mixed visibility of badges. Telling the server to mark them all " +
+        TAG,
+        "Detected mixed visibility of badges. Telling the server to mark them all " +
           (if (displayBadgesOnProfile) "" else "not") +
-          " visible.", true
+          " visible.",
+        true
       )
 
       val badgeRepository = BadgeRepository(context)
