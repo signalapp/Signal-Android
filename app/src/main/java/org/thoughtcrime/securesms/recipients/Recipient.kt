@@ -809,7 +809,6 @@ class Recipient(
       profileAvatar == other.profileAvatar &&
       notificationChannelValue == other.notificationChannelValue &&
       sealedSenderAccessModeValue == other.sealedSenderAccessModeValue &&
-      storageId.contentEquals(other.storageId) &&
       mentionSetting == other.mentionSetting &&
       wallpaperValue == other.wallpaperValue &&
       chatColorsValue == other.chatColorsValue &&

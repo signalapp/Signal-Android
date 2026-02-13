@@ -66,6 +66,7 @@ public class ComposeText extends EmojiEditText {
   private MentionRendererDelegate mentionRendererDelegate;
   private SpoilerRendererDelegate spoilerRendererDelegate;
   private MentionValidatorWatcher mentionValidatorWatcher;
+  private MessageSendType         lastMessageSendType;
 
   @Nullable private InputPanel.MediaListener      mediaListener;
   @Nullable private CursorPositionChangedListener cursorPositionChangedListener;
@@ -221,6 +222,11 @@ public class ComposeText extends EmojiEditText {
   }
 
   public void setMessageSendType(MessageSendType messageSendType) {
+    if (messageSendType.equals(lastMessageSendType)) {
+      return;
+    }
+    lastMessageSendType = messageSendType;
+
     int imeOptions = (getImeOptions() & ~EditorInfo.IME_MASK_ACTION) | EditorInfo.IME_ACTION_SEND;
     int inputType  = getInputType();
 
