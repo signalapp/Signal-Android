@@ -101,6 +101,7 @@ class WebRtcCallViewModel : ViewModel() {
   private var previousParticipantList = Collections.emptyList<CallParticipant>()
   private var switchOnFirstScreenShare = true
   private var showScreenShareTip = true
+  private var hasShownAutoMuteToast = false
 
   var isCallStarting = false
     private set
@@ -313,11 +314,22 @@ class WebRtcCallViewModel : ViewModel() {
       }
     }
 
+    val wasMicrophoneEnabled = internalMicrophoneEnabled.value
     internalMicrophoneEnabled.value = localParticipant.isMicrophoneEnabled
     isAudioDeviceChangePending.value = webRtcViewModel.isAudioDeviceChangePending
 
     if (internalMicrophoneEnabled.value) {
       remoteMutedBy.update { null }
+    }
+
+    if (!hasShownAutoMuteToast &&
+      wasMicrophoneEnabled &&
+      !localParticipant.isMicrophoneEnabled &&
+      webRtcViewModel.state == WebRtcViewModel.State.CALL_PRE_JOIN &&
+      webRtcViewModel.remoteDevicesCount.orElse(0L) >= CallParticipantsState.PRE_JOIN_MUTE_THRESHOLD
+    ) {
+      hasShownAutoMuteToast = true
+      emitEvent(CallEvent.ShowLargeGroupAutoMuteToast)
     }
 
     val state: CallParticipantsState = participantsState.value!!

@@ -960,6 +960,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       is CallEvent.SwitchToSpeaker -> callScreen.switchToSpeakerView()
       is CallEvent.ShowSwipeToSpeakerHint -> callScreen.showSpeakerViewHint()
       is CallEvent.ShowRemoteMuteToast -> callScreen.showRemoteMuteToast(event.getDescription(this))
+      is CallEvent.ShowLargeGroupAutoMuteToast -> {
+        callScreen.onCallStateUpdate(CallControlsChange.MIC_OFF)
+        callScreen.showRemoteMuteToast(getString(R.string.WebRtcCallView__youve_been_muted_large_group))
+      }
       is CallEvent.ShowVideoTooltip -> {
         if (isInPipMode()) return
 

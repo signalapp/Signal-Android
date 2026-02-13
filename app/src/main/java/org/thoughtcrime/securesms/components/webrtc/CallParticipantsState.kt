@@ -197,6 +197,7 @@ data class CallParticipantsState(
 
   companion object {
     const val SMALL_GROUP_MAX = 6
+    const val PRE_JOIN_MUTE_THRESHOLD = 8
 
     @JvmField
     val MAX_OUTGOING_GROUP_RING_DURATION = TimeUnit.MINUTES.toMillis(1)
