@@ -449,7 +449,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       .setInterpolator(MediaAnimations.interpolator)
       .alpha(1f)
 
-    disposables += sharedViewModel
+    sharedViewModel
       .send(selection.filterIsInstance<ContactSearchKey.RecipientSearchKey>(), scheduledSendTime)
       .subscribe(
         { result ->

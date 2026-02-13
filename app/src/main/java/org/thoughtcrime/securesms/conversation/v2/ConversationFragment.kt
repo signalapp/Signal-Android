@@ -630,6 +630,7 @@ class ConversationFragment :
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     SignalLocalMetrics.ConversationOpen.start()
+    registerForResults()
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -682,8 +683,6 @@ class ConversationFragment :
     binding.conversationVideoContainer.setClipToOutline(true)
 
     SpoilerAnnotation.resetRevealedSpoilers()
-
-    registerForResults()
 
     inputPanel.setMediaListener(InputPanelMediaListener())
 
