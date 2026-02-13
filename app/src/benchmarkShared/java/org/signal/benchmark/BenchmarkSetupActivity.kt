@@ -15,6 +15,7 @@ class BenchmarkSetupActivity : BaseActivity() {
     when (intent.extras!!.getString("setup-type")) {
       "cold-start" -> setupColdStart()
       "conversation-open" -> setupConversationOpen()
+      "message-send" -> setupMessageSend()
     }
 
     val textView: TextView = TextView(this).apply {
@@ -55,5 +56,10 @@ class BenchmarkSetupActivity : BaseActivity() {
 
       SignalDatabase.threads.update(SignalDatabase.threads.getOrCreateThreadIdFor(recipient = recipient), true)
     }
+  }
+
+  private fun setupMessageSend() {
+    TestUsers.setupSelf()
+    TestUsers.setupBob()
   }
 }

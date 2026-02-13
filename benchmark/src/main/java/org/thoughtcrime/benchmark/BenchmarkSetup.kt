@@ -5,8 +5,23 @@ import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
 
 object BenchmarkSetup {
+  private const val TARGET_PACKAGE = "org.thoughtcrime.securesms"
+  private const val RECEIVER = "org.signal.benchmark.BenchmarkCommandReceiver"
+
   fun setup(type: String, device: UiDevice) {
-    device.executeShellCommand("am start -W -n org.thoughtcrime.securesms/org.signal.benchmark.BenchmarkSetupActivity --es setup-type $type")
+    device.executeShellCommand("am start -W -n $TARGET_PACKAGE/org.signal.benchmark.BenchmarkSetupActivity --es setup-type $type")
     device.wait(Until.hasObject(By.textContains("done")), 25_000L)
+  }
+
+  fun setupIndividualSend(device: UiDevice) {
+    device.benchmarkCommandBroadcast("individual-send")
+  }
+
+  fun releaseMessages(device: UiDevice) {
+    device.benchmarkCommandBroadcast("release-messages")
+  }
+
+  private fun UiDevice.benchmarkCommandBroadcast(command: String) {
+    executeShellCommand("am broadcast -a org.signal.benchmark.action.COMMAND -e command $command -n $TARGET_PACKAGE/$RECEIVER")
   }
 }

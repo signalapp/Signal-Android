@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AlarmSleepTimer
 import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
+import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.asChain
 import org.whispersystems.signalservice.api.util.SleepTimer
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer
@@ -117,7 +118,7 @@ class IncomingMessageObserver(
     }
   )
 
-  private val messageContentProcessor = MessageContentProcessor(context)
+  private val messageContentProcessor = MessageContentProcessor.create(context)
 
   private var appVisible = false
   private var lastInteractionTime: Long = System.currentTimeMillis()
@@ -278,7 +279,9 @@ class IncomingMessageObserver(
   fun processEnvelope(bufferedProtocolStore: BufferedProtocolStore, envelope: Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation>? {
     return when (envelope.type) {
       Envelope.Type.SERVER_DELIVERY_RECEIPT -> {
+        SignalTrace.beginSection("IncomingMessageObserver#processReceipt")
         processReceipt(envelope)
+        SignalTrace.endSection()
         null
       }
 
@@ -286,7 +289,10 @@ class IncomingMessageObserver(
       Envelope.Type.CIPHERTEXT,
       Envelope.Type.UNIDENTIFIED_SENDER,
       Envelope.Type.PLAINTEXT_CONTENT -> {
-        processMessage(bufferedProtocolStore, envelope, serverDeliveredTimestamp)
+        SignalTrace.beginSection("IncomingMessageObserver#processMessage")
+        val followUps = processMessage(bufferedProtocolStore, envelope, serverDeliveredTimestamp)
+        SignalTrace.endSection()
+        followUps
       }
 
       else -> {
@@ -298,7 +304,9 @@ class IncomingMessageObserver(
 
   private fun processMessage(bufferedProtocolStore: BufferedProtocolStore, envelope: Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation> {
     val localReceiveMetric = SignalLocalMetrics.MessageReceive.start()
+    SignalTrace.beginSection("IncomingMessageObserver#decryptMessage")
     val result = MessageDecryptor.decrypt(context, bufferedProtocolStore, envelope, serverDeliveredTimestamp)
+    SignalTrace.endSection()
     localReceiveMetric.onEnvelopeDecrypted()
 
     SignalLocalMetrics.MessageLatency.onMessageReceived(envelope.serverTimestamp!!, serverDeliveredTimestamp, envelope.urgent!!)
@@ -425,15 +433,13 @@ class IncomingMessageObserver(
                   GroupsV2ProcessingLock.acquireGroupProcessingLock().use {
                     ReentrantSessionLock.INSTANCE.acquire().use {
                       batch.forEach { response ->
-                        Log.d(TAG, "Beginning database transaction...")
                         val followUpOperations = SignalDatabase.runInTransaction { db ->
                           val followUps: List<FollowUpOperation>? = processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp)
                           bufferedStore.flushToDisk()
                           followUps
                         }
-                        Log.d(TAG, "Ended database transaction.")
 
-                        if (followUpOperations != null) {
+                        if (followUpOperations?.isNotEmpty() == true) {
                           Log.d(TAG, "Running ${followUpOperations.size} follow-up operations...")
                           val jobs = followUpOperations.mapNotNull { it.run() }
                           AppDependencies.jobManager.addAllChains(jobs)

@@ -9,10 +9,12 @@ import org.signal.core.util.Util
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
+import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.CertificateType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
@@ -28,11 +30,12 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.util.UUID
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 
 object TestUsers {
 
-  private var generatedOthers: Int = 0
-  private val TEST_E164 = "+15555550101"
+  private var generatedOthers: Int = 1
 
   fun setupSelf(): Recipient {
     val application: Application = AppDependencies.application
@@ -50,19 +53,19 @@ object TestUsers {
     runBlocking {
       val registrationData = RegistrationData(
         code = "123123",
-        e164 = TEST_E164,
+        e164 = Harness.SELF_E164,
         password = Util.getSecret(18),
         registrationId = RegistrationRepository.getRegistrationId(),
-        profileKey = RegistrationRepository.getProfileKey(TEST_E164),
+        profileKey = RegistrationRepository.getProfileKey(Harness.SELF_E164),
         fcmToken = null,
         pniRegistrationId = RegistrationRepository.getPniRegistrationId(),
         recoveryPassword = "asdfasdfasdfasdf"
       )
       val remoteResult = AccountRegistrationResult(
-        uuid = UUID.randomUUID().toString(),
+        uuid = Harness.SELF_ACI.toString(),
         pni = UUID.randomUUID().toString(),
         storageCapable = false,
-        number = TEST_E164,
+        number = Harness.SELF_E164,
         masterKey = null,
         pin = null,
         aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account.aciIdentityKey, SignalStore.account.aciPreKeys),
@@ -78,6 +81,31 @@ object TestUsers {
     RegistrationUtil.maybeMarkRegistrationComplete()
     SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts("Tester", "McTesterson"))
     TextSecurePreferences.setPromptedOptimizeDoze(application, true)
+    TextSecurePreferences.setRatingEnabled(application, false)
+
+    PreKeyUtil.generateAndStoreSignedPreKey(AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys)
+    PreKeyUtil.generateAndStoreOneTimeEcPreKeys(AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys)
+    PreKeyUtil.generateAndStoreOneTimeKyberPreKeys(AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys)
+
+    val aliceSenderCertificate = Harness.createCertificateFor(
+      uuid = Harness.SELF_ACI.rawUuid,
+      e164 = Harness.SELF_E164,
+      deviceId = 1,
+      identityKey = SignalStore.account.aciIdentityKey.publicKey.publicKey,
+      expires = System.currentTimeMillis().milliseconds + 30.days
+    )
+
+    val aliceSenderCertificate2 = Harness.createCertificateFor(
+      uuid = Harness.SELF_ACI.rawUuid,
+      e164 = null,
+      deviceId = 1,
+      identityKey = SignalStore.account.aciIdentityKey.publicKey.publicKey,
+      expires = System.currentTimeMillis().milliseconds + 30.days
+    )
+
+    SignalStore.certificate.setUnidentifiedAccessCertificate(CertificateType.ACI_AND_E164, aliceSenderCertificate.serialized)
+    SignalStore.certificate.setUnidentifiedAccessCertificate(CertificateType.ACI_ONLY, aliceSenderCertificate2.serialized)
+
     return Recipient.self()
   }
 
@@ -110,5 +138,19 @@ object TestUsers {
     }
 
     return others
+  }
+
+  fun setupBob(): Recipient {
+    val recipientId = RecipientId.from(SignalServiceAddress(Harness.BOB_ACI, Harness.BOB_E164))
+    SignalDatabase.recipients.setProfileName(recipientId, ProfileName.fromParts("Bob", "Boberson"))
+
+    SignalDatabase.recipients.setProfileKeyIfAbsent(recipientId, Harness.BOB_PROFILE_KEY)
+    SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true))
+    SignalDatabase.recipients.setProfileSharing(recipientId, true)
+    SignalDatabase.recipients.markRegistered(recipientId, Harness.BOB_ACI)
+
+    AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(Harness.BOB_ACI.toString(), 1), Harness.BOB_IDENTITY_KEY.publicKey)
+
+    return Recipient.resolved(recipientId)
   }
 }

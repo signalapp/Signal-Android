@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <application>
+    <application
+        android:name="${applicationClass}"
+        tools:replace="name">
         <profileable android:shell="true" />
 
-        <activity android:name="org.signal.benchmark.BenchmarkSetupActivity"
+        <activity
+            android:name="org.signal.benchmark.BenchmarkSetupActivity"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:exported="true"
             android:launchMode="singleTask"
             android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            android:exported="true"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+            android:windowSoftInputMode="stateHidden" />
+
+        <receiver
+            android:name="org.signal.benchmark.BenchmarkCommandReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="org.signal.benchmark.action.COMMAND" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
