@@ -53,7 +53,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
-import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -285,9 +284,9 @@ private fun NeverEnabledBackupsRow(
     },
     text = {
       Column {
-        TextWithBetaLabel(
+        Text(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
-          textStyle = MaterialTheme.typography.bodyLarge
+          style = MaterialTheme.typography.bodyLarge
         )
 
         Text(
@@ -331,9 +330,9 @@ private fun InactiveBackupsRow(
   Rows.TextRow(
     text = {
       Column {
-        TextWithBetaLabel(
+        Text(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
-          textStyle = MaterialTheme.typography.bodyLarge
+          style = MaterialTheme.typography.bodyLarge
         )
 
         Text(
@@ -377,9 +376,9 @@ private fun NotFoundBackupRow(
     },
     text = {
       Column {
-        TextWithBetaLabel(
+        Text(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
-          textStyle = MaterialTheme.typography.bodyLarge
+          style = MaterialTheme.typography.bodyLarge
         )
 
         Text(
@@ -412,9 +411,9 @@ private fun PendingBackupRow(
     },
     text = {
       Column {
-        TextWithBetaLabel(
+        Text(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
-          textStyle = MaterialTheme.typography.bodyLarge
+          style = MaterialTheme.typography.bodyLarge
         )
 
         Text(
@@ -463,9 +462,9 @@ private fun LocalStoreBackupRow(
     },
     text = {
       Column {
-        TextWithBetaLabel(
+        Text(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
-          textStyle = MaterialTheme.typography.bodyLarge
+          style = MaterialTheme.typography.bodyLarge
         )
 
         val tierText = when (backupState.tier) {
@@ -508,9 +507,9 @@ private fun ActiveBackupsRow(
     },
     text = {
       Column {
-        TextWithBetaLabel(
+        Text(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
-          textStyle = MaterialTheme.typography.bodyLarge
+          style = MaterialTheme.typography.bodyLarge
         )
 
         when (val type = backupState.messageBackupsType) {

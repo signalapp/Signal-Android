@@ -101,7 +101,6 @@ import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusRow
 import org.thoughtcrime.securesms.backup.v2.ui.status.RestoreType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
-import org.thoughtcrime.securesms.components.compose.BetaHeader
 import org.thoughtcrime.securesms.components.compose.BiometricsAuthentication
 import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
@@ -419,10 +418,6 @@ private fun RemoteBackupsSettingsContent(
       modifier = Modifier
         .padding(it)
     ) {
-      item {
-        BetaHeader(modifier = Modifier.padding(horizontal = 16.dp))
-      }
-
       if (state.isOutOfStorageSpace) {
         item {
           OutOfStorageSpaceBlock(

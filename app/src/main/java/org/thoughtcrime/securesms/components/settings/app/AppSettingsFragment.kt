@@ -68,7 +68,6 @@ import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.banner.ui.compose.Action
 import org.thoughtcrime.securesms.banner.ui.compose.DefaultBanner
 import org.thoughtcrime.securesms.banner.ui.compose.Importance
-import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.thoughtcrime.securesms.components.emoji.Emojifier
 import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRoute
 import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRouter
@@ -415,10 +414,9 @@ private fun AppSettingsContent(
           item {
             Rows.TextRow(
               text = {
-                TextWithBetaLabel(
+                Text(
                   text = stringResource(R.string.preferences_chats__backups),
-                  textStyle = MaterialTheme.typography.bodyLarge,
-                  enabled = isRegisteredAndUpToDate
+                  style = MaterialTheme.typography.bodyLarge
                 )
               },
               icon = {
