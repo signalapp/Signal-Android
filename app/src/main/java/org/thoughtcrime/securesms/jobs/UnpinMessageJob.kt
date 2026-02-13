@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -114,7 +115,7 @@ class UnpinMessageJob(
 
     val targetSentTimestamp = message.dateSent
 
-    val recipients = Recipient.resolvedList(recipientIds.filter { it != Recipient.self().id.toLong() }.map { RecipientId.from(it) })
+    val recipients = Recipient.resolvedList(recipientIds.map { RecipientId.from(it) })
     val registered = RecipientUtil.getEligibleForSending(recipients)
     val unregistered = recipients - registered.toSet()
     val completions: List<Recipient> = deliver(conversationRecipient, registered, message.threadId, targetAuthor, targetSentTimestamp)
@@ -148,11 +149,14 @@ class UnpinMessageJob(
 
     val dataMessage = dataMessageBuilder.build()
 
+    val nonSelfRecipients = destinations.filterNot { it.isSelf }
+    val includeSelf = destinations.size != nonSelfRecipients.size
+
     val results = GroupSendUtil.sendResendableDataMessage(
       context,
       conversationRecipient.groupId.map { obj: GroupId -> obj.requireV2() }.orElse(null),
       null,
-      destinations,
+      nonSelfRecipients,
       false,
       ContentHint.RESENDABLE,
       MessageId(messageId),
@@ -162,6 +166,10 @@ class UnpinMessageJob(
       null,
       null
     )
+
+    if (includeSelf) {
+      results.add(AppDependencies.signalServiceMessageSender.sendSyncMessage(dataMessage))
+    }
 
     val result = GroupSendJobHelper.getCompletedSends(destinations, results)
 
