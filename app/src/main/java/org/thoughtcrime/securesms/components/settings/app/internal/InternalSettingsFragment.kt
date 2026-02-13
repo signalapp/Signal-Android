@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.registration.data.QuickstartCredentialExporter
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -163,6 +164,16 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           refreshRemoteValues()
         }
       )
+
+      if (BuildConfig.DEBUG) {
+        clickPref(
+          title = DSLSettingsText.from("Export quickstart credentials"),
+          summary = DSLSettingsText.from("Export registration credentials to a JSON file for quickstart builds."),
+          onClick = {
+            exportQuickstartCredentials()
+          }
+        )
+      }
 
       clickPref(
         title = DSLSettingsText.from("Unregister"),
@@ -1142,6 +1153,21 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
     }) {
       Toast.makeText(requireContext(), "Dumped to logs", Toast.LENGTH_SHORT).show()
     }
+  }
+
+  private fun exportQuickstartCredentials() {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle("Export quickstart credentials?")
+      .setMessage("This will export your account's private keys and credentials to an unencrypted file on disk. This is very dangerous! Only use it with test accounts.")
+      .setPositiveButton("Export") { _, _ ->
+        SimpleTask.run({
+          QuickstartCredentialExporter.export(requireContext())
+        }) { file ->
+          Toast.makeText(requireContext(), "Exported to ${file.absolutePath}", Toast.LENGTH_LONG).show()
+        }
+      }
+      .setNegativeButton(android.R.string.cancel, null)
+      .show()
   }
 
   private fun promptUserForSentTimestamp() {

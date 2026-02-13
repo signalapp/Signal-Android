@@ -1,15 +1,20 @@
 @file:Suppress("UnstableApiUsage")
 
 import com.android.build.api.dsl.ManagedVirtualDevice
+import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.Property
 import org.gradle.api.provider.ValueSource
 import org.gradle.api.provider.ValueSourceParameters
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.Optional
+import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
+import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import java.io.File
 import java.util.Properties
@@ -50,6 +55,14 @@ val languagesForBuildConfigProvider = languagesProvider.map { languages ->
   languages.joinToString(separator = ", ") { language -> "\"$language\"" }
 }
 
+val localPropertiesFile = File(rootProject.projectDir, "local.properties")
+val localProperties: Properties? = if (localPropertiesFile.exists()) {
+  Properties().apply { localPropertiesFile.inputStream().use { load(it) } }
+} else {
+  null
+}
+val quickstartCredentialsDir: String? = localProperties?.getProperty("quickstart.credentials.dir")
+
 val selectableVariants = listOf(
   "nightlyBackupRelease",
   "nightlyBackupSpinner",
@@ -72,6 +85,8 @@ val selectableVariants = listOf(
   "playStagingPerf",
   "playStagingInstrumentation",
   "playStagingRelease",
+  "playProdQuickstart",
+  "playStagingQuickstart",
   "websiteProdSpinner",
   "websiteProdRelease",
   "githubProdSpinner",
@@ -384,6 +399,14 @@ android {
       matchingFallbacks += "debug"
       buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Canary\"")
     }
+
+    create("quickstart") {
+      initWith(getByName("debug"))
+      isDefault = false
+      isMinifyEnabled = false
+      matchingFallbacks += "debug"
+      buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Quickstart\"")
+    }
   }
 
   productFlavors {
@@ -512,6 +535,24 @@ android {
           }
         }
       }
+    }
+
+    onVariants(selector().withBuildType("quickstart")) { variant ->
+      val environment = variant.flavorName?.let { name ->
+        when {
+          name.contains("staging", ignoreCase = true) -> "staging"
+          name.contains("prod", ignoreCase = true) -> "prod"
+          else -> "prod"
+        }
+      } ?: "prod"
+
+      val taskProvider = tasks.register<CopyQuickstartCredentialsTask>("copyQuickstartCredentials${variant.name.capitalize()}") {
+        if (quickstartCredentialsDir != null) {
+          inputDir.set(File(quickstartCredentialsDir))
+        }
+        filePrefix.set("${environment}_")
+      }
+      variant.sources.assets?.addGeneratedSourceDirectory(taskProvider) { it.outputDir }
     }
   }
 
@@ -837,4 +878,39 @@ abstract class PropertiesFileValueSource : ValueSource<Properties?, PropertiesFi
 
 fun String.capitalize(): String {
   return this.replaceFirstChar { it.uppercase() }
+}
+
+abstract class CopyQuickstartCredentialsTask : DefaultTask() {
+  @get:InputDirectory
+  @get:Optional
+  abstract val inputDir: DirectoryProperty
+
+  @get:Input
+  abstract val filePrefix: Property<String>
+
+  @get:OutputDirectory
+  abstract val outputDir: DirectoryProperty
+
+  @TaskAction
+  fun copy() {
+    if (!inputDir.isPresent) {
+      throw GradleException("quickstart.credentials.dir is not set in local.properties. This is required for quickstart builds.")
+    }
+
+    val prefix = filePrefix.get()
+    val candidates = inputDir.get().asFile.listFiles()
+      ?.filter { it.extension == "json" && it.name.startsWith(prefix) }
+      ?: emptyList()
+
+    if (candidates.isEmpty()) {
+      throw GradleException("No credential files matching '$prefix*.json' found in ${inputDir.get().asFile}. Add files like '${prefix}account1.json' to your credentials directory.")
+    }
+
+    val chosen = candidates.random()
+    logger.lifecycle("Selected quickstart credential: ${chosen.name}")
+
+    val dest = outputDir.get().asFile.resolve("quickstart")
+    dest.mkdirs()
+    chosen.copyTo(dest.resolve(chosen.name), overwrite = true)
+  }
 }
