@@ -11,12 +11,12 @@ import android.content.Intent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.signal.benchmark.network.BenchmarkWebSocketConnection
 import org.signal.benchmark.setup.Generator
 import org.signal.benchmark.setup.Harness
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.whispersystems.signalservice.internal.push.Envelope
+import org.whispersystems.signalservice.internal.websocket.BenchmarkWebSocketConnection
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import kotlin.random.Random
 
@@ -46,8 +46,8 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
       "individual-send" -> handlePrepareIndividualSend()
       "group-send" -> handlePrepareGroupSend()
       "release-messages" -> {
-        BenchmarkWebSocketConnection.instance.startWholeBatchTrace = true
-        BenchmarkWebSocketConnection.instance.releaseMessages()
+        BenchmarkWebSocketConnection.authInstance.startWholeBatchTrace = true
+        BenchmarkWebSocketConnection.authInstance.releaseMessages()
       }
       else -> Log.w(TAG, "Unknown command: $command")
     }
@@ -61,7 +61,7 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     runBlocking {
       launch(Dispatchers.IO) {
-        BenchmarkWebSocketConnection.instance.run {
+        BenchmarkWebSocketConnection.authInstance.run {
           Log.i(TAG, "Sending initial message form Bob to establish session.")
           addPendingMessages(listOf(encryptedEnvelope.toWebSocketPayload()))
           releaseMessages()
@@ -78,8 +78,8 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     val messages = envelopes.map { e -> e.toWebSocketPayload() }
 
-    BenchmarkWebSocketConnection.instance.addPendingMessages(messages)
-    BenchmarkWebSocketConnection.instance.addQueueEmptyMessage()
+    BenchmarkWebSocketConnection.authInstance.addPendingMessages(messages)
+    BenchmarkWebSocketConnection.authInstance.addQueueEmptyMessage()
   }
 
   private fun handlePrepareGroupSend() {
@@ -90,7 +90,7 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     runBlocking {
       launch(Dispatchers.IO) {
-        BenchmarkWebSocketConnection.instance.run {
+        BenchmarkWebSocketConnection.authInstance.run {
           Log.i(TAG, "Sending initial group messages from client to establish sessions.")
           addPendingMessages(encryptedEnvelopes.map { it.toWebSocketPayload() })
           releaseMessages()
@@ -108,9 +108,9 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
       val messages = envelopes.map { e -> e.toWebSocketPayload() }
 
-      BenchmarkWebSocketConnection.instance.addPendingMessages(messages)
+      BenchmarkWebSocketConnection.authInstance.addPendingMessages(messages)
     }
-    BenchmarkWebSocketConnection.instance.addQueueEmptyMessage()
+    BenchmarkWebSocketConnection.authInstance.addQueueEmptyMessage()
   }
 
   private fun Envelope.toWebSocketPayload(): WebSocketRequestMessage {

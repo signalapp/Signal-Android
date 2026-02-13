@@ -3,18 +3,15 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.benchmark.network
+package org.whispersystems.signalservice.internal.websocket
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import okio.IOException
+import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.SignalTrace
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
-import org.whispersystems.signalservice.internal.websocket.WebSocketConnection
-import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
-import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMessage
-import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
+import org.whispersystems.signalservice.internal.push.SendMessageResponse
 import java.net.SocketException
 import java.util.LinkedList
 import java.util.Optional
@@ -32,13 +29,22 @@ import java.util.concurrent.TimeoutException
 class BenchmarkWebSocketConnection : WebSocketConnection {
 
   companion object {
-    lateinit var instance: BenchmarkWebSocketConnection
+    lateinit var authInstance: BenchmarkWebSocketConnection
       private set
 
     @Synchronized
-    fun create(): WebSocketConnection {
-      instance = BenchmarkWebSocketConnection()
-      return instance
+    fun createAuthInstance(): WebSocketConnection {
+      authInstance = BenchmarkWebSocketConnection()
+      return authInstance
+    }
+
+    lateinit var unauthInstance: BenchmarkWebSocketConnection
+      private set
+
+    @Synchronized
+    fun createUnauthInstance(): WebSocketConnection {
+      unauthInstance = BenchmarkWebSocketConnection()
+      return unauthInstance
     }
   }
 
@@ -118,12 +124,16 @@ class BenchmarkWebSocketConnection : WebSocketConnection {
     request: WebSocketRequestMessage,
     timeoutSeconds: Long
   ): Single<WebsocketResponse> {
-    return Single.error(IOException("fake timeout"))
+    if (request.verb != null && request.path != null) {
+      if (request.verb == "PUT" && request.path!!.startsWith("/v1/messages/")) {
+        return Single.just(WebsocketResponse(200, SendMessageResponse().toJson(), emptyList<String>(), true))
+      }
+    }
+
+    return Single.error(okio.IOException("fake timeout"))
   }
 
-  override fun sendKeepAlive() {
-    error("Not yet implemented")
-  }
+  override fun sendKeepAlive() = Unit
 
   fun addQueueEmptyMessage() {
     addPendingMessages(
@@ -135,4 +145,8 @@ class BenchmarkWebSocketConnection : WebSocketConnection {
       )
     )
   }
+}
+
+private fun Any.toJson(): String {
+  return JsonUtils.toJson(this)
 }
