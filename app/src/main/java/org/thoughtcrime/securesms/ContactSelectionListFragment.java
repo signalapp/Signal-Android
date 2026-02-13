@@ -558,6 +558,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   public void onDataRefreshed() {
     this.resetPositionOnCommit = true;
     swipeRefresh.setRefreshing(false);
+    contactSearchMediator.refresh();
   }
 
   public boolean hasQueryFilter() {
