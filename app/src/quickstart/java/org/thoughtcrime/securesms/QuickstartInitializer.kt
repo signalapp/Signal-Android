@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms
 
 import android.content.Context
+import android.os.Environment
 import android.preference.PreferenceManager
 import android.util.Base64
 import kotlinx.coroutines.runBlocking
@@ -29,6 +30,7 @@ import org.thoughtcrime.securesms.registration.data.RegistrationData
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.whispersystems.signalservice.api.account.PreKeyCollection
+import java.io.File
 
 /**
  * Reads pre-baked registration credentials from assets and performs
@@ -43,7 +45,7 @@ object QuickstartInitializer {
   fun initialize(context: Context) {
     val credentialJson = findCredentialJson(context)
     if (credentialJson == null) {
-      Log.w(TAG, "No quickstart credentials found in assets. Falling through to normal registration.")
+      Log.w(TAG, "No quickstart credentials found on disk or in assets. Falling through to normal registration.")
       return
     }
 
@@ -118,13 +120,38 @@ object QuickstartInitializer {
     Log.i(TAG, "Quickstart initialization complete for ${credentials.e164}")
   }
 
+  private val DISK_CREDENTIALS_DIR = File(Environment.getExternalStorageDirectory(), "signal-quickstart")
+
+  private val diskCredentialFileName: String
+    get() = if (org.thoughtcrime.securesms.util.Environment.IS_STAGING) "staging_credentials.json" else "prod_credentials.json"
+
   private fun findCredentialJson(context: Context): String? {
+    findCredentialJsonOnDisk() ?: findCredentialJsonInAssets(context)
+  }
+
+  private fun findCredentialJsonOnDisk(): String? {
+    val file = File(DISK_CREDENTIALS_DIR, diskCredentialFileName)
+    return try {
+      if (file.exists()) {
+        Log.i(TAG, "Found quickstart credentials on disk at ${file.absolutePath}")
+        file.readText()
+      } else {
+        Log.d(TAG, "No quickstart credentials found on disk at ${file.absolutePath}")
+        null
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Error reading quickstart credentials from disk", e)
+      null
+    }
+  }
+
+  private fun findCredentialJsonInAssets(context: Context): String? {
     return try {
       val files = context.assets.list("quickstart") ?: return null
       val jsonFile = files.firstOrNull { it.endsWith(".json") } ?: return null
       context.assets.open("quickstart/$jsonFile").bufferedReader().readText()
     } catch (e: Exception) {
-      Log.w(TAG, "Error reading quickstart credentials", e)
+      Log.w(TAG, "Error reading quickstart credentials from assets", e)
       null
     }
   }
