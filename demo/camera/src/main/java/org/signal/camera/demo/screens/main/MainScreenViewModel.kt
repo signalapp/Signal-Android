@@ -9,11 +9,11 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import org.signal.camera.VideoCaptureResult
-import org.signal.camera.VideoOutput
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.camera.VideoCaptureResult
+import org.signal.camera.VideoOutput
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -40,25 +40,25 @@ class MainScreenViewModel : ViewModel() {
       }
     }
   }
-  
+
   fun createVideoOutput(context: Context): VideoOutput {
     // Create gallery directory in internal storage
     val galleryDir = File(context.filesDir, GALLERY_FOLDER)
     if (!galleryDir.exists()) {
       galleryDir.mkdirs()
     }
-    
+
     // Generate filename with timestamp
     val name = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS", Locale.US)
       .format(System.currentTimeMillis())
     val file = File(galleryDir, "$name.mp4")
-    
+
     // Open the file as a ParcelFileDescriptor
     val fileDescriptor = ParcelFileDescriptor.open(
       file,
       ParcelFileDescriptor.MODE_READ_WRITE or ParcelFileDescriptor.MODE_CREATE
     )
-    
+
     return VideoOutput.FileDescriptorOutput(fileDescriptor)
   }
 
@@ -87,7 +87,7 @@ class MainScreenViewModel : ViewModel() {
       is VideoCaptureResult.Success -> {
         // Close the file descriptor now that recording is complete
         result.fileDescriptor?.close()
-        
+
         Log.d(TAG, "Video saved successfully")
         _state.value = state.copy(saveStatus = SaveStatus.Success)
       }
@@ -97,7 +97,7 @@ class MainScreenViewModel : ViewModel() {
       }
     }
   }
-  
+
   private fun handleClearSaveStatusEvent(
     state: MainScreenState,
     event: MainScreenEvents.ClearSaveStatus
@@ -111,12 +111,12 @@ class MainScreenViewModel : ViewModel() {
     if (!galleryDir.exists()) {
       galleryDir.mkdirs()
     }
-    
+
     // Generate filename with timestamp
     val name = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS", Locale.US)
       .format(System.currentTimeMillis())
     val file = File(galleryDir, "$name.jpg")
-    
+
     // Save bitmap to file
     file.outputStream().use { outputStream ->
       event.bitmap.compress(Bitmap.CompressFormat.JPEG, 95, outputStream)

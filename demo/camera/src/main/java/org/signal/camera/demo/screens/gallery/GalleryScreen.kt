@@ -5,8 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
@@ -17,10 +15,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.PlayArrow
@@ -59,11 +57,11 @@ fun GalleryScreen(
   val context = LocalContext.current
   val state = viewModel.state.value
   var showDeleteDialog by remember { mutableStateOf(false) }
-  
+
   LaunchedEffect(Unit) {
     viewModel.loadMedia(context)
   }
-  
+
   // Delete confirmation dialog
   if (showDeleteDialog) {
     AlertDialog(
@@ -92,7 +90,7 @@ fun GalleryScreen(
       }
     )
   }
-  
+
   Box(
     modifier = Modifier
       .fillMaxSize()
@@ -154,7 +152,7 @@ fun GalleryScreen(
         }
       }
     }
-    
+
     // Delete all button at bottom (only show when there are items)
     if (state.mediaItems.isNotEmpty()) {
       Button(
@@ -196,7 +194,7 @@ private fun MediaThumbnail(
         scaleType = GlideImageScaleType.CENTER_CROP,
         modifier = Modifier.fillMaxSize()
       )
-      
+
       if (mediaItem.isVideo) {
         Box(
           modifier = Modifier

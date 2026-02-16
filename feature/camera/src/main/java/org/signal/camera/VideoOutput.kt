@@ -13,7 +13,7 @@ sealed class VideoOutput {
    * The consumer is responsible for creating the file and managing its lifecycle.
    */
   data class FileOutput(val file: File) : VideoOutput()
-  
+
   /**
    * Save video to a file descriptor.
    * The consumer provides the file descriptor and is responsible for closing it.
@@ -35,7 +35,7 @@ sealed class VideoCaptureResult {
     val outputFile: File? = null,
     val fileDescriptor: ParcelFileDescriptor? = null
   ) : VideoCaptureResult()
-  
+
   /**
    * Video capture failed.
    * @param fileDescriptor The file descriptor that was being used (for cleanup)

@@ -19,4 +19,3 @@ object MasterKeyParceler : Parceler<MasterKey?> {
     parcel.writeByteArray(this?.serialize())
   }
 }
-

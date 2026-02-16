@@ -150,7 +150,7 @@ private fun Message<*, *>.appendSizeTree(name: String, depth: Int, sb: StringBui
           if (isMessageList) {
             for (i in value.indices) {
               sb.append("\n")
-              (value[i] as Message<*, *>).appendSizeTree("${fieldName}[$i]", depth + 2, sb)
+              (value[i] as Message<*, *>).appendSizeTree("$fieldName[$i]", depth + 2, sb)
             }
           }
         }

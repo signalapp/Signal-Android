@@ -217,7 +217,7 @@ class PinEntryForSmsBypassViewModel(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return PinEntryForSmsBypassViewModel(
         repository = repository,
-        parentState =  parentState,
+        parentState = parentState,
         parentEventEmitter = parentEventEmitter,
         svrCredentials = svrCredentials
       ) as T

@@ -127,7 +127,7 @@ tasks.register("format") {
   dependsOn(
     gradle.includedBuild("build-logic").task(":plugins:ktlintFormat"),
     gradle.includedBuild("build-logic").task(":tools:ktlintFormat"),
-    *subprojects.mapNotNull { tasks.findByPath(":${it.name}:ktlintFormat") }.toTypedArray()
+    *subprojects.mapNotNull { tasks.findByPath(":${it.path}:ktlintFormat") }.toTypedArray()
   )
 }
 

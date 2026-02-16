@@ -26,10 +26,7 @@ import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryState.OneTimeEvent
-import org.signal.registration.screens.phonenumber.PhoneNumberEntryState.OneTimeEvent.*
 import org.signal.registration.screens.util.navigateTo
-import org.signal.registration.screens.verificationcode.VerificationCodeState
-import org.signal.registration.screens.verificationcode.VerificationCodeViewModel
 
 class PhoneNumberEntryViewModel(
   val repository: RegistrationRepository,
@@ -101,7 +98,7 @@ class PhoneNumberEntryViewModel(
   @VisibleForTesting
   fun applyParentState(state: PhoneNumberEntryState, parentState: RegistrationFlowState): PhoneNumberEntryState {
     return state.copy(
-      sessionE164 =  parentState.sessionE164,
+      sessionE164 = parentState.sessionE164,
       sessionMetadata = parentState.sessionMetadata,
       preExistingRegistrationData = parentState.preExistingRegistrationData,
       restoredSvrCredentials = state.restoredSvrCredentials.takeUnless { parentState.doNotAttemptRecoveryPassword } ?: emptyList()
@@ -238,7 +235,7 @@ class PhoneNumberEntryViewModel(
     if (state.restoredSvrCredentials.isNotEmpty()) {
       when (val result = repository.checkSvrCredentials(e164, state.restoredSvrCredentials)) {
         is NetworkController.RegistrationNetworkResult.Success -> {
-          Log.i(TAG, "[CheckSVRCredentials] Successfully validated credentials for ${e164}.")
+          Log.i(TAG, "[CheckSVRCredentials] Successfully validated credentials for $e164.")
           val credential = result.data.validCredential
           if (credential != null) {
             parentEventEmitter(RegistrationFlowEvent.E164Chosen(e164))

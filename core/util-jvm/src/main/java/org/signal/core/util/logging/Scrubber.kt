@@ -10,7 +10,6 @@ import org.signal.core.util.Hex
 import org.signal.core.util.isNotNullOrBlank
 import java.util.regex.Matcher
 import java.util.regex.Pattern
-import kotlin.io.path.Path
 
 /** Given a [Matcher], update the [StringBuilder] with the scrubbed output you want for a given match. */
 private typealias MatchProcessor = (Matcher, StringBuilder) -> Unit

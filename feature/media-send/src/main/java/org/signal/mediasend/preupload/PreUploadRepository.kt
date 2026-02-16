@@ -18,7 +18,7 @@ import org.signal.mediasend.MediaRecipientId
  * Threading: all callback methods are invoked on this manager's serialized background executor
  * thread (i.e., not the main thread).
  */
-interface  PreUploadRepository {
+interface PreUploadRepository {
   /**
    * Performs pre-upload side-effects (e.g., create attachment state + enqueue jobs).
    *

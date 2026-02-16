@@ -48,7 +48,7 @@ internal class GroupChangeActionsBuilderChangeSetModifier(private val result: Gr
   }
 
   override fun clearModifyDisappearingMessagesTimer() {
-    result.modifyDisappearingMessageTimer= null
+    result.modifyDisappearingMessageTimer = null
   }
 
   override fun clearModifyAttributesAccess() {

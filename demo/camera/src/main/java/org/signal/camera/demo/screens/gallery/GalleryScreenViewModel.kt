@@ -19,10 +19,10 @@ class GalleryScreenViewModel : ViewModel() {
   private val _state: MutableState<GalleryScreenState> = mutableStateOf(GalleryScreenState())
   val state: State<GalleryScreenState>
     get() = _state
-  
+
   fun loadMedia(context: Context) {
     _state.value = _state.value.copy(isLoading = true, error = null)
-    
+
     viewModelScope.launch {
       try {
         val mediaItems = loadMediaFromInternalStorage(context)
@@ -40,7 +40,7 @@ class GalleryScreenViewModel : ViewModel() {
       }
     }
   }
-  
+
   fun deleteAllMedia(context: Context) {
     viewModelScope.launch {
       try {
@@ -56,14 +56,14 @@ class GalleryScreenViewModel : ViewModel() {
       }
     }
   }
-  
+
   private suspend fun loadMediaFromInternalStorage(context: Context): List<MediaItem> = withContext(Dispatchers.IO) {
     val galleryDir = File(context.filesDir, GALLERY_FOLDER)
-    
+
     if (!galleryDir.exists()) {
       return@withContext emptyList()
     }
-    
+
     galleryDir.listFiles()
       ?.filter { it.isFile }
       ?.mapNotNull { file ->
@@ -80,23 +80,23 @@ class GalleryScreenViewModel : ViewModel() {
       ?.sortedByDescending { it.lastModified }
       ?: emptyList()
   }
-  
+
   private suspend fun deleteAllMediaFromInternalStorage(context: Context): Int = withContext(Dispatchers.IO) {
     val galleryDir = File(context.filesDir, GALLERY_FOLDER)
-    
+
     if (!galleryDir.exists()) {
       return@withContext 0
     }
-    
+
     val files = galleryDir.listFiles() ?: return@withContext 0
     var deletedCount = 0
-    
+
     files.forEach { file ->
       if (file.isFile && file.delete()) {
         deletedCount++
       }
     }
-    
+
     deletedCount
   }
 }

@@ -27,7 +27,6 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import androidx.navigation3.runtime.NavBackStack
 import org.signal.camera.demo.Screen
-import java.io.File
 
 @OptIn(UnstableApi::class)
 @Composable
@@ -35,16 +34,16 @@ fun VideoViewerScreen(
   backStack: NavBackStack<Screen>
 ) {
   val selectedMedia = org.signal.camera.demo.MediaSelectionHolder.selectedMedia
-  
+
   if (selectedMedia == null || selectedMedia !is org.signal.camera.demo.screens.gallery.MediaItem.Video) {
     // No video selected, go back
     backStack.removeAt(backStack.lastIndex)
     return
   }
-  
+
   val context = LocalContext.current
   val videoFile = selectedMedia.file
-  
+
   val exoPlayer = remember {
     ExoPlayer.Builder(context).build().apply {
       val mediaItem = MediaItem.fromUri(videoFile.toURI().toString())
@@ -54,13 +53,13 @@ fun VideoViewerScreen(
       repeatMode = Player.REPEAT_MODE_OFF
     }
   }
-  
+
   DisposableEffect(Unit) {
     onDispose {
       exoPlayer.release()
     }
   }
-  
+
   Box(
     modifier = Modifier
       .fillMaxSize()
@@ -81,7 +80,7 @@ fun VideoViewerScreen(
       },
       modifier = Modifier.fillMaxSize()
     )
-    
+
     // Back button
     IconButton(
       onClick = { backStack.removeAt(backStack.lastIndex) },

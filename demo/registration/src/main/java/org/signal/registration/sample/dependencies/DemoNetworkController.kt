@@ -17,6 +17,8 @@ import org.signal.libsignal.net.Network
 import org.signal.libsignal.protocol.util.Hex
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.AccountAttributes
+import org.signal.registration.NetworkController.CheckSvrCredentialsRequest
+import org.signal.registration.NetworkController.CheckSvrCredentialsResponse
 import org.signal.registration.NetworkController.CreateSessionError
 import org.signal.registration.NetworkController.GetSessionStatusError
 import org.signal.registration.NetworkController.PreKeyCollection
@@ -25,8 +27,6 @@ import org.signal.registration.NetworkController.RegisterAccountResponse
 import org.signal.registration.NetworkController.RegistrationLockResponse
 import org.signal.registration.NetworkController.RegistrationNetworkResult
 import org.signal.registration.NetworkController.RequestVerificationCodeError
-import org.signal.registration.NetworkController.CheckSvrCredentialsRequest
-import org.signal.registration.NetworkController.CheckSvrCredentialsResponse
 import org.signal.registration.NetworkController.SessionMetadata
 import org.signal.registration.NetworkController.SubmitVerificationCodeError
 import org.signal.registration.NetworkController.ThirdPartyServiceErrorResponse

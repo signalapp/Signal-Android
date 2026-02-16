@@ -36,18 +36,18 @@ fun ImageViewerScreen(
   backStack: NavBackStack<Screen>
 ) {
   val selectedMedia = org.signal.camera.demo.MediaSelectionHolder.selectedMedia
-  
+
   if (selectedMedia == null || selectedMedia !is MediaItem.Image) {
     // No image selected, go back
     backStack.removeLastOrNull()
     return
   }
-  
+
   val imageFile = selectedMedia.file
-  
+
   var scale by remember { mutableFloatStateOf(1f) }
   var offset by remember { mutableStateOf(Offset.Zero) }
-  
+
   Box(
     modifier = Modifier
       .fillMaxSize()
@@ -83,7 +83,7 @@ fun ImageViewerScreen(
           )
       )
     }
-    
+
     // Back button
     IconButton(
       onClick = { backStack.removeLastOrNull() },

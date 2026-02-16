@@ -38,4 +38,3 @@ data class RegistrationFlowState(
   /** If true, do not attempt any flows where we generate RRP's. Create a session instead. */
   val doNotAttemptRecoveryPassword: Boolean = false
 ) : Parcelable
-

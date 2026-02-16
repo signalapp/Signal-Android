@@ -32,14 +32,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.compose.GlideImageScaleType
-import kotlinx.coroutines.withContext
 
 /**
  * A button that displays a thumbnail of the most recent image or video from the gallery.
  * Shows a circular thumbnail with a white border that opens the gallery when clicked.
- * 
+ *
  * @param modifier Modifier to apply to the button
  * @param onClick Callback when the button is clicked
  */
@@ -50,12 +50,12 @@ fun GalleryThumbnailButton(
 ) {
   val context = LocalContext.current
   var thumbnailUri by remember { mutableStateOf<Uri?>(null) }
-  
+
   // Load the most recent media item
   LaunchedEffect(Unit) {
     thumbnailUri = getLatestMediaUri(context)
   }
-  
+
   Box(
     modifier = modifier
       .size(52.dp)
@@ -93,7 +93,7 @@ private suspend fun getLatestMediaUri(context: Context): Uri? = withContext(Disp
   try {
     val imageUri = getLatestImageUri(context)
     val videoUri = getLatestVideoUri(context)
-    
+
     // Compare timestamps if both exist, otherwise return whichever is available
     when {
       imageUri != null && videoUri != null -> {
@@ -122,9 +122,9 @@ private fun getLatestImageUri(context: Context): Uri? {
     MediaStore.Images.Media._ID,
     MediaStore.Images.Media.DATE_ADDED
   )
-  
+
   val sortOrder = "${MediaStore.Images.Media.DATE_ADDED} DESC"
-  
+
   context.contentResolver.query(
     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
     projection,
@@ -141,7 +141,7 @@ private fun getLatestImageUri(context: Context): Uri? {
       )
     }
   }
-  
+
   return null
 }
 
@@ -153,9 +153,9 @@ private fun getLatestVideoUri(context: Context): Uri? {
     MediaStore.Video.Media._ID,
     MediaStore.Video.Media.DATE_ADDED
   )
-  
+
   val sortOrder = "${MediaStore.Video.Media.DATE_ADDED} DESC"
-  
+
   context.contentResolver.query(
     MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
     projection,
@@ -172,7 +172,7 @@ private fun getLatestVideoUri(context: Context): Uri? {
       )
     }
   }
-  
+
   return null
 }
 
@@ -181,7 +181,7 @@ private fun getLatestVideoUri(context: Context): Uri? {
  */
 private fun getMediaTimestamp(context: Context, uri: Uri): Long? {
   val projection = arrayOf(MediaStore.MediaColumns.DATE_ADDED)
-  
+
   context.contentResolver.query(
     uri,
     projection,
@@ -194,7 +194,7 @@ private fun getMediaTimestamp(context: Context, uri: Uri): Long? {
       return cursor.getLong(dateColumn)
     }
   }
-  
+
   return null
 }
 
@@ -208,7 +208,7 @@ fun hasMediaPermissions(context: Context): Boolean {
     // Android 13+
     context.checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES) ==
       PackageManager.PERMISSION_GRANTED ||
-    context.checkSelfPermission(Manifest.permission.READ_MEDIA_VIDEO) ==
+      context.checkSelfPermission(Manifest.permission.READ_MEDIA_VIDEO) ==
       PackageManager.PERMISSION_GRANTED
   } else {
     // Older Android versions

@@ -5,6 +5,7 @@ package org.signal.camera.demo.screens.main
 import android.Manifest
 import android.os.Build
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -25,35 +26,34 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation3.runtime.NavBackStack
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
-import androidx.compose.foundation.background
-import androidx.compose.ui.graphics.Color
-import androidx.navigation3.runtime.NavBackStack
-import org.signal.camera.demo.Screen
-import org.signal.camera.hud.StandardCameraHudEvents
 import org.signal.camera.CameraScreen
 import org.signal.camera.CameraScreenEvents
 import org.signal.camera.CameraScreenViewModel
+import org.signal.camera.demo.Screen
 import org.signal.camera.hud.StandardCameraHud
+import org.signal.camera.hud.StandardCameraHudEvents
 
 @Composable
 fun MainScreen(
   backStack: NavBackStack<Screen>,
-  viewModel: MainScreenViewModel = viewModel(),
+  viewModel: MainScreenViewModel = viewModel()
 ) {
   val cameraViewModel: CameraScreenViewModel = viewModel()
 
   val permissions = buildList {
     add(Manifest.permission.CAMERA)
     add(Manifest.permission.RECORD_AUDIO)
-    
+
     if (Build.VERSION.SDK_INT >= 33) {
       add(Manifest.permission.READ_MEDIA_IMAGES)
       add(Manifest.permission.READ_MEDIA_VIDEO)
@@ -61,7 +61,7 @@ fun MainScreen(
       add(Manifest.permission.READ_EXTERNAL_STORAGE)
     }
   }
-  
+
   val permissionsState = rememberMultiplePermissionsState(permissions = permissions)
 
   val context = LocalContext.current
@@ -126,7 +126,7 @@ fun MainScreen(
                     }
                   )
                 }
-                is StandardCameraHudEvents.VideoCaptureStopped-> {
+                is StandardCameraHudEvents.VideoCaptureStopped -> {
                   cameraViewModel.stopRecording()
                 }
                 is StandardCameraHudEvents.GalleryClick -> {
@@ -155,7 +155,7 @@ fun MainScreen(
           )
         }
       }
-      
+
       // QR Code Dialog
       if (qrCodeContent != null) {
         AlertDialog(

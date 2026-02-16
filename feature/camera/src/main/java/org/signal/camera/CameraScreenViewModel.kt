@@ -3,8 +3,8 @@ package org.signal.camera
 import android.Manifest
 import android.app.Activity
 import android.content.Context
-import android.content.pm.PackageManager
 import android.content.ContextWrapper
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.os.Build
@@ -81,7 +81,7 @@ class CameraScreenViewModel : ViewModel() {
   private var orientationListener: OrientationEventListener? = null
 
   private val _qrCodeDetected = MutableSharedFlow<String>(extraBufferCapacity = 1)
-  
+
   /**
    * Flow of detected QR codes. Observers can collect from this flow to receive QR code detections.
    * The flow filters consecutive duplicates and is throttled to avoid rapid-fire detections.
@@ -133,7 +133,7 @@ class CameraScreenViewModel : ViewModel() {
   @androidx.annotation.OptIn(markerClass = [androidx.camera.core.ExperimentalGetImage::class])
   fun capturePhoto(
     context: Context,
-    onPhotoCaptured: (Bitmap) -> Unit,
+    onPhotoCaptured: (Bitmap) -> Unit
   ) {
     val state = _state.value
     val capture = imageCapture ?: run {

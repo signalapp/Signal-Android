@@ -38,7 +38,7 @@ object TransitionSpecs {
             targetOffsetX = { -it },
             animationSpec = tween(200)
           ) + fadeOut(animationSpec = tween(200))
-        )
+          )
     }
 
     val popTransitionSpec: AnimatedContentTransitionScope<Scene<NavKey>>.() -> ContentTransform = {
@@ -53,10 +53,10 @@ object TransitionSpecs {
             targetOffsetX = { it },
             animationSpec = tween(200)
           ) + fadeOut(animationSpec = tween(200))
-        )
+          )
     }
 
-    val predictivePopTransitonSpec:  AnimatedContentTransitionScope<Scene<NavKey>>.(@NavigationEvent.SwipeEdge Int) -> ContentTransform =  {
+    val predictivePopTransitonSpec: AnimatedContentTransitionScope<Scene<NavKey>>.(@NavigationEvent.SwipeEdge Int) -> ContentTransform = {
       (
         slideInHorizontally(
           initialOffsetX = { -it },
@@ -68,7 +68,7 @@ object TransitionSpecs {
             targetOffsetX = { it },
             animationSpec = tween(200)
           ) + fadeOut(animationSpec = tween(200))
-        )
+          )
     }
   }
 }

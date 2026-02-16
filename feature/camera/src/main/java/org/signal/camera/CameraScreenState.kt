@@ -45,4 +45,3 @@ enum class FlashMode(val cameraxMode: Int) {
     }
   }
 }
-

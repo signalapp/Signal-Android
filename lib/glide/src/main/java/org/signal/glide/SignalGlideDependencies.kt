@@ -15,22 +15,22 @@ import org.signal.glide.common.io.InputStreamFactory
 object SignalGlideDependencies {
   private lateinit var _application: Application
   private lateinit var _provider: Provider
-  
+
   @Synchronized
   fun init(application: Application, provider: Provider) {
     if (this::_application.isInitialized || this::_provider.isInitialized) {
       return
     }
-    
+
     _application = application
     _provider = provider
   }
-  
+
   val application: Application
     get() = _application
 
   fun getUriInputStreamFactory(uri: Uri): InputStreamFactory = _provider.getUriInputStreamFactory(uri)
-  
+
   interface Provider {
     /**
      * A factory which can create an [java.io.InputStream] from a given [Uri]

@@ -413,7 +413,7 @@ private fun MediaCountIndicator(
       .padding(horizontal = 12.dp),
     verticalAlignment = Alignment.CenterVertically
   ) {
-    val size = with (LocalDensity.current) {
+    val size = with(LocalDensity.current) {
       22.sp.toDp()
     }
     Box(

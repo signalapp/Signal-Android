@@ -8,7 +8,6 @@ package org.signal.registration.sample.absbackup
 import android.app.backup.BackupAgent
 import android.app.backup.BackupDataInput
 import android.app.backup.BackupDataOutput
-import android.app.backup.FullBackupDataOutput
 import android.os.ParcelFileDescriptor
 import org.signal.core.util.logging.Log
 import org.signal.registration.NetworkController
@@ -17,7 +16,6 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.DataInputStream
 import java.io.DataOutputStream
-import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException

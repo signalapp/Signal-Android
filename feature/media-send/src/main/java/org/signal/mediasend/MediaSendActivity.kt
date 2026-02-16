@@ -8,7 +8,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.fragment.app.FragmentActivity
@@ -49,10 +48,10 @@ abstract class MediaSendActivity : FragmentActivity() {
             backStack = backStack,
             callback = viewModel,
             modifier = Modifier.fillMaxSize(),
-            cameraSlot = {  },
-            textStoryEditorSlot = {  },
-            videoEditorSlot = {  },
-            sendSlot = {  }
+            cameraSlot = { },
+            textStoryEditorSlot = { },
+            videoEditorSlot = { },
+            sendSlot = { }
           )
         }
       }

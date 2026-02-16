@@ -5,7 +5,6 @@ import androidx.camera.compose.CameraXViewfinder
 import androidx.camera.core.SurfaceRequest
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.viewfinder.compose.MutableCoordinateTransformer
-import androidx.camera.core.Preview as CameraPreview
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
@@ -45,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Previews
+import androidx.camera.core.Preview as CameraPreview
 
 /**
  * A camera screen that handles core camera functionality, such as:

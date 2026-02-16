@@ -59,12 +59,15 @@ class RegistrationApplication : Application() {
       )
     )
 
-    CoreUiDependencies.init(this, object : CoreUiDependencies.Provider {
-      override fun providePackageId(): String = BuildConfig.APPLICATION_ID
-      override fun provideIsIncognitoKeyboardEnabled(): Boolean = false
-      override fun provideIsScreenSecurityEnabled(): Boolean = false
-      override fun provideForceSplitPane(): Boolean = false
-    })
+    CoreUiDependencies.init(
+      this,
+      object : CoreUiDependencies.Provider {
+        override fun providePackageId(): String = BuildConfig.APPLICATION_ID
+        override fun provideIsIncognitoKeyboardEnabled(): Boolean = false
+        override fun provideIsScreenSecurityEnabled(): Boolean = false
+        override fun provideForceSplitPane(): Boolean = false
+      }
+    )
   }
 
   private fun createPushServiceSocket(configuration: SignalServiceConfiguration): PushServiceSocket {
