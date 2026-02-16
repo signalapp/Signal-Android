@@ -152,7 +152,7 @@ final class RecipientDialogViewModel extends ViewModel {
         recipientDetailsState.postValue(new RecipientDetailsState(styledLabel, aboutText));
       });
     } else {
-      recipientDetailsState.setValue(new RecipientDetailsState(null, aboutText));
+      recipientDetailsState.postValue(new RecipientDetailsState(null, aboutText));
     }
   }
 
