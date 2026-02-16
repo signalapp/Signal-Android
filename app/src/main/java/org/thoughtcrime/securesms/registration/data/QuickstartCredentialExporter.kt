@@ -58,7 +58,8 @@ object QuickstartCredentialExporter {
       registrationId = SignalStore.account.registrationId,
       pniRegistrationId = SignalStore.account.pniRegistrationId,
       profileGivenName = profileName.givenName,
-      profileFamilyName = profileName.familyName
+      profileFamilyName = profileName.familyName,
+      accountEntropyPool = SignalStore.account.accountEntropyPool.value
     )
 
     val outputDir = context.getExternalFilesDir(null) ?: error("No external files directory")

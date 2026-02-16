@@ -28,5 +28,6 @@ data class QuickstartCredentials(
   val registrationId: Int,
   val pniRegistrationId: Int,
   val profileGivenName: String,
-  val profileFamilyName: String
+  val profileFamilyName: String,
+  val accountEntropyPool: String? = null
 )

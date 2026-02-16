@@ -10,5 +10,8 @@
     <application
         android:name=".QuickstartApplicationContext"
         tools:replace="android:name"
-        android:requestLegacyExternalStorage="true" />
+        android:requestLegacyExternalStorage="true">
+
+        <activity android:name=".QuickstartRestoreActivity" />
+    </application>
 </manifest>

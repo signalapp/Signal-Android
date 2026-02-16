@@ -11,6 +11,7 @@ import android.preference.PreferenceManager
 import android.util.Base64
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
@@ -42,6 +43,8 @@ object QuickstartInitializer {
 
   private val TAG = Log.tag(QuickstartInitializer::class.java)
 
+  var pendingBackupDir: File? = null
+
   fun initialize(context: Context) {
     val credentialJson = findCredentialJson(context)
     if (credentialJson == null) {
@@ -51,6 +54,12 @@ object QuickstartInitializer {
 
     val credentials = Json.decodeFromString<QuickstartCredentials>(credentialJson)
     Log.i(TAG, "Loaded quickstart credentials for ${credentials.e164}")
+
+    // Restore AEP before any derived keys are accessed
+    if (credentials.accountEntropyPool != null) {
+      SignalStore.account.restoreAccountEntropyPool(AccountEntropyPool(credentials.accountEntropyPool))
+      Log.i(TAG, "Restored account entropy pool from quickstart credentials")
+    }
 
     // Master secret setup
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("pref_prompted_push_registration", true).commit()
@@ -117,6 +126,16 @@ object QuickstartInitializer {
     SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts(credentials.profileGivenName, credentials.profileFamilyName))
     RegistrationUtil.maybeMarkRegistrationComplete()
 
+    // Check for a local backup to restore
+    val backupsDir = File(DISK_CREDENTIALS_DIR, "SignalBackups")
+    if (backupsDir.exists() && backupsDir.isDirectory) {
+      val hasSnapshot = backupsDir.listFiles()?.any { it.isDirectory && it.name.startsWith("signal-backup") } == true
+      if (hasSnapshot) {
+        Log.i(TAG, "Found local backup directory at ${backupsDir.absolutePath}, will restore after launch")
+        pendingBackupDir = DISK_CREDENTIALS_DIR
+      }
+    }
+
     Log.i(TAG, "Quickstart initialization complete for ${credentials.e164}")
   }
 
@@ -126,7 +145,7 @@ object QuickstartInitializer {
     get() = if (org.thoughtcrime.securesms.util.Environment.IS_STAGING) "staging_credentials.json" else "prod_credentials.json"
 
   private fun findCredentialJson(context: Context): String? {
-    findCredentialJsonOnDisk() ?: findCredentialJsonInAssets(context)
+    return findCredentialJsonOnDisk() ?: findCredentialJsonInAssets(context)
   }
 
   private fun findCredentialJsonOnDisk(): String? {

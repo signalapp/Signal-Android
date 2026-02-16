@@ -5,6 +5,10 @@
 
 package org.thoughtcrime.securesms
 
+import android.app.Activity
+import android.app.Application.ActivityLifecycleCallbacks
+import android.content.Intent
+import android.os.Bundle
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
@@ -24,6 +28,25 @@ class QuickstartApplicationContext : ApplicationContext() {
     if (!SignalStore.account.isRegistered) {
       Log.i(TAG, "Account not registered, attempting quickstart initialization...")
       QuickstartInitializer.initialize(this)
+
+      if (QuickstartInitializer.pendingBackupDir != null) {
+        Log.i(TAG, "Pending backup detected, will redirect to restore activity")
+        registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
+          override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+            if (activity is QuickstartRestoreActivity) return
+            unregisterActivityLifecycleCallbacks(this)
+            activity.startActivity(Intent(activity, QuickstartRestoreActivity::class.java))
+            activity.finish()
+          }
+
+          override fun onActivityStarted(activity: Activity) = Unit
+          override fun onActivityResumed(activity: Activity) = Unit
+          override fun onActivityPaused(activity: Activity) = Unit
+          override fun onActivityStopped(activity: Activity) = Unit
+          override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) = Unit
+          override fun onActivityDestroyed(activity: Activity) = Unit
+        })
+      }
     }
   }
 }
