@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal-ek enkriptatzea automatikoki egiaztatu ahal izateko, zurekin telefono-zenbaki bidez konektatuta dauden pertsonekin izan behar dituzu txatak. Txata erabiltzaile-izen batekin edo talde komun batekin hasi bada, egiaztatu muturretik muturrerako enkriptatzea, aurreko pantailako zenbakiak alderatuz edo gailuko kodea eskaneatuz.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Orain, Signal-ek automatikoki egiazta dezake enkriptatzea</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Zurekin telefono-zenbaki bidez konektatuta dauden kontakuei dagokienez, Signal-ek \"gako-gardentasuna\" izeneko prozesu baten bidez egiazta dezake konexioa seguruan den. Segurtasun gehigarria emateko, konexioak eskuz egiazta ditzakezu oraindik ere, QR kode edo segurtasun-zenbaki bat erabilita.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Informazio gehiago</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Jarraitu</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Une honetan, gako-egiaztapen automatikoa ez dago erabilgarri zure gailuan. Arazketa-erregistroa bidali nahi duzu?</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Galduz gero, ezingo dituzu berreskuratu mezuak.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Berreskuratze-gakoa 64 karaktereko kode bat da, eta mota guztietako babeskopiak leheneratzeko aukera ematen dizu.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Gako honek gailuko babeskopiaren gakoa ordeztuko du.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Babeskopia-gakoa 64 karaktereko kode bat da, eta Signal berriro instalatzean babeskopiak leheneratzeko aukera ematen dizu.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Gailuko babeskopia-gakoaren berdina da.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Itxi pantaila</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Ezabatu etiketa</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Gehitu kide-etiketa bat zeure burua edo taldean duzun funtzioa deskribatzeko. Etiketak talde barruan bakarrik egongo dira ikusgai.</string>
 
     <!-- EOF -->
 </resources>

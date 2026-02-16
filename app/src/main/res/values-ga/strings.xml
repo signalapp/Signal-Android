@@ -4201,7 +4201,7 @@
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Tuilleadh faisnéise</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Lean ar aghaidh</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Níl Uathfhíorú Eochracha ar fáil faoi láthair do do ghléas. Cuir isteach loga dífhabhtaithe?</string>
@@ -4902,9 +4902,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Cuir deireadh leis an suirbhé</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Greamaigh</string>
+    <string name="conversation_selection__menu_pin_message">Pionnáil</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Díghreamaigh</string>
+    <string name="conversation_selection__menu_unpin_message">Díphionnáil</string>
 
     <!-- conversation_expiring_on -->
 
@@ -9803,11 +9803,11 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">Meán amhairc aonuaire</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Díghreamaigh</string>
+    <string name="PinnedMessage__unpin_message">Díphionnáil</string>
     <!-- Context menu option to view all the message -->
     <string name="PinnedMessage__view_all_messages">Féach ar gach teachtaireacht</string>
     <!-- Text to unpin all messages -->
-    <string name="PinnedMessage__unpin_all_messages">Díghreamaigh gach teachtaireacht</string>
+    <string name="PinnedMessage__unpin_all_messages">Díphionnáil Gach Teachtaireacht</string>
     <!-- Title of bottom sheet when pinning a disappearing message -->
     <string name="PinnedMessage__disappearing_message_title">Greamú teachtaireachtaí sealadacha</string>
     <!-- Body of bottom sheet when pinning a disappearing message -->
@@ -9819,9 +9819,9 @@
     <!-- Title of bottom sheet -->
     <string name="PinnedMessage__pinned_messages">Teachtaireachtaí greamaithe</string>
     <!-- Context menu option to unpin message -->
-    <string name="PinnedMessage__unpin">Díghreamaigh</string>
+    <string name="PinnedMessage__unpin">Díphionnáil</string>
     <!-- Title of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_title">Díghreamaigh gach teachtaireacht?</string>
+    <string name="PinnedMessage__unpin_title">Díphionnáil gach teachtaireacht?</string>
     <!-- Body of dialog to unpin all messages -->
     <string name="PinnedMessage__unpin_body">Díghreamófar teachtaireachtaí do gach ball.</string>
     <!-- Dialog title when failing to pin a message -->

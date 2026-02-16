@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">तुम्ही एखाद्याशी फोन नंबरद्वारे जोडलेले असता फक्त तेव्हाच Signal चॅट्समध्ये आपोआप एन्क्रिप्शनची पडताळणी करू शकते. जर चॅट वापरकर्ता नावासह किंवा सामाईक गटाच्या माध्यमातून सुरु झाले असेल, तर मागील स्क्रीनवरील क्रमांकांची तुलना करून किंवा त्यांच्या डिव्हाईसवरील कोड स्कॅन करून तुम्ही एंड-टू-एंड एन्क्रिप्शनची पडताळणी करू शकता.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal आता एन्क्रिप्शन आपोआप पडताळू शकते</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">तुम्ही ज्या संंपर्कांशी फोन नंबरद्वारे जोडलेले आहात, त्यांच्याशी असलेली जोडणी सुरक्षित आहे की नाही याची निश्चिती Signal की पारदर्शकता नावाची प्रक्रिया वापरून आपोआप करू शकते. अधिक सुरक्षेसाठी, तुम्ही तरीही स्वतः QR कोड किंवा सुरक्षितता क्रमांक वापरून जोडण्यांची पडताळणी करू शकता.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">अधिक जाणून घ्या</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">सुरू ठेवा</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">तुमच्या डिव्हाईस वर स्वयंचलित की पडताळणी सध्या अनुपलब्ध आहे. डीबग लॉग सबमिट करायचा?</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">तुम्ही ती गमावलीत, तर तुम्हाला तुमचे संदेश परत मिळवता येणार नाहीत.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">तुमची रीकव्हरी की एक 64 अंकी कोड आहे जो वापरून तुम्ही सर्व बॅकअपचे प्रकार रीस्टोर करू शकता.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">ही की तुमच्या डिव्हाईस वरील बॅकअपसाठीच्या कीची जागा घेईल.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">तुमची बॅकअप की हा एक 64-अंकी कोड असून तो तुम्ही जेव्हा Signal पुन्हा-इन्स्टॉल करता तेव्हा तुम्हाला तुमचा बॅकअप पुर्नस्थापित करू देतो.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">हे तुमच्या डिव्हाईस वरील बॅकअप की सारखेच आहे.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">स्क्रीन बंद करा</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">लेबल साफ करा</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">तुमचे किंवा या गटामधील तुमच्या भूमिकेचे वर्णन करण्यासाठी एक सदस्य लेबल समाविष्ट करा. लेबल्स फक्त या गटामध्येच दिसतात.</string>
 
     <!-- EOF -->
 </resources>

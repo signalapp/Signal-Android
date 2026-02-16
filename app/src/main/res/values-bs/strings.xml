@@ -4083,13 +4083,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal može automatski provjeriti šifriranje samo u chatovima u kojima ste povezani s nekim putem telefonskog broja. Ako je chat započet s korisničkim imenom ili zajedničkom grupom, provjerite sveobuhvatno šifriranje upoređivanjem brojeva na prethodnom ekranu ili skeniranjem koda na njihovom uređaju.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal sada može automatski provjeriti šifriranje</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Za kontakte s kojima ste povezani putem telefonskog broja, Signal može automatski potvrditi da li je veza sigurna pomoću procesa koji se naziva transparentnost ključa. Za dodatnu sigurnost, i dalje možete ručno provjeriti veze pomoću QR koda ili sigurnosnog broja.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Saznaj više</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Nastavi</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Automatska potvrda ključa trenutno nije dostupna za vaš uređaj. Pošalji zapisnik o otklanjanju grešaka?</string>
@@ -9017,11 +9017,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Ako ga izgubite, nećete moći oporaviti svoje poruke.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Vaš ključ za oporavak je kod od 64 znaka koji vam omogućava da vratite sve vrste sigurnosnih kopija.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Ovaj ključ će zamijeniti ključ za vašu sigurnosnu kopiju na uređaju.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Vaš rezervni ključ je 64-cifreni kod koji vam omogućava da vratite rezervne kopije kada ponovo instalirate Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Ovo je isto što i vaš ključ za sigurnosnu kopiju podataka na uređaju.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9660,7 +9660,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Zatvori ekran</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Obriši oznaku</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Dodajte oznaku člana da opišete sebe ili svoju ulogu u ovoj grupi. Oznake su vidljive samo unutar ove grupe.</string>
 
     <!-- EOF -->
 </resources>

@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal може автоматично да проверява криптирането само в чатове, в които сте свързани с някого чрез телефонен номер. Ако чатът е започнат с потребителско име или през обща група, проверете криптирането от край до край ръчно, като сравните цифрите на предишния екран или сканирате кода на устройството на другия.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal вече може автоматично да потвърждава криптирането</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">При контактите, с които сте свързани чрез телефонен номер, Signal може автоматично да потвърди дали връзката е сигурна, като използва процес, наречен „прозрачност на ключа“. За повече сигурност все пак можете да проверявате връзките ръчно с QR код или номер за сигурност.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Научете повече</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Продължаване</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Автоматичната проверка на ключа в момента не е достъпна на вашето устройство. Желаете ли да изпратите доклад за дебъг?</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Ако го изгубите, няма да можете да възстановите съобщенията си.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Вашият ключ за възстановяване е код от 64 знака, който ви позволява да възстановявате всички типове резервни копия.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Този ключ ще замени вашия ключ за резервни копия на устройството.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Вашият резервен ключ е код от 64 знака, който ви позволява да възстановявате резервните си копия, когато инсталирате Signal отново.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Това е същото като резервния ключ на устройството.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Затваряне на екрана</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Изчистване на етикета</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Добавете етикет на член, за да опишете себе си или ролята си в тази група. Етикетите са видими само в тази група.</string>
 
     <!-- EOF -->
 </resources>

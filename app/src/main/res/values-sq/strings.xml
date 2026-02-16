@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal mund ta verifikojë automatikisht kodimin vetëm në bisedat ku je i lidhur me dikë nëpërmjet një numri telefoni. Nëse biseda ka filluar me një emër përdoruesi ose me një grup të përbashkët, verifiko kodimin nga skaji në skaj duke krahasuar numrat në ekranin e mëparshëm ose duke skanuar kodin në pajisje.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal tani mund ta verifikojë automatikisht kodimin</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Për kontaktet me të cilët je lidhur me anë të numrit të telefonit, Signal mund të konfirmojë automatikisht nëse lidhja është e sigurt duke përdorur një proces të quajtur kod transparence. Për siguri shtesë, mund t’i verifikosh lidhjet manualisht me kod QR ose numër sigurie.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Mëso më shumë</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Vazhdo</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Verifikimi automatik i kodit nuk është aktualisht i disponueshëm për pajisjen. Të dorëzohet regjistri i diagnostikimeve?</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Nëse e humb, nuk do të jesh në gjendje të rikthesh mesazhet.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Kodi i rikuperimit është me 64 karaktere që të lejon të rikthesh të gjitha llojet e kopjeruajtjeve.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Ky kod do të zëvendësojë kodin për kopjeruajtjet në pajisje.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Kodi i kopjeruajtjes është 64-shifror dhe të lejon ta rikthesh kopjeruajtjen kur riinstalon Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Ky kod është i njëjtë me kodin e kopjeruajtjes në pajisjen tënde.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Mbyll ekranin</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Pastro emërtimin</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Vendos emërtimin e anëtarit për të përshkruar veten ose rolin në këtë grup. Emërtimet janë të dukshme vetëm brenda këtij grupi.</string>
 
     <!-- EOF -->
 </resources>

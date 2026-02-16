@@ -3747,13 +3747,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal 只能对通过手机号码连接的联系人的聊天进行自动加密验证。如果使用用户名或在共同群组中发起聊天，请通过比对前一个屏幕上的数字或扫描对方设备上的二维码验证端对端加密。</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal 现在可以自动验证加密</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">对于通过手机号码连接的联系人，Signal 可以使用一个名为“密钥透明度”的流程自动确认连接是否安全。如要提高安全性，您还可以使用二维码或安全码手动验证连接。</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">了解详情</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">继续</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">您的设备目前无法使用自动密钥验证功能。要提交调试日志吗？</string>
@@ -8471,11 +8471,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">如果密钥丢失，您将无法恢复您的消息。</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">您的恢复密钥是一个 64 个字符的代码，可让您恢复所有备份类型。</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">此密钥将取代您的本地备份密钥。</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">您的备份密钥是一个 64 个字符的代码，可让您在重新安装 Signal 时恢复备份。</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">这与您的本地备份密钥相同。</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9099,7 +9099,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">关闭屏幕</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">清除标签</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">添加一个成员标签来描述您自己或您在此群组中的角色。标签仅在此群组内可见。</string>
 
     <!-- EOF -->
 </resources>

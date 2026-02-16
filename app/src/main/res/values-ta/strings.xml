@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">தொலைபேசி எண் மூலமாக நீங்கள் தொடர்புகொள்ளும் நபர்களுடனான அரட்டைகளில் மட்டுமே சிக்னலால் குறியாக்கத்தைத் தானாகச் சரிபார்க்க முடியும். பயனர் பெயர் அல்லது பொதுவான தொகுப்பின் மூலம் அரட்டை தொடங்கப்பட்டிருந்தால், முந்தைய திரையில் உள்ள எண்களை ஒப்பிட்டு அல்லது அவர்களின் சாதனத்திலுள்ள குறியீட்டை ஸ்கேன் செய்து, எண்டு-டு-எண்டு குறியாக்கத்தைச் சரிபார்க்கவும்.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">சிக்னலால் இப்போது மறைகுறியாக்கத்தைத் தானாகச் சரிபார்க்க இயலும்</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">தொலைபேசி எண் மூலம் இணைக்கப்பட்டுள்ள தொடர்புகளுக்கு, \'குறியீடு வெளிப்படைத்தன்மை\' எனும் செயல்முறையைப் பயன்படுத்தி இணைப்பு பாதுகாப்பாக உள்ளதா என்பதை சிக்னலால் தானாகவே உறுதிசெய்ய முடியும். கூடுதல் பாதுகாப்பிற்கு, QR குறியீடு அல்லது பாதுகாப்பு எண்ணைப் பயன்படுத்தி நீங்கள் இணைப்புகளைக் கைமுறையாகச் சரிபார்க்கலாம்.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">மேலும் அறிக</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">தொடர்க</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">உங்கள் சாதனத்தில் தானியங்கி குறியீடு சரிபார்ப்பு தற்போது கிடைக்கவில்லை. பிழைத்திருத்தப் பதிவைச் சமர்ப்பிக்க வேண்டுமா?</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">நீங்கள் அதை இழந்துவிட்டால், உங்கள் மெசேஜ்களை மீட்டெடுக்க முடியாது.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">உங்களின் 64 இலக்க மீட்புக் குறியீடானது உங்களின் அனைத்து காப்புப்பிரதி வகைகளையும் மீட்டமைக்க உங்களை அனுமதிக்கிறது.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">இந்தக் குறியீடு உங்கள் சாதனத்தில் உள்ள காப்புப்பிரதிக்கான குறியீட்டுக்கு மாற்றாக அமையும்.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">உங்கள் காப்புப்பிரதி குறியீடானது 64 இலக்கக் குறியீடாகும், இது சிக்னலை நீங்கள் மீண்டும் நிறுவும்போது உங்கள் காப்புப்பிரதிகளை மீட்டமைக்க உதவுகிறது.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">இது உங்கள் சாதனத்தில் உள்ள காப்புப்பிரதி குறியீட்டைப் போன்றதேயாகும்.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">திரையை மூடு</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">லேபிளை அழி</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">இந்தத் தொகுப்பில் உங்களை அல்லது உங்களின் பதவி நிலையை விவரிக்க ஒரு உறுப்பினர் பதவி நிலையை அமைத்திடுங்கள். இந்தத் தொகுப்பிற்குள் மட்டுமே பதவி நிலைகள் காண்பிக்கப்படும்.</string>
 
     <!-- EOF -->
 </resources>

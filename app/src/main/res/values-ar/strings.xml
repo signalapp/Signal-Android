@@ -4313,7 +4313,7 @@
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">اعرف المزيد</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">استمرار</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">التحقُّق التلقائي من المفاتيح غير متاح حاليًا على جهازك. هل ترغب بإرسال سِجل الأخطاء؟</string>
@@ -9018,7 +9018,7 @@
     <string name="MediaNoLongerAvailableSheet__not_now">ليس الآن</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">عملية الحذف تتم في تزامن عبر جميع أجهزتك الآن</string>
+    <string name="DeleteSyncEducation_title">عملية الحذف تتم في تزامن عبر جميع أجهزتك</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_message">عندما تحذف رسائل أو دردشات، سيتمُّ حذفها من هاتفك وكل أجهزتك المُتصلة.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->

@@ -2915,7 +2915,7 @@
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
     <string name="StickerManagement_stickers_you_received_header">Ontvangen stickerpakketten</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signals eigen stickerpakketten</string>
+    <string name="StickerManagement_signal_artist_series_header">Signal Artist stickerpakketten</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
     <string name="StickerManagement_share_sheet_title">Doorsturen naar</string>
     <!-- Bottom action bar option to select all sticker packs in the list. -->
@@ -3865,7 +3865,7 @@
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Meer informatie</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Doorgaan</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Automatische sleutelverificatie is momenteel niet beschikbaar voor jouw apparaat. Foutopsporingslog indienen?</string>

@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal কেবলমাত্র সেইসব চ্যাটের এনক্রিপশন স্বয়ংক্রিয়ভাবে যাচাই করতে পারে যাদের সাথে আপনি ফোন নম্বরের মাধ্যমে সংযুক্ত আছেন। যদি চ্যাটটি একটি ব্যবহারকারীর নাম বা একটি সাধারণ গ্ৰুপ দিয়ে শুরু হয়ে থাকে, তাহলে আগের স্ক্রিনে থাকা নম্বর তুলনা করে বা তাদের ডিভাইসে কোড স্ক্যান করে এন্ড-টু-এন্ড এনক্রিপশন যাচাই করুন।</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal এখন এনক্রিপশন স্বয়ংক্রিয়ভাবে যাচাই করতে পারে</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">ফোন নম্বরের মাধ্যমে আপনি যেসব কন্টাক্টের সাথে সংযুক্ত আছেন, তাদের জন্য Signal স্বয়ংক্রিয়ভাবে \'কি\' ট্রান্সপারেন্সি নামক একটি প্রক্রিয়া ব্যবহার করে সংযোগটি সুরক্ষিত কিনা তা নিশ্চিত করতে পারে। বাড়তি নিরাপত্তার জন্য, আপনি এখনো একটি QR কোড বা নিরাপত্তা নম্বর ব্যবহার করে সংযোগগুলো ম্যানুয়ালি যাচাই করতে পারবেন।</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">আরো জানুন</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">চলুন</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">আপনার ডিভাইসের জন্য বর্তমানে স্বয়ংক্রিয় \'কি\' যাচাইকরণ পাওয়া যাচ্ছে না। ডিবাগ লগ জমা দেবেন?</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">এটি হারিয়ে ফেললে, আপনি আপনার মেসেজ পুনরুদ্ধার করতে পারবেন না।</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">আপনার পুনরুদ্ধার \'কি\' হলো একটি 64-ক্যারেক্টারের কোড যা আপনাকে সব ধরনের ব্যাকআপ পুনর্বহাল করতে সাহায্য করে।</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">এই \'কি\'-টি আপনার ডিভাইসের ব্যাকআপের \'কি\'-টিকে প্রতিস্থাপন করবে।</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">আপনার ব্যাকআপ \'কি\' একটি 64-ক্যারেক্টারের কোড যা আপনাকে Signal পুনরায় ইনস্টল করার সময় আপনার ব্যাকআপ পুনর্বহাল করতে সাহায্য করে।</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">এটি আপনার ডিভাইসের ব্যাকআপ \'কি\'-এর মতোই।</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">স্ক্রিন বন্ধ করুন</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">লেবেল মুছুন</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">এই গ্রুপে নিজেকে বা আপনার ভূমিকা বর্ণনা করার জন্য একটি সদস্য লেবেল যোগ করুন। লেবেল শুধুমাত্র এই গ্রুপের মধ্যেই দৃশ্যমান।</string>
 
     <!-- EOF -->
 </resources>

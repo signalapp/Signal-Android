@@ -3747,13 +3747,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal သည် ဖုန်းနံပါတ်မှတစ်ဆင့် ချိတ်ဆက်ထားသူများ၏ ချက်(တ်)များတွင်သာ ကုဒ်ပြောင်းဝှက်ခြင်းကို အလိုအလျောက် အတည်ပြုပေးနိုင်ပါသည်။ ချက်(တ်)ကို သုံးစွဲသူအမည် သို့မဟုတ် အတူတူရှိသော အဖွဲ့တစ်ဖွဲ့ဖြင့် စတင်ခဲ့ပါက ယခင်စခရင်ပေါ်ရှိ နံပါတ်များကို နှိုင်းယှဉ်ခြင်း သို့မဟုတ် ၎င်းတို့၏ စက်ပေါ်ရှိ ကုဒ်ကို စကင်ဖတ်ခြင်းဖြင့် ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ခြင်းကို အတည်ပြုပါ။</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal သည် ကုဒ်ပြောင်းဝှက်ခြင်းကို အလိုအလျောက် အတည်ပြုနိုင်ပါပြီ</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">ဖုန်းနံပါတ်ဖြင့် ချိတ်ဆက်ထားသော အဆက်အသွယ်များအတွက် Signal သည် ကီး ပွင့်လင်းမြင်သာမှုဟုခေါ်သော လုပ်ငန်းစဉ်ကို အသုံးပြု၍ ချိတ်ဆက်မှု လုံခြုံခြင်းရှိမရှိကို အလိုအလျောက် အတည်ပြုနိုင်သည်။ လုံခြုံရေးပိုမိုရရှိစေရန်အတွက် QR ကုဒ် သို့မဟုတ် လုံခြုံရေးနံပါတ်ကို အသုံးပြု၍ ချိတ်ဆက်မှုများကို ကိုယ်တိုင်အတည်ပြုနိုင်ပါသည်။</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">ဆက်လုပ်ရန်</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">အလိုအလျောက် ကီးအတည်ပြုခြင်းကို သင့်စက်အတွက် လောလောဆယ်တွင် မရရှိနိုင်ပါ။ ပြစ်ချက်မှတ်တမ်း ပေးပို့မည်လား။</string>
@@ -8471,11 +8471,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">၎င်းကိုသင်ဆုံးရှုံးသွားပါက သင့်မက်ဆေ့ချ်များကို ပြန်လည်ရယူနိုင်မည်မဟုတ်ပါ။</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">သင်၏ ပြန်လည်ရယူရေးကီးသည် Signal ကို ပြန်လည်ထည့်သွင်းသောအခါ ဘက်ခ်အပ်အမျိုးအစားအားလုံးကို ပြန်လည်ရယူနိုင်စေမည့် အက္ခရာ 64 လုံးကုဒ်ဖြစ်သည်။</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">ဤကီးသည် သင်၏စက်ပေါ်ရှိ ဘက်ခ်အပ်အတွက် ကီးကို အစားထိုးပေးလိမ့်မည်။</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">သင်၏ ဘက်ခ်အပ်ကီးသည် Signal ကို ပြန်လည်ထည့်သွင်းသောအခါတွင် သင့် ဘက်ခ်အပ်ကို ပြန်လည်ရယူနိုင်သည့် အက္ခရာ 64 လုံးကုဒ်ဖြစ်သည်။</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">၎င်းသည် သင်၏ စက်ပေါ်ရှိ ဘက်ခ်အပ်ကီးနှင့် အတူတူပင်ဖြစ်သည်။</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9099,7 +9099,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">စခရင်ပိတ်ရန်</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">အမှတ်တံဆိပ်ကို ရှင်းရန်</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">ဤအဖွဲ့တွင် သင့်ကိုယ်သင် သို့မဟုတ် သင်၏အခန်းကဏ္ဍကို ဖော်ပြရန် အဖွဲ့ဝင်အမှတ်တံဆိပ်ကို ထည့်သွင်းပါ။ အမှတ်တံဆိပ်ကို ဤအုပ်စုအတွင်းသာမြင်နိုင်သည်။</string>
 
     <!-- EOF -->
 </resources>

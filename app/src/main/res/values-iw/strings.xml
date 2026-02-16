@@ -4083,13 +4083,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal יכולה לאמת אוטומטית את ההצפנה רק הצ׳אטים שבהם החיבור עם הצד השני מתבצע באמצעות מספר טלפון. אם הצ׳אט התחיל באמצעות שם משתמש או קבוצה משותפת, יש לאמת את ההצפנה מקצה לקצה באמצעות השוואת המספרים במסך הקודם או סריקת הקוד במכשיר שלו או שלה.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal יכולה כעת לאמת הצפנה באופן אוטומטי</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">עבור אנשי קשר שהחיבור אליהם נעשה באמצעות מספר טלפון, Signal יכולה לאשר אוטומטית שהחיבור מאובטח באמצעות תהליך הנקרא שקיפות מפתחות. לאבטחה נוספת, עדיין ניתן לאמת חיבורים ידנית באמצעות קוד QR או מספר בטיחות.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">למידע נוסף</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">המשך</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">אימות מפתח אוטומטי אינו זמין כרגע עבור המכשיר שלך. להגיש יומן ניפוי באגים?</string>
@@ -9017,11 +9017,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">אם הוא יאבד, לא תהיה לך אפשרות לשחזר את ההודעות שלך.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">מפתח השחזור שלך הוא קוד בן 64 תווים שמאפשר לשחזר את כל סוגי הגיבויים שלך.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">המפתח הזה יחליף את המפתח לגיבוי במכשיר שלך.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">מפתח הגיבוי שלך הוא קוד בן 64 תווים שמאפשר לשחזר את הגיבויים שלך בעת התקנה מחדש של Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">זהו אותו מפתח כמו מפתח הגיבוי המקומי שלך.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9660,7 +9660,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">סגירת מסך</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">מחיקת תווית</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">אפשר להוסיף תווית חבר/ה לתיאור הזהות או התפקיד שלך בקבוצה. התוויות מוצגות רק בתוך הקבוצה.</string>
 
     <!-- EOF -->
 </resources>

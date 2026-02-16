@@ -4083,13 +4083,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Aplikace Signal může automaticky ověřit šifrování pouze v chatech, kde jste s někým propojeni prostřednictvím telefonního čísla. Pokud byl chat zahájen se společným uživatelským jménem nebo skupinou, ověřte koncové šifrování porovnáním čísel na předchozí obrazovce nebo naskenováním kódu na jejich zařízení.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal nyní podporuje automatické ověření šifrování</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">U kontaktů, se kterými jste propojeni pomocí telefonního čísla, může aplikace Signal automaticky potvrdit, zda je připojení zabezpečené, pomocí procesu zvaného transparentnost klíče. Pro větší bezpečnost můžete připojení i nadále ověřovat ručně pomocí QR kódu nebo bezpečnostního čísla.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Zjistit více</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Pokračovat</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Automatické ověření klíče není momentálně na vašem zařízení k dispozici. Odeslat protokol ladění?</string>
@@ -9017,11 +9017,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Pokud jej ztratíte, nebudete moci své zprávy obnovit.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Váš klíč pro obnovení je 64místný kód, který vám umožní obnovit všechny typy záloh.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Tento klíč nahradí záložní klíč v zařízení.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Váš záložní klíč je 64místný kód, který vám umožní obnovit zálohu při opětovné instalaci aplikace Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Jedná se o stejný klíč jako je váš záložní klíč v zařízení.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9660,7 +9660,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Zavřít obrazovku</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Vymazat štítek</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Přidejte štítek člena, kterým popíšete sebe nebo svoji roli ve skupině. Štítky jsou viditelné pouze v rámci této skupiny.</string>
 
     <!-- EOF -->
 </resources>

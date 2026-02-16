@@ -642,7 +642,7 @@
     <string name="ConversationFragment_delete">Usuń</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Usuń wszędzie</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Wiadomość zostanie usunięta u wszystkich osób na tym czacie, pod warunkiem że mają najnowszą wersję aplikacji Signal. Wyświetli się u nich informacja, że wiadomość została przez Ciebie usunięta.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Wiadomość zostanie usunięta u wszystkich osób w tym czacie, pod warunkiem że mają najnowszą wersję aplikacji Signal. Wyświetli się u nich informacja, że wiadomość została przez Ciebie usunięta.</string>
     <string name="ConversationFragment_quoted_message_not_found">Nie znaleziono oryginalnej wiadomości</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Oryginalna wiadomość nie jest już dostępna</string>
     <string name="ConversationFragment_failed_to_open_message">Nie udało się otworzyć wiadomości</string>
@@ -760,7 +760,7 @@
     <!-- Title of tip 4 -->
     <string name="SafetyTips_tip4_title">Fałszywe konta firm i instytucji</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Zachowaj ostrożność, jeśli rzekomo kontaktuje się z Tobą urząd lub firma. Wiadomości, których nadawcami mieliby być kurierzy, instytucje podatkowe itp., mogą być spamem.</string>
+    <string name="SafetyTips_tip4_message">Zachowaj ostrożność, jeśli rzekomo kontaktuje się z Tobą urząd lub firma. Wiadomości, których nadawcami mieliby być kurierzy, urzędy podatkowe itp., mogą być spamem.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s Signal podaje osoba, do której należy dane konto.</string>
@@ -890,7 +890,7 @@
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
     <string name="RelinkDevicesReminderFragment__relink_your_devices">Połącz urządzenia ponownie</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Gdy to urządzenie zostało wyrejestrowane, zostały od niego odłączone inne dodane przez Ciebie urządzenia. Aby połączyć je ponownie, przejdź do ustawień.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Gdy to urządzenie zostało wyrejestrowane, zostały od niego odłączone inne dodane przez Ciebie urządzenia. Możesz połączyć je ponownie w ustawieniach.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Przejdź do ustawień</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1060,7 +1060,7 @@
     <!-- Title for dialog explaining to users how the scheduled messages work -->
     <string name="ScheduleMessageFTUXBottomSheet__title">Zaplanowane wiadomości</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Jeśli masz zaplanowaną wiadomość, upewnij się, że w momencie planowanej wysyłki Twoje urządzenie będzie włączone i połączone z internetem. W innym przypadku wiadomość zostanie wysłana, gdy urządzenie z powrotem połączy się z internetem.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Jeśli masz zaplanowaną wiadomość, w momencie planowanej wysyłki Twoje urządzenie musi być włączone i połączone z internetem. W przeciwnym razie wiadomość zostanie wysłana, gdy urządzenie z powrotem połączy się z internetem.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">OK</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
@@ -1076,9 +1076,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Strefa czasowa: %2$s (%1$s)</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Wybrany czas już minął. Jeśli go nie zmienisz, wiadomość zostanie wysłana od razu.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Wybrany czas już minął. Jeśli nie wybierzesz innego, wiadomość zostanie wysłana od razu.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Wyślij teraz</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Wyślij od razu</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Wyślij teraz</string>
@@ -1443,7 +1443,7 @@
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Zauważyliśmy opóźnienie w powiadomieniach. Przesłać dziennik debugowania?</string>
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
-    <string name="PromptLogsSlowNotificationsDialog__message">Dzienniki debugowania ułatwiają namierzenie i naprawę błędu. Nie zawierają danych umożliwiających identyfikację.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">Dzienniki debugowania ułatwiają nam namierzenie i naprawę błędu. Nie zawierają danych umożliwiających identyfikację.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">W aplikacji Signal wystąpił błąd. Przesłać dziennik debugowania?</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
@@ -1676,7 +1676,7 @@
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
     <string name="UsernameOutOfSyncReminder__link_corrupt">Coś poszło nie tak z kodem QR i linkiem do udostępniania Twojej nazwy użytkownika. Przestały działać. Utwórz nowy link, aby udostępniać go innym.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Napraw błąd teraz</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">Napraw teraz</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -4089,7 +4089,7 @@
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Dowiedz się więcej</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Kontynuuj</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Automatyczna weryfikacja kluczy jest obecnie niedostępna na Twoim urządzeniu. Przesłać dziennik debugowania?</string>

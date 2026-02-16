@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">మీరు ఒకరితో ఫోన్ నంబర్ ద్వారా కనెక్ట్ అయినప్పుడు మాత్రమే Signal చాట్‌లలోని గుప్తీకరణను ఆటోమేటిక్‌గా ధృవీకరించగలదు. చాట్ ఒక యూజర్ నేమ్ లేదా ఉమ్మడి గ్రూప్‌తో ప్రారంభించబడి ఉంటే, మునుపటి స్క్రీన్‌లోని నంబర్‌లను పోల్చడం ద్వారా లేదా వారి పరికరంలోని కోడ్‌ను స్కాన్ చేయడం ద్వారా ఎండ్-టు-ఎండ్ గుప్తీకరణను ధృవీకరించండి.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal ఇప్పుడు గుప్తీకరణను స్వయం-ధృవీకరణ చేయగలదు</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">ఫోన్ నంబర్ ద్వారా మీరు కనెక్ట్ అయిన పరిచయాల కోసం, Signal కీ పారదర్శకత అనే ప్రక్రియను ఉపయోగించి కనెక్షన్ సురక్షితంగా ఉందో లేదో ఆటోమేటిక్‌గా నిర్ధారించగలదు. అదనపు భద్రత కోసం, మీరు ఇప్పటికీ QR కోడ్ లేదా భద్రతా సంఖ్యను ఉపయోగించి కనెక్షన్‌లను మాన్యువల్‌గా ధృవీకరించవచ్చు.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">మరింత తెలుసుకోండి</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">కొనసాగించు</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">మీ పరికరానికి ఆటోమేటిక్ కీ ధృవీకరణ ప్రస్తుతం అందుబాటులో లేదు. డీబగ్ లాగ్‌ను సమర్పించేదా?</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">ఒకవేళ మీరు దానిని కోల్పోతే, మీరు మీ సందేశాలను తిరిగి పొందలేరు.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">మీ రికవరీ కీ అనేది అన్ని బ్యాకప్ రకాలను పునరుద్ధరించడానికి మిమ్మల్ని అనుమతించే 64-అక్షరాల కోడ్.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">ఈ కీ మీ పరికరంలోని బ్యాకప్ కోసం కీని భర్తీ చేస్తుంది.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">మీ బ్యాకప్ కీ అనేది 64-అక్షరాల కోడ్, ఇది మీరు Signal ను మళ్ళీ ఇన్‌స్టాల్ చేసినప్పుడు మీ బ్యాకప్‌లను పునరుద్ధరించడానికి మిమ్మల్ని అనుమతిస్తుంది.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">ఇది మీ పరికరంలోని బ్యాకప్ కీ లాంటిదే.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">స్క్రీన్‌ను మూసివేయండి</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">లేబుల్‌ను తొలగించండి</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">ఈ గ్రూప్‌లో మిమ్మల్ని లేదా మీ పాత్రను వివరించడానికి సభ్యుడి లేబుల్‌ను జోడించండి. ఈ గ్రూప్‌లో మాత్రమే లేబుల్‌లు కనిపిస్తాయి.</string>
 
     <!-- EOF -->
 </resources>

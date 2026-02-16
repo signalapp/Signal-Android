@@ -3753,7 +3753,7 @@
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Кененирээк маалымат</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Улантуу</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Түзмөгүңүздө ачкыч автоматтык түрдө текшерилбейт. Мүчүлүштүктөр журналын жөнөтөсүзбү?</string>

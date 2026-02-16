@@ -3747,13 +3747,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal پەقەت تېلېفون نومۇرى ئارقىلىق بىرەيلەن بىلەن باغلىنىشلىق بولغان پاراڭلاردىلا شىفىرلاشتۇرۇشنى ئاپتوماتىك دەلىللىيەلەيدۇ. ئەگەر پاراڭ، ئىشلەتكۈچى نامى ياكى ئورتاق بىر گۇرۇپپىدىكى بىىرى بىلەن باشلانغان بولسا، ئالدىنقى ئېكراندىكى سانلارنى سېلىشتۇرۇش ياكى ئۇلارنىڭ ئۈسكۈنىسىدىكى كودنى سىكانىرلاش ئارقىلىق ئاخىرغىچە شىفىرلاشتۇرۇشنى دەلىللەڭ.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal ھازىر شىفىرلاشتۇرۇشنى ئاپتوماتىك دەلىللىيەلەيدۇ</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">تېلېفون نومۇرى ئارقىلىق باغلانغان ئالاقىلاشقۇچىلىرىڭىز ئۈچۈن، Signal، ئاچقۇچ ئاشكارىلىقى دەپ ئاتىلىدىغان جەريان ئارقىلىق ئۇلىنىشنىڭ بىخەتەر ياكى ئەمەسلىكىنى ئاپتوماتىك جەزملەشتۈرەلەيدۇ. بىخەتەرلىكنى ئاشۇرۇش ئۈچۈن، سىز يەنىلا QR كودى ياكى بىخەتەرلىك نومۇرى ئارقىلىق ئۇلىنىشلارنى قولدا دەلىللىيەلەيسىز.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">تەپسىلاتى</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">داۋاملاشتۇر</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">ئاپتوماتىك ئاچقۇچ دەلىللەشنى ھازىرچە ئۈسكۈنىڭىزدە ئىشلەتكىلى بولمايدۇ. كاشىلا ھەل قىلىش خاتىرىسىنى يوللامسىز؟</string>
@@ -8471,11 +8471,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">ئەگەر ئۇنى يوقىتىپ قويسىڭىز، ئۇچۇرلىرىڭىزنى ئەسلىگە كەلتۈرەلمەيسىز.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىز 64 خانىلىق كود بولۇپ، بارلىق شەكىلدىكى زاپاسلارنى ئەسلىگە كەلتۈرۈشكە شارائىت يارىتىپ بېرىدۇ.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">بۇ ئاچقۇچ ئۈسكۈنىڭىزدىكى زاپاسلاش ئاچقۇچىنىڭ ئورنىنى ئالىدۇ.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">سىزنىڭ زاپاسلاش ئاچقۇچىڭىز بولسا سىگنالنى قايتا قاچىلىغاندا ياردەم قىلىپ زاپاسلاشنى ئەسلىگە كەلتۈرىدىغان 64 خانىلىق كود.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">بۇ، ئۈسكۈنىڭىزدىكى زاپاسلاش ئاچقۇچىڭىز بىلەن ئوخشاش.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9099,7 +9099,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">ئېكراننى تاقاش</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">بەلگىنى تازىلاش</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">بۇ گۇرۇپپىدا ئۆزىڭىزنى ياكى رولىڭىزنى تەسۋىرلەش ئۈچۈن بىر ئەزا بەلگىسى قوشۇڭ. ئەزا بەلگىلىرى پەقەت بۇ گۇرۇپپىدىلا كۆرۈنىدۇ.</string>
 
     <!-- EOF -->
 </resources>

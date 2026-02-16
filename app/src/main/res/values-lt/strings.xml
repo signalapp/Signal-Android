@@ -4083,13 +4083,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">„Signal“ gali automatiškai patvirtinti šifravimą tik tuose pokalbiuose, kur su asmeniu bendraujate turėdami telefono numerį. Jei pokalbis pradėtas turint naudotojo vardą arba bendroje grupėje, patvirtinkite ištisinį šifravimą rankiniu būdu, palygindami ankstesniame ekrane pateiktus skaičius arba nuskaitydami kodą jų įrenginyje.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">„Signal“ dabar gali automatiškai patvirtinti šifravimą</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Jei su adresatais bendraujate naudodami telefono numerius, „Signal“ automatiškai patvirtins, ar ryšys saugus, pagal rakto skaidrumo procesą. Dėl papildomo saugumo ryšius vis dar galite patvirtinti patys, naudodami QR kodą arba saugumo numerį.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Sužinoti daugiau</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Tęsti</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Automatinis rakto patvirtinimas jūsų įrenginyje šiuo metu negalimas. Pateikti derinimo žurnalą?</string>
@@ -9017,11 +9017,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Pamiršę raktą savo žinučių atkurti negalėsite.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Atkūrimo raktas yra 64 simbolių kodas, leidžiantis atkurti visų tipų atsargines kopijas.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Šis raktas pakeis jūsų įrenginyje esančios atsarginės kopijos raktą.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Atsarginis raktas yra 64 simbolių kodas, leidžiantis atkurti atsargines kopijas iš naujo įdiegus „Signal“.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Jis atitinka jūsų atsarginės kopijos įrenginyje raktą.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9660,7 +9660,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Uždaryti ekraną</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Išvalyti kategoriją</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Apibūdinkite save arba savo vaidmenį šioje grupėje pridėdami nario kategoriją. Kategorijos matomos tik šioje grupėje.</string>
 
     <!-- EOF -->
 </resources>

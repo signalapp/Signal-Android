@@ -3747,13 +3747,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal จะสามารถตรวจยืนยันการเข้ารหัสโดยอัตโนมัติได้เฉพาะในแชทที่คุณและผู้ติดต่อเชื่อมโยงกันผ่านทางหมายเลขโทรศัพท์เท่านั้น ในกรณีของแชทที่เริ่มต้นผ่านทางชื่อผู้ใช้หรือการมีกลุ่มร่วมกัน คุณสามารถตรวจยืนยันการเข้ารหัสตั้งแต่ต้นทางถึงปลายทางโดยเทียบหมายเลขซึ่งแสดงในหน้าที่แล้วหรือสแกนคิวอาร์โค้ดบนอุปกรณ์ของผู้ติดต่อ</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal สามารถตรวจยืนยันการเข้ารหัสโดยอัตโนมัติได้แล้ว</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">หากคุณและผู้ติดต่อเชื่อมโยงกันผ่านทางหมายเลขโทรศัพท์ Signal จะสามารถใช้ขั้นตอนที่เรียกว่า Key Transparency ในการยืนยันความปลอดภัยของเครือข่ายโดยอัตโนมัติ เพื่อความปลอดภัยยิ่งขึ้น คุณยังคงสามารถตรวจยืนยันเครือข่ายด้วยตนเองผ่านทางคิวอาร์โค้ดหรือหมายเลขความปลอดภัย</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">ดำเนินการต่อ</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">ไม่สามารถใช้การตรวจยืนยันโดยอัตโนมัติได้บนอุปกรณ์ของคุณ คุณต้องการส่งบันทึกดีบักหรือไม่</string>
@@ -8471,11 +8471,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">คุณจะไม่สามารถกู้คืนข้อความได้หากทำกุญแจหาย</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">กุญแจกู้คืนคือรหัส 64 ตัวที่จะทำให้คุณสามารถกู้คืนข้อมูลสำรองทุกประเภทได้</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">กุญแจนี้จะถูกใช้แทนที่กุญแจในการสำรองข้อมูลไว้บนอุปกรณ์ที่มีอยู่เดิม</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">กุญแจสำรองคือรหัส 64 ตัวที่จะทำให้คุณสามารถกู้คืนข้อมูลสำรองในกรณีที่ติดตั้ง Signal ใหม่อีกครั้ง</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">นี่เป็นกุญแจเดียวกันกับกุญแจสำรองที่คุณใช้ในการสำรองข้อมูลไว้บนอุปกรณ์</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9099,7 +9099,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">ปิดหน้าต่าง</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">ล้างป้ายกำกับ</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">เพิ่มป้ายกำกับสมาชิกเพื่อบรรยายตัวเองหรือระบุบทบาทของคุณในกลุ่มนี้ โดยระบบจะแสดงป้ายกำกับให้เห็นเฉพาะภายในกลุ่มนี้เท่านั้น</string>
 
     <!-- EOF -->
 </resources>

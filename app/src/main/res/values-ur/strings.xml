@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal چیٹس میں انکرپشن کی خودکار تصدیق صرف اس وقت کر سکتا ہے جب آپ کسی کے ساتھ فون نمبر کے ذریعے مربوط ہوں۔ اگر چیٹ کسی یوزر نیم کے ساتھ یا کسی مشترکہ گروپ میں شروع کی گئی تھی، تو پچھلی اسکرین پر موجود نمبرز کا موازنہ کر کے یا ان کی ڈیوائس پر کوڈ اسکین کر کے آخر سے آخر تک انکرپشن کی تصدیق کریں۔</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">اب Signal خودکار طور پر انکرپشن کی تصدیق کر سکتا ہے</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">ان رابطوں کے لیے جن کے ساتھ آپ فون نمبر کے ذریعے مربوط ہیں، Signal خود کار طور پر کیی ٹرانسپیرینسی نامی طریقہ کار استعمال کرتے ہوئے یہ تصدیق کر سکتا ہے کہ آیا کنیکشن محفوظ ہے۔ اضافی تحفظ کے لیے، آپ اب بھی کنیکشنز کی دستی طور پر QR کوڈ یا حفاظتی نمبر کے ذریعے تصدیق کر سکتے ہیں۔</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">مزید جانیں</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">جاری رکھیں</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">آپ کی ڈیوائس پر خودکار کیی کی تصدیق فی الحال دستیاب نہیں ہے۔ ڈی بگ لاگ جمع کروائیں؟</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">اگر آپ اسے کھو دیتے ہیں، تو آپ اپنے میسجز کو بحال نہیں کر سکیں گے۔</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">آپ کی ریکوری کیی 64 حروف پر مشتمل ایک کوڈ ہے جو آپ کو بیک اپ کی تمام اقسام بحال کرنے میں مدد دیتا ہے۔</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">یہ کیی آپ کے آن ڈیوائس بیک اپ کی کیی کو بدل دے گی۔</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">آپ کی بیک اپ کیی 64 حروف پر مشتمل ایک کوڈ ہے جو آپ کو Signal کو دوبارہ انسٹال کرنے پر اپنے بیک اپس کو بحال کرنے میں مدد دیتا ہے۔</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">یہ آپ کی آن ڈیوائس بیک اپ کیی کے مساوی ہے۔</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">اسکرین بند کریں</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">لیبل صاف کریں</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">اس گروپ میں خود کو یا اپنے کردار کو بیان کرنے کے لیے ایک ممبر لیبل شامل کریں۔ لیبلز صرف اس گروپ میں ہی نظر آتے ہیں۔</string>
 
     <!-- EOF -->
 </resources>

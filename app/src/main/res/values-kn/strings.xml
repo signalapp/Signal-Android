@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">ನೀವು ಫೋನ್ ಸಂಖ್ಯೆಯ ಮೂಲಕ ಯಾರೊಂದಿಗಾದರೂ ಸಂಪರ್ಕಗೊಂಡಿರುವ ಚಾಟ್‌ಗಳಲ್ಲಿ Signal ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಎನ್‌ಕ್ರಿಪ್ಶನ್ ಅನ್ನು ದೃಢೀಕರಿಸಬಹುದು. ಚಾಟ್ ಅನ್ನು ಯೂಸರ್‌ನೇಮ್ ಅಥವಾ ಸಾಮಾನ್ಯ ಗುಂಪಿನೊಂದಿಗೆ ಪ್ರಾರಂಭಿಸಿದ್ದರೆ, ಹಿಂದಿನ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿರುವ ಸಂಖ್ಯೆಗಳನ್ನು ಹೋಲಿಕೆ ಮಾಡುವ ಮೂಲಕ ಅಥವಾ ಅವರ ಸಾಧನದಲ್ಲಿ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡುವ ಮೂಲಕ ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಶನ್ ಅನ್ನು ದೃಢೀಕರಿಸಿ.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal ಈಗ ಎನ್‌ಕ್ರಿಪ್ಶನ್ ಅನ್ನು ಸ್ವಯಂ-ದೃಢೀಕರಿಸಬಲ್ಲದು</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">ನೀವು ಫೋನ್ ಸಂಖ್ಯೆಯ ಮೂಲಕ ಕನೆಕ್ಟ್ ಆಗಿರುವ ಸಂಪರ್ಕಗಳಿಗೆ, ಕೀ ಟ್ರಾನ್ಸ್‌ಪರೆನ್ಸಿ ಎಂಬ ಪ್ರಕ್ರಿಯೆಯನ್ನು ಬಳಸಿಕೊಂಡು ಕನೆಕ್ಷನ್ ಸುರಕ್ಷಿತವಾಗಿದೆಯೇ ಎಂದು Signal ಸ್ವಯಂಚಾಲಿತವಾಗಿ ದೃಢೀಕರಿಸುತ್ತದೆ. ಹೆಚ್ಚಿನ ಭದ್ರತೆಗಾಗಿ, ನೀವು ಈಗಲೂ QR ಕೋಡ್ ಅಥವಾ ಸುರಕ್ಷಾ ಸಂಖ್ಯೆಯನ್ನು ಬಳಸಿಕೊಂಡು ಕನೆಕ್ಷನ್‌ಗಳನ್ನು ಮ್ಯಾನುವಲ್ ಆಗಿ ದೃಢೀಕರಿಸಬಹುದು.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">ಮುಂದುವರಿಸಿ</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">ನಿಮ್ಮ ಸಾಧನಕ್ಕೆ ಸ್ವಯಂಚಾಲಿತ ಕೀ ದೃಢೀಕರಣವು ಪ್ರಸ್ತುತ ಲಭ್ಯವಿಲ್ಲ. ಡೀಬಗ್ ಲಾಗ್ ಸಲ್ಲಿಸಬೇಕೆ?</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">ನೀವು ಅದನ್ನು ಕಳೆದುಕೊಂಡರೆ, ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗಳನ್ನು ರಿಕವರ್ ಮಾಡಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">ನಿಮ್ಮ ರಿಕವರಿ ಕೀ 64-ಅಕ್ಷರಗಳ ಕೋಡ್ ಆಗಿದ್ದು ಅದು ಎಲ್ಲಾ ಬ್ಯಾಕಪ್ ಪ್ರಕಾರಗಳನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು ನಿಮಗೆ ಅನುಮತಿಸುತ್ತದೆ.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">ಈ ಕೀ ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ಗಾಗಿ ಕೀಯನ್ನು ಬದಲಾಯಿಸುತ್ತದೆ.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಕೀ 64-ಅಕ್ಷರಗಳ ಕೋಡ್ ಆಗಿದ್ದು, ನೀವು Signal ಅನ್ನು ಮರು-ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು ನಿಮಗೆ ಅನುಮತಿಸುತ್ತದೆ.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">ಇದು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್ ಕೀಯಂತೆಯೇ ಇರುತ್ತದೆ.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">ಸ್ಕ್ರೀನ್ ಮುಚ್ಚಿ</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">ಲೇಬಲ್ ತೆರವುಗೊಳಿಸಿ</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">ಈ ಗುಂಪಿನಲ್ಲಿ ನಿಮ್ಮನ್ನು ಅಥವಾ ನಿಮ್ಮ ಪಾತ್ರವನ್ನು ವಿವರಿಸಲು ಸದಸ್ಯರ ಲೇಬಲ್ ಅನ್ನು ಸೇರಿಸಿ. ಲೇಬಲ್‌ಗಳು ಈ ಗುಂಪಿನೊಳಗೆ ಮಾತ್ರ ಗೋಚರಿಸುತ್ತವೆ.</string>
 
     <!-- EOF -->
 </resources>

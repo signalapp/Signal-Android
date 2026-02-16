@@ -6,17 +6,17 @@
     <!-- Button label to dismiss or defer a permission request -->
     <string name="Permissions_not_now">ឥឡូវកុំទាន់</string>
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">"1. Tap Settings below"</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">"1. ចុច “ការកំណត់” ខាងក្រោម"</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s បើកការអនុញ្ញាត</string>
     <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">"2. Tap Permissions"</string>
+    <string name="PermissionDeniedBottomSheet__2_tap_permissions">"2. ចុច “ការអនុញ្ញាត”"</string>
     <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">"3. %1$s Allow the Photos and videos permission"</string>
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">"3. %1$s បើកការអនុញ្ញាត “រូបថត និងវីដេអូ”"</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Settings</string>
+    <string name="PermissionDeniedBottomSheet__settings">ការកំណត់</string>
     <!-- Title for dialog shown when a required permission has not been granted -->
-    <string name="Permissions_permission_required">Permission required</string>
+    <string name="Permissions_permission_required">ទាមទារការអនុញ្ញាត</string>
 
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->

@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal yalnız telefon nömrəsindən biri ilə əlaqə saxladığınız zaman çatlardakı şifrələməni avtomatik yoxlaya bilər. Çat bir istifadəçi adı və ya ümumi bir qrupla başladıqda, tam şifrələməni əvvəlki ekranda çıxan nömrələri müqayisə edərək və ya onun cihazındakı kodu skan edərək yoxlayın.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Artıq Signal şifrələməni avtomatik yoxlaya bilir</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Telefon nömrəsi ilə əlaqə saxladığınız kontaktlar üçün Signal “açar şəffaflığı” adlanan proses vasitəsilə bağlantının təhlükəsiz olduğunu avtomatik təsdiqləyə bilər. Əlavə təhlükəsizlik üçün QR kod və ya təhlükəsizlik nömrəsindən istifadə etməklə bağlantıları əlinizlə də yoxlaya bilərsiniz.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Daha ətraflı</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Davam et</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Avtomatik şifrə yoxlama cihazınız üçün hazırda qeyri-aktivdir. Sazlama jurnalı göndərilsin?</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Onu itirsəniz, mesajlarınızı bərpa edə bilməzsiniz.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Bərpa şifrəniz bütün ehtiyat nüsxə növlərini bərpa etməyinizə imkan verən 64 simvollu koddur.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Bu şifrə cihaz daxili ehtiyat nüsxənin şifrəsini əvəz edəcək.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Ehtiyat nüsxə şifrəsi, Signal-ı təkrar quraşdırdıqda ehtiyat nüsxələrinizi bərpa etməyinizə imkan verən 64 simvollu koddur.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Bu, sizin cihazdakı ehtiyat nüsxə şifrənizlə eynidir.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Ekranı bağlayın</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Etiketi silin</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Özünüzü və ya bu qrupdakı rolunuzu təsvir etmək üçün bir üzv etiketi əlavə edin. Etiketlər yalnız bu qrup daxilində görünür.</string>
 
     <!-- EOF -->
 </resources>

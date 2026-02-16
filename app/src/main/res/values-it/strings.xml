@@ -3859,13 +3859,13 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal può verificare automaticamente il livello di crittografia delle chat in cui hai contattato l\'altra persona usando il suo numero di telefono. Se hai iniziato la chat tramite un nome utente oppure un gruppo in comune, ti consigliamo di verificare la crittografia end-to-end confrontando i numeri presenti sulla schermata precedente oppure scansionando il codice sul dispositivo dell\'altra persona.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal ora può verificare automaticamente la crittografia delle chiavi</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Per i contatti con cui hai iniziato una chat usando il loro numero di telefono, Signal può confermare automaticamente se la connessione è sicura tramite un processo chiamato \"key transparency\". Per maggiore sicurezza, puoi comunque verificare manualmente le connessioni usando un codice QR o un numero.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Scopri di più</string>
     <!-- Button to go to verification page -->
-    <string name="VerifyAutomaticallyEducationSheet__continue">Continue</string>
+    <string name="VerifyAutomaticallyEducationSheet__continue">Continua</string>
 
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">La verifica automatica delle chiavi di crittografia non è disponibile per il tuo dispositivo. Vuoi inviarci un log di debug?</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Se la perdi, non potrai più recuperare i tuoi messaggi.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">La chiave di ripristino è un codice di 64 caratteri che ti consente di ripristinare tutti i tipi di backup.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Questa chiave sostituirà la chiave per il tuo backup su dispositivo.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">La chiave di backup è un codice di 64 caratteri che ti consente di ripristinare i tuoi backup quando installi di nuovo Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Si tratta della stessa chiave di ripristino del backup su dispositivo.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Chiudi schermata</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Rimuovi ruolo</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Imposta un ruolo dell\'utente per descriverti o specificare il tuo ruolo in questo gruppo. I ruoli sono visibili solo all\'interno di questo gruppo.</string>
 
     <!-- EOF -->
 </resources>
