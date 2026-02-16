@@ -167,13 +167,13 @@ object NotificationStateProvider {
       isUnreadMessage &&
         !messageRecord.isOutgoing &&
         isGroupStoryReply &&
-        (isParentStorySentBySelf || messageRecord.hasSelfMention() || (hasSelfRepliedToStory && !messageRecord.isStoryReaction()))
+        (isParentStorySentBySelf || messageRecord.hasSelfMentionOrQuoteOfSelf() || (hasSelfRepliedToStory && !messageRecord.isStoryReaction()))
 
     fun includeMessage(notificationProfile: NotificationProfile?): MessageInclusion {
       return if (isUnreadIncoming || stickyThread || isNotifiableGroupStoryMessage || isIncomingMissedCall) {
-        if (threadRecipient.isMuted && (threadRecipient.isDoNotNotifyMentions || !messageRecord.hasSelfMention())) {
+        if (threadRecipient.isMuted && (threadRecipient.isDoNotNotifyMentions || !messageRecord.hasSelfMentionOrQuoteOfSelf())) {
           MessageInclusion.MUTE_FILTERED
-        } else if (notificationProfile != null && !notificationProfile.isRecipientAllowed(threadRecipient.id) && !(notificationProfile.allowAllMentions && messageRecord.hasSelfMention())) {
+        } else if (notificationProfile != null && !notificationProfile.isRecipientAllowed(threadRecipient.id) && !(notificationProfile.allowAllMentions && messageRecord.hasSelfMentionOrQuoteOfSelf())) {
           MessageInclusion.PROFILE_FILTERED
         } else {
           MessageInclusion.INCLUDE
@@ -209,6 +209,10 @@ object NotificationStateProvider {
 
     private val Recipient.isDoNotNotifyMentions: Boolean
       get() = mentionSetting == RecipientTable.MentionSetting.DO_NOT_NOTIFY
+
+    private fun MessageRecord.hasSelfMentionOrQuoteOfSelf(): Boolean {
+      return hasSelfMention() || (this is MmsMessageRecord && quote?.author == Recipient.self().id)
+    }
   }
 
   private enum class MessageInclusion {
