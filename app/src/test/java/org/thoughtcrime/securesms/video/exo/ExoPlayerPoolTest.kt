@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.video.exo
 
 import android.app.Application
+import androidx.media3.common.TrackSelectionParameters
 import androidx.media3.exoplayer.ExoPlayer
+import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertThrows
@@ -84,7 +86,9 @@ class ExoPlayerPoolTest {
   ): ExoPlayerPool<ExoPlayer> {
     return object : ExoPlayerPool<ExoPlayer>(maximumReservedPlayers) {
       override fun createPlayer(): ExoPlayer {
-        return mockk<ExoPlayer>(relaxUnitFun = true)
+        return mockk<ExoPlayer>(relaxUnitFun = true) {
+          every { trackSelectionParameters } returns TrackSelectionParameters.DEFAULT
+        }
       }
 
       override fun getMaxSimultaneousPlayback(): Int {
