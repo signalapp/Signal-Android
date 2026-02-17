@@ -137,6 +137,7 @@ class AttachmentDownloadJob private constructor(
       .maybeApplyNotInCallConstraint(forceDownload)
       .setLifespan(TimeUnit.DAYS.toMillis(1))
       .setMaxAttempts(Parameters.UNLIMITED)
+      .setQueuePriority(if (forceDownload) Parameters.PRIORITY_HIGH else Parameters.PRIORITY_DEFAULT)
       .build(),
     messageId,
     attachmentId,
