@@ -659,10 +659,11 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           )
         )
 
+        @Suppress("DEPRECATION")
         clickPref(
           title = DSLSettingsText.from(R.string.ConversationSettingsFragment__see_all),
           onClick = {
-            startActivity(MediaOverviewActivity.forThread(requireContext(), state.threadId))
+            startActivityForResult(MediaOverviewActivity.forThread(requireContext(), state.threadId), REQUEST_CODE_RETURN_FROM_MEDIA)
           }
         )
       }
