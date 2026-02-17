@@ -118,6 +118,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   private var enterPipOnResume: Boolean = false
   private var lastProcessedIntentTimestamp = 0L
   private var previousEvent: WebRtcViewModel? = null
+  private var answeredFromNotification: Boolean = false
   private var ephemeralStateDisposable = Disposable.empty()
   private val callPermissionsDialogController = CallPermissionsDialogController()
 
@@ -393,7 +394,15 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     viewModel.setRecipient(event.recipient)
     callScreen.setRecipient(event.recipient)
     event.isRemoteVideoOffer
-    callScreen.setWebRtcCallState(event.state)
+
+    if (answeredFromNotification && event.state == WebRtcViewModel.State.CALL_INCOMING) {
+      Log.d(TAG, "Suppressing CALL_INCOMING UI state because call was already answered from notification")
+    } else {
+      if (event.state != WebRtcViewModel.State.CALL_INCOMING) {
+        answeredFromNotification = false
+      }
+      callScreen.setWebRtcCallState(event.state)
+    }
 
     if (event.state != previousCallState) {
       setTurnScreenOnForCallState(event.state)
@@ -687,8 +696,18 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
   private fun processIntent(callIntent: CallIntent) {
     when (callIntent.action) {
-      CallIntent.Action.ANSWER_AUDIO -> handleAnswerWithAudio()
-      CallIntent.Action.ANSWER_VIDEO -> handleAnswerWithVideo()
+      CallIntent.Action.ANSWER_AUDIO -> {
+        handleAnswerWithAudio()
+        if (!callIntent.isStartedFromFullScreen) {
+          answeredFromNotification = true
+        }
+      }
+      CallIntent.Action.ANSWER_VIDEO -> {
+        handleAnswerWithVideo()
+        if (!callIntent.isStartedFromFullScreen) {
+          answeredFromNotification = true
+        }
+      }
       CallIntent.Action.DENY -> handleDenyCall()
       CallIntent.Action.END_CALL -> handleEndCall()
       else -> Unit
