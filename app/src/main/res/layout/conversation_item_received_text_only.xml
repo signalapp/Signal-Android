@@ -100,15 +100,23 @@
         android:orientation="vertical"
         tools:backgroundTint="@color/conversation_blue">
 
-        <org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView
-            android:id="@+id/group_sender_name_with_label"
+        <FrameLayout
+            android:id="@+id/group_sender_holder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:paddingStart="@dimen/message_bubble_horizontal_padding"
-            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginTop="@dimen/message_bubble_top_padding"
+            android:orientation="horizontal"
             android:visibility="gone"
-            tools:visibility="visible" />
+            tools:visibility="visible">
+
+            <org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView
+                android:id="@+id/group_sender_name_with_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/message_bubble_horizontal_padding"
+                android:paddingEnd="@dimen/message_bubble_horizontal_padding" />
+
+        </FrameLayout>
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/conversation_item_body"

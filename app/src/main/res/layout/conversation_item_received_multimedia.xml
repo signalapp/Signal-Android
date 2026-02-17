@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.conversation.ConversationItem xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/conversation_item"
     android:layout_width="match_parent"
@@ -13,7 +12,8 @@
     android:nextFocusRight="@+id/embedded_text_editor"
     android:orientation="vertical"
     android:paddingStart="@dimen/conversation_individual_received_left_gutter"
-    android:paddingEnd="@dimen/conversation_individual_right_gutter">
+    android:paddingEnd="@dimen/conversation_individual_right_gutter"
+    tools:viewBindingIgnore="true">
 
     <FrameLayout
         android:id="@+id/reply_icon_wrapper"
@@ -79,16 +79,24 @@
         tools:background="@drawable/message_bubble_background_received_alone"
         tools:backgroundTint="@color/signal_colorSurfaceVariant">
 
-        <org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView
-            android:id="@+id/group_sender_name_with_label"
+        <FrameLayout
+            android:id="@+id/group_sender_holder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/message_bubble_top_image_margin"
             android:layout_marginBottom="@dimen/message_bubble_top_image_margin"
-            android:paddingStart="@dimen/message_bubble_horizontal_padding"
-            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
+            android:orientation="horizontal"
             android:visibility="gone"
-            tools:visibility="visible" />
+            tools:visibility="visible">
+
+            <org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView
+                android:id="@+id/group_sender_name_with_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/message_bubble_horizontal_padding"
+                android:paddingEnd="@dimen/message_bubble_horizontal_padding" />
+
+        </FrameLayout>
 
         <LinearLayout
             android:id="@+id/story_reacted_label_holder"
@@ -210,18 +218,18 @@
             android:textColor="@color/signal_text_primary"
             android:textColorLink="@color/signal_text_primary"
             app:emoji_maxLength="1000"
+            app:emoji_renderSpoilers="true"
             app:measureLastLine="true"
             app:scaleEmojis="true"
-            app:emoji_renderSpoilers="true"
             tools:text="Mango pickle lorem ipsum" />
 
         <ViewStub
             android:id="@+id/poll"
             android:layout_width="wrap_content"
-            android:maxWidth="@dimen/media_bubble_max_width"
             android:layout_height="wrap_content"
             android:layout_marginTop="-4dp"
-            android:layout="@layout/conversation_item_poll" />
+            android:layout="@layout/conversation_item_poll"
+            android:maxWidth="@dimen/media_bubble_max_width" />
 
         <ViewStub
             android:id="@+id/conversation_item_join_button"
@@ -283,15 +291,15 @@
         android:layout_height="36dp"
         android:layout_toStartOf="@id/quoted_indicator"
         android:gravity="center_vertical"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@id/body_bubble"
         android:layout_alignTop="@id/body_bubble"
+        android:layout_alignEnd="@id/body_bubble"
         android:layout_alignBottom="@id/body_bubble"
-        android:layout_marginEnd="-42dp" >
+        android:layout_marginEnd="-42dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/quoted_indicator"

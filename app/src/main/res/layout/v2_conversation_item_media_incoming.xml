@@ -71,12 +71,13 @@
 
         <org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView
             android:id="@+id/group_sender_name_with_label"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/message_bubble_top_padding"
             android:paddingStart="@dimen/message_bubble_horizontal_padding"
             android:paddingEnd="@dimen/message_bubble_horizontal_padding"
             android:visibility="gone"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toTopOf="@id/conversation_item_content_spacer"
             app:layout_constraintEnd_toEndOf="@id/conversation_item_body"
             app:layout_constraintHorizontal_bias="0"
@@ -166,11 +167,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="@dimen/message_bubble_footer_bottom_padding"
-        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date"
+        android:src="@drawable/symbol_pin_filled_12"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_footer_date"
         app:layout_constraintEnd_toStartOf="@id/conversation_item_footer_date"
-        android:visibility="gone"
-        android:src="@drawable/symbol_pin_filled_12" />
+        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date" />
 
     <TextView
         android:id="@+id/conversation_item_footer_date"
