@@ -150,6 +150,7 @@ public final class MediaConverter {
         AudioTrackConverter audioTrackConverter = null;
 
         long mdatContentLength = 0;
+        boolean muxerStarted = false;
         boolean muxerStopped = false;
 
         try {
@@ -162,13 +163,17 @@ public final class MediaConverter {
                 throw new EncodingException("No video and audio tracks");
             }
 
-            doExtractDecodeEditEncodeMux(
+            muxerStarted = doExtractDecodeEditEncodeMux(
                     videoTrackConverter,
                     audioTrackConverter,
                     muxer);
 
-            mdatContentLength = muxer.stop();
-            muxerStopped = true;
+            if (muxerStarted) {
+                mdatContentLength = muxer.stop();
+                muxerStopped = true;
+            } else if (mCancelled) {
+                throw new EncodingException("Conversion cancelled before muxing started");
+            }
 
         } catch (EncodingException | IOException e) {
             Log.e(TAG, "error converting", e);
@@ -204,7 +209,7 @@ public final class MediaConverter {
             }
             try {
                 if (muxer != null) {
-                    if (!muxerStopped) {
+                    if (!muxerStopped && muxerStarted) {
                         muxer.stop();
                     }
                     muxer.release();
@@ -225,8 +230,10 @@ public final class MediaConverter {
 
     /**
      * Does the actual work for extracting, decoding, encoding and muxing.
+     *
+     * @return true if the muxer was started, false otherwise.
      */
-    private void doExtractDecodeEditEncodeMux(
+    private boolean doExtractDecodeEditEncodeMux(
             final @Nullable VideoTrackConverter videoTrackConverter,
             final @Nullable AudioTrackConverter audioTrackConverter,
             final @NonNull Muxer muxer) throws IOException, TranscodingException {
@@ -249,7 +256,7 @@ public final class MediaConverter {
                 Log.d(TAG, "loop: " + currentState);
             }
 
-            if (currentState.equals(oldState)) {
+            if (muxing && currentState.equals(oldState)) {
                 if (++stuckFrames >= STUCK_FRAME_THRESHOLD) {
                     mCancelled = true;
                 }
@@ -305,6 +312,8 @@ public final class MediaConverter {
         }
 
         // TODO: Check the generated output file.
+
+        return muxing;
     }
 
     static String getMimeTypeFor(MediaFormat format) {
