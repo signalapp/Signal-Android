@@ -144,20 +144,6 @@ public final class BubbleUtil {
    * If we accidentally pass a "dp-looking" constant (e.g. 600), the bubble becomes very short on
    * high-density devices which leaves a large empty area below the bubble.
    */
-//  public static int getDesiredBubbleHeightPx(@NonNull Context context) {
-//    final float density   = context.getResources().getDisplayMetrics().density;
-//    final int   minHeight = (int) (600f * density); // 600dp minimum
-//    final int   screenH   = context.getResources().getDisplayMetrics().heightPixels;
-//
-//    if (screenH <= 0) {
-//      return minHeight;
-//    }
-//
-//    // Ask for most of the screen height; the system may clamp as needed.
-//    final int target = (int) (screenH * 0.90f);
-//    return Math.max(minHeight, target);
-//  }
-
   public static int getDesiredBubbleHeightPx(@NonNull Context context) {
     final float density = context.getResources().getDisplayMetrics().density;
     final int minHeightPx = (int) (600f * density + 0.5f); // 600dp min
