@@ -43,6 +43,7 @@ class ContactSearchMediator(
   private val fragment: Fragment,
   private val fixedContacts: Set<ContactSearchKey> = setOf(),
   selectionLimits: SelectionLimits,
+  private val isMultiSelect: Boolean = true,
   displayOptions: ContactSearchAdapter.DisplayOptions,
   mapStateToConfiguration: (ContactSearchState) -> ContactSearchConfiguration,
   private val callbacks: Callbacks = SimpleCallbacks(),
@@ -61,6 +62,7 @@ class ContactSearchMediator(
     fragment,
     ContactSearchViewModel.Factory(
       selectionLimits = selectionLimits,
+      isMultiSelect = isMultiSelect,
       repository = ContactSearchRepository(),
       performSafetyNumberChecks = performSafetyNumberChecks,
       arbitraryRepository = arbitraryRepository,

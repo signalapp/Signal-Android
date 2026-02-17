@@ -66,6 +66,7 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
     mediator = ContactSearchMediator(
       fragment = this,
       selectionLimits = RemoteConfig.shareSelectionLimit,
+      isMultiSelect = true,
       displayOptions = ContactSearchAdapter.DisplayOptions(
         displayCheckBox = true,
         displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER

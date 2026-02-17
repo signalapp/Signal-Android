@@ -342,6 +342,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
                         .map(r -> new ContactSearchKey.RecipientSearchKey(r, false))
                         .collect(java.util.stream.Collectors.toSet()),
         selectionLimit,
+        isMulti,
         new ContactSearchAdapter.DisplayOptions(
             isMulti,
             ContactSearchAdapter.DisplaySecondaryInformation.ALWAYS,

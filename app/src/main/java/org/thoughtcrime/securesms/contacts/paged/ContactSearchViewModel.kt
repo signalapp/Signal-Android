@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.api.util.Preconditions
 class ContactSearchViewModel(
   private val savedStateHandle: SavedStateHandle,
   private val selectionLimits: SelectionLimits,
+  private val isMultiSelect: Boolean,
   private val contactSearchRepository: ContactSearchRepository,
   private val performSafetyNumberChecks: Boolean,
   private val arbitraryRepository: ArbitraryRepository?,
@@ -116,7 +117,11 @@ class ContactSearchViewModel(
         safetyNumberRepository.batchSafetyNumberCheck(newSelectionEntries)
       }
 
-      internalSelectedContacts.update { it + newSelectionEntries }
+      if (!isMultiSelect && newSelectionEntries.isNotEmpty()) {
+        internalSelectedContacts.update { newSelectionEntries.toSet() }
+      } else {
+        internalSelectedContacts.update { it + newSelectionEntries }
+      }
     }
   }
 
@@ -172,6 +177,7 @@ class ContactSearchViewModel(
 
   class Factory(
     private val selectionLimits: SelectionLimits,
+    private val isMultiSelect: Boolean = true,
     private val repository: ContactSearchRepository,
     private val performSafetyNumberChecks: Boolean,
     private val arbitraryRepository: ArbitraryRepository?,
@@ -183,6 +189,7 @@ class ContactSearchViewModel(
         ContactSearchViewModel(
           savedStateHandle = handle,
           selectionLimits = selectionLimits,
+          isMultiSelect = isMultiSelect,
           contactSearchRepository = repository,
           performSafetyNumberChecks = performSafetyNumberChecks,
           arbitraryRepository = arbitraryRepository,

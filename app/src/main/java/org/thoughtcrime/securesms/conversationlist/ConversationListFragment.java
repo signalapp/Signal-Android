@@ -285,6 +285,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     contactSearchMediator = new ContactSearchMediator(this,
                                                       Collections.emptySet(),
                                                       SelectionLimits.NO_LIMITS,
+                                                      false,
                                                       new ContactSearchAdapter.DisplayOptions(
                                                           false,
                                                           ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
