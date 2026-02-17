@@ -428,6 +428,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setHasBeenScheduled(conversationMessage);
     setHasBeenPinned(conversationMessage);
     setPoll(messageRecord, messageRecord.getToRecipient().getChatColors().asSingleColor());
+    adjustMarginsForSenderVisibility();
 
     if (audioViewStub.resolved()) {
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
@@ -1504,7 +1505,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       paymentViewStub.setVisibility(View.GONE);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-      ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+      int senderWidth = hasQuote(messageRecord) ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT;
+      ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, senderWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
 
       footer.setVisibility(VISIBLE);
 
@@ -1775,21 +1778,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         ViewUtil.setBottomMargin(quoteView, 0, false);
       }
 
-      if (mediaThumbnailStub.resolved()) {
-        ViewUtil.setTopMargin(mediaThumbnailStub.require(), readDimen(R.dimen.message_bubble_top_padding), false);
-      }
-
       if (linkPreviewStub.resolved() && !hasBigImageLinkPreview(current)) {
         ViewUtil.setTopMargin(linkPreviewStub.get(), readDimen(R.dimen.message_bubble_top_padding), false);
       }
     } else {
       if (quoteView != null) {
         quoteView.dismiss();
-      }
-
-      int topMargin = (current.isOutgoing() || !startOfCluster || !groupThread) ? 0 : readDimen(R.dimen.message_bubble_top_image_margin);
-      if (mediaThumbnailStub.resolved()) {
-        ViewUtil.setTopMargin(mediaThumbnailStub.require(), topMargin, false);
       }
     }
   }
@@ -1987,7 +1981,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
           !DateUtils.isSameDay(previous.get().getTimestamp(), current.getTimestamp()) || !isWithinClusteringTime(current, previous.get()) || forceGroupHeader(current))
       {
         groupSenderHolder.setVisibility(VISIBLE);
-        adjustMarginsForSenderVisibility(true);
 
         if (hasWallpaper && hasNoBubble(current)) {
           groupSenderHolder.setBackgroundResource(R.drawable.wallpaper_bubble_background_tintable_11);
@@ -1997,7 +1990,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         }
       } else {
         groupSenderHolder.setVisibility(GONE);
-        adjustMarginsForSenderVisibility(false);
       }
 
       if (!next.isPresent() || next.get().isUpdate() || !current.getFromRecipient().equals(next.get().getFromRecipient()) || !isWithinClusteringTime(current, next.get()) || forceGroupHeader(current)) {
@@ -2011,7 +2003,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (groupSenderHolder != null) {
         groupSenderHolder.setVisibility(GONE);
       }
-      adjustMarginsForSenderVisibility(false);
 
       if (contactPhotoHolder != null) {
         contactPhotoHolder.setVisibility(GONE);
@@ -2023,11 +2014,52 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
-  private void adjustMarginsForSenderVisibility(boolean senderNameVisible) {
-    ViewUtil.setTopMargin(bodyText, senderNameVisible ? 0 : readDimen(R.dimen.message_bubble_top_padding));
+  private void adjustMarginsForSenderVisibility() {
+    boolean senderNameVisible = groupSenderHolder != null && groupSenderHolder.getVisibility() == VISIBLE;
+    boolean hasContentAboveBody = (quoteView != null && quoteView.getVisibility() == VISIBLE)
+                               || (mediaThumbnailStub.resolved() && mediaThumbnailStub.require().getVisibility() == VISIBLE)
+                               || (linkPreviewStub.resolved() && linkPreviewStub.get().getVisibility() == VISIBLE)
+                               || (audioViewStub.resolved() && audioViewStub.get().getVisibility() == VISIBLE)
+                               || (documentViewStub.resolved() && documentViewStub.get().getVisibility() == VISIBLE)
+                               || (sharedContactStub.resolved() && sharedContactStub.get().getVisibility() == VISIBLE)
+                               || (stickerStub.resolved() && stickerStub.get().getVisibility() == VISIBLE)
+                               || (revealableStub.resolved() && revealableStub.get().getVisibility() == VISIBLE);
+
+    if (hasContentAboveBody) {
+      ViewUtil.setTopMargin(bodyText, readDimen(R.dimen.message_bubble_top_image_margin));
+    } else if (senderNameVisible) {
+      ViewUtil.setTopMargin(bodyText, 0);
+    } else {
+      ViewUtil.setTopMargin(bodyText, readDimen(R.dimen.message_bubble_top_padding));
+    }
+
+    if (quoteView != null) {
+      ViewUtil.setTopMargin(quoteView, senderNameVisible ? 0 : readDimen(R.dimen.message_bubble_top_padding));
+    }
 
     if (audioViewStub.resolved()) {
       ViewUtil.setTopMargin(audioViewStub.get(), senderNameVisible ? 0 : readDimen(R.dimen.message_bubble_top_padding_audio));
+    }
+
+    if (stickerStub.resolved()) {
+      ViewUtil.setTopMargin(stickerStub.get(), senderNameVisible ? 0 : readDimen(R.dimen.message_bubble_top_padding));
+    }
+
+    if (documentViewStub.resolved()) {
+      ViewUtil.setTopMargin(documentViewStub.get(), senderNameVisible ? 0 : readDimen(R.dimen.message_bubble_top_padding));
+    }
+
+    if (sharedContactStub.resolved()) {
+      ViewUtil.setTopMargin(sharedContactStub.get(), senderNameVisible ? 0 : readDimen(R.dimen.message_bubble_top_padding));
+    }
+
+    if (revealableStub.resolved()) {
+      ViewUtil.setTopMargin(revealableStub.get(), senderNameVisible ? 0 : readDimen(R.dimen.message_bubble_top_padding));
+    }
+
+    if (mediaThumbnailStub.resolved()) {
+      boolean hasQuoteAbove = quoteView != null && quoteView.getVisibility() == VISIBLE;
+      ViewUtil.setTopMargin(mediaThumbnailStub.require(), hasQuoteAbove ? readDimen(R.dimen.message_bubble_top_image_margin) : 0);
     }
   }
 

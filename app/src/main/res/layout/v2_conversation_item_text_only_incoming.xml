@@ -77,6 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/message_bubble_top_padding"
+            android:layout_marginBottom="1dp"
             android:paddingStart="@dimen/message_bubble_horizontal_padding"
             android:paddingEnd="@dimen/message_bubble_horizontal_padding"
             android:visibility="gone"
@@ -125,11 +126,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="@dimen/message_bubble_footer_bottom_padding"
-        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date"
+        android:src="@drawable/symbol_pin_filled_12"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_footer_date"
         app:layout_constraintEnd_toStartOf="@id/conversation_item_footer_date"
-        android:visibility="gone"
-        android:src="@drawable/symbol_pin_filled_12" />
+        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date" />
 
     <TextView
         android:id="@+id/conversation_item_footer_date"
