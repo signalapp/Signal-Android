@@ -79,6 +79,7 @@
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/conversation_item_content_spacer"
             app:layout_constraintEnd_toEndOf="@id/conversation_item_body"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
