@@ -8,12 +8,6 @@
 package org.signal.registration
 
 import android.os.Parcelable
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -32,6 +26,7 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import org.signal.core.ui.navigation.ResultEffect
+import org.signal.core.ui.navigation.TransitionSpecs
 import org.signal.registration.screens.accountlocked.AccountLockedScreen
 import org.signal.registration.screens.accountlocked.AccountLockedScreenEvents
 import org.signal.registration.screens.accountlocked.AccountLockedState
@@ -172,51 +167,25 @@ fun RegistrationNavHost(
     onBack = { viewModel.onEvent(RegistrationFlowEvent.NavigateBack) },
     modifier = modifier,
     transitionSpec = {
-      // Slide in from right and fade in when navigating forward
-      (
-        slideInHorizontally(
-          initialOffsetX = { it },
-          animationSpec = tween(200)
-        ) + fadeIn(animationSpec = tween(200))
-        ) togetherWith
-        // Slide out to left and fade out
-        (
-          slideOutHorizontally(
-            targetOffsetX = { -it },
-            animationSpec = tween(200)
-          ) + fadeOut(animationSpec = tween(200))
-          )
+      if (targetState.key == RegistrationRoute.CountryCodePicker.toString()) {
+        TransitionSpecs.VerticalSlide.transitionSpec.invoke(this)
+      } else {
+        TransitionSpecs.HorizontalSlide.transitionSpec.invoke(this)
+      }
     },
     popTransitionSpec = {
-      // Slide in from left and fade in when navigating back
-      (
-        slideInHorizontally(
-          initialOffsetX = { -it },
-          animationSpec = tween(200)
-        ) + fadeIn(animationSpec = tween(200))
-        ) togetherWith
-        // Slide out to right and fade out
-        (
-          slideOutHorizontally(
-            targetOffsetX = { it },
-            animationSpec = tween(200)
-          ) + fadeOut(animationSpec = tween(200))
-          )
+      if (initialState.key == RegistrationRoute.CountryCodePicker.toString()) {
+        TransitionSpecs.VerticalSlide.popTransitionSpec.invoke(this)
+      } else {
+        TransitionSpecs.HorizontalSlide.popTransitionSpec.invoke(this)
+      }
     },
     predictivePopTransitionSpec = {
-      // Same as popTransitionSpec for predictive back gestures
-      (
-        slideInHorizontally(
-          initialOffsetX = { -it },
-          animationSpec = tween(200)
-        ) + fadeIn(animationSpec = tween(200))
-        ) togetherWith
-        (
-          slideOutHorizontally(
-            targetOffsetX = { it },
-            animationSpec = tween(200)
-          ) + fadeOut(animationSpec = tween(200))
-          )
+      if (initialState.key == RegistrationRoute.CountryCodePicker.toString()) {
+        TransitionSpecs.VerticalSlide.predictivePopTransitionSpec.invoke(this, it)
+      } else {
+        TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec.invoke(this, it)
+      }
     }
   )
 }

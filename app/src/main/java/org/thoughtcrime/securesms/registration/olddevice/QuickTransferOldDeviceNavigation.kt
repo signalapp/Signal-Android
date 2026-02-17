@@ -72,7 +72,7 @@ fun TransferAccountNavHost(
     modifier = modifier,
     transitionSpec = TransitionSpecs.HorizontalSlide.transitionSpec,
     popTransitionSpec = TransitionSpecs.HorizontalSlide.popTransitionSpec,
-    predictivePopTransitionSpec = TransitionSpecs.HorizontalSlide.predictivePopTransitonSpec
+    predictivePopTransitionSpec = TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec
   )
 }
 

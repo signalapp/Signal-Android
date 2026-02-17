@@ -85,7 +85,7 @@ private fun TranscodeApp() {
     backStack = backStack,
     transitionSpec = TransitionSpecs.HorizontalSlide.transitionSpec,
     popTransitionSpec = TransitionSpecs.HorizontalSlide.popTransitionSpec,
-    predictivePopTransitionSpec = TransitionSpecs.HorizontalSlide.predictivePopTransitonSpec,
+    predictivePopTransitionSpec = TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec,
     entryProvider = entryProvider {
       addEntryProvider(
         key = Screen.VideoSelection,
