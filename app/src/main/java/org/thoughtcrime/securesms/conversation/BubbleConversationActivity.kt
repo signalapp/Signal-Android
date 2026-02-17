@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.conversation
 
+import android.os.Bundle
+import androidx.core.view.WindowCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivity
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -12,6 +14,14 @@ import org.thoughtcrime.securesms.util.ViewUtil
  * independent "is in bubble?" check.
  */
 class BubbleConversationActivity : ConversationActivity() {
+
+  override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    // Let our layout handle all insets so the bubble can use its full height and
+    // avoid leaving a large blank area above the launcher/navigation bar.
+    WindowCompat.setDecorFitsSystemWindows(window, false)
+    super.onCreate(savedInstanceState, ready)
+  }
+
   override fun onPause() {
     super.onPause()
     ViewUtil.hideKeyboard(this, findViewById(R.id.fragment_container))

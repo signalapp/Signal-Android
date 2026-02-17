@@ -362,7 +362,10 @@ sealed class NotificationBuilder(protected val context: Context) {
       if (intent != null) {
         val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder(intent, AvatarUtil.getIconCompat(context, conversation.recipient))
           .setAutoExpandBubble(bubbleState === BubbleUtil.BubbleState.SHOWN)
-          .setDesiredHeight(600)
+          // Bubble desired height is in PX (not DP). Use a screen-based value so the expanded
+          // bubble isn't tiny on high-density devices (Android 15 / Pixel).
+          //.setDesiredHeight(600)
+          .setDesiredHeight(BubbleUtil.getDesiredBubbleHeightPx(context))
           .setSuppressNotification(bubbleState === BubbleUtil.BubbleState.SHOWN)
           .build()
 

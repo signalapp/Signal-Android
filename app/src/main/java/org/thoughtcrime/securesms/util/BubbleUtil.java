@@ -4,8 +4,10 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Build;
 import android.service.notification.StatusBarNotification;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -133,5 +135,50 @@ public final class BubbleUtil {
   public enum BubbleState {
     SHOWN,
     HIDDEN
+  }
+
+  /**
+   * Desired expanded bubble height in pixels.
+   * <p>
+   * Note: {@code NotificationCompat.BubbleMetadata.Builder#setDesiredHeight(int)} expects PX, not DP.
+   * If we accidentally pass a "dp-looking" constant (e.g. 600), the bubble becomes very short on
+   * high-density devices which leaves a large empty area below the bubble.
+   */
+//  public static int getDesiredBubbleHeightPx(@NonNull Context context) {
+//    final float density   = context.getResources().getDisplayMetrics().density;
+//    final int   minHeight = (int) (600f * density); // 600dp minimum
+//    final int   screenH   = context.getResources().getDisplayMetrics().heightPixels;
+//
+//    if (screenH <= 0) {
+//      return minHeight;
+//    }
+//
+//    // Ask for most of the screen height; the system may clamp as needed.
+//    final int target = (int) (screenH * 0.90f);
+//    return Math.max(minHeight, target);
+//  }
+
+  public static int getDesiredBubbleHeightPx(@NonNull Context context) {
+    final float density = context.getResources().getDisplayMetrics().density;
+    final int minHeightPx = (int) (600f * density + 0.5f); // 600dp min
+
+    int screenHeightPx = context.getResources().getDisplayMetrics().heightPixels;
+
+    // Prefer WindowMetrics when available (more reliable than DisplayMetrics)
+    if (android.os.Build.VERSION.SDK_INT >= 30) {
+      WindowManager wm = context.getSystemService(WindowManager.class);
+      if (wm != null) {
+        Rect bounds = wm.getCurrentWindowMetrics().getBounds();
+        screenHeightPx = bounds.height();
+      }
+    }
+
+    if (screenHeightPx <= 0) return minHeightPx;
+
+    final int targetPx = (int) (screenHeightPx * 0.9f);
+    final int desiredPx = Math.max(minHeightPx, targetPx);
+
+    // Never exceed screen height
+    return Math.min(desiredPx, screenHeightPx);
   }
 }

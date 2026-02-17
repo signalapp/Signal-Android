@@ -65,6 +65,12 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private var insets: WindowInsetsCompat? = null
   private var windowTypes: Int = InsetAwareConstraintLayout.windowTypes
 
+  /**
+   * When set, this value is used for the navigation bar guideline instead of the system inset.
+   * Used in bubble mode to eliminate the bottom margin so more messages fit on screen.
+   */
+  private var navigationBarInsetOverride: Int? = null
+
   private val windowInsetsListener = androidx.core.view.OnApplyWindowInsetsListener { _, insets ->
     this.insets = insets
     applyInsets(windowInsets = insets.getInsets(windowTypes), keyboardInsets = insets.getInsets(keyboardType))
@@ -114,6 +120,28 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     }
   }
 
+
+  /**
+   * Override the navigation bar inset (e.g. use 0 in bubble mode to remove bottom margin).
+   * When non-null, this value is used instead of the system navigation bar inset.
+   */
+  fun setNavigationBarInsetOverride(inset: Int?) {
+    if (navigationBarInsetOverride == inset) return
+    navigationBarInsetOverride = inset
+    if (inset != null) {
+      // Apply immediately so layout is correct before next inset dispatch (important for
+      // Android 15 bubble where insets can arrive late or with different values).
+      navigationBarGuideline?.setGuidelineEnd(inset)
+      if (!isKeyboardShowing) {
+        keyboardGuideline?.setGuidelineEnd(inset)
+      }
+      requestLayout()
+    }
+    if (insets != null) {
+      applyInsets(insets!!.getInsets(windowTypes), insets!!.getInsets(keyboardType))
+    }
+  }
+
   fun addKeyboardStateListener(listener: KeyboardStateListener) {
     keyboardStateListeners += listener
   }
@@ -134,7 +162,9 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     val isLtr = ViewUtil.isLtr(this)
 
     val statusBar = windowInsets.top
-    val navigationBar = if (windowInsets.bottom == 0 && Build.VERSION.SDK_INT <= 29) {
+    // In bubble mode we can override the navigation-bar inset entirely so the content
+    // extends to the bottom of the bubble instead of reserving space for system UI.
+    val navigationBar = navigationBarInsetOverride ?: if (windowInsets.bottom == 0 && Build.VERSION.SDK_INT <= 29) {
       ViewUtil.getNavigationBarHeight(resources)
     } else {
       windowInsets.bottom
