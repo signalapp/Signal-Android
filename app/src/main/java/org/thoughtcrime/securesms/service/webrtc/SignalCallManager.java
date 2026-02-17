@@ -24,7 +24,6 @@ import org.signal.libsignal.zkgroup.calllinks.CallLinkSecretParams;
 import org.signal.libsignal.zkgroup.groups.GroupIdentifier;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
-import org.signal.ringrtc.CallLinkEpoch;
 import org.signal.ringrtc.CallLinkRootKey;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.CallSummary;
@@ -420,7 +419,6 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         }
 
         CallLinkRootKey           callLinkRootKey           = new CallLinkRootKey(callLink.getCredentials().getLinkKeyBytes());
-        CallLinkEpoch             callLinkEpoch             = callLink.getCredentials().getEpoch();
         GenericServerPublicParams genericServerPublicParams = new GenericServerPublicParams(AppDependencies.getSignalServiceNetworkAccess()
                                                                                                            .getConfiguration()
                                                                                                            .getGenericServerPublicParams());
@@ -432,7 +430,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                                                                    CallLinkSecretParams.deriveFromRootKey(callLinkRootKey.getKeyBytes())
                                                                                                );
 
-        callManager.peekCallLinkCall(SignalStore.internal().getGroupCallingServer(), callLinkAuthCredentialPresentation.serialize(), callLinkRootKey, callLinkEpoch, peekInfo -> {
+        callManager.peekCallLinkCall(SignalStore.internal().getGroupCallingServer(), callLinkAuthCredentialPresentation.serialize(), callLinkRootKey, peekInfo -> {
           PeekInfo info = peekInfo.getValue();
           if (info == null) {
             Log.w(TAG, "Failed to get peek info: " + peekInfo.getStatus());

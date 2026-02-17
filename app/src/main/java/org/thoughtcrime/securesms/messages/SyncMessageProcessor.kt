@@ -1391,7 +1391,6 @@ object SyncMessageProcessor {
         roomId,
         CallLinkCredentials(
           callLinkUpdate.rootKey!!.toByteArray(),
-          callLinkUpdate.epoch?.toByteArray(),
           callLinkUpdate.adminPasskey?.toByteArray()
         )
       )
@@ -1403,7 +1402,6 @@ object SyncMessageProcessor {
           roomId = roomId,
           credentials = CallLinkCredentials(
             linkKeyBytes = callLinkRootKey.keyBytes,
-            epochBytes = callLinkUpdate.epoch?.toByteArray(),
             adminPassBytes = callLinkUpdate.adminPasskey?.toByteArray()
           ),
           state = SignalCallLinkState(),

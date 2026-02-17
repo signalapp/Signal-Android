@@ -119,7 +119,7 @@ class DefaultCallLinkDetailsCallback(
   override fun onShareClicked() {
     val mimeType = Intent.normalizeMimeType("text/plain")
     val shareIntent = ShareCompat.IntentBuilder(activity)
-      .setText(CallLinks.url(viewModel.rootKeySnapshot, viewModel.epochSnapshot))
+      .setText(CallLinks.url(viewModel.rootKeySnapshot))
       .setType(mimeType)
       .createChooserIntent()
 
@@ -131,7 +131,7 @@ class DefaultCallLinkDetailsCallback(
   }
 
   override fun onCopyClicked() {
-    Util.copyToClipboard(activity, CallLinks.url(viewModel.rootKeySnapshot, viewModel.epochSnapshot))
+    Util.copyToClipboard(activity, CallLinks.url(viewModel.rootKeySnapshot))
     Toast.makeText(activity, R.string.CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard, Toast.LENGTH_LONG).show()
   }
 
@@ -139,7 +139,7 @@ class DefaultCallLinkDetailsCallback(
     activity.startActivity(
       ShareActivity.sendSimpleText(
         activity,
-        activity.getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.rootKeySnapshot, viewModel.epochSnapshot))
+        activity.getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.rootKeySnapshot))
       )
     )
   }
@@ -324,7 +324,6 @@ private fun CallLinkDetailsScreenPreview() {
   val callLink = remember {
     val credentials = CallLinkCredentials(
       byteArrayOf(1, 2, 3, 4),
-      byteArrayOf(0, 1, 2, 3),
       byteArrayOf(3, 4, 5, 6)
     )
     CallLinkTable.CallLink(

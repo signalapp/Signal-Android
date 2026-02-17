@@ -682,7 +682,7 @@ message SyncMessage {
     optional bytes rootKey = 1;
     optional bytes adminPasskey = 2;
     optional Type type = 3; // defaults to UPDATE
-    optional bytes epoch = 4;
+    reserved 4; // was epoch field, never used
   }
 
   message CallLogEvent {

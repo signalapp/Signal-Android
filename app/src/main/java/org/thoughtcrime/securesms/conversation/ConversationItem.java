@@ -74,6 +74,7 @@ import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.core.ui.view.Stub;
+import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -1234,14 +1235,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       //noinspection ConstantConditions
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
 
-      CallLinks.CallLinkParseResult callLinkParseResult = CallLinks.isCallLink(linkPreview.getUrl()) ? CallLinks.parseUrl(linkPreview.getUrl()) : null;
-      if (callLinkParseResult != null) {
+      CallLinkRootKey callLinkRootKey = CallLinks.isCallLink(linkPreview.getUrl()) ? CallLinks.parseUrl(linkPreview.getUrl()) : null;
+      if (callLinkRootKey != null) {
         joinCallLinkStub.setVisibility(View.VISIBLE);
         joinCallLinkStub.get().setTextColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? org.signal.core.ui.R.color.signal_light_colorOnPrimary : org.signal.core.ui.R.color.signal_colorOnPrimaryContainer));
         joinCallLinkStub.get().setBackgroundColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? org.signal.core.ui.R.color.signal_light_colorTransparent2 : org.signal.core.ui.R.color.signal_colorOnPrimary));
         joinCallLinkStub.get().setOnClickListener(v -> {
           if (eventListener != null) {
-            eventListener.onJoinCallLink(callLinkParseResult.getRootKey(), callLinkParseResult.getEpoch());
+            eventListener.onJoinCallLink(callLinkRootKey);
           }
         });
       }

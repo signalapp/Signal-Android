@@ -162,7 +162,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
           startActivity(
             ShareActivity.sendSimpleText(
               requireContext(),
-              getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.linkKeyBytes, viewModel.epochBytes))
+              getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.linkKeyBytes))
             )
           )
         }
@@ -176,7 +176,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
     lifecycleDisposable += viewModel.commitCallLink().subscribeBy(onSuccess = {
       when (it) {
         is EnsureCallLinkCreatedResult.Success -> {
-          Util.copyToClipboard(requireContext(), CallLinks.url(viewModel.linkKeyBytes, viewModel.epochBytes))
+          Util.copyToClipboard(requireContext(), CallLinks.url(viewModel.linkKeyBytes))
           Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard, Toast.LENGTH_LONG).show()
         }
 
@@ -191,7 +191,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
         is EnsureCallLinkCreatedResult.Success -> {
           val mimeType = Intent.normalizeMimeType("text/plain")
           val shareIntent = ShareCompat.IntentBuilder(requireContext())
-            .setText(CallLinks.url(viewModel.linkKeyBytes, viewModel.epochBytes))
+            .setText(CallLinks.url(viewModel.linkKeyBytes))
             .setType(mimeType)
             .createChooserIntent()
 

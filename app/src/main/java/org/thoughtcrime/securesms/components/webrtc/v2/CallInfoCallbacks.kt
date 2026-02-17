@@ -31,7 +31,7 @@ class CallInfoCallbacks(
   override fun onShareLinkClicked() {
     val mimeType = Intent.normalizeMimeType("text/plain")
     val shareIntent = ShareCompat.IntentBuilder(activity)
-      .setText(CallLinks.url(controlsAndInfoViewModel.rootKeySnapshot, controlsAndInfoViewModel.epochSnapshot))
+      .setText(CallLinks.url(controlsAndInfoViewModel.rootKeySnapshot))
       .setType(mimeType)
       .createChooserIntent()
 
