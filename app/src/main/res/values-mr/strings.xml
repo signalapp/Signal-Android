@@ -2578,6 +2578,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$sने %2$sला म्युट केले.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">तुम्ही दुसऱ्या डिव्हाईसवरून स्वतःला म्युट केलेत.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI त्रुटी उद्भवली. कृपया विकसकांना या त्रुटीची माहिती द्या.</string>
@@ -2765,8 +2767,6 @@
     <string name="RegistrationActivity_i_understand">मला समजले</string>
     <string name="RegistrationActivity_play_services_error">प्ले सेवा त्रुटी</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google प्ले सेवा अद्ययावत होत आहे किंवा तात्पुर्ते अनुपलब्ध आहे. कृपया पुन्हा प्रयत्न करा.</string>
-    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal एक ना-नफा संस्था आहे\nअटी व गोपनीयता धोरण</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ला तुम्हाला तुमच्या मित्रांशी कनेक्ट करण्यासाठी आणि संदेश पाठवण्यासाठी संपर्क आणि मीडिया परवानग्या आवश्यक आहेत. तुमचे संपर्क Signal चे खाजगी संपर्क शोध वापरून अपलोड केले जातात, याचा अर्थ ते एंड-टू-एंड एनक्रिप्ट केलेले आहेत आणि Signal सेवेला ते कधीही दिसत नाहीत.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal ला तुम्हाला तुमच्या मित्रांशी कनेक्ट करण्यासाठी संपर्क परवानगी आवश्यक आहेत. तुमचे संपर्क Signal चे खाजगी संपर्क शोध वापरून अपलोड केले जातात, याचा अर्थ ते एंड-टू-एंड एनक्रिप्ट केलेले आहेत आणि Signal सेवेला ते कधीही दिसत नाहीत.</string>
     <string name="RegistrationActivity_rate_limited_to_service">तुम्ही हा नंबर नोंदवण्यासाठी खूप प्रयत्न केले आहेत. कृपया नंतर पुन्हा प्रयत्न करा.</string>
@@ -2799,8 +2799,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">रद्द करा</string>
     <string name="RegistrationActivity_next">पुढे</string>
-    <string name="RegistrationActivity_continue">सुरू ठेवा</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">गोपनीयता आपल्यासोबत न्या.\nप्रत्येक संदेशात आपण स्वतः रहा.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">फोन नंबर</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4336,31 +4334,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">आता अद्यतनित करा</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">आता नाही</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">पुढे</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">परवानग्यांची अनुमती द्या</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">आपण ओळखत असलेल्या लोकांना संदेश करण्यास मदत करण्यासाठी, Signal या परवानग्यांची विनंती करेल. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">अधिसूचना</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">नवीन संदेश आल्यानंतर सूचना प्राप्त करा.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">संपर्क</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">आपण ओळखत असलेल्या लोकांना शोधा. आपले संपर्क कूटबद्ध केलेले आहेत आणि ते Signal सेवेला दृश्यमान नाहीत.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">फोन कॉल्स</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">नोंदणी करणे अधिक सोपे करते आणि अतिरिक्त कॉलिंग वैशिष्ट्ये सक्षम करते.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">संचयन</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">फोटो, व्हिडीओ आणि फाईल आपल्या डिव्हाइसवरून पाठवा.</string>
 
 
     <!-- PaymentsSecuritySetupFragment -->
@@ -4823,8 +4796,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">मी हे पासफ्रेझ लिहून ठेवले आहे. याविना, मी बॅकअपची पुनर्स्थापना करण्यास अक्षम असेल.</string>
     <string name="registration_activity__restore_backup">बॅकअप पुनर्स्थापित करा</string>
     <string name="registration_activity__transfer_or_restore_account">स्थानांतरित करा किंवा खाते पुनर्स्थापित करा</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">परत मिळवा किंवा हस्तांतरण करा</string>
     <string name="registration_activity__transfer_account">खाते स्थानांतरित करा</string>
     <string name="registration_activity__skip">वगळा</string>
     <!-- Text label button to skip restoring -->
@@ -4938,14 +4909,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">सेवेसोबत कनेक्ट करताना त्रुटी</string>
     <string name="preferences_chats__backups">बॅकअप</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">बीटा</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">माहिती</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">हे एक बीटा वैशिष्ट्ये आहे आणि कालांतराने ते सुधारत जाईल.</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal अनलॉक करा</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">Signal अनलॉक करण्यासाठी आपल्या Android डिव्हाइसवरील लॉक सेटिंग्ज वापरा.</string>
@@ -7878,9 +7842,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Signal सुरक्षित बॅकअप्स चालू करा</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Signal सिक्युअर बॅकअप्स वापरून पाहा</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">आपणाला एक नवीन फोन मिळाल्यावर किंवा Signal पुन्हा इन्स्टॉल केल्यावर कधीही संदेश गमावू नका.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">चालू करा</string>
@@ -9275,7 +9237,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">सदस्य लेबल</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">तुमची भूमिका समाविष्ट करा</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">पुनरावलोकन</string>
     <!-- Group member label save button label. -->

@@ -2736,6 +2736,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s השתיק/ה את %2$s.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">השתקת את עצמך ממכשיר אחר.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">אירעה שגיאת ממשק משתמש. כדאי לדווח על השגיאה למפתחים.</string>
@@ -2943,8 +2945,6 @@
     <string name="RegistrationActivity_i_understand">אני מבין</string>
     <string name="RegistrationActivity_play_services_error">שגיאת שירותי Play</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">שירותי Google Play מתעדכנים או שהם בלתי זמינים באופן זמני. אנא נסה שוב.</string>
-    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal היא עמותה ללא מטרות רווח\nתנאים ומדיניות פרטיות</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal צריך הרשאה אל אנשי הקשר והמדיה שלך כדי לעזור לך לחבור אל חברים ולשלוח הודעות. אנשי הקשר שלך מועלים ע״י שימוש בגילוי אנשי קשר פרטי של Signal, מה שאומר שהם מוצפנים מקצה־אל־קצה ואף פעם אינם גלויים אל השירות של Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal צריך הרשאה אל אנשי הקשר שלך כדי לעזור לך לחבור אל חברים. אנשי הקשר שלך מועלים ע״י שימוש בגילוי אנשי קשר פרטי של Signal, מה שאומר שהם מוצפנים מקצה־אל־קצה ואף פעם אינם גלויים אל השירות של Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">עשית יותר מדי ניסיונות להירשם עם המספר הזה. אנא נסה שוב מאוחר יותר.</string>
@@ -2979,8 +2979,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">ביטול</string>
     <string name="RegistrationActivity_next">הבא</string>
-    <string name="RegistrationActivity_continue">המשך</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">קח פרטיות איתך.\nהייה עצמך בכל הודעה.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">מספר טלפון</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4566,31 +4564,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">עדכן עכשיו</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">לא עכשיו</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">הבא</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">הפעלת הרשאות</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">כדי שתהיה אפשרות לשלוח הודעות לאנשים שאת.ה מכיר.ה, Signal תבקש את ההרשאות האלה. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">התראות</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">לקבל התראה כשמגיעות הודעות חדשות.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">אנשי קשר</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">למצוא אנשים שאת.ה מכיר.ה. אנשי הקשר שלך מוצפנים ואינם גלויים לשירות Signal.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">שיחות טלפון</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">להפוך את ההרשמה למהירה יותר ולאפשר פיצ׳רים נוספים של התקשרות.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">אחסון</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">לשלוח תמונות, סרטונים וקבצים מהמכשיר שלך.</string>
 
 
     <!-- PaymentsSecuritySetupFragment -->
@@ -5071,8 +5044,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">כתבתי משפט־סיסמה זה. בלעדיו, לא אוכל לשחזר גיבוי.</string>
     <string name="registration_activity__restore_backup">שחזר גיבוי</string>
     <string name="registration_activity__transfer_or_restore_account">העבר או שחזר חשבון</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">שחזור או העברה</string>
     <string name="registration_activity__transfer_account">העבר חשבון</string>
     <string name="registration_activity__skip">דלג</string>
     <!-- Text label button to skip restoring -->
@@ -5186,14 +5157,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">שגיאה בהתחברות אל שירות</string>
     <string name="preferences_chats__backups">גיבויים</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">בטא</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">מידע</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">זהו פיצ׳ר בטא והוא ישתפר עם הזמן.</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">ביטול נעילת Signal</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">יש להשתמש בהגדרות נעילת מכשיר ה–Android שלך כדי לבטל את הנעילה של Signal.</string>
@@ -8222,9 +8186,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">הפעלת הגיבויים המאובטחים של Signal</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">כדאי לנסות: גיבויי Signal מאובטחים</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">ככה, לא מאבדים אף הודעה כשמחליפים טלפון או מתקינים מחדש את Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">הפעלה</string>
@@ -9649,7 +9611,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">תוויות</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">הוספת התפקיד שלך</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">תצוגה מקדימה</string>
     <!-- Group member label save button label. -->

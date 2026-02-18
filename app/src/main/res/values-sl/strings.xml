@@ -2736,6 +2736,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s je utišal_a osebo %2$s.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Utišali ste se iz druge naprave.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Prišlo je do napake uporabniškega vmesnika. Prosimo, prijavite to napako razvijalcem.</string>
@@ -2943,8 +2945,6 @@
     <string name="RegistrationActivity_i_understand">Razumem</string>
     <string name="RegistrationActivity_play_services_error">Napaka Play Services</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Aplikacija Google Play Services se posodablja ali pa je začasno nedosegljiva. Poskusite znova.</string>
-    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal je neprofitna organizacija\nPogoji in politika zasebnosti</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potrebuje dovoljenje za dostop do vaših stikov in medijskih datotek, da lahko komunicirate s svojimi prijatelji_cami in pošiljate sporočila. Vaši stiki so prenešeni na strežnik preko Signalovga zasebnega odkrivanja stikov, kar pomeni, da so šifrirani od-konca-do-konca in niso nikdar vidni storitvi Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potrebuje dovoljenje za dostop do vaših stikov, da lahko komunicirate s svojimi prijatelji_cami. Vaši stiki so prenešeni na strežnik preko Signalovga zasebnega odkrivanja stikov, kar pomeni, da so šifrirani od-konca-do-konca in niso nikdar vidni storitvi Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Preveč neuspešnih poskusov registracije te telefonske številke. Prosimo poskusite znova kasneje.</string>
@@ -2979,8 +2979,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">Prekliči</string>
     <string name="RegistrationActivity_next">Naprej</string>
-    <string name="RegistrationActivity_continue">Nadaljuj</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vzemite svojo zasebnost v lastne roke!\nDa boste v sporočilih lahko to kar ste.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Telefonska številka</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4566,31 +4564,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Posodobi zdaj</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Ne zdaj</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Naprej</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Odobri dovoljenja</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Za pomoč pri pošiljanju sporočil ljudem, ki jih poznate, bo Signal zahteval ta dovoljenja. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Obvestila</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Prejmite obvestilo, ko prispejo nova sporočila.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Stiki</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Poiščite ljudi, ki jih poznate. Vaši stiki so šifrirani in niso vidni storitvi Signal.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Telefonski klici</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Poenostavite registracijo in omogočite dodatne funkcije klicanja.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Pomnilnik</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Pošiljajte fotografije, videoposnetke in datoteke iz svoje naprave.</string>
 
 
     <!-- PaymentsSecuritySetupFragment -->
@@ -5071,8 +5044,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Zapisal sem si geslo. Brez njega ne bom mogel obnoviti varnostne kopije.</string>
     <string name="registration_activity__restore_backup">Obnovi iz varnostne kopije</string>
     <string name="registration_activity__transfer_or_restore_account">Prenesi ali obnovi račun</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Obnovi ali prenesi</string>
     <string name="registration_activity__transfer_account">Prenos računa</string>
     <string name="registration_activity__skip">Preskoči</string>
     <!-- Text label button to skip restoring -->
@@ -5186,14 +5157,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">Napaka pri povezavi do storitve</string>
     <string name="preferences_chats__backups">Varnostne kopije</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">Beta</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">Info</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">To je beta funkcija in se bo sčasoma izboljšala.</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Odkleni Signal</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">Za odklepanje Signala uporabite nastavitve zaklepanja vaše naprave Android.</string>
@@ -8222,9 +8186,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Vklopite Varne varnostne kopije Signal</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Preizkusite Varne varnostne kopije</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Nikoli ne izgubite sporočila, ko dobite nov telefon ali ponovno namestite Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Vklopi</string>
@@ -9649,7 +9611,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Vloga člana</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Dodaj vlogo</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Predogled</string>
     <!-- Group member label save button label. -->

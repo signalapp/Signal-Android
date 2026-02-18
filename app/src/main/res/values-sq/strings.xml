@@ -2578,6 +2578,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s hoqi zërin e %2$s.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Hoqe zërin e vetes nga pajisja tjetër.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Ndodhi një gabim i ndërfaqes së përdoruesit. Ju lutemi raporto këtë gabim te zhvilluesit.</string>
@@ -2765,8 +2767,6 @@
     <string name="RegistrationActivity_i_understand">E kuptoj</string>
     <string name="RegistrationActivity_play_services_error">Gabim nga Shërbime Play</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Shërbimet Google Play po përditësohen ose janë përkohësisht jashtë funksionimi. Ju lutemi, riprovoni.</string>
-    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal është një ent jofitimprurës\nKushtet dhe Politika e Privatësisë</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Për t\\’ju ndihmuar të lidheni me shokët tuaj dhe dërgoni mesazhe, Signal-i lyp leje mbi kontaktet dhe median. Kontaktet tuaja ngarkohen duke përdorur pikasje private kontaktesh të Signal-it, që do të thotë se janë të fshehtëzuara skaj-më-skaj dhe kurrë të dukshme për shërbimin Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Për t\\’ju ndihmuar të lidheni me shokët tuaj, Signal-i lyp leje mbi kontaktet. Kontaktet tuaja ngarkohen duke përdorur pikasje private kontaktesh të Signal-it, që do të thotë se janë të fshehtëzuara skaj-më-skaj dhe kurrë të dukshme për shërbimin Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Keni bërë shumë përpjekje për të regjistruar këtë numër. Ju lutemi, riprovoni më vonë.</string>
@@ -2799,8 +2799,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">Anulo</string>
     <string name="RegistrationActivity_next">Pasuesi</string>
-    <string name="RegistrationActivity_continue">Vazhdo</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Merreni privatësinë me vete.\nJini ju vetë, në çdo mesazh.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Numër telefoni</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4336,31 +4334,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Përditësoje tani</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Jo tani</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Tjetër</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Lejo lejet</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Për të të ndihmuar t\'u dërgosh mesazh njerëzve që njeh, Signal do t\'i kërkojë këto leje. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Njoftime</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Njoftohu kur të mbërrijnë mesazhe të reja.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Kontakte</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Gjej persona që njeh. Kontaktet e tua janë të koduara dhe nuk janë të dukshme për shërbimin e Signal.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Telefonata</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Bëj më të lehtë regjistrimin dhe aktivizo veçori shtesë të thirrjeve.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Hapësirë</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Dërgo foto, video dhe skedarë nga pajisja jote.</string>
 
 
     <!-- PaymentsSecuritySetupFragment -->
@@ -4823,8 +4796,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">E kam shkruar diku këtë frazëkalim. Pa të, s\\’do të jem në gjendje të rikthej një kopjeruajtje.</string>
     <string name="registration_activity__restore_backup">Riktheje kopjeruajtjen</string>
     <string name="registration_activity__transfer_or_restore_account">Shpërngulni ose riktheni llogari</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Rikthe ose transfero</string>
     <string name="registration_activity__transfer_account">Shpërngulni llogari</string>
     <string name="registration_activity__skip">Anashkaloje</string>
     <!-- Text label button to skip restoring -->
@@ -4938,14 +4909,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">Gabim në lidhjen me shërbimin</string>
     <string name="preferences_chats__backups">Kopjeruajtje</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">Beta</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">Info</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Kjo është një veçori beta dhe do të përmirësohet me kalimin e kohës.</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Zhblloko Signal</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">Përdor parametrat e kyçjes së pajisjes Android për të shkyçur Signal.</string>
@@ -7878,9 +7842,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Aktivizo \"Kopjeruajtjet e sigurta të Signal\"</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Provo \"Kopjeruajtjet e sigurta të Signal\"</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Mos e humb as edhe një mesazh kur merr telefon të ri ose riinstalon Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Aktivizo</string>
@@ -9275,7 +9237,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Emërtimi i anëtarit</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Shto rolin</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Paraparje</string>
     <!-- Group member label save button label. -->

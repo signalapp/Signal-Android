@@ -2578,6 +2578,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s ಅವರು %2$s ಅವರನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿದ್ದಾರೆ.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">ನೀವು ಇನ್ನೊಂದು ಸಾಧನದಿಂದ ನಿಮ್ಮನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿದ್ದೀರಿ.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI ದೋಷ ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಈ ದೋಷವನ್ನು ಡೆವಲಪರ್‌ಗಳಿಗೆ ವರದಿ ಮಾಡಿ.</string>
@@ -2765,8 +2767,6 @@
     <string name="RegistrationActivity_i_understand">ನನಗೆ ಅರ್ಥವಾಯಿತು</string>
     <string name="RegistrationActivity_play_services_error">ಪ್ಲೇ ಸರ್ವೀಸಸ್ ದೋಷ</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಅಪ್‌ಡೇಟ್ ಆಗುತ್ತಿದೆ ಅಥವಾ ತಾತ್ಕಾಲಿಕವಾಗಿ ಲಭ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
-    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal ಲಾಭರಹಿತ ಸಂಸ್ಥೆಯಾಗಿದೆ\n ನಿಯಮಗಳು ಮತ್ತು ಗೌಪ್ಯತೆ ನೀತಿ</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">ಸ್ನೇಹಿತರೊಂದಿಗೆ ಕನೆಕ್ಟ್ ಆಗಲು ಮತ್ತು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ನಿಮಗೆ ನೆರವಾಗಲು Signal ಗೆ ಸಂಪರ್ಕಗಳು ಮತ್ತು ಮಾಧ್ಯಮ ಅನುಮತಿಗಳು ಬೇಕಾಗುತ್ತವೆ. Signal ನ ಗೌಪ್ಯ ಸಂಪರ್ಕ ಅನ್ವೇಷಣೆಯನ್ನು ಬಳಸಿಕೊಂಡು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ಅಪ್‌ಲೋಡ್ ಆಗಿವೆ, ಇದರರ್ಥ, ಅವುಗಳು ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗಿವೆ ಮತ್ತು Signal ಸೇವೆಗೆ ಯಾವತ್ತೂ ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">ಸ್ನೇಹಿತರೊಂದಿಗೆ ಕನೆಕ್ಟ್ ಆಗಲು ನಿಮಗೆ ನೆರವಾಗಲು Signal ಗೆ ಸಂಪರ್ಕಗಳು ಮತ್ತು ಮಾಧ್ಯಮ ಅನುಮತಿ ಬೇಕಾಗುತ್ತದೆ. Signal ನ ಗೌಪ್ಯ ಸಂಪರ್ಕ ಅನ್ವೇಷಣೆಯನ್ನು ಬಳಸಿಕೊಂಡು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ಅಪ್‌ಲೋಡ್ ಆಗಿವೆ, ಇದರರ್ಥ, ಅವುಗಳು ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗಿವೆ ಮತ್ತು Signal ಸೇವೆಗೆ ಯಾವತ್ತೂ ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
     <string name="RegistrationActivity_rate_limited_to_service">ಈ ಸಂಖ್ಯೆಯನ್ನು ರಿಜಿಸ್ಟರ್ ಮಾಡಲು ನೀವು ತುಂಬಾ ಪ್ರಯತ್ನಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. ದಯವಿಟ್ಟು ಪುನಃ</string>
@@ -2799,8 +2799,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">ರದ್ದುಮಾಡಿ</string>
     <string name="RegistrationActivity_next">ಮುಂದೆ</string>
-    <string name="RegistrationActivity_continue">ಮುಂದುವರಿಸಿ</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ಖಾಸಗಿತನವನ್ನು ನಿಮ್ಮೊಂದಿಗೆ ಇರಿಸಿಕೊಳ್ಳಿ. \nನಿಮ್ಮ ಪ್ರತಿ ಸಂದೇಶದಲ್ಲಿಯೂ ಸ್ವಂತಿಕೆ ಕಾಯ್ದುಕೊಳ್ಳಿ.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4336,31 +4334,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">ಈಗ ನವೀಕರಿಸಿ</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">ಈಗಲ್ಲ</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">ಮುಂದೆ</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">ಅನುಮತಿಗಳನ್ನು ಅನುಮತಿಸಿ</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">ನಿಮಗೆ ತಿಳಿದಿರುವ ಜನರಿಗೆ ಮೆಸೇಜ್ ಕಳುಹಿಸಲು ನಿಮಗೆ ಸಹಾಯವಾಗಲು, Signal ಈ ಅನುಮತಿಗಳನ್ನು ವಿನಂತಿಸುತ್ತದೆ. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">ಅಧಿಸೂಚನೆಗಳು</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">ಹೊಸ ಮೇಸೇಜ್‌ಗಳು ಬಂದಾಗ ಸೂಚನೆ ಪಡೆಯಿರಿ.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">ಸಂಪರ್ಕಗಳು</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">ನೀವು ತಿಳಿದಿರುವ ಜನರನ್ನು ಹುಡುಕಿ. ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗಿವೆ ಮತ್ತು Signal ಸೇವೆಗೆ ಗೋಚರಿಸುವುದಿಲ್ಲ.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">ಫೋನ್ ಕರೆಗಳು</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">ನೋಂದಣಿಯನ್ನು ಸುಲಭಗೊಳಿಸಿ ಮತ್ತು ಹೆಚ್ಚುವರಿ ಕರೆ ಫೀಚರ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">ಸ್ಟೊರೇಜ್</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">ನಿಮ್ಮ ಸಾಧನದಿಂದ ಫೊಟೋಗಳು, ವೀಡಿಯೊಗಳು ಮತ್ತು ಫೈಲ್‌ಗಳನ್ನು ಕಳುಹಿಸಿ.</string>
 
 
     <!-- PaymentsSecuritySetupFragment -->
@@ -4823,8 +4796,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ನಾನು ಈ ಪಾಸ್‌ಫ್ರೇಸ್ ಬರೆದಿದ್ದೇನೆ. ಅದು ಇಲ್ಲದೆ, ನನಗೆ ಬ್ಯಾಕಪ್ ಮರುಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <string name="registration_activity__restore_backup">ಬ್ಯಾಕಪ್ ಮರುಸ್ಥಾಪಿಸಿ</string>
     <string name="registration_activity__transfer_or_restore_account">ಖಾತೆಗಳನ್ನು ವರ್ಗಾವಣೆ ಮಾಡಿ ಅಥವಾ ಪುನಶ್ಚೇತನ ಮಾಡಿ</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">ರಿಸ್ಟೋರ್ ಮಾಡಿ ಅಥವಾ ವರ್ಗಾಯಿಸಿ</string>
     <string name="registration_activity__transfer_account">ಖಾತೆ ವರ್ಗಾಯಿಸಿ</string>
     <string name="registration_activity__skip">ಬಿಟ್ಟು ಮುಂದುವರಿ</string>
     <!-- Text label button to skip restoring -->
@@ -4938,14 +4909,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">ಸೇವೆಗೆ ಸಂಪರ್ಕಿಸುವಲ್ಲಿ ದೋಷ</string>
     <string name="preferences_chats__backups">ಬ್ಯಾಕಪ್‌ಗಳು</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">ಬೀಟಾ</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">ಮಾಹಿತಿ</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">ಇದು ಬೀಟಾ ಫೀಚರ್ ಆಗಿದೆ ಮತ್ತು ಕಾಲಾನಂತರದಲ್ಲಿ ಇದನ್ನು ಸುಧಾರಿಸಲಾಗುತ್ತದೆ.</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal ಅನ್‌ಲಾಕ್ ಮಾಡಿ</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">Signal ಅನ್ನು ಅನ್‌ಲಾಕ್ ಮಾಡಲು ನಿಮ್ಮ Android ಸಾಧನದ ಲಾಕ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬಳಸಿ.</string>
@@ -7878,9 +7842,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಆನ್ ಮಾಡಿ</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಪ್ರಯತ್ನಿಸಿ</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">ನೀವು ಹೊಸ ಫೋನ್ ಅನ್ನು ಪಡೆದಾಗ ಅಥವಾ Signal ಅನ್ನು ಮರುಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ಎಂದಿಗೂ ಮೆಸೇಜ್ ಅನ್ನು ಕಳೆದುಕೊಳ್ಳಬೇಡಿ.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">ಆನ್‌ ಮಾಡಿ</string>
@@ -9275,7 +9237,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">ಸದಸ್ಯರ ಲೇಬಲ್</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">ನಿಮ್ಮ ಪಾತ್ರವನ್ನು ಸೇರಿಸಿ</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">ಪ್ರಿವ್ಯೂ</string>
     <!-- Group member label save button label. -->

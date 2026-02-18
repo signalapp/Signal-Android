@@ -2578,6 +2578,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s-მა %2$s-ს ხმა გაუთიშა.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">შენს თავს ხმა სხვა მოწყობილობიდან გაუთიშე.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">მოხდა UI ხარვეზი. გთხოვთ, შეატყობინო ეს შეცდომა დეველოპერებს.</string>
@@ -2765,8 +2767,6 @@
     <string name="RegistrationActivity_i_understand">გასაგებია</string>
     <string name="RegistrationActivity_play_services_error">სერვისების ჩართვის შეცდომა</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">მიმდინარეობს Google Play-ის სერვისები ს განახლება ან ისინი დროებით მიუწვდომელია. გთხოვთ სცადოთ ხელახლა.</string>
-    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal-ი არაკომერციული ორგანიზაციაა\nწესები &amp; კონფიდენციალურობის პოლიტიკა</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">მეგობრებთან დაკავშირების დასახმარებლად და შეტყობინებების გასაგზავნად, Signal-ს კონტაქტებსა და მედიაზე წვდომის ნებართვა სჭირდება. შენი კონტაქტები იტვირთება Signal-ის პირადი კონტაქტის აღმოჩენის საშუალებით, რაც ნიშნავს, რომ ისინი ბოლომდე დაშიფრულია და არასოდეს ჩანს Signal-ის სერვისისთვის.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">მეგობრებთან დაკავშირების დასახმარებლად Signal-ს კონტაქტებზე წვდომის ნებართვა სჭირდება. შენი კონტაქტები იტვირთება Signal-ის პირადი კონტაქტის აღმოჩენის საშუალებით, რაც ნიშნავს, რომ ისინი ბოლომდე დაშიფრულია და არასოდეს ჩანს Signal-ის სერვისისთვის.</string>
     <string name="RegistrationActivity_rate_limited_to_service">თქვენ მოახდინეთ ძალიან ბევრი მცდელობა ამ ნომრის დარეგისტრირებისთვის. გთხოვთ ხელახლა სცადოთ მოგვიანებით.</string>
@@ -2799,8 +2799,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">გაუქმება</string>
     <string name="RegistrationActivity_next">შემდეგი</string>
-    <string name="RegistrationActivity_continue">გაგრძელება</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">გაითვალისწინეთ კონფიდენციალურობა.\nიყავით საკუთარი თავი ყველა შეტყობინებაში.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">ტელეფონის ნომერი</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4336,31 +4334,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">განაახლე ახლავე</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">ახლა არა</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">შემდეგი</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">ნებართვების დაშვება</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">იმისათვის, რომ შენს ნაცნობებთან მიმოწერაში დაგეხმაროთ, Signal-ი ამ ნებართვებს მოითხოვს. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">შეტყობინებები</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">მიიღე შეტყობინება ახალ მიმოწერაზე.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">კონტაქტები</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">იპოვე ნაცნობები. შენი კონტაქტები დაშიფრულია და Signal-ის სერვისისთვის უხილავია.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">სატელეფონო ზარები</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">გაიადვილე რეგისტრაცია და ჩართე ზარის დამატებითი ფუნქციები.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">მეხსიერება</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">გაგზავნე ფოტოები, ვიდეოები და ფაილები შენი მოწყობილობიდან.</string>
 
 
     <!-- PaymentsSecuritySetupFragment -->
@@ -4823,8 +4796,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ეს პაროლ-ფრაზა ჩავიწერე. ამის გარეშე ვერ შევძლებ სათადარიგო ასლის აღდგენას.</string>
     <string name="registration_activity__restore_backup">რეზერვის აღდგენა</string>
     <string name="registration_activity__transfer_or_restore_account">გადაიტანე ან აღადგინე მონაცემები</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">აღდგენა ან გადატანა</string>
     <string name="registration_activity__transfer_account">მონაცემების გადატანა</string>
     <string name="registration_activity__skip">გამოტოვება</string>
     <!-- Text label button to skip restoring -->
@@ -4938,14 +4909,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">სერვისთან დაკავშირების შეცდომა</string>
     <string name="preferences_chats__backups">სარეზერვო კოპიები</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">ბეტა ვერსია</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">ინფორმაცია</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">ეს ბეტა ფუნქციაა და დროთა განმავლობაში გაუმჯობესდება.</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal-ის გახსნა</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">გამოიყენე შენი Android მოწყობილობის დაბლოკვის პარამეტრები Signal-ის განბლოკვისთვის.</string>
@@ -7878,9 +7842,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">ჩართე Signal-ის უსაფრთხო სათადარიგო ასლები</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">სცადე Signal-ის უსაფრთხო სათადარიგო ასლები</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">არასდროს დაკარგო შეტყობინებები, როდესაც ახალ მობილურს იყიდი ან Signal-ს თავიდან დააყენებ.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">ჩართვა</string>
@@ -9275,7 +9237,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">წევრის იარლიყი</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">დაამატე შენი როლი</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">წინასწარი ნახვა</string>
     <!-- Group member label save button label. -->

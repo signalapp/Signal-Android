@@ -2578,6 +2578,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s‏، %2$s را بی‌صدا کرد.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">شما خودتان را از دستگاه دیگری بی‌صدا کردید.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">خطای رابط کاربری رخ داد. لطفاً این خطا را به توسعه‌دهندگان گزارش کنید.</string>
@@ -2765,8 +2767,6 @@
     <string name="RegistrationActivity_i_understand">متوجهم</string>
     <string name="RegistrationActivity_play_services_error">خطای خدمات Play</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">خدمات Google Play در حال به‌روزرسانی است یا موقتاً در دسترس نیست. لطفاً دوباره تلاش کنید.</string>
-    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">سیگنال یک شرکت غیرانتفاعی است\nشرایط و سیاست حریم خصوصی</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">سیگنال به مجوزها‌ی مخاطبین و رسانه‌ها برای کمک به متصل کردن شما به دوستان و ارسال پیام‌ها نیاز دارد. مخاطبین شما با استفاده از اکتشاف خصوصی مخاطب سیگنال بارگذاری می‌شوند، که این یعنی آن‌ها سرتاسر رمزگذاری شده هستند و هیچوقت برای سرویس سیگنال قابل رؤیت نیستند.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">سیگنال به مجوز مخاطبین برای کمک به متصل کردن شما به دوستان نیاز دارد. مخاطبین شما با استفاده از اکتشاف خصوصی مخاطب سیگنال بارگذاری می‌شوند، که این یعنی آن‌ها سرتاسر رمزگذاری شده هستند و هیچوقت برای سرویس سیگنال قابل رؤیت نیستند.</string>
     <string name="RegistrationActivity_rate_limited_to_service">شما تلاش‌های بسیاری برای ثبت‌نام این شماره انجام داده‌اید. لطفاً دوباره امتحان کنید.</string>
@@ -2799,8 +2799,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">لغو</string>
     <string name="RegistrationActivity_next">بعدی</string>
-    <string name="RegistrationActivity_continue">ادامه</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حریم خصوصی را همراه داشته باشید.\nدر هر پیام خودتان باشید.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">شماره تلفن</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4336,31 +4334,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">همین حالا به‌روزرسانی کن</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">حالا نه</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">بعدی</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">اجازه دادن به مجوزها</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">برای اینکه راحت‌تر به افرادی که می‌شناسید پیام بفرستید، سیگنال این مجوزها را درخواست خواهد کرد. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">اعلان‌ها</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">وقتی پیام جدید دریافت می‌شود، اعلان داده شود.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">مخاطبان</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">افرادی که می‌شناسید را پیدا کنید. مخاطبان شما رمزگذاری‌شده و برای سرویس سیگنال قابل مشاهده نیستند.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">تماس‌های تلفنی</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">ثبت‌نام را آسان‌تر و قابلیت‌های اضافی تماس را فعال کنید.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">حافظه</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">از دستگاه‌تان عکس، ویدیو و فایل ارسال کنید.</string>
 
 
     <!-- PaymentsSecuritySetupFragment -->
@@ -4823,8 +4796,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">من این گذرواژه را یادداشت کرده‌ام. بدون آن، قادر به بازیابی پشتیبان خود نخواهم بود.</string>
     <string name="registration_activity__restore_backup">بازیابی پشتیبان</string>
     <string name="registration_activity__transfer_or_restore_account">انتقال یا بازیابی حساب کاربری</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">بازیابی یا انتقال</string>
     <string name="registration_activity__transfer_account">انتقال حساب کاربری</string>
     <string name="registration_activity__skip">رد کردن</string>
     <!-- Text label button to skip restoring -->
@@ -4938,14 +4909,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">خطا در برقراری ارتباط با سرویس</string>
     <string name="preferences_chats__backups">نسخه‌های پشتیبان</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">بتا</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">اطلاعات</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">این قابلیت بتا است و به‌مرور زمان بهبود خواهد یافت.</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">باز کردن قفل سیگنال</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">از تنظیمات قفل دستگاه اندروید خود برای باز کردن قفل سیگنال استفاده کنید.</string>
@@ -7878,9 +7842,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">«پشتیبان‌های امن سیگنال» را روشن کنید</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">پشتیبان‌گیری امن سیگنال را امتحان کنید</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">وقتی تلفن جدید می‌گیرید یا سیگنال را دوباره نصب می‌کنید، هرگز پیامی را از دست ندهید.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">روشن کن</string>
@@ -9275,7 +9237,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">برچسب عضو</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">نقش خود را اضافه کنید</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">پیش‌نمایش</string>
     <!-- Group member label save button label. -->

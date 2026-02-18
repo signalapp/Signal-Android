@@ -2736,6 +2736,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s адключыў (-ла) апавяшчэнні ад %2$s.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Вы адключылі апавяшчэннi ад самага сябе з іншай прылады.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Памылка карыстальніцкага інтэрфейсу. Паведаміце аб гэтай памылцы распрацоўнікам.</string>
@@ -2943,8 +2945,6 @@
     <string name="RegistrationActivity_i_understand">Я прымаю</string>
     <string name="RegistrationActivity_play_services_error">Памылка Сэрвісаў Google Play</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Сэрвісы Google Play абнаўляюцца або часова недаступныя. Калі ласка, паўтарыце спробу.</string>
-    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal — некамерцыйная арганізацыя\nУмовы і палiтыка канфедынцыйнасцi</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal патрабуе дазволу на кантакты і медыяфайлы, каб вы маглі быць на сувязі з сябрамі і адпраўляць ім паведамленні. Вашы кантакты запампоўваюцца з дапамогай тэхналогіі канфідэнцыйнага выяўлення кантактаў Signal, якая выкарыстоўвае скразное шыфраванне, таму вашы кантакты ніколі не бачныя сэрвісу Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal патрабуе дазволу на кантакты, каб вы маглі быць на сувязі з сябрамі. Вашы кантакты запампоўваюцца з дапамогай тэхналогіі канфідэнцыйнага выяўлення кантактаў Signal, якая выкарыстоўвае скразное шыфраванне, таму вашы кантакты ніколі не бачныя сэрвісу Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Вы зрабілі занадта шмат спроб зарэгістраваць гэты нумар. Калі ласка, паўтарыце спробу пазней.</string>
@@ -2979,8 +2979,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">Скасаваць</string>
     <string name="RegistrationActivity_next">Далей</string>
-    <string name="RegistrationActivity_continue">Працягнуць</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Канфідэнцыйнасць заўсёды з вамі.\nАдчувайце сябе свабодна ў кожным паведамленні.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Нумар тэлефона</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4566,31 +4564,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Абнавіць зараз</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Не зараз</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Далей</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Уключыць дазволы</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Каб вы маглі адпраўляць паведамленні тым, каго ведаеце, Signal будзе запытваць гэтыя дазволы. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Апавяшчэнні</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Атрымлівайце апавяшчэнні аб новых паведамленнях.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Кантакты</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Знаходзьце людзей, якіх вы ведаеце. Вашы кантакты зашыфраваны і не бачныя сэрвісу Signal.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Тэлефонныя званкі</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Спрасціце працэс рэгістрацыі і ўключыце дадатковыя функцыі званкоў.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Сховішча</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Адпраўляйце фота, відэа і файлы са сваёй прылады.</string>
 
 
     <!-- PaymentsSecuritySetupFragment -->
@@ -5071,8 +5044,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я запісаў(-ла) гэтую парольную фразу. Без яе я не змагу аднавіць рэзервовую копію.</string>
     <string name="registration_activity__restore_backup">Аднавіць рэзервовую копію</string>
     <string name="registration_activity__transfer_or_restore_account">Перанесці або аднавіць уліковы запіс</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Аднавіць або перанесці</string>
     <string name="registration_activity__transfer_account">Перанесці ўліковы запіс</string>
     <string name="registration_activity__skip">Прапусціць</string>
     <!-- Text label button to skip restoring -->
@@ -5186,14 +5157,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">Памылка падключэння да сэрвісу</string>
     <string name="preferences_chats__backups">Рэзервовыя копіі</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">Бэта-версія</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">Інфармацыя</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Гэта бэта-функцыя, каторая з часам будзе паляпшацца.</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Разблакіраваць Signal</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">Выкарыстоўвайце налады блакіроўкі прылады Android, каб разблакіраваць Signal.</string>
@@ -8222,9 +8186,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Уключыць функцыю «Бяспечнае рэзервовае капіраванне Signal»</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Паспрабуйце бяспечнае рэзервовае капіраванне Signal</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Не губляйце аніводнага паведамлення, калі вы набываеце новы тэлефон або нанова ўсталёўваеце Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Уключыць</string>
@@ -9649,7 +9611,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Метка ўдзельніка</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Дадаць сваю ролю</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Папярэдні прагляд</string>
     <!-- Group member label save button label. -->

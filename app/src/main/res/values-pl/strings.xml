@@ -2736,6 +2736,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s wycisza tę osobę: %2$s.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Wyciszasz siebie na innym urządzeniu.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Wystąpił błąd interfejsu. Prosimy o zgłoszenie tego błędu twórcom aplikacji.</string>
@@ -2943,8 +2945,6 @@
     <string name="RegistrationActivity_i_understand">Rozumiem</string>
     <string name="RegistrationActivity_play_services_error">Błąd Usług Play</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Usługi Google Play są aktualizowane lub czasowo niedostępne. Spróbuj ponownie.</string>
-    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal to organizacja non profit\nRegulamin i polityka prywatności</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Aby ułatwić Ci komunikację ze znajomymi oraz wysyłanie wiadomości, Signal potrzebuje dostępu do Twoich kontaktów i multimediów. Twoje kontakty będą przesyłane do aplikacji za pomocą bezpiecznej funkcji wykrywania kontaktów, a więc będą szyfrowane metodą end-to-end i niewidoczne dla usługi Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Aby ułatwić Ci komunikację ze znajomymi, Signal potrzebuje dostępu do Twoich kontaktów. Twoje kontakty będą przesyłane do aplikacji za pomocą bezpiecznej funkcji wykrywania kontaktów, a więc będą szyfrowane metodą end-to-end i niewidoczne dla usługi Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Zbyt wiele prób rejestracji tego numeru. Spróbuj ponownie później.</string>
@@ -2979,8 +2979,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">Anuluj</string>
     <string name="RegistrationActivity_next">Dalej</string>
-    <string name="RegistrationActivity_continue">Kontynuuj</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Prywatność, gdziekolwiek jesteś.\nSwoboda w każdej wiadomości.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Numer telefonu</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4566,31 +4564,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Zaktualizuj teraz</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Nie teraz</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Dalej</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Włącz uprawnienia</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Aby ułatwić Ci komunikację ze znajomymi osobami, Signal potrzebuje tych uprawnień. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Powiadomienia</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Otrzymuj powiadomienia o nowych wiadomościach.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Kontakty</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Znajdź w aplikacji znajome osoby. Twoje kontakty są szyfrowane i nieczytelne dla usługi Signal.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Połączenia telefoniczne</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Ułatw sobie rejestrację i zyskaj dodatkowe funkcje połączeń.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Pamięć</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Wysyłaj zdjęcia, filmy i inne pliki ze swojego urządzenia.</string>
 
 
     <!-- PaymentsSecuritySetupFragment -->
@@ -5071,8 +5044,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Hasło zostało przeze mnie zapisane. Bez niego nie uda mi się przywrócić kopii zapasowej.</string>
     <string name="registration_activity__restore_backup">Przywróć kopię zapasową</string>
     <string name="registration_activity__transfer_or_restore_account">Przenieś lub przywróć konto</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Przywróć lub przenieś</string>
     <string name="registration_activity__transfer_account">Przenieś konto</string>
     <string name="registration_activity__skip">Pomiń</string>
     <!-- Text label button to skip restoring -->
@@ -5186,14 +5157,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">Podczas łączenia z usługą wystąpił błąd</string>
     <string name="preferences_chats__backups">Kopie zapasowe</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">Beta</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">Informacje</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Jest to funkcja w wersji beta – wciąż pracujemy nad jej ulepszeniem.</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Odblokuj Signal</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">Aby odblokować Signal, użyj tej samej metody, którą odblokowujesz to urządzenie z Androidem.</string>
@@ -8222,9 +8186,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Włącz bezpieczne kopie zapasowe Signal</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Wypróbuj bezpieczne kopie zapasowe Signal</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Dzięki temu nie stracisz wiadomości nawet po zmianie telefonu czy ponownej instalacji aplikacji Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Włącz</string>
@@ -9649,7 +9611,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Rola w grupie</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Podaj swoją rolę</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Podgląd</string>
     <!-- Group member label save button label. -->

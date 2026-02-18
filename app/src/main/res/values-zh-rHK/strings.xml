@@ -2499,6 +2499,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s 已將 %2$s 靜音。</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">你已從另一個裝置將自己靜音。</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">發生用戶介面錯誤。請向開發人員報告此錯誤。</string>
@@ -2676,8 +2678,6 @@
     <string name="RegistrationActivity_i_understand">我明白</string>
     <string name="RegistrationActivity_play_services_error">Play 服務錯誤</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服務正在更新，或暫時未能運作。請再試一次。</string>
-    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal 是一個非營利組織\n條款及隱私政策</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal 需要聯絡人和媒體權限，以助您與好友連繫和傳送訊息。您的聯絡人將經 Signal 私密聯絡人探索上載，即是經端對端加密，Signal 服務從不可見到。</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal 需要聯絡人權限，以助您與好友連繫。您的聯絡人將經 Signal 私密聯絡人探索上載，即是經端對端加密，Signal 服務從不可見到。</string>
     <string name="RegistrationActivity_rate_limited_to_service">你已多次嘗試登記此電話號碼。請稍後再試。</string>
@@ -2709,8 +2709,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">取消</string>
     <string name="RegistrationActivity_next">下一步</string>
-    <string name="RegistrationActivity_continue">繼續</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">保護你的私隱。\n讓你在所有訊息中都能安然做自己。</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">電話號碼</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4221,31 +4219,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">立即更新</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">現在不要</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">下一步</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">允許存取權限</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">為協助你向認識的人發送訊息，Signal 將請求此等權限。 </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">通知</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">當新訊息到達時收到通知。</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">聯絡人</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">找到你認識的人。你的聯絡人名單已加密，Signal 服務無法看到。</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">電話通話</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">使註冊電話號碼更容易，並啟用其他通話功能。</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">儲存空間</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">從你的裝置發送照片、影片和檔案。</string>
 
 
     <!-- PaymentsSecuritySetupFragment -->
@@ -4699,8 +4672,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我已寫下此密碼。若然遺失，我將會無法還原備份。</string>
     <string name="registration_activity__restore_backup">備份還原</string>
     <string name="registration_activity__transfer_or_restore_account">轉移或還原帳戶</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">還原或轉移</string>
     <string name="registration_activity__transfer_account">轉移帳戶</string>
     <string name="registration_activity__skip">略過</string>
     <!-- Text label button to skip restoring -->
@@ -4814,14 +4785,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">服務連線錯誤</string>
     <string name="preferences_chats__backups">備份</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">測試版</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">資訊</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">這是測試版功能，將會逐漸改進。</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">解除鎖定 Signal</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">使用 Android 裝置的鎖定設定來解鎖 Signal。</string>
@@ -7706,9 +7670,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">開啟 Signal 安全備份</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">試用 Signal 安全備份</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">當你使用新手機或重新安裝 Signal 時，絕不會遺失訊息。</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">開啟</string>
@@ -9088,7 +9050,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">成員標籤</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">新增你的角色</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">預覽</string>
     <!-- Group member label save button label. -->

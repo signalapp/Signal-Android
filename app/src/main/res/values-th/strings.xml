@@ -2499,6 +2499,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s ปิดเสียงของ %2$s</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">คุณปิดเสียงของตัวเองจากอุปกรณ์อีกเครื่อง</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">เกิดข้อผิดพลาดด้าน UI โปรดรายงานข้อผิดพลาดนี้ให้นักพัฒนาแอปทราบ</string>
@@ -2676,8 +2678,6 @@
     <string name="RegistrationActivity_i_understand">ฉันเข้าใจ</string>
     <string name="RegistrationActivity_play_services_error">ข้อผิดพลาดเกี่ยวกับ Play Services</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services กำลังปรับรุ่นหรือใช้ไม่ได้ชั่วคราว โปรดลองอีกครั้ง</string>
-    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal เป็นแอปไม่แสวงหาผลกำไร\nเงื่อนไขและนโยบายความเป็นส่วนตัว</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal จำเป็นต้องมีการอนุญาตให้ใช้รายชื่อผู้ติดต่อและสื่อเพื่อช่วยให้คุณเชื่อมต่อกับเพื่อนๆ และส่งข้อความ รายชื่อผู้ติดต่อของคุณจะถูกอัปโหลดโดยใช้การค้นหาผู้ติดต่อส่วนตัว Signal ซึ่งแปลว่าสิ่งนี้เป็นการเข้ารหัสจากต้นทางถึงปลายทางและไม่ปรากฏในบริการของ Signal</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal จำเป็นต้องได้รับการอนุญาตให้ใช้รายชื่อผู้ติดต่อเพื่อช่วยให้คุณเชื่อมต่อกับเพื่อนๆ รายชื่อผู้ติดต่อของคุณจะถูกอัปโหลดโดยใช้โดยใช้การค้นหาผู้ติดต่อส่วนตัว Signal ซึ่งแปลว่าสิ่งนี้เป็นการเข้ารหัสจากต้นทางถึงปลายทางและไม่ปรากฏในบริการของ Signal</string>
     <string name="RegistrationActivity_rate_limited_to_service">คุณได้พยายามลงทะเบียนด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองใหม่ในภายหลัง</string>
@@ -2709,8 +2709,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">ยกเลิก</string>
     <string name="RegistrationActivity_next">ต่อไป</string>
-    <string name="RegistrationActivity_continue">ทำต่อ</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">นำความเป็นส่วนตัวไปกับคุณทุกที่\nเป็นตัวคุณในทุกข้อความ</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">หมายเลขโทรศัพท์</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4221,31 +4219,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">ปรับปรุงเดี๋ยวนี้</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">ไว้ทีหลัง</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">ดำเนินการต่อ</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">การอนุญาตสิทธิ์</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">เพื่อให้คุณสามารถส่งข้อความหาผู้ติดต่อที่รู้จัก Signal จะขอสิทธิ์การเข้าถึงต่อไปนี้ </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">การแจ้งเตือน</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">ได้รับแจ้งเตือนเมื่อมีข้อความใหม่</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">ผู้ติดต่อ</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">ค้นหาคนที่คุณรู้จัก โดยรายชื่อผู้ติดต่อของคุณจะได้รับการเข้ารหัสและไม่ถูกเปิดเผยต่อบริการของ Signal</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">การโทร</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">ช่วยให้การลงทะเบียนง่ายขึ้น พร้อมเข้าถึงฟีเจอร์การโทรอื่นๆ เพิ่มเติม</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">พื้นที่จัดเก็บ</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">ส่งรูปภาพ วิดีโอ และไฟล์ต่างๆ จากอุปกรณ์ของคุณ</string>
 
 
     <!-- PaymentsSecuritySetupFragment -->
@@ -4699,8 +4672,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ฉันได้จดบันทึกวลีรหัสผ่านนี้แล้ว หากจำไม่ได้ ฉันจะไม่สามารถกู้คืนจากข้อมูลสำรองได้</string>
     <string name="registration_activity__restore_backup">กู้คืนจากข้อมูลสำรอง</string>
     <string name="registration_activity__transfer_or_restore_account">ถ่ายโอนหรือกู้คืนบัญชี</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">กู้คืนหรือถ่ายโอน</string>
     <string name="registration_activity__transfer_account">ถ่ายโอนบัญชี</string>
     <string name="registration_activity__skip">ข้าม</string>
     <!-- Text label button to skip restoring -->
@@ -4814,14 +4785,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">เกิดข้อผิดพลาดในการเชื่อมต่อกับบริการ</string>
     <string name="preferences_chats__backups">ข้อมูลสำรอง</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">รุ่นทดสอบ</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">ข้อมูล</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">นี่เป็นฟีเจอร์ของรุ่นเบต้าซึ่งจะได้รับการพัฒนาและปรับปรุงต่อไป</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">ปลดล็อก Signal</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">ปลดล็อก Signal โดยใช้รูปแบบการล็อกอุปกรณ์ Android ที่คุณตั้งค่าไว้</string>
@@ -7706,9 +7670,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">เปิดใช้งานการสำรองข้อมูลที่ปลอดภัยของ Signal</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">ลองใช้แพ็กเกจสำรองข้อมูลที่ปลอดภัยของ Signal</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">ช่วยเก็บรักษาทุกข้อความแม้ในกรณีที่คุณเปลี่ยนโทรศัพท์เครื่องใหม่หรือติดตั้ง Signal อีกครั้ง</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">เปิดใช้งาน</string>
@@ -9088,7 +9050,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">ป้ายกำกับสมาชิก</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">เพิ่มคำบรรยายบทบาทของคุณ</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">ภาพตัวอย่าง</string>
     <!-- Group member label save button label. -->
