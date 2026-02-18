@@ -109,7 +109,7 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
   private fun initializeVideoPlayer(view: View) {
     val videoContainer = view.findViewById<FrameLayout>(R.id.video_container)
     val recyclerView = view.findViewById<RecyclerView>(R.id.message_details_list)
-    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(requireContext(), lifecycle, videoContainer, 1)
+    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(requireContext(), viewLifecycleOwner.lifecycle, videoContainer, 1)
     val callback = GiphyMp4ProjectionRecycler(holders)
 
     GiphyMp4PlaybackController.attach(recyclerView, callback, 1)
