@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.EmptyLogger
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
@@ -44,11 +45,15 @@ class ContactRecordProcessorTest {
     every { SignalStore.account.isPrimaryDevice } returns true
     every { SignalStore.account.e164 } returns "+11234567890"
 
+    mockkObject(RemoteConfig)
+    every { RemoteConfig.useBinaryId } returns true
+
     recipientTable = mockk(relaxed = true)
   }
 
   @After
   fun tearDown() {
+    unmockkObject(RemoteConfig)
     unmockkObject(SignalStore)
   }
 
