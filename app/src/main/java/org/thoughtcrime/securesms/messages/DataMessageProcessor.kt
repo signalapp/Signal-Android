@@ -1514,7 +1514,7 @@ object DataMessageProcessor {
       attachment = quote.attachments.firstNotNullOfOrNull { PointerAttachment.forPointer(it).orNull() },
       mentions = getMentions(quote.bodyRanges),
       type = QuoteModel.Type.fromProto(quote.type),
-      bodyRanges = quote.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
+      bodyRanges = quote.bodyRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toBodyRangeList()
     )
   }
 

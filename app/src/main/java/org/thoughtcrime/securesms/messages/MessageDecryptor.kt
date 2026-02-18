@@ -39,6 +39,7 @@ import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
@@ -132,7 +133,7 @@ object MessageDecryptor {
       return Result.Ignore(envelope, serverDeliveredTimestamp, emptyList())
     }
 
-    val sourceServiceId = ServiceId.parseOrNull(envelope.sourceServiceId)
+    val sourceServiceId = ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
     if (sourceServiceId is PNI && envelope.type != Envelope.Type.SERVER_DELIVERY_RECEIPT) {
       Log.w(TAG, "${logPrefix(envelope)} Got a message from a PNI that was not a SERVER_DELIVERY_RECEIPT.")
       return Result.Ignore(envelope, serverDeliveredTimestamp, emptyList())
@@ -158,7 +159,8 @@ object MessageDecryptor {
 
       val envelope = if (cipherResult?.metadata?.sourceServiceId != null) {
         envelope.newBuilder()
-          .sourceServiceId(cipherResult.metadata.sourceServiceId.toString())
+          .sourceServiceId(if (BuildConfig.USE_STRING_ID) cipherResult.metadata.sourceServiceId.toString() else null)
+          .sourceServiceIdBinary(if (RemoteConfig.useBinaryId) cipherResult.metadata.sourceServiceId.toByteString() else null)
           .sourceDevice(cipherResult.metadata.sourceDeviceId)
           .build()
       } else {
@@ -170,7 +172,7 @@ object MessageDecryptor {
         return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
       }
 
-      if (cipherResult.metadata.sourceServiceId is PNI && envelope.sourceServiceId == null) {
+      if (cipherResult.metadata.sourceServiceId is PNI && (envelope.sourceServiceId == null && envelope.sourceServiceIdBinary == null)) {
         Log.w(TAG, "${logPrefix(envelope)} Invalid message! Sealed sender used for a PNI.")
         return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
       }
