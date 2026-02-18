@@ -16,6 +16,7 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -37,6 +38,8 @@ public final class BubbleUtil {
   private static final String TAG = Log.tag(BubbleUtil.class);
   private static String currentState = "";
 
+  private static final float MIN_BUBBLE_HEIGHT_DP = 600f;
+  private static final float BUBBLE_HEIGHT_SCREEN_FRACTION = 0.9f;
   private BubbleUtil() {
   }
 
@@ -137,21 +140,11 @@ public final class BubbleUtil {
     HIDDEN
   }
 
-  /**
-   * Desired expanded bubble height in pixels.
-   * <p>
-   * Note: {@code NotificationCompat.BubbleMetadata.Builder#setDesiredHeight(int)} expects PX, not DP.
-   * If we accidentally pass a "dp-looking" constant (e.g. 600), the bubble becomes very short on
-   * high-density devices which leaves a large empty area below the bubble.
-   */
   public static int getDesiredBubbleHeightPx(@NonNull Context context) {
-    final float density = context.getResources().getDisplayMetrics().density;
-    final int minHeightPx = (int) (600f * density + 0.5f); // 600dp min
-
+    int minHeightPx = (int) DimensionUnit.DP.toPixels(MIN_BUBBLE_HEIGHT_DP);
     int screenHeightPx = context.getResources().getDisplayMetrics().heightPixels;
 
-    // Prefer WindowMetrics when available (more reliable than DisplayMetrics)
-    if (android.os.Build.VERSION.SDK_INT >= 30) {
+    if (Build.VERSION.SDK_INT >= 30) {
       WindowManager wm = context.getSystemService(WindowManager.class);
       if (wm != null) {
         Rect bounds = wm.getCurrentWindowMetrics().getBounds();
@@ -159,12 +152,13 @@ public final class BubbleUtil {
       }
     }
 
-    if (screenHeightPx <= 0) return minHeightPx;
+    if (screenHeightPx <= 0) {
+      return minHeightPx;
+    }
 
-    final int targetPx = (int) (screenHeightPx * 0.9f);
-    final int desiredPx = Math.max(minHeightPx, targetPx);
+    int targetPx = (int) (screenHeightPx * BUBBLE_HEIGHT_SCREEN_FRACTION);
+    int desiredPx = Math.max(minHeightPx, targetPx);
 
-    // Never exceed screen height
     return Math.min(desiredPx, screenHeightPx);
   }
 }

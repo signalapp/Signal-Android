@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
  * Activity which encapsulates a conversation for a Bubble window.
- *
+ *8
  * This activity exists so that we can override some of its manifest parameters
  * without clashing with [ConversationActivity] and provide an API-level
  * independent "is in bubble?" check.
@@ -16,8 +16,6 @@ import org.thoughtcrime.securesms.util.ViewUtil
 class BubbleConversationActivity : ConversationActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    // Let our layout handle all insets so the bubble can use its full height and
-    // avoid leaving a large blank area above the launcher/navigation bar.
     WindowCompat.setDecorFitsSystemWindows(window, false)
     super.onCreate(savedInstanceState, ready)
   }

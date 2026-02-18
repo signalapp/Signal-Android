@@ -64,11 +64,6 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   private var insets: WindowInsetsCompat? = null
   private var windowTypes: Int = InsetAwareConstraintLayout.windowTypes
-
-  /**
-   * When set, this value is used for the navigation bar guideline instead of the system inset.
-   * Used in bubble mode to eliminate the bottom margin so more messages fit on screen.
-   */
   private var navigationBarInsetOverride: Int? = null
 
   private val windowInsetsListener = androidx.core.view.OnApplyWindowInsetsListener { _, insets ->
@@ -120,11 +115,6 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     }
   }
 
-
-  /**
-   * Override the navigation bar inset (e.g. use 0 in bubble mode to remove bottom margin).
-   * When non-null, this value is used instead of the system navigation bar inset.
-   */
   fun setNavigationBarInsetOverride(inset: Int?) {
     if (navigationBarInsetOverride == inset) return
     navigationBarInsetOverride = inset
@@ -162,8 +152,6 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     val isLtr = ViewUtil.isLtr(this)
 
     val statusBar = windowInsets.top
-    // In bubble mode we can override the navigation-bar inset entirely so the content
-    // extends to the bottom of the bubble instead of reserving space for system UI.
     val navigationBar = navigationBarInsetOverride ?: if (windowInsets.bottom == 0 && Build.VERSION.SDK_INT <= 29) {
       ViewUtil.getNavigationBarHeight(resources)
     } else {

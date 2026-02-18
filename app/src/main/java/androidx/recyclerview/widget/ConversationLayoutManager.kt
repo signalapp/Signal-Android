@@ -4,6 +4,7 @@
  */
 
 package androidx.recyclerview.widget
+
 import android.content.Context
 import org.signal.core.util.logging.Log
 

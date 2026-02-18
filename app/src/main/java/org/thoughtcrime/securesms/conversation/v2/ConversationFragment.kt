@@ -634,18 +634,11 @@ class ConversationFragment :
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     binding.toolbar.isBackInvokedCallbackEnabled = false
-
-    // For full-screen conversations we respect system window insets; for bubbles we draw
-    // edge-to-edge inside the bubble window and manage insets ourselves.
     binding.root.setUseWindowTypes(args.conversationScreenType == ConversationScreenType.NORMAL && !resources.getWindowSizeClass().isSplitPane())
     if (args.conversationScreenType == ConversationScreenType.BUBBLE) {
-      // When shown as an Android bubble, force a zero navigation-bar inset so the
-      // message list and compose box can use the full bubble height.
       binding.root.setNavigationBarInsetOverride(0)
-      // Re-request insets and layout after a frame so we win over any system padding
-      // (e.g. on Android 15 / Pixel 9 where bubble insets can apply late).
       view.post {
-        androidx.core.view.ViewCompat.requestApplyInsets(binding.root)
+        ViewCompat.requestApplyInsets(binding.root)
         binding.root.requestLayout()
       }
     }
