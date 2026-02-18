@@ -3859,9 +3859,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal kan kun automatisk verificere krypteringen i chats, hvor du er forbundet med nogen via et telefonnummer. Hvis chatten blev startet med et brugernavn eller en fælles gruppe, skal du verificere end-to-end-krypteringen ved at sammenligne tallene på den forrige skærm eller scanne koden på deres enhed.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal kan nu automatisk verificere kryptering</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">For kontakter, du er forbundet til via telefonnummer, kan Signal automatisk bekræfte, om forbindelsen er sikker, ved hjælp af en proces kaldet nøgletransparens. For ekstra sikkerhed kan du stadig verificere forbindelser manuelt ved hjælp af en QR-kode eller et sikkerhedsnummer.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Få mere at vide</string>
     <!-- Button to go to verification page -->
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Hvis du mister den, vil du ikke kunne gendanne dine beskeder.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Din sikkerhedskopinøgle er en kode på 64 tegn, som lader dig gendanne alle typer sikkerhedskopier.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Denne nøgle erstatter sikkerhedskopinøglen på din enhed.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Din sikkerhedskopinøgle er en kode på 64 tegn, som lader dig gendanne din sikkerhedskopi, når du geninstallerer Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Dette er det samme som din sikkerhedskopinøgle på enheden.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Luk skærmen</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Fjern titel</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Angiv en medlemstitel for at beskrive dig selv eller din rolle i gruppen. Titler vises kun i denne gruppe.</string>
 
     <!-- EOF -->
 </resources>

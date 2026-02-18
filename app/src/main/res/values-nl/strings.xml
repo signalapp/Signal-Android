@@ -1369,7 +1369,7 @@
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">We hebben gemerkt dat meldingen vertraagd zijn. Foutopsporingslog indienen?</string>
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
-    <string name="PromptLogsSlowNotificationsDialog__message">Foutopsporingslogs helpen ons het probleem te diagnosticeren en op te lossen, en bevatten geen identificerende informatie.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">Foutopsporingslogs helpen ons het probleem op te sporen en op te lossen en bevatten geen identificeerbare informatie.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Er heeft zich een probleem voorgedaan bij Signal. Foutopsporingslog indienen?</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
@@ -3859,9 +3859,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal kan de versleuteling alleen automatisch verifiëren in chats waarbij je via een telefoonnummer met iemand bent verbonden. Als de chat is gestart met een gebruikersnaam of via een gemeenschappelijke groep, verifieer de end-to-endversleuteling dan door de cijfers op het vorige scherm te vergelijken of de QR-code op het apparaat van je contact te scannen.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal kan nu automatisch versleuteling verifiëren</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Voor contacten waarmee je via een telefoonnummer bent verbonden, kan Signal automatisch bevestigen of de verbinding veilig is met een proces dat sleuteltransparantie heet. Voor extra veiligheid kun je nog steeds handmatig verbindingen verifiëren met een QR-code of een veiligheidsnummer.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Meer informatie</string>
     <!-- Button to go to verification page -->
@@ -3870,7 +3870,7 @@
     <!-- Title for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__title">Automatische sleutelverificatie is momenteel niet beschikbaar voor jouw apparaat. Foutopsporingslog indienen?</string>
     <!-- Body for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__body">Foutopsporingslogs helpen ons het probleem te diagnosticeren en op te lossen, en bevatten geen identificerende informatie.</string>
+    <string name="SelfVerificationFailureSheet__body">Foutopsporingslogs helpen ons het probleem op te sporen en op te lossen en bevatten geen identificeerbare informatie.</string>
     <!-- Button to decline submitting logs -->
     <string name="SelfVerificationFailureSheet__no_thanks">Nee bedankt</string>
     <!-- Button to submit logs -->
@@ -4259,7 +4259,7 @@
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Automatische sleutelverificatie</string>
     <!-- Preference summary for automatic key verification -->
-    <string name="preferences_automatic_key_verification_body">Indien ingeschakeld, zal Signal proberen automatisch de versleuteling van 1:1 chats te verifiëren.</string>
+    <string name="preferences_automatic_key_verification_body">Indien ingeschakeld, zal Signal proberen automatisch de versleuteling van 1-op-1-chats te verifiëren.</string>
 
 
     <string name="configurable_single_select__customize_option">Instelling personaliseren</string>
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Als je de herstelsleutel kwijtraakt, kun je je berichten niet meer herstellen.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Je herstelsleutel is een code van 64 tekens waarmee je elk type back-up kunt herstellen.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Deze sleutel vervangt de sleutel voor je lokale back-up.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Je back-upsleutel is een code van 64 tekens waarmee je je back-ups kunt herstellen wanneer je Signal opnieuw installeert.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Dit is hetzelfde als je lokale back-upsleutel.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Scherm sluiten</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Tekst wissen</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Maak een label aan waarmee je iets over jezelf of je rol in deze groep zegt. Labels zijn alleen zichtbaar in deze groep.</string>
 
     <!-- EOF -->
 </resources>

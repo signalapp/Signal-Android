@@ -3859,9 +3859,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">O Signal só consegue verificar automaticamente a criptografia em conversas nas quais você se conectou a alguém por meio de um número de telefone. Se a conversa foi iniciada com um nome de usuário ou um grupo em comum, verifique a criptografia de ponta a ponta comparando os números na tela anterior ou escaneando o código no dispositivo da pessoa.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Agora, o Signal pode verificar automaticamente a criptografia</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Para contatos com os quais você se conecta por número de telefone, o Signal pode confirmar automaticamente se a conexão é segura usando um processo chamado transparência de chave. Para maior segurança, você ainda pode verificar as conexões manualmente usando um código QR ou um número de segurança.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Saiba mais</string>
     <!-- Button to go to verification page -->
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Se você perder a chave, não poderá recuperar suas mensagens.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Sua chave de recuperação é um código de 64 dígitos que permite restaurar todos os tipos de backup.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Esta chave substituirá a chave do seu backup no dispositivo.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Sua chave de backup é um código de 64 dígitos que permite restaurar seu backup ao reinstalar o Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Essa é a mesma chave de backup que você tem no dispositivo.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Fechar tela</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Limpar rótulo</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Adicione um rótulo de membro para fazer uma descrição de você mesmo ou de sua função neste grupo. Os rótulos ficam visíveis somente neste grupo.</string>
 
     <!-- EOF -->
 </resources>

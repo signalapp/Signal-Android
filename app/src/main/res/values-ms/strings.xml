@@ -3747,9 +3747,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal hanya boleh mengesahkan penyulitan secara automatik dalam sembang apabila anda disambungkan dengan seseorang melalui nombor telefon. Jika sembang dimulakan dengan nama pengguna atau melalui kumpulan yang sama, sahkan penyulitan hujung ke hujung dengan membandingkan nombor pada skrin sebelumnya atau mengimbas kod pada peranti mereka.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal kini boleh mengesahkan penyulitan secara automatik</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Bagi kenalan yang anda sambungkan melalui nombor telefon, Signal boleh mengesahkan secara automatik sama ada sambungan itu selamat menggunakan proses yang dipanggil ketelusan kunci. Untuk keselamatan tambahan, anda masih boleh mengesahkan sambungan secara manual menggunakan kod QR atau nombor keselamatan.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Ketahui lebih lanjut</string>
     <!-- Button to go to verification page -->
@@ -8471,11 +8471,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Jika hilang, mesej anda tidak dapat dipulihkan.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Kunci pemulihan anda ialah kod 64 aksara yang membolehkan anda memulihkan semua jenis sandaran.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Kunci ini akan menggantikan kunci sandaran pada peranti anda.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Kunci sandaran anda ialah kod 64 aksara yang membolehkan anda memulihkan sandaran anda apabila anda memasang semula Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Ini sama dengan kunci sandaran pada peranti anda.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9099,7 +9099,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Tutup skrin</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Kosongkan label</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Tambahkan label ahli untuk menerangkan diri anda atau peranan anda dalam kumpulan ini. Label hanya boleh dilihat dalam kumpulan ini.</string>
 
     <!-- EOF -->
 </resources>

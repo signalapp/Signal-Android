@@ -3859,9 +3859,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal inaweza tu kuthibitisha kiotomatiki usimbaji fiche kwenye magumzo unapounganishwa na mtu kupitia namba ya simu. Ikiwa gumzo lilianzishwa na jina la mtumiaji au kikundi cha pamoja, thibitisha usimbaji fiche wa mwanzo hadi mwisho kwa kulinganisha namba kwenye skrini iliyotangulia au kuchanganua msimbo kwenye kifaa chake.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Sasa Signal inaweza kuthibitisha kiotomatiki usimbaji fiche wa ufunguo</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Kwa wawasiliani uliounganishwa nao kupitia namba ya simu, Signal inaweza kuthibitisha kiotomatiki iwapo muunganisho huo ni salama kwa kutumia mchakato unaoitwa uwazi wa funguo. Kwa usalama wa ziada, bado unaweza kuthibitisha miunganisho yako mwenyewe ukitumia kodi ya QR au namba.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Jifunze zaidi</string>
     <!-- Button to go to verification page -->
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Ukiupoteza, hutaweza kurejesha ujumbe wako.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Ufunguo wako wa kurejesha akaunti ni code za herufi 64 zinazokuwezesha kurejesha aina zote za uhifadhi nakala.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Ufunguo huu utachukua nafasi ya uhifadhi nakala wako kwenye kifaa.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Ufunguo mbadala wako ni code ya herufi 64 zinazokuwezesha kurejesha hifadhi nakala yako unaposakinisha tena Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Hii ni sawa na ufunguo wako wa uhifadhi nakala kwenye kifaa.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Funga skrini</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Futa lebo</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Ongeza lebo ya mwanachama kujielezea mwenyewe au jukumu lako kwenye kikundi hiki. Lebo zinaonekana ndani ya kikundi hiki tu.</string>
 
     <!-- EOF -->
 </resources>

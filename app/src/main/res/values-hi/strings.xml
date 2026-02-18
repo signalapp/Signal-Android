@@ -3859,9 +3859,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal सिर्फ़ ऐसे चैट में एनक्रिप्शन को ऑटोमैटिक तरीके से वेरिफ़ाई कर सकता है जहां फ़ोन नंबर के ज़रिए किसी से जुड़ा जाता है। अगर किसी यूज़रनेम या कॉमन ग्रुप के ज़रिए चैट शुरू हुई हो, तो पिछली स्क्रीन पर दिख रहे नंबरों की तुलना करके या उनके डिवाइस पर मौजूद कोड को स्कैन करके एंड-टू-एंड एनक्रिप्शन वेरिफ़ाई करें।</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal अब एनक्रिप्शन को ऑटोमैटिक तरीके से वेरिफ़ाई कर सकता है</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">जिन कॉन्टैक्ट से आप फ़ोन नंबर के ज़रिए कनेक्ट हैं उनके लिए Signal, \'की ट्रांसपेरेंसी\' प्रोसेस के ज़रिए अपने-आप यह पुष्टि कर लेता है कि कोई कनेक्शन सुरक्षित है या नहीं। अतिरिक्त सुरक्षा के लिए, आपके पास भी QR कोड या सेफ़्टी नंबर के ज़रिए कनेक्शन को वेरिफ़ाई करने का विकल्प मौजूद है।</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">और जानें</string>
     <!-- Button to go to verification page -->
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">अगर आपने ऐसा नहीं किया, तो आपके मैसेज रिकवर नहीं हो पाएंगे।</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">आपकी \'रिकवरी की\' 64-कैरेक्टर वाला एक कोड है। यह सभी तरह के बैकअप रीस्टोर करने के लिए ज़रूरी है।</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">यह \'की\' आपकी ऑन-डिवाइस \'बैकअप की\' को रिप्लेस कर देगी।</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">आपकी \'बैकअप की\' 64-कैरेक्टर वाला एक कोड है। यह Signal को फिर से इंस्टॉल करने पर बैकअप रीस्टोर करने के लिए ज़रूरी है।</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">यह आपकी ऑन-डिवाइस \'बैकअप की\' जैसी ही है।</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">स्क्रीन बंद करें</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">लेबल मिटाएं</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">इस ग्रुप में अपने बारे में या अपने रोल के बारे में बताने के लिए मेंबर लेबल जोड़ें। मेंबर लेबल सिर्फ़ इसी ग्रुप में दिखाई देंगे।</string>
 
     <!-- EOF -->
 </resources>

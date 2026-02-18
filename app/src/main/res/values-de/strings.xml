@@ -3859,9 +3859,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal kann die Verschlüsselung in Chats nur automatisch verifizieren, wenn du mit jemandem über eine Telefonnummer verbunden bist. Wenn der Chat mit einem Nutzernamen oder einer gemeinsamen Gruppe begonnen wurde, verifiziere die Ende-zu-Ende-Verschlüsselung, indem du die Zahlen auf dem vorherigen Bildschirm vergleichst oder den Code auf dem Gerät scannst.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal kann die Verschlüsselung jetzt automatisch verifizieren</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Bei Kontakten, mit denen du über eine Telefonnummer verbunden bist, überprüft Signal mithilfe eines Verfahrens namens »Schlüssel-Transparenz« automatisch, ob die Verbindung sicher ist. Für mehr Sicherheit kannst du Verbindungen auch weiterhin manuell mit einem QR-Code oder einer Sicherheitsnummer verifizieren.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Mehr erfahren</string>
     <!-- Button to go to verification page -->
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Wenn du ihn verlierst, kannst du deine Nachrichten nicht wiederherstellen.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Dein Wiederherstellungsschlüssel ist ein 64-stelliger Code, mit dem du alle Backup-Typen wiederherstellen kannst.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Dieser Schlüssel ersetzt den Schlüssel für lokale Backups.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Dein Backup-Schlüssel ist ein 64-stelliger Code, mit dem du deine Backups wiederherstellen kannst, wenn du Signal neu installierst.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Dies entspricht deinem Backup-Schlüssel für lokale Backups.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Bildschirm schließen</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Label entfernen</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Füge ein Mitgliedslabel hinzu, um dich selbst oder deine Funktion in dieser Gruppe zu beschreiben. Labels sind nur innerhalb dieser Gruppe sichtbar.</string>
 
     <!-- EOF -->
 </resources>

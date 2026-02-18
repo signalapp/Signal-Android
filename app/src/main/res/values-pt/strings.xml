@@ -3859,9 +3859,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">O Signal só pode verificar automaticamente a encriptação em chats em que esteja ligado a alguém através de um número de telemóvel. Se o chat tiver sido iniciado com um nome de utilizador ou um grupo em comum, verifique a encriptação de ponta a ponta comparando os números no ecrã anterior ou digitalizando o código no dispositivo.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">O Signal pode agora verificar automaticamente a encriptação</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Para contactos aos quais está ligado por número de telemóvel, o Signal pode confirmar automaticamente se a ligação é segura utilizando um processo denominado transparência de chaves. Para mais segurança, pode verificar conexões manualmente utilizando um código QR ou número de segurança.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Saber mais</string>
     <!-- Button to go to verification page -->
@@ -8653,11 +8653,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Se a perder, não poderá recuperar as suas mensagens.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">A sua chave da cópia de segurança é um código de 64 caracteres que lhe permite restaurar todos os tipos de cópia de segurança.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Esta chave substituirá a chave da cópia de segurança no dispositivo.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">A sua chave da cópia de segurança é um código de 64 caracteres que lhe permite restaurar a sua cópia de segurança ao reinstalar o Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Esta é a mesma que a sua chave de cópia de segurança no dispositivo.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9286,7 +9286,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Fechar ecrã</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Limpar etiqueta</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Adicione uma etiqueta de membro para se descrever ou descrever a sua função neste grupo. As etiquetas só são visíveis dentro deste grupo.</string>
 
     <!-- EOF -->
 </resources>

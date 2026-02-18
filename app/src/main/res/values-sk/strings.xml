@@ -4083,9 +4083,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal dokáže automaticky overiť šifrovanie iba v četoch, v ktorých ste s niekým spojení prostredníctvom telefónneho čísla. Ak bol čet spustený so spoločným používateľským menom alebo skupinou, overte end-to-end šifrovanie porovnaním čísel na predchádzajúcej obrazovke alebo naskenovaním kódu na zariadení používateľa.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal teraz dokáže automaticky overiť šifrovanie</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">V prípade kontaktov, s ktorými ste prepojení prostredníctvom telefónneho čísla, dokáže Signal automaticky overiť, či je pripojenie bezpečné, prostredníctvom procesu nazývaného transparentnosť kľúča. Pre vyššiu bezpečnosť môžete pripojenie overiť aj manuálne pomocou QR kódu alebo bezpečnostného čísla.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Zistiť viac</string>
     <!-- Button to go to verification page -->
@@ -9017,11 +9017,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Ak ho stratíte, nebudete môcť obnoviť svoje správy.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Váš kľúč na obnovenie je 64-miestny kód, ktorý vám umožňuje obnoviť všetky typy záloh.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Tento kľúč nahradí kľúč pre zálohu na zariadení.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Váš záložný kľúč je 64-miestny kód, ktorý vám umožňuje obnoviť zálohy, keď znovu nainštalujete Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Zhoduje sa s vaším záložným kľúčom na zariadení.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9660,7 +9660,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Zatvoriť obrazovku</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Vymazať rolu</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Pridajte rolu používateľa, ktorá opíše vás alebo vašu úlohu v tejto skupine. Role sú viditeľné iba v rámci tejto skupiny.</string>
 
     <!-- EOF -->
 </resources>

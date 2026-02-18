@@ -4195,9 +4195,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Níl Signal in ann an criptiú i gcomhráite a uathfhíorú ach amháin nuair a bhíonn tú nasctha le duine éigin eile agus uimhir ghutháin in úsáid. I gcás gur tosaíodh comhrá agus ainm úsáideora nó grúpa i bpáirt, fíoraigh an criptiú ó cheann ceann ach na huimhreacha ar an scáileán roimhe a chur i gcomparáid lena chéile nó an cód ar ghléas an duine sin a scanadh.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Tá Signal in ann criptiú a uathfhíorú anois</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">I gcás teagmhálaithe lena bhfuil tú nasctha le huimhir ghutháin, is féidir le Signal slánú an naisc a dheimhniú go huathoibríoch agus próiseas ar a dtugtar trédhearcacht eochracha in úsáid. Mar shlánú sa bhreis, Is féidir leat naisc a fhíorú de láimh fós agus cód QR nó uimhir shábháilteachta in úsáid.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Tuilleadh faisnéise</string>
     <!-- Button to go to verification page -->
@@ -9199,11 +9199,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Má chailleann tú í, ní bheidh tú in ann do theachtaireachtaí a athshlánú.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Cód 64 carachtar is ea d\'eochair athshlánaithe a ligeann duit gach cineál cúltaca a aischur.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Cuirfear an eochair seo in ionad na heochrach do do chúltaca ar ghléas.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Cód 64 carachtar is ea d\'eochair chúltaca a ligeann duit do chúltacaí a aischur nuair a athshuiteálann tú Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Tá sé sin mar an gcéanna le d\'eochair chúltaca ar ghléas.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9847,7 +9847,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Dún an scáileán</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Glan an lipéad</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Cuir lipéad baill leis le cur síos a dhéanamh ort féin nó ar do ról sa ghrúpa seo. Níl lipéad infheicthe ach sa ghrúpa seo.</string>
 
     <!-- EOF -->
 </resources>

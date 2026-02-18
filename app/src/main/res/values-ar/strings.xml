@@ -4307,9 +4307,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">يمكن لسيجنال التحقُّق تلقائيًا من التشفير في الدردشات التي تكون متصلًا فيها بشخص ما عبر رقم الهاتف. إذا تمَّ بدء الدردشة باسم مُستخدِم أو مجموعة مشتركة، تحقَّق من التشفير من طرف لطرف من خلال مقارنة الأرقام على الشاشة السابقة أو مسح الكود على جهازه(ا).</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">يمكن لسيجنال الآن التحقُّق تلقائيًا من التشفير.</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">بالنسبة لجهات الاتصال المُرتبطين بك عبر رقم الهاتف، يمكن لتطبيق سيجنال التحقُّق تلقائيًا من أمان الاتصال باستخدام عملية تُسمّى شفافية المفاتيح. لتعزيز الأمان، يمكنك التحقُّق من الاتصالات يدويًا باستخدام كود QR أو رقم الأمان.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">اعرف المزيد</string>
     <!-- Button to go to verification page -->
@@ -9381,11 +9381,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">إذا فقدته، فلن تتمكَّن من استعادة رسائلك.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">مفتاح الاستعادة الخاص بك هو كود مُكوَّن من 64 رقمًا يَسمح لك باستعادة جميع أنواع النسخ الاحتياطية.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">سيحل هذا المفتاح محل مفتاحك الخاص بالنسخة النسخ الاحتياطية على الجهاز.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">مفتاح النسخة الاحتياطية الخاص بك هو كود مُكوَّن من 64 رقمًا يَسمح لك باستعادة نسخك الاحتياطية عندما تُعيد تثبيت سيجنال.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">هذا المفتاح مثل مفتاح النسخ الاحتياطية على الجهاز.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -10034,7 +10034,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">إغلاق الشاشة</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">مسح الدور</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">حدِّد دور عضو لتصف نفسك أو دورك في هذه المجموعة. الأدوار مرئية فقط داخلة هذه المجموعة.</string>
 
     <!-- EOF -->
 </resources>

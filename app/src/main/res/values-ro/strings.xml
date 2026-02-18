@@ -3971,9 +3971,9 @@
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal poate verifica automat criptarea doar în conversațiile în care ești conectat cu cineva prin intermediul unui număr de telefon. Dacă chatul a fost inițiat cu un nume de utilizator sau un grup comun, verifică criptarea end-to-end comparând numerele de pe ecranul anterior sau scanând codul pe dispozitivul utilizatorului.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Signal can now auto-verify encryption</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal poate acum verifica automat criptarea codului</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, you can still verify connections manually using a QR code or safety number.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Pentru contactele la care ești conectat/ă prin numărul de telefon, Signal poate confirma automat dacă conexiunea este sigură folosind un proces numit transparență privind codurile. Pentru securitate sporită, poți verifica în continuare conexiunile manual, folosind un cod QR sau un număr de siguranță.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Află mai multe</string>
     <!-- Button to go to verification page -->
@@ -8835,11 +8835,11 @@
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Dacă îl pierzi, nu îți vei putea recupera mesajele.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Your recovery key is a 64-character code that lets you restore all backup types.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Codul de recuperare este un cod de 64 de caractere care îți permite să restaurezi toate tipurile de backup-uri.</string>
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Acest cod va înlocui codul pentru backup-ul de pe dispozitiv.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Codul de rezervă este un cod din 64 de caractere care îți permite să îți restaurezi backup-ul atunci când reinstalezi Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Aceasta este același cu codul de rezervă de pe dispozitiv.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
@@ -9473,7 +9473,7 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Închide ecranul</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Șterge eticheta</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <string name="GroupMemberLabel__description">Setează un rol de membru ca să te descrii pe tine sau rolul tău în acest grup. Rolurile sunt vizibile doar în cadrul acestui grup.</string>
 
     <!-- EOF -->
 </resources>
