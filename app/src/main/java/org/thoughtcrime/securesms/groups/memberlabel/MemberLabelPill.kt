@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.text.TextStyle
@@ -70,11 +71,14 @@ fun MemberLabelPill(
   modifier: Modifier = defaultModifier,
   textStyle: TextStyle = defaultTextStyle()
 ) {
+  val shape = RoundedCornerShape(percent = 50)
+
   Row(
     modifier = Modifier
+      .clip(shape)
       .background(
         color = backgroundColor,
-        shape = RoundedCornerShape(percent = 50)
+        shape = shape
       )
       .then(modifier),
     verticalAlignment = Alignment.CenterVertically
