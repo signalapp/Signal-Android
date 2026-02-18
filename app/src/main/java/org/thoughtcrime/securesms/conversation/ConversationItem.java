@@ -1506,8 +1506,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-      int senderWidth = hasQuote(messageRecord) ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT;
-      ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, senderWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
       footer.setVisibility(VISIBLE);
 
