@@ -484,17 +484,22 @@ final class VideoTrackConverter {
         // Try to use the Dolby Vision decoder, but if it doesn't support the transfer parameter, the decoded video buffer
         // is HLG and in-app tone mapping has to be used instead
         if (Build.VERSION.SDK_INT >= 31) {
-          MediaCodec.ParameterDescriptor descriptor = decoder.getParameterDescriptor(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY);
-          if (descriptor != null) {
-            Bundle transferBundle = new Bundle();
-            transferBundle.putString(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY, "transfer.sdr.normal");
-            decoder.setParameters(transferBundle);
-          } else {
-            decoderPair.getSecond().setInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST, MediaFormat.COLOR_TRANSFER_SDR_VIDEO);
-          }
+          decoderPair.getSecond().setInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST, MediaFormat.COLOR_TRANSFER_SDR_VIDEO);
         }
         decoder.configure(decoderPair.getSecond(), surface, null, 0);
         decoder.start();
+        if (Build.VERSION.SDK_INT >= 31) {
+          try {
+            MediaCodec.ParameterDescriptor descriptor = decoder.getParameterDescriptor(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY);
+            if (descriptor != null) {
+              Bundle transferBundle = new Bundle();
+              transferBundle.putString(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY, "transfer.sdr.normal");
+              decoder.setParameters(transferBundle);
+            }
+          } catch (IllegalStateException e) {
+            Log.w(TAG, "Failed to set Dolby Vision transfer parameter", e);
+          }
+        }
         return decoder;
     }
 
