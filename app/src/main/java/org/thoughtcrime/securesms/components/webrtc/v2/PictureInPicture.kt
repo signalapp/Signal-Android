@@ -17,8 +17,8 @@ import androidx.compose.foundation.gestures.rememberDraggable2DState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
@@ -34,9 +34,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.NightPreview
@@ -90,40 +92,50 @@ fun PictureInPicture(
     modifier = modifier
   ) {
     val density = LocalDensity.current
+    val layoutDirection = LocalLayoutDirection.current
     val maxHeight = constraints.maxHeight
     val maxWidth = constraints.maxWidth
     val targetContentWidth = with(density) { state.targetSize.width.toPx().roundToInt() }
     val targetContentHeight = with(density) { state.targetSize.height.toPx().roundToInt() }
     val coroutineScope = rememberCoroutineScope()
 
+    // In RTL mode, BoxWithConstraints places children at (maxWidth - childWidth, 0)
+    // by default (TopStart alignment). Since we use absoluteOffset, we need to
+    // compensate for this base position so that our corner offsets remain correct.
+    val baseOffsetX = if (layoutDirection == LayoutDirection.Rtl) {
+      maxWidth - targetContentWidth
+    } else {
+      0
+    }
+
     var isDragging by remember {
       mutableStateOf(false)
     }
 
-    val topLeft = remember {
-      IntOffset(0, 0)
+    val topLeft = remember(baseOffsetX) {
+      IntOffset(-baseOffsetX, 0)
     }
 
-    val topRight = remember(maxWidth, targetContentWidth) {
-      IntOffset(maxWidth - targetContentWidth, 0)
+    val topRight = remember(maxWidth, targetContentWidth, baseOffsetX) {
+      IntOffset(maxWidth - targetContentWidth - baseOffsetX, 0)
     }
 
-    val bottomLeft = remember(maxHeight, targetContentHeight) {
-      IntOffset(0, maxHeight - targetContentHeight)
+    val bottomLeft = remember(maxHeight, targetContentHeight, baseOffsetX) {
+      IntOffset(-baseOffsetX, maxHeight - targetContentHeight)
     }
 
-    val bottomRight = remember(maxWidth, maxHeight, targetContentWidth, targetContentHeight) {
-      IntOffset(maxWidth - targetContentWidth, maxHeight - targetContentHeight)
+    val bottomRight = remember(maxWidth, maxHeight, targetContentWidth, targetContentHeight, baseOffsetX) {
+      IntOffset(maxWidth - targetContentWidth - baseOffsetX, maxHeight - targetContentHeight)
     }
 
-    val centerOffset = remember(maxWidth, maxHeight, targetContentWidth, targetContentHeight) {
+    val centerOffset = remember(maxWidth, maxHeight, targetContentWidth, targetContentHeight, baseOffsetX) {
       IntOffset(
-        (maxWidth - targetContentWidth) / 2,
+        (maxWidth - targetContentWidth) / 2 - baseOffsetX,
         (maxHeight - targetContentHeight) / 2
       )
     }
 
-    val initialOffset = remember(maxWidth, maxHeight, targetContentWidth, targetContentHeight) {
+    val initialOffset = remember(maxWidth, maxHeight, targetContentWidth, targetContentHeight, baseOffsetX) {
       getDesiredCornerOffset(state.corner, topLeft, topRight, bottomLeft, bottomRight)
     }
 
@@ -132,7 +144,7 @@ fun PictureInPicture(
     }
 
     // Animate position when focused state changes or when constraints/corner changes
-    LaunchedEffect(maxWidth, maxHeight, targetContentWidth, targetContentHeight, state.corner, isFocused) {
+    LaunchedEffect(maxWidth, maxHeight, targetContentWidth, targetContentHeight, state.corner, isFocused, baseOffsetX) {
       if (!isDragging) {
         val targetOffset = if (isFocused) {
           centerOffset
@@ -151,7 +163,7 @@ fun PictureInPicture(
     Box(
       modifier = Modifier
         .size(state.contentSize)
-        .offset {
+        .absoluteOffset {
           offsetAnimatable.value
         }
         .draggable2D(
