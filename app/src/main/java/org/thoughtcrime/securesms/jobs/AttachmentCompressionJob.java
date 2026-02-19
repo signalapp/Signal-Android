@@ -74,7 +74,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                         int mmsSubscriptionId)
   {
     return new AttachmentCompressionJob(databaseAttachment.attachmentId,
-                                        MediaUtil.isVideo(databaseAttachment) && MediaConstraints.isVideoTranscodeAvailable(),
+                                        MediaUtil.isVideo(databaseAttachment) && !databaseAttachment.videoGif && MediaConstraints.isVideoTranscodeAvailable(),
                                         mms,
                                         mmsSubscriptionId);
   }
