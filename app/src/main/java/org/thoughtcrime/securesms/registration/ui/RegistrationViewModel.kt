@@ -458,8 +458,8 @@ class RegistrationViewModel : ViewModel() {
   }
 
   fun submitCaptchaToken(context: Context) {
-    val e164 = getCurrentE164() ?: throw IllegalStateException("Can't submit captcha token if no phone number is set!")
-    val captchaToken = store.value.captchaToken ?: throw IllegalStateException("Can't submit captcha token if no captcha token is set!")
+    val e164 = getCurrentE164() ?: return clearChallengesAndBail { Log.w(TAG, "Phone number was null when trying to submit captcha token.") }
+    val captchaToken = store.value.captchaToken ?: return bail { Log.w(TAG, "Captcha token was null when trying to submit captcha token.") }
 
     store.update {
       it.copy(captchaToken = null, challengeInProgress = true, inProgress = true)
@@ -486,7 +486,7 @@ class RegistrationViewModel : ViewModel() {
   fun requestAndSubmitPushToken(context: Context) {
     Log.v(TAG, "validatePushToken()")
 
-    val e164 = getCurrentE164() ?: throw IllegalStateException("Can't submit captcha token if no phone number is set!")
+    val e164 = getCurrentE164() ?: return clearChallengesAndBail { Log.w(TAG, "Phone number was null when trying to submit push token.") }
 
     viewModelScope.launch {
       Log.d(TAG, "Getting session in order to perform push token verification…")
@@ -1061,6 +1061,22 @@ class RegistrationViewModel : ViewModel() {
   private fun bail(logMessage: () -> Unit) {
     logMessage()
     setInProgress(false)
+  }
+
+  /**
+   * Like [bail], but also clears challenge state. This is needed when challenge handling fails due to missing phone number,
+   * since otherwise the stale challenges would re-trigger the observer on every config change.
+   */
+  private fun clearChallengesAndBail(logMessage: () -> Unit) {
+    logMessage()
+    store.update {
+      it.copy(
+        inProgress = false,
+        challengesRequested = emptyList(),
+        challengeInProgress = false,
+        captchaToken = null
+      )
+    }
   }
 
   fun registerWithBackupKey(context: Context, backupKey: String, e164: String?, pin: String?, aciIdentityKeyPair: IdentityKeyPair?, pniIdentityKeyPair: IdentityKeyPair?) {

@@ -600,6 +600,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
   private fun updateEnabledControls(showProgress: Boolean, isReRegister: Boolean) {
     binding.countryCode.isEnabled = !showProgress
     binding.number.isEnabled = !showProgress
+    countryPickerView.isEnabled = !showProgress
     binding.cancelButton.visible = !showProgress && isReRegister
   }
 
