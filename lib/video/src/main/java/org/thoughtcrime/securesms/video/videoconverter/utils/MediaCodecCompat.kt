@@ -149,4 +149,20 @@ object MediaCodecCompat {
   } else {
     null
   }
+
+  /**
+   * Returns true if the given [MediaFormat] describes an HDR video (PQ or HLG color transfer).
+   * Some hardware decoders crash when tone-mapping parameters are set on non-HDR video.
+   */
+  @JvmStatic
+  fun isHdrVideo(format: MediaFormat): Boolean {
+    return try {
+      val colorTransfer = format.getInteger(MediaFormat.KEY_COLOR_TRANSFER)
+      colorTransfer == MediaFormat.COLOR_TRANSFER_ST2084 || colorTransfer == MediaFormat.COLOR_TRANSFER_HLG
+    } catch (e: NullPointerException) {
+      false
+    } catch (e: ClassCastException) {
+      false
+    }
+  }
 }

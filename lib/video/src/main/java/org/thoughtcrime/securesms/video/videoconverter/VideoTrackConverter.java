@@ -481,14 +481,16 @@ final class VideoTrackConverter {
         final Pair<MediaCodec, MediaFormat> decoderPair = MediaCodecCompat.findDecoder(inputFormat);
         final MediaCodec                    decoder     = decoderPair.getFirst();
 
-        // Try to use the Dolby Vision decoder, but if it doesn't support the transfer parameter, the decoded video buffer
-        // is HLG and in-app tone mapping has to be used instead
-        if (Build.VERSION.SDK_INT >= 31) {
+        // For HDR video, request SDR tone-mapping from the decoder. Only do this for HDR content
+        // (PQ or HLG transfer), as some hardware decoders (e.g. Qualcomm HEVC) crash when this is
+        // set on non-HDR video.
+        final boolean isHdr = MediaCodecCompat.isHdrVideo(decoderPair.getSecond());
+        if (Build.VERSION.SDK_INT >= 31 && isHdr) {
           decoderPair.getSecond().setInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST, MediaFormat.COLOR_TRANSFER_SDR_VIDEO);
         }
         decoder.configure(decoderPair.getSecond(), surface, null, 0);
         decoder.start();
-        if (Build.VERSION.SDK_INT >= 31) {
+        if (Build.VERSION.SDK_INT >= 31 && isHdr) {
           try {
             MediaCodec.ParameterDescriptor descriptor = decoder.getParameterDescriptor(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY);
             if (descriptor != null) {

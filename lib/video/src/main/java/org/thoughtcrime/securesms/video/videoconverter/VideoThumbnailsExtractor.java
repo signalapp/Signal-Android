@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.video.interfaces.MediaInput;
+import org.thoughtcrime.securesms.video.videoconverter.utils.MediaCodecCompat;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -88,19 +89,25 @@ final class VideoThumbnailsExtractor {
         outputSurface = new OutputSurface(outputWidthRotated, outputHeightRotated, true);
 
         decoder = MediaCodec.createDecoderByType(mime);
-        if (Build.VERSION.SDK_INT >= 31) {
-          final String VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY = "vendor.dolby.codec.transfer.value";
-          MediaCodec.ParameterDescriptor descriptor = decoder.getParameterDescriptor(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY);
-          if (descriptor != null) {
-            Bundle transferBundle = new Bundle();
-            transferBundle.putString(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY, "transfer.sdr.normal");
-            decoder.setParameters(transferBundle);
-          } else {
-            mediaFormat.setInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST, MediaFormat.COLOR_TRANSFER_SDR_VIDEO);
-          }
+        final boolean isHdr = MediaCodecCompat.isHdrVideo(mediaFormat);
+        if (Build.VERSION.SDK_INT >= 31 && isHdr) {
+          mediaFormat.setInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST, MediaFormat.COLOR_TRANSFER_SDR_VIDEO);
         }
         decoder.configure(mediaFormat, outputSurface.getSurface(), null, 0);
         decoder.start();
+        if (Build.VERSION.SDK_INT >= 31 && isHdr) {
+          try {
+            final String VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY = "vendor.dolby.codec.transfer.value";
+            MediaCodec.ParameterDescriptor descriptor = decoder.getParameterDescriptor(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY);
+            if (descriptor != null) {
+              Bundle transferBundle = new Bundle();
+              transferBundle.putString(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY, "transfer.sdr.normal");
+              decoder.setParameters(transferBundle);
+            }
+          } catch (IllegalStateException e) {
+            Log.w(TAG, "Failed to set Dolby Vision transfer parameter", e);
+          }
+        }
 
         long duration = 0;
 
@@ -217,4 +224,5 @@ final class VideoThumbnailsExtractor {
     }
     Log.i(TAG, "doExtract finished");
   }
+
 }
