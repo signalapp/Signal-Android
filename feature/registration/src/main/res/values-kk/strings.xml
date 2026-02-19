@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Құпиялығыңды сақта.\nӘр хабарламада өз болмысыңды көрсет..</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
-    <string name="RegistrationActivity_continue">Continue</string>
+    <string name="RegistrationActivity_terms_and_privacy">Signal – коммерциялық емес жоба\nШарттар және Құпиялық саясаты</string>
+    <string name="RegistrationActivity_continue">Жалғастыру</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
+    <string name="registration_activity__restore_or_transfer">Қалпына келтіру немесе тасымалдау</string>
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Рұқсаттар беру</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Сіз білетін адамдарға хат жазуға көмектесу үшін Signal осы рұқсаттарды сұрайды. </string>
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">Кейін</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">Келесі</string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">Хабарландырулар</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Жаңа хаттар келгенде хабарландыру алыңыз.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">Контактілер</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Өзіңіз танитын адамдарды табыңыз. Контактілеріңіз шифрланған және Signal қызметі оларды көре алмайды.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Телефон қоңыраулары</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Тіркеу процесін жеңілдетіңіз және қосымша қоңырау шалу функцияларын қосыңыз.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">Жад</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Құрылғыңыздан фотосуреттер, видеолар және файлдар жіберіңіз.</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
-    <string name="CountryCodeSelectScreen__your_country">Your country</string>
+    <string name="CountryCodeSelectScreen__your_country">Еліңіз</string>
     <!-- Close button content description -->
     <string name="CountryCodeSelectScreen__close">Close</string>
     <!-- Search bar hint text -->
-    <string name="CountryCodeSelectScreen__search_by">Search by name or number</string>
+    <string name="CountryCodeSelectScreen__search_by">Ел атауы немесе ел коды бойынша іздеңіз</string>
     <!-- Fallback text for countries with no name -->
-    <string name="CountryCodeSelectScreen__unknown_country">Unknown country</string>
+    <string name="CountryCodeSelectScreen__unknown_country">Белгісіз ел</string>
 </resources>

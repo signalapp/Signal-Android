@@ -9611,7 +9611,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Rola w grupie</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Podaj swoją rolę</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Podgląd</string>
     <!-- Group member label save button label. -->

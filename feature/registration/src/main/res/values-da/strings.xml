@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Tag privatlivet med dig. \nSkriv hvad du ønsker i enhver besked</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
-    <string name="RegistrationActivity_continue">Continue</string>
+    <string name="RegistrationActivity_terms_and_privacy">Signal er en nonprofitorganisation\nVilkår og privatlivspolitik</string>
+    <string name="RegistrationActivity_continue">Fortsæt</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
+    <string name="registration_activity__restore_or_transfer">Gendan eller overfør</string>
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Giv tilladelser</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">For at hjælpe dig med at sende beskeder til folk, du kender, vil Signal bede om disse tilladelser. </string>
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">Ikke nu</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">Næste</string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">Notifikationer</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Få en notifikation, når der kommer nye beskeder.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">Kontakter</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Find personer, du kender. Dine kontakter er krypterede og ikke synlige for Signal-tjenesten.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Telefonopkald</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Gør det nemmere at registrere og aktiver ekstra opkaldsfunktioner.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">Lagerplads</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send billeder, videoer og filer fra din enhed.</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
-    <string name="CountryCodeSelectScreen__your_country">Your country</string>
+    <string name="CountryCodeSelectScreen__your_country">Dit land</string>
     <!-- Close button content description -->
-    <string name="CountryCodeSelectScreen__close">Close</string>
+    <string name="CountryCodeSelectScreen__close">Luk</string>
     <!-- Search bar hint text -->
-    <string name="CountryCodeSelectScreen__search_by">Search by name or number</string>
+    <string name="CountryCodeSelectScreen__search_by">Søg efter navn eller landekode</string>
     <!-- Fallback text for countries with no name -->
-    <string name="CountryCodeSelectScreen__unknown_country">Unknown country</string>
+    <string name="CountryCodeSelectScreen__unknown_country">Ukendt land</string>
 </resources>

@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Pribatutasuna zurekin eraman.\nZu zeu izan mezu bakoitzean.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
-    <string name="RegistrationActivity_continue">Continue</string>
+    <string name="RegistrationActivity_terms_and_privacy">Signal irabazi-asmorik gabeko erakunde bat da\nBaldintzak eta pribatutasun-gidalerroak</string>
+    <string name="RegistrationActivity_continue">Jarraitu</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
+    <string name="registration_activity__restore_or_transfer">Leheneratu edo transferitu</string>
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Onartu baimenak</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Ezagutzen dituzun pertsonei mezuak bidaltzen laguntzeko, Signal-ek baimen hauek eskatuko ditu. </string>
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">Orain ez</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">Hurrengoa</string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">Jakinarazpenak</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Jaso jakinarazpenak mezu berriak iristen direnean.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">Kontaktuak</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Aurkitu ezagutzen duzun jendea. Zure kontaktuak enkriptatuta daude eta ez daude ikusgai Signal zerbitzuan.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Telefono-deiak</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Erraztu erregistratzeko prozesua eta gaitu dei-eginbide gehigarriak.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">Biltegia</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Bidali argazkiak, bideoak eta fitxategiak zure gailutik.</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
-    <string name="CountryCodeSelectScreen__your_country">Your country</string>
+    <string name="CountryCodeSelectScreen__your_country">Zure herrialdea</string>
     <!-- Close button content description -->
-    <string name="CountryCodeSelectScreen__close">Close</string>
+    <string name="CountryCodeSelectScreen__close">Itxi</string>
     <!-- Search bar hint text -->
-    <string name="CountryCodeSelectScreen__search_by">Search by name or number</string>
+    <string name="CountryCodeSelectScreen__search_by">Bilatu izenaren edo nazioarteko aurrezenbakiaren arabera</string>
     <!-- Fallback text for countries with no name -->
-    <string name="CountryCodeSelectScreen__unknown_country">Unknown country</string>
+    <string name="CountryCodeSelectScreen__unknown_country">Herrialde ezezaguna</string>
 </resources>

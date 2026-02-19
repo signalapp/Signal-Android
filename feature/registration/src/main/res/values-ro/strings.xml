@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ia-ți intimitatea cu tine.\nFii tu însuți în fiecare mesaj.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
-    <string name="RegistrationActivity_continue">Continue</string>
+    <string name="RegistrationActivity_terms_and_privacy">Signal este o organizație non-profit\nTermeni &amp; Politica de confidențialitate</string>
+    <string name="RegistrationActivity_continue">Continuare</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
+    <string name="registration_activity__restore_or_transfer">Restaurează sau transferă</string>
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Activare permisiuni</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Pentru a te ajuta să trimiți mesaje persoanelor pe care le cunoști, Signal va solicita aceste permisiuni. </string>
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">Nu acum</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">Următorul</string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">Notificări</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Primește notificări când sosesc mesaje noi.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">Contacte</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Găsește oameni pe care îi cunoști. Contactele tale sunt criptate și nu sunt vizibile pentru serviciul Signal.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Apeluri telefonice</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Fă înregistrarea mai ușoară și activează funcții suplimentare de apelare.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">Spațiu de stocare</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Trimite fotografii, videoclipuri și fișiere de pe dispozitivul tău.</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
-    <string name="CountryCodeSelectScreen__your_country">Your country</string>
+    <string name="CountryCodeSelectScreen__your_country">Țara ta</string>
     <!-- Close button content description -->
-    <string name="CountryCodeSelectScreen__close">Close</string>
+    <string name="CountryCodeSelectScreen__close">Închide</string>
     <!-- Search bar hint text -->
-    <string name="CountryCodeSelectScreen__search_by">Search by name or number</string>
+    <string name="CountryCodeSelectScreen__search_by">Caută după numele sau codul țării</string>
     <!-- Fallback text for countries with no name -->
-    <string name="CountryCodeSelectScreen__unknown_country">Unknown country</string>
+    <string name="CountryCodeSelectScreen__unknown_country">Țară necunoscută</string>
 </resources>

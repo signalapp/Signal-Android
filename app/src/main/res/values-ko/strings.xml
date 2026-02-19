@@ -418,7 +418,7 @@
     <!-- ContactShareEditActivity toolbar title -->
     <string name="ContactShareEditActivity__send_contact">연락처 보내기</string>
     <string name="ContactShareEditActivity_type_home">집</string>
-    <string name="ContactShareEditActivity_type_mobile">휴대 전화</string>
+    <string name="ContactShareEditActivity_type_mobile">휴대전화</string>
     <string name="ContactShareEditActivity_type_work">직장</string>
     <string name="ContactShareEditActivity_type_missing">기타</string>
     <string name="ContactShareEditActivity_invalid_contact">선택한 연락처가 유효하지 않습니다</string>
@@ -440,13 +440,13 @@
     <string name="ConversationItem_copied_text">%1$s 복사됨</string>
     <string name="ConversationItem_from_s">발신: %1$s</string>
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
-    <string name="ConversationItem_to_s">수신인: %1$s</string>
+    <string name="ConversationItem_to_s">수신: %1$s</string>
     <string name="ConversationItem_read_more">  더 보기</string>
     <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  더 다운로드하기</string>
     <string name="ConversationItem_pending">  대기 중</string>
-    <string name="ConversationItem_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
-    <string name="ConversationItem_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
+    <string name="ConversationItem_this_message_was_deleted">삭제된 메시지입니다.</string>
+    <string name="ConversationItem_you_deleted_this_message">메시지를 삭제했습니다.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">메시지를 다운로드할 수 없습니다. %1$s 님이 다시 전송해야 합니다.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -475,7 +475,7 @@
     <string name="ConversationActivity_compose_message">메시지 작성</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">파일 첨부 설정 중 오류가 발생했습니다.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">수신자의 SMS 또는 이메일 주소가 올바르지 않습니다</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">수신인의 SMS 또는 이메일 주소가 올바르지 않습니다</string>
     <string name="ConversationActivity_message_is_empty_exclamation">메시지가 비어 있어요</string>
     <string name="ConversationActivity_group_members">그룹 멤버</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
@@ -501,7 +501,7 @@
     <string name="ConversationActivity_send_message_content_description">메시지 전송</string>
     <string name="ConversationActivity_lets_switch_to_signal">Signal로 같이 옮겨요! %1$s</string>
     <string name="ConversationActivity_specify_recipient">연락처를 선택해 주세요.</string>
-    <string name="ConversationActivity_attachment_exceeds_size_limits">첨부 파일이 전송 메시지의 사이즈 제한을 초과합니다.</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">첨부 파일이 전송하려는 메시지의 사이즈 제한을 초과합니다.</string>
     <string name="ConversationActivity_unable_to_record_audio">오디오를 녹음할 수 없어요</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">현재 이 그룹의 멤버가 아니어서 메시지를 보낼 수 없어요.</string>
     <string name="ConversationActivity_only_s_can_send_messages">%1$s만 메시지를 전송할 수 있습니다.</string>
@@ -585,7 +585,7 @@
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="other">선택한 메시지를 삭제할까요?</item>
     </plurals>
-    <string name="ConversationFragment_save_to_sd_card">저장 공간에 저장하시겠어요?</string>
+    <string name="ConversationFragment_save_to_sd_card">저장 공간에 저장할까요?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="other">미디어 %1$d개를 모두 저장 공간에 저장하면 다른 앱에서도 접근할 수 있게 됩니다.\n\n계속할까요?</item>
     </plurals>
@@ -631,7 +631,7 @@
     <string name="ConversationFragment_your_safety_number_with_s_changed">%1$s과/와의 안전 번호가 변경됐습니다.</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%1$s 님과의 안전 번호가 변경되었습니다. 상대방이 Signal을 다시 설치했거나 기기를 변경했을 가능성이 있습니다. 새 안전 번호를 확인하려면 \'인증\'을 탭하세요. 이 단계는 선택 사항입니다.</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">요청을 차단하시겠어요?</string>
+    <string name="ConversationFragment__block_request">요청을 차단할까요?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s는 그룹 링크를 통해 그룹에 참가하거나 참가 요청을 보낼 수 없습니다. 하지만 그룹에 추가할 수 있습니다.</string>
     <!-- Dialog confirm block request button -->
@@ -862,7 +862,7 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">내가 메시지를 보내는 사용자 또는 기존 대화 기록이 있는 사용자를 제외하고는 아무도 Signal에서 나를 볼 수 없습니다.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">백업으로 복원하시겠어요?</string>
+    <string name="ChooseBackupFragment__restore_from_backup">백업으로 복원할까요?</string>
     <string name="ChooseBackupFragment__restore_your_messages_and_media">로컬 백업에서 메시지와 미디어를 복원합니다. 지금 복원하지 않으면 이후에는 복원할 수 없습니다.</string>
     <string name="ChooseBackupFragment__icon_content_description">백업 아이콘에서 복원</string>
     <string name="ChooseBackupFragment__choose_backup">백업 선택하기</string>
@@ -1217,8 +1217,8 @@
     <!-- GiphyFragmentPageAdapter -->
 
     <!-- AddToGroupActivity -->
-    <string name="AddToGroupActivity_add_member">멤버를 추가하시겠어요?</string>
-    <string name="AddToGroupActivity_add_s_to_s">\'%1$s\' 님을 \'%2$s\'에 추가하시겠어요?</string>
+    <string name="AddToGroupActivity_add_member">멤버를 추가할까요?</string>
+    <string name="AddToGroupActivity_add_s_to_s">%1$s 님을 \'%2$s\'에 추가할까요?</string>
     <string name="AddToGroupActivity_s_added_to_s">%1$s 님이 \'%2$s\'에 추가되었습니다.</string>
     <string name="AddToGroupActivity_add_to_groups">그룹에 추가하기</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">이 사용자를 레거시 그룹에 추가할 수 없습니다.</string>
@@ -1294,7 +1294,7 @@
 
     <!-- GroupsV1MigrationSuggestionsDialog -->
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
-        <item quantity="other">멤버를 추가하시겠어요?</item>
+        <item quantity="other">멤버를 추가할까요?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
         <item quantity="other">이 멤버들은 업그레이드될 때 새 그룹에 자동으로 추가될 수 없습니다.</item>
@@ -1310,7 +1310,7 @@
     </plurals>
 
     <!-- LeaveGroupDialog -->
-    <string name="LeaveGroupDialog_leave_group">그룹을 나가시겠어요?</string>
+    <string name="LeaveGroupDialog_leave_group">그룹을 나갈까요?</string>
     <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">이 그룹에서 메시지를 보내거나 받을 수 없게 됩니다.</string>
     <string name="LeaveGroupDialog_leave">나가기</string>
     <string name="LeaveGroupDialog_choose_new_admin">새 관리자 선택</string>
@@ -1681,7 +1681,7 @@
     <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
     <string name="InviteActivity_send_sms">SMS 보내기 (%1$d)</string>
     <plurals name="InviteActivity_send_sms_invites">
-        <item quantity="other">SMS 초대 %1$d개를 보내시겠어요?</item>
+        <item quantity="other">SMS 초대 %1$d개를 보낼까요?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Signal로 같이 옮겨요! %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
@@ -2121,22 +2121,22 @@
     <string name="MessageRequestBottomView_unblock">차단 해제</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s 님이 나에게 메시지를 보내고, 내 이름과 사진을 공유하도록 허용할까요? 이 사용자는 내가 이전에 삭제했던 사용자입니다.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s 님이 나에게 메시지를 보내고, 내 이름과 사진을 공유하도록 허용할까요? 내가 수락하기 전까지는 상대방이 내가 메시지를 확인했는지 알 수 없어요.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s 님이 나에게 메시지를 보내고, 내 이름과 사진을 볼 수 있도록 허용하시겠어요? 내가 수락하기 전까지는 상대방이 내가 메시지를 확인했는지 알 수 없어요.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s 님이 나에게 메시지를 보내고, 내 이름과 사진을 공유할 수 있도록 허용할까요? 차단을 해제하기 전까지는 메시지가 전달되지 않습니다.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s 님이 나에게 메시지를 보내고, 내 이름과 사진을 볼 수 있도록 허용하시겠어요? 차단을 해제하기 전까지는 메시지를 받을 수 없습니다.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s 님이 내게 메시지를 보내도록 허용할까요? 차단을 해제할 때까지 모든 메시지를 차단합니다.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s 님이 내게 메시지를 보내도록 허용할까요? 차단을 해제하기 전까지는 메시지를 받을 수 없습니다.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s의 업데이트와 메시지를 받아보시겠어요? 차단을 해제할 때까지 모든 업데이트를 차단합니다.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">이 그룹과 대화를 계속하고 멤버들에게 이름과 사진을 공유하시겠어요?</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s의 소식과 업데이트를 받으시겠어요? 차단을 해제하기 전까지는 업데이트를 받을 수 없습니다.</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">이 그룹과 대화를 계속하고 내 이름과 사진을 멤버들과 공유하시겠어요?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">이 레거시 그룹은 더 이상 사용할 수 없습니다. 새 그룹을 만들어 @멘션 및 관리자와 같은 새로운 기능을 활성화하세요.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">레거시 그룹의 규모가 너무 커서 더 이상 사용할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s 님과 대화를 계속하고 이름과 사진을 공유하시겠어요?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s 님과 대화를 계속하고 내 이름과 사진을 공유하시겠어요?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">그룹에 참여하고 내 이름과 사진을 멤버들과 공유하시겠어요? 수락하기 전까지는 상대방에게 메시지를 확인했다는 사실이 표시되지 않습니다.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">이 그룹에 참가하여 그룹 멤버에게 내 이름과 사진을 공유하시겠어요? 수락하기 전까지는 멤버의 메시지가 표시되지 않습니다.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">그룹에 참여하고 내 이름과 사진을 멤버들과 공유하시겠어요? 수락하기 전까지는 멤버의 메시지를 확인할 수 없습니다.</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">이 그룹에 참가할까요? 수락하기 전까지는 상대방이 내가 메시지를 확인했는지 알 수 없습니다.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">이 그룹을 차단 해제하고 그룹 멤버에게 내 이름과 사진을 공유할까요? 차단을 해제할 때까지 모든 메시지를 차단합니다.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">이 그룹을 차단 해제하고 그룹 멤버에게 내 이름과 사진을 공유할까요? 차단을 해제하기 전까지는 메시지를 받을 수 없습니다.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">보기</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s 멤버</string>
@@ -2180,11 +2180,11 @@
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">신고</string>
     <!-- Alert dialog title to accept a message request -->
-    <string name="MessageRequestBottomView_accept_request">요청을 수락하시겠어요?</string>
+    <string name="MessageRequestBottomView_accept_request">요청을 수락할까요?</string>
     <!-- Alert dialog body to review the message request carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully">신중하게 요청을 검토하세요. 프로필 이름은 해당 계정 소유자가 선택하며, 프로필 이름이 확인되지 않았습니다.</string>
     <!-- Alert dialog title to accept a message request to join a group -->
-    <string name="MessageRequestBottomView_join_group">그룹에 참여하시겠어요?</string>
+    <string name="MessageRequestBottomView_join_group">그룹에 참여할까요?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully_groups">신중하게 요청을 검토하세요. 그룹 이름은 해당 그룹의 구성원이 선택하며, 그룹 이름이 확인되지 않았습니다.</string>
     <!-- Button text to join a group -->
@@ -4060,7 +4060,7 @@
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">이 기기의 모든 메시지 기록과 미디어를 영구 삭제합니다.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">이 기기와 모든 연결된 기기에서 영구적으로 모든 메시지 기록과 미디어를 삭제합니다.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">모든 메시지 기록을 삭제할까요?</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">모든 메시지 기록을 정말 삭제하시겠어요?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">모든 메시지 기록을 영구적으로 제거합니다. 이 작업은 다시 되돌릴 수 없습니다.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">모든 기기에서 모든 메시지 기록을 영구적으로 제거합니다. 이 작업은 취소할 수 없습니다.</string>
@@ -5165,13 +5165,13 @@
     <string name="ChatWallpaperFragment__chat_color">대화창 색</string>
     <string name="ChatWallpaperFragment__reset_chat_colors">대화창 색 재설정</string>
     <string name="ChatWallpaperFragment__reset_chat_color">대화창 색 재설정</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">대화창 색을 재설정하시겠어요?</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">대화창 색을 초기화할까요?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">배경 설정하기</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">다크 모드는 배경 화면을 어둡게 합니다.</string>
     <string name="ChatWallpaperFragment__contact_name">연락처 이름</string>
     <string name="ChatWallpaperFragment__reset">초기화</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">배경 미리보기</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">모든 대화창 색을 다시 정의하시겠어요?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">모든 대화창 색을 덮어쓸까요?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">모든 배경 화면을 덮어쓰시겠어요?</string>
     <string name="ChatWallpaperFragment__reset_default_colors">기본 색 초기화</string>
     <string name="ChatWallpaperFragment__reset_all_colors">모든 색상 재설정</string>
@@ -5231,7 +5231,7 @@
     <string name="DeactivateWalletFragment__transfer_remaining_balance">잔액 이체</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">이전하지 않고 비활성화</string>
     <string name="DeactivateWalletFragment__deactivate">비활성화</string>
-    <string name="DeactivateWalletFragment__deactivate_without_transferring_question">이전하지 않고 비활성화하시겠어요?</string>
+    <string name="DeactivateWalletFragment__deactivate_without_transferring_question">이전하지 않고 비활성화할까요?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">결제를 다시 활성화하기로 선택할 경우 잔액이 Signal에 연결된 지갑에 남아 있게 됩니다.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">지갑을 비활성화하는 동안 오류가 발생했습니다.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
@@ -5254,7 +5254,7 @@
     <string name="PaymentsRecoveryStartFragment__enter_manually">수동으로 입력</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">클립보드에서 붙여넣기</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">저장하지 않고 계속하시겠어요?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">저장하지 않고 계속할까요?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">최악의 경우 복구 문구를 사용하면 잔액을 복원할 수 있습니다. 복구 문구를 저장하시는 게 좋습니다.</string>
     <!-- Alert dialog option to skip recovery phrase -->
@@ -5449,7 +5449,7 @@
     <!-- Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__change_status_confirmed">변경 상태 확인됨</string>
     <!-- Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">현재 번호가 %1$s인 것으로 확인됐습니다. 새로 변경한 번호가 아니라면 번호 변경 프로세스를 다시 시작해 주세요.</string>
+    <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">현재 번호가 %1$s인 것으로 확인됐습니다. 새로 변경한 번호가 아니라면 번호 변경 절차를 다시 시작해 주세요.</string>
     <!-- Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__change_status_unconfirmed">변경 상태 확인 안 됨</string>
     <!-- Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow -->
@@ -5805,7 +5805,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">대화 알림을 계속 끕니다.</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">전화번호를 클립보드에 복사했습니다.</string>
     <string name="ConversationSettingsFragment__phone_number">전화번호</string>
-    <string name="ConversationSettingsFragment__get_badges">Signal을 후원하고 배지를 받으세요. 배지를 탭하여 자세히 알아보세요.</string>
+    <string name="ConversationSettingsFragment__get_badges">Signal을 후원하고 배지를 받아보세요. 배지를 탭하면 자세한 내용을 확인할 수 있습니다.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">아직 전송하지 않은 미디어입니다.</string>
 
@@ -6027,7 +6027,7 @@
     <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">대화로 이동</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">기기를 연결하시겠어요?</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">기기를 연결할까요?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_it_looks_like_youre_trying">Signal 기기를 연결하려는 것 같네요. 계속을 탭한 다음 \'새 기기 연결\'을 탭하고 QR 코드를 다시 스캔하세요.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
@@ -6243,7 +6243,7 @@
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cannot_send_donation">후원금을 보낼 수 없습니다</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__this_user_cant_receive_donations_until">이 사용자는 Signal을 업그레이드해야 후원을 받을 수 있습니다.</string>
+    <string name="DonationsErrors__this_user_cant_receive_donations_until">이 사용자는 Signal을 최신 버전으로 업그레이드해야 후원을 받을 수 있습니다.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">네트워크 오류로 인해 후원금을 보내지 못했습니다. 연결을 확인하고 다시 시도하세요.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
@@ -6385,7 +6385,7 @@
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">실행 취소</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">프로필을 영구적으로 삭제하시겠어요?</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">프로필을 영구적으로 삭제할까요?</string>
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">삭제</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
@@ -6513,7 +6513,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">금액</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signal을 지지해 주셔서 감사합니다. 귀하의 기여는 표현의 자유를 보호하고 전 세계 수백만 사용자에게 안전한 글로벌 커뮤니케이션을 제공하는 오픈 소스 프라이버시 기술을 개발하겠다는 Signal의 사명을 지키는 데 도움이 됩니다. 미국 거주자라면 세금 보고 시 사용할 수 있도록 이 영수증을 보관하세요. Signal Technology Foundation은 내국세법조항 501c3조에 의거하여 세금 공제를 받을 수 있는 비영리 기관입니다. Signal 연방세 ID는 82–4506840입니다.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signal을 지지해 주셔서 감사합니다. 회원님의 기여는 표현의 자유를 보호하고, 전 세계 수백만 사용자에게 안전한 글로벌 커뮤니케이션을 제공하는 오픈 소스 프라이버시 기술을 개발하겠다는 Signal의 사명을 실현하는 데 큰 도움이 됩니다. 미국 거주자의 경우, 세금 신고 시 사용할 수 있도록 이 영수증을 보관해 주시기 바랍니다. Signal Technology Foundation은 미국 내국세법(IRC) 제501(c)(3)조에 따라 세금 공제가 가능한 비영리 기관입니다. Signal의 연방 세금 식별 번호(Federal Tax ID)는 82–4506840입니다.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">영수증 없음</string>
 
@@ -6872,7 +6872,7 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">따뜻한 응원에 감사드려요!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s 님이 나를 대신해 Signal을 후원해 주셨어요! Signal에 대한 응원의 마음을 프로필에 표시해 보세요.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s 님이 나를 대신해 Signal을 후원했어요! Signal에 대한 응원의 마음을 프로필에 표시해 보세요.</string>
     <!-- Description for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">%1$s 님을 대신해 Signal에 후원금을 보냈어요. 해당 사용자는 Signal 후원 사실을 프로필 배지로 표시할 수 있어요.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
@@ -7799,7 +7799,7 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">저장</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">삭제하시겠어요?</string>
+    <string name="NicknameActivity__delete_nickname">삭제할까요?</string>
     <!-- Dialog message for note and name deletion -->
     <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">설정한 별칭과 메모를 영구 삭제합니다.</string>
 
@@ -7887,7 +7887,7 @@
     <!-- Dialog action to skip media download -->
     <string name="BackupAlertBottomSheet__skip">건너뛰기</string>
     <!-- Dialog title for skipping media restore -->
-    <string name="BackupAlertBottomSheet__skip_restore_question">복원을 건너뛰시겠어요?</string>
+    <string name="BackupAlertBottomSheet__skip_restore_question">복원을 건너뛸까요?</string>
     <!-- Dialog text for skipping media restore -->
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">복원을 건너뛸 경우 나중에 저장 공간을 사용할 수 있을 때 백업의 남은 미디어와 첨부 파일을 다운로드할 수 있습니다.</string>
     <!-- Dialog title when a backup fails to be created -->
@@ -8302,7 +8302,7 @@
     <!-- Dialog body for skipping download of backed up media during deletion -->
     <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">백업에 남아 있는 미디어와 첨부 파일을 지금 다운로드하지 않으면 해당 항목이 영구적으로 삭제됩니다. 이 데이터는 복구할 수 없습니다.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
-    <string name="RemoteBackupsSettingsFragment__skip_restore_question">복원을 건너뛰시겠어요?</string>
+    <string name="RemoteBackupsSettingsFragment__skip_restore_question">복원을 건너뛸까요?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_message">복원을 건너뛸 경우, 백업의 남은 미디어와 첨부 파일을 나중에 다운로드할 수 있습니다.</string>
     <!-- Positive dialog action to skip download -->
@@ -8511,7 +8511,7 @@
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">키 생성을 취소하시겠어요?</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">키 생성을 취소할까요?</string>
     <!-- Dialog body when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__your_new_backup_key">확인을 완료하지 않으면 새 복구 키가 생성되지 않습니다.</string>
     <!-- Dialog button to continue confirming new recovery key-->
@@ -8633,7 +8633,7 @@
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">이전 Android에서 바로 전송</string>
     <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">복원을 건너뛰시겠어요?</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_title">복원을 건너뛸까요?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_warning">지금 복원을 건너뛰면 나중에 복원할 수 없습니다. 복원을 건너뛴 후 백업을 다시 활성화하면, 현재 백업이 새 메시지 기록으로 바뀝니다.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
@@ -8879,7 +8879,7 @@
     <!-- Dialog body when a poll fails to end and to try again -->
     <string name="Poll__check_connection">연결을 확인하고 다시 시도하세요.</string>
     <!-- Dialog title when you go to end a poll -->
-    <string name="Poll__end_poll_title">설문조사를 종료하시겠어요?</string>
+    <string name="Poll__end_poll_title">설문조사를 종료할까요?</string>
     <!-- Dialog body when you go to end a poll -->
     <string name="Poll__end_poll_body">이 채팅의 멤버는 더 이상 설문조사에 투표할 수 없습니다.</string>
     <!-- Body used in dialog when we are waiting for network -->
@@ -9050,7 +9050,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">멤버 라벨</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
+    <string name="GroupMemberLabel__label_text_placeholder">라벨 추가</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">미리보기</string>
     <!-- Group member label save button label. -->

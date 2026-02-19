@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">സ്വകാര്യത നിങ്ങൾക്കൊപ്പം കൊണ്ടുപോകുക.\nഎല്ലാ സന്ദേശത്തിലും നിങ്ങൾ നിങ്ങളെപ്പോലെ ആകുക.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
-    <string name="RegistrationActivity_continue">Continue</string>
+    <string name="RegistrationActivity_terms_and_privacy">Signal ഒരു ലാഭേച്ഛയില്ലാത്ത സ്ഥാപനമാണ്\n നിബന്ധനകളും സ്വകാര്യതാ നയവും</string>
+    <string name="RegistrationActivity_continue">തുടരുക</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
+    <string name="registration_activity__restore_or_transfer">പുനഃസ്ഥാപിക്കുക അല്ലെങ്കിൽ കൈമാറ്റം ചെയ്യുക</string>
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">അനുമതികൾ അനുവദിക്കുക</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">നിങ്ങൾക്ക് സന്ദേശം അയയ്ക്കാനാകുന്ന ആളുകൾക്ക് സന്ദേശം എത്തിക്കാൻ നിങ്ങളെ സഹായിക്കാൻ, Signal ഈ അനുമതികൾ ചോദിക്കും. </string>
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">അടുത്തത്</string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">അറിയിപ്പുകൾ</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">പുതിയ സന്ദേശങ്ങൾ വരുമ്പോൾ അറിയിപ്പ് നേടൂ.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">കോൺടാക്ടുകൾ</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">നിങ്ങൾക്ക് അറിയാവുന്ന ആളുകളെ കണ്ടെത്തൂ. നിങ്ങളുടെ കോൺടാക്റ്റുകൾ എൻക്രിപ്റ്റ് ചെയ്‌തിരിക്കുന്നു, അത് Signal സേവനത്തിന് കാണാനാകില്ല.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">ഫോൺ കോളുകൾ</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">രജിസ്റ്റർ ചെയ്യൽ എളുപ്പമാക്കുകയും അധിക കോളിംഗ് ഫീച്ചറുകൾ പ്രവർത്തനക്ഷമമാക്കുകയും ചെയ്യുക.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">സ്റ്റോറേജ്</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">നിങ്ങളുടെ ഉപകരണത്തിൽ നിന്ന് ഫോട്ടോകളോ വീഡിയോകളോ ഫയലുകളോ അയയ്ക്കുക.</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
-    <string name="CountryCodeSelectScreen__your_country">Your country</string>
+    <string name="CountryCodeSelectScreen__your_country">നിങ്ങളുടെ രാജ്യം</string>
     <!-- Close button content description -->
-    <string name="CountryCodeSelectScreen__close">Close</string>
+    <string name="CountryCodeSelectScreen__close">അടയ്ക്കുക</string>
     <!-- Search bar hint text -->
-    <string name="CountryCodeSelectScreen__search_by">Search by name or number</string>
+    <string name="CountryCodeSelectScreen__search_by">പേരോ രാജ്യ കോഡ് നമ്പറോ ഉപയോഗിച്ച് തിരയുക</string>
     <!-- Fallback text for countries with no name -->
-    <string name="CountryCodeSelectScreen__unknown_country">Unknown country</string>
+    <string name="CountryCodeSelectScreen__unknown_country">അജ്ഞാത രാജ്യം</string>
 </resources>

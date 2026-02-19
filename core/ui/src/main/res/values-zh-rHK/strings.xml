@@ -16,7 +16,7 @@
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">設定</string>
     <!-- Title for dialog shown when a required permission has not been granted -->
-    <string name="Permissions_permission_required">須要權限</string>
+    <string name="Permissions_permission_required">需要權限</string>
 
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->

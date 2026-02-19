@@ -9050,7 +9050,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Nhãn thành viên</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Thêm nhãn của bạn</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Xem trước</string>
     <!-- Group member label save button label. -->

@@ -9237,7 +9237,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">ممبر لیبل</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
+    <string name="GroupMemberLabel__label_text_placeholder">اپنا لیبل شامل کریں</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">پیش نظارہ</string>
     <!-- Group member label save button label. -->

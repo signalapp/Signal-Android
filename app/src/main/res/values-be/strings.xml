@@ -9611,7 +9611,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Метка ўдзельніка</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Дадаць сваю метку</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Папярэдні прагляд</string>
     <!-- Group member label save button label. -->

@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">လုံခြုံရေးကို သင်နှင့် ယူဆောင်သွားပါ။ \n မက်ဆေ့ချ်တိုင်းတွင် သင်ကိုယ်တိုင်ဖြစ်နိုင်ပါစေ။</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal is a 501c3 nonprofit\nTerms &amp; Privacy Policy</string>
-    <string name="RegistrationActivity_continue">Continue</string>
+    <string name="RegistrationActivity_terms_and_privacy">Signal သည် အကျိုးအမြတ်မယူပါ\n စည်းကမ်းချက်များနှင့် ကိုယ်ပိုင်အချက်အလက် မူဝါဒ</string>
+    <string name="RegistrationActivity_continue">ရှေ့ဆက်ပါ</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
+    <string name="registration_activity__restore_or_transfer">ပြန်ယူရန် သို့မဟုတ် လွှဲပြောင်းရန်</string>
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">ခွင့်ပြုချက်များ ပေးရန်</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">သင် သိရှိသောသူများထံသို့ မက်ဆေ့ချ်ပို့ရန်အတွက် ကူညီပေးရန် Signal သည် ထိုခွင့်ပြုချက်များကို တောင်းခံပါမည်။ </string>
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">ယခု မလုပ်သေးပါ</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">ဆက်သွားမည်</string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">အသိပေးချက်များ</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">မက်ဆေ့ချ်အသစ်များ ရောက်လာသောအခါ အသိပေးချက်ရယူလိုက်ပါ။</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">အဆက်အသွယ်များ</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">သင် သိသောသူများကို ရှာဖွေလိုက်ပါ။ သင့်အဆက်အသွယ်များကို ကုဒ်ပြောင်းဝှက်ထားပြီး Signal ဝန်ဆောင်မှုက မမြင်တွေ့ရပါ။</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">ဖုန်းကောလ်များ</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">မှတ်ပုံတင်ခြင်းကို ပိုလွယ်အောင်လုပ်ပြီး ထပ်ဆောင်း ဖုန်းကောလ် အင်္ဂါရပ်များကို ဖွင့်လိုက်ပါ။</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">သိမ်းဆည်းမှု</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">သင့်စက်မှ ဓာတ်ပုံများ၊ ဗီဒီယိုများနှင့် ဖိုင်များကို ပေးပို့လိုက်ပါ။</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
-    <string name="CountryCodeSelectScreen__your_country">Your country</string>
+    <string name="CountryCodeSelectScreen__your_country">နိုင်ငံ</string>
     <!-- Close button content description -->
-    <string name="CountryCodeSelectScreen__close">Close</string>
+    <string name="CountryCodeSelectScreen__close">ပိတ်မည်</string>
     <!-- Search bar hint text -->
-    <string name="CountryCodeSelectScreen__search_by">Search by name or number</string>
+    <string name="CountryCodeSelectScreen__search_by">အမည် သို့မဟုတ် နိုင်ငံကုဒ်နံပါတ်ဖြင့် ရှာရန်</string>
     <!-- Fallback text for countries with no name -->
-    <string name="CountryCodeSelectScreen__unknown_country">Unknown country</string>
+    <string name="CountryCodeSelectScreen__unknown_country">အမည်မသိ နိုင်ငံ</string>
 </resources>

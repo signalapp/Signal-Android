@@ -9611,7 +9611,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Роль учасника</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Додайте свою роль</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Попередній вигляд</string>
     <!-- Group member label save button label. -->
