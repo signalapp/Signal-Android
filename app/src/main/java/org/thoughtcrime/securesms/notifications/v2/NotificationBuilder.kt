@@ -354,7 +354,7 @@ sealed class NotificationBuilder(protected val context: Context) {
 
       val intent: PendingIntent? = NotificationPendingIntentHelper.getActivity(
         context,
-        0,
+        conversation.notificationId,
         ConversationIntents.createBubbleIntent(context, conversation.recipient.id, conversation.thread.threadId),
         mutable()
       )

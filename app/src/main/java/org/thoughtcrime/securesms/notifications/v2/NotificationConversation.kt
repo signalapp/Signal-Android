@@ -136,11 +136,11 @@ data class NotificationConversation(
     return try {
       TaskStackBuilder.create(context)
         .addNextIntentWithParentStack(intent)
-        .getPendingIntent(0, PendingIntentFlags.updateCurrent())
+        .getPendingIntent(notificationId, PendingIntentFlags.updateCurrent())
     } catch (e: NullPointerException) {
       Log.w(NotificationFactory.TAG, "Vivo device quirk sometimes throws NPE", e)
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-      NotificationPendingIntentHelper.getActivity(context, 0, intent, PendingIntentFlags.updateCurrent())
+      NotificationPendingIntentHelper.getActivity(context, notificationId, intent, PendingIntentFlags.updateCurrent())
     } catch (e: SecurityException) {
       Log.w(NotificationFactory.TAG, "TaskStackBuilder too many pending intents device quirk: ${e.message}")
       null
