@@ -47,7 +47,10 @@ public abstract class FullScreenDialogFragment extends DialogFragment {
   @Override
   public void onResume() {
     super.onResume();
-    WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().getWindow());
+
+    if (getShowsDialog()) {
+      WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().getWindow());
+    }
   }
 
   protected void onNavigateUp() {

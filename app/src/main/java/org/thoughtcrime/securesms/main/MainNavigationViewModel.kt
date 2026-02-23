@@ -66,7 +66,6 @@ class MainNavigationViewModel(
 
   private var navigator: AppScaffoldNavigator<Any>? = null
   private var navigatorScope: CoroutineScope? = null
-  private var goToLegacyDetailLocation: ((MainNavigationDetailLocation) -> Unit)? = null
 
   private val internalDetailLocation = MutableSharedFlow<MainNavigationDetailLocation>()
   val detailLocation: SharedFlow<MainNavigationDetailLocation> = internalDetailLocation
@@ -159,8 +158,7 @@ class MainNavigationViewModel(
    * Sets the navigator on the view-model. This wraps the given navigator in our own delegating implementation
    * such that we can react to navigateTo/Back signals and maintain proper state for internalDetailLocation.
    */
-  fun wrapNavigator(composeScope: CoroutineScope, threePaneScaffoldNavigator: ThreePaneScaffoldNavigator<Any>, goToLegacyDetailLocation: (MainNavigationDetailLocation) -> Unit): AppScaffoldNavigator<Any> {
-    this.goToLegacyDetailLocation = goToLegacyDetailLocation
+  fun wrapNavigator(composeScope: CoroutineScope, threePaneScaffoldNavigator: ThreePaneScaffoldNavigator<Any>): AppScaffoldNavigator<Any> {
     this.navigatorScope = composeScope
     this.navigator = Nav(threePaneScaffoldNavigator)
 

@@ -57,6 +57,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.activityViewModels
@@ -279,6 +280,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
+import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainSnackbarHostKey
@@ -412,6 +414,7 @@ class ConversationFragment :
     private const val ACTION_PINNED_SHORTCUT = "action_pinned_shortcut"
     private const val SAVED_STATE_IS_SEARCH_REQUESTED = "is_search_requested"
     private const val EMOJI_SEARCH_FRAGMENT_TAG = "EmojiSearchFragment"
+    private const val MESSAGE_DETAILS_TAG = "MessageDetailsFragment"
 
     private const val SCROLL_HEADER_ANIMATION_DURATION: Long = 100L
     private const val SCROLL_HEADER_CLOSE_DELAY: Long = SCROLL_HEADER_ANIMATION_DURATION * 4
@@ -779,6 +782,10 @@ class ConversationFragment :
       container.removeKeyboardStateListener(it)
     }
     keyboardEvents = null
+
+    if (!requireActivity().isChangingConfigurations) {
+      (requireActivity().supportFragmentManager.findFragmentByTag(MESSAGE_DETAILS_TAG) as? DialogFragment)?.dismissAllowingStateLoss()
+    }
 
     super.onDestroyView()
     if (pinnedShortcutReceiver != null) {
@@ -2793,7 +2800,11 @@ class ConversationFragment :
 
   private fun handleDisplayDetails(conversationMessage: ConversationMessage) {
     val recipientSnapshot = viewModel.recipientSnapshot ?: return
-    MessageDetailsFragment.create(conversationMessage.messageRecord, recipientSnapshot.id).show(childFragmentManager, null)
+    if (requireActivity() is MainActivity) {
+      mainNavigationViewModel.goTo(MainNavigationDetailLocation.Chats.MessageDetails(recipientSnapshot.id, conversationMessage.messageRecord.id))
+    } else {
+      MessageDetailsFragment.create(conversationMessage.messageRecord, recipientSnapshot.id).show(requireActivity().supportFragmentManager, MESSAGE_DETAILS_TAG)
+    }
   }
 
   private fun handleDeleteMessages(messageParts: Set<MultiselectPart>) {
@@ -3309,8 +3320,10 @@ class ConversationFragment :
           .show(childFragmentManager)
       } else if (messageRecord.hasFailedWithNetworkFailures()) {
         ConversationDialogs.displayMessageCouldNotBeSentDialog(requireContext(), messageRecord)
+      } else if (requireActivity() is MainActivity) {
+        mainNavigationViewModel.goTo(MainNavigationDetailLocation.Chats.MessageDetails(recipientId, messageRecord.id))
       } else {
-        MessageDetailsFragment.create(messageRecord, recipientId).show(childFragmentManager, null)
+        MessageDetailsFragment.create(messageRecord, recipientId).show(requireActivity().supportFragmentManager, MESSAGE_DETAILS_TAG)
       }
     }
 
