@@ -477,8 +477,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         }
 
         LaunchedEffect(Unit) {
-          mainNavigationViewModel.clearEarlyDetailLocation()
-          mainNavigationViewModel.detailLocation.collect { location ->
+          suspend fun navigateToLocation(location: MainNavigationDetailLocation) {
             when (location) {
               is MainNavigationDetailLocation.Empty -> {
                 when (mainNavigationState.currentListLocation) {
@@ -499,6 +498,11 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
               is MainNavigationDetailLocation.Stories -> storiesNavHostController.navigateToDetailLocation(location)
             }
           }
+
+          mainNavigationViewModel.earlyNavigationDetailLocationRequested?.let { navigateToLocation(it) }
+          mainNavigationViewModel.clearEarlyDetailLocation()
+
+          mainNavigationViewModel.detailLocation.collect { navigateToLocation(it) }
         }
 
         val scope = rememberCoroutineScope()
