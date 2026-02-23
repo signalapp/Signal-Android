@@ -2579,7 +2579,7 @@
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">तुम्ही दुसऱ्या डिव्हाईसवरून स्वतःला म्युट केलेत.</string>
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
-    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
+    <string name="WebRtcCallView__youve_been_muted_large_group">या कॉलमध्ये अनेक जण सहभागी असल्याने तुम्हाला म्युट करण्यात आले आहे.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI त्रुटी उद्भवली. कृपया विकसकांना या त्रुटीची माहिती द्या.</string>

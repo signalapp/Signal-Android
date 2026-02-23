@@ -2737,7 +2737,7 @@
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Вы адключылі апавяшчэннi ад самага сябе з іншай прылады.</string>
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
-    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
+    <string name="WebRtcCallView__youve_been_muted_large_group">У вас адключаны апавяшчэннi, бо ў гэтым званку шмат удзельнікаў.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Памылка карыстальніцкага інтэрфейсу. Паведаміце аб гэтай памылцы распрацоўнікам.</string>
@@ -8513,9 +8513,9 @@
     <string name="BackupStatusRow__learn_more">Даведацца больш</string>
 
     <!-- Dialog title to prompt resuming media restore over cellular -->
-    <string name="ResumeRestoreCellular_resume_using_cellular_title">Працягнуць выкарыстанне мабільнага інтэрнэта?</string>
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">Працягнуць выкарыстанне мабільнага інтэрнэту?</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
-    <string name="ResumeRestoreCellular_resume_using_cellular_message">Аднаўленне медыяфайлаў з выкарыстаннем мабільнага інтэрнэта можа прывесці да спагнання платы за перадачу дадзеных. Вы можаце падключыцца да Wi-Fi, каб аўтаматычна працягнуць аднаўленне.</string>
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">Аднаўленне медыяфайлаў з выкарыстаннем мабільнага інтэрнэту можа прывесці да спагнання платы за перадачу даных. Вы можаце падключыцца да Wi-Fi, каб аўтаматычна працягнуць аднаўленне.</string>
 
     <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
     <string name="CancelBackupDialog_title">Скасаваць рэзервовае капіраванне?</string>
@@ -8833,7 +8833,7 @@
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Вы можаце спампаваць %1$s рэзервовых даных, якіх няма на гэтай прыладзе. Немагчыма выгрузіць медыяфайлы, калi няма платнай падпіскі.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Вы можаце спампаваць %1$s дадзеных вашай рэзервовай копіі, якіх няма на гэтай прыладзе. </string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Вы можаце спампаваць %1$s даных вашай рэзервовай копіі, якіх няма на гэтай прыладзе. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">Спампаваць</string>
     <!-- Dialog title for skipping download of backed up media -->
@@ -8846,7 +8846,7 @@
         <item quantity="other">Калі вы прапусціце спампаванне, медыяфайлы і далучэнні, што засталіся ў вашай рэзервовай копіі, будуць выдалены праз %1$d дзён.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Калі вы прапусціце пампаванне, медыяфайлы і далучэнні, што засталіся ў вашай рэзервовай копіі, будуць выдалены назаўсёды. Гэтыя дадзеныя ўжо не атрымаецца аднавіць.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Калі вы прапусціце пампаванне, медыяфайлы і далучэнні, што засталіся ў вашай рэзервовай копіі, будуць выдалены назаўсёды. Гэтыя даныя ўжо не атрымаецца аднавіць.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">Прапусціць аднаўленне?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8866,15 +8866,15 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Звесткі</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Рэзервовыя копіі былі адключаны, але падчас выдалення вашых дадзеных сэрвісам бяспечнага захоўвання Signal адбылася памылка.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Рэзервовыя копіі былі адключаны, але падчас выдалення вашых даных сэрвісам бяспечнага захоўвання Signal адбылася памылка.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Не атрымалася выдаліць рэзервовую копію</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Адбылася памылка. Калі ласка, звярніцеся да службы падтрымкі.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Рэзервовыя копіі былі адключаны, і вашы дадзеныя будуць запампаваны на прыладу, а потым выдалены сэрвісам бяспечнага захоўвання Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Рэзервовыя копіі былі адключаны, і вашы даныя будуць запампаваны на прыладу, а потым выдалены сэрвісам бяспечнага захоўвання Signal.</string>
     <!-- Text displayed while we are processing a backup delete -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Рэзервовыя копіі былі адключаны, і вашы дадзеныя будуць выдалены сэрвісам бяспечнага захоўвання Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Рэзервовыя копіі былі адключаны, і вашы даныя будуць выдалены сэрвісам бяспечнага захоўвання Signal.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Рэзервовыя копіі былі адключаны, і вашы даныя былі выдалены сэрвісам бяспечнага захоўвання Signal.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->

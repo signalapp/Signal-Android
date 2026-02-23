@@ -2579,7 +2579,7 @@
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">நீங்கள் மற்றொரு சாதனத்தில் இருந்து உங்களை ஒலியடக்கியுள்ளீர்கள்.</string>
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
-    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
+    <string name="WebRtcCallView__youve_been_muted_large_group">இந்த அழைப்பில் பல பங்கேற்பாளர்கள் இருப்பதால் உங்களின் ஒலி அமைப்பு முடக்கப்பட்டுள்ளது.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI பிழை ஏற்பட்டது. டெவலப்பர்களிடம் இந்தப் பிழையைப் புகாரளிக்கவும்.</string>
@@ -9237,7 +9237,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">உறுப்பினர் லேபிள்</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
+    <string name="GroupMemberLabel__label_text_placeholder">உங்களின் பதவி நிலையைச் சேருங்கள்</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">முன்னோட்டம்</string>
     <!-- Group member label save button label. -->

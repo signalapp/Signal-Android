@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">လုံခြုံရေးကို သင်နှင့် ယူဆောင်သွားပါ။ \n မက်ဆေ့ချ်တိုင်းတွင် သင်ကိုယ်တိုင်ဖြစ်နိုင်ပါစေ။</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ကိုယ်ပိုင်အချက်အလက်တွေ သင်နှင့်အတူရှိနေပါစေ။\nသင့်ကိုယ်ပိုင်ပုံစံတိုင်းသာ မက်ဆေ့ချ်တိုင်းကို ပေးပို့ပါ။</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
-    <string name="RegistrationActivity_terms_and_privacy">Signal သည် အကျိုးအမြတ်မယူပါ\n စည်းကမ်းချက်များနှင့် ကိုယ်ပိုင်အချက်အလက် မူဝါဒ</string>
+    <string name="RegistrationActivity_terms_and_privacy">Signal သည် အကျိုးအမြတ်မယူပါ\nစည်းကမ်းချက်များနှင့် ကိုယ်ပိုင်အချက်အလက် မူဝါဒ</string>
     <string name="RegistrationActivity_continue">ရှေ့ဆက်ပါ</string>
     <!-- Screen title for restoring or transfering account -->
     <string name="registration_activity__restore_or_transfer">ပြန်ယူရန် သို့မဟုတ် လွှဲပြောင်းရန်</string>

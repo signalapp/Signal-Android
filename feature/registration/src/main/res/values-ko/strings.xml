@@ -5,7 +5,7 @@
     <string name="RegistrationActivity_terms_and_privacy">Signal은 비영리단체입니다\n이용 약관 및 개인정보처리방침</string>
     <string name="RegistrationActivity_continue">확인</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">복원 또는 전송</string>
+    <string name="registration_activity__restore_or_transfer">복원 또는 이전</string>
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a title at the top of the screen -->

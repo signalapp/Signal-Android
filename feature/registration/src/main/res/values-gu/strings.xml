@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">તમારી સાથે ગોપનીયતા લો.\nદરેક મેસેજ માં તમે બનો.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ગોપનીયતા તમારી સાથે રાખો.\nદરેક મેસેજમાં તમે લખતા હોય તેવી રીતે લખો.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">Signal બિનનફાકારક સંસ્થા છે\nનિયમો અને ગોપનીયતા નીતિ</string>
     <string name="RegistrationActivity_continue">ચાલુ રાખો</string>
@@ -19,15 +19,15 @@
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">નોટિફિકેશન</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">નવા મેસેજ આવે ત્યારે સૂચિત થાઓ.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">નવા મેસેજ આવે નોટિફિકેશન મેળવો.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">સંપર્કો</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">તમે જાણતા હો તે લોકોને શોધો. તમારા સંપર્કો એન્ક્રિપ્ટેડ છે અને Signal સેવાને દેખાઈ શકતા નથી.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">તમે જાણતા હો તે લોકોને શોધો. તમારા સંપર્કો એન્ક્રિપ્ટેડ છે અને Signal સેવાને દેખાતા નથી.</string>
     <!-- Phone calls permission row title -->
     <string name="GrantPermissionsFragment__phone_calls">ફોન કૉલ</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">રજીસ્ટર કરવાનું સરળ બનાવો અને વધારાના કૉલિંગ ફીચર સક્ષમ કરો.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">રજિસ્ટર કરવાનું સરળ બનાવો અને વધારાના કૉલિંગ ફીચર સક્ષમ કરો.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">સ્ટોરેજ</string>
     <!-- Storage permission row description -->

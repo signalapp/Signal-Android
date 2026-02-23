@@ -3,7 +3,7 @@
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Носете поверителността със себе си.\nБъдете себе си във всяко съобщение.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">Signal е организация с нестопанска цел\nУсловия и Политика за поверителност</string>
-    <string name="RegistrationActivity_continue">Продължи</string>
+    <string name="RegistrationActivity_continue">Продължаване</string>
     <!-- Screen title for restoring or transfering account -->
     <string name="registration_activity__restore_or_transfer">Възстановяване или трансфер</string>
 

@@ -2286,10 +2286,10 @@
 
     <!-- OutdatedBuildReminder -->
     <string name="OutdatedBuildReminder_update_now">Passez à la dernière version de Signal</string>
-    <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Cette version de Signal arrive à expiration aujourd\'hui. Passez à dernière la version.</string>
+    <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Cette version de Signal arrive à expiration aujourd\'hui. Passez à la dernière version.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">Cette version de Signal arrivera à expiration demain. Passez à dernière la version.</item>
-        <item quantity="other">Cette version de Signal arrivera à expiration dans %1$d jours. Passez à dernière la version.</item>
+        <item quantity="one">Cette version de Signal arrivera à expiration demain. Passez à la dernière version.</item>
+        <item quantity="other">Cette version de Signal arrivera à expiration dans %1$d jours. Passez à la dernière version.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -5141,7 +5141,7 @@
     <string name="GroupsLearnMore_what_are_legacy_groups">Les groupes hérités, qu\'est-ce que c\'est ?</string>
     <string name="GroupsLearnMore_paragraph_1">Les groupes hérités sont d\'anciens groupes incompatibles avec les fonctionnalités des nouveaux groupes – par exemple, les admins ou la description des actualités du groupe.</string>
     <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Puis-je convertir un groupe hérité en nouveau groupe ?</string>
-    <string name="GroupsLearnMore_paragraph_2">Les groupes hérités ne peuvent pas encore être convertis en nouveaux groupes. Cependant, vous pouvez créer un nouveau groupe qui accueille les mêmes membres, pour peu qu\'ils utilisent la dernière la version de Signal.</string>
+    <string name="GroupsLearnMore_paragraph_2">Les groupes hérités ne peuvent pas encore être convertis en nouveaux groupes. Cependant, vous pouvez créer un nouveau groupe qui accueille les mêmes membres, pour peu qu\'ils utilisent la dernière version de Signal.</string>
     <string name="GroupsLearnMore_paragraph_3">Signal vous permettra bientôt de convertir les groupes hérités.</string>
 
     <!-- GroupLinkBottomSheetDialogFragment -->

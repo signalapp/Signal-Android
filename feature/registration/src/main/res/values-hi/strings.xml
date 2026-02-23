@@ -9,9 +9,9 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">अनुमतियाँ दें</string>
+    <string name="GrantPermissionsFragment__allow_permissions">अनुमतियां दें</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">जिन लोगों को आप जानते हैं उन्हें संदेश भेजने में आपकी मदद के लिए, Signal इन अनुमतियों का अनुरोध करेगा। </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">आप अपने जान-पहचान वाले लोगों को आसानी से मैसेज भेज सकें, इसके लिए Signal आपसे ये अनुमतियां मांगेगा। </string>
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
     <string name="GrantPermissionsFragment__not_now">अभी नहीं</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
@@ -19,19 +19,19 @@
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">नोटिफ़िकेशन</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">नए संदेश आने पर जानकारी पाएं।</string>
+    <string name="GrantPermissionsFragment__get_notified_when">नए मैसेज आने पर नोटिफ़िकेशन पाएं।</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">संपर्क</string>
+    <string name="GrantPermissionsFragment__contacts">कॉन्टैक्ट</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">अपनी पहचान के लोगों को ढूंढें। आपके संपर्क एन्क्रिप्टेड हैं और Signal सेवा को दिखाई नहीं देते हैं।</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">अपने जान-पहचान वाले लोगों को ढूंढें। आपके कॉन्टैक्ट एनक्रिप्टेड हैं और Signal सर्विस इन्हें नहीं देख सकती।</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">फोन कॉल</string>
+    <string name="GrantPermissionsFragment__phone_calls">फ़ोन कॉल</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">पंजीकरण को आसान बनाएं और अतिरिक्त कॉलिंग फीचर्स सक्षम करें।</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">रजिस्ट्रेशन को आसान बनाएं और कॉलिंग से जुड़े अतिरिक्त फ़ीचर चालू करें।</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">स्टॉरेज</string>
+    <string name="GrantPermissionsFragment__storage">स्टोरेज</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">अपनी डिवाइस से फोटो, वीडियो और फाइलें भेजें।</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">अपने डिवाइस से फ़ोटो, वीडियो, और फ़ाइल भेजें।</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->

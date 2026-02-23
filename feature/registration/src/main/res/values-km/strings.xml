@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">យកភាពឯកជនជាមួយអ្នក។ \\ n សូមធ្វើខ្លួនអ្នកនៅក្នុងគ្រប់សារទាំងអស់។</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ឯកជនភាពស្ថិតនៅជាមួយអ្នក។\nសូមមានភាពជាខ្លួនឯងនៅក្នុងគ្រប់សារទាំងអស់។</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">Signal គឺជាអង្គការមិនស្វែងរកប្រាក់ចំណេញ \n លក្ខខណ្ឌ និងគោលការណ៍ឯកជនភាព</string>
     <string name="RegistrationActivity_continue">បន្ត</string>
@@ -21,9 +21,9 @@
     <!-- Notifications permission row description -->
     <string name="GrantPermissionsFragment__get_notified_when">ទទួលបានការជូនដំណឹងនៅពេលសារថ្មីៗមកដល់។</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">បញ្ជីទំនាក់ទំនង</string>
+    <string name="GrantPermissionsFragment__contacts">ទំនាក់ទំនង</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">ស្វែងរកមនុស្សដែលអ្នកស្គាល់។ បញ្ជីទំនាក់ទំនងរបស់អ្នកត្រូវបានអ៊ីនគ្រីប និងមិនអាចមើលឃើញដោយសេវាកម្ម Signal បានទេ។</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">ស្វែងរកមនុស្សដែលអ្នកស្គាល់។ ទំនាក់ទំនងរបស់អ្នកត្រូវបានអ៊ីនគ្រីប និងមិនអាចមើលឃើញដោយសេវាកម្ម Signal បានទេ។</string>
     <!-- Phone calls permission row title -->
     <string name="GrantPermissionsFragment__phone_calls">ការហៅទូរសព្ទ</string>
     <!-- Phone calls permission row description -->

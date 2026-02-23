@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ਪਰਦੇਦਾਰੀ ਆਪਣੇ ਤੱਕ ਰੱਖੋ।\nਹਰੇਕ ਸੁਨੇਹਾ ਬੇਝਿਜਕ ਹੋ ਕੇ ਲਿਖੋ।</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ਪਰਦੇਦਾਰੀ ਹਮੇਸ਼ਾ ਆਪਣੇ ਨਾਲ ਰੱਖੋ।\nਹਰੇਕ ਸੁਨੇਹਾ ਬਿਨਾਂ ਕਿਸੇ ਬੇਝਿਜਕ ਦੇ ਲਿਖੋ।</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">Signal ਇੱਕ ਗੈਰ-ਲਾਭਕਾਰੀ ਸੰਸਥਾ ਹੈ\nਸ਼ਰਤਾਂ ਅਤੇ ਪਰਦੇਦਾਰੀ ਨੀਤੀ</string>
     <string name="RegistrationActivity_continue">ਜਾਰੀ ਰੱਖੋ</string>
@@ -11,7 +11,7 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">ਇਜਾਜ਼ਤਾਂ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿਓ</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">ਤੁਹਾਡੀ ਜਾਣ-ਪਛਾਣ ਦੇ ਲੋਕਾਂ ਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਵਿੱਚ ਤੁਹਾਡੀ ਮਦਦ ਕਰਨ ਲਈ, Signal ਤੁਹਾਡੇ ਕੋਲੋਂ ਇਹ ਇਜਾਜ਼ਤਾਂ ਮੰਗੇਗਾ। </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">ਤੁਹਾਡੀ ਜਾਣ-ਪਛਾਣ ਵਾਲੇ ਲੋਕਾਂ ਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਵਿੱਚ ਤੁਹਾਡੀ ਮਦਦ ਕਰਨ ਲਈ, Signal ਤੁਹਾਡੇ ਕੋਲੋਂ ਇਹ ਇਜਾਜ਼ਤਾਂ ਮੰਗੇਗਾ। </string>
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
     <string name="GrantPermissionsFragment__not_now">ਹਾਲੇ ਨਹੀਂ</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
@@ -29,7 +29,7 @@
     <!-- Phone calls permission row description -->
     <string name="GrantPermissionsFragment__make_registering_easier">ਰਜਿਸਟਰ ਕਰਨਾ ਆਸਾਨ ਬਣਾਓ ਅਤੇ ਵਾਧੂ ਕਾਲਿੰਗ ਫੀਚਰਾਂ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ।</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">ਸਟੋਰੇਜ਼</string>
+    <string name="GrantPermissionsFragment__storage">ਸਟੋਰੇਜ</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">ਆਪਣੇ ਡਿਵਾਈਸ ਤੋਂ ਫ਼ੋਟੋਆਂ, ਵੀਡੀਓ ਅਤੇ ਫ਼ਾਈਲਾਂ ਭੇਜੋ।</string>
 
@@ -39,7 +39,7 @@
     <!-- Close button content description -->
     <string name="CountryCodeSelectScreen__close">ਬੰਦ ਕਰੋ</string>
     <!-- Search bar hint text -->
-    <string name="CountryCodeSelectScreen__search_by">ਦੇਸ਼ ਦੇ ਨਾਮ ਜਾਂ ਨੰਬਰ ਨਾਲ ਖੋਜੋ</string>
+    <string name="CountryCodeSelectScreen__search_by">ਨਾਮ ਜਾਂ ਨੰਬਰ ਨਾਲ ਖੋਜੋ</string>
     <!-- Fallback text for countries with no name -->
     <string name="CountryCodeSelectScreen__unknown_country">ਅਣਜਾਣ ਦੇਸ਼</string>
 </resources>

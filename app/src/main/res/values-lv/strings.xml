@@ -2658,7 +2658,7 @@
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Jūs izslēdzāt savu skaņu citā ierīcē.</string>
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
-    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
+    <string name="WebRtcCallView__youve_been_muted_large_group">Jums tika atslēgta skaņa, jo šajā zvanā ir daudz dalībnieku.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Radusies saskarnes kļūda. Lūdzu, ziņojiet par šo kļūdu izstrādātājiem.</string>
@@ -9424,7 +9424,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Lietotāja emblēma</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Pievienot emblēmu</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Priekšskatīt</string>
     <!-- Group member label save button label. -->

@@ -1974,9 +1974,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Odrzucone połączenie wideo</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Nieodebrane połączenie głosowe, podczas gdy włączony był profil powiadomień</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">Nieodebrane połączenie głosowe, podczas gdy był włączony profil powiadomień</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Nieodebrane połączenie wideo, podczas gdy włączony był profil powiadomień</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">Nieodebrane połączenie wideo, podczas gdy był włączony profil powiadomień</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s wprowadza zmiany w grupie.</string>
@@ -4869,7 +4869,7 @@
     <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
     <string name="reminder_cds_warning_learn_more">Dowiedz się więcej</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">Dostępna w aplikacji Signal funkcja wykrywania kontaktów nie może przetworzyć kontaktów z Twojego telefonu.</string>
+    <string name="reminder_cds_permanent_error_body">Funkcja wykrywania kontaktów dostępna w aplikacji Signal nie może przetworzyć kontaktów z Twojego telefonu.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Dowiedz się więcej</string>
 
@@ -5795,7 +5795,7 @@
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Generowanie raportu…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Raport jest generowany wyłącznie wtedy, gdy prosisz o eksport, i nie jest przechowywany przez Signal na Twoim urządzeniu.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Raport jest generowany tylko wtedy, gdy go eksportujesz, i nie jest przechowywany przez Signal na Twoim urządzeniu.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Użyj tej opcji, aby zmienić swój obecny numer telefonu na nowy. Tej zmiany nie będzie można cofnąć.\n\nZanim zaczniesz, upewnij się, że możesz odbierać SMS-y lub połączenia kierowane na nowy numer.</string>
@@ -5952,7 +5952,7 @@
     <!-- Text next to button that allows users to add chats to the folder    -->
     <string name="CreateFoldersFragment__add_chats">Dodaj czaty</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">Wybierz czaty, które ma zawierać ten folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">Wybierz czaty, które mają się znaleźć w tym folderze.</string>
     <!-- Section title representing what chats are excluded from the folder -->
     <string name="CreateFoldersFragment__exceptions">Wkluczone czaty</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
@@ -6276,7 +6276,7 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">Ta osoba została usunięta: %1$s</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">Ta osoba została zablokowana %1$s</string>
+    <string name="NewConversationActivity__s_has_been_blocked">Ta osoba została zablokowana: %1$s</string>
     <!-- Snackbar message when blocking a contact has failed -->
     <string name="NewConversationActivity__block_failed">Nie udało się zablokować</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -6681,7 +6681,7 @@
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cannot_send_donation">Nie można wpłacić darowizny</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__this_user_cant_receive_donations_until">Ta osoba nie może otrzymywać darowizn, dopóki nie zaktualizuje aplikacji Signal.</string>
+    <string name="DonationsErrors__this_user_cant_receive_donations_until">Nie można wpłacać darowizn w imieniu tej osoby, dopóki nie zaktualizuje ona aplikacji Signal.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Nie udało się wpłacić darowizny z powodu błędu sieci. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
@@ -7037,7 +7037,7 @@
         <item quantity="other">%1$d odpowiedzi</item>
     </plurals>
     <!-- Toast / Snackbar label when unhiding a story during viewer -->
-    <string name="StoryViewerPageFragment__story_no_longer_hidden">Relacja nie jest już ukryta</string>
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">Relacje nie są już ukryte</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">Dodaj</string>
     <!-- Used when view receipts are disabled -->
@@ -7465,10 +7465,10 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Wszystkie kontakty zostały sprawdzone. Aby przejść dalej, dotknij opcji „Wyślij”.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">Wśród kontaktów masz %1$d osobę, która mogła ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować jej numer bezpieczeństwa lub wysłać bez weryfikacji.</item>
-        <item quantity="few">Wśród kontaktów masz %1$d osoby, które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować ich numer bezpieczeństwa lub wysłać bez weryfikacji.</item>
-        <item quantity="many">Wśród kontaktów masz %1$d osób, które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować ich numer bezpieczeństwa lub wysłać bez weryfikacji.</item>
-        <item quantity="other">Wśród kontaktów masz %1$d osób, które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować ich numer bezpieczeństwa lub wysłać bez weryfikacji.</item>
+        <item quantity="one">Wśród kontaktów masz %1$d osobę, która mogła ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować jej numer bezpieczeństwa lub kontynuować bez weryfikacji.</item>
+        <item quantity="few">Wśród kontaktów masz %1$d osoby, które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować ich numer bezpieczeństwa lub kontynuować bez weryfikacji.</item>
+        <item quantity="many">Wśród kontaktów masz %1$d osób, które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować ich numer bezpieczeństwa lub kontynuować bez weryfikacji.</item>
+        <item quantity="other">Wśród kontaktów masz %1$d osób, które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować ich numer bezpieczeństwa lub kontynuować bez weryfikacji.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Zweryfikuj numer bezpieczeństwa</string>
@@ -7681,7 +7681,7 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">Nieprawidłowy IBAN</string>
     <!-- Error label for name field when name is not at least two characters long -->
-    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimum 2 znaki</string>
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Co najmniej 2 znaki</string>
     <!-- Error label for email field when email is not valid -->
     <string name="BankTransferDetailsFragment__invalid_email_address">Nieprawidłowy adres e-mail</string>
 
@@ -7721,7 +7721,7 @@
     <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">Twoja comiesięczna darowizna jest w trakcie realizacji. Odznaka %1$s pojawi się w Twoim profilu, gdy otrzymamy darowiznę</string>
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
-    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Twoja darowizna jednorazowa jest w trakcie realizacji. Odznaka %1$s pojawi się w Twoim profilu, gdy otrzymamy darowiznę</string>
+    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Twoja jednorazowa darowizna jest w trakcie realizacji. Odznaka %1$s pojawi się w Twoim profilu, gdy otrzymamy darowiznę</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
     <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Przetworzenie przelewu bankowego może potrwać od 1 do 14 dni roboczych. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
@@ -7784,7 +7784,7 @@
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal nie gromadzi ani nie przechowuje Twoich danych osobowych potrzebnych do wpłacenia darowizny.</string>
     <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Do przetwarzania darowizn używamy systemu płatności Stripe. Nie zapisujemy, nie przechowujemy ani nie mamy dostępu do żadnych danych, które przekazujesz.</string>
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal nie wiąże ani nie może powiązać darowizny z Twoim kontem Signal.</string>
-    <string name="YourInformationIsPrivateBottomSheet__thank_you">Dziękujemy za Twoje wsparcie!</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">Dziękujemy Ci za wsparcie!</string>
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
@@ -7954,7 +7954,7 @@
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">Brak połączeń.</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__get_started_by_calling_a_friend">Zadzwoń do kogoś.</string>
+    <string name="CallLogFragment__get_started_by_calling_a_friend">Może do kogoś zadzwonisz?</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">Utworzone przez Ciebie linki do połączenia nie będą już działały u osób, które je mają.</string>
 
@@ -7968,7 +7968,7 @@
     <!-- Displayed when the user disables group call ringing -->
     <string name="CallStateUpdatePopupWindow__ringing_off">Bez dzwonienia</string>
     <!-- Displayed when the user cannot enable group call ringing -->
-    <string name="CallStateUpdatePopupWindow__group_is_too_large">Grupa jest zbyt duża, aby użyć trybu dzwonienia.</string>
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">Grupa jest zbyt duża, aby użyć trybu dzwonienia</string>
     <!-- Displayed when the user turns on their mic -->
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofon włączony</string>
     <!-- Displayed when the user turns off their mic -->
@@ -7993,7 +7993,7 @@
     <!-- Missed group call while notification profile on in call info -->
     <string name="CallPreference__missed_group_call_notification_profile">Nieodebrane połączenie grupowe przy włączonym profilu powiadomień</string>
     <!-- Incoming group call in call info -->
-    <string name="CallPreference__incoming_group_call">Nadchodzące połączenie grupowe</string>
+    <string name="CallPreference__incoming_group_call">Przychodzące połączenie grupowe</string>
     <!-- Outgoing group call in call info -->
     <string name="CallPreference__outgoing_group_call">Wychodzące połączenie grupowe</string>
 
@@ -8983,7 +8983,7 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Tym kodem zostanie zastąpiony Twój kod do lokalnej kopii zapasowej.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Kod kopii zapasowej, składający się z 64 znaków, umożliwi Ci przywrócenie kopii zapasowych po ponownej instalacji aplikacji Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Kod kopii zapasowej, składający się z 64 znaków, umożliwi Ci przywrócenie kopii zapasowej po ponownej instalacji aplikacji Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">To ten sam kod, co kod do lokalnej kopii zapasowej.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
