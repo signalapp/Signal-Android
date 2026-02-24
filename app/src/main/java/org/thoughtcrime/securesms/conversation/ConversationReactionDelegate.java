@@ -38,7 +38,7 @@ public final class ConversationReactionDelegate {
   public void show(@NonNull Activity activity,
                    @NonNull Recipient conversationRecipient,
                    @NonNull ConversationMessage conversationMessage,
-            boolean shouldShowMessageRequest,
+                   boolean shouldShowMessageRequest,
                    boolean isNonAdminInAnnouncementGroup,
                    @NonNull SelectedConversationModel selectedConversationModel,
                    boolean canEditGroupInfo)
