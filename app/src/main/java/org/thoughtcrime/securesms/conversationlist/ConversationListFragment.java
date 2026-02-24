@@ -1386,7 +1386,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
         break;
       case ARCHIVE:
       case UNARCHIVE:
-        handleArchive(ids, false);
+        handleArchive(ids);
         break;
       case DELETE:
         handleDelete(ids);
