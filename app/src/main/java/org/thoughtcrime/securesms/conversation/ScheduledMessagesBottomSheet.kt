@@ -47,7 +47,7 @@ import org.thoughtcrime.securesms.mms.TextSlide
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
-import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.hasTextSlide
 import org.thoughtcrime.securesms.util.requireTextSlide
 import java.io.IOException
@@ -88,7 +88,10 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
     val conversationRecipientId = RecipientId.from(arguments?.getString(KEY_CONVERSATION_RECIPIENT_ID, null) ?: throw IllegalArgumentException())
     val conversationRecipient = Recipient.resolved(conversationRecipientId)
 
-    callback = requireListener()
+    callback = findListener<ConversationBottomSheetCallback>() ?: run {
+      dismissAllowingStateLoss()
+      return
+    }
 
     val colorizer = Colorizer()
 
