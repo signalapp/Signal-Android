@@ -38,13 +38,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
-public final class ConversationItemSwipeCallbackAccessibilityActionsInstrumentedTest {
+public final class ConversationMessageAccessibilityActionsInstrumentedTest {
 
   @Rule
   public final SignalActivityRule harness = new SignalActivityRule(1, false);
 
   @Test
-  public void liveMessage_exposesReplyAndContextActions_andMultiSelectActionStartsActionMode() {
+  public void liveMessage_exposesAccessibilityActions_andMultiSelectActionStartsActionMode() {
     Recipient other = Recipient.resolved(harness.getOthers().get(0));
     long threadId = insertIncomingText(other, "conversation message accessibility test");
 

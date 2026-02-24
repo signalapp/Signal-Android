@@ -36,7 +36,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
@@ -54,6 +53,18 @@ public final class ConversationListAdapterAccessibilityActionsInstrumentedTest {
     try {
       assertTrue(waitForAction(scenario, R.id.conversation_list_accessibility_select_action, 15_000));
 
+      assertEquals(
+          harness.getContext().getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, 1),
+          getActionLabel(scenario, R.id.conversation_list_accessibility_read_action)
+      );
+      assertEquals(
+          harness.getContext().getString(R.string.ConversationListFragment_pin),
+          getActionLabel(scenario, R.id.conversation_list_accessibility_pin_action)
+      );
+      assertEquals(
+          harness.getContext().getString(R.string.ConversationListFragment_mute),
+          getActionLabel(scenario, R.id.conversation_list_accessibility_mute_action)
+      );
       assertEquals(
           harness.getContext().getString(R.string.ConversationListFragment_select),
           getActionLabel(scenario, R.id.conversation_list_accessibility_select_action)
