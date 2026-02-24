@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.conversation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -20,8 +21,8 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.conversation.v2.ConversationActivity;
 import org.thoughtcrime.securesms.database.MessageType;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.StoryType;
@@ -46,13 +47,12 @@ public final class ConversationMessageAccessibilityActionsInstrumentedTest {
   @Test
   public void liveMessage_exposesAccessibilityActions_andMultiSelectActionStartsActionMode() {
     Recipient other = Recipient.resolved(harness.getOthers().get(0));
-    long threadId = insertIncomingText(other, "conversation message accessibility test");
+    insertIncomingText(other, "conversation message accessibility test");
 
-    ActivityScenario<ConversationActivity> scenario = ActivityScenario.launch(
-        ConversationIntents.createBuilderSync(harness.getContext(), other.getId(), threadId).build()
-    );
+    ActivityScenario<MainActivity> scenario = ActivityScenario.launch(new Intent(harness.getContext(), MainActivity.class));
 
     try {
+      assertTrue(openFirstConversationRow(scenario, 15_000));
       assertTrue(waitForAction(scenario, R.id.conversation_message_accessibility_reply_action, 15_000));
 
       assertEquals(
@@ -116,7 +116,40 @@ public final class ConversationMessageAccessibilityActionsInstrumentedTest {
     return threadId;
   }
 
-  private static boolean waitForAction(@NonNull ActivityScenario<ConversationActivity> scenario, int actionId, long timeoutMs) {
+  private static boolean openFirstConversationRow(@NonNull ActivityScenario<MainActivity> scenario, long timeoutMs) {
+    long deadline = SystemClock.uptimeMillis() + timeoutMs;
+
+    while (SystemClock.uptimeMillis() < deadline) {
+      AtomicBoolean opened = new AtomicBoolean(false);
+
+      scenario.onActivity(activity -> {
+        RecyclerView conversationRecycler = activity.findViewById(R.id.conversation_item_recycler);
+        if (conversationRecycler != null && conversationRecycler.isShown()) {
+          opened.set(true);
+          return;
+        }
+
+        RecyclerView list = activity.findViewById(R.id.list);
+        if (list != null && list.getChildCount() > 0) {
+          View row = list.getChildAt(0);
+          if (row != null) {
+            row.performClick();
+          }
+        }
+      });
+
+      if (opened.get()) {
+        return true;
+      }
+
+      InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+      SystemClock.sleep(100);
+    }
+
+    return false;
+  }
+
+  private static boolean waitForAction(@NonNull ActivityScenario<MainActivity> scenario, int actionId, long timeoutMs) {
     long deadline = SystemClock.uptimeMillis() + timeoutMs;
 
     while (SystemClock.uptimeMillis() < deadline) {
@@ -138,7 +171,7 @@ public final class ConversationMessageAccessibilityActionsInstrumentedTest {
     return false;
   }
 
-  private static @Nullable String getActionLabel(@NonNull ActivityScenario<ConversationActivity> scenario, int actionId) {
+  private static @Nullable String getActionLabel(@NonNull ActivityScenario<MainActivity> scenario, int actionId) {
     AtomicReference<String> label = new AtomicReference<>();
 
     scenario.onActivity(activity -> {
@@ -160,7 +193,7 @@ public final class ConversationMessageAccessibilityActionsInstrumentedTest {
     return label.get();
   }
 
-  private static boolean performAction(@NonNull ActivityScenario<ConversationActivity> scenario, int actionId) {
+  private static boolean performAction(@NonNull ActivityScenario<MainActivity> scenario, int actionId) {
     AtomicBoolean performed = new AtomicBoolean(false);
 
     scenario.onActivity(activity -> {
@@ -174,7 +207,7 @@ public final class ConversationMessageAccessibilityActionsInstrumentedTest {
     return performed.get();
   }
 
-  private static boolean waitForViewVisible(@NonNull ActivityScenario<ConversationActivity> scenario, int viewId, long timeoutMs) {
+  private static boolean waitForViewVisible(@NonNull ActivityScenario<MainActivity> scenario, int viewId, long timeoutMs) {
     long deadline = SystemClock.uptimeMillis() + timeoutMs;
 
     while (SystemClock.uptimeMillis() < deadline) {
