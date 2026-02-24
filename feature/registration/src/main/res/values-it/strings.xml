@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Porta la privacy con te.\nSii te stesso in ogni messaggio.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Porta la privacy con te.\nE la tua personalità in ogni messaggio.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">Signal è una società non-profit\nTermini &amp; Informativa sulla privacy</string>
     <string name="RegistrationActivity_continue">Continua</string>
@@ -11,7 +11,7 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">Consenti permessi</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Per aiutarti a usare Signal al meglio, abbiamo bisogno della tua autorizzazione per quanto segue. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Per aiutarti a usare Signal al meglio, abbiamo bisogno di queste autorizzazioni. </string>
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
     <string name="GrantPermissionsFragment__not_now">Non ora</string>
     <!-- Displayed as an action button at the bottom end of the screen -->

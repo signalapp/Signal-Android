@@ -16,7 +16,7 @@
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">Parametrat</string>
     <!-- Title for dialog shown when a required permission has not been granted -->
-    <string name="Permissions_permission_required">Lyp leje</string>
+    <string name="Permissions_permission_required">Duhet leje</string>
 
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->

@@ -7854,7 +7854,7 @@
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__title">Gebruik nieuwe lokale back-ups</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">Lokale back-ups worden nu sneller opgeslagen en gebruiken minder data.</string>
+    <string name="UseNewOnDeviceBackups__body">Lokale back-ups worden nu sneller opgeslagen en gebruiken minder opslagruimte.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">Upgraden</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
@@ -8534,7 +8534,7 @@
     <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
     <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Je lokale back-up wordt geüpgraded naar een nieuw formaat met een nieuwe herstelsleutel</string>
     <!-- Feature description explaining backups are faster and use less data -->
-    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Back-ups worden nu sneller opgeslagen en gebruiken minder data</string>
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Back-ups worden nu sneller opgeslagen en gebruiken minder opslagruimte</string>
     <!-- Feature description explaining backups will be saved as a folder with many files -->
     <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Je back-up wordt opgeslagen als een map met veel bestanden</string>
     <!-- Feature description explaining backups remain end-to-end encrypted -->

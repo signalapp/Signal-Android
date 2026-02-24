@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حافِظ على خصوصيتك أينما كنت. كُن على طبيعتك في كل رسالة.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حافِظ على خصوصيتك أينما تكون. كُن على طبيعتك في كل رسالة.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">سيجنال شركة غير ربحية\nالشروط وسياسة الخصوصية</string>
     <string name="RegistrationActivity_continue">متابعة</string>

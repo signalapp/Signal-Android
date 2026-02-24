@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">내 개인 정보는 내 손에서만.\n안전하게 메시지를 보내세요.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">내 개인정보는 내 손에서만.\n안전하게 메시지를 보내세요.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">Signal은 비영리단체입니다\n이용 약관 및 개인정보처리방침</string>
     <string name="RegistrationActivity_continue">확인</string>

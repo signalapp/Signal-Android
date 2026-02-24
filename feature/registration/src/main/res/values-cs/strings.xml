@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Noste soukromí s sebou.\nBuďte sami sebou v každé zprávě.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Mějte své soukromí pod kontrolou.\nBuďte sami sebou v každé zprávě.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">Signal je nezisková organizace\nPodmínky a Zásady ochrany soukromí</string>
     <string name="RegistrationActivity_continue">Pokračovat</string>

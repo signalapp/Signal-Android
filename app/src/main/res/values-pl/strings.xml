@@ -2737,7 +2737,7 @@
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Wyciszasz siebie na innym urządzeniu.</string>
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
-    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
+    <string name="WebRtcCallView__youve_been_muted_large_group">Twój mikrofon został wyciszony, ponieważ w połączeniu uczestniczy duża liczba osób.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Wystąpił błąd interfejsu. Prosimy o zgłoszenie tego błędu twórcom aplikacji.</string>
@@ -5164,7 +5164,7 @@
     <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
     <string name="prompt_passphrase_activity__screen_lock_is_on">Na urządzeniu masz włączoną blokadę ekranu, która chroni również dostęp do aplikacji Signal. Odblokuj Signal tą samą metodą, którą odblokowujesz telefon: twarzą, odciskiem palca, PIN-em, hasłem lub wzorem.</string>
     <!-- Button in a dialog that will contact Signal support if pressed -->
-    <string name="prompt_passphrase_activity__contact_support">Skotaktuj się z pomocą techniczną</string>
+    <string name="prompt_passphrase_activity__contact_support">Skontaktuj się z pomocą techniczną</string>
     <!-- Button text to try again after unlocking has previously failed -->
     <string name="prompt_passphrase_activity__try_again">Spróbuj ponownie</string>
 
@@ -7143,7 +7143,7 @@
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Kontakty Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Kontakty Signal to osoby, które zostały uznane za zaufane z jednego z tych powodów:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Kontakty Signal to osoby uznane za zaufane z jednego z tych powodów:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Został przez Ciebie rozpoczęty z nimi czat</string>
     <!-- Signal connections sheet bullet point 2 -->

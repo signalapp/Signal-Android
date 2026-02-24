@@ -2737,7 +2737,7 @@
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Utišali ste sebe s drugog uređaja.</string>
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
-    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
+    <string name="WebRtcCallView__youve_been_muted_large_group">Vaš je mikrofon isključen zbog velikog broja sudionika u pozivu.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Došlo je do pogreške u korisničkom sučelju. Molimo da prijavite ovu pogrešku programerima.</string>

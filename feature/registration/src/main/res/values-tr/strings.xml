@@ -3,7 +3,7 @@
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Gizliliğinizi koruyun.\nHer iletide kendiniz olun.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">Signal kâr amacı gütmeyen bir kuruluştur\nŞartlar ve Gizlilik Politikası</string>
-    <string name="RegistrationActivity_continue">Devam Et</string>
+    <string name="RegistrationActivity_continue">Devam et</string>
     <!-- Screen title for restoring or transfering account -->
     <string name="registration_activity__restore_or_transfer">Geri yükle veya aktar</string>
 
@@ -41,5 +41,5 @@
     <!-- Search bar hint text -->
     <string name="CountryCodeSelectScreen__search_by">İsim ya da ülke koduna göre ara</string>
     <!-- Fallback text for countries with no name -->
-    <string name="CountryCodeSelectScreen__unknown_country">Bilinmeyen Ülke</string>
+    <string name="CountryCodeSelectScreen__unknown_country">Bilinmeyen ülke</string>
 </resources>

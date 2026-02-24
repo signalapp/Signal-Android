@@ -9,9 +9,9 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Tabhair Ceadanna</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Tabhair ceadanna</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Chun cabhrú leat teachtaireacht a sheoladh chuig daoine a bhfuil aithne agat orthu, iarrfaidh Signal na ceadanna seo. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Chun cabhrú leat teachtaireacht a sheoladh chuig daoine a bhfuil aithne agat orthu, iarrfaidh Signal na ceadanna sin. </string>
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
     <string name="GrantPermissionsFragment__not_now">Ní anois</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
@@ -23,11 +23,11 @@
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Teagmhálaithe</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Aimsigh daoine a bhfuil aithne agat orthu. Tá do theagmhálaithe criptithe agus dofheicthe ag seirbhís Signal.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Aimsigh daoine a bhfuil aithne agat orthu. Tá do theagmhálaithe criptithe agus tá siad dofheicthe ag seirbhís Signal.</string>
     <!-- Phone calls permission row title -->
     <string name="GrantPermissionsFragment__phone_calls">Glaonna gutháin</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Déan clárú níos éasca agus cumasaigh gnéithe curtha glaonna breise.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Déan an clárú níos éasca agus cumasaigh gnéithe curtha glaonna breise.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Stóras</string>
     <!-- Storage permission row description -->

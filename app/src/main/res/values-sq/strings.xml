@@ -28,9 +28,9 @@
 
     <string name="yes">Po</string>
     <string name="no">Jo</string>
-    <string name="delete">Fshije</string>
-    <string name="please_wait">Ju lutemi, prisni…</string>
-    <string name="save">Ruaje</string>
+    <string name="delete">Fshij</string>
+    <string name="please_wait">Të lutem, prit…</string>
+    <string name="save">Ruaj</string>
     <string name="note_to_self">Shënim për veten</string>
 
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
@@ -46,20 +46,20 @@
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
-    <string name="ApplicationMigrationActivity__signal_is_updating">Signal-i po përditësohet…</string>
+    <string name="ApplicationMigrationActivity__signal_is_updating">Signal po përditësohet…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nuk keni caktuar ende një frazëkalimi!</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nuk ke caktuar ende frazëkalimin!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Të çaktivizohet frazëkalimi?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kjo do të zhbllokojë përgjithmonë njoftimet e Signal dhe mesazheve.</string>
-    <string name="ApplicationPreferencesActivity_disable">Çaktivizoje</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kjo do të zhbllokojë përgjithmonë njoftimet e Signal dhe të mesazheve.</string>
+    <string name="ApplicationPreferencesActivity_disable">Çaktivizo</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ka ndodhur një gabim në lidhjen me serverin!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-et kërkohen për mbylljen e regjistrimit. Për të çaktivizuar PIN-et, së pari çaktivizoni mbylljen e regjistrimit.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Numrat PIN kërkohen për kyçjen e regjistrimit. Për të çaktivizuar numrat PIN, së pari çaktivizo kyçjen e regjistrimit.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN-i u krijua.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN-i u çaktivizua.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Fraza e rikuperimit të pagesave të regjistruara</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Regjistro frazën</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Përpara se të çaktivizoni PIN-in tuaj, ju duhet të regjistroni frazën e rikuperimit të pagesave tuaja, për t\'u siguruar që ju të mund t\'i rikuperoni llogarinë e pagesave.</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Përpara se të çaktivizosh numrin PIN, duhet të regjistrosh frazën e rikuperimit të pagesave, për t\'u siguruar që mund të rikuperosh llogarinë e pagesave.</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Krijo kod të ri rikthimi</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
@@ -79,7 +79,7 @@
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
-    <string name="NumericKeyboardView__backspace">Backspace</string>
+    <string name="NumericKeyboardView__backspace">Tasti për fshirjen pas</string>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(figurë)</string>
@@ -96,16 +96,16 @@
     <string name="AttachmentKeyboard_location">Vendndodhje</string>
     <!-- Text for a button that will allow users to create a poll -->
     <string name="AttachmentKeyboard_poll">Sondazh</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal ka nevojë për leje për të shfaqur fotot dhe videot</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal ka nevojë për leje që të shfaqë foto dhe video</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
-    <string name="AttachmentKeyboard_allow_access">Lejoje Përdorimin</string>
+    <string name="AttachmentKeyboard_allow_access">Lejoje aksesin</string>
     <string name="AttachmentKeyboard_payment">Pagesë</string>
     <!-- Text in a button that allows users to manage which media Signal has access to -->
     <string name="AttachmentKeyboard_manage">Menaxho</string>
     <!-- Option in menu to select more photos that Signal will have access to -->
     <string name="AttachmentKeyboard_select_more_photos">Përzgjidh më shumë foto</string>
     <!-- Option in menu to go to settings -->
-    <string name="AttachmentKeyboard_go_to_settings">Kalo te Rregullimet</string>
+    <string name="AttachmentKeyboard_go_to_settings">Shko te cilësimet</string>
     <!-- Text explaining that Signal has limited access to photos -->
     <string name="AttachmentKeyboard_signal_has_limited_access">Signal ka lejehyrje të kufizuar te fotot ose videot</string>
     <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
@@ -117,18 +117,18 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Nuk gjendet një aplikacion për të përzgjedhur median.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal kërkon lejen e Storage për të bashkëngjitur foto, video ose audio, por i është refuzuar përgjithmonë. Ju lutemi, vazhdoni te menuja e parametrave të aplikacionit, zgjidhni \"Lejet\" dhe aktivizoni \"Storage\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal kërkon lejen e Kontakteve për të bashkangjitur informacionin e kontaktit, por i është refuzuar përgjithmonë. Ju lutemi, vazhdoni te menuja e parametrave të aplikacionit, zgjidhni \"Lejet\" dhe aktivizoni \"Kontaktet\".</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal kërkon lejen e Vendndodhjes për të bashkangjitur një vendndodhje, por i është refuzuar përgjithmonë. Ju lutemi, vazhdoni te menuja e parametrave të aplikacionit, zgjidhni \"Lejet\" dhe aktivizoni \"Vendndodhja\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal kërkon leje për të aksesuar hapësirën ruajtëse që të bashkëngjisë foto, video ose audio, por i është refuzuar përgjithmonë. Të lutem, shko te menuja e parametrave të aplikacionit, zgjidh \"Lejet\" dhe aktivizo \"Hapësira ruajtëse\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal kërkon leje për të aksesuar kontaktet që të bashkangjisë informacionin e kontaktit, por i është refuzuar përgjithmonë. Të lutem, shko te menuja e parametrave të aplikacionit, zgjidh \"Lejet\" dhe aktivizo \"Kontaktet\".</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal kërkon leje për të aksesuar vendndodhjen që të bashkangjisë vendndodhjen, por i është refuzuar përgjithmonë. Të lutem, shko te menuja e parametrave të aplikacionit, zgjidh \"Lejet\" dhe aktivizo \"Vendndodhja\".</string>
 
     <!-- Dialog title asking users for location permission -->
     <string name="AttachmentManager_signal_allow_access_location">Lejo aksesin në vendndodhje</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
     <string name="AttachmentManager_signal_to_send_location">Për të dërguar vendndodhjen:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Lejo aksesin e Signal për të dërguar vendndodhjen.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">Lejo Signal të ketë akses që të dërgosh vendndodhjen.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal-it i duhet të ketë akses tek vendndodhja në mënyrë që ta dërgojë atë.</string>
+    <string name="AttachmentManager_signal_needs_location_access">Signal duhet të ketë akses te vendndodhja në mënyrë që ta dërgojë atë.</string>
     <!-- Dialog title asking users for gallery storage permission -->
     <string name="AttachmentManager_signal_allow_storage">Lejo aksesin në hapësirën ruajtëse</string>
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
@@ -137,9 +137,9 @@
     <string name="AttachmentManager_signal_needs_storage_access">Signal ka nevojë për lejehyrje për të shfaqur fotot dhe videot.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s nuk ka aktivizuar Pagesat </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s nuk ka aktivizuar pagesat </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Dëshiron t\'u dërgosh një kërkesë për të aktivizuar Pagesat?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Dëshiron t\'u dërgosh një kërkesë për të aktivizuar pagesat?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Dërgo kërkesën</string>
     <!-- Alert dialog button to cancel dialog -->
@@ -158,7 +158,7 @@
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">Mund të keni mesazhe të rinj</string>
+    <string name="FcmFetchManager__you_may_have_messages">Mund të kesh mesazhe të reja</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Përdoruesit e bllokuar</string>
@@ -2579,7 +2579,7 @@
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Hoqe zërin e vetes nga pajisja tjetër.</string>
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
-    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
+    <string name="WebRtcCallView__youve_been_muted_large_group">Të kanë bërë \"pa zë\" sepse kjo thirrje ka shumë pjesëmarrës.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Ndodhi një gabim i ndërfaqes së përdoruesit. Ju lutemi raporto këtë gabim te zhvilluesit.</string>
@@ -9237,7 +9237,7 @@
     <!-- Group member label screen title. -->
     <string name="GroupMemberLabel__title">Emërtimi i anëtarit</string>
     <!-- Group member label text field placeholder. -->
-    <string name="GroupMemberLabel__label_text_placeholder">Add your label</string>
+    <string name="GroupMemberLabel__label_text_placeholder">Shto emërtimin tënd</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Paraparje</string>
     <!-- Group member label save button label. -->

@@ -39,7 +39,7 @@
     <!-- Close button content description -->
     <string name="CountryCodeSelectScreen__close">Zatvoriť</string>
     <!-- Search bar hint text -->
-    <string name="CountryCodeSelectScreen__search_by">Hľadať podľa názvu alebo predvoľby</string>
+    <string name="CountryCodeSelectScreen__search_by">Hľadať podľa mena alebo predvoľby</string>
     <!-- Fallback text for countries with no name -->
     <string name="CountryCodeSelectScreen__unknown_country">Neznáma krajina</string>
 </resources>
