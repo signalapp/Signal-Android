@@ -7,15 +7,30 @@ package org.thoughtcrime.securesms.conversation
 
 import io.mockk.every
 import io.mockk.mockk
+import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 class MenuStateAccessibilityContractTest {
+
+  @Before
+  fun setUp() {
+    RemoteConfig.REMOTE_VALUES.clear()
+    RemoteConfig.initialized = true
+  }
+
+  @After
+  fun tearDown() {
+    RemoteConfig.REMOTE_VALUES.clear()
+    RemoteConfig.initialized = false
+  }
 
   @Test
   fun singleMessage_exposesCoreActions() {

@@ -187,9 +187,6 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents.ConversationS
 import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.conversation.ConversationItemSelection
 import org.thoughtcrime.securesms.conversation.ConversationItemSwipeCallback
-import org.thoughtcrime.securesms.conversation.MessageActionPolicy
-import org.thoughtcrime.securesms.conversation.MessageActionPolicyContext
-import org.thoughtcrime.securesms.conversation.MessageContextAction
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationOptionsMenu
 import org.thoughtcrime.securesms.conversation.ConversationReactionDelegate
@@ -200,6 +197,9 @@ import org.thoughtcrime.securesms.conversation.ConversationSearchViewModel
 import org.thoughtcrime.securesms.conversation.ConversationUpdateTick
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.MenuState
+import org.thoughtcrime.securesms.conversation.MessageActionPolicy
+import org.thoughtcrime.securesms.conversation.MessageActionPolicyContext
+import org.thoughtcrime.securesms.conversation.MessageContextAction
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.MessageStyler.getStyling
 import org.thoughtcrime.securesms.conversation.PinnedMessagesBottomSheet
