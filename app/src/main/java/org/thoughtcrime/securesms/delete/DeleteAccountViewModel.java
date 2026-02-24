@@ -29,23 +29,17 @@ import java.util.Optional;
 public class DeleteAccountViewModel extends ViewModel {
 
   private final DeleteAccountRepository             repository;
-  private final List<Country>                       allCountries;
-  private final LiveData<List<Country>>             filteredCountries;
   private final MutableLiveData<String>             regionCode;
   private final LiveData<String>                    countryDisplayName;
   private final MutableLiveData<Long>               nationalNumber;
-  private final MutableLiveData<String>             query;
   private final SingleLiveEvent<DeleteAccountEvent> events;
   private final LiveData<Optional<String>>          walletBalance;
 
   public DeleteAccountViewModel(@NonNull DeleteAccountRepository repository) {
     this.repository         = repository;
-    this.allCountries       = repository.getAllCountries();
     this.regionCode         = new DefaultValueLiveData<>("ZZ"); // PhoneNumberUtil private static final String UNKNOWN_REGION = "ZZ";
     this.nationalNumber     = new MutableLiveData<>();
-    this.query              = new DefaultValueLiveData<>("");
     this.countryDisplayName = Transformations.map(regionCode, repository::getRegionDisplayName);
-    this.filteredCountries  = Transformations.map(query, q -> Stream.of(allCountries).filter(country -> isMatch(q, country)).toList());
     this.events             = new SingleLiveEvent<>();
     this.walletBalance      = Transformations.map(SignalStore.payments().liveMobileCoinBalance(),
                                                   DeleteAccountViewModel::getFormattedWalletBalance);
@@ -53,10 +47,6 @@ public class DeleteAccountViewModel extends ViewModel {
 
   @NonNull LiveData<Optional<String>> getWalletBalance() {
     return walletBalance;
-  }
-
-  @NonNull LiveData<List<Country>> getFilteredCountries() {
-    return filteredCountries;
   }
 
   @NonNull LiveData<String> getCountryDisplayName() {
@@ -73,10 +63,6 @@ public class DeleteAccountViewModel extends ViewModel {
 
   @Nullable Long getNationalNumber() {
     return nationalNumber.getValue();
-  }
-
-  void onQueryChanged(@NonNull String query) {
-    this.query.setValue(query.toLowerCase());
   }
 
   void deleteAccount() {
@@ -143,14 +129,6 @@ public class DeleteAccountViewModel extends ViewModel {
       return Optional.of(amount.toString(FormatterOptions.defaults()));
     } else {
       return Optional.empty();
-    }
-  }
-
-  private static boolean isMatch(@NonNull String query, @NonNull Country country) {
-    if (TextUtils.isEmpty(query)) {
-      return true;
-    } else {
-      return country.getNormalizedDisplayName().contains(query.toLowerCase());
     }
   }
 

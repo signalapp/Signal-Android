@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.messages.protocol
 
+import org.signal.core.models.ServiceId
 import org.signal.libsignal.protocol.InvalidKeyIdException
 import org.signal.libsignal.protocol.ReusedBaseKeyException
 import org.signal.libsignal.protocol.ecc.ECPublicKey
@@ -13,7 +14,6 @@ import org.thoughtcrime.securesms.database.KyberPreKeyTable.KyberPreKey
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.SignalServiceKyberPreKeyStore
-import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * An in-memory kyber prekey store that is intended to be used temporarily while decrypting messages.

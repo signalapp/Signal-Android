@@ -65,7 +65,10 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
       ${MessageTable.MISMATCHED_IDENTITIES},
       ${MessageTable.TYPE},
       ${MessageTable.MESSAGE_EXTRAS},
-      ${MessageTable.VIEW_ONCE}
+      ${MessageTable.VIEW_ONCE},
+      ${MessageTable.PINNED_UNTIL},
+      ${MessageTable.PINNING_MESSAGE_ID},
+      ${MessageTable.PINNED_AT}
     )
     WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1
     """.trimMargin()
@@ -155,7 +158,10 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
           MessageTable.TYPE,
           MessageTable.MESSAGE_EXTRAS,
           MessageTable.VIEW_ONCE,
-          PARENT_STORY_ID
+          PARENT_STORY_ID,
+          MessageTable.PINNED_UNTIL,
+          MessageTable.PINNING_MESSAGE_ID,
+          MessageTable.PINNED_AT
         )
         .from("${MessageTable.TABLE_NAME} INDEXED BY $dateReceivedIndex")
         .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime $cutoffQuery")

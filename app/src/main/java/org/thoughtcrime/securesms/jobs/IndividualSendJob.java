@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
@@ -49,7 +49,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.BodyRange;
 import org.whispersystems.signalservice.internal.push.DataMessage;
 
@@ -286,6 +286,9 @@ public class IndividualSendJob extends PushSendJob {
       SignalServiceDataMessage.GiftBadge         giftBadge          = getGiftBadgeFor(message);
       SignalServiceDataMessage.Payment           payment            = getPayment(message);
       List<BodyRange>                            bodyRanges         = getBodyRanges(message);
+      SignalServiceDataMessage.PollCreate        pollCreate         = getPollCreate(message);
+      SignalServiceDataMessage.PollTerminate     pollTerminate      = getPollTerminate(message);
+      SignalServiceDataMessage.PinnedMessage     pinnedMessage      = getPinnedMessage(message);
       SignalServiceDataMessage.Builder mediaMessageBuilder = SignalServiceDataMessage.newBuilder()
                                                                                      .withBody(message.getBody())
                                                                                      .withAttachments(serviceAttachments)
@@ -301,7 +304,10 @@ public class IndividualSendJob extends PushSendJob {
                                                                                      .asExpirationUpdate(message.isExpirationUpdate())
                                                                                      .asEndSessionMessage(message.isEndSession())
                                                                                      .withPayment(payment)
-                                                                                     .withBodyRanges(bodyRanges);
+                                                                                     .withBodyRanges(bodyRanges)
+                                                                                     .withPollCreate(pollCreate)
+                                                                                     .withPollTerminate(pollTerminate)
+                                                                                     .withPinnedMessage(pinnedMessage);
 
       if (message.getParentStoryId() != null) {
         try {

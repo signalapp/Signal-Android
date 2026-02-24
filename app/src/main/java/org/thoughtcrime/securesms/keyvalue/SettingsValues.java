@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
+import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallDataMode;
@@ -74,6 +75,7 @@ public final class SettingsValues extends SignalStoreValues {
   private static final String PASSPHRASE_TIMEOUT                      = "settings.passphrase.timeout";
   private static final String SCREEN_LOCK_ENABLED                     = "settings.screen.lock.enabled";
   private static final String SCREEN_LOCK_TIMEOUT                     = "settings.screen.lock.timeout";
+  private static final String AUTOMATIC_VERIFICATION_ENABLED          = "settings.automatic.verification.enabled";
 
   public static final int BACKUP_DEFAULT_HOUR   = 2;
   public static final int BACKUP_DEFAULT_MINUTE = 0;
@@ -83,7 +85,7 @@ public final class SettingsValues extends SignalStoreValues {
   SettingsValues(@NonNull KeyValueStore store, Context context) {
     super(store);
 
-    if (!store.containsKey(SCREEN_LOCK_ENABLED)) {
+    if (!store.containsKey(SCREEN_LOCK_ENABLED) && !Environment.IS_INSTRUMENTATION) {
       migrateFromSharedPrefsV1(context);
     }
   }
@@ -487,11 +489,11 @@ public final class SettingsValues extends SignalStoreValues {
   }
 
   public void setSentMediaQuality(@NonNull SentMediaQuality sentMediaQuality) {
-    putInteger(SENT_MEDIA_QUALITY, sentMediaQuality.getCode());
+    putInteger(SENT_MEDIA_QUALITY, sentMediaQuality.code);
   }
 
   public @NonNull SentMediaQuality getSentMediaQuality() {
-    return SentMediaQuality.fromCode(getInteger(SENT_MEDIA_QUALITY, SentMediaQuality.STANDARD.getCode()));
+    return SentMediaQuality.fromCode(getInteger(SENT_MEDIA_QUALITY, SentMediaQuality.STANDARD.code));
   }
 
   public @NonNull CensorshipCircumventionEnabled getCensorshipCircumventionEnabled() {
@@ -557,6 +559,14 @@ public final class SettingsValues extends SignalStoreValues {
 
   public long getScreenLockTimeout() {
     return getLong(SCREEN_LOCK_TIMEOUT, 0);
+  }
+
+  public boolean getAutomaticVerificationEnabled() {
+    return getBoolean(AUTOMATIC_VERIFICATION_ENABLED, true);
+  }
+
+  public void setAutomaticVerificationEnabled(boolean enabled) {
+    putBoolean(AUTOMATIC_VERIFICATION_ENABLED, enabled);
   }
 
   private @Nullable Uri getUri(@NonNull String key) {

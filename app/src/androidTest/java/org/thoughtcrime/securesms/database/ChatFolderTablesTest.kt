@@ -14,6 +14,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.deleteAll
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderId
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
@@ -21,10 +23,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.StorageId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.UUID
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord as RemoteChatFolderRecord
 import org.whispersystems.signalservice.internal.storage.protos.Recipient as RemoteRecipient

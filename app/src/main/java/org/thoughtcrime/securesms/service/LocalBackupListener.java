@@ -34,11 +34,15 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
       LocalBackupJob.enqueue(false);
     }
 
+    if (SignalStore.backup().getNewLocalBackupsEnabled()) {
+      LocalBackupJob.enqueueArchive(SignalStore.settings().isBackupEnabled());
+    }
+
     return setNextBackupTimeToIntervalFromNow(context);
   }
 
   public static void schedule(Context context) {
-    if (SignalStore.settings().isBackupEnabled()) {
+    if (SignalStore.settings().isBackupEnabled() || SignalStore.backup().getNewLocalBackupsEnabled()) {
       new LocalBackupListener().onReceive(context, getScheduleIntent());
     }
   }

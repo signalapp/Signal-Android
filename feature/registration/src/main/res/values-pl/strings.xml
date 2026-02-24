@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Prywatność, gdziekolwiek jesteś.\nSwoboda w każdej wiadomości.</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal to organizacja non profit\nRegulamin i polityka prywatności</string>
+    <string name="RegistrationActivity_continue">Kontynuuj</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">Przywróć lub przenieś</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Włącz uprawnienia</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Aby ułatwić Ci komunikację ze znajomymi osobami, Signal potrzebuje tych uprawnień. </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Nie teraz</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Dalej</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Powiadomienia</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Otrzymuj powiadomienia o nowych wiadomościach.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Kontakty</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Znajdź w aplikacji znajome osoby. Twoje kontakty są szyfrowane i nieczytelne dla usługi Signal.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Połączenia telefoniczne</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Ułatw sobie rejestrację i zyskaj dodatkowe funkcje połączeń.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Pamięć</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Wysyłaj zdjęcia, filmy i inne pliki ze swojego urządzenia.</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">Twój kraj</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">Zamknij</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">Szukaj po nazwie lub kodzie kraju</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">Nieznany kraj</string>
+</resources>

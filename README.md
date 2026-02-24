@@ -1,14 +1,18 @@
 # Signal Android
 
-Signal is a simple, powerful, and secure messenger.
+Signal is a simple, powerful, and secure messenger that uses your phone's data connection (WiFi/3G/4G/5G) to communicate securely.
 
-Signal uses your phone's data connection (WiFi/3G/4G/5G) to communicate securely. Millions of people use Signal every day for free and instantaneous communication anywhere in the world. Send and receive high-fidelity messages, participate in HD voice/video calls, and explore a growing set of new features that help you stay connected. Signal’s advanced privacy-preserving technology is always enabled, so you can focus on sharing the moments that matter with the people who matter to you.
+Millions of people use Signal every day for free and instantaneous communication anywhere in the world. Send and receive high-fidelity messages, participate in HD voice/video calls, and explore a growing set of new features that help you stay connected. 
 
-Currently available on the Play Store and [signal.org](https://signal.org/android/apk/).
+Signal’s advanced privacy-preserving technology is always enabled, so you can focus on sharing the moments that matter with the people who matter to you.
+
+Currently available on the [Play Store](https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms) and [signal.org](https://signal.org/android/apk/).
 
 <a href='https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/></a>
 
-## Contributing Bug reports
+Also available on [iOS](https://github.com/signalapp/signal-ios) and [Desktop](https://github.com/signalapp/signal-desktop).
+
+## Contributing Bug Reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 
 https://github.com/signalapp/Signal-Android/issues
@@ -20,6 +24,11 @@ You can subscribe to Signal Android Beta releases here:
 https://play.google.com/apps/testing/org.thoughtcrime.securesms
 
 If you're interested in a life of peace and tranquility, stick with the standard releases.
+
+## Contributing Translations
+Interested in helping translate Signal? Contribute here:
+
+https://community.signalusers.org/c/translation-feedback/
 
 ## Contributing Code
 

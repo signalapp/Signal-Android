@@ -16,8 +16,8 @@ import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.graphics.ColorUtils
+import org.signal.core.util.Util
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.toHue
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.customizeOnDraw
 

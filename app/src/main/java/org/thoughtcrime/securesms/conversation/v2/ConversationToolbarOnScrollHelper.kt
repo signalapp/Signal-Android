@@ -7,6 +7,7 @@ import androidx.lifecycle.LifecycleOwner
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Scroll helper to manage the color state of the top bar and status bar.
@@ -30,11 +31,11 @@ class ConversationToolbarOnScrollHelper(
 
   @ColorRes
   private fun getActiveToolbarColor(hasWallpaper: Boolean): Int {
-    return if (hasWallpaper) R.color.conversation_toolbar_color_wallpaper_scrolled else R.color.signal_colorSurface2
+    return if (hasWallpaper) R.color.conversation_toolbar_color_wallpaper_scrolled else CoreUiR.color.signal_colorSurface2
   }
 
   @ColorRes
   private fun getInactiveToolbarColor(hasWallpaper: Boolean): Int {
-    return if (hasWallpaper) R.color.conversation_toolbar_color_wallpaper else R.color.signal_colorBackground
+    return if (hasWallpaper) R.color.conversation_toolbar_color_wallpaper else CoreUiR.color.signal_colorBackground
   }
 }

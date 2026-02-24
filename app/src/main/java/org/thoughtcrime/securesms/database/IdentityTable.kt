@@ -19,7 +19,9 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import androidx.core.content.contentValuesOf
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.delete
 import org.signal.core.util.exists
 import org.signal.core.util.firstOrNull
@@ -40,8 +42,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.IdentityUtil
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.lang.AssertionError
 import java.util.Optional
 

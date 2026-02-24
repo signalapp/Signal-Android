@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components
 
 import android.content.Context
 import android.content.res.Configuration
+import android.os.Build
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Guideline
@@ -133,7 +134,12 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     val isLtr = ViewUtil.isLtr(this)
 
     val statusBar = windowInsets.top
-    val navigationBar = windowInsets.bottom
+    val navigationBar = if (windowInsets.bottom == 0 && Build.VERSION.SDK_INT <= 29) {
+      ViewUtil.getNavigationBarHeight(resources)
+    } else {
+      windowInsets.bottom
+    }
+
     val parentStart = if (isLtr) windowInsets.left else windowInsets.right
     val parentEnd = if (isLtr) windowInsets.right else windowInsets.left
 
@@ -231,6 +237,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   interface KeyboardStateListener {
     fun onKeyboardShown()
     fun onKeyboardHidden()
+    fun onKeyboardAnimationEnded() = Unit
   }
 
   interface WindowInsetsListener {
@@ -288,6 +295,10 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     }
 
     override fun onEnd(animation: WindowInsetsAnimationCompat) {
+      keyboardStateListeners.forEach {
+        it.onKeyboardAnimationEnded()
+      }
+
       if (overridingKeyboard) {
         return
       }

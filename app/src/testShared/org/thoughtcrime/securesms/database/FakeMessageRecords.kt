@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.database
 
+import org.signal.blurhash.BlurHash
+import org.signal.core.models.media.TransformProperties
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
-import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
@@ -56,7 +57,7 @@ object FakeMessageRecords {
     stickerLocator: StickerLocator? = null,
     blurHash: BlurHash? = null,
     audioHash: AudioHash? = null,
-    transformProperties: AttachmentTable.TransformProperties? = null,
+    transformProperties: TransformProperties? = null,
     displayOrder: Int = 0,
     uploadTimestamp: Long = 200,
     dataHash: String? = null,
@@ -101,7 +102,8 @@ object FakeMessageRecords {
       thumbnailRestoreState = thumbnailRestoreState,
       archiveTransferState = archiveTransferState,
       uuid = null,
-      quoteTargetContentType = null
+      quoteTargetContentType = null,
+      metadata = null
     )
   }
 
@@ -203,6 +205,7 @@ object FakeMessageRecords {
       null,
       0,
       false,
+      0,
       null
     )
   }

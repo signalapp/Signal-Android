@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.conversation;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -16,7 +15,6 @@ import android.util.AttributeSet;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
@@ -34,6 +32,7 @@ import androidx.vectordrawable.graphics.drawable.AnimatorInflaterCompat;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -45,13 +44,12 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import kotlin.Unit;
 
@@ -68,13 +66,13 @@ public final class ConversationReactionOverlay extends FrameLayout {
   private final Boundary verticalScrubBoundary   = new Boundary();
   private final PointF   deadzoneTouchPoint      = new PointF();
 
-  private Activity                  activity;
   private Recipient                 conversationRecipient;
   private MessageRecord             messageRecord;
   private SelectedConversationModel selectedConversationModel;
   private OverlayState              overlayState = OverlayState.HIDDEN;
   private boolean                   isNonAdminInAnnouncementGroup;
   private boolean                   shouldShowMessageRequest;
+  private boolean                   canEditGroupInfo;
 
   private boolean downIsOurs;
   private int     selected = -1;
@@ -151,7 +149,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
                    @NonNull PointF lastSeenDownPoint,
                    boolean shouldShowMessageRequest,
                    boolean isNonAdminInAnnouncementGroup,
-                   @NonNull SelectedConversationModel selectedConversationModel)
+                   @NonNull SelectedConversationModel selectedConversationModel,
+                   boolean canEditGroupInfo)
   {
     if (overlayState != OverlayState.HIDDEN) {
       return;
@@ -162,6 +161,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     this.selectedConversationModel     = selectedConversationModel;
     this.shouldShowMessageRequest      = shouldShowMessageRequest;
     this.isNonAdminInAnnouncementGroup = isNonAdminInAnnouncementGroup;
+    this.canEditGroupInfo              = canEditGroupInfo;
     overlayState                       = OverlayState.UNINITAILIZED;
     selected                           = -1;
 
@@ -198,8 +198,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
     conversationItem.setScaleY(ConversationItem.LONG_PRESS_SCALE_FACTOR);
 
     setVisibility(View.INVISIBLE);
-
-    this.activity = activity;
 
     ViewKt.doOnLayout(this, v -> {
       showAfterLayout(activity, conversationMessage, lastSeenDownPoint, isMessageOnLeft);
@@ -414,6 +412,10 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private void hideInternal(@Nullable OnHideListener onHideListener) {
+    if (overlayState == OverlayState.HIDDEN || selectedConversationModel == null) {
+      return;
+    }
+
     overlayState = OverlayState.HIDDEN;
 
     AnimatorSet animatorSet = newHideAnimatorSet();
@@ -688,6 +690,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
                                                                         conversationMessage,
                                                                         shouldShowMessageRequest,
                                                                         isNonAdminInAnnouncementGroup,
+                                                                        canEditGroupInfo,
                                                                         false,
                                                                         false);
 
@@ -869,5 +872,4 @@ public final class ConversationReactionOverlay extends FrameLayout {
     SCRUB,
     TAP
   }
-
 }

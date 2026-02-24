@@ -267,7 +267,8 @@ class BackupStateObserver(
           Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] No purchase found in Google Play Billing: $purchaseResult")
           false
         }
-      } || SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID
+      } ||
+        SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID
 
       Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] googlePlayBillingSubscriptionIsActiveAndWillRenew: $googlePlayBillingSubscriptionIsActiveAndWillRenew")
 

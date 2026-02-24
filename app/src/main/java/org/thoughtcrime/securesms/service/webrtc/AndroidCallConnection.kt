@@ -5,10 +5,10 @@ import android.content.Intent
 import android.telecom.CallAudioState
 import android.telecom.Connection
 import androidx.annotation.RequiresApi
+import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCommand

@@ -1,22 +1,17 @@
-import org.gradle.kotlin.dsl.extra
-
 plugins {
   `kotlin-dsl`
   alias(libs.plugins.ktlint)
   id("groovy-gradle-plugin")
 }
 
-val signalJavaVersion: JavaVersion by rootProject.extra
-val signalKotlinJvmTarget: String by rootProject.extra
-
 java {
-  sourceCompatibility = signalJavaVersion
-  targetCompatibility = signalJavaVersion
+  sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+  targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
 }
 
 kotlin {
   jvmToolchain {
-    languageVersion.set(JavaLanguageVersion.of(signalKotlinJvmTarget))
+    languageVersion.set(JavaLanguageVersion.of(libs.versions.kotlinJvmTarget.get()))
   }
   compilerOptions {
     suppressWarnings = true

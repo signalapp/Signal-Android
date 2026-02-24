@@ -1,5 +1,7 @@
 package org.thoughtcrime.benchmark
 
+import androidx.annotation.RequiresApi
+import androidx.benchmark.macro.BaselineProfileMode
 import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.ExperimentalMetricApi
 import androidx.benchmark.macro.StartupMode
@@ -13,10 +15,9 @@ import org.junit.runner.RunWith
 
 /**
  * Macrobenchmark benchmarks for app startup performance.
- *
- * WARNING! THIS WILL WIPE YOUR SIGNAL INSTALL
  */
 @RunWith(AndroidJUnit4::class)
+@RequiresApi(31)
 class StartupBenchmarks {
   @get:Rule
   val benchmarkRule = MacrobenchmarkRule()
@@ -28,14 +29,14 @@ class StartupBenchmarks {
 
   @Test
   fun coldStartBaselineProfile() {
-    measureStartup(5, CompilationMode.Partial())
+    measureStartup(5, CompilationMode.Partial(BaselineProfileMode.Require))
   }
 
   @OptIn(ExperimentalMetricApi::class)
   private fun measureStartup(iterations: Int, compilationMode: CompilationMode) {
     var setup = false
     benchmarkRule.measureRepeated(
-      packageName = "org.thoughtcrime.securesms",
+      packageName = "org.thoughtcrime.securesms.benchmark",
       metrics = listOf(StartupTimingMetric(), TraceSectionMetric("ConversationListDataSource#load")),
       iterations = iterations,
       startupMode = StartupMode.COLD,

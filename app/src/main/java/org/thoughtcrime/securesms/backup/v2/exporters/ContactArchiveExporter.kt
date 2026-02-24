@@ -7,13 +7,16 @@ package org.thoughtcrime.securesms.backup.v2.exporters
 
 import android.database.Cursor
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalInt
+import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
+import org.signal.core.util.toByteArray
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.proto.Contact
 import org.thoughtcrime.securesms.backup.v2.proto.Self
@@ -25,8 +28,6 @@ import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.Closeable
 
 /**
@@ -87,6 +88,7 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
       .systemFamilyName(cursor.requireString(RecipientTable.SYSTEM_FAMILY_NAME) ?: "")
       .systemNickname(cursor.requireString(RecipientTable.SYSTEM_NICKNAME) ?: "")
       .avatarColor(cursor.requireString(RecipientTable.AVATAR_COLOR)?.let { AvatarColor.deserialize(it) }?.toRemote())
+      .keyTransparencyData(cursor.requireBlob(RecipientTable.KEY_TRANSPARENCY_DATA)?.toByteString())
 
     val registeredState = RecipientTable.RegisteredState.fromId(cursor.requireInt(RecipientTable.REGISTERED))
     if (registeredState == RecipientTable.RegisteredState.REGISTERED) {

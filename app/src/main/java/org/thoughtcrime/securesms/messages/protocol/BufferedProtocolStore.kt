@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.messages.protocol
 
+import org.signal.core.models.ServiceId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * The entry point for creating and retrieving buffered protocol stores.

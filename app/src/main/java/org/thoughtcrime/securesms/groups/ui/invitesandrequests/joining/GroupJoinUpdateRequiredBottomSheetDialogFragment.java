@@ -15,9 +15,9 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.BottomSheetUtil;
+import org.signal.core.ui.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.signal.core.ui.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
 public final class GroupJoinUpdateRequiredBottomSheetDialogFragment extends BottomSheetDialogFragment {

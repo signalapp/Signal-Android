@@ -5,8 +5,8 @@ import android.text.SpannableStringBuilder
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.signal.core.ui.R as CoreUiR
 
 sealed class DSLSettingsText {
 
@@ -36,14 +36,11 @@ sealed class DSLSettingsText {
   }
 
   companion object {
-    fun from(@StringRes stringId: Int, @ColorInt textColor: Int): DSLSettingsText =
-      FromResource(stringId, listOf(ColorModifier(textColor)))
+    fun from(@StringRes stringId: Int, @ColorInt textColor: Int): DSLSettingsText = FromResource(stringId, listOf(ColorModifier(textColor)))
 
-    fun from(@StringRes stringId: Int, vararg modifiers: Modifier): DSLSettingsText =
-      FromResource(stringId, modifiers.toList())
+    fun from(@StringRes stringId: Int, vararg modifiers: Modifier): DSLSettingsText = FromResource(stringId, modifiers.toList())
 
-    fun from(charSequence: CharSequence, vararg modifiers: Modifier): DSLSettingsText =
-      FromCharSequence(charSequence, modifiers.toList())
+    fun from(charSequence: CharSequence, vararg modifiers: Modifier): DSLSettingsText = FromCharSequence(charSequence, modifiers.toList())
   }
 
   interface Modifier {
@@ -65,9 +62,9 @@ sealed class DSLSettingsText {
     }
   }
 
-  object TitleLargeModifier : TextAppearanceModifier(R.style.Signal_Text_TitleLarge)
-  object TitleMediumModifier : TextAppearanceModifier(R.style.Signal_Text_TitleMedium)
-  object BodyLargeModifier : TextAppearanceModifier(R.style.Signal_Text_BodyLarge)
+  object TitleLargeModifier : TextAppearanceModifier(CoreUiR.style.Signal_Text_TitleLarge)
+  object TitleMediumModifier : TextAppearanceModifier(CoreUiR.style.Signal_Text_TitleMedium)
+  object BodyLargeModifier : TextAppearanceModifier(CoreUiR.style.Signal_Text_BodyLarge)
 
   open class TextAppearanceModifier(@StyleRes private val textAppearance: Int) : Modifier {
     override fun modify(context: Context, charSequence: CharSequence): CharSequence {

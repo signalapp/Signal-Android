@@ -64,7 +64,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -219,7 +219,7 @@ public class InputPanel extends ConstraintLayout
                        @NonNull SlideDeck attachments,
                        @NonNull QuoteModel.Type quoteType)
   {
-    this.quoteView.setQuote(requestManager, id, author, body, false, attachments, null, quoteType, true);
+    this.quoteView.setQuote(requestManager, id, author, body, false, attachments, null, quoteType, true, null);
     if (listener != null) {
       this.quoteView.setOnClickListener(v -> listener.onQuoteClicked(id, author.getId()));
     }
@@ -386,20 +386,20 @@ public class InputPanel extends ConstraintLayout
     final int textHintColor;
 
     if (enabled) {
-      iconTint = getContext().getResources().getColor(R.color.signal_colorOnSurface);
-      textColor = getContext().getResources().getColor(R.color.signal_colorOnSurface);
-      textHintColor = getContext().getResources().getColor(R.color.signal_colorOnSurfaceVariant);
+      iconTint = getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorOnSurface);
+      textColor = getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorOnSurface);
+      textHintColor = getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorOnSurfaceVariant);
 
       setBackground(null);
       composeContainer.setBackground(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.compose_background_wallpaper)));
       quickAudioToggle.setColorFilter(iconTint);
       quickCameraToggle.setColorFilter(iconTint);
     } else {
-      iconTint = getContext().getResources().getColor(R.color.signal_colorOnSurface);
-      textColor = getContext().getResources().getColor(R.color.signal_colorOnSurface);
-      textHintColor = getContext().getResources().getColor(R.color.signal_colorOnSurfaceVariant);
+      iconTint = getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorOnSurface);
+      textColor = getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorOnSurface);
+      textHintColor = getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorOnSurfaceVariant);
 
-      setBackground(new ColorDrawable(getContext().getResources().getColor(R.color.signal_colorSurface)));
+      setBackground(new ColorDrawable(getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorSurface)));
       composeContainer.setBackground(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.compose_background)));
     }
 

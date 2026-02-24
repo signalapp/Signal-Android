@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
 import org.whispersystems.signalservice.api.payments.Money;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.signal.core.util.UuidUtil;
 
 import java.util.UUID;
 

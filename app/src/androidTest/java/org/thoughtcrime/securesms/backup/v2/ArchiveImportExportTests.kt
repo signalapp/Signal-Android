@@ -13,6 +13,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readFully
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.ByteArrayInputStream
 import java.util.UUID
 
@@ -63,7 +63,7 @@ class ArchiveImportExportTests {
 
 //  @Test
   fun chat() {
-    runTests { it.startsWith("chat_") && !it.contains("_item") }
+    runTests { it.matches(Regex("^chat_%d%d.binproto$")) }
   }
 
 //  @Test
@@ -214,6 +214,11 @@ class ArchiveImportExportTests {
 //  @Test
   fun chatItemPoll() {
     runTests { it.startsWith("chat_item_poll_") }
+  }
+
+//  @Test
+  fun chatItemPinMessage() {
+    runTests { it.startsWith("chat_item_pin_message_") }
   }
 
 //  @Test

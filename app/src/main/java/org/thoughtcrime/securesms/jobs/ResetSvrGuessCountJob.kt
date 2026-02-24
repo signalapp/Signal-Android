@@ -4,22 +4,24 @@
  */
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.MasterKey
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.Job.Result
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.Svr3Migration
 import org.thoughtcrime.securesms.pin.SvrRepository
-import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSession
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import kotlin.concurrent.withLock
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Attempts to reset the guess on the SVR PIN. Intended to be enqueued after a successful restore.
@@ -162,6 +164,11 @@ class ResetSvrGuessCountJob private constructor(
       BackupResponse.ExposeFailure -> {
         Log.w(TAG, "Failed to expose the backup. Giving up. $svr")
         Result.success()
+      }
+      is BackupResponse.RateLimited -> {
+        val backoff = response.retryAfter ?: defaultBackoff().milliseconds
+        Log.w(TAG, "Hit rate limit. Retrying in $backoff")
+        Result.retry(backoff.inWholeMilliseconds)
       }
       is BackupResponse.NetworkError -> {
         Log.w(TAG, "Hit a network error. Retrying. $svr", response.exception)

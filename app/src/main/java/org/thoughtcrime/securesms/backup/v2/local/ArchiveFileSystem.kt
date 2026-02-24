@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.local
 import android.content.Context
 import android.net.Uri
 import androidx.documentfile.provider.DocumentFile
+import org.signal.core.models.backup.MediaName
 import org.signal.core.util.androidx.DocumentFileInfo
 import org.signal.core.util.androidx.DocumentFileUtil.delete
 import org.signal.core.util.androidx.DocumentFileUtil.hasFile
@@ -18,7 +19,6 @@ import org.signal.core.util.androidx.DocumentFileUtil.newFile
 import org.signal.core.util.androidx.DocumentFileUtil.outputStream
 import org.signal.core.util.androidx.DocumentFileUtil.renameTo
 import org.signal.core.util.logging.Log
-import org.whispersystems.signalservice.api.backup.MediaName
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
@@ -37,6 +37,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
   companion object {
     val TAG = Log.tag(ArchiveFileSystem::class.java)
 
+    const val MAIN_DIRECTORY_NAME = "SignalBackups"
     const val BACKUP_DIRECTORY_PREFIX: String = "signal-backup"
     const val TEMP_BACKUP_DIRECTORY_SUFFIX: String = "tmp"
 
@@ -75,7 +76,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
   val filesFileSystem: FilesFileSystem
 
   init {
-    signalBackups = root.mkdirp("SignalBackups") ?: throw IOException("Unable to create main backups directory")
+    signalBackups = root.mkdirp(MAIN_DIRECTORY_NAME) ?: throw IOException("Unable to create main backups directory")
     val filesDirectory = signalBackups.mkdirp("files") ?: throw IOException("Unable to create files directory")
     filesFileSystem = FilesFileSystem(context, filesDirectory)
   }

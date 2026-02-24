@@ -4,30 +4,30 @@ plugins {
   alias(libs.plugins.ktlint)
 }
 
-val signalJavaVersion: JavaVersion by rootProject.extra
-val signalKotlinJvmTarget: String by rootProject.extra
-
 java {
-  sourceCompatibility = signalJavaVersion
-  targetCompatibility = signalJavaVersion
+  sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+  targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
 }
 
 kotlin {
   jvmToolchain {
-    languageVersion = JavaLanguageVersion.of(signalKotlinJvmTarget)
+    languageVersion = JavaLanguageVersion.of(libs.versions.kotlinJvmTarget.get())
   }
 }
 
 // NOTE: For now, in order to run ktlint on this project, you have to manually run ./gradlew :build-logic:tools:ktlintFormat
 //       Gotta figure out how to get it auto-included in the normal ./gradlew ktlintFormat
 ktlint {
-  version.set("1.2.1")
+  version.set("1.5.0")
 }
 
 dependencies {
   implementation(gradleApi())
 
   implementation(libs.dnsjava)
+  api(libs.square.okhttp3)
+
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.mockk)
+  testImplementation(testLibs.square.mockwebserver)
 }

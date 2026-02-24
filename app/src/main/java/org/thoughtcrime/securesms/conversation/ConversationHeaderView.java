@@ -137,7 +137,7 @@ public class ConversationHeaderView extends ConstraintLayout {
 
     if (recipient.isIndividual() && !recipient.isSelf()) {
       boolean isLtr = ViewUtil.isLtr(this);
-      CharSequence chevron = SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, isLtr ? SignalSymbols.Glyph.CHEVRON_RIGHT : SignalSymbols.Glyph.CHEVRON_LEFT, R.color.signal_colorOutline);
+      CharSequence chevron = SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, isLtr ? SignalSymbols.Glyph.CHEVRON_RIGHT : SignalSymbols.Glyph.CHEVRON_LEFT, org.signal.core.ui.R.color.signal_colorOutline);
 
       if (isLtr) {
         title.append(" ");
@@ -181,7 +181,7 @@ public class ConversationHeaderView extends ConstraintLayout {
           subtitle,
           substring,
           listener -> onClick.run(),
-          ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface),
+          ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSurface),
           true
       );
       binding.messageRequestSubtitle.setText(prependIcon(builder, iconRes));
@@ -334,7 +334,7 @@ public class ConversationHeaderView extends ConstraintLayout {
     Preconditions.checkNotNull(drawable);
     int width = useIntrinsicWidth ? drawable.getIntrinsicWidth() : (int) DimensionUnit.SP.toPixels(16);
     drawable.setBounds(0, 0, width, (int) DimensionUnit.SP.toPixels(16));
-    drawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface), PorterDuff.Mode.SRC_ATOP);
+    drawable.setColorFilter(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSurface), PorterDuff.Mode.SRC_ATOP);
 
     return new SpannableStringBuilder()
         .append(SpanUtil.buildCenteredImageSpan(drawable))

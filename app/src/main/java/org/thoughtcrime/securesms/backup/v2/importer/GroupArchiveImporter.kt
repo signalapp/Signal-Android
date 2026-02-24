@@ -6,19 +6,20 @@
 package org.thoughtcrime.securesms.backup.v2.importer
 
 import android.content.ContentValues
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.toInt
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
-import org.signal.storageservice.protos.groups.AccessControl
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedBannedMember
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
-import org.signal.storageservice.protos.groups.local.DecryptedTimer
-import org.signal.storageservice.protos.groups.local.EnabledState
+import org.signal.storageservice.storage.protos.groups.AccessControl
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer
+import org.signal.storageservice.storage.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.backup.v2.ArchiveGroup
 import org.thoughtcrime.securesms.backup.v2.proto.Group
 import org.thoughtcrime.securesms.backup.v2.util.toLocal
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
-import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Handles the importing of [ArchiveGroup] models into the local database.
@@ -116,7 +116,13 @@ private fun Group.Member.Role.toLocal(): Member.Role {
 }
 
 private fun Group.Member.toLocal(): DecryptedMember {
-  return DecryptedMember(aciBytes = userId, role = role.toLocal(), joinedAtRevision = joinedAtVersion)
+  return DecryptedMember(
+    aciBytes = userId,
+    role = role.toLocal(),
+    joinedAtRevision = joinedAtVersion,
+    labelEmoji = labelEmoji,
+    labelString = labelString
+  )
 }
 
 private fun Group.MemberPendingAdminApproval.toLocal(): DecryptedRequestingMember {

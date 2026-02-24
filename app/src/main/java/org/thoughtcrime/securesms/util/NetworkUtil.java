@@ -19,8 +19,32 @@ public final class NetworkUtil {
   private NetworkUtil() {}
 
   public static boolean isConnectedWifi(@NonNull Context context) {
-    final NetworkInfo info = getNetworkInfo(context);
-    return info != null && info.isConnected() && info.getType() == ConnectivityManager.TYPE_WIFI;
+    ConnectivityManager connectivityManager = ServiceUtil.getConnectivityManager(context);
+    Network             activeNetwork       = connectivityManager.getActiveNetwork();
+
+    if (activeNetwork == null) {
+      return false;
+    }
+
+    NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(activeNetwork);
+    if (capabilities == null) {
+      return false;
+    }
+
+    if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+      return true;
+    }
+
+    if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) {
+      for (Network underlyingNetwork : connectivityManager.getAllNetworks()) {
+        NetworkCapabilities underlyingCapabilities = connectivityManager.getNetworkCapabilities(underlyingNetwork);
+        if (underlyingCapabilities != null && underlyingCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   public static boolean isConnectedMobile(@NonNull Context context) {

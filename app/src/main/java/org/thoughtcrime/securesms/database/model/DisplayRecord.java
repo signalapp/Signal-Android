@@ -264,4 +264,8 @@ public abstract class DisplayRecord {
   public boolean isPollTerminate() {
     return MessageTypes.isPollTerminate(type);
   }
+
+  public boolean isPinnedMessageUpdate() {
+    return MessageTypes.isPinnedMessageUpdate(type);
+  }
 }

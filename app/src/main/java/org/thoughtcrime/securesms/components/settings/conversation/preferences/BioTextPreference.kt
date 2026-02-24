@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Renders name, description, about, etc. for a given group or recipient.
@@ -79,7 +80,7 @@ object BioTextPreference {
           ).let {
             SpanUtil.ofSize(it, 24)
           }.let {
-            SpanUtil.color(ContextCompat.getColor(context, R.color.signal_colorOutline), it)
+            SpanUtil.color(ContextCompat.getColor(context, CoreUiR.color.signal_colorOutline), it)
           }
 
           if (isLtr) {

@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * A one-stop-view for all your conversation input disabled needs.
@@ -184,7 +185,7 @@ class DisabledInputView @JvmOverloads constructor(
   }
 
   fun setWallpaperEnabled(wallpaperEnabled: Boolean) {
-    color = ContextCompat.getColor(context, if (wallpaperEnabled) R.color.wallpaper_bubble_color else R.color.signal_colorBackground)
+    color = ContextCompat.getColor(context, if (wallpaperEnabled) R.color.wallpaper_bubble_color else CoreUiR.color.signal_colorBackground)
     setBackgroundColor(color)
   }
 

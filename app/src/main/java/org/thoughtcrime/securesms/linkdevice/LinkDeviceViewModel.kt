@@ -10,6 +10,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.models.backup.MessageBackupKey
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
@@ -22,9 +24,8 @@ import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.OneTimeEven
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.QrCodeState
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.notifications.NotificationIds
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ServiceUtil
-import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
 import kotlin.jvm.optionals.getOrNull
@@ -39,7 +40,7 @@ class LinkDeviceViewModel : ViewModel() {
     val TAG = Log.tag(LinkDeviceViewModel::class)
   }
 
-  private val _state = MutableStateFlow(LinkDeviceSettingsState())
+  private val _state = MutableStateFlow(LinkDeviceSettingsState(isInternalUser = RemoteConfig.internalUser))
   val state = _state.asStateFlow()
   private val submitDebugLogRepository: SubmitDebugLogRepository = SubmitDebugLogRepository()
 

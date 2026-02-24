@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.annotation.VisibleForTesting
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.roundedString
 import org.signal.libsignal.protocol.InvalidKeyException
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.util.isRetryableIOException
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.account.PreKeyUpload
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import java.io.IOException

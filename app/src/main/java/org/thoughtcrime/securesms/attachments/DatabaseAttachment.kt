@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.attachments
 import android.net.Uri
 import android.os.Parcel
 import androidx.core.os.ParcelCompat
+import org.signal.blurhash.BlurHash
+import org.signal.core.models.media.TransformProperties
 import org.thoughtcrime.securesms.audio.AudioHash
-import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.ParcelUtil
@@ -38,6 +38,10 @@ class DatabaseAttachment : Attachment {
 
   @JvmField
   val archiveTransferState: AttachmentTable.ArchiveTransferState
+
+  /** Metadata for this attachment, if null, no attempt was made to load the metadata and does not imply there is none */
+  @JvmField
+  val metadata: AttachmentMetadata?
 
   private val hasThumbnail: Boolean
   val displayOrder: Int
@@ -76,7 +80,8 @@ class DatabaseAttachment : Attachment {
     thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState,
     archiveTransferState: AttachmentTable.ArchiveTransferState,
     uuid: UUID?,
-    quoteTargetContentType: String?
+    quoteTargetContentType: String?,
+    metadata: AttachmentMetadata?
   ) : super(
     contentType = contentType,
     transferState = transferProgress,
@@ -112,6 +117,7 @@ class DatabaseAttachment : Attachment {
     this.archiveCdn = archiveCdn
     this.thumbnailRestoreState = thumbnailRestoreState
     this.archiveTransferState = archiveTransferState
+    this.metadata = metadata
   }
 
   constructor(parcel: Parcel) : super(parcel) {
@@ -124,6 +130,7 @@ class DatabaseAttachment : Attachment {
     archiveCdn = parcel.readInt().takeIf { it != NO_ARCHIVE_CDN }
     thumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.deserialize(parcel.readInt())
     archiveTransferState = AttachmentTable.ArchiveTransferState.deserialize(parcel.readInt())
+    metadata = ParcelCompat.readParcelable(parcel, AttachmentMetadata::class.java.classLoader, AttachmentMetadata::class.java)
   }
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -137,6 +144,7 @@ class DatabaseAttachment : Attachment {
     dest.writeInt(archiveCdn ?: NO_ARCHIVE_CDN)
     dest.writeInt(thumbnailRestoreState.value)
     dest.writeInt(archiveTransferState.value)
+    dest.writeParcelable(metadata, 0)
   }
 
   override val uri: Uri?
@@ -162,7 +170,9 @@ class DatabaseAttachment : Attachment {
 
   override fun equals(other: Any?): Boolean {
     return other != null &&
-      other is DatabaseAttachment && other.attachmentId == attachmentId && other.uri == uri
+      other is DatabaseAttachment &&
+      other.attachmentId == attachmentId &&
+      other.uri == uri
   }
 
   override fun hashCode(): Int {

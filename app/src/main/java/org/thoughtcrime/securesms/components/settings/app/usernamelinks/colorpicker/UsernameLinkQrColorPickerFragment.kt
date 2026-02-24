@@ -34,7 +34,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
@@ -43,12 +42,13 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeBadge
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
-import org.thoughtcrime.securesms.compose.ComposeFragment
 
 /**
  * Gives the user the ability to change the color of their shareable username QR code with a live preview.
@@ -121,7 +121,7 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
       navigationIcon = {
         IconButton(onClick = onBackClicked) {
           Icon(
-            painter = painterResource(R.drawable.symbol_arrow_start_24),
+            painter = SignalIcons.ArrowStart.painter,
             tint = MaterialTheme.colorScheme.onSurface,
             contentDescription = null
           )

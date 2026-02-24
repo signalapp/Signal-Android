@@ -125,6 +125,9 @@ abstract class ExoPlayerPool<T : ExoPlayer>(
   fun pool(exoPlayer: T) {
     val poolState = pool[exoPlayer]
     if (poolState != null) {
+      exoPlayer.stop()
+      exoPlayer.clearMediaItems()
+
       pool[exoPlayer] = poolState.copy(available = true, tag = null)
     } else {
       throw IllegalArgumentException("Tried to return unknown ExoPlayer to pool :: ${poolStats()}")
@@ -185,6 +188,14 @@ abstract class ExoPlayerPool<T : ExoPlayer>(
 
   @MainThread
   override fun onBackground() {
+    for ((player, state) in pool) {
+      if (!state.available && player.playWhenReady) {
+        Log.w(TAG, "Force-stopping orphaned playing player on background. Owner: ${state.tag}")
+        player.stop()
+        player.clearMediaItems()
+      }
+    }
+
     val playersToRelease = pool.filter { (_, v) -> v.available }.keys
     pool -= playersToRelease
 

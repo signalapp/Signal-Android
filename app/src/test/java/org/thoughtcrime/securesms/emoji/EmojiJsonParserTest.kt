@@ -171,9 +171,8 @@ class EmojiJsonParserTest {
 
   private fun uriFactory(sprite: String, format: String) = Uri.parse("file:///$sprite")
 
-  private fun EmojiPageModel.isSameAs(other: EmojiPageModel) =
-    this.javaClass == other.javaClass &&
-      this.emoji == other.emoji &&
-      this.iconAttr == other.iconAttr &&
-      this.spriteUri == other.spriteUri
+  private fun EmojiPageModel.isSameAs(other: EmojiPageModel) = this.javaClass == other.javaClass &&
+    this.emoji == other.emoji &&
+    this.iconAttr == other.iconAttr &&
+    this.spriteUri == other.spriteUri
 }

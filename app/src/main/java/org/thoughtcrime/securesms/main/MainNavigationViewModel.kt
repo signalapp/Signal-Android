@@ -9,8 +9,12 @@ import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
 import androidx.compose.material3.adaptive.navigation.BackNavigationBehavior
 import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.CreationExtras
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -27,25 +31,41 @@ import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.rx3.asObservable
 import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
+import org.thoughtcrime.securesms.components.snackbars.SnackbarStateConsumerRegistry
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.util.delegate
 import org.thoughtcrime.securesms.window.AppScaffoldNavigator
-import org.thoughtcrime.securesms.window.isLargeScreenSupportEnabled
 import java.util.Optional
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 class MainNavigationViewModel(
+  private val savedStateHandle: SavedStateHandle,
   initialListLocation: MainNavigationListLocation = MainNavigationListLocation.CHATS
 ) : ViewModel(), MainNavigationRouter {
+
+  companion object {
+    private const val LOCK_PANE_TO_SECONDARY = "lock_pane_to_secondary"
+  }
+
+  class Factory(
+    private val initialListLocation: MainNavigationListLocation = MainNavigationListLocation.CHATS
+  ) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
+      val savedStateHandle = extras.createSavedStateHandle()
+      @Suppress("UNCHECKED_CAST")
+      return MainNavigationViewModel(savedStateHandle, initialListLocation) as T
+    }
+  }
+
   private val megaphoneRepository = AppDependencies.megaphoneRepository
 
   private var navigator: AppScaffoldNavigator<Any>? = null
   private var navigatorScope: CoroutineScope? = null
-  private var goToLegacyDetailLocation: ((MainNavigationDetailLocation) -> Unit)? = null
 
   private val internalDetailLocation = MutableSharedFlow<MainNavigationDetailLocation>()
   val detailLocation: SharedFlow<MainNavigationDetailLocation> = internalDetailLocation
@@ -65,9 +85,6 @@ class MainNavigationViewModel(
 
   private val internalMegaphone = MutableStateFlow(Megaphone.NONE)
   val megaphone: StateFlow<Megaphone> = internalMegaphone
-
-  private val internalSnackbar = MutableStateFlow<SnackbarState?>(null)
-  val snackbar: StateFlow<SnackbarState?> = internalSnackbar
 
   private val internalNavigationEvents = MutableSharedFlow<NavigationEvent>()
   val navigationEvents: Flow<NavigationEvent> = internalNavigationEvents
@@ -97,7 +114,9 @@ class MainNavigationViewModel(
    * where the user can change configurations (such as opening a foldable) and we will restore state and errantly
    * take them back into a PRIMARY pane. This boolean helps avoid these cases.
    */
-  private var lockPaneToSecondary = false
+  private var lockPaneToSecondary: Boolean by savedStateHandle.delegate(LOCK_PANE_TO_SECONDARY, false)
+
+  val snackbarRegistry = SnackbarStateConsumerRegistry()
 
   init {
     performStoreUpdate(MainNavigationRepository.getNumberOfUnreadMessages()) { unreadChats, state ->
@@ -139,8 +158,7 @@ class MainNavigationViewModel(
    * Sets the navigator on the view-model. This wraps the given navigator in our own delegating implementation
    * such that we can react to navigateTo/Back signals and maintain proper state for internalDetailLocation.
    */
-  fun wrapNavigator(composeScope: CoroutineScope, threePaneScaffoldNavigator: ThreePaneScaffoldNavigator<Any>, goToLegacyDetailLocation: (MainNavigationDetailLocation) -> Unit): AppScaffoldNavigator<Any> {
-    this.goToLegacyDetailLocation = goToLegacyDetailLocation
+  fun wrapNavigator(composeScope: CoroutineScope, threePaneScaffoldNavigator: ThreePaneScaffoldNavigator<Any>): AppScaffoldNavigator<Any> {
     this.navigatorScope = composeScope
     this.navigator = Nav(threePaneScaffoldNavigator)
 
@@ -198,11 +216,6 @@ class MainNavigationViewModel(
   override fun goTo(location: MainNavigationDetailLocation) {
     lockPaneToSecondary = false
 
-    if (!isLargeScreenSupportEnabled()) {
-      goToLegacyDetailLocation?.invoke(location)
-      return
-    }
-
     if (navigator == null) {
       earlyNavigationDetailLocationRequested = location
       return
@@ -236,10 +249,6 @@ class MainNavigationViewModel(
     megaphoneRepository.getNextMegaphone { next ->
       internalMegaphone.update { next ?: Megaphone.NONE }
     }
-  }
-
-  fun setSnackbar(snackbarState: SnackbarState?) {
-    internalSnackbar.update { snackbarState }
   }
 
   fun onMegaphoneSnoozed(event: Megaphones.Event) {

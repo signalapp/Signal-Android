@@ -148,7 +148,7 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
 @DayNightPreviews
 @Composable
 private fun UpgradeToEnableOptimizedStorageSheetContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     UpgradeToEnableOptimizedStorageSheetContent(
       messageBackupsType = testBackupTypes()[1] as MessageBackupsType.Paid,
       isSubscribeEnabled = true

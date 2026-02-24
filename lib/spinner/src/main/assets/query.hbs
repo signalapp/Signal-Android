@@ -1,0 +1,176 @@
+<html>
+  {{> partials/head title="Query" }}
+  <body>
+
+    {{> partials/prefix isQuery=true}}
+
+    <!-- Query Input -->
+    <form action="query" method="post" id="query-form">
+      <div class="query-input">{{query}}</div>
+      <button id="grow-button" onclick="onGrowClicked(event)">&nbsp;</button>
+
+      <input type="hidden" name="query" id="query" />
+      <input type="hidden" name="db" value="{{database}}" />
+      <input type="submit" name="action" value="run" />
+      or
+      <input type="submit" name="action" value="analyze" />
+      or
+      <button onclick="onFormatClicked(event)">format</button>
+    </form>
+
+    <!-- Container for previous queries -->
+    <h1 class="collapse-header" data-for="history-container">Query History</h1>
+    <table id="history-container" class="hidden"></table>
+
+    <!-- Query Result -->
+    <h1>Data</h1>
+    {{#if queryResult}}
+      {{queryResult.rowCount}} row(s). <br />
+      {{queryResult.timeToFirstRow}} ms to read the first row. <br />
+      {{queryResult.timeToReadRows}} ms to read the rest of the rows. <br />
+      <br />
+      <table>
+        <tr>
+          {{#each queryResult.columns}}
+            <th>{{this}}</th>
+          {{/each}}
+        </tr>
+        {{#each queryResult.rows}}
+          <tr>
+            {{#each this}}
+              <td><pre>{{#if (eq this null)}}<em class="null">null</em>{{else}}{{{this}}}{{/if}}</pre></td>
+            {{/each}}
+          </tr>
+        {{/each}}
+      </table>
+    {{else}}
+      No data.
+    {{/if}}
+
+    {{> partials/suffix}}
+
+    {{> partials/tooltips}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql-formatter/4.0.2/sql-formatter.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.5/ace.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.5/mode-sql.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.5/theme-github.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.5/theme-github_dark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+      let editor;
+
+      function main() {
+        //document.querySelector('.query-input').addEventListener('keypress', submitOnEnter);
+        document.getElementById('query-form').addEventListener('submit', onQuerySubmitted, false);
+        renderQueryHistory();
+        initializeTooltips();
+
+        editor = ace.edit(document.querySelector('.query-input'), {
+          mode: 'ace/mode/sql',
+          theme: isDarkTheme() ? 'ace/theme/github_dark' : 'ace/theme/github',
+          selectionStyle: 'text',
+          showPrintMargin: false
+        });
+
+        editor.setFontSize(13);
+
+        editor.commands.addCommand({
+          name: "Run",
+          bindKey: {win: "Ctrl-Return", mac: "Command-Return"},
+          exec: triggerSubmit
+        });
+
+        editor.commands.addCommand({
+          name: "Run (Cody)",
+          bindKey: {win: "Shift-Return", mac: "Shift-Return"},
+          exec: triggerSubmit
+        });
+
+        editor.commands.addCommand({
+          name: "Format",
+          bindKey: {win: "Ctrl-Shift-F", mac: "Command-Shift-F"},
+          exec: formatSql
+        });
+      }
+
+      function onFormatClicked(e) {
+        formatSql();
+        e.preventDefault();
+      }
+
+      function formatSql() {
+        let formatted = sqlFormatter.format(editor.getValue()).replaceAll("! =", "!=").replaceAll("| |", "||");
+        editor.setValue(formatted, formatted.length);
+      }
+
+      function triggerSubmit() {
+        onQuerySubmitted();
+        document.getElementById('query-form').submit();
+      }
+
+      function onGrowClicked(e) {
+        let element = document.querySelector('.query-input');
+        let currentHeight = parseInt(element.style.height) || 200;
+        element.style.height = currentHeight + 100;
+
+        e.preventDefault();
+      }
+
+      function onQuerySubmitted() {
+        const query = editor.getValue();
+
+        document.getElementById('query').value = query;
+
+        let history = getQueryHistory();
+
+        if (history.length > 0 && history[0] === query) {
+          console.log('Query already at the top of the history, not saving.');
+          return;
+        }
+
+        history.unshift(query);
+        history = history.slice(0, 25);
+
+        localStorage.setItem('query-history', JSON.stringify(history));
+      }
+
+      function renderQueryHistory() {
+        const container = document.getElementById('history-container');
+
+        let history = getQueryHistory();
+
+        if (history.length > 0) {
+          let i = 0;
+          for (let item of history) {
+            container.innerHTML += `
+              <tr>
+                <td><button onclick="onHistoryItemClicked(${i})">^</button></td>
+                <td id="history-item-${i}">${item}</td>
+              </tr>
+            `;
+            i++;
+          }
+        } else {
+          container.innerHTML = '<em>None</em>';
+        }
+      }
+
+      function onHistoryItemClicked(i) {
+        let item = document.getElementById(`history-item-${i}`).innerText;
+        editor.setValue(item, item.length);
+      }
+
+      function getQueryHistory() {
+        const historyRaw = localStorage.getItem('query-history') || "[]";
+        return JSON.parse(historyRaw);
+      }
+
+      function isDarkTheme() {
+        return document.body.getAttribute('data-theme') === 'dark'
+      }
+
+      main();
+
+    </script>
+  </body>
+</html>

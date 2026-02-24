@@ -55,7 +55,8 @@ class MenuStateAccessibilityContractTest {
       scenario.recipient,
       scenario.selectedParts,
       scenario.shouldShowMessageRequest,
-      scenario.isNonAdminInAnnouncementGroup
+      scenario.isNonAdminInAnnouncementGroup,
+      false
     )
   }
 

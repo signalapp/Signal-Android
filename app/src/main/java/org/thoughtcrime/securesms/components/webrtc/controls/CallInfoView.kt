@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.components.webrtc.controls
 
 import android.content.Context
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -44,7 +43,6 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.toLiveData
@@ -54,14 +52,16 @@ import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.flow.map
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarImage
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel
-import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
@@ -108,20 +108,14 @@ object CallInfoView {
       }
     }
 
-    SignalTheme(
-      isDarkMode = true
-    ) {
-      Surface {
-        CallInfo(
-          participantsState = participantsState,
-          controlAndInfoState = controlAndInfoState,
-          onShareLinkClicked = callbacks::onShareLinkClicked,
-          onEditNameClicked = onEditNameClicked,
-          onBlock = callbacks::onBlock,
-          modifier = modifier
-        )
-      }
-    }
+    CallInfo(
+      participantsState = participantsState,
+      controlAndInfoState = controlAndInfoState,
+      onShareLinkClicked = callbacks::onShareLinkClicked,
+      onEditNameClicked = onEditNameClicked,
+      onBlock = callbacks::onBlock,
+      modifier = modifier
+    )
   }
 
   interface Callbacks {
@@ -131,20 +125,18 @@ object CallInfoView {
   }
 }
 
-@Preview
+@NightPreview
 @Composable
 private fun CallInfoPreview() {
-  Previews.Preview {
-    Surface {
-      val remoteParticipants = listOf(CallParticipant(recipient = Recipient.UNKNOWN))
-      CallInfo(
-        participantsState = ParticipantsState(remoteParticipants = remoteParticipants, raisedHands = remoteParticipants.map { GroupCallRaiseHandEvent(it, System.currentTimeMillis()) }),
-        controlAndInfoState = ControlAndInfoState(),
-        onShareLinkClicked = { },
-        onEditNameClicked = { },
-        onBlock = { }
-      )
-    }
+  Previews.BottomSheetContentPreview {
+    val remoteParticipants = listOf(CallParticipant(recipient = Recipient(isResolving = false, systemContactName = "Miles Morales")))
+    CallInfo(
+      participantsState = ParticipantsState(remoteParticipants = remoteParticipants, raisedHands = remoteParticipants.map { GroupCallRaiseHandEvent(it, System.currentTimeMillis()) }),
+      controlAndInfoState = ControlAndInfoState(),
+      onShareLinkClicked = { },
+      onEditNameClicked = { },
+      onBlock = { }
+    )
   }
 }
 
@@ -171,9 +163,7 @@ private fun CallInfo(
     item {
       val text = if (controlAndInfoState.callLink == null) {
         stringResource(id = R.string.CallLinkInfoSheet__call_info)
-      } else if (controlAndInfoState.callLink.state.name.isNotEmpty()) {
-        controlAndInfoState.callLink.state.name
-      } else {
+      } else controlAndInfoState.callLink.state.name.ifEmpty {
         stringResource(id = R.string.Recipient_signal_call)
       }
 
@@ -188,7 +178,7 @@ private fun CallInfo(
       item {
         Rows.TextRow(
           text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
-          icon = painterResource(id = R.drawable.symbol_link_24),
+          icon = SignalIcons.Link.painter,
           iconModifier = Modifier
             .background(
               color = MaterialTheme.colorScheme.surfaceVariant,
@@ -340,20 +330,20 @@ private fun getCallSheetLabel(state: ParticipantsState): String {
   }
 }
 
-@Preview
+@NightPreview
 @Composable
 private fun CallParticipantRowPreview() {
   Previews.Preview {
     Surface {
       CallParticipantRow(
-        CallParticipant(recipient = Recipient.UNKNOWN),
+        CallParticipant(recipient = Recipient(isResolving = false, systemContactName = "Miles Morales")),
         isSelfAdmin = true
       ) {}
     }
   }
 }
 
-@Preview
+@NightPreview
 @Composable
 private fun HandRaisedRowPreview() {
   Previews.Preview {
@@ -563,7 +553,7 @@ private fun UnknownMembersRow(
     var displayDialog by remember { mutableStateOf(false) }
 
     Icon(
-      painter = painterResource(id = R.drawable.symbol_info_24),
+      painter = SignalIcons.Info.painter,
       contentDescription = stringResource(id = R.string.CallInfoView__more_information),
       modifier = Modifier.clickable(onClick = {
         displayDialog = true
@@ -636,10 +626,10 @@ private fun ThreeUnknownAvatars() {
   }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@NightPreview
 @Composable
 private fun UnknownMembersRowPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     Column {
       UnknownMembersRow(unknownMemberCount = 1, allCallMembersAreUnknown = true)
       UnknownMembersRow(unknownMemberCount = 1, allCallMembersAreUnknown = false)

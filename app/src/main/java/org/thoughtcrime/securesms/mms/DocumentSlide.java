@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.util.StorageUtil;
+import org.signal.core.ui.util.StorageUtil;
 
 public class DocumentSlide extends Slide {
 

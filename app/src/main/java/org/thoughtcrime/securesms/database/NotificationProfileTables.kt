@@ -8,6 +8,7 @@ import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.exists
 import org.signal.core.util.hasUnknownFields
 import org.signal.core.util.insertInto
@@ -37,7 +38,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncModels.toLocal
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.StorageId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.time.DayOfWeek
 
 /**

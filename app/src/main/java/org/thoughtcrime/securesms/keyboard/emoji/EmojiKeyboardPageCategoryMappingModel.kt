@@ -2,11 +2,11 @@ package org.thoughtcrime.securesms.keyboard.emoji
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import org.signal.core.ui.util.ThemeUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.emoji.EmojiCategory
 import org.thoughtcrime.securesms.keyboard.KeyboardPageCategoryIconMappingModel
-import org.thoughtcrime.securesms.util.ThemeUtil
 
 class RecentsMappingModel(override val selected: Boolean) : KeyboardPageCategoryIconMappingModel<RecentsMappingModel> {
   override val key: String = RecentEmojiPageModel.KEY

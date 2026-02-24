@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.registration.ui.restore
 
+import org.signal.core.models.AccountEntropyPool
 import org.thoughtcrime.securesms.restore.enterbackupkey.PostRegistrationEnterBackupKeyViewModel
-import org.whispersystems.signalservice.api.AccountEntropyPool
 
 /**
  * Help verify a potential string could be an [AccountEntropyPool] string. Intended only

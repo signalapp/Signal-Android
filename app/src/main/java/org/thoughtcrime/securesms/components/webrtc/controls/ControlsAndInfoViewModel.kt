@@ -34,8 +34,6 @@ class ControlsAndInfoViewModel(
 
   val rootKeySnapshot: ByteArray
     get() = state.value.callLink?.credentials?.linkKeyBytes ?: error("Call link not loaded yet.")
-  val epochSnapshot: ByteArray?
-    get() = state.value.callLink?.credentials?.epochBytes
 
   fun setRecipient(recipient: Recipient) {
     if (recipient.isCallLink && callRecipientId != recipient.id) {

@@ -144,6 +144,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setUseNewMediaActivity(enabled: Boolean) {
+    SignalStore.internal.useNewMediaActivity = enabled
+    refresh()
+  }
+
   fun setHevcEncoding(enabled: Boolean) {
     SignalStore.internal.hevcEncoding = enabled
     refresh()
@@ -196,8 +201,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     useConversationItemV2ForMedia = SignalStore.internal.useConversationItemV2Media,
     hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null,
     hevcEncoding = SignalStore.internal.hevcEncoding,
-    newCallingUi = SignalStore.internal.newCallingUi,
-    forceSplitPane = SignalStore.internal.forceSplitPane
+    forceSplitPane = SignalStore.internal.forceSplitPane,
+    useNewMediaActivity = SignalStore.internal.useNewMediaActivity
   )
 
   fun onClearOnboardingState() {
@@ -206,11 +211,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     Stories.onStorySettingsChanged(Recipient.self().id)
     refresh()
     StoryOnboardingDownloadJob.enqueueIfNeeded()
-  }
-
-  fun setUseNewCallingUi(newCallingUi: Boolean) {
-    SignalStore.internal.newCallingUi = newCallingUi
-    refresh()
   }
 
   fun setForceSplitPane(forceSplitPane: Boolean) {

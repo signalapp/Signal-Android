@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.LRUCache;
+import org.signal.core.util.LRUCache;
 
 import java.util.HashMap;
 import java.util.Map;

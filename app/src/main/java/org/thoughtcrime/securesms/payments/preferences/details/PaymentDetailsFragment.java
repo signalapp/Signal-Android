@@ -22,7 +22,7 @@ import androidx.navigation.Navigation;
 
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.LoggingFragment;
+import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -192,7 +192,7 @@ public final class PaymentDetailsFragment extends LoggingFragment {
 
   private static @NonNull CharSequence mono(@NonNull Context context, @NonNull CharSequence address) {
     SpannableString spannable = new SpannableString(address);
-    spannable.setSpan(new TextAppearanceSpan(context, R.style.TextAppearance_Signal_Mono),
+    spannable.setSpan(new TextAppearanceSpan(context, org.signal.core.ui.R.style.TextAppearance_Signal_Mono),
                       0,
                       address.length(),
                       Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

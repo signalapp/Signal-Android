@@ -27,9 +27,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.BackupEvent
 import org.thoughtcrime.securesms.backup.BackupPassphrase
@@ -303,7 +303,9 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
     }
 
     if (backupTimestamp > 0) {
-      binding.backupCreatedText.text = getString(R.string.RegistrationActivity_backup_timestamp_s, DateUtils.getExtendedRelativeTimeSpanString(requireContext(), Locale.getDefault(), backupTimestamp))
+      val (date, dateContentDesc) = DateUtils.getExtendedRelativeTimeSpanString(requireContext(), Locale.getDefault(), backupTimestamp)
+      binding.backupCreatedText.text = getString(R.string.RegistrationActivity_backup_timestamp_s, date)
+      binding.backupCreatedText.contentDescription = getString(R.string.RegistrationActivity_backup_timestamp_s, dateContentDesc)
     }
   }
 

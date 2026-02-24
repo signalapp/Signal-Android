@@ -13,7 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
-import org.thoughtcrime.securesms.compose.ComposeFullScreenDialogFragment
+import org.signal.core.ui.compose.ComposeFullScreenDialogFragment
 
 /**
  * Fragment which allows user to enter additional text to describe a call issue.

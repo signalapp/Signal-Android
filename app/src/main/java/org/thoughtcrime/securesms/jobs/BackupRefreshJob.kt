@@ -81,8 +81,20 @@ class BackupRefreshJob private constructor(
         SignalStore.backup.lastCheckInSnoozeMillis = 0
         Result.success()
       }
-      else -> {
-        Log.w(TAG, "Failed to refresh backup with server.", result.getCause())
+      is NetworkResult.NetworkError -> {
+        Log.w(TAG, "Network error when refreshing backup.", result.getCause())
+        Result.retry(defaultBackoff())
+      }
+      is NetworkResult.StatusCodeError -> {
+        Log.w(TAG, "Status code error (${result.code}) when refreshing backup.", result.getCause())
+        if (result.code == 429) {
+          Result.retry(result.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+        } else {
+          Result.failure()
+        }
+      }
+      is NetworkResult.ApplicationError -> {
+        Log.w(TAG, "Application error when refreshing backup.", result.throwable)
         Result.failure()
       }
     }

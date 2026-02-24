@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,7 +8,8 @@
     android:clickable="true"
     android:focusable="true"
     android:minHeight="64dp"
-    android:paddingHorizontal="@dimen/dsl_settings_gutter">
+    android:paddingHorizontal="@dimen/dsl_settings_gutter"
+    tools:viewBindingIgnore="true">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/recipient_avatar"
@@ -47,20 +47,42 @@
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/recipient_name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:gravity="start|center_vertical"
         android:maxLines="2"
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.BodyLarge"
-        app:layout_constraintBottom_toTopOf="@+id/recipient_about"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@+id/recipient_member_label"
         app:layout_constraintEnd_toStartOf="@+id/admin"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/recipient_avatar"
-        app:layout_constraintTop_toTopOf="@+id/recipient_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="Miles Morales" />
+
+    <org.thoughtcrime.securesms.groups.memberlabel.MemberLabelPillView
+        android:id="@+id/recipient_member_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/recipient_about"
+        app:layout_constraintEnd_toStartOf="@+id/popupMenuProgressContainer"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/recipient_name"
+        app:layout_constraintTop_toBottomOf="@+id/recipient_name"
+        app:layout_constraintWidth_default="wrap"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/recipient_content_end_barrier"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="recipient_name,recipient_member_label, recipient_about" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/recipient_about"
@@ -74,17 +96,18 @@
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_text_secondary"
-        app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/admin"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/recipient_avatar"
-        app:layout_constraintTop_toBottomOf="@+id/recipient_name"
+        app:layout_constraintTop_toBottomOf="@+id/recipient_member_label"
         tools:text="Hangin' around the web" />
 
     <TextView
         android:id="@+id/admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="start|center_vertical"
         android:text="@string/GroupRecipientListItem_admin"
@@ -93,8 +116,8 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/popupMenuProgressContainer"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/recipient_name"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/recipient_content_end_barrier"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginEnd="0dp"
         tools:visibility="visible" />

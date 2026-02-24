@@ -5,8 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
-import org.signal.core.util.ThreadUtil
-import org.signal.core.util.concurrent.SignalExecutors
+import androidx.annotation.VisibleForTesting
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import java.util.concurrent.ExecutionException
@@ -19,7 +18,10 @@ import kotlin.time.Duration.Companion.seconds
  */
 object ArchiveDatabaseExecutor {
 
-  val executor = Executors.newSingleThreadExecutor(SignalExecutors.NumberedThreadFactory("archive-db", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD))
+  @VisibleForTesting
+  const val THREAD_NAME = "archive-db"
+
+  private val executor = Executors.newSingleThreadExecutor { Thread(it, THREAD_NAME) }
 
   /**
    * By default, downloading/uploading an attachment wants to notify a bunch of database observation listeners. This slams the observer so hard that other
@@ -39,6 +41,10 @@ object ArchiveDatabaseExecutor {
   }
 
   fun <T> runBlocking(block: () -> T): T {
+    if (Thread.currentThread().name.equals(THREAD_NAME)) {
+      return block()
+    }
+
     return try {
       executor.submit(block).get()
     } catch (e: ExecutionException) {

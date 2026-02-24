@@ -16,7 +16,6 @@ class LocalBackupV2Event(val type: Type, val count: Long = 0, val estimatedTotal
     CHAT_FOLDER,
     PROGRESS_MESSAGE,
     PROGRESS_ATTACHMENT,
-    PROGRESS_VERIFYING,
     FINISHED
   }
 }

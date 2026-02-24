@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import org.signal.core.models.MasterKey
 import org.signal.core.util.StringStringSerializer
 import org.signal.core.util.logging.Log
-import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.kbs.PinHashUtil.localPinHash
 
 class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {

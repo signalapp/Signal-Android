@@ -30,25 +30,27 @@ class CheckoutNavHostFragment : NavHostFragment() {
     get() = requireArguments().getSerializableCompat(ARG_TYPE, InAppPaymentType::class.java)!!
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    if (savedInstanceState == null) {
-      val navGraph = navController.navInflater.inflate(R.navigation.checkout)
-      navGraph.setStartDestination(
-        when (inAppPaymentType) {
-          InAppPaymentType.UNKNOWN -> error("Unsupported start destination")
-          InAppPaymentType.ONE_TIME_GIFT -> R.id.giftFlowStartFragment
-          InAppPaymentType.ONE_TIME_DONATION, InAppPaymentType.RECURRING_DONATION -> R.id.donateToSignalFragment
-          InAppPaymentType.RECURRING_BACKUP -> error("Unsupported start destination")
-        }
-      )
+    val navGraph = navController.navInflater.inflate(R.navigation.checkout)
+    navGraph.setStartDestination(
+      when (inAppPaymentType) {
+        InAppPaymentType.UNKNOWN -> error("Unsupported start destination")
+        InAppPaymentType.ONE_TIME_GIFT -> R.id.giftFlowStartFragment
+        InAppPaymentType.ONE_TIME_DONATION, InAppPaymentType.RECURRING_DONATION -> R.id.donateToSignalFragment
+        InAppPaymentType.RECURRING_BACKUP -> error("Unsupported start destination")
+      }
+    )
 
-      val startBundle = when (inAppPaymentType) {
+    val startBundle = if (savedInstanceState == null) {
+      when (inAppPaymentType) {
         InAppPaymentType.UNKNOWN -> error("Unknown payment type")
         InAppPaymentType.ONE_TIME_GIFT, InAppPaymentType.RECURRING_BACKUP -> null
         InAppPaymentType.ONE_TIME_DONATION, InAppPaymentType.RECURRING_DONATION -> DonateToSignalFragmentArgs.Builder(inAppPaymentType).build().toBundle()
       }
-
-      navController.setGraph(navGraph, startBundle)
+    } else {
+      null
     }
+
+    navController.setGraph(navGraph, startBundle)
 
     super.onCreate(savedInstanceState)
   }

@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.backup.v2.importer
 
 import androidx.core.content.contentValuesOf
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.Base64
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
@@ -23,8 +25,6 @@ import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.SignalE164Util
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
 
 /**
  * Handles the importing of [Contact] models into the local database.
@@ -66,7 +66,8 @@ object ContactArchiveImporter {
       RecipientTable.SYSTEM_GIVEN_NAME to contact.systemGivenName,
       RecipientTable.SYSTEM_FAMILY_NAME to contact.systemFamilyName,
       RecipientTable.SYSTEM_NICKNAME to contact.systemNickname,
-      RecipientTable.AVATAR_COLOR to contact.avatarColor?.toLocal()?.serialize()
+      RecipientTable.AVATAR_COLOR to contact.avatarColor?.toLocal()?.serialize(),
+      RecipientTable.KEY_TRANSPARENCY_DATA to contact.keyTransparencyData?.toByteArray()
     )
 
     if (contact.registered != null) {

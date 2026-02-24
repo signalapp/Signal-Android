@@ -34,7 +34,6 @@ class CallLinkRecordProcessorTest {
   private val testSubject = CallLinkRecordProcessor()
   private val mockCredentials = CallLinkCredentials(
     "root key".toByteArray(),
-    "abcd".toByteArray(),
     "admin pass".toByteArray()
   )
 

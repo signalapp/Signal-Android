@@ -23,7 +23,12 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.updateAndGet
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.MasterKey
+import org.signal.core.models.backup.MessageBackupKey
+import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.Base64
+import org.signal.core.util.Util
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKey
@@ -45,7 +50,6 @@ import org.thoughtcrime.securesms.keyvalue.intendToRestore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.keyvalue.isTerminal
 import org.thoughtcrime.securesms.keyvalue.isWantingManualRemoteRestore
-import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.registration.data.AccountRegistrationResult
@@ -81,13 +85,9 @@ import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
-import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
-import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
@@ -96,6 +96,7 @@ import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.io.IOException
+import java.net.ProtocolException
 import java.nio.charset.StandardCharsets
 import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
@@ -457,8 +458,8 @@ class RegistrationViewModel : ViewModel() {
   }
 
   fun submitCaptchaToken(context: Context) {
-    val e164 = getCurrentE164() ?: throw IllegalStateException("Can't submit captcha token if no phone number is set!")
-    val captchaToken = store.value.captchaToken ?: throw IllegalStateException("Can't submit captcha token if no captcha token is set!")
+    val e164 = getCurrentE164() ?: return clearChallengesAndBail { Log.w(TAG, "Phone number was null when trying to submit captcha token.") }
+    val captchaToken = store.value.captchaToken ?: return bail { Log.w(TAG, "Captcha token was null when trying to submit captcha token.") }
 
     store.update {
       it.copy(captchaToken = null, challengeInProgress = true, inProgress = true)
@@ -485,7 +486,7 @@ class RegistrationViewModel : ViewModel() {
   fun requestAndSubmitPushToken(context: Context) {
     Log.v(TAG, "validatePushToken()")
 
-    val e164 = getCurrentE164() ?: throw IllegalStateException("Can't submit captcha token if no phone number is set!")
+    val e164 = getCurrentE164() ?: return clearChallengesAndBail { Log.w(TAG, "Phone number was null when trying to submit push token.") }
 
     viewModelScope.launch {
       Log.d(TAG, "Getting session in order to perform push token verification…")
@@ -692,6 +693,14 @@ class RegistrationViewModel : ViewModel() {
           Log.w(TAG, "SVR has no data for these credentials. Aborting skip SMS flow.", noData)
           updateSvrTriesRemaining(0)
           setUserSkippedReRegisterFlow(true)
+        } catch (ioe: IOException) {
+          if (ioe.cause is ProtocolException) {
+            Log.w(TAG, "Network error attempting to communicate with SVR, likely web socket http protocol exception. Skipping re-reg", ioe)
+            setUserSkippedReRegisterFlow(true)
+          } else {
+            Log.w(TAG, "Network error attempting to communicate with SVR.", ioe)
+            handleGenericError(ioe)
+          }
         }
       }
       return
@@ -978,8 +987,8 @@ class RegistrationViewModel : ViewModel() {
     SignalStore.registration.restoreDecisionState = RestoreDecisionState.Start
   }
 
-  fun intendToRestore(hasOldDevice: Boolean, fromRemote: Boolean? = null) {
-    SignalStore.registration.restoreDecisionState = RestoreDecisionState.intendToRestore(hasOldDevice, fromRemote)
+  fun intendToRestore(hasOldDevice: Boolean, fromRemote: Boolean? = null, fromLocalV2: Boolean? = null) {
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState.intendToRestore(hasOldDevice, fromRemote, fromLocalV2)
   }
 
   fun skipRestore() {
@@ -1052,6 +1061,22 @@ class RegistrationViewModel : ViewModel() {
   private fun bail(logMessage: () -> Unit) {
     logMessage()
     setInProgress(false)
+  }
+
+  /**
+   * Like [bail], but also clears challenge state. This is needed when challenge handling fails due to missing phone number,
+   * since otherwise the stale challenges would re-trigger the observer on every config change.
+   */
+  private fun clearChallengesAndBail(logMessage: () -> Unit) {
+    logMessage()
+    store.update {
+      it.copy(
+        inProgress = false,
+        challengesRequested = emptyList(),
+        challengeInProgress = false,
+        captchaToken = null
+      )
+    }
   }
 
   fun registerWithBackupKey(context: Context, backupKey: String, e164: String?, pin: String?, aciIdentityKeyPair: IdentityKeyPair?, pniIdentityKeyPair: IdentityKeyPair?) {

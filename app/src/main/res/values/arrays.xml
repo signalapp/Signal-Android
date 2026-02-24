@@ -405,4 +405,16 @@
         <item>@string/PlaybackSpeedToggleTextView__p5x</item>
     </string-array>
 
+    <integer-array name="ConversationFragment__pinned_for_values">
+        <item>1</item>
+        <item>7</item>
+        <item>30</item>
+        <item>-1</item>
+    </integer-array>
+    <string-array name="ConversationFragment__pinned_for_labels">
+        <item>@string/ConversationFragment__24_hours</item>
+        <item>@string/ConversationFragment__7_days</item>
+        <item>@string/ConversationFragment__30_days</item>
+        <item>@string/ConversationFragment__forever</item>
+    </string-array>
 </resources>

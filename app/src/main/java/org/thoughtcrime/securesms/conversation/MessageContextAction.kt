@@ -60,6 +60,16 @@ enum class MessageContextAction(
     labelRes = R.string.conversation_selection__menu_end_poll,
     iconRes = R.drawable.symbol_stop_24
   ),
+  PIN_MESSAGE(
+    accessibilityActionId = R.id.conversation_message_accessibility_pin_message_action,
+    labelRes = R.string.conversation_selection__menu_pin_message,
+    iconRes = R.drawable.symbol_pin_24
+  ),
+  UNPIN_MESSAGE(
+    accessibilityActionId = R.id.conversation_message_accessibility_unpin_message_action,
+    labelRes = R.string.conversation_selection__menu_unpin_message,
+    iconRes = R.drawable.symbol_pin_slash_24
+  ),
   DELETE(
     accessibilityActionId = R.id.conversation_message_accessibility_delete_action,
     labelRes = R.string.conversation_selection__menu_delete,

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.messages
 
+import org.signal.core.models.ServiceId
 import org.signal.core.util.orNull
 import org.signal.ringrtc.CallId
 import org.thoughtcrime.securesms.database.model.IdentityRecord
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedOfferMetadat
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.internal.push.CallMessage
 import org.whispersystems.signalservice.internal.push.CallMessage.Offer
 import org.whispersystems.signalservice.internal.push.CallMessage.Opaque

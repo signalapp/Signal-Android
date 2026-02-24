@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 
 public class ArcProgressBar extends View {
 

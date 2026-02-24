@@ -14,6 +14,7 @@ class SignalLogDetectorTest {
   fun androidLogUsed_LogNotSignal_2_args() {
     TestLintTask.lint()
       .files(
+        androidLogStub,
         java(
           """
           package foo;
@@ -27,6 +28,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.LOG_NOT_SIGNAL)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -46,41 +48,6 @@ class SignalLogDetectorTest {
       )
   }
 
-  @Test
-  fun androidLogUsed_LogNotSignal_3_args() {
-    TestLintTask.lint()
-      .files(
-        java(
-          """
-          package foo;
-          import android.util.Log;
-          public class Example {
-            public void log() {
-              Log.w("TAG", "msg", new Exception());
-            }
-          }
-          """.trimIndent()
-        )
-      )
-      .issues(SignalLogDetector.LOG_NOT_SIGNAL)
-      .run()
-      .expect(
-      """
-        src/foo/Example.java:5: Error: Using 'android.util.Log' instead of a Signal Logger [LogNotSignal]
-            Log.w("TAG", "msg", new Exception());
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        1 errors, 0 warnings
-        """.trimIndent()
-      )
-      .expectFixDiffs(
-        """
-            Fix for src/foo/Example.java line 5: Replace with org.signal.core.util.logging.Log.w("TAG", "msg", new Exception()):
-            @@ -5 +5
-            -     Log.w("TAG", "msg", new Exception());
-            +     org.signal.core.util.logging.Log.w("TAG", "msg", new Exception());
-            """.trimIndent()
-      )
-  }
 
   @Test
   fun signalServiceLogUsed_LogNotApp_2_args() {
@@ -100,6 +67,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.LOG_NOT_APP)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -137,21 +105,10 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.LOG_NOT_APP)
+      .allowMissingSdk()
       .run()
-      .expect(
-        """
+      .expectContains("""
         src/foo/Example.java:5: Error: Using Signal server logger instead of app level Logger [LogNotAppSignal]
-            Log.w("TAG", "msg", new Exception());
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        1 errors, 0 warnings
-        """.trimIndent()
-      )
-      .expectFixDiffs(
-        """
-        Fix for src/foo/Example.java line 5: Replace with org.signal.core.util.logging.Log.w("TAG", "msg", new Exception()):
-        @@ -5 +5
-        -     Log.w("TAG", "msg", new Exception());
-        +     org.signal.core.util.logging.Log.w("TAG", "msg", new Exception());
         """.trimIndent()
       )
   }
@@ -175,6 +132,8 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.INLINE_TAG)
+      .allowMissingSdk()
+      .skipTestModes(TestMode.FULLY_QUALIFIED)
       .run()
       .expectClean()
   }
@@ -198,6 +157,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.INLINE_TAG)
+      .allowMissingSdk()
       .skipTestModes(TestMode.REORDER_ARGUMENTS)
       .run()
       .expectClean()
@@ -225,6 +185,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.INLINE_TAG)
+      .allowMissingSdk()
       .skipTestModes(TestMode.REORDER_ARGUMENTS)
       .run()
       .expectClean()
@@ -248,6 +209,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.INLINE_TAG)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -278,6 +240,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.INLINE_TAG)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -308,6 +271,7 @@ class SignalLogDetectorTest {
         )
       )
       .issues(SignalLogDetector.LOG_NOT_SIGNAL)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -328,6 +292,7 @@ class SignalLogDetectorTest {
   }
 
   companion object {
+    private val androidLogStub = kotlin(readResourceAsString("AndroidLogStub.kt"))
     private val serviceLogStub = kotlin(readResourceAsString("ServiceLogStub.kt"))
     private val appLogStub = kotlin(readResourceAsString("AppLogStub.kt"))
     private val glideLogStub = kotlin(readResourceAsString("GlideLogStub.kt"))

@@ -8,5 +8,6 @@ package org.thoughtcrime.securesms.conversation.v2.computed
 data class FormattedDate(
   val isRelative: Boolean,
   val isNow: Boolean,
-  val value: String
+  val value: String,
+  val contentDescValue: String
 )

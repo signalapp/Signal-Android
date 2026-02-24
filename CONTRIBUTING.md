@@ -62,7 +62,7 @@ You will need to [sign our CLA](https://signal.org/cla/) before your pull reques
 ### Follow the Code Style Guidelines
 Ensure that your code adheres to the [Code Style Guidelines](https://github.com/signalapp/Signal-Android/wiki/Code-Style-Guidelines) before submitting a pull request.
 
-You can run `./gradlew format` to automatically check conformance with some of these guidelines.
+You can run `./gradlew format` to automatically format your code. See `lefthook.yml` for instructions on how to run this as a git hook.
 
 ### Submit finished and well-tested pull requests
 Please do not submit pull requests that are still a work in progress. Pull requests should be thoroughly tested and ready to merge before they are submitted.

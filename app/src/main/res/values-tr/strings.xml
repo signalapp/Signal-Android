@@ -313,8 +313,22 @@
     <string name="CameraXFragment_to_capture_videos">Sesli video çekmek için:</string>
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">Kare kodları taramak için:</string>
+    <!-- Error message shown when we try to take a photo, but fail -->
+    <string name="CameraXFragment_photo_capture_failed">Fotoğraf çekilemedi. Lütfen tekrar dene.</string>
+    <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+    <string name="CameraXFragment_photo_processing_failed">Fotoğraf işlenemedi. Lütfen tekrar dene.</string>
+    <!-- Accessibility label for the switch camera button -->
+    <string name="CameraXFragment_switch_camera">Kamera değiştir</string>
+    <!-- Accessibility label for flash button when flash is off -->
+    <string name="CameraXFragment_flash_off">Flaş kapalı</string>
+    <!-- Accessibility label for flash button when flash is on -->
+    <string name="CameraXFragment_flash_on">Flaş açık</string>
+    <!-- Accessibility label for flash button when flash is set to auto -->
+    <string name="CameraXFragment_flash_auto">Flaş otomatik</string>
+    <!-- Accessibility label for the send button in media selection -->
+    <string name="CameraXFragment_send">Gönder</string>
 
-    <!-- CameraContacts -->
+<!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">Son kişiler</string>
     <string name="CameraContacts_signal_contacts">Signal kişileri</string>
     <string name="CameraContacts_signal_groups">Signal grupları</string>
@@ -365,6 +379,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Bu, geçerli bir arama bağlantısı değil. Katılmayı denemeden önce tüm bağlantının tam ve doğru olduğundan emin ol.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Zaten bir aramadasın</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Hesap yeni cihaza aktarılsın mı?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">Bu hesabı yeni bir cihaza aktarmak için \"Devam et\"e dokun ve Signal kamera ile karekodu tekrar tara. Yalnızca doğrudan Signal\'dan gelen karekodları taradığından emin ol.</string>
+    <string name="CommunicationActions__dont_transfer">Aktarım yapma</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -406,7 +425,7 @@
     <string name="ContactShareEditActivity_type_work">İş</string>
     <string name="ContactShareEditActivity_type_missing">Diğer</string>
     <string name="ContactShareEditActivity_invalid_contact">Seçilen kişi geçersiz</string>
-    <!-- Content descrption for name edit button on contact share edit activity -->
+    <!-- Content description for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">İsmi düzenle</string>
     <!-- Content description for user avatar in edit activity -->
     <string name="ContactShareEditActivity__avatar">Resim</string>
@@ -675,6 +694,22 @@
     <string name="ConversationFragment_group_names">Grup adları</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Fotoğraf indirilemedi. Tekrar dene.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Şu süreliğine sabitle…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 saat</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 gün</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 gün</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Daima</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">En eski sabitleme değiştirilsin mi?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">Sabitlenen mesaj en eski mesajın yerini alacaktır</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Değiştir</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Güvenlik İpuçları</string>
@@ -919,7 +954,7 @@
     <string name="BackupsPreferenceFragment__backup_time">Yedekleme süresi</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Yedek parolasını doğrula</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Yedek parolanızı deneyin ve eşleştiğinden emin olun</string>
-    <string name="BackupsPreferenceFragment__turn_on">Aç</string>
+    <string name="BackupsPreferenceFragment__turn_on">Yedeklemeleri aç</string>
     <string name="BackupsPreferenceFragment__turn_off">Kapat</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Bir yedeği geri yüklemek için, yeni bir Signal kopyası kurun ve \"Yedeği geri yükle\" dokunun ve yedek dosyasını seçin. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Dahasını öğrenin</string>
@@ -947,6 +982,11 @@
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Şimdi</string>
     <string name="DateUtils_minutes_ago">%1$dd</string>
+    <!-- Content description when describing how many minutes ago something has happened -->
+    <plurals name="DateUtils_minutes_ago_content_description">
+        <item quantity="one">%1$d dakika</item>
+        <item quantity="other">%1$d dakika</item>
+    </plurals>
     <string name="DateUtils_today">Bugün</string>
     <string name="DateUtils_yesterday">Dün</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
@@ -1204,11 +1244,11 @@
     <string name="AddToGroupActivity_add_member">Üye eklensin mi?</string>
     <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" kişisi \"%2$s\" grubuna eklensin mi?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\", \"%2$s\" grubuna eklendi.</string>
-    <string name="AddToGroupActivity_add_to_group">Gruba ekle</string>
     <string name="AddToGroupActivity_add_to_groups">Gruplara ekle</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Bu kullanıcı eski bir gruba eklenemez.</string>
     <string name="AddToGroupActivity_add">Ekle</string>
     <string name="AddToGroupActivity_add_to_a_group">Bir gruba ekle</string>
+    <string name="AddToGroupActivity_search">Ara</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Yeni yönetici seç</string>
@@ -1612,6 +1652,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Gruba katılma başarısız oldu, lütfen daha sonra tekrar deneyin</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Bir ağ hatası ile karşılaşıldı.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Grup bağlantısı etkin değil</string>
+    <!-- Toast message shown when trying to join a group by link but the group is full -->
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Grup limitine ulaşıldı, gruba katılınamıyor</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Gruba katılınamadı</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -2536,6 +2578,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s, %2$s kişisini sessize aldı.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Başka bir cihazda kendini sessize aldın.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Bir kullanıcı arayüzü hatası oluştu. Lütfen bu hatayı geliştiricilere bildir.</string>
@@ -2670,6 +2714,16 @@
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s kişisinden ses ve görüntü alınamıyor</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Bunun sebebi güvenlik numaranın değişimini doğrulamaması, cihazıyla ilgili bir sorun olması veya seni engellemesi olabilir.</string>
 
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Kamera yönünü değiştir</string>
+
+    <!-- CallQualityDiagnosticsScreen -->
+    <!-- Title for the call quality diagnostics screen -->
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Tanılama bilgileri</string>
+    <!-- Content description for the close/back navigation button -->
+    <string name="CallQualityDiagnosticsScreen__close">Kapat</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Ekran paylaşımını görmek için kaydırın</string>
 
@@ -2713,7 +2767,6 @@
     <string name="RegistrationActivity_i_understand">Anladım</string>
     <string name="RegistrationActivity_play_services_error">Play Hizmetleri Hatası</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Hizmetleri güncelleniyor veya geçiçi olarak kullanılamaz durumda. Lütfen tekrar deneyiniz.</string>
-    <string name="RegistrationActivity_terms_and_privacy">Koşullar ve Gizlilik İlkesi</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal, arkadaşlarına bağlanmana yardımcı olmak ve mesaj gönderebilmek için kişilere ve medyaya erişim iznine ihtiyaç duyar. Kişi listen Signal\'in gizli kişi bulma özelliğiyle yüklenir; yani uçtan uca şifrelenir ve Signal hizmeti tarafından hiç görülmez.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal, arkadaşlarına bağlanmana yardımcı olabilmek için kişilere erişim iznine ihtiyaç duyuyor. Kişilerin, Signal\'in gizli kişi bulma özelliğiyle yüklenir; yani uçtan uca şifrelenir ve Signal hizmeti tarafından hiç görülmez.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Bu numarayı kaydettirmek için çok fazla deneme yaptınız. Lütfen daha sonra tekrar deneyiniz.</string>
@@ -2746,8 +2799,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">İptal</string>
     <string name="RegistrationActivity_next">İleri</string>
-    <string name="RegistrationActivity_continue">Devam Et</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Gizliliğinizi koruyun.\nHer iletide kendiniz olun.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Telefon numarası</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -3778,6 +3829,55 @@
     <string name="verify_display_fragment__loading">Yükleniyor…</string>
     <string name="verify_display_fragment__mark_as_verified">Doğrulanmış olarak işaretle</string>
     <string name="verify_display_fragment__clear_verification">Doğrulamayı temizle</string>
+    <!-- Header title for automatic key verification -->
+    <string name="verify_display_fragment__automatic">Otomatik Anahtar Doğrulama</string>
+    <!-- Button text to verify automatically    -->
+    <string name="verify_display_fragment__verify_automatic">Otomatik doğrula</string>
+    <!-- Loading text when verifying -->
+    <string name="verify_display_fragment__verifying">Şifreleme doğrulanıyor…</string>
+    <!-- Success text shown when encryption is verified -->
+    <string name="verify_display_fragment__encryption_verified">Şifreleme doğrulandı</string>
+    <!-- Text shown when verification fails -->
+    <string name="verify_display_fragment__encryption_unavailable">Otomatik doğrulama kullanılamıyor</string>
+    <!-- Caption text explaining more about automatic verification   -->
+    <string name="verify_display_fragment__auto_verify_not_available">Otomatik doğrulama tüm sohbetler için kullanılamıyor.</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://support.signal.org/hc/articles/10223569377562</string> -->
+
+    <!-- Bottom sheet title when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_success">Şifreleme bu sohbet için otomatik olarak doğrulandı</string>
+    <!-- Bottom sheet body when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_success">Telefon numarasıyla bağlandığın kişiler için Signal, anahtar şeffaflığı adı verilen bir süreç kullanarak bağlantının güvenli olup olmadığını otomatik olarak onaylayabilir. İlave güvenlik için önceki ekrandaki rakamları karşılaştırarak veya cihazındaki kodu tarayarak, uçtan uca şifrelemeyi manuel olarak doğrula.</string>
+    <!-- Bottom sheet title when encryption is no longer auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Bu sohbet için otomatik doğrulama artık kullanılamıyor</string>
+    <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal bu sohbet için şifrelemeyi artık otomatik olarak doğrulayamıyor. Bunun sebebi muhtemelen %1$s kişisinin telefon numarasını değiştirmiş olmasıdır. Önceki ekrandaki rakamları karşılaştırarak veya cihazındaki kodu tarayarak, uçtan uca şifrelemeyi manuel olarak doğrula.</string>
+    <!-- Bottom sheet title when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_unavailable">Bu sohbet için otomatik doğrulama kullanılamıyor</string>
+    <!-- Bottom sheet body when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_unavailable">Signal, sadece telefon numarası ile bağlı olduğun sohbetlerdeki şifrelemeyi otomatik olarak doğrulayabilir. Sohbet bir kullanıcı adı veya ortak bir grupla başlatılmışsa, önceki ekrandaki rakamları karşılaştırarak veya cihazındaki kodu tarayarak uçtan uca şifrelemeyi doğrula.</string>
+
+    <!-- Title for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal artık şifrelemeyi otomatik olarak doğrulayabiliyor</string>
+    <!-- Body for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__body">Telefon numarasıyla bağlandığın kişiler için Signal, anahtar şeffaflığı adı verilen bir süreç kullanarak bağlantının güvenli olup olmadığını otomatik olarak onaylayabilir. İlave güvenlik için kare kod veya güvenlik numarası kullanarak bağlantıları manuel olarak doğrulamaya devam edebilirsin.</string>
+    <!-- Button to learn more about automatic verification -->
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Daha fazlasını öğren</string>
+    <!-- Button to go to verification page -->
+    <string name="VerifyAutomaticallyEducationSheet__continue">Devam et</string>
+
+    <!-- Title for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__title">Otomatik Anahtar Doğrulama şu anda cihazında kullanılamıyor. Hata ayıklama günlüğü gönderilsin mi?</string>
+    <!-- Body for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__body">Hata ayıklama günlükleri, sorunu teşhis etmemize ve düzeltmemize yardımcı olur ve tanımlayıcı bilgiler içermezler.</string>
+    <!-- Button to decline submitting logs -->
+    <string name="SelfVerificationFailureSheet__no_thanks">Hayır teşekkürler</string>
+    <!-- Button to submit logs -->
+    <string name="SelfVerificationFailureSheet__submit">Gönder</string>
+    <!-- Email subject line when submitting logs following a verification failure -->
+    <string name="SelfVerificationFailureSheet__email_subject">Otomatik Anahtar Doğrulama Hatası</string>
+  <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
+    <!-- Link to learn more about debug logs -->
+    <string name="SelfVerificationFailureSheet__learn_more">Daha fazlasını öğren</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Kişinizin cihazındaki karekodu tarayın.</string>
@@ -3931,7 +4031,7 @@
     <string name="preferences__pref_use_address_book_photos">Rehber fotoğraflarını kullan</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Eğer varsa rehberdeki kişi fotoğraflarını göster</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Sessize Alınmış Sohbetleri Arşivde Tut</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Sessize alınmış sohbetleri arşivde tut</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Arşivlenerek sessize alınan sohbetler, yeni bir mesaj geldiğinde arşivlenmiş olarak kalır.</string>
     <string name="preferences__generate_link_previews">Bağlantı önizlemelerini oluştur</string>
@@ -4152,6 +4252,12 @@
     <string name="preferences_normal">Normal</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Kompakt</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">Uygulama yeni dil ayarını uygulamak için yeniden başlayacak.</string>
+    <!-- Preference title for automatic key verification -->
+    <string name="preferences_automatic_key_verification">Otomatik anahtar doğrulama</string>
+    <!-- Preference summary for automatic key verification -->
+    <string name="preferences_automatic_key_verification_body">Etkinleştirildiğinde, Signal bire bir sohbetlerin şifrelemesini otomatik olarak doğrulamaya çalışacaktır.</string>
 
 
     <string name="configurable_single_select__customize_option">Seçeneği düzenle</string>
@@ -4228,43 +4334,7 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Şimdi güncelle</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Şimdi değil</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">İleri</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">İzinleri etkinleştir</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Signal, tanıdığın kişilere mesaj gönderebilmen için bu izinleri talep edecek. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Bildirimler</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Yeni mesajlar geldiğinde bildirim al.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Kişiler</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Tanıdığın kişileri bul. Kişilerin şifrelendi ve Signal hizmetinde görünmüyor.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Telefon çağrıları</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Kayıt işlemini kolaylaştır ve ek çağrı özelliklerini etkinleştir.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Depolama</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Cihazından fotoğraf, video ve dosya gönder.</string>
 
-    <!-- PermissionDeniedBottomSheet -->
-    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Aşağıdaki \"Ayarlar\" seçeneğine dokun</string>
-    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s İzni etkinleştir</string>
-    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. \"İzinler\" seçeneğine dokun</string>
-    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s \"Fotoğraflar ve videolar\" seçeneğine izin ver</string>
-    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Ayarlar</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4456,6 +4526,10 @@
     <string name="conversation_selection__menu_payment_details">Ödeme detayları</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Anketi sonlandır</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Sabitle</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">Sabitlemeyi kaldır</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4714,9 +4788,6 @@
     <!-- transport_selection_list_item -->
     <string name="ConversationListFragment_loading">Yükleniyor…</string>
     <string name="CallNotificationBuilder_connecting">Bağlanıyor…</string>
-    <string name="Permissions_permission_required">İzin gerekli</string>
-    <string name="Permissions_continue">Devam Et</string>
-    <string name="Permissions_not_now">Şimdi değil</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal veritabanı taşınıyor</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Yedek parolası</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Yedekler harici depolama alanına kaydedilecek ve aşağıdaki parola ile şifrelenecektir. Yedeği geri yüklemek için bu parolaya sahip olmanız gereklidir.</string>
@@ -4725,8 +4796,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Bu parolayı kaydettim. Parola olmadan yedeği geri yükleyemem.</string>
     <string name="registration_activity__restore_backup">Yedeği geri yükle</string>
     <string name="registration_activity__transfer_or_restore_account">Hesabı aktar veya geri yükle</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Geri yükle veya aktar</string>
     <string name="registration_activity__transfer_account">Hesabı aktar</string>
     <string name="registration_activity__skip">Atla</string>
     <!-- Text label button to skip restoring -->
@@ -4840,14 +4909,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">Hizmete bağlanırken hata</string>
     <string name="preferences_chats__backups">Yedekler</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">Beta</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">Bilgi</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Bu bir beta özelliğidir ve zamanla geliştirilecektir.</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal\'in Kilidini Aç</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">Signal\'in kilidini açmak için Android cihazının kilit ayarlarını kullan.</string>
@@ -5100,8 +5162,6 @@
     <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s --&gt; %2$s</string>
 
-    <!-- StorageUtil -->
-    <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" engellendi.</string>
     <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" engellenemedi.</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" kişisinin engeli kaldırıldı.</string>
@@ -5244,7 +5304,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Duvar kağıdı önizlemesi</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Tüm sohbet renklerini değiştirmek ister misin?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Tüm arkaplanları değiştirmek ister misiniz?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Varsayılan renkleri sıfırla</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Varsayılan rengi sıfırla</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Tüm renkleri sıfırla</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Varsayılan arkaplanı sıfırla</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Tüm duvar kağıtlarını sıfırla</string>
@@ -5740,6 +5800,8 @@
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Koşullar ve Gizlilik İlkesi</string>
     <string name="HelpFragment__copyright_signal_messenger">Telif hakkı Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3\'e göre lisanslanmıştır</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal kâr amacı gütmeyen bir kuruluştur</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">İçerik kalitesi</string>
@@ -5872,6 +5934,8 @@
     <string name="ConversationSettingsFragment__permissions">İzinler</string>
     <string name="ConversationSettingsFragment__requests_and_invites">İstekler ve davetler</string>
     <string name="ConversationSettingsFragment__group_link">Grup bağlantısı</string>
+    <!-- Label for button that opens the group member label permissions screen. -->
+    <string name="ConversationSettingsFragment__group_member_label">Üye Etiketi</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Kişi olarak ekle</string>
     <string name="ConversationSettingsFragment__unmute">Sesi aç</string>
@@ -6127,7 +6191,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profil güncellenemedi</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Şimdi bağış yap</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Bağış yap</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s Signal\'i destekliyor</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -6155,13 +6219,15 @@
     <string name="Subscription__expires_s">%1$s tarihinde sona eriyor</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal diğer uygulamalardan farklıdır.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Kâr amacı gütmeyen, bağımsız bir kuruluş olarak Signal özel mesajlaşma ve aramalara önem verir. Reklam yok, takip yok, gözetleme yok. Signal\'ı desteklemek için bugün bağış yap.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Gizli mesajlaşma. Reklam yok, takip yok, gözetleme yok.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal bağışlarla destekleniyor, yani gizliliğin yaptığımız her şeyin merkezinde. Sinyal senin için üretildi; kişisel bilgilerini kullanmak ve kâr etmek için değil.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Bağış yaptığında profilinde isteğe bağlı bir rozet al</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Mümkünse, lütfen Signal\'i eğlenceli, güvenilir ve herkes için erişilebilir hâle getirmek için bugün bağış yap.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">Gizliliğin görevimizdir</string>
+    <!-- Fourth small text blurb on learn more sheet. Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal kâr amacı gütmeyen bir kuruluştur.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Desteğiniz için teşekkürler!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -6185,13 +6251,14 @@
     <string name="ManageDonationsFragment__my_support">Desteğim</string>
     <string name="ManageDonationsFragment__manage_subscription">Aboneliği yönet</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Bağış Makbuzları</string>
+    <string name="ManageDonationsFragment__donation_receipts">Bağış makbuzları</string>
     <string name="ManageDonationsFragment__badges">Rozetler</string>
-    <string name="ManageDonationsFragment__subscription_faq">Abonelik SSS</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Bağışçılar için SSS</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Vermenin diğer yolları</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Arkadaşın için bağış yap</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Bir arkadaşın için bağış yap</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Bağış onaylanamadı</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -7190,11 +7257,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Gizlilik kârlılıktan önce gelir</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Gururla Kâr Amacı Gütmeyen</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Devam Et</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Senin tarafından desteklenen, gizli mesajlaşma. Reklam yok, takip yok, taviz yok. Signal\'i desteklemek için şimdi bağış yap.</string>
+    <string name="DonateToSignalFragment__private_messaging">Özel mesajlaşmayı desteklemek için bağış yap. Signal\'ı bağımsız ve reklamsız tut.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Bekleyen bir bağışın var</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7468,8 +7535,10 @@
     <string name="CallLogAdapter__outgoing">Giden</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Cevapsız</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Bildirim profili açıkken cevaplanmadı</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Bildirim profili açıkken cevaplanmadı</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Katıl</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -7773,9 +7842,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Signal Güvenli Yedeklemeleri aç</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Signal Güvenli Yedeklemeleri Dene</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Yeni bir telefon aldığında veya Signal\'i yeniden yüklediğinde asla mesaj kaybetme.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Aç</string>
@@ -7783,6 +7850,18 @@
     <string name="TurnOnSignalBackups__not_now">Şimdi değil</string>
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
     <string name="TurnOnSignalBackups__toast_not_now">Yedeklemeleri \"Ayarlar\"dan etkinleştirebilirsin</string>
+
+    <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__title">Yeni cihazda yedeklemeleri kullan</string>
+    <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__body">Cihazda yedeklemeler artık daha hızlı kaydediliyor ve daha az veri kullanıyor.</string>
+    <!-- Button of a megaphone that will take the user to the upgrade flow -->
+    <string name="UseNewOnDeviceBackups__upgrade">Yükselt</string>
+    <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__not_now">Şimdi değil</string>
+
+    <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Bir yedeklemeyi geri yüklemek için Signal\'ın yeni bir kopyasını yükle. Uygulamayı aç ve Yedeklemeyi geri yükle\'ye dokun, ardından bir yedekleme dosyası bul."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Kurtarma anahtarını doğrula</string>
@@ -8003,6 +8082,12 @@
     <!-- Backup redemption error sheet bullet point 2 -->
     <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Aynı aboneliği kullanan çok fazla cihazın var.</string>
 
+    <!-- OnDeviceBackupsFragment -->
+    <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Yedekleme anahtarı güncellendi</string>
+    <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
+    <string name="OnDeviceBackupsFragment__directory_selected">Seçilen dizin: %1$s</string>
+
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Medyanı geri yüklemek için %1$s alan boşalt.</string>
@@ -8019,6 +8104,15 @@
     <!-- Status action label for resume restore from a paused state -->
     <string name="BackupStatus__resume">Devam et</string>
 
+    <!-- Status subtitle for banner when we are creating a backup file -->
+    <string name="BackupStatus__status_creating_backup">Yedekleme oluşturuluyor…</string>
+    <!-- Status title for banner when user is actively uploading backup data -->
+    <string name="BackupStatus__uploading_backup">Yedekleme yükleniyor</string>
+    <!-- Status title for banner when user is temporarily unable to upload a backup -->
+    <string name="BackupStatus__upload_paused">Yedekleme duraklatıldı</string>
+    <!-- Status title for banner when user has finished creating a backup -->
+    <string name="BackupStatus__upload_complete">Yedekleme tamamlandı</string>
+
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi bekleniyor…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
@@ -8027,6 +8121,10 @@
     <string name="BackupStatus__status_device_has_low_battery">Cihazın pili zayıf</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s / %2$s</string>
+    <!-- Label for a context menu item that, when pressed, will hide a banner so it will no longer be shown. -->
+    <string name="BackupStatus__hide">Gizle</string>
+    <!-- Label for a context menu item that, when pressed, will cancel the ongoing backup. -->
+    <string name="BackupStatus__cancel_upload">Yedeklemeyi iptal et</string>
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
@@ -8068,6 +8166,15 @@
     <string name="ResumeRestoreCellular_resume_using_cellular_title">Hücresel veri kullanımına devam edilsin mi?</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
     <string name="ResumeRestoreCellular_resume_using_cellular_message">Hücresel veri kullanarak medyanın geri yüklenmesi veri ücretlerine neden olabilir. Otomatik olarak devam etmek için bir Wi-Fi ağına bağlanabilirsin.</string>
+
+    <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_title">Yedekleme iptal edilsin mi?</string>
+    <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_body">Yedeklemeni iptal ettiğinde, yedeklemen silinmez. Yedeklemeni, istediğin zaman Yedekleme Ayarları\'ndan devam ettirebilirsin.</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
+    <string name="CancelBackupDialog_cancel_action">Yedeklemeyi iptal et</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
+    <string name="CancelBackupDialog_continue_action">Yedeklemeye devam et</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8413,6 +8520,37 @@
     <!-- Button label to open storage management screen -->
     <string name="RemoteBackupsSettingsFragment__manage_storage">Depolamayı yönet</string>
 
+    <!-- ReadyToTransferBottomSheet -->
+    <!-- Title for a bottom sheet letting people know that they can transfer their back to their new device  -->
+    <string name="RemoteBackupsSettingsFragment__ready_to_transfer">Aktarıma Hazır</string>
+    <!-- Body for bottom sheet telling the user to scan a QR code to continue transferring their backup to a new device -->
+    <string name="RemoteBackupsSettingsFragment__use_this_device_to_scan_qr">Aktarmak istediğin cihazdaki kare kodu taramak için bu cihazı kullan</string>
+    <!-- Button label to open QR scanner to scan a device and transfer a backup -->
+    <string name="RemoteBackupsSettingsFragment__scan_qr_code">Karekodu tara</string>
+
+    <!-- OnDeviceBackupsImprovementsScreen -->
+    <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Cihazda yedeklemelerde iyileştirmeler</string>
+    <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Cihazda yedeklemen, yeni bir kurtarma anahtarı kullanılarak yeni bir formata yükseltilecektir</string>
+    <!-- Feature description explaining backups are faster and use less data -->
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Yedeklemeler artık daha hızlı kaydediliyor ve daha az veri kullanıyor</string>
+    <!-- Feature description explaining backups will be saved as a folder with many files -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Yedeklemen birçok dosya içeren bir klasör olarak kaydedilecektir</string>
+    <!-- Feature description explaining backups remain end-to-end encrypted -->
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">Tüm yedeklemeler uçtan uca şifrelenmiş olarak kalır</string>
+    <!-- Button text to continue to the next step -->
+    <string name="OnDeviceBackupsImprovementsScreen__continue">Devam et</string>
+
+    <!-- OnDeviceBackupsSettingsScreen -->
+    <!-- Card text prompting user to update to a new recovery key for faster backups -->
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Daha hızlı yedekleme kayıtları için yeni bir kurtarma anahtarına güncelle</string>
+    <!-- Button text to update to a new recovery key -->
+    <string name="OnDeviceBackupsSettingsScreen__update">Güncelle</string>
+
+    <!-- UnifiedOnDeviceBackupsSettingsScreen -->
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">Yedekleme anahtarını görüntüle</string>
+
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
     <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Yedeklemeni hemen indir</string>
@@ -8466,12 +8604,32 @@
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Kurtarma anahtarı</string>
+    <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Yeni kurtarma anahtarın</string>
+    <!-- Screen headline shown when the user already has an on-device recovery key set. -->
+    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Kurtarma anahtarın</string>
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Kurtarma anahtarın, yedeklemeni geri yüklemek için ihtiyaç duyacağın 64 karakterlik bir koddur.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Kurtarma anahtarını güvenli parola yöneticisi gibi güvenli bir yerde sakla ve kimseyle paylaşma.</string>
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Kaybedersen, mesajlarını kurtarman mümkün olmaz.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Kurtarma anahtarın, tüm yedekleme türlerini geri yüklemeni sağlayan 64 karakterlik bir koddur.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Bu anahtar, cihazda yedekleme anahtarının yerini alacaktır.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Yedekleme anahtarın, Signal\'ı yeniden kurduğunda yedeklemelerini geri yüklemeni sağlayan 64 karakterli bir koddur.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Bu, cihazda yedekleme anahtarınla aynıdır.</string>
+    <!-- Label shown above a list of actions that the recovery key can be used for. -->
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Bu tuşu şunun için kullan:</string>
+    <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Cihazda yedeklemeni geri yükle</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Bir Signal Güvenli Yedeklemeyi geri yükle</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Signal Güvenli Yedeklemeni geri yükle</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Kurtarma anahtarını görüntüle</string>
 
@@ -8480,6 +8638,8 @@
     <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Kurtarma anahtarını kaydet</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Hesabını ve verilerini kurtarmak için bu anahtar gereklidir. Bu anahtarı güvenli bir yerde sakla. Kaybedersen, hesabını kurtarmanız mümkün olmaz.</string>
+    <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">Bu anahtar, cihazda yedekleme anahtarınla aynıdır. Hesabını ve verilerini kurtarmak için gereklidir.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Panoya kopyala</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -8557,7 +8717,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Kurtarma anahtarını gir</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Yedeklemeleri etkinleştirirken kaydettiğin 64 basamaklı kodu gir.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Yedeklemeleri etkinleştirdiğinde kaydettiğin 64 karakterlik kodu gir.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Anahtarı mı unuttun?</string>
 
@@ -8770,6 +8930,19 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Hesabını diğer cihazına aktarmaya devam et.</string>
 
+    <!-- Prepare Device screen title for quick restore flow -->
+    <string name="PrepareDevice_title">Cihazın Hazırlanıyor</string>
+    <!-- Prepare Device screen body text explaining backup recommendation -->
+    <string name="PrepareDevice_body">Aktarımdan önce şimdi yedekle. Henüz yedeklenmemiş mesajlar almış olabilirsin.</string>
+    <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
+    <string name="PrepareDevice_last_backup">Son yedeklemen %1$s tarihinde %2$s saatinde yapılmıştır.</string>
+    <!-- Prepare Device screen back up now button -->
+    <string name="PrepareDevice_back_up_now">Şimdi yedekle</string>
+    <!-- Prepare Device screen skip and continue button -->
+    <string name="PrepareDevice_skip_and_continue">Atla ve Devam Et</string>
+    <!-- A string describing the last time the user\'s backup was made. The placeholder represents a date-time. An example would be "Your last backup was made on July 18, 2025 at 9:00am." -->
+    <string name="PrepareDevice_last_backup_description">Son yedeklemenin yapıldığı zaman: %1$s </string>
+
     <!-- Restore Complete bottom sheet dialog title -->
     <string name="RestoreCompleteBottomSheet_restore_complete">Diğer cihazında bitir</string>
     <!-- Restore Complete bottom sheet dialog message -->
@@ -8895,7 +9068,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Anket sonlandırılsın mı?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Grup üyeleri artık bu ankette oy kullanamayacak.</string>
+    <string name="Poll__end_poll_body">Bu sohbetin üyeleri artık bu ankette oy kullanamayacak.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Ağ bekleniyor…</string>
     <!-- Header when creating a new poll -->
@@ -8918,6 +9091,13 @@
     <string name="CreatePollFragment__add_option">En az 2 seçenek ekle</string>
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Bir soru ekle</string>
+
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Karekodu tara</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Aktarmak istediğin cihazdaki kare kodu taramak için bu cihazı kullan</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">Tamam</string>
 
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
@@ -8945,7 +9125,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Başka bir şey</string>
+    <string name="CallQualitySomethingElseScreen__title">Sorunu tanımla</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Problemi açıkla</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
@@ -8975,11 +9155,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Gelişmemize yardımcı ol</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Tanılama bilgilerini bize göndermen, arama kalitesini iyileştirmemize yardımcı olur. Göndermeden önce </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Gönderdiğinde geri bildirimin şunlarla birlikte paylaşılır:</string>
+    <!-- Clickable text to launch diagnostic fragment -->
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">Araman hakkındaki tanılama bilgileri</string>
+    <!-- End of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix">Arama kalitesini iyileştirmemize yardımcı olmak üzere, isteğe bağlı şekilde bir hata ayıklama günlüğü paylaşabilirsin.</string>
+    <!-- Text explaining the debug log -->
+    <string name="CallQualitySheet__information_shared_with_us">Bizimle paylaşılan bilgiler düşük seviyeli uygulama bilgilerini içerir ve aramalarının içeriğini içermez.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">hata ayıklama günlüğünü görüntüleyebilirsin</string>
-    <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> .</string>
+    <string name="CallQualitySheet__view_debug_log">Hata ayıklama günlüğünü görüntüle</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Hata ayıklama günlüğünü paylaş</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8988,6 +9172,83 @@
     <string name="CallQualitySheet__submit">Gönder</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Geri bildirimin için teşekkürler!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">Aramayla ilgili sorunlarım oldu</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">Arama harikaydı</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Geri bildirimin gönderilemedi.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Tekrar dene</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s bir mesajı sabitledi</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">Bir mesajı sabitledin</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Mesaja git</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">Mesaj bulunamadı</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Sabitlendi</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Fotoğraf</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Video</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Çıkartma</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Sesli ileti</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Bir kez görünür medya</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">Sabitlemeyi kaldır</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">Tüm mesajları görüntüle</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Tüm Mesajların Sabitlemesini Kaldır</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Kaybolan mesajları sabitleme</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Kaybolan mesajların sabitlemesi, zamanlayıcıları dolduğunda ve mesaj sohbetten kaldırıldığında sona erer.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Anladım</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Kaybolan mesaj</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Sabitlenmiş mesajlar</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">Sabitlemeyi kaldır</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Tüm mesajlardaki sabitleme kaldırılsın mı?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Mesajların sabitlemesi tüm üyeler için kaldırılacaktır.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Mesaj sabitlenemedi</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Mesajın sabitlemesi kaldırılamadı</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Mesajların sabitlemesi kaldırılamadı</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Bağlantını kontrol edip tekrar dene.</string>
+
+    <!-- Group member label screen title. -->
+    <string name="GroupMemberLabel__title">Üye etiketi</string>
+    <!-- Group member label text field placeholder. -->
+    <string name="GroupMemberLabel__label_text_placeholder">Etiketini ekle</string>
+    <!-- Group member label preview section header. -->
+    <string name="GroupMemberLabel__preview_section_header">Ön izleme</string>
+    <!-- Group member label save button label. -->
+    <string name="GroupMemberLabel__save">Kaydet</string>
+    <!-- Accessibility label for the button to open the group member label emoji picker. -->
+    <string name="GroupMemberLabel__accessibility_select_emoji">Emoji seç</string>
+    <!-- Accessibility label for the group member label close screen button. -->
+    <string name="GroupMemberLabel__accessibility_close_screen">Ekranı kapat</string>
+    <!-- Accessibility label for the group member label text field clear button. -->
+    <string name="GroupMemberLabel__accessibility_clear_label">Etiketi sil</string>
+    <string name="GroupMemberLabel__description">Kendini veya bu gruptaki rolünü tanımlamak için bir üye etiketi ekle. Etiketler yalnızca bu grup içinde görülebilir.</string>
 
     <!-- EOF -->
 </resources>

@@ -6,6 +6,9 @@
 package org.thoughtcrime.securesms.util
 
 import org.junit.Assert.assertEquals
+import org.signal.core.models.ServiceId
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.select
@@ -17,9 +20,6 @@ import org.signal.libsignal.protocol.kem.KEMKeyType
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.thoughtcrime.securesms.database.KyberPreKeyTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.security.SecureRandom
 
 object KyberPreKeysTestUtil {

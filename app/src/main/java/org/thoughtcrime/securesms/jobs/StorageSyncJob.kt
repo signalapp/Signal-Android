@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import android.content.Context
 import com.annimon.stream.Stream
+import org.signal.core.models.storageservice.StorageKey
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
@@ -48,7 +49,6 @@ import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.storage.StorageId
-import org.whispersystems.signalservice.api.storage.StorageKey
 import org.whispersystems.signalservice.api.storage.StorageServiceRepository
 import org.whispersystems.signalservice.api.storage.StorageServiceRepository.ManifestIfDifferentVersionResult
 import org.whispersystems.signalservice.api.storage.toSignalAccountRecord

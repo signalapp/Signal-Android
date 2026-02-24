@@ -17,7 +17,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -65,10 +64,10 @@ fun EmptyDetailScreen() {
  * utilizing collectAsStateWithLifecycle. Then the latest value is remembered as a saveable using the default [MainNavigationDetailLocation.Saver]
  */
 @Composable
-fun rememberMainNavigationDetailLocation(
+fun MainNavigationDetailLocationEffect(
   mainNavigationViewModel: MainNavigationViewModel,
   onWillFocusPrimary: suspend () -> Unit = {}
-): State<MainNavigationDetailLocation> {
+) {
   val state = rememberSaveable(
     stateSaver = MainNavigationDetailLocation.Saver(
       mainNavigationViewModel.earlyNavigationDetailLocationRequested
@@ -84,7 +83,9 @@ fun rememberMainNavigationDetailLocation(
           if (it == MainNavigationDetailLocation.Empty) {
             ThreePaneScaffoldRole.Secondary
           } else {
-            onWillFocusPrimary()
+            if (it.isContentRoot) {
+              onWillFocusPrimary()
+            }
             ThreePaneScaffoldRole.Primary
           }
         )
@@ -93,8 +94,6 @@ fun rememberMainNavigationDetailLocation(
       state.value = it
     }
   }
-
-  return state
 }
 
 @Composable
@@ -147,6 +146,7 @@ fun rememberDetailNavHostController(
 
 fun NavHostController.navigateToDetailLocation(location: MainNavigationDetailLocation) {
   navigate(location) {
+    launchSingleTop = true
     if (location.isContentRoot) {
       popUpTo(graph.id) { inclusive = true }
     }

@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.service.webrtc.state
 
 import com.annimon.stream.OptionalLong
 import org.signal.ringrtc.CallId
+import org.signal.ringrtc.CallManager.CallEndReason
 import org.signal.ringrtc.GroupCall
-import org.signal.ringrtc.GroupCall.GroupCallEndReason
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipantId
 import org.thoughtcrime.securesms.events.GroupCallSpeechEvent
@@ -33,7 +33,7 @@ data class CallInfoState(
   var participantLimit: Long? = null,
   var pendingParticipants: PendingParticipantCollection = PendingParticipantCollection(),
   var callLinkDisconnectReason: CallLinkDisconnectReason? = null,
-  var groupCallEndReason: GroupCallEndReason? = null,
+  var groupCallEndReason: CallEndReason? = null,
   var groupCallSpeechEvent: GroupCallSpeechEvent? = null
 ) {
 

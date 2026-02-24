@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.messages.protocol
 
+import org.signal.core.models.ServiceId
 import org.signal.libsignal.protocol.InvalidKeyIdException
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.PreKeyStore
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
-import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * An in-memory one-time prekey store that is intended to be used temporarily while decrypting messages.

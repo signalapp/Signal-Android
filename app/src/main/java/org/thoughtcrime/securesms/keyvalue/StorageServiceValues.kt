@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import org.signal.core.models.storageservice.StorageKey
 import org.signal.core.util.logging.Log
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
-import org.whispersystems.signalservice.api.storage.StorageKey
 
 class StorageServiceValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {

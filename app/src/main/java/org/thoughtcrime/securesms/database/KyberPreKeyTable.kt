@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.content.Context
+import org.signal.core.models.ServiceId
 import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
 import org.signal.core.util.exists
@@ -17,7 +18,6 @@ import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
-import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * A table for storing data related to [org.thoughtcrime.securesms.crypto.storage.SignalKyberPreKeyStore].

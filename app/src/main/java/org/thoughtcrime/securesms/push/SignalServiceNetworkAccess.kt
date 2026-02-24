@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.push
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.Uri
 import androidx.core.content.ContextCompat
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import okhttp3.CipherSuite
@@ -146,6 +147,16 @@ class SignalServiceNetworkAccess(context: Context) {
         .activeNetwork
         ?.let { connectivityManager.getLinkProperties(it)?.httpProxy }
         ?.takeIf { !it.exclusionList.contains(BuildConfig.SIGNAL_URL.stripProtocol()) }
+        // NB: Edit carefully, dear reader, as the line below is written from hard won experience.
+        // It turns out, that despite being documented *nowhere*, if a PAC file is set
+        //   as the system proxy, proxyInfo.host will return "localhost" and proxyInfo.port
+        //   will return -1.
+        // I learnt this by reading the AOSP source code for ProxyInfo:
+        //   https://android.googlesource.com/platform/frameworks/base/+/4696ee4/core/java/android/net/ProxyInfo.java#107
+        // So, if we do not explicitly check that a PAC file is not set, the proxy
+        //   we pass to libsignal may be syntactically invalid, and the user may be
+        //   rendered unable to connect.
+        ?.takeIf { proxyInfo -> proxyInfo.pacFileUrl.equals(Uri.EMPTY) }
         ?.let { proxy -> HttpProxy(proxy.host, proxy.port) }
     }
   }

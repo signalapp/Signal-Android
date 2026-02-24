@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.math.BigDecimal
 import java.util.Currency
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Unified donation fragment which allows users to choose between monthly or one-time donations.
@@ -97,10 +98,10 @@ class DonateToSignalFragment :
   private val binding by ViewBinderDelegate(DonateToSignalFragmentBinding::bind)
 
   private val supportTechSummary: CharSequence by lazy {
-    SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__private_messaging)))
-      .append(" ")
+    SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__private_messaging)))
+      .append("\n")
       .append(
-        SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary)) {
+        SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorPrimary)) {
           findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToSubscribeLearnMoreBottomSheetDialog())
         }
       )
@@ -112,8 +113,8 @@ class DonateToSignalFragment :
 
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
     return object : Material3OnScrollHelper(activity = requireActivity(), views = listOf(toolbar!!), lifecycleOwner = viewLifecycleOwner) {
-      override val activeColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
-      override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
+      override val activeColorSet: ColorSet = ColorSet(R.color.transparent, CoreUiR.color.signal_colorBackground)
+      override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent, CoreUiR.color.signal_colorBackground)
     }
   }
 
@@ -329,6 +330,7 @@ class DonateToSignalFragment :
           isEnabled = state.continueEnabled,
           onClick = {
             if (state.canContinue) {
+              requireView().clearFocus()
               viewModel.requestSelectGateway()
             } else {
               showDonationPendingDialog(state)

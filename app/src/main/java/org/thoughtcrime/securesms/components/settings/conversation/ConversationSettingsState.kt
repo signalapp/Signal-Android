@@ -7,8 +7,10 @@ import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 
 data class ConversationSettingsState(
   val threadId: Long = -1,
@@ -81,7 +83,8 @@ sealed class SpecificSettingsState {
     val groupLinkEnabled: Boolean = false,
     val membershipCountDescription: String = "",
     val legacyGroupState: LegacyGroupPreference.State = LegacyGroupPreference.State.NONE,
-    val isAnnouncementGroup: Boolean = false
+    val isAnnouncementGroup: Boolean = false,
+    val memberLabelsByRecipientId: Map<RecipientId, MemberLabel> = emptyMap()
   ) : SpecificSettingsState() {
 
     override val isLoaded: Boolean = groupTitleLoaded && groupDescriptionLoaded

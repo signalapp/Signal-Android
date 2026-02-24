@@ -65,6 +65,13 @@ sealed class MainNavigationDetailLocation : Parcelable {
       @IgnoredOnParcel
       override val controllerKey: RecipientId = conversationArgs.recipientId
     }
+
+    @Serializable
+    data class MessageDetails(val recipientId: RecipientId, val messageId: Long) : Chats() {
+      @Transient
+      @IgnoredOnParcel
+      override val controllerKey: RecipientId = recipientId
+    }
   }
 
   /**

@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import org.signal.core.util.toByteArray
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
-import org.whispersystems.signalservice.api.util.toByteArray
 import java.util.UUID
 import kotlin.random.Random
 

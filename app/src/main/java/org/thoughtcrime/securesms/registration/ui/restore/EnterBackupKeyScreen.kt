@@ -49,6 +49,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
@@ -58,7 +59,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
 import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreen
-import org.whispersystems.signalservice.api.AccountEntropyPool
 
 /**
  * Shared screen infrastructure for entering an [AccountEntropyPool].
@@ -325,7 +325,7 @@ private fun NoBackupKeyBottomSheet(
 @DayNightPreviews
 @Composable
 private fun NoBackupKeyBottomSheetPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     NoBackupKeyBottomSheet(
       showSecondParagraph = true
     )
@@ -335,7 +335,7 @@ private fun NoBackupKeyBottomSheetPreview() {
 @DayNightPreviews
 @Composable
 private fun NoBackupKeyBottomSheetNoSecondParagraphPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     NoBackupKeyBottomSheet(
       showSecondParagraph = false
     )

@@ -32,3 +32,4 @@ maps.key
 /local/
 kls_database.db
 .kotlin
+lefthook-local.yml

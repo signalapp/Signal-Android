@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="id" name="coordinator" />
     <item type="id" name="holder_tag"/>
     <item type="id" name="contact_info_tag"/>
     <item type="id" name="motion_view_edittext"/>
@@ -51,5 +50,7 @@
     <item name="conversation_message_accessibility_multiselect_action" type="id" />
     <item name="conversation_message_accessibility_view_info_action" type="id" />
     <item name="conversation_message_accessibility_end_poll_action" type="id" />
+    <item name="conversation_message_accessibility_pin_message_action" type="id" />
+    <item name="conversation_message_accessibility_unpin_message_action" type="id" />
     <item name="conversation_message_accessibility_delete_action" type="id" />
 </resources>

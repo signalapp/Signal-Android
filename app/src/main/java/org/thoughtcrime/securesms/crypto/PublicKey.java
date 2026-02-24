@@ -22,7 +22,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.util.Hex;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 
 
 public class PublicKey {

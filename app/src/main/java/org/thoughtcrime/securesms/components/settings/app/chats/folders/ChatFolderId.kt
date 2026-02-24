@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.chats.folders
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import org.whispersystems.signalservice.api.util.UuidUtil
+import org.signal.core.util.UuidUtil
 import java.util.UUID
 
 /**

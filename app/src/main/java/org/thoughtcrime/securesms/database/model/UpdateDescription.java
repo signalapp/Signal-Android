@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.signal.core.models.ServiceId;
 
 import java.util.Collection;
 import java.util.Collections;

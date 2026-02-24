@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -33,12 +32,13 @@ import androidx.core.os.bundleOf
 import androidx.core.text.method.LinkMovementMethodCompat
 import androidx.core.text.util.LinkifyCompat
 import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.viewModel
 import org.signal.core.ui.R as CoreUiR
@@ -131,7 +131,7 @@ private fun ViewNoteBottomSheetContent(
       actions = {
         IconButton(onClick = onEditNoteClick) {
           Icon(
-            painter = painterResource(id = R.drawable.symbol_edit_24),
+            painter = SignalIcons.Edit.painter,
             contentDescription = stringResource(id = R.string.ViewNoteSheet__edit_note)
           )
         }
@@ -152,7 +152,7 @@ private fun ViewNoteBottomSheetContent(
       factory = { context ->
         val view = EmojiTextView(context)
 
-        view.setTextAppearance(context, R.style.Signal_Text_BodyLarge)
+        view.setTextAppearance(context, CoreUiR.style.Signal_Text_BodyLarge)
         view.movementMethod = LinkMovementMethodCompat.getInstance()
 
         view

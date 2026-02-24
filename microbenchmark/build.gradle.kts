@@ -7,29 +7,25 @@ plugins {
   id("ktlint")
 }
 
-val signalBuildToolsVersion: String by rootProject.extra
-val signalCompileSdkVersion: String by rootProject.extra
-val signalTargetSdkVersion: Int by rootProject.extra
-val signalMinSdkVersion: Int by rootProject.extra
-val signalJavaVersion: JavaVersion by rootProject.extra
-val signalKotlinJvmTarget: String by rootProject.extra
-
 android {
   namespace = "org.signal.microbenchmark"
-  compileSdkVersion = signalCompileSdkVersion
+  compileSdkVersion = libs.versions.compileSdk.get()
 
   compileOptions {
     isCoreLibraryDesugaringEnabled = true
-    sourceCompatibility = signalJavaVersion
-    targetCompatibility = signalJavaVersion
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
   }
 
   kotlinOptions {
-    jvmTarget = signalKotlinJvmTarget
+    jvmTarget = libs.versions.kotlinJvmTarget.get()
   }
 
   defaultConfig {
-    minSdk = signalMinSdkVersion
+    minSdk = libs.versions.minSdk.get().toInt()
+
+    testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
+
     testInstrumentationRunner = "androidx.benchmark.junit4.AndroidBenchmarkRunner"
   }
 
@@ -51,7 +47,8 @@ dependencies {
   coreLibraryDesugaring(libs.android.tools.desugar)
   lintChecks(project(":lintchecks"))
 
-  implementation(project(":core-util"))
+  implementation(project(":core:util"))
+  implementation(project(":core:models-jvm"))
 
   // Base dependencies
   androidTestImplementation(testLibs.junit.junit)
@@ -59,6 +56,6 @@ dependencies {
   androidTestImplementation(benchmarkLibs.androidx.benchmark.micro)
 
   // Dependencies of modules being tested
-  androidTestImplementation(project(":libsignal-service"))
+  androidTestImplementation(project(":lib:libsignal-service"))
   androidTestImplementation(libs.libsignal.android)
 }

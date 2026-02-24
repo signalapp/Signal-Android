@@ -6,9 +6,9 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.signal.core.models.ServiceId.ACI
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.groups.v2.ChangeBuilder
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.GroupContextV2
 import java.util.UUID
 import kotlin.random.Random

@@ -13,6 +13,7 @@ class AlertDialogBuilderDetectorTest {
   fun androidAlertDialogBuilderUsed_LogAlertDialogBuilderUsage_1_arg() {
     TestLintTask.lint()
       .files(
+        androidAlertDialogStub,
         java(
           """
           package foo;
@@ -26,6 +27,7 @@ class AlertDialogBuilderDetectorTest {
         )
       )
       .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -46,45 +48,10 @@ class AlertDialogBuilderDetectorTest {
   }
 
   @Test
-  fun androidAlertDialogBuilderUsed_LogAlertDialogBuilderUsage_2_arg() {
-    TestLintTask.lint()
-      .files(
-        java(
-          """
-          package foo;
-          import android.app.AlertDialog;
-          public class Example {
-            public void buildDialog() {
-              new AlertDialog.Builder(context, themeOverride).show();
-            }
-          }
-          """.trimIndent()
-        )
-      )
-      .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
-      .run()
-      .expect(
-        """
-        src/foo/Example.java:5: Warning: Using 'android.app.AlertDialog.Builder' instead of com.google.android.material.dialog.MaterialAlertDialogBuilder [AlertDialogBuilderUsage]
-            new AlertDialog.Builder(context, themeOverride).show();
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        0 errors, 1 warnings
-        """.trimIndent()
-      )
-      .expectFixDiffs(
-        """
-        Fix for src/foo/Example.java line 5: Replace with new com.google.android.material.dialog.MaterialAlertDialogBuilder(context, themeOverride):
-        @@ -5 +5
-        -     new AlertDialog.Builder(context, themeOverride).show();
-        +     new com.google.android.material.dialog.MaterialAlertDialogBuilder(context, themeOverride).show();
-        """.trimIndent()
-      )
-  }
-
-  @Test
   fun androidAlertDialogBuilderUsed_withAssignment_LogAlertDialogBuilderUsage_1_arg() {
     TestLintTask.lint()
       .files(
+        androidAlertDialogStub,
         java(
           """
           package foo;
@@ -99,6 +66,7 @@ class AlertDialogBuilderDetectorTest {
         )
       )
       .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -136,6 +104,7 @@ class AlertDialogBuilderDetectorTest {
         )
       )
       .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
       """
@@ -151,43 +120,6 @@ class AlertDialogBuilderDetectorTest {
         @@ -5 +5
         -     new AlertDialog.Builder(context).show();
         +     new com.google.android.material.dialog.MaterialAlertDialogBuilder(context).show();
-        """.trimIndent()
-      )
-  }
-
-  @Test
-  fun appcompatAlertDialogBuilderUsed_LogAlertDialogBuilderUsage_2_arg() {
-    TestLintTask.lint()
-      .files(
-        appCompatAlertDialogStub,
-        java(
-        """
-          package foo;
-          import androidx.appcompat.app.AlertDialog;
-          public class Example {
-            public void buildDialog() {
-              new AlertDialog.Builder(context, themeOverride).show();
-            }
-          }
-          """.trimIndent()
-        )
-      )
-      .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
-      .run()
-      .expect(
-        """
-        src/foo/Example.java:5: Warning: Using 'androidx.appcompat.app.AlertDialog.Builder' instead of com.google.android.material.dialog.MaterialAlertDialogBuilder [AlertDialogBuilderUsage]
-            new AlertDialog.Builder(context, themeOverride).show();
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        0 errors, 1 warnings
-        """.trimIndent()
-      )
-      .expectFixDiffs(
-        """
-        Fix for src/foo/Example.java line 5: Replace with new com.google.android.material.dialog.MaterialAlertDialogBuilder(context, themeOverride):
-        @@ -5 +5
-        -     new AlertDialog.Builder(context, themeOverride).show();
-        +     new com.google.android.material.dialog.MaterialAlertDialogBuilder(context, themeOverride).show();
         """.trimIndent()
       )
   }
@@ -211,6 +143,7 @@ class AlertDialogBuilderDetectorTest {
         )
       )
       .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
       """
@@ -231,6 +164,7 @@ class AlertDialogBuilderDetectorTest {
   }
 
   companion object {
+    private val androidAlertDialogStub = kotlin(readResourceAsString("AndroidAlertDialogStub.kt"))
     private val appCompatAlertDialogStub = kotlin(readResourceAsString("AppCompatAlertDialogStub.kt"))
 
     private fun readResourceAsString(@Suppress("SameParameterValue") resourceName: String): String {

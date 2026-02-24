@@ -313,8 +313,22 @@
     <string name="CameraXFragment_to_capture_videos">Per gravar vídeos amb so:</string>
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">Per escanejar codis QR:</string>
+    <!-- Error message shown when we try to take a photo, but fail -->
+    <string name="CameraXFragment_photo_capture_failed">No s\'ha pogut fer la foto. Torna-ho a provar.</string>
+    <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+    <string name="CameraXFragment_photo_processing_failed">No s\'ha pogut processar la foto. Torna-ho a provar.</string>
+    <!-- Accessibility label for the switch camera button -->
+    <string name="CameraXFragment_switch_camera">Canviar la càmera</string>
+    <!-- Accessibility label for flash button when flash is off -->
+    <string name="CameraXFragment_flash_off">Desactivar flash</string>
+    <!-- Accessibility label for flash button when flash is on -->
+    <string name="CameraXFragment_flash_on">Activar flash</string>
+    <!-- Accessibility label for flash button when flash is set to auto -->
+    <string name="CameraXFragment_flash_auto">Flash automàtic</string>
+    <!-- Accessibility label for the send button in media selection -->
+    <string name="CameraXFragment_send">Envia</string>
 
-    <!-- CameraContacts -->
+<!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">Contactes recents</string>
     <string name="CameraContacts_signal_contacts">Contactes de Signal</string>
     <string name="CameraContacts_signal_groups">Grups de Signal</string>
@@ -365,6 +379,11 @@
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Aquest no és un enllaç de trucada vàlid. Assegura\'t que l\'enllaç estigui intacte i sigui correcte abans d\'intentar afegir-t\'hi.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Ja ets a una trucada.</string>
+    <!-- Title on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_title">Vols transferir el compte al dispositiu nou?</string>
+    <!-- Message on dialog when quick restore qr code is scanned in system camera -->
+    <string name="CommunicationActions__transfer_dialog_message">Per transferir aquest compte a un dispositiu nou, toca \"Continua\" i torna a escanejar el codi QR amb la càmera de Signal. Assegura\'t que només escaneges codis QR que provenen directament de Signal.</string>
+    <string name="CommunicationActions__dont_transfer">No transferir</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -406,7 +425,7 @@
     <string name="ContactShareEditActivity_type_work">Feina</string>
     <string name="ContactShareEditActivity_type_missing">Altres</string>
     <string name="ContactShareEditActivity_invalid_contact">El contacte seleccionat no és vàlid.</string>
-    <!-- Content descrption for name edit button on contact share edit activity -->
+    <!-- Content description for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">Editar nom</string>
     <!-- Content description for user avatar in edit activity -->
     <string name="ContactShareEditActivity__avatar">Avatar</string>
@@ -675,6 +694,22 @@
     <string name="ConversationFragment_group_names">Els noms dels grups</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">No s\'ha pogut descarregar la foto. Torna a provar-ho.</string>
+    <!-- Dialog for how to long to keep a messaged pinned for -->
+    <string name="ConversationFragment__keep_pinned">Mantenir fixat durant…</string>
+    <!-- Dialog option to keep message pin for 24 hours -->
+    <string name="ConversationFragment__24_hours">24 hores</string>
+    <!-- Dialog option to keep message pin for 7 days -->
+    <string name="ConversationFragment__7_days">7 dies</string>
+    <!-- Dialog option to keep message pin for 30 days -->
+    <string name="ConversationFragment__30_days">30 dies</string>
+    <!-- Dialog option to keep message pin forever -->
+    <string name="ConversationFragment__forever">Per sempre</string>
+    <!-- Dialog title when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_title">Substituir el missatge fixat més antic?</string>
+    <!-- Dialog body when replacing the oldest pin -->
+    <string name="ConversationFragment__replace_body">En fixar el missatge, aquest substituirà el més antic</string>
+    <!-- Dialog button when replacing the oldest pin -->
+    <string name="ConversationFragment__replace">Substituir</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Consells de seguretat</string>
@@ -919,7 +954,7 @@
     <string name="BackupsPreferenceFragment__backup_time">Hora de la còpia de seguretat</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verifiqueu la contrasenya de còpia de seguretat</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Proveu la contrasenya de còpia de seguretat i verifiqueu que coincideix.</string>
-    <string name="BackupsPreferenceFragment__turn_on">Activa</string>
+    <string name="BackupsPreferenceFragment__turn_on">Activar les còpies de seguretat</string>
     <string name="BackupsPreferenceFragment__turn_off">Desactiva</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Per restaurar una còpia de seguretat, instal·leu una còpia del Signal. Obriu l\'aplicació i toqueu Restaura la còpia de seguretat. Indiqueu el fitxer de còpia de seguretat. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Més informació</string>
@@ -947,6 +982,11 @@
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Ara</string>
     <string name="DateUtils_minutes_ago">%1$d min</string>
+    <!-- Content description when describing how many minutes ago something has happened -->
+    <plurals name="DateUtils_minutes_ago_content_description">
+        <item quantity="one">%1$d minut</item>
+        <item quantity="other">%1$d minuts</item>
+    </plurals>
     <string name="DateUtils_today">Avui</string>
     <string name="DateUtils_yesterday">Ahir</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
@@ -1204,11 +1244,11 @@
     <string name="AddToGroupActivity_add_member">Voleu afegir el membre?</string>
     <string name="AddToGroupActivity_add_s_to_s">Voleu afegir \"%1$s\" a \"%2$s\"?</string>
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" s\'ha afegit a \"%2$s\".</string>
-    <string name="AddToGroupActivity_add_to_group">Afegeix-lo al grup</string>
     <string name="AddToGroupActivity_add_to_groups">Afegeix-lo als grups</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Aquesta persona no es pot afegir a grups de llegat.</string>
     <string name="AddToGroupActivity_add">Afegeix</string>
     <string name="AddToGroupActivity_add_to_a_group">Afegeix-lo a un grup</string>
+    <string name="AddToGroupActivity_search">Cerca</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Trieu un administrador nou</string>
@@ -1612,6 +1652,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">No es pot afegir al grup. Torneu-ho a provar és tard.</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Hi ha hagut un error de xarxa.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Aquest enllaç de grup no està actiu.</string>
+    <!-- Toast message shown when trying to join a group by link but the group is full -->
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">S\'ha arribat al límit del grup, no pots unir-te al grup</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">No es pot afegir al grup.</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -2449,9 +2491,9 @@
 
     <!-- MoveableLocalVideoRenderer -->
     <!-- Content description for button to shrink local video from focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__shrink_local_video">Shrink local video</string>
+    <string name="MoveableLocalVideoRenderer__shrink_local_video">Disminuir vídeo local</string>
     <!-- Content description for button to expand local video to focused/full-screen mode -->
-    <string name="MoveableLocalVideoRenderer__expand_local_video">Expand local video</string>
+    <string name="MoveableLocalVideoRenderer__expand_local_video">Ampliar vídeo local</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Trucada del Signal</string>
@@ -2536,6 +2578,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s ha silenciat a %2$s.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">T\'has silenciat en un altre dispositiu.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">You\'ve been muted because this call has many participants.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">S\'ha produït un error de la interfície d\'usuari. Informa d\'aquest error als desenvolupadors.</string>
@@ -2670,6 +2714,16 @@
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Això pot ser degut al fet que no han verificat el canvi del teu número de seguretat, hi ha un problema al seu dispositiu o t\'han bloquejat.</string>
 
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Canvia l\'orientació de la càmera</string>
+
+    <!-- CallQualityDiagnosticsScreen -->
+    <!-- Title for the call quality diagnostics screen -->
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Informació de diagnòstic</string>
+    <!-- Content description for the close/back navigation button -->
+    <string name="CallQualityDiagnosticsScreen__close">Tanca</string>
+
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Llisqueu per veure la compartició de pantalla</string>
 
@@ -2713,7 +2767,6 @@
     <string name="RegistrationActivity_i_understand">Ho entenc</string>
     <string name="RegistrationActivity_play_services_error">Error amb el Play Services</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">El Google Play Services s\'està actualitzant o no està disponible. Torneu a provar-ho.</string>
-    <string name="RegistrationActivity_terms_and_privacy">Termes i política de privadesa</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">El Signal necessita els contactes i els permisos multimèdia per ajudar-vos a connectar-vos amb amics i enviar missatges. Els vostres contactes es carreguen mitjançant el descobriment de contactes privats del Signal, la qual cosa significa que estan encriptats d\'extrem a extrem i mai no són visibles per al servei de Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">El Signal necessita el permís dels contactes per ajudar-vos a connectar-vos amb els amics. Els vostres contactes es carreguen mitjançant el descobriment de contactes privats del Signal, la qual cosa significa que estan encriptats d\'extrem a extrem i mai no són visibles per al servei de Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Heu fet massa intents per registrar aquest número. Si us plau, torneu-ho a provar més tard.</string>
@@ -2746,8 +2799,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">Cancel·lar</string>
     <string name="RegistrationActivity_next">Següent</string>
-    <string name="RegistrationActivity_continue">Continua</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Porteu a sobre la privadesa.\nSigueu vosaltres mateixos a cada missatge.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Número de telèfon</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -3778,6 +3829,55 @@
     <string name="verify_display_fragment__loading">Es carrega…</string>
     <string name="verify_display_fragment__mark_as_verified">Marca com a verificat</string>
     <string name="verify_display_fragment__clear_verification">Neteja la verificació</string>
+    <!-- Header title for automatic key verification -->
+    <string name="verify_display_fragment__automatic">Verificació automàtica de clau</string>
+    <!-- Button text to verify automatically    -->
+    <string name="verify_display_fragment__verify_automatic">Verificar automàticament</string>
+    <!-- Loading text when verifying -->
+    <string name="verify_display_fragment__verifying">Verificant codificació…</string>
+    <!-- Success text shown when encryption is verified -->
+    <string name="verify_display_fragment__encryption_verified">Codificació verificada</string>
+    <!-- Text shown when verification fails -->
+    <string name="verify_display_fragment__encryption_unavailable">La verificació automàtica no està disponible</string>
+    <!-- Caption text explaining more about automatic verification   -->
+    <string name="verify_display_fragment__auto_verify_not_available">La verificació automàtica no està disponible per a tots els xats.</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://support.signal.org/hc/articles/10223569377562</string> -->
+
+    <!-- Bottom sheet title when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_success">La codificació d\'aquest xat s\'ha verificat automàticament</string>
+    <!-- Bottom sheet body when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_success">Per als contactes amb qui hagis connectat a través d\'un número de telèfon, Signal pot confirmar automàticament si la connexió és segura mitjançant un procés anomenat transparència de claus. Per a més seguretat, verifica la codificació d\'extrem a extrem manualment comparant els números de la pantalla anterior o escanejant el codi al dispositiu de l\'altra persona.</string>
+    <!-- Bottom sheet title when encryption is no longer auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">La verificació automàtica ja no està disponible per a aquest xat</string>
+    <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal ja no pot verificar automàticament la codificació d\'aquest xat. Probablement, això passa perquè %1$s ha canviat el seu número de telèfon. Verifica manualment la codificació d\'extrem a extrem comparant els números de la pantalla anterior o escanejant el codi al dispositiu de l\'altra persona.</string>
+    <!-- Bottom sheet title when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_unavailable">La verificació automàtica no està disponible per a aquest xat</string>
+    <!-- Bottom sheet body when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_unavailable">Signal només pot verificar automàticament la codificació en xats on hagis connectat a través del número de telèfon. Si has iniciat el xat a través d\'un àlies o un grup en comú, verifica la codificació d\'extrem a extrem comparant els números de la pantalla anterior o escanejant el codi al dispositiu de l\'altra persona.</string>
+
+    <!-- Title for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__title">Ara, Signal pot verificar automàticament la codificació</string>
+    <!-- Body for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__body">Pels contactes amb qui hagis connectat a través d\'un número de telèfon, Signal pot confirmar automàticament si la connexió és segura mitjançant un procés anomenat transparència de claus. Per a més seguretat, pots continuar verificant manualment les teves connexions mitjançant un codi QR o un número de seguretat.</string>
+    <!-- Button to learn more about automatic verification -->
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Més informació</string>
+    <!-- Button to go to verification page -->
+    <string name="VerifyAutomaticallyEducationSheet__continue">Continuar</string>
+
+    <!-- Title for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__title">Actualment, la verificació automàtica de claus no està disponible al teu dispositiu. Vols enviar un registre de depuració?</string>
+    <!-- Body for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__body">Els registres de depuració ens ajuden a diagnosticar i solucionar el problema i no contenen informació que pugui identificar-te.</string>
+    <!-- Button to decline submitting logs -->
+    <string name="SelfVerificationFailureSheet__no_thanks">No, gràcies.</string>
+    <!-- Button to submit logs -->
+    <string name="SelfVerificationFailureSheet__submit">Envia</string>
+    <!-- Email subject line when submitting logs following a verification failure -->
+    <string name="SelfVerificationFailureSheet__email_subject">Error de verificació automàtica de claus</string>
+  <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
+    <!-- Link to learn more about debug logs -->
+    <string name="SelfVerificationFailureSheet__learn_more">Més informació</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Escanegeu el codi QR del dispositiu del contacte.</string>
@@ -4152,6 +4252,12 @@
     <string name="preferences_normal">Normal</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Compacte</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">L\'app es reiniciarà per aplicar la nova configuració d\'idioma.</string>
+    <!-- Preference title for automatic key verification -->
+    <string name="preferences_automatic_key_verification">Verificació automàtica de clau</string>
+    <!-- Preference summary for automatic key verification -->
+    <string name="preferences_automatic_key_verification_body">Quan aquesta opció està habilitada, Signal intentarà verificar automàticament l\'encriptació dels xats individuals.</string>
 
 
     <string name="configurable_single_select__customize_option">Opció de personalització</string>
@@ -4228,43 +4334,7 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Actualitza-la ara</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Ara no</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Següent</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Permisos</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Per ajudar-te a enviar missatges a persones que coneixes, Signal sol·licitarà aquests permisos. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notificacions</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Rep una notificació quan arribin missatges nous.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contactes</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Troba gent que coneixes. Els teus contactes estan xifrats i no són visibles per al servei de Signal.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Trucades de telèfon</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Facilita el registre i activa funcions addicionals de trucada.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Emmagatzematge</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Envia fotos, vídeos i arxius des del teu dispositiu.</string>
 
-    <!-- PermissionDeniedBottomSheet -->
-    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Toca \"Ajustos\" més avall</string>
-    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Permet l\'accés</string>
-    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Prem “Permisos”</string>
-    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Permetre l\'accés a \"Fotos i vídeos\"</string>
-    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Ajustos</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4456,6 +4526,10 @@
     <string name="conversation_selection__menu_payment_details">Detalls de pagament</string>
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Finalitzar enquesta</string>
+    <!-- Button to pin a message -->
+    <string name="conversation_selection__menu_pin_message">Fixa</string>
+    <!-- Button to unpin a message -->
+    <string name="conversation_selection__menu_unpin_message">No ho fixis</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4714,9 +4788,6 @@
     <!-- transport_selection_list_item -->
     <string name="ConversationListFragment_loading">Es carrega…</string>
     <string name="CallNotificationBuilder_connecting">Es connecta…</string>
-    <string name="Permissions_permission_required">Cal permís</string>
-    <string name="Permissions_continue">Continua</string>
-    <string name="Permissions_not_now">Ara no</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Migració de la base de dades del Signal</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Contrasenya de la còpia de seguretat</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Les còpies de seguretat es desaran a l\'emmagatzematge extern i s\'encriptaran amb la contrasenya següent. Heu de tenir aquesta contrasenya per tal de restaurar una còpia de seguretat.</string>
@@ -4725,8 +4796,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">He anotat aquesta contrasenya. Sense, no podré restaurar cap còpia de seguretat.</string>
     <string name="registration_activity__restore_backup">Restaura la còpia de seguretat</string>
     <string name="registration_activity__transfer_or_restore_account">Transfereix o restaura el compte</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restaurar o transferir</string>
     <string name="registration_activity__transfer_account">Transfereix el compte</string>
     <string name="registration_activity__skip">Omet</string>
     <!-- Text label button to skip restoring -->
@@ -4840,14 +4909,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">Error en connectar al servei</string>
     <string name="preferences_chats__backups">Còpies de seguretat</string>
 
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">Beta</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">Informació</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Aquesta és una funció beta i s\'anirà millorant amb el temps.</string>
-
-    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+<!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Desbloquejar Signal</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">Usa la configuració de bloqueig del teu dispositiu Android per desbloquejar Signal.</string>
@@ -5100,8 +5162,6 @@
     <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s a %2$s</string>
 
-    <!-- StorageUtil -->
-    <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">S\'ha blocat %1$s.</string>
     <string name="BlockedUsersActivity__failed_to_block_s">Ha fallat bloquejar %1$s.</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">S\'ha desbloquejat a %1$s.</string>
@@ -5244,7 +5304,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Previsualització del fons</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vols substituir tots els colors del xat?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Voleu substituir tots els fons?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Restableix els colors per defecte</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Restablir els colors per defecte</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Restableix tots els colors</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Restableix el fons per defecte</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Restableix tots els fons</string>
@@ -5740,6 +5800,8 @@
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termes i política de privadesa</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">Amb llicència de GNU AGPLv3</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal és una organització sense ànim de lucre</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Qualitat dels mitjans</string>
@@ -5852,7 +5914,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Truca</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Silenci</string>
+    <string name="ConversationSettingsFragment__mute">Silenciar</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Silenciat</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -5872,6 +5934,8 @@
     <string name="ConversationSettingsFragment__permissions">Permisos</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Sol·licituds i invitacions</string>
     <string name="ConversationSettingsFragment__group_link">Enllaç del grup</string>
+    <!-- Label for button that opens the group member label permissions screen. -->
+    <string name="ConversationSettingsFragment__group_member_label">Categoria de membre</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Afegeix com a contacte</string>
     <string name="ConversationSettingsFragment__unmute">No la silenciïs</string>
@@ -6127,7 +6191,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Fer donació ara</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Fer una donació</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s dona suport a Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -6155,13 +6219,15 @@
     <string name="Subscription__expires_s">Venciment: %1$s</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal és diferent.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Com a organització independent sense ànim de lucre, Signal té un compromís amb la privacitat en missatges i trucades. Sense anuncis, ni rastrejadors, ni vigilància. Fes avui una donació per ajudar a Signal.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Missatgeria privada. Sense anuncis, ni rastrejadors, ni vigilància.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal es manté amb les teves donacions, o sigui que la teva privacitat és sempre la nostra prioritat. Signal està dissenyada per a tu, no per a les teves dades o per obtenir beneficis.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Aconsegueix una insígnia opcional al teu perfil quan facis una donació</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Si pots, fes una donació avui perquè Signal continuï sent un espai divertit, fiable i disponible per a tothom.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">La teva privacitat és la nostra missió</string>
+    <!-- Fourth small text blurb on learn more sheet. Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal és una organització sense ànim de lucre</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Gràcies pel vostre suport!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -6187,7 +6253,8 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Rebuts de donació</string>
     <string name="ManageDonationsFragment__badges">Insígnies</string>
-    <string name="ManageDonationsFragment__subscription_faq">PMF de la subscripció</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Preguntes freqüents sobre donacions</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Altres maneres de fer-hi una donació</string>
     <!-- Preference label to launch badge gifting -->
@@ -7190,11 +7257,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Privacitat per sobre dels beneficis</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Satisfets de ser sense ànim de lucre</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Continuar</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Missatgeria privada, finançada per tu. Sense anuncis, ni rastrejadors, ni compromís. Fes ja una donació per ajudar a Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Fes una donació per donar suport a la missatgeria privada. Dona un cop de mà a Signal a continuar sent independent i sense anuncis.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Tens una donació pendent</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7468,8 +7535,10 @@
     <string name="CallLogAdapter__outgoing">Sortint</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Perduda</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Perduda mentre els ajustos de notificació estaven activats</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Perduda mentre els ajustos de notificació estaven activats</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Unir-me</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -7773,9 +7842,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Activar Còpies de seguretat segures de Signal</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Prova les Còpies de seguretat segures de Signal</string>
-    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">No perdis mai cap missatge quan et canviïs el telèfon o tornis a instal·lar Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Activar</string>
@@ -7783,6 +7850,18 @@
     <string name="TurnOnSignalBackups__not_now">Ara no</string>
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
     <string name="TurnOnSignalBackups__toast_not_now">Pots activar les còpies de seguretat a \"Ajustos\"</string>
+
+    <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__title">Utilitza les noves còpies de seguretat locals</string>
+    <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__body">Ara, les còpies de seguretat locals s\'emmagatzemen més de pressa i utilitzen menys consum de dades.</string>
+    <!-- Button of a megaphone that will take the user to the upgrade flow -->
+    <string name="UseNewOnDeviceBackups__upgrade">Actualitza</string>
+    <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__not_now">Ara no</string>
+
+    <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Per restaurar una còpia de seguretat, instal·la una nova còpia de Signal. Obre l\'app i toca Restaura la còpia de seguretat, i selecciona el fitxer de còpia de seguretat."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Verifica la teva clau de recuperació</string>
@@ -8003,6 +8082,12 @@
     <!-- Backup redemption error sheet bullet point 2 -->
     <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Tinguis massa dispositius utilitzant la mateixa subscripció.</string>
 
+    <!-- OnDeviceBackupsFragment -->
+    <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
+    <string name="OnDeviceBackupsFragment__backup_key_updated">Clau de còpia de seguretat actualitzada</string>
+    <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
+    <string name="OnDeviceBackupsFragment__directory_selected">Directori seleccionat: %1$s</string>
+
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Allibera %1$s d\'espai per restaurar els teus arxius multimèdia.</string>
@@ -8019,6 +8104,15 @@
     <!-- Status action label for resume restore from a paused state -->
     <string name="BackupStatus__resume">Reprendre</string>
 
+    <!-- Status subtitle for banner when we are creating a backup file -->
+    <string name="BackupStatus__status_creating_backup">Creant còpia de seguretat…</string>
+    <!-- Status title for banner when user is actively uploading backup data -->
+    <string name="BackupStatus__uploading_backup">Carregant còpia de seguretat</string>
+    <!-- Status title for banner when user is temporarily unable to upload a backup -->
+    <string name="BackupStatus__upload_paused">Còpia de seguretat en pausa</string>
+    <!-- Status title for banner when user has finished creating a backup -->
+    <string name="BackupStatus__upload_complete">Còpia de seguretat completada</string>
+
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Esperant una xarxa Wi-Fi…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
@@ -8027,6 +8121,10 @@
     <string name="BackupStatus__status_device_has_low_battery">El dispositiu té poca bateria</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s de %2$s</string>
+    <!-- Label for a context menu item that, when pressed, will hide a banner so it will no longer be shown. -->
+    <string name="BackupStatus__hide">Amaga</string>
+    <!-- Label for a context menu item that, when pressed, will cancel the ongoing backup. -->
+    <string name="BackupStatus__cancel_upload">Cancel·lar còpia de seguretat</string>
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
@@ -8060,7 +8158,7 @@
     <!-- Text displayed when we\'re not backing up all messages. The placeholder represents the cutoff date for the messages we\'re backing up. -->
     <string name="BackupStatusRow__not_backing_up_old_messages">No es farà una còpia de seguretat dels missatges enviats o rebuts abans del %1$s .</string>
     <!-- Text displayed when we failed to create a backup because of low disk space. -->
-    <string name="BackupStatusRow__not_enough_disk_space">Your backup couldn\'t be completed because you are low on storage space. Free up space on your device and try again.</string>
+    <string name="BackupStatusRow__not_enough_disk_space">No s\'ha pogut completar la còpia de seguretat perquè tens poc espai d\'emmagatzematge. Allibera espai al teu dispositiu i torna-ho a provar.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Més informació</string>
 
@@ -8068,6 +8166,15 @@
     <string name="ResumeRestoreCellular_resume_using_cellular_title">Reprendre mitjançant les dades mòbils?</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
     <string name="ResumeRestoreCellular_resume_using_cellular_message">Restaurar els teus arxius multimèdia mitjançant dades mòbils pot comportar càrrecs de dades. Pots connectar-te a una xarxa Wi-Fi per reprendre automàticament.</string>
+
+    <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_title">Cancel·lar còpia de seguretat?</string>
+    <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_body">Cancel·lar la teva còpia de seguretat no l\'eliminarà. Pots reprendre la còpia de seguretat en qualsevol moment des dels Ajustos de còpies de seguretat.</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
+    <string name="CancelBackupDialog_cancel_action">Cancel·lar còpia de seguretat</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
+    <string name="CancelBackupDialog_continue_action">Continuar amb la còpia de seguretat</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8413,6 +8520,37 @@
     <!-- Button label to open storage management screen -->
     <string name="RemoteBackupsSettingsFragment__manage_storage">Gestioneu l\'emmagatzematge</string>
 
+    <!-- ReadyToTransferBottomSheet -->
+    <!-- Title for a bottom sheet letting people know that they can transfer their back to their new device  -->
+    <string name="RemoteBackupsSettingsFragment__ready_to_transfer">A punt per transferir</string>
+    <!-- Body for bottom sheet telling the user to scan a QR code to continue transferring their backup to a new device -->
+    <string name="RemoteBackupsSettingsFragment__use_this_device_to_scan_qr">Utilitza aquest dispositiu per escanejar el codi QR que es mostra al dispositiu al qual vols fer la transferència</string>
+    <!-- Button label to open QR scanner to scan a device and transfer a backup -->
+    <string name="RemoteBackupsSettingsFragment__scan_qr_code">Escaneja el codi QR</string>
+
+    <!-- OnDeviceBackupsImprovementsScreen -->
+    <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Millores a les còpies de seguretat locals</string>
+    <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">La teva còpia de seguretat local s\'actualitzarà a un format nou mitjançant una nova clau de recuperació.</string>
+    <!-- Feature description explaining backups are faster and use less data -->
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Ara, les còpies de seguretat s\'emmagatzemen més ràpidament i utilitzen menys dades</string>
+    <!-- Feature description explaining backups will be saved as a folder with many files -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">La teva còpia de seguretat es desarà com una carpeta amb molts fitxers</string>
+    <!-- Feature description explaining backups remain end-to-end encrypted -->
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">Totes les còpies de seguretat seguiran estant xifrades d\'extrem a extrem</string>
+    <!-- Button text to continue to the next step -->
+    <string name="OnDeviceBackupsImprovementsScreen__continue">Continuar</string>
+
+    <!-- OnDeviceBackupsSettingsScreen -->
+    <!-- Card text prompting user to update to a new recovery key for faster backups -->
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Actualitza a una nova clau de recuperació per desar còpies de seguretat més ràpidament</string>
+    <!-- Button text to update to a new recovery key -->
+    <string name="OnDeviceBackupsSettingsScreen__update">Actualitza-la</string>
+
+    <!-- UnifiedOnDeviceBackupsSettingsScreen -->
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">Veure la teva clau de còpia de seguretat</string>
+
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
     <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Descarrega la teva còpia de seguretat avui</string>
@@ -8466,12 +8604,32 @@
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Clau de recuperació</string>
+    <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">La teva nova clau de recuperació</string>
+    <!-- Screen headline shown when the user already has an on-device recovery key set. -->
+    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">La teva clau de recuperació</string>
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">La teva clau de recuperació és un codi de 64 caràcters que necessitaràs per restaurar la teva còpia de seguretat.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Guarda la clau de recuperació en un lloc segur, com ara un gestor de contrasenyes segur, i no la comparteixis amb ningú.</string>
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Si la perds, no podràs recuperar els teus missatges.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">La teva clau de recuperació és un codi de 64 caràcters que et permetrà restaurar tots els teus formats de còpia de seguretat.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Aquesta clau substituirà la teva clau de còpia de seguretat local.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">La teva clau de còpia de seguretat és un codi de 64 caràcters que et permetrà restaurar les còpies de seguretat quan tornis a instal·lar Signal.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Aquesta és la mateixa que la clau de còpia de seguretat local.</string>
+    <!-- Label shown above a list of actions that the recovery key can be used for. -->
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Fes servir aquesta clau per a:</string>
+    <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Restaura la teva còpia de seguretat local</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Restaurar una Còpia de seguretat segura de Signal</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Restaurar les teves Còpies de seguretat segures de Signal</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Veure clau de recuperació</string>
 
@@ -8480,6 +8638,8 @@
     <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Registra la teva clau de recuperació</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Aquesta clau és necessària per recuperar el teu compte i les teves dades. Guarda-la en un lloc segur. Si la perds, no podràs recuperar el teu compte.</string>
+    <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">Aquesta clau és la mateixa que la teva clau de còpia de seguretat local. És necessària per recuperar el teu compte i les teves dades.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copia al porta-retalls</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -8770,6 +8930,19 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Continua transferint el teu compte en el teu altre dispositiu.</string>
 
+    <!-- Prepare Device screen title for quick restore flow -->
+    <string name="PrepareDevice_title">Preparant el teu dispositiu</string>
+    <!-- Prepare Device screen body text explaining backup recommendation -->
+    <string name="PrepareDevice_body">Fes una còpia de seguretat ara abans de transferir. És possible que hagis rebut missatges dels quals encara no s\'ha fet una còpia de seguretat.</string>
+    <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
+    <string name="PrepareDevice_last_backup">La teva darrera còpia de seguretat es va fer el dia %1$s a les %2$s.</string>
+    <!-- Prepare Device screen back up now button -->
+    <string name="PrepareDevice_back_up_now">Fes-ne una còpia de seguretat ara</string>
+    <!-- Prepare Device screen skip and continue button -->
+    <string name="PrepareDevice_skip_and_continue">Ometre i continuar</string>
+    <!-- A string describing the last time the user\'s backup was made. The placeholder represents a date-time. An example would be "Your last backup was made on July 18, 2025 at 9:00am." -->
+    <string name="PrepareDevice_last_backup_description">Darrera còpia de seguretat: %1$s. </string>
+
     <!-- Restore Complete bottom sheet dialog title -->
     <string name="RestoreCompleteBottomSheet_restore_complete">Finalitzar al teu altre dispositiu</string>
     <!-- Restore Complete bottom sheet dialog message -->
@@ -8895,7 +9068,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Finalitzar enquesta?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Els membres del grup ja no podran votar en aquesta enquesta.</string>
+    <string name="Poll__end_poll_body">Els membres d\'aquest xat ja no podran votar en aquesta enquesta.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Esperant una xarxa…</string>
     <!-- Header when creating a new poll -->
@@ -8918,6 +9091,13 @@
     <string name="CreatePollFragment__add_option">Afegeix almenys 2 opcions</string>
     <!-- Snackbar text to add a question before creating a poll -->
     <string name="CreatePollFragment__add_question">Afegeix una pregunta</string>
+
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__scan_qr_code">Escaneja el codi QR</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Utilitza aquest dispositiu per escanejar el codi QR que es mostra al dispositiu al qual vols fer la transferència</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="QuickRestoreInfoDialog__okay">D\'acord</string>
 
     <!-- CallQualityIssue -->
     <!-- Label for general audio issue category -->
@@ -8945,7 +9125,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Una altra cosa</string>
+    <string name="CallQualitySomethingElseScreen__title">Descriu el problema</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Descriu el teu problema</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
@@ -8975,11 +9155,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Ajuda\'ns a millorar</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Enviar-nos informació sobre el teu diagnòstic ens ajuda a millorar la qualitat de les trucades. Pots </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Si envies, compartiràs els teus comentaris juntament amb</string>
+    <!-- Clickable text to launch diagnostic fragment -->
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">informació de diagnòstic sobre la teva trucada</string>
+    <!-- End of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix">Opcionalment, pots compartir un registre de depuració per ajudar-nos a millorar la qualitat de les trucades.</string>
+    <!-- Text explaining the debug log -->
+    <string name="CallQualitySheet__information_shared_with_us">La informació que comparteixis amb nosaltres conté informació de baix nivell sobre l\'aplicació i no inclou el contingut de les teves trucades.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">veure el teu registre de depuració</string>
-    <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> abans d\'enviar-lo</string>
+    <string name="CallQualitySheet__view_debug_log">Veure registre de depuració</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Compartir registre de depuració</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8988,6 +9172,83 @@
     <string name="CallQualitySheet__submit">Envia</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Gràcies pels teus comentaris!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">He tingut problemes amb la trucada</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">La trucada ha anat genial</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">No s\'ha pogut enviar el teu comentari.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Torna a provar-ho</string>
+
+    <!-- Message body when someone pins a message where %1$s is the name of the person -->
+    <string name="PinnedMessage__s_pinned_a_message">%1$s ha fixat un missatge</string>
+    <!-- Message body when you pin a message -->
+    <string name="PinnedMessage__you_pinned_a_message">Has fixat un missatge</string>
+    <!-- Button body to go to the pinned message -->
+    <string name="PinnedMessage__go_to_message">Ves a Missatge</string>
+    <!-- Toast shown when a pinned message is not found -->
+    <string name="PinnedMessage__not_found">No s\'ha trobat el missatge</string>
+    <!-- Content description for the pin icon -->
+    <string name="PinnedMessage__pinned">Fixat</string>
+    <!-- Caption shown when the pinned message is a photo -->
+    <string name="PinnedMessage__photo">Foto</string>
+    <!-- Caption shown when the pinned message is a video -->
+    <string name="PinnedMessage__video">Vídeo</string>
+    <!-- Caption shown when the pinned message is a sticker -->
+    <string name="PinnedMessage__sticker">Adhesiu</string>
+    <!-- Caption shown when the pinned message is a voice message  -->
+    <string name="PinnedMessage__voice">Missatge de veu</string>
+    <!-- Caption shown when the pinned message is a gif -->
+    <string name="PinnedMessage__gif">GIF</string>
+    <!-- Caption shown when the pinned message is a view once media -->
+    <string name="PinnedMessage__view_once">Contingut d\'una sola visualització</string>
+    <!-- Context menu option to unpin the message -->
+    <string name="PinnedMessage__unpin_message">No ho fixis</string>
+    <!-- Context menu option to view all the message -->
+    <string name="PinnedMessage__view_all_messages">Veure tots els missatges</string>
+    <!-- Text to unpin all messages -->
+    <string name="PinnedMessage__unpin_all_messages">Desenganxar tots els missatges</string>
+    <!-- Title of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_title">Fixar missatges a desaparèixer</string>
+    <!-- Body of bottom sheet when pinning a disappearing message -->
+    <string name="PinnedMessage__disappearing_message_body">Els missatges a desaparèixer es desenganxaran quan s\'acabi el temps i el missatge s\'elimini del xat.</string>
+    <!-- Confirmation button for bottom sheet -->
+    <string name="PinnedMessage__got_it">Entesos</string>
+    <!-- Content description of disappearing timer icon -->
+    <string name="PinnedMessage__disappearing_message_content_description">Missatge a desaparèixer</string>
+    <!-- Title of bottom sheet -->
+    <string name="PinnedMessage__pinned_messages">Missatges fixats</string>
+    <!-- Context menu option to unpin message -->
+    <string name="PinnedMessage__unpin">No ho fixis</string>
+    <!-- Title of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_title">Desenganxar tots els missatges?</string>
+    <!-- Body of dialog to unpin all messages -->
+    <string name="PinnedMessage__unpin_body">Els missatges es desenganxaran per a tots els membres.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">No s\'ha pogut desenganxar el missatge</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">No s\'ha pogut desenganxar el missatge</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">No s\'han pogut desenganxar els missatges</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Comprova la connexió i torna-ho a provar.</string>
+
+    <!-- Group member label screen title. -->
+    <string name="GroupMemberLabel__title">Categoria de membre</string>
+    <!-- Group member label text field placeholder. -->
+    <string name="GroupMemberLabel__label_text_placeholder">Afegeix la teva categoria</string>
+    <!-- Group member label preview section header. -->
+    <string name="GroupMemberLabel__preview_section_header">Previsualitza</string>
+    <!-- Group member label save button label. -->
+    <string name="GroupMemberLabel__save">Desar</string>
+    <!-- Accessibility label for the button to open the group member label emoji picker. -->
+    <string name="GroupMemberLabel__accessibility_select_emoji">Seleccionar emoji</string>
+    <!-- Accessibility label for the group member label close screen button. -->
+    <string name="GroupMemberLabel__accessibility_close_screen">Tancar la pantalla</string>
+    <!-- Accessibility label for the group member label text field clear button. -->
+    <string name="GroupMemberLabel__accessibility_clear_label">Esborrar categoria</string>
+    <string name="GroupMemberLabel__description">Afegeix una categoria de membre per descriure\'t a tu o al teu rol dins d\'aquest grup. Les categories només són visibles dins d\'aquest grup.</string>
 
     <!-- EOF -->
 </resources>

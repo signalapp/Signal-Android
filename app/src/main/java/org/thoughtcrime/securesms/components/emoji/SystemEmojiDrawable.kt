@@ -48,22 +48,19 @@ class SystemEmojiDrawable(emoji: CharSequence) : Drawable() {
   companion object {
     private val textPaint: TextPaint = TextPaint()
 
-    private fun getStaticLayout(emoji: CharSequence): StaticLayout =
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        StaticLayout.Builder.obtain(emoji, 0, emoji.length, textPaint, Int.MAX_VALUE).build()
-      } else {
-        @Suppress("DEPRECATION")
-        StaticLayout(emoji, textPaint, Int.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 0f, 0f, true)
-      }
+    private fun getStaticLayout(emoji: CharSequence): StaticLayout = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      StaticLayout.Builder.obtain(emoji, 0, emoji.length, textPaint, Int.MAX_VALUE).build()
+    } else {
+      @Suppress("DEPRECATION")
+      StaticLayout(emoji, textPaint, Int.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 0f, 0f, true)
+    }
 
-    private fun getProcessedEmoji(emoji: CharSequence): CharSequence =
-      try {
-        EmojiCompat.get().process(emoji) ?: emoji
-      } catch (e: IllegalStateException) {
-        emoji
-      }
+    private fun getProcessedEmoji(emoji: CharSequence): CharSequence = try {
+      EmojiCompat.get().process(emoji) ?: emoji
+    } catch (e: IllegalStateException) {
+      emoji
+    }
 
-    private fun StaticLayout.getBounds(): RectF =
-      RectF(getLineLeft(0), 0f, getLineRight(0), getLineDescent(0) - getLineAscent(0).toFloat())
+    private fun StaticLayout.getBounds(): RectF = RectF(getLineLeft(0), 0f, getLineRight(0), getLineDescent(0) - getLineAscent(0).toFloat())
   }
 }

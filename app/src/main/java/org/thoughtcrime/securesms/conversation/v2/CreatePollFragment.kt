@@ -40,8 +40,6 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -54,19 +52,21 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
 import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
 import org.signal.core.ui.compose.copied.androidx.compose.dragContainer
 import org.signal.core.ui.compose.copied.androidx.compose.rememberDragDropState
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.ComposeDialogFragment
 import org.thoughtcrime.securesms.polls.Poll
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -78,6 +78,7 @@ class CreatePollFragment : ComposeDialogFragment() {
   companion object {
     private val TAG = Log.tag(CreatePollFragment::class)
 
+    val MAX_QUESTION_CHARACTER_LENGTH = if (RemoteConfig.pollsV2) 200 else 100
     const val MAX_CHARACTER_LENGTH = 100
     const val MAX_OPTIONS = 10
     const val MIN_OPTIONS = 2
@@ -107,7 +108,7 @@ class CreatePollFragment : ComposeDialogFragment() {
       onNavigationClick = {
         dismissAllowingStateLoss()
       },
-      navigationIcon = ImageVector.vectorResource(R.drawable.symbol_x_24),
+      navigationIcon = SignalIcons.X.imageVector,
       navigationContentDescription = stringResource(R.string.Material3SearchToolbar__close)
     ) { paddingValues ->
       CreatePollScreen(
@@ -152,8 +153,6 @@ private fun CreatePollScreen(
   var focusedOption by remember { mutableStateOf(-1) }
 
   // Drag and drop
-  val screenWidth = LocalConfiguration.current.screenWidthDp.dp
-  val isRtl = ViewUtil.isRtl(LocalContext.current)
   val listState = rememberLazyListState()
   val dragDropState = rememberDragDropState(listState, includeHeader = true, includeFooter = true, onEvent = { event ->
     when (event) {
@@ -162,6 +161,7 @@ private fun CreatePollScreen(
         options[event.fromIndex] = options[event.toIndex]
         options[event.toIndex] = oldIndex
       }
+
       is DragAndDropEvent.OnItemDrop, is DragAndDropEvent.OnDragCancel -> Unit
     }
   })
@@ -206,8 +206,7 @@ private fun CreatePollScreen(
         .imePadding()
         .dragContainer(
           dragDropState = dragDropState,
-          leftDpOffset = if (isRtl) 0.dp else screenWidth - 56.dp,
-          rightDpOffset = if (isRtl) 56.dp else screenWidth
+          dragHandleWidth = 56.dp
         ),
       state = listState
     ) {
@@ -222,7 +221,7 @@ private fun CreatePollScreen(
           TextFieldWithCountdown(
             value = question,
             label = { Text(text = stringResource(R.string.CreatePollFragment__ask_a_question)) },
-            onValueChange = { question = it.substring(0, minOf(it.length, CreatePollFragment.MAX_CHARACTER_LENGTH)) },
+            onValueChange = { question = it.substring(0, minOf(it.length, CreatePollFragment.MAX_QUESTION_CHARACTER_LENGTH)) },
             keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
             colors = TextFieldDefaults.colors(
               unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -232,6 +231,7 @@ private fun CreatePollScreen(
               .fillMaxWidth()
               .onFocusChanged { focusState -> if (focusState.isFocused) focusedOption = -1 }
               .focusRequester(focusRequester),
+            maxCharacterLength = CreatePollFragment.MAX_QUESTION_CHARACTER_LENGTH,
             countdownThreshold = CreatePollFragment.CHARACTER_COUNTDOWN_THRESHOLD
           )
 
@@ -266,6 +266,7 @@ private fun CreatePollScreen(
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
               )
             },
+            maxCharacterLength = CreatePollFragment.MAX_CHARACTER_LENGTH,
             countdownThreshold = CreatePollFragment.CHARACTER_COUNTDOWN_THRESHOLD
           )
         }
@@ -316,9 +317,10 @@ private fun TextFieldWithCountdown(
   colors: TextFieldColors,
   modifier: Modifier,
   trailingIcon: @Composable () -> Unit = {},
+  maxCharacterLength: Int,
   countdownThreshold: Int
 ) {
-  val charactersRemaining = CreatePollFragment.MAX_CHARACTER_LENGTH - value.length
+  val charactersRemaining = maxCharacterLength - value.length
   val displayCountdown = charactersRemaining <= countdownThreshold
 
   Box(modifier = Modifier.padding(start = 24.dp, end = 24.dp, bottom = 16.dp)) {

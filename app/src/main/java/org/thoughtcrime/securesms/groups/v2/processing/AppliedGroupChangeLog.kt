@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.groups.v2.processing
 
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange
 
 /**
  * Pair of a group state and optionally the corresponding change.

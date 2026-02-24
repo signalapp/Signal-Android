@@ -8,7 +8,9 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.database.Cursor
 import com.google.protobuf.InvalidProtocolBufferException
+import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalBlob
 import org.signal.core.util.optionalBoolean
@@ -44,10 +46,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.util.GroupUtil
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.IOException
 
 object RecipientTableCursorUtil {
@@ -165,7 +165,8 @@ object RecipientTableCursorUtil {
       callLinkRoomId = cursor.requireString(RecipientTable.CALL_LINK_ROOM_ID)?.let { CallLinkRoomId.DatabaseSerializer.deserialize(it) },
       phoneNumberSharing = cursor.requireInt(RecipientTable.PHONE_NUMBER_SHARING).let { RecipientTable.PhoneNumberSharingState.fromId(it) },
       nickname = ProfileName.fromParts(cursor.requireString(RecipientTable.NICKNAME_GIVEN_NAME), cursor.requireString(RecipientTable.NICKNAME_FAMILY_NAME)),
-      note = cursor.requireString(RecipientTable.NOTE)
+      note = cursor.requireString(RecipientTable.NOTE),
+      keyTransparencyData = cursor.requireBlob(RecipientTable.KEY_TRANSPARENCY_DATA)
     )
   }
 

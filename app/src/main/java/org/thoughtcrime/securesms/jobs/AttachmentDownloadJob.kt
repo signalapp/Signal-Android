@@ -10,6 +10,7 @@ import okio.buffer
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMacException
 import org.signal.libsignal.protocol.InvalidMessageException
@@ -23,9 +24,11 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.Job.Parameters
 import org.thoughtcrime.securesms.jobmanager.JobLogger.format
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraint
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MmsException
@@ -34,7 +37,6 @@ import org.thoughtcrime.securesms.s3.S3
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.AttachmentUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -56,7 +58,7 @@ class AttachmentDownloadJob private constructor(
   parameters: Parameters,
   private val messageId: Long,
   private val attachmentId: AttachmentId,
-  private val manual: Boolean
+  private val forceDownload: Boolean
 ) : BaseJob(parameters) {
 
   companion object {
@@ -65,7 +67,7 @@ class AttachmentDownloadJob private constructor(
 
     private const val KEY_MESSAGE_ID = "message_id"
     private const val KEY_ATTACHMENT_ID = "part_row_id"
-    private const val KEY_MANUAL = "part_manual"
+    private const val KEY_FORCE_DOWNLOAD = "part_manual"
 
     @JvmStatic
     fun constructQueueString(attachmentId: AttachmentId): String {
@@ -96,27 +98,37 @@ class AttachmentDownloadJob private constructor(
         AttachmentTable.TRANSFER_PROGRESS_PENDING,
         AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
           if (SignalStore.backup.backsUpMedia && (databaseAttachment.remoteLocation == null || databaseAttachment.remoteDigest == null)) {
-            if (databaseAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
+            if (databaseAttachment.dataHash != null) {
               Log.i(TAG, "Trying to restore attachment from archive cdn")
               RestoreAttachmentJob.forManualRestore(databaseAttachment)
             } else {
-              Log.w(TAG, "No remote location, and the archive transfer state is unfinished. Can't download.")
+              Log.w(TAG, "No remote location and no plaintext hash. Can't download.")
               null
             }
           } else {
             val downloadJob = AttachmentDownloadJob(
               messageId = databaseAttachment.mmsId,
               attachmentId = databaseAttachment.attachmentId,
-              manual = true
+              forceDownload = true
             )
             AppDependencies.jobManager.add(downloadJob)
             downloadJob.id
           }
         }
 
-        AttachmentTable.TRANSFER_PROGRESS_STARTED,
+        AttachmentTable.TRANSFER_PROGRESS_STARTED -> {
+          Log.i(TAG, "${databaseAttachment.attachmentId} is in started state, enqueueing force download in case existing job is constraint-blocked")
+          val downloadJob = AttachmentDownloadJob(
+            messageId = databaseAttachment.mmsId,
+            attachmentId = databaseAttachment.attachmentId,
+            forceDownload = true
+          )
+          AppDependencies.jobManager.add(downloadJob)
+          downloadJob.id
+        }
+
         AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE -> {
-          Log.d(TAG, "${databaseAttachment.attachmentId} is downloading or permanently failed, transferState: $transferState")
+          Log.d(TAG, "${databaseAttachment.attachmentId} is permanently failed, transferState: $transferState")
           null
         }
 
@@ -128,23 +140,25 @@ class AttachmentDownloadJob private constructor(
     }
   }
 
-  constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean) : this(
+  constructor(messageId: Long, attachmentId: AttachmentId, forceDownload: Boolean) : this(
     Parameters.Builder()
       .setQueue(constructQueueString(attachmentId))
       .addConstraint(NetworkConstraint.KEY)
+      .maybeApplyNotInCallConstraint(forceDownload)
       .setLifespan(TimeUnit.DAYS.toMillis(1))
       .setMaxAttempts(Parameters.UNLIMITED)
+      .setQueuePriority(if (forceDownload) Parameters.PRIORITY_HIGH else Parameters.PRIORITY_DEFAULT)
       .build(),
     messageId,
     attachmentId,
-    manual
+    forceDownload
   )
 
   override fun serialize(): ByteArray? {
     return JsonJobData.Builder()
       .putLong(KEY_MESSAGE_ID, messageId)
       .putLong(KEY_ATTACHMENT_ID, attachmentId.id)
-      .putBoolean(KEY_MANUAL, manual)
+      .putBoolean(KEY_FORCE_DOWNLOAD, forceDownload)
       .serialize()
   }
 
@@ -153,12 +167,12 @@ class AttachmentDownloadJob private constructor(
   }
 
   override fun onAdded() {
-    Log.i(TAG, "onAdded() messageId: $messageId  attachmentId: $attachmentId  manual: $manual")
+    Log.i(TAG, "onAdded() messageId: $messageId  attachmentId: $attachmentId  manual: $forceDownload")
 
     val attachment = SignalDatabase.attachments.getAttachment(attachmentId)
     val pending = attachment != null && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE
 
-    if (pending && (manual || AttachmentUtil.isAutoDownloadPermitted(context, attachment))) {
+    if (pending && (forceDownload || AttachmentUtil.isAutoDownloadPermitted(context, attachment))) {
       Log.i(TAG, "onAdded() Marking attachment progress as 'started'")
       SignalDatabase.attachments.setTransferState(messageId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_STARTED)
     }
@@ -175,7 +189,7 @@ class AttachmentDownloadJob private constructor(
 
   @Throws(IOException::class, RetryLaterException::class)
   fun doWork() {
-    Log.i(TAG, "onRun() messageId: $messageId  attachmentId: $attachmentId  manual: $manual")
+    Log.i(TAG, "onRun() messageId: $messageId  attachmentId: $attachmentId  manual: $forceDownload")
 
     val attachment = SignalDatabase.attachments.getAttachment(attachmentId)
 
@@ -194,7 +208,7 @@ class AttachmentDownloadJob private constructor(
       return
     }
 
-    if (!manual && !AttachmentUtil.isAutoDownloadPermitted(context, attachment)) {
+    if (!forceDownload && !AttachmentUtil.isAutoDownloadPermitted(context, attachment)) {
       Log.w(TAG, "Attachment can't be auto downloaded...")
       SignalDatabase.attachments.setTransferState(messageId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_PENDING)
       return
@@ -256,7 +270,7 @@ class AttachmentDownloadJob private constructor(
   }
 
   override fun onFailure() {
-    Log.w(TAG, format(this, "onFailure() messageId: $messageId  attachmentId: $attachmentId  manual: $manual"))
+    Log.w(TAG, format(this, "onFailure() messageId: $messageId  attachmentId: $attachmentId  manual: $forceDownload"))
 
     markFailed(messageId, attachmentId)
   }
@@ -450,8 +464,15 @@ class AttachmentDownloadJob private constructor(
         parameters = parameters,
         messageId = data.getLong(KEY_MESSAGE_ID),
         attachmentId = AttachmentId(data.getLong(KEY_ATTACHMENT_ID)),
-        manual = data.getBoolean(KEY_MANUAL)
+        forceDownload = data.getBoolean(KEY_FORCE_DOWNLOAD)
       )
     }
   }
+}
+
+private fun Parameters.Builder.maybeApplyNotInCallConstraint(forceDownload: Boolean): Parameters.Builder {
+  if (forceDownload) {
+    return this
+  }
+  return this.addConstraint(NotInCallConstraint.KEY)
 }

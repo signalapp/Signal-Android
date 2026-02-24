@@ -12,17 +12,8 @@ import androidx.lifecycle.Lifecycle;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.concurrent.SimpleTask;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
-import org.whispersystems.signalservice.api.push.ServiceId;
-
-import java.util.List;
-import java.util.Optional;
-
-import okio.ByteString;
 
 /**
  * This should be used whenever we want to prompt the user to block/unblock a recipient.

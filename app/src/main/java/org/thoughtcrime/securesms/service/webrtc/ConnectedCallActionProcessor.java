@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
-import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -54,11 +53,9 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
                                .cameraState(currentState.getVideoState().requireCamera().getCameraState())
                                .build();
 
-    if (currentState.getLocalDeviceState().getCameraState().isEnabled()) {
-      webRtcInteractor.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
-    } else {
-      webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
-    }
+    boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled();
+    boolean remoteVideoEnabled = currentState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
+    webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
 
     WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor, currentState);
 
@@ -131,13 +128,13 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleEndedRemote(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent endedRemoteEvent, @NonNull RemotePeer remotePeer) {
-    return activeCallDelegate.handleEndedRemote(currentState, endedRemoteEvent, remotePeer);
+  protected @NonNull WebRtcServiceState handleEndedRemote(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEndReason callEndReason, @NonNull RemotePeer remotePeer) {
+    return activeCallDelegate.handleEndedRemote(currentState, callEndReason, remotePeer);
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent endedEvent, @NonNull RemotePeer remotePeer) {
-    return activeCallDelegate.handleEnded(currentState, endedEvent, remotePeer);
+  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEndReason callEndReason, @NonNull RemotePeer remotePeer) {
+    return activeCallDelegate.handleEnded(currentState, callEndReason, remotePeer);
   }
 
   @Override

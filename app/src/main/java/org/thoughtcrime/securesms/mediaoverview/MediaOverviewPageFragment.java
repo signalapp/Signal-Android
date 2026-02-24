@@ -29,11 +29,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 
+import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.ByteSize;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.LoggingFragment;
+import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog;
@@ -48,7 +49,7 @@ import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.permissions.Permissions;
+import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.util.BottomOffsetDecoration;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -241,7 +242,7 @@ public final class MediaOverviewPageFragment extends LoggingFragment
   }
 
   private void handleMediaPreviewClick(@NonNull View view, @NonNull MediaTable.MediaRecord mediaRecord) {
-    if (mediaRecord.getAttachment().getUri() == null) {
+    if (mediaRecord.getAttachment().getDisplayUri() == null) {
       return;
     }
 
@@ -253,14 +254,14 @@ public final class MediaOverviewPageFragment extends LoggingFragment
     DatabaseAttachment attachment = mediaRecord.getAttachment();
 
     if (MediaUtil.isVideo(attachment) || MediaUtil.isImage(attachment)) {
-      if (mediaRecord.getAttachment().transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
+      if (mediaRecord.getAttachment().transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && mediaRecord.getAttachment().transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
         Toast.makeText(context, R.string.MediaOverviewActivity_this_media_is_not_sent_yet, Toast.LENGTH_LONG).show();
         return;
       }
       MediaIntentFactory.MediaPreviewArgs args = new MediaIntentFactory.MediaPreviewArgs(
           threadId,
           mediaRecord.getDate(),
-          Objects.requireNonNull(mediaRecord.getAttachment().getUri()),
+          Objects.requireNonNull(mediaRecord.getAttachment().getDisplayUri()),
           mediaRecord.getContentType(),
           mediaRecord.getAttachment().size,
           mediaRecord.getAttachment().caption,
@@ -374,8 +375,8 @@ public final class MediaOverviewPageFragment extends LoggingFragment
                     .subscribe(this::exitMultiSelect)
             );
           }),
-          new ActionItem(R.drawable.symbol_check_circle_24, getString(R.string.MediaOverviewActivity_select_all), this::handleSelectAllMedia),
-          new ActionItem(R.drawable.symbol_trash_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_delete_plural, selectionCount), this::handleDeleteSelectedMedia)
+          new ActionItem(org.signal.core.ui.R.drawable.symbol_check_circle_24, getString(R.string.MediaOverviewActivity_select_all), this::handleSelectAllMedia),
+          new ActionItem(org.signal.core.ui.R.drawable.symbol_trash_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_delete_plural, selectionCount), this::handleDeleteSelectedMedia)
       ));
     }
   }

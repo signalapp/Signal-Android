@@ -14,12 +14,12 @@ import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import org.signal.core.util.E164Util
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.registration.ui.countrycode.CountryUtils
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
-import org.thoughtcrime.securesms.util.Util
 
 /**
  * ViewModel for the phone number entry screen.

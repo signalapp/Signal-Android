@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.mediasend.v2.gallery
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import org.signal.core.models.media.Media
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mediasend.Media
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter

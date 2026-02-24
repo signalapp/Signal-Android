@@ -358,7 +358,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
     learnMoreText.setVisibility(View.VISIBLE);
     learnMoreText.setLearnMoreVisible(true);
-    learnMoreText.setLinkColor(ContextCompat.getColor(PassphrasePromptActivity.this, R.color.signal_colorPrimary));
+    learnMoreText.setLinkColor(ContextCompat.getColor(PassphrasePromptActivity.this, org.signal.core.ui.R.color.signal_colorPrimary));
 
     learnMoreText.setOnClickListener(v ->
          new MaterialAlertDialogBuilder(PassphrasePromptActivity.this)

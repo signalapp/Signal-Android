@@ -12,6 +12,7 @@ import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
+import org.signal.core.util.toByteArray
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.ExportOddities
 import org.thoughtcrime.securesms.backup.v2.ExportState
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.Closeable
 
 private val TAG = Log.tag(DistributionListArchiveExporter::class)

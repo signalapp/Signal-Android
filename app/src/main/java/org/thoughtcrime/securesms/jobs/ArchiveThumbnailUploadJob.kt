@@ -5,7 +5,9 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -23,12 +25,10 @@ import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollecti
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.protos.ArchiveThumbnailUploadJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
@@ -212,8 +212,16 @@ class ArchiveThumbnailUploadJob private constructor(
       }
 
       is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "Failed to get an upload spec with status code ${specResult.code}")
-        return Result.retry(defaultBackoff())
+        return when (specResult.code) {
+          429 -> {
+            Log.w(TAG, "Rate limited when getting upload spec.")
+            Result.retry(specResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+          }
+          else -> {
+            Log.w(TAG, "Failed to get an upload spec with status code ${specResult.code}")
+            Result.retry(defaultBackoff())
+          }
+        }
       }
     }
 
@@ -261,8 +269,16 @@ class ArchiveThumbnailUploadJob private constructor(
       }
 
       is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "Hit a status code error of ${result.code} when trying to archive thumbnail for $attachmentId")
-        Result.retry(defaultBackoff())
+        when (result.code) {
+          429 -> {
+            Log.w(TAG, "Rate limited when trying to archive thumbnail for $attachmentId")
+            Result.retry(result.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+          }
+          else -> {
+            Log.w(TAG, "Hit a status code error of ${result.code} when trying to archive thumbnail for $attachmentId")
+            Result.retry(defaultBackoff())
+          }
+        }
       }
 
       is NetworkResult.ApplicationError -> Result.fatalFailure(RuntimeException(result.throwable))

@@ -3,11 +3,14 @@ package org.thoughtcrime.securesms.profiles.manage
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Base64
 import org.signal.core.util.Result
 import org.signal.core.util.Result.Companion.failure
 import org.signal.core.util.Result.Companion.success
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.toByteArray
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
@@ -23,11 +26,8 @@ import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.UsernameUtil
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.util.Usernames
-import org.whispersystems.signalservice.api.util.UuidUtil
-import org.whispersystems.signalservice.api.util.toByteArray
 import java.util.UUID
 
 /**

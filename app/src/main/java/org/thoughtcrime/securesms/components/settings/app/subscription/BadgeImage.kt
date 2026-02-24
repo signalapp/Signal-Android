@@ -42,6 +42,14 @@ fun BadgeImageMedium(
 }
 
 @Composable
+fun BadgeImageLarge(
+  badge: Badge?,
+  modifier: Modifier = Modifier
+) {
+  BadgeImage(badge, BadgeImageSize.LARGE, modifier)
+}
+
+@Composable
 fun BadgeImage112(
   badge: Badge?,
   modifier: Modifier = Modifier

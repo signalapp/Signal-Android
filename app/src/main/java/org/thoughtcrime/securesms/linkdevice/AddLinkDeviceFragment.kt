@@ -24,12 +24,12 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.permissions.Permissions
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -77,7 +77,6 @@ class AddLinkDeviceFragment : ComposeFragment() {
         viewModel.addDevice(shouldSync = false)
       },
       onQrCodeDismissed = { viewModel.onQrCodeDismissed() },
-      onQrCodeRetry = { viewModel.onQrCodeScanned(state.linkUri.toString()) },
       onLinkDeviceSuccess = {
         viewModel.onLinkDeviceResult(showSheet = true)
       },
@@ -110,7 +109,6 @@ private fun MainScreen(
   onQrCodeScanned: (String) -> Unit = {},
   onQrCodeApproved: () -> Unit = {},
   onQrCodeDismissed: () -> Unit = {},
-  onQrCodeRetry: () -> Unit = {},
   onLinkDeviceSuccess: () -> Unit = {},
   onLinkDeviceFailure: () -> Unit = {}
 ) {
@@ -133,7 +131,6 @@ private fun MainScreen(
       onQrCodeScanned = onQrCodeScanned,
       onQrCodeAccepted = onQrCodeApproved,
       onQrCodeDismissed = onQrCodeDismissed,
-      onQrCodeRetry = onQrCodeRetry,
       linkDeviceResult = state.linkDeviceResult,
       onLinkDeviceSuccess = onLinkDeviceSuccess,
       onLinkDeviceFailure = onLinkDeviceFailure,

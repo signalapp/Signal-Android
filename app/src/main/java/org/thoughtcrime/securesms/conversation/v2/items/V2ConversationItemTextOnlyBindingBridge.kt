@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Space
 import android.widget.TextView
 import com.google.android.material.imageview.ShapeableImageView
@@ -28,7 +29,7 @@ import org.thoughtcrime.securesms.reactions.ReactionsConversationView
  */
 data class V2ConversationItemTextOnlyBindingBridge(
   val root: V2ConversationItemLayout,
-  val senderName: EmojiTextView?,
+  val senderNameWithLabel: SenderNameWithLabelView?,
   val senderPhoto: AvatarImageView?,
   val senderBadge: BadgeImageView?,
   val bodyWrapper: ViewGroup,
@@ -41,7 +42,8 @@ data class V2ConversationItemTextOnlyBindingBridge(
   val footerBackground: View,
   val footerSpace: Space?,
   val alert: AlertView?,
-  val isIncoming: Boolean
+  val isIncoming: Boolean,
+  val footerPinned: ImageView
 )
 
 /**
@@ -50,7 +52,7 @@ data class V2ConversationItemTextOnlyBindingBridge(
 fun V2ConversationItemTextOnlyIncomingBinding.bridge(): V2ConversationItemTextOnlyBindingBridge {
   return V2ConversationItemTextOnlyBindingBridge(
     root = root,
-    senderName = groupMessageSender,
+    senderNameWithLabel = groupSenderNameWithLabel,
     senderPhoto = contactPhoto,
     senderBadge = badge,
     body = conversationItemBody,
@@ -63,7 +65,8 @@ fun V2ConversationItemTextOnlyIncomingBinding.bridge(): V2ConversationItemTextOn
     footerBackground = conversationItemFooterBackground,
     alert = null,
     footerSpace = footerEndPad,
-    isIncoming = true
+    isIncoming = true,
+    footerPinned = conversationItemFooterPinned
   )
 }
 
@@ -73,7 +76,7 @@ fun V2ConversationItemTextOnlyIncomingBinding.bridge(): V2ConversationItemTextOn
 fun V2ConversationItemTextOnlyOutgoingBinding.bridge(): V2ConversationItemTextOnlyBindingBridge {
   return V2ConversationItemTextOnlyBindingBridge(
     root = root,
-    senderName = null,
+    senderNameWithLabel = null,
     senderPhoto = null,
     senderBadge = null,
     body = conversationItemBody,
@@ -86,6 +89,7 @@ fun V2ConversationItemTextOnlyOutgoingBinding.bridge(): V2ConversationItemTextOn
     footerBackground = conversationItemFooterBackground,
     alert = conversationItemAlert,
     footerSpace = footerEndPad,
-    isIncoming = false
+    isIncoming = false,
+    footerPinned = conversationItemFooterPinned
   )
 }

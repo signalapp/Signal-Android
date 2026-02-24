@@ -7,6 +7,7 @@ import android.content.OperationApplicationException
 import android.os.RemoteException
 import org.signal.contacts.ContactLinkConfiguration
 import org.signal.contacts.SystemContactsRepository
+import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
@@ -14,7 +15,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.SignalE164Util
 import java.lang.Exception

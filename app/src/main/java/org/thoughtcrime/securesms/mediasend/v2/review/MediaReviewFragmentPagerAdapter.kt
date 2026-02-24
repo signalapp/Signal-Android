@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import org.thoughtcrime.securesms.mediasend.Media
+import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.mediasend.v2.documents.MediaReviewDocumentPageFragment
 import org.thoughtcrime.securesms.mediasend.v2.gif.MediaReviewGifPageFragment
 import org.thoughtcrime.securesms.mediasend.v2.images.MediaReviewImagePageFragment

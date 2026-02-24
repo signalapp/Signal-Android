@@ -17,8 +17,8 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import org.signal.blurhash.BlurHash
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.visible
 

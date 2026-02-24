@@ -4,9 +4,9 @@ import android.Manifest
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import org.signal.core.ui.permissions.Permissions
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
-import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class MediaSelectionNavigator(

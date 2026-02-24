@@ -25,6 +25,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.ui.util.StorageUtil
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.Host
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.RequestPermissionResult
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.SaveToStorageWarningResult
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil.SaveAttachmentsResult
-import org.thoughtcrime.securesms.util.StorageUtil
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)

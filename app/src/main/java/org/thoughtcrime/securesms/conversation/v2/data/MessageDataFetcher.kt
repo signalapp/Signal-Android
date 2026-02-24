@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2.data
 
 import androidx.annotation.WorkerThread
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.roundedString
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.payments.Payment
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.UUID
 import java.util.concurrent.Callable
 import java.util.concurrent.ExecutorService
@@ -80,7 +80,7 @@ object MessageDataFetcher {
         .filter { it.isMms && it.isPaymentNotification }
         .map { UuidUtil.parseOrNull(it.body) to it.id }
         .filter { it.first != null }
-        .associate { it.first to it.second }
+        .associate { it.first!! to it.second }
 
       SignalDatabase
         .payments

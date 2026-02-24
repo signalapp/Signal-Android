@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Gizliliyinizi qoruyun.\nHər mesajda özünüz olun.</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal qeyri-kommersiya təşkilatıdır\nŞərtlər və Məxfilik Siyasəti</string>
+    <string name="RegistrationActivity_continue">Davam et</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">Bərpa et və ya köçür</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">İcazələri aktivləşdir</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Tanıdığınız şəxslərə mesaj atmaqda sizə kömək etmək üçün Signal bu icazələri tələb edəcək. </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">İndi yox</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Növbəti</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Bildirişlər</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Yeni mesaj qəbul edildikdə bildiriş alın.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Əlaqələr</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Tanıdığınız şəxsləri tapın. Mesajlarınız şifrələnib və Signal xidmətində görünmür.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Telefon zəngləri</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Qeydiyyatdan keçməni daha da asanlaşdırır və əlavə zəng xüsusiyyətlərini aktivləşdirir.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Yaddaş</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Cihazınızdan şəkillər, videolar və fayllar göndərin.</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">Ölkəniz</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">Bağla</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">Ad və ya ölkə kodu ilə axtarın</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">Naməlum ölkə</string>
+</resources>

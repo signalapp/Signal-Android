@@ -167,7 +167,7 @@ private fun SubscriptionNotFoundReason(text: String) {
 @DayNightPreviews
 @Composable
 private fun SubscriptionNotFoundContentPreview() {
-  Previews.BottomSheetPreview {
+  Previews.BottomSheetContentPreview {
     Column {
       SubscriptionNotFoundContent()
     }

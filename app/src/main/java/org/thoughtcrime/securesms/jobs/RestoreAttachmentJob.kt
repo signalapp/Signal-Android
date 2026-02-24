@@ -359,7 +359,7 @@ class RestoreAttachmentJob private constructor(
       }
 
       if (useArchiveCdn && attachment.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED) {
-        throw InvalidAttachmentException("[$attachmentId] Invalid attachment configuration! backsUpMedia: ${SignalStore.backup.backsUpMedia}, forceTransitTier: $forceTransitTier, archiveTransferState: ${attachment.archiveTransferState}")
+        Log.w(TAG, "[$attachmentId] Archive state was not FINISHED, but we backup media and have a dataHash, so we should try anyway. archiveTransferState: ${attachment.archiveTransferState}")
       }
 
       val messageReceiver = AppDependencies.signalServiceMessageReceiver

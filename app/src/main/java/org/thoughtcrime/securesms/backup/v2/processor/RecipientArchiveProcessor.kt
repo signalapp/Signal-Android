@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.processor
 
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.update
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Handles importing/exporting [ArchiveRecipient] frames for an archive.
@@ -44,6 +44,7 @@ object RecipientArchiveProcessor {
     if (releaseChannelId != null) {
       exportState.recipientIds.add(releaseChannelId.toLong())
       exportState.contactRecipientIds.add(releaseChannelId.toLong())
+      exportState.releaseNoteRecipientId = releaseChannelId.toLong()
       emitter.emit(
         Frame(
           recipient = ArchiveRecipient(

@@ -7,20 +7,21 @@ package org.thoughtcrime.securesms.backup.v2.exporters
 
 import android.database.Cursor
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.ServiceId
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireString
-import org.signal.storageservice.protos.groups.AccessControl
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedBannedMember
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
-import org.signal.storageservice.protos.groups.local.EnabledState
+import org.signal.storageservice.storage.protos.groups.AccessControl
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember
+import org.signal.storageservice.storage.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.backup.v2.ArchiveGroup
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.proto.Group
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.Closeable
 
 /**
@@ -123,7 +123,13 @@ private fun Member.Role.toRemote(): Group.Member.Role {
 }
 
 private fun DecryptedMember.toRemote(): Group.Member {
-  return Group.Member(userId = aciBytes, role = role.toRemote(), joinedAtVersion = joinedAtRevision)
+  return Group.Member(
+    userId = aciBytes,
+    role = role.toRemote(),
+    joinedAtVersion = joinedAtRevision,
+    labelEmoji = labelEmoji,
+    labelString = labelString
+  )
 }
 
 private fun DecryptedPendingMember.toRemote(): Group.MemberPendingProfileKey {

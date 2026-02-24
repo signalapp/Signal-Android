@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.util
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
+import org.thoughtcrime.securesms.backup.v2.BackupMode
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
@@ -27,7 +29,6 @@ import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.Optional
 import org.thoughtcrime.securesms.backup.v2.proto.AvatarColor as RemoteAvatarColor
 
@@ -78,7 +79,8 @@ fun FilePointer?.toLocalAttachment(
         quote = quote,
         quoteTargetContentType = quoteTargetContentType,
         uuid = UuidUtil.fromByteStringOrNull(uuid),
-        fileName = fileName
+        fileName = fileName,
+        localBackupKey = this.locatorInfo.localKey?.toByteArray()
       )
     }
     AttachmentType.TRANSIT -> {
@@ -133,10 +135,7 @@ fun FilePointer?.toLocalAttachment(
   }
 }
 
-/**
- * @param mediaArchiveEnabled True if this user has enable media backup, otherwise false.
- */
-fun DatabaseAttachment.toRemoteFilePointer(contentTypeOverride: String? = null): FilePointer {
+fun DatabaseAttachment.toRemoteFilePointer(contentTypeOverride: String? = null, backupMode: BackupMode): FilePointer {
   val builder = FilePointer.Builder()
   builder.contentType = contentTypeOverride ?: this.contentType?.takeUnless { it.isBlank() }
   builder.incrementalMac = this.incrementalDigest?.takeIf { it.isNotEmpty() && this.incrementalMacChunkSize > 0 }?.toByteString()
@@ -146,12 +145,12 @@ fun DatabaseAttachment.toRemoteFilePointer(contentTypeOverride: String? = null):
   builder.height = this.height.takeIf { it > 0 }
   builder.caption = this.caption
   builder.blurHash = this.blurHash?.hash
-  builder.locatorInfo = this.toLocatorInfo()
+  builder.locatorInfo = this.toLocatorInfo(backupMode)
 
   return builder.build()
 }
 
-fun DatabaseAttachment.toLocatorInfo(): FilePointer.LocatorInfo {
+fun DatabaseAttachment.toLocatorInfo(backupMode: BackupMode): FilePointer.LocatorInfo {
   val attachmentType = this.toRemoteAttachmentType()
 
   if (attachmentType == AttachmentType.INVALID) {
@@ -181,6 +180,14 @@ fun DatabaseAttachment.toLocatorInfo(): FilePointer.LocatorInfo {
       locatorBuilder.encryptedDigest = this.remoteDigest!!.toByteString()
     }
     AttachmentType.INVALID -> Unit
+  }
+
+  if (backupMode.isLocalBackup && this.dataHash != null && this.metadata?.localBackupKey != null) {
+    if (locatorBuilder.plaintextHash == null) {
+      locatorBuilder.plaintextHash = Base64.decode(this.dataHash).toByteString()
+    }
+
+    locatorBuilder.localKey = this.metadata.localBackupKey.toByteString()
   }
 
   return locatorBuilder.build()

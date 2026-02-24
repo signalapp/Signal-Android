@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,11 +29,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class ChangeNumberFragment : ComposeFragment() {
@@ -61,11 +63,13 @@ fun ChangeNumberScreen(
     navigationIcon = ImageVector.vectorResource(id = R.drawable.ic_arrow_left_24),
     navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
   ) {
+    val scrollState = rememberScrollState()
     Column(
       horizontalAlignment = Alignment.CenterHorizontally,
       modifier = Modifier
         .fillMaxSize()
         .padding(it)
+        .verticalScroll(scrollState)
         .padding(horizontal = 32.dp)
     ) {
       Image(

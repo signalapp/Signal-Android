@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
@@ -36,18 +37,18 @@ import org.thoughtcrime.securesms.messages.StorySendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
-import org.thoughtcrime.securesms.polls.Poll;
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
@@ -284,8 +285,9 @@ public final class PushGroupSendJob extends PushSendJob {
       List<SignalServicePreview>                       previews           = getPreviewsFor(message);
       List<SignalServiceDataMessage.Mention>           mentions           = getMentionsFor(message.getMentions());
       List<BodyRange>                                  bodyRanges         = getBodyRanges(message);
-      Optional<SignalServiceDataMessage.PollCreate>    pollCreate         = getPollCreate(message);
-      Optional<SignalServiceDataMessage.PollTerminate> pollTerminate      = getPollTerminate(message);
+      SignalServiceDataMessage.PollCreate              pollCreate         = getPollCreate(message);
+      SignalServiceDataMessage.PollTerminate           pollTerminate      = getPollTerminate(message);
+      SignalServiceDataMessage.PinnedMessage           pinnedMessage      = getPinnedMessage(message);
       List<Attachment>                                 attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>                    attachmentPointers = getAttachmentPointersFor(attachments);
       boolean isRecipientUpdate = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
@@ -330,7 +332,12 @@ public final class PushGroupSendJob extends PushSendJob {
 
           ByteString groupChange = groupContext.groupChange;
           if (groupChange != null) {
-            builder.withSignedGroupChange(groupChange.toByteArray());
+            byte[] serializedGroupChange = groupChange.toByteArray();
+            if (serializedGroupChange.length <= ByteUnit.KILOBYTES.toBytes(2)) {
+              builder.withSignedGroupChange(serializedGroupChange);
+            } else {
+              Log.w(TAG, "Group update is too large to attach! Size: " + serializedGroupChange.length + " bytes");
+            }
           }
 
           SignalServiceGroupV2 group = builder.build();
@@ -340,14 +347,16 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                               .asGroupMessage(group)
                                                                               .build();
           return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId()
-                                                                                .requireV2(), null, destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId), groupDataMessage, message.isUrgent(), false, null);
+                                                                                .requireV2(), null, destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId), groupDataMessage, message.isUrgent(), false, null, null);
         } else {
           throw new UndeliverableMessageException("Messages can no longer be sent to V1 groups!");
         }
       } else {
         Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroup(groupRecipient.requireGroupId());
 
-        if (groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().isAdmin(Recipient.self())) {
+        if (pinnedMessage != null && groupRecord.isPresent() && groupRecord.get().getAttributesAccessControl() == GroupAccessControl.ONLY_ADMINS && !groupRecord.get().isAdmin(Recipient.self())) {
+          throw new UndeliverableMessageException("Non-admins cannot pin messages in this group!");
+        } else if (pinnedMessage == null && groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().isAdmin(Recipient.self())) {
           throw new UndeliverableMessageException("Non-admins cannot send messages in announcement groups!");
         }
 
@@ -367,8 +376,9 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                       .withPreviews(previews)
                                                                       .withMentions(mentions)
                                                                       .withBodyRanges(bodyRanges)
-                                                                      .withPollCreate(pollCreate.orElse(null))
-                                                                      .withPollTerminate(pollTerminate.orElse(null));
+                                                                      .withPollCreate(pollCreate)
+                                                                      .withPollTerminate(pollTerminate)
+                                                                      .withPinnedMessage(pinnedMessage);
 
         if (message.getParentStoryId() != null) {
           try {
@@ -406,28 +416,12 @@ public final class PushGroupSendJob extends PushSendJob {
                                                        groupMessage,
                                                        message.isUrgent(),
                                                        message.getStoryType().isStory() || message.getParentStoryId() != null,
-                                                       editMessage);
+                                                       editMessage,
+                                                       null);
       }
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
     }
-  }
-
-  private Optional<SignalServiceDataMessage.PollCreate> getPollCreate(OutgoingMessage message) {
-    Poll poll = message.getPoll();
-    if (poll == null) {
-      return Optional.empty();
-    }
-
-    return Optional.of(new SignalServiceDataMessage.PollCreate(poll.getQuestion(), poll.getAllowMultipleVotes(), poll.getPollOptions()));
-  }
-
-  private Optional<SignalServiceDataMessage.PollTerminate> getPollTerminate(OutgoingMessage message) {
-    if (message.getMessageExtras() == null || message.getMessageExtras().pollTerminate == null) {
-      return Optional.empty();
-    }
-
-    return Optional.of(new SignalServiceDataMessage.PollTerminate(message.getMessageExtras().pollTerminate.targetTimestamp));
   }
 
   public static long getMessageId(@Nullable byte[] serializedData) {

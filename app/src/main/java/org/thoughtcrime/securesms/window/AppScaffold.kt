@@ -38,13 +38,12 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.layout
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import androidx.window.core.layout.WindowHeightSizeClass
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.isSplitPane
 import org.thoughtcrime.securesms.main.MainFloatingActionButtonsCallback
 import org.thoughtcrime.securesms.main.MainNavigationBar
 import org.thoughtcrime.securesms.main.MainNavigationRail
@@ -61,7 +60,7 @@ enum class NavigationType {
       val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
       return remember(windowSizeClass) {
-        if (windowSizeClass.isSplitPane() && windowSizeClass.windowHeightSizeClass.isAtLeast(WindowHeightSizeClass.MEDIUM)) {
+        if (windowSizeClass.isSplitPane()) {
           RAIL
         } else {
           BAR
@@ -104,21 +103,6 @@ fun AppScaffold(
   contentWindowInsets: WindowInsets = WindowInsets.systemBars,
   animatorFactory: AppScaffoldAnimationStateFactory = AppScaffoldAnimationStateFactory.Default
 ) {
-  val isForcedCompact = !LocalInspectionMode.current && !isLargeScreenSupportEnabled()
-
-  if (isForcedCompact) {
-    ListAndNavigation(
-      topBarContent = topBarContent,
-      listContent = secondaryContent,
-      navRailContent = navRailContent,
-      bottomNavContent = bottomNavContent,
-      contentWindowInsets = contentWindowInsets,
-      modifier = modifier
-    )
-
-    return
-  }
-
   val minPaneWidth = navigator.scaffoldDirective.defaultPanePreferredWidth
   val navigationState = navigator.state
 

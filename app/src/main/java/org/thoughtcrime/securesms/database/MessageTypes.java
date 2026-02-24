@@ -123,6 +123,7 @@ public interface MessageTypes {
   long SPECIAL_TYPE_BLOCKED                   = 0xA00000000L;
   long SPECIAL_TYPE_UNBLOCKED                 = 0xB00000000L;
   long SPECIAL_TYPE_POLL_TERMINATE            = 0xC00000000L;
+  long SPECIAL_TYPE_PINNED_MESSAGE            = 0xD00000000L;
 
   long IGNORABLE_TYPESMASK_WHEN_COUNTING = END_SESSION_BIT | KEY_EXCHANGE_IDENTITY_UPDATE_BIT | KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
 
@@ -168,6 +169,10 @@ public interface MessageTypes {
 
   static boolean isPollTerminate(long type) {
     return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_POLL_TERMINATE;
+  }
+
+  static boolean isPinnedMessageUpdate(long type) {
+    return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_PINNED_MESSAGE;
   }
 
   static boolean isDraftMessageType(long type) {

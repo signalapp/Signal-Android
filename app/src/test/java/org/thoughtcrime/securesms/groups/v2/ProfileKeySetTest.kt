@@ -4,10 +4,10 @@ import assertk.assertThat
 import assertk.assertions.containsOnly
 import assertk.assertions.isEmpty
 import org.junit.Test
+import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log.initialize
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.testutil.LogRecorder
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.UUID
 
 class ProfileKeySetTest {

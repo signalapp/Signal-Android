@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.UuidUtil
 import org.signal.core.util.count
 import org.signal.core.util.delete
 import org.signal.core.util.groupBy
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.StorageId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord as RemoteChatFolderRecord
 
 /**

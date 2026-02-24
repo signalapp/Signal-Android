@@ -15,13 +15,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.RestoreTimestampResult
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.ui.restore.AccountEntropyPoolVerification
 import org.thoughtcrime.securesms.registration.ui.restore.AccountEntropyPoolVerification.AEPValidationError
-import org.whispersystems.signalservice.api.AccountEntropyPool
 
 class PostRegistrationEnterBackupKeyViewModel : ViewModel() {
   companion object {

@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.airbnb.lottie.SimpleColorFilter;
 
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.signal.core.ui.util.ThemeUtil;
 
 public final class ChatWallpaperDimLevelUtil {
 

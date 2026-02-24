@@ -141,6 +141,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   interface EventListener {
     @JvmSuppressWildcards
     fun onAudioDeviceChanged(activeDevice: AudioDevice, devices: Set<AudioDevice>)
+    fun onAudioDeviceChangeFailed()
     fun onBluetoothPermissionDenied()
   }
 }
@@ -309,7 +310,8 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     }
 
     val needBluetoothAudioStart = signalBluetoothManager.state == SignalBluetoothManager.State.AVAILABLE &&
-      (userSelectedAudioDevice == AudioDevice.NONE || userSelectedAudioDevice == AudioDevice.BLUETOOTH || autoSwitchToBluetooth) && !androidAudioManager.isBluetoothScoOn
+      (userSelectedAudioDevice == AudioDevice.NONE || userSelectedAudioDevice == AudioDevice.BLUETOOTH || autoSwitchToBluetooth) &&
+      !androidAudioManager.isBluetoothScoOn
 
     val needBluetoothAudioStop = (signalBluetoothManager.state == SignalBluetoothManager.State.CONNECTED || signalBluetoothManager.state == SignalBluetoothManager.State.CONNECTING) &&
       (userSelectedAudioDevice != AudioDevice.NONE && userSelectedAudioDevice != AudioDevice.BLUETOOTH)
@@ -353,8 +355,11 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     if (newAudioDevice != selectedAudioDevice || audioDeviceSetUpdated) {
       setAudioDevice(newAudioDevice)
       Log.i(TAG, "New device status: available: $audioDevices, selected: $newAudioDevice")
-      eventListener?.onAudioDeviceChanged(selectedAudioDevice, audioDevices)
     }
+
+    // Always notify listener to clear any pending audio device change state,
+    // even if the device didn't actually change
+    eventListener?.onAudioDeviceChanged(selectedAudioDevice, audioDevices)
   }
 
   override fun setDefaultAudioDevice(recipientId: RecipientId?, newDefaultDevice: AudioDevice, clearUserEarpieceSelection: Boolean) {
@@ -424,7 +429,6 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     Log.i(TAG, "startIncomingRinger(): uri: ${if (ringtoneUri != null) "present" else "null"} vibrate: $vibrate")
     androidAudioManager.mode = AudioManager.MODE_RINGTONE
     setMicrophoneMute(false)
-    setDefaultAudioDevice(recipientId = null, newDefaultDevice = AudioDevice.SPEAKER_PHONE, clearUserEarpieceSelection = false)
 
     incomingRinger.start(ringtoneUri, vibrate)
   }

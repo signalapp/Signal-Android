@@ -40,10 +40,11 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import org.signal.core.models.media.Media
+import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -55,13 +56,13 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewV2Binding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mediapreview.caption.ExpandingCaptionView
 import org.thoughtcrime.securesms.mediapreview.mediarail.CenterDecoration
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter.ImageLoadingListener
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -78,6 +79,7 @@ import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
+import org.signal.core.ui.R as CoreUiR
 
 class MediaPreviewV2Fragment :
   LoggingFragment(R.layout.fragment_media_preview_v2),
@@ -164,8 +166,8 @@ class MediaPreviewV2Fragment :
       requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 
-    toolbar.setTitleTextAppearance(requireContext(), R.style.Signal_Text_TitleMedium)
-    toolbar.setSubtitleTextAppearance(requireContext(), R.style.Signal_Text_BodyMedium)
+    toolbar.setTitleTextAppearance(requireContext(), CoreUiR.style.Signal_Text_TitleMedium)
+    toolbar.setSubtitleTextAppearance(requireContext(), CoreUiR.style.Signal_Text_BodyMedium)
     (binding.toolbar.menu as? MenuBuilder)?.setOptionalIconsVisible(true)
     binding.toolbar.inflateMenu(R.menu.media_preview)
   }
@@ -274,8 +276,11 @@ class MediaPreviewV2Fragment :
   }
 
   private fun bindTextViews(currentItem: MediaTable.MediaRecord, showThread: Boolean, messageBodies: Map<Long, SpannableString>) {
-    binding.toolbar.title = getTitleText(currentItem, showThread)
-    binding.toolbar.subtitle = getSubTitleText(currentItem)
+    val title = getTitleText(currentItem, showThread)
+    val (subtitle, subtitleContentDesc) = getSubTitleText(currentItem)
+    binding.toolbar.title = title
+    binding.toolbar.subtitle = subtitle
+    binding.toolbar.contentDescription = "$title $subtitleContentDesc"
     val messageId: Long? = currentItem.attachment?.mmsId
     if (messageId != null) {
       binding.toolbar.setOnClickListener { v ->
@@ -469,20 +474,20 @@ class MediaPreviewV2Fragment :
     }
   }
 
-  private fun getSubTitleText(mediaRecord: MediaTable.MediaRecord): CharSequence {
-    val text = if (mediaRecord.date > 0) {
+  private fun getSubTitleText(mediaRecord: MediaTable.MediaRecord): Pair<CharSequence, CharSequence> {
+    val (text, contentDesc) = if (mediaRecord.date > 0) {
       DateUtils.getExtendedRelativeTimeSpanString(requireContext(), Locale.getDefault(), mediaRecord.date)
     } else {
-      getString(R.string.MediaPreviewActivity_draft)
+      Pair(getString(R.string.MediaPreviewActivity_draft), getString(R.string.MediaPreviewActivity_draft))
     }
     val builder = SpannableStringBuilder(text)
 
-    val onSurfaceColor = ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurface)
+    val onSurfaceColor = ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurface)
     val chevron = ContextUtil.requireDrawable(requireContext(), R.drawable.ic_chevron_end_24)
     chevron.colorFilter = PorterDuffColorFilter(onSurfaceColor, PorterDuff.Mode.SRC_IN)
 
     SpanUtil.appendCenteredImageSpan(builder, chevron, 10, 10)
-    return builder
+    return Pair(builder, contentDesc)
   }
 
   private fun anchorMarginsToBottomInsets(viewToAnchor: View) {
@@ -609,13 +614,23 @@ class MediaPreviewV2Fragment :
       return
     }
 
+    val messageRecord = SignalDatabase.messages.getMessageRecord(attachment.mmsId)
+    val isNoteToSelf = messageRecord.isOutgoing && messageRecord.toRecipient.isSelf
+
     MaterialAlertDialogBuilder(requireContext()).apply {
       setIcon(R.drawable.symbol_error_triangle_fill_24)
       setTitle(R.string.MediaPreviewActivity_media_delete_confirmation_title)
       setMessage(R.string.MediaPreviewActivity_media_delete_confirmation_message)
       setCancelable(true)
       setNegativeButton(android.R.string.cancel, null)
-      setPositiveButton(R.string.ConversationFragment_delete_for_me) { _, _ ->
+
+      val deleteButtonLabel = if (isNoteToSelf) {
+        R.string.ConversationFragment_delete
+      } else {
+        R.string.ConversationFragment_delete_for_me
+      }
+
+      setPositiveButton(deleteButtonLabel) { _, _ ->
         lifecycleDisposable += viewModel.localDelete(requireContext(), attachment)
           .observeOn(AndroidSchedulers.mainThread())
           .subscribeBy(
@@ -630,7 +645,7 @@ class MediaPreviewV2Fragment :
           )
       }
 
-      if (canRemotelyDelete(attachment)) {
+      if (canRemotelyDelete(attachment, messageRecord) && !isNoteToSelf) {
         setNeutralButton(R.string.ConversationFragment_delete_for_everyone) { _, _ ->
           lifecycleDisposable += viewModel.remoteDelete(attachment)
             .observeOn(AndroidSchedulers.mainThread())
@@ -649,10 +664,10 @@ class MediaPreviewV2Fragment :
     }.show()
   }
 
-  private fun canRemotelyDelete(attachment: DatabaseAttachment): Boolean {
+  private fun canRemotelyDelete(attachment: DatabaseAttachment, messageRecord: MessageRecord): Boolean {
     val mmsId = attachment.mmsId
     val attachmentCount = SignalDatabase.attachments.getAttachmentsForMessage(mmsId).size
-    return attachmentCount <= 1 && MessageConstraintsUtil.isValidRemoteDeleteSend(listOf(SignalDatabase.messages.getMessageRecord(mmsId)), System.currentTimeMillis())
+    return attachmentCount <= 1 && MessageConstraintsUtil.isValidRemoteDeleteSend(listOf(messageRecord), System.currentTimeMillis())
   }
 
   private fun editMediaItem(currentItem: MediaTable.MediaRecord) {

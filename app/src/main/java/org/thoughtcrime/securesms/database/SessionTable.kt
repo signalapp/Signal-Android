@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.database
 
 import android.content.Context
+import org.signal.core.models.ServiceId
+import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
@@ -13,8 +15,6 @@ import org.signal.core.util.select
 import org.signal.libsignal.protocol.InvalidSessionException
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.state.SessionRecord
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.io.IOException
 import java.util.LinkedList

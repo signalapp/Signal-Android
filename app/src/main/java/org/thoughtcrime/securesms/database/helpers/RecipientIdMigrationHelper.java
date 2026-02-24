@@ -13,7 +13,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 
 import java.util.HashSet;
 import java.util.Set;

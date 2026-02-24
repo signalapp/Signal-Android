@@ -105,6 +105,11 @@ class ViewReceivedGiftViewModel(
   private fun awaitRedemptionCompletion(setAsPrimary: Boolean): Completable {
     return Completable.create { emitter ->
       val messageObserver = MessageObserver { messageId ->
+        if (messageId.id != this.messageId) {
+          return@MessageObserver
+        }
+
+        Log.d(TAG, "Received update for $messageId while awaiting completion of redemption.")
         val message = SignalDatabase.messages.getMessageRecord(messageId.id)
         when (message.requireGiftBadge().redemptionState) {
           GiftBadge.RedemptionState.REDEEMED -> emitter.onComplete()

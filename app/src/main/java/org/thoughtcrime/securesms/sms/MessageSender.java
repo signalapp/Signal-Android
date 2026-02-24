@@ -59,7 +59,7 @@ import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.mediasend.Media;
+import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -265,11 +265,10 @@ public class MessageSender {
       long         messageId         = insertResult.getMessageId();
 
       if (!recipient.isPushV2Group()) {
-        Log.w(TAG, "Can only send polls to groups.");
-        return threadId;
+        SignalLocalMetrics.IndividualMessageSend.onInsertedIntoDatabase(messageId, metricId);
+      } else {
+        SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
       }
-
-      SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
 
       sendMessageInternal(context, recipient, sendType, messageId, insertResult.getQuoteAttachmentId(), Collections.emptyList());
       onMessageSent();

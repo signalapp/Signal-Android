@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.registration.data
 
+import org.signal.core.models.MasterKey
 import org.whispersystems.signalservice.api.account.PreKeyCollection
-import org.whispersystems.signalservice.api.kbs.MasterKey
 
 data class AccountRegistrationResult(
   val uuid: String,
