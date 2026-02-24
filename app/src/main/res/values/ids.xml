@@ -34,6 +34,13 @@
     <item name="edittext_spoiler" type="id" />
     <item name="edittext_clear_formatting" type="id" />
 
+    <item name="conversation_list_accessibility_archive_action" type="id" />
+    <item name="conversation_list_accessibility_read_action" type="id" />
+    <item name="conversation_list_accessibility_pin_action" type="id" />
+    <item name="conversation_list_accessibility_mute_action" type="id" />
+    <item name="conversation_list_accessibility_select_action" type="id" />
+    <item name="conversation_list_accessibility_delete_action" type="id" />
+
     <item name="conversation_message_accessibility_reply_action" type="id" />
     <item name="conversation_message_accessibility_edit_action" type="id" />
     <item name="conversation_message_accessibility_forward_action" type="id" />
