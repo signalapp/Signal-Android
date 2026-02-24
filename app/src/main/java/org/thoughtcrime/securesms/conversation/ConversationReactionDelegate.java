@@ -37,10 +37,11 @@ public final class ConversationReactionDelegate {
   public void show(@NonNull Activity activity,
             @NonNull Recipient conversationRecipient,
             @NonNull ConversationMessage conversationMessage,
+            boolean shouldShowMessageRequest,
             boolean isNonAdminInAnnouncementGroup,
             @NonNull SelectedConversationModel selectedConversationModel)
   {
-    resolveOverlay().show(activity, conversationRecipient, conversationMessage, lastSeenDownPoint, isNonAdminInAnnouncementGroup, selectedConversationModel);
+    resolveOverlay().show(activity, conversationRecipient, conversationMessage, lastSeenDownPoint, shouldShowMessageRequest, isNonAdminInAnnouncementGroup, selectedConversationModel);
   }
 
   public void hide() {

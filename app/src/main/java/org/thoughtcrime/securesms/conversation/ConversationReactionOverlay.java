@@ -74,6 +74,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
   private SelectedConversationModel selectedConversationModel;
   private OverlayState              overlayState = OverlayState.HIDDEN;
   private boolean                   isNonAdminInAnnouncementGroup;
+  private boolean                   shouldShowMessageRequest;
 
   private boolean downIsOurs;
   private int     selected = -1;
@@ -148,6 +149,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
                    @NonNull Recipient conversationRecipient,
                    @NonNull ConversationMessage conversationMessage,
                    @NonNull PointF lastSeenDownPoint,
+                   boolean shouldShowMessageRequest,
                    boolean isNonAdminInAnnouncementGroup,
                    @NonNull SelectedConversationModel selectedConversationModel)
   {
@@ -158,6 +160,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     this.messageRecord                 = conversationMessage.getMessageRecord();
     this.conversationRecipient         = conversationRecipient;
     this.selectedConversationModel     = selectedConversationModel;
+    this.shouldShowMessageRequest      = shouldShowMessageRequest;
     this.isNonAdminInAnnouncementGroup = isNonAdminInAnnouncementGroup;
     overlayState                       = OverlayState.UNINITAILIZED;
     selected                           = -1;
@@ -681,57 +684,27 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private @NonNull List<ActionItem> getMenuActionItems(@NonNull ConversationMessage conversationMessage) {
-    MenuState menuState = MenuState.getMenuState(conversationRecipient, conversationMessage.getMultiselectCollection().toSet(), false, isNonAdminInAnnouncementGroup);
+    MessageActionPolicyContext context = new MessageActionPolicyContext(conversationRecipient,
+                                                                        conversationMessage,
+                                                                        shouldShowMessageRequest,
+                                                                        isNonAdminInAnnouncementGroup,
+                                                                        false,
+                                                                        false);
 
     List<ActionItem> items = new ArrayList<>();
 
-    if (menuState.shouldShowReplyAction()) {
-      items.add(new ActionItem(R.drawable.symbol_reply_24, getResources().getString(R.string.conversation_selection__menu_reply), () -> handleActionItemClicked(Action.REPLY)));
+    for (MessageContextAction action : MessageActionPolicy.availableActions(context)) {
+      items.add(new ActionItem(action.getIconRes(), getResources().getString(action.getLabelRes()), () -> handleActionItemClicked(action)));
     }
 
-    if (menuState.shouldShowEditAction()) {
-      items.add(new ActionItem(R.drawable.symbol_edit_24, getResources().getString(R.string.conversation_selection__menu_edit), () -> handleActionItemClicked(Action.EDIT)));
-    }
-
-    if (menuState.shouldShowForwardAction()) {
-      items.add(new ActionItem(R.drawable.symbol_forward_24, getResources().getString(R.string.conversation_selection__menu_forward), () -> handleActionItemClicked(Action.FORWARD)));
-    }
-
-    if (menuState.shouldShowResendAction()) {
-      items.add(new ActionItem(R.drawable.symbol_refresh_24, getResources().getString(R.string.conversation_selection__menu_resend_message), () -> handleActionItemClicked(Action.RESEND)));
-    }
-
-    if (menuState.shouldShowSaveAttachmentAction()) {
-      items.add(new ActionItem(R.drawable.symbol_save_android_24, getResources().getString(R.string.conversation_selection__menu_save), () -> handleActionItemClicked(Action.DOWNLOAD)));
-    }
-
-    if (menuState.shouldShowCopyAction()) {
-      items.add(new ActionItem(R.drawable.symbol_copy_android_24, getResources().getString(R.string.conversation_selection__menu_copy), () -> handleActionItemClicked(Action.COPY)));
-    }
-
-    if (menuState.shouldShowPaymentDetails()) {
-      items.add(new ActionItem(R.drawable.symbol_payment_24, getResources().getString(R.string.conversation_selection__menu_payment_details), () -> handleActionItemClicked(Action.PAYMENT_DETAILS)));
-    }
-
-    items.add(new ActionItem(R.drawable.symbol_check_circle_24, getResources().getString(R.string.conversation_selection__menu_multi_select), () -> handleActionItemClicked(Action.MULTISELECT)));
-
-    if (menuState.shouldShowDetailsAction()) {
-      items.add(new ActionItem(R.drawable.symbol_info_24, getResources().getString(R.string.conversation_selection__menu_message_details), () -> handleActionItemClicked(Action.VIEW_INFO)));
-    }
-
-    if (menuState.shouldShowPollTerminateAction()) {
-      items.add(new ActionItem(R.drawable.symbol_stop_24, getResources().getString(R.string.conversation_selection__menu_end_poll), () -> handleActionItemClicked(Action.END_POLL)));
-    }
-
-    backgroundView.setVisibility(menuState.shouldShowReactions() ? View.VISIBLE : View.INVISIBLE);
-    foregroundView.setVisibility(menuState.shouldShowReactions() ? View.VISIBLE : View.INVISIBLE);
-
-    items.add(new ActionItem(R.drawable.symbol_trash_24, getResources().getString(R.string.conversation_selection__menu_delete), () -> handleActionItemClicked(Action.DELETE)));
+    boolean shouldShowReactions = MessageActionPolicy.shouldShowReactions(context);
+    backgroundView.setVisibility(shouldShowReactions ? View.VISIBLE : View.INVISIBLE);
+    foregroundView.setVisibility(shouldShowReactions ? View.VISIBLE : View.INVISIBLE);
 
     return items;
   }
 
-  private void handleActionItemClicked(@NonNull Action action) {
+  private void handleActionItemClicked(@NonNull MessageContextAction action) {
     hideInternal(new OnHideListener() {
       @Override
       public void startHide(@Nullable View focusedView) {
@@ -862,7 +835,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   public interface OnActionSelectedListener {
-    void onActionSelected(@NonNull Action action);
+    void onActionSelected(@NonNull MessageContextAction action);
   }
 
   private static class Boundary {
@@ -897,17 +870,4 @@ public final class ConversationReactionOverlay extends FrameLayout {
     TAP
   }
 
-  public enum Action {
-    REPLY,
-    EDIT,
-    FORWARD,
-    RESEND,
-    DOWNLOAD,
-    COPY,
-    MULTISELECT,
-    PAYMENT_DETAILS,
-    VIEW_INFO,
-    DELETE,
-    END_POLL
-  }
 }
