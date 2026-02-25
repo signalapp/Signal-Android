@@ -540,7 +540,7 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedStates.first().showSpinner).isTrue()
     assertThat(emittedStates.last().showSpinner).isFalse()
 
-    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.ThirdPartyError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.UnableToSendSms)
   }
 
   // ==================== Push Challenge Tests ====================

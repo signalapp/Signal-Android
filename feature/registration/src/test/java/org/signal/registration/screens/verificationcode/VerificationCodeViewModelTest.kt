@@ -654,7 +654,7 @@ class VerificationCodeViewModelTest {
   }
 
   @Test
-  fun `ResendSms with MissingRequestInformationOrAlreadyVerified returns NetworkError event`() = runTest {
+  fun `ResendSms with MissingRequestInformationOrAlreadyVerified returns UnableToSendSms event`() = runTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
@@ -665,11 +665,11 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.NetworkError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.UnableToSendSms)
   }
 
   @Test
-  fun `ResendSms with ThirdPartyServiceError returns ThirdPartyError event`() = runTest {
+  fun `ResendSms with ThirdPartyServiceError returns UnableToSendSms event`() = runTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
@@ -682,7 +682,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.ThirdPartyError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.UnableToSendSms)
   }
 
   @Test
@@ -772,7 +772,7 @@ class VerificationCodeViewModelTest {
   }
 
   @Test
-  fun `CallMe with ThirdPartyServiceError returns ThirdPartyError event`() = runTest {
+  fun `CallMe with ThirdPartyServiceError returns UnableToSendSms event`() = runTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
@@ -785,7 +785,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
 
-    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.ThirdPartyError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.UnableToSendSms)
   }
 
   // ==================== Helper Functions ====================

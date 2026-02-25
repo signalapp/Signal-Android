@@ -76,7 +76,7 @@ fun VerificationCodeScreen(
   val incorrectCodeMsg = stringResource(R.string.VerificationCodeScreen__incorrect_code)
   val networkErrorMsg = stringResource(R.string.VerificationCodeScreen__network_error)
   val unknownErrorMsg = stringResource(R.string.VerificationCodeScreen__an_unexpected_error_occurred)
-  val smsProviderErrorMsg = stringResource(R.string.VerificationCodeScreen__sms_provider_error)
+  val unableToSendSmsMsg = stringResource(R.string.VerificationCodeScreen__unable_to_send_sms)
   val transportErrorMsg = stringResource(R.string.VerificationCodeScreen__could_not_send_code_via_selected_method)
   val registrationErrorMsg = stringResource(R.string.VerificationCodeScreen__registration_error)
   // Preformat the rate-limited message template
@@ -121,8 +121,8 @@ fun VerificationCodeScreen(
       is VerificationCodeState.OneTimeEvent.RateLimited -> {
         snackbarHostState.showSnackbar(rateLimitedMsg)
       }
-      VerificationCodeState.OneTimeEvent.ThirdPartyError -> {
-        snackbarHostState.showSnackbar(smsProviderErrorMsg)
+      VerificationCodeState.OneTimeEvent.UnableToSendSms -> {
+        snackbarHostState.showSnackbar(unableToSendSmsMsg)
       }
       VerificationCodeState.OneTimeEvent.CouldNotRequestCodeWithSelectedTransport -> {
         snackbarHostState.showSnackbar(transportErrorMsg)

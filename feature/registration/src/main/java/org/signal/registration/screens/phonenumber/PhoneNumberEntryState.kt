@@ -32,7 +32,7 @@ data class PhoneNumberEntryState(
     data object NetworkError : OneTimeEvent
     data object UnknownError : OneTimeEvent
     data class RateLimited(val retryAfter: Duration) : OneTimeEvent
-    data object ThirdPartyError : OneTimeEvent
+    data object UnableToSendSms : OneTimeEvent
     data object CouldNotRequestCodeWithSelectedTransport : OneTimeEvent
   }
 }

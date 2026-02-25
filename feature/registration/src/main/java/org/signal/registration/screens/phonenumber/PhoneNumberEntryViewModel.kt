@@ -463,6 +463,11 @@ class PhoneNumberEntryViewModel(
       return state
     }
 
+    if (!sessionMetadata.allowedToRequestCode && sessionMetadata.requestedInformation.isEmpty()) {
+      Log.w(TAG, "Not allowed to request code and no challenges requested. Unable to send SMS.")
+      return state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
+    }
+
     val verificationCodeResponse = this@PhoneNumberEntryViewModel.repository.requestVerificationCode(
       sessionMetadata.id,
       smsAutoRetrieveCodeSupported = false,
@@ -495,7 +500,7 @@ class PhoneNumberEntryViewModel(
           }
           is NetworkController.RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified -> {
             Log.w(TAG, "[RequestVerificationCode] Missing request information or already verified.")
-            state.copy(oneTimeEvent = OneTimeEvent.NetworkError)
+            state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
           }
           is NetworkController.RequestVerificationCodeError.SessionNotFound -> {
             Log.w(TAG, "[RequestVerificationCode] Session not found when requesting verification code.")
@@ -504,7 +509,7 @@ class PhoneNumberEntryViewModel(
           }
           is NetworkController.RequestVerificationCodeError.ThirdPartyServiceError -> {
             Log.w(TAG, "[RequestVerificationCode] Third party service error.")
-            state.copy(oneTimeEvent = OneTimeEvent.ThirdPartyError)
+            state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
           }
         }
       }
@@ -563,10 +568,14 @@ class PhoneNumberEntryViewModel(
 
     state = state.copy(sessionMetadata = sessionMetadata)
 
-    // TODO should we be reading "allowedToRequestCode"?
     if (sessionMetadata.requestedInformation.contains("captcha")) {
       parentEventEmitter.navigateTo(RegistrationRoute.Captcha(sessionMetadata))
       return state
+    }
+
+    if (!sessionMetadata.allowedToRequestCode && sessionMetadata.requestedInformation.isEmpty()) {
+      Log.w(TAG, "Not allowed to request code and no challenges requested after captcha. Unable to send SMS.")
+      return state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
     }
 
     val verificationCodeResponse = this@PhoneNumberEntryViewModel.repository.requestVerificationCode(
@@ -593,15 +602,15 @@ class PhoneNumberEntryViewModel(
             state
           }
           is NetworkController.RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified -> {
-            // TODO [registration] - Error handling not implemented
-            throw NotImplementedError()
+            Log.w(TAG, "When requesting verification code after captcha, missing request information or already verified.")
+            state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
           }
           is NetworkController.RequestVerificationCodeError.SessionNotFound -> {
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }
           is NetworkController.RequestVerificationCodeError.ThirdPartyServiceError -> {
-            state.copy(oneTimeEvent = OneTimeEvent.ThirdPartyError)
+            state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
           }
         }
       }

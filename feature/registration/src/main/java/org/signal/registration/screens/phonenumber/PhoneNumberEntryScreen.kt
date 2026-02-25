@@ -65,6 +65,7 @@ fun PhoneNumberScreen(
   onEvent: (PhoneNumberEntryScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
+  val unableToSendSmsMsg = stringResource(R.string.VerificationCodeScreen__unable_to_send_sms)
   var simpleErrorMessage: String? by remember { mutableStateOf(null) }
 
   LaunchedEffect(state.oneTimeEvent) {
@@ -74,7 +75,7 @@ fun PhoneNumberScreen(
       is OneTimeEvent.RateLimited -> simpleErrorMessage = "Rate limited"
       OneTimeEvent.UnknownError -> simpleErrorMessage = "Unknown error"
       OneTimeEvent.CouldNotRequestCodeWithSelectedTransport -> simpleErrorMessage = "Could not request code with selected transport"
-      OneTimeEvent.ThirdPartyError -> simpleErrorMessage = "Third party error"
+      OneTimeEvent.UnableToSendSms -> simpleErrorMessage = unableToSendSmsMsg
       null -> Unit
     }
   }
