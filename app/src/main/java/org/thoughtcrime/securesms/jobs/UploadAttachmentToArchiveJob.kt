@@ -145,6 +145,17 @@ class UploadAttachmentToArchiveJob private constructor(
 
     if (attachment.uri == null) {
       Log.w(TAG, "[$attachmentId]$mediaIdLog Attachment has no uri! Cannot upload.")
+      ArchiveDatabaseExecutor.runBlocking {
+        setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+      }
+      return Result.failure()
+    }
+
+    if (attachment.size == 0L) {
+      Log.w(TAG, "[$attachmentId]$mediaIdLog Attachment has no data (size is 0)! Cannot upload.")
+      ArchiveDatabaseExecutor.runBlocking {
+        setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+      }
       return Result.failure()
     }
 
