@@ -46,7 +46,7 @@ class PhoneNumberEntryViewModel(
   val state = _state
     .combine(parentState) { state, parentState -> applyParentState(state, parentState) }
     .onEach { Log.d(TAG, "[State] $it") }
-    .stateIn(viewModelScope, SharingStarted.Eagerly, PhoneNumberEntryState())
+    .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PhoneNumberEntryState())
 
   init {
     viewModelScope.launch {
@@ -78,10 +78,10 @@ class PhoneNumberEntryViewModel(
         stateEmitter(applyPhoneNumberChanged(state, event.value))
       }
       is PhoneNumberEntryScreenEvents.PhoneNumberSubmitted -> {
-        var localState = state.copy(showFullScreenSpinner = true)
+        var localState = state.copy(showSpinner = true)
         stateEmitter(localState)
         localState = applyPhoneNumberSubmitted(localState, parentEventEmitter)
-        stateEmitter(localState.copy(showFullScreenSpinner = false))
+        stateEmitter(localState.copy(showSpinner = false))
       }
       is PhoneNumberEntryScreenEvents.CountryPicker -> {
         state.also { parentEventEmitter.navigateTo(RegistrationRoute.CountryCodePicker) }

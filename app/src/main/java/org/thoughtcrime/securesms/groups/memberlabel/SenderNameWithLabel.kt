@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,8 +24,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.thoughtcrime.securesms.components.emoji.Emojifier
 
-private val defaultLabelModifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+private val defaultLabelModifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
 private val defaultLabelTextStyle: @Composable () -> TextStyle = { MaterialTheme.typography.bodySmall }
 
 /**
@@ -101,14 +103,17 @@ private fun SenderNameWithLabel(
     verticalArrangement = Arrangement.spacedBy(2.dp),
     itemVerticalAlignment = Alignment.CenterVertically
   ) {
-    Text(
-      text = senderName,
-      color = senderColor,
-      style = MaterialTheme.typography.labelMedium,
-      fontWeight = FontWeight.Bold,
-      maxLines = 1,
-      overflow = TextOverflow.Ellipsis
-    )
+    ProvideTextStyle(MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold)) {
+      Emojifier(text = senderName) { annotatedText, inlineContent ->
+        Text(
+          text = annotatedText,
+          inlineContent = inlineContent,
+          color = senderColor,
+          maxLines = 1,
+          overflow = TextOverflow.Ellipsis
+        )
+      }
+    }
 
     if (memberLabel != null) {
       labelSlot(memberLabel)

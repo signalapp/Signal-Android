@@ -180,11 +180,12 @@ fun CallScreen(
     val maxOffset = maxHeight - maxSheetHeight
 
     var peekHeight by remember { mutableFloatStateOf(88f) }
+    val effectivePeekHeight = if (callControlsState.hasAnyControls) peekHeight else 0f
 
     BottomSheetScaffold(
       scaffoldState = callScreenController.scaffoldState,
       sheetDragHandle = null,
-      sheetPeekHeight = peekHeight.dp,
+      sheetPeekHeight = effectivePeekHeight.dp,
       sheetContainerColor = SignalTheme.colors.colorSurface1,
       containerColor = Color.Black,
       sheetMaxWidth = CallScreenMetrics.SheetMaxWidth,

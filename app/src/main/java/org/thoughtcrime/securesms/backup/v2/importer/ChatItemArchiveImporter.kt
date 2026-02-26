@@ -121,7 +121,6 @@ class ChatItemArchiveImporter(
       MessageTable.EXPIRES_IN,
       MessageTable.EXPIRE_STARTED,
       MessageTable.UNIDENTIFIED,
-      MessageTable.REMOTE_DELETED,
       MessageTable.NETWORK_FAILURES,
       MessageTable.QUOTE_ID,
       MessageTable.QUOTE_AUTHOR,
@@ -141,7 +140,8 @@ class ChatItemArchiveImporter(
       MessageTable.NOTIFIED,
       MessageTable.PINNED_UNTIL,
       MessageTable.PINNING_MESSAGE_ID,
-      MessageTable.PINNED_AT
+      MessageTable.PINNED_AT,
+      MessageTable.DELETED_BY
     )
 
     private val REACTION_COLUMNS = arrayOf(
@@ -193,6 +193,12 @@ class ChatItemArchiveImporter(
       Log.w(TAG, ImportSkips.chatIdRemoteRecipientNotFound(chatItem.dateSent, chatItem.chatId))
       return
     }
+
+    if (chatItem.adminDeletedMessage != null && importState.remoteToLocalRecipientId[chatItem.adminDeletedMessage.adminId] == null) {
+      Log.w(TAG, ImportSkips.missingAdminDeleteRecipient(chatItem.dateSent, chatItem.chatId))
+      return
+    }
+
     val messageInsert = chatItem.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId)
     if (chatItem.revisions.isNotEmpty()) {
       // Flush to avoid having revisions cross batch boundaries, which will cause a foreign key failure
@@ -672,7 +678,6 @@ class ChatItemArchiveImporter(
     contentValues.put(MessageTable.QUOTE_MISSING, 0)
     contentValues.put(MessageTable.QUOTE_TYPE, 0)
     contentValues.put(MessageTable.VIEW_ONCE, 0)
-    contentValues.put(MessageTable.REMOTE_DELETED, 0)
     contentValues.put(MessageTable.PARENT_STORY_ID, 0)
 
     if (this.pinDetails != null) {
@@ -683,12 +688,13 @@ class ChatItemArchiveImporter(
 
     when {
       this.standardMessage != null -> contentValues.addStandardMessage(this.standardMessage)
-      this.remoteDeletedMessage != null -> contentValues.put(MessageTable.REMOTE_DELETED, 1)
+      this.remoteDeletedMessage != null -> contentValues.put(MessageTable.DELETED_BY, fromRecipientId.toLong())
       this.updateMessage != null -> contentValues.addUpdateMessage(this.updateMessage, fromRecipientId, toRecipientId)
       this.paymentNotification != null -> contentValues.addPaymentNotification(this, chatRecipientId)
       this.giftBadge != null -> contentValues.addGiftBadge(this.giftBadge)
       this.viewOnceMessage != null -> contentValues.addViewOnce(this.viewOnceMessage)
       this.directStoryReplyMessage != null -> contentValues.addDirectStoryReply(this.directStoryReplyMessage, toRecipientId)
+      this.adminDeletedMessage != null -> contentValues.put(MessageTable.DELETED_BY, importState.remoteToLocalRecipientId[this.adminDeletedMessage.adminId]!!.toLong())
     }
 
     return contentValues

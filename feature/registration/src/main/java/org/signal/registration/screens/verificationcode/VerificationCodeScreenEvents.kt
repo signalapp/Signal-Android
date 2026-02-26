@@ -12,4 +12,9 @@ sealed class VerificationCodeScreenEvents {
   data object CallMe : VerificationCodeScreenEvents()
   data object HavingTrouble : VerificationCodeScreenEvents()
   data object ConsumeInnerOneTimeEvent : VerificationCodeScreenEvents()
+
+  /**
+   * Event to update countdown timers. Should be triggered periodically (e.g., every second).
+   */
+  data object CountdownTick : VerificationCodeScreenEvents()
 }

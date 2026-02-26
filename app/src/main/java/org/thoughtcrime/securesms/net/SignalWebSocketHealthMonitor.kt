@@ -174,25 +174,21 @@ class SignalWebSocketHealthMonitor(
       Log.d(TAG, "[KeepAliveSender($id)] started")
       lastKeepAliveReceived = System.currentTimeMillis().milliseconds
 
-      var keepAliveSendTime = System.currentTimeMillis().milliseconds
+      var keepAliveSentTime = System.currentTimeMillis().milliseconds
+      var hasSentKeepAlive = false
       while (shouldKeepRunning && sendKeepAlives()) {
         try {
-          val nextKeepAliveSendTime: Duration = keepAliveSendTime + KEEP_ALIVE_SEND_CADENCE
-          sleepUntil(nextKeepAliveSendTime)
+          sleepUntil(keepAliveSentTime + KEEP_ALIVE_SEND_CADENCE)
 
           if (shouldKeepRunning && sendKeepAlives()) {
-            keepAliveSendTime = System.currentTimeMillis().milliseconds
-            webSocket?.sendKeepAlive()
-          }
-
-          val responseRequiredTime: Duration = keepAliveSendTime + KEEP_ALIVE_TIMEOUT
-          sleepUntil(responseRequiredTime)
-
-          if (shouldKeepRunning && sendKeepAlives()) {
-            if (lastKeepAliveReceived < keepAliveSendTime) {
-              Log.w(TAG, "Missed keep alive, last: ${lastKeepAliveReceived.inWholeMilliseconds} needed by: ${responseRequiredTime.inWholeMilliseconds}")
+            if (hasSentKeepAlive && lastKeepAliveReceived < keepAliveSentTime) {
+              Log.w(TAG, "Missed keep alive, last: ${lastKeepAliveReceived.inWholeMilliseconds} needed by: ${(keepAliveSentTime + KEEP_ALIVE_TIMEOUT).inWholeMilliseconds}")
               webSocket?.forceNewWebSocket()
             }
+
+            keepAliveSentTime = System.currentTimeMillis().milliseconds
+            webSocket?.sendKeepAlive()
+            hasSentKeepAlive = true
           }
         } catch (e: Throwable) {
           Log.w(TAG, e)

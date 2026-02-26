@@ -1305,6 +1305,14 @@ public class SignalServiceMessageSender {
                                .build());
     }
 
+    if (message.getAdminDelete().isPresent()) {
+      SignalServiceDataMessage.AdminDelete adminDelete = message.getAdminDelete().get();
+      builder.adminDelete(new DataMessage.AdminDelete.Builder()
+                               .targetAuthorAciBinary(adminDelete.getTargetAuthor().toByteString())
+                               .targetSentTimestamp(adminDelete.getTargetSentTimestamp())
+                               .build());
+    }
+
     builder.timestamp(message.getTimestamp());
 
     return builder;
@@ -2924,6 +2932,11 @@ public class SignalServiceMessageSender {
       Log.w(TAG, "[handleMismatchedDevices] Address: " + recipient.getIdentifier() + ", ExtraDevices: " + mismatchedDevices.getExtraDevices() + ", MissingDevices: " + mismatchedDevices.getMissingDevices());
       archiveSessions(recipient, mismatchedDevices.getExtraDevices());
 
+      ArrayList<Integer> mismatchedDeviceIds = new ArrayList<>();
+      mismatchedDeviceIds.addAll(mismatchedDevices.getExtraDevices());
+      mismatchedDeviceIds.addAll(mismatchedDevices.getMissingDevices());
+      clearSenderKeySharedWith(recipient, mismatchedDeviceIds);
+
       for (int missingDeviceId : mismatchedDevices.getMissingDevices()) {
         PreKeyBundle preKey = NetworkResultUtil.toPreKeysLegacy(keysApi.getPreKey(recipient, missingDeviceId));
 
@@ -2942,6 +2955,7 @@ public class SignalServiceMessageSender {
   private void handleStaleDevices(SignalServiceAddress recipient, StaleDevices staleDevices) {
     Log.w(TAG, "[handleStaleDevices] Address: " + recipient.getIdentifier() + ", StaleDevices: " + staleDevices.getStaleDevices());
     archiveSessions(recipient, staleDevices.getStaleDevices());
+    clearSenderKeySharedWith(recipient, staleDevices.getStaleDevices());
   }
 
   public void handleChangeNumberMismatchDevices(@Nonnull MismatchedDevices mismatchedDevices)
@@ -2956,6 +2970,10 @@ public class SignalServiceMessageSender {
     for (SignalProtocolAddress address : addressesToClear) {
       aciStore.archiveSession(address);
     }
+  }
+
+  private void clearSenderKeySharedWith(SignalServiceAddress recipient, List<Integer> deviceIds) {
+    aciStore.clearSenderKeySharedWith(convertToProtocolAddresses(recipient, deviceIds));
   }
 
   private List<SignalProtocolAddress> convertToProtocolAddresses(SignalServiceAddress recipient, List<Integer> devices) {

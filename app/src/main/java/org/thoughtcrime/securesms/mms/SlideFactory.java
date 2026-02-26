@@ -49,8 +49,11 @@ public final class SlideFactory {
       } else {
         Slide result = getContentResolverSlideInfo(context, mediaType, uri, width, height, transformProperties);
 
-        if (result == null) return getManuallyCalculatedSlideInfo(context, mediaType, uri, width, height, transformProperties);
-        else                return result;
+        if (result == null) {
+          return getManuallyCalculatedSlideInfo(context, mediaType, uri, width, height, transformProperties);
+        } else {
+          return result;
+        }
       }
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -86,6 +89,7 @@ public final class SlideFactory {
 
         Log.d(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
         return mediaType.createSlide(context, uri, fileName, mimeType, null, fileSize, width, height, false, transformProperties);
+      } else {
       }
     }
 

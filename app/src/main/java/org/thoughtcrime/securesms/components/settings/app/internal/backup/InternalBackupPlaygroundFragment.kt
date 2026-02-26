@@ -84,7 +84,7 @@ import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.registration.ui.restore.local.InternalNewLocalRestoreActivity
+import org.thoughtcrime.securesms.registration.ui.restore.local.RestoreLocalBackupActivity
 
 class InternalBackupPlaygroundFragment : ComposeFragment() {
 
@@ -230,7 +230,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               .setTitle("Are you sure?")
               .setMessage("After you choose a file to import, this will delete all of your chats, then restore them from the file! Only do this on a test device!")
               .setPositiveButton("Wipe and restore") { _, _ ->
-                startActivity(InternalNewLocalRestoreActivity.getIntent(context, finish = false))
+                startActivity(RestoreLocalBackupActivity.getIntent(context, finish = false))
               }
               .show()
           },

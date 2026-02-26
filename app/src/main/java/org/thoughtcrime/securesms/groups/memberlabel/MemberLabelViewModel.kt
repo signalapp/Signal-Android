@@ -13,8 +13,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.SignalDispatchers
+import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelUiState.SaveState
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 private const val MIN_LABEL_TEXT_LENGTH = 1
@@ -33,10 +35,10 @@ class MemberLabelViewModel(
   val uiState: StateFlow<MemberLabelUiState> = internalUiState.asStateFlow()
 
   init {
-    loadExistingLabel()
+    loadInitialState()
   }
 
-  private fun loadExistingLabel() {
+  private fun loadInitialState() {
     viewModelScope.launch(SignalDispatchers.IO) {
       val memberLabel = memberLabelRepo.getLabel(groupId, recipientId)
       originalLabelEmoji = memberLabel?.emoji.orEmpty()
@@ -44,8 +46,10 @@ class MemberLabelViewModel(
 
       internalUiState.update {
         it.copy(
+          recipient = memberLabelRepo.getRecipient(recipientId),
           labelEmoji = originalLabelEmoji,
-          labelText = originalLabelText
+          labelText = originalLabelText,
+          senderNameColor = memberLabelRepo.getSenderNameColor(groupId, recipientId)
         )
       }
     }
@@ -119,6 +123,8 @@ class MemberLabelViewModel(
 data class MemberLabelUiState(
   val labelEmoji: String = "",
   val labelText: String = "",
+  val recipient: Recipient? = null,
+  val senderNameColor: NameColor? = null,
   val hasChanges: Boolean = false,
   val saveState: SaveState? = null
 ) {

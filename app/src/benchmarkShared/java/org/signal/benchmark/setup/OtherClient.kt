@@ -62,6 +62,10 @@ class OtherClient(val serviceId: ServiceId, val e164: String, val identityKeyPai
 
   /** Inspired by SignalServiceMessageSender#getEncryptedMessage */
   fun encrypt(envelopeContent: EnvelopeContent): Envelope {
+    return encrypt(envelopeContent, envelopeContent.content.get().dataMessage!!.timestamp!!)
+  }
+
+  fun encrypt(envelopeContent: EnvelopeContent, timestamp: Long): Envelope {
     val cipher = SignalServiceCipher(serviceAddress, 1, aciStore, sessionLock, null)
 
     if (!aciStore.containsSession(getAliceProtocolAddress())) {
@@ -70,7 +74,7 @@ class OtherClient(val serviceId: ServiceId, val e164: String, val identityKeyPai
     }
 
     return cipher.encrypt(getAliceProtocolAddress(), getAliceUnidentifiedAccess(), envelopeContent)
-      .toEnvelope(envelopeContent.content.get().dataMessage!!.timestamp!!, getAliceServiceId())
+      .toEnvelope(timestamp, getAliceServiceId())
   }
 
   fun generateInboundEnvelopes(count: Int): List<Envelope> {
@@ -81,6 +85,24 @@ class OtherClient(val serviceId: ServiceId, val e164: String, val identityKeyPai
       now += 3
     }
 
+    return envelopes
+  }
+
+  fun generateInboundDeliveryReceipts(messageTimestamps: List<Long>): List<Envelope> {
+    return generateInboundReceipts(messageTimestamps, Generator::encryptedDeliveryReceipt)
+  }
+
+  fun generateInboundReadReceipts(messageTimestamps: List<Long>): List<Envelope> {
+    return generateInboundReceipts(messageTimestamps, Generator::encryptedReadReceipt)
+  }
+
+  private fun generateInboundReceipts(messageTimestamps: List<Long>, receiptFactory: (Long, List<Long>) -> EnvelopeContent): List<Envelope> {
+    val envelopes = ArrayList<Envelope>(messageTimestamps.size)
+    var now = System.currentTimeMillis()
+    for (messageTimestamp in messageTimestamps) {
+      envelopes += encrypt(receiptFactory(now, listOf(messageTimestamp)), now)
+      now += 3
+    }
     return envelopes
   }
 

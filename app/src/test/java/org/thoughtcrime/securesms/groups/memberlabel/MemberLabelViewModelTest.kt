@@ -13,8 +13,10 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
@@ -29,6 +31,12 @@ class MemberLabelViewModelTest {
   private val memberLabelRepo = mockk<MemberLabelRepository>(relaxUnitFun = true)
   private val groupId = mockk<GroupId.V2>()
   private val recipientId = RecipientId.from(1L)
+
+  @Before
+  fun setUp() {
+    coEvery { memberLabelRepo.getRecipient(any()) } returns mockk(relaxed = true)
+    coEvery { memberLabelRepo.getSenderNameColor(any(), any()) } returns NameColor(0, 0)
+  }
 
   @Test
   fun `isSaveEnabled returns true when label text is different from the original value`() {

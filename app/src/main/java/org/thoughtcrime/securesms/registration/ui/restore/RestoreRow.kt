@@ -79,8 +79,8 @@ private fun RestoreMethodRowPreview() {
   Previews.Preview {
     RestoreRow(
       icon = SignalIcons.Backup.painter,
-      title = stringResource(R.string.SelectRestoreMethodFragment__from_signal_backups),
-      subtitle = stringResource(R.string.SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan)
+      title = stringResource(R.string.SelectRestoreMethodFragment__restore_signal_backup),
+      subtitle = stringResource(R.string.SelectRestoreMethodFragment__restore_your_text_messages_and_media_from)
     )
   }
 }

@@ -288,8 +288,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     assertThat(emittedStates.last().sessionMetadata).isNotNull()
     assertThat(emittedEvents).hasSize(1)
@@ -314,8 +314,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first())
@@ -339,8 +339,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     assertThat(emittedStates.last().oneTimeEvent).isNotNull()
       .isInstanceOf<PhoneNumberEntryState.OneTimeEvent.RateLimited>()
@@ -363,8 +363,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.UnknownError)
   }
@@ -382,8 +382,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.NetworkError)
   }
@@ -401,8 +401,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.UnknownError)
   }
@@ -422,8 +422,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Should not create a new session, just request verification code
     assertThat(emittedEvents).hasSize(1)
@@ -452,8 +452,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     assertThat(emittedStates.last().oneTimeEvent).isNotNull().isInstanceOf<PhoneNumberEntryState.OneTimeEvent.RateLimited>()
   }
@@ -477,8 +477,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
@@ -503,8 +503,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.CouldNotRequestCodeWithSelectedTransport)
   }
@@ -530,8 +530,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.ThirdPartyError)
   }
@@ -559,8 +559,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation to verification code entry
     assertThat(emittedEvents).hasSize(1)
@@ -591,8 +591,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation continues despite no push challenge token
     assertThat(emittedEvents).hasSize(1)
@@ -627,8 +627,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation continues despite push challenge submission failure
     assertThat(emittedEvents).hasSize(1)
@@ -658,8 +658,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation continues despite network error
     assertThat(emittedEvents).hasSize(1)
@@ -689,8 +689,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation continues despite application error
     assertThat(emittedEvents).hasSize(1)
@@ -719,8 +719,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
 
     // Verify spinner states
-    assertThat(emittedStates.first().showFullScreenSpinner).isTrue()
-    assertThat(emittedStates.last().showFullScreenSpinner).isFalse()
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation to captcha
     assertThat(emittedEvents).hasSize(1)

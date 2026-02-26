@@ -18,6 +18,7 @@ import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.GroupContextV2
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
+import org.whispersystems.signalservice.internal.push.ReceiptMessage
 import java.util.Optional
 import java.util.UUID
 
@@ -43,6 +44,26 @@ object Generator {
       )
     }
     return EnvelopeContent.encrypted(content.build(), ContentHint.RESENDABLE, Optional.empty())
+  }
+
+  fun encryptedDeliveryReceipt(now: Long, timestamps: List<Long>): EnvelopeContent {
+    return encryptedReceipt(ReceiptMessage.Type.DELIVERY, timestamps)
+  }
+
+  fun encryptedReadReceipt(now: Long, timestamps: List<Long>): EnvelopeContent {
+    return encryptedReceipt(ReceiptMessage.Type.READ, timestamps)
+  }
+
+  private fun encryptedReceipt(type: ReceiptMessage.Type, timestamps: List<Long>): EnvelopeContent {
+    val content = Content.Builder().apply {
+      receiptMessage(
+        ReceiptMessage.Builder().buildWith {
+          this.type = type
+          timestamp = timestamps
+        }
+      )
+    }
+    return EnvelopeContent.encrypted(content.build(), ContentHint.IMPLICIT, Optional.empty())
   }
 
   fun OutgoingPushMessage.toEnvelope(timestamp: Long, destination: ServiceId): Envelope {

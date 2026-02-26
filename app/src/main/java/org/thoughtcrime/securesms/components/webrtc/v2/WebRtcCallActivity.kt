@@ -1110,18 +1110,18 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
   /**
    * Controls lock screen and screen-on behavior based on call state.
-   * - Show over lock screen: Only for incoming ringing calls, so user can answer.
+   * - Show over lock screen: For any ongoing call state, so the call UI remains visible
+   *   if the call was answered from the lock screen.
    * - Turn screen on: For any ongoing call state, so screen stays on during call.
    */
   private fun setTurnScreenOnForCallState(callState: WebRtcViewModel.State) {
-    val isIncomingRinging = callState == WebRtcViewModel.State.CALL_INCOMING
     val isOngoingCall = callState.inOngoingCall
     if (Build.VERSION.SDK_INT >= 27) {
-      setShowWhenLocked(isIncomingRinging)
+      setShowWhenLocked(isOngoingCall)
       setTurnScreenOn(isOngoingCall)
     } else {
       @Suppress("DEPRECATION")
-      if (isIncomingRinging) {
+      if (isOngoingCall) {
         window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
       } else {
         window.clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)

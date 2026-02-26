@@ -46,7 +46,7 @@ import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
-import org.thoughtcrime.securesms.conversation.colors.Colorizer;
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV1;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -113,7 +113,7 @@ public class ConversationAdapter
   private boolean                     hasWallpaper;
   private boolean                     isMessageRequestAccepted;
   private ConversationMessage         inlineContent;
-  private Colorizer                   colorizer;
+  private ColorizerV1                 colorizer;
   private boolean                     isTypingViewEnabled;
   private ConversationItemDisplayMode displayMode;
   private PulseRequest                pulseRequest;
@@ -124,7 +124,7 @@ public class ConversationAdapter
                       @NonNull Locale locale,
                       @Nullable ItemClickListener clickListener,
                       boolean hasWallpaper,
-                      @NonNull Colorizer colorizer)
+                      @NonNull ColorizerV1 colorizer)
   {
     super(new DiffUtil.ItemCallback<ConversationMessage>() {
       @Override

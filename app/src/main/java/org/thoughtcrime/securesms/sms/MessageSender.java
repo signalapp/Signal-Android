@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobs.AdminDeleteSendJob;
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob;
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
@@ -78,7 +79,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -507,7 +507,7 @@ public class MessageSender {
 
   public static void sendRemoteDelete(long messageId) {
     MessageTable db = SignalDatabase.messages();
-    db.markAsRemoteDelete(messageId);
+    db.markAsDeleteBySelf(messageId);
     db.markAsSending(messageId);
 
     try {
@@ -515,6 +515,17 @@ public class MessageSender {
       onMessageSent();
     } catch (NoSuchMessageException e) {
       Log.w(TAG, "[sendRemoteDelete] Could not find message! Ignoring.");
+    }
+  }
+
+  public static void sendAdminDelete(long messageId) {
+    // TODO(michelle): Update with failure states
+    SignalDatabase.messages().markAsDeleteBySelf(messageId);
+    AdminDeleteSendJob job = AdminDeleteSendJob.create(messageId);
+    if (job != null) {
+      AppDependencies.getJobManager().add(job);
+    } else {
+      Log.w(TAG, "[sendAdminDelete] Could not create the admin delete job.");
     }
   }
 

@@ -441,6 +441,8 @@ class RestoreAttachmentJob private constructor(
             if (attachment.dataHash != null) {
               maybePostFailedToDownloadFromArchiveAndTransitNotification()
             }
+            markPermanentlyFailed(attachmentId)
+            return
           } else if (SignalStore.backup.backsUpMedia && attachment.remoteLocation.isNotNullOrBlank()) {
             Log.w(TAG, "[$attachmentId] Failed to download attachment from the archive CDN! Retrying download from transit CDN. hasPlaintextHash: ${attachment.dataHash != null}")
             if (attachment.dataHash != null) {
@@ -453,8 +455,12 @@ class RestoreAttachmentJob private constructor(
             if (attachment.dataHash != null) {
               maybePostFailedToDownloadFromArchiveAndTransitNotification()
             }
+            markPermanentlyFailed(attachmentId)
+            return
           } else if (attachment.remoteLocation.isNotNullOrBlank()) {
             Log.w(TAG, "[$attachmentId] Failed to restore an attachment for a free tier user. Likely just older than 45 days.")
+            markPermanentlyFailed(attachmentId)
+            return
           }
         }
         401 -> {
@@ -491,9 +497,9 @@ class RestoreAttachmentJob private constructor(
         SignalDatabase.attachments.clearIncrementalMacsForAttachmentAndAnyDuplicates(attachmentId, attachment.remoteKey, attachment.dataHash)
       }
       markFailed(attachmentId)
+    } finally {
+      attachmentFile.delete()
     }
-
-    attachmentFile.delete()
   }
 
   private fun markFailed(attachmentId: AttachmentId) {

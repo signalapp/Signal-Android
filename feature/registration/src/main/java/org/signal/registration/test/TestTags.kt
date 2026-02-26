@@ -41,4 +41,5 @@ object TestTags {
   const val VERIFICATION_CODE_WRONG_NUMBER_BUTTON = "verification_code_wrong_number_button"
   const val VERIFICATION_CODE_RESEND_SMS_BUTTON = "verification_code_resend_sms_button"
   const val VERIFICATION_CODE_CALL_ME_BUTTON = "verification_code_call_me_button"
+  const val VERIFICATION_CODE_HAVING_TROUBLE_BUTTON = "verification_code_having_trouble_button"
 }

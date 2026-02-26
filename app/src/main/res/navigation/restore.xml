@@ -28,6 +28,16 @@
         app:popUpTo="@id/restore"
         app:popUpToInclusive="true" />
 
+    <action
+        android:id="@+id/go_directly_to_restore_local_backup"
+        app:destination="@id/restore_local_backup_fragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/restore"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/selectRestoreMethod"
         android:name="org.thoughtcrime.securesms.restore.selection.SelectRestoreMethodFragment"

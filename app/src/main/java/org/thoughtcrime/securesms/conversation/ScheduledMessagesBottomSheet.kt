@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
-import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV1
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart.Attachments
@@ -93,7 +93,8 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
       return
     }
 
-    val colorizer = Colorizer()
+    @Suppress("DEPRECATION")
+    val colorizer = ColorizerV1()
 
     messageAdapter = ConversationAdapter(requireContext(), viewLifecycleOwner, Glide.with(this), Locale.getDefault(), ConversationAdapterListener(), conversationRecipient.hasWallpaper, colorizer).apply {
       setCondensedMode(ConversationItemDisplayMode.Condensed(ConversationItemDisplayMode.MessageMode.SCHEDULED))

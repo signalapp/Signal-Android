@@ -5,7 +5,6 @@ import android.media.MediaCodecInfo;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.os.Build;
-import android.os.Bundle;
 import android.view.Surface;
 
 import androidx.annotation.NonNull;
@@ -14,6 +13,8 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.video.interfaces.MediaInput;
 import org.thoughtcrime.securesms.video.interfaces.Muxer;
+import org.thoughtcrime.securesms.video.videoconverter.exceptions.CodecUnavailableException;
+import org.thoughtcrime.securesms.video.videoconverter.exceptions.HdrDecoderUnavailableException;
 import org.thoughtcrime.securesms.video.videoconverter.utils.Extensions;
 import org.thoughtcrime.securesms.video.videoconverter.utils.MediaCodecCompat;
 import org.thoughtcrime.securesms.video.videoconverter.utils.Preconditions;
@@ -21,8 +22,9 @@ import org.thoughtcrime.securesms.video.videoconverter.utils.Preconditions;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.concurrent.atomic.AtomicReference;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import kotlin.Pair;
 
 final class VideoTrackConverter {
@@ -40,7 +42,10 @@ final class VideoTrackConverter {
 
     private static final float FRAME_RATE_TOLERANCE = 0.05f; // tolerance for transcoding VFR -> CFR
 
-    private static final String VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY = "vendor.dolby.codec.transfer.value";
+    private boolean mIsHdrInput;
+    private boolean mToneMapApplied;
+    private String  mDecoderName;
+    private String  mEncoderName;
 
     private final long mTimeFrom;
     private final long mTimeTo;
@@ -49,9 +54,9 @@ final class VideoTrackConverter {
 
     private final MediaExtractor mVideoExtractor;
     private final MediaCodec mVideoDecoder;
-    private final MediaCodec mVideoEncoder;
+    private MediaCodec mVideoEncoder;
 
-    private final InputSurface mInputSurface;
+    private InputSurface mInputSurface;
     private final OutputSurface mOutputSurface;
 
     private final ByteBuffer[] mVideoDecoderInputBuffers;
@@ -81,7 +86,8 @@ final class VideoTrackConverter {
             final long timeTo,
             final int videoResolution,
             final int videoBitrate,
-            final @NonNull String videoCodec) throws IOException, TranscodingException {
+            final @NonNull String videoCodec,
+            final @NonNull Set<String> excludedDecoders) throws IOException, TranscodingException {
 
         final MediaExtractor videoExtractor = input.createExtractor();
         final int videoInputTrack = getAndSelectVideoTrackIndex(videoExtractor);
@@ -89,7 +95,7 @@ final class VideoTrackConverter {
             videoExtractor.release();
             return null;
         }
-        return new VideoTrackConverter(videoExtractor, videoInputTrack, timeFrom, timeTo, videoResolution, videoBitrate, videoCodec);
+        return new VideoTrackConverter(videoExtractor, videoInputTrack, timeFrom, timeTo, videoResolution, videoBitrate, videoCodec, excludedDecoders);
     }
 
 
@@ -100,19 +106,20 @@ final class VideoTrackConverter {
             final long timeTo,
             final int videoResolution,
             final int videoBitrate,
-            final @NonNull String videoCodec) throws IOException, TranscodingException {
+            final @NonNull String videoCodec,
+            final @NonNull Set<String> excludedDecoders) throws IOException, TranscodingException {
 
         mTimeFrom = timeFrom;
         mTimeTo = timeTo;
         mVideoExtractor = videoExtractor;
 
-        final MediaCodecInfo videoCodecInfo = MediaConverter.selectCodec(videoCodec);
-        if (videoCodecInfo == null) {
+        final List<MediaCodecInfo> videoCodecCandidates = MediaConverter.selectCodecs(videoCodec);
+        if (videoCodecCandidates.isEmpty()) {
             // Don't fail CTS if they don't have an AVC codec (not here, anyway).
             Log.e(TAG, "Unable to find an appropriate codec for " + videoCodec);
             throw new FileNotFoundException();
         }
-        if (VERBOSE) Log.d(TAG, "video found codec: " + videoCodecInfo.getName());
+        if (VERBOSE) Log.d(TAG, "video found codecs: " + videoCodecCandidates.size());
 
         final MediaFormat inputVideoFormat = mVideoExtractor.getTrackFormat(videoInputTrack);
 
@@ -161,20 +168,22 @@ final class VideoTrackConverter {
         outputVideoFormat.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, OUTPUT_VIDEO_IFRAME_INTERVAL);
         if (VERBOSE) Log.d(TAG, "video format: " + outputVideoFormat);
 
-        // Create a MediaCodec for the desired codec, then configure it as an encoder with
-        // our desired properties. Request a Surface to use for input.
-        final AtomicReference<Surface> inputSurfaceReference = new AtomicReference<>();
-        mVideoEncoder = createVideoEncoder(videoCodecInfo, outputVideoFormat, inputSurfaceReference);
-        mInputSurface = new InputSurface(inputSurfaceReference.get());
-        mInputSurface.makeCurrent();
-        // Create a MediaCodec for the decoder, based on the extractor's format.
-        mOutputSurface = new OutputSurface();
-
-        mOutputSurface.changeFragmentShader(createFragmentShader(
+        final String fragmentShader = createFragmentShader(
                 inputVideoFormat.getInteger(MediaFormat.KEY_WIDTH), inputVideoFormat.getInteger(MediaFormat.KEY_HEIGHT),
-                outputWidth, outputHeight));
+                outputWidth, outputHeight);
 
-        mVideoDecoder = createVideoDecoder(inputVideoFormat, mOutputSurface.getSurface());
+        // Create encoder, decoder, and surfaces. The encoder's start() is deferred
+        // until after the decoder is created, so that the decoder gets first access to
+        // hardware codec resources on memory-constrained devices. If start() fails
+        // (e.g. NO_MEMORY on a resource-constrained device), we try the next encoder
+        // candidate while keeping the same decoder and OutputSurface.
+        mVideoEncoder = createVideoEncoder(videoCodecCandidates, outputVideoFormat);
+        mInputSurface = new InputSurface(mVideoEncoder.createInputSurface());
+        mInputSurface.makeCurrent();
+        mOutputSurface = new OutputSurface();
+        mOutputSurface.changeFragmentShader(fragmentShader);
+        mVideoDecoder = createVideoDecoder(inputVideoFormat, mOutputSurface.getSurface(), excludedDecoders);
+        startEncoderWithFallback(videoCodecCandidates, outputVideoFormat);
 
         mVideoDecoderInputBuffers = mVideoDecoder.getInputBuffers();
         mVideoEncoderOutputBuffers = mVideoEncoder.getOutputBuffers();
@@ -426,6 +435,11 @@ final class VideoTrackConverter {
         Preconditions.checkState("decoded frame count should be less than extracted frame count", mVideoDecodedFrameCount <= mVideoExtractedFrameCount);
     }
 
+    boolean isHdrInput() { return mIsHdrInput; }
+    boolean isToneMapApplied() { return mToneMapApplied; }
+    String getDecoderName() { return mDecoderName; }
+    String getEncoderName() { return mEncoderName; }
+
     private static String createFragmentShader(
             final int srcWidth,
             final int srcHeight,
@@ -477,62 +491,163 @@ final class VideoTrackConverter {
     private @NonNull
     MediaCodec createVideoDecoder(
             final @NonNull MediaFormat inputFormat,
-            final @NonNull Surface surface) {
-        final Pair<MediaCodec, MediaFormat> decoderPair = MediaCodecCompat.findDecoder(inputFormat);
-        final MediaCodec                    decoder     = decoderPair.getFirst();
-
-        // For HDR video, request SDR tone-mapping from the decoder. Only do this for HDR content
-        // (PQ or HLG transfer), as some hardware decoders (e.g. Qualcomm HEVC) crash when this is
-        // set on non-HDR video.
-        final boolean isHdr = MediaCodecCompat.isHdrVideo(decoderPair.getSecond());
-        if (Build.VERSION.SDK_INT >= 31 && isHdr) {
-          decoderPair.getSecond().setInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST, MediaFormat.COLOR_TRANSFER_SDR_VIDEO);
-        }
-        decoder.configure(decoderPair.getSecond(), surface, null, 0);
-        decoder.start();
-        if (Build.VERSION.SDK_INT >= 31 && isHdr) {
-          try {
-            MediaCodec.ParameterDescriptor descriptor = decoder.getParameterDescriptor(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY);
-            if (descriptor != null) {
-              Bundle transferBundle = new Bundle();
-              transferBundle.putString(VENDOR_DOLBY_CODEC_TRANSFER_PARAMKEY, "transfer.sdr.normal");
-              decoder.setParameters(transferBundle);
+            final @NonNull Surface surface,
+            final @NonNull Set<String> excludedDecoders) throws IOException {
+        final boolean               isHdr              = MediaCodecCompat.isHdrVideo(inputFormat);
+        final boolean               requestToneMapping = Build.VERSION.SDK_INT >= 31 && isHdr;
+        final List<Pair<String, MediaFormat>> allCandidates = MediaCodecCompat.findDecoderCandidates(inputFormat);
+        final List<Pair<String, MediaFormat>> candidates    = new ArrayList<>();
+        for (Pair<String, MediaFormat> c : allCandidates) {
+            if (!excludedDecoders.contains(c.getFirst())) {
+                candidates.add(c);
             }
-          } catch (IllegalStateException e) {
-            Log.w(TAG, "Failed to set Dolby Vision transfer parameter", e);
-          }
         }
-        return decoder;
+
+        mIsHdrInput = isHdr;
+        Exception lastException = null;
+
+        for (int i = 0; i < candidates.size(); i++) {
+            final Pair<String, MediaFormat> candidate = candidates.get(i);
+            final String      codecName  = candidate.getFirst();
+            final MediaFormat baseFormat = candidate.getSecond();
+            MediaCodec decoder = null;
+
+            try {
+                decoder = MediaCodec.createByCodecName(codecName);
+
+                // For HDR video on API 31+, try requesting SDR tone-mapping.
+                // Some codecs reject this key, so we catch the error and retry without it.
+                if (requestToneMapping) {
+                    try {
+                        final MediaFormat toneMapFormat = new MediaFormat(baseFormat);
+                        toneMapFormat.setInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST, MediaFormat.COLOR_TRANSFER_SDR_VIDEO);
+                        decoder.configure(toneMapFormat, surface, null, 0);
+                        decoder.start();
+
+                        mToneMapApplied = isToneMapEffective(decoder, codecName);
+                        mDecoderName = codecName;
+                        if (i > 0) {
+                            Log.w(TAG, "Video decoder: succeeded with fallback codec " + codecName + " (attempt " + (i + 1) + " of " + candidates.size() + ")");
+                        }
+                        return decoder;
+                    } catch (IllegalArgumentException | IllegalStateException e) {
+                        Log.w(TAG, "Video decoder: codec " + codecName + " rejected tone-mapping request, retrying without (attempt " + (i + 1) + " of " + candidates.size() + ")", e);
+                        decoder.release();
+                        decoder = MediaCodec.createByCodecName(codecName);
+                    }
+                }
+
+                decoder.configure(baseFormat, surface, null, 0);
+                decoder.start();
+
+                mDecoderName = codecName;
+                if (i > 0 || requestToneMapping) {
+                    Log.w(TAG, "Video decoder: succeeded with codec " + codecName + (requestToneMapping ? " (no tone-mapping)" : "") + " (attempt " + (i + 1) + " of " + candidates.size() + ")");
+                }
+                return decoder;
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                Log.w(TAG, "Video decoder: codec " + codecName + " failed (attempt " + (i + 1) + " of " + candidates.size() + ")", e);
+                lastException = e;
+                if (decoder != null) {
+                    decoder.release();
+                }
+            } catch (IOException e) {
+                Log.w(TAG, "Video decoder: codec " + codecName + " failed to create (attempt " + (i + 1) + " of " + candidates.size() + ")", e);
+                lastException = e;
+            }
+        }
+
+        if (mIsHdrInput) {
+            throw new HdrDecoderUnavailableException("All video decoder codecs failed for HDR video", lastException);
+        }
+        throw new CodecUnavailableException("All video decoder codecs failed", lastException);
     }
 
+    /**
+     * Creates and configures a video encoder but does NOT start it. The caller must call
+     * {@link MediaCodec#createInputSurface()} (between configure and start) and then
+     * {@link MediaCodec#start()} after the decoder has been created.
+     */
     private @NonNull
     MediaCodec createVideoEncoder(
-            final @NonNull MediaCodecInfo codecInfo,
-            final @NonNull MediaFormat format,
-            final @NonNull AtomicReference<Surface> surfaceReference) throws IOException {
-        boolean tonemapRequested = isTonemapEnabled(format);
-        final MediaCodec encoder = MediaCodec.createByCodecName(codecInfo.getName());
-        encoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
-        if (tonemapRequested && !isTonemapEnabled(format)) {
-            Log.d(TAG, "HDR tone-mapping requested but not supported by the decoder.");
+            final @NonNull List<MediaCodecInfo> codecCandidates,
+            final @NonNull MediaFormat format) throws IOException {
+        Exception lastException = null;
+
+        for (int i = 0; i < codecCandidates.size(); i++) {
+            final MediaCodecInfo codecInfo = codecCandidates.get(i);
+            MediaCodec encoder = null;
+
+            try {
+                encoder = MediaCodec.createByCodecName(codecInfo.getName());
+                encoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
+                mEncoderName = codecInfo.getName();
+                if (i > 0) {
+                    Log.w(TAG, "Video encoder: succeeded with fallback codec " + codecInfo.getName() + " (attempt " + (i + 1) + " of " + codecCandidates.size() + ")");
+                }
+                return encoder;
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                Log.w(TAG, "Video encoder: codec " + codecInfo.getName() + " failed (attempt " + (i + 1) + " of " + codecCandidates.size() + ")", e);
+                lastException = e;
+                if (encoder != null) {
+                    encoder.release();
+                }
+            }
         }
-        // Must be called before start()
-        surfaceReference.set(encoder.createInputSurface());
-        encoder.start();
-        return encoder;
+
+        throw new CodecUnavailableException("All video encoder codecs failed", lastException);
     }
 
-    private static boolean isTonemapEnabled(@NonNull MediaFormat format) {
-        if (Build.VERSION.SDK_INT < 31) {
-            return false;
+    /**
+     * Attempts to start the current encoder ({@link #mVideoEncoder}). If start() fails,
+     * iterates through the remaining encoder candidates from {@code codecCandidates},
+     * replacing the encoder and its {@link InputSurface} on each attempt. The decoder
+     * and {@link OutputSurface} are independent of the encoder and remain unchanged.
+     */
+    private void startEncoderWithFallback(
+            final @NonNull List<MediaCodecInfo> codecCandidates,
+            final @NonNull MediaFormat format) throws IOException {
+        Exception lastException = null;
+
+        for (int i = 0; i < codecCandidates.size(); i++) {
+            final MediaCodecInfo codecInfo = codecCandidates.get(i);
+
+            if (i > 0) {
+                // Replace the encoder with the next candidate.
+                mVideoEncoder.release();
+                mInputSurface.release();
+
+                try {
+                    mVideoEncoder = MediaCodec.createByCodecName(codecInfo.getName());
+                    mVideoEncoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
+                    mInputSurface = new InputSurface(mVideoEncoder.createInputSurface());
+                    mInputSurface.makeCurrent();
+                    mEncoderName = codecInfo.getName();
+                } catch (IllegalArgumentException | IllegalStateException | TranscodingException e) {
+                    Log.w(TAG, "Video encoder: codec " + codecInfo.getName() + " failed to configure (attempt " + (i + 1) + " of " + codecCandidates.size() + ")", e);
+                    lastException = e;
+                    continue;
+                }
+            } else if (!codecInfo.getName().equals(mEncoderName)) {
+                // First iteration but createVideoEncoder selected a different codec
+                // (i.e. the first candidate failed to configure). Skip until we reach
+                // the one that was actually configured.
+                continue;
+            }
+
+            try {
+                mVideoEncoder.start();
+                if (i > 0) {
+                    Log.w(TAG, "Video encoder: succeeded with fallback codec " + codecInfo.getName() + " (attempt " + (i + 1) + " of " + codecCandidates.size() + ")");
+                }
+                return;
+            } catch (IllegalStateException e) {
+                Log.w(TAG, "Video encoder: codec " + codecInfo.getName() + " failed to start (attempt " + (i + 1) + " of " + codecCandidates.size() + ")", e);
+                lastException = e;
+            }
         }
-        try {
-            int request = format.getInteger(MediaFormat.KEY_COLOR_TRANSFER_REQUEST);
-            return request == MediaFormat.COLOR_TRANSFER_SDR_VIDEO;
-        } catch (NullPointerException npe) {
-            // transfer request key does not exist, tone mapping not requested
-            return false;
-        }
+
+        throw new CodecUnavailableException("All video encoder codecs failed to start", lastException);
     }
 
     private static int getAndSelectVideoTrackIndex(@NonNull MediaExtractor extractor) {
@@ -550,6 +665,38 @@ final class VideoTrackConverter {
 
     private static boolean isVideoFormat(final @NonNull MediaFormat format) {
         return MediaConverter.getMimeTypeFor(format).startsWith("video/");
+    }
+
+    /**
+     * Checks whether HDR-to-SDR tone-mapping is effective after the decoder has been configured
+     * and started with {@link MediaFormat#KEY_COLOR_TRANSFER_REQUEST}. Some codecs (especially
+     * software decoders and some hardware decoders) accept the tone-mapping key without error
+     * but don't actually perform the conversion.
+     */
+    private static boolean isToneMapEffective(final @NonNull MediaCodec decoder, final @NonNull String codecName) {
+        // Software codecs never perform HDR→SDR tone-mapping.
+        String lower = codecName.toLowerCase(java.util.Locale.ROOT);
+        if (lower.startsWith("omx.google.") || lower.startsWith("c2.android.")) {
+            Log.w(TAG, "Video decoder: software codec " + codecName + " cannot perform HDR tone-mapping");
+            return false;
+        }
+
+        // For hardware codecs, verify the output format. If the output transfer function
+        // is still HDR (ST2084 or HLG), the decoder accepted the request but isn't honoring it.
+        try {
+            MediaFormat outputFormat = decoder.getOutputFormat();
+            if (outputFormat.containsKey(MediaFormat.KEY_COLOR_TRANSFER)) {
+                int transfer = outputFormat.getInteger(MediaFormat.KEY_COLOR_TRANSFER);
+                if (transfer == MediaFormat.COLOR_TRANSFER_ST2084 || transfer == MediaFormat.COLOR_TRANSFER_HLG) {
+                    Log.w(TAG, "Video decoder: codec " + codecName + " accepted tone-mapping but output transfer is " + transfer + " (still HDR)");
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            Log.w(TAG, "Video decoder: could not verify tone-mapping for codec " + codecName, e);
+        }
+
+        return true;
     }
 
 }

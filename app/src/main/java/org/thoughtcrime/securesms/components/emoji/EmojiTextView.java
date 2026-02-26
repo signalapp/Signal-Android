@@ -264,6 +264,8 @@ public class EmojiTextView extends AppCompatTextView {
     previousOverflowText         = overflowText;
     useSystemEmoji               = useSystemEmoji();
     previousTransformationMethod = getTransformationMethod();
+    lastSizeChangedWidth         = -1;
+    lastSizeChangedHeight        = -1;
 
     // Android fails to ellipsize spannable strings. (https://issuetracker.google.com/issues/36991688)
     // We ellipsize them ourselves by manually truncating the appropriate section.
@@ -590,7 +592,7 @@ public class EmojiTextView extends AppCompatTextView {
     lastSizeChangedWidth  = w;
     lastSizeChangedHeight = h;
 
-    if (!sizeChangeInProgress) {
+    if (!sizeChangeInProgress && getMaxLines() > 0 && getMaxLines() < Integer.MAX_VALUE) {
       sizeChangeInProgress = true;
       resetText();
     }

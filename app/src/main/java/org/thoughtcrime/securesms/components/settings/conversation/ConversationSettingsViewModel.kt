@@ -362,6 +362,7 @@ sealed class ConversationSettingsViewModel(
 
         if (groupId.isV2) {
           loadMemberLabels(groupId.requireV2(), fullMembers)
+          loadCanSetMemberLabel(groupId.requireV2())
         }
 
         state.copy(
@@ -516,6 +517,17 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           specificSettingsState = state.requireGroupSettingsState().copy(
             memberLabelsByRecipientId = labelsByRecipientId
+          )
+        )
+      }
+    }
+
+    private fun loadCanSetMemberLabel(v2GroupId: GroupId.V2) = viewModelScope.launch(SignalDispatchers.IO) {
+      val canSetLabel = MemberLabelRepository.instance.canSetLabel(v2GroupId, Recipient.self())
+      store.update {
+        it.copy(
+          specificSettingsState = it.requireGroupSettingsState().copy(
+            canSetOwnMemberLabel = canSetLabel
           )
         )
       }

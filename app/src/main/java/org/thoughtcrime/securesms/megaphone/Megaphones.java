@@ -131,7 +131,7 @@ public final class Megaphones {
       put(Event.PNP_LAUNCH, shouldShowPnpLaunchMegaphone() ? ALWAYS : NEVER);
       put(Event.TURN_ON_SIGNAL_BACKUPS, shouldShowTurnOnBackupsMegaphone(context) ? new RecurringSchedule(TimeUnit.DAYS.toMillis(30), TimeUnit.DAYS.toMillis(90)) : NEVER);
       put(Event.VERIFY_BACKUP_KEY, new VerifyBackupKeyReminderSchedule());
-      put(Event.USE_NEW_ON_DEVICE_BACKUPS, shouldShowUseNewOnDeviceBackupsMegaphone() ? ALWAYS : NEVER);
+      put(Event.USE_NEW_ON_DEVICE_BACKUPS, shouldShowUseNewOnDeviceBackupsMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(14)) : NEVER);
     }};
   }
 
@@ -596,7 +596,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowUseNewOnDeviceBackupsMegaphone() {
-    return RemoteConfig.unifiedLocalBackups() && SignalStore.settings().isBackupEnabled();
+    return Environment.Backups.isNewFormatSupportedForLocalBackup() && SignalStore.settings().isBackupEnabled();
   }
 
   private static boolean shouldShowGrantFullScreenIntentPermission(@NonNull Context context) {

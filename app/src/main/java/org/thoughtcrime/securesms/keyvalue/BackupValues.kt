@@ -103,6 +103,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_NEW_LOCAL_BACKUPS_ENABLED = "backup.new_local_backups_enabled"
     private const val KEY_NEW_LOCAL_BACKUPS_DIRECTORY = "backup.new_local_backups_directory"
     private const val KEY_NEW_LOCAL_BACKUPS_LAST_BACKUP_TIME = "backup.new_local_backups_last_backup_time"
+    private const val KEY_NEW_LOCAL_BACKUPS_SELECTED_SNAPSHOT_TIMESTAMP = "backup.new_local_backups_selected_snapshot_timestamp"
 
     private const val KEY_UPLOAD_BANNER_VISIBLE = "backup.upload_banner_visible"
 
@@ -485,6 +486,11 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   private val newLocalBackupsLastBackupTimeValue = longValue(KEY_NEW_LOCAL_BACKUPS_LAST_BACKUP_TIME, -1)
   var newLocalBackupsLastBackupTime: Long by newLocalBackupsLastBackupTimeValue
   val newLocalBackupsLastBackupTimeFlow: Flow<Long> by lazy { newLocalBackupsLastBackupTimeValue.toFlow() }
+
+  /**
+   * The snapshot timestamp selected for restore. Set before launching restore, cleared after completion.
+   */
+  var newLocalBackupsSelectedSnapshotTimestamp: Long by longValue(KEY_NEW_LOCAL_BACKUPS_SELECTED_SNAPSHOT_TIMESTAMP, -1L)
 
   /**
    * When we are told by the server that we are out of storage space, we should show

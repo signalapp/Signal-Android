@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,13 +22,24 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.thoughtcrime.securesms.components.emoji.Emojifier
 
-private val defaultModifier = Modifier.padding(horizontal = 12.dp, vertical = 2.dp)
-private val defaultTextStyle: @Composable () -> TextStyle = { MaterialTheme.typography.bodyLarge }
+object MemberLabelPill {
+  @get:Composable
+  val textStyleCompact: TextStyle
+    get() = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Normal)
+
+  @get:Composable
+  val textStyleNormal: TextStyle
+    get() = MaterialTheme.typography.bodyLarge
+}
+
+private val defaultModifier = Modifier.padding(horizontal = 12.dp, vertical = 5.dp)
 
 /**
  * Displays member label text with an optional emoji.
@@ -38,7 +50,7 @@ fun MemberLabelPill(
   text: String,
   tintColor: Color,
   modifier: Modifier = defaultModifier,
-  textStyle: TextStyle = defaultTextStyle()
+  textStyle: TextStyle = MemberLabelPill.textStyleCompact
 ) {
   val isDark = isSystemInDarkTheme()
   val backgroundColor = tintColor.copy(alpha = if (isDark) 0.32f else 0.10f)
@@ -69,7 +81,7 @@ fun MemberLabelPill(
   textColor: Color,
   backgroundColor: Color,
   modifier: Modifier = defaultModifier,
-  textStyle: TextStyle = defaultTextStyle()
+  textStyle: TextStyle = MemberLabelPill.textStyleCompact
 ) {
   val shape = RoundedCornerShape(percent = 50)
 
@@ -83,22 +95,28 @@ fun MemberLabelPill(
       .then(modifier),
     verticalAlignment = Alignment.CenterVertically
   ) {
-    if (!emoji.isNullOrEmpty()) {
-      Text(
-        text = emoji,
-        style = textStyle,
-        modifier = Modifier.padding(end = 5.dp)
-      )
-    }
+    ProvideTextStyle(textStyle) {
+      if (!emoji.isNullOrEmpty()) {
+        Emojifier(text = emoji) { annotatedText, inlineContent ->
+          Text(
+            text = annotatedText,
+            inlineContent = inlineContent,
+            modifier = if (text.isNotEmpty()) Modifier.padding(end = 4.dp) else Modifier
+          )
+        }
+      }
 
-    if (text.isNotEmpty()) {
-      Text(
-        text = text,
-        color = textColor,
-        style = textStyle,
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis
-      )
+      if (text.isNotEmpty()) {
+        Emojifier(text = text) { annotatedText, inlineContent ->
+          Text(
+            text = annotatedText,
+            inlineContent = inlineContent,
+            color = textColor,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+          )
+        }
+      }
     }
   }
 }

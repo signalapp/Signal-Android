@@ -188,7 +188,6 @@ object FakeMessageRecords {
       linkPreviews,
       unidentified,
       reactions,
-      remoteDelete,
       mentionsSelf,
       notifiedTimestamp,
       viewed,
@@ -206,6 +205,7 @@ object FakeMessageRecords {
       0,
       false,
       0,
+      null,
       null
     )
   }

@@ -500,6 +500,7 @@ message ChatItem {
     ViewOnceMessage viewOnceMessage = 18;
     DirectStoryReplyMessage directStoryReplyMessage = 19; // group story reply messages are not backed up
     Poll poll = 20;
+    AdminDeletedMessage adminDeletedMessage = 22;
   }
 
   PinDetails pinDetails = 21; // only set if message is pinned
@@ -898,6 +899,10 @@ message Poll {
   repeated PollOption options = 3; // At least two
   bool hasEnded = 4;
   repeated Reaction reactions = 5;
+}
+
+message AdminDeletedMessage {
+  uint64 adminId = 1; // id of the admin that deleted the message
 }
 
 message ChatUpdateMessage {

@@ -13,8 +13,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.signal.benchmark.setup.Generator
 import org.signal.benchmark.setup.Harness
+import org.signal.benchmark.setup.OtherClient
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.TestDbUtils
+import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.websocket.BenchmarkWebSocketConnection
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
@@ -45,6 +50,8 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
     when (command) {
       "individual-send" -> handlePrepareIndividualSend()
       "group-send" -> handlePrepareGroupSend()
+      "group-delivery-receipt" -> handlePrepareGroupReceipts { client, timestamps -> client.generateInboundDeliveryReceipts(timestamps) }
+      "group-read-receipt" -> handlePrepareGroupReceipts { client, timestamps -> client.generateInboundReadReceipts(timestamps) }
       "release-messages" -> {
         BenchmarkWebSocketConnection.authInstance.startWholeBatchTrace = true
         BenchmarkWebSocketConnection.authInstance.releaseMessages()
@@ -111,6 +118,62 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
       BenchmarkWebSocketConnection.authInstance.addPendingMessages(messages)
     }
     BenchmarkWebSocketConnection.authInstance.addQueueEmptyMessage()
+  }
+
+  private fun handlePrepareGroupReceipts(generateReceipts: (OtherClient, List<Long>) -> List<Envelope>) {
+    val clients = Harness.otherClients.take(5)
+
+    establishGroupSessions(clients)
+
+    val timestamps = getOutgoingGroupMessageTimestamps()
+    Log.i(TAG, "Found ${timestamps.size} outgoing message timestamps for receipts")
+
+    val allClientEnvelopes = clients.map { client ->
+      generateReceipts(client, timestamps).map { it.toWebSocketPayload() }
+    }
+
+    BenchmarkWebSocketConnection.authInstance.addPendingMessages(interleave(allClientEnvelopes))
+    BenchmarkWebSocketConnection.authInstance.addQueueEmptyMessage()
+  }
+
+  private fun establishGroupSessions(clients: List<OtherClient>) {
+    val encryptedEnvelopes = clients.map { it.encrypt(Generator.encryptedTextMessage(System.currentTimeMillis(), groupMasterKey = Harness.groupMasterKey)) }
+
+    runBlocking {
+      launch(Dispatchers.IO) {
+        BenchmarkWebSocketConnection.authInstance.run {
+          Log.i(TAG, "Sending initial group messages from clients to establish sessions.")
+          addPendingMessages(encryptedEnvelopes.map { it.toWebSocketPayload() })
+          releaseMessages()
+          ThreadUtil.sleep(1000)
+        }
+      }
+    }
+  }
+
+  private fun getOutgoingGroupMessageTimestamps(): List<Long> {
+    val groupId = GroupId.v2(Harness.groupMasterKey)
+    val groupRecipient = Recipient.externalGroupExact(groupId)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
+    val selfId = Recipient.self().id.toLong()
+    return TestDbUtils.getOutgoingMessageTimestamps(threadId, selfId)
+  }
+
+  /**
+   * Interleaves lists so that items from different lists alternate:
+   * [[a1, a2], [b1, b2], [c1, c2]] -> [a1, b1, c1, a2, b2, c2]
+   */
+  private fun <T> interleave(lists: List<List<T>>): List<T> {
+    val result = mutableListOf<T>()
+    val maxSize = lists.maxOf { it.size }
+    for (i in 0 until maxSize) {
+      for (list in lists) {
+        if (i < list.size) {
+          result += list[i]
+        }
+      }
+    }
+    return result
   }
 
   private fun Envelope.toWebSocketPayload(): WebSocketRequestMessage {

@@ -349,6 +349,11 @@ message DataMessage {
     optional uint64 targetSentTimestamp = 2;
   }
 
+  message AdminDelete {
+    optional bytes targetAuthorAciBinary = 1; // 16-byte UUID
+    optional uint64 targetSentTimestamp = 2;
+  }
+
   optional string body = 1;
   repeated AttachmentPointer attachments = 2;
   reserved /*groupV1*/ 3;
@@ -376,7 +381,8 @@ message DataMessage {
   optional PollVote pollVote = 26;
   optional PinMessage pinMessage = 27;
   optional UnpinMessage unpinMessage = 28;
-  // NEXT ID: 29
+  optional AdminDelete adminDelete = 29;
+  // NEXT ID: 30
 }
 
 message NullMessage {

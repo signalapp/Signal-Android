@@ -51,6 +51,7 @@ public class ConversationMessage {
   @NonNull  private final ComputedProperties     computedProperties;
   @Nullable private final MemberLabel            memberLabel;
   @Nullable private final MemberLabel            quoteMemberLabel;
+  @Nullable private final Recipient              deletedByRecipient;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord,
                               @Nullable CharSequence body,
@@ -61,7 +62,8 @@ public class ConversationMessage {
                               @Nullable MessageRecord originalMessage,
                               @NonNull ComputedProperties computedProperties,
                               @Nullable MemberLabel memberLabel,
-                              @Nullable MemberLabel quoteMemberLabel)
+                              @Nullable MemberLabel quoteMemberLabel,
+                              @Nullable Recipient deletedByRecipient)
   {
     this.messageRecord      = messageRecord;
     this.hasBeenQuoted      = hasBeenQuoted;
@@ -72,6 +74,7 @@ public class ConversationMessage {
     this.computedProperties = computedProperties;
     this.memberLabel        = memberLabel;
     this.quoteMemberLabel   = quoteMemberLabel;
+    this.deletedByRecipient = deletedByRecipient;
 
     if (body != null) {
       this.body = SpannableString.valueOf(body);
@@ -114,6 +117,10 @@ public class ConversationMessage {
 
   public @Nullable MemberLabel getQuoteMemberLabel() {
     return quoteMemberLabel;
+  }
+
+  public @Nullable Recipient getDeletedByRecipient() {
+    return deletedByRecipient;
   }
 
   @Override
@@ -252,6 +259,7 @@ public class ConversationMessage {
       FormattedDate formattedDate    = getFormattedDate(context, messageRecord);
       MemberLabel   memberLabel      = getMemberLabel(messageRecord, threadRecipient);
       MemberLabel   quoteMemberLabel = getQuoteMemberLabel(messageRecord, threadRecipient);
+      Recipient     deletedBy        = messageRecord.getDeletedBy() != null ? Recipient.resolved(messageRecord.getDeletedBy()) : null;
 
       return new ConversationMessage(messageRecord,
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
@@ -262,7 +270,8 @@ public class ConversationMessage {
                                      originalMessage,
                                      new ComputedProperties(formattedDate),
                                      memberLabel,
-                                     quoteMemberLabel);
+                                     quoteMemberLabel,
+                                     deletedBy);
     }
 
     /**

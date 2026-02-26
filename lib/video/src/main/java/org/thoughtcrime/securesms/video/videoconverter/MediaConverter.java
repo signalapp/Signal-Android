@@ -20,6 +20,7 @@ package org.thoughtcrime.securesms.video.videoconverter;
 
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
+import android.media.MediaExtractor;
 import android.media.MediaFormat;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ import org.thoughtcrime.securesms.video.interfaces.MediaInput;
 import org.thoughtcrime.securesms.video.interfaces.Muxer;
 import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.muxer.StreamingMuxer;
+import org.thoughtcrime.securesms.video.videoconverter.utils.MediaCodecCompat;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -41,6 +43,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @SuppressWarnings("WeakerAccess")
 public final class MediaConverter {
@@ -143,6 +149,56 @@ public final class MediaConverter {
      */
     @WorkerThread
     public long convert() throws EncodingException, IOException {
+        final Set<String> excludedDecoders = new HashSet<>();
+
+        while (true) {
+            mCancelled = false;
+            try {
+                return doConvert(excludedDecoders);
+            } catch (EncodingException e) {
+                if (e.decoderName != null
+                        && isRetryableMidStreamFailure(e)
+                        && excludedDecoders.add(e.decoderName)) {
+                    Log.w(TAG, "Mid-stream codec failure with decoder " + e.decoderName
+                            + ", retrying with it excluded (" + excludedDecoders.size()
+                            + " decoder(s) excluded)");
+                    continue;
+                }
+                throw e;
+            }
+        }
+    }
+
+    /**
+     * Checks whether the given {@link EncodingException} represents a mid-stream codec failure
+     * that may succeed with a different decoder. This covers:
+     * <ul>
+     *     <li>{@link IllegalStateException} from {@link android.media.MediaCodec} native methods
+     *         (hardware codec crash during encoding/decoding)</li>
+     *     <li>Frame count mismatches from {@link VideoTrackConverter#verifyEndState()} (unusual
+     *         video formats like spatial video that some decoders handle differently)</li>
+     * </ul>
+     */
+    private static boolean isRetryableMidStreamFailure(final @NonNull EncodingException e) {
+        Throwable cause = e.getCause();
+        while (cause != null) {
+            if (cause instanceof IllegalStateException) {
+                for (StackTraceElement frame : cause.getStackTrace()) {
+                    if ("android.media.MediaCodec".equals(frame.getClassName())) {
+                        return true;
+                    }
+                }
+                String message = cause.getMessage();
+                if (message != null && message.contains("frame counts should match")) {
+                    return true;
+                }
+            }
+            cause = cause.getCause();
+        }
+        return false;
+    }
+
+    private long doConvert(final @NonNull Set<String> excludedDecoders) throws EncodingException, IOException {
         // Exception that may be thrown during release.
         Exception           exception           = null;
         Muxer               muxer               = null;
@@ -156,7 +212,7 @@ public final class MediaConverter {
         try {
             muxer = mOutput.createMuxer();
 
-            videoTrackConverter = VideoTrackConverter.create(mInput, mTimeFrom, mTimeTo, mVideoResolution, mVideoBitrate, mVideoCodec);
+            videoTrackConverter = VideoTrackConverter.create(mInput, mTimeFrom, mTimeTo, mVideoResolution, mVideoBitrate, mVideoCodec, excludedDecoders);
             audioTrackConverter = AudioTrackConverter.create(mInput, mTimeFrom, mTimeTo, mAudioBitrate, mAllowAudioRemux && muxer.supportsAudioRemux());
 
             if (videoTrackConverter == null && audioTrackConverter == null) {
@@ -222,7 +278,33 @@ public final class MediaConverter {
             }
         }
         if (exception != null) {
-            throw new EncodingException("Transcode failed", exception);
+            EncodingException encodingException = new EncodingException("Transcode failed", exception);
+            if (videoTrackConverter != null) {
+                encodingException.isHdrInput     = videoTrackConverter.isHdrInput();
+                encodingException.toneMapApplied = videoTrackConverter.isToneMapApplied();
+                encodingException.decoderName    = videoTrackConverter.getDecoderName();
+                encodingException.encoderName    = videoTrackConverter.getEncoderName();
+            } else {
+                // VideoTrackConverter failed during creation. Try to determine HDR
+                // status independently so the caller can classify the failure.
+                try {
+                    final MediaExtractor extractor = mInput.createExtractor();
+                    try {
+                        for (int i = 0; i < extractor.getTrackCount(); i++) {
+                            final MediaFormat format = extractor.getTrackFormat(i);
+                            if (getMimeTypeFor(format).startsWith("video/")) {
+                                encodingException.isHdrInput = MediaCodecCompat.isHdrVideo(format);
+                                break;
+                            }
+                        }
+                    } finally {
+                        extractor.release();
+                    }
+                } catch (Exception e) {
+                    Log.w(TAG, "Could not determine HDR status for failed transcode", e);
+                }
+            }
+            throw encodingException;
         }
 
         return mdatContentLength;
@@ -325,22 +407,38 @@ public final class MediaConverter {
      * found.
      */
     static MediaCodecInfo selectCodec(final String mimeType) {
-        final int numCodecs = MediaCodecList.getCodecCount();
-        for (int i = 0; i < numCodecs; i++) {
-            final MediaCodecInfo codecInfo = MediaCodecList.getCodecInfoAt(i);
+        final List<MediaCodecInfo> codecs = selectCodecs(mimeType);
+        return codecs.isEmpty() ? null : codecs.get(0);
+    }
 
-            if (!codecInfo.isEncoder()) {
-                continue;
-            }
+    /**
+     * Returns all codecs capable of encoding the specified MIME type, ordered with hardware-preferred
+     * codecs ({@link MediaCodecList#REGULAR_CODECS}) first, then additional codecs from
+     * {@link MediaCodecList#ALL_CODECS} (includes software), deduplicated by name.
+     */
+    static List<MediaCodecInfo> selectCodecs(final String mimeType) {
+        final List<MediaCodecInfo> candidates = new ArrayList<>();
+        final Set<String> seen = new HashSet<>();
 
-            final String[] types = codecInfo.getSupportedTypes();
-            for (String type : types) {
-                if (type.equalsIgnoreCase(mimeType)) {
-                    return codecInfo;
+        for (MediaCodecInfo codecInfo : new MediaCodecList(MediaCodecList.REGULAR_CODECS).getCodecInfos()) {
+            if (!codecInfo.isEncoder()) continue;
+            for (String type : codecInfo.getSupportedTypes()) {
+                if (type.equalsIgnoreCase(mimeType) && seen.add(codecInfo.getName())) {
+                    candidates.add(codecInfo);
                 }
             }
         }
-        return null;
+
+        for (MediaCodecInfo codecInfo : new MediaCodecList(MediaCodecList.ALL_CODECS).getCodecInfos()) {
+            if (!codecInfo.isEncoder()) continue;
+            for (String type : codecInfo.getSupportedTypes()) {
+                if (type.equalsIgnoreCase(mimeType) && seen.add(codecInfo.getName())) {
+                    candidates.add(codecInfo);
+                }
+            }
+        }
+
+        return candidates;
     }
 
     interface Output {

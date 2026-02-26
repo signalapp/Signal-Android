@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.io.IOException
 import java.util.Calendar
+import java.util.LinkedList
 
 /**
  * Methods for discovering which users are registered and marking them as such in the database.
@@ -208,7 +209,7 @@ object ContactDiscovery {
     if (!SignalStore.settings.isNotifyWhenContactJoinsSignal) return
 
     Recipient.resolvedList(newUserIds)
-      .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) && it.hasE164 && !it.isBlocked }
+      .filter { !it.isSelf && !it.isHidden && it.hasAUserSetDisplayName(context) && !hasSession(it.id) && it.hasE164 && !it.isBlocked }
       .map {
         Log.i(TAG, "Inserting 'contact joined' message for ${it.id}. E164: ${it.e164}")
         val message = IncomingMessage.contactJoined(it.id, System.currentTimeMillis())
@@ -240,7 +241,8 @@ object ContactDiscovery {
     clearInfoForMissingContacts: Boolean
   ) {
     val localNumber: String = SignalStore.account.e164 ?: ""
-    val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts)
+
+    val contactInfos = LinkedList<ContactInfo>()
     try {
       contactsProvider().use { iterator ->
         while (iterator.hasNext()) {
@@ -262,22 +264,42 @@ object ContactDiscovery {
 
             val recipient: Recipient = Recipient.externalContact(realNumber) ?: continue
 
-            handle.setSystemContactInfo(
-              recipient.id,
-              profileName,
-              phoneDetails.displayName,
-              phoneDetails.photoUri,
-              phoneDetails.label,
-              phoneDetails.type,
-              phoneDetails.contactUri.toString()
+            contactInfos.add(
+              ContactInfo(
+                recipientId = recipient.id,
+                profileName = profileName,
+                displayName = phoneDetails.displayName,
+                photoUri = phoneDetails.photoUri,
+                label = phoneDetails.label,
+                type = phoneDetails.type,
+                contactUri = phoneDetails.contactUri.toString()
+              )
             )
           }
         }
       }
     } catch (e: IllegalStateException) {
       Log.w(TAG, "Hit an issue with the cursor while reading!", e)
-    } finally {
-      handle.finish()
+    }
+
+    if (contactInfos.isNotEmpty()) {
+      val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts)
+      try {
+        for (contactInfo in contactInfos) {
+          handle.setSystemContactInfo(
+            id = contactInfo.recipientId,
+            systemProfileName = contactInfo.profileName,
+            systemDisplayName = contactInfo.displayName,
+            photoUri = contactInfo.photoUri,
+            systemPhoneLabel = contactInfo.label,
+            systemPhoneType = contactInfo.type,
+            systemContactUri = contactInfo.contactUri
+          )
+        }
+        contactInfos.clear()
+      } finally {
+        handle.finish()
+      }
     }
 
     if (NotificationChannels.supported()) {
@@ -317,5 +339,15 @@ object ContactDiscovery {
     val recipientId: RecipientId,
     val pni: ServiceId.PNI,
     val aci: ServiceId.ACI?
+  )
+
+  private class ContactInfo(
+    val recipientId: RecipientId,
+    val profileName: ProfileName,
+    val displayName: String?,
+    val photoUri: String?,
+    val label: String?,
+    val type: Int,
+    val contactUri: String
   )
 }

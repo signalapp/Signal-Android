@@ -214,6 +214,10 @@ object ExportOddities {
     return log(0, "Distribution list had self as a member. Removing it.")
   }
 
+  fun quoteAuthorNotFound(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Quote author was not found in the exported recipients. Removing the quote.")
+  }
+
   fun emptyQuote(sentTimestamp: Long): String {
     return log(sentTimestamp, "Quote had no text or attachments. Removing it.")
   }
@@ -281,6 +285,10 @@ object ImportSkips {
 
   fun missingChatRecipient(chatId: Long): String {
     return log(0, "Missing recipient for chat $chatId")
+  }
+
+  fun missingAdminDeleteRecipient(sentTimestamp: Long, chatId: Long): String {
+    return log(sentTimestamp, "Missing admin delete recipient for chat $chatId")
   }
 
   private fun log(sentTimestamp: Long, message: String): String {

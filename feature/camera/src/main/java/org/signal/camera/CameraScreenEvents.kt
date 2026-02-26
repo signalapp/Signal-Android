@@ -8,12 +8,14 @@ import androidx.lifecycle.LifecycleOwner
 
 sealed interface CameraScreenEvents {
 
-  /** Binds a camera to a sruface provider. */
+  /** Binds a camera to a surface provider. */
   data class BindCamera(
     val lifecycleOwner: LifecycleOwner,
     val cameraProvider: ProcessCameraProvider,
     val surfaceProvider: Preview.SurfaceProvider,
-    val context: Context
+    val context: Context,
+    val enableVideoCapture: Boolean = true,
+    val enableQrScanning: Boolean = false
   ) : CameraScreenEvents
 
   /** Focuses the camera on a point. */
@@ -29,8 +31,8 @@ sealed interface CameraScreenEvents {
   /** Zoom that happens when you pinch your fingers. */
   data class PinchZoom(val zoomFactor: Float) : CameraScreenEvents
 
-  /** Zoom that happens when you move your finger up and down during recording. */
-  data class LinearZoom(@param:FloatRange(from = 0.0, to = 1.0) val linearZoom: Float) : CameraScreenEvents
+  /** Zoom that happens when you move your finger up and down during recording. Positive values zoom in, negative values zoom out. */
+  data class LinearZoom(@param:FloatRange(from = -1.0, to = 1.0) val linearZoom: Float) : CameraScreenEvents
 
   /** Switches between available cameras (i.e. front and rear cameras). */
   data class SwitchCamera(val context: Context) : CameraScreenEvents

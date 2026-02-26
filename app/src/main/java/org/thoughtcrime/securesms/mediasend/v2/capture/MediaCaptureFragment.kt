@@ -161,7 +161,9 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
 
   override fun onVideoCaptureError() {
     Log.w(TAG, "Video capture error.")
-    Toast.makeText(requireContext(), R.string.MediaSendActivity_camera_unavailable, Toast.LENGTH_SHORT).show()
+    context?.let { context ->
+      Toast.makeText(context, R.string.MediaSendActivity_camera_unavailable, Toast.LENGTH_SHORT).show()
+    }
   }
 
   override fun onGalleryClicked() {

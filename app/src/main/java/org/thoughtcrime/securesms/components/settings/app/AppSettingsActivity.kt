@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.DynamicTheme
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -52,7 +52,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
       when (val appSettingsRoute: AppSettingsRoute? = intent?.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)) {
         AppSettingsRoute.Empty -> null
         is AppSettingsRoute.BackupsRoute.Local -> {
-          if (SignalStore.backup.newLocalBackupsEnabled || RemoteConfig.unifiedLocalBackups && (!SignalStore.settings.isBackupEnabled || appSettingsRoute.triggerUpdateFlow)) {
+          if (SignalStore.backup.newLocalBackupsEnabled || (Environment.Backups.isNewFormatSupportedForLocalBackup() && (!SignalStore.settings.isBackupEnabled || appSettingsRoute.triggerUpdateFlow))) {
             AppSettingsFragmentDirections.actionDirectToLocalBackupsFragment()
               .setTriggerUpdateFlow(appSettingsRoute.triggerUpdateFlow)
           } else {

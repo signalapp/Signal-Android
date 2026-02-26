@@ -243,12 +243,7 @@ public final class LiveGroup {
   }
 
   private static boolean applyAccessControl(@NonNull GroupTable.MemberLevel memberLevel, @NonNull GroupAccessControl rights) {
-    switch (rights) {
-      case ALL_MEMBERS: return memberLevel.isInGroup();
-      case ONLY_ADMINS: return memberLevel == GroupTable.MemberLevel.ADMINISTRATOR;
-      case NO_ONE     : return false;
-      default:          throw new AssertionError();
-    }
+    return rights.allows(memberLevel);
   }
 
   public LiveData<GroupLinkUrlAndStatus> getGroupLink() {

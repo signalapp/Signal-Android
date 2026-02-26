@@ -84,7 +84,8 @@ sealed class SpecificSettingsState {
     val membershipCountDescription: String = "",
     val legacyGroupState: LegacyGroupPreference.State = LegacyGroupPreference.State.NONE,
     val isAnnouncementGroup: Boolean = false,
-    val memberLabelsByRecipientId: Map<RecipientId, MemberLabel> = emptyMap()
+    val memberLabelsByRecipientId: Map<RecipientId, MemberLabel> = emptyMap(),
+    val canSetOwnMemberLabel: Boolean = false
   ) : SpecificSettingsState() {
 
     override val isLoaded: Boolean = groupTitleLoaded && groupDescriptionLoaded

@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.video;
 
 import android.media.MediaDataSource;
+import android.media.MediaExtractor;
+import android.media.MediaFormat;
 import android.media.MediaMetadataRetriever;
 
 import androidx.annotation.NonNull;
@@ -74,9 +76,9 @@ public final class StreamingTranscoder {
     this.targetQuality  = TranscodingQuality.createFromPreset(preset, duration);
     this.upperSizeLimit = upperSizeLimit;
 
-    this.transcodeRequired = inputBitRate >= targetQuality.getTargetTotalBitRate() * 1.2 || inSize > upperSizeLimit || containsLocation(mediaMetadataRetriever) || options != null;
+    this.transcodeRequired = inputBitRate >= targetQuality.getTargetTotalBitRate() * 1.2 || inSize > upperSizeLimit || containsLocation(mediaMetadataRetriever) || options != null || !isH264(dataSource);
     if (!transcodeRequired) {
-      Log.i(TAG, "Video is within 20% of target bitrate, below the size limit, contained no location metadata or custom options.");
+      Log.i(TAG, "Video is within 20% of target bitrate, below the size limit, contained no location metadata or custom options, and is already H.264.");
     }
 
     this.fileSizeEstimate   = targetQuality.getByteCountEstimate();
@@ -247,6 +249,26 @@ public final class StreamingTranscoder {
   private static boolean containsLocation(MediaMetadataRetriever mediaMetadataRetriever) {
     String locationString = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_LOCATION);
     return locationString != null;
+  }
+
+  private static boolean isH264(@NonNull MediaDataSource dataSource) {
+    MediaExtractor extractor = new MediaExtractor();
+    try {
+      extractor.setDataSource(dataSource);
+      for (int i = 0; i < extractor.getTrackCount(); i++) {
+        MediaFormat format = extractor.getTrackFormat(i);
+        String mime = format.getString(MediaFormat.KEY_MIME);
+        if (mime != null && mime.startsWith("video/")) {
+          return MediaConverter.VIDEO_CODEC_H264.equals(mime);
+        }
+      }
+      return false;
+    } catch (IOException e) {
+      Log.w(TAG, "Unable to check video codec", e);
+      return false;
+    } finally {
+      extractor.release();
+    }
   }
 
   public interface Progress {

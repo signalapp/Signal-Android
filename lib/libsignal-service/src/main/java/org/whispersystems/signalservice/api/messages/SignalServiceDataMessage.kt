@@ -55,7 +55,8 @@ class SignalServiceDataMessage private constructor(
   val pollVote: Optional<PollVote>,
   val pollTerminate: Optional<PollTerminate>,
   val pinnedMessage: Optional<PinnedMessage>,
-  val unpinnedMessage: Optional<UnpinnedMessage>
+  val unpinnedMessage: Optional<UnpinnedMessage>,
+  val adminDelete: Optional<AdminDelete>
 ) {
   val isActivatePaymentsRequest: Boolean = payment.map { it.isActivationRequest }.orElse(false)
   val isPaymentsActivated: Boolean = payment.map { it.isActivation }.orElse(false)
@@ -112,6 +113,7 @@ class SignalServiceDataMessage private constructor(
     private var pollTerminate: PollTerminate? = null
     private var pinnedMessage: PinnedMessage? = null
     private var unpinnedMessage: UnpinnedMessage? = null
+    private var adminDelete: AdminDelete? = null
 
     fun withTimestamp(timestamp: Long): Builder {
       this.timestamp = timestamp
@@ -260,6 +262,11 @@ class SignalServiceDataMessage private constructor(
       return this
     }
 
+    fun withAdminDelete(adminDelete: AdminDelete?): Builder {
+      this.adminDelete = adminDelete
+      return this
+    }
+
     fun build(): SignalServiceDataMessage {
       if (timestamp == 0L) {
         timestamp = System.currentTimeMillis()
@@ -293,7 +300,8 @@ class SignalServiceDataMessage private constructor(
         pollVote = pollVote.asOptional(),
         pollTerminate = pollTerminate.asOptional(),
         pinnedMessage = pinnedMessage.asOptional(),
-        unpinnedMessage = unpinnedMessage.asOptional()
+        unpinnedMessage = unpinnedMessage.asOptional(),
+        adminDelete = adminDelete.asOptional()
       )
     }
   }
@@ -342,6 +350,7 @@ class SignalServiceDataMessage private constructor(
   data class PollTerminate(val targetSentTimestamp: Long)
   data class PinnedMessage(val targetAuthor: ServiceId, val targetSentTimestamp: Long, val pinDurationInSeconds: Int?, val forever: Boolean?)
   data class UnpinnedMessage(val targetAuthor: ServiceId, val targetSentTimestamp: Long)
+  data class AdminDelete(val targetAuthor: ServiceId, val targetSentTimestamp: Long)
 
   companion object {
     @JvmStatic

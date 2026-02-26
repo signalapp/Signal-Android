@@ -244,6 +244,10 @@ sealed class GroupId(private val encodedId: String) : DatabaseId, Parcelable {
     return this as V2
   }
 
+  fun v2OrNull(): V2? {
+    return if (isV2) (this as V2) else null
+  }
+
   fun requirePush(): Push {
     assert(this is Push)
     return this as Push

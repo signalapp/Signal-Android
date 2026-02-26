@@ -153,7 +153,7 @@ abstract class Attachment(
    * Denotes whether the media for the given attachment is no longer available for download.
    */
   val isMediaNoLongerAvailableForDownload: Boolean
-    get() = isPermanentlyFailed && uploadTimestamp.milliseconds > 30.days
+    get() = isPermanentlyFailed && (System.currentTimeMillis().milliseconds - uploadTimestamp.milliseconds) > 30.days
 
   val isSticker: Boolean
     get() = stickerLocator != null

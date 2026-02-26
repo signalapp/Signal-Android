@@ -11,6 +11,7 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
+import assertk.assertions.isTrue
 import assertk.assertions.prop
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -34,6 +35,8 @@ class VerificationCodeViewModelTest {
   private lateinit var parentState: MutableStateFlow<RegistrationFlowState>
   private lateinit var emittedEvents: MutableList<RegistrationFlowEvent>
   private lateinit var parentEventEmitter: (RegistrationFlowEvent) -> Unit
+  private lateinit var emittedStates: MutableList<VerificationCodeState>
+  private lateinit var stateEmitter: (VerificationCodeState) -> Unit
 
   @Before
   fun setup() {
@@ -47,6 +50,8 @@ class VerificationCodeViewModelTest {
     )
     emittedEvents = mutableListOf()
     parentEventEmitter = { event -> emittedEvents.add(event) }
+    emittedStates = mutableListOf()
+    stateEmitter = { state -> emittedStates.add(state) }
     viewModel = VerificationCodeViewModel(mockRepository, parentState, parentEventEmitter)
   }
 
@@ -133,24 +138,26 @@ class VerificationCodeViewModelTest {
       oneTimeEvent = VerificationCodeState.OneTimeEvent.NetworkError
     )
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.ConsumeInnerOneTimeEvent
+      VerificationCodeScreenEvents.ConsumeInnerOneTimeEvent,
+      stateEmitter
     )
 
-    assertThat(result.oneTimeEvent).isNull()
+    assertThat(emittedStates.last().oneTimeEvent).isNull()
   }
 
   @Test
   fun `ConsumeInnerOneTimeEvent with null event returns state with null event`() = runTest {
     val initialState = VerificationCodeState(oneTimeEvent = null)
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.ConsumeInnerOneTimeEvent
+      VerificationCodeScreenEvents.ConsumeInnerOneTimeEvent,
+      stateEmitter
     )
 
-    assertThat(result.oneTimeEvent).isNull()
+    assertThat(emittedStates.last().oneTimeEvent).isNull()
   }
 
   // ==================== applyEvent: WrongNumber Tests ====================
@@ -159,7 +166,7 @@ class VerificationCodeViewModelTest {
   fun `WrongNumber navigates to PhoneNumberEntry`() = runTest {
     val initialState = VerificationCodeState()
 
-    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.WrongNumber)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.WrongNumber, stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first())
@@ -171,15 +178,41 @@ class VerificationCodeViewModelTest {
   // ==================== applyEvent: CodeEntered Tests ====================
 
   @Test
+  fun `CodeEntered emits isSubmittingCode true then false`() = runTest {
+    val sessionMetadata = createSessionMetadata()
+    val initialState = VerificationCodeState(
+      sessionMetadata = sessionMetadata,
+      e164 = "+15551234567"
+    )
+
+    coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
+      NetworkController.RegistrationNetworkResult.Failure(
+        NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
+      )
+
+    viewModel.applyEvent(
+      initialState,
+      VerificationCodeScreenEvents.CodeEntered("123456"),
+      stateEmitter
+    )
+
+    // First emitted state should have isSubmittingCode = true
+    assertThat(emittedStates.first().isSubmittingCode).isTrue()
+    // Final emitted state should have isSubmittingCode = false
+    assertThat(emittedStates.last().isSubmittingCode).isEqualTo(false)
+  }
+
+  @Test
   fun `CodeEntered emits ResetState when sessionMetadata is null`() = runTest {
     val initialState = VerificationCodeState(sessionMetadata = null)
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.CodeEntered("123456")
+      VerificationCodeScreenEvents.CodeEntered("123456"),
+      stateEmitter
     )
 
-    assertThat(result).isEqualTo(initialState)
+    assertThat(emittedStates.last()).isEqualTo(initialState)
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first())
       .isInstanceOf<RegistrationFlowEvent.ResetState>()
@@ -201,7 +234,7 @@ class VerificationCodeViewModelTest {
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(registerResponse to keyMaterial)
 
-    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"))
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
     assertThat(emittedEvents).hasSize(2)
     assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.Registered>()
@@ -224,12 +257,13 @@ class VerificationCodeViewModelTest {
         NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
       )
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.CodeEntered("123456")
+      VerificationCodeScreenEvents.CodeEntered("123456"),
+      stateEmitter
     )
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.IncorrectVerificationCode)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.IncorrectVerificationCode)
   }
 
   @Test
@@ -245,7 +279,7 @@ class VerificationCodeViewModelTest {
         NetworkController.SubmitVerificationCodeError.SessionNotFound("Session expired")
       )
 
-    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"))
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
@@ -269,7 +303,7 @@ class VerificationCodeViewModelTest {
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(registerResponse to keyMaterial)
 
-    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"))
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
     assertThat(emittedEvents).hasSize(2)
     assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.Registered>()
@@ -292,7 +326,7 @@ class VerificationCodeViewModelTest {
         NetworkController.SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested(unverifiedSession)
       )
 
-    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"))
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.NavigateBack)
@@ -311,12 +345,13 @@ class VerificationCodeViewModelTest {
         NetworkController.SubmitVerificationCodeError.RateLimited(60.seconds, sessionMetadata)
       )
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.CodeEntered("123456")
+      VerificationCodeScreenEvents.CodeEntered("123456"),
+      stateEmitter
     )
 
-    assertThat(result.oneTimeEvent).isNotNull()
+    assertThat(emittedStates.last().oneTimeEvent).isNotNull()
       .isInstanceOf<VerificationCodeState.OneTimeEvent.RateLimited>()
       .prop(VerificationCodeState.OneTimeEvent.RateLimited::retryAfter)
       .isEqualTo(60.seconds)
@@ -333,12 +368,13 @@ class VerificationCodeViewModelTest {
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.NetworkError(java.io.IOException("Network error"))
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.CodeEntered("123456")
+      VerificationCodeScreenEvents.CodeEntered("123456"),
+      stateEmitter
     )
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.NetworkError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.NetworkError)
   }
 
   @Test
@@ -352,12 +388,13 @@ class VerificationCodeViewModelTest {
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected"))
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.CodeEntered("123456")
+      VerificationCodeScreenEvents.CodeEntered("123456"),
+      stateEmitter
     )
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.UnknownError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.UnknownError)
   }
 
   // ==================== applyEvent: CodeEntered - Registration Errors ====================
@@ -378,7 +415,7 @@ class VerificationCodeViewModelTest {
         NetworkController.RegisterAccountError.DeviceTransferPossible
       )
 
-    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"))
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
@@ -400,12 +437,13 @@ class VerificationCodeViewModelTest {
         NetworkController.RegisterAccountError.RateLimited(30.seconds)
       )
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.CodeEntered("123456")
+      VerificationCodeScreenEvents.CodeEntered("123456"),
+      stateEmitter
     )
 
-    assertThat(result.oneTimeEvent).isNotNull()
+    assertThat(emittedStates.last().oneTimeEvent).isNotNull()
       .isInstanceOf<VerificationCodeState.OneTimeEvent.RateLimited>()
       .prop(VerificationCodeState.OneTimeEvent.RateLimited::retryAfter)
       .isEqualTo(30.seconds)
@@ -427,12 +465,13 @@ class VerificationCodeViewModelTest {
         NetworkController.RegisterAccountError.InvalidRequest("Bad request")
       )
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.CodeEntered("123456")
+      VerificationCodeScreenEvents.CodeEntered("123456"),
+      stateEmitter
     )
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.RegistrationError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.RegistrationError)
   }
 
   @Ignore
@@ -451,12 +490,13 @@ class VerificationCodeViewModelTest {
         NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
       )
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.CodeEntered("123456")
+      VerificationCodeScreenEvents.CodeEntered("123456"),
+      stateEmitter
     )
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.RegistrationError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.RegistrationError)
   }
 
   @Ignore
@@ -473,12 +513,13 @@ class VerificationCodeViewModelTest {
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.NetworkError(java.io.IOException("Network error"))
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.CodeEntered("123456")
+      VerificationCodeScreenEvents.CodeEntered("123456"),
+      stateEmitter
     )
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.NetworkError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.NetworkError)
   }
 
   @Ignore
@@ -495,12 +536,13 @@ class VerificationCodeViewModelTest {
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected"))
 
-    val result = viewModel.applyEvent(
+    viewModel.applyEvent(
       initialState,
-      VerificationCodeScreenEvents.CodeEntered("123456")
+      VerificationCodeScreenEvents.CodeEntered("123456"),
+      stateEmitter
     )
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.UnknownError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.UnknownError)
   }
 
   // ==================== applyEvent: ResendSms Tests ====================
@@ -509,11 +551,11 @@ class VerificationCodeViewModelTest {
   fun `ResendSms with null sessionMetadata emits ResetState`() = runTest {
     val initialState = VerificationCodeState(sessionMetadata = null)
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
-    assertThat(result).isEqualTo(initialState)
+    assertThat(emittedStates.last()).isEqualTo(initialState)
   }
 
   @Test
@@ -525,9 +567,9 @@ class VerificationCodeViewModelTest {
     coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
       NetworkController.RegistrationNetworkResult.Success(updatedSession)
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(result.sessionMetadata).isEqualTo(updatedSession)
+    assertThat(emittedStates.last().sessionMetadata).isEqualTo(updatedSession)
   }
 
   @Test
@@ -540,9 +582,9 @@ class VerificationCodeViewModelTest {
         NetworkController.RequestVerificationCodeError.RateLimited(45.seconds, sessionMetadata)
       )
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(result.oneTimeEvent).isNotNull()
+    assertThat(emittedStates.last().oneTimeEvent).isNotNull()
       .isInstanceOf<VerificationCodeState.OneTimeEvent.RateLimited>()
       .prop(VerificationCodeState.OneTimeEvent.RateLimited::retryAfter)
       .isEqualTo(45.seconds)
@@ -558,9 +600,9 @@ class VerificationCodeViewModelTest {
         NetworkController.RequestVerificationCodeError.InvalidRequest("Bad request")
       )
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.UnknownError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.UnknownError)
   }
 
   @Test
@@ -573,9 +615,9 @@ class VerificationCodeViewModelTest {
         NetworkController.RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport(sessionMetadata)
       )
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.CouldNotRequestCodeWithSelectedTransport)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.CouldNotRequestCodeWithSelectedTransport)
   }
 
   @Test
@@ -588,7 +630,7 @@ class VerificationCodeViewModelTest {
         NetworkController.RequestVerificationCodeError.InvalidSessionId("Invalid session")
       )
 
-    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
@@ -604,7 +646,7 @@ class VerificationCodeViewModelTest {
         NetworkController.RequestVerificationCodeError.SessionNotFound("Session not found")
       )
 
-    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
@@ -620,9 +662,9 @@ class VerificationCodeViewModelTest {
         NetworkController.RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified(sessionMetadata)
       )
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.NetworkError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.NetworkError)
   }
 
   @Test
@@ -637,9 +679,9 @@ class VerificationCodeViewModelTest {
         )
       )
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.ThirdPartyError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.ThirdPartyError)
   }
 
   @Test
@@ -650,9 +692,9 @@ class VerificationCodeViewModelTest {
     coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
       NetworkController.RegistrationNetworkResult.NetworkError(java.io.IOException("Network error"))
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.NetworkError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.NetworkError)
   }
 
   @Test
@@ -663,9 +705,9 @@ class VerificationCodeViewModelTest {
     coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
       NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected"))
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.UnknownError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.UnknownError)
   }
 
   // ==================== applyEvent: CallMe Tests ====================
@@ -674,11 +716,11 @@ class VerificationCodeViewModelTest {
   fun `CallMe with null sessionMetadata emits ResetState`() = runTest {
     val initialState = VerificationCodeState(sessionMetadata = null)
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
-    assertThat(result).isEqualTo(initialState)
+    assertThat(emittedStates.last()).isEqualTo(initialState)
   }
 
   @Test
@@ -690,9 +732,9 @@ class VerificationCodeViewModelTest {
     coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.VOICE)) } returns
       NetworkController.RegistrationNetworkResult.Success(updatedSession)
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
 
-    assertThat(result.sessionMetadata).isEqualTo(updatedSession)
+    assertThat(emittedStates.last().sessionMetadata).isEqualTo(updatedSession)
   }
 
   @Test
@@ -705,9 +747,9 @@ class VerificationCodeViewModelTest {
         NetworkController.RequestVerificationCodeError.RateLimited(90.seconds, sessionMetadata)
       )
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
 
-    assertThat(result.oneTimeEvent).isNotNull()
+    assertThat(emittedStates.last().oneTimeEvent).isNotNull()
       .isInstanceOf<VerificationCodeState.OneTimeEvent.RateLimited>()
       .prop(VerificationCodeState.OneTimeEvent.RateLimited::retryAfter)
       .isEqualTo(90.seconds)
@@ -723,9 +765,9 @@ class VerificationCodeViewModelTest {
         NetworkController.RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport(sessionMetadata)
       )
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.CouldNotRequestCodeWithSelectedTransport)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.CouldNotRequestCodeWithSelectedTransport)
   }
 
   @Test
@@ -740,9 +782,9 @@ class VerificationCodeViewModelTest {
         )
       )
 
-    val result = viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe)
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
 
-    assertThat(result.oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.ThirdPartyError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(VerificationCodeState.OneTimeEvent.ThirdPartyError)
   }
 
   // ==================== Helper Functions ====================

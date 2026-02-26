@@ -534,7 +534,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     } else {
       alertView.setNone();
 
-      if (thread.getExtra() != null && thread.getExtra().isRemoteDelete()) {
+      if (thread.getExtra() != null && thread.getExtra().getDeletedBy() != null) {
         if (thread.isPending()) {
           deliveryStatusIndicator.setPending();
         } else {
@@ -697,8 +697,16 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       ThreadTable.Extra extra = thread.getExtra();
       if (extra != null && extra.isViewOnce()) {
         return emphasisAdded(context, getViewOnceDescription(context, thread.getContentType()), defaultTint);
-      } else if (extra != null && extra.isRemoteDelete()) {
-        return emphasisAdded(context, context.getString(thread.isOutgoing() ? R.string.ThreadRecord_you_deleted_this_message : R.string.ThreadRecord_this_message_was_deleted), defaultTint);
+      } else if (extra != null && extra.getDeletedBy() != null) {
+        RecipientId individualRecipientId = thread.getIndividualRecipientId();
+        RecipientId deletedBy = thread.getDeletedByRecipientId();
+        if (individualRecipientId.equals(deletedBy) && thread.isOutgoing()) {
+          return emphasisAdded(context, context.getString(R.string.ThreadRecord_you_deleted_this_message), defaultTint);
+        } else if (individualRecipientId.equals(deletedBy)) {
+          return emphasisAdded(recipientToStringAsync(deletedBy, r -> new SpannableString(context.getString(R.string.ThreadRecord_s_deleted_this_message, r.getDisplayName(context)))));
+        } else {
+          return emphasisAdded(recipientToStringAsync(deletedBy, r -> new SpannableString(context.getString(R.string.ThreadRecord_admin_deleted_this_message, r.getDisplayName(context)))));
+        }
       } else if (extra != null && extra.isPoll()) {
         return emphasisAdded(context, thread.getBody(), Glyph.POLL, defaultTint);
       } else {

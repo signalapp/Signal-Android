@@ -219,9 +219,16 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
 
   private fun handleDeleteSelectedRows() {
     val count = callLogActionMode.getCount()
+    val selectionState = viewModel.selectionStateSnapshot
+    val hasCallLinks = selectionState.isExclusionary() || selectionState.selected().any { it is CallLogRow.Id.CallLink }
+
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, count, count))
-      .setMessage(getString(R.string.CallLogFragment__call_links_youve_created))
+      .apply {
+        if (hasCallLinks) {
+          setMessage(getString(R.string.CallLogFragment__call_links_youve_created))
+        }
+      }
       .setPositiveButton(R.string.CallLogFragment__delete) { _, _ ->
         performDeletion(count, viewModel.stageSelectionDeletion())
         callLogActionMode.end()
@@ -380,7 +387,11 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   override fun deleteCall(call: CallLogRow) {
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, 1, 1))
-      .setMessage(getString(R.string.CallLogFragment__call_links_youve_created))
+      .apply {
+        if (call is CallLogRow.CallLink) {
+          setMessage(getString(R.string.CallLogFragment__call_links_youve_created))
+        }
+      }
       .setPositiveButton(R.string.CallLogFragment__delete) { _, _ ->
         performDeletion(1, viewModel.stageCallDeletion(call))
       }

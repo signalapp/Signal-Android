@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
-import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV2
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.ConversationAdapterV2
@@ -67,7 +67,7 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
       requestManager = Glide.with(this),
       clickListener = ClickListener(),
       hasWallpaper = springboardViewModel.hasWallpaper.value,
-      colorizer = Colorizer(),
+      colorizer = ColorizerV2(),
       startExpirationTimeout = {},
       chatColorsDataProvider = { ChatColorsDrawable.ChatColorsData(null, null) },
       displayDialogFragment = {}

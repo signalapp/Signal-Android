@@ -257,14 +257,20 @@ public class CameraButtonView extends View {
           startAnimation(shrinkAnimation);
         }
       case MotionEvent.ACTION_MOVE:
-        if (isRecordingVideo && eventIsNotInsideDeadzone(event)) {
+        if (isRecordingVideo) {
+          float maxRange = getHeight() * DRAG_DISTANCE_MULTIPLIER;
 
-          float maxRange  = getHeight() * DRAG_DISTANCE_MULTIPLIER;
-          float deltaY    = Math.abs(event.getY() - deadzoneRect.top);
-          float increment = Math.min(1f, deltaY / maxRange);
-
-          notifyZoomPercent(ZOOM_INTERPOLATOR.getInterpolation(increment));
-          invalidate();
+          if (eventIsAboveDeadzone(event)) {
+            float deltaY    = Math.abs(event.getY() - deadzoneRect.top);
+            float increment = Math.min(1f, deltaY / maxRange);
+            notifyZoomPercent(ZOOM_INTERPOLATOR.getInterpolation(increment));
+            invalidate();
+          } else if (eventIsBelowDeadzone(event)) {
+            float deltaY    = Math.abs(event.getY() - deadzoneRect.bottom);
+            float increment = Math.min(1f, deltaY / maxRange);
+            notifyZoomPercent(-ZOOM_INTERPOLATOR.getInterpolation(increment));
+            invalidate();
+          }
         }
         break;
       case MotionEvent.ACTION_CANCEL:
@@ -279,8 +285,12 @@ public class CameraButtonView extends View {
     return super.onTouchEvent(event);
   }
 
-  private boolean eventIsNotInsideDeadzone(MotionEvent event) {
+  private boolean eventIsAboveDeadzone(MotionEvent event) {
     return Math.round(event.getY()) < deadzoneRect.top;
+  }
+
+  private boolean eventIsBelowDeadzone(MotionEvent event) {
+    return Math.round(event.getY()) > deadzoneRect.bottom;
   }
 
   private void notifyVideoCaptureStarted() {

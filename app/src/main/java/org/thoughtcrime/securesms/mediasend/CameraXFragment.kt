@@ -39,6 +39,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.signal.camera.CameraScreen
@@ -46,6 +47,7 @@ import org.signal.camera.CameraScreenEvents
 import org.signal.camera.CameraScreenViewModel
 import org.signal.camera.VideoCaptureResult
 import org.signal.camera.VideoOutput
+import org.signal.camera.hud.GalleryThumbnailButton
 import org.signal.camera.hud.StandardCameraHud
 import org.signal.camera.hud.StandardCameraHudEvents
 import org.signal.camera.hud.StringResources
@@ -136,11 +138,13 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
       controller = controller,
       isVideoEnabled = isVideoEnabled && Build.VERSION.SDK_INT >= 26,
       isQrScanEnabled = isQrScanEnabled,
+      isVideoCaptureBindingEnabled = cameraXModePolicy is CameraXModePolicy.Mixed,
       controlsVisible = controlsVisible.value,
       selectedMediaCount = selectedMediaCount.intValue,
       onCheckPermissions = { checkPermissions(isVideoEnabled) },
       hasCameraPermission = { hasCameraPermission() },
       onRequestMicPermission = { requestMicPermission() },
+      onGalleryClicked = { controller?.onGalleryClicked() },
       createVideoFileDescriptor = { createVideoFileDescriptor() },
       getMaxVideoDurationInSeconds = { getMaxVideoDurationInSeconds() },
       cameraDisplay = CameraDisplay.getDisplay(requireActivity())
@@ -295,11 +299,13 @@ private fun CameraXScreen(
   controller: CameraFragment.Controller?,
   isVideoEnabled: Boolean,
   isQrScanEnabled: Boolean,
+  isVideoCaptureBindingEnabled: Boolean,
   controlsVisible: Boolean,
   selectedMediaCount: Int,
   onCheckPermissions: () -> Unit,
   hasCameraPermission: () -> Boolean,
   onRequestMicPermission: () -> Unit,
+  onGalleryClicked: () -> Unit,
   createVideoFileDescriptor: () -> ParcelFileDescriptor?,
   getMaxVideoDurationInSeconds: () -> Int,
   cameraDisplay: CameraDisplay,
@@ -400,6 +406,8 @@ private fun CameraXScreen(
         emitter = { event -> cameraViewModel.onEvent(event) },
         roundCorners = cameraDisplay.roundViewFinderCorners,
         contentAlignment = cameraAlignment,
+        enableVideoCapture = isVideoCaptureBindingEnabled,
+        enableQrScanning = isQrScanEnabled,
         modifier = Modifier.padding(bottom = viewportBottomMargin)
       ) {
         AnimatedVisibility(
@@ -436,7 +444,9 @@ private fun CameraXScreen(
     } else {
       PermissionMissingContent(
         isVideoEnabled = isVideoEnabled,
-        onRequestPermissions = onCheckPermissions
+        onRequestPermissions = onCheckPermissions,
+        onGalleryClicked = onGalleryClicked,
+        galleryButtonBottomPadding = hudBottomMargin + 16.dp
       )
     }
   }
@@ -445,7 +455,9 @@ private fun CameraXScreen(
 @Composable
 private fun PermissionMissingContent(
   isVideoEnabled: Boolean,
-  onRequestPermissions: () -> Unit
+  onRequestPermissions: () -> Unit,
+  onGalleryClicked: () -> Unit,
+  galleryButtonBottomPadding: Dp = 16.dp
 ) {
   val context = LocalContext.current
   val hasAudioPermission = remember { Permissions.hasAll(context, Manifest.permission.RECORD_AUDIO) }
@@ -475,6 +487,14 @@ private fun PermissionMissingContent(
       Button(onClick = onRequestPermissions) {
         Text(text = stringResource(R.string.CameraXFragment_allow_access))
       }
+    }
+
+    Box(
+      modifier = Modifier
+        .align(Alignment.BottomEnd)
+        .padding(bottom = galleryButtonBottomPadding, end = 40.dp)
+    ) {
+      GalleryThumbnailButton(onClick = onGalleryClicked)
     }
   }
 }
@@ -595,11 +615,13 @@ private fun CameraXScreenPreview_20_9() {
       controller = null,
       isVideoEnabled = true,
       isQrScanEnabled = false,
+      isVideoCaptureBindingEnabled = true,
       controlsVisible = true,
       selectedMediaCount = 0,
       onCheckPermissions = {},
       hasCameraPermission = { true },
       onRequestMicPermission = { },
+      onGalleryClicked = { },
       createVideoFileDescriptor = { null },
       getMaxVideoDurationInSeconds = { 60 },
       cameraDisplay = CameraDisplay.DISPLAY_20_9,
@@ -621,11 +643,13 @@ private fun CameraXScreenPreview_19_9() {
       controller = null,
       isVideoEnabled = true,
       isQrScanEnabled = false,
+      isVideoCaptureBindingEnabled = true,
       controlsVisible = true,
       selectedMediaCount = 0,
       onCheckPermissions = {},
       hasCameraPermission = { true },
       onRequestMicPermission = { },
+      onGalleryClicked = { },
       createVideoFileDescriptor = { null },
       getMaxVideoDurationInSeconds = { 60 },
       cameraDisplay = CameraDisplay.DISPLAY_19_9,
@@ -647,11 +671,13 @@ private fun CameraXScreenPreview_18_9() {
       controller = null,
       isVideoEnabled = true,
       isQrScanEnabled = false,
+      isVideoCaptureBindingEnabled = true,
       controlsVisible = true,
       selectedMediaCount = 0,
       onCheckPermissions = {},
       hasCameraPermission = { true },
       onRequestMicPermission = { },
+      onGalleryClicked = { },
       createVideoFileDescriptor = { null },
       getMaxVideoDurationInSeconds = { 60 },
       cameraDisplay = CameraDisplay.DISPLAY_18_9,
@@ -673,11 +699,13 @@ private fun CameraXScreenPreview_16_9() {
       controller = null,
       isVideoEnabled = true,
       isQrScanEnabled = false,
+      isVideoCaptureBindingEnabled = true,
       controlsVisible = true,
       selectedMediaCount = 0,
       onCheckPermissions = {},
       hasCameraPermission = { true },
       onRequestMicPermission = { },
+      onGalleryClicked = { },
       createVideoFileDescriptor = { null },
       getMaxVideoDurationInSeconds = { 60 },
       cameraDisplay = CameraDisplay.DISPLAY_16_9,
@@ -699,11 +727,13 @@ private fun CameraXScreenPreview_6_5() {
       controller = null,
       isVideoEnabled = true,
       isQrScanEnabled = false,
+      isVideoCaptureBindingEnabled = true,
       controlsVisible = true,
       selectedMediaCount = 0,
       onCheckPermissions = {},
       hasCameraPermission = { true },
       onRequestMicPermission = { },
+      onGalleryClicked = { },
       createVideoFileDescriptor = { null },
       getMaxVideoDurationInSeconds = { 60 },
       cameraDisplay = CameraDisplay.DISPLAY_6_5,

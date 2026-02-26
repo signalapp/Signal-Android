@@ -6,6 +6,7 @@
 package org.signal.camera.hud
 
 import android.content.res.Configuration
+import android.view.KeyEvent
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
@@ -15,6 +16,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Row
@@ -32,13 +34,21 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalViewConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -108,6 +118,20 @@ fun BoxScope.StandardCameraHud(
   stringResources: StringResources = StringResources(0, 0)
 ) {
   val context = LocalContext.current
+  val focusRequester = remember { FocusRequester() }
+  val viewConfiguration = LocalViewConfiguration.current
+  var volumeKeyPressStartTime by remember { mutableStateOf(0L) }
+  var isRecordingFromVolumeKey by remember { mutableStateOf(false) }
+
+  LaunchedEffect(Unit) {
+    focusRequester.requestFocus()
+  }
+
+  LaunchedEffect(state.isRecording) {
+    if (!state.isRecording) {
+      isRecordingFromVolumeKey = false
+    }
+  }
 
   LaunchedEffect(state.captureError) {
     state.captureError?.let { error ->
@@ -126,15 +150,64 @@ fun BoxScope.StandardCameraHud(
     }
   }
 
-  StandardCameraHudContent(
-    state = state,
-    emitter = emitter,
-    modifier = modifier,
-    maxRecordingDurationMs = maxRecordingDurationMs,
-    mediaSelectionCount = mediaSelectionCount,
-    hasAudioPermission = hasAudioPermission,
-    stringResources = stringResources
-  )
+  Box(
+    modifier = Modifier
+      .fillMaxSize()
+      .focusRequester(focusRequester)
+      .onPreviewKeyEvent { keyEvent ->
+        val nativeEvent = keyEvent.nativeKeyEvent
+        val keyCode = nativeEvent.keyCode
+
+        if (keyCode != KeyEvent.KEYCODE_VOLUME_UP && keyCode != KeyEvent.KEYCODE_VOLUME_DOWN) {
+          return@onPreviewKeyEvent false
+        }
+
+        when (nativeEvent.action) {
+          KeyEvent.ACTION_DOWN -> {
+            if (nativeEvent.repeatCount == 0) {
+              volumeKeyPressStartTime = nativeEvent.eventTime
+              isRecordingFromVolumeKey = false
+            } else if (!isRecordingFromVolumeKey &&
+              volumeKeyPressStartTime > 0 &&
+              nativeEvent.eventTime - volumeKeyPressStartTime >= viewConfiguration.longPressTimeoutMillis
+            ) {
+              volumeKeyPressStartTime = 0
+              if (hasAudioPermission()) {
+                isRecordingFromVolumeKey = true
+                emitter(StandardCameraHudEvents.VideoCaptureStarted)
+              } else {
+                emitter(StandardCameraHudEvents.AudioPermissionRequired)
+              }
+            }
+            true
+          }
+
+          KeyEvent.ACTION_UP -> {
+            if (isRecordingFromVolumeKey) {
+              isRecordingFromVolumeKey = false
+              emitter(StandardCameraHudEvents.VideoCaptureStopped)
+            } else if (volumeKeyPressStartTime > 0) {
+              emitter(StandardCameraHudEvents.PhotoCaptureTriggered)
+            }
+            volumeKeyPressStartTime = 0
+            true
+          }
+
+          else -> false
+        }
+      }
+      .focusable()
+  ) {
+    StandardCameraHudContent(
+      state = state,
+      emitter = emitter,
+      modifier = modifier,
+      maxRecordingDurationMs = maxRecordingDurationMs,
+      mediaSelectionCount = mediaSelectionCount,
+      hasAudioPermission = hasAudioPermission,
+      stringResources = stringResources
+    )
+  }
 }
 
 @Composable

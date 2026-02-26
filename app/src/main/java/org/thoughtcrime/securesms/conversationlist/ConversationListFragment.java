@@ -492,7 +492,6 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     initializeSearchListener();
     initializeFilterListener();
-    itemAnimator.disable();
     SpoilerAnnotation.resetRevealedSpoilers();
 
     if (mainToolbarViewModel.getState().getValue().getMode() != MainToolbarMode.SEARCH && list.getAdapter() != defaultAdapter) {
@@ -550,7 +549,6 @@ public class ConversationListFragment extends MainFragment implements Conversati
   public void onStart() {
     super.onStart();
     AppForegroundObserver.addListener(appForegroundObserver);
-    itemAnimator.disable();
   }
 
   @Override
@@ -1179,9 +1177,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   private void handleMute(@NonNull Collection<Conversation> conversations) {
-    MuteDialog.show(requireContext(), until -> {
-      updateMute(conversations, until);
-    });
+    MuteDialog.show(requireContext(), getChildFragmentManager(), getViewLifecycleOwner(), until -> updateMute(conversations, until));
   }
 
   private void handleUnmute(@NonNull Collection<Conversation> conversations) {
@@ -1576,6 +1572,34 @@ public class ConversationListFragment extends MainFragment implements Conversati
       chatFolderList.getLayoutManager().startSmoothScroll(smoothScroller);
     }
 
+    // Manage change animations so we don't animate the list when switching folders
+    itemAnimator.disableChangeAnimations();
+    defaultAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+      @Override
+      public void onChanged() {
+        defaultAdapter.unregisterAdapterDataObserver(this);
+        itemAnimator.enableChangeAnimations();
+      }
+
+      @Override
+      public void onItemRangeInserted(int positionStart, int itemCount) {
+        defaultAdapter.unregisterAdapterDataObserver(this);
+        itemAnimator.enableChangeAnimations();
+      }
+
+      @Override
+      public void onItemRangeChanged(int positionStart, int itemCount) {
+        defaultAdapter.unregisterAdapterDataObserver(this);
+        itemAnimator.enableChangeAnimations();
+      }
+
+      @Override
+      public void onItemRangeRemoved(int positionStart, int itemCount) {
+        defaultAdapter.unregisterAdapterDataObserver(this);
+        itemAnimator.enableChangeAnimations();
+      }
+    });
+
     viewModel.select(chatFolder);
   }
 
@@ -1586,7 +1610,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   @Override
   public void onMuteAll(@NonNull ChatFolderRecord chatFolder) {
-    MuteDialog.show(requireContext(), until -> viewModel.onUpdateMute(chatFolder, until));
+    MuteDialog.show(requireContext(), getChildFragmentManager(), getViewLifecycleOwner(), until -> viewModel.onUpdateMute(chatFolder, until));
   }
 
   @Override
@@ -1919,6 +1943,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     void onMultiSelectFinished();
   }
+
 }
 
 

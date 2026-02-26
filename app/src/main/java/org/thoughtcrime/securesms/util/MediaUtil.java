@@ -244,12 +244,8 @@ public class MediaUtil {
       } catch (ExecutionException e) {
         Log.w(TAG, "Glide experienced an exception while trying to get GIF dimensions.", e);
       }
-    } else if (MediaUtil.hasVideoThumbnail(context, uri)) {
-      Bitmap thumbnail = MediaUtil.getVideoThumbnail(context, uri, 1000);
-
-      if (thumbnail != null) {
-        dimens = new Pair<>(thumbnail.getWidth(), thumbnail.getHeight());
-      }
+    } else if (MediaUtil.isVideoType(contentType)) {
+      dimens = getVideoDimensions(context, uri);
     } else {
       InputStream attachmentStream = null;
       try {
@@ -258,6 +254,9 @@ public class MediaUtil {
           dimens = BitmapUtil.getExifDimensions(new ExifInterface(attachmentStream));
           attachmentStream.close();
           attachmentStream = null;
+          if (dimens != null) {
+          } else {
+          }
         }
         if (dimens == null) {
           attachmentStream = PartAuthority.getAttachmentStream(context, uri);
@@ -284,6 +283,61 @@ public class MediaUtil {
     }
     Log.d(TAG, "Dimensions for [" + uri + "] are " + dimens.getFirst() + " x " + dimens.getSecond());
     return dimens;
+  }
+
+  @WorkerThread
+  private static @NonNull Pair<Integer, Integer> getVideoDimensions(@NonNull Context context, @NonNull Uri uri) {
+    try {
+      MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+
+      try {
+        if (BlobProvider.isAuthority(uri) && MediaUtil.isVideo(BlobProvider.getMimeType(uri))) {
+          MediaDataSource source = BlobProvider.getInstance().getMediaDataSource(context, uri);
+          retriever.setDataSource(source);
+        } else if (PartAuthority.isAttachmentUri(uri)) {
+          MediaDataSource source = SignalDatabase.attachments().mediaDataSourceFor(PartAuthority.requireAttachmentId(uri), false);
+          if (source == null) {
+            throw new IOException("No media data source for attachment URI");
+          }
+          retriever.setDataSource(source);
+        } else {
+          retriever.setDataSource(context, uri);
+        }
+
+        String widthString = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH);
+        String heightString = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT);
+        String rotationString = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
+
+        if (widthString == null || heightString == null) {
+          throw new IOException("Could not extract video dimensions from metadata");
+        }
+
+        int width = Integer.parseInt(widthString);
+        int height = Integer.parseInt(heightString);
+        int rotation = rotationString != null ? Integer.parseInt(rotationString) : 0;
+
+        if (rotation % 180 == 90) {
+          //noinspection SuspiciousNameCombination
+          return new Pair<>(height, width);
+        } else {
+          return new Pair<>(width, height);
+        }
+      } finally {
+        retriever.release();
+      }
+    } catch (Exception e) {
+      Log.w(TAG, "Failed to get video dimensions via metadata for URI: " + uri, e);
+    }
+
+    if (MediaUtil.hasVideoThumbnail(context, uri)) {
+      Bitmap thumbnail = MediaUtil.getVideoThumbnail(context, uri, 1000);
+      if (thumbnail != null) {
+        return new Pair<>(thumbnail.getWidth(), thumbnail.getHeight());
+      }
+    } else {
+    }
+
+    return new Pair<>(0, 0);
   }
 
   public static boolean isMms(String contentType) {

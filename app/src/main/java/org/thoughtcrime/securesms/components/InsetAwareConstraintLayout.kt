@@ -64,6 +64,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   private var insets: WindowInsetsCompat? = null
   private var windowTypes: Int = InsetAwareConstraintLayout.windowTypes
+  private var navigationBarInsetOverride: Int? = null
 
   private val windowInsetsListener = androidx.core.view.OnApplyWindowInsetsListener { _, insets ->
     this.insets = insets
@@ -114,6 +115,23 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     }
   }
 
+  fun setNavigationBarInsetOverride(inset: Int?) {
+    if (navigationBarInsetOverride == inset) return
+    navigationBarInsetOverride = inset
+    if (inset != null) {
+      // Apply immediately so layout is correct before next inset dispatch (important for
+      // Android 15 bubble where insets can arrive late or with different values).
+      navigationBarGuideline?.setGuidelineEnd(inset)
+      if (!isKeyboardShowing) {
+        keyboardGuideline?.setGuidelineEnd(inset)
+      }
+      requestLayout()
+    }
+    if (insets != null) {
+      applyInsets(insets!!.getInsets(windowTypes), insets!!.getInsets(keyboardType))
+    }
+  }
+
   fun addKeyboardStateListener(listener: KeyboardStateListener) {
     keyboardStateListeners += listener
   }
@@ -134,7 +152,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     val isLtr = ViewUtil.isLtr(this)
 
     val statusBar = windowInsets.top
-    val navigationBar = if (windowInsets.bottom == 0 && Build.VERSION.SDK_INT <= 29) {
+    val navigationBar = navigationBarInsetOverride ?: if (windowInsets.bottom == 0 && Build.VERSION.SDK_INT <= 29) {
       ViewUtil.getNavigationBarHeight(resources)
     } else {
       windowInsets.bottom

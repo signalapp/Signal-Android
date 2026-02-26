@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.provider.Settings
 import android.util.DisplayMetrics
+import androidx.core.app.NotificationManagerCompat
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import org.signal.core.ui.getWindowSizeClass
@@ -87,6 +88,7 @@ class LogSectionSystemInfo : LogSection {
       ApkManifestUrl    : ${BuildConfig.APK_UPDATE_MANIFEST_URL?.takeIf { BuildConfig.MANAGES_APP_UPDATES } ?: "N/A"}
       App               : ${getAppInfo(context)}
       Package           : ${BuildConfig.APPLICATION_ID} (${getSigningString(context)})
+      FullScreenIntents : ${NotificationManagerCompat.from(context).canUseFullScreenIntent()}
     """.trimIndent()
   }
 

@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.restore
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
@@ -24,7 +25,6 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BaseActivity
-import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isWantingManualRemoteRestore
 import org.thoughtcrime.securesms.keyvalue.isWantingNewLocalBackupRestore
 import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity
-import org.thoughtcrime.securesms.registration.ui.restore.local.InternalNewLocalRestoreActivity
+import org.thoughtcrime.securesms.registration.ui.restore.local.RestoreLocalBackupActivity
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -83,8 +83,8 @@ class RestoreActivity : BaseActivity() {
           if (SignalStore.registration.restoreDecisionState.isWantingManualRemoteRestore) {
             Log.i(TAG, "User has no available restore methods but previously wanted a remote restore, navigating immediately.")
             startActivity(RemoteRestoreActivity.getIntent(this, isOnlyOption = true))
-          } else if (SignalStore.registration.restoreDecisionState.isWantingNewLocalBackupRestore && (BuildConfig.DEBUG || Environment.IS_NIGHTLY)) {
-            startActivity(InternalNewLocalRestoreActivity.getIntent(this))
+          } else if (SignalStore.registration.restoreDecisionState.isWantingNewLocalBackupRestore && Environment.Backups.isNewFormatSupportedForLocalBackup()) {
+            startActivity(RestoreLocalBackupActivity.getIntent(this))
           } else {
             Log.i(TAG, "No restore methods available, skipping")
             sharedViewModel.skipRestore()
@@ -103,7 +103,14 @@ class RestoreActivity : BaseActivity() {
         }
       }
 
-      NavTarget.LOCAL_RESTORE -> navController.safeNavigate(RestoreDirections.goDirectlyToChooseLocalBackup())
+      NavTarget.LOCAL_RESTORE -> {
+        if (intent.data != null) {
+          sharedViewModel.setBackupFileUri(intent.data!!)
+          navController.safeNavigate(RestoreDirections.goDirectlyToRestoreLocalBackup())
+        } else {
+          navController.safeNavigate(RestoreDirections.goDirectlyToChooseLocalBackup())
+        }
+      }
       NavTarget.TRANSFER -> navController.safeNavigate(RestoreDirections.goDirectlyToDeviceTransfer())
     }
 
@@ -185,9 +192,11 @@ class RestoreActivity : BaseActivity() {
     private const val EXTRA_NAV_TARGET = "nav_target"
 
     @JvmStatic
-    fun getLocalRestoreIntent(context: Context): Intent {
+    @JvmOverloads
+    fun getLocalRestoreIntent(context: Context, uri: Uri? = null): Intent {
       return Intent(context, RestoreActivity::class.java).apply {
         putExtra(EXTRA_NAV_TARGET, NavTarget.LOCAL_RESTORE.value)
+        setData(uri)
       }
     }
 

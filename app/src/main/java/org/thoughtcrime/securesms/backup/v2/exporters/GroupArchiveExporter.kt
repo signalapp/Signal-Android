@@ -116,7 +116,7 @@ private fun AccessControl.toRemote(): Group.AccessControl {
 
 private fun Member.Role.toRemote(): Group.Member.Role {
   return when (this) {
-    Member.Role.UNKNOWN -> Group.Member.Role.UNKNOWN
+    Member.Role.UNKNOWN -> Group.Member.Role.DEFAULT
     Member.Role.DEFAULT -> Group.Member.Role.DEFAULT
     Member.Role.ADMINISTRATOR -> Group.Member.Role.ADMINISTRATOR
   }

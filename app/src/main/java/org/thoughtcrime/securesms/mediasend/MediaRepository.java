@@ -262,6 +262,8 @@ public class MediaRepository {
 
     if (isImage) {
       projection = new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_MODIFIED, Images.Media.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
+    } else if (Build.VERSION.SDK_INT >= 29) {
+      projection = new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_MODIFIED, MediaStore.MediaColumns.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE, Video.Media.DURATION};
     } else {
       projection = new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_MODIFIED, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE, Video.Media.DURATION};
     }
@@ -277,7 +279,13 @@ public class MediaRepository {
         Uri    uri         = ContentUris.withAppendedId(contentUri, rowId);
         String mimetype    = cursor.getString(cursor.getColumnIndexOrThrow(Images.Media.MIME_TYPE));
         long   date        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.DATE_MODIFIED));
-        int    orientation = isImage ? cursor.getInt(cursor.getColumnIndexOrThrow(Images.Media.ORIENTATION)) : 0;
+        int    orientation;
+        if (isImage) {
+          orientation = cursor.getInt(cursor.getColumnIndexOrThrow(Images.Media.ORIENTATION));
+        } else {
+          int orientationIdx = cursor.getColumnIndex(MediaStore.MediaColumns.ORIENTATION);
+          orientation = orientationIdx != -1 ? cursor.getInt(orientationIdx) : 0;
+        }
         int    width       = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
         int    height      = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
         long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
@@ -386,6 +394,7 @@ public class MediaRepository {
       try (Cursor cursor = context.getContentResolver().query(media.getUri(), null, null, null, null)) {
         if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.SIZE) >= 0) {
           size = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
+        } else {
         }
       }
     }

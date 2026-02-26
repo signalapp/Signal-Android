@@ -127,6 +127,7 @@ public final class JobManagerFactories {
   public static Map<String, Job.Factory> getJobFactories(@NonNull Application application) {
     return new HashMap<>() {{
       put(AccountConsistencyWorkerJob.KEY,             new AccountConsistencyWorkerJob.Factory());
+      put(AdminDeleteSendJob.KEY,                      new AdminDeleteSendJob.Factory());
       put(AnalyzeDatabaseJob.KEY,                      new AnalyzeDatabaseJob.Factory());
       put(ApkUpdateJob.KEY,                            new ApkUpdateJob.Factory());
       put(ArchiveAttachmentBackfillJob.KEY,            new ArchiveAttachmentBackfillJob.Factory());

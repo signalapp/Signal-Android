@@ -8,8 +8,11 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.toLocalDateTime
 import org.thoughtcrime.securesms.util.toMillis
+import java.time.DayOfWeek
+import java.time.temporal.TemporalAdjusters
 
 class ScheduleMessageContextMenu {
 
@@ -53,7 +56,7 @@ class ScheduleMessageContextMenu {
     private fun getNextScheduleTimes(currentTimeMs: Long): List<Long> {
       var currentDateTime = currentTimeMs.toLocalDateTime()
 
-      val timestampList = ArrayList<Long>(4)
+      val timestampList = ArrayList<Long>(5)
       var presetIndex = presetHours.indexOfFirst { it > currentDateTime.hour }
       if (presetIndex == -1) {
         currentDateTime = currentDateTime.plusDays(1)
@@ -69,6 +72,18 @@ class ScheduleMessageContextMenu {
           currentDateTime = currentDateTime.plusDays(1)
         }
       }
+
+      if (RemoteConfig.internalUser) {
+        val now = currentTimeMs.toLocalDateTime()
+        if (now.dayOfWeek == DayOfWeek.FRIDAY || now.dayOfWeek == DayOfWeek.SATURDAY) {
+          val nextMonday = now.with(TemporalAdjusters.next(DayOfWeek.MONDAY))
+            .withHour(8)
+            .withMinute(0)
+            .withSecond(0)
+          timestampList += nextMonday.toMillis()
+        }
+      }
+
       timestampList += -1
 
       return timestampList.reversed()

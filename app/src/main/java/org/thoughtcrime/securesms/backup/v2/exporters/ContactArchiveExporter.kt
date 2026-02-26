@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.backup.v2.util.clampToValidBackupRange
 import org.thoughtcrime.securesms.backup.v2.util.isValidUsername
 import org.thoughtcrime.securesms.backup.v2.util.toRemote
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
@@ -75,7 +76,7 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
       .e164(cursor.requireString(RecipientTable.E164)?.e164ToLong())
       .blocked(cursor.requireBoolean(RecipientTable.BLOCKED))
       .visibility(Recipient.HiddenState.deserialize(cursor.requireInt(RecipientTable.HIDDEN)).toRemote())
-      .profileKey(cursor.requireString(RecipientTable.PROFILE_KEY)?.let { Base64.decode(it) }?.toByteString())
+      .profileKey(cursor.requireString(RecipientTable.PROFILE_KEY)?.let { ProfileKeyUtil.profileKeyOrNull(it)?.serialize()?.toByteString() })
       .profileSharing(cursor.requireBoolean(RecipientTable.PROFILE_SHARING))
       .profileGivenName(cursor.requireString(RecipientTable.PROFILE_GIVEN_NAME))
       .profileFamilyName(cursor.requireString(RecipientTable.PROFILE_FAMILY_NAME))

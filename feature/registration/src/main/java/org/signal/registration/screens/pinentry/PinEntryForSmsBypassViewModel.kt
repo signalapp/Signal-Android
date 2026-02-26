@@ -54,7 +54,7 @@ class PinEntryForSmsBypassViewModel(
   val state: StateFlow<PinEntryState> = _state
     .combine(parentState) { state, parentState -> applyParentState(state, parentState) }
     .onEach { Log.d(TAG, "[State] $it") }
-    .stateIn(viewModelScope, SharingStarted.Eagerly, PinEntryState(showNeedHelp = true))
+    .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PinEntryState(showNeedHelp = true))
 
   fun onEvent(event: PinEntryScreenEvents) {
     viewModelScope.launch {

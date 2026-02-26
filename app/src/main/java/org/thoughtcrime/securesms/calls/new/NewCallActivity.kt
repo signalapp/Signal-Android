@@ -84,7 +84,7 @@ private fun NewCallScreen(
   val context = LocalActivity.current as FragmentActivity
 
   val callbacks = remember {
-    object : UiCallbacks {
+    object : NewCallUiCallbacks {
       override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
       override fun onRecipientSelected(selection: RecipientSelection) = viewModel.startCall(selection)
       override fun onInviteToSignal() = context.startActivity(AppSettingsActivity.invite(context))
@@ -111,7 +111,7 @@ private fun NewCallScreen(
   )
 }
 
-private interface UiCallbacks :
+private interface NewCallUiCallbacks :
   RecipientPickerCallbacks.ListActions,
   RecipientPickerCallbacks.Refresh,
   RecipientPickerCallbacks.NewCall {
@@ -120,7 +120,7 @@ private interface UiCallbacks :
   fun onUserMessageDismissed(userMessage: UserMessage)
   fun onBackPressed()
 
-  object Empty : UiCallbacks {
+  object Empty : NewCallUiCallbacks {
     override fun onSearchQueryChanged(query: String) = Unit
     override fun onRecipientSelected(selection: RecipientSelection) = Unit
     override fun onInviteToSignal() = Unit
@@ -134,7 +134,7 @@ private interface UiCallbacks :
 @Composable
 private fun NewCallScreenUi(
   uiState: NewCallUiState,
-  callbacks: UiCallbacks
+  callbacks: NewCallUiCallbacks
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
 
@@ -173,7 +173,7 @@ private fun NewCallScreenUi(
 }
 
 @Composable
-private fun TopAppBarActions(callbacks: UiCallbacks) {
+private fun TopAppBarActions(callbacks: NewCallUiCallbacks) {
   val menuController = remember { DropdownMenus.MenuController() }
   IconButton(
     onClick = { menuController.show() },
@@ -250,7 +250,7 @@ private fun NewCallScreenPreview() {
       uiState = NewCallUiState(
         forceSplitPane = false
       ),
-      callbacks = UiCallbacks.Empty
+      callbacks = NewCallUiCallbacks.Empty
     )
   }
 }

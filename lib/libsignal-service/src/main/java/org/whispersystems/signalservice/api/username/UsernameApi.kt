@@ -7,17 +7,14 @@ package org.whispersystems.signalservice.api.username
 
 import kotlinx.coroutines.runBlocking
 import org.signal.core.models.ServiceId
-import org.signal.core.util.Base64
+import org.signal.libsignal.net.LookUpUsernameLinkFailure
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.UnauthUsernamesService
 import org.signal.libsignal.net.getOrError
 import org.signal.libsignal.usernames.Username
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.get
-import org.whispersystems.signalservice.internal.push.GetUsernameFromLinkResponseBody
-import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.util.UUID
 
 /**
@@ -27,7 +24,10 @@ import java.util.UUID
 class UsernameApi(private val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket) {
 
   /**
-   * Gets the ACI for the given [username], if it exists. This is an unauthenticated request.
+   * Gets the ACI for the given [username]. This is an unauthenticated request.
+   *
+   * A successful result with a null value means the username was not found on the server.
+   * Other errors (network, decryption, etc.) are represented by the other [RequestResult] types.
    */
   fun getAciByUsername(username: Username): RequestResult<ServiceId.ACI?, Nothing> {
     return runBlocking {
@@ -38,18 +38,16 @@ class UsernameApi(private val unauthWebSocket: SignalWebSocket.UnauthenticatedWe
   }
 
   /**
-   * Given a link serverId, this will return the encrypted username associated with the link.
+   * Gets the username for a ([serverId], [entropy]) pairing from a username link. This is an unauthenticated request.
    *
-   * GET /v1/accounts/username_hash/[serverId]
-   * - 200: Success
-   * - 400: Request must not be authenticated
-   * - 404: Username link not found for server id
-   * - 422: Invalid request format
-   * - 429: Rate limited
+   * A successful result with a null value means no username link was found for the given server ID.
+   * Other errors (network, decryption, etc.) are represented by the other [RequestResult] types.
    */
-  fun getEncryptedUsernameFromLinkServerId(serverId: UUID): NetworkResult<ByteArray> {
-    val request = WebSocketRequestMessage.get("/v1/accounts/username_link/$serverId")
-    return NetworkResult.fromWebSocketRequest(unauthWebSocket, request, GetUsernameFromLinkResponseBody::class)
-      .map { Base64.decode(it.usernameLinkEncryptedValue) }
+  fun getDecryptedUsernameFromLinkServerIdAndEntropy(serverId: UUID, entropy: ByteArray): RequestResult<Username?, LookUpUsernameLinkFailure> {
+    return runBlocking {
+      unauthWebSocket.runCatchingWithUnauthChatConnection { chatConnection ->
+        UnauthUsernamesService(chatConnection).lookUpUsernameLink(serverId, entropy)
+      }.getOrError()
+    }
   }
 }

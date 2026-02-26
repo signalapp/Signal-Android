@@ -16,7 +16,7 @@ sealed interface StandardCameraHudEvents {
 
   data object SwitchCamera : StandardCameraHudEvents
 
-  data class SetZoomLevel(@param:FloatRange(from = 0.0, to = 1.0) val zoomLevel: Float) : StandardCameraHudEvents
+  data class SetZoomLevel(@param:FloatRange(from = -1.0, to = 1.0) val zoomLevel: Float) : StandardCameraHudEvents
 
   /**
    * Emitted when the gallery button is clicked.

@@ -19,7 +19,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
-import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV1
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -74,7 +74,8 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
     val conversationRecipientId = RecipientId.from(arguments?.getString(KEY_CONVERSATION_RECIPIENT_ID, null) ?: throw IllegalArgumentException())
     val conversationRecipient = Recipient.resolved(conversationRecipientId)
 
-    val colorizer = Colorizer()
+    @Suppress("DEPRECATION")
+    val colorizer = ColorizerV1()
 
     messageAdapter = ConversationAdapter(requireContext(), viewLifecycleOwner, Glide.with(this), Locale.getDefault(), ConversationAdapterListener(), conversationRecipient.hasWallpaper, colorizer).apply {
       setCondensedMode(ConversationItemDisplayMode.Condensed(ConversationItemDisplayMode.MessageMode.PINNED))

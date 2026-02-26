@@ -117,7 +117,7 @@
 
         <org.thoughtcrime.securesms.groups.memberlabel.MemberLabelPillView
             android:id="@+id/rbs_member_label"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dsl_settings_gutter"
             android:layout_marginTop="6dp"
@@ -125,6 +125,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rbs_full_name"
+            app:layout_constraintWidth_default="wrap"
             tools:visibility="visible" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView

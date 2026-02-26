@@ -216,6 +216,16 @@ data class CallControlsState(
   val startCallButtonText: Int = R.string.WebRtcCallView__start_call,
   val displayEndCallButton: Boolean = false
 ) {
+
+  val hasAnyControls: Boolean
+    get() = displayAudioOutputToggle ||
+      displayVideoToggle ||
+      displayMicToggle ||
+      displayGroupRingingToggle ||
+      displayAdditionalActions ||
+      displayStartCallButton ||
+      displayEndCallButton
+
   companion object {
     /**
      * Presentation-level method to build out the controls state from legacy objects.

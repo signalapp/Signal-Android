@@ -6,6 +6,7 @@
 package org.signal.core.ui.compose
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
@@ -30,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
@@ -151,18 +153,17 @@ fun ClearableTextField(
       trailingIcon = if (clearable) clearButton else null
     )
 
-    AnimatedVisibility(
-      visible = displayCountdown,
-      modifier = Modifier.align(Alignment.End)
-    ) {
-      val errorThresholdExceeded = countdownConfig != null && charactersRemainingBeforeLimit <= countdownConfig.warnThreshold
-      Text(
-        text = "$charactersRemainingBeforeLimit",
-        style = MaterialTheme.typography.bodySmall,
-        color = if (errorThresholdExceeded) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outline,
-        modifier = Modifier.padding(top = 4.dp, end = 16.dp)
-      )
-    }
+    val countdownAlpha by animateFloatAsState(targetValue = if (displayCountdown) 1f else 0f, label = "countdownAlpha")
+    val errorThresholdExceeded = countdownConfig != null && charactersRemainingBeforeLimit <= countdownConfig.warnThreshold
+    Text(
+      text = "$charactersRemainingBeforeLimit",
+      style = MaterialTheme.typography.bodySmall,
+      color = if (errorThresholdExceeded) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outline,
+      modifier = Modifier
+        .align(Alignment.End)
+        .alpha(countdownAlpha)
+        .padding(top = 4.dp, end = 16.dp)
+    )
   }
 }
 

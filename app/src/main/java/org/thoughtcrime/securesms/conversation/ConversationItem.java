@@ -116,6 +116,7 @@ import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
+import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -147,6 +148,7 @@ import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.PlaceholderURLSpan;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.signal.core.ui.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.UrlClickHandler;
@@ -1093,7 +1095,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     bodyText.setOverflowText(null);
     bodyText.setMaxLength(-1);
 
-    if (messageRecord.isRemoteDelete()) {
+    if (RemoteConfig.receiveAdminDelete() && conversationMessage.getDeletedByRecipient() != null) {
+      bodyText.setText(getDeletedMessageText(conversationMessage));
+      bodyText.setVisibility(View.VISIBLE);
+      bodyText.setOverflowText(null);
+    } else if (messageRecord.isRemoteDelete()) {
       String          deletedMessage = context.getString(messageRecord.isOutgoing() ? R.string.ConversationItem_you_deleted_this_message : R.string.ConversationItem_this_message_was_deleted);
       SpannableString italics        = new SpannableString(deletedMessage);
       italics.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, deletedMessage.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -1154,6 +1160,44 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         callToActionStub.get().setVisibility(View.GONE);
       }
     }
+  }
+
+  private SpannableStringBuilder getDeletedMessageText(@NonNull ConversationMessage message) {
+    boolean isAdminDelete = !message.getDeletedByRecipient().equals(message.getMessageRecord().getFromRecipient());
+    CharSequence body;
+
+    if (!isAdminDelete && messageRecord.isOutgoing()) {
+      body = formatDeletedText(context.getString(R.string.ConversationItem_you_deleted_this_message));
+    } else if (!isAdminDelete) {
+      body = formatDeletedText(context.getString(R.string.ConversationItem_s_deleted_this_message, message.getDeletedByRecipient().getDisplayName(context)));
+    } else {
+      SpannableString prefix = formatDeletedText(context.getString(R.string.ConversationItem_admin));
+      SpannableString suffix = formatDeletedText(context.getString(R.string.ConversationItem_deleted_this_message));
+
+      int             nameColor = colorizer.getIncomingGroupSenderColor(getContext(), message.getDeletedByRecipient());
+      SpannableString name      = new SpannableString(message.getDeletedByRecipient().getDisplayName(context));
+      name.setSpan(new ForegroundColorSpan(nameColor), 0, name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      name.setSpan(new RecipientClickableSpan(conversationMessage.getDeletedByRecipient().getId()), 0, name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      name.setSpan(new StyleSpan(Typeface.BOLD), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+      body = new SpannableStringBuilder()
+                .append(prefix)
+                .append(" ")
+                .append(name)
+                .append(" ")
+                .append(suffix);
+    }
+
+    return new SpannableStringBuilder()
+              .append(SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.X_CIRCLE, org.signal.core.ui.R.color.signal_colorOnSurfaceVariant))
+              .append(" ")
+              .append(body);
+  }
+
+  private SpannableString formatDeletedText(String text) {
+    SpannableString spannableString = new SpannableString(text);
+    spannableString.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, org.signal.core.ui.R.color.signal_colorOnSurfaceVariant)), 0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    return spannableString;
   }
 
   private void setMediaAttributes(@NonNull MessageRecord messageRecord,
@@ -1668,7 +1712,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     List<Annotation> mentionAnnotations = MentionAnnotation.getMentionAnnotations(messageBody);
     for (Annotation annotation : mentionAnnotations) {
-      messageBody.setSpan(new MentionClickableSpan(RecipientId.from(annotation.getValue())), messageBody.getSpanStart(annotation), messageBody.getSpanEnd(annotation), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      messageBody.setSpan(new RecipientClickableSpan(RecipientId.from(annotation.getValue())), messageBody.getSpanStart(annotation), messageBody.getSpanEnd(annotation), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
   }
 
@@ -2895,18 +2939,18 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
-  private class MentionClickableSpan extends ClickableSpan {
-    private final RecipientId mentionedRecipientId;
+  private class RecipientClickableSpan extends ClickableSpan {
+    private final RecipientId recipientId;
 
-    MentionClickableSpan(RecipientId mentionedRecipientId) {
-      this.mentionedRecipientId = mentionedRecipientId;
+    RecipientClickableSpan(RecipientId recipientId) {
+      this.recipientId = recipientId;
     }
 
     @Override
     public void onClick(@NonNull View widget) {
       if (eventListener != null && batchSelected.isEmpty()) {
         VibrateUtil.vibrateTick(context);
-        eventListener.onGroupMemberClicked(mentionedRecipientId, conversationRecipient.get().requireGroupId());
+        eventListener.onGroupMemberClicked(recipientId, conversationRecipient.get().requireGroupId());
       }
     }
 

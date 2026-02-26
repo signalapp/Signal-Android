@@ -146,7 +146,7 @@ private fun CreatePollScreen(
   // Parts of poll
   var question by remember { mutableStateOf("") }
   val options = remember { mutableStateListOf("", "") }
-  var allowMultiple by remember { mutableStateOf(false) }
+  var allowMultiple by remember { mutableStateOf(true) }
 
   var hasMinimumOptions by remember { mutableStateOf(false) }
   val isEnabled = question.isNotBlank() && hasMinimumOptions

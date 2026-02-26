@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationBottomSheetCallback
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
-import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV1
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.quotes.OriginalMessageSeparatorDecoration
@@ -83,7 +83,8 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
 
     disposables.bindTo(viewLifecycleOwner)
 
-    val colorizer = Colorizer()
+    @Suppress("DEPRECATION")
+    val colorizer = ColorizerV1()
 
     val messageAdapter = ConversationAdapter(
       requireContext(),

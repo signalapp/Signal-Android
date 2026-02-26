@@ -1686,6 +1686,11 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       .run()
   }
 
+  fun updateForMessageInsert(threadId: Long, unarchive: Boolean) {
+    setLastScrolled(threadId, 0)
+    update(threadId, unarchive)
+  }
+
   fun update(threadId: Long, unarchive: Boolean, syncThreadDelete: Boolean = true): Boolean {
     return update(
       threadId = threadId,
@@ -2094,7 +2099,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val extras: Extra? = if (record.isScheduled()) {
       Extra.forScheduledMessage(authorId)
     } else if (record.isRemoteDelete) {
-      Extra.forRemoteDelete(authorId)
+      Extra.forRemoteDelete(authorId, record.deletedBy!!)
     } else if (record.isViewOnce) {
       Extra.forViewOnce(authorId)
     } else if (record.isMms && (record as MmsMessageRecord).slideDeck.stickerSlide != null) {
@@ -2280,7 +2285,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             isSticker = jsonObject.getBoolean("isSticker"),
             stickerEmoji = jsonObject.getString("stickerEmoji"),
             isAlbum = jsonObject.getBoolean("isAlbum"),
-            isRemoteDelete = jsonObject.getBoolean("isRemoteDelete"),
+            deletedBy = jsonObject.getString("deletedBy"),
             isMessageRequestAccepted = jsonObject.getBoolean("isMessageRequestAccepted"),
             isGv2Invite = jsonObject.getBoolean("isGv2Invite"),
             groupAddedBy = jsonObject.getString("groupAddedBy"),
@@ -2353,8 +2358,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     @param:JsonProperty("isAlbum")
     val isAlbum: Boolean = false,
     @field:JsonProperty
-    @param:JsonProperty("isRemoteDelete")
-    val isRemoteDelete: Boolean = false,
+    @param:JsonProperty("deletedBy")
+    val deletedBy: String? = null,
     @field:JsonProperty
     @param:JsonProperty("isMessageRequestAccepted")
     val isMessageRequestAccepted: Boolean = true,
@@ -2398,8 +2403,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         return Extra(isAlbum = true, individualRecipientId = individualRecipient.serialize())
       }
 
-      fun forRemoteDelete(individualRecipient: RecipientId): Extra {
-        return Extra(isRemoteDelete = true, individualRecipientId = individualRecipient.serialize())
+      fun forRemoteDelete(individualRecipient: RecipientId, deletedBy: RecipientId): Extra {
+        return Extra(deletedBy = deletedBy.serialize(), individualRecipientId = individualRecipient.serialize())
       }
 
       fun forMessageRequest(individualRecipient: RecipientId, isHidden: Boolean = false): Extra {

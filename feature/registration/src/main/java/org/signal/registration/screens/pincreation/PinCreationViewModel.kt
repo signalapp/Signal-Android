@@ -48,7 +48,7 @@ class PinCreationViewModel(
   val state: StateFlow<PinCreationState> = _state
     .combine(parentState) { state, parentState -> applyParentState(state, parentState) }
     .onEach { Log.d(TAG, "[State] $it") }
-    .stateIn(viewModelScope, SharingStarted.Eagerly, PinCreationState(inputLabel = "PIN must be at least 4 digits"))
+    .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PinCreationState(inputLabel = "PIN must be at least 4 digits"))
 
   fun onEvent(event: PinCreationScreenEvents) {
     viewModelScope.launch {

@@ -49,7 +49,7 @@ class VerificationCodeScreenTest {
     }
 
     // Then
-    composeTestRule.onNodeWithText("Enter verification code").assertIsDisplayed()
+    composeTestRule.onNodeWithText("Verification code").assertIsDisplayed()
   }
 
   @Test
@@ -70,7 +70,7 @@ class VerificationCodeScreenTest {
     composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_2).assertIsDisplayed()
     composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_3).assertIsDisplayed()
     composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_4).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_5).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_5).fetchSemanticsNode()
   }
 
   @Test
@@ -191,7 +191,7 @@ class VerificationCodeScreenTest {
 
     // Then
     composeTestRule.onNodeWithText("Wrong number?").assertIsDisplayed()
-    composeTestRule.onNodeWithText("Resend SMS").assertIsDisplayed()
+    composeTestRule.onNodeWithText("Resend Code").assertIsDisplayed()
     composeTestRule.onNodeWithText("Call me instead").assertIsDisplayed()
   }
 }

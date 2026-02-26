@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
 import org.thoughtcrime.securesms.video.interfaces.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor;
+import org.thoughtcrime.securesms.video.videoconverter.exceptions.CodecUnavailableException;
 import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
 
 import java.io.ByteArrayInputStream;
@@ -280,6 +281,11 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                           percent));
               }, outputStream, cancelationSignal);
             } catch (EncodingException e) {
+              Log.w(TAG, "Video encoding failed"
+                  + " (hdr=" + e.isHdrInput
+                  + ", toneMap=" + e.toneMapApplied
+                  + ", decoder=" + e.decoderName
+                  + ", encoder=" + e.encoderName + ")", e);
               throw new UndeliverableMessageException("Failure during encoding", e);
             }
 
@@ -333,6 +339,16 @@ public final class AttachmentCompressionJob extends BaseJob {
         }
       }
     } catch (VideoSourceException | EncodingException | MemoryFileException e) {
+      if (e instanceof EncodingException) {
+        EncodingException ee = (EncodingException) e;
+        Log.w(TAG, "Video encoding failed"
+            + " (hdr=" + ee.isHdrInput
+            + ", toneMap=" + ee.toneMapApplied
+            + ", decoder=" + ee.decoderName
+            + ", encoder=" + ee.encoderName + ")", e);
+      } else {
+        Log.w(TAG, "Video transcode failed: " + e.getClass().getSimpleName(), e);
+      }
       if (attachment.size > constraints.getVideoMaxSize()) {
         throw new UndeliverableMessageException("Duration not found, attachment too large to skip transcode", e);
       } else {
@@ -343,8 +359,14 @@ public final class AttachmentCompressionJob extends BaseJob {
         }
       }
     } catch (IOException | MmsException e) {
+      if (e instanceof CodecUnavailableException) {
+        Log.w(TAG, "All video codecs exhausted for this content: " + e.getMessage(), e);
+      } else {
+        Log.w(TAG, "Video transcode failed: " + e.getClass().getSimpleName(), e);
+      }
       throw new UndeliverableMessageException("Failed to transcode", e);
     } catch (RuntimeException e) {
+      Log.w(TAG, "Video transcode failed with runtime exception", e);
       if (e.getCause() instanceof IOException) {
         throw new UndeliverableMessageException("Failed to transcode", e);
       } else {

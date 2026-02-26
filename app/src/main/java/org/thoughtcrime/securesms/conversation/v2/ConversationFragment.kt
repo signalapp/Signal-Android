@@ -120,6 +120,7 @@ import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
+import org.signal.core.util.requireParcelableCompat
 import org.signal.core.util.setActionItemTint
 import org.signal.donations.InAppPaymentType
 import org.signal.ringrtc.CallLinkRootKey
@@ -209,7 +210,7 @@ import org.thoughtcrime.securesms.conversation.SelectedConversationModel
 import org.thoughtcrime.securesms.conversation.ShowAdminsBottomSheetDialog
 import org.thoughtcrime.securesms.conversation.clicklisteners.PollVotesFragment
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
-import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV2
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.drafts.DraftRepository
 import org.thoughtcrime.securesms.conversation.drafts.DraftRepository.ShareOrDraftData
@@ -256,6 +257,8 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelActivity
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelEducationSheet
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog
@@ -318,6 +321,7 @@ import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDial
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity
 import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
@@ -534,7 +538,7 @@ class ConversationFragment :
   }
 
   private val conversationTooltips = ConversationTooltips(this)
-  private val colorizer = Colorizer()
+  private val colorizer = ColorizerV2()
   private val textDraftSaveDebouncer = Debouncer(500)
   private val doubleTapToEditDebouncer = DoubleClickDebouncer(200)
   private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY) }
@@ -637,8 +641,14 @@ class ConversationFragment :
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     binding.toolbar.isBackInvokedCallbackEnabled = false
-
     binding.root.setUseWindowTypes(args.conversationScreenType == ConversationScreenType.NORMAL && !resources.getWindowSizeClass().isSplitPane())
+    if (args.conversationScreenType == ConversationScreenType.BUBBLE) {
+      binding.root.setNavigationBarInsetOverride(0)
+      view.post {
+        ViewCompat.requestApplyInsets(binding.root)
+        binding.root.requestLayout()
+      }
+    }
 
     disposables.bindTo(viewLifecycleOwner)
 
@@ -678,6 +688,16 @@ class ConversationFragment :
       .addTo(disposables)
 
     container.fragmentManager = childFragmentManager
+
+    childFragmentManager.setFragmentResultListener(MemberLabelEducationSheet.RESULT_EDIT_MEMBER_LABEL, viewLifecycleOwner) { _, bundle ->
+      val groupId = bundle.requireParcelableCompat(MemberLabelEducationSheet.KEY_GROUP_ID, GroupId.V2::class.java)
+      startActivity(MemberLabelActivity.createIntent(requireContext(), groupId))
+    }
+
+    childFragmentManager.setFragmentResultListener(AboutSheet.RESULT_EDIT_MEMBER_LABEL, viewLifecycleOwner) { _, bundle ->
+      val groupId = bundle.requireParcelableCompat(AboutSheet.RESULT_GROUP_ID, GroupId.V2::class.java)
+      startActivity(MemberLabelActivity.createIntent(requireContext(), groupId))
+    }
 
     ToolbarDependentMarginListener(binding.toolbar)
     initializeMediaKeyboard()
@@ -997,9 +1017,13 @@ class ConversationFragment :
 
     when {
       state.isReactionDelegateShowing -> reactionDelegate.hide()
+
       state.isSearchRequested -> searchMenuItem?.collapseActionView()
+
       state.isInActionMode -> finishActionMode()
+
       state.isMediaKeyboardShowing -> container.hideInput()
+
       else -> {
         // State has changed since the back handler was enabled. Let the back press proceed
         // to the next handler by triggering onBackPressed again after setting a skip flag
@@ -1879,13 +1903,16 @@ class ConversationFragment :
 
     when (data) {
       is ShareOrDraftData.SendKeyboardImage -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = false)
+
       is ShareOrDraftData.SendSticker -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = true)
+
       is ShareOrDraftData.SetText -> {
         composeText.setDraftText(data.text)
         inputPanel.clickOnComposeInput()
       }
 
       is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(data.location, MediaConstraints.getPushMediaConstraints())
+
       is ShareOrDraftData.SetEditMessage -> {
         composeText.setDraftText(data.draftText)
         inputPanel.enterEditMessageMode(Glide.with(this), data.messageEdit, true, data.clearQuote)
@@ -2682,6 +2709,7 @@ class ConversationFragment :
       .subscribeBy { result ->
         when (result) {
           is Result.Success -> Log.d(TAG, "$logMessage complete")
+
           is Result.Failure -> {
             Log.d(TAG, "$logMessage failed ${result.failure}")
             toast(GroupErrors.getUserDisplayMessage(result.failure))
@@ -2821,7 +2849,10 @@ class ConversationFragment :
 
     disposables += DeleteDialog.show(
       context = requireContext(),
-      messageRecords = records
+      messageRecords = records,
+      title = requireContext().resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_title, records.size, records.size),
+      message = requireContext().resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_body, records.size, records.size),
+      isAdmin = conversationGroupViewModel.isAdmin()
     ).observeOn(AndroidSchedulers.mainThread())
       .subscribe { (deleted: Boolean, _: Boolean) ->
         if (!deleted) return@subscribe
@@ -3476,14 +3507,12 @@ class ConversationFragment :
     }
 
     override fun onCallToAction(action: String) {
-      if ("gift_badge" == action) {
-        checkoutLauncher.launch(InAppPaymentType.ONE_TIME_GIFT)
-      } else if ("username_edit" == action) {
-        startActivity(EditProfileActivity.getIntentForUsernameEdit(requireContext()))
-      } else if ("calls_tab" == action) {
-        startActivity(MainActivity.clearTopAndOpenTab(requireContext(), MainNavigationListLocation.CALLS))
-      } else if ("chat_folder" == action) {
-        startActivity(AppSettingsActivity.chatFolders(requireContext()))
+      when (action) {
+        "gift_badge" -> checkoutLauncher.launch(InAppPaymentType.ONE_TIME_GIFT)
+        "username_edit" -> startActivity(EditProfileActivity.getIntentForUsernameEdit(requireContext()))
+        "calls_tab" -> startActivity(MainActivity.clearTopAndOpenTab(requireContext(), MainNavigationListLocation.CALLS))
+        "chat_folder" -> startActivity(AppSettingsActivity.chatFolders(requireContext()))
+        "remote_backups" -> startActivity(AppSettingsActivity.remoteBackups(requireContext()))
       }
     }
 
@@ -3984,7 +4013,7 @@ class ConversationFragment :
     }
 
     override fun handleMuteNotifications() {
-      MuteDialog.show(requireContext(), viewModel::muteConversation)
+      MuteDialog.show(requireContext(), childFragmentManager, viewLifecycleOwner, viewModel::muteConversation)
     }
 
     override fun handleUnmuteNotifications() {
@@ -4148,8 +4177,11 @@ class ConversationFragment :
       val slides: List<Slide> = result.nonUploadedMedia.mapNotNull {
         when {
           MediaUtil.isVideoType(it.contentType) -> VideoSlide(requireContext(), it.uri, it.size, it.isVideoGif, it.width, it.height, it.caption, it.transformProperties)
+
           MediaUtil.isGif(it.contentType) -> GifSlide(requireContext(), it.uri, it.size, it.width, it.height, it.isBorderless, it.caption)
+
           MediaUtil.isImageType(it.contentType) -> ImageSlide(requireContext(), it.uri, it.contentType, it.size, it.width, it.height, it.isBorderless, it.caption, null, it.transformProperties)
+
           MediaUtil.isDocumentType(it.contentType) -> {
             DocumentSlide(requireContext(), it.uri, it.contentType!!, it.size, it.fileName)
           }
@@ -4351,6 +4383,7 @@ class ConversationFragment :
         .subscribeBy { result ->
           when (result) {
             is Result.Success -> Log.d(TAG, "Cancel request complete")
+
             is Result.Failure -> {
               Log.d(TAG, "Cancel join request failed ${result.failure}")
               toast(GroupErrors.getUserDisplayMessage(result.failure))
@@ -4729,9 +4762,13 @@ class ConversationFragment :
       if (button != null) {
         when (button) {
           AttachmentKeyboardButton.GALLERY -> conversationActivityResultContracts.launchGallery(recipient.id, composeText.textTrimmed, inputPanel.quote.isPresent)
+
           AttachmentKeyboardButton.CONTACT -> conversationActivityResultContracts.launchSelectContact()
+
           AttachmentKeyboardButton.LOCATION -> conversationActivityResultContracts.launchSelectLocation(recipient.chatColors)
+
           AttachmentKeyboardButton.PAYMENT -> AttachmentManager.selectPayment(this@ConversationFragment, recipient)
+
           AttachmentKeyboardButton.FILE -> {
             if (!conversationActivityResultContracts.launchSelectFile()) {
               toast(R.string.AttachmentManager_cant_open_media_selection, Toast.LENGTH_LONG)

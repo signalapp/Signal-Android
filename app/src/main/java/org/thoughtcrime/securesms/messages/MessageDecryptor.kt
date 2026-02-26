@@ -16,9 +16,9 @@ import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.LRUCache
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.UuidUtil
-import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
+import org.signal.core.util.orNull
 import org.signal.core.util.roundedString
 import org.signal.libsignal.metadata.InvalidMetadataMessageException
 import org.signal.libsignal.metadata.InvalidMetadataVersionException
@@ -373,7 +373,7 @@ object MessageDecryptor {
           val groupId: GroupId? = protocolException.parseGroupId(envelope)
 
           val threadId: Long? = if (groupId != null) {
-            if (SignalDatabase.groups.getGroup(groupId).isAbsent()) {
+            if (!SignalDatabase.groups.groupExists(groupId)) {
               Log.w(TAG, "${logPrefix(envelope, senderServiceId)} No group found for $groupId! Not inserting a retry receipt.")
               return@FollowUpOperation null
             }
@@ -560,20 +560,20 @@ object MessageDecryptor {
     return ErrorMetadata(
       sender = this.sender,
       senderDevice = this.senderDevice,
-      groupId = if (this.groupId.isPresent) GroupId.v2(GroupMasterKey(this.groupId.get())) else null
+      groupMasterKey = this.groupId.map(::GroupMasterKey).orNull()
     )
   }
 
   private fun SignalServiceCipherResult.toErrorMetadata(): ErrorMetadata {
-    val groupId = if (this.content.dataMessage.hasGroupContext) {
-      GroupId.v2(GroupMasterKey(this.content.dataMessage!!.groupV2!!.masterKey!!.toByteArray()))
+    val groupMasterKey = if (this.content.dataMessage.hasGroupContext) {
+      GroupMasterKey(this.content.dataMessage!!.groupV2!!.masterKey!!.toByteArray())
     } else {
       null
     }
     return ErrorMetadata(
       sender = this.metadata.sourceServiceId.toString(),
       senderDevice = this.metadata.sourceDeviceId,
-      groupId = groupId
+      groupMasterKey = groupMasterKey
     )
   }
 
@@ -641,8 +641,10 @@ object MessageDecryptor {
   data class ErrorMetadata(
     val sender: String,
     val senderDevice: Int,
-    val groupId: GroupId?
-  )
+    val groupMasterKey: GroupMasterKey?
+  ) {
+    val groupId: GroupId.V2? by lazy { groupMasterKey?.let { GroupId.v2(it) } }
+  }
 
   data class DecryptionErrorCount(
     var count: Int,

@@ -8,8 +8,6 @@ package org.thoughtcrime.benchmark
 import androidx.annotation.RequiresApi
 import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.ExperimentalMetricApi
-import androidx.benchmark.macro.TraceSectionMetric
-import androidx.benchmark.macro.TraceSectionMetric.Mode
 import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.uiautomator.By
@@ -41,24 +39,7 @@ class MessageProcessingBenchmarks {
   private fun run(withConversationOpen: Boolean) {
     benchmarkRule.measureRepeated(
       packageName = "org.thoughtcrime.securesms.benchmark",
-      metrics = listOf(
-        TraceSectionMetric(
-          sectionName = "IncomingMessageObserver#decryptMessage",
-          mode = Mode.Average
-        ),
-        TraceSectionMetric(
-          sectionName = "MessageContentProcessor#handleMessage",
-          mode = Mode.Average
-        ),
-        TraceSectionMetric(
-          sectionName = "IncomingMessageObserver#processMessage",
-          mode = Mode.Average
-        ),
-        TraceSectionMetric(
-          sectionName = "IncomingMessageObserver#totalProcessing",
-          mode = Mode.Sum
-        )
-      ),
+      metrics = BenchmarkMetrics.incomingMessageObserver + BenchmarkMetrics.messageContentProcessor,
       iterations = 5,
       compilationMode = CompilationMode.Partial(),
       setupBlock = {

@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationBottomSheetCallback
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
-import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV1
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.database.model.MessageId
@@ -74,7 +74,8 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
     val conversationRecipientId = RecipientId.from(arguments?.getString(KEY_CONVERSATION_RECIPIENT_ID, null) ?: throw IllegalArgumentException())
     val conversationRecipient = Recipient.resolved(conversationRecipientId)
 
-    val colorizer = Colorizer()
+    @Suppress("DEPRECATION")
+    val colorizer = ColorizerV1()
 
     messageAdapter = ConversationAdapter(requireContext(), viewLifecycleOwner, Glide.with(this), Locale.getDefault(), ConversationAdapterListener(), conversationRecipient.hasWallpaper, colorizer).apply {
       setCondensedMode(ConversationItemDisplayMode.Condensed(ConversationItemDisplayMode.MessageMode.STANDARD))

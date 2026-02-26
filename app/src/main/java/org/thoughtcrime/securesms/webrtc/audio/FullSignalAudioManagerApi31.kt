@@ -43,6 +43,11 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
   private val communicationDeviceChangedListener = AudioManager.OnCommunicationDeviceChangedListener { device ->
     if (device != null) {
       Log.i(TAG, "OnCommunicationDeviceChangedListener: id: ${device.id} type: ${getDeviceTypeName(device.type)}")
+      if (state == State.RUNNING && userSelectedAudioDevice != null && device.id != userSelectedAudioDevice?.id) {
+        Log.w(TAG, "OnCommunicationDeviceChangedListener: Device changed to ${device.id} but user selected ${userSelectedAudioDevice?.id}. Re-asserting user selection.")
+        logRoutingContext("OnCommunicationDeviceChangedListener", device)
+        updateAudioDeviceState()
+      }
     } else {
       Log.w(TAG, "OnCommunicationDeviceChangedListener: null")
     }
@@ -52,6 +57,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
     Log.i(TAG, "OnModeChangedListener: ${getModeName(mode)}")
     if (state == State.RUNNING && mode != AudioManager.MODE_IN_COMMUNICATION) {
       Log.w(TAG, "OnModeChangedListener: Not MODE_IN_COMMUNICATION during a call. state: $state")
+      logRoutingContext("OnModeChangedListener")
     }
   }
 
@@ -279,6 +285,36 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
         }
       }
     }
+  }
+  private fun logRoutingContext(event: String, callbackDevice: AudioDeviceInfo? = null) {
+    val mode = androidAudioManager.mode
+    val currentDevice: AudioDeviceInfo? = androidAudioManager.communicationDevice
+    val availableDevices: List<AudioDeviceInfo> = androidAudioManager.availableCommunicationDevices
+    val selectedStillAvailable = userSelectedAudioDevice?.let { selected ->
+      availableDevices.any { it.id == selected.id }
+    } ?: false
+    val probableCause = when {
+      mode != AudioManager.MODE_IN_COMMUNICATION -> "mode_not_in_communication"
+      userSelectedAudioDevice != null && !selectedStillAvailable -> "user_selected_device_disconnected"
+      else -> "platform_or_competing_app_reroute"
+    }
+    Log.w(
+      TAG,
+      "$event: probableCause: $probableCause state: $state mode: ${getModeName(mode)} " +
+        "defaultDevice: $defaultAudioDevice callbackDevice: ${describeDevice(callbackDevice)} " +
+        "userSelected: ${describeDevice(userSelectedAudioDevice)} " +
+        "currentDevice: ${describeDevice(currentDevice)} availableDevices: ${describeDevices(availableDevices)}"
+    )
+  }
+  private fun describeDevices(devices: List<AudioDeviceInfo>): String {
+    return devices.joinToString(prefix = "[", postfix = "]") { describeDevice(it) }
+  }
+  private fun describeDevice(device: AudioDeviceInfo?): String {
+    if (device == null) {
+      return "null"
+    }
+    val productName = device.productName?.toString()?.takeIf { it.isNotBlank() } ?: "unknown"
+    return "${device.id}:${getDeviceTypeName(device.type)}:$productName"
   }
 
   private fun getModeName(mode: Int): String {

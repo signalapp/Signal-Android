@@ -9,12 +9,14 @@ package org.signal.core.ui.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.ModalBottomSheetProperties
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -29,11 +31,13 @@ object BottomSheets {
   fun BottomSheet(
     onDismissRequest: () -> Unit,
     sheetState: SheetState = rememberModalBottomSheetState(),
-    content: @Composable () -> Unit
+    properties: ModalBottomSheetProperties = ModalBottomSheetProperties(),
+    content: @Composable ColumnScope.() -> Unit
   ) {
     return ModalBottomSheet(
       onDismissRequest = onDismissRequest,
       sheetState = sheetState,
+      properties = properties,
       dragHandle = { Handle() }
     ) {
       content()

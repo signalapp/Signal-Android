@@ -18,6 +18,11 @@ object Environment {
     fun supportsGooglePlayBilling(): Boolean {
       return BuildConfig.APPLICATION_ID == GOOGLE_PLAY_BILLING_APPLICATION_ID
     }
+
+    @JvmStatic
+    fun isNewFormatSupportedForLocalBackup(): Boolean {
+      return BuildConfig.DEBUG || IS_NIGHTLY
+    }
   }
 
   object Donations {

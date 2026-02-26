@@ -33,6 +33,16 @@
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Изпращайте снимки, видеоклипове и файлове от вашето устройство.</string>
 
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">Phone number</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code. Carrier rates may apply.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <string name="RegistrationActivity_phone_number_description">Phone number</string>
+    <string name="RegistrationActivity_next">Next</string>
+
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
     <string name="CountryCodeSelectScreen__your_country">Вашата държава</string>
@@ -42,4 +52,36 @@
     <string name="CountryCodeSelectScreen__search_by">Търсене по име или телефонен код</string>
     <!-- Fallback text for countries with no name -->
     <string name="CountryCodeSelectScreen__unknown_country">Неизвестна държава</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">Verification code</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Enter the code we sent to %1$s</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">Wrong number?</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">Resend Code</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">Call me instead</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">Call me (%1$02d:%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">Incorrect code</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">Unable to connect. Please check your network and try again.</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Too many attempts. Try again in %1$s.</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">An unexpected error occurred. Please try again.</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">There was a problem sending your verification code. Please try again.</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Could not send code via the selected method. Please try another option.</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">Registration failed. Please try again.</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">Having trouble?</string>
 </resources>

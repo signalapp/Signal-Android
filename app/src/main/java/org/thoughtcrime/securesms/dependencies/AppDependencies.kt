@@ -74,6 +74,7 @@ import org.whispersystems.signalservice.api.svr.SvrBApi
 import org.whispersystems.signalservice.api.username.UsernameApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
+import org.whispersystems.signalservice.internal.configuration.HttpProxy
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.util.function.Supplier
@@ -410,9 +411,9 @@ object AppDependencies {
     networkModule.openConnections()
   }
 
-  fun onSystemHttpProxyChange(host: String?, port: Int?): Boolean {
+  fun onSystemHttpProxyChange(systemHttpProxy: HttpProxy?): Boolean {
     val currentSystemProxy = signalServiceNetworkAccess.getConfiguration().systemHttpProxy.orNull()
-    return if (currentSystemProxy?.host != host || currentSystemProxy?.port != port) {
+    return if (currentSystemProxy?.host != systemHttpProxy?.host || currentSystemProxy?.port != systemHttpProxy?.port) {
       resetNetwork()
       true
     } else {

@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.DeliveryStatusView
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV2
 import org.thoughtcrime.securesms.conversation.colors.ColorizerView
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Projection
@@ -101,7 +102,7 @@ class ChatColorPreviewView @JvmOverloads constructor(
       wallpaper = findViewById(R.id.wallpaper)
       wallpaperDim = findViewById(R.id.wallpaper_dim)
       colorizerView = findViewById(R.id.colorizer)
-      colorizer = Colorizer()
+      colorizer = ColorizerV2()
     } finally {
       typedArray?.recycle()
     }

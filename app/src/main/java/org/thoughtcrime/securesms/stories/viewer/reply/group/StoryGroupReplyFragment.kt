@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
-import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV1
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQuery
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryChangedListener
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsController
@@ -114,7 +114,8 @@ class StoryGroupReplyFragment :
     ownerProducer = { requireActivity() }
   )
 
-  private val colorizer = Colorizer()
+  @Suppress("DEPRECATION")
+  private val colorizer = ColorizerV1()
   private val lifecycleDisposable = LifecycleDisposable()
 
   private val storyId: Long

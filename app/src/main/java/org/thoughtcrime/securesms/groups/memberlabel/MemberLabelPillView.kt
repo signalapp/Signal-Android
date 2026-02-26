@@ -9,7 +9,6 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.annotation.ColorInt
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -65,6 +64,6 @@ class MemberLabelPillView : AbstractComposeView {
   data class Style(
     val horizontalPadding: Dp = 12.dp,
     val verticalPadding: Dp = 2.dp,
-    val textStyle: @Composable () -> TextStyle = { MaterialTheme.typography.bodyLarge }
+    val textStyle: @Composable () -> TextStyle = { MemberLabelPill.textStyleNormal }
   )
 }

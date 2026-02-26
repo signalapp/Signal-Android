@@ -530,6 +530,9 @@ fun <T> CallGrid(
   val hasExistingItems = knownKeys.isNotEmpty()
 
   newKeys.forEach { key ->
+    if (exitingItems.any { it.key == key }) {
+      exitingItems = exitingItems.filterNot { it.key == key }
+    }
     if (hasExistingItems) {
       alphaAnimatables[key] = Animatable(0f)
       scaleAnimatables[key] = Animatable(CallGridDefaults.ENTER_SCALE_START)
@@ -569,7 +572,9 @@ fun <T> CallGrid(
           launch { scaleAnimatables[key]?.animateTo(CallGridDefaults.EXIT_SCALE_END, CallGridDefaults.scaleAnimationSpec) }
         }
         exitingItems = exitingItems.filterNot { it.key == key }
-        removeAnimationState(key)
+        if (key !in knownKeys) {
+          removeAnimationState(key)
+        }
       }
     } else {
       removeAnimationState(key)

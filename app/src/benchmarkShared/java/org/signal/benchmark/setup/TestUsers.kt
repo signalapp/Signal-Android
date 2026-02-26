@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.CertificateType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
@@ -170,7 +171,7 @@ object TestUsers {
     return others
   }
 
-  fun setupGroup() {
+  fun setupGroup(): GroupId.V2 {
     val members = setupTestClients(5)
     val self = Recipient.self()
 
@@ -202,6 +203,8 @@ object TestUsers {
     )
 
     SignalDatabase.recipients.setProfileSharing(Recipient.externalGroupExact(groupId!!).id, true)
+
+    return groupId
   }
 
   private fun member(aci: ACI, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0, labelEmoji: String = "", labelString: String = ""): DecryptedMember {

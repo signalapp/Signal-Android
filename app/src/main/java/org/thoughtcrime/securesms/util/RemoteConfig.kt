@@ -797,14 +797,14 @@ object RemoteConfig {
 
   /** A comma-separated list of manufacturers that should *not* use CameraX.  */
   val cameraXModelBlocklist: String by remoteString(
-    key = "android.cameraXModelBlockList.2",
+    key = "android.cameraXModelBlockList.3",
     defaultValue = "",
     hotSwappable = true
   )
 
   /** A comma-separated list of manufacturers that should *not* use CameraX mixed mode.  */
   val cameraXMixedModelBlocklist: String by remoteString(
-    key = "android.cameraXMixedModelBlockList",
+    key = "android.cameraXMixedModelBlockList.2",
     defaultValue = "",
     hotSwappable = false
   )
@@ -1238,17 +1238,6 @@ object RemoteConfig {
   )
 
   /**
-   * Whether or not the new UX for unified local backups is enabled
-   */
-  @JvmStatic
-  @get:JvmName("unifiedLocalBackups")
-  val unifiedLocalBackups: Boolean by remoteBoolean(
-    key = "android.unifiedLocalBackups",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  /**
    * Whether to receive and display group member labels.
    */
   val receiveMemberLabels: Boolean by remoteBoolean(
@@ -1263,10 +1252,53 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("sendMemberLabels")
   val sendMemberLabels: Boolean by remoteBoolean(
-    key = "android.sendMemberLabels",
+    key = "android.sendMemberLabels.2",
     defaultValue = false,
     hotSwappable = true
   )
 
+  /**
+   * Whether or not to receive admin delete messages.
+   */
+  @JvmStatic
+  @get:JvmName("receiveAdminDelete")
+  val receiveAdminDelete: Boolean by remoteBoolean(
+    key = "android.receiveAdminDelete",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * Whether or not to send admin delete messages.
+   */
+  @JvmStatic
+  @get:JvmName("sendAdminDelete")
+  val sendAdminDelete: Boolean by remoteBoolean(
+    key = "android.sendAdminDelete",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * Maximum time that passes where a message can still be regularly deleted
+   */
+  @JvmStatic
+  @get:JvmName("regularDeleteThreshold")
+  val regularDeleteThreshold: Long by remoteLong(
+    key = "android.regularDeleteThreshold",
+    defaultValue = 1.days.inWholeMilliseconds,
+    hotSwappable = true
+  )
+
+  /**
+   * Maximum time that passes where a message can still be deleted by an admin
+   */
+  @JvmStatic
+  @get:JvmName("adminDeleteThreshold")
+  val adminDeleteThreshold: Long by remoteLong(
+    key = "android.adminDeleteThreshold",
+    defaultValue = 1.days.inWholeMilliseconds,
+    hotSwappable = true
+  )
   // endregion
 }

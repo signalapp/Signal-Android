@@ -44,7 +44,6 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
       ${MessageTable.FROM_RECIPIENT_ID},
       ${MessageTable.TO_RECIPIENT_ID},
       ${MessageTable.EXPIRE_STARTED},
-      ${MessageTable.REMOTE_DELETED},
       ${MessageTable.UNIDENTIFIED},
       ${MessageTable.LINK_PREVIEWS},
       ${MessageTable.SHARED_CONTACTS},
@@ -68,7 +67,8 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
       ${MessageTable.VIEW_ONCE},
       ${MessageTable.PINNED_UNTIL},
       ${MessageTable.PINNING_MESSAGE_ID},
-      ${MessageTable.PINNED_AT}
+      ${MessageTable.PINNED_AT},
+      ${MessageTable.DELETED_BY}
     )
     WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1
     """.trimMargin()
@@ -136,7 +136,6 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
           MessageTable.TO_RECIPIENT_ID,
           EXPIRES_IN,
           MessageTable.EXPIRE_STARTED,
-          MessageTable.REMOTE_DELETED,
           MessageTable.UNIDENTIFIED,
           MessageTable.LINK_PREVIEWS,
           MessageTable.SHARED_CONTACTS,
@@ -161,7 +160,8 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
           PARENT_STORY_ID,
           MessageTable.PINNED_UNTIL,
           MessageTable.PINNING_MESSAGE_ID,
-          MessageTable.PINNED_AT
+          MessageTable.PINNED_AT,
+          MessageTable.DELETED_BY
         )
         .from("${MessageTable.TABLE_NAME} INDEXED BY $dateReceivedIndex")
         .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime $cutoffQuery")

@@ -15,6 +15,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.core.util.logging.Log
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaFilterError
 import org.signal.mediasend.MediaFilterResult
@@ -49,6 +50,7 @@ import kotlin.time.Duration.Companion.seconds
  */
 object MediaSendV3Repository : MediaSendRepository {
 
+  private val TAG = Log.tag(MediaSendV3Repository::class.java)
   private val appContext = AppDependencies.application
   private val legacyRepository = MediaSelectionRepository(appContext)
   private val mediaRepository = MediaRepository()

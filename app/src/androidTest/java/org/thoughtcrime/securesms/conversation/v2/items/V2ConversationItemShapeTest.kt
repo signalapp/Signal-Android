@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV2
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.database.FakeMessageRecords
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
@@ -208,7 +209,7 @@ class V2ConversationItemShapeTest {
     private val nextMessage: MessageRecord? = null
   ) : V2ConversationContext {
 
-    private val colorizer = Colorizer()
+    private val colorizer = ColorizerV2()
 
     override val lifecycleOwner: LifecycleOwner = object : LifecycleOwner {
       override val lifecycle: Lifecycle = LifecycleRegistry(this)

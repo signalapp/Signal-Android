@@ -154,8 +154,9 @@ class MediaPreviewV2Fragment :
     val sorting = MediaTable.Sorting.deserialize(args.sorting.ordinal)
     val startingAttachmentId = PartAuthority.requireAttachmentId(args.initialMediaUri)
     val threadId = args.threadId
-    viewModel.fetchAttachments(requireContext(), startingAttachmentId, threadId, sorting)
-    val dbObserver = DatabaseObserver.Observer { viewModel.refetchAttachments(requireContext(), startingAttachmentId, threadId, sorting) }
+    val appContext = requireContext().applicationContext
+    viewModel.fetchAttachments(appContext, startingAttachmentId, threadId, sorting)
+    val dbObserver = DatabaseObserver.Observer { viewModel.refetchAttachments(appContext, startingAttachmentId, threadId, sorting) }
     AppDependencies.databaseObserver.registerAttachmentUpdatedObserver(dbObserver)
     this.dbChangeObserver = dbObserver
   }

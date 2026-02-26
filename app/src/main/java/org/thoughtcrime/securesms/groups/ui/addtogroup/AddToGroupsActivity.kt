@@ -99,7 +99,7 @@ private fun AddToGroupsScreen(
   closeScreen: () -> Unit
 ) {
   val callbacks = remember {
-    object : UiCallbacks {
+    object : AddToGroupsUiCallbacks {
       override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
       override fun onSelectionChanged(newSelections: List<SelectedContact>) = viewModel.selectGroups(newSelections)
       override fun addToSelectedGroups() = viewModel.addToSelectedGroups()
@@ -121,7 +121,7 @@ private fun AddToGroupsScreen(
 @Composable
 private fun AddToGroupsScreenUi(
   uiState: AddToGroupsUiState,
-  callbacks: UiCallbacks
+  callbacks: AddToGroupsUiCallbacks
 ) {
   val title = if (uiState.isMultiSelectEnabled) {
     stringResource(R.string.AddToGroupActivity_add_to_groups)
@@ -154,7 +154,7 @@ private fun AddToGroupsScreenUi(
 
 private fun getDoneButton(
   uiState: AddToGroupsUiState,
-  callbacks: UiCallbacks
+  callbacks: AddToGroupsUiCallbacks
 ): (@Composable () -> Unit)? {
   return if (uiState.isMultiSelectEnabled) {
     {
@@ -173,7 +173,7 @@ private fun getDoneButton(
 @Composable
 private fun AddToGroupsRecipientPicker(
   uiState: AddToGroupsUiState,
-  callbacks: UiCallbacks,
+  callbacks: AddToGroupsUiCallbacks,
   modifier: Modifier = Modifier
 ) {
   RecipientPicker(
@@ -194,7 +194,7 @@ private fun AddToGroupsRecipientPicker(
   )
 }
 
-private interface UiCallbacks : RecipientPickerCallbacks.ListActions {
+private interface AddToGroupsUiCallbacks : RecipientPickerCallbacks.ListActions {
   override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = true
   override fun onRecipientSelected(selection: RecipientSelection) = Unit
   override fun onPendingRecipientSelectionsConsumed() = Unit
@@ -203,7 +203,7 @@ private interface UiCallbacks : RecipientPickerCallbacks.ListActions {
   fun onUserMessageDismissed(userMessage: UserMessage)
   fun onBackPressed()
 
-  object Empty : UiCallbacks {
+  object Empty : AddToGroupsUiCallbacks {
     override fun onSearchQueryChanged(query: String) = Unit
     override fun addToSelectedGroups() = Unit
     override fun onAddConfirmed(groupRecipient: Recipient) = Unit
@@ -287,7 +287,7 @@ private fun AddToSingleGroupScreenPreview() {
         forceSplitPane = false,
         selectionLimits = null
       ),
-      callbacks = UiCallbacks.Empty
+      callbacks = AddToGroupsUiCallbacks.Empty
     )
   }
 }
@@ -301,7 +301,7 @@ private fun AddToMultipleGroupsScreenPreview() {
         forceSplitPane = false,
         selectionLimits = SelectionLimits.NO_LIMITS
       ),
-      callbacks = UiCallbacks.Empty
+      callbacks = AddToGroupsUiCallbacks.Empty
     )
   }
 }

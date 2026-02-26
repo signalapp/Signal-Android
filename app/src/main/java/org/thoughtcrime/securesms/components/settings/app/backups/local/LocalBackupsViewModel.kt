@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.formatHours
 import java.text.NumberFormat
@@ -96,7 +95,6 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
     val clientDeprecated = SignalStore.misc.isClientDeprecated
     val legacyLocalBackupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(context)
     val canTurnOn = legacyLocalBackupsEnabled || (!userUnregistered && !clientDeprecated)
-    val isLegacyBackup = !RemoteConfig.unifiedLocalBackups || (SignalStore.settings.isBackupEnabled && !SignalStore.backup.newLocalBackupsEnabled)
 
     if (SignalStore.backup.newLocalBackupsEnabled) {
       if (!BackupUtil.canUserAccessUnifiedBackupDirectory(context)) {

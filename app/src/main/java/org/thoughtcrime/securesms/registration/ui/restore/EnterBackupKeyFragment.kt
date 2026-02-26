@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportDialog
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportViewModel
 import org.thoughtcrime.securesms.components.contactsupport.SendSupportEmailEffect
-import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
 import org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberMode
@@ -218,30 +217,12 @@ private fun ErrorContent(
       onDismiss = onBackupTierNotRestoredDismiss,
       properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
     )
-  } else if (state.showRegistrationError) {
-    if (state.registerAccountResult is RegisterAccountResult.IncorrectRecoveryPassword) {
-      Dialogs.SimpleAlertDialog(
-        title = stringResource(R.string.EnterBackupKey_incorrect_backup_key_title),
-        body = stringResource(R.string.EnterBackupKey_incorrect_backup_key_message),
-        confirm = stringResource(R.string.EnterBackupKey_try_again),
-        dismiss = stringResource(R.string.EnterBackupKey_backup_key_help),
-        onConfirm = {},
-        onDeny = onBackupKeyHelp,
-        onDismiss = onRegistrationErrorDismiss,
-        properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
-      )
-    } else {
-      val message = when (state.registerAccountResult) {
-        is RegisterAccountResult.RateLimited -> stringResource(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later)
-        else -> stringResource(R.string.RegistrationActivity_error_connecting_to_service)
-      }
-
-      Dialogs.SimpleMessageDialog(
-        message = message,
-        onDismiss = onRegistrationErrorDismiss,
-        dismiss = stringResource(android.R.string.ok),
-        properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
-      )
-    }
+  } else {
+    RegistrationErrorDialogs(
+      showRegistrationError = state.showRegistrationError,
+      registerAccountResult = state.registerAccountResult,
+      onRegistrationErrorDismiss = onRegistrationErrorDismiss,
+      onBackupKeyHelp = onBackupKeyHelp
+    )
   }
 }

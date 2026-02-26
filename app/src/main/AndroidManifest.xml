@@ -752,7 +752,7 @@
             android:theme="@style/Signal.DayNight.NoActionBar" />
 
         <activity
-            android:name=".registration.ui.restore.local.InternalNewLocalRestoreActivity"
+            android:name=".registration.ui.restore.local.RestoreLocalBackupActivity"
             android:exported="false"
             android:theme="@style/Signal.DayNight.NoActionBar" />
 
@@ -930,6 +930,11 @@
 
         <activity
             android:name=".groups.ui.incommon.GroupsInCommonActivity"
+            android:exported="false"
+            android:theme="@style/Signal.DayNight.NoActionBar" />
+
+        <activity
+            android:name=".groups.memberlabel.MemberLabelActivity"
             android:exported="false"
             android:theme="@style/Signal.DayNight.NoActionBar" />
 

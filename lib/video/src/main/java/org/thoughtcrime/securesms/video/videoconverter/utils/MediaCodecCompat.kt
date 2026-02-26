@@ -23,6 +23,57 @@ object MediaCodecCompat {
   const val MEDIA_FORMAT_KEY_CODEC_SPECIFIC_DATA_1 = "csd-1"
   const val MEDIA_FORMAT_KEY_CODEC_SPECIFIC_DATA_2 = "csd-2"
 
+  /**
+   * Returns all matching decoders for the given [inputFormat], ordered with hardware-preferred
+   * codecs ([MediaCodecList.REGULAR_CODECS]) first, then additional codecs from
+   * [MediaCodecList.ALL_CODECS] (includes software), deduplicated by name.
+   *
+   * Each entry is a codec name paired with the format to use (which may differ from [inputFormat]
+   * for Dolby Vision content, where it is resolved to the base-layer format).
+   */
+  @JvmStatic
+  @Throws(IOException::class)
+  fun findDecoderCandidates(inputFormat: MediaFormat): List<Pair<String, MediaFormat>> {
+    val mimeType = inputFormat.getString(MediaFormat.KEY_MIME)
+
+    val resolvedFormat: MediaFormat = if (MediaFormat.MIMETYPE_VIDEO_DOLBY_VISION == mimeType) {
+      val dvFormat = if (Build.VERSION.SDK_INT >= 29) MediaFormat(inputFormat) else inputFormat
+      resolveDolbyVisionFormat(dvFormat) ?: throw IOException("Can't resolve Dolby Vision format for decoder candidates!")
+    } else {
+      inputFormat
+    }
+
+    val resolvedMime = resolvedFormat.getString(MediaFormat.KEY_MIME)
+      ?: throw IOException("No MIME type in resolved format!")
+
+    val candidates = mutableListOf<Pair<String, MediaFormat>>()
+    val seen = mutableSetOf<String>()
+
+    for (codecInfo in MediaCodecList(MediaCodecList.REGULAR_CODECS).codecInfos) {
+      if (codecInfo.isEncoder) continue
+      if (codecInfo.supportedTypes.any { it.equals(resolvedMime, ignoreCase = true) }) {
+        if (seen.add(codecInfo.name)) {
+          candidates.add(Pair(codecInfo.name, resolvedFormat))
+        }
+      }
+    }
+
+    for (codecInfo in MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos) {
+      if (codecInfo.isEncoder) continue
+      if (codecInfo.supportedTypes.any { it.equals(resolvedMime, ignoreCase = true) }) {
+        if (seen.add(codecInfo.name)) {
+          candidates.add(Pair(codecInfo.name, resolvedFormat))
+        }
+      }
+    }
+
+    if (candidates.isEmpty()) {
+      throw IOException("Can't find decoder for $resolvedMime!")
+    }
+
+    return candidates
+  }
+
   @JvmStatic
   fun findDecoder(inputFormat: MediaFormat): Pair<MediaCodec, MediaFormat> {
     val codecs = MediaCodecList(MediaCodecList.REGULAR_CODECS)
@@ -48,6 +99,39 @@ object MediaCodecCompat {
     }
 
     throw IOException("Can't create decoder for $mimeType!")
+  }
+
+  /**
+   * Resolves a Dolby Vision [MediaFormat] to its base-layer format by mutating the MIME type,
+   * profile, and level. Returns the mutated format, or null if the DV profile is unsupported.
+   */
+  private fun resolveDolbyVisionFormat(mediaFormat: MediaFormat): MediaFormat? {
+    if (MediaFormat.MIMETYPE_VIDEO_DOLBY_VISION != mediaFormat.getString(MediaFormat.KEY_MIME)) {
+      throw IllegalStateException("Must supply Dolby Vision MediaFormat!")
+    }
+
+    return try {
+      when (mediaFormat.getInteger(MediaFormat.KEY_PROFILE)) {
+        CodecProfileLevel.DolbyVisionProfileDvheDtr,
+        CodecProfileLevel.DolbyVisionProfileDvheSt -> {
+          mediaFormat.setString(MediaFormat.KEY_MIME, MediaFormat.MIMETYPE_VIDEO_HEVC)
+          mediaFormat.setInteger(MediaFormat.KEY_PROFILE, CodecProfileLevel.HEVCProfileMain10)
+          mediaFormat.setBaseCodecLevelFromDolbyVisionLevel()
+          mediaFormat
+        }
+
+        CodecProfileLevel.DolbyVisionProfileDvavSe -> {
+          mediaFormat.setString(MediaFormat.KEY_MIME, MediaFormat.MIMETYPE_VIDEO_AVC)
+          mediaFormat.setInteger(MediaFormat.KEY_PROFILE, CodecProfileLevel.AVCProfileHigh)
+          mediaFormat.setBaseCodecLevelFromDolbyVisionLevel()
+          mediaFormat
+        }
+
+        else -> null
+      }
+    } catch (npe: NullPointerException) {
+      null
+    }
   }
 
   /**
@@ -151,18 +235,57 @@ object MediaCodecCompat {
   }
 
   /**
-   * Returns true if the given [MediaFormat] describes an HDR video (PQ or HLG color transfer).
-   * Some hardware decoders crash when tone-mapping parameters are set on non-HDR video.
+   * Returns true if the given [MediaFormat] describes an HDR video.
+   *
+   * Checks three signals:
+   * 1. PQ or HLG color transfer function (standard indicator)
+   * 2. HDR static metadata (mastering display info, present in HDR10 content)
+   * 3. HDR10+ dynamic metadata (present in HDR10+ content, API 29+)
+   *
+   * Some devices report non-standard color transfer values (e.g. 65791) for HDR content,
+   * so checking metadata keys provides a more reliable detection.
    */
   @JvmStatic
   fun isHdrVideo(format: MediaFormat): Boolean {
-    return try {
+    try {
       val colorTransfer = format.getInteger(MediaFormat.KEY_COLOR_TRANSFER)
-      colorTransfer == MediaFormat.COLOR_TRANSFER_ST2084 || colorTransfer == MediaFormat.COLOR_TRANSFER_HLG
-    } catch (e: NullPointerException) {
-      false
-    } catch (e: ClassCastException) {
-      false
+      if (colorTransfer == MediaFormat.COLOR_TRANSFER_ST2084 || colorTransfer == MediaFormat.COLOR_TRANSFER_HLG) {
+        return true
+      }
+    } catch (_: NullPointerException) {
+      // key doesn't exist
+    } catch (_: ClassCastException) {
+      // key exists but wrong type
     }
+
+    if (format.containsKey(MediaFormat.KEY_HDR_STATIC_INFO)) {
+      return true
+    }
+
+    if (Build.VERSION.SDK_INT >= 29 && format.containsKey(MediaFormat.KEY_HDR10_PLUS_INFO)) {
+      return true
+    }
+
+    // On older APIs, the extractor may not populate KEY_COLOR_TRANSFER or HDR metadata keys.
+    // Check the HEVC profile as a fallback: Main 10 and its HDR variants indicate 10-bit
+    // content that typically requires HDR-capable decoders.
+    val mime = try { format.getString(MediaFormat.KEY_MIME) } catch (_: Exception) { null }
+    if (mime.equals("video/hevc", ignoreCase = true)) {
+      try {
+        val profile = format.getInteger(MediaFormat.KEY_PROFILE)
+        if (profile == CodecProfileLevel.HEVCProfileMain10 ||
+          profile == CodecProfileLevel.HEVCProfileMain10HDR10 ||
+          profile == CodecProfileLevel.HEVCProfileMain10HDR10Plus
+        ) {
+          return true
+        }
+      } catch (_: NullPointerException) {
+        // key doesn't exist
+      } catch (_: ClassCastException) {
+        // key exists but wrong type
+      }
+    }
+
+    return false
   }
 }

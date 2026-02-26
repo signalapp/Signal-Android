@@ -799,6 +799,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
+        title = DSLSettingsText.from("Add remote backups note"),
+        onClick = {
+          viewModel.addSampleReleaseNote("remote_backups")
+        }
+      )
+
+      clickPref(
         title = DSLSettingsText.from("Add remote donate megaphone"),
         onClick = {
           viewModel.addRemoteDonateMegaphone()

@@ -29,22 +29,22 @@ import com.google.android.material.timepicker.TimeFormat;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.ui.permissions.Permissions;
+import org.signal.core.ui.util.StorageUtil;
+import org.signal.core.util.NoExternalStorageException;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupDialog;
 import org.thoughtcrime.securesms.backup.BackupEvent;
-import org.signal.core.util.NoExternalStorageException;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.preferences.widgets.UpgradeLocalBackupCard;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
+import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.JavaTimeExtensionsKt;
-import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.signal.core.ui.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.text.NumberFormat;
@@ -231,7 +231,7 @@ public class BackupsPreferenceFragment extends Fragment {
   }
 
   private void setUpdateState() {
-    if (SignalStore.settings().isBackupEnabled() && RemoteConfig.unifiedLocalBackups()) {
+    if (SignalStore.settings().isBackupEnabled() && Environment.Backups.isNewFormatSupportedForLocalBackup()) {
       UpgradeLocalBackupCard.bind(upgradeCard, () -> {
         Navigation.findNavController(requireView())
                   .navigate(BackupsPreferenceFragmentDirections.actionBackupsPreferenceFragmentToLocalBackupsFragment()

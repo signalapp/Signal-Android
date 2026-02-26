@@ -4,13 +4,11 @@
  */
 package org.thoughtcrime.securesms.components.settings.app.backups.local
 
-import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
-import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -31,6 +29,7 @@ import androidx.navigation3.ui.NavDisplay
 import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.ui.compose.Launchers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyEducationScreen
@@ -158,11 +157,10 @@ class LocalBackupsFragment : ComposeFragment() {
 }
 
 @Composable
-private fun rememberChooseBackupLocationLauncher(backStack: NavBackStack<NavKey>): ActivityResultLauncher<Intent> {
+private fun rememberChooseBackupLocationLauncher(backStack: NavBackStack<NavKey>): ActivityResultLauncher<Uri?> {
   val context = LocalContext.current
-  return rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-    val uri = result.data?.data
-    if (result.resultCode == Activity.RESULT_OK && uri != null) {
+  return Launchers.rememberOpenDocumentTreeLauncher { uri ->
+    if (uri != null) {
       Log.i(TAG, "Backup location selected: $uri")
       val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
       context.contentResolver.takePersistableUriPermission(uri, takeFlags)

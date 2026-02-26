@@ -119,7 +119,7 @@ private fun NewConversationScreen(
 
   val coroutineScope = rememberCoroutineScope()
   val callbacks = remember {
-    object : UiCallbacks {
+    object : NewConversationUiCallbacks {
       override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
       override fun onCreateNewGroup() = createGroupLauncher.launch(CreateGroupActivity.createIntent(context))
       override fun onFindByUsername() = findByLauncher.launch(FindByMode.USERNAME)
@@ -189,7 +189,7 @@ private suspend fun openConversation(
 @Composable
 private fun NewConversationScreenUi(
   uiState: NewConversationUiState,
-  callbacks: UiCallbacks
+  callbacks: NewConversationUiCallbacks
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
 
@@ -221,7 +221,7 @@ private fun NewConversationScreenUi(
 }
 
 @Composable
-private fun TopAppBarActions(callbacks: UiCallbacks) {
+private fun TopAppBarActions(callbacks: NewConversationUiCallbacks) {
   val menuController = remember { DropdownMenus.MenuController() }
   IconButton(
     onClick = { menuController.show() },
@@ -265,7 +265,7 @@ private fun TopAppBarActions(callbacks: UiCallbacks) {
   }
 }
 
-private interface UiCallbacks :
+private interface NewConversationUiCallbacks :
   RecipientPickerCallbacks.ListActions,
   RecipientPickerCallbacks.Refresh,
   RecipientPickerCallbacks.ContextMenu,
@@ -278,7 +278,7 @@ private interface UiCallbacks :
   fun onUserMessageDismissed(userMessage: UserMessage)
   fun onBackPressed()
 
-  object Empty : UiCallbacks {
+  object Empty : NewConversationUiCallbacks {
     override fun onSearchQueryChanged(query: String) = Unit
     override fun onCreateNewGroup() = Unit
     override fun onFindByUsername() = Unit
@@ -303,7 +303,7 @@ private interface UiCallbacks :
 @Composable
 private fun NewConversationRecipientPicker(
   uiState: NewConversationUiState,
-  callbacks: UiCallbacks,
+  callbacks: NewConversationUiCallbacks,
   modifier: Modifier = Modifier
 ) {
   RecipientPicker(
@@ -400,7 +400,7 @@ private fun NewConversationScreenPreview() {
       uiState = NewConversationUiState(
         forceSplitPaneOnCompactLandscape = false
       ),
-      callbacks = UiCallbacks.Empty
+      callbacks = NewConversationUiCallbacks.Empty
     )
   }
 }

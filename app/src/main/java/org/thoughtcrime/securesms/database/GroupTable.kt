@@ -313,18 +313,12 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
    * @return local db group revision or -1 if not present.
    */
   fun getGroupV2Revision(groupId: GroupId.V2): Int {
-    readableDatabase
-      .select()
+    return readableDatabase
+      .select(V2_REVISION)
       .from(TABLE_NAME)
       .where("$GROUP_ID = ?", groupId.toString())
       .run()
-      .use { cursor ->
-        return if (cursor.moveToNext()) {
-          cursor.getInt(cursor.getColumnIndexOrThrow(V2_REVISION))
-        } else {
-          -1
-        }
-      }
+      .readToSingleInt(-1)
   }
 
   fun isUnknownGroup(groupId: GroupId): Boolean {

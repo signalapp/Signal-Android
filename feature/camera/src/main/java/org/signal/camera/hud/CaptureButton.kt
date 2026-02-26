@@ -202,13 +202,19 @@ fun CaptureButton(
 
                 // Handle zoom during recording
                 if (longPressTriggered) {
+                  val deadzoneBottom = size.height * (1f - DEADZONE_REDUCTION_PERCENT / 2f)
                   val isAboveDeadzone = currentPointer.position.y < deadzoneTop
+                  val isBelowDeadzone = currentPointer.position.y > deadzoneBottom
                   if (isAboveDeadzone) {
                     val deltaY = (deadzoneTop - currentPointer.position.y).coerceAtLeast(0f)
                     val zoomPercent = (deltaY / maxRange).coerceIn(0f, 1f)
-                    // Apply decelerate interpolation like CameraButtonView
                     val interpolatedZoom = decelerateInterpolation(zoomPercent)
                     onZoomChange(interpolatedZoom)
+                  } else if (isBelowDeadzone) {
+                    val deltaY = (currentPointer.position.y - deadzoneBottom).coerceAtLeast(0f)
+                    val zoomPercent = (deltaY / maxRange).coerceIn(0f, 1f)
+                    val interpolatedZoom = decelerateInterpolation(zoomPercent)
+                    onZoomChange(-interpolatedZoom)
                   }
                 }
 

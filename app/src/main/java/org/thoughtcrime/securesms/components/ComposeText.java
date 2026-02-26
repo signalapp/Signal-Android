@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.view.ActionMode;
+import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
@@ -284,6 +285,10 @@ public class ComposeText extends EmojiEditText {
   }
 
   private void initialize() {
+    if (Build.VERSION.SDK_INT >= 26) {
+      setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO);
+    }
+
     if (TextSecurePreferences.isIncognitoKeyboardEnabled(getContext())) {
       setImeOptions(getImeOptions() | 16777216);
     }

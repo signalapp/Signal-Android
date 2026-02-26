@@ -4,6 +4,7 @@ import android.text.TextUtils
 import org.signal.core.util.Base64
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.NetworkResultUtil
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential
@@ -384,9 +384,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       val displayBadgesOnProfile = SignalStore.inAppPayments.getDisplayBadgesOnProfile()
       Log.d(
         TAG,
-        "Detected mixed visibility of badges. Telling the server to mark them all " +
-          (if (displayBadgesOnProfile) "" else "not") +
-          " visible.",
+        "Detected mixed visibility of badges. Telling the server to mark them all ${if (displayBadgesOnProfile) "" else "not"} visible.",
         true
       )
 
@@ -399,8 +397,6 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
   }
 
   private fun checkUsernameIsInSync() {
-    var validated = false
-
     try {
       val localUsername = SignalStore.account.username
 
@@ -429,32 +425,37 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       return
     }
 
-    try {
-      val localUsernameLink = SignalStore.account.usernameLink
+    val localUsernameLink = SignalStore.account.usernameLink ?: return
 
-      if (localUsernameLink != null) {
-        val remoteEncryptedUsername = NetworkResultUtil.toBasicLegacy<ByteArray>(SignalNetwork.username.getEncryptedUsernameFromLinkServerId(localUsernameLink.serverId))
-        val combinedLink = Username.UsernameLink(localUsernameLink.entropy, remoteEncryptedUsername)
-        val remoteUsername = Username.fromLink(combinedLink)
+    when (val usernameFetchResult = SignalNetwork.username.getDecryptedUsernameFromLinkServerIdAndEntropy(localUsernameLink.serverId, localUsernameLink.entropy)) {
+      is RequestResult.Success -> {
+        val remoteUsername = usernameFetchResult.result
+
+        if (remoteUsername == null) {
+          Log.w(TAG, "Local username link was not found on remote. Marking as mismatched.")
+          UsernameRepository.onUsernameLinkMismatchDetected()
+          return
+        }
 
         if (remoteUsername.getUsername() != SignalStore.account.username) {
           Log.w(TAG, "The remote username decrypted ok, but the decrypted username did not match our local username!")
           UsernameRepository.onUsernameLinkMismatchDetected()
-        } else {
-          Log.d(TAG, "Username link validated.")
+          return
         }
 
-        validated = true
+        Log.d(TAG, "Username link validated.")
+        UsernameRepository.onUsernameConsistencyValidated()
       }
-    } catch (e: IOException) {
-      Log.w(TAG, "Failed perform synchronization check during the username link phase.", e)
-    } catch (e: BaseUsernameException) {
-      Log.w(TAG, "Failed to decrypt username link using the remote encrypted username and our local entropy!", e)
-      UsernameRepository.onUsernameLinkMismatchDetected()
-    }
-
-    if (validated) {
-      UsernameRepository.onUsernameConsistencyValidated()
+      is RequestResult.NonSuccess -> {
+        Log.w(TAG, "Failed to decrypt username link using our local link data. ${usernameFetchResult.error}")
+        UsernameRepository.onUsernameLinkMismatchDetected()
+      }
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "Failed perform synchronization check during the username link phase, skipping.", usernameFetchResult.networkError)
+      }
+      is RequestResult.ApplicationError -> {
+        throw usernameFetchResult.cause
+      }
     }
   }
 

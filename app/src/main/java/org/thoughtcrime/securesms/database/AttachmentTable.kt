@@ -2099,11 +2099,14 @@ class AttachmentTable(
       val contentValues = contentValuesOf(
         DATA_SIZE to newDataFileInfo.length,
         CONTENT_TYPE to mediaStream.mimeType,
-        WIDTH to mediaStream.width,
-        HEIGHT to mediaStream.height,
         DATA_FILE to newDataFileInfo.file.absolutePath,
         DATA_RANDOM to newDataFileInfo.random
       )
+
+      if (mediaStream.width > 0 && mediaStream.height > 0) {
+        contentValues.put(WIDTH, mediaStream.width)
+        contentValues.put(HEIGHT, mediaStream.height)
+      }
 
       val updateCount = db.update(TABLE_NAME)
         .values(contentValues)

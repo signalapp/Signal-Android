@@ -310,7 +310,7 @@ class DonateToSignalFragment :
           text = DSLSettingsText.from(R.string.SubscribeFragment__cancel_subscription),
           isEnabled = state.areFieldsEnabled,
           onClick = {
-            if (state.monthlyDonationState.transactionState.isTransactionJobPending) {
+            if (state.monthlyDonationState.transactionState.isTransactionJobPending && !state.monthlyDonationState.transactionState.isKeepAlive) {
               showDonationPendingDialog(state)
             } else {
               MaterialAlertDialogBuilder(requireContext())

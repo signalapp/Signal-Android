@@ -22,6 +22,14 @@ object BenchmarkSetup {
     device.benchmarkCommandBroadcast("group-send")
   }
 
+  fun setupGroupDeliveryReceipt(device: UiDevice) {
+    device.benchmarkCommandBroadcast("group-delivery-receipt")
+  }
+
+  fun setupGroupReadReceipt(device: UiDevice) {
+    device.benchmarkCommandBroadcast("group-read-receipt")
+  }
+
   fun releaseMessages(device: UiDevice) {
     device.benchmarkCommandBroadcast("release-messages")
   }

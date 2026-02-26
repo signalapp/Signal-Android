@@ -154,8 +154,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun addSampleReleaseNote() {
-    repository.addSampleReleaseNote()
+  fun addSampleReleaseNote(callToAction: String = "action") {
+    repository.addSampleReleaseNote(callToAction)
   }
 
   fun addRemoteDonateMegaphone() {

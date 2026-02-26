@@ -76,6 +76,8 @@ fun CameraScreen(
   modifier: Modifier = Modifier,
   roundCorners: Boolean = true,
   contentAlignment: Alignment = Alignment.Center,
+  enableVideoCapture: Boolean = true,
+  enableQrScanning: Boolean = false,
   content: @Composable BoxScope.() -> Unit = {}
 ) {
   val context = LocalContext.current
@@ -103,7 +105,9 @@ fun CameraScreen(
         lifecycleOwner = lifecycleOwner,
         cameraProvider = cameraProvider,
         surfaceProvider = surfaceProvider,
-        context = context
+        context = context,
+        enableVideoCapture = enableVideoCapture,
+        enableQrScanning = enableQrScanning
       )
     )
   }

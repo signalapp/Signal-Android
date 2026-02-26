@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveDatabaseExecutor
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.hadIntegrityCheckPerformed
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -129,6 +130,12 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
 
     if (attachment.contentType == MediaUtil.LONG_TEXT) {
       Log.i(TAG, "[$attachmentId]$mediaIdLog Attachment is long text. Resetting transfer state to none and skipping.")
+      setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
+    if (!attachment.hadIntegrityCheckPerformed()) {
+      Log.w(TAG, "[$attachmentId]$mediaIdLog Attachment has not had its integrity check performed yet (transferState: ${attachment.transferState}). Resetting transfer state to none and skipping.")
       setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
       return Result.success()
     }

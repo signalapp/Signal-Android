@@ -17,6 +17,5 @@ data class BackupsSettingsState(
   val backupState: BackupState,
   val lastBackupAt: Duration = SignalStore.backup.lastBackupTime.milliseconds,
   val showBackupTierInternalOverride: Boolean = false,
-  val backupTierInternalOverride: MessageBackupTier? = null,
-  val showNewLocalBackup: Boolean = false
+  val backupTierInternalOverride: MessageBackupTier? = null
 )

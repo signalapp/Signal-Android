@@ -165,6 +165,10 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Invalid unpin message!")
     }
 
+    if (dataMessage.adminDelete != null && (dataMessage.adminDelete.targetAuthorAciBinary.isNullOrInvalidAci() || dataMessage.adminDelete.targetSentTimestamp == null)) {
+      return Result.Invalid("[DataMessage] Invalid admin delete message!")
+    }
+
     return Result.Valid
   }
 

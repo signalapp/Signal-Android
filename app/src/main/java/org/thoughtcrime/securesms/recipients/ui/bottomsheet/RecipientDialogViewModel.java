@@ -21,7 +21,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
-import org.thoughtcrime.securesms.conversation.colors.Colorizer;
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV2;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
@@ -141,7 +141,7 @@ final class RecipientDialogViewModel extends ViewModel {
         StyledMemberLabel styledLabel = null;
 
         if (label != null) {
-          Colorizer             colorizer   = new Colorizer();
+          ColorizerV2           colorizer   = new ColorizerV2();
           Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroup(v2GroupId);
           if (groupRecord.isPresent()) {
             colorizer.onGroupMembershipChanged(groupRecord.get().requireV2GroupProperties().getMemberServiceIds());

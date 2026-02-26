@@ -448,8 +448,14 @@
     <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Laadi rohkem alla</string>
     <string name="ConversationItem_pending">  Ootel</string>
-    <string name="ConversationItem_this_message_was_deleted">See sõnum kustutati.</string>
-    <string name="ConversationItem_you_deleted_this_message">Sa kustutasid selle sõnumi.</string>
+    <string name="ConversationItem_this_message_was_deleted">This message was deleted</string>
+    <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
+    <string name="ConversationItem_s_deleted_this_message">%1$s deleted this message</string>
+    <string name="ConversationItem_you_deleted_this_message">You deleted this message</string>
+    <!-- First part of a conversation message when a message has been deleted by an admin. -->
+    <string name="ConversationItem_admin">Admin</string>
+    <!-- Second part of a conversation message when a message has been deleted by an admin. -->
+    <string name="ConversationItem_deleted_this_message">deleted this message</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Sõnumit ei saa alla laadida. %1$s peab selle uuesti saatma.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -616,6 +622,20 @@
     <string name="ConversationFragment_deleting_messages">Sõnumite kustutamine…</string>
     <string name="ConversationFragment_delete_for_me">Kustuta minu jaoks</string>
     <string name="ConversationFragment_delete_for_everyone">Kustuta kõigi jaoks</string>
+    <!-- Title of dialog confirming whether to delete the message -->
+    <plurals name="ConversationFragment_delete_selected_title">
+        <item quantity="one">Delete selected message?</item>
+        <item quantity="other">Delete selected messages?</item>
+    </plurals>
+    <!-- Body of dialog confirming whether to delete the message -->
+    <plurals name="ConversationFragment_delete_selected_body">
+        <item quantity="one">Who would you like to delete this message for?</item>
+        <item quantity="other">Who would you like to delete these messages for?</item>
+    </plurals>
+    <!-- Confirmation button to delete the message -->
+    <string name="ConversationFragment_delete_for_everyone_title">Delete for everyone?</string>
+    <!-- Body of dialog explaining what happens during deletion -->
+    <string name="ConversationFragment_delete_for_everyone_body">As an admin, group members will see that you deleted these messages.</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Kustuta sellest seadmest</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -2680,6 +2700,8 @@
     <string name="AboutSheet__you">Sina</string>
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
+    <!-- Placeholder text in the group member label row when the user has no label set. -->
+    <string name="AboutSheet__add_group_member_label">Add a member label</string>
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
@@ -3029,8 +3051,14 @@
     <string name="ThreadRecord_view_once_photo">Korra vaatamise foto</string>
     <string name="ThreadRecord_view_once_video">Korra vaatamise video</string>
     <string name="ThreadRecord_view_once_media">Korra vaatamise meedia</string>
-    <string name="ThreadRecord_this_message_was_deleted">See sõnum kustutati.</string>
-    <string name="ThreadRecord_you_deleted_this_message">Sa kustutasid selle sõnumi.</string>
+    <!-- Thread preview when someone has deleted their own message -->
+    <string name="ThreadRecord_this_message_was_deleted">This message was deleted</string>
+    <!-- Thread preview when someone has deleted their own message. Placeholder is the name of the person. -->
+    <string name="ThreadRecord_s_deleted_this_message">%1$s deleted this message</string>
+    <!-- Thread preview when you deleted a message -->
+    <string name="ThreadRecord_you_deleted_this_message">You deleted this message</string>
+    <!-- Thread preview when an admin has deleted a message -->
+    <string name="ThreadRecord_admin_deleted_this_message">Admin %1$s deleted this message</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Saatsid kutse maksete aktiveerimiseks</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -3179,7 +3207,22 @@
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sõnum krüptitud mitteeksisteeriva sessiooni jaoks</string>
 
     <!-- MuteDialog -->
+    <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Vaigista teavitused</string>
+    <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
+    <string name="MuteDialog__mute_until">Mute until…</string>
+
+    <!-- MuteUntilTimePickerBottomSheet -->
+    <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
+    <string name="MuteUntilTimePickerBottomSheet__dialog_title">Mute notifications until…</string>
+    <!-- Label for a data selector where the user chooses how long they\'d like to mute notifications for -->
+    <string name="MuteUntilTimePickerBottomSheet__select_date_title">Select date</string>
+    <!-- Label for a time selector where the user chooses how long they\'d like to mute notifications for -->
+    <string name="MuteUntilTimePickerBottomSheet__select_time_title">Select time</string>
+    <!-- Label for a button that, when pressed, will confirm the user\'s choice on how long to mute notifications for -->
+    <string name="MuteUntilTimePickerBottomSheet__mute_notifications">Mute notifications</string>
+    <!-- Subtitle in a dialog that describes the timezone the user is picking times in. The first placeholder is a UTC offset, and the second placeholder is a user-friendly name for the timezone, e.g. "All times in (GMT-05:00) Eastern Standard Time" -->
+    <string name="MuteUntilTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Koputa avamiseks.</string>
@@ -5134,6 +5177,8 @@
     <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">Nõustu</string>
     <string name="GroupRecipientListItem_deny_description">Keeldu</string>
+    <!-- Placeholder shown in the group member list when the user has not yet set a member label. -->
+    <string name="GroupRecipientListItem__add_member_label">Add member label</string>
 
 
     <!-- GroupsLearnMoreBottomSheetDialogFragment -->
@@ -5936,6 +5981,8 @@
     <string name="ConversationSettingsFragment__group_link">Grupilink</string>
     <!-- Label for button that opens the group member label permissions screen. -->
     <string name="ConversationSettingsFragment__group_member_label">Liikmesilt</string>
+    <!-- Snackbar shown when non-admin taps the member label button -->
+    <string name="ConversationSettingsFragment__only_admins_can_add_member_labels">Only admins can add member labels in this group.</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Lisa kontaktina</string>
     <string name="ConversationSettingsFragment__unmute">Eemalda vaigistus</string>
@@ -7348,8 +7395,8 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBANi riigikoodi ei toetata</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">Kehtetu IBAN</string>
-    <!-- Error label for name field when name is not at least two characters long -->
-    <string name="BankTransferDetailsFragment__minimum_2_characters">Vähemalt kaks märki</string>
+    <!-- Error label for name field when name is not at least three characters long (Stripe API enforced minimum) -->
+    <string name="BankTransferDetailsFragment__minimum_3_characters">Minimum 3 characters</string>
     <!-- Error label for email field when email is not valid -->
     <string name="BankTransferDetailsFragment__invalid_email_address">Vigane meiliaadress</string>
 
@@ -8803,11 +8850,13 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Liiguta oma Signali konto ja sõnumiajalugu sellesse seadmesse.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Signali turvalistest varukoopiatest</string>
+    <string name="SelectRestoreMethodFragment__restore_signal_backup">Restore Signal backup</string>
     <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Sinu tasuta või tasuline Signali varundamisplaan</string>
-    <!-- Option title for restoring via a local backup folder -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_folder">Varundamiskaustast</string>
+    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Restore your text messages and media from your Signal backup plan.</string>
+    <!-- Option title for restoring via a local backup file or folder -->
+    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Restore on-device backup</string>
+    <!-- Option subtitle fdor restoring via a local backup file or folder -->
+    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Restore your messages from a backup you saved on your device.</string>
     <!-- Option title for restoring via a local backup file -->
     <string name="SelectRestoreMethodFragment__from_a_backup_file">Varukoopiafailist</string>
     <!-- Option subtitle for restoring via a local backup -->
@@ -8881,6 +8930,87 @@
     <!-- Email subject when contacting support on a permanent backup import failure -->
     <string name="EnterBackupKey_permanent_failure_support_email">Püsiv tõrge Signal Androidi varukoopia taastamisel</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
+
+    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
+    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Enter your recovery key</string>
+    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
+    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a backup key -->
+    <string name="EnterLocalBackupKeyScreen__no_backup_key">No backup key?</string>
+    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
+    <string name="EnterLocalBackupKeyScreen__next">Next</string>
+
+    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
+    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Failed to load archive. Please select a different directory.</string>
+    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
+    <string name="RestoreLocalBackupDialog__ok">OK</string>
+
+    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
+    <string name="RestoreLocalBackupActivity__backup_restore_failed">Backup restore failed</string>
+    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
+    <string name="RestoreLocalBackupActivity__restoring_backup">Restoring backup</string>
+    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
+    <string name="RestoreLocalBackupActivity__depending_on_the_size">Depending on the size of your backup, this could take a few minutes.</string>
+    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
+    <string name="RestoreLocalBackupActivity__restoring_messages">Restoring messages…</string>
+    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
+    <string name="RestoreLocalBackupActivity__finalizing">Finalizing…</string>
+    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
+    <string name="RestoreLocalBackupActivity__restore_complete">Restore complete</string>
+    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
+    <string name="RestoreLocalBackupActivity__restore_failed">Restore failed</string>
+    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
+    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s of %2$s (%3$d%%)</string>
+
+    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
+    <string name="SelectInstructionsSheet__select_your_backup_folder">Select your backup folder</string>
+    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
+    <string name="SelectInstructionsSheet__tap_select_this_folder">Tap \"Select this folder\"</string>
+    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
+    <string name="SelectInstructionsSheet__do_not_select_individual_files">Do not select individual files</string>
+    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
+    <string name="SelectInstructionsSheet__select_your_backup_file">Select your backup file</string>
+    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
+    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Tap on the backup file you saved to your device</string>
+    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
+    <string name="SelectInstructionsSheet__after_tapping_continue">After tapping \"Continue,\" here\'s how to access your backup:</string>
+    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
+    <string name="SelectInstructionsSheet__select_the_top_level_folder">Select the top-level folder where your backup is stored</string>
+    <!-- SelectInstructionsSheet: Continue button text -->
+    <string name="SelectInstructionsSheet__continue_button">Continue</string>
+
+    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
+    <string name="SelectLocalBackupScreen__restore_on_device_backup">Restore on-device backup</string>
+    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
+    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Restore your messages from the backup folder you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
+    <string name="SelectLocalBackupScreen__restore_backup">Restore backup</string>
+    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
+    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Choose an earlier backup</string>
+    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
+    <string name="SelectLocalBackupScreen__choose_a_different_backup">Choose a different backup</string>
+    <!-- SelectLocalBackupScreen: Label for latest backup card -->
+    <string name="SelectLocalBackupScreen__your_latest_backup">Your latest backup:</string>
+    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
+    <string name="SelectLocalBackupScreen__your_backup">Your backup:</string>
+
+    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
+    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Choose a backup to restore</string>
+    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
+    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Choosing an older backup may result in lost messages or media.</string>
+    <!-- SelectLocalBackupSheet: Continue button text -->
+    <string name="SelectLocalBackupSheet__continue_button">Continue</string>
+
+    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
+    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Restore on-device backup</string>
+    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
+    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Restore your messages from the backup you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
+    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">I saved my backup as a single file</string>
+    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
+    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Choose backup folder</string>
+    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
+    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Select the folder on your device where your backup is stored</string>
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Androidi varukoopia eksportimise võrguviga</string>
@@ -9240,6 +9370,8 @@
     <string name="GroupMemberLabel__label_text_placeholder">Lisa oma silt</string>
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Eelvaade</string>
+    <!-- Sample message shown in the group member label message preview. -->
+    <string name="GroupMemberLabel__preview_sample_message">Hello!</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">Salvesta</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
@@ -9249,6 +9381,15 @@
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Tühjenda silt</string>
     <string name="GroupMemberLabel__description">Lisa liikme silt, et kirjeldada ennast või oma rolli selles grupis. Sildid on nähtavad ainult selle grupi sees.</string>
+
+    <!-- Title for the member labels education sheet. -->
+    <string name="MemberLabelsEducation__title">Member labels</string>
+    <!-- Body for the member labels education sheet. -->
+    <string name="MemberLabelsEducation__body">Use a member label to describe yourself or your role in this group. Member labels are only visible within this group.</string>
+    <!-- Button to set a new member label. -->
+    <string name="MemberLabelsEducation__set_label">Set a member label</string>
+    <!-- Button to edit an existing member label. -->
+    <string name="MemberLabelsEducation__edit_label">Edit your label</string>
 
     <!-- EOF -->
 </resources>

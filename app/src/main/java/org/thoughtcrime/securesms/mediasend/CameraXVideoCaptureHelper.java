@@ -238,8 +238,15 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   @Override
   public void onZoomIncremented(float increment) {
     ZoomState zoomState = Objects.requireNonNull(cameraController.getZoomState().getValue());
-    float range = zoomState.getMaxZoomRatio() - getDefaultVideoZoomRatio();
-    cameraController.setZoomRatio((range * increment) + getDefaultVideoZoomRatio());
+    float     base      = getDefaultVideoZoomRatio();
+
+    if (increment >= 0f) {
+      float range = zoomState.getMaxZoomRatio() - base;
+      cameraController.setZoomRatio(base + range * increment);
+    } else {
+      float range = base - zoomState.getMinZoomRatio();
+      cameraController.setZoomRatio(base + range * increment);
+    }
   }
 
   @Override

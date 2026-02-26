@@ -312,7 +312,7 @@ private fun BankTransferDetailsContent(
             isError = state.showNameError(),
             supportingText = {
               if (state.showNameError()) {
-                Text(text = stringResource(id = R.string.BankTransferDetailsFragment__minimum_2_characters))
+                Text(text = stringResource(id = R.string.BankTransferDetailsFragment__minimum_3_characters))
               }
             },
             modifier = Modifier

@@ -2,6 +2,10 @@
 
 import com.android.build.api.dsl.ManagedVirtualDevice
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 import java.util.Properties
 
 plugins {
@@ -20,8 +24,8 @@ plugins {
 
 apply(from = "static-ips.gradle.kts")
 
-val canonicalVersionCode = 1656
-val canonicalVersionName = "8.0.4"
+val canonicalVersionCode = 1657
+val canonicalVersionName = "8.1.0"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
@@ -516,7 +520,7 @@ android {
           val nightlyVersionCode = (canonicalVersionCode * maxHotfixVersions) + (getNightlyBuildNumber(tag) * 10) + nightlyBuffer
 
           variant.outputs.forEach { output ->
-            output.versionName.set(tag)
+            output.versionName.set("$tag | ${getLastCommitDateTimeUtc()}")
             output.versionCode.set(nightlyVersionCode)
           }
         }
@@ -567,7 +571,8 @@ android {
   applicationVariants.configureEach {
     outputs.configureEach {
       if (this is com.android.build.gradle.internal.api.BaseVariantOutputImpl) {
-        outputFileName = outputFileName.replace(".apk", "-$versionName.apk")
+        val fileVersionName = versionName.substringBefore(" |")
+        outputFileName = outputFileName.replace(".apk", "-$fileVersionName.apk")
       }
     }
   }
@@ -804,6 +809,16 @@ fun getNightlyBuildNumber(tag: String?): Int {
 
   val match = Regex("-(\\d{3})$").find(tag)
   return match?.groupValues?.get(1)?.toIntOrNull() ?: 0
+}
+
+fun getLastCommitDateTimeUtc(): String {
+  val timestamp = providers.exec {
+    commandLine("git", "log", "-1", "--pretty=format:%ct")
+  }.standardOutput.asText.get().trim().toLong()
+  val instant = Instant.ofEpochSecond(timestamp)
+  val formatter = DateTimeFormatter.ofPattern("MMM d '@' HH:mm 'UTC'", Locale.US)
+    .withZone(ZoneOffset.UTC)
+  return formatter.format(instant)
 }
 
 fun getMapsKey(): String {

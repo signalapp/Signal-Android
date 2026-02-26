@@ -69,7 +69,7 @@ fun NetworkDebugOverlay(
       onClick = { showDialog = true },
       dragOffset = dragOffset,
       onDrag = { delta -> dragOffset += delta },
-      modifier = Modifier.align(Alignment.BottomEnd)
+      modifier = Modifier.align(Alignment.CenterEnd)
     )
 
     if (showDialog) {

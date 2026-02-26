@@ -79,6 +79,7 @@ class CameraScreenViewModel : ViewModel() {
   private var brightnessBeforeFlash: Float = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
   private var brightnessWindow: WeakReference<Window>? = null
   private var orientationListener: OrientationEventListener? = null
+  private var recordingStartZoomRatio: Float = 1f
 
   private val _qrCodeDetected = MutableSharedFlow<String>(extraBufferCapacity = 1)
 
@@ -229,15 +230,14 @@ class CameraScreenViewModel : ViewModel() {
   ) {
     val capture = videoCapture ?: return
 
+    recordingStartZoomRatio = _state.value.zoomRatio
+
     val enableTorch = _state.value.flashMode == FlashMode.On &&
       _state.value.lensFacing == CameraSelector.LENS_FACING_BACK
 
     if (enableTorch) {
       camera?.cameraControl?.enableTorch(true)
     }
-
-    camera?.cameraControl?.setZoomRatio(1f)
-    _state.value = _state.value.copy(zoomRatio = 1f)
 
     // Prepare recording based on configuration
     val pendingRecording = when (output) {
@@ -344,27 +344,35 @@ class CameraScreenViewModel : ViewModel() {
       .setResolutionSelector(resolutionSelector)
       .build()
 
-    // Video capture (16:9 is default for video)
-    val recorder = Recorder.Builder()
-      .setAspectRatio(AspectRatio.RATIO_16_9)
-      .setQualitySelector(
-        androidx.camera.video.QualitySelector.from(
-          androidx.camera.video.Quality.HIGHEST,
-          androidx.camera.video.FallbackStrategy.higherQualityOrLowerThan(androidx.camera.video.Quality.HD)
-        )
-      )
-      .build()
-    val videoCaptureUseCase = VideoCapture.withOutput(recorder)
+    // Build the list of use cases based on device capabilities
+    val useCases = mutableListOf<androidx.camera.core.UseCase>(preview, imageCaptureUseCase)
 
-    // Image analysis for QR code detection
-    val imageAnalysisUseCase = ImageAnalysis.Builder()
-      .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-      .build()
-      .also {
-        it.setAnalyzer(imageAnalysisExecutor) { imageProxy ->
-          processImageForQrCode(imageProxy)
+    var videoCaptureUseCase: VideoCapture<Recorder>? = null
+    if (event.enableVideoCapture) {
+      val recorder = Recorder.Builder()
+        .setAspectRatio(AspectRatio.RATIO_16_9)
+        .setQualitySelector(
+          androidx.camera.video.QualitySelector.from(
+            androidx.camera.video.Quality.HIGHEST,
+            androidx.camera.video.FallbackStrategy.higherQualityOrLowerThan(androidx.camera.video.Quality.HD)
+          )
+        )
+        .build()
+      videoCaptureUseCase = VideoCapture.withOutput(recorder)
+      useCases += videoCaptureUseCase
+    }
+
+    if (event.enableQrScanning) {
+      val imageAnalysisUseCase = ImageAnalysis.Builder()
+        .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+        .build()
+        .also {
+          it.setAnalyzer(imageAnalysisExecutor) { imageProxy ->
+            processImageForQrCode(imageProxy)
+          }
         }
-      }
+      useCases += imageAnalysisUseCase
+    }
 
     // Select camera based on lensFacing
     val cameraSelector = CameraSelector.Builder()
@@ -379,10 +387,7 @@ class CameraScreenViewModel : ViewModel() {
       camera = event.cameraProvider.bindToLifecycle(
         event.lifecycleOwner,
         cameraSelector,
-        preview,
-        imageCaptureUseCase,
-        videoCaptureUseCase,
-        imageAnalysisUseCase
+        *useCases.toTypedArray()
       )
 
       lifecycleOwner = event.lifecycleOwner
@@ -494,14 +499,21 @@ class CameraScreenViewModel : ViewModel() {
   ) {
     val currentCamera = camera ?: return
 
-    // Clamp linear zoom to valid range
-    val clampedLinearZoom = linearZoom.coerceIn(0f, 1f)
+    // Clamp linear zoom to valid range (-1 to 1)
+    val clampedLinearZoom = linearZoom.coerceIn(-1f, 1f)
 
-    // Map 0.0-1.0 to the range from 1x to maxZoomRatio.
-    // We use 1x as the base instead of minZoomRatio because minZoomRatio may be less than 1x on devices with an ultrawide lens (e.g. 0.5x).
-    val baseZoom = 1f
+    // Use the zoom ratio from when recording started as the base, so that the
+    // drag gesture is relative to the user's current zoom level rather than jumping.
+    // Positive values (0 to 1) zoom in from base toward maxZoomRatio.
+    // Negative values (-1 to 0) zoom out from base toward minZoomRatio.
+    val baseZoom = recordingStartZoomRatio
+    val minZoom = currentCamera.cameraInfo.zoomState.value?.minZoomRatio ?: 1f
     val maxZoom = currentCamera.cameraInfo.zoomState.value?.maxZoomRatio ?: 1f
-    val newZoomRatio = baseZoom + (maxZoom - baseZoom) * clampedLinearZoom
+    val newZoomRatio = if (clampedLinearZoom >= 0f) {
+      baseZoom + (maxZoom - baseZoom) * clampedLinearZoom
+    } else {
+      baseZoom + (baseZoom - minZoom) * clampedLinearZoom
+    }
 
     currentCamera.cameraControl.setZoomRatio(newZoomRatio)
 

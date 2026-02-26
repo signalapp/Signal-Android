@@ -57,7 +57,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBa
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.math.BigDecimal
 import java.util.Currency
@@ -104,13 +104,12 @@ class BackupsSettingsFragment : ComposeFragment() {
         }
       },
       onOnDeviceBackupsRowClick = {
-        if (SignalStore.backup.newLocalBackupsEnabled || RemoteConfig.unifiedLocalBackups && !SignalStore.settings.isBackupEnabled) {
+        if (SignalStore.backup.newLocalBackupsEnabled || (Environment.Backups.isNewFormatSupportedForLocalBackup() && !SignalStore.settings.isBackupEnabled)) {
           findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_localBackupsFragment)
         } else {
           findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_backupsPreferenceFragment)
         }
       },
-      onNewOnDeviceBackupsRowClick = { findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_internalLocalBackupFragment) },
       onBackupTierInternalOverrideChanged = { viewModel.onBackupTierInternalOverrideChanged(it) }
     )
   }
@@ -122,7 +121,6 @@ private fun BackupsSettingsContent(
   onNavigationClick: () -> Unit = {},
   onBackupsRowClick: () -> Unit = {},
   onOnDeviceBackupsRowClick: () -> Unit = {},
-  onNewOnDeviceBackupsRowClick: () -> Unit = {},
   onBackupTierInternalOverrideChanged: (MessageBackupTier?) -> Unit = {}
 ) {
   Scaffolds.Settings(
@@ -240,16 +238,6 @@ private fun BackupsSettingsContent(
           label = stringResource(R.string.RemoteBackupsSettingsFragment__save_your_backups_to),
           onClick = onOnDeviceBackupsRowClick
         )
-      }
-
-      if (backupsSettingsState.showNewLocalBackup) {
-        item {
-          Rows.TextRow(
-            text = "INTERNAL ONLY - New Local Backup",
-            label = "Use new local backup format",
-            onClick = onNewOnDeviceBackupsRowClick
-          )
-        }
       }
     }
   }
