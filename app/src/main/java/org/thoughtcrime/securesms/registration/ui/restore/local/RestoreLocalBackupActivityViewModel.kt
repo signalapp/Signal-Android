@@ -133,6 +133,10 @@ class RestoreLocalBackupActivityViewModel : ViewModel() {
       }
     }
   }
+
+  fun resetRestoreState() {
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState(decisionState = RestoreDecisionState.State.START)
+  }
 }
 
 data class RestoreLocalBackupScreenState(

@@ -27,23 +27,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.contactsupport.ContactSupportCallbacks
+import org.thoughtcrime.securesms.components.contactsupport.ContactSupportDialog
+import org.thoughtcrime.securesms.components.contactsupport.ContactSupportViewModel
+import org.thoughtcrime.securesms.restore.RestoreActivity
 import kotlin.math.max
 
 /**
@@ -62,6 +69,11 @@ class RestoreLocalBackupActivity : BaseActivity() {
   }
 
   private val viewModel: RestoreLocalBackupActivityViewModel by viewModels()
+  private val contactSupportViewModel: ContactSupportViewModel<Unit> by viewModels()
+
+  private val finishActivity by lazy {
+    intent.getBooleanExtra(KEY_FINISH, false)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -73,26 +85,51 @@ class RestoreLocalBackupActivity : BaseActivity() {
         when (state.restorePhase) {
           RestorePhase.COMPLETE -> {
             startActivity(MainActivity.clearTop(this@RestoreLocalBackupActivity))
-            if (intent.getBooleanExtra(KEY_FINISH, false)) {
+            if (finishActivity) {
               finishAffinity()
             }
           }
+
           RestorePhase.FAILED -> {
             Toast.makeText(this@RestoreLocalBackupActivity, getString(R.string.RestoreLocalBackupActivity__backup_restore_failed), Toast.LENGTH_LONG).show()
           }
+
           else -> Unit
         }
       }
 
+      val contactSupportState by contactSupportViewModel.state.collectAsStateWithLifecycle()
+      val context = LocalContext.current
+
       SignalTheme {
-        RestoreLocalBackupScreen(state = state)
+        RestoreLocalBackupScreen(
+          state = state,
+          onContactSupportClick = contactSupportViewModel::showContactSupport,
+          onFailureDialogConfirm = {
+            if (finishActivity) {
+              viewModel.resetRestoreState()
+              startActivity(RestoreActivity.getRestoreIntent(context))
+            }
+
+            // User invocation here should always finish, it just shouldn't route back to RestoreActivity.
+            supportFinishAfterTransition()
+          },
+          contactSupportState = contactSupportState,
+          contactSupportCallbacks = contactSupportViewModel
+        )
       }
     }
   }
 }
 
 @Composable
-private fun RestoreLocalBackupScreen(state: RestoreLocalBackupScreenState) {
+private fun RestoreLocalBackupScreen(
+  state: RestoreLocalBackupScreenState,
+  onFailureDialogConfirm: () -> Unit,
+  onContactSupportClick: () -> Unit,
+  contactSupportState: ContactSupportViewModel.ContactSupportState<Unit>,
+  contactSupportCallbacks: ContactSupportCallbacks
+) {
   val density = LocalDensity.current
   var headerHeightPx by remember { mutableIntStateOf(0) }
   var contentHeightPx by remember { mutableIntStateOf(0) }
@@ -177,6 +214,33 @@ private fun RestoreLocalBackupScreen(state: RestoreLocalBackupScreenState) {
         }
       }
     }
+
+    if (state.restorePhase == RestorePhase.FAILED) {
+      var wasContactSupportShown by remember { mutableStateOf(false) }
+      LaunchedEffect(contactSupportState.show) {
+        if (wasContactSupportShown && !contactSupportState.show) {
+          onFailureDialogConfirm()
+        }
+
+        wasContactSupportShown = contactSupportState.show
+      }
+
+      if (!contactSupportState.show) {
+        Dialogs.SimpleAlertDialog(
+          title = stringResource(R.string.RestoreLocalBackupActivity__cant_restore_backup),
+          body = stringResource(R.string.RestoreLocalBackupActivity__error_occurred_while_restoring),
+          confirm = stringResource(android.R.string.ok),
+          onConfirm = onFailureDialogConfirm,
+          dismiss = stringResource(R.string.RestoreLocalBackupActivity__contact_support),
+          onDeny = onContactSupportClick
+        )
+      } else {
+        ContactSupportDialog(
+          showInProgress = contactSupportState.showAsProgress,
+          callbacks = contactSupportCallbacks
+        )
+      }
+    }
   }
 }
 
@@ -184,6 +248,12 @@ private fun RestoreLocalBackupScreen(state: RestoreLocalBackupScreenState) {
 @Composable
 private fun RestoreLocalBackupScreenPreview() {
   Previews.Preview {
-    RestoreLocalBackupScreen(state = RestoreLocalBackupScreenState())
+    RestoreLocalBackupScreen(
+      state = RestoreLocalBackupScreenState(),
+      onFailureDialogConfirm = {},
+      onContactSupportClick = {},
+      contactSupportState = ContactSupportViewModel.ContactSupportState(),
+      contactSupportCallbacks = ContactSupportCallbacks.Empty
+    )
   }
 }

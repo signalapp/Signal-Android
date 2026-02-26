@@ -98,7 +98,7 @@ class SelectRestoreMethodFragment : ComposeFragment() {
       }
       RestoreMethod.FROM_OLD_DEVICE -> findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToDeviceTransfer())
       RestoreMethod.FROM_LOCAL_BACKUP_V1 -> findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToLocalBackupRestore())
-      RestoreMethod.FROM_LOCAL_BACKUP_V2 -> error("Not currently supported")
+      RestoreMethod.FROM_LOCAL_BACKUP_V2 -> findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToLocalBackupRestoreV2())
     }
   }
 }

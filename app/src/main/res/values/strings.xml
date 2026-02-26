@@ -8964,6 +8964,15 @@
     <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
     <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s of %2$s (%3$d%%)</string>
 
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
+    <string name="RestoreLocalBackupActivity__cant_restore_backup">Can\'t restore backup</string>
+
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
+    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+
+    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
+    <string name="RestoreLocalBackupActivity__contact_support">Contact support</string>
+
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
     <string name="SelectInstructionsSheet__select_your_backup_folder">Select your backup folder</string>
     <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
