@@ -53,8 +53,8 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
       "group-delivery-receipt" -> handlePrepareGroupReceipts { client, timestamps -> client.generateInboundDeliveryReceipts(timestamps) }
       "group-read-receipt" -> handlePrepareGroupReceipts { client, timestamps -> client.generateInboundReadReceipts(timestamps) }
       "release-messages" -> {
-        BenchmarkWebSocketConnection.authInstance.startWholeBatchTrace = true
-        BenchmarkWebSocketConnection.authInstance.releaseMessages()
+        BenchmarkWebSocketConnection.startWholeBatchTrace()
+        BenchmarkWebSocketConnection.releaseMessages()
       }
       else -> Log.w(TAG, "Unknown command: $command")
     }
@@ -68,25 +68,23 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     runBlocking {
       launch(Dispatchers.IO) {
-        BenchmarkWebSocketConnection.authInstance.run {
-          Log.i(TAG, "Sending initial message form Bob to establish session.")
-          addPendingMessages(listOf(encryptedEnvelope.toWebSocketPayload()))
-          releaseMessages()
+        Log.i(TAG, "Sending initial message form Bob to establish session.")
+        BenchmarkWebSocketConnection.addPendingMessages(listOf(encryptedEnvelope.toWebSocketPayload()))
+        BenchmarkWebSocketConnection.releaseMessages()
 
-          // Sleep briefly to let the message be processed.
-          ThreadUtil.sleep(100)
-        }
+        // Sleep briefly to let the message be processed.
+        ThreadUtil.sleep(1000)
       }
     }
 
     // Have Bob generate N messages that will be received by Alice
-    val messageCount = 100
+    val messageCount = 500
     val envelopes = client.generateInboundEnvelopes(messageCount)
 
     val messages = envelopes.map { e -> e.toWebSocketPayload() }
 
-    BenchmarkWebSocketConnection.authInstance.addPendingMessages(messages)
-    BenchmarkWebSocketConnection.authInstance.addQueueEmptyMessage()
+    BenchmarkWebSocketConnection.addPendingMessages(messages)
+    BenchmarkWebSocketConnection.addQueueEmptyMessage()
   }
 
   private fun handlePrepareGroupSend() {
@@ -97,27 +95,24 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     runBlocking {
       launch(Dispatchers.IO) {
-        BenchmarkWebSocketConnection.authInstance.run {
-          Log.i(TAG, "Sending initial group messages from client to establish sessions.")
-          addPendingMessages(encryptedEnvelopes.map { it.toWebSocketPayload() })
-          releaseMessages()
+        Log.i(TAG, "Sending initial group messages from client to establish sessions.")
+        BenchmarkWebSocketConnection.addPendingMessages(encryptedEnvelopes.map { it.toWebSocketPayload() })
+        BenchmarkWebSocketConnection.releaseMessages()
 
-          // Sleep briefly to let the messages be processed.
-          ThreadUtil.sleep(1000)
-        }
+        // Sleep briefly to let the messages be processed.
+        ThreadUtil.sleep(1000)
       }
     }
 
     // Have clients generate N group messages that will be received by Alice
-    clients.forEach { client ->
+    val allClientMessages = clients.map { client ->
       val messageCount = 100
       val envelopes = client.generateInboundGroupEnvelopes(messageCount, Harness.groupMasterKey)
-
-      val messages = envelopes.map { e -> e.toWebSocketPayload() }
-
-      BenchmarkWebSocketConnection.authInstance.addPendingMessages(messages)
+      envelopes.map { e -> e.toWebSocketPayload() }
     }
-    BenchmarkWebSocketConnection.authInstance.addQueueEmptyMessage()
+
+    BenchmarkWebSocketConnection.addPendingMessages(interleave(allClientMessages))
+    BenchmarkWebSocketConnection.addQueueEmptyMessage()
   }
 
   private fun handlePrepareGroupReceipts(generateReceipts: (OtherClient, List<Long>) -> List<Envelope>) {
@@ -132,8 +127,8 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
       generateReceipts(client, timestamps).map { it.toWebSocketPayload() }
     }
 
-    BenchmarkWebSocketConnection.authInstance.addPendingMessages(interleave(allClientEnvelopes))
-    BenchmarkWebSocketConnection.authInstance.addQueueEmptyMessage()
+    BenchmarkWebSocketConnection.addPendingMessages(interleave(allClientEnvelopes))
+    BenchmarkWebSocketConnection.addQueueEmptyMessage()
   }
 
   private fun establishGroupSessions(clients: List<OtherClient>) {
@@ -141,12 +136,10 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     runBlocking {
       launch(Dispatchers.IO) {
-        BenchmarkWebSocketConnection.authInstance.run {
-          Log.i(TAG, "Sending initial group messages from clients to establish sessions.")
-          addPendingMessages(encryptedEnvelopes.map { it.toWebSocketPayload() })
-          releaseMessages()
-          ThreadUtil.sleep(1000)
-        }
+        Log.i(TAG, "Sending initial group messages from clients to establish sessions.")
+        BenchmarkWebSocketConnection.addPendingMessages(encryptedEnvelopes.map { it.toWebSocketPayload() })
+        BenchmarkWebSocketConnection.releaseMessages()
+        ThreadUtil.sleep(1000)
       }
     }
   }

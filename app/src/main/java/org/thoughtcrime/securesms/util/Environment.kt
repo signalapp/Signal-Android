@@ -12,6 +12,7 @@ object Environment {
   const val IS_NIGHTLY: Boolean = BuildConfig.BUILD_DISTRIBUTION_TYPE == "nightly"
   const val IS_WEBSITE: Boolean = BuildConfig.BUILD_DISTRIBUTION_TYPE == "website"
   const val IS_INSTRUMENTATION: Boolean = BuildConfig.BUILD_VARIANT_TYPE == "Instrumentation" || BuildConfig.BUILD_VARIANT_TYPE == "Benchmark"
+  const val IS_BENCHMARK: Boolean = BuildConfig.BUILD_VARIANT_TYPE == "Benchmark"
 
   object Backups {
     @JvmStatic

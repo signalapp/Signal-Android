@@ -24,12 +24,12 @@ class StartupBenchmarks {
 
   @Test
   fun coldStartNone() {
-    measureStartup(5, CompilationMode.None())
+    measureStartup(3, CompilationMode.None())
   }
 
   @Test
   fun coldStartBaselineProfile() {
-    measureStartup(5, CompilationMode.Partial(BaselineProfileMode.Require))
+    measureStartup(3, CompilationMode.Partial(BaselineProfileMode.Require))
   }
 
   @OptIn(ExperimentalMetricApi::class)

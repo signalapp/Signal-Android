@@ -34,7 +34,7 @@ class ConversationBenchmarks {
         TraceSectionMetric("4-ConversationOpen-Data-Posted"),
         TraceSectionMetric("5-ConversationOpen-Render"),
       ),
-      iterations = 10,
+      iterations = 3,
       compilationMode = CompilationMode.Partial(),
       setupBlock = {
         if (!setup) {

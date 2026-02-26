@@ -29,22 +29,41 @@ import java.util.concurrent.TimeoutException
 class BenchmarkWebSocketConnection : WebSocketConnection {
 
   companion object {
-    lateinit var authInstance: BenchmarkWebSocketConnection
-      private set
+    private val authInstances = mutableListOf<BenchmarkWebSocketConnection>()
+    private val unauthInstances = mutableListOf<BenchmarkWebSocketConnection>()
 
     @Synchronized
     fun createAuthInstance(): WebSocketConnection {
-      authInstance = BenchmarkWebSocketConnection()
+      val authInstance = BenchmarkWebSocketConnection()
+      authInstances += authInstance
       return authInstance
     }
 
-    lateinit var unauthInstance: BenchmarkWebSocketConnection
-      private set
-
     @Synchronized
     fun createUnauthInstance(): WebSocketConnection {
-      unauthInstance = BenchmarkWebSocketConnection()
+      val unauthInstance = BenchmarkWebSocketConnection()
+      unauthInstances += unauthInstance
       return unauthInstance
+    }
+
+    @Synchronized
+    fun startWholeBatchTrace() {
+      authInstances.filterNot(BenchmarkWebSocketConnection::isShutdown).forEach { it.startWholeBatchTrace = true }
+    }
+
+    @Synchronized
+    fun releaseMessages() {
+      authInstances.filterNot(BenchmarkWebSocketConnection::isShutdown).forEach { it.releaseMessages() }
+    }
+
+    @Synchronized
+    fun addPendingMessages(messages: List<WebSocketRequestMessage>) {
+      authInstances.filterNot(BenchmarkWebSocketConnection::isShutdown).forEach { it.addPendingMessages(messages) }
+    }
+
+    @Synchronized
+    fun addQueueEmptyMessage() {
+      authInstances.filterNot(BenchmarkWebSocketConnection::isShutdown).forEach { it.addQueueEmptyMessage() }
     }
   }
 
@@ -58,7 +77,8 @@ class BenchmarkWebSocketConnection : WebSocketConnection {
   var startWholeBatchTrace = false
 
   @Volatile
-  private var isShutdown = false
+  var isShutdown = false
+    private set
 
   override fun connect(): Observable<WebSocketConnectionState> {
     state.onNext(WebSocketConnectionState.CONNECTED)

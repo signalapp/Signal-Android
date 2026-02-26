@@ -41,8 +41,8 @@ class GroupMessageProcessingBenchmarks {
   private fun runGroupMessageReceive(withConversationOpen: Boolean) {
     benchmarkRule.measureRepeated(
       packageName = "org.thoughtcrime.securesms.benchmark",
-      metrics = BenchmarkMetrics.incomingMessageObserver + BenchmarkMetrics.messageContentProcessor + BenchmarkMetrics.dataMessageProcessor,
-      iterations = 5,
+      metrics = BenchmarkMetrics.incomingMessageObserver + BenchmarkMetrics.messageContentProcessor + BenchmarkMetrics.groupDataMessageProcessor,
+      iterations = 3,
       compilationMode = CompilationMode.Partial(),
       setupBlock = {
         setupGroup("group-message-send", BenchmarkSetup::setupGroupSend, withConversationOpen)
@@ -69,7 +69,7 @@ class GroupMessageProcessingBenchmarks {
     benchmarkRule.measureRepeated(
       packageName = "org.thoughtcrime.securesms.benchmark",
       metrics = BenchmarkMetrics.incomingMessageObserver + BenchmarkMetrics.messageContentProcessor + BenchmarkMetrics.deliveryReceipt,
-      iterations = 5,
+      iterations = 3,
       compilationMode = CompilationMode.Partial(),
       setupBlock = {
         setupGroup("group-delivery-receipt", BenchmarkSetup::setupGroupDeliveryReceipt, withConversationOpen)
@@ -95,7 +95,7 @@ class GroupMessageProcessingBenchmarks {
     benchmarkRule.measureRepeated(
       packageName = "org.thoughtcrime.securesms.benchmark",
       metrics = BenchmarkMetrics.incomingMessageObserver + BenchmarkMetrics.messageContentProcessor + BenchmarkMetrics.readReceipt,
-      iterations = 5,
+      iterations = 3,
       compilationMode = CompilationMode.Partial(),
       setupBlock = {
         setupGroup("group-read-receipt", BenchmarkSetup::setupGroupReadReceipt, withConversationOpen)

@@ -132,18 +132,13 @@ class ReusedBatchCache : BatchCache() {
     }
     batchedJobs.clear()
 
-    if (threadUpdates.isNotEmpty()) {
+    if (threadUpdates.isNotEmpty() || mslDeletes.isNotEmpty()) {
       SignalDatabase.runInTransaction {
         threadUpdates.forEach { flushIncomingMessageInsertThreadUpdate(it) }
-      }
-    }
-    threadUpdates.clear()
-
-    if (mslDeletes.isNotEmpty()) {
-      SignalDatabase.runInTransaction {
         mslDeletes.forEach { (key, timestamps) -> flushMslDelete(key.first, key.second, timestamps) }
       }
     }
+    threadUpdates.clear()
     mslDeletes.clear()
   }
 }

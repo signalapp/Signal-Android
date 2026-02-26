@@ -39,8 +39,8 @@ class MessageProcessingBenchmarks {
   private fun run(withConversationOpen: Boolean) {
     benchmarkRule.measureRepeated(
       packageName = "org.thoughtcrime.securesms.benchmark",
-      metrics = BenchmarkMetrics.incomingMessageObserver + BenchmarkMetrics.messageContentProcessor,
-      iterations = 5,
+      metrics = BenchmarkMetrics.incomingMessageObserver + BenchmarkMetrics.messageContentProcessor + BenchmarkMetrics.individualDataMessageProcessor,
+      iterations = 3,
       compilationMode = CompilationMode.Partial(),
       setupBlock = {
         BenchmarkSetup.setup("message-send", device)
@@ -60,7 +60,7 @@ class MessageProcessingBenchmarks {
 
       BenchmarkSetup.releaseMessages(device)
 
-      device.wait(Until.hasObject(By.textContains("101")), 10_000L)
+      device.wait(Until.hasObject(By.textContains("501")), 10_000L)
     }
   }
 }

@@ -38,9 +38,11 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess.Companion.toAp
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AlarmSleepTimer
 import org.thoughtcrime.securesms.util.AppForegroundObserver
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.asChain
+import org.whispersystems.signalservice.api.messages.EnvelopeResponse
 import org.whispersystems.signalservice.api.util.SleepTimer
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
@@ -285,9 +287,7 @@ class IncomingMessageObserver(
   fun processEnvelope(bufferedProtocolStore: BufferedProtocolStore, envelope: Envelope, serverDeliveredTimestamp: Long, batchCache: BatchCache): List<FollowUpOperation>? {
     return when (envelope.type) {
       Envelope.Type.SERVER_DELIVERY_RECEIPT -> {
-        SignalTrace.beginSection("IncomingMessageObserver#processReceipt")
         processReceipt(envelope)
-        SignalTrace.endSection()
         null
       }
 
@@ -397,7 +397,6 @@ class IncomingMessageObserver(
 
     private var sleepTimer: SleepTimer
     private val canProcessMessages: Boolean
-    private val batchCache = ReusedBatchCache()
 
     init {
       Log.i(TAG, "Initializing! (${this.hashCode()})")
@@ -451,30 +450,16 @@ class IncomingMessageObserver(
 
                 val hasMore = authWebSocket.readMessageBatch(websocketReadTimeout, 30) { batch ->
                   Log.i(TAG, "Retrieved ${batch.size} envelopes!")
-                  val bufferedStore = BufferedProtocolStore.create()
 
                   val startTime = System.currentTimeMillis()
                   GroupsV2ProcessingLock.acquireGroupProcessingLock().use {
                     ReentrantSessionLock.INSTANCE.acquire().use {
-                      batch.forEach { response ->
-                        SignalTrace.beginSection("IncomingMessageObserver#perMessageTransaction")
-                        val followUpOperations = SignalDatabase.runInTransaction { db ->
-                          val followUps: List<FollowUpOperation>? = processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp, batchCache)
-                          bufferedStore.flushToDisk()
-                          followUps
-                        }
-                        SignalTrace.endSection()
+                      val batchCommitted = processBatchInTransaction(batch)
 
-                        if (followUpOperations?.isNotEmpty() == true) {
-                          Log.d(TAG, "Running ${followUpOperations.size} follow-up operations...")
-                          val jobs = followUpOperations.mapNotNull { it.run() }
-                          AppDependencies.jobManager.addAllChains(jobs)
-                        }
-
-                        authWebSocket.sendAck(response)
+                      if (!batchCommitted) {
+                        Log.w(TAG, "Batch transaction rolled back, falling back to per-message processing")
+                        processMessagesIndividually(batch)
                       }
-
-                      batchCache.flushAndClear()
                     }
                   }
                   val duration = System.currentTimeMillis() - startTime
@@ -485,7 +470,9 @@ class IncomingMessageObserver(
                 SignalLocalMetrics.PushWebsocketFetch.onProcessedBatch()
 
                 if (!hasMore && !decryptionDrained) {
-                  SignalTrace.endSection()
+                  if (Environment.IS_BENCHMARK) {
+                    SignalTrace.endSection()
+                  }
                   Log.i(TAG, "Decryptions newly-drained.")
                   decryptionDrained = true
 
@@ -526,6 +513,73 @@ class IncomingMessageObserver(
         Log.i(TAG, "Looping...")
       }
       Log.w(TAG, "Terminated! (${this.hashCode()})")
+    }
+
+    /**
+     * Attempts to process the entire batch in a single transaction for performance.
+     *
+     * @return true if the transaction committed, false if it the batch was rolled back.
+     */
+    private fun processBatchInTransaction(batch: List<EnvelopeResponse>): Boolean {
+      val allFollowUpOperations = mutableListOf<FollowUpOperation>()
+      val bufferedStore = BufferedProtocolStore.create()
+      val batchCache = ReusedBatchCache()
+
+      val committed = SignalDatabase.tryRunInTransaction {
+        batch.forEach { response ->
+          SignalTrace.beginSection("IncomingMessageObserver#perMessageTransaction")
+          val followUps = processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp, batchCache)
+          bufferedStore.flushToDisk()
+          SignalTrace.endSection()
+
+          if (followUps?.isNotEmpty() == true) {
+            allFollowUpOperations += followUps
+          }
+        }
+      }
+
+      if (committed) {
+        batchCache.flushAndClear()
+
+        if (allFollowUpOperations.isNotEmpty()) {
+          Log.d(TAG, "Running ${allFollowUpOperations.size} follow-up operations...")
+          val jobs = allFollowUpOperations.mapNotNull { it.run() }
+          AppDependencies.jobManager.addAllChains(jobs)
+        }
+
+        batch.forEach { response ->
+          authWebSocket.sendAck(response)
+        }
+      }
+
+      return committed
+    }
+
+    /**
+     * If something prevented us from processing the entire batch in a single transaction, we process each message individually.
+     */
+    private fun processMessagesIndividually(batch: List<EnvelopeResponse>) {
+      val bufferedStore = BufferedProtocolStore.create()
+      val batchCache = ReusedBatchCache()
+
+      batch.forEach { response ->
+        SignalTrace.beginSection("IncomingMessageObserver#perMessageTransaction")
+        val followUpOperations = SignalDatabase.runInTransaction {
+          val followUps = processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp, batchCache)
+          bufferedStore.flushToDisk()
+          followUps
+        }
+        SignalTrace.endSection()
+
+        if (followUpOperations?.isNotEmpty() == true) {
+          val jobs = followUpOperations.mapNotNull { it.run() }
+          AppDependencies.jobManager.addAllChains(jobs)
+        }
+
+        authWebSocket.sendAck(response)
+      }
+
+      batchCache.flushAndClear()
     }
 
     override fun uncaughtException(t: Thread, e: Throwable) {

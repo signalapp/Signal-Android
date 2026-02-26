@@ -20,9 +20,15 @@ object BenchmarkMetrics {
       TraceSectionMetric("IncomingMessageObserver#totalProcessing", Mode.Sum)
     )
 
-  val dataMessageProcessor: List<TraceSectionMetric>
+  val groupDataMessageProcessor: List<TraceSectionMetric>
     get() = listOf(
       TraceSectionMetric("DataMessageProcessor#gv2PreProcessing", Mode.Average),
+      TraceSectionMetric("DataMessageProcessor#messageInsert", Mode.Average),
+      TraceSectionMetric("DataMessageProcessor#postProcess", Mode.Average)
+    )
+
+  val individualDataMessageProcessor: List<TraceSectionMetric>
+    get() = listOf(
       TraceSectionMetric("DataMessageProcessor#messageInsert", Mode.Average),
       TraceSectionMetric("DataMessageProcessor#postProcess", Mode.Average)
     )
