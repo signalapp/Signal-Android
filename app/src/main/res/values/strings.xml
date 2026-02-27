@@ -330,7 +330,7 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Send</string>
 
-<!-- CameraContacts -->
+    <!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">Recent contacts</string>
     <string name="CameraContacts_signal_contacts">Signal contacts</string>
     <string name="CameraContacts_signal_groups">Signal groups</string>
@@ -4383,7 +4383,6 @@
     <string name="PaymentsHomeFragment__update_now">Update now</string>
 
 
-
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
     <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
@@ -4957,7 +4956,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">Error connecting to service</string>
     <string name="preferences_chats__backups">Backups</string>
 
-<!-- Title text shown when Signal is locked and needs to be unlocked -->
+    <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Unlock Signal</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">Use your Android device lock settings to unlock Signal.</string>
@@ -5986,8 +5985,6 @@
     <string name="ConversationSettingsFragment__group_link">Group link</string>
     <!-- Label for button that opens the group member label permissions screen. -->
     <string name="ConversationSettingsFragment__group_member_label">Member Label</string>
-    <!-- Snackbar shown when non-admin taps the member label button -->
-    <string name="ConversationSettingsFragment__only_admins_can_add_member_labels">Only admins can add member labels in this group.</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Add as a contact</string>
     <string name="ConversationSettingsFragment__unmute">Unmute</string>
@@ -7894,7 +7891,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Turn on Signal Secure Backups</string>
-<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Never lose a message when you get a new phone or reinstall Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Turn on</string>
@@ -9379,13 +9376,18 @@
     <string name="GroupMemberLabel__preview_sample_message">Hello!</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">Save</string>
+    <!-- Description explaining the group member labels feature. -->
+    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
+    <!-- Error message shown when the group member label fails to save due to a network error. -->
+    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <!-- Error message shown when trying to edit a member label without adequate permission. -->
+    <string name="GroupMemberLabel__error_no_edit_permission">Only admins can add member labels in this group.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
     <!-- Accessibility label for the group member label close screen button. -->
     <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
-    <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
 
     <!-- Title for the member labels education sheet. -->
     <string name="MemberLabelsEducation__title">Member labels</string>

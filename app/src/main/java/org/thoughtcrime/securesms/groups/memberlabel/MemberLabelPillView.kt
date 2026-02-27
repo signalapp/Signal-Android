@@ -53,7 +53,7 @@ class MemberLabelPillView : AbstractComposeView {
     memberLabel?.let { label ->
       MemberLabelPill(
         emoji = label.emoji,
-        text = label.text,
+        text = label.displayText,
         tintColor = tintColor,
         modifier = Modifier.padding(horizontal = style.horizontalPadding, vertical = style.verticalPadding),
         textStyle = style.textStyle()
@@ -65,5 +65,17 @@ class MemberLabelPillView : AbstractComposeView {
     val horizontalPadding: Dp = 12.dp,
     val verticalPadding: Dp = 2.dp,
     val textStyle: @Composable () -> TextStyle = { MemberLabelPill.textStyleNormal }
-  )
+  ) {
+    companion object {
+      @JvmField
+      val Normal = Style()
+
+      @JvmField
+      val Compact = Style(
+        horizontalPadding = 8.dp,
+        verticalPadding = 2.dp,
+        textStyle = { MemberLabelPill.textStyleCompact }
+      )
+    }
+  }
 }

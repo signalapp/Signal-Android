@@ -11,6 +11,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -18,8 +19,12 @@ import org.junit.Rule
 import org.junit.Test
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelUiState.SaveState
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
+import org.whispersystems.signalservice.api.NetworkResult
+import java.io.IOException
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MemberLabelViewModelTest {
@@ -179,6 +184,7 @@ class MemberLabelViewModelTest {
   @Test
   fun `save calls setLabel with truncated label when label exceeds max length`() = runTest(testDispatcher) {
     coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns null
+    coEvery { memberLabelRepo.setLabel(any(), any()) } returns NetworkResult.Success(Unit)
 
     val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
     viewModel.onLabelTextChanged("A".repeat(30))
@@ -206,6 +212,7 @@ class MemberLabelViewModelTest {
   @Test
   fun `save calls setLabel when label change is valid`() = runTest(testDispatcher) {
     coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns MemberLabel(emoji = null, text = "Original")
+    coEvery { memberLabelRepo.setLabel(any(), any()) } returns NetworkResult.Success(Unit)
 
     val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
     viewModel.onLabelTextChanged("New Label")
@@ -220,6 +227,7 @@ class MemberLabelViewModelTest {
   @Test
   fun `save calls setLabel with cleared values when clearLabel is called`() = runTest(testDispatcher) {
     coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns MemberLabel(emoji = "🎉", text = "Original")
+    coEvery { memberLabelRepo.setLabel(any(), any()) } returns NetworkResult.Success(Unit)
 
     val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
     viewModel.clearLabel()
@@ -228,5 +236,125 @@ class MemberLabelViewModelTest {
     coVerify(exactly = 1) {
       memberLabelRepo.setLabel(groupId, MemberLabel(text = "", emoji = null))
     }
+  }
+
+  @Test
+  fun `onLabelTextChanged counts emoji as single grapheme`() = runTest(testDispatcher) {
+    coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns null
+
+    val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
+    val emoji = "\uD83C\uDF89" // 🎉
+    viewModel.onLabelTextChanged(emoji.repeat(30))
+
+    assertEquals(emoji.repeat(24), viewModel.uiState.value.labelText)
+  }
+
+  @Test
+  fun `remainingCharacters counts emoji as single grapheme`() = runTest(testDispatcher) {
+    coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns null
+
+    val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
+    val emoji = "\uD83C\uDF89" // 🎉
+    viewModel.onLabelTextChanged(emoji.repeat(10))
+
+    assertEquals(14, viewModel.uiState.value.remainingCharacters)
+  }
+
+  @Test
+  fun `remainingCharacters counts mixed ascii and emoji correctly`() = runTest(testDispatcher) {
+    coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns null
+
+    val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
+    viewModel.onLabelTextChanged("Hello \uD83C\uDF89") // "Hello 🎉" = 7 graphemes
+
+    assertEquals(17, viewModel.uiState.value.remainingCharacters)
+  }
+
+  @Test
+  fun `onLabelTextChanged does not truncate text within grapheme limit`() = runTest(testDispatcher) {
+    coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns null
+
+    val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
+    viewModel.onLabelTextChanged("Short label")
+
+    assertEquals("Short label", viewModel.uiState.value.labelText)
+  }
+
+  @Test
+  fun `onLabelTextChanged truncates at exactly 24 graphemes with emoji`() = runTest(testDispatcher) {
+    coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns null
+
+    val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
+    val input = "A".repeat(23) + "\uD83C\uDF89\uD83C\uDF89" // 25 graphemes
+    viewModel.onLabelTextChanged(input)
+
+    val expected = "A".repeat(23) + "\uD83C\uDF89" // 24 graphemes
+    assertEquals(expected, viewModel.uiState.value.labelText)
+  }
+
+  @Test
+  fun `isSaveEnabled returns false when the only change is trailing whitespace`() = runTest(testDispatcher) {
+    coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns MemberLabel(emoji = null, text = "Original")
+
+    val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
+    viewModel.onLabelTextChanged("Original   ")
+
+    assertFalse(viewModel.uiState.value.isSaveEnabled)
+  }
+
+  @Test
+  fun `isSaveEnabled returns false when the only change is leading whitespace`() = runTest(testDispatcher) {
+    coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns MemberLabel(emoji = null, text = "Original")
+
+    val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
+    viewModel.onLabelTextChanged("   Original")
+
+    assertFalse(viewModel.uiState.value.isSaveEnabled)
+  }
+
+  @Test
+  fun `isSaveEnabled returns true when text differs beyond whitespace`() = runTest(testDispatcher) {
+    coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns MemberLabel(emoji = null, text = "Original")
+
+    val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
+    viewModel.onLabelTextChanged("  Modified  ")
+
+    assertTrue(viewModel.uiState.value.isSaveEnabled)
+  }
+
+  @Test
+  fun `save sets saveState to Success when setLabel returns NetworkResult Success`() = runTest(testDispatcher) {
+    coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns MemberLabel(emoji = null, text = "Original")
+    coEvery { memberLabelRepo.setLabel(any(), any()) } returns NetworkResult.Success(Unit)
+
+    val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
+    viewModel.onLabelTextChanged("New Label")
+    viewModel.save()
+
+    assertEquals(SaveState.Success, viewModel.uiState.value.saveState)
+  }
+
+  @Test
+  fun `save sets saveState to NetworkError when setLabel returns NetworkResult NetworkError`() = runTest(testDispatcher) {
+    coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns MemberLabel(emoji = null, text = "Original")
+    coEvery { memberLabelRepo.setLabel(any(), any()) } returns NetworkResult.NetworkError(IOException("Network failure"))
+
+    val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
+    viewModel.onLabelTextChanged("New Label")
+    viewModel.save()
+
+    assertEquals(SaveState.NetworkError, viewModel.uiState.value.saveState)
+  }
+
+  @Test
+  fun `save sets saveState to InsufficientRights when setLabel returns ApplicationError with GroupInsufficientRightsException`() = runTest(testDispatcher) {
+    coEvery { memberLabelRepo.getLabel(groupId, any<RecipientId>()) } returns MemberLabel(emoji = null, text = "Original")
+    coEvery { memberLabelRepo.setLabel(any(), any()) } returns NetworkResult.ApplicationError(GroupInsufficientRightsException(RuntimeException("Insufficient rights (test)")))
+
+    val viewModel = MemberLabelViewModel(memberLabelRepo, groupId, recipientId)
+    viewModel.onLabelTextChanged("New Label")
+    viewModel.save()
+
+    assertEquals(SaveState.InsufficientRights, viewModel.uiState.value.saveState)
   }
 }

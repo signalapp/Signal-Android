@@ -14,19 +14,28 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import org.signal.core.models.ServiceId;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV2;
+import org.thoughtcrime.securesms.conversation.colors.NameColor;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel;
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelRepository;
+import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.ui.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -68,7 +77,7 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
 
     GroupMemberListView list = view.findViewById(R.id.show_admin_list);
     list.initializeAdapter(getViewLifecycleOwner());
-    list.setDisplayOnlyMembers(Collections.emptyList());
+    list.setMembers(Collections.emptyList());
 
     list.setRecipientClickListener(recipient -> {
       CommunicationActions.startConversation(requireContext(), recipient, null);
@@ -78,7 +87,7 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
     disposables.add(Single.fromCallable(() -> getAdmins(requireContext().getApplicationContext(), getGroupId()))
                           .subscribeOn(Schedulers.io())
                           .observeOn(AndroidSchedulers.mainThread())
-                          .subscribe(list::setDisplayOnlyMembers));
+                          .subscribe(list::setMembers));
   }
 
   @Override
@@ -97,10 +106,23 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
   }
 
   @WorkerThread
-  private static @NonNull List<Recipient> getAdmins(@NonNull Context context, @NonNull GroupId groupId) {
-    return SignalDatabase.groups()
-                         .getGroup(groupId)
-                         .map(GroupRecord::getAdmins)
-                         .orElse(Collections.emptyList());
+  private static @NonNull List<GroupMemberEntry> getAdmins(@NonNull Context context, @NonNull GroupId groupId) {
+    GroupRecord groupRecord = SignalDatabase.groups().getGroup(groupId).orElse(null);
+    if (groupRecord == null) {
+      return Collections.emptyList();
+    }
+
+    List<Recipient>               admins              = groupRecord.getAdmins();
+    Map<RecipientId, MemberLabel> labelsByRecipientId = MemberLabelRepository.getInstance().getLabelsJava(groupId.requireV2(), admins);
+    List<ServiceId>               memberIds           = groupRecord.requireV2GroupProperties().getMemberServiceIds();
+    ColorizerV2                   colorizer           = new ColorizerV2(memberIds);
+
+    List<GroupMemberEntry> result = new ArrayList<>();
+    for (Recipient admin : admins) {
+      MemberLabel label     = labelsByRecipientId.get(admin.getId());
+      NameColor   nameColor = label != null ? colorizer.getNameColor(context, admin) : null;
+      result.add(new GroupMemberEntry.FullMember(admin, true, label, nameColor));
+    }
+    return result;
   }
 }

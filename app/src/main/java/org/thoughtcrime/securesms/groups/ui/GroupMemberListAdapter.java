@@ -19,6 +19,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
+import org.thoughtcrime.securesms.conversation.colors.NameColor;
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel;
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelPillView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.Util;
 
@@ -194,6 +197,8 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
               final View                       popupMenuContainer;
               final ProgressBar                busyProgress;
     @Nullable final View                       admin;
+    @Nullable final MemberLabelPillView        memberLabelView;
+    @Nullable final View                       addMemberLabel;
               final SelectionChangeListener    selectionChangeListener;
     @Nullable final RecipientClickListener     recipientClickListener;
     @Nullable final AdminActionsListener       adminActionsListener;
@@ -224,6 +229,8 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
       this.popupMenuContainer         = itemView.findViewById(R.id.popupMenuProgressContainer);
       this.busyProgress               = itemView.findViewById(R.id.menuBusyProgress);
       this.admin                      = itemView.findViewById(R.id.admin);
+      this.memberLabelView            = itemView.findViewById(R.id.recipient_member_label);
+      this.addMemberLabel             = itemView.findViewById(R.id.add_member_label);
       this.recipientClickListener     = recipientClickListener;
       this.recipientLongClickListener = recipientLongClickListener;
       this.adminActionsListener       = adminActionsListener;
@@ -296,6 +303,9 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
       if (admin != null) {
         admin.setVisibility(View.GONE);
       }
+      if (addMemberLabel != null) {
+        addMemberLabel.setVisibility(View.GONE);
+      }
       hideMenu();
 
       itemView.setOnClickListener(null);
@@ -345,6 +355,19 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
       bindRecipientClick(fullMember.getMember());
       if (admin != null) {
         admin.setVisibility(fullMember.isAdmin() ? View.VISIBLE : View.INVISIBLE);
+      }
+
+      MemberLabel label     = fullMember.getMemberLabel();
+      NameColor   nameColor = fullMember.getNameColor();
+      if (memberLabelView != null) {
+        if (label != null && nameColor != null) {
+          memberLabelView.setStyle(MemberLabelPillView.Style.Compact);
+          memberLabelView.setLabel(label, nameColor.getColor(context));
+          memberLabelView.setVisibility(View.VISIBLE);
+          if (about != null) about.setVisibility(View.GONE);
+        } else {
+          memberLabelView.setVisibility(View.GONE);
+        }
       }
     }
   }

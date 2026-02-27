@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import org.signal.libsignal.zkgroup.groups.UuidCiphertext;
+import org.thoughtcrime.securesms.conversation.colors.NameColor;
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 
@@ -69,12 +71,20 @@ public abstract class GroupMemberEntry {
 
   public final static class FullMember extends GroupMemberEntry {
 
-    private final Recipient member;
-    private final boolean   isAdmin;
+    private final           Recipient   member;
+    private final           boolean     isAdmin;
+    @Nullable private final MemberLabel memberLabel;
+    @Nullable private final NameColor   nameColor;
 
     public FullMember(@NonNull Recipient member, boolean isAdmin) {
-      this.member  = member;
-      this.isAdmin = isAdmin;
+      this(member, isAdmin, null, null);
+    }
+
+    public FullMember(@NonNull Recipient member, boolean isAdmin, @Nullable MemberLabel memberLabel, @Nullable NameColor nameColor) {
+      this.member      = member;
+      this.isAdmin     = isAdmin;
+      this.memberLabel = memberLabel;
+      this.nameColor   = nameColor;
     }
 
     public Recipient getMember() {
@@ -83,6 +93,14 @@ public abstract class GroupMemberEntry {
 
     public boolean isAdmin() {
       return isAdmin;
+    }
+
+    public @Nullable MemberLabel getMemberLabel() {
+      return memberLabel;
+    }
+
+    public @Nullable NameColor getNameColor() {
+      return nameColor;
     }
 
     @Override
@@ -98,12 +116,14 @@ public abstract class GroupMemberEntry {
 
       FullMember other = (FullMember) obj;
       return other.member.equals(member) &&
-             other.isAdmin == isAdmin;
+             other.isAdmin == isAdmin &&
+             Objects.equals(other.memberLabel, memberLabel) &&
+             Objects.equals(other.nameColor, nameColor);
     }
 
     @Override
     public int hashCode() {
-      return member.hashCode() * 31 + (isAdmin ? 1 : 0);
+      return ((member.hashCode() * 31 + (isAdmin ? 1 : 0)) * 31 + Objects.hashCode(memberLabel)) * 31 + Objects.hashCode(nameColor);
     }
   }
 
@@ -174,7 +194,8 @@ public abstract class GroupMemberEntry {
 
     public UnknownPendingMemberCount(@NonNull Recipient inviter,
                                      @NonNull Collection<UuidCiphertext> ciphertexts,
-                                     boolean cancellable) {
+                                     boolean cancellable)
+    {
       this.inviter     = inviter;
       this.ciphertexts = ciphertexts;
       this.cancellable = cancellable;

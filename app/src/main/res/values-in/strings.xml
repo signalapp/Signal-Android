@@ -326,7 +326,7 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Kirim</string>
 
-<!-- CameraContacts -->
+    <!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">Kontak terbaru</string>
     <string name="CameraContacts_signal_contacts">Kontak Signal</string>
     <string name="CameraContacts_signal_groups">Grup Signal</string>
@@ -614,11 +614,11 @@
     <string name="ConversationFragment_delete_for_everyone">Hapus untuk semua</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
-        <item quantity="other">Delete selected messages?</item>
+        <item quantity="other">Hapus pesan terpilih?</item>
     </plurals>
     <!-- Body of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_body">
-        <item quantity="other">Who would you like to delete these messages for?</item>
+        <item quantity="other">Untuk siapa Anda ingin menghapus pesan ini?</item>
     </plurals>
     <!-- Confirmation button to delete the message -->
     <string name="ConversationFragment_delete_for_everyone_title">Delete for everyone?</string>
@@ -2615,7 +2615,7 @@
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
     <!-- Placeholder text in the group member label row when the user has no label set. -->
-    <string name="AboutSheet__add_group_member_label">Add a member label</string>
+    <string name="AboutSheet__add_group_member_label">Tambahkan label anggota</string>
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
@@ -3119,13 +3119,13 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteUntilTimePickerBottomSheet__dialog_title">Mute notifications until…</string>
     <!-- Label for a data selector where the user chooses how long they\'d like to mute notifications for -->
-    <string name="MuteUntilTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="MuteUntilTimePickerBottomSheet__select_date_title">Pilih tanggal</string>
     <!-- Label for a time selector where the user chooses how long they\'d like to mute notifications for -->
-    <string name="MuteUntilTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="MuteUntilTimePickerBottomSheet__select_time_title">Pilih waktu</string>
     <!-- Label for a button that, when pressed, will confirm the user\'s choice on how long to mute notifications for -->
-    <string name="MuteUntilTimePickerBottomSheet__mute_notifications">Mute notifications</string>
+    <string name="MuteUntilTimePickerBottomSheet__mute_notifications">Bisukan notifikasi</string>
     <!-- Subtitle in a dialog that describes the timezone the user is picking times in. The first placeholder is a UTC offset, and the second placeholder is a user-friendly name for the timezone, e.g. "All times in (GMT-05:00) Eastern Standard Time" -->
-    <string name="MuteUntilTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="MuteUntilTimePickerBottomSheet__timezone_disclaimer">Semua waktu dalam (%1$s) %2$s</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Sentuh untuk membuka.</string>
@@ -4261,7 +4261,6 @@
     <string name="PaymentsHomeFragment__update_now">Perbarui sekarang</string>
 
 
-
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
     <string name="PaymentsSecuritySetupFragment__security_setup">Pengaturan keamanan</string>
@@ -4826,7 +4825,7 @@
     <string name="RegistrationActivity_error_connecting_to_service">Gagal menyambung ke layanan</string>
     <string name="preferences_chats__backups">Cadangan</string>
 
-<!-- Title text shown when Signal is locked and needs to be unlocked -->
+    <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Buka kunci Signal</string>
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">Gunakan pengaturan kunci perangkat Android untuk membuka kunci Signal.</string>
@@ -5052,7 +5051,7 @@
     <string name="GroupRecipientListItem_approve_description">Terima</string>
     <string name="GroupRecipientListItem_deny_description">Tolak</string>
     <!-- Placeholder shown in the group member list when the user has not yet set a member label. -->
-    <string name="GroupRecipientListItem__add_member_label">Add member label</string>
+    <string name="GroupRecipientListItem__add_member_label">Tambahkan label anggota</string>
 
 
     <!-- GroupsLearnMoreBottomSheetDialogFragment -->
@@ -5840,8 +5839,6 @@
     <string name="ConversationSettingsFragment__group_link">Tautan grup</string>
     <!-- Label for button that opens the group member label permissions screen. -->
     <string name="ConversationSettingsFragment__group_member_label">Label Anggota</string>
-    <!-- Snackbar shown when non-admin taps the member label button -->
-    <string name="ConversationSettingsFragment__only_admins_can_add_member_labels">Only admins can add member labels in this group.</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Tambahkan sebagai kontak</string>
     <string name="ConversationSettingsFragment__unmute">Bunyikan</string>
@@ -7715,7 +7712,7 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Aktifkan Signal Secure Backups</string>
-<!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Jangan sampai kehilangan pesan saat Anda berganti ponsel atau menginstal ulang Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Aktifkan</string>
@@ -8664,7 +8661,7 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Transfer akun dan riwayat pesan Signal Anda ke perangkat ini.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Restore Signal backup</string>
+    <string name="SelectRestoreMethodFragment__restore_signal_backup">Pulihkan pencadangan Signal</string>
     <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Restore your text messages and media from your Signal backup plan.</string>
     <!-- Option title for restoring via a local backup file or folder -->
@@ -8746,18 +8743,18 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Enter your recovery key</string>
+    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Masukkan kunci pemulihan</string>
     <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Kunci pemulihan adalah kode 64 karakter yang diperlukan untuk memulihkan akun dan data Anda.</string>
     <!-- EnterLocalBackupKeyScreen: Button text when user does not have a backup key -->
-    <string name="EnterLocalBackupKeyScreen__no_backup_key">No backup key?</string>
+    <string name="EnterLocalBackupKeyScreen__no_backup_key">Tidak punya kunci cadangan?</string>
     <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Next</string>
+    <string name="EnterLocalBackupKeyScreen__next">Berikutnya</string>
 
     <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
     <string name="RestoreLocalBackupDialog__failed_to_load_archive">Failed to load archive. Please select a different directory.</string>
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
+    <string name="RestoreLocalBackupDialog__ok">OKE</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
     <string name="RestoreLocalBackupActivity__backup_restore_failed">Backup restore failed</string>
@@ -8766,15 +8763,15 @@
     <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
     <string name="RestoreLocalBackupActivity__depending_on_the_size">Depending on the size of your backup, this could take a few minutes.</string>
     <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Restoring messages…</string>
+    <string name="RestoreLocalBackupActivity__restoring_messages">Memulihkan pesan …</string>
     <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
     <string name="RestoreLocalBackupActivity__finalizing">Finalizing…</string>
     <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Restore complete</string>
+    <string name="RestoreLocalBackupActivity__restore_complete">Pemulihan selesai</string>
     <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Restore failed</string>
+    <string name="RestoreLocalBackupActivity__restore_failed">Pemulihan gagal</string>
     <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s of %2$s (%3$d%%)</string>
+    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s dari %2$s (%3$d%%)</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
     <string name="SelectInstructionsSheet__select_your_backup_folder">Select your backup folder</string>
@@ -8791,14 +8788,14 @@
     <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
     <string name="SelectInstructionsSheet__select_the_top_level_folder">Select the top-level folder where your backup is stored</string>
     <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Continue</string>
+    <string name="SelectInstructionsSheet__continue_button">Lanjutkan</string>
 
     <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
     <string name="SelectLocalBackupScreen__restore_on_device_backup">Restore on-device backup</string>
     <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
     <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Restore your messages from the backup folder you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
     <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Restore backup</string>
+    <string name="SelectLocalBackupScreen__restore_backup">Pulihkan cadangan</string>
     <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
     <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Choose an earlier backup</string>
     <!-- SelectLocalBackupScreen: Button to choose a different backup -->
@@ -8813,12 +8810,12 @@
     <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
     <string name="SelectLocalBackupSheet__choosing_an_older_backup">Choosing an older backup may result in lost messages or media.</string>
     <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Continue</string>
+    <string name="SelectLocalBackupSheet__continue_button">Lanjutkan</string>
 
     <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
     <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Restore on-device backup</string>
     <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Restore your messages from the backup you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Pulihkan pesan dari cadangan yang disimpan di perangkat Anda. Jika tidak memulihkan sekarang, Anda tidak akan bisa memulihkannya nanti.</string>
     <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
     <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">I saved my backup as a single file</string>
     <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
@@ -9182,25 +9179,30 @@
     <!-- Group member label preview section header. -->
     <string name="GroupMemberLabel__preview_section_header">Pratinjau</string>
     <!-- Sample message shown in the group member label message preview. -->
-    <string name="GroupMemberLabel__preview_sample_message">Hello!</string>
+    <string name="GroupMemberLabel__preview_sample_message">Halo!</string>
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">Simpan</string>
+    <!-- Description explaining the group member labels feature. -->
+    <string name="GroupMemberLabel__description">Tambahkan label anggota untuk mendeskripsikan diri atau peran Anda dalam grup ini. Label hanya terlihat dalam grup ini.</string>
+    <!-- Error message shown when the group member label fails to save due to a network error. -->
+    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <!-- Error message shown when trying to edit a member label without adequate permission. -->
+    <string name="GroupMemberLabel__error_no_edit_permission">Only admins can add member labels in this group.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Pilih emoji</string>
     <!-- Accessibility label for the group member label close screen button. -->
     <string name="GroupMemberLabel__accessibility_close_screen">Tutup layar</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Hapus label</string>
-    <string name="GroupMemberLabel__description">Tambahkan label anggota untuk mendeskripsikan diri atau peran Anda dalam grup ini. Label hanya terlihat dalam grup ini.</string>
 
     <!-- Title for the member labels education sheet. -->
-    <string name="MemberLabelsEducation__title">Member labels</string>
+    <string name="MemberLabelsEducation__title">Label anggota</string>
     <!-- Body for the member labels education sheet. -->
-    <string name="MemberLabelsEducation__body">Use a member label to describe yourself or your role in this group. Member labels are only visible within this group.</string>
+    <string name="MemberLabelsEducation__body">Gunakan label anggota untuk mendeskripsikan diri atau peran Anda dalam grup ini. Label anggota hanya terlihat dalam grup ini.</string>
     <!-- Button to set a new member label. -->
-    <string name="MemberLabelsEducation__set_label">Set a member label</string>
+    <string name="MemberLabelsEducation__set_label">Tetapkan Label Anggota</string>
     <!-- Button to edit an existing member label. -->
-    <string name="MemberLabelsEducation__edit_label">Edit your label</string>
+    <string name="MemberLabelsEducation__edit_label">Edit label</string>
 
     <!-- EOF -->
 </resources>

@@ -90,7 +90,7 @@
             android:text="@string/GroupRecipientListItem__add_member_label"
             android:textAppearance="@style/Signal.Text.LabelMedium"
             android:textColor="@color/signal_colorOnSurfaceVariant"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/recipient_about"
@@ -104,7 +104,7 @@
             android:textColor="@color/signal_text_secondary"
             android:visibility="gone"
             tools:text="Hangin' around the web"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
     </FrameLayout>
 

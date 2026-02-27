@@ -381,7 +381,7 @@ private fun MemberLabelRow(
         }
 
         Text(
-          text = memberLabel.text,
+          text = memberLabel.displayText,
           style = MaterialTheme.typography.bodyLarge,
           maxLines = 1,
           overflow = TextOverflow.Ellipsis,

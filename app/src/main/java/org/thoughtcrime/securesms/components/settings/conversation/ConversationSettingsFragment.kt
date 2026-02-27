@@ -863,7 +863,7 @@ class ConversationSettingsFragment :
                 navController.safeNavigate(action)
               },
               onDisabledClicked = {
-                Snackbar.make(requireView(), R.string.ConversationSettingsFragment__only_admins_can_add_member_labels, Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(requireView(), R.string.GroupMemberLabel__error_no_edit_permission, Snackbar.LENGTH_SHORT).show()
               }
             )
           }

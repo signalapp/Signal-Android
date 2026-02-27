@@ -48,7 +48,7 @@ fun SenderNameWithLabel(
     labelSlot = { label ->
       MemberLabelPill(
         emoji = label.emoji,
-        text = label.text,
+        text = label.displayText,
         tintColor = senderColor,
         modifier = defaultLabelModifier,
         textStyle = defaultLabelTextStyle()
@@ -78,7 +78,7 @@ fun SenderNameWithLabel(
     labelSlot = { label ->
       MemberLabelPill(
         emoji = label.emoji,
-        text = label.text,
+        text = label.displayText,
         textColor = labelTextColor,
         backgroundColor = labelBackgroundColor,
         modifier = defaultLabelModifier,

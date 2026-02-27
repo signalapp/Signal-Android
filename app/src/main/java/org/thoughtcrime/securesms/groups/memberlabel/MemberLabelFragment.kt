@@ -21,6 +21,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -42,6 +44,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.CircularProgressWrapper
 import org.signal.core.ui.compose.ClearableTextField
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Previews
@@ -87,6 +90,7 @@ class MemberLabelFragment : ComposeFragment(), ReactWithAnyEmojiBottomSheetDialo
   override fun FragmentContent() {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val backPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+    val snackbarHostState = remember { SnackbarHostState() }
 
     val callbacks = remember {
       object : MemberLabelUiCallbacks {
@@ -102,16 +106,34 @@ class MemberLabelFragment : ComposeFragment(), ReactWithAnyEmojiBottomSheetDialo
       }
     }
 
+    val networkErrorMessage = stringResource(R.string.GroupMemberLabel__error_cant_save_no_network)
+    val noPermissionErrorMessage = stringResource(R.string.GroupMemberLabel__error_no_edit_permission)
+
     LaunchedEffect(uiState.saveState) {
-      if (uiState.saveState is SaveState.Success) {
-        backPressedDispatcher?.onBackPressed()
-        viewModel.onSaveStateConsumed()
+      when (uiState.saveState) {
+        is SaveState.Success -> {
+          backPressedDispatcher?.onBackPressed()
+          viewModel.onSaveStateConsumed()
+        }
+
+        is SaveState.NetworkError -> {
+          snackbarHostState.showSnackbar(networkErrorMessage)
+          viewModel.onSaveStateConsumed()
+        }
+
+        is SaveState.InsufficientRights -> {
+          snackbarHostState.showSnackbar(noPermissionErrorMessage)
+          viewModel.onSaveStateConsumed()
+        }
+
+        is SaveState.InProgress, null -> Unit
       }
     }
 
     MemberLabelScreenUi(
       state = uiState,
-      callbacks = callbacks
+      callbacks = callbacks,
+      snackbarHostState = snackbarHostState
     )
   }
 
@@ -127,13 +149,15 @@ class MemberLabelFragment : ComposeFragment(), ReactWithAnyEmojiBottomSheetDialo
 @Composable
 private fun MemberLabelScreenUi(
   state: MemberLabelUiState,
-  callbacks: MemberLabelUiCallbacks
+  callbacks: MemberLabelUiCallbacks,
+  snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
 ) {
   Scaffolds.Settings(
     title = stringResource(R.string.GroupMemberLabel__title),
     onNavigationClick = callbacks::onClosePressed,
     navigationIcon = SignalIcons.X.imageVector,
-    navigationContentDescription = stringResource(R.string.GroupMemberLabel__accessibility_close_screen)
+    navigationContentDescription = stringResource(R.string.GroupMemberLabel__accessibility_close_screen),
+    snackbarHost = { SnackbarHost(snackbarHostState) }
   ) { paddingValues ->
 
     val focusRequester = remember { FocusRequester() }
@@ -185,19 +209,23 @@ private fun MemberLabelScreenUi(
             sender = state.recipient,
             senderNameColor = state.senderNameColor,
             labelEmoji = state.labelEmoji,
-            labelText = state.labelText,
+            labelText = state.sanitizedLabelText,
             messageText = stringResource(R.string.GroupMemberLabel__preview_sample_message)
           )
         }
       }
 
-      SaveButton(
-        enabled = state.isSaveEnabled,
-        onClick = callbacks::onSaveClicked,
+      CircularProgressWrapper(
+        isLoading = state.saveState is SaveState.InProgress,
         modifier = Modifier
           .align(Alignment.BottomEnd)
           .padding(end = 24.dp, bottom = 16.dp)
-      )
+      ) {
+        SaveButton(
+          enabled = state.isSaveEnabled,
+          onClick = callbacks::onSaveClicked
+        )
+      }
     }
   }
 }

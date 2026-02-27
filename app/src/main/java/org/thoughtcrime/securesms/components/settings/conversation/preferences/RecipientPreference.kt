@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components.settings.conversation.preferences
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.widget.TextView
-import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -11,7 +10,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
-import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelPill
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelPillView
 import org.thoughtcrime.securesms.groups.memberlabel.StyledMemberLabel
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -133,11 +131,7 @@ object RecipientPreference {
 
     private fun showMemberLabel(styledLabel: StyledMemberLabel) {
       memberLabelView?.apply {
-        style = MemberLabelPillView.Style(
-          horizontalPadding = 8.dp,
-          verticalPadding = 2.dp,
-          textStyle = { MemberLabelPill.textStyleCompact }
-        )
+        style = MemberLabelPillView.Style.Compact
         setLabel(styledLabel.label, styledLabel.tintColor)
         visible = true
       }
