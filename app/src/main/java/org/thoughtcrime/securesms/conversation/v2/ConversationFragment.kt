@@ -34,7 +34,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.WindowManager
@@ -457,7 +456,6 @@ class ConversationFragment :
       removeTextChangedListener(composeTextEventsListener)
       setStylingChangedListener(null)
       setOnClickListener(null)
-      removeOnFocusChangeListener(composeTextEventsListener)
     }
 
     dataObserver?.let {
@@ -1229,7 +1227,6 @@ class ConversationFragment :
       addTextChangedListener(composeTextEventsListener)
       setStylingChangedListener(composeTextEventsListener)
       setOnClickListener(composeTextEventsListener)
-      onFocusChangeListener = composeTextEventsListener
       filters += ByteLimitInputFilter(MessageUtil.MAX_TOTAL_BODY_SIZE_BYTES)
     }
 
@@ -1410,7 +1407,7 @@ class ConversationFragment :
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
 
     if (args.conversationScreenType.isInPopup) {
-      composeText.requestFocus()
+      container.showSoftkey(composeText)
       binding.conversationInputPanel.quickAttachmentToggle.disable()
     }
   }
@@ -4667,7 +4664,6 @@ class ConversationFragment :
     View.OnKeyListener,
     View.OnClickListener,
     TextWatcher,
-    OnFocusChangeListener,
     ComposeText.CursorPositionChangedListener,
     ComposeText.StylingChangedListener {
 
@@ -4710,12 +4706,6 @@ class ConversationFragment :
         stickerViewModel.onInputTextUpdated(s.toString())
       } else {
         stickerViewModel.onInputTextUpdated("")
-      }
-    }
-
-    override fun onFocusChange(v: View, hasFocus: Boolean) {
-      if (hasFocus) { // && container.getCurrentInput() == emojiDrawerStub.get()) {
-        container.showSoftkey(composeText)
       }
     }
 
