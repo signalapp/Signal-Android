@@ -168,13 +168,13 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
       withContext(Dispatchers.IO) {
         AppDependencies.jobManager.cancelAllInQueue(LocalBackupJob.QUEUE)
         AppDependencies.jobManager.flush()
+
+        SignalStore.backup.newLocalBackupsDirectory = SignalStore.settings.signalBackupDirectory?.toString()
+
+        BackupPassphrase.set(context, null)
+        SignalStore.settings.isBackupEnabled = false
+        BackupUtil.deleteAllBackups()
       }
-
-      SignalStore.backup.newLocalBackupsDirectory = SignalStore.settings.signalBackupDirectory?.toString()
-
-      BackupPassphrase.set(context, null)
-      SignalStore.settings.isBackupEnabled = false
-      BackupUtil.deleteAllBackups()
     }
 
     SignalStore.backup.newLocalBackupsEnabled = true

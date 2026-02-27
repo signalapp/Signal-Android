@@ -13,8 +13,10 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.LifecycleResumeEffect
@@ -29,6 +31,7 @@ import androidx.navigation3.ui.NavDisplay
 import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Launchers
 import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.logging.Log
@@ -39,6 +42,7 @@ import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRec
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRecordScreen
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyVerifyScreen
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import kotlin.time.Duration.Companion.milliseconds
 
 private val TAG = Log.tag(LocalBackupsFragment::class)
 
@@ -127,6 +131,7 @@ class LocalBackupsFragment : ComposeFragment() {
               val state: LocalBackupsKeyState by viewModel.backupState.collectAsStateWithLifecycle()
               val scope = rememberCoroutineScope()
               val backupKeyUpdatedMessage = stringResource(R.string.OnDeviceBackupsFragment__backup_key_updated)
+              var upgradeInProgress by remember { mutableStateOf(false) }
 
               MessageBackupsKeyVerifyScreen(
                 backupKey = state.accountEntropyPool.displayValue,
@@ -139,13 +144,21 @@ class LocalBackupsFragment : ComposeFragment() {
                   backstack.removeAll { it != LocalBackupsNavKey.SETTINGS }
 
                   scope.launch {
+                    upgradeInProgress = true
                     viewModel.handleUpgrade(requireContext())
+                    upgradeInProgress = false
 
                     snackbarHostState.showSnackbar(
                       message = backupKeyUpdatedMessage
                     )
                   }
                 }
+              )
+
+              Dialogs.IndeterminateProgressDialog(
+                visible = upgradeInProgress,
+                delayDuration = 100.milliseconds,
+                minimumDisplayDuration = 500.milliseconds
               )
             }
 

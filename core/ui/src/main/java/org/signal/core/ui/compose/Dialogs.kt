@@ -36,7 +36,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -56,12 +58,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import kotlinx.coroutines.delay
 import org.signal.core.ui.compose.Dialogs.AdvancedAlertDialog
 import org.signal.core.ui.compose.Dialogs.PermissionRationaleDialog
 import org.signal.core.ui.compose.Dialogs.SimpleAlertDialog
 import org.signal.core.ui.compose.Dialogs.SimpleMessageDialog
 import org.signal.core.ui.compose.theme.SignalTheme
 import kotlin.math.max
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 object Dialogs {
 
@@ -222,6 +227,49 @@ object Dialogs {
             .testTag("dialog-circular-progress-indicator")
         )
       }
+    }
+  }
+
+  /**
+   * A dialog that shows a spinner with built-in delay and minimum display time.
+   *
+   * The dialog will not appear until [delayDuration] has elapsed after [visible] becomes true.
+   * If the operation completes before the delay, the dialog is never shown.
+   * Once visible, the dialog will remain for at least [minimumDisplayDuration] to
+   * avoid a jarring flash.
+   *
+   * This composable should always be in the composition (not wrapped in an `if`).
+   * Visibility is controlled by the [visible] parameter.
+   */
+  @Composable
+  fun IndeterminateProgressDialog(
+    visible: Boolean,
+    delayDuration: Duration = Duration.ZERO,
+    minimumDisplayDuration: Duration = Duration.ZERO,
+    onDismissRequest: () -> Unit = {}
+  ) {
+    var isVisible by remember { mutableStateOf(false) }
+    var isVisibleSince by remember { mutableLongStateOf(0L) }
+
+    LaunchedEffect(visible) {
+      if (visible) {
+        delay(delayDuration)
+        isVisible = true
+        isVisibleSince = System.currentTimeMillis()
+      } else {
+        if (isVisible && minimumDisplayDuration > Duration.ZERO) {
+          val elapsed = (System.currentTimeMillis() - isVisibleSince).milliseconds
+          val remaining = minimumDisplayDuration - elapsed
+          if (remaining > Duration.ZERO) {
+            delay(remaining)
+          }
+        }
+        isVisible = false
+      }
+    }
+
+    if (isVisible) {
+      IndeterminateProgressDialog(onDismissRequest = onDismissRequest)
     }
   }
 

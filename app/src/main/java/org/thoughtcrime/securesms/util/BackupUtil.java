@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
+import androidx.annotation.WorkerThread;
 import androidx.documentfile.provider.DocumentFile;
 
 import org.signal.core.util.Util;
@@ -110,6 +111,7 @@ public class BackupUtil {
     return backups.isEmpty() ? null : backups.get(0);
   }
 
+  @WorkerThread
   public static void deleteAllBackups() {
     Log.i(TAG, "Deleting all backups");
 
