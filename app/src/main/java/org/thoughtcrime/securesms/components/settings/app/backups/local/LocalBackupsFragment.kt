@@ -30,6 +30,7 @@ import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Launchers
+import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyEducationScreen
@@ -167,7 +168,7 @@ private fun rememberChooseBackupLocationLauncher(backStack: NavBackStack<NavKey>
       SignalStore.backup.newLocalBackupsDirectory = uri.toString()
       backStack.add(LocalBackupsNavKey.YOUR_RECOVERY_KEY)
 
-      Toast.makeText(context, context.getString(R.string.OnDeviceBackupsFragment__directory_selected, uri), Toast.LENGTH_SHORT).show()
+      Toast.makeText(context, context.getString(R.string.OnDeviceBackupsFragment__directory_selected, StorageUtil.getDisplayPath(context, uri)), Toast.LENGTH_SHORT).show()
     } else {
       Log.w(TAG, "Unified backup location selection cancelled or failed")
     }

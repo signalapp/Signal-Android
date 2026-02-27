@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import org.signal.core.ui.CoreUiDependencies;
@@ -91,11 +90,14 @@ public class StorageUtil {
     return backups;
   }
 
-  @RequiresApi(24)
   public static @NonNull String getDisplayPath(@NonNull Context context, @NonNull Uri uri) {
     String lastPathSegment = Objects.requireNonNull(uri.getLastPathSegment());
     String backupVolume    = lastPathSegment.replaceFirst(":.*", "");
     String backupName      = lastPathSegment.replaceFirst(".*:", "");
+
+    if (Build.VERSION.SDK_INT < 24) {
+      return backupName;
+    }
 
     StorageManager      storageManager = ContextCompat.getSystemService(context, StorageManager.class);
     List<StorageVolume> storageVolumes = storageManager.getStorageVolumes();

@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.components.settings.app.backups.local
 
 import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +17,7 @@ import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.BackupPassphrase
@@ -50,7 +52,7 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
   private val internalSettingsState = MutableStateFlow(
     LocalBackupsSettingsState(
       backupsEnabled = SignalStore.backup.newLocalBackupsEnabled,
-      folderDisplayName = SignalStore.backup.newLocalBackupsDirectory
+      folderDisplayName = getDisplayName(AppDependencies.application, SignalStore.backup.newLocalBackupsDirectory)
     )
   )
 
@@ -70,7 +72,7 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
 
     viewModelScope.launch {
       SignalStore.backup.newLocalBackupsDirectoryFlow.collect { directory ->
-        internalSettingsState.update { it.copy(folderDisplayName = directory) }
+        internalSettingsState.update { it.copy(folderDisplayName = getDisplayName(applicationContext, directory)) }
       }
     }
 
@@ -165,6 +167,13 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
     SignalStore.backup.newLocalBackupsEnabled = true
     LocalBackupJob.enqueueArchive(false)
   }
+}
+
+private fun getDisplayName(context: Context, directoryUri: String?): String? {
+  if (directoryUri == null) {
+    return null
+  }
+  return StorageUtil.getDisplayPath(context, Uri.parse(directoryUri))
 }
 
 private fun calculateLastBackupTimeString(context: Context, lastBackupTimestamp: Long): String {
