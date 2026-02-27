@@ -116,6 +116,19 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
     }
   }
 
+  fun onBackupStarted() {
+    val context = AppDependencies.application
+    internalSettingsState.update {
+      it.copy(
+        progress = BackupProgressState.InProgress(
+          summary = context.getString(R.string.BackupsPreferenceFragment__in_progress),
+          percentLabel = context.getString(R.string.BackupsPreferenceFragment__d_so_far, 0),
+          progressFraction = null
+        )
+      )
+    }
+  }
+
   @Subscribe(threadMode = ThreadMode.MAIN)
   fun onBackupEvent(event: LocalBackupV2Event) {
     val context = AppDependencies.application

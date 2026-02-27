@@ -98,6 +98,7 @@ class DefaultLocalBackupsSettingsCallback(
   override fun onCreateBackupClick() {
     if (BackupUtil.isUserSelectionRequired(fragment.requireContext())) {
       Log.i(TAG, "Queueing backup...")
+      viewModel.onBackupStarted()
       enqueueArchive(false)
     } else {
       Permissions.with(fragment)
@@ -105,6 +106,7 @@ class DefaultLocalBackupsSettingsCallback(
         .ifNecessary()
         .onAllGranted {
           Log.i(TAG, "Queuing backup...")
+          viewModel.onBackupStarted()
           enqueueArchive(false)
         }
         .withPermanentDenialDialog(
