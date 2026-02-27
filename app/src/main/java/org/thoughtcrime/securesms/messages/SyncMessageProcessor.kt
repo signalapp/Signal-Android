@@ -1893,6 +1893,11 @@ object SyncMessageProcessor {
       return -1
     }
 
+    if (targetMessage.isRemoteDelete) {
+      warn(envelope.timestamp!!, "Cannot pin deleted message")
+      return -1
+    }
+
     val targetMessageId = (targetMessage as? MmsMessageRecord)?.latestRevisionId?.id ?: targetMessage.id
     val duration = if (pinMessage.pinDurationForever == true) MessageTable.PIN_FOREVER else pinMessage.pinDurationSeconds!!.toLong()
     val outgoingMessage = OutgoingMessage.pinMessage(
