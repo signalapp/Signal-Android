@@ -53,8 +53,6 @@ val localProperties: Properties? = if (localPropertiesFile.exists()) {
 val quickstartCredentialsDir: String? = localProperties?.getProperty("quickstart.credentials.dir")
 
 val selectableVariants = listOf(
-  "nightlyBackupRelease",
-  "nightlyBackupSpinner",
   "nightlyProdSpinner",
   "nightlyProdPerf",
   "nightlyProdRelease",
@@ -467,17 +465,6 @@ android {
 
       buildConfigField("String", "BUILD_ENVIRONMENT_TYPE", "\"Staging\"")
       buildConfigField("String", "STRIPE_PUBLISHABLE_KEY", "\"pk_test_sngOd8FnXNkpce9nPXawKrJD00kIDngZkD\"")
-    }
-
-    create("backup") {
-      initWith(getByName("staging"))
-
-      dimension = "environment"
-
-      applicationIdSuffix = ".backup"
-
-      buildConfigField("boolean", "MANAGES_APP_UPDATES", "true")
-      buildConfigField("String", "BUILD_ENVIRONMENT_TYPE", "\"Backup\"")
     }
   }
 
