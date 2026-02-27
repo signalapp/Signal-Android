@@ -13,6 +13,11 @@ object Environment {
   const val IS_WEBSITE: Boolean = BuildConfig.BUILD_DISTRIBUTION_TYPE == "website"
   const val IS_INSTRUMENTATION: Boolean = BuildConfig.BUILD_VARIANT_TYPE == "Instrumentation" || BuildConfig.BUILD_VARIANT_TYPE == "Benchmark"
   const val IS_BENCHMARK: Boolean = BuildConfig.BUILD_VARIANT_TYPE == "Benchmark"
+  const val IS_PERF: Boolean = BuildConfig.BUILD_VARIANT_TYPE == "Perf"
+
+  fun isInternal(): Boolean {
+    return !IS_INSTRUMENTATION && (BuildConfig.DEBUG || IS_NIGHTLY || IS_PERF || IS_STAGING)
+  }
 
   object Backups {
     @JvmStatic
@@ -22,7 +27,7 @@ object Environment {
 
     @JvmStatic
     fun isNewFormatSupportedForLocalBackup(): Boolean {
-      return BuildConfig.DEBUG || IS_NIGHTLY
+      return isInternal()
     }
   }
 

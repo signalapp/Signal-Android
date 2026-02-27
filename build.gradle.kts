@@ -79,7 +79,7 @@ tasks.register("qa") {
 
 // Wire up QA dependencies after all projects are evaluated
 gradle.projectsEvaluated {
-  val appTestTask = tasks.findByPath(":Signal-Android:testPlayProdPerfUnitTest")
+  val appTestTask = tasks.findByPath(":Signal-Android:testPlayProdReleaseUnitTest")
   val appLintTask = tasks.findByPath(":Signal-Android:lintPlayProdRelease")
 
   tasks.named("qa") {

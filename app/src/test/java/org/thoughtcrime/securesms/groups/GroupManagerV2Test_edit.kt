@@ -8,6 +8,7 @@ import assertk.assertions.isNull
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
+import io.mockk.mockkStatic
 import io.mockk.slot
 import io.mockk.unmockkAll
 import io.mockk.verify
@@ -80,6 +81,7 @@ class GroupManagerV2Test_edit {
   @Before
   fun setUp() {
     mockkObject(RemoteConfig)
+    mockkStatic(RemoteConfig::class)
     mockkObject(SignalStore)
     every { RemoteConfig.internalUser } returns false
 
