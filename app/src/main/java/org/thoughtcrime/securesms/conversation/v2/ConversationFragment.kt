@@ -1375,7 +1375,6 @@ class ConversationFragment :
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
 
     if (args.conversationScreenType.isInPopup) {
-     // composeText.requestFocus()
       container.showSoftkey(composeText)
       binding.conversationInputPanel.quickAttachmentToggle.disable()
     }
@@ -4522,9 +4521,6 @@ class ConversationFragment :
     }
 
     override fun onFocusChange(v: View, hasFocus: Boolean) {
-//      if (hasFocus) { // && container.getCurrentInput() == emojiDrawerStub.get()) {
-//        container.showSoftkey(composeText)
-//      }
     }
 
     override fun onCursorPositionChanged(start: Int, end: Int) {
