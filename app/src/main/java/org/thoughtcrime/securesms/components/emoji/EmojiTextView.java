@@ -135,7 +135,17 @@ public class EmojiTextView extends AppCompatTextView {
       spoilerRendererDelegate = new SpoilerRendererDelegate(this);
     }
 
-    textDirection = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? TextDirectionHeuristics.FIRSTSTRONG_RTL : TextDirectionHeuristics.ANYRTL_LTR;
+    if (getLayoutDirection() == LAYOUT_DIRECTION_LTR) {
+      textDirection = TextDirectionHeuristics.FIRSTSTRONG_RTL;
+      if (getTextDirection() == TEXT_DIRECTION_INHERIT) {
+        setTextDirection(TEXT_DIRECTION_FIRST_STRONG_RTL);
+      }
+    } else {
+      textDirection = TextDirectionHeuristics.ANYRTL_LTR;
+      if (getTextDirection() == TEXT_DIRECTION_INHERIT) {
+        setTextDirection(TEXT_DIRECTION_ANY_RTL);
+      }
+    }
 
     setEmojiCompatEnabled(useSystemEmoji());
   }
