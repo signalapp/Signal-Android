@@ -4520,9 +4520,6 @@ class ConversationFragment :
       }
     }
 
-    override fun onFocusChange(v: View, hasFocus: Boolean) {
-    }
-
     override fun onCursorPositionChanged(start: Int, end: Int) {
       linkPreviewViewModel.onTextChanged(composeText.textTrimmed.toString(), start, end)
     }
