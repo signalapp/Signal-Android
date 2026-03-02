@@ -24,6 +24,7 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.core.SurfaceOrientedMeteringPointFactory
+import androidx.camera.core.UseCase
 import androidx.camera.core.resolutionselector.AspectRatioStrategy
 import androidx.camera.core.resolutionselector.ResolutionSelector
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -328,6 +329,47 @@ class CameraScreenViewModel : ViewModel() {
     state: CameraScreenState,
     event: CameraScreenEvents.BindCamera
   ) {
+    val cameraSelector = CameraSelector.Builder()
+      .requireLensFacing(state.lensFacing)
+      .build()
+
+    // Build binding attempts with progressively fewer optional use cases.
+    // Some devices cannot support all use cases simultaneously, so we fall back
+    // by first dropping video capture, then QR scanning.
+    val bindingAttempts = buildBindingAttempts(event)
+
+    for ((index, attempt) in bindingAttempts.withIndex()) {
+      try {
+        event.cameraProvider.unbindAll()
+
+        camera = event.cameraProvider.bindToLifecycle(
+          event.lifecycleOwner,
+          cameraSelector,
+          *attempt.toTypedArray()
+        )
+
+        if (index > 0) {
+          Log.w(TAG, "Use case binding succeeded on fallback attempt ${index + 1} of ${bindingAttempts.size}")
+        }
+
+        lifecycleOwner = event.lifecycleOwner
+        cameraProvider = event.cameraProvider
+        imageCapture = attempt.imageCapture
+        videoCapture = attempt.videoCapture
+
+        setupOrientationListener(event.context)
+        return
+      } catch (e: Exception) {
+        Log.e(TAG, "Use case binding failed (attempt ${index + 1} of ${bindingAttempts.size})", e)
+      }
+    }
+
+    Log.e(TAG, "All use case binding attempts failed")
+  }
+
+  private fun buildBindingAttempts(
+    event: CameraScreenEvents.BindCamera
+  ): List<BindingAttempt> {
     val resolutionSelector = ResolutionSelector.Builder()
       .setAspectRatioStrategy(AspectRatioStrategy.RATIO_16_9_FALLBACK_AUTO_STRATEGY)
       .build()
@@ -339,16 +381,12 @@ class CameraScreenViewModel : ViewModel() {
       .also { it.surfaceProvider = event.surfaceProvider }
 
     // Image capture with 16:9 aspect ratio (optimized for speed)
-    val imageCaptureUseCase = ImageCapture.Builder()
+    val imageCapture = ImageCapture.Builder()
       .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
       .setResolutionSelector(resolutionSelector)
       .build()
 
-    // Build the list of use cases based on device capabilities
-    val useCases = mutableListOf<androidx.camera.core.UseCase>(preview, imageCaptureUseCase)
-
-    var videoCaptureUseCase: VideoCapture<Recorder>? = null
-    if (event.enableVideoCapture) {
+    val videoCapture: VideoCapture<Recorder>? = if (event.enableVideoCapture) {
       val recorder = Recorder.Builder()
         .setAspectRatio(AspectRatio.RATIO_16_9)
         .setQualitySelector(
@@ -358,12 +396,13 @@ class CameraScreenViewModel : ViewModel() {
           )
         )
         .build()
-      videoCaptureUseCase = VideoCapture.withOutput(recorder)
-      useCases += videoCaptureUseCase
+      VideoCapture.withOutput(recorder)
+    } else {
+      null
     }
 
-    if (event.enableQrScanning) {
-      val imageAnalysisUseCase = ImageAnalysis.Builder()
+    val qrAnalysis: ImageAnalysis? = if (event.enableQrScanning) {
+      ImageAnalysis.Builder()
         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
         .build()
         .also {
@@ -371,33 +410,23 @@ class CameraScreenViewModel : ViewModel() {
             processImageForQrCode(imageProxy)
           }
         }
-      useCases += imageAnalysisUseCase
+    } else {
+      null
     }
 
-    // Select camera based on lensFacing
-    val cameraSelector = CameraSelector.Builder()
-      .requireLensFacing(state.lensFacing)
-      .build()
+    return buildList {
+      // Attempt 1: All use cased
+      add(BindingAttempt(preview = preview, imageCapture = imageCapture, videoCapture = videoCapture, imageAnalysis = qrAnalysis))
 
-    try {
-      // Unbind use cases before rebinding
-      event.cameraProvider.unbindAll()
+      // Attempt 2: Drop video capture
+      if (videoCapture != null) {
+        add(BindingAttempt(preview = preview, imageCapture = imageCapture, videoCapture = null, imageAnalysis = qrAnalysis))
+      }
 
-      // Bind use cases to camera
-      camera = event.cameraProvider.bindToLifecycle(
-        event.lifecycleOwner,
-        cameraSelector,
-        *useCases.toTypedArray()
-      )
-
-      lifecycleOwner = event.lifecycleOwner
-      cameraProvider = event.cameraProvider
-      imageCapture = imageCaptureUseCase
-      videoCapture = videoCaptureUseCase
-
-      setupOrientationListener(event.context)
-    } catch (e: Exception) {
-      Log.e(TAG, "Use case binding failed", e)
+      // Attempt 3: Drop QR scanning
+      if (qrAnalysis != null) {
+        add(BindingAttempt(preview = preview, imageCapture = imageCapture, videoCapture = null, imageAnalysis = null))
+      }
     }
   }
 
@@ -680,6 +709,17 @@ class CameraScreenViewModel : ViewModel() {
         @Suppress("DEPRECATION")
         it.vibrate(50)
       }
+    }
+  }
+
+  private data class BindingAttempt(
+    val preview: Preview,
+    val imageCapture: ImageCapture,
+    val videoCapture: VideoCapture<Recorder>?,
+    val imageAnalysis: ImageAnalysis?
+  ) {
+    fun toTypedArray(): Array<UseCase> {
+      return listOfNotNull(preview, imageCapture, videoCapture, imageAnalysis).toTypedArray()
     }
   }
 }
