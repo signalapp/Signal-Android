@@ -249,7 +249,7 @@ object StorageSyncModels {
       archived = recipient.syncExtras.isArchived
       markedUnread = recipient.syncExtras.isForcedUnread
       mutedUntilTimestamp = recipient.muteUntil
-      dontNotifyForMentionsIfMuted = recipient.mentionSetting == RecipientTable.MentionSetting.DO_NOT_NOTIFY
+      dontNotifyForMentionsIfMuted = recipient.mentionSetting == RecipientTable.NotificationSetting.DO_NOT_NOTIFY
       hideStory = recipient.extras != null && recipient.extras.hideStory()
       avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
       storySendMode = when (groups.getShowAsStoryState(groupId)) {

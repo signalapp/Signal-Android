@@ -167,13 +167,13 @@ object NotificationStateProvider {
       isUnreadMessage &&
         !messageRecord.isOutgoing &&
         isGroupStoryReply &&
-        (isParentStorySentBySelf || messageRecord.hasSelfMentionOrQuoteOfSelf() || (hasSelfRepliedToStory && !messageRecord.isStoryReaction()))
+        (isParentStorySentBySelf || messageRecord.hasGroupQuoteOrSelfMention() || (hasSelfRepliedToStory && !messageRecord.isStoryReaction()))
 
     fun includeMessage(notificationProfile: NotificationProfile?): MessageInclusion {
       return if (isUnreadIncoming || stickyThread || isNotifiableGroupStoryMessage || isIncomingMissedCall) {
-        if (threadRecipient.isMuted && (threadRecipient.isDoNotNotifyMentions || !messageRecord.shouldBreakThroughMute(threadRecipient))) {
+        if (threadRecipient.isMuted && !breaksThroughMute()) {
           MessageInclusion.MUTE_FILTERED
-        } else if (notificationProfile != null && !notificationProfile.isRecipientAllowed(threadRecipient.id) && !(notificationProfile.allowAllMentions && messageRecord.shouldBreakThroughMute(threadRecipient))) {
+        } else if (notificationProfile != null && !notificationProfile.isRecipientAllowed(threadRecipient.id) && !(notificationProfile.allowAllMentions && messageRecord.hasGroupQuoteOrSelfMention())) {
           MessageInclusion.PROFILE_FILTERED
         } else {
           MessageInclusion.INCLUDE
@@ -181,6 +181,19 @@ object NotificationStateProvider {
       } else {
         MessageInclusion.EXCLUDE
       }
+    }
+
+    private fun breaksThroughMute(): Boolean {
+      return when {
+        isIncomingMissedCall -> threadRecipient.callNotificationSetting == RecipientTable.NotificationSetting.ALWAYS_NOTIFY
+        messageRecord.hasSelfMention() -> threadRecipient.mentionSetting == RecipientTable.NotificationSetting.ALWAYS_NOTIFY
+        messageRecord.isQuoteOfSelf() -> threadRecipient.replyNotificationSetting == RecipientTable.NotificationSetting.ALWAYS_NOTIFY
+        else -> false
+      }
+    }
+
+    private fun MessageRecord.isQuoteOfSelf(): Boolean {
+      return this is MmsMessageRecord && quote?.author == Recipient.self().id
     }
 
     fun includeReaction(reaction: ReactionRecord, notificationProfile: NotificationProfile?): MessageInclusion {
@@ -207,17 +220,10 @@ object NotificationStateProvider {
       }
     }
 
-    private val Recipient.isDoNotNotifyMentions: Boolean
-      get() = mentionSetting == RecipientTable.MentionSetting.DO_NOT_NOTIFY
-
-    private fun MessageRecord.shouldBreakThroughMute(threadRecipient: Recipient): Boolean {
+    private fun MessageRecord.hasGroupQuoteOrSelfMention(): Boolean {
       if (!threadRecipient.isGroup) {
         return false
       }
-      return hasSelfMention() || (this is MmsMessageRecord && quote?.author == Recipient.self().id)
-    }
-
-    private fun MessageRecord.hasSelfMentionOrQuoteOfSelf(): Boolean {
       return hasSelfMention() || (this is MmsMessageRecord && quote?.author == Recipient.self().id)
     }
   }

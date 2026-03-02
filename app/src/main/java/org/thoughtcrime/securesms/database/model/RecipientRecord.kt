@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.RecipientTable
-import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting
+import org.thoughtcrime.securesms.database.RecipientTable.NotificationSetting
 import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode
@@ -64,7 +64,9 @@ data class RecipientRecord(
   val sealedSenderAccessMode: SealedSenderAccessMode,
   val capabilities: Capabilities,
   val storageId: ByteArray?,
-  val mentionSetting: MentionSetting,
+  val mentionSetting: NotificationSetting,
+  val callNotificationSetting: NotificationSetting,
+  val replyNotificationSetting: NotificationSetting,
   val wallpaper: ChatWallpaper?,
   val chatColors: ChatColors?,
   val avatarColor: AvatarColor,

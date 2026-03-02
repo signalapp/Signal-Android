@@ -121,32 +121,35 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState, RemotePeer.GROUP_CALL_ID.longValue());
 
-    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, remotePeerGroup, true);
     webRtcInteractor.initializeAudioForCall();
 
-    boolean shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext());
-    if (shouldDisturbUserWithCall) {
+    boolean shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext(), recipient.resolve());
+
+    if (!shouldDisturbUserWithCall) {
+      Log.i(TAG, "Silently ignoring group ring due to mute settings.");
+    } else {
+      webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, remotePeerGroup, true);
       webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
       boolean started = webRtcInteractor.startWebRtcCallActivityIfPossible();
       if (!started) {
         Log.i(TAG, "Unable to start call activity due to OS version or not being in the foreground");
         AppForegroundObserver.addListener(webRtcInteractor.getForegroundListener());
       }
-    }
 
-    boolean isCallNotificationsEnabled = SignalStore.settings().isCallNotificationsEnabled() && NotificationChannels.getInstance().areNotificationsEnabled();
-    if (shouldDisturbUserWithCall && isCallNotificationsEnabled) {
-      Uri                         ringtone     = recipient.resolve().getCallRingtone();
-      RecipientTable.VibrateState vibrateState = recipient.resolve().getCallVibrate();
+      boolean isCallNotificationsEnabled = SignalStore.settings().isCallNotificationsEnabled() && NotificationChannels.getInstance().areNotificationsEnabled();
+      if (isCallNotificationsEnabled) {
+        Uri                         ringtone     = recipient.resolve().getCallRingtone();
+        RecipientTable.VibrateState vibrateState = recipient.resolve().getCallVibrate();
 
-      if (ringtone == null) {
-        ringtone = SignalStore.settings().getCallRingtone();
+        if (ringtone == null) {
+          ringtone = SignalStore.settings().getCallRingtone();
+        }
+
+        webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientTable.VibrateState.ENABLED || (vibrateState == RecipientTable.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));
       }
 
-      webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientTable.VibrateState.ENABLED || (vibrateState == RecipientTable.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));
+      webRtcInteractor.registerPowerButtonReceiver();
     }
-
-    webRtcInteractor.registerPowerButtonReceiver();
 
     return currentState.builder()
                        .changeCallSetupState(RemotePeer.GROUP_CALL_ID)

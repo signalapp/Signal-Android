@@ -168,6 +168,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val STORAGE_SERVICE_ID = "storage_service_id"
     const val STORAGE_SERVICE_PROTO = "storage_service_proto"
     const val MENTION_SETTING = "mention_setting"
+    const val CALL_NOTIFICATION_SETTING = "call_notification_setting"
+    const val REPLY_NOTIFICATION_SETTING = "reply_notification_setting"
     const val CAPABILITIES = "capabilities"
     const val LAST_SESSION_RESET = "last_session_reset"
     const val WALLPAPER = "wallpaper"
@@ -241,7 +243,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $SEALED_SENDER_MODE INTEGER DEFAULT 0, 
         $STORAGE_SERVICE_ID TEXT UNIQUE DEFAULT NULL, 
         $STORAGE_SERVICE_PROTO TEXT DEFAULT NULL,
-        $MENTION_SETTING INTEGER DEFAULT ${MentionSetting.ALWAYS_NOTIFY.id}, 
+        $MENTION_SETTING INTEGER DEFAULT ${NotificationSetting.ALWAYS_NOTIFY.id},
         $CAPABILITIES INTEGER DEFAULT 0,
         $LAST_SESSION_RESET BLOB DEFAULT NULL,
         $WALLPAPER BLOB DEFAULT NULL,
@@ -264,7 +266,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $NICKNAME_JOINED_NAME TEXT DEFAULT NULL,
         $NOTE TEXT DEFAULT NULL,
         $MESSAGE_EXPIRATION_TIME_VERSION INTEGER DEFAULT 1 NOT NULL,
-        $KEY_TRANSPARENCY_DATA BLOB DEFAULT NULL
+        $KEY_TRANSPARENCY_DATA BLOB DEFAULT NULL,
+        $CALL_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.ALWAYS_NOTIFY.id},
+        $REPLY_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.ALWAYS_NOTIFY.id}
       )
       """
 
@@ -313,6 +317,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SEALED_SENDER_MODE,
       STORAGE_SERVICE_ID,
       MENTION_SETTING,
+      CALL_NOTIFICATION_SETTING,
+      REPLY_NOTIFICATION_SETTING,
       CAPABILITIES,
       WALLPAPER,
       WALLPAPER_URI,
@@ -1645,12 +1651,36 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun setMentionSetting(id: RecipientId, mentionSetting: MentionSetting) {
+  fun setMentionSetting(id: RecipientId, mentionSetting: NotificationSetting) {
     val values = ContentValues().apply {
       put(MENTION_SETTING, mentionSetting.id)
     }
     if (update(id, values)) {
       rotateStorageId(id)
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
+  }
+
+  fun setCallNotificationSetting(id: RecipientId, setting: NotificationSetting) {
+    val values = ContentValues().apply {
+      put(CALL_NOTIFICATION_SETTING, setting.id)
+    }
+    if (update(id, values)) {
+      // TODO rotate storageId once this is actually synced in storage service
+//      rotateStorageId(id)
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
+  }
+
+  fun setReplyNotificationSetting(id: RecipientId, setting: NotificationSetting) {
+    val values = ContentValues().apply {
+      put(REPLY_NOTIFICATION_SETTING, setting.id)
+    }
+    if (update(id, values)) {
+      // TODO rotate storageId once this is actually synced in storage service
+//      rotateStorageId(id)
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
       StorageSyncHelper.scheduleSyncForDataChange()
     }
@@ -4147,7 +4177,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SYSTEM_CONTACT_URI to secondaryRecord.systemContactUri,
       PROFILE_SHARING to (primaryRecord.profileSharing || secondaryRecord.profileSharing),
       CAPABILITIES to max(primaryRecord.capabilities.rawBits, secondaryRecord.capabilities.rawBits),
-      MENTION_SETTING to if (primaryRecord.mentionSetting != MentionSetting.ALWAYS_NOTIFY) primaryRecord.mentionSetting.id else secondaryRecord.mentionSetting.id,
+      MENTION_SETTING to if (primaryRecord.mentionSetting != NotificationSetting.ALWAYS_NOTIFY) primaryRecord.mentionSetting.id else secondaryRecord.mentionSetting.id,
       PNI_SIGNATURE_VERIFIED to pniVerified.toInt()
     )
 
@@ -4280,7 +4310,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(BLOCKED, if (groupV2.proto.blocked) "1" else "0")
       put(MUTE_UNTIL, groupV2.proto.mutedUntilTimestamp)
       put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(groupV2.id.raw))
-      put(MENTION_SETTING, if (groupV2.proto.dontNotifyForMentionsIfMuted) MentionSetting.DO_NOT_NOTIFY.id else MentionSetting.ALWAYS_NOTIFY.id)
+      put(MENTION_SETTING, if (groupV2.proto.dontNotifyForMentionsIfMuted) NotificationSetting.DO_NOT_NOTIFY.id else NotificationSetting.ALWAYS_NOTIFY.id)
 
       if (groupV2.proto.hasUnknownFields()) {
         put(STORAGE_SERVICE_PROTO, Base64.encodeWithPadding(groupV2.serializedUnknowns!!))
@@ -4861,12 +4891,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  enum class MentionSetting(val id: Int) {
+  enum class NotificationSetting(val id: Int) {
     ALWAYS_NOTIFY(0),
     DO_NOT_NOTIFY(1);
 
     companion object {
-      fun fromId(id: Int): MentionSetting {
+      fun fromId(id: Int): NotificationSetting {
         return entries[id]
       }
     }

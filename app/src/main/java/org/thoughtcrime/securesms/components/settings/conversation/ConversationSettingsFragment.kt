@@ -592,11 +592,19 @@ class ConversationSettingsFragment :
 
       if (!state.recipient.isSelf) {
         clickPref(
-          title = DSLSettingsText.from(R.string.ConversationSettingsFragment__sounds_and_notifications),
+          title = if (RemoteConfig.internalUser) {
+            DSLSettingsText.from("${getString(R.string.ConversationSettingsFragment__sounds_and_notifications)} (Internal Only)")
+          } else {
+            DSLSettingsText.from(R.string.ConversationSettingsFragment__sounds_and_notifications)
+          },
           icon = DSLSettingsIcon.from(R.drawable.symbol_speaker_24),
           isEnabled = !state.isDeprecatedOrUnregistered,
           onClick = {
-            val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToSoundsAndNotificationsSettingsFragment(state.recipient.id)
+            val action = if (RemoteConfig.internalUser) {
+              ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToSoundsAndNotificationsSettingsFragment2(state.recipient.id)
+            } else {
+              ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToSoundsAndNotificationsSettingsFragment(state.recipient.id)
+            }
 
             navController.safeNavigate(action)
           }

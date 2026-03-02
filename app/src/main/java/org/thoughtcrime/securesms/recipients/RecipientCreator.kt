@@ -185,6 +185,8 @@ object RecipientCreator {
       capabilities = record.capabilities,
       storageId = record.storageId,
       mentionSetting = record.mentionSetting,
+      callNotificationSettingValue = record.callNotificationSetting,
+      replyNotificationSettingValue = record.replyNotificationSetting,
       wallpaperValue = record.wallpaper?.validate(),
       chatColorsValue = record.chatColors,
       avatarColor = avatarColor ?: record.avatarColor,

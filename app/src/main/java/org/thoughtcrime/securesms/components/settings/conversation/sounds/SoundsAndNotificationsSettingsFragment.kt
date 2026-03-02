@@ -82,7 +82,7 @@ class SoundsAndNotificationsSettingsFragment :
       )
 
       if (state.hasMentionsSupport) {
-        val mentionSelection = if (state.mentionSetting == RecipientTable.MentionSetting.ALWAYS_NOTIFY) {
+        val mentionSelection = if (state.mentionSetting == RecipientTable.NotificationSetting.ALWAYS_NOTIFY) {
           0
         } else {
           1
@@ -96,9 +96,9 @@ class SoundsAndNotificationsSettingsFragment :
           onSelected = {
             viewModel.setMentionSetting(
               if (it == 0) {
-                RecipientTable.MentionSetting.ALWAYS_NOTIFY
+                RecipientTable.NotificationSetting.ALWAYS_NOTIFY
               } else {
-                RecipientTable.MentionSetting.DO_NOT_NOTIFY
+                RecipientTable.NotificationSetting.DO_NOT_NOTIFY
               }
             )
           }

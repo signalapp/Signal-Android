@@ -13,6 +13,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -27,9 +28,31 @@ public final class DoNotDisturbUtil {
   private DoNotDisturbUtil() {
   }
 
+  /**
+   * Checks whether the user should be disturbed with a call from the given recipient,
+   * taking into account the recipient's mute and call notification settings as well as
+   * the system Do Not Disturb state.
+   *
+   * For group recipients, only the system interruption filter is checked (no contact priority).
+   * For 1:1 recipients, the full DND policy including contact priority is evaluated.
+   */
   @WorkerThread
   @SuppressLint("SwitchIntDef")
-  public static boolean shouldDisturbUserWithCall(@NonNull Context context) {
+  public static boolean shouldDisturbUserWithCall(@NonNull Context context, @NonNull Recipient recipient) {
+    if (recipient.isMuted() && recipient.getCallNotificationSetting() == RecipientTable.NotificationSetting.DO_NOT_NOTIFY) {
+      return false;
+    }
+
+    if (recipient.isGroup()) {
+      return checkSystemDnd(context);
+    } else {
+      return checkSystemDndWithContactPriority(context, recipient);
+    }
+  }
+
+  @WorkerThread
+  @SuppressLint("SwitchIntDef")
+  private static boolean checkSystemDnd(@NonNull Context context) {
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
 
     switch (notificationManager.getCurrentInterruptionFilter()) {
@@ -43,7 +66,7 @@ public final class DoNotDisturbUtil {
 
   @WorkerThread
   @SuppressLint("SwitchIntDef")
-  public static boolean shouldDisturbUserWithCall(@NonNull Context context, @NonNull Recipient recipient) {
+  private static boolean checkSystemDndWithContactPriority(@NonNull Context context, @NonNull Recipient recipient) {
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
 
     switch (notificationManager.getCurrentInterruptionFilter()) {

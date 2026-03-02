@@ -38,7 +38,7 @@ class SoundsAndNotificationsSettingsViewModel(
     repository.setMuteUntil(recipientId, 0L)
   }
 
-  fun setMentionSetting(mentionSetting: RecipientTable.MentionSetting) {
+  fun setMentionSetting(mentionSetting: RecipientTable.NotificationSetting) {
     repository.setMentionSetting(recipientId, mentionSetting)
   }
 

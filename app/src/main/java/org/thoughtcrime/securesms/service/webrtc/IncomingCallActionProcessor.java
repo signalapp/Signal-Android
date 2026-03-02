@@ -240,18 +240,23 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                               CallTable.Direction.INCOMING,
                                               CallTable.Event.ONGOING);
 
+    if (!shouldDisturbUserWithCall) {
+      Log.i(TAG, "Silently ignoring call due to mute settings.");
+      return currentState.builder()
+                         .changeCallInfoState()
+                         .callState(WebRtcViewModel.State.CALL_INCOMING)
+                         .build();
+    }
 
-    if (shouldDisturbUserWithCall) {
-      webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
-      boolean started = webRtcInteractor.startWebRtcCallActivityIfPossible();
-      if (!started) {
-        Log.i(TAG, "Unable to start call activity due to OS version or not being in the foreground");
-        AppForegroundObserver.addListener(webRtcInteractor.getForegroundListener());
-      }
+    webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
+    boolean started = webRtcInteractor.startWebRtcCallActivityIfPossible();
+    if (!started) {
+      Log.i(TAG, "Unable to start call activity due to OS version or not being in the foreground");
+      AppForegroundObserver.addListener(webRtcInteractor.getForegroundListener());
     }
 
     boolean isCallNotificationsEnabled = SignalStore.settings().isCallNotificationsEnabled() && NotificationChannels.getInstance().areNotificationsEnabled();
-    if (shouldDisturbUserWithCall && isCallNotificationsEnabled) {
+    if (isCallNotificationsEnabled) {
       Uri                         ringtone     = recipient.resolve().getCallRingtone();
       RecipientTable.VibrateState vibrateState = recipient.resolve().getCallVibrate();
 
