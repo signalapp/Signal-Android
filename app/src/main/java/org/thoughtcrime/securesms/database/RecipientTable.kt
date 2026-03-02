@@ -52,14 +52,10 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.thoughtcrime.securesms.badges.Badges.toDatabaseBadge
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.color.MaterialColor
-import org.thoughtcrime.securesms.color.MaterialColor.UnknownColorException
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
-import org.thoughtcrime.securesms.conversation.colors.ChatColors.Companion.forChatColor
-import org.thoughtcrime.securesms.conversation.colors.ChatColors.Id.Companion.forLongValue
-import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper.getChatColors
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.GroupTable.LegacyGroupInsertException
 import org.thoughtcrime.securesms.database.GroupTable.ShowAsStoryState
@@ -74,7 +70,6 @@ import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
-import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.database.model.databaseprotos.DeviceLastResetTime
 import org.thoughtcrime.securesms.database.model.databaseprotos.ExpiringProfileKeyCredentialColumnData
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
@@ -3364,62 +3359,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .readToSet { cursor ->
         cursor.requireNonNullString(E164)
       }
-  }
-
-  /**
-   * We no longer automatically generate a chat color. This method is used only
-   * in the case of a legacy migration and otherwise should not be called.
-   */
-  @Deprecated("")
-  fun updateSystemContactColors() {
-    val db = readableDatabase
-    val updates: MutableMap<RecipientId, ChatColors> = HashMap()
-
-    db.beginTransaction()
-    try {
-      db.query(TABLE_NAME, arrayOf(ID, "color", CHAT_COLORS, CUSTOM_CHAT_COLORS_ID, SYSTEM_JOINED_NAME), "$SYSTEM_JOINED_NAME IS NOT NULL AND $SYSTEM_JOINED_NAME != \'\'", null, null, null, null).use { cursor ->
-        while (cursor != null && cursor.moveToNext()) {
-          val id = cursor.requireLong(ID)
-          val serializedColor = cursor.requireString("color")
-          val customChatColorsId = cursor.requireLong(CUSTOM_CHAT_COLORS_ID)
-          val serializedChatColors = cursor.requireBlob(CHAT_COLORS)
-          var chatColors: ChatColors? = if (serializedChatColors != null) {
-            try {
-              forChatColor(forLongValue(customChatColorsId), ChatColor.ADAPTER.decode(serializedChatColors))
-            } catch (e: IOException) {
-              null
-            }
-          } else {
-            null
-          }
-
-          if (chatColors != null) {
-            return
-          }
-
-          chatColors = if (serializedColor != null) {
-            try {
-              getChatColors(MaterialColor.fromSerialized(serializedColor))
-            } catch (e: UnknownColorException) {
-              return
-            }
-          } else {
-            return
-          }
-
-          val contentValues = ContentValues().apply {
-            put(CHAT_COLORS, chatColors.serialize().encode())
-            put(CUSTOM_CHAT_COLORS_ID, chatColors.id.longValue)
-          }
-          db.update(TABLE_NAME, contentValues, "$ID = ?", arrayOf(id.toString()))
-          updates[RecipientId.from(id)] = chatColors
-        }
-      }
-    } finally {
-      db.setTransactionSuccessful()
-      db.endTransaction()
-      updates.entries.forEach { AppDependencies.databaseObserver.notifyRecipientChanged(it.key) }
-    }
   }
 
   fun queryByInternalFields(query: String): List<RecipientRecord> {
