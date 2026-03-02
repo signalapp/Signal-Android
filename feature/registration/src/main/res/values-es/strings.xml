@@ -27,7 +27,7 @@
     <!-- Phone calls permission row title -->
     <string name="GrantPermissionsFragment__phone_calls">Llamadas telefónicas</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Facilita el registro de tu cuenta y habilita funciones de llamada adicionales.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Disfruta de un proceso de registro más fácil y de funciones de llamada adicionales.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Almacenamiento</string>
     <!-- Storage permission row description -->

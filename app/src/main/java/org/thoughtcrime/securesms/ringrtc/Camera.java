@@ -87,6 +87,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
                             new CameraCapturerWrapper(observer));
         capturer.setOrientation(orientation);
         isInitialized = true;
+        setEnabled(enabled);
       });
     }
   }
@@ -120,7 +121,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
 
     this.enabled = enabled;
 
-    if (capturer == null) {
+    if (capturer == null || !isInitialized) {
       return;
     }
 

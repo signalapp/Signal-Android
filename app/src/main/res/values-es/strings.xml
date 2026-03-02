@@ -2599,7 +2599,7 @@
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Te has silenciado desde otro dispositivo.</string>
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
-    <string name="WebRtcCallView__youve_been_muted_large_group">Te han silenciado porque esta llamada tiene muchos participantes.</string>
+    <string name="WebRtcCallView__youve_been_muted_large_group">Te han silenciado porque hay muchos participantes en esta llamada.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Se ha producido un error de interfaz de usuario. Informa de este error a los desarrolladores.</string>
@@ -8186,7 +8186,7 @@
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
     <string name="BackupStatusRow__download_waiting_for_wifi">Descarga en pausa: esperando red Wi-Fi…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Descarga en pausa: no tienes internet…</string>
+    <string name="BackupStatusRow__download_no_internet">Descarga en pausa: sin conexión a Internet…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
     <string name="BackupStatusRow__download_device_has_low_battery">Descarga en pausa: tu dispositivo tiene poca batería</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->

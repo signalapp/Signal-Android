@@ -1315,7 +1315,7 @@
         <item quantity="other">멤버를 추가할까요?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-        <item quantity="other">이 멤버들은 업그레이드될 때 새 그룹에 자동으로 추가될 수 없습니다.</item>
+        <item quantity="other">그룹이 업그레이드될 때 다음 멤버들은 새 그룹에 자동으로 추가되지 않았습니다.</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
         <item quantity="other">멤버 추가</item>
@@ -1329,15 +1329,15 @@
 
     <!-- LeaveGroupDialog -->
     <string name="LeaveGroupDialog_leave_group">그룹을 나갈까요?</string>
-    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">이 그룹에서 메시지를 보내거나 받을 수 없게 됩니다.</string>
+    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">이 그룹에서 메시지를 주고받을 수 없게 됩니다.</string>
     <string name="LeaveGroupDialog_leave">나가기</string>
     <string name="LeaveGroupDialog_choose_new_admin">새 관리자 선택</string>
-    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">나가기 전에 이 그룹에 대해 새 관리자를 한 명 이상 선택해야 합니다.</string>
+    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">그룹을 나가기 전에 최소 한 명의 새로운 관리자를 지정해야 합니다.</string>
     <string name="LeaveGroupDialog_choose_admin">관리자를 선택하세요</string>
 
     <!-- LinkPreviewView -->
-    <string name="LinkPreviewView_no_link_preview_available">사용 가능한 링크 미리 보기가 없습니다.</string>
-    <string name="LinkPreviewView_this_group_link_is_not_active">이 그룹 링크가 비활성화 되었습니다.</string>
+    <string name="LinkPreviewView_no_link_preview_available">사용 가능한 링크 미리보기가 없습니다</string>
+    <string name="LinkPreviewView_this_group_link_is_not_active">그룹 링크가 비활성화되어 있습니다</string>
     <string name="LinkPreviewView_domain_date">%1$s, %2$s</string>
     <!-- Description for Call Link url previews -->
     <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">이 링크를 사용하여 Signal 통화에 참여하세요.</string>
@@ -1768,9 +1768,9 @@
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">나중에 알림</string>
-    <string name="Megaphones_verify_your_signal_pin">Signal 번호 인증</string>
-    <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">저희는 사용자가 번호를 기억하실 수 있도록 가끔 번호 인증을 요청합니다.</string>
-    <string name="Megaphones_verify_pin">번호 인증</string>
+    <string name="Megaphones_verify_your_signal_pin">Signal PIN을 인증하세요</string>
+    <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">PIN을 잊어버리지 않도록 주기적으로 확인을 요청드릴게요.</string>
+    <string name="Megaphones_verify_pin">PIN 인증</string>
     <string name="Megaphones_get_started">시작</string>
     <string name="Megaphones_new_group">새 그룹</string>
     <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
@@ -2256,47 +2256,47 @@
     <string name="PlacePickerActivity_title">지도</string>
 
     <!-- Content description of the pin image -->
-    <string name="PlacePickerActivity_drop_pin">고정</string>
+    <string name="PlacePickerActivity_drop_pin">핀 고정</string>
     <string name="PlacePickerActivity_accept_address">주소 허용</string>
 
     <!-- PlayServicesProblemFragment -->
     <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">설치된 Google Play Serivces 버전이 제대로 작동하지 않습니다. Google Play Services를 다시 설치한 후 시도해 주세요.</string>
 
     <!-- PinRestoreEntryFragment -->
-    <string name="PinRestoreEntryFragment_incorrect_pin">잘못된 번호</string>
+    <string name="PinRestoreEntryFragment_incorrect_pin">PIN이 올바르지 않습니다</string>
     <string name="PinRestoreEntryFragment_skip_pin_entry">PIN 입력을 건너뛸까요?</string>
     <string name="PinRestoreEntryFragment_need_help">도움이 필요하신가요?</string>
-    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN은 숫자 또는 영숫자로 만든 %1$d자리 이상의 코드입니다.\n\nPIN이 기억나지 않으면 새 PIN을 만들 수 있습니다. 계정을 등록하고 사용할 수 있지만 프로필 정보와 같은 일부 저장된 설정이 손실됩니다.</string>
-    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">PIN 번호를 잊어버렸다면 새 번호를 생성할 수 있습니다. 가입 후 계정을 사용할 수 있지만, 프로필 정보와 같이 저장된 설정은 삭제됩니다</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN은 직접 설정한 %1$d자리 이상의 숫자 또는 영숫자 조합 코드입니다.\n\nPIN이 기억나지 않는 경우 새로 만들 수 있습니다. 이 경우 계정 등록 및 사용은 가능하지만, 프로필 정보 등 저장된 일부 설정은 삭제됩니다.</string>
+    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">PIN 번호를 잊어버렸다면 새 번호를 생성할 수 있습니다. 이 경우 계정 등록 및 사용은 가능하지만, 프로필 정보 등 저장된 일부 설정은 삭제됩니다.</string>
     <string name="PinRestoreEntryFragment_create_new_pin">새 PIN 생성</string>
     <string name="PinRestoreEntryFragment_contact_support">지원에 문의</string>
     <string name="PinRestoreEntryFragment_cancel">취소</string>
     <string name="PinRestoreEntryFragment_skip">건너뛰기</string>
     <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-        <item quantity="other">%1$d번의 시도가 남아 있습니다. 시도가 부족하면 새 PIN을 만들 수 있습니다. 계정을 등록하고 사용할 수 있지만 프로필 정보와 같은 일부 저장된 설정이 손실됩니다.</item>
+        <item quantity="other">입력 가능한 횟수가 %1$d회 남았습니다. 남은 횟수를 모두 사용하면 PIN을 새로 만들어야 합니다. 이 경우 계정 등록 및 사용은 가능하지만, 프로필 정보 등 저장된 일부 설정은 삭제됩니다.</item>
     </plurals>
-    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 등록 - Android용 PIN에 대한 도움이 필요합니다.</string>
+    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 등록 - Android용 PIN 설정과 관련해 도움이 필요합니다</string>
 
     <!-- PinRestoreLockedFragment -->
-    <string name="PinRestoreLockedFragment_create_your_pin">번호 생성</string>
-    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">PIN을 알아내지는 못했지만 새 PIN을 생성하여 Signal 계정에 계속 액세스할 수 있습니다. 개인 정보 및 보안을 위해 저장된 프로필 정보 또는 설정 없이 계정이 복원됩니다.</string>
+    <string name="PinRestoreLockedFragment_create_your_pin">PIN을 생성하세요</string>
+    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">PIN 입력 횟수를 모두 초과했습니다. PIN을 새로 만들면 Signal 계정을 계속 사용할 수 있습니다. 보안 및 개인정보 보호를 위해 프로필 정보나 설정 등 저장된 데이터 없이 계정이 복원됩니다.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">새로운 PIN 만들기</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
     <string name="ReRegisterWithPinFragment_send_sms_code">SMS 코드 보내기</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal 등록 - Android 등록 PIN 관련 도움</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal 등록 - Android용 PIN 재등록과 관련해 도움이 필요합니다</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">PIN은 사용자가 만든 %1$d자리 이상의 영숫자 조합 코드입니다.\n\nPIN이 기억이 안 난다면 새로운 PIN을 만드세요.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">PIN은 사용자가 만든 %1$d자리 이상의 숫자 또는 영숫자 조합 코드입니다.\n\nPIN이 기억나지 않는 경우 새로 만들 수 있습니다.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">PIN이 기억이 안 난다면 새로운 PIN을 만드세요.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">PIN이 기억나지 않는 경우 새로 만들 수 있습니다.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">PIN 시도 횟수를 초과했습니다. 하지만 새로운 PIN을 만들어 Signal 계정을 계속 이용할 수 있습니다.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">PIN 입력 횟수를 모두 초과했습니다. PIN을 새로 만들면 Signal 계정을 계속 사용할 수 있습니다.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">경고</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN을 비활성화하면 수동으로 백업 및 복원하지 않는 한 Signal을 다시 등록할 때 모든 데이터가 손실됩니다. PIN이 비활성화되어 있는 동안에는 등록 잠금을 켤 수 없습니다.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN을 비활성화하면 수동으로 백업 및 복원하지 않는 한, Signal 재등록 시 모든 데이터가 삭제됩니다. PIN이 비활성화된 상태에서는 등록 잠금 기능을 사용할 수 없습니다.</string>
     <string name="PinOptOutDialog_disable_pin">PIN 비활성화</string>
 
     <!-- RatingManager -->
@@ -2754,7 +2754,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">등록 잠금을 켤까요?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">등록 잠금을 끌까요?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal에 등록할 때 또 Signal PIN 번호을 잊어버렸다면 7일 동안 계정이 잠깁니다.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal에 다시 가입할 때 PIN이 기억나지 않으면, 7일 동안 계정 사용이 제한됩니다.</string>
     <string name="RegistrationLockV2Dialog_turn_on">켜기</string>
     <string name="RegistrationLockV2Dialog_turn_off">끄기</string>
 
@@ -4057,9 +4057,9 @@
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">대체 앱 아이콘이 표시될 곳을 설명하는 그래픽.</string>
     <string name="preferences__disable_pin">PIN 비활성화</string>
-    <string name="preferences__enable_pin">PIN 사용하기</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN을 비활성화하면 수동으로 백업 및 복원하지 않는 한 Signal을 다시 등록할 때 모든 데이터가 손실됩니다. PIN이 비활성화되어 있는 동안에는 등록 잠금을 켤 수 없습니다.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN 번호는 Signal에 저장된 정보를 암호화하여 오직 나만 접근할 수 있게 만듭니다. 내 프로필, 설정, 그리고 연락처는 Signal을 다시 설치할 때 복원됩니다.</string>
+    <string name="preferences__enable_pin">PIN 활성화</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN을 비활성화하면 수동으로 백업 및 복원하지 않는 한, Signal 재가입 시 모든 데이터가 삭제됩니다. PIN이 비활성화된 상태에서는 등록 잠금 기능을 사용할 수 없습니다.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN은 Signal에 저장된 정보를 암호화하여 본인만 접근할 수 있도록 보호합니다. 앱을 재설치해도 프로필, 설정, 연락처가 자동으로 복원되며, 평소 앱을 열 때는 PIN을 입력하지 않아도 됩니다.</string>
     <string name="preferences__system_default">시스템 기본값</string>
     <string name="preferences__language">언어</string>
     <string name="preferences__signal_messages_and_calls">Signal 메시지 및 전화</string>
@@ -4594,74 +4594,74 @@
     </plurals>
     <string name="CreateKbsPinFragment__create_a_new_pin">새 번호 생성</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">기기가 등록된 동안은 PIN 번호를 언제든지 변경할 수 있습니다</string>
-    <string name="CreateKbsPinFragment__create_your_pin">내 번호 생성</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN을 설정하면 계정을 복원하고 Signal에서 정보를 암호화하는 데 도움이 됩니다. </string>
-    <string name="CreateKbsPinFragment__choose_a_stronger_pin">더 강력한 PIN 번호 선택</string>
+    <string name="CreateKbsPinFragment__create_your_pin">PIN을 생성하세요</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN을 사용하면 계정을 간편하게 복원하고, Signal에 저장된 정보를 안전하게 암호화하여 보호할 수 있습니다. </string>
+    <string name="CreateKbsPinFragment__choose_a_stronger_pin">더 강력한 PIN을 설정하세요</string>
 
     <!-- ConfirmKbsPinFragment -->
-    <string name="ConfirmKbsPinFragment__pins_dont_match">번호가 일치하지 않습니다. 다시 시도해 주세요.</string>
+    <string name="ConfirmKbsPinFragment__pins_dont_match">PIN이 일치하지 않습니다. 다시 시도해 주세요.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">방금 만든 PIN을 다시 입력하세요.</string>
-    <string name="ConfirmKbsPinFragment__confirm_your_pin">번호를 확인하세요.</string>
-    <string name="ConfirmKbsPinFragment__pin_creation_failed">번호 생성 실패</string>
-    <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">번호가 저장되지 않았습니다. 번호를 생성할 수 있을 때 다시 알려드리겠습니다.</string>
-    <string name="ConfirmKbsPinFragment__pin_created">번호가 생성되었습니다.</string>
-    <string name="ConfirmKbsPinFragment__re_enter_your_pin">PIN을 다시 입력하세요.</string>
-    <string name="ConfirmKbsPinFragment__creating_pin">번호 생성 중…</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">방금 생성한 PIN을 다시 입력하세요.</string>
+    <string name="ConfirmKbsPinFragment__confirm_your_pin">PIN을 확인해 주세요.</string>
+    <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN 생성 실패</string>
+    <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN이 저장되지 않았습니다. 나중에 다시 PIN을 생성할 수 있도록 안내해 드릴게요.</string>
+    <string name="ConfirmKbsPinFragment__pin_created">PIN이 생성되었습니다.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_your_pin">PIN을 다시 입력하세요</string>
+    <string name="ConfirmKbsPinFragment__creating_pin">PIN 생성 중…</string>
     <!-- ID used when saving the PIN to the device password manager. -->
-    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal 번호</string>
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
 
     <!-- KbsSplashFragment -->
-    <string name="KbsSplashFragment__introducing_pins">번호를 소개합니다.</string>
-    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN은 Signal을 암호화하여 저장된 정보를 유지하므로 사용자만 액세스할 수 있습니다. 다시 설치하면 프로필, 설정 및 연락처가 복원됩니다. 앱을 여는 데는 PIN이 필요하지 않습니다.</string>
+    <string name="KbsSplashFragment__introducing_pins">PIN 기능 안내</string>
+    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN은 Signal에 저장된 정보를 암호화하여 본인만 접근할 수 있도록 보호합니다. 앱을 재설치해도 프로필, 설정, 연락처가 자동으로 복원되며, 평소 앱을 열 때는 PIN을 입력하지 않아도 됩니다.</string>
     <string name="KbsSplashFragment__learn_more">더 알아보기</string>
   <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
-    <string name="KbsSplashFragment__registration_lock_equals_pin">등록 잠금 = 번호</string>
-    <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">등록 잠금을 번호라 합니다. 하지만, 단순한 번호 그 이상입니다. 지금 업데이트하세요.</string>
-    <string name="KbsSplashFragment__update_pin">번호 업데이트</string>
-    <string name="KbsSplashFragment__create_your_pin">번호 생성</string>
+    <string name="KbsSplashFragment__registration_lock_equals_pin">등록 잠금 = PIN</string>
+    <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">등록 잠금 기능이 PIN으로 바뀌면서 더 많은 기능을 제공하게 되었습니다. 지금 바로 업데이트해 보세요.</string>
+    <string name="KbsSplashFragment__update_pin">PIN 업데이트</string>
+    <string name="KbsSplashFragment__create_your_pin">PIN을 생성하세요</string>
     <string name="KbsSplashFragment__learn_more_about_pins">PIN에 대해 더 알아보기</string>
     <string name="KbsSplashFragment__disable_pin">PIN 비활성화</string>
 
     <!-- KBS Reminder Dialog -->
-    <string name="KbsReminderDialog__enter_your_signal_pin">Signal 번호 입력</string>
-    <string name="KbsReminderDialog__to_help_you_memorize_your_pin">주기적으로 번호를 입력하면 외우는 데 도움이 됩니다. 가끔씩만 여쭤보겠습니다.</string>
+    <string name="KbsReminderDialog__enter_your_signal_pin">Signal PIN을 입력하세요</string>
+    <string name="KbsReminderDialog__to_help_you_memorize_your_pin">PIN을 잊어버리지 않도록 주기적으로 확인을 요청드릴게요. 입력에 익숙해질수록 요청 횟수는 점차 줄어듭니다.</string>
     <string name="KbsReminderDialog__skip">건너뛰기</string>
     <string name="KbsReminderDialog__submit">제출</string>
-    <string name="KbsReminderDialog__forgot_pin"> PIN을 잊으셨나요?</string>
-    <string name="KbsReminderDialog__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
+    <string name="KbsReminderDialog__forgot_pin">PIN을 잊으셨나요?</string>
+    <string name="KbsReminderDialog__incorrect_pin_try_again">PIN이 일치하지 않습니다. 다시 입력해 주세요.</string>
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">계정 잠김</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">계정이 개인 정보 보호와 보안을 위해 잠겼습니다. 계정을 사용하지 않은 지 %1$d일이 지나면 PIN 번호 없이도 전화번호로 다시 등록할 수 있습니다. 모든 내용은 삭제됩니다.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">개인정보 보호와 보안을 위해 계정이 잠금 상태로 전환되었습니다. %1$d일 동안 활동이 없으면 PIN 없이 이 전화번호로 다시 가입할 수 있습니다. 이 과정에서 모든 데이터는 삭제됩니다.</string>
     <string name="AccountLockedFragment__next">다음</string>
     <string name="AccountLockedFragment__learn_more">더 알아보기</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
-    <string name="RegistrationLockFragment__enter_your_pin">번호 입력</string>
-    <string name="RegistrationLockFragment__enter_the_pin_you_created">계정용으로 생성한 번호를 입력하세요. SMS 인증 코드와는 다릅니다.</string>
+    <string name="RegistrationLockFragment__enter_your_pin">PIN 입력</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created">계정에 설정한 PIN을 입력해 주세요. SMS로 받는 인증번호와는 별개의 코드입니다.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">계정에 대해 만든 PIN을 입력하세요.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">계정에 설정한 PIN을 입력하세요.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
     <string name="RegistrationLockFragment__switch_keyboard">키보드 전환</string>
-    <string name="RegistrationLockFragment__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
+    <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN이 일치하지 않습니다. 다시 입력해 주세요.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN을 잊으셨나요?</string>
-    <string name="RegistrationLockFragment__incorrect_pin">잘못된 번호</string>
+    <string name="RegistrationLockFragment__incorrect_pin">PIN이 일치하지 않습니다</string>
     <string name="RegistrationLockFragment__forgot_your_pin">PIN을 잊으셨나요?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">시도할 수 있는 횟수가 얼마 남지 않았어요.</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal 등록 - Android용 PIN 설정에 도움이 필요합니다 (v2 PIN)</string>
+    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal 등록 - Android용 PIN 설정과 관련해 도움이 필요합니다(v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="other">개인 정보 보호와 보안을 위해 번호를 복원할 수는 없습니다. 번호를 잊었다면 계정을 사용하지 않은 지 %1$d일 후 SMS로 다시 인증할 수 있습니다. 해당 경우, 계정이 정리되어 모든 내용이 삭제됩니다.</item>
+        <item quantity="other">개인정보 보호와 보안을 위해 PIN은 복구할 수 없습니다. PIN이 기억나지 않는 경우, 계정 활동 없이 %1$d일이 지나면 SMS 인증으로 재가입할 수 있습니다. 단, 이 경우 계정의 모든 데이터는 삭제됩니다.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
-        <item quantity="other">잘못된 번호입니다. %1$d회 남았습니다.</item>
+        <item quantity="other">PIN이 일치하지 않습니다. 입력 가능한 횟수가 %1$d회 남았습니다.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="other">시도 횟수를 모두 사용한 경우 계정은 %1$d일 동안 잠깁니다. 계정을 사용하지 않은 지 %1$d일이 지나면 PIN 번호 없이도 다시 등록할 수 있습니다. 계정은 정리되어 모든 내용이 삭제됩니다.</item>
+        <item quantity="other">입력 횟수를 모두 초과하면 %1$d일 동안 계정이 잠금 상태로 전환됩니다. 이후 %1$d일간 활동이 없으면 PIN 없이 재가입할 수 있지만, 이 경우 계정의 모든 데이터는 삭제됩니다.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -4676,9 +4676,9 @@
     <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s 님이 내 메시지 요청을 받게 됩니다. 메시지 요청이 수락되면 전화를 걸 수 있습니다.</string>
 
     <!-- KBS Megaphone -->
-    <string name="KbsMegaphone__create_a_pin">번호 생성</string>
+    <string name="KbsMegaphone__create_a_pin">PIN을 생성하세요</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN은 Signal에 저장된 정보를 암호화하여 보관합니다.</string>
-    <string name="KbsMegaphone__create_pin">번호 생성</string>
+    <string name="KbsMegaphone__create_pin">PIN 생성</string>
 
     <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__update_signal_pin">Signal PIN 업데이트</string>
@@ -4804,23 +4804,23 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">다음 시간만큼 사용하지 않을 때 화면 잠금</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">화면 잠금을 사용하려면 이 기기에서 PIN, 패턴, 또는 암호를 설정하세요.</string>
-    <string name="preferences_app_protection__signal_pin">Signal 번호</string>
-    <string name="preferences_app_protection__create_a_pin">번호 생성</string>
-    <string name="preferences_app_protection__change_your_pin">PIN 번호 바꾸기</string>
+    <string name="preferences_app_protection__signal_pin">Signal PIN</string>
+    <string name="preferences_app_protection__create_a_pin">PIN을 생성하세요</string>
+    <string name="preferences_app_protection__change_your_pin">PIN을 변경하세요</string>
     <string name="preferences_app_protection__pin_reminders">PIN 알림</string>
     <string name="preferences_app_protection__turn_off">끄기</string>
-    <string name="preferences_app_protection__confirm_pin">번호 확인</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN 번호 확인</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN은 복구할 수 없으므로 외우거나 안전하게 보관하세요. PIN을 잊어버린 경우 Signal 계정을 다시 등록할 때 데이터가 손실될 수 있습니다.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
+    <string name="preferences_app_protection__confirm_pin">PIN을 확인해 주세요</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN을 확인해 주세요</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN은 복구가 불가능하므로 반드시 기억하거나 안전한 곳에 보관해 주세요. PIN을 잊어버리면 Signal 재가입 시 데이터를 복원할 수 없습니다.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">PIN이 일치하지 않습니다. 다시 입력해 주세요.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">등록 잠금을 활성화하지 못했습니다.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">등록 잠금을 비활성화하지 못했습니다.</string>
     <string name="AppProtectionPreferenceFragment_none">없음</string>
     <string name="preferences_app_protection__registration_lock">등록 잠금</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">등록 잠금 번호를 입력해야 합니다.</string>
-    <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">번호는 최소 %1$d자여야 합니다.</string>
+    <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN은 최소 %1$d자여야 합니다.</string>
     <string name="RegistrationActivity_too_many_attempts">시도 횟수가 너무 많음</string>
-    <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">등록 잠금 해제를 너무 많이 시도했습니다. 하루 뒤 다시 시도해 주세요.</string>
+    <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">등록 잠금 PIN 입력 횟수를 초과했습니다. 하루 뒤에 다시 시도해 주세요.</string>
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">많이 시도했습니다. 다시 시도해 주세요.</string>
     <string name="RegistrationActivity_error_connecting_to_service">서비스 연결 중 오류 발생</string>
     <string name="preferences_chats__backups">백업</string>
@@ -5238,7 +5238,7 @@
     <!-- WallpaperImageSelectionActivity -->
 
     <!-- WallpaperCropActivity -->
-    <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">확대하기 위해서는 화면 위에 두 손가락을 모으거나 멀어지게 조작하시고, 조정하기 위해서는 손가락으로 끌어보세요.</string>
+    <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">두 손가락으로 확대하고 드래그하여 조절하세요.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">모든 대화에 배경 화면을 설정합니다.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">%1$s에 배경 설정하기.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">배경 설정 중 문제가 발생했습니다.</string>
@@ -5258,9 +5258,9 @@
     <string name="payment_info_card_your_recovery_phrase_gives_you">복원 문구는 결제 계정을 복원할 수 있는 추가 수단입니다.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">문구 저장</string>
-    <string name="payment_info_card_update_your_pin">PIN 업데이트</string>
-    <string name="payment_info_card_with_a_high_balance">잔고가 많으면 영숫자 PIN으로 업데이트하여 계정을 더 안전하게 보호할 수 있습니다.</string>
-    <string name="payment_info_card_update_pin">번호 업데이트</string>
+    <string name="payment_info_card_update_your_pin">PIN을 업데이트하세요</string>
+    <string name="payment_info_card_with_a_high_balance">잔액이 많은 경우, 보안 수준을 높이기 위해 영숫자 조합 PIN으로 변경하는 것을 권장합니다.</string>
+    <string name="payment_info_card_update_pin">PIN 업데이트</string>
 
   <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
   <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
@@ -9150,7 +9150,7 @@
     <!-- Title of bottom sheet when pinning a disappearing message -->
     <string name="PinnedMessage__disappearing_message_title">자동 삭제 메시지 고정</string>
     <!-- Body of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_body">자동 삭제 메시지는 타이머가 만료되고 채팅에서 메시지가 제거되면 고정이 해제됩니다.</string>
+    <string name="PinnedMessage__disappearing_message_body">자동 삭제 메시지는 타이머가 만료되어 대화에서 삭제되면 고정이 해제됩니다.</string>
     <!-- Confirmation button for bottom sheet -->
     <string name="PinnedMessage__got_it">확인</string>
     <!-- Content description of disappearing timer icon -->

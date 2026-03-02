@@ -5917,6 +5917,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .forEach { entry -> fixDuplicate(writableDatabase, entry.value) }
     }
 
+    writableDatabase.execSQL("DELETE FROM $TABLE_NAME WHERE $ORIGINAL_MESSAGE_ID IS NOT NULL AND $ORIGINAL_MESSAGE_ID NOT IN (SELECT $ID FROM $TABLE_NAME)")
     writableDatabase.execSQL("DELETE FROM ${ReactionTable.TABLE_NAME} WHERE ${ReactionTable.MESSAGE_ID} NOT IN (SELECT $ID FROM $TABLE_NAME)")
     writableDatabase.execSQL("DELETE FROM ${StorySendTable.TABLE_NAME} WHERE ${StorySendTable.MESSAGE_ID} NOT IN (SELECT $ID FROM $TABLE_NAME)")
     writableDatabase.execSQL("DELETE FROM ${CallTable.TABLE_NAME} WHERE ${CallTable.MESSAGE_ID} NOT NULL AND ${CallTable.MESSAGE_ID} NOT IN (SELECT $ID FROM $TABLE_NAME)")

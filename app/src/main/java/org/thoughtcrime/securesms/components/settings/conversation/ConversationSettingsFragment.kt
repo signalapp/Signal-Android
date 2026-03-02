@@ -1044,7 +1044,9 @@ class ConversationSettingsFragment :
   }
 
   private fun showGroupInvitesSentDialog(showGroupInvitesSentDialog: ConversationSettingsEvent.ShowGroupInvitesSentDialog) {
-    GroupInviteSentDialog.showInvitesSent(requireContext(), viewLifecycleOwner, showGroupInvitesSentDialog.invitesSentTo)
+    if (showGroupInvitesSentDialog.invitesSentTo.isNotEmpty()) {
+      GroupInviteSentDialog.show(childFragmentManager, showGroupInvitesSentDialog.invitesSentTo)
+    }
   }
 
   private fun showMembersAdded(showMembersAdded: ConversationSettingsEvent.ShowMembersAdded) {

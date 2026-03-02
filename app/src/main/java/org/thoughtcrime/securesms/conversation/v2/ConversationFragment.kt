@@ -1252,7 +1252,7 @@ class ConversationFragment :
           groupJoinClickListener = conversationBannerListener::reviewJoinRequestsAction,
           onSuggestionAddMembers = {
             conversationGroupViewModel.groupRecordSnapshot?.let { groupRecord ->
-              GroupsV1MigrationSuggestionsDialog.show(requireActivity(), groupRecord.id.requireV2(), groupRecord.gv1MigrationSuggestions)
+              GroupsV1MigrationSuggestionsDialog.show(childFragmentManager, groupRecord.id.requireV2(), groupRecord.gv1MigrationSuggestions)
             }
           },
           onSuggestionNoThanks = conversationGroupViewModel::onSuggestedMembersBannerDismissed,
@@ -4293,7 +4293,7 @@ class ConversationFragment :
     override fun gv1SuggestionsAction(actionId: Int) {
       if (actionId == R.id.reminder_action_gv1_suggestion_add_members) {
         conversationGroupViewModel.groupRecordSnapshot?.let { groupRecord ->
-          GroupsV1MigrationSuggestionsDialog.show(requireActivity(), groupRecord.id.requireV2(), groupRecord.gv1MigrationSuggestions)
+          GroupsV1MigrationSuggestionsDialog.show(childFragmentManager, groupRecord.id.requireV2(), groupRecord.gv1MigrationSuggestions)
         }
       } else if (actionId == R.id.reminder_action_gv1_suggestion_no_thanks) {
         conversationGroupViewModel.onSuggestedMembersBannerDismissed()

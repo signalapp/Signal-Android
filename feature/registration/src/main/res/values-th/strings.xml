@@ -63,7 +63,7 @@
     <!-- Button text for resend SMS action -->
     <string name="VerificationCodeScreen__resend_code">ส่งรหัสอีกครั้ง</string>
     <!-- Button text for call me action -->
-    <string name="VerificationCodeScreen__call_me_instead">Call me instead</string>
+    <string name="VerificationCodeScreen__call_me_instead">โทรหาฉันแทน</string>
     <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
@@ -71,17 +71,17 @@
     <!-- Toast shown when the user enters an incorrect verification code -->
     <string name="VerificationCodeScreen__incorrect_code">รหัสไม่ถูกต้อง</string>
     <!-- Snackbar shown when there is a network error -->
-    <string name="VerificationCodeScreen__network_error">Unable to connect. Please check your network and try again.</string>
+    <string name="VerificationCodeScreen__network_error">ไม่สามารถเชื่อมต่อได้ โปรดตรวจสอบเครือข่ายของคุณแล้วลองอีกครั้ง</string>
     <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
-    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Too many attempts. Try again in %1$s.</string>
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">คุณลองหลายครั้งเกินไป โปรดลองอีกครั้งใน %1$s</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">มีข้อผิดพลาดที่ไม่คาดคิดเกิดขึ้น โปรดลองอีกครั้ง</string>
     <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">There was a problem sending your verification code. Please try again.</string>
+    <string name="VerificationCodeScreen__sms_provider_error">พบปัญหาในการส่งรหัสยืนยันของคุณ โปรดลองอีกครั้ง</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
-    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Could not send code via the selected method. Please try another option.</string>
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">ไม่สามารถส่งรหัสผ่านทางวิธีที่คุณเลือก โปรดลองวิธีอื่น</string>
     <!-- Snackbar shown for registration errors -->
-    <string name="VerificationCodeScreen__registration_error">Registration failed. Please try again.</string>
+    <string name="VerificationCodeScreen__registration_error">ลงทะเบียนไม่สำเร็จ โปรดลองอีกครั้ง</string>
     <!-- Button text for having trouble with verification -->
-    <string name="VerificationCodeScreen__having_trouble">Having trouble?</string>
+    <string name="VerificationCodeScreen__having_trouble">ประสบปัญหาใช่หรือไม่</string>
 </resources>
