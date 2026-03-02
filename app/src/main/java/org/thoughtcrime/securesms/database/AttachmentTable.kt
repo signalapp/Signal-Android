@@ -706,6 +706,17 @@ class AttachmentTable(
       }
   }
 
+  /**
+   * This is "approximate" because it doesn't account for things like duplicates. Only useful as a heuristic.
+   */
+  fun getApproximateTotalMediaSize(): Long {
+    return readableDatabase
+      .select("SUM($DATA_SIZE)")
+      .from(TABLE_NAME)
+      .run()
+      .readToSingleLong(0L)
+  }
+
   fun getOptimizedMediaAttachmentSize(): Long {
     return readableDatabase
       .select("SUM($DATA_SIZE)")

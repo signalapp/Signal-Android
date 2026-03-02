@@ -7915,6 +7915,67 @@
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
     <string name="TurnOnSignalBackups__toast_not_now">You can enable backups in \"Settings\"</string>
 
+    <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
+    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
+    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <!-- Primary button of Megaphone B -->
+    <string name="BackupMessagesUpsell__turn_on">Turn on</string>
+    <!-- Secondary button of Megaphone B -->
+    <string name="BackupMessagesUpsell__not_now">Not now</string>
+
+    <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
+    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
+    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <!-- Primary button of Megaphone C -->
+    <string name="BackupMediaUpsell__upgrade">Upgrade</string>
+    <!-- Secondary button of Megaphone C -->
+    <string name="BackupMediaUpsell__not_now">Not now</string>
+
+    <!-- Title of Megaphone D: upsell backups when device storage is low -->
+    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <!-- Body of Megaphone D: upsell backups when device storage is low -->
+    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <!-- Primary button of Megaphone D when user has free tier backups -->
+    <string name="BackupStorageUpsell__upgrade">Upgrade</string>
+    <!-- Primary button of Megaphone D when user has no backups -->
+    <string name="BackupStorageUpsell__turn_on">Turn on</string>
+    <!-- Secondary button of Megaphone D -->
+    <string name="BackupStorageUpsell__not_now">Not now</string>
+
+    <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
+    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <!-- Body of the backup upsell bottom sheet -->
+    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
+    <string name="BackupUpsellBottomSheet__price_per_month">%s/month</string>
+    <!-- Subtitle for the paid plan feature card -->
+    <string name="BackupUpsellBottomSheet__text_and_all_media">Text + all your media</string>
+    <!-- Feature bullet: full text and media backup -->
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <!-- Feature bullet: 100GB storage -->
+    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <!-- Feature bullet: save on-device storage -->
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <!-- Feature bullet: thanks for supporting Signal -->
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
+    <string name="BackupUpsellBottomSheet__subscribe_for">Subscribe for %s/month</string>
+    <!-- Secondary/dismiss button for the upsell bottom sheet -->
+    <string name="BackupUpsellBottomSheet__no_thanks">No thanks</string>
+
+    <!-- Title of the backup setup complete bottom sheet -->
+    <string name="BackupSetupCompleteBottomSheet__title">You\'re all set. Start your backup now.</string>
+    <!-- Body of the backup setup complete bottom sheet -->
+    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <!-- Label for the optimize storage toggle -->
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <!-- Subtitle for the optimize storage toggle -->
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <!-- Primary button on the setup complete bottom sheet -->
+    <string name="BackupSetupCompleteBottomSheet__back_up_now">Back up now</string>
+
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->

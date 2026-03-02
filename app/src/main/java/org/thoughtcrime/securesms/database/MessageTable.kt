@@ -1915,9 +1915,15 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   /**
-   * Given a set of thread ids, return the count of all messages in the table that match that thread id. This will include *all* messages, and is
-   * explicitly for use as a "fuzzy total"
+   * "Approximate" because we're not filtering out stuff like message edits. Only useful as a heuristic.
    */
+  fun getApproximateTotalMessageCount(): Long {
+    return readableDatabase.count()
+      .from(TABLE_NAME)
+      .run()
+      .readToSingleLong(0L)
+  }
+
   fun getApproximateExportableMessageCount(threadIds: Set<Long>): Long {
     val queries = SqlUtil.buildCollectionQuery(THREAD_ID, threadIds)
     return queries.sumOf {
