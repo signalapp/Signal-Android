@@ -125,7 +125,6 @@ import org.signal.core.util.setActionItemTint
 import org.signal.donations.InAppPaymentType
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.BlockUnblockDialog
-import org.thoughtcrime.securesms.GroupMembersDialog
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.MuteDialog
 import org.thoughtcrime.securesms.R
@@ -3971,11 +3970,6 @@ class ConversationFragment :
         launcher = addToContactsLauncher,
         recipient = recipient
       )
-    }
-
-    override fun handleDisplayGroupRecipients() {
-      val recipientSnapshot = viewModel.recipientSnapshot?.takeIf { it.isGroup } ?: return
-      GroupMembersDialog(requireActivity(), recipientSnapshot).display()
     }
 
     override fun handleManageGroup() {
