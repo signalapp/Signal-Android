@@ -2948,7 +2948,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     @Override
     public void onClick(@NonNull View widget) {
-      if (eventListener != null && batchSelected.isEmpty()) {
+      if (eventListener != null && batchSelected.isEmpty() && conversationRecipient.get().getGroupId().isPresent()) {
         VibrateUtil.vibrateTick(context);
         eventListener.onGroupMemberClicked(recipientId, conversationRecipient.get().requireGroupId());
       }
