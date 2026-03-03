@@ -1179,6 +1179,11 @@ private fun BackupMessageRecord.toRemoteQuote(exportState: ExportState, attachme
     return null
   }
 
+  if (exportState.recipientIdToAci[this.quoteAuthor] == null && exportState.recipientIdToE164[this.quoteAuthor] == null) {
+    Log.w(TAG, ExportOddities.quoteAuthorHasNoAciOrE164(this.dateSent))
+    return null
+  }
+
   val localType = QuoteModel.Type.fromCode(this.quoteType)
   val remoteType = when (localType) {
     QuoteModel.Type.NORMAL -> {

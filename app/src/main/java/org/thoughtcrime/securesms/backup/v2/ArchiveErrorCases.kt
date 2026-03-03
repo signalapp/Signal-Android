@@ -218,6 +218,10 @@ object ExportOddities {
     return log(sentTimestamp, "Quote author was not found in the exported recipients. Removing the quote.")
   }
 
+  fun quoteAuthorHasNoAciOrE164(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Quote author has neither an ACI nor an E164. Removing the quote.")
+  }
+
   fun emptyQuote(sentTimestamp: Long): String {
     return log(sentTimestamp, "Quote had no text or attachments. Removing it.")
   }
