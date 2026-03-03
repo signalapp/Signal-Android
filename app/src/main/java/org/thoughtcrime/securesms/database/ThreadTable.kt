@@ -68,9 +68,9 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
+import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isPoll
 import org.thoughtcrime.securesms.util.isScheduled

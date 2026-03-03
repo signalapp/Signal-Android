@@ -142,10 +142,10 @@ import org.thoughtcrime.securesms.revealable.ViewOnceUtil
 import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil
 import org.thoughtcrime.securesms.stories.Stories.isFeatureEnabled
 import org.thoughtcrime.securesms.util.JsonUtils
-import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.internal.push.SyncMessage

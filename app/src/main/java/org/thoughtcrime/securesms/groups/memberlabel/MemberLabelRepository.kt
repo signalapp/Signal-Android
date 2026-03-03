@@ -94,12 +94,12 @@ class MemberLabelRepository private constructor(
   }
 
   /**
-   * Checks whether the [Recipient] has permission to set their member label in the given group.
+   * Checks whether [recipient] has permission to set their member label in the given group.
    */
   suspend fun canSetLabel(groupId: GroupId.V2, recipient: Recipient): Boolean = withContext(Dispatchers.IO) {
     if (!RemoteConfig.sendMemberLabels) return@withContext false
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext false
-    groupRecord.attributesAccessControl.allows(groupRecord.memberLevel(recipient))
+    groupRecord.memberLevel(recipient).isInGroup
   }
 
   /**

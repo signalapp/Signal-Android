@@ -179,7 +179,7 @@
     <color name="quote_view_bar_outgoing_normal">@color/signal_colorOnCustom</color>
     <color name="quote_view_foreground_outgoing_normal">@color/signal_colorOnSurface</color>
     <color name="quote_view_label_background_incoming_normal">@color/signal_colorOnSurface_8</color>
-    <color name="quote_view_label_background_incoming_wallpaper">@color/transparent_white_80</color>
+    <color name="quote_view_label_background_incoming_wallpaper">@color/signal_colorOnSurface_8</color>
     <color name="quote_view_label_background_outgoing_normal">@color/transparent_white_36</color>
     <color name="quote_view_label_background_outgoing_wallpaper">@color/transparent_white_36</color>
 
