@@ -21,6 +21,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -40,6 +41,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.os.bundleOf
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.AllDevicePreviews
@@ -53,6 +55,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.requireParcelableCompat
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.emoji.Emojifier
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelUiState.SaveState
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -277,10 +280,14 @@ private fun EmojiPickerButton(
     onClick = onEmojiSelected
   ) {
     if (selectedEmoji.isNotNullOrBlank()) {
-      Text(
-        text = selectedEmoji,
-        style = MaterialTheme.typography.bodyLarge
-      )
+      ProvideTextStyle(MaterialTheme.typography.bodyLarge.copy(fontSize = 20.sp)) {
+        Emojifier(text = selectedEmoji) { annotatedText, inlineContent ->
+          Text(
+            text = annotatedText,
+            inlineContent = inlineContent
+          )
+        }
+      }
     } else {
       Icon(
         imageVector = ImageVector.vectorResource(R.drawable.symbol_emoji_plus_24),
