@@ -14,6 +14,62 @@ object TestDbUtils {
     val rowsUpdated = database.update(MessageTable.TABLE_NAME, contentValues, DatabaseTable.ID_WHERE, buildArgs(messageId))
   }
 
+  /**
+   * Bulk-inserts a reaction on every Nth message (by _id modulo) in the given thread.
+   */
+  fun insertReactionsForThread(threadId: Long, authorId: RecipientId, moduloFilter: Int) {
+    val db = SignalDatabase.messages.databaseHelper.signalWritableDatabase
+    db.execSQL(
+      """
+      INSERT INTO reaction (message_id, author_id, emoji, date_sent, date_received)
+      SELECT ${MessageTable.ID}, ?, '👍', ${MessageTable.DATE_SENT}, ${MessageTable.DATE_RECEIVED}
+      FROM ${MessageTable.TABLE_NAME}
+      WHERE ${MessageTable.THREAD_ID} = ? AND ${MessageTable.ID} % ? = 0
+      """.trimIndent(),
+      arrayOf(authorId.toLong().toString(), threadId.toString(), moduloFilter.toString())
+    )
+  }
+
+  /**
+   * Bulk-inserts group receipt rows for every message in the given thread, one row per member.
+   */
+  fun insertGroupReceiptsForThread(threadId: Long, memberRecipientIds: List<RecipientId>) {
+    val db = SignalDatabase.messages.databaseHelper.signalWritableDatabase
+    db.beginTransaction()
+    try {
+      for (recipientId in memberRecipientIds) {
+        db.execSQL(
+          """
+          INSERT INTO group_receipts (mms_id, address, status, timestamp)
+          SELECT ${MessageTable.ID}, ?, 2, ${MessageTable.DATE_SENT}
+          FROM ${MessageTable.TABLE_NAME}
+          WHERE ${MessageTable.THREAD_ID} = ?
+          """.trimIndent(),
+          arrayOf(recipientId.toLong().toString(), threadId.toString())
+        )
+      }
+      db.setTransactionSuccessful()
+    } finally {
+      db.endTransaction()
+    }
+  }
+
+  /**
+   * Bulk-inserts a mention on every Nth message (by _id modulo) in the given thread.
+   */
+  fun insertMentionsForThread(threadId: Long, mentionedRecipientId: RecipientId, moduloFilter: Int) {
+    val db = SignalDatabase.messages.databaseHelper.signalWritableDatabase
+    db.execSQL(
+      """
+      INSERT INTO mention (thread_id, message_id, recipient_id, range_start, range_length)
+      SELECT ${MessageTable.THREAD_ID}, ${MessageTable.ID}, ?, 0, 5
+      FROM ${MessageTable.TABLE_NAME}
+      WHERE ${MessageTable.THREAD_ID} = ? AND ${MessageTable.ID} % ? = 0
+      """.trimIndent(),
+      arrayOf(mentionedRecipientId.toLong().toString(), threadId.toString(), moduloFilter.toString())
+    )
+  }
+
   fun getOutgoingMessageTimestamps(threadId: Long, selfRecipientId: Long): List<Long> {
     val timestamps = mutableListOf<Long>()
     SignalDatabase.messages.databaseHelper.signalReadableDatabase.query(

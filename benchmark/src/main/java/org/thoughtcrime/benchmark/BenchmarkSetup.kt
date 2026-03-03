@@ -8,10 +8,10 @@ object BenchmarkSetup {
   private const val TARGET_PACKAGE = "org.thoughtcrime.securesms.benchmark"
   private const val RECEIVER = "org.signal.benchmark.BenchmarkCommandReceiver"
 
-  fun setup(type: String, device: UiDevice) {
+  fun setup(type: String, device: UiDevice, timeout: Long = 25_000L) {
     device.executeShellCommand("pm clear $TARGET_PACKAGE")
     device.executeShellCommand("am start -W -n $TARGET_PACKAGE/org.signal.benchmark.BenchmarkSetupActivity --es setup-type $type")
-    device.wait(Until.hasObject(By.textContains("done")), 25_000L)
+    device.wait(Until.hasObject(By.textContains("done")), timeout)
   }
 
   fun setupIndividualSend(device: UiDevice) {
@@ -32,6 +32,10 @@ object BenchmarkSetup {
 
   fun releaseMessages(device: UiDevice) {
     device.benchmarkCommandBroadcast("release-messages")
+  }
+
+  fun deleteThread(device: UiDevice) {
+    device.benchmarkCommandBroadcast("delete-thread")
   }
 
   private fun UiDevice.benchmarkCommandBroadcast(command: String) {

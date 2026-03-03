@@ -56,6 +56,13 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
         BenchmarkWebSocketConnection.startWholeBatchTrace()
         BenchmarkWebSocketConnection.releaseMessages()
       }
+      "delete-thread" -> {
+        val pendingResult = goAsync()
+        Thread {
+          handleDeleteThread()
+          pendingResult.finish()
+        }.start()
+      }
       else -> Log.w(TAG, "Unknown command: $command")
     }
   }
@@ -142,6 +149,20 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
         ThreadUtil.sleep(1000)
       }
     }
+  }
+
+  private fun handleDeleteThread() {
+    val threadId = SignalDatabase.threads.getRecentConversationList(1, false, false).use { cursor ->
+      if (cursor.moveToFirst()) {
+        cursor.getLong(cursor.getColumnIndexOrThrow("_id"))
+      } else {
+        Log.w(TAG, "No active threads found for deletion benchmark")
+        return
+      }
+    }
+    Log.i(TAG, "Deleting thread $threadId")
+    SignalDatabase.threads.deleteConversation(threadId, syncThreadDelete = false)
+    Log.i(TAG, "Thread $threadId deleted")
   }
 
   private fun getOutgoingGroupMessageTimestamps(): List<Long> {

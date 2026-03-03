@@ -141,6 +141,7 @@ import org.thoughtcrime.securesms.revealable.ViewOnceUtil
 import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil
 import org.thoughtcrime.securesms.stories.Stories.isFeatureEnabled
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -228,6 +229,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val QUOTE_TARGET_MISSING_ID = -1L
 
     const val ADDRESSABLE_MESSAGE_LIMIT = 5
+    private const val DELETE_BATCH_SIZE = 1000
     const val PARENT_STORY_MISSING_ID = -1L
 
     const val PIN_FOREVER = Long.MAX_VALUE
@@ -3972,14 +3974,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       return 0
     }
 
-    writableDatabase.withinTransaction { db ->
-      SignalDatabase.messageSearch.dropAfterMessageDeleteTrigger()
-      SignalDatabase.messageLog.dropAfterMessageDeleteTrigger()
-
-      for (threadId in threadsWithPossibleDeletes) {
-        val subSelect = "SELECT ${TABLE_NAME}.$ID FROM $TABLE_NAME WHERE ${TABLE_NAME}.$THREAD_ID = $threadId $extraWhere LIMIT 1000"
-        do {
-          // Bulk deleting FK tables for large message delete efficiency
+    SignalTrace.beginSection("MessageTable#deleteMessagesInThread")
+    for (threadId in threadsWithPossibleDeletes) {
+      val subSelect = "SELECT ${TABLE_NAME}.$ID FROM $TABLE_NAME WHERE ${TABLE_NAME}.$THREAD_ID = $threadId $extraWhere LIMIT $DELETE_BATCH_SIZE"
+      var deletedCount: Int
+      do {
+        deletedCount = writableDatabase.withinTransaction { db ->
           db.delete(StorySendTable.TABLE_NAME)
             .where("${StorySendTable.TABLE_NAME}.${StorySendTable.MESSAGE_ID} IN ($subSelect)")
             .run()
@@ -3992,23 +3992,28 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             .where("${CallTable.TABLE_NAME}.${CallTable.MESSAGE_ID} IN ($subSelect)")
             .run()
 
-          // Must delete rows from FTS table before deleting from main table due to FTS requirement when deleting by rowid
-          db.delete(SearchTable.FTS_TABLE_NAME)
-            .where("${SearchTable.FTS_TABLE_NAME}.${SearchTable.ID} IN ($subSelect)")
+          db.delete(AttachmentTable.TABLE_NAME)
+            .where("${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} IN ($subSelect)")
             .run()
 
-          // Actually delete messages
-          val deletedCount = db.delete(TABLE_NAME)
+          db.delete(GroupReceiptTable.TABLE_NAME)
+            .where("${GroupReceiptTable.TABLE_NAME}.${GroupReceiptTable.MMS_ID} IN ($subSelect)")
+            .run()
+
+          db.delete(MentionTable.TABLE_NAME)
+            .where("${MentionTable.TABLE_NAME}.${MentionTable.MESSAGE_ID} IN ($subSelect)")
+            .run()
+
+          // Delete the messages themselves
+          db.delete(TABLE_NAME)
             .where("$ID IN ($subSelect)")
             .run()
+        }
 
-          totalDeletedCount += deletedCount
-        } while (deletedCount > 0)
-      }
-
-      SignalDatabase.messageSearch.restoreAfterMessageDeleteTrigger()
-      SignalDatabase.messageLog.restoreAfterMessageDeleteTrigger()
+        totalDeletedCount += deletedCount
+      } while (deletedCount > 0)
     }
+    SignalTrace.endSection()
 
     return totalDeletedCount
   }

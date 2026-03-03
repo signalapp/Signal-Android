@@ -47,4 +47,10 @@ object BenchmarkMetrics {
     get() = listOf(
       TraceSectionMetric("ReceiptMessageProcessor#incrementReadReceiptCounts", Mode.Average)
     )
+
+  val threadDeletion: List<TraceSectionMetric>
+    get() = listOf(
+      TraceSectionMetric("ThreadTable#deleteConversations", Mode.Sum),
+      TraceSectionMetric("MessageTable#deleteMessagesInThread", Mode.Sum)
+    )
 }

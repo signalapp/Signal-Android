@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
+import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -1315,46 +1316,43 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun deleteConversations(selectedConversations: Set<Long>, syncThreadDeletes: Boolean = true) {
+    SignalTrace.beginSection("ThreadTable#deleteConversations")
     Log.d(TAG, "[deleteConversations] Deleting ${selectedConversations.size} chats syncThreadDeletes: $syncThreadDeletes")
     val recipientIds = getRecipientIdsForThreadIds(selectedConversations)
 
     val addressableMessages = mutableListOf<ThreadDeleteSyncInfo>()
 
-    val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(ID, selectedConversations)
-    Log.d(TAG, "[deleteConversations] Enter transaction")
-    writableDatabase.withinTransaction { db ->
-      if (syncThreadDeletes) {
-        for (threadId in selectedConversations) {
-          val mostRecentMessages = messages.getMostRecentAddressableMessages(threadId, excludeExpiring = false)
-          val mostRecentNonExpiring = if (mostRecentMessages.size == MessageTable.ADDRESSABLE_MESSAGE_LIMIT && mostRecentMessages.any { it.expiresIn > 0 }) {
-            messages.getMostRecentAddressableMessages(threadId, excludeExpiring = true)
-          } else {
-            emptySet()
-          }
-
-          addressableMessages += ThreadDeleteSyncInfo(threadId, mostRecentMessages, mostRecentNonExpiring)
+    // Phase 1: Collect sync info (reads only, before any deletion)
+    if (syncThreadDeletes) {
+      for (threadId in selectedConversations) {
+        val mostRecentMessages = messages.getMostRecentAddressableMessages(threadId, excludeExpiring = false)
+        val mostRecentNonExpiring = if (mostRecentMessages.size == MessageTable.ADDRESSABLE_MESSAGE_LIMIT && mostRecentMessages.any { it.expiresIn > 0 }) {
+          messages.getMostRecentAddressableMessages(threadId, excludeExpiring = true)
+        } else {
+          emptySet()
         }
-        Log.d(TAG, "[deleteConversations] Retrieved sync thread delete addressable messages (${addressableMessages.size})")
-      } else {
-        Log.d(TAG, "[deleteConversations] No addressable messages needed")
-      }
 
-      Log.d(TAG, "[deleteConversations] Deactivating threads")
+        addressableMessages += ThreadDeleteSyncInfo(threadId, mostRecentMessages, mostRecentNonExpiring)
+      }
+      Log.d(TAG, "[deleteConversations] Retrieved sync thread delete addressable messages (${addressableMessages.size})")
+    } else {
+      Log.d(TAG, "[deleteConversations] No addressable messages needed")
+    }
+
+    // Phase 2: Delete messages (per-batch transactions, write lock released between batches)
+    Log.d(TAG, "[deleteConversations] Deleting messages in thread")
+    messages.deleteMessagesInThread(selectedConversations)
+
+    // Phase 3: Final lightweight transaction (deactivate threads, clear drafts, update cache)
+    val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(ID, selectedConversations)
+    Log.d(TAG, "[deleteConversations] Deactivating threads and cleaning up")
+    writableDatabase.withinTransaction { db ->
       for (query in queries) {
         db.deactivateThread(query)
       }
 
-      Log.d(TAG, "[deleteConversations] Deleting messages in thread")
-      messages.deleteMessagesInThread(selectedConversations)
-      Log.d(TAG, "[deleteConversations] Trimming attachments")
-      attachments.trimAllAbandonedAttachments()
-      Log.d(TAG, "[deleteConversations] Deleting abandoned group receipts")
-      groupReceipts.deleteAbandonedRows()
-      Log.d(TAG, "[deleteConversations] Deleting abandoned mentions")
-      mentions.deleteAbandonedMentions()
-      Log.d(TAG, "[deleteConversations] Clearing drafts")
       drafts.clearDrafts(selectedConversations)
-      Log.d(TAG, "[deleteConversations] Updating threadId cache")
+
       synchronized(threadIdCache) {
         for (recipientId in recipientIds) {
           threadIdCache.remove(recipientId)
@@ -1378,6 +1376,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     ConversationUtil.clearShortcuts(context, recipientIds)
 
     OptimizeMessageSearchIndexJob.enqueue()
+    SignalTrace.endSection()
   }
 
   @SuppressLint("DiscouragedApi")
