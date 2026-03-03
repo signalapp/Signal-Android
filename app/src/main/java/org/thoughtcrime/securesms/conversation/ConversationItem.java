@@ -1167,7 +1167,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     boolean isAdminDelete = !message.getDeletedByRecipient().equals(message.getMessageRecord().getFromRecipient());
     CharSequence body;
 
-    if (!isAdminDelete && messageRecord.isOutgoing()) {
+    if (message.getDeletedByRecipient().equals(Recipient.self())) {
       body = formatDeletedText(context.getString(R.string.ConversationItem_you_deleted_this_message));
     } else if (!isAdminDelete) {
       body = formatDeletedText(context.getString(R.string.ConversationItem_s_deleted_this_message, message.getDeletedByRecipient().getDisplayName(context)));
