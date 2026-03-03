@@ -7,15 +7,16 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Helpers for determining if a message send/receive is valid for those that
  * have strict time limits.
  */
 object MessageConstraintsUtil {
-  private val SEND_THRESHOLD = RemoteConfig.regularDeleteThreshold.milliseconds.inWholeMilliseconds
+  private val SEND_THRESHOLD = RemoteConfig.regularDeleteThreshold.seconds.inWholeMilliseconds
   private val RECEIVE_THRESHOLD = SEND_THRESHOLD + 1.days.inWholeMilliseconds
-  private val ADMIN_SEND_THRESHOLD = RemoteConfig.adminDeleteThreshold.milliseconds.inWholeMilliseconds
+  private val ADMIN_SEND_THRESHOLD = RemoteConfig.adminDeleteThreshold.seconds.inWholeMilliseconds
   private val ADMIN_RECEIVE_THRESHOLD = ADMIN_SEND_THRESHOLD + 1.days.inWholeMilliseconds
 
   const val MAX_EDIT_COUNT = 10

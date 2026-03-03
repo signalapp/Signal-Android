@@ -1285,8 +1285,8 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("regularDeleteThreshold")
   val regularDeleteThreshold: Long by remoteLong(
-    key = "android.regularDeleteThreshold",
-    defaultValue = 1.days.inWholeMilliseconds,
+    key = "global.normalDeleteMaxAgeInSeconds",
+    defaultValue = 1.days.inWholeSeconds,
     hotSwappable = true
   )
 
@@ -1296,8 +1296,8 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("adminDeleteThreshold")
   val adminDeleteThreshold: Long by remoteLong(
-    key = "android.adminDeleteThreshold",
-    defaultValue = 1.days.inWholeMilliseconds,
+    key = "global.adminDeleteMaxAgeInSeconds",
+    defaultValue = 1.days.inWholeSeconds,
     hotSwappable = true
   )
   // endregion
