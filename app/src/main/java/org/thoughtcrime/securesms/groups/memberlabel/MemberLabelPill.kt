@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.components.emoji.Emojifier
 object MemberLabelPill {
   @get:Composable
   val textStyleCompact: TextStyle
-    get() = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Normal)
+    get() = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Normal)
 
   @get:Composable
   val textStyleNormal: TextStyle
