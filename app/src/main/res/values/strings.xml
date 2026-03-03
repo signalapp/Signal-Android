@@ -458,10 +458,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s deleted this message</string>
     <string name="ConversationItem_you_deleted_this_message">You deleted this message</string>
-    <!-- First part of a conversation message when a message has been deleted by an admin. -->
-    <string name="ConversationItem_admin">Admin</string>
-    <!-- Second part of a conversation message when a message has been deleted by an admin. -->
-    <string name="ConversationItem_deleted_this_message">deleted this message</string>
+    <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin's name. -->
+    <string name="ConversationItem_admin_s_deleted_this_message">Admin %1$s deleted this message</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Can\'t download message. %1$s will need to send it again.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->

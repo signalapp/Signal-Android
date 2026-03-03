@@ -146,6 +146,7 @@ import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.PlaceholderURLSpan;
+import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.util.RemoteConfig;
@@ -1171,8 +1172,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     } else if (!isAdminDelete) {
       body = formatDeletedText(context.getString(R.string.ConversationItem_s_deleted_this_message, message.getDeletedByRecipient().getDisplayName(context)));
     } else {
-      SpannableString prefix = formatDeletedText(context.getString(R.string.ConversationItem_admin));
-      SpannableString suffix = formatDeletedText(context.getString(R.string.ConversationItem_deleted_this_message));
+      String template = context.getString(R.string.ConversationItem_admin_s_deleted_this_message, SpanUtil.SPAN_PLACE_HOLDER);
+      int    start    = template.indexOf(SpanUtil.SPAN_PLACE_HOLDER);
 
       int             nameColor = colorizer.getIncomingGroupSenderColor(getContext(), message.getDeletedByRecipient());
       SpannableString name      = new SpannableString(message.getDeletedByRecipient().getDisplayName(context));
@@ -1180,12 +1181,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       name.setSpan(new RecipientClickableSpan(conversationMessage.getDeletedByRecipient().getId()), 0, name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       name.setSpan(new StyleSpan(Typeface.BOLD), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-      body = new SpannableStringBuilder()
-                .append(prefix)
-                .append(" ")
-                .append(name)
-                .append(" ")
-                .append(suffix);
+      SpannableStringBuilder builder = new SpannableStringBuilder(template);
+      builder.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, org.signal.core.ui.R.color.signal_colorOnSurfaceVariant)), 0, builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      builder.replace(start, start + SpanUtil.SPAN_PLACE_HOLDER.length(), name);
+
+      body = builder;
     }
 
     return new SpannableStringBuilder()
