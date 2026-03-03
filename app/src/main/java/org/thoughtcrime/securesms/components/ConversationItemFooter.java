@@ -291,7 +291,11 @@ public class ConversationItemFooter extends ConstraintLayout {
       dateView.setText(null);
     } else if (messageRecord.isFailed()) {
       int errorMsg;
-      if (messageRecord.hasFailedWithNetworkFailures()) {
+      if (messageRecord.isFailedAdminDelete() && messageRecord.isIdentityMismatchFailure()) {
+        errorMsg = R.string.ConversationItem_error_partially_not_deleted;
+      } else if (messageRecord.isFailedAdminDelete()) {
+        errorMsg = R.string.ConversationItem_error_delete_failed;
+      } else if (messageRecord.hasFailedWithNetworkFailures()) {
         errorMsg = R.string.ConversationItem_error_network_not_delivered;
       } else if (messageRecord.getToRecipient().isPushGroup() && messageRecord.isIdentityMismatchFailure()) {
         errorMsg = R.string.ConversationItem_error_partially_not_delivered;
@@ -397,7 +401,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     }
 
     if (onlyShowSendingStatus) {
-      if (messageRecord.isOutgoing() && messageRecord.isPending()) {
+      if (messageRecord.isPending()) {
         deliveryStatusView.setPending();
       } else {
         deliveryStatusView.setNone();

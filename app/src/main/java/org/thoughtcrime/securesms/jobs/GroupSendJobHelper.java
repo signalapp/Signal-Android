@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
@@ -20,16 +21,18 @@ public final class GroupSendJobHelper {
   }
 
   public static @NonNull SendResult getCompletedSends(@NonNull List<Recipient> possibleRecipients, @NonNull Collection<SendMessageResult> results) {
-    RecipientAccessList accessList   = new RecipientAccessList(possibleRecipients);
-    List<Recipient>     completions  = new ArrayList<>(results.size());
-    List<RecipientId>   skipped      = new ArrayList<>();
-    List<RecipientId>   unregistered = new ArrayList<>();
+    RecipientAccessList       accessList       = new RecipientAccessList(possibleRecipients);
+    List<Recipient>           completions      = new ArrayList<>(results.size());
+    List<RecipientId>         skipped          = new ArrayList<>();
+    List<RecipientId>         unregistered     = new ArrayList<>();
+    List<IdentityKeyMismatch> identityMismatch = new ArrayList<>();
 
     for (SendMessageResult sendMessageResult : results) {
       Recipient recipient = accessList.requireByAddress(sendMessageResult.getAddress());
 
       if (sendMessageResult.getIdentityFailure() != null) {
         Log.w(TAG, "Identity failure for " + recipient.getId());
+        identityMismatch.add(new IdentityKeyMismatch(recipient.getId(), sendMessageResult.getIdentityFailure().getIdentityKey()));
       }
 
       if (sendMessageResult.isUnregisteredFailure()) {
@@ -63,7 +66,7 @@ public final class GroupSendJobHelper {
       }
     }
 
-    return new SendResult(completions, skipped, unregistered);
+    return new SendResult(completions, skipped, unregistered, identityMismatch);
   }
 
   public static class SendResult {
@@ -76,10 +79,14 @@ public final class GroupSendJobHelper {
     /** Recipients that were discovered to be unregistered. Important: items in this list can overlap with other lists in the result. */
     public final List<RecipientId> unregistered;
 
-    public SendResult(@NonNull List<Recipient> completed, @NonNull List<RecipientId> skipped, @NonNull List<RecipientId> unregistered) {
-      this.completed    = completed;
-      this.skipped      = skipped;
-      this.unregistered = unregistered;
+    /** Recipients that were not sent to due to an identity failure. Important: items in this list overlap with other lists in the result. */
+    public final List<IdentityKeyMismatch> identityMismatch;
+
+    public SendResult(@NonNull List<Recipient> completed, @NonNull List<RecipientId> skipped, @NonNull List<RecipientId> unregistered, List<IdentityKeyMismatch> identityMismatch) {
+      this.completed        = completed;
+      this.skipped          = skipped;
+      this.unregistered     = unregistered;
+      this.identityMismatch = identityMismatch;
     }
   }
 }

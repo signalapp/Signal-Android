@@ -3344,9 +3344,18 @@ class ConversationFragment :
 
     override fun onMessageWithErrorClicked(messageRecord: MessageRecord) {
       val recipientId = viewModel.recipientSnapshot?.id ?: return
-      if (messageRecord.isIdentityMismatchFailure) {
+      if (messageRecord.isFailedAdminDelete) {
+        val canRetry = MessageConstraintsUtil.isValidAdminDeleteSend(message = messageRecord, currentTime = System.currentTimeMillis(), isAdmin = conversationGroupViewModel.isAdmin(), isResend = true)
+        if (messageRecord.isIdentityMismatchFailure && canRetry) {
+          SafetyNumberBottomSheet
+            .forIncomingMessageRecord(messageRecord, viewModel.recipientSnapshot!!)
+            .show(childFragmentManager)
+        } else {
+          ConversationDialogs.displayDeletionFailedDialog(requireContext(), messageRecord, canRetry)
+        }
+      } else if (messageRecord.isIdentityMismatchFailure) {
         SafetyNumberBottomSheet
-          .forMessageRecord(requireContext(), messageRecord)
+          .forOutgoingMessageRecord(requireContext(), messageRecord)
           .show(childFragmentManager)
       } else if (messageRecord.hasFailedWithNetworkFailures()) {
         ConversationDialogs.displayMessageCouldNotBeSentDialog(requireContext(), messageRecord)

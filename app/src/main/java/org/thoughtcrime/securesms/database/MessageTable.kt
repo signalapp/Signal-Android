@@ -106,6 +106,7 @@ import org.thoughtcrime.securesms.database.model.StoryResult
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.StoryType.Companion.fromCode
 import org.thoughtcrime.securesms.database.model.StoryViewState
+import org.thoughtcrime.securesms.database.model.databaseprotos.AdminDeleteStatus
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
@@ -3786,6 +3787,45 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           .run()
       }
     }
+  }
+
+  /**
+   * Sets admin delete status to pending
+   */
+  fun markAsPendingAdminDelete(messageId: Long) {
+    val messageExtras = MessageExtras(adminDeleteStatus = AdminDeleteStatus(AdminDeleteStatus.Status.PENDING))
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(MESSAGE_EXTRAS to messageExtras.encode())
+      .where("$ID = ?", messageId)
+      .run()
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
+  }
+
+  /**
+   * Sets admin delete status to failed
+   */
+  fun markAsFailedAdminDelete(messageId: Long) {
+    val messageExtras = MessageExtras(adminDeleteStatus = AdminDeleteStatus(AdminDeleteStatus.Status.FAILED))
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(MESSAGE_EXTRAS to messageExtras.encode())
+      .where("$ID = ?", messageId)
+      .run()
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
+  }
+
+  /**
+   * Sets admin delete status to complete.
+   */
+  fun markAsSentAdminDelete(messageId: Long) {
+    val messageExtras = MessageExtras(adminDeleteStatus = AdminDeleteStatus(AdminDeleteStatus.Status.DONE))
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(MESSAGE_EXTRAS to messageExtras.encode())
+      .where("$ID = ?", messageId)
+      .run()
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
   }
 
   /**

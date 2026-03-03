@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.components.transfercontrols.TransferControlVie
 import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.model.databaseprotos.AdminDeleteStatus;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
@@ -173,6 +174,15 @@ public abstract class MessageRecord extends DisplayRecord {
     return MessageTypes.isLegacyType(type);
   }
 
+  @Override
+  public boolean isFailed() {
+    return super.isFailed() || isFailedAdminDelete();
+  }
+
+  @Override
+  public boolean isPending() {
+    return super.isPending() || isPendingAdminDelete();
+  }
 
   @Override
   @WorkerThread
@@ -787,6 +797,18 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public @Nullable RecipientId getDeletedBy() {
     return deletedBy;
+  }
+
+  public boolean isPendingAdminDelete() {
+    return messageExtras != null &&
+           messageExtras.adminDeleteStatus != null &&
+           messageExtras.adminDeleteStatus.status == AdminDeleteStatus.Status.PENDING;
+  }
+
+  public boolean isFailedAdminDelete() {
+    return messageExtras != null &&
+           messageExtras.adminDeleteStatus != null &&
+           messageExtras.adminDeleteStatus.status == AdminDeleteStatus.Status.FAILED;
   }
 
   public boolean isInMemoryMessageRecord() {

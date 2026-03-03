@@ -519,13 +519,23 @@ public class MessageSender {
   }
 
   public static void sendAdminDelete(long messageId) {
-    // TODO(michelle): Update with failure states
     SignalDatabase.messages().markAsDeleteBySelf(messageId);
-    AdminDeleteSendJob job = AdminDeleteSendJob.create(messageId);
+    SignalDatabase.messages().markAsPendingAdminDelete(messageId);
+    AdminDeleteSendJob job = AdminDeleteSendJob.create(messageId, Collections.emptyList());
     if (job != null) {
       AppDependencies.getJobManager().add(job);
     } else {
       Log.w(TAG, "[sendAdminDelete] Could not create the admin delete job.");
+    }
+  }
+
+  public static void resendAdminDelete(MessageRecord message, List<RecipientId> filteredRecipients) {
+    SignalDatabase.messages().markAsPendingAdminDelete(message.getId());
+    AdminDeleteSendJob job = AdminDeleteSendJob.create(message.getId(), filteredRecipients);
+    if (job != null) {
+      AppDependencies.getJobManager().add(job);
+    } else {
+      Log.w(TAG, "[resendAdminDelete] Could not resend the admin delete job.");
     }
   }
 

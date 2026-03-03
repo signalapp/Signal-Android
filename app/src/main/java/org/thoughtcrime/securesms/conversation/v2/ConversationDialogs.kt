@@ -94,6 +94,25 @@ object ConversationDialogs {
       .show()
   }
 
+  fun displayDeletionFailedDialog(context: Context, messageRecord: MessageRecord, canRetry: Boolean) {
+    if (canRetry) {
+      MaterialAlertDialogBuilder(context)
+        .setMessage(R.string.conversation_activity__message_failed_to_delete_retry)
+        .setNegativeButton(android.R.string.cancel, null)
+        .setPositiveButton(R.string.conversation_activity__send) { _, _ ->
+          SignalExecutors.BOUNDED.execute {
+            MessageSender.resendAdminDelete(messageRecord, messageRecord.networkFailures.map { it.recipientId })
+          }
+        }
+        .show()
+    } else {
+      MaterialAlertDialogBuilder(context)
+        .setMessage(R.string.conversation_activity__message_failed_to_delete)
+        .setPositiveButton(android.R.string.ok, null)
+        .show()
+    }
+  }
+
   @JvmStatic
   fun displayDeleteDialog(context: Context, recipient: Recipient, onDelete: () -> Unit) {
     MaterialAlertDialogBuilder(context)

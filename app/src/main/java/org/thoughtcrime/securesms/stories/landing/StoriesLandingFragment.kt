@@ -288,7 +288,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     } else if (model.data.primaryStory.messageRecord.isOutgoing && model.data.primaryStory.messageRecord.isFailed) {
       if (model.data.primaryStory.messageRecord.isIdentityMismatchFailure) {
         SafetyNumberBottomSheet
-          .forMessageRecord(requireContext(), model.data.primaryStory.messageRecord)
+          .forOutgoingMessageRecord(requireContext(), model.data.primaryStory.messageRecord)
           .show(childFragmentManager)
       } else {
         StoryDialogs.resendStory(requireContext()) {

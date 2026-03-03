@@ -118,7 +118,7 @@ class MyStoriesFragment : DSLSettingsFragment(
     if (it.distributionStory.messageRecord.isOutgoing && it.distributionStory.messageRecord.isFailed) {
       if (it.distributionStory.messageRecord.isIdentityMismatchFailure) {
         SafetyNumberBottomSheet
-          .forMessageRecord(requireContext(), it.distributionStory.messageRecord)
+          .forOutgoingMessageRecord(requireContext(), it.distributionStory.messageRecord)
           .show(childFragmentManager)
       } else {
         StoryDialogs.resendStory(requireContext()) {

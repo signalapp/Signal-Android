@@ -315,7 +315,7 @@ class StoryGroupReplyFragment :
 
     if (messageRecord.isIdentityMismatchFailure) {
       SafetyNumberBottomSheet
-        .forMessageRecord(requireContext(), messageRecord)
+        .forOutgoingMessageRecord(requireContext(), messageRecord)
         .show(childFragmentManager)
     } else if (messageRecord.hasFailedWithNetworkFailures()) {
       MaterialAlertDialogBuilder(requireContext())

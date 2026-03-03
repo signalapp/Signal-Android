@@ -833,7 +833,7 @@ class StoryViewerPageFragment :
     viewModel.setIsDisplayingPartialSendDialog(true)
     if (storyPost.conversationMessage.messageRecord.isIdentityMismatchFailure) {
       SafetyNumberBottomSheet
-        .forMessageRecord(requireContext(), storyPost.conversationMessage.messageRecord)
+        .forOutgoingMessageRecord(requireContext(), storyPost.conversationMessage.messageRecord)
         .show(childFragmentManager)
     } else {
       StoryDialogs.resendStory(requireContext(), { viewModel.setIsDisplayingPartialSendDialog(false) }) {

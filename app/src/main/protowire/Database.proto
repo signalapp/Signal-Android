@@ -536,6 +536,7 @@ message MessageExtras {
         PaymentTombstone paymentTombstone = 4;
         PollTerminate pollTerminate = 5;
         PinnedMessage pinnedMessage = 6;
+        AdminDeleteStatus adminDeleteStatus = 7;
     }
 }
 
@@ -548,6 +549,15 @@ message PaymentTombstone {
     optional string note = 1;
     CryptoValue amount = 2;
     CryptoValue fee = 3;
+}
+
+message AdminDeleteStatus {
+    enum Status {
+        PENDING = 0;
+        DONE = 1;
+        FAILED = 2;
+    }
+    Status status = 1;
 }
 
 message PollTerminate {

@@ -183,7 +183,9 @@ public final class SafetyNumberChangeRepository {
       }
     }
 
-    if (messageRecord.isOutgoing()) {
+    if (messageRecord.isFailedAdminDelete()) {
+      processAdminDeletedMessageRecord(changedRecipients, messageRecord);
+    } else if (messageRecord.isOutgoing()) {
       processOutgoingMessageRecord(changedRecipients, messageRecord);
     }
 
@@ -220,6 +222,24 @@ public final class SafetyNumberChangeRepository {
       } else {
         MessageSender.resendDistributionList(context, messageRecord, resendIds);
       }
+    }
+  }
+
+  @WorkerThread
+  private void processAdminDeletedMessageRecord(@NonNull List<ChangedRecipient> changedRecipients, @NonNull MessageRecord messageRecord) {
+    Log.d(TAG, "processAdminDeletedMessageRecord");
+    Set<RecipientId> resendIds = new HashSet<>();
+
+    for (ChangedRecipient changedRecipient : changedRecipients) {
+      RecipientId id          = changedRecipient.getRecipient().getId();
+      IdentityKey identityKey = changedRecipient.getIdentityRecord().getIdentityKey();
+
+      SignalDatabase.messages().removeMismatchedIdentity(messageRecord.getId(), id, identityKey);
+      resendIds.add(id);
+    }
+
+    if (Util.hasItems(resendIds) ) {
+      MessageSender.resendAdminDelete(messageRecord, resendIds.stream().collect(Collectors.toList()));
     }
   }
 

@@ -4,6 +4,7 @@ import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.Log.tag
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -37,15 +38,19 @@ class AdminDeleteSendJob private constructor(
     private val TAG = tag(AdminDeleteSendJob::class.java)
 
     @JvmStatic
-    fun create(messageId: Long): AdminDeleteSendJob? {
-      val message = SignalDatabase.messages.getMessageRecord(messageId)
+    fun create(messageId: Long, filterRecipients: List<RecipientId>): AdminDeleteSendJob? {
+      val message = SignalDatabase.messages.getMessageRecordOrNull(messageId)
+      if (message == null) {
+        return null
+      }
+
       val conversationRecipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)
 
       if (conversationRecipient == null) {
         return null
       }
 
-      val recipientIds = conversationRecipient.participantIds.map { it.toLong() }.toMutableList()
+      val recipientIds = filterRecipients.ifEmpty { conversationRecipient.participantIds }.map { it.toLong() }.toMutableList()
 
       return AdminDeleteSendJob(
         messageId = messageId,
@@ -81,7 +86,11 @@ class AdminDeleteSendJob private constructor(
       return Result.failure()
     }
 
-    val recipients = recipientIds.map { Recipient.resolved(RecipientId.from(it)) }.toMutableList()
+    val existingNetworkFailures = message.networkFailures.toMutableSet()
+    val existingIdentityMismatches = message.identityKeyMismatches.toMutableSet()
+    val targets = (recipientIds + existingIdentityMismatches.map { it.recipientId.toLong() } + existingNetworkFailures.map { it.recipientId.toLong() }).toSet()
+
+    val recipients = targets.map { Recipient.resolved(RecipientId.from(it)) }.toMutableList()
     val targetSentTimestamp = message.dateSent
     val targetAuthor = message.fromRecipient.requireServiceId()
 
@@ -103,8 +112,21 @@ class AdminDeleteSendJob private constructor(
     }
 
     val eligible = RecipientUtil.getEligibleForSending(recipients.filter { it.hasServiceId })
-    val skippedRecipients = recipients - eligible
+    val ineligibleRecipients = recipients - eligible
     val sendResult = deliver(conversationRecipient, eligible, targetAuthor, targetSentTimestamp)
+
+    val completedIds = sendResult.completed.map { it.id }.toSet()
+    existingNetworkFailures.removeAll { completedIds.contains(it.recipientId) }
+    existingIdentityMismatches.removeAll { completedIds.contains(it.recipientId) }
+
+    val ineligibleIds = (ineligibleRecipients.map { it.id } + sendResult.unregistered).toSet()
+    existingNetworkFailures.removeAll { ineligibleIds.contains(it.recipientId) }
+    existingIdentityMismatches.removeAll { ineligibleIds.contains(it.recipientId) }
+
+    existingIdentityMismatches.addAll(sendResult.identityMismatch)
+
+    SignalDatabase.messages.setNetworkFailures(messageId, existingNetworkFailures)
+    SignalDatabase.messages.setMismatchedIdentities(messageId, existingIdentityMismatches)
 
     for (completion in sendResult.completed) {
       recipientIds.remove(completion.id.toLong())
@@ -114,22 +136,35 @@ class AdminDeleteSendJob private constructor(
       SignalDatabase.recipients.markUnregistered(unregistered)
     }
 
-    for (recipient in skippedRecipients) {
+    for (recipient in ineligibleRecipients) {
       recipientIds.remove(recipient.id.toLong())
     }
 
-    Log.i(TAG, "Completed now: ${sendResult.completed.size} Skipped: ${skippedRecipients.size + sendResult.skipped.size} Remaining: ${recipientIds.size}")
+    Log.i(TAG, "Completed now: ${sendResult.completed.size} Skipped: ${ineligibleRecipients.size + sendResult.skipped.size} Remaining: ${recipientIds.size}")
 
-    if (recipientIds.isEmpty()) {
+    if (existingNetworkFailures.isEmpty() && existingIdentityMismatches.isEmpty() && recipientIds.isEmpty()) {
+      SignalDatabase.messages.markAsSentAdminDelete(messageId)
       return Result.success()
+    } else if (existingIdentityMismatches.isNotEmpty()) {
+      Log.w(TAG, "Failing because there were ${existingIdentityMismatches.size} identity mismatches.")
+      return Result.failure()
     } else {
-      Log.w(TAG, "Still need to send to ${recipients.size} recipients. Retrying.")
+      Log.w(TAG, "Still need to send to ${recipientIds.size} recipients. Retrying.")
       return Result.retry(defaultBackoff())
     }
   }
 
   override fun onFailure() {
-    Log.w(TAG, "Failed to send admin delete to all recipients! ${initialRecipientCount - recipientIds.size} /  $initialRecipientCount")
+    Log.w(TAG, "Failed to send admin delete to all recipients! ${initialRecipientCount - recipientIds.size} /  $initialRecipientCount. Marking remaining non-identity mismatched failures as network failure.")
+    val message = SignalDatabase.messages.getMessageRecordOrNull(messageId)
+    if (message == null) {
+      Log.w(TAG, "Message no longer exists, ignoring.")
+    } else {
+      val existingIdentityMismatches = message.identityKeyMismatches.map { it.recipientId.toLong() }
+      recipientIds.removeAll { existingIdentityMismatches.contains(it) }
+      SignalDatabase.messages.setNetworkFailures(messageId, recipientIds.map { NetworkFailure(RecipientId.from(it)) }.toSet())
+      SignalDatabase.messages.markAsFailedAdminDelete(messageId)
+    }
   }
 
   private fun deliver(

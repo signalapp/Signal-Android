@@ -45,7 +45,7 @@ import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet.forMessageRecord
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet.forOutgoingMessageRecord
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -153,7 +153,7 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
   }
 
   override fun onErrorClicked(messageRecord: MessageRecord) {
-    forMessageRecord(requireContext(), messageRecord)
+    forOutgoingMessageRecord(requireContext(), messageRecord)
       .show(childFragmentManager)
   }
 

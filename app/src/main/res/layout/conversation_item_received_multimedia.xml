@@ -285,21 +285,20 @@
 
     </org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble>
 
-    <org.thoughtcrime.securesms.components.AlertView
-        android:id="@+id/indicators_parent"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_toStartOf="@id/quoted_indicator"
-        android:gravity="center_vertical"
-        android:visibility="gone" />
-
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/body_bubble"
         android:layout_alignEnd="@id/body_bubble"
         android:layout_alignBottom="@id/body_bubble"
-        android:layout_marginEnd="-42dp">
+        android:layout_marginEnd="-30dp" >
+
+        <org.thoughtcrime.securesms.components.AlertView
+            android:id="@+id/indicators_parent"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="bottom"
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/quoted_indicator"
@@ -309,6 +308,7 @@
             android:background="@drawable/circle_tintable"
             android:backgroundTint="@color/signal_colorSurfaceVariant"
             android:padding="6dp"
+            android:layout_marginEnd="-12dp"
             android:tint="@color/signal_colorOnSurfaceVariant"
             app:srcCompat="@drawable/ic_replies_outline_20" />
 
@@ -320,6 +320,7 @@
             android:background="@drawable/circle_tintable"
             android:backgroundTint="@color/signal_colorSurfaceVariant"
             android:padding="6dp"
+            android:layout_marginEnd="-12dp"
             android:tint="@color/signal_colorOnSurfaceVariant"
             android:visibility="gone"
             app:srcCompat="@drawable/symbol_chat_arrow_24" />
