@@ -50,11 +50,7 @@ object VerifySafetyNumberRepository {
         VerifyResult.Success
       }
       is RequestResult.NonSuccess -> {
-        if (result.error.exception is IllegalArgumentException) {
-          VerifyResult.CorruptedFailure
-        } else {
-          VerifyResult.UnretryableFailure
-        }
+        VerifyResult.UnretryableFailure
       }
       is RequestResult.RetryableNetworkError -> {
         if (result.retryAfter != null) {
@@ -63,7 +59,13 @@ object VerifySafetyNumberRepository {
           VerifyResult.UnretryableFailure
         }
       }
-      is RequestResult.ApplicationError -> VerifyResult.UnretryableFailure
+      is RequestResult.ApplicationError -> {
+        if (result.cause is IllegalArgumentException) {
+          VerifyResult.CorruptedFailure
+        } else {
+          VerifyResult.UnretryableFailure
+        }
+      }
     }
   }
 

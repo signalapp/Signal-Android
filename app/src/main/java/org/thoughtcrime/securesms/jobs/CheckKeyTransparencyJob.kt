@@ -1,9 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.keytrans.KeyTransparencyException
-import org.signal.libsignal.keytrans.VerificationFailedException
-import org.signal.libsignal.net.AppExpiredException
 import org.signal.libsignal.net.KeyTransparency
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.Username
@@ -142,28 +139,15 @@ class CheckKeyTransparencyJob private constructor(
       }
 
       is RequestResult.NonSuccess -> {
-        if (result.error.exception is IllegalArgumentException) {
-          Log.w(TAG, "KT store was corrupted. Restarting and then retrying.")
-          SignalStore.account.distinguishedHead = null
-          SignalDatabase.recipients.clearSelfKeyTransparencyData()
-          Result.retry(defaultBackoff())
-        } else if (result.error.exception is VerificationFailedException || result.error.exception is KeyTransparencyException) {
-          if (!showFailure) {
-            Log.w(TAG, "Verification failure. Enqueuing this job again to run again a day.")
-            StorageSyncJob.forRemoteChange()
-            enqueueFollowingFailure()
-          } else {
-            Log.w(TAG, "Second verification failure. Showing failure sheet.")
-            markFailure()
-          }
-          Result.failure()
-        } else if (result.error.exception is AppExpiredException) {
-          Result.failure()
+        if (!showFailure) {
+          Log.w(TAG, "Verification failure. Enqueuing this job again to run again a day.")
+          StorageSyncJob.forRemoteChange()
+          enqueueFollowingFailure()
         } else {
-          Log.w(TAG, "Unknown nonsuccess failure. Showing failure sheet.")
+          Log.w(TAG, "Second verification failure. Showing failure sheet.")
           markFailure()
-          Result.failure()
         }
+        Result.failure()
       }
       is RequestResult.RetryableNetworkError -> {
         if (result.retryAfter != null) {
@@ -173,9 +157,16 @@ class CheckKeyTransparencyJob private constructor(
         }
       }
       is RequestResult.ApplicationError -> {
-        Log.w(TAG, "Unknown application failure. Showing failure sheet.")
-        markFailure()
-        Result.failure()
+        if (result.cause is IllegalArgumentException) {
+          Log.w(TAG, "KT store was corrupted. Restarting and then retrying.")
+          SignalStore.account.distinguishedHead = null
+          SignalDatabase.recipients.clearSelfKeyTransparencyData()
+          Result.retry(defaultBackoff())
+        } else {
+          Log.w(TAG, "Unknown application failure. Showing failure sheet.")
+          markFailure()
+          Result.failure()
+        }
       }
     }
   }
