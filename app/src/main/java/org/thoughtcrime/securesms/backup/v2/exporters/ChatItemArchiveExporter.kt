@@ -1393,16 +1393,16 @@ private fun ByteArray.toRemoteBodyRanges(dateSent: Long): List<BackupBodyRange> 
     return emptyList()
   }
 
-  return decoded.ranges.map { range ->
+  return decoded.ranges.mapNotNull { range ->
     val mention = range.mentionUuid?.let { UuidUtil.parseOrNull(it) }?.toByteArray()?.toByteString()?.takeIf { it.isNotEmpty() }
     val style = if (mention == null) {
-      range.style?.toRemote() ?: BackupBodyRange.Style.NONE
+      range.style?.toRemote()
     } else {
       null
     }
 
     if (mention == null && style == null) {
-      return emptyList()
+      return@mapNotNull null
     }
 
     BackupBodyRange(
