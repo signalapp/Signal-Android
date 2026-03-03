@@ -1182,6 +1182,15 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** The maximum number of attachment pointers that can have incrementalMac populated in a single envelope. */
+  @JvmStatic
+  @get:JvmName("maxIncrementalMacsPerEnvelope")
+  val maxIncrementalMacsPerEnvelope: Int by remoteInt(
+    key = "global.maxIncrementalMacsPerEnvelope",
+    defaultValue = 10,
+    hotSwappable = true
+  )
+
   /** Whether or not to send over binary service ids (alongside string service ids). */
   @JvmStatic
   @get:JvmName("useBinaryId")

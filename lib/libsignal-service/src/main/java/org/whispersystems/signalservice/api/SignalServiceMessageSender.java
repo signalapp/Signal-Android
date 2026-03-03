@@ -184,6 +184,7 @@ public class SignalServiceMessageSender {
 
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
+  private final int             maxIncrementalMacsPerEnvelope;
   private final BooleanSupplier useRestFallback;
   private final boolean         useBinaryId;
   private final boolean         useStringId;
@@ -197,28 +198,30 @@ public class SignalServiceMessageSender {
                                     Optional<EventListener> eventListener,
                                     ExecutorService executor,
                                     long maxEnvelopeSize,
+                                    int maxIncrementalMacsPerEnvelope,
                                     BooleanSupplier useRestFallback,
                                     boolean useBinaryId,
                                     boolean useStringId)
   {
     CredentialsProvider credentialsProvider = pushServiceSocket.getCredentialsProvider();
 
-    this.socket           = pushServiceSocket;
-    this.aciStore         = store.aci();
-    this.sessionLock      = sessionLock;
-    this.localAddress     = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
-    this.localDeviceId    = credentialsProvider.getDeviceId();
-    this.localPni         = credentialsProvider.getPni();
-    this.attachmentApi    = attachmentApi;
-    this.messageApi       = messageApi;
-    this.eventListener    = eventListener;
-    this.maxEnvelopeSize  = maxEnvelopeSize;
-    this.localPniIdentity = store.pni().getIdentityKeyPair();
-    this.scheduler        = Schedulers.from(executor, false, false);
-    this.keysApi          = keysApi;
-    this.useRestFallback  = useRestFallback;
-    this.useBinaryId      = useBinaryId;
-    this.useStringId      = useStringId;
+    this.socket                        = pushServiceSocket;
+    this.aciStore                      = store.aci();
+    this.sessionLock                   = sessionLock;
+    this.localAddress                  = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
+    this.localDeviceId                 = credentialsProvider.getDeviceId();
+    this.localPni                      = credentialsProvider.getPni();
+    this.attachmentApi                 = attachmentApi;
+    this.messageApi                    = messageApi;
+    this.eventListener                 = eventListener;
+    this.maxEnvelopeSize               = maxEnvelopeSize;
+    this.maxIncrementalMacsPerEnvelope = maxIncrementalMacsPerEnvelope;
+    this.localPniIdentity              = store.pni().getIdentityKeyPair();
+    this.scheduler                     = Schedulers.from(executor, false, false);
+    this.keysApi                       = keysApi;
+    this.useRestFallback               = useRestFallback;
+    this.useBinaryId                   = useBinaryId;
+    this.useStringId                   = useStringId;
   }
 
   /**
@@ -2691,7 +2694,42 @@ public class SignalServiceMessageSender {
       }
     }
 
-    return pointers;
+    return capIncrementalMacs(pointers);
+  }
+
+  private List<AttachmentPointer> capIncrementalMacs(List<AttachmentPointer> pointers) {
+    if (maxIncrementalMacsPerEnvelope <= 0) {
+      return pointers;
+    }
+
+    int incrementalMacCount = 0;
+    for (AttachmentPointer pointer : pointers) {
+      if (pointer.incrementalMac != null) {
+        incrementalMacCount++;
+      }
+    }
+
+    if (incrementalMacCount <= maxIncrementalMacsPerEnvelope) {
+      return pointers;
+    }
+
+    Log.w(TAG, "Envelope has " + incrementalMacCount + " incrementalMacs, which exceeds the limit of " + maxIncrementalMacsPerEnvelope + ". Stripping excess.");
+
+    List<AttachmentPointer> result = new ArrayList<>(pointers.size());
+    int                     kept   = 0;
+
+    for (AttachmentPointer pointer : pointers) {
+      if (pointer.incrementalMac != null && kept >= maxIncrementalMacsPerEnvelope) {
+        result.add(pointer.newBuilder().incrementalMac(null).chunkSize(null).build());
+      } else {
+        if (pointer.incrementalMac != null) {
+          kept++;
+        }
+        result.add(pointer);
+      }
+    }
+
+    return result;
   }
 
   private AttachmentPointer createAttachmentPointer(SignalServiceAttachmentPointer attachment) {
