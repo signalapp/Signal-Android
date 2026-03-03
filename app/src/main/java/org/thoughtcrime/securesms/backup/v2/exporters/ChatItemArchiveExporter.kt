@@ -1705,6 +1705,11 @@ private fun ChatItem.validateChatItem(exportState: ExportState, selfRecipientId:
     return null
   }
 
+  if (this.directionless != null && this.authorId != selfRecipientId.toLong() && exportState.recipientIdToAci[this.authorId] == null && exportState.recipientIdToE164[this.authorId] == null) {
+    Log.w(TAG, ExportSkips.directionlessMessageAuthorDoesNotHaveAciOrE164(this.dateSent))
+    return null
+  }
+
   if (this.outgoing != null && exportState.releaseNoteRecipientId != null && exportState.threadIdToRecipientId[this.chatId] == exportState.releaseNoteRecipientId) {
     Log.w(TAG, ExportSkips.outgoingMessageToReleaseNotesChat(this.dateSent))
     return null
