@@ -7941,7 +7941,7 @@
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">Back up all your media</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">Upgrade</string>
     <!-- Secondary button of Megaphone C -->
@@ -7961,7 +7961,7 @@
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%s/month</string>
     <!-- Subtitle for the paid plan feature card -->
