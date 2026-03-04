@@ -12,8 +12,6 @@ import java.util.regex.Pattern
  */
 object LinkUtil {
   private val DOMAIN_PATTERN = Pattern.compile("^(https?://)?([^/]+).*$")
-  private val ALL_ASCII_PATTERN = Pattern.compile("^[\\x00-\\x7F]*$")
-  private val ALL_NON_ASCII_PATTERN = Pattern.compile("^[^\\x00-\\x7F]*$")
   private val ILLEGAL_CHARACTERS_PATTERN = Pattern.compile("[\u202C\u202D\u202E\u2500-\u25FF]")
   private val ILLEGAL_PERIODS_PATTERN = Pattern.compile("(\\.{2,}|…)")
 
@@ -84,11 +82,37 @@ object LinkUtil {
       return LegalCharactersResult(false)
     }
 
-    val cleanedDomain = domain.replace("\\.".toRegex(), "")
     return LegalCharactersResult(
-      isLegal = ALL_ASCII_PATTERN.matcher(cleanedDomain).matches() || ALL_NON_ASCII_PATTERN.matcher(cleanedDomain).matches(),
+      isLegal = !mixesScripts(domain),
       domain = domain
     )
+  }
+
+  /**
+   * Returns true if [str] contains letters from more than one Unicode script,
+   * ignoring characters with script COMMON or INHERITED (digits, punctuation, etc.).
+   * Used to detect potential homograph attacks in domain names: a domain that mixes,
+   * say, Cyrillic and Latin letters is suspicious, while an IDN label like "grå"
+   * that uses only Latin letters (including extended Latin like å) is fine.
+   */
+  private fun mixesScripts(str: String): Boolean {
+    var firstScript: Character.UnicodeScript? = null
+    var i = 0
+    while (i < str.length) {
+      val cp = str.codePointAt(i)
+      if (Character.isLetter(cp)) {
+        val script = Character.UnicodeScript.of(cp)
+        if (script != Character.UnicodeScript.COMMON && script != Character.UnicodeScript.INHERITED) {
+          if (firstScript == null) {
+            firstScript = script
+          } else if (script != firstScript) {
+            return true
+          }
+        }
+      }
+      i += Character.charCount(cp)
+    }
+    return false
   }
 
   @JvmStatic
