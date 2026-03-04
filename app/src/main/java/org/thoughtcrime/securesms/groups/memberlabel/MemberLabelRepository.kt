@@ -19,6 +19,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.UiHintValues
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -29,7 +31,8 @@ import org.whispersystems.signalservice.api.NetworkResult
  */
 class MemberLabelRepository private constructor(
   private val context: Context = AppDependencies.application,
-  private val groupsTable: GroupTable = SignalDatabase.groups
+  private val groupsTable: GroupTable = SignalDatabase.groups,
+  private val uiHints: UiHintValues = SignalStore.uiHints
 ) {
   companion object {
     @JvmStatic
@@ -105,9 +108,7 @@ class MemberLabelRepository private constructor(
   /**
    * Computes the sender [NameColor] for a recipient as seen by other group members.
    */
-  suspend fun getSenderNameColor(groupId: GroupId.V2, recipientId: RecipientId): NameColor = withContext(Dispatchers.IO) {
-    val recipient = getRecipient(recipientId)
-
+  suspend fun getSenderNameColor(groupId: GroupId.V2, recipient: Recipient): NameColor = withContext(Dispatchers.IO) {
     val groupMemberIds = groupsTable
       .getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF)
       .mapNotNull { it.serviceId.orNull() }
@@ -127,6 +128,14 @@ class MemberLabelRepository private constructor(
     NetworkResult.fromFetch {
       GroupManager.updateMemberLabel(context, groupId, sanitizedLabel.text, sanitizedLabel.emoji.orEmpty())
     }
+  }
+
+  fun hasDismissedMemberLabelAboutOverrideWarning(): Boolean {
+    return uiHints.hasDismissedMemberLabelAboutOverrideWarning()
+  }
+
+  fun markMemberLabelAboutOverrideWarningDismissed() {
+    uiHints.markMemberLabelAboutOverrideWarningDismissed()
   }
 }
 

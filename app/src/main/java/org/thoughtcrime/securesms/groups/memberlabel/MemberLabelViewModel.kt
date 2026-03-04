@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.util.StringUtil
 import org.signal.core.util.concurrent.SignalDispatchers
+import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException
@@ -25,7 +26,8 @@ import org.whispersystems.signalservice.api.NetworkResult
 class MemberLabelViewModel(
   private val memberLabelRepo: MemberLabelRepository = MemberLabelRepository.instance,
   private val groupId: GroupId.V2,
-  private val recipientId: RecipientId
+  private val recipientId: RecipientId,
+  private val sanitizeEmoji: (String) -> String? = MemberLabel::sanitizeEmoji
 ) : ViewModel() {
 
   private var originalLabelEmoji: String = ""
@@ -40,16 +42,17 @@ class MemberLabelViewModel(
 
   private fun loadInitialState() {
     viewModelScope.launch(SignalDispatchers.IO) {
-      val memberLabel = memberLabelRepo.getLabel(groupId, recipientId)
+      val recipient = memberLabelRepo.getRecipient(recipientId)
+      val memberLabel = memberLabelRepo.getLabel(groupId, recipient)
       originalLabelEmoji = memberLabel?.emoji.orEmpty()
       originalLabelText = memberLabel?.text.orEmpty()
 
       internalUiState.update {
         it.copy(
-          recipient = memberLabelRepo.getRecipient(recipientId),
+          recipient = recipient,
           labelEmoji = originalLabelEmoji,
           labelText = originalLabelText,
-          senderNameColor = memberLabelRepo.getSenderNameColor(groupId, recipientId)
+          senderNameColor = memberLabelRepo.getSenderNameColor(groupId, recipient)
         )
       }
     }
@@ -85,7 +88,8 @@ class MemberLabelViewModel(
   }
 
   private fun hasChanges(labelEmoji: String, labelText: String): Boolean {
-    return labelEmoji != originalLabelEmoji || MemberLabel.sanitizeLabelText(labelText) != originalLabelText
+    return sanitizeEmoji(labelEmoji).orEmpty() != originalLabelEmoji ||
+      MemberLabel.sanitizeLabelText(labelText) != originalLabelText
   }
 
   fun save() {
@@ -107,14 +111,26 @@ class MemberLabelViewModel(
         )
       )
 
-      val newSaveState: SaveState = when (result) {
-        is NetworkResult.Success -> SaveState.Success
+      when (result) {
+        is NetworkResult.Success -> {
+          val isLabelCleared = currentState.sanitizedLabelText.isEmpty() && currentState.labelEmoji.isEmpty()
+          val selfHasAbout = currentState.recipient?.combinedAboutAndEmoji.isNotNullOrBlank()
+          val showOverrideSheet = !isLabelCleared && selfHasAbout && !memberLabelRepo.hasDismissedMemberLabelAboutOverrideWarning()
 
-        is NetworkResult.NetworkError<*> -> SaveState.NetworkError
+          internalUiState.update {
+            if (showOverrideSheet) {
+              it.copy(showAboutOverrideSheet = true)
+            } else {
+              it.copy(saveState = SaveState.Success)
+            }
+          }
+        }
+
+        is NetworkResult.NetworkError<*> -> internalUiState.update { it.copy(saveState = SaveState.NetworkError) }
 
         is NetworkResult.ApplicationError<*> -> {
           if (result.throwable is GroupInsufficientRightsException) {
-            SaveState.InsufficientRights
+            internalUiState.update { it.copy(saveState = SaveState.InsufficientRights) }
           } else {
             throw result.throwable
           }
@@ -122,16 +138,27 @@ class MemberLabelViewModel(
 
         is NetworkResult.StatusCodeError<*> -> throw result.exception
       }
-
-      internalUiState.update {
-        it.copy(saveState = newSaveState)
-      }
     }
   }
 
   fun onSaveStateConsumed() {
     internalUiState.update {
       it.copy(saveState = null)
+    }
+  }
+
+  fun onAboutOverrideSheetShown() {
+    internalUiState.update {
+      it.copy(showAboutOverrideSheet = false)
+    }
+  }
+
+  fun onAboutOverrideSheetDismissed(dontShowAgain: Boolean) {
+    if (dontShowAgain) {
+      memberLabelRepo.markMemberLabelAboutOverrideWarningDismissed()
+    }
+    internalUiState.update {
+      it.copy(saveState = SaveState.Success)
     }
   }
 }
@@ -142,7 +169,8 @@ data class MemberLabelUiState(
   val recipient: Recipient? = null,
   val senderNameColor: NameColor? = null,
   val hasChanges: Boolean = false,
-  val saveState: SaveState? = null
+  val saveState: SaveState? = null,
+  val showAboutOverrideSheet: Boolean = false
 ) {
   val sanitizedLabelText: String get() = MemberLabel.sanitizeLabelText(labelText)
 

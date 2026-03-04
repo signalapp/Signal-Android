@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.groups.memberlabel
 
+import android.os.Bundle
+import android.view.View
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -89,6 +91,16 @@ class MemberLabelFragment : ComposeFragment(), ReactWithAnyEmojiBottomSheetDialo
     )
   }
 
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    childFragmentManager.setFragmentResultListener(MemberLabelAboutOverrideSheet.RESULT_KEY, viewLifecycleOwner) { _, resultData ->
+      viewModel.onAboutOverrideSheetDismissed(
+        dontShowAgain = resultData.getBoolean(MemberLabelAboutOverrideSheet.KEY_DONT_SHOW_AGAIN)
+      )
+    }
+  }
+
   @Composable
   override fun FragmentContent() {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -110,6 +122,13 @@ class MemberLabelFragment : ComposeFragment(), ReactWithAnyEmojiBottomSheetDialo
     }
 
     val networkErrorMessage = stringResource(R.string.GroupMemberLabel__error_cant_save_no_network)
+
+    LaunchedEffect(uiState.showAboutOverrideSheet) {
+      if (uiState.showAboutOverrideSheet) {
+        MemberLabelAboutOverrideSheet.show(childFragmentManager)
+        viewModel.onAboutOverrideSheetShown()
+      }
+    }
 
     LaunchedEffect(uiState.saveState) {
       when (uiState.saveState) {
