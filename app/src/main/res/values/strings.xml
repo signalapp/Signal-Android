@@ -7745,6 +7745,14 @@
     <!-- Dialog action to block participant from the call -->
     <string name="CallLinkInfoSheet__block_from_call">Block from call</string>
 
+    <!-- CallParticipantSheet -->
+    <!-- Action to mute a participant's audio in a group call -->
+    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <!-- Action to remove a participant from a call -->
+    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <!-- Action to view contact details for a participant -->
+    <string name="CallParticipantSheet__contact_details">Contact details</string>
+
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
     <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Create call link</string>

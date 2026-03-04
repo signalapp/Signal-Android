@@ -367,6 +367,19 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
   }
 
   @Override
+  protected @NonNull WebRtcServiceState handleSendRemoteMuteRequest(@NonNull WebRtcServiceState currentState, @NonNull CallParticipant participant) {
+    Log.i(tag, "handleSendRemoteMuteRequest():");
+
+    GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
+    try {
+      groupCall.sendRemoteMuteRequest(participant.getCallParticipantId().demuxId);
+    } catch (CallException e) {
+      Log.w(tag, "Failed to send remote mute request.", e);
+    }
+    return currentState;
+  }
+
+  @Override
   protected @NonNull WebRtcServiceState handleGroupCallSpeechEvent(@NonNull WebRtcServiceState currentState, @NonNull GroupCall.SpeechEvent speechEvent) {
     Log.i(tag, "handleGroupCallSpeechEvent :: " + speechEvent.name());
 

@@ -393,6 +393,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleSetCallLinkJoinRequestRejected(s, participant));
   }
 
+  public void sendRemoteMuteRequest(@NonNull CallParticipant participant) {
+    process((s, p) -> p.handleSendRemoteMuteRequest(s, participant));
+  }
+
   public void removeFromCallLink(@NonNull CallParticipant participant) {
     process((s, p) -> p.handleRemoveFromCallLink(s, participant));
   }

@@ -11,9 +11,10 @@ import org.thoughtcrime.securesms.database.CallLinkTable
 @Immutable
 data class ControlAndInfoState(
   val callLink: CallLinkTable.CallLink? = null,
+  val isGroupAdmin: Boolean = false,
   val resetScrollState: Long = 0
 ) {
   fun isSelfAdmin(): Boolean {
-    return callLink?.credentials?.adminPassBytes != null
+    return callLink?.credentials?.adminPassBytes != null || isGroupAdmin
   }
 }

@@ -15,10 +15,13 @@ import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
 import org.thoughtcrime.securesms.components.webrtc.controls.CallInfoView
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
+import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 
 /**
  * Callbacks for the CallInfoView, shared between CallActivity and ControlsAndInfoController.
@@ -59,5 +62,35 @@ class CallInfoCallbacks(
         AppDependencies.signalCallManager.blockFromCallLink(callParticipant)
       }
       .show()
+  }
+
+  override fun onMuteAudio(callParticipant: CallParticipant) {
+    AppDependencies.signalCallManager.sendRemoteMuteRequest(callParticipant)
+  }
+
+  override fun onRemoveFromCall(callParticipant: CallParticipant) {
+    MaterialAlertDialogBuilder(activity)
+      .setNegativeButton(android.R.string.cancel, null)
+      .setMessage(activity.resources.getString(R.string.CallLinkInfoSheet__remove_s_from_the_call, callParticipant.recipient.getShortDisplayName(activity)))
+      .setPositiveButton(R.string.CallLinkInfoSheet__remove) { _, _ ->
+        AppDependencies.signalCallManager.removeFromCallLink(callParticipant)
+      }
+      .setNeutralButton(R.string.CallLinkInfoSheet__block_from_call) { _, _ ->
+        AppDependencies.signalCallManager.blockFromCallLink(callParticipant)
+      }
+      .show()
+  }
+
+  override fun onContactDetails(callParticipant: CallParticipant) {
+    activity.startActivity(ConversationSettingsActivity.forRecipient(activity, callParticipant.recipient.id))
+  }
+
+  override fun onViewSafetyNumber(callParticipant: CallParticipant) {
+    val identityRecord = AppDependencies.protocolStore.aci().identities().getIdentityRecord(callParticipant.recipient.id)
+    VerifyIdentityActivity.startOrShowExchangeMessagesDialog(activity, identityRecord.orElse(null))
+  }
+
+  override fun onGoToChat(callParticipant: CallParticipant) {
+    CommunicationActions.startConversation(activity, callParticipant.recipient, null)
   }
 }

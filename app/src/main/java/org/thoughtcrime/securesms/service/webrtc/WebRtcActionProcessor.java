@@ -973,6 +973,12 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcServiceState handleSendRemoteMuteRequest(@NonNull WebRtcServiceState currentState, @NonNull CallParticipant participant) {
+    Log.i(tag, "handleSendRemoteMuteRequest not processed");
+
+    return currentState;
+  }
+
   protected @NonNull WebRtcServiceState handleRemoveFromCallLink(@NonNull WebRtcServiceState currentState, @NonNull CallParticipant participant) {
     Log.i(tag, "handleRemoveFromCallLink not processed");
 
