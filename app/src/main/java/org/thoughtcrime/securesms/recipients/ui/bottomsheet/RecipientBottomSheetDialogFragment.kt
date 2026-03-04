@@ -111,7 +111,9 @@ class RecipientBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
 
     val avatar: AvatarView = view.findViewById(R.id.rbs_recipient_avatar)
     val fullName: TextView = view.findViewById(R.id.rbs_full_name)
-    val memberLabelView: MemberLabelPillView = view.findViewById(R.id.rbs_member_label)
+    val memberLabelView: MemberLabelPillView = view.findViewById<MemberLabelPillView>(R.id.rbs_member_label).apply {
+      style = MemberLabelPillView.Style(maxLines = Int.MAX_VALUE)
+    }
     val aboutView: TextView = view.findViewById(R.id.rbs_about)
     val nickname: TextView = view.findViewById(R.id.rbs_nickname_button)
     val blockButton: TextView = view.findViewById(R.id.rbs_block_button)

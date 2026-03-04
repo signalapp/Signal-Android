@@ -56,7 +56,8 @@ class MemberLabelPillView : AbstractComposeView {
         text = label.displayText,
         tintColor = tintColor,
         modifier = Modifier.padding(horizontal = style.horizontalPadding, vertical = style.verticalPadding),
-        textStyle = style.textStyle()
+        textStyle = style.textStyle(),
+        maxLines = style.maxLines
       )
     }
   }
@@ -64,7 +65,8 @@ class MemberLabelPillView : AbstractComposeView {
   data class Style(
     val horizontalPadding: Dp = 12.dp,
     val verticalPadding: Dp = 2.dp,
-    val textStyle: @Composable () -> TextStyle = { MemberLabelPill.textStyleNormal }
+    val textStyle: @Composable () -> TextStyle = { MemberLabelPill.textStyleNormal },
+    val maxLines: Int = 1
   ) {
     companion object {
       @JvmField

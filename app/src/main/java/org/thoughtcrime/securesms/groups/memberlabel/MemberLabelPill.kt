@@ -50,7 +50,8 @@ fun MemberLabelPill(
   text: String,
   tintColor: Color,
   modifier: Modifier = defaultModifier,
-  textStyle: TextStyle = MemberLabelPill.textStyleCompact
+  textStyle: TextStyle = MemberLabelPill.textStyleCompact,
+  maxLines: Int = 1
 ) {
   val isDark = isSystemInDarkTheme()
   val backgroundColor = tintColor.copy(alpha = if (isDark) 0.32f else 0.10f)
@@ -67,7 +68,8 @@ fun MemberLabelPill(
     textColor = textColor,
     backgroundColor = backgroundColor,
     modifier = modifier,
-    textStyle = textStyle
+    textStyle = textStyle,
+    maxLines = maxLines
   )
 }
 
@@ -81,9 +83,10 @@ fun MemberLabelPill(
   textColor: Color,
   backgroundColor: Color,
   modifier: Modifier = defaultModifier,
-  textStyle: TextStyle = MemberLabelPill.textStyleCompact
+  textStyle: TextStyle = MemberLabelPill.textStyleCompact,
+  maxLines: Int = 1
 ) {
-  val shape = RoundedCornerShape(percent = 50)
+  val shape = if (maxLines > 1) RoundedCornerShape(24.dp) else RoundedCornerShape(percent = 50)
 
   Row(
     modifier = Modifier
@@ -112,7 +115,7 @@ fun MemberLabelPill(
             text = annotatedText,
             inlineContent = inlineContent,
             color = textColor,
-            maxLines = 1,
+            maxLines = maxLines,
             overflow = TextOverflow.Ellipsis
           )
         }
