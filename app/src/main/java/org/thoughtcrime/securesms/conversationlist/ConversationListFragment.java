@@ -1285,7 +1285,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     view.setSelected(true);
 
-    Collection<Long> id = Collections.singleton(conversation.getThreadRecord().getThreadId());
+    Set<Long> id = Collections.singleton(conversation.getThreadRecord().getThreadId());
 
     List<ActionItem> items = new ArrayList<>();
 
@@ -1317,7 +1317,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     }
 
     if (conversation.getThreadRecord().isArchived()) {
-      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(id)));
+      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleUnarchive(id)));
     } else {
       if (!isFromSearch) {
         if (viewModel.getCurrentFolder().getFolderType() == ChatFolderRecord.FolderType.ALL &&
