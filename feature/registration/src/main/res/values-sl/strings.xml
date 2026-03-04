@@ -57,13 +57,13 @@
     <!-- Title of the verification code entry screen -->
     <string name="VerificationCodeScreen__verification_code">Verifikacijska koda</string>
     <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
-    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Vpišite kodo poslano na %1$s</string>
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Vpišite kodo, poslano na %1$s</string>
     <!-- Button text for wrong number action -->
     <string name="VerificationCodeScreen__wrong_number">Napačna številka?</string>
     <!-- Button text for resend SMS action -->
     <string name="VerificationCodeScreen__resend_code">Ponovno mi pošlji kodo</string>
     <!-- Button text for call me action -->
-    <string name="VerificationCodeScreen__call_me_instead">Call me instead</string>
+    <string name="VerificationCodeScreen__call_me_instead">Raje me pokliči</string>
     <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
@@ -71,17 +71,17 @@
     <!-- Toast shown when the user enters an incorrect verification code -->
     <string name="VerificationCodeScreen__incorrect_code">Napačna koda</string>
     <!-- Snackbar shown when there is a network error -->
-    <string name="VerificationCodeScreen__network_error">Unable to connect. Please check your network and try again.</string>
+    <string name="VerificationCodeScreen__network_error">Povezave ni mogoče vzpostaviti. Preverite omrežje in poskusite znova.</string>
     <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
-    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Too many attempts. Try again in %1$s.</string>
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Preveč poskusov. Poskusite znova čez %1$s.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Zgodila se je nepričakovana napaka. Poskusite znova.</string>
     <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">There was a problem sending your verification code. Please try again.</string>
+    <string name="VerificationCodeScreen__sms_provider_error">Pri pošiljanju vaše potrditvene kode je prišlo do težave. Poskusite znova.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
-    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Could not send code via the selected method. Please try another option.</string>
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Kode ni bilo mogoče poslati z izbrano metodo. Poskusite z drugo možnostjo.</string>
     <!-- Snackbar shown for registration errors -->
-    <string name="VerificationCodeScreen__registration_error">Registration failed. Please try again.</string>
+    <string name="VerificationCodeScreen__registration_error">Registracija ni uspela. Poskusite znova.</string>
     <!-- Button text for having trouble with verification -->
-    <string name="VerificationCodeScreen__having_trouble">Having trouble?</string>
+    <string name="VerificationCodeScreen__having_trouble">Imate težave?</string>
 </resources>

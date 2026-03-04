@@ -37,11 +37,11 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">फ़ोन नंबर</string>
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">आपको एक सत्यापन कोड प्राप्त होगा। कैरियर दरें लागू हो सकती हैं।</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">आपको एक वेरिफ़िकेशन कोड मिलेगा। हो सकता है कि इस पर मोबाइल कंपनी की ओर से लागू शुल्क लगे।</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">कोई देश चुनें</string>
+    <string name="RegistrationActivity_select_a_country">अपना देश चुनें</string>
     <string name="RegistrationActivity_phone_number_description">फ़ोन नंबर</string>
-    <string name="RegistrationActivity_next">अगले पर जाएं</string>
+    <string name="RegistrationActivity_next">अगला</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -59,11 +59,11 @@
     <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
     <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">%1$s पर भेजा गया कोड डालें</string>
     <!-- Button text for wrong number action -->
-    <string name="VerificationCodeScreen__wrong_number">गलत नंबर?</string>
+    <string name="VerificationCodeScreen__wrong_number">नंबर सही नहीं है?</string>
     <!-- Button text for resend SMS action -->
     <string name="VerificationCodeScreen__resend_code">कोड दोबारा भेजें</string>
     <!-- Button text for call me action -->
-    <string name="VerificationCodeScreen__call_me_instead">Call me instead</string>
+    <string name="VerificationCodeScreen__call_me_instead">मुझे कॉल करें</string>
     <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
@@ -71,17 +71,17 @@
     <!-- Toast shown when the user enters an incorrect verification code -->
     <string name="VerificationCodeScreen__incorrect_code">कोड सही नहीं है</string>
     <!-- Snackbar shown when there is a network error -->
-    <string name="VerificationCodeScreen__network_error">Unable to connect. Please check your network and try again.</string>
+    <string name="VerificationCodeScreen__network_error">कनेक्ट नहीं हो सका। कृपया अपना नेटवर्क चेक करें और दोबारा कोशिश करें।</string>
     <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
-    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Too many attempts. Try again in %1$s.</string>
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">आपने कई बार कोशिश कर ली है। %1$s बाद फिर से कोशिश करें।</string>
     <!-- Snackbar shown for generic/unknown errors -->
-    <string name="VerificationCodeScreen__an_unexpected_error_occurred">एक अनपेक्षित त्रुटि हुई। कृपया फिर से कोशिश करें।</string>
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">कोई अनचाही गड़बड़ी हुई है। कृपया फिर से कोशिश करें।</string>
     <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">There was a problem sending your verification code. Please try again.</string>
+    <string name="VerificationCodeScreen__sms_provider_error">आपका वेरिफ़िकेशन कोड भेजने में कुछ दिक्कत आई है। कृपया फिर से कोशिश करें।</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
-    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Could not send code via the selected method. Please try another option.</string>
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">चुने गए तरीके से कोड भेजना संभव नहीं हो पाया। कृपया कोई दूसरा तरीका आज़माएं।</string>
     <!-- Snackbar shown for registration errors -->
-    <string name="VerificationCodeScreen__registration_error">Registration failed. Please try again.</string>
+    <string name="VerificationCodeScreen__registration_error">रजिस्ट्रेशन नहीं हो पाया। कृपया फिर से कोशिश करें।</string>
     <!-- Button text for having trouble with verification -->
-    <string name="VerificationCodeScreen__having_trouble">Having trouble?</string>
+    <string name="VerificationCodeScreen__having_trouble">कोई दिक्कत है?</string>
 </resources>

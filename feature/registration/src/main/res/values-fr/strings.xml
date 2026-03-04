@@ -37,7 +37,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Numéro de téléphone</string>
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Nous vous enverrons un code de vérification à ce numéro. Des frais d’opérateur peuvent s’appliquer.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Nous vous enverrons un code de vérification à ce numéro. Des frais d\'opérateur peuvent s\'appliquer.</string>
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Sélectionner un pays</string>
     <string name="RegistrationActivity_phone_number_description">Numéro de téléphone</string>
@@ -57,13 +57,13 @@
     <!-- Title of the verification code entry screen -->
     <string name="VerificationCodeScreen__verification_code">Code de vérification</string>
     <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
-    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Saisissez le code que nous vous avons envoyé au %1$s</string>
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Saisir le code envoyé au %1$s</string>
     <!-- Button text for wrong number action -->
     <string name="VerificationCodeScreen__wrong_number">Ce n\'est pas le bon numéro ?</string>
     <!-- Button text for resend SMS action -->
     <string name="VerificationCodeScreen__resend_code">Renvoyer le code</string>
     <!-- Button text for call me action -->
-    <string name="VerificationCodeScreen__call_me_instead">Call me instead</string>
+    <string name="VerificationCodeScreen__call_me_instead">Je préfère qu\'on m\'appelle</string>
     <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
@@ -71,17 +71,17 @@
     <!-- Toast shown when the user enters an incorrect verification code -->
     <string name="VerificationCodeScreen__incorrect_code">Code incorrect</string>
     <!-- Snackbar shown when there is a network error -->
-    <string name="VerificationCodeScreen__network_error">Unable to connect. Please check your network and try again.</string>
+    <string name="VerificationCodeScreen__network_error">Connexion impossible. Vérifiez votre connexion réseau et réessayez.</string>
     <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
-    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Too many attempts. Try again in %1$s.</string>
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Trop grand nombre de tentatives. Veuillez réessayer dans %1$s.</string>
     <!-- Snackbar shown for generic/unknown errors -->
-    <string name="VerificationCodeScreen__an_unexpected_error_occurred">Une erreur inattendue s’est produite. Veuillez réessayer.</string>
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">Une erreur inattendue s\'est produite. Veuillez réessayer.</string>
     <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">There was a problem sending your verification code. Please try again.</string>
+    <string name="VerificationCodeScreen__sms_provider_error">Une erreur s\'est produite lors de l\'envoi du code de vérification. Veuillez réessayer.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
-    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Could not send code via the selected method. Please try another option.</string>
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Impossible d\'envoyer le code via le canal sélectionné. Veuillez choisir une autre option.</string>
     <!-- Snackbar shown for registration errors -->
-    <string name="VerificationCodeScreen__registration_error">Registration failed. Please try again.</string>
+    <string name="VerificationCodeScreen__registration_error">Échec de l\'inscription. Veuillez réessayer.</string>
     <!-- Button text for having trouble with verification -->
-    <string name="VerificationCodeScreen__having_trouble">Having trouble?</string>
+    <string name="VerificationCodeScreen__having_trouble">Un souci ?</string>
 </resources>

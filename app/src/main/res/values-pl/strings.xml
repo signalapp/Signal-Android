@@ -454,14 +454,14 @@
     <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Pobierz więcej</string>
     <string name="ConversationItem_pending">  Oczekiwanie</string>
-    <string name="ConversationItem_this_message_was_deleted">This message was deleted</string>
+    <string name="ConversationItem_this_message_was_deleted">Wiadomość została usunięta</string>
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
-    <string name="ConversationItem_s_deleted_this_message">%1$s deleted this message</string>
-    <string name="ConversationItem_you_deleted_this_message">You deleted this message</string>
+    <string name="ConversationItem_s_deleted_this_message">Wiadomość usunął uczestnik czatu (%1$s)</string>
+    <string name="ConversationItem_you_deleted_this_message">Wiadomość została przez Ciebie usunięta</string>
     <!-- First part of a conversation message when a message has been deleted by an admin. -->
     <string name="ConversationItem_admin">Administrator</string>
     <!-- Second part of a conversation message when a message has been deleted by an admin. -->
-    <string name="ConversationItem_deleted_this_message">deleted this message</string>
+    <string name="ConversationItem_deleted_this_message">usunął wiadomość</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Nie udało się pobrać wiadomości. Zapytaj, czy %1$s może ją wysłać ponownie.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -657,9 +657,9 @@
         <item quantity="other">U kogo chcesz usunąć te wiadomości?</item>
     </plurals>
     <!-- Confirmation button to delete the message -->
-    <string name="ConversationFragment_delete_for_everyone_title">Delete for everyone?</string>
+    <string name="ConversationFragment_delete_for_everyone_title">Usunąć u wszystkich?</string>
     <!-- Body of dialog explaining what happens during deletion -->
-    <string name="ConversationFragment_delete_for_everyone_body">As an admin, group members will see that you deleted these messages.</string>
+    <string name="ConversationFragment_delete_for_everyone_body">Osoby w grupie zobaczą, że wiadomości zostały usunięte przez Ciebie jako administratora.</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Usuń z tego urządzenia</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -1626,7 +1626,7 @@
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">Przywróć kopię zapasową</string>
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Ostatnia kopia zapasowa została utworzona w dniu %1$s o godz. %2$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at">Ostatnia kopia zapasowa została utworzona %1$s o godz. %2$s.</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
     <string name="RemoteRestoreActivity__backup_created_at_with_size">Ostatnia kopia zapasowa została utworzona %1$s o godz. %2$s. Rozmiar kopii zapasowej to %3$s.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
@@ -3244,13 +3244,13 @@
     <string name="ThreadRecord_view_once_video">Wideo jednorazowe</string>
     <string name="ThreadRecord_view_once_media">Multimedia jednorazowe</string>
     <!-- Thread preview when someone has deleted their own message -->
-    <string name="ThreadRecord_this_message_was_deleted">This message was deleted</string>
+    <string name="ThreadRecord_this_message_was_deleted">Wiadomość została usunięta</string>
     <!-- Thread preview when someone has deleted their own message. Placeholder is the name of the person. -->
-    <string name="ThreadRecord_s_deleted_this_message">%1$s deleted this message</string>
+    <string name="ThreadRecord_s_deleted_this_message">Wiadomość usunął uczestnik czatu (%1$s)</string>
     <!-- Thread preview when you deleted a message -->
-    <string name="ThreadRecord_you_deleted_this_message">You deleted this message</string>
+    <string name="ThreadRecord_you_deleted_this_message">Wiadomość została przez Ciebie usunięta</string>
     <!-- Thread preview when an admin has deleted a message -->
-    <string name="ThreadRecord_admin_deleted_this_message">Admin %1$s deleted this message</string>
+    <string name="ThreadRecord_admin_deleted_this_message">Administrator %1$s usunął wiadomość</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Wysyłasz prośbę o aktywację płatności</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -3404,11 +3404,11 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Wycisz powiadomienia</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Mute until…</string>
+    <string name="MuteDialog__mute_until">Wycisz do…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
-    <string name="MuteUntilTimePickerBottomSheet__dialog_title">Mute notifications until…</string>
+    <string name="MuteUntilTimePickerBottomSheet__dialog_title">Wycisz powiadomienia do…</string>
     <!-- Label for a data selector where the user chooses how long they\'d like to mute notifications for -->
     <string name="MuteUntilTimePickerBottomSheet__select_date_title">Wybierz datę</string>
     <!-- Label for a time selector where the user chooses how long they\'d like to mute notifications for -->
@@ -3741,7 +3741,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Aby wyświetlić kontakty, musisz zezwolić aplikacji Signal na dostęp do kontaktów na urządzeniu. Uprawnienie to zostało jednak na stałe wyłączone. Przejdź do menu ustawień aplikacji, otwórz sekcję „Uprawnienia” i włącz uprawnienie „Kontakty”.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Podczas pobierania kontaktów wystąpił błąd. Sprawdzić połączenie z internetem</string>
     <string name="ContactSelectionListFragment_username_not_found">Nie znaleziono nazwy użytkownika</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s nie jest nazwą użytkownika aplikacji Signal. Podaj poprawną nazwę użytkownika i spróbuj ponownie."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s nie jest nazwą użytkownika aplikacji Signal. Podaj poprawną nazwę i spróbuj ponownie."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nie musisz dodawać do grupy siebie</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Osiągnięto maksymalną liczebność grupy</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Maksymalna liczba osób w grupie Signal to %1$s.</string>
@@ -7643,9 +7643,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Darowizna oczekuje na realizację</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Przetworzenie przelewu bankowego może potrwać od 1 do 14 dni roboczych. Poczekaj, aż płatność zostanie zakończona, zanim zmienisz swoją subskrypcję.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Realizacja przelewu bankowego może potrwać od 1 do 14 dni roboczych. Zanim zmienisz swoją darowiznę cykliczną, poczekaj, aż ta płatność zostanie zrealizowana.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Przetworzenie przelewu bankowego może potrwać od 1 do 14 dni roboczych. Poczekaj, aż płatność zostanie zakończona, zanim przekażesz kolejną darowiznę.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Realizacja przelewu bankowego może potrwać od 1 do 14 dni roboczych. Zanim wpłacisz kolejną darowiznę, poczekaj, aż ta płatność zostanie zrealizowana.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Twoja darowizna jest jeszcze przetwarzana. W zależności od połączenia z internetem może to potrwać kilka minut. Zanim wprowadzisz zmiany w darowiźnie cyklicznej, poczekaj, aż ta płatność zostanie zrealizowana.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -7729,7 +7729,7 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">Nieprawidłowy IBAN</string>
     <!-- Error label for name field when name is not at least three characters long (Stripe API enforced minimum) -->
-    <string name="BankTransferDetailsFragment__minimum_3_characters">Minimum 3 characters</string>
+    <string name="BankTransferDetailsFragment__minimum_3_characters">Co najmniej 3 znaki</string>
     <!-- Error label for email field when email is not valid -->
     <string name="BankTransferDetailsFragment__invalid_email_address">Nieprawidłowy adres e-mail</string>
 
@@ -7739,7 +7739,7 @@
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Wpisz swoje imię i nazwisko oraz adres e-mail. Stripe będzie wysyłać na ten adres powiadomienia dotyczące darowizny. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Wprowadź swoje dane bankowe. Signal nie gromadzi ani nie przechowuje Twoich danych osobowych. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Wpisz dane do przelewu. Signal nie gromadzi ani nie przechowuje Twoich danych osobowych. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Dowiedz się więcej</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -7751,7 +7751,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Potwierdź darowiznę za pośrednictwem iDEAL</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
-    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Aby skonfigurować darowiznę cykliczną, kliknij Dalej i potwierdź w banku obciążenie konta w wysokości 0,01 euro. Kwota zostanie automatycznie zwrócona i pozwoli na pobieranie z Twojego konta darowizny w wysokości %1$s miesięcznie.</string>
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Aby skonfigurować darowiznę cykliczną, przejdź dalej i potwierdź w banku obciążenie konta kwotą 0,01 euro. Zostanie ona automatycznie zwrócona, a procedura ta pozwoli na pobieranie z Twojego konta %1$s miesięcznie.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Kontynuuj</string>
 
@@ -7771,7 +7771,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Twoja jednorazowa darowizna jest w trakcie realizacji. Odznaka %1$s pojawi się w Twoim profilu, gdy otrzymamy darowiznę</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Przetworzenie przelewu bankowego może potrwać od 1 do 14 dni roboczych. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Realizacja przelewu bankowego może potrwać od 1 do 14 dni roboczych. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Dowiedz się więcej</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -7836,13 +7836,13 @@
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="GroupStoryEducationSheet__introducing_group_stories">Przedstawiamy: Relacje grupowe</string>
+    <string name="GroupStoryEducationSheet__introducing_group_stories">Przedstawiamy relacje grupowe</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Udostępniaj aktualizacje relacji w swoich czatach grupowych.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">Udostępniaj relacje w swoich czatach grupowych.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Każdy członek czatu grupowego może dodać coś do relacji.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">Do relacji może coś dodać każda osoba w grupie.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">Wszyscy członkowie czatu grupowego mogą wyświetlać odpowiedzi na relację.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">Wszystkie osoby w grupie mogą wyświetlać odpowiedzi na relacje.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Dalej</string>
     <string name="Registration_country_code_entry_hint">+00</string>
@@ -7863,7 +7863,7 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__set_up_your_signal_username">Ustaw dla siebie nazwę użytkownika w aplikacji Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__introducing_phone_number_privacy">Wprowadzamy możliwość ukrycia numeru telefonu, opcjonalną nazwę użytkownika i linki do udostępniania nazw.</string>
+    <string name="SetUpYourUsername__introducing_phone_number_privacy">Ukrywamy numery telefonu i wprowadzamy opcjonalną nazwę użytkownika z linkiem do jej udostępniania.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">Odrzuć</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -7872,7 +7872,7 @@
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="PnpLaunchMegaphone_title">Nowe sposoby na pozostawanie w kontakcie</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="PnpLaunchMegaphone_body">Wprowadzamy możliwość ukrycia numeru telefonu, opcjonalną nazwę użytkownika i linki do udostępniania nazw.</string>
+    <string name="PnpLaunchMegaphone_body">Ukrywamy numery telefonu i wprowadzamy opcjonalną nazwę użytkownika z linkiem do jej udostępniania.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
     <string name="PnpLaunchMegaphone_dismiss">Odrzuć</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
@@ -7918,7 +7918,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Nieodebrane</string>
     <!-- Displayed for one missed call declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Nieodebrane przy włączonym profilu powiadomień</string>
+    <string name="CallLogAdapter__missed_notification_profile">Nieodebrane, podczas gdy włączony był profil powiadomień</string>
     <!-- Displayed for multiple missed calls declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile_multiple">Nieodebrane, podczas gdy włączony był profil powiadomień</string>
     <!-- Displayed on Group Call button if user is not in the call -->
@@ -7930,7 +7930,7 @@
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Link do połączenia</string>
     <!-- Accessibility description for the video call button -->
-    <string name="CallLogAdapter__start_a_video_call">Połączenie wideo</string>
+    <string name="CallLogAdapter__start_a_video_call">Rozpocznij połączenie wideo</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">Rozpocznij połączenie głosowe</string>
     <!-- Notice on call log when no missed calls are available, centered on display -->
@@ -7954,20 +7954,20 @@
     <!-- Displayed when deleting call history items -->
     <string name="CallLogFragment__deleting">Usuwanie…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Usuwanie nieudane.</string>
+    <string name="CallLogFragment__deletion_failed">Nie udało się usunąć.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Nie można usunąć linku. Sprawdź połączenie i spróbuj ponownie.</item>
-        <item quantity="few">Niektóre linki połączenia nie zostały usunięte. Sprawdź połączenie i spróbuj ponownie.</item>
-        <item quantity="many">Niektóre linki połączenia nie zostały usunięte. Sprawdź połączenie i spróbuj ponownie.</item>
-        <item quantity="other">Niektóre linki połączenia nie zostały usunięte. Sprawdź połączenie i spróbuj ponownie.</item>
+        <item quantity="one">Nie udało się usunąć linku. Sprawdź połączenie z internetem i spróbuj ponownie.</item>
+        <item quantity="few">Nie udało się usunąć niektórych linków. Sprawdź połączenie z internetem i spróbuj ponownie.</item>
+        <item quantity="many">Nie udało się usunąć niektórych linków. Sprawdź połączenie z internetem i spróbuj ponownie.</item>
+        <item quantity="other">Nie udało się usunąć niektórych linków. Sprawdź połączenie z internetem i spróbuj ponownie.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Historia połączeń wyczyszczona</string>
     <!-- Dialog title to clear all call events -->
     <string name="CallLogFragment__clear_call_history_question">Wyczyścić historię połączeń?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Cała historia połączeń zostanie permanentnie skasowana</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Cała historia połączeń zostanie trwale usunięta</string>
     <!-- Action bar menu item to delete all call events -->
     <string name="CallLogFragment__clear_call_history">Wyczyść historię połączeń</string>
     <!-- Action bar menu item to only display missed calls -->
@@ -7987,10 +7987,10 @@
     <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Usuń</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Skasować %1$d połączenie?</item>
-        <item quantity="few">Skasować %1$d połączenia?</item>
-        <item quantity="many">Skasować %1$d połączeń?</item>
-        <item quantity="other">Skasować %1$d połączenia ?</item>
+        <item quantity="one">Usunąć %1$d połączenie?</item>
+        <item quantity="few">Usunąć %1$d połączenia?</item>
+        <item quantity="many">Usunąć %1$d połączeń?</item>
+        <item quantity="other">Usunąć %1$d połączenia?</item>
     </plurals>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
@@ -8004,7 +8004,7 @@
     <!-- Shown during empty state -->
     <string name="CallLogFragment__get_started_by_calling_a_friend">Może do kogoś zadzwonisz?</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
-    <string name="CallLogFragment__call_links_youve_created">Utworzone przez Ciebie linki do połączenia nie będą już działały u osób, które je mają.</string>
+    <string name="CallLogFragment__call_links_youve_created">Utworzone przez Ciebie linki do połączeń przestaną działać u innych osób.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -8022,9 +8022,9 @@
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofon wyłączony</string>
     <!-- Displayed when the user turns on their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_on">Głośnik wł</string>
+    <string name="CallStateUpdatePopupWindow__speaker_on">Głośnik włączony</string>
     <!-- Displayed when the user turns off their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_off">Głośnik wył.</string>
+    <string name="CallStateUpdatePopupWindow__speaker_off">Głośnik wyłączony</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Przycisk „Zrób zdjęcie”</string>
@@ -8039,7 +8039,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Nieodebrane połączenie grupowe</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Nieodebrane połączenie grupowe przy włączonym profilu powiadomień</string>
+    <string name="CallPreference__missed_group_call_notification_profile">Nieodebrane połączenie grupowe, podczas gdy włączony był profil powiadomień</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Przychodzące połączenie grupowe</string>
     <!-- Outgoing group call in call info -->
@@ -8051,17 +8051,17 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Udostępnij link do połączenia Signal</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Użyj tego linku, by dołączyć do połączenia Signal: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Aby dołączyć do połączenia Signal, użyj tego linku: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->
     <string name="CallLinkInfoSheet__call_info">Informacje o połączeniu</string>
     <!-- Dialog title for removing or blocking participants -->
-    <string name="CallLinkInfoSheet__remove_s_from_the_call">Usunąć z połączenia użytkownika %1$s?</string>
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Usunąć z rozmowy tę osobę: %1$s?</string>
     <!-- Dialog action to remove participant from the call -->
     <string name="CallLinkInfoSheet__remove">Usuń</string>
     <!-- Dialog action to block participant from the call -->
-    <string name="CallLinkInfoSheet__block_from_call">Zablokuj połączenie dla użytkownika</string>
+    <string name="CallLinkInfoSheet__block_from_call">Zablokuj dołączanie do rozmowy</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -8075,25 +8075,25 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edytuj nazwę połączenia</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Wymagaj potwierdzenia administratora</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Wymagaj zatwierdzenia przez administratora</string>
     <!-- Row label to share the link via Signal -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Udostępnij link za pomocą Signal</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Udostępnij link w aplikacji Signal</string>
     <!-- Row label to copy the link to the clipboard -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">Kopiuj link</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">Skopiuj link</string>
     <!-- Row label to share the link with the external share sheet -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link">Udostępnij link</string>
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Gotowe</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Nie udało się udostępnić linku do połączenia.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Nie można udostępnić linku do połączenia.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Skopiowano do schowka</string>
 
     <!-- CallLinkIncomingRequestSheet -->
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__approve_entry">Zatwierdź wejście</string>
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Wpuść</string>
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__deny_entry">Odrzuć wejście</string>
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Odrzuć</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -8122,11 +8122,11 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Dodaj nazwę połączenia</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__require_admin_approval">Wymagaj potwierdzenia administratora</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">Wymagaj zatwierdzenia przez administratora</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Udostępnij link</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Skasuj link połączenia</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Usuń link do połączenia</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Nie udało się zapisać zmian. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
     <!-- Displayed whenever an admin update fails with a 409. -->
@@ -8145,19 +8145,19 @@
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">Kolor</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Udostępniaj swój kod QR wyłącznie zaufanym osobom. Po udostępnieniu inni będą mogli zobaczyć Twoją nazwę użytkownika i rozpocząć z Tobą czat.</string>
+    <string name="UsernameLinkSettings_qr_description">Udostępniaj swój kod QR i link tylko zaufanym osobom. Po udostępnieniu inni będą mogli wyświetlić Twoją nazwę użytkownika i rozpocząć z Tobą czat.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Skopiowano nazwę użytkownika</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Nazwa użytkownika skopiowana</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Skopiowano link</string>
+    <string name="UsernameLinkSettings_link_copied_toast">Link skopiowany</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link nie został ustawiony</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Nie masz ustawionego linku</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">Resetowanie linku…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Zresetować kod QR?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">Jeśli zresetujesz kod QR, Twój obecny kod QR i link nie będą działały.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Jeśli zresetujesz kod QR, Twój obecny kod QR wraz z linkiem przestaną działać.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Zresetuj</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
@@ -8169,48 +8169,48 @@
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Skanuj</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Zeskanuj kod QR na urządzeniu Twojego kontaktu.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Zeskanuj kod QR na urządzeniu kontaktu.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Kolor</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">Nieprawidłowy kod QR.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">Nie udało się znaleźć użytkownika o nazwie %1$s.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">Nie udało się znaleźć osoby o nazwie użytkownika %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">Nie udało się znaleźć tego użytkownika.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Wystąpił błąd sieci. Spróbuj ponownie.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nie masz dostępu do sieci. Twój link nie został zresetowany. Spróbuj ponownie później.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nie masz połączenia z siecią. Link nie został zresetowany. Spróbuj ponownie później.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">W trakcie próby zresetowania linku wystąpił błąd sieci. Spróbuj ponownie później.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Podczas resetowania linku wystąpił błąd sieci. Spróbuj ponownie później.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">W trakcie próby zresetowania linku wystąpił nieoczekiwany błąd. Spróbuj ponownie później.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Podczas resetowania linku wystąpił nieoczekiwany błąd. Spróbuj ponownie później.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">Twój kod QR i link zostały zresetowane. Utworzono nowy kod QR i link.</string>
+    <string name="UsernameLinkSettings_reset_link_result_success">Kod QR i link zostały zresetowane. Utworzono nowy kod QR i nowy link.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
-    <string name="UsernameLinkSettings_scan_this_qr_code">Aby rozmawiać ze mną w Signal, zeskanuj kod QR za pomocą swojego telefonu.</string>
+    <string name="UsernameLinkSettings_scan_this_qr_code">Zeskanuj ten kod QR swoim telefonem, aby rozpocząć ze mną czat w aplikacji Signal.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">Nie znaleziono kodu QR</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">Nie wykryto kodu QR</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Spróbuj zeskanować inny obraz zawierający kod QR z Signal.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Spróbuj zeskanować inny obraz zawierający kod QR z aplikacji Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Każdy posiadacz tego linku może zobaczyć Twoją nazwę użytkownika i rozpocząć czat z Tobą. Udostępniaj go tylko zaufanym osobom.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Każdy, kto ma ten link, może wyświetlić Twoją nazwę użytkownika i rozpocząć z Tobą czat. Udostępniaj link tylko zaufanym osobom.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Kopiuj link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">Skopiuj link</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
     <string name="UsernameLinkShareBottomSheet_share">Udostępnij</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">Chciał(a)by dołączyć…</string>
+    <string name="PendingParticipantsView__would_like_to_join">Prosi o dołączenie…</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
-        <item quantity="one">+%1$d prośba</item>
-        <item quantity="few">+%1$d prośby</item>
-        <item quantity="many">+%1$d próśb</item>
-        <item quantity="other">+%1$d prośby</item>
+        <item quantity="one">+ %1$d prośba</item>
+        <item quantity="few">+ %1$d prośby</item>
+        <item quantity="many">+ %1$d próśb</item>
+        <item quantity="other">+ %1$d prośby</item>
     </plurals>
 
     <!-- PendingParticipantsBottomSheet -->
@@ -8218,15 +8218,15 @@
     <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Prośby o dołączenie do rozmowy</string>
     <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
     <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
-        <item quantity="one">%1$d osoba oczekuje</item>
-        <item quantity="few">%1$d osoby oczekują</item>
-        <item quantity="many">%1$d osób oczekuje</item>
-        <item quantity="other">%1$d osoby oczekuje</item>
+        <item quantity="one">Czeka %1$d osoba</item>
+        <item quantity="few">Czekają %1$d osoby</item>
+        <item quantity="many">Czeka %1$d osób</item>
+        <item quantity="other">Czeka %1$d osoby</item>
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">Odrzuć</string>
     <!-- Content description for confirming a user -->
-    <string name="PendingParticipantsBottomSheet__approve">Zaakceptuj</string>
+    <string name="PendingParticipantsBottomSheet__approve">Zatwierdź</string>
     <!-- Button text to allow all participants to join the call -->
     <string name="PendingParticipantsBottomSheet__approve_all">Zaakceptuj wszystkie</string>
     <!-- Button text to deny all participants from joining the call -->
@@ -8271,7 +8271,7 @@
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Włączyć powiadomienia pełnoekranowe?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_body">Spraw, by nie ominęło Cię żadne połączenie od kontaktów i grup.</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_body">Nie przegap żadnego połączenia od kontaktu lub grupy.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Włącz</string>
     <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
@@ -8284,21 +8284,21 @@
     <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Zezwól na powiadomienia pełnoekranowe</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
-    <string name="MonthlyDonationCanceled__title">Comiesięczna darowizna została anulowana</string>
+    <string name="MonthlyDonationCanceled__title">Comiesięczna darowizna anulowana</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Twoja comiesięczna darowizna została anulowana. %1$s\n\nOdznaka nie jest już widoczna na Twoim profilu. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">Twoja comiesięczna darowizna została anulowana. %1$s\n\nOdznaka nie wyświetla się już w Twoim profilu.%2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">Dowiedz się więcej</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
-    <string name="MonthlyDonationCanceled__renew_button">Odnów subskrypcję</string>
+    <string name="MonthlyDonationCanceled__renew_button">Ponów darowiznę cykliczną</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">Nie teraz</string>
 
     <!-- FindByActivity -->
     <!-- Title of activity when finding by username -->
-    <string name="FindByActivity__find_by_username">Znajdź po nazwie użytkownika</string>
+    <string name="FindByActivity__find_by_username">Wyszukaj po nazwie użytkownika</string>
     <!-- Title of activity when finding by phone number -->
-    <string name="FindByActivity__find_by_phone_number">Znajdź po numerze telefonu</string>
+    <string name="FindByActivity__find_by_phone_number">Wyszukaj po numerze telefonu</string>
     <!-- Title of screen to select a country code -->
     <string name="FindByActivity__select_country_code">Wybierz kod kraju</string>
     <!-- Entry placeholder for find by username -->
@@ -8306,42 +8306,42 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Numer telefonu</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Wprowadź nazwę użytkownika, a następnie kropkę i zestaw cyfr.</string>
+    <string name="FindByActivity__enter_username_description">Wpisz nazwę użytkownika, kropkę i zestaw cyfr.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Dalej</string>
     <!-- Placeholder text for search input for selecting country code -->
-    <string name="FindByActivity__search">Szukaj</string>
+    <string name="FindByActivity__search">Wyszukaj</string>
     <!-- Dialog title for invalid username -->
     <string name="FindByActivity__invalid_username">Nieprawidłowa nazwa użytkownika</string>
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">Nieprawidłowy numer telefonu</string>
     <!-- Dialog title when phone number is not a registered signal user -->
-    <string name="FindByActivity__invite_to_signal">Zaproś do Signal</string>
+    <string name="FindByActivity__invite_to_signal">Zaproś do aplikacji Signal</string>
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Nie znaleziono nazwy użytkownika</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">Nazwa użytkownika %1$s jest nieprawidłowa. Upewnij się, że wprowadzasz pełną nazwę użytkownika wraz z ciągiem cyfr.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s to nieprawidłowa nazwa użytkownika. Upewnij się, że wprowadzasz pełną nazwę użytkownika wraz z zestawem cyfr.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
-    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s to nie jest prawidłowy numer telefonu. Spróbuj ponownie, podając prawidłowy numer.</string>
+    <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s to nieprawidłowy numer telefonu. Spróbuj podać numer jeszcze raz.</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" nie jest użytkownikiem Signal. Sprawdź nazwę użytkownika i spróbuj ponownie.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">%1$s nie jest nazwą użytkownika aplikacji Signal. Podaj poprawną nazwę i spróbuj ponownie.</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s nie jest użytkownikiem Signal. Chcesz zaprosić ten numer?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s nie używa aplikacji Signal. Chcesz wysłać na ten numer zaproszenie?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Zaproś</string>
     <!-- Button label for a button that will launch a camera to scan a username QR code -->
-    <string name="FindByActivity__qr_scan_button">Skanuj kod QR</string>
+    <string name="FindByActivity__qr_scan_button">Zeskanuj kod QR</string>
     <!-- Content of a dialog indicating that we could not perform the requested action because we encountered a network error. -->
     <string name="FindByActivity__network_error_dialog">Wystąpił błąd sieci. Spróbuj później.</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">Połączone urządzenie nieaktywne</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">Nieaktywne połączone urządzenie</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="one">Aby zachować połączenie z %1$s, otwórz Signal na tym urządzeniu w ciągu %2$d dnia.</item>
-        <item quantity="few">Aby zachować połączenie z %1$s, otwórz Signal na tym urządzeniu w ciągu %2$d dni.</item>
-        <item quantity="many">Aby zachować połączenie z %1$s, otwórz Signal na tym urządzeniu w ciągu %2$d dni.</item>
-        <item quantity="other">Aby zachować połączenie z %1$s, otwórz Signal na tym urządzeniu w ciągu %2$d dni.</item>
+        <item quantity="one">Aby zachować połączenie z urządzeniem %1$s, otwórz na nim Signal w ciągu %2$d dnia.</item>
+        <item quantity="few">Aby zachować połączenie z urządzeniem %1$s, otwórz na nim Signal w ciągu %2$d dni.</item>
+        <item quantity="many">Aby zachować połączenie z urządzeniem %1$s, otwórz na nim Signal w ciągu %2$d dni.</item>
+        <item quantity="other">Aby zachować połączenie z urządzeniem %1$s, otwórz na nim Signal w ciągu %2$d dnia.</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
     <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">Nie przypominaj mi</string>
@@ -8352,7 +8352,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">Pseudonim</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Pseudonimy i notatki są przechowywane przez Signal za pomocą usługi szyfrowania typu end-to-end. Są one widoczne tylko dla Ciebie.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Pseudonimy i notatki są przechowywane w aplikacji Signal oraz szyfrowane metodą end-to-end. Są widoczne tylko dla Ciebie.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">Imię</string>
     <!-- Content description for first name clear button -->
@@ -8368,7 +8368,7 @@
     <!-- Dialog title for note and name deletion -->
     <string name="NicknameActivity__delete_nickname">Usunąć?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Spowoduje to trwałe usunięcie pseudonimu i notatki.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Pseudonim i notatka dodane wcześniej zostaną trwale usunięte.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
@@ -8384,16 +8384,16 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Twoja usługa tworzenia kopii zapasowych wygasła</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Subskrypcja tworzenia kopii zapasowych wygasła</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
-        <item quantity="one">Usługa tworzenia kopii zapasowych wygasła, ponieważ nie mogliśmy jej odnowić za pomocą Twojej bieżącej metody płatności. Po upływie %1$d dnia multimedia z kopii zapasowej zostaną usunięte.</item>
-        <item quantity="few">Usługa tworzenia kopii zapasowych wygasła, ponieważ nie mogliśmy jej odnowić za pomocą Twojej bieżącej metody płatności. Po upływie %1$d dni multimedia z kopii zapasowej zostaną usunięte.</item>
-        <item quantity="many">Usługa tworzenia kopii zapasowych wygasła, ponieważ nie mogliśmy jej odnowić za pomocą Twojej bieżącej metody płatności. Po upływie %1$d dni multimedia z kopii zapasowej zostaną usunięte.</item>
-        <item quantity="other">Usługa tworzenia kopii zapasowych wygasła, ponieważ nie mogliśmy jej odnowić za pomocą Twojej bieżącej metody płatności. Po upływie %1$d dnia multimedia z kopii zapasowej zostaną usunięte.</item>
+        <item quantity="one">Subskrypcja tworzenia kopii zapasowych wygasła, ponieważ nie można było jej odnowić za pomocą podanej metody płatności. Multimedia zawarte w kopii zapasowej zostaną usunięte za %1$d dzień.</item>
+        <item quantity="few">Subskrypcja tworzenia kopii zapasowych wygasła, ponieważ nie można było jej odnowić za pomocą podanej metody płatności. Multimedia zawarte w kopii zapasowej zostaną usunięte za %1$d dni.</item>
+        <item quantity="many">Subskrypcja tworzenia kopii zapasowych wygasła, ponieważ nie można było jej odnowić za pomocą podanej metody płatności. Multimedia zawarte w kopii zapasowej zostaną usunięte za %1$d dni.</item>
+        <item quantity="other">Subskrypcja tworzenia kopii zapasowych wygasła, ponieważ nie można było jej odnowić za pomocą podanej metody płatności. Multimedia zawarte w kopii zapasowej zostaną usunięte za %1$d dnia.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
-    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">W dowolnym momencie możesz wznowić uiszczanie opłaty za dalsze tworzenie kopii zapasowych wszystkich multimediów. </string>
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">W każdej chwili możesz wznowić płatność za dalsze tworzenie kopii zapasowych wszystkich multimediów. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__download_your_backup_data_today">Pobierz dane kopii zapasowej jeszcze dziś</string>
     <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
@@ -8407,9 +8407,9 @@
     <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
     <string name="BackupAlertBottomSheet__to_free_up_space_offload">Aby zwolnić miejsce, przenieś nieużywane aplikacje lub duże pliki do chmury albo je usuń.</string>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Nie udało się odnowić usługi kopii zapasowych</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Nie udało się odnowić subskrypcji kopii zapasowych</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Upewnij się, że dane dotyczące Twojej wybranej metody płatności są aktualne. Kliknij Zarządzaj subskrypcją, a w sekcji Metody płatności kliknij Aktualizuj.</string>
+    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Upewnij się, że podana metoda płatności jest aktualna. Dotknij opcji „Zarządzaj subskrypcją”, a potem w sekcji „Formy płatności” wybierz „Zaktualizuj”.</string>
     <!-- Sheet title for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Twoja subskrypcja kopii zapasowych wygasła</string>
     <!-- Sheet body part 1 for when user falls out of grace period -->
@@ -8417,7 +8417,7 @@
     <!-- Sheet body part 2 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Tymczasem możesz korzystać z bezpłatnego trybu tworzenia bezpiecznych kopii zapasowych Signal.</string>
     <!-- Sheet title for generic backup error -->
-    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Nie udało się ukończyć tworzenia kopii zapasowej</string>
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Nie udało się utworzyć kopii zapasowej</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
     <plurals name="BackupAlertBottomSheet__your_device_hasnt">
         <item quantity="one">Od czasu utworzenia ostatniej kopii zapasowej minął już %1$d dzień. Upewnij się, że urządzenie jest podłączone do Wi-Fi, i dotknij opcji „Utwórz kopię teraz”. </item>
@@ -8440,7 +8440,7 @@
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">Zarządzaj subskrypcją</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
-    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Subskrybuj usługę za %1$s/mies.</string>
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Subskrybuj za %1$s miesięcznie</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_backup_now">Pobierz kopię zapasową</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
@@ -8452,7 +8452,7 @@
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Multimedia zostaną usunięte</string>
     <!-- Dialog message for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Multimedia przechowywane w kopii zapasowej zostaną dziś trwale usunięte. To Twoja ostatnia szansa na ich pobranie.</string>
+    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Multimedia z Twojej kopii zapasowej zostaną dziś trwale usunięte. To ostatni moment na ich pobranie.</string>
     <!-- Dialog action to download now -->
     <string name="BackupAlertBottomSheet__download">Pobierz</string>
     <!-- Dialog action to not download now -->
@@ -8512,11 +8512,11 @@
     <string name="BackupStatus__upload_complete">Kopia zapasowa utworzona</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatus__status_waiting_for_wifi">Czekamy na Wi-Fi…</string>
+    <string name="BackupStatus__status_waiting_for_wifi">Oczekiwanie na Wi-Fi…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
     <string name="BackupStatus__status_no_internet">Brak internetu…</string>
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
-    <string name="BackupStatus__status_device_has_low_battery">Urządzenie ma słabą baterię</string>
+    <string name="BackupStatus__status_device_has_low_battery">Niski poziom naładowania baterii</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s z %2$s</string>
     <!-- Label for a context menu item that, when pressed, will hide a banner so it will no longer be shown. -->
@@ -8536,7 +8536,7 @@
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">Przywracanie wstrzymane: niski poziom naładowania baterii</string>
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Trwa pobieranie: %1$s z %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">Pobieranie %1$s z %2$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
     <string name="BackupStatusRow__download_waiting_for_wifi">Pobieranie wstrzymane: oczekiwanie na Wi-Fi…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
@@ -8544,7 +8544,7 @@
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
     <string name="BackupStatusRow__download_device_has_low_battery">Pobieranie wstrzymane: niski poziom naładowania baterii</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Za mało miejsca, aby pobrać kopię zapasową. Aby kontynuować, zwolnij %1$s miejsca.</string>
+    <string name="BackupStatusRow__not_enough_space">Za mało miejsca, aby pobrać kopię zapasową. Jeśli chcesz kontynuować, zwolnij %1$s miejsca.</string>
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">Pomiń pobieranie</string>
     <!-- Text displayed when a backup could not be completed -->
@@ -8588,7 +8588,7 @@
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Nieznany</string>
+    <string name="BackupsTypeSettingsFragment__unknown">Brak</string>
     <!-- Row title for entering payment history -->
     <string name="BackupsTypeSettingsFragment__payment_history">Historia płatności</string>
     <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
@@ -8624,50 +8624,50 @@
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Limity wiadomości</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">Limity w czatach</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
     <string name="ManageStorageSettingsFragment_delete_message_history">Usuń historię wiadomości</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Wiadomości starsze niż wybrany limit zostaną trwale usunięte.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Wiadomości, które są w czacie dłużej niż przez wybrany wyżej czas, zostaną trwale usunięte.</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Wszystkie wiadomości wykraczające poza wybrany limit zostaną trwale usunięte.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Wiadomości, które wykraczają poza wybrany wyżej limit, zostaną trwale usunięte.</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Zastosuj limity do powiązanych urządzeń</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Stosuj limity do połączonych urządzeń</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">Po włączeniu limity czatu będą również usuwać wiadomości z powiązanych urządzeń.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Gdy ta opcja jest włączona, limity w czatach powodują usuwanie wiadomości również na połączonych urządzeniach.</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Pamięć masowa na urządzeniu</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Pamięć na urządzeniu</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Zoptymalizuj pamięć masową na urządzeniu</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optymalizuj pamięć na urządzeniu</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nieużywane multimedia zostaną usunięte z urządzenia, ale w dowolnym momencie można je będzie pobrać z kopii zapasowej.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nieużywane multimedia będą usuwane z urządzenia, ale w każdej chwili można je pobrać z kopii zapasowej.</string>
     <!-- Dialog message for paid tier pending dialog -->
     <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optymalizacja pamięci jest dostępna tylko w płatnym trybie tworzenia bezpiecznych kopii zapasowych Signal. Twoja subskrypcja kopii zapasowych jest jeszcze przetwarzana i nieaktywna. Spróbuj ponownie później.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Ulepsz wersję, aby włączyć tę funkcję</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Subskrybuj, aby włączyć tę funkcję</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Optymalizacja pamięci jest dostępna tylko w płatnym trybie tworzenia bezpiecznych kopii zapasowych Signal. Aby korzystać z tej funkcji, wykup płatny tryb tworzenia kopii zapasowych.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Subskrybuj usługę za %1$s/mies.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Subskrybuj za %1$s miesięcznie</string>
 
     <!-- UpgradeToStartMediaBackupSheet -->
     <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
-    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">Te multimedia nie są już dostępne.</string>
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">Te multimedia nie są już dostępne</string>
     <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
     <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
-        <item quantity="one">W ramach Twojej bieżącej usługi masz utworzoną kopię zapasową Signal multimediów z ostatniego %1$d dnia. Aby rozpocząć tworzenie kopii zapasowych wszystkich multimediów, wykup usługę.</item>
-        <item quantity="few">W ramach Twojej bieżącej usługi masz utworzoną kopię zapasową Signal multimediów z ostatnich %1$d dni. Aby rozpocząć tworzenie kopii zapasowych wszystkich multimediów, wykup usługę.</item>
-        <item quantity="many">W ramach Twojej bieżącej usługi masz utworzoną kopię zapasową Signal multimediów z ostatnich %1$d dni. Aby rozpocząć tworzenie kopii zapasowych wszystkich multimediów, wykup usługę.</item>
-        <item quantity="other">W ramach Twojej bieżącej usługi masz utworzoną kopię zapasową Signal multimediów z ostatnich %1$d dni. Aby rozpocząć tworzenie kopii zapasowych wszystkich multimediów, wykup usługę.</item>
+        <item quantity="one">W obecnym trybie Signal tworzy kopię zapasową multimediów z ostatniego dnia. Aby tworzyć kopie zapasowe wszystkich multimediów, wykup subskrypcję.</item>
+        <item quantity="few">W obecnym trybie Signal tworzy kopię zapasową multimediów z ostatnich %1$d dni. Aby tworzyć kopie zapasowe wszystkich multimediów, wykup subskrypcję.</item>
+        <item quantity="many">W obecnym trybie Signal tworzy kopię zapasową multimediów z ostatnich %1$d dni. Aby tworzyć kopie zapasowe wszystkich multimediów, wykup subskrypcję.</item>
+        <item quantity="other">W obecnym trybie Signal tworzy kopię zapasową multimediów z ostatnich %1$d dni. Aby tworzyć kopie zapasowe wszystkich multimediów, wykup subskrypcję.</item>
     </plurals>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
-    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Subskrybuj usługę za %1$s/mies.</string>
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Subskrybuj za %1$s miesięcznie</string>
 
     <!-- MediaNoLongerAvailableSheet -->
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
-    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Te multimedia nie są już dostępne.</string>
+    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Te multimedia nie są już dostępne</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
     <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Aby tworzyć kopie zapasowe wszystkich multimediów, włącz usługę bezpiecznych kopii zapasowych Signal i wybierz tryb płatny.</string>
     <!-- Primary action button on bottom sheet -->
@@ -8676,9 +8676,9 @@
     <string name="MediaNoLongerAvailableSheet__not_now">Nie teraz</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Usuwanie jest teraz synchronizowane na wszystkich Twoich urządzeniach</string>
+    <string name="DeleteSyncEducation_title">Usuwanie zsynchronizowane na wszystkich urządzeniach</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Gdy usuniesz wiadomości lub czaty, zostaną one usunięte z telefonu i powiązanych urządzeń.</string>
+    <string name="DeleteSyncEducation_message">Gdy usuniesz wiadomości lub czaty, zostaną one usunięte z Twojego telefonu, a także z połączonych z nim urządzeń.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
@@ -8708,11 +8708,11 @@
     <!-- Subtitle for row for canceled backup -->
     <string name="BackupsSettingsFragment__subscription_canceled">Subskrypcja anulowana</string>
     <!-- Subtitle for row for no backup ever created -->
-    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatyczne tworzenie kopii zapasowych w bezpiecznej, w pełni szyfrowanej usłudze przechowywania danych Signal.</string>
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatyczne tworzenie kopii zapasowych w bezpiecznej usłudze przechowywania Signal z szyfrowaniem end-to-end.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subskrypcja jest nieaktywna na tym urządzeniu."</string>
     <!-- Action button label to set up backups -->
-    <string name="BackupsSettingsFragment_set_up">Ustaw</string>
+    <string name="BackupsSettingsFragment_set_up">Skonfiguruj</string>
     <!-- Action button label to open remote backup settings -->
     <string name="BackupsSettingsFragment_view_settings">Pokaż ustawienia</string>
 
@@ -8761,23 +8761,23 @@
         <item quantity="other">Kopia zapasowa zawiera wszystkie wiadomości tekstowe, a także multimedia z ostatnich %1$d dni. Rozmiar kopii będzie się zmieniać w miarę zapisywania w niej nowych multimediów i wygasania tych starszych.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Kopia zapasowa usunięta i wyłączona.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Kopia zapasowa usunięta i tworzenie kolejnych wyłączone.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
-    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Zmieniono typ kopii zapasowej i anulowano subskrypcję</string>
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Zmieniono tryb tworzenia kopii zapasowych i anulowano subskrypcję</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
     <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subskrypcja anulowana</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
-    <string name="RemoteBackupsSettingsFragment__download_complete">Pobieranie ukończone</string>
+    <string name="RemoteBackupsSettingsFragment__download_complete">Pobieranie zakończone</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
-    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Kopia zapasowa będzie tworzona codziennie w nocy.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Kopia zapasowa będzie tworzona w nocy.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
     <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Nowy kod odzyskiwania utworzony</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subskrypcja nieaktywna</string>
     <!-- Text displayed in card when free tier is inactive -->
-    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">Wyłączono tworzenie kopii zapasowych</string>
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">Tworzenie kopii zapasowych wyłączone</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_plan">Tryb tworzenia kopii zapasowej</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">Tryb tworzenia kopii zapasowych</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Kopie zapasowe wyłączone</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
@@ -8787,25 +8787,25 @@
     <!-- Displayed in card while waiting for network -->
     <string name="RemoteBackupsSettingsFragment__waiting_for_network">Oczekiwanie na sieć…</string>
     <!-- String for free backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Korzystasz z bezpłatnego trybu tworzenia kopii zapasowej</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Korzystasz z bezpłatnego trybu tworzenia kopii zapasowych</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">Odnowi się %1$s</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__expires_on_s">Wygasa %1$s</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expired_on_s">Wygasła %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">Subskrypcja wygasła %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
-    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Twórz kopie zapasowe wiadomości, aby ich nie stracić nawet po zmianie telefonu czy ponownej instalacji Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Twórz kopie zapasowe wiadomości, aby ich nie stracić, nawet gdy zmienisz telefon lub zainstalujesz ponownie aplikację Signal.</string>
     <!-- Section header for other ways to back up -->
     <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Inne metody tworzenia kopii zapasowych</string>
     <!-- Row title for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__on_device_backups">Kopie zapasowe na urządzeniu</string>
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">Lokalne kopie zapasowe</string>
     <!-- Row label for performing on-device backup -->
     <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Zapisuj kopie zapasowe w folderze na tym urządzeniu</string>
     <!-- Button label to manage or cancel backups -->
     <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Zarządzaj lub anuluj</string>
     <!-- button label to upgrade backups -->
-    <string name="RemoteBackupsSettingsFragment__upgrade">Aktualizuj</string>
+    <string name="RemoteBackupsSettingsFragment__upgrade">Subskrybuj</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
@@ -8823,13 +8823,13 @@
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Subskrypcja zostanie anulowana i nie będziemy już pobierać od Ciebie opłat. Usuniemy Twoją kopię zapasową, a żadne kolejne nie zostaną utworzone. Multimedia przechowywane w kopii zapasowej zostaną teraz pobrane na Twój telefon.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Wyłącz i usuń</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Usuń i wyłącz</string>
     <!-- Text on dialog while user backup is being deleted -->
-    <string name="RemoteBackupsSettingsFragment__deleting_backup">Trwa usuwanie kopii zapasowej…</string>
+    <string name="RemoteBackupsSettingsFragment__deleting_backup">Usuwanie kopii zapasowej…</string>
     <!-- Text on dialog when user backup is deleted -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted">Usunięto kopię zapasową</string>
+    <string name="RemoteBackupsSettingsFragment__backup_deleted">Kopia zapasowa usunięta</string>
     <!-- Subtitle for frequency option MANUAL for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"Stuknij opcję Archiwizuj teraz"</string>
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"Dotknij opcji „Utwórz kopię teraz”"</string>
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__daily">Codziennie</string>
     <!-- Title for frequency option DAILY for backup frequency -->
@@ -8839,15 +8839,15 @@
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Ręczne tworzenie kopii zapasowej</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
-    <string name="PassphrasePromptActivity_help_prompt_body">Wprowadź kod PIN urządzenia, hasło lub wzór.</string>
+    <string name="PassphrasePromptActivity_help_prompt_body">Podaj PIN, hasło lub wzór dostępu do urządzenia.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Włącz ponownie</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Włącz z powrotem</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Tworzenie kopii zapasowych zostało wyłączone, a Twoje dane zostały usunięte z usługi bezpiecznego przechowywania Signal.</string>
     <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Trwa pobieranie kopii zapasowej</string>
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Pobieranie kopii zapasowej</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">W przypadku dużej ilości danych proces tworzenia kopii zapasowej może zająć sporo czasu. Podczas pobierania możesz normalnie korzystać z telefonu.</string>
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Jeśli kopia zapasowa jest duża, może to zająć sporo czasu. Podczas pobierania możesz normalnie korzystać z telefonu.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
     <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Subskrypcja jest nieaktywna na tym urządzeniu. Aby dalej korzystać z usługi bezpiecznych kopii zapasowych Signal, odnów subskrypcję.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
@@ -8888,10 +8888,10 @@
     <string name="RemoteBackupsSettingsFragment__skip_download_question">Pominąć pobieranie?</string>
     <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
-        <item quantity="one">Jeśli pominiesz pobieranie, pozostałe multimedia i załączniki z kopii zapasowej zostaną usunięte w ciągu %1$d dnia.</item>
-        <item quantity="few">Jeśli pominiesz pobieranie, pozostałe multimedia i załączniki z kopii zapasowej zostaną usunięte w ciągu %1$d dni.</item>
-        <item quantity="many">Jeśli pominiesz pobieranie, pozostałe multimedia i załączniki z kopii zapasowej zostaną usunięte w ciągu %1$d dni.</item>
-        <item quantity="other">Jeśli pominiesz pobieranie, pozostałe multimedia i załączniki z kopii zapasowej zostaną usunięte w ciągu %1$d dni.</item>
+        <item quantity="one">Jeśli pominiesz pobieranie kopii zapasowej, pamiętaj, że pozostałe multimedia i załączniki zostaną usunięte jutro.</item>
+        <item quantity="few">Jeśli pominiesz pobieranie kopii zapasowej, pamiętaj, że pozostałe multimedia i załączniki zostaną usunięte za %1$d dni.</item>
+        <item quantity="many">Jeśli pominiesz pobieranie kopii zapasowej, pamiętaj, że pozostałe multimedia i załączniki zostaną usunięte za %1$d dni.</item>
+        <item quantity="other">Jeśli pominiesz pobieranie kopii zapasowej, pamiętaj, że pozostałe multimedia i załączniki zostaną usunięte za %1$d dnia.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
     <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Jeśli pominiesz pobieranie, pozostałe multimedia i załączniki z kopii zapasowej zostaną trwale usunięte. Nie będzie można ich odzyskać.</string>
@@ -8906,7 +8906,7 @@
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Nie udało się usunąć kopii zapasowej i wyłączyć tworzenia kolejnych</string>
     <!-- Dialog body for network error while trying to disable backups -->
-    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Błąd sieci. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
+    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Wystąpił błąd sieci. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Przesyłanie: %1$s z %2$s(%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
@@ -8981,9 +8981,9 @@
     <!-- Displayed below title on bottom sheet -->
     <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">Oto możliwe powody:</string>
     <!-- First item in a bulleted list of reasons -->
-    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">Jesteś zalogowany(-a) do sklepu Google Play przy użyciu innego konta Google.</string>
+    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">Logujesz się do sklepu Google Play przy użyciu innego konta Google niż wcześniej.</string>
     <!-- Second item in a bulleted list of reasons -->
-    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">Przeniosłeś(-aś) się z iPhone\'a.</string>
+    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">Przenosisz się na to urządzenie z iPhone\'a.</string>
     <!-- Third item in a bulleted list of reasons -->
     <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">Twoja subskrypcja niedawno wygasła.</string>
     <!-- Note underneath bullet points -->
@@ -8991,7 +8991,7 @@
     <!-- Action button label to acknowledge and dismiss sheet -->
     <string name="SubscriptionNotFoundBottomSheet__got_it">Rozumiem</string>
     <!-- Action button label to contact support -->
-    <string name="SubscriptionNotFoundBottomSheet__contact_support">Kontakt z działem technicznym</string>
+    <string name="SubscriptionNotFoundBottomSheet__contact_support">Skontaktuj się z pomocą techniczną</string>
 
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
@@ -9077,9 +9077,9 @@
     <!-- Bottom sheet title -->
     <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Zapisz kod w bezpiecznym miejscu</string>
     <!-- Bottom sheet subtitle -->
-    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Jeśli zgubisz kod, Signal nie będzie mógł Ci pomóc w przywróceniu kopii zapasowej. Przechowuj kod w bezpiecznym miejscu i nie udostępniaj innym osobom.</string>
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Jeśli go zgubisz, Signal nie będzie mógł Ci pomóc w przywróceniu kopii zapasowej. Przechowuj swój kod w bezpiecznym miejscu. Nie udostępniaj kodu innym osobom.</string>
     <!-- Checkbox label -->
-    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">Kod zapisany</string>
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">Kod został przeze mnie zapisany</string>
     <!-- Sheet action button label -->
     <string name="MessageBackupsKeyRecordScreen__continue">Kontynuuj</string>
     <!-- Sheet secondary action button label -->
@@ -9137,7 +9137,7 @@
     <!-- Screen headline -->
     <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Wybierz tryb tworzenia kopii zapasowych</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Wszystkie kopie zapasowe są szyfrowane metodą end-to-end. Signal jest organizacją non-profit — płacąc za tworzenie kopii zapasowych, wspierasz naszą misję.</string>
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Kopie zapasowe są szyfrowane metodą end-to-end. Signal jest organizacją non-profit. Opłata za tworzenie kopii zapasowych to wsparcie w realizacji naszej misji.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Dowiedz się więcej</string>
     <!-- Primary action button label without a current selection -->
@@ -9147,43 +9147,43 @@
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Subskrybuj za %1$s/mies.</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Zmień typ kopii zapasowej</string>
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Zmień tryb kopii zapasowych</string>
     <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
     <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">Więcej informacji o tym trybie</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Anuluj subskrypcję</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Tryb bezpłatny</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">Za darmo</string>
     <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
     <string name="MessageBackupsTypeSelectionScreen__paid">Tryb płatny</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s miesięcznie</string>
     <!-- Title for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Wiadomości tekstowe + wszystkie Twoje multimedia</string>
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Wiadomości tekstowe + wszystkie multimedia</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
-        <item quantity="one">Wiadomości tekstowe + %1$d dzień multimediów</item>
-        <item quantity="few">Wiadomości tekstowe + %1$d dni multimediów</item>
-        <item quantity="many">Wiadomości tekstowe + %1$d dni multimediów</item>
-        <item quantity="other">Wiadomości tekstowe + %1$d dni multimediów</item>
+        <item quantity="one">Wiadomości tekstowe + multimedia z %1$d dnia</item>
+        <item quantity="few">Wiadomości tekstowe + multimedia z %1$d dni</item>
+        <item quantity="many">Wiadomości tekstowe + multimedia z %1$d dni</item>
+        <item quantity="other">Wiadomości tekstowe + multimedia z %1$d dnia</item>
     </plurals>
     <!-- Description text for text history feature -->
-    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Pełna kopia zapasowa wiadomości tekstowych</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Kopia zapasowa wszystkich wiadomości tekstowych</string>
     <!-- Description text for paid tier media retention -->
-    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Pełna kopia zapasowa multimediów</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Kopia zapasowa wszystkich multimediów</string>
     <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
-    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s pamięci (%2$s zdjęć)</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s miejsca (%2$s zdjęć)</string>
     <!-- Description text for thanks -->
-    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Dziękujemy za wspieranie Signal!</string>
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Wsparcie dla aplikacji Signal</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
-        <item quantity="one">Ostatni %1$d dzień multimediów</item>
-        <item quantity="few">Ostatnie %1$d dni multimediów</item>
-        <item quantity="many">Ostatnie %1$d dni multimediów</item>
-        <item quantity="other">Ostatnie %1$d dni multimediów</item>
+        <item quantity="one">Multimedia z %1$d dnia</item>
+        <item quantity="few">Multimedia z ostatnich %1$d dni</item>
+        <item quantity="many">Multimedia z ostatnich %1$d dni</item>
+        <item quantity="other">Multimedia z ostatnich %1$d dni</item>
     </plurals>
     <!-- Text designating that an option is your current plan -->
-    <string name="MessageBackupsTypeSelectionScreen__current_plan">Aktualna usługa</string>
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">Aktywny tryb</string>
     <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
     <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Nie można rozpocząć subskrypcji</string>
     <!-- Dialog body text explaining Google Services requirement for backup subscription -->
@@ -9193,13 +9193,13 @@
     <!-- Dialog title -->
     <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Potwierdź anulowanie</string>
     <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Opłata nie zostanie pobrana ponownie. Tworzenie kopii zapasowych zostanie wyłączone pod koniec cyklu rozliczeniowego. Po tej dacie będziesz mieć 30 dni na pobranie multimediów, których kopia zapasowa jest obecnie tworzona.</string>
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Nie zostaną już od Ciebie pobrane żadne środki. Tworzenie kopii zapasowych zostanie wyłączone z końcem cyklu rozliczeniowego. Następnie będziesz mieć 30 dni na pobranie multimediów zawartych w Twojej kopii zapasowej.</string>
     <!-- Action button label to cancel subscription and download now -->
     <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Potwierdź i pobierz teraz</string>
     <!-- Action button label to cancel subscription and download later -->
     <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Potwierdź i pobierz później</string>
     <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Zachowaj usługę</string>
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Zachowaj subskrypcję</string>
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
     <string name="ReminderView_icon_content_description">Ikona przypomnienia</string>
@@ -9221,11 +9221,11 @@
     <!-- Option title for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__restore_signal_backup">Przywróć kopię zapasową Signal</string>
     <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Restore your text messages and media from your Signal backup plan.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Przywróć wiadomości i multimedia ze swojej kopii zapasowej Signal.</string>
     <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Przywróć lokalną kopię zapasową</string>
     <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Restore your messages from a backup you saved on your device.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Przywróć wiadomości z kopii zapasowej zapisanej na Twoim urządzeniu.</string>
     <!-- Option title for restoring via a local backup file -->
     <string name="SelectRestoreMethodFragment__from_a_backup_file">Z pliku kopii zapasowej</string>
     <!-- Option subtitle for restoring via a local backup -->
@@ -9301,7 +9301,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Wprowadź kod odzyskiwania</string>
+    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Podaj kod odzyskiwania</string>
     <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
     <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Kod odzyskiwania to sekwencja 64 znaków potrzebna do przywrócenia konta i danych.</string>
     <!-- EnterLocalBackupKeyScreen: Button text when user does not have a backup key -->
@@ -9310,20 +9310,20 @@
     <string name="EnterLocalBackupKeyScreen__next">Dalej</string>
 
     <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Failed to load archive. Please select a different directory.</string>
+    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Nie udało się wczytać archiwum. Wybierz inny folder.</string>
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">OK</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Backup restore failed</string>
+    <string name="RestoreLocalBackupActivity__backup_restore_failed">Nie udało się przywrócić kopii zapasowej</string>
     <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Restoring backup</string>
+    <string name="RestoreLocalBackupActivity__restoring_backup">Przywracanie kopii zapasowej</string>
     <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Depending on the size of your backup, this could take a few minutes.</string>
+    <string name="RestoreLocalBackupActivity__depending_on_the_size">Jeśli kopia zapasowa jest duża, może to zająć kilka minut.</string>
     <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
     <string name="RestoreLocalBackupActivity__restoring_messages">Przywracanie wiadomości…</string>
     <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Finalizing…</string>
+    <string name="RestoreLocalBackupActivity__finalizing">To już prawie wszystko…</string>
     <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
     <string name="RestoreLocalBackupActivity__restore_complete">Przywracanie zakończone</string>
     <!-- RestoreLocalBackupActivity: Status text when restore fails -->
@@ -9332,54 +9332,54 @@
     <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s z %2$s (%3$d)</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Select your backup folder</string>
+    <string name="SelectInstructionsSheet__select_your_backup_folder">Wybierz folder z kopią zapasową</string>
     <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Tap \"Select this folder\"</string>
+    <string name="SelectInstructionsSheet__tap_select_this_folder">Wybierz opcję „Zaznacz ten folder”</string>
     <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Do not select individual files</string>
+    <string name="SelectInstructionsSheet__do_not_select_individual_files">Nie zaznaczaj pojedynczych plików</string>
     <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Select your backup file</string>
+    <string name="SelectInstructionsSheet__select_your_backup_file">Wybierz plik z kopią zapasową</string>
     <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Tap on the backup file you saved to your device</string>
+    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Dotknij pliku kopii zapasowej zapisanej na Twoim urządzeniu</string>
     <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">After tapping \"Continue,\" here\'s how to access your backup:</string>
+    <string name="SelectInstructionsSheet__after_tapping_continue">Aby wskazać kopię zapasową, naciśnij przycisk „Kontynuuj”, a następnie:</string>
     <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Select the top-level folder where your backup is stored</string>
+    <string name="SelectInstructionsSheet__select_the_top_level_folder">Wybierz folder główny, w którym masz zapisaną kopię zapasową</string>
     <!-- SelectInstructionsSheet: Continue button text -->
     <string name="SelectInstructionsSheet__continue_button">Kontynuuj</string>
 
     <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupScreen__restore_on_device_backup">Przywróć lokalną kopię zapasową</string>
     <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Restore your messages from the backup folder you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Przywróć wiadomości z kopii zapasowej zapisanej w folderze na Twoim urządzeniu. Jeśli nie przywrócisz ich teraz, nie będzie można tego zrobić później.</string>
     <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
     <string name="SelectLocalBackupScreen__restore_backup">Przywróć kopię zapasową</string>
     <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Choose an earlier backup</string>
+    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Wybierz wcześniejszą kopię zapasową</string>
     <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Choose a different backup</string>
+    <string name="SelectLocalBackupScreen__choose_a_different_backup">Wybierz inną kopię zapasową</string>
     <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Your latest backup:</string>
+    <string name="SelectLocalBackupScreen__your_latest_backup">Twoja najnowsza kopia zapasowa:</string>
     <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Your backup:</string>
+    <string name="SelectLocalBackupScreen__your_backup">Twoja kopia zapasowa:</string>
 
     <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Choose a backup to restore</string>
+    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Wybierz kopię zapasową, którą chcesz przywrócić</string>
     <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Choosing an older backup may result in lost messages or media.</string>
+    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Jeśli wybierzesz starszą kopię zapasową, możesz stracić niektóre wiadomości lub multimedia.</string>
     <!-- SelectLocalBackupSheet: Continue button text -->
     <string name="SelectLocalBackupSheet__continue_button">Kontynuuj</string>
 
     <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Przywróć lokalną kopię zapasową</string>
     <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
     <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Przywróć wiadomości z kopii zapasowej zapisanej na urządzeniu. Jeśli nie przywrócisz ich teraz, nie będzie można tego zrobić później.</string>
     <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">I saved my backup as a single file</string>
+    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Moja kopia zapasowa jest zapisana jako pojedynczy plik</string>
     <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Choose backup folder</string>
+    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Wybierz folder z kopią zapasową</string>
     <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Select the folder on your device where your backup is stored</string>
+    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Wskaż folder na urządzeniu, w którym masz zapisaną kopię zapasową</string>
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Błąd sieci podczas eksportowania kopii zapasowej aplikacji Signal Android</string>

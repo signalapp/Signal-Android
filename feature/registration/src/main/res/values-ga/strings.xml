@@ -37,10 +37,10 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Uimhir ghutháin</string>
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Gheobhaidh tú cód deimhniúcháin. D\'fhéadfadh do sholáthraí seirbhíse táille a ghearradh ort.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Gheobhaidh tú cód fíoraithe. D\'fhéadfadh do sholáthraí seirbhíse táillí a ghearradh ort.</string>
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Roghnaigh tír</string>
-    <string name="RegistrationActivity_phone_number_description">Uimhir Ghutháin</string>
+    <string name="RegistrationActivity_phone_number_description">Uimhir ghutháin</string>
     <string name="RegistrationActivity_next">Ar aghaidh</string>
 
     <!-- CountryCodePickerScreen -->
@@ -55,7 +55,7 @@
 
     <!-- VerificationCodeScreen -->
     <!-- Title of the verification code entry screen -->
-    <string name="VerificationCodeScreen__verification_code">Verification code</string>
+    <string name="VerificationCodeScreen__verification_code">Cód fíoraithe</string>
     <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
     <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Cuir isteach an cód a sheolamar chuig %1$s</string>
     <!-- Button text for wrong number action -->
@@ -63,7 +63,7 @@
     <!-- Button text for resend SMS action -->
     <string name="VerificationCodeScreen__resend_code">Athsheol Cód</string>
     <!-- Button text for call me action -->
-    <string name="VerificationCodeScreen__call_me_instead">Call me instead</string>
+    <string name="VerificationCodeScreen__call_me_instead">Glaoigh orm ina ionad sin</string>
     <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
@@ -71,17 +71,17 @@
     <!-- Toast shown when the user enters an incorrect verification code -->
     <string name="VerificationCodeScreen__incorrect_code">Cód mícheart</string>
     <!-- Snackbar shown when there is a network error -->
-    <string name="VerificationCodeScreen__network_error">Unable to connect. Please check your network and try again.</string>
+    <string name="VerificationCodeScreen__network_error">Nascadh dodhéanta. Seiceáil do líonra agus triail arís.</string>
     <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
-    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Too many attempts. Try again in %1$s.</string>
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">An iomarca iarrachtaí. Triail arís i gceann %1$s.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Tharla earráid gan choinne. Triail arís.</string>
     <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">There was a problem sending your verification code. Please try again.</string>
+    <string name="VerificationCodeScreen__sms_provider_error">Bhí fadhb ann le seoladh do chóid fíoraithe. Triail arís.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
-    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Could not send code via the selected method. Please try another option.</string>
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Níorbh fhéidir an cód a sheoladh tríd an modh roghnaithe. Triail rogha eile.</string>
     <!-- Snackbar shown for registration errors -->
-    <string name="VerificationCodeScreen__registration_error">Registration failed. Please try again.</string>
+    <string name="VerificationCodeScreen__registration_error">Theip ar chlárú. Triail arís.</string>
     <!-- Button text for having trouble with verification -->
-    <string name="VerificationCodeScreen__having_trouble">Having trouble?</string>
+    <string name="VerificationCodeScreen__having_trouble">Deacracht agat?</string>
 </resources>

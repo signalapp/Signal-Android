@@ -448,14 +448,14 @@
     <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Descargar más</string>
     <string name="ConversationItem_pending">  Pendiente</string>
-    <string name="ConversationItem_this_message_was_deleted">This message was deleted</string>
+    <string name="ConversationItem_this_message_was_deleted">Se ha eliminado este mensaje</string>
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
-    <string name="ConversationItem_s_deleted_this_message">%1$s deleted this message</string>
-    <string name="ConversationItem_you_deleted_this_message">You deleted this message</string>
+    <string name="ConversationItem_s_deleted_this_message">%1$s ha eliminado este mensaje</string>
+    <string name="ConversationItem_you_deleted_this_message">Has eliminado este mensaje</string>
     <!-- First part of a conversation message when a message has been deleted by an admin. -->
-    <string name="ConversationItem_admin">Admin</string>
+    <string name="ConversationItem_admin">Un admin</string>
     <!-- Second part of a conversation message when a message has been deleted by an admin. -->
-    <string name="ConversationItem_deleted_this_message">deleted this message</string>
+    <string name="ConversationItem_deleted_this_message">ha eliminado este mensaje</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">No se puede descargar el mensaje. %1$s tendrá que enviarlo de nuevo.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -633,9 +633,9 @@
         <item quantity="other">¿Para quién quieres eliminar estos mensajes?</item>
     </plurals>
     <!-- Confirmation button to delete the message -->
-    <string name="ConversationFragment_delete_for_everyone_title">Delete for everyone?</string>
+    <string name="ConversationFragment_delete_for_everyone_title">¿Eliminar para todos?</string>
     <!-- Body of dialog explaining what happens during deletion -->
-    <string name="ConversationFragment_delete_for_everyone_body">As an admin, group members will see that you deleted these messages.</string>
+    <string name="ConversationFragment_delete_for_everyone_body">Como admin, los participantes del grupo verán que has eliminado estos mensajes.</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Eliminar en este dispositivo</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -1552,7 +1552,7 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">No se puede restaurar la copia de seguridad</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Se ha producido un error al restaurar tu copia de seguridad. Tu copia de seguridad no se puede recuperar. Contacta con el equipo de Asistencia para obtener ayuda.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Se ha producido un error al restaurar tu copia de seguridad. Tu copia de seguridad no se puede restaurar. Contacta con el equipo de Asistencia para obtener ayuda.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contactar con asistencia</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -2777,7 +2777,7 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Se enviará una clave de verificación a ese número. Es posible que tu operador aplique algún cargo.</string>
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás una clave de verificación SMS. Se aplican las tarifas de tu operador.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás una clave de verificación. Se aplican las tarifas de tu operador.</string>
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Selecciona un país</string>
     <!-- Hint text explaining that this is where the country code should go -->
@@ -2794,9 +2794,9 @@
     <string name="RegistrationActivity_rate_limited_to_service">Has intentado registrar este número demasiadas veces. Inténtalo de nuevo más tarde.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Has hecho demasiados intentos para registrar este número. Inténtalo de nuevo en %1$s.</string>
-    <string name="RegistrationActivity_unable_to_connect_to_service">No se ha podido conectar con el servidor. Comprueba la conexión de red e inténtalo de nuevo.</string>
+    <string name="RegistrationActivity_unable_to_connect_to_service">No se ha podido conectar con el servicio. Comprueba la conexión de red e inténtalo de nuevo.</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Signal no ha podido enviar un código SMS debido a problemas con el proveedor de SMS. Vuelve a intentarlo dentro de unas horas.</string>
+    <string name="RegistrationActivity_sms_provider_error">Signal no ha podido enviar una clave SMS debido a problemas con el proveedor de SMS. Vuelve a intentarlo dentro de unas horas.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">No hemos podido enviarte la clave de verificación por SMS. Puedes recibir tu clave mediante llamada.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2825,13 +2825,13 @@
     <string name="RegistrationActivity_phone_number">Número de teléfono</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introduce tu número de teléfono para comenzar.</string>
-    <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduce el código que hemos enviado al %1$s</string>
+    <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduce la clave que hemos enviado al %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
     <string name="RegistrationActivity_country_code_description">Código de país</string>
     <string name="RegistrationActivity_call">Llamar</string>
     <string name="RegistrationActivity_verification_code">Clave de verificación</string>
-    <string name="RegistrationActivity_resend_code">Reenviar código</string>
+    <string name="RegistrationActivity_resend_code">Reenviar clave</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">¿Tienes problemas para registrarte?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
@@ -3052,13 +3052,13 @@
     <string name="ThreadRecord_view_once_video">Vídeo de visualización única</string>
     <string name="ThreadRecord_view_once_media">Archivo multimedia</string>
     <!-- Thread preview when someone has deleted their own message -->
-    <string name="ThreadRecord_this_message_was_deleted">This message was deleted</string>
+    <string name="ThreadRecord_this_message_was_deleted">Se ha eliminado este mensaje</string>
     <!-- Thread preview when someone has deleted their own message. Placeholder is the name of the person. -->
-    <string name="ThreadRecord_s_deleted_this_message">%1$s deleted this message</string>
+    <string name="ThreadRecord_s_deleted_this_message">%1$s ha eliminado este mensaje</string>
     <!-- Thread preview when you deleted a message -->
-    <string name="ThreadRecord_you_deleted_this_message">You deleted this message</string>
+    <string name="ThreadRecord_you_deleted_this_message">Has eliminado este mensaje</string>
     <!-- Thread preview when an admin has deleted a message -->
-    <string name="ThreadRecord_admin_deleted_this_message">Admin %1$s deleted this message</string>
+    <string name="ThreadRecord_admin_deleted_this_message">%1$s (admin) ha eliminado este mensaje</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Has enviado una solicitud para activar Pagos</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -3180,7 +3180,7 @@
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Esta persona usa una versión nueva de Signal con un formato de código QR incompatible. Actualiza tu versión para completar la verificación.</string>
-    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">El código QR escaneado no tiene un formato correcto de código de verificación de número de seguridad. Intenta escanearlo de nuevo.</string>
+    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">El código QR escaneado no tiene un formato correcto de clave de verificación de número de seguridad. Intenta escanearlo de nuevo.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Compartir número de seguridad por…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Nuestro número de seguridad de Signal:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no tienes ninguna aplicación para compartir la invitación.</string>
@@ -3210,11 +3210,11 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Silenciar notificaciones</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Mute until…</string>
+    <string name="MuteDialog__mute_until">Silenciar hasta…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
-    <string name="MuteUntilTimePickerBottomSheet__dialog_title">Mute notifications until…</string>
+    <string name="MuteUntilTimePickerBottomSheet__dialog_title">Silenciar notificaciones hasta…</string>
     <!-- Label for a data selector where the user chooses how long they\'d like to mute notifications for -->
     <string name="MuteUntilTimePickerBottomSheet__select_date_title">Seleccionar fecha</string>
     <!-- Label for a time selector where the user chooses how long they\'d like to mute notifications for -->
@@ -4890,10 +4890,10 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Llamarme (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Reenviar código (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">Reenviar clave (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contacta con el equipo de Asistencia de Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registro de Signal: Clave de verificación en Android</string>
-    <string name="RegistrationActivity_incorrect_code">Código incorrecto</string>
+    <string name="RegistrationActivity_incorrect_code">Clave incorrecta</string>
     <string name="BackupUtil_never">Nunca</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Desconocido</string>
@@ -5016,7 +5016,7 @@
     <string name="TransferOrRestoreFragment__restore_from_backup">Restaurar desde copia de seguridad</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restaura tus mensajes desde una copia de seguridad local. Si no los restauras ahora, no podrás hacerlo más tarde.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Restaurar copia de seguridad local</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Desde Copias Seguras de Signal</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restaurar desde Copias Seguras de Signal</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Más opciones</string>
 
@@ -7393,7 +7393,7 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">IBAN no válido</string>
     <!-- Error label for name field when name is not at least three characters long (Stripe API enforced minimum) -->
-    <string name="BankTransferDetailsFragment__minimum_3_characters">Minimum 3 characters</string>
+    <string name="BankTransferDetailsFragment__minimum_3_characters">Debe contener un mínimo de 3 caracteres</string>
     <!-- Error label for email field when email is not valid -->
     <string name="BankTransferDetailsFragment__invalid_email_address">Dirección de correo electrónico no válida</string>
 
@@ -7841,7 +7841,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">Se ha producido un error de red al intentar restablecer tu enlace. Inténtalo de nuevo más tarde.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Se ha producido un error inesperado al intentar restablecer tu enlace. Inténtalo de nuevo más tarde.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">No se ha podido restablecer tu enlace. Inténtalo de nuevo más tarde.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
     <string name="UsernameLinkSettings_reset_link_result_success">Se han restablecido tu código QR y tu enlace, y se han creado un código QR y un enlace nuevos.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
@@ -8028,7 +8028,7 @@
 
     <!-- BackupProgressService -->
     <!-- Notification title shown while backup restore job is running -->
-    <string name="BackupProgressService_title">Recuperando copia de seguridad…</string>
+    <string name="BackupProgressService_title">Restaurando copia de seguridad…</string>
     <!-- Notification title shown while downloading backup restore data -->
     <string name="BackupProgressService_title_downloading">Descargando datos de copia de seguridad…</string>
 
@@ -8653,7 +8653,7 @@
     <!-- Screen headline shown when the user already has an on-device recovery key set. -->
     <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Tu clave de recuperación</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Tu clave de recuperación es un código de 64 caracteres que necesitarás para recuperar tu copia de seguridad.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Tu clave de recuperación es un código de 64 caracteres que necesitarás para restaurar tu copia de seguridad.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Guarda tu clave de recuperación en un lugar seguro, como un gestor de contraseñas, y no la compartas con nadie.</string>
     <!-- Screen body part 3 -->
@@ -8847,13 +8847,13 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Recupera tu cuenta e historial de mensajes de Signal en este dispositivo.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Desde Copias Seguras de Signal</string>
+    <string name="SelectRestoreMethodFragment__restore_signal_backup">Restaurar desde Copias Seguras de Signal</string>
     <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Restore your text messages and media from your Signal backup plan.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Restaura tus mensajes y archivos multimedia desde tu plan de copias de seguridad de Signal.</string>
     <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Restaurar copias de seguridad locales</string>
     <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Restore your messages from a backup you saved on your device.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Restaura tus mensajes desde una copia de seguridad que hayas guardado en tu dispositivo.</string>
     <!-- Option title for restoring via a local backup file -->
     <string name="SelectRestoreMethodFragment__from_a_backup_file">Desde un archivo de copia de seguridad</string>
     <!-- Option subtitle for restoring via a local backup -->
@@ -8938,20 +8938,20 @@
     <string name="EnterLocalBackupKeyScreen__next">Siguiente</string>
 
     <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Failed to load archive. Please select a different directory.</string>
+    <string name="RestoreLocalBackupDialog__failed_to_load_archive">No se ha podido cargar el archivo. Selecciona otro directorio.</string>
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">Aceptar</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Backup restore failed</string>
+    <string name="RestoreLocalBackupActivity__backup_restore_failed">No se ha podido restaurar la copia de seguridad</string>
     <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Restoring backup</string>
+    <string name="RestoreLocalBackupActivity__restoring_backup">Restaurando copia de seguridad</string>
     <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Depending on the size of your backup, this could take a few minutes.</string>
+    <string name="RestoreLocalBackupActivity__depending_on_the_size">Dependiendo del tamaño de tu copia de seguridad, este proceso puede llevar unos minutos.</string>
     <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
     <string name="RestoreLocalBackupActivity__restoring_messages">Restaurando mensajes…</string>
     <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Finalizing…</string>
+    <string name="RestoreLocalBackupActivity__finalizing">Finalizando…</string>
     <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
     <string name="RestoreLocalBackupActivity__restore_complete">Restauración completada</string>
     <!-- RestoreLocalBackupActivity: Status text when restore fails -->
@@ -8960,54 +8960,54 @@
     <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s de %2$s (%3$d %%)</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Select your backup folder</string>
+    <string name="SelectInstructionsSheet__select_your_backup_folder">Selecciona tu carpeta de copias de seguridad</string>
     <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Tap \"Select this folder\"</string>
+    <string name="SelectInstructionsSheet__tap_select_this_folder">Toca \"Seleccionar esta carpeta\".</string>
     <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Do not select individual files</string>
+    <string name="SelectInstructionsSheet__do_not_select_individual_files">No selecciones archivos individuales.</string>
     <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Select your backup file</string>
+    <string name="SelectInstructionsSheet__select_your_backup_file">Selecciona tu archivo de copia de seguridad</string>
     <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Tap on the backup file you saved to your device</string>
+    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Toca sobre el archivo de copia de seguridad guardado en tu dispositivo</string>
     <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">After tapping \"Continue,\" here\'s how to access your backup:</string>
+    <string name="SelectInstructionsSheet__after_tapping_continue">Toca \"Continuar\" y sigue estos pasos para acceder a tu copia de seguridad:</string>
     <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Select the top-level folder where your backup is stored</string>
+    <string name="SelectInstructionsSheet__select_the_top_level_folder">Selecciona la carpeta de nivel superior donde se guarda tu copia de seguridad.</string>
     <!-- SelectInstructionsSheet: Continue button text -->
     <string name="SelectInstructionsSheet__continue_button">Continuar</string>
 
     <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupScreen__restore_on_device_backup">Restaurar copias de seguridad locales</string>
     <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Restore your messages from the backup folder you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Restaura tus mensajes desde una carpeta de copia de seguridad que hayas guardado en tu dispositivo. Si no los restauras ahora, no podrás hacerlo más tarde.</string>
     <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
     <string name="SelectLocalBackupScreen__restore_backup">Restaurar copia</string>
     <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Choose an earlier backup</string>
+    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Seleccionar una copia de seguridad anterior</string>
     <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Choose a different backup</string>
+    <string name="SelectLocalBackupScreen__choose_a_different_backup">Selecciona una copia de seguridad diferente</string>
     <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Your latest backup:</string>
+    <string name="SelectLocalBackupScreen__your_latest_backup">Tu última copia de seguridad:</string>
     <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Your backup:</string>
+    <string name="SelectLocalBackupScreen__your_backup">Tu copia de seguridad:</string>
 
     <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Choose a backup to restore</string>
+    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Selecciona una copia de seguridad para restaurar</string>
     <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Choosing an older backup may result in lost messages or media.</string>
+    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Si seleccionas una copia de seguridad anterior, es posible que pierdas mensajes o archivos.</string>
     <!-- SelectLocalBackupSheet: Continue button text -->
     <string name="SelectLocalBackupSheet__continue_button">Continuar</string>
 
     <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Restaurar copias de seguridad locales</string>
     <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
     <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Restaura tus mensajes desde una copia de seguridad que hayas guardado en tu dispositivo. Si no los restauras ahora, no podrás hacerlo más tarde.</string>
     <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">I saved my backup as a single file</string>
+    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">He guardado mi copia de seguridad como un único archivo</string>
     <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Choose backup folder</string>
+    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Selecciona una carpeta de copias de seguridad</string>
     <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Select the folder on your device where your backup is stored</string>
+    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Selecciona la carpeta en tu dispositivo donde se guardan tus copias de seguridad</string>
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Error de red al intentar exportar la copia de seguridad de Signal Android</string>
@@ -9372,7 +9372,7 @@
     <!-- Group member label save button label. -->
     <string name="GroupMemberLabel__save">Guardar</string>
     <!-- Description explaining the group member labels feature. -->
-    <string name="GroupMemberLabel__description">Añade una categoría de participante que te describa a ti o a tu rol dentro del grupo. La categoría que elijas solo se mostrará dentro de este grupo.</string>
+    <string name="GroupMemberLabel__description">Añade una categoría de participante que te describa a ti o tu rol dentro del grupo. La categoría que elijas solo se mostrará dentro de este grupo.</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
     <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
     <!-- Error message shown when trying to edit a member label without adequate permission. -->
@@ -9387,7 +9387,7 @@
     <!-- Title for the member labels education sheet. -->
     <string name="MemberLabelsEducation__title">Categorías de participantes</string>
     <!-- Body for the member labels education sheet. -->
-    <string name="MemberLabelsEducation__body">Añade una categoría de participante que te describa a ti o a tu rol dentro del grupo. La categoría que elijas solo se mostrará dentro de este grupo.</string>
+    <string name="MemberLabelsEducation__body">Añade una categoría de participante que te describa a ti o tu rol dentro del grupo. La categoría que elijas solo se mostrará dentro de este grupo.</string>
     <!-- Button to set a new member label. -->
     <string name="MemberLabelsEducation__set_label">Añadir categoría de participante</string>
     <!-- Button to edit an existing member label. -->

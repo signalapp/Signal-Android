@@ -454,14 +454,14 @@
     <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">Stáhnout další</string>
     <string name="ConversationItem_pending">Probíhá</string>
-    <string name="ConversationItem_this_message_was_deleted">This message was deleted</string>
+    <string name="ConversationItem_this_message_was_deleted">Tato zpráva byla odstraněna</string>
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
-    <string name="ConversationItem_s_deleted_this_message">%1$s deleted this message</string>
-    <string name="ConversationItem_you_deleted_this_message">You deleted this message</string>
+    <string name="ConversationItem_s_deleted_this_message">%1$s tuto zprávu odstranil/a</string>
+    <string name="ConversationItem_you_deleted_this_message">Tuto zprávu jste odstranili</string>
     <!-- First part of a conversation message when a message has been deleted by an admin. -->
     <string name="ConversationItem_admin">Správce</string>
     <!-- Second part of a conversation message when a message has been deleted by an admin. -->
-    <string name="ConversationItem_deleted_this_message">deleted this message</string>
+    <string name="ConversationItem_deleted_this_message">tuto zprávu odstranil</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Zprávu nelze stáhnout. %1$s ji bude muset poslat znovu.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -646,7 +646,7 @@
     <plurals name="ConversationFragment_delete_selected_title">
         <item quantity="one">Odstranit označenou zprávu?</item>
         <item quantity="few">Odstranit označené zprávy?</item>
-        <item quantity="many">Odstranit označené zprávy?</item>
+        <item quantity="many">Odstranit označených zpráv?</item>
         <item quantity="other">Odstranit označených zpráv?</item>
     </plurals>
     <!-- Body of dialog confirming whether to delete the message -->
@@ -657,9 +657,9 @@
         <item quantity="other">Pro koho chcete tyto zprávy odstranit?</item>
     </plurals>
     <!-- Confirmation button to delete the message -->
-    <string name="ConversationFragment_delete_for_everyone_title">Delete for everyone?</string>
+    <string name="ConversationFragment_delete_for_everyone_title">Odstranit pro všechny?</string>
     <!-- Body of dialog explaining what happens during deletion -->
-    <string name="ConversationFragment_delete_for_everyone_body">As an admin, group members will see that you deleted these messages.</string>
+    <string name="ConversationFragment_delete_for_everyone_body">Členové skupiny uvidí, že jste tyto zprávy jako správce odstranil.</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Odstranit v tomto zařízení</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -3244,13 +3244,13 @@
     <string name="ThreadRecord_view_once_video">Video pro jednorázové zobrazení</string>
     <string name="ThreadRecord_view_once_media">Média pro jednorázové zobrazení</string>
     <!-- Thread preview when someone has deleted their own message -->
-    <string name="ThreadRecord_this_message_was_deleted">This message was deleted</string>
+    <string name="ThreadRecord_this_message_was_deleted">Tato zpráva byla odstraněna</string>
     <!-- Thread preview when someone has deleted their own message. Placeholder is the name of the person. -->
-    <string name="ThreadRecord_s_deleted_this_message">%1$s deleted this message</string>
+    <string name="ThreadRecord_s_deleted_this_message">%1$s tuto zprávu odstranil/a</string>
     <!-- Thread preview when you deleted a message -->
-    <string name="ThreadRecord_you_deleted_this_message">You deleted this message</string>
+    <string name="ThreadRecord_you_deleted_this_message">Tuto zprávu jste odstranili</string>
     <!-- Thread preview when an admin has deleted a message -->
-    <string name="ThreadRecord_admin_deleted_this_message">Admin %1$s deleted this message</string>
+    <string name="ThreadRecord_admin_deleted_this_message">Správce %1$s tuto zprávu odstranil</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Odeslali jste žádost o aktivaci Platby</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -3404,17 +3404,17 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Vypnout oznámení</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Mute until…</string>
+    <string name="MuteDialog__mute_until">Ztlumit do…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
-    <string name="MuteUntilTimePickerBottomSheet__dialog_title">Mute notifications until…</string>
+    <string name="MuteUntilTimePickerBottomSheet__dialog_title">Ztlumit oznámení do…</string>
     <!-- Label for a data selector where the user chooses how long they\'d like to mute notifications for -->
     <string name="MuteUntilTimePickerBottomSheet__select_date_title">Zvolte datum</string>
     <!-- Label for a time selector where the user chooses how long they\'d like to mute notifications for -->
     <string name="MuteUntilTimePickerBottomSheet__select_time_title">Zvolte čas</string>
     <!-- Label for a button that, when pressed, will confirm the user\'s choice on how long to mute notifications for -->
-    <string name="MuteUntilTimePickerBottomSheet__mute_notifications">Vypnout oznámení</string>
+    <string name="MuteUntilTimePickerBottomSheet__mute_notifications">Ztlumit oznámení</string>
     <!-- Subtitle in a dialog that describes the timezone the user is picking times in. The first placeholder is a UTC offset, and the second placeholder is a user-friendly name for the timezone, e.g. "All times in (GMT-05:00) Eastern Standard Time" -->
     <string name="MuteUntilTimePickerBottomSheet__timezone_disclaimer">Všechny časy v (%1$s) %2$s</string>
 
@@ -7729,7 +7729,7 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">Neplatné číslo IBAN</string>
     <!-- Error label for name field when name is not at least three characters long (Stripe API enforced minimum) -->
-    <string name="BankTransferDetailsFragment__minimum_3_characters">Minimum 3 characters</string>
+    <string name="BankTransferDetailsFragment__minimum_3_characters">Minimálně 3 znaky</string>
     <!-- Error label for email field when email is not valid -->
     <string name="BankTransferDetailsFragment__invalid_email_address">Neplatná e-mailová adresa</string>
 
@@ -9221,11 +9221,11 @@
     <!-- Option title for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__restore_signal_backup">Obnovit zálohu Signal</string>
     <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Restore your text messages and media from your Signal backup plan.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Obnovte textové zprávy a média ze svého plánu zálohování Signal.</string>
     <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Obnovení zálohy uložené v zařízení</string>
     <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Restore your messages from a backup you saved on your device.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Obnovte své zprávy ze zálohy uložené ve vašem zařízení.</string>
     <!-- Option title for restoring via a local backup file -->
     <string name="SelectRestoreMethodFragment__from_a_backup_file">Ze záložního souboru</string>
     <!-- Option subtitle for restoring via a local backup -->
@@ -9310,20 +9310,20 @@
     <string name="EnterLocalBackupKeyScreen__next">Další</string>
 
     <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Failed to load archive. Please select a different directory.</string>
+    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Archiv se nepodařilo načíst. Vyberte prosím jinou složku.</string>
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">OK</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Backup restore failed</string>
+    <string name="RestoreLocalBackupActivity__backup_restore_failed">Obnovení zálohy se nezdařilo</string>
     <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Restoring backup</string>
+    <string name="RestoreLocalBackupActivity__restoring_backup">Obnovování zálohy</string>
     <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Depending on the size of your backup, this could take a few minutes.</string>
+    <string name="RestoreLocalBackupActivity__depending_on_the_size">V závislosti na velikosti zálohy to může trvat několik minut.</string>
     <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
     <string name="RestoreLocalBackupActivity__restoring_messages">Obnovování zpráv…</string>
     <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Finalizing…</string>
+    <string name="RestoreLocalBackupActivity__finalizing">Dokončování…</string>
     <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
     <string name="RestoreLocalBackupActivity__restore_complete">Obnovení dokončeno</string>
     <!-- RestoreLocalBackupActivity: Status text when restore fails -->
@@ -9332,54 +9332,54 @@
     <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s z %2$s (%3$d %%)</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Select your backup folder</string>
+    <string name="SelectInstructionsSheet__select_your_backup_folder">Vyberte složku se zálohou</string>
     <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Tap \"Select this folder\"</string>
+    <string name="SelectInstructionsSheet__tap_select_this_folder">Klepněte na Vybrat tuto složku</string>
     <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Do not select individual files</string>
+    <string name="SelectInstructionsSheet__do_not_select_individual_files">Nevybírejte jednotlivé soubory</string>
     <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Select your backup file</string>
+    <string name="SelectInstructionsSheet__select_your_backup_file">Vyberte soubor zálohy</string>
     <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Tap on the backup file you saved to your device</string>
+    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Klepněte na soubor zálohy, který máte uložený ve svém zařízení</string>
     <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">After tapping \"Continue,\" here\'s how to access your backup:</string>
+    <string name="SelectInstructionsSheet__after_tapping_continue">Po klepnutí na Pokračovat postupujte takto:</string>
     <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Select the top-level folder where your backup is stored</string>
+    <string name="SelectInstructionsSheet__select_the_top_level_folder">Vyberte složku nejvyšší úrovně, ve které je uložena vaše záloha</string>
     <!-- SelectInstructionsSheet: Continue button text -->
     <string name="SelectInstructionsSheet__continue_button">Pokračovat</string>
 
     <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupScreen__restore_on_device_backup">Obnovení zálohy uložené v zařízení</string>
     <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Restore your messages from the backup folder you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Obnovte své zprávy ze složky se zálohou uložené ve vašem zařízení. Pokud je neobnovíte teď, nebude to už později možné.</string>
     <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
     <string name="SelectLocalBackupScreen__restore_backup">Obnovit zálohu</string>
     <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Choose an earlier backup</string>
+    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Vyberte starší zálohu</string>
     <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Choose a different backup</string>
+    <string name="SelectLocalBackupScreen__choose_a_different_backup">Vyberte jinou zálohu</string>
     <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Your latest backup:</string>
+    <string name="SelectLocalBackupScreen__your_latest_backup">Vaše poslední záloha:</string>
     <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Your backup:</string>
+    <string name="SelectLocalBackupScreen__your_backup">Vaše záloha:</string>
 
     <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Choose a backup to restore</string>
+    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Vyberte zálohu pro obnovení</string>
     <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Choosing an older backup may result in lost messages or media.</string>
+    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Výběr starší zálohy může vést ke ztrátě zpráv nebo médií.</string>
     <!-- SelectLocalBackupSheet: Continue button text -->
     <string name="SelectLocalBackupSheet__continue_button">Pokračovat</string>
 
     <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Obnovení zálohy uložené v zařízení</string>
     <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Obnovte své zprávy ze zálohy uložené v tomto zařízení. Pokud je neobnovíte teď, nebude to už později možné.</string>
+    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Obnovte své zprávy ze zálohy uložené ve vašem zařízení. Pokud je neobnovíte teď, nebude to už později možné.</string>
     <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">I saved my backup as a single file</string>
+    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Zálohu jsem uložil/a jako jeden soubor</string>
     <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Choose backup folder</string>
+    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Vyberte složku se zálohou</string>
     <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Select the folder on your device where your backup is stored</string>
+    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Vyberte složku ve svém zařízení, ve které je uložena záloha</string>
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Chyba sítě při exportu zálohy Signal Android</string>

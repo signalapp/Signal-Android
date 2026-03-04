@@ -63,7 +63,7 @@
     <!-- Button text for resend SMS action -->
     <string name="VerificationCodeScreen__resend_code">குறியீட்டை மீண்டும் அனுப்பு</string>
     <!-- Button text for call me action -->
-    <string name="VerificationCodeScreen__call_me_instead">Call me instead</string>
+    <string name="VerificationCodeScreen__call_me_instead">அதற்குப் பதிலாக என்னை அழைக்கவும்</string>
     <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
@@ -71,17 +71,17 @@
     <!-- Toast shown when the user enters an incorrect verification code -->
     <string name="VerificationCodeScreen__incorrect_code">தவறான குறியீடு</string>
     <!-- Snackbar shown when there is a network error -->
-    <string name="VerificationCodeScreen__network_error">Unable to connect. Please check your network and try again.</string>
+    <string name="VerificationCodeScreen__network_error">இணைக்க முடியவில்லை. உங்கள் நெட்வொர்க்கைச் சரிபார்த்துவிட்டு மீண்டும் முயற்சிக்கவும்.</string>
     <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
-    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Too many attempts. Try again in %1$s.</string>
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">அதிக அளவிலான முயற்சிகள். %1$s-இல் மீண்டும் முயலுங்கள்.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">எதிர்பாராத பிழை ஏற்பட்டது. மீண்டும் முயலுங்கள்.</string>
     <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">There was a problem sending your verification code. Please try again.</string>
+    <string name="VerificationCodeScreen__sms_provider_error">உங்கள் சரிபார்ப்புக் குறியீட்டை அனுப்புவதில் சிக்கல் ஏற்பட்டது. மீண்டும் முயலுங்கள்.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
-    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Could not send code via the selected method. Please try another option.</string>
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">தேர்ந்தெடுக்கப்பட்ட முறையின் வழியாகக் குறியீட்டை அனுப்ப முடியவில்லை. வேறொரு விருப்பத்தேர்வை முயற்சிக்கவும்.</string>
     <!-- Snackbar shown for registration errors -->
-    <string name="VerificationCodeScreen__registration_error">Registration failed. Please try again.</string>
+    <string name="VerificationCodeScreen__registration_error">பதிவுசெய்தல் தோல்வியடைந்தது. மீண்டும் முயலுங்கள்.</string>
     <!-- Button text for having trouble with verification -->
-    <string name="VerificationCodeScreen__having_trouble">Having trouble?</string>
+    <string name="VerificationCodeScreen__having_trouble">சிக்கல் உள்ளதா?</string>
 </resources>

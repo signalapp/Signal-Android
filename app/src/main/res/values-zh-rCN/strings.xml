@@ -59,7 +59,7 @@
     <string name="ApplicationPreferencesActivity_pin_disabled">已禁用 PIN。</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">记下付款恢复短语</string>
     <string name="ApplicationPreferencesActivity_record_phrase">记下短语</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">在禁用 PIN 码之前，务必记下付款恢复短语，以确保可恢复您的付款帐户。</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">在禁用 PIN 码之前，务必记下付款恢复短语，确保可恢复您的付款帐户。</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">创建新的恢复密钥</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
@@ -96,7 +96,7 @@
     <string name="AttachmentKeyboard_location">位置</string>
     <!-- Text for a button that will allow users to create a poll -->
     <string name="AttachmentKeyboard_poll">投票</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal 需要相应权限来显示图片和视频</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal 需要权限来显示图片和视频</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">允许访问</string>
     <string name="AttachmentKeyboard_payment">付款</string>
@@ -445,14 +445,14 @@
     <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  下载更多</string>
     <string name="ConversationItem_pending">  待处理</string>
-    <string name="ConversationItem_this_message_was_deleted">This message was deleted</string>
+    <string name="ConversationItem_this_message_was_deleted">此消息已删除</string>
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
-    <string name="ConversationItem_s_deleted_this_message">%1$s deleted this message</string>
-    <string name="ConversationItem_you_deleted_this_message">You deleted this message</string>
+    <string name="ConversationItem_s_deleted_this_message">%1$s删除了此消息</string>
+    <string name="ConversationItem_you_deleted_this_message">您删除了此消息</string>
     <!-- First part of a conversation message when a message has been deleted by an admin. -->
     <string name="ConversationItem_admin">管理员</string>
     <!-- Second part of a conversation message when a message has been deleted by an admin. -->
-    <string name="ConversationItem_deleted_this_message">deleted this message</string>
+    <string name="ConversationItem_deleted_this_message">删除了此消息</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">无法下载消息。%1$s需要重发一遍。</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -621,9 +621,9 @@
         <item quantity="other">您想要对谁删除这些消息？</item>
     </plurals>
     <!-- Confirmation button to delete the message -->
-    <string name="ConversationFragment_delete_for_everyone_title">Delete for everyone?</string>
+    <string name="ConversationFragment_delete_for_everyone_title">要对所有人删除？</string>
     <!-- Body of dialog explaining what happens during deletion -->
-    <string name="ConversationFragment_delete_for_everyone_body">As an admin, group members will see that you deleted these messages.</string>
+    <string name="ConversationFragment_delete_for_everyone_body">群组成员将能看到您作为管理员删除了这些消息。</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">仅从此设备中删除</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -2956,13 +2956,13 @@
     <string name="ThreadRecord_view_once_video">一次性视频</string>
     <string name="ThreadRecord_view_once_media">一次性媒体</string>
     <!-- Thread preview when someone has deleted their own message -->
-    <string name="ThreadRecord_this_message_was_deleted">This message was deleted</string>
+    <string name="ThreadRecord_this_message_was_deleted">此消息已删除</string>
     <!-- Thread preview when someone has deleted their own message. Placeholder is the name of the person. -->
-    <string name="ThreadRecord_s_deleted_this_message">%1$s deleted this message</string>
+    <string name="ThreadRecord_s_deleted_this_message">%1$s删除了此消息</string>
     <!-- Thread preview when you deleted a message -->
-    <string name="ThreadRecord_you_deleted_this_message">You deleted this message</string>
+    <string name="ThreadRecord_you_deleted_this_message">您删除了此消息</string>
     <!-- Thread preview when an admin has deleted a message -->
-    <string name="ThreadRecord_admin_deleted_this_message">Admin %1$s deleted this message</string>
+    <string name="ThreadRecord_admin_deleted_this_message">管理员%1$s删除了此消息</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">您发送了激活付款请求</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -3113,11 +3113,11 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">静音通知</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Mute until…</string>
+    <string name="MuteDialog__mute_until">静音至…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
-    <string name="MuteUntilTimePickerBottomSheet__dialog_title">Mute notifications until…</string>
+    <string name="MuteUntilTimePickerBottomSheet__dialog_title">将通知静音至…</string>
     <!-- Label for a data selector where the user chooses how long they\'d like to mute notifications for -->
     <string name="MuteUntilTimePickerBottomSheet__select_date_title">选择日期</string>
     <!-- Label for a time selector where the user chooses how long they\'d like to mute notifications for -->
@@ -7225,7 +7225,7 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">IBAN 无效</string>
     <!-- Error label for name field when name is not at least three characters long (Stripe API enforced minimum) -->
-    <string name="BankTransferDetailsFragment__minimum_3_characters">Minimum 3 characters</string>
+    <string name="BankTransferDetailsFragment__minimum_3_characters">至少 3 个字符</string>
     <!-- Error label for email field when email is not valid -->
     <string name="BankTransferDetailsFragment__invalid_email_address">无效的电子邮件地址</string>
 
@@ -8661,13 +8661,13 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">将您的 Signal 账户和消息记录恢复或转移到此设备上。</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">还原 Signal 备份</string>
+    <string name="SelectRestoreMethodFragment__restore_signal_backup">恢复 Signal 备份</string>
     <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Restore your text messages and media from your Signal backup plan.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">从 Signal 备份套餐中恢复您的文本消息和媒体。</string>
     <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectRestoreMethodFragment__restore_on_device_backup">恢复本地备份</string>
     <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Restore your messages from a backup you saved on your device.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_messages_from">从您保存在设备上的备份中恢复消息。</string>
     <!-- Option title for restoring via a local backup file -->
     <string name="SelectRestoreMethodFragment__from_a_backup_file">从备份文件</string>
     <!-- Option subtitle for restoring via a local backup -->
@@ -8752,76 +8752,76 @@
     <string name="EnterLocalBackupKeyScreen__next">下一步</string>
 
     <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Failed to load archive. Please select a different directory.</string>
+    <string name="RestoreLocalBackupDialog__failed_to_load_archive">无法加载档案。请选择其他目录。</string>
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">好</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Backup restore failed</string>
+    <string name="RestoreLocalBackupActivity__backup_restore_failed">备份恢复失败</string>
     <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Restoring backup</string>
+    <string name="RestoreLocalBackupActivity__restoring_backup">正在恢复备份</string>
     <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Depending on the size of your backup, this could take a few minutes.</string>
+    <string name="RestoreLocalBackupActivity__depending_on_the_size">根据备份的大小，这可能需要几分钟时间。</string>
     <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
     <string name="RestoreLocalBackupActivity__restoring_messages">正在恢复消息…</string>
     <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Finalizing…</string>
+    <string name="RestoreLocalBackupActivity__finalizing">即将完成…</string>
     <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">还原完成</string>
+    <string name="RestoreLocalBackupActivity__restore_complete">恢复完成</string>
     <!-- RestoreLocalBackupActivity: Status text when restore fails -->
     <string name="RestoreLocalBackupActivity__restore_failed">恢复失败</string>
     <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
     <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s/%2$s（%3$d）</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Select your backup folder</string>
+    <string name="SelectInstructionsSheet__select_your_backup_folder">选择备份文件夹</string>
     <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Tap \"Select this folder\"</string>
+    <string name="SelectInstructionsSheet__tap_select_this_folder">点击“选择此文件夹”</string>
     <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Do not select individual files</string>
+    <string name="SelectInstructionsSheet__do_not_select_individual_files">请勿选择单个文件</string>
     <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Select your backup file</string>
+    <string name="SelectInstructionsSheet__select_your_backup_file">选择您的备份文件</string>
     <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Tap on the backup file you saved to your device</string>
+    <string name="SelectInstructionsSheet__tap_on_the_backup_file">点击保存在您设备中的备份文件</string>
     <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">After tapping \"Continue,\" here\'s how to access your backup:</string>
+    <string name="SelectInstructionsSheet__after_tapping_continue">点击“继续”后，以下是访问备份的方法：</string>
     <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Select the top-level folder where your backup is stored</string>
+    <string name="SelectInstructionsSheet__select_the_top_level_folder">选择备份所在的顶层文件夹</string>
     <!-- SelectInstructionsSheet: Continue button text -->
     <string name="SelectInstructionsSheet__continue_button">继续</string>
 
     <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupScreen__restore_on_device_backup">恢复本地备份</string>
     <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Restore your messages from the backup folder you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">从您保存在设备上的备份文件夹中恢复消息。如果现在不恢复，您以后将无法恢复这些消息。</string>
     <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">还原备份</string>
+    <string name="SelectLocalBackupScreen__restore_backup">恢复备份</string>
     <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Choose an earlier backup</string>
+    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">选择更早的备份</string>
     <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Choose a different backup</string>
+    <string name="SelectLocalBackupScreen__choose_a_different_backup">选择其他备份</string>
     <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Your latest backup:</string>
+    <string name="SelectLocalBackupScreen__your_latest_backup">您的上次备份：</string>
     <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Your backup:</string>
+    <string name="SelectLocalBackupScreen__your_backup">您的备份：</string>
 
     <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Choose a backup to restore</string>
+    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">选择要恢复的备份</string>
     <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Choosing an older backup may result in lost messages or media.</string>
+    <string name="SelectLocalBackupSheet__choosing_an_older_backup">选择旧备份可能会导致丢失消息或媒体。</string>
     <!-- SelectLocalBackupSheet: Continue button text -->
     <string name="SelectLocalBackupSheet__continue_button">继续</string>
 
     <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">恢复本地备份</string>
     <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
     <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">从您保存在设备上的备份中恢复消息。如果现在不恢复，您以后将无法恢复这些消息。</string>
     <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">I saved my backup as a single file</string>
+    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">我已将备份保存为单个文件</string>
     <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Choose backup folder</string>
+    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">选择备份文件夹</string>
     <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Select the folder on your device where your backup is stored</string>
+    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">选择您设备上存储备份的文件夹</string>
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Android 版 Signal 备份导出发生网络错误</string>

@@ -57,31 +57,31 @@
     <!-- Title of the verification code entry screen -->
     <string name="VerificationCodeScreen__verification_code">驗證碼</string>
     <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
-    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">請輸入剛才發送到 %1$s 嘅代碼</string>
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">請輸入剛才發送到 %1$s 嘅驗證碼</string>
     <!-- Button text for wrong number action -->
-    <string name="VerificationCodeScreen__wrong_number">個號碼唔啱？</string>
+    <string name="VerificationCodeScreen__wrong_number">個電話冧把唔啱？</string>
     <!-- Button text for resend SMS action -->
-    <string name="VerificationCodeScreen__resend_code">重新發送代碼</string>
+    <string name="VerificationCodeScreen__resend_code">重新發送驗證碼</string>
     <!-- Button text for call me action -->
-    <string name="VerificationCodeScreen__call_me_instead">Call me instead</string>
+    <string name="VerificationCodeScreen__call_me_instead">都係打電話畀我啦</string>
     <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <string name="VerificationCodeScreen__countdown_format">（%1$02d:%2$02d）</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">打俾我 (%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
-    <string name="VerificationCodeScreen__incorrect_code">個碼唔啱</string>
+    <string name="VerificationCodeScreen__incorrect_code">個驗證碼唔啱</string>
     <!-- Snackbar shown when there is a network error -->
-    <string name="VerificationCodeScreen__network_error">Unable to connect. Please check your network and try again.</string>
+    <string name="VerificationCodeScreen__network_error">連唔到線。請檢查你嘅網絡連線，然後再試多次。</string>
     <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
-    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Too many attempts. Try again in %1$s.</string>
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">白撞太多次。請你喺 %1$s 後再試。</string>
     <!-- Snackbar shown for generic/unknown errors -->
-    <string name="VerificationCodeScreen__an_unexpected_error_occurred">出現咗未知錯誤。 請你再試多次。</string>
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">出現咗未知錯誤。請你再試多次。</string>
     <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">There was a problem sending your verification code. Please try again.</string>
+    <string name="VerificationCodeScreen__sms_provider_error">發送驗證碼嗰陣出現問題。請你再試多次。</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
-    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Could not send code via the selected method. Please try another option.</string>
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">用你揀嘅方法發送唔到驗證碼。請你再揀過第二種方法。</string>
     <!-- Snackbar shown for registration errors -->
-    <string name="VerificationCodeScreen__registration_error">Registration failed. Please try again.</string>
+    <string name="VerificationCodeScreen__registration_error">註冊失敗。請你再試多次。</string>
     <!-- Button text for having trouble with verification -->
-    <string name="VerificationCodeScreen__having_trouble">Having trouble?</string>
+    <string name="VerificationCodeScreen__having_trouble">遇到問題？</string>
 </resources>

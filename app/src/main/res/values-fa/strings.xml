@@ -448,14 +448,14 @@
     <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more"> بارگیری بیشتر</string>
     <string name="ConversationItem_pending">  در حال انتظار</string>
-    <string name="ConversationItem_this_message_was_deleted">This message was deleted</string>
+    <string name="ConversationItem_this_message_was_deleted">این پیام حذف شده بود</string>
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
-    <string name="ConversationItem_s_deleted_this_message">%1$s deleted this message</string>
-    <string name="ConversationItem_you_deleted_this_message">You deleted this message</string>
+    <string name="ConversationItem_s_deleted_this_message">‏%1$s این پیام را حذف کرد</string>
+    <string name="ConversationItem_you_deleted_this_message">شما این پیام را حذف کردید</string>
     <!-- First part of a conversation message when a message has been deleted by an admin. -->
     <string name="ConversationItem_admin">مدیر</string>
     <!-- Second part of a conversation message when a message has been deleted by an admin. -->
-    <string name="ConversationItem_deleted_this_message">deleted this message</string>
+    <string name="ConversationItem_deleted_this_message">این پیام را حذف کرد</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">پیام بارگیری نمی‌شود. %1$s باید دوباره آن را ارسال کند.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -633,9 +633,9 @@
         <item quantity="other">می‌خواهید این پیام‌ها را برای چه کسانی پاک کنید؟</item>
     </plurals>
     <!-- Confirmation button to delete the message -->
-    <string name="ConversationFragment_delete_for_everyone_title">Delete for everyone?</string>
+    <string name="ConversationFragment_delete_for_everyone_title">برای همه حذف شود؟</string>
     <!-- Body of dialog explaining what happens during deletion -->
-    <string name="ConversationFragment_delete_for_everyone_body">As an admin, group members will see that you deleted these messages.</string>
+    <string name="ConversationFragment_delete_for_everyone_body">اعضای گروه خواهند دید که به‌عنوان مدیر این پیام‌ها را حذف کرده‌اید.</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">پاک کردن در این دستگاه</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -3052,13 +3052,13 @@
     <string name="ThreadRecord_view_once_video">ویدئوی یکبار مصرف</string>
     <string name="ThreadRecord_view_once_media">رسانهٔ یکبار مصرف</string>
     <!-- Thread preview when someone has deleted their own message -->
-    <string name="ThreadRecord_this_message_was_deleted">This message was deleted</string>
+    <string name="ThreadRecord_this_message_was_deleted">این پیام حذف شده بود</string>
     <!-- Thread preview when someone has deleted their own message. Placeholder is the name of the person. -->
-    <string name="ThreadRecord_s_deleted_this_message">%1$s deleted this message</string>
+    <string name="ThreadRecord_s_deleted_this_message">‏%1$s این پیام را حذف کرد</string>
     <!-- Thread preview when you deleted a message -->
-    <string name="ThreadRecord_you_deleted_this_message">You deleted this message</string>
+    <string name="ThreadRecord_you_deleted_this_message">شما این پیام را حذف کردید</string>
     <!-- Thread preview when an admin has deleted a message -->
-    <string name="ThreadRecord_admin_deleted_this_message">Admin %1$s deleted this message</string>
+    <string name="ThreadRecord_admin_deleted_this_message">مدیر %1$s این پیام را حذف کرد</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">شما درخواستی برای فعال کردن پرداخت‌ها ارسال کردید</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -3210,11 +3210,11 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">بی‌صدا کردن اعلان‌‌ها</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Mute until…</string>
+    <string name="MuteDialog__mute_until">بی‌صدا کردن تا…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
-    <string name="MuteUntilTimePickerBottomSheet__dialog_title">Mute notifications until…</string>
+    <string name="MuteUntilTimePickerBottomSheet__dialog_title">بی‌صدا کردن اعلان‌ها تا…</string>
     <!-- Label for a data selector where the user chooses how long they\'d like to mute notifications for -->
     <string name="MuteUntilTimePickerBottomSheet__select_date_title">انتخاب تاریخ</string>
     <!-- Label for a time selector where the user chooses how long they\'d like to mute notifications for -->
@@ -7393,7 +7393,7 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">شمارۀ IBAN نامعتبر است</string>
     <!-- Error label for name field when name is not at least three characters long (Stripe API enforced minimum) -->
-    <string name="BankTransferDetailsFragment__minimum_3_characters">Minimum 3 characters</string>
+    <string name="BankTransferDetailsFragment__minimum_3_characters">حداقل ۳ نویسه</string>
     <!-- Error label for email field when email is not valid -->
     <string name="BankTransferDetailsFragment__invalid_email_address">آدرس ایمیل نامعتبر</string>
 
@@ -8849,11 +8849,11 @@
     <!-- Option title for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__restore_signal_backup">بازیابی پشتیبان سیگنال</string>
     <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Restore your text messages and media from your Signal backup plan.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">پیامک‌ها و فایل‌های رسانه خود را از طرح پشتیبان‌گیری سیگنال خود بازیابی کنید.</string>
     <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectRestoreMethodFragment__restore_on_device_backup">بازیابی نسخه پشتیبان در دستگاه</string>
     <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Restore your messages from a backup you saved on your device.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_messages_from">پیام‌های خود را از نسخه پشتیبانی که در دستگاهتان ذخیره کرده‌اید بازیابی کنید.</string>
     <!-- Option title for restoring via a local backup file -->
     <string name="SelectRestoreMethodFragment__from_a_backup_file">از یک فایل پشتیبان</string>
     <!-- Option subtitle for restoring via a local backup -->
@@ -8938,20 +8938,20 @@
     <string name="EnterLocalBackupKeyScreen__next">بعدی</string>
 
     <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Failed to load archive. Please select a different directory.</string>
+    <string name="RestoreLocalBackupDialog__failed_to_load_archive">بایگانی بارگیری نشد. لطفاً دایرکتوری دیگری انتخاب کنید.</string>
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">تأیید</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Backup restore failed</string>
+    <string name="RestoreLocalBackupActivity__backup_restore_failed">نسخه پشتیبان بازیابی نشد</string>
     <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Restoring backup</string>
+    <string name="RestoreLocalBackupActivity__restoring_backup">در حال بازیابی پشتیبان</string>
     <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Depending on the size of your backup, this could take a few minutes.</string>
+    <string name="RestoreLocalBackupActivity__depending_on_the_size">بر اساس اندازه نسخه پشتیبان شما، این ممکن است چند دقیقه طول بکشد.</string>
     <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
     <string name="RestoreLocalBackupActivity__restoring_messages">در حال بازیابی پیام‌ها…</string>
     <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Finalizing…</string>
+    <string name="RestoreLocalBackupActivity__finalizing">در حال نهایی‌سازی…</string>
     <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
     <string name="RestoreLocalBackupActivity__restore_complete">بازیابی کامل شد</string>
     <!-- RestoreLocalBackupActivity: Status text when restore fails -->
@@ -8960,54 +8960,54 @@
     <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s از %2$s (%3$d%%)</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Select your backup folder</string>
+    <string name="SelectInstructionsSheet__select_your_backup_folder">پوشه پشتیبان خود را انتخاب کنید</string>
     <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Tap \"Select this folder\"</string>
+    <string name="SelectInstructionsSheet__tap_select_this_folder">روی «انتخاب این پوشه» ضربه بزنید</string>
     <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Do not select individual files</string>
+    <string name="SelectInstructionsSheet__do_not_select_individual_files">فایل‌های تکی را انتخاب نکنید</string>
     <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Select your backup file</string>
+    <string name="SelectInstructionsSheet__select_your_backup_file">فایل پشتیبان خود را انتخاب کنید</string>
     <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Tap on the backup file you saved to your device</string>
+    <string name="SelectInstructionsSheet__tap_on_the_backup_file">روی فایل پشتیبانی که در دستگاهتان ذخیره کرده‌اید ضربه بزنید</string>
     <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">After tapping \"Continue,\" here\'s how to access your backup:</string>
+    <string name="SelectInstructionsSheet__after_tapping_continue">بعد از ضربه زدن روی «ادامه»، این نحوه دسترسی به نسخه پشتیبان شماست:</string>
     <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Select the top-level folder where your backup is stored</string>
+    <string name="SelectInstructionsSheet__select_the_top_level_folder">پوشه سطح بالایی که نسخه پشتیبان را در آن ذخیره کرده‌اید انتخاب کنید</string>
     <!-- SelectInstructionsSheet: Continue button text -->
     <string name="SelectInstructionsSheet__continue_button">ادامه</string>
 
     <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupScreen__restore_on_device_backup">بازیابی نسخه پشتیبان در دستگاه</string>
     <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Restore your messages from the backup folder you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">پیام‌های خود را از پوشه پشتیبان که در دستگاهتان ذخیره کرده‌اید بازیابی کنید. اگر اکنون بازیابی نکنید، بعداً نمی‌توانید بازیابی کنید.</string>
     <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
     <string name="SelectLocalBackupScreen__restore_backup">بازیابی پشتیبان</string>
     <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Choose an earlier backup</string>
+    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">نسخه پشتیبان قدیمی‌تری انتخاب کنید</string>
     <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Choose a different backup</string>
+    <string name="SelectLocalBackupScreen__choose_a_different_backup">نسخه پشتیبان دیگری انتخاب کنید</string>
     <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Your latest backup:</string>
+    <string name="SelectLocalBackupScreen__your_latest_backup">آخرین نسخه پشتیبان شما:</string>
     <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Your backup:</string>
+    <string name="SelectLocalBackupScreen__your_backup">نسخه پشتیبان شما:</string>
 
     <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Choose a backup to restore</string>
+    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">نسخه پشتیبانی برای بازیابی انتخاب کنید</string>
     <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Choosing an older backup may result in lost messages or media.</string>
+    <string name="SelectLocalBackupSheet__choosing_an_older_backup">انتخاب نسخه پشتیبان قدیمی‌تر می‌تواند منجر به از دست رفتن پیام‌ها یا فایل‌های رسانه شود.</string>
     <!-- SelectLocalBackupSheet: Continue button text -->
     <string name="SelectLocalBackupSheet__continue_button">ادامه</string>
 
     <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">بازیابی نسخه پشتیبان در دستگاه</string>
     <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
     <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">پیام‌های خود را از نسخه پشتیبانی که در دستگاه خود ذخیره کرده‌اید بازیابی کنید. اگر اکنون بازیابی نکنید، بعداً نمی‌توانید بازیابی کنید.</string>
     <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">I saved my backup as a single file</string>
+    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">نسخه پشتیبان خود را به‌عنوان فایل تکی ذخیره کرده‌ام</string>
     <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Choose backup folder</string>
+    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">پوشه پشتیبان را انتخاب کنید</string>
     <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Select the folder on your device where your backup is stored</string>
+    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">در دستگاهتان پوشه‌ای را انتخاب کنید که نسخه پشتیبان در آن ذخیره شده است</string>
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">خطای شبکه خروجی «پشتیبان‌گیری سیگنال اندروید»</string>

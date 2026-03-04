@@ -448,14 +448,14 @@
     <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  और डाउनलोड करें</string>
     <string name="ConversationItem_pending">  बचा हुआ</string>
-    <string name="ConversationItem_this_message_was_deleted">This message was deleted</string>
+    <string name="ConversationItem_this_message_was_deleted">यह मैसेज डिलीट कर दिया गया था</string>
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
-    <string name="ConversationItem_s_deleted_this_message">%1$s deleted this message</string>
-    <string name="ConversationItem_you_deleted_this_message">You deleted this message</string>
+    <string name="ConversationItem_s_deleted_this_message">%1$s ने यह मैसेज डिलीट कर दिया है</string>
+    <string name="ConversationItem_you_deleted_this_message">आपने यह मैसेज डिलीट कर दिया है</string>
     <!-- First part of a conversation message when a message has been deleted by an admin. -->
     <string name="ConversationItem_admin">ऐडमिन</string>
     <!-- Second part of a conversation message when a message has been deleted by an admin. -->
-    <string name="ConversationItem_deleted_this_message">deleted this message</string>
+    <string name="ConversationItem_deleted_this_message">ने यह मैसेज डिलीट कर दिया है</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">मैसेज डाउनलोड नहीं किया जा सकता। %1$s से कहें कि वह इसे दोबारा भेजें।</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -624,18 +624,18 @@
     <string name="ConversationFragment_delete_for_everyone">सब के लिये डिलीट करें</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
-        <item quantity="one">चयनित मेसेज डिलीट करें?</item>
-        <item quantity="other">चयनित मेसेज डिलीट करें?</item>
+        <item quantity="one">चुना गया मैसेज डिलीट करना है?</item>
+        <item quantity="other">चुने गए मैसेज डिलीट करने हैं?</item>
     </plurals>
     <!-- Body of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_body">
-        <item quantity="one">आप यह संदेश किसके लिए डिलीट करना चाहेंगे?</item>
-        <item quantity="other">आप ये संदेश किसके लिए डिलीट करना चाहेंगे?</item>
+        <item quantity="one">आपको यह मैसेज किसके लिए डिलीट करना है?</item>
+        <item quantity="other">आपको ये मैसेज किसके लिए डिलीट करने हैं?</item>
     </plurals>
     <!-- Confirmation button to delete the message -->
-    <string name="ConversationFragment_delete_for_everyone_title">Delete for everyone?</string>
+    <string name="ConversationFragment_delete_for_everyone_title">सभी के लिए डिलीट करना है?</string>
     <!-- Body of dialog explaining what happens during deletion -->
-    <string name="ConversationFragment_delete_for_everyone_body">As an admin, group members will see that you deleted these messages.</string>
+    <string name="ConversationFragment_delete_for_everyone_body">ग्रुप मेंबर को यह पता चल जाएगा कि ऐडमिन के रूप में ये मैसेज आपने डिलीट किए हैं।</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">इस डिवाइस से डिलीट करें</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -3052,13 +3052,13 @@
     <string name="ThreadRecord_view_once_video">एक बार देखा जा सकने वाला वीडियो</string>
     <string name="ThreadRecord_view_once_media">एक बार देखा जा सकने वाला मीडिया</string>
     <!-- Thread preview when someone has deleted their own message -->
-    <string name="ThreadRecord_this_message_was_deleted">This message was deleted</string>
+    <string name="ThreadRecord_this_message_was_deleted">यह मैसेज डिलीट कर दिया गया था</string>
     <!-- Thread preview when someone has deleted their own message. Placeholder is the name of the person. -->
-    <string name="ThreadRecord_s_deleted_this_message">%1$s deleted this message</string>
+    <string name="ThreadRecord_s_deleted_this_message">%1$s ने यह मैसेज डिलीट कर दिया है</string>
     <!-- Thread preview when you deleted a message -->
-    <string name="ThreadRecord_you_deleted_this_message">You deleted this message</string>
+    <string name="ThreadRecord_you_deleted_this_message">आपने यह मैसेज डिलीट कर दिया है</string>
     <!-- Thread preview when an admin has deleted a message -->
-    <string name="ThreadRecord_admin_deleted_this_message">Admin %1$s deleted this message</string>
+    <string name="ThreadRecord_admin_deleted_this_message">ऐडमिन %1$s ने यह मैसेज डिलीट कर दिया है</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">आपने पेमेंट ऐक्टिवेट करने का अनुरोध भेजा है</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -3210,17 +3210,17 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">नोटिफिकेशन म्यूट करें</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Mute until…</string>
+    <string name="MuteDialog__mute_until">इतनी देर तक म्यूट करें…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
-    <string name="MuteUntilTimePickerBottomSheet__dialog_title">Mute notifications until…</string>
+    <string name="MuteUntilTimePickerBottomSheet__dialog_title">इतनी देर तक नोटिफ़िकेशन म्यूट करें…</string>
     <!-- Label for a data selector where the user chooses how long they\'d like to mute notifications for -->
     <string name="MuteUntilTimePickerBottomSheet__select_date_title">तारीख चुनें</string>
     <!-- Label for a time selector where the user chooses how long they\'d like to mute notifications for -->
     <string name="MuteUntilTimePickerBottomSheet__select_time_title">समय चुनें</string>
     <!-- Label for a button that, when pressed, will confirm the user\'s choice on how long to mute notifications for -->
-    <string name="MuteUntilTimePickerBottomSheet__mute_notifications">नोटिफिकेशन म्यूट करें</string>
+    <string name="MuteUntilTimePickerBottomSheet__mute_notifications">नोटिफ़िकेशन म्यूट करें</string>
     <!-- Subtitle in a dialog that describes the timezone the user is picking times in. The first placeholder is a UTC offset, and the second placeholder is a user-friendly name for the timezone, e.g. "All times in (GMT-05:00) Eastern Standard Time" -->
     <string name="MuteUntilTimePickerBottomSheet__timezone_disclaimer">सभी समय (%1$s) %2$s में</string>
 
@@ -4599,11 +4599,11 @@
     <string name="conversation_list_fragment__open_camera_description">कैमरा खोलें</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">अभी तक कोई चैट नहीं हैं।\nकिसी मित्र को मेसेज करके शुरू करें।</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">आर्काइव की गईं चैट यहाँ दिखेंगी।</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">आर्काइव की गईं चैट यहां दिखेंगी।</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
-    <string name="conversation_list_fragment__no_chats_to_display">दिखाने के लिए कोई चैट नहीं है</string>
+    <string name="conversation_list_fragment__no_chats_to_display">दिखाने के लिए कोई चैट मौजूद नहीं है</string>
     <!-- Button text that will open up chat folder settings -->
-    <string name="conversation_list_fragment__folder_settings">फ़ोल्डर सेटिंग्स</string>
+    <string name="conversation_list_fragment__folder_settings">फ़ोल्डर सेटिंग</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4648,11 +4648,11 @@
 
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">संपादित करने के लिए दो बार टैप करें</string>
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">एडिट करने के लिए डबल टैप करें</string>
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
-    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">अपने संदेशों को संपादित करने के लिए उन पर तुरंत दो बार टैप करें। आप अपने संदेशों को भेजे जाने के 24 घंटे बाद तक संपादित कर सकते हैं।</string>
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">अपने मैसेज को एडिट करने के लिए उस पर जल्दी से दो बार टैप करें। मैसेज भेजे जाने के 24 घंटे बाद तक उसे एडिट किया जा सकता है।</string>
     <!-- Button label to dismiss sheet -->
-    <string name="DoubleTapEditEducationSheet__got_it">समझ गया</string>
+    <string name="DoubleTapEditEducationSheet__got_it">ठीक है</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">नया ग्रुप</string>
@@ -4815,11 +4815,11 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">आने वाली Signal वॉयस कॉल</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">इनकमिंग Signal वॉइस कॉल</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">आने वाली Signal वीडियो कॉल</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">इनकमिंग Signal वीडियो कॉल</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">इनकमिंग सिग्नल ग्रूप कॉल</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">इनकमिंग Signal ग्रुप कॉल</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
     <string name="CallNotificationBuilder__ongoing_signal_voice_call">जारी Signal वॉइस कॉल</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
@@ -4850,7 +4850,7 @@
     <string name="RegistrationActivity_restore">रीस्टोर करें</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Signal के नये वर्ज़न से बैकअप लाना संभव नहीं है</string>
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">बैकअप में विकृत डेटा है</string>
+    <string name="RegistrationActivity_backup_failure_foreign_key">बैकअप में अमान्य डेटा मौजूद है</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">बैकअप पासफ़्रेज़ सही नहीं है</string>
     <string name="RegistrationActivity_checking">जांच की जा रही है…</string>
     <string name="RegistrationActivity_d_messages_so_far">अब तक %1$d मैसेज…</string>
@@ -4890,7 +4890,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">मुझे कॉल करें (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">पुन: कोड भेजे (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">कोड दोबारा भेजें (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal सपोर्ट टीम से संपर्क करें</string>
     <string name="RegistrationActivity_code_support_subject">Signal रजिस्ट्रेशन - Android के लिए वेरिफ़िकेशन कोड</string>
     <string name="RegistrationActivity_incorrect_code">कोड सही नहीं है</string>
@@ -4898,31 +4898,31 @@
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">अनजान</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">फोन नंबर</string>
+    <string name="preferences_app_protection__phone_number">फ़ोन नंबर</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">चुनें कि कौन आपका फोन नंबर देख सकता है और कौन इसके साथ Signal पर आपसे संपर्क कर सकता है।</string>
+    <string name="preferences_app_protection__choose_who_can_see">तय करें कि कौन आपका फ़ोन नंबर देख सकता है और कौन इसके ज़रिए आपसे Signal पर संपर्क कर सकता है।</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">मेरा नंबर कौन देख सकता है</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">आपका फोन नंबर उन लोगों और ग्रुप्स को दिखेगा जिन्हें आप संदेश भेजेंगे।</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">आपका फ़ोन नंबर उन लोगों और ग्रुप को दिखेगा जिन्हें आपने मैसेज भेजा है।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">आपका फोन नंबर किसी को तब तक नहीं दिखाई देगा जब तक कि उन्होंने इसे अपने फोन के संपर्कों में न सहेजा हो।</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">आपका फ़ोन नंबर किसी को तब तक नहीं दिखाई देगा जब तक कि उसने अपने फ़ोन के कॉन्टैक्ट में इसे सेव न किया हो।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">आपका फोन नंबर किसी को दिखाई नहीं देगा।</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">आपका फ़ोन नंबर किसी को दिखाई नहीं देगा।</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">मुझे नंबर से कौन ढूंढ सकता है</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">मुझे नंबर के ज़रिए कौन ढूंढ सकता है</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">जिस किसी के पास आपका फोन नंबर है, वो आपको Signal पर देख सकेगा और आपसे चैट शुरू कर सकता है।</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">जिस भी व्यक्ति के पास आपका फ़ोन नंबर है वह यह देख सकता है कि आप Signal पर मौजूद हैं। साथ ही, वह आपके साथ चैट कर सकता है।</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">कोई भी यह नहीं देख पाएगा कि आप Signal पर हैं, जब तक कि आप उन्हें संदेश न भेजें या उनके साथ चैट न करें।</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">अगर आपने किसी को मैसेज नहीं भेजा है या फिर किसी के साथ आपने पहले चैट नहीं की है, तो कोई नहीं जान पाएगा कि आप Signal पर हैं।</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"इस सेटिंग को बदलने के लिए, ‘मेरा नंबर कौन देख सकता है’ को ‘कोई नहीं’ पर सेट करें।"</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">क्या आपको यकीन है?</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">क्या आपको वाकई ऐसा करना है?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"कौन मुझे नंबर से ढूंढ सकता है\" से लेकर \"कोई नहीं\" की सेटिंग लोगों के लिए आपको Signal पर ढूंढना मुश्किल करेगी।</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"मुझे नंबर से कौन ढूंढ सकता है\" को \"कोई नहीं\" पर सेट करने पर किसी के लिए भी Signal पर आपको ढूंढना मुश्किल हो जाएगा।</string>
     <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">रद्द करें</string>
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">कैंसिल करें</string>
     <string name="PhoneNumberPrivacy_everyone">सभी</string>
     <string name="PhoneNumberPrivacy_nobody">कोई नहीं</string>
     <string name="preferences_app_protection__screen_lock">स्क्रीन लॉक</string>
@@ -4954,21 +4954,21 @@
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal अनलॉक करें</string>
     <!-- Description text explaining how to unlock Signal -->
-    <string name="prompt_passphrase_activity__use_your_android_device">Signal को अनलॉक करने के लिए, अपने Android डिवाइस की लॉक सेटिंग्स का इस्तेमाल करें।</string>
+    <string name="prompt_passphrase_activity__use_your_android_device">Signal को अनलॉक करने के लिए, अपने Android डिवाइस की लॉक सेटिंग का इस्तेमाल करें।</string>
     <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
-    <string name="prompt_passphrase_activity__screen_lock_is_on">स्क्रीन लॉक चालू है और Signal आपके डिवाइस की लॉक सेटिंग्स के साथ सुरक्षित है। Signal को उसी तरह अनलॉक करें जैसे आप सामान्य रुप से अपना फ़ोन अनलॉक करते हैं, यह फ़ेस, फ़िंगरप्रिंट, पिन, पासवर्ड या पैटर्न से अनलॉक हो सकता ह।</string>
+    <string name="prompt_passphrase_activity__screen_lock_is_on">स्क्रीन लॉक चालू है और आपके डिवाइस की लॉक सेटिंग के साथ Signal पूरी तरह सुरक्षित है। डिवाइस को अनलॉक करने के लिए आपने जो तरीका सेट किया है, Signal को उसी तरह अनलॉक करें। जैसे, फ़ेस, फ़िंगरप्रिंट, पिन, पासवर्ड या पैटर्न से अनलॉक।</string>
     <!-- Button in a dialog that will contact Signal support if pressed -->
-    <string name="prompt_passphrase_activity__contact_support">सपोर्ट से संपर्क करें</string>
+    <string name="prompt_passphrase_activity__contact_support">सपोर्ट टीम से संपर्क करें</string>
     <!-- Button text to try again after unlocking has previously failed -->
     <string name="prompt_passphrase_activity__try_again">फिर से कोशिश करें</string>
 
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">बंद</string>
+    <string name="ScreenLockSettingsFragment__off">बंद करें</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
     <string name="ScreenLockSettingsFragment__use_screen_lock">स्क्रीन लॉक का इस्तेमाल करें</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">ऐप छोड़ने या स्विच करने पर, Signal को अनलॉक करने के लिए Android डिवाइस की लॉक सेटिंग्स की ज़रूरत होगी। लॉक होने पर, नोटिफ़िकेशन प्रीव्यू में संदेश की सामग्री दिखाई नहीं देगी।</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">ऐप छोड़ने या स्विच करने पर, Signal को अनलॉक करने के लिए आपको Android डिवाइस की लॉक सेटिंग की ज़रूरत पड़ सकती है। लॉक होने पर, नोटिफ़िकेशन प्रीव्यू में मैसेज का कॉन्टेंट दिखाई नहीं देगा।</string>
     <!-- Title text explaining when users should start the screen lock -->
     <string name="ScreenLockSettingsFragment__start_screen_lock">स्क्रीन लॉक शुरू करें</string>
     <!-- Option text explaining that screen lock should start immediately -->
@@ -4980,7 +4980,7 @@
     <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
     <string name="ScreenLockSettingsFragment__after_30_min">30 मिनट बाद</string>
     <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">कस्टम समय</string>
+    <string name="ScreenLockSettingsFragment__custom_time">खुद से समय डालें</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
     <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal स्क्रीन लॉक का इस्तेमाल करें</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
@@ -4988,24 +4988,24 @@
 
     <string name="Recipient_unknown">अनजान</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">डिलीट किया गया अकाउंट</string>
+    <string name="Recipient_deleted_account">अकाउंट डिलीट कर दिया गया है</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">खाता पुन: पंजीकृत करें</string>
+    <string name="preferences_account_reregister">अकाउंट दोबारा रजिस्टर करें</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
     <string name="preferences_account_update_signal">Signal अपडेट करें</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
     <string name="preferences_account_delete_all_data">सारा डाटा डिलीट करें</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">सारा डाटा डिलीट करें?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">सारा डाटा डिलीट करना है?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">इससे ऐप रीसेट हो जाएगा और आपके सभी संदेश हट जाएंगे। यह प्रक्रिया पूरी होने पर ऐप बंद हो जाएगा।</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">इससे ऐप रीसेट हो जाएगा और आपके सभी मैसेज डिलीट हो जाएंगे। यह प्रक्रिया पूरी होने पर ऐप बंद हो जाएगा।</string>
     <!-- Confirmation action to proceed with application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_proceed">आगे बढ़ें</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">रद्द करें</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">कैंसिल करें</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">डेटा हटाने में विफल</string>
+    <string name="preferences_account_delete_all_data_failed">डेटा डिलीट नहीं हो पाया</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">अकाउंट ट्रांसफ़र या रीस्टोर करें</string>
@@ -5015,14 +5015,14 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">आपको अपना पुराना डिवाइस ऐक्सेस करना होगा।</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">बैकअप से रीस्टोर करें</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">किसी लोकल बैकअप से अपने मैसेज रीस्टोर करें। अगर आपने अभी रीस्टोर नहीं किया, तो बाद में आपके पास ऐसा करने का विकल्प नहीं रहेगा।</string>
-    <string name="TransferOrRestoreFragment__restore_from_local_backup">स्थानीय बैकअप को रीस्टोर करें</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">बैकअप रीस्टोर करें</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">लोकल बैकअप रीस्टोर करें</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal बैकअप रीस्टोर करें</string>
     <!-- Button label for more options -->
-    <string name="TransferOrRestoreFragment__more_options">अधिक विकल्प</string>
+    <string name="TransferOrRestoreFragment__more_options">और विकल्प</string>
 
-    <string name="TransferOrRestoreFragment__cancel">रद्द करें</string>
-    <string name="TransferOrRestoreFragment__skip_transfer">बिना ट्रांसफर किए लॉग इन करें</string>
-    <string name="TransferOrRestoreFragment__skip_transfer_description">अपने संदेशों और मीडिया को स्थानांतरित किए बिना जारी रखें</string>
+    <string name="TransferOrRestoreFragment__cancel">कैंसिल करें</string>
+    <string name="TransferOrRestoreFragment__skip_transfer">ट्रांसफ़र किए बिना लॉग इन करें</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">अपने मैसेज और मीडिया को ट्रांसफ़र किए बिना जारी रखें</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">अपने पुराने Android फ़ोन पर Signal खोलें</string>
@@ -5089,7 +5089,7 @@
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal के नए वर्ज़न से ट्रांसफ़र नहीं किया जा सकता</string>
     <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">स्थानांतरित डेटा विकृत था</string>
+    <string name="NewDeviceTransfer__failure_foreign_key">ट्रांसफ़र किए गए डेटा में कोई गड़बड़ी हुई</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">डेटा ट्रांसफ़र हो रहा है</string>
@@ -5214,16 +5214,16 @@
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
     <string name="ReviewCardDialogFragment__review_members">सदस्यों की समीक्षा करें</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">निवेदन की समीक्षा करें</string>
+    <string name="ReviewCardDialogFragment__review_request">अनुरोध की समीक्षा करें</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d ग्रुप सदस्य का एक जैसा नाम है, नीचे दिए सदस्य की समीक्षा करें या कार्रवाई का चयन करें।</item>
-        <item quantity="other">%1$d ग्रुप सदस्यों के मिलते-जुलते नाम हैं, नीचे दिए सदस्यों की समीक्षा करें या कार्रवाई का चयन करें।</item>
+        <item quantity="one">ग्रुप के %1$d सदस्य का नाम एक जैसा है। नीचे दिए गए सदस्य की समीक्षा करें और सही कदम उठाएं।</item>
+        <item quantity="other">ग्रप के %1$d सदस्यों के नाम एक जैसे हैं। नीचे दिए गए सदस्यों की समीक्षा करें और सही कदम उठाएं।</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="one">अगर आप इस निवेदन को भेजने वाले के बारे में निश्चित नहीं हों, तो निचे दिए गए संपर्क की समीक्षा करें और कार्रवाई करें।</item>
-        <item quantity="other">अगर आप इस निवेदन को भेजने वाले के बारे में निश्चित नहीं हों, तो निचे दिए गए संपर्कों की समीक्षा करें और कार्रवाई करें।</item>
+        <item quantity="one">अगर आपको नहीं पता है कि अनुरोध भेजने वाला व्यक्ति कौन है, तो कॉन्टैक्ट देखें और सही कदम उठाएं।</item>
+        <item quantity="other">अगर आपको नहीं पता है कि अनुरोध भेजने वाले लोग कौन हैं, तो कॉन्टैक्ट देखें और सही कदम उठाएं।</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">कोई दूसरा कॉमन ग्रुप नहीं है।</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">कोई कॉमन ग्रुप मौजूद नहीं है।</string>
@@ -5247,9 +5247,9 @@
     <string name="ReviewCard__block">ब्लॉक करें</string>
     <string name="ReviewCard__delete">डिलीट करें</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
-    <string name="ReviewCard__s_recently_changed">हाल ही में %1$s अपना प्रोफ़ाइल नाम %2$s से %3$s में बदला है</string>
+    <string name="ReviewCard__s_recently_changed">%1$s ने हाल ही में अपना प्रोफ़ाइल नेम %2$s से बदलकर %3$s कर लिया है</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
-    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s आपके फोन संपर्कों में है</string>
+    <string name="ReviewCard__s_is_in_your_system_contacts">%1$s आपके फ़ोन के कॉन्टैक्ट में मौजूद हैं</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s ने ग्रुप जॉइन किया</string>
@@ -5257,8 +5257,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s %3$s और ने ग्रुप जॉइन किया</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="one">%1$s, %2$s, और %3$d अन्य कॉल में जुड़े</item>
-        <item quantity="other">%1$s, %2$s, और %3$d अन्य कॉल में जुड़े</item>
+        <item quantity="one">%1$s, %2$s, और %3$d अन्य मौजूद हैं</item>
+        <item quantity="other">%1$s, %2$s, और %3$d अन्य मौजूद हैं</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s ने ग्रुप छोड़ा</string>
@@ -5266,7 +5266,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s और %3$s ने ग्रुप छोड़ा</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
-        <item quantity="one">%1$s, %2$s, और %3$d अन्य ने कॉल छोड़ दी</item>
+        <item quantity="one">%1$s, %2$s, और %3$d अन्य ने कॉल छोड़ दी</item>
         <item quantity="other">%1$s, %2$s, और %3$d अन्य ने कॉल छोड़ दी</item>
     </plurals>
 
@@ -5387,10 +5387,10 @@
     <string name="payment_info_card_hide_this_card">इस कार्ड को छिपाना है?</string>
     <string name="payment_info_card_hide">छिपाएं</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">रिकवरी वाक्य सहेजें</string>
+    <string name="payment_info_card_save_recovery_phrase">रिकवरी फ़्रेज़ सेव करें</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">रिकवरी फ़्रेज़ से आपको पेमेंट खाते को रीस्टोर करने का एक और तरीका मिलता है।</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">अपना वाक्य सहेजें</string>
+    <string name="payment_info_card_save_your_phrase">अपना फ़्रेज़ सेव करें</string>
     <string name="payment_info_card_update_your_pin">अपना पिन अपडेट करें</string>
     <string name="payment_info_card_with_a_high_balance">अगर आपके अकाउंट में बैलेंस ज़्यादा है, तो सुरक्षा बढ़ाने के लिए अपने पिन को अल्फ़ान्यूमेरिक में अपडेट करें।</string>
     <string name="payment_info_card_update_pin">पिन अपडेट करें</string>
@@ -5415,28 +5415,28 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">रिकवरी फ़्रेज़</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">रिकवरी फ़्रेज़ देखें</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">रिकवरी वाक्य सहेजें</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">रिकवरी फ़्रेज़ सेव करें</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">रिकवरी फ़्रेज़ डालें</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">आपके द्वारा Signal फिर से इंस्टॉल करते समय यदि आप अपने Signal PIN की पुष्टि करते हैं तो आपका बैलेंस अपने आप रीस्टोर हो जाएगा। आप रिकवरी फ़्रेज़ का उपयोग करके भी अपना बैलेंस रीस्टोर कर सकते हैं, जो आपके लिए एक अनोखा %1$d शब्द का वाक्यांश होता है। इसे लिख लें और किसी सुरक्षित स्थान पर रखें।</item>
-        <item quantity="other">आपके द्वारा Signal फिर से इंस्टॉल करते समय यदि आप अपने Signal PIN की पुष्टि करते हैं तो आपका बैलेंस अपने आप रीस्टोर हो जाएगा। आप रिकवरी फ़्रेज़ का उपयोग करके भी अपना बैलेंस रीस्टोर कर सकते हैं, जो आपके लिए एक अनोखा %1$d शब्दों का वाक्यांश होता है। इसे लिख लें और किसी सुरक्षित स्थान पर रखें।</item>
+        <item quantity="one">Signal को फिर से इंस्टॉल करने के बाद, अपने Signal पिन की पुष्टि करते ही आपका बैलेंस अपने-आप रीस्टोर हो जाएगा। आपके पास रिकवरी फ़्रेज़ की मदद से भी बैलेंस रीस्टोर करने का विकल्प रहता है। यह %1$d शब्दों का एक यूनिक फ़्रेज होता है, जिसे सिर्फ़ आपके लिए बनाया गया है। इसे नोट कर लें और सहेजकर कहीं रख लें।</item>
+        <item quantity="other">Signal को फिर से इंस्टॉल करने के बाद, अपने Signal पिन की पुष्टि करते ही आपका बैलेंस अपने-आप रीस्टोर हो जाएगा। आपके पास रिकवरी फ़्रेज़ की मदद से भी बैलेंस रीस्टोर करने का विकल्प रहता है। यह %1$d शब्दों का एक यूनिक फ़्रेज होता है, जिसे सिर्फ़ आपके लिए बनाया गया है। इसे नोट कर लें और सहेजकर कहीं रख लें।</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">आपने संतुलन बना लिया है! समय है अपने रिकवरी वाक्य को सहेजने का—24 शब्दों की एक कुंजी जिसके इस्तेमाल से आप अपना संतुलन वापस पा सकते हैं।</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">आपके पास कुछ बचे हुए पैसे हैं! इसलिए, अपने रिकवरी फ़्रेज़ को सेव करके रखें। यह 24 शब्दों की एक \'की\' है जिससे आपको अपने बैलेंस रीस्टोर करने में मदद मिलती है।</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">समय है अपने रिकवरी वाक्य को सहेजने का—24 शब्दों की एक कुंजी जिसके इस्तेमाल से आप अपना संतुलन वापस पा सकते हैं।</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">अपने रिकवरी फ़्रेज़ को सेव करके रखें। यह 24 शब्दों की एक \'की\' है जिससे आपको अपने बैलेंस रीस्टोर करने में मदद मिलती है।</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">आपका रिकवरी फ़्रेज़ आपके लिए %1$d शब्दों का एक यूनीक फ़्रेज़ होता है। अपना बैलेंस रीस्टोर करने के लिए इस फ़्रेज़ का इस्तेमाल करें।</string>
     <string name="PaymentsRecoveryStartFragment__start">शुरू करें</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">मैन्युअल तरीक़े से डालें</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">क्लिपबोर्ड से पेस्ट करें</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">बिना सहेजे जारी रखना है?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">सेव किए बिना जारी रखना है?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">आपके रिकवरी वाक्य से आप खराब-से-खराब परिस्थिति में भी अपना संतुलन वापस पा सकते हैं। हम इसकी पुरजोर सलाह देते हैं कि आप इसे सहेज लें।</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">अगर कोई बड़ी गड़बड़ी हो जाए, तो रिकवरी फ़्रेज़ की मदद से आपको बैलेंस रीस्टोर करने में मदद मिलती है। हमारी सलाह है कि आप इसे सेव करके ज़रूर रख लें।</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">रिकवरी वाक्य छोड़ें</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">रिकवरी फ़्रेज़ से आगे बढ़ें</string>
     <!-- Alert dialog option to cancel dialog-->
-    <string name="PaymentsRecoveryStartFragment__cancel">रद्द करें</string>
+    <string name="PaymentsRecoveryStartFragment__cancel">कैंसिल करें</string>
 
     <!-- PaymentsRecoveryPasteFragment -->
     <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">रिकवरी फ़्रेज़ पेस्ट करें</string>
@@ -5540,37 +5540,37 @@
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">आपका अकाउंट डेटा</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">अपने Signal अकाउंट डेटा की रिपोर्ट निर्यात करें। इस रिपोर्ट में कोई संदेश या मीडिया शामिल नहीं है। %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">अपने Signal अकाउंट डेटा की रिपोर्ट एक्सपोर्ट करें। इस रिपोर्ट में कोई मैसेज या मीडिया शामिल नहीं है। %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">अधिक जानें</string>
+    <string name="ExportAccountDataFragment__learn_more">और जानें</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">निर्यात रिपोर्ट करें</string>
+    <string name="ExportAccountDataFragment__export_report">रिपोर्ट एक्सपोर्ट करें</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">TXT के रूप में निर्यात करें</string>
+    <string name="ExportAccountDataFragment__export_as_txt">TXT फ़ॉर्मैट में एक्सपोर्ट करें</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">आसानी से पढ़ी जाने वाली टेक्स्ट फ़ाइल</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">आसानी से पढ़ी जा सकने वाली टेक्स्ट फ़ाइल</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">JSON के रूप में निर्यात करें</string>
+    <string name="ExportAccountDataFragment__export_as_json">JSON फ़ॉर्मैट में एक्सपोर्ट करें</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">मशीन-पठनीय फ़ाइल</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">मशीन द्वारा पढ़ी जा सकने वाली फ़ाइल</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">रद्द करें</string>
+    <string name="ExportAccountDataFragment__cancel_action">कैंसिल करें</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">ठीक</string>
+    <string name="ExportAccountDataFragment__ok_action">ठीक है</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">रिपोर्ट जनरेट नहीं की जा सकी</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">रिपोर्ट जनरेट नहीं हो सकी</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">अपना कनेक्शन जाँचें और फिर से प्रयास करें।</string>
+    <string name="ExportAccountDataFragment__check_network">अपना इंटरनेट कनेक्शन देखें और दोबारा कोशिश करें।</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">डेटा निर्यात करें?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">डेटा एक्सपोर्ट करना है?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">अपने Signal अकाउंट के डेटा को केवल उन लोगों या ऐप्स के साथ साझा करें जिन पर आप भरोसा करते हैं।</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">अपने Signal अकाउंट के डेटा सिर्फ़ भरोसेमंद लोगों या ऐप के साथ ही शेयर करें।</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">निर्यात करें</string>
+    <string name="ExportAccountDataFragment__export_report_action">एक्सपोर्ट करें</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">रिपोर्ट बनाई जा रही है…</string>
@@ -7393,7 +7393,7 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">अमान्य IBAN</string>
     <!-- Error label for name field when name is not at least three characters long (Stripe API enforced minimum) -->
-    <string name="BankTransferDetailsFragment__minimum_3_characters">Minimum 3 characters</string>
+    <string name="BankTransferDetailsFragment__minimum_3_characters">कम से कम 3 कैरेक्टर</string>
     <!-- Error label for email field when email is not valid -->
     <string name="BankTransferDetailsFragment__invalid_email_address">अमान्य ईमेल</string>
 
@@ -8849,11 +8849,11 @@
     <!-- Option title for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__restore_signal_backup">बैकअप रीस्टोर करें</string>
     <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Restore your text messages and media from your Signal backup plan.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">अपने Signal बैकअप प्लान की मदद से अपने टेक्स्ट मैसेज और मीडिया रीस्टोर करें।</string>
     <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectRestoreMethodFragment__restore_on_device_backup">ऑन-डिवाइस बैकअप रीस्टोर करें</string>
     <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Restore your messages from a backup you saved on your device.</string>
+    <string name="SelectRestoreMethodFragment__restore_your_messages_from">अपने डिवाइस पर सेव किए गए बैकअप से अपने मैसेज रीस्टोर करें।</string>
     <!-- Option title for restoring via a local backup file -->
     <string name="SelectRestoreMethodFragment__from_a_backup_file">किसी बैकअप फ़ाइल से</string>
     <!-- Option subtitle for restoring via a local backup -->
@@ -8933,81 +8933,81 @@
     <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
     <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">आपकी \'रिकवरी की\' एक 64-कैरेक्टर वाला कोड है, जो आपके अकाउंट और डेटा को रिकवर करने के लिए ज़रूरी है।</string>
     <!-- EnterLocalBackupKeyScreen: Button text when user does not have a backup key -->
-    <string name="EnterLocalBackupKeyScreen__no_backup_key">आपकी बैकअप की नहीं है?</string>
+    <string name="EnterLocalBackupKeyScreen__no_backup_key">\'बैकअप की\' नहीं है?</string>
     <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
     <string name="EnterLocalBackupKeyScreen__next">अगला</string>
 
     <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Failed to load archive. Please select a different directory.</string>
+    <string name="RestoreLocalBackupDialog__failed_to_load_archive">आर्काइव लोड नहीं हो सका। कृपया कोई दूसरी डायरेक्टरी चुनें।</string>
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">ठीक है</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Backup restore failed</string>
+    <string name="RestoreLocalBackupActivity__backup_restore_failed">बैकअप रीस्टोर नहीं किया जा सका</string>
     <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Restoring backup</string>
+    <string name="RestoreLocalBackupActivity__restoring_backup">बैकअप रीस्टोर किया जा रहा है</string>
     <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Depending on the size of your backup, this could take a few minutes.</string>
+    <string name="RestoreLocalBackupActivity__depending_on_the_size">इसमें कुछ मिनट का समय लग सकता है। यह इस पर निर्भर करता है कि आपके बैकअप का साइज़ कितना है।</string>
     <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
     <string name="RestoreLocalBackupActivity__restoring_messages">मैसेज रीस्टोर किए जा रहे हैं…</string>
     <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Finalizing…</string>
+    <string name="RestoreLocalBackupActivity__finalizing">पूरा किया जा रहा है…</string>
     <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
     <string name="RestoreLocalBackupActivity__restore_complete">रीस्टोर पूरा हुआ</string>
     <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">रीस्टोर नहीं किया जा सका</string>
+    <string name="RestoreLocalBackupActivity__restore_failed">रीस्टोर नहीं हो सका</string>
     <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
     <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%2$s में से %1$s (%3$d%%)</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Select your backup folder</string>
+    <string name="SelectInstructionsSheet__select_your_backup_folder">अपना बैकअप फ़ोल्डर चुनें</string>
     <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Tap \"Select this folder\"</string>
+    <string name="SelectInstructionsSheet__tap_select_this_folder">\'यह फ़ोल्डर चुनें\' पर टैप करें</string>
     <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Do not select individual files</string>
+    <string name="SelectInstructionsSheet__do_not_select_individual_files">अलग-अलग फ़ाइलें न चुनें</string>
     <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Select your backup file</string>
+    <string name="SelectInstructionsSheet__select_your_backup_file">अपनी बैकअप फ़ाइल चुनें</string>
     <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Tap on the backup file you saved to your device</string>
+    <string name="SelectInstructionsSheet__tap_on_the_backup_file">अपने डिवाइस में सेव की गई बैकअप फ़ाइल पर टैप करें</string>
     <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">After tapping \"Continue,\" here\'s how to access your backup:</string>
+    <string name="SelectInstructionsSheet__after_tapping_continue">\'जारी रखें\' पर टैप करने के बाद, इस तरह बैकअप को ऐक्सेस करें:</string>
     <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Select the top-level folder where your backup is stored</string>
+    <string name="SelectInstructionsSheet__select_the_top_level_folder">उस टॉप-लेवल फ़ोल्डर को चुनें जिसमें आपका बैकअप स्टोर किया हुआ है</string>
     <!-- SelectInstructionsSheet: Continue button text -->
     <string name="SelectInstructionsSheet__continue_button">जारी रखें</string>
 
     <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupScreen__restore_on_device_backup">ऑन-डिवाइस बैकअप रीस्टोर करें</string>
     <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Restore your messages from the backup folder you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">अपने डिवाइस पर सेव किए गए बैकअप फ़ोल्डर से अपने मैसेज रीस्टोर करें। अगर आपने अभी रीस्टोर नहीं किया, तो आपके पास बाद में ऐसा करने का विकल्प नहीं रहेगा।</string>
     <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
     <string name="SelectLocalBackupScreen__restore_backup">बैकअप रीस्टोर करें</string>
     <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Choose an earlier backup</string>
+    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">पहले का कोई बैकअप चुनें</string>
     <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Choose a different backup</string>
+    <string name="SelectLocalBackupScreen__choose_a_different_backup">कोई दूसरा बैकअप चुनें</string>
     <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Your latest backup:</string>
+    <string name="SelectLocalBackupScreen__your_latest_backup">आपका सबसे नया बैकअप:</string>
     <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Your backup:</string>
+    <string name="SelectLocalBackupScreen__your_backup">आपका बैकअप:</string>
 
     <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Choose a backup to restore</string>
+    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">रीस्टोर करने के लिए बैकअप चुनें</string>
     <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Choosing an older backup may result in lost messages or media.</string>
+    <string name="SelectLocalBackupSheet__choosing_an_older_backup">पुराना बैकअप चुनने पर मैसेज या मीडिया गुम हो जाने की संभावना रहती है।</string>
     <!-- SelectLocalBackupSheet: Continue button text -->
     <string name="SelectLocalBackupSheet__continue_button">जारी रखें</string>
 
     <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">ऑन-डिवाइस बैकअप रीस्टोर करें</string>
     <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">अपने डिवाइस पर सेव किए गए बैकअप से अपने संदेश रीस्टोर करें। अगर आप अभी रीस्टोर नहीं करते, तो आप बाद में रीस्टोर नहीं कर पाएँगे।</string>
+    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">अपने डिवाइस पर सेव किए गए बैकअप से अपने मैसेज रीस्टोर करें। अगर आपने अभी रीस्टोर नहीं किया, तो बाद में ऐसा करने का विकल्प नहीं रहेगा।</string>
     <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">I saved my backup as a single file</string>
+    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">मैंने अपना बैकअप एक सिंगल फ़ाइल के रूप में सेव किया है</string>
     <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Choose backup folder</string>
+    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">बैकअप फ़ोल्डर चुनें</string>
     <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Select the folder on your device where your backup is stored</string>
+    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">अपने डिवाइस में वह फ़ोल्डर चुनें जिसमें आपका बैकअप स्टोर किया हुआ है</string>
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android के बैकअप को एक्सपोर्ट करने में नेटवर्क से जुड़ी गड़बड़ी</string>
