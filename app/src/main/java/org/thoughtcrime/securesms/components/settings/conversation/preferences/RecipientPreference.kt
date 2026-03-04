@@ -63,9 +63,10 @@ object RecipientPreference {
 
     private var recipient: Recipient? = null
     private var canSetMemberLabel: Boolean = false
+    private var memberLabel: StyledMemberLabel? = null
 
     private val recipientObserver = Observer<Recipient> { recipient ->
-      onRecipientChanged(recipient = recipient, memberLabel = null, canSetMemberLabel = canSetMemberLabel)
+      onRecipientChanged(recipient = recipient, memberLabel = memberLabel, canSetMemberLabel = canSetMemberLabel)
     }
 
     override fun bind(model: Model) {
@@ -82,6 +83,7 @@ object RecipientPreference {
       }
 
       canSetMemberLabel = model.canSetMemberLabel
+      memberLabel = model.memberLabel
 
       if (model.lifecycleOwner != null) {
         observeRecipient(model.lifecycleOwner, model.recipient)
