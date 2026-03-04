@@ -82,6 +82,14 @@ object RemoteConfig {
   var initialized: Boolean = false
   private val initLock: ReentrantLock = ReentrantLock()
 
+  /** Solely for fixing an issue with the internalUser flag */
+  @VisibleForTesting
+  var underTest: Boolean = false
+
+  @JvmStatic
+  @Volatile
+  var internalUserDisabled: Boolean = false
+
   @JvmStatic
   fun init() {
     initLock.withLock {
@@ -590,7 +598,12 @@ object RemoteConfig {
     key = "android.internalUser",
     hotSwappable = true
   ) { value ->
-    value.asBoolean(false) || Environment.isInternal()
+    when {
+      internalUserDisabled -> false
+      underTest -> value.asBoolean(false)
+      Environment.isInternal() -> true
+      else -> value.asBoolean(false)
+    }
   }
 
   /** The raw client expiration JSON string.  */

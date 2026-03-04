@@ -31,5 +31,6 @@ data class InternalSettingsState(
   val hasPendingOneTimeDonation: Boolean,
   val hevcEncoding: Boolean,
   val forceSplitPane: Boolean,
-  val useNewMediaActivity: Boolean
+  val useNewMediaActivity: Boolean,
+  val disableInternalUser: Boolean
 )

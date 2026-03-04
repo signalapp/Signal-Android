@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.keyvalue.InternalValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class InternalSettingsViewModel(private val repository: InternalSettingsRepository) : ViewModel() {
@@ -202,7 +203,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null,
     hevcEncoding = SignalStore.internal.hevcEncoding,
     forceSplitPane = SignalStore.internal.forceSplitPane,
-    useNewMediaActivity = SignalStore.internal.useNewMediaActivity
+    useNewMediaActivity = SignalStore.internal.useNewMediaActivity,
+    disableInternalUser = RemoteConfig.internalUserDisabled
   )
 
   fun onClearOnboardingState() {
@@ -211,6 +213,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     Stories.onStorySettingsChanged(Recipient.self().id)
     refresh()
     StoryOnboardingDownloadJob.enqueueIfNeeded()
+  }
+
+  fun setDisableInternalUser(disabled: Boolean) {
+    RemoteConfig.internalUserDisabled = disabled
+    refresh()
   }
 
   fun setForceSplitPane(forceSplitPane: Boolean) {
