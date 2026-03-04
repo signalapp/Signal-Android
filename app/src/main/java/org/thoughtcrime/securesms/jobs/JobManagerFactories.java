@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.CellServiceConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.ChargingAndBatteryIsNotLowConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.ChargingConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint;
@@ -444,6 +445,7 @@ public final class JobManagerFactories {
       put(NotInCallConstraint.KEY,                               new NotInCallConstraint.Factory());
       put(RegisteredConstraint.KEY,                              new RegisteredConstraint.Factory());
       put(RestoreAttachmentConstraint.KEY,                       new RestoreAttachmentConstraint.Factory(application));
+      put(SealedSenderConstraint.KEY,                            new SealedSenderConstraint.Factory());
       put(SqlCipherMigrationConstraint.KEY,                      new SqlCipherMigrationConstraint.Factory(application));
       put(StickersNotDownloadingConstraint.KEY,                  new StickersNotDownloadingConstraint.Factory());
       put(WifiConstraint.KEY,                                    new WifiConstraint.Factory(application));
@@ -464,7 +466,8 @@ public final class JobManagerFactories {
                          RegisteredConstraint.Observer.INSTANCE,
                          BackupMessagesConstraintObserver.INSTANCE,
                          DeletionNotAwaitingMediaDownloadConstraint.Observer.INSTANCE,
-                         StickersNotDownloadingConstraint.Observer.INSTANCE);
+                         StickersNotDownloadingConstraint.Observer.INSTANCE,
+                         SealedSenderConstraint.Observer.INSTANCE);
   }
 
   public static List<JobMigration> getJobMigrations(@NonNull Application application) {

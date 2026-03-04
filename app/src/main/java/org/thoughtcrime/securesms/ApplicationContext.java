@@ -78,6 +78,7 @@ import org.thoughtcrime.securesms.jobs.RefreshSvrCredentialsJob;
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.RetrieveRemoteAnnouncementsJob;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.jobs.RetryPendingSendsJob;
 import org.thoughtcrime.securesms.jobs.StoryOnboardingDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
@@ -201,6 +202,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
               .addNonBlocking(this::initializeCircumvention)
               .addNonBlocking(this::initializeCleanup)
               .addNonBlocking(this::initializeGlideCodecs)
+              .addNonBlocking(SealedSenderConstraint::checkAndSetValidity)
               .addNonBlocking(StorageSyncHelper::scheduleRoutineSync)
               .addNonBlocking(this::beginJobLoop)
               .addNonBlocking(EmojiSource::refresh)

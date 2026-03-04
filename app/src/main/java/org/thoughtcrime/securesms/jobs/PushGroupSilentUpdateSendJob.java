@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
@@ -96,6 +97,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
                                             groupContext,
                                             new Parameters.Builder()
                                                           .setQueue(queue)
+                                                          .addConstraint(SealedSenderConstraint.KEY)
                                                           .setLifespan(TimeUnit.DAYS.toMillis(1))
                                                           .setMaxAttempts(Parameters.UNLIMITED)
                                                           .setGlobalPriority(Parameters.PRIORITY_LOW)

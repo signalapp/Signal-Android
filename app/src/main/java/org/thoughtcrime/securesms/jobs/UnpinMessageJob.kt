@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.UnpinJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.GroupSendUtil
@@ -66,6 +67,7 @@ class UnpinMessageJob(
         parameters = Parameters.Builder()
           .setQueue(conversationRecipient.id.toQueueKey())
           .addConstraint(NetworkConstraint.KEY)
+          .addConstraint(SealedSenderConstraint.KEY)
           .setMaxAttempts(Parameters.UNLIMITED)
           .setLifespan(1.days.inWholeMilliseconds)
           .build()

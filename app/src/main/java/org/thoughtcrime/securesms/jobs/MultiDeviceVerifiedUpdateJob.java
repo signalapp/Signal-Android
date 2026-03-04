@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -49,6 +50,7 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob {
   public MultiDeviceVerifiedUpdateJob(@NonNull RecipientId destination, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
+                           .addConstraint(SealedSenderConstraint.KEY)
                            .setQueue("__MULTI_DEVICE_VERIFIED_UPDATE__")
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)

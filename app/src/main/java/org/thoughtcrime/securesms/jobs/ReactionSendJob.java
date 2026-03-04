@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
@@ -91,6 +92,7 @@ public class ReactionSendJob extends BaseJob {
                                new Parameters.Builder()
                                              .setQueue(conversationRecipient.getId().toQueueKey())
                                              .addConstraint(NetworkConstraint.KEY)
+                                             .addConstraint(SealedSenderConstraint.KEY)
                                              .setLifespan(TimeUnit.DAYS.toMillis(1))
                                              .setMaxAttempts(Parameters.UNLIMITED)
                                              .build());

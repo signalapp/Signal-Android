@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -83,6 +84,7 @@ public class RemoteDeleteSendJob extends BaseJob {
                                                           recipients.size(),
                                                           new Parameters.Builder()
                                                                         .setQueue(conversationRecipient.getId().toQueueKey())
+                                                                        .addConstraint(SealedSenderConstraint.KEY)
                                                                         .setLifespan(TimeUnit.DAYS.toMillis(1))
                                                                         .setMaxAttempts(Parameters.UNLIMITED)
                                                                         .build());

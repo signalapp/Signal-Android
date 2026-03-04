@@ -10,6 +10,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -71,6 +72,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
                                       0L,
                                       new Parameters.Builder()
                                                     .setQueue(conversationRecipient.getId().toQueueKey())
+                                                    .addConstraint(SealedSenderConstraint.KEY)
                                                     .setLifespan(TimeUnit.MINUTES.toMillis(5))
                                                     .setMaxAttempts(3)
                                                     .build());
