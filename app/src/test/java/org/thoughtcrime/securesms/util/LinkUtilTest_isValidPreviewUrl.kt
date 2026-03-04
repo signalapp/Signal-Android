@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.util
 
+import android.app.Application
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.Parameterized
+import org.robolectric.ParameterizedRobolectricTestRunner
+import org.robolectric.annotation.Config
 
 @Suppress("ClassName")
-@RunWith(Parameterized::class)
+@RunWith(ParameterizedRobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
 class LinkUtilTest_isValidPreviewUrl(private val input: String, private val output: Boolean) {
 
   @Test
@@ -15,7 +18,7 @@ class LinkUtilTest_isValidPreviewUrl(private val input: String, private val outp
   }
 
   companion object {
-    @Parameterized.Parameters
+    @ParameterizedRobolectricTestRunner.Parameters
     @JvmStatic
     fun data(): Collection<Array<Any>> {
       return listOf(
@@ -72,7 +75,10 @@ class LinkUtilTest_isValidPreviewUrl(private val input: String, private val outp
         arrayOf("https://[fc00::1]/", false),
         arrayOf("https://[fd12:3456:789a::1]/", false),
         arrayOf("https://8.8.8.8", true),
-        arrayOf("https://[2001:4860:4860::8888]/", true)
+        arrayOf("https://[2001:4860:4860::8888]/", true),
+        arrayOf("https://grå.org", true),
+        arrayOf("https://grå.org/some/path", true),
+        arrayOf("http://grå.org", false)
       )
     }
   }
