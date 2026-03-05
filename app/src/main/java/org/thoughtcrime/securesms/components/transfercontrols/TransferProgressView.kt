@@ -21,6 +21,7 @@ import androidx.core.graphics.withTranslation
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import kotlin.math.roundToInt
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * This displays a circular progress around an icon. The icon is either an upload arrow, a download arrow, or a rectangular stop button.
@@ -65,8 +66,8 @@ class TransferProgressView @JvmOverloads constructor(
   init {
     val displayDensity = Resources.getSystem().displayMetrics.density
     val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.TransferProgressView, 0, 0)
-    val signalCustomColor = ContextCompat.getColor(context, R.color.signal_colorOnCustom)
-    val signalTransparent2 = ContextCompat.getColor(context, R.color.signal_colorTransparent2)
+    val signalCustomColor = ContextCompat.getColor(context, CoreUiR.color.signal_colorOnCustom)
+    val signalTransparent2 = ContextCompat.getColor(context, CoreUiR.color.signal_colorTransparent2)
 
     iconColor = typedArray.getColor(R.styleable.TransferProgressView_transferIconColor, signalCustomColor)
     progressColor = typedArray.getColor(R.styleable.TransferProgressView_progressColor, signalCustomColor)

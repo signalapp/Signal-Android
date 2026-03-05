@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Bawa privasi bersama anda.\nMenjadi diri anda dalam setiap mesej.</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal ialah organisasi bukan untung\nTerma &amp; Dasar Privasi</string>
+    <string name="RegistrationActivity_continue">Teruskan</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">Pulihkan atau pindahkan</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Beri kebenaran</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Untuk membantu anda menghantar mesej kepada orang yang anda kenal, Signal akan meminta kebenaran ini. </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Bukan sekarang</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Seterusnya</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Pemberitahuan</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Dapatkan pemberitahuan apabila mesej baharu tiba.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Kenalan</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Cari orang yang anda kenal. Kenalan anda disulitkan dan tidak kelihatan kepada perkhidmatan Signal.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Panggilan telefon</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Jadikan pendaftaran lebih mudah dan dayakan ciri panggilan tambahan.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Penyimpanan</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Hantar foto, video dan fail daripada peranti anda.</string>
+
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">Nombor telefon</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Anda akan terima satu kod pengesahan. Kadar caj telekomunikasi mungkin dikenakan.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">Pilih negara</string>
+    <string name="RegistrationActivity_phone_number_description">Nombor telefon</string>
+    <string name="RegistrationActivity_next">Seterusnya</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">Negara anda</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">Tutup</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">Cari mengikut nama atau kod negara</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">Negara Tidak Diketahui</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">Kod pengesahan</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Masukkan kod yang kami hantar ke %1$s</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">Nombor salah?</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">Hantar Semula Kod</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">Hubungi saya</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">Hubungi saya (%1$02d:%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">Kod salah</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">Tidak dapat menyambung. Sila semak rangkaian anda dan cuba lagi.</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Terlalu banyak percubaan. Cuba lagi dalam %1$s.</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">Ralat yang tidak dijangka berlaku. Sila cuba lagi.</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">Terdapat masalah menghantar kod pengesahan anda. Sila cuba lagi.</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Tidak dapat menghantar kod melalui kaedah yang dipilih. Sila cuba pilihan lain.</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">Pendaftaran gagal. Sila cuba lagi.</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">Menghadapi masalah?</string>
+</resources>

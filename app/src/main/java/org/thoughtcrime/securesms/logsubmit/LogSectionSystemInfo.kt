@@ -5,11 +5,14 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.provider.Settings
 import android.util.DisplayMetrics
+import androidx.core.app.NotificationManagerCompat
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
+import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.DiskUtil
 import org.signal.core.util.FontUtil.canRenderEmojiAtFontSize
+import org.signal.core.util.Util
 import org.signal.core.util.bytes
 import org.signal.core.util.roundedString
 import org.thoughtcrime.securesms.BuildConfig
@@ -28,9 +31,7 @@ import org.thoughtcrime.securesms.util.PowerManagerCompat
 import org.thoughtcrime.securesms.util.ScreenDensity
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.VersionTracker.getDaysSinceFirstInstalled
-import org.thoughtcrime.securesms.window.getWindowSizeClass
 import java.util.Locale
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -79,6 +80,7 @@ class LogSectionSystemInfo : LogSection {
       Telecom           : $telecomSupported
       User-Agent        : ${StandardUserAgentInterceptor.USER_AGENT}
       SlowNotifications : ${isHavingDelayedNotifications()}
+      Battery Level     : ${DeviceProperties.getBatteryLevel(context)}% (charging: ${DeviceProperties.isCharging(context)})
       IgnoringBatteryOpt: ${PowerManagerCompat.isIgnoringBatteryOptimizations(context)}
       BkgRestricted     : ${if (Build.VERSION.SDK_INT >= 28) DeviceProperties.isBackgroundRestricted(context) else "N/A"}
       Data Saver        : ${DeviceProperties.getDataSaverState(context)}
@@ -86,6 +88,7 @@ class LogSectionSystemInfo : LogSection {
       ApkManifestUrl    : ${BuildConfig.APK_UPDATE_MANIFEST_URL?.takeIf { BuildConfig.MANAGES_APP_UPDATES } ?: "N/A"}
       App               : ${getAppInfo(context)}
       Package           : ${BuildConfig.APPLICATION_ID} (${getSigningString(context)})
+      FullScreenIntents : ${NotificationManagerCompat.from(context).canUseFullScreenIntent()}
     """.trimIndent()
   }
 

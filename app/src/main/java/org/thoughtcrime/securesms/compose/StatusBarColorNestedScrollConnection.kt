@@ -14,9 +14,9 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.Velocity
 import androidx.core.content.ContextCompat
 import com.google.android.material.animation.ArgbEvaluatorCompat
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.WindowUtil
 import kotlin.math.abs
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Controls status-bar color based off a nested scroll
@@ -30,8 +30,8 @@ class StatusBarColorNestedScrollConnection(
 
   private var animator: ValueAnimator? = null
 
-  private val normalColor = ContextCompat.getColor(activity, R.color.signal_colorBackground)
-  private val scrollColor = ContextCompat.getColor(activity, R.color.signal_colorSurface2)
+  private val normalColor = ContextCompat.getColor(activity, CoreUiR.color.signal_colorBackground)
+  private val scrollColor = ContextCompat.getColor(activity, CoreUiR.color.signal_colorSurface2)
 
   private var contentOffset = 0f
 

@@ -87,22 +87,25 @@ enum class CameraDisplay(
     toggleBottomMargin = 54
   );
 
+  @JvmOverloads
   @Px
-  fun getCameraCaptureMarginBottom(resources: Resources): Int {
-    val positionInfo = if (Stories.isFeatureEnabled()) withTogglePositionInfo else withoutTogglePositionInfo
+  fun getCameraCaptureMarginBottom(resources: Resources, storiesEnabled: Boolean = Stories.isFeatureEnabled()): Int {
+    val positionInfo = if (storiesEnabled) withTogglePositionInfo else withoutTogglePositionInfo
 
     return positionInfo.cameraCaptureMarginBottomDp.dp - getCameraButtonSizeOffset(resources)
   }
 
+  @JvmOverloads
   @Px
-  fun getCameraViewportMarginBottom(): Int {
-    val positionInfo = if (Stories.isFeatureEnabled()) withTogglePositionInfo else withoutTogglePositionInfo
+  fun getCameraViewportMarginBottom(storiesEnabled: Boolean = Stories.isFeatureEnabled()): Int {
+    val positionInfo = if (storiesEnabled) withTogglePositionInfo else withoutTogglePositionInfo
 
     return positionInfo.cameraViewportMarginBottomDp.dp
   }
 
-  fun getCameraViewportGravity(): CameraViewportGravity {
-    val positionInfo = if (Stories.isFeatureEnabled()) withTogglePositionInfo else withoutTogglePositionInfo
+  @JvmOverloads
+  fun getCameraViewportGravity(storiesEnabled: Boolean = Stories.isFeatureEnabled()): CameraViewportGravity {
+    val positionInfo = if (storiesEnabled) withTogglePositionInfo else withoutTogglePositionInfo
 
     return positionInfo.cameraViewportGravity
   }

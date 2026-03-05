@@ -14,7 +14,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.components.Outliner;
 import org.thoughtcrime.securesms.util.Projection;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 
 import java.util.Collections;
 import java.util.List;

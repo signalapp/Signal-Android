@@ -20,27 +20,25 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import kotlinx.coroutines.delay
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.CircularProgressWrapper
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
-import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.livedata.ProcessState
 import org.thoughtcrime.securesms.util.livedata.distinctUntilChanged
@@ -88,7 +86,7 @@ class ExpireTimerSettingsFragment : ComposeFragment() {
     val state by viewModel.state.observeAsState(ExpireTimerSettingsState())
     val callback = remember { DefaultExpireTimerSettingsScreenCallback(viewModel) }
 
-    SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
+    SignalTheme {
       ExpireTimerSettingsScreen(
         state = state,
         callback = callback
@@ -133,7 +131,7 @@ fun ExpireTimerSettingsScreen(
   Scaffolds.Settings(
     title = stringResource(R.string.PrivacySettingsFragment__disappearing_messages),
     onNavigationClick = callback::onNavigationClick,
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24)
+    navigationIcon = SignalIcons.ArrowStart.imageVector
   ) { paddingValues ->
     Box(
       modifier = Modifier

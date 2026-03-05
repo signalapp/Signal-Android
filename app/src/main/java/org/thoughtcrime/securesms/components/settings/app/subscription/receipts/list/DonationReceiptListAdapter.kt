@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.toLocalDateTime
+import org.signal.core.ui.R as CoreUiR
 
 class DonationReceiptListAdapter(onModelClick: (DonationReceiptListItem.Model) -> Unit) : MappingAdapter(), StickyHeaderDecoration.StickyHeaderAdapter<SectionHeaderPreferenceViewHolder> {
 
@@ -34,7 +35,7 @@ class DonationReceiptListAdapter(onModelClick: (DonationReceiptListItem.Model) -
 
   override fun onBindHeaderViewHolder(viewHolder: SectionHeaderPreferenceViewHolder?, position: Int, type: Int) {
     viewHolder?.itemView?.run {
-      val color = ContextCompat.getColor(context, R.color.signal_colorBackground)
+      val color = ContextCompat.getColor(context, CoreUiR.color.signal_colorBackground)
       setBackgroundColor(color)
     }
 

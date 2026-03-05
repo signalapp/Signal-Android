@@ -1,12 +1,20 @@
 package org.thoughtcrime.securesms.video.exo
 
+import android.app.Application
+import androidx.media3.common.TrackSelectionParameters
 import androidx.media3.exoplayer.ExoPlayer
+import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
+@RunWith(RobolectricTestRunner::class)
+@Config(application = Application::class)
 class ExoPlayerPoolTest {
   @Test
   fun `Given an empty pool, when I require a player, then I expect a player`() {
@@ -78,7 +86,9 @@ class ExoPlayerPoolTest {
   ): ExoPlayerPool<ExoPlayer> {
     return object : ExoPlayerPool<ExoPlayer>(maximumReservedPlayers) {
       override fun createPlayer(): ExoPlayer {
-        return mockk<ExoPlayer>(relaxUnitFun = true)
+        return mockk<ExoPlayer>(relaxUnitFun = true) {
+          every { trackSelectionParameters } returns TrackSelectionParameters.DEFAULT
+        }
       }
 
       override fun getMaxSimultaneousPlayback(): Int {

@@ -23,6 +23,7 @@ class ThreadIdDatabaseDetectorTest {
         )
       )
       .issues(ThreadIdDatabaseDetector.THREAD_ID_DATABASE_REFERENCE_ISSUE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -52,6 +53,7 @@ class ThreadIdDatabaseDetectorTest {
         )
       )
       .issues(ThreadIdDatabaseDetector.THREAD_ID_DATABASE_REFERENCE_ISSUE)
+      .allowMissingSdk()
       .run()
       .expectClean()
   }

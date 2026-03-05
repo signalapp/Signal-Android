@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.keyvalue.InternalValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class InternalSettingsViewModel(private val repository: InternalSettingsRepository) : ViewModel() {
@@ -144,13 +145,18 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setUseNewMediaActivity(enabled: Boolean) {
+    SignalStore.internal.useNewMediaActivity = enabled
+    refresh()
+  }
+
   fun setHevcEncoding(enabled: Boolean) {
     SignalStore.internal.hevcEncoding = enabled
     refresh()
   }
 
-  fun addSampleReleaseNote() {
-    repository.addSampleReleaseNote()
+  fun addSampleReleaseNote(callToAction: String = "action") {
+    repository.addSampleReleaseNote(callToAction)
   }
 
   fun addRemoteDonateMegaphone() {
@@ -196,8 +202,9 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     useConversationItemV2ForMedia = SignalStore.internal.useConversationItemV2Media,
     hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null,
     hevcEncoding = SignalStore.internal.hevcEncoding,
-    newCallingUi = SignalStore.internal.newCallingUi,
-    forceSplitPane = SignalStore.internal.forceSplitPane
+    forceSplitPane = SignalStore.internal.forceSplitPane,
+    useNewMediaActivity = SignalStore.internal.useNewMediaActivity,
+    disableInternalUser = RemoteConfig.internalUserDisabled
   )
 
   fun onClearOnboardingState() {
@@ -208,8 +215,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     StoryOnboardingDownloadJob.enqueueIfNeeded()
   }
 
-  fun setUseNewCallingUi(newCallingUi: Boolean) {
-    SignalStore.internal.newCallingUi = newCallingUi
+  fun setDisableInternalUser(disabled: Boolean) {
+    RemoteConfig.internalUserDisabled = disabled
     refresh()
   }
 

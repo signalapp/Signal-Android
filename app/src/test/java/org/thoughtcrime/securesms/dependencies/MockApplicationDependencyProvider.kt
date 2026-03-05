@@ -310,4 +310,8 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   override fun provideSvrBApi(libSignalNetwork: Network): SvrBApi {
     return mockk(relaxed = true)
   }
+
+  override fun provideKeyTransparencyApi(unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): KeyTransparencyApi {
+    return mockk(relaxed = true)
+  }
 }

@@ -25,7 +25,7 @@ class SoundsAndNotificationsSettingsRepository(private val context: Context) {
     }
   }
 
-  fun setMentionSetting(recipientId: RecipientId, mentionSetting: RecipientTable.MentionSetting) {
+  fun setMentionSetting(recipientId: RecipientId, mentionSetting: RecipientTable.NotificationSetting) {
     SignalExecutors.BOUNDED.execute {
       SignalDatabase.recipients.setMentionSetting(recipientId, mentionSetting)
     }

@@ -138,6 +138,7 @@ class AccountRecordProcessor(
       usernameLink = remote.proto.usernameLink
       notificationProfileManualOverride = remote.proto.notificationProfileManualOverride
       backupTier = local.proto.backupTier ?: remote.proto.backupTier
+      automaticKeyVerificationDisabled = remote.proto.automaticKeyVerificationDisabled
 
       safeSetPayments(payments?.enabled == true, payments?.entropy?.toByteArray())
       safeSetSubscriber(donationSubscriberId, donationSubscriberCurrencyCode)

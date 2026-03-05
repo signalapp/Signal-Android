@@ -6,13 +6,6 @@ import org.gradle.kotlin.dsl.extra
 
 val benchmarkLibs = the<org.gradle.accessors.dm.LibrariesForBenchmarkLibs>()
 
-val signalBuildToolsVersion: String by rootProject.extra
-val signalCompileSdkVersion: String by rootProject.extra
-val signalTargetSdkVersion: Int by rootProject.extra
-val signalMinSdkVersion: Int by rootProject.extra
-val signalJavaVersion: JavaVersion by rootProject.extra
-val signalKotlinJvmTarget: String by rootProject.extra
-
 plugins {
     id("com.android.test")
     id("org.jetbrains.kotlin.android")
@@ -20,25 +13,27 @@ plugins {
 
 android {
     namespace = "org.signal.benchmark"
-    compileSdkVersion = signalCompileSdkVersion
+    compileSdkVersion = libs.versions.compileSdk.get()
 
     compileOptions {
-        sourceCompatibility = signalJavaVersion
-        targetCompatibility = signalJavaVersion
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
     }
 
     kotlinOptions {
-        jvmTarget = signalKotlinJvmTarget
+        jvmTarget = libs.versions.kotlinJvmTarget.get()
     }
 
     defaultConfig {
         minSdk = 23
-        targetSdk = signalTargetSdkVersion
+        targetSdk = libs.versions.targetSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         missingDimensionStrategy("environment", "prod")
         missingDimensionStrategy("distribution", "play")
+
+        testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
     }
 
     buildTypes {
@@ -54,12 +49,13 @@ android {
 
     testOptions {
         managedDevices {
-            devices {
-                create("api31", ManagedVirtualDevice::class) {
+            localDevices {
+                create("api31") {
                     device = "Pixel 6"
+                    testedAbi = "x86_64"
                     apiLevel = 31
                     systemImageSource = "aosp"
-                    require64Bit = false
+                    require64Bit = true
                 }
             }
         }

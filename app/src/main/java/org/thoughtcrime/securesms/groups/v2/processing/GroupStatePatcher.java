@@ -4,9 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupChangeLog;
+import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupExtensions;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeUtil;
@@ -84,11 +85,14 @@ final class GroupStatePatcher {
       }
 
       if (stateChain.getLatestState() == null && entry.getGroup() != null && current != null && current.isPlaceholderGroup) {
-        DecryptedGroup previousState = entry.getGroup().newBuilder()
-                                                       .title(current.title)
-                                                       .avatar(current.avatar)
-                                                       .description(current.description)
-                                                       .build();
+        DecryptedGroup previousState = entry.getGroup()
+                                            .newBuilder()
+                                            .title(current.title)
+                                            .avatar(current.avatar)
+                                            .description(current.description)
+                                            .pendingMembers(current.pendingMembers)
+                                            .requestingMembers(current.requestingMembers)
+                                            .build();
 
         stateChain.push(previousState, null);
       }
@@ -141,7 +145,7 @@ final class GroupStatePatcher {
         }
       },
       (groupB, groupA) -> GroupChangeReconstruct.reconstructGroupChange(groupA, groupB),
-      (groupA, groupB) -> groupA.revision == groupB.revision && DecryptedGroupUtil.changeIsEmpty(GroupChangeReconstruct.reconstructGroupChange(groupA, groupB))
+      (groupA, groupB) -> groupA.revision == groupB.revision && DecryptedGroupExtensions.getChangedFields(GroupChangeReconstruct.reconstructGroupChange(groupA, groupB)).isEmpty()
     );
   }
 }

@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.visible
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * The bottom bar for the media preview. This includes the standard seek bar as well as playback controls,
@@ -128,7 +129,7 @@ class LottieAnimatedButton @JvmOverloads constructor(
 ) : LottieAnimationView(context, attrs) {
 
   init {
-    addValueCallback(KeyPath("**"), LottieProperty.COLOR) { ContextCompat.getColor(context, R.color.signal_colorOnSurface) }
+    addValueCallback(KeyPath("**"), LottieProperty.COLOR) { ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurface) }
   }
 
   override fun onTouchEvent(event: MotionEvent?): Boolean {

@@ -7,9 +7,9 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import org.signal.core.util.logging.Log
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.util.MediaUtil
 
 /**

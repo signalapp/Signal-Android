@@ -19,11 +19,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SpanUtil
 
@@ -71,7 +72,7 @@ fun LearnMoreSheet() {
       modifier = Modifier.padding(horizontal = 32.dp, vertical = 8.dp)
     )
     LinkedDeviceInformationRow(
-      painterResource(R.drawable.symbol_lock_24),
+      SignalIcons.Lock.painter,
       stringResource(R.string.LinkDeviceFragment__all_messaging_is_private)
     )
     LinkedDeviceInformationRow(

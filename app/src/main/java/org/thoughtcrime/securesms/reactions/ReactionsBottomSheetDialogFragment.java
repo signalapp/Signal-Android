@@ -80,7 +80,7 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
     Dialog dialog = super.onCreateDialog(savedInstanceState);
 
     FullscreenHelper.showSystemUI(dialog.getWindow());
-    WindowUtil.setNavigationBarColor(requireContext(), dialog.getWindow(), ContextCompat.getColor(requireContext(), R.color.signal_colorSurface1));
+    WindowUtil.setNavigationBarColor(requireContext(), dialog.getWindow(), ContextCompat.getColor(requireContext(), org.signal.core.ui.R.color.signal_colorSurface1));
 
     return dialog;
   }

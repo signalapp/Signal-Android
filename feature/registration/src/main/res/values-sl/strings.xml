@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vzemite svojo zasebnost v lastne roke!\nDa boste v sporočilih lahko to kar ste.</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal je neprofitna organizacija\nPogoji in politika zasebnosti</string>
+    <string name="RegistrationActivity_continue">Nadaljuj</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">Obnovi ali prenesi</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Odobri dovoljenja</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Za pomoč pri pošiljanju sporočil ljudem, ki jih poznate, bo Signal zahteval ta dovoljenja. </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Ne zdaj</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Naprej</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Obvestila</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Prejmite obvestilo, ko prispejo nova sporočila.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Stiki</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Poiščite ljudi, ki jih poznate. Vaši stiki so šifrirani in niso vidni storitvi Signal.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Telefonski klici</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Poenostavite registracijo in omogočite dodatne funkcije klicanja.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Pomnilnik</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Pošiljajte fotografije, videoposnetke in datoteke iz svoje naprave.</string>
+
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">Telefonska številka</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Prejeli boste potrditveno kodo. Sporočilo SMS je lahko plačljivo.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">Izberite državo</string>
+    <string name="RegistrationActivity_phone_number_description">Telefonska številka</string>
+    <string name="RegistrationActivity_next">Naprej</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">Vaša država</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">Zapri</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">Iskanje po imenu ali mednarodni klicni kodi</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">Neznana država</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">Verifikacijska koda</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Vpišite kodo, poslano na %1$s</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">Napačna številka?</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">Ponovno mi pošlji kodo</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">Raje me pokliči</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">Pokliči me (%1$02d:%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">Napačna koda</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">Povezave ni mogoče vzpostaviti. Preverite omrežje in poskusite znova.</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Preveč poskusov. Poskusite znova čez %1$s.</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">Zgodila se je nepričakovana napaka. Poskusite znova.</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">Pri pošiljanju vaše potrditvene kode je prišlo do težave. Poskusite znova.</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Kode ni bilo mogoče poslati z izbrano metodo. Poskusite z drugo možnostjo.</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">Registracija ni uspela. Poskusite znova.</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">Imate težave?</string>
+</resources>

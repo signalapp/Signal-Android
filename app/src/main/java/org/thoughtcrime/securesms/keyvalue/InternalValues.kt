@@ -31,11 +31,11 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val CONVERSATION_ITEM_V2_MEDIA: String = "internal.conversation_item_v2_media"
     const val WEB_SOCKET_SHADOWING_STATS: String = "internal.web_socket_shadowing_stats"
     const val ENCODE_HEVC: String = "internal.hevc_encoding"
-    const val NEW_CALL_UI: String = "internal.new.call.ui"
     const val FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE: String = "internal.force.split.pane.on.compact.landscape.ui"
     const val SHOW_ARCHIVE_STATE_HINT: String = "internal.show_archive_state_hint"
     const val INCLUDE_DEBUGLOG_IN_BACKUP: String = "internal.include_debuglog_in_backup"
     const val IMPORTED_BACKUP_DEBUG_INFO: String = "internal.imported_backup_debug_info"
+    const val USE_NEW_MEDIA_ACTIVITY: String = "internal.use_new_media_activity"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -46,6 +46,8 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    * Force split-pane mode on compact landscape
    */
   var forceSplitPane by booleanValue(FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE, false).falseForExternalUsers()
+
+  var useNewMediaActivity by booleanValue(USE_NEW_MEDIA_ACTIVITY, false).falseForExternalUsers()
 
   /**
    * Members will not be added directly to a GV2 even if they could be.
@@ -167,8 +169,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   var isWebsocketModeForced: Boolean by booleanValue(FORCE_WEBSOCKET_MODE, false).defaultForExternalUsers()
 
   var hevcEncoding by booleanValue(ENCODE_HEVC, false).defaultForExternalUsers()
-
-  var newCallingUi: Boolean by booleanValue(NEW_CALL_UI, true).falseForExternalUsers()
 
   var lastScrollPosition: Int by integerValue(LAST_SCROLL_POSITION, 0).defaultForExternalUsers()
 

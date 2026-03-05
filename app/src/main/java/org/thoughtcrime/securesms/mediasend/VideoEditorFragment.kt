@@ -101,6 +101,8 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
       })
       player.hideControls()
       player.loopForever()
+      player.mute()
+      player.disableAudioFocus()
       player.play()
     } else {
       hud.setPlayClickListener {

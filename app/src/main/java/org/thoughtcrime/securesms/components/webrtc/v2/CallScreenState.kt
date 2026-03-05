@@ -27,11 +27,13 @@ data class CallScreenState(
   val displayVideoTooltip: Boolean = false,
   val displaySwipeToSpeakerHint: Boolean = false,
   val displayWifiToCellularPopup: Boolean = false,
+  val remoteMuteToastMessage: String? = null,
   val displayAdditionalActionsDialog: Boolean = false,
   val displayMissingPermissionsNotice: Boolean = false,
   val pendingParticipantsState: PendingParticipantsState? = null,
   val isParticipantUpdatePopupEnabled: Boolean = true,
   val isCallStateUpdatePopupEnabled: Boolean = false,
+  val isWaitingToBeLetIn: Boolean = false,
   val reactions: PersistentList<String> = persistentListOf()
 ) {
   fun isDisplayingControlMenu(): Boolean = isDisplayingAudioToggleSheet || displayAdditionalActionsDialog

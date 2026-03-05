@@ -4,11 +4,11 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
-import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember
 import org.whispersystems.signalservice.internal.push.GroupContextV2
 import java.util.UUID
 
@@ -42,15 +42,17 @@ fun DecryptedGroupChange.Builder.addMember(aci: ACI) {
   newMembers += member(aci)
 }
 
-fun member(serviceId: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
-  return member(ACI.from(serviceId), role, joinedAt)
+fun member(serviceId: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0, labelEmoji: String = "", labelString: String = ""): DecryptedMember {
+  return member(ACI.from(serviceId), role, joinedAt, labelEmoji, labelString)
 }
 
-fun member(aci: ACI, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
+fun member(aci: ACI, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0, labelEmoji: String = "", labelString: String = ""): DecryptedMember {
   return DecryptedMember.Builder()
     .role(role)
     .aciBytes(aci.toByteString())
     .joinedAtRevision(joinedAt)
+    .labelEmoji(labelEmoji)
+    .labelString(labelString)
     .build()
 }
 

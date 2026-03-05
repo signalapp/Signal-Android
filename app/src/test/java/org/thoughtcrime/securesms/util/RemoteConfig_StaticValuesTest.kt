@@ -14,6 +14,7 @@ class RemoteConfig_StaticValuesTest {
   @Before
   fun setup() {
     RemoteConfig.initialized = true
+    RemoteConfig.underTest = true
   }
 
   /**
@@ -40,17 +41,19 @@ class RemoteConfig_StaticValuesTest {
     val configKeys = RemoteConfig.configsByKey.keys
 
     val ignoreList = setOf(
-      "initialized",
-      "REMOTE_VALUES",
       "configsByKey",
-      "debugMemoryValues",
       "debugDiskValues",
+      "debugMemoryValues",
       "debugPendingDiskValues",
+      "initialized",
+      "internalUserDisabled",
       "libsignalConfigs",
+      "underTest",
       "CRASH_PROMPT_CONFIG",
+      "DEVICE_SPECIFIC_NOTIFICATION_CONFIG",
       "PROMPT_BATTERY_SAVER",
       "PROMPT_FOR_NOTIFICATION_LOGS",
-      "DEVICE_SPECIFIC_NOTIFICATION_CONFIG"
+      "REMOTE_VALUES"
     )
 
     val publicVals: List<KProperty1<*, *>> = RemoteConfig::class.memberProperties

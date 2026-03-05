@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Prywatność, gdziekolwiek jesteś.\nSwoboda w każdej wiadomości.</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal to organizacja non profit\nRegulamin i polityka prywatności</string>
+    <string name="RegistrationActivity_continue">Kontynuuj</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">Przywróć lub przenieś</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Włącz uprawnienia</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Aby ułatwić Ci komunikację ze znajomymi osobami, Signal potrzebuje tych uprawnień. </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Nie teraz</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Dalej</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Powiadomienia</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Otrzymuj powiadomienia o nowych wiadomościach.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Kontakty</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Znajdź w aplikacji znajome osoby. Twoje kontakty są szyfrowane i nieczytelne dla usługi Signal.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Połączenia telefoniczne</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Ułatw sobie rejestrację i zyskaj dodatkowe funkcje połączeń.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Pamięć</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Wysyłaj zdjęcia, filmy i inne pliki ze swojego urządzenia.</string>
+
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">Numer telefonu</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Otrzymasz kod weryfikacyjny. Mogą obowiązywać stawki operatora.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">Wybierz kraj</string>
+    <string name="RegistrationActivity_phone_number_description">Numer telefonu</string>
+    <string name="RegistrationActivity_next">Dalej</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">Twój kraj</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">Zamknij</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">Szukaj po nazwie lub kodzie kraju</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">Nieznany kraj</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">Kod weryfikacyjny</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Podaj kod, który wysłaliśmy na %1$s</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">To nie ten numer?</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">Wyślij kod ponownie</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">Chcę otrzymać połączenie</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">Zweryfikuj przez połączenie (%1$02d:%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">Niepoprawny kod</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">Nie udało się połączyć. Sprawdź, czy masz dostęp do internetu, i spróbuj ponownie.</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Zbyt wiele prób. Spróbuj jeszcze raz za %1$s.</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">Wystąpił nieoczekiwany błąd. Spróbuj ponownie.</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">Wystąpił problem z wysłaniem kodu weryfikacyjnego. Spróbuj ponownie.</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Nie udało się wysłać kodu wybraną metodą. Wybierz drugą opcję.</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">Rejestracja nieudana. Spróbuj ponownie.</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">Wystąpiły problemy?</string>
+</resources>

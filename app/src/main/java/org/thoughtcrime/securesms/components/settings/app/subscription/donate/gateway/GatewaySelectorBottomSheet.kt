@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.viewModel
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Entry point to capturing the necessary payment token to pay for a donation
@@ -144,7 +145,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
       primaryButton(
         text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__credit_or_debit_card),
-        icon = DSLSettingsIcon.from(R.drawable.credit_card, R.color.signal_colorOnCustom),
+        icon = DSLSettingsIcon.from(R.drawable.credit_card, CoreUiR.color.signal_colorOnCustom),
         disableOnClick = true,
         onClick = {
           lifecycleDisposable += viewModel.updateInAppPaymentMethod(InAppPaymentData.PaymentMethodType.CARD)
@@ -233,7 +234,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
           context.getString(R.string.GatewaySelectorBottomSheet__get_a_s_badge, inAppPayment.data.badge!!.name),
           DSLSettingsText.CenterModifier,
           DSLSettingsText.BodyLargeModifier,
-          DSLSettingsText.ColorModifier(ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant))
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurfaceVariant))
         )
       )
     }
@@ -252,7 +253,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
           context.resources.getQuantityString(R.plurals.GatewaySelectorBottomSheet__get_a_s_badge_for_d_days, 30, inAppPayment.data.badge!!.name, 30),
           DSLSettingsText.CenterModifier,
           DSLSettingsText.BodyLargeModifier,
-          DSLSettingsText.ColorModifier(ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant))
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurfaceVariant))
         )
       )
     }
@@ -271,7 +272,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
           R.string.GatewaySelectorBottomSheet__donate_for_a_friend,
           DSLSettingsText.CenterModifier,
           DSLSettingsText.BodyLargeModifier,
-          DSLSettingsText.ColorModifier(ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant))
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurfaceVariant))
         )
       )
     }

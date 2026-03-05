@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 
 public class MediaSendGifFragment extends Fragment implements MediaSendPageFragment {
 

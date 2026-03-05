@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displays information about how Signal keeps card details private and how
@@ -25,7 +26,7 @@ class YourInformationIsPrivateBottomSheet : DSLSettingsBottomSheetFragment() {
         title = DSLSettingsText.from(
           R.string.YourInformationIsPrivateBottomSheet__your_information_is_private,
           DSLSettingsText.CenterModifier,
-          DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_HeadlineMedium)
+          DSLSettingsText.TextAppearanceModifier(CoreUiR.style.Signal_Text_HeadlineMedium)
         )
       )
 

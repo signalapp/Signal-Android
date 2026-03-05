@@ -95,7 +95,7 @@ class JobRunner extends Thread {
     PowerManager.WakeLock wakeLock = null;
 
     try {
-      wakeLock = WakeLockUtil.acquire(application, PowerManager.PARTIAL_WAKE_LOCK, WAKE_LOCK_TIMEOUT, job.getId());
+      wakeLock = WakeLockUtil.acquire(application, PowerManager.PARTIAL_WAKE_LOCK, WAKE_LOCK_TIMEOUT, job.getFactoryKey());
       result   = job.run();
 
       if (job.isCanceled()) {
@@ -110,7 +110,7 @@ class JobRunner extends Thread {
       return Job.Result.failure();
     } finally {
       if (wakeLock != null) {
-        WakeLockUtil.release(wakeLock, job.getId());
+        WakeLockUtil.release(wakeLock, job.getFactoryKey());
       }
     }
 

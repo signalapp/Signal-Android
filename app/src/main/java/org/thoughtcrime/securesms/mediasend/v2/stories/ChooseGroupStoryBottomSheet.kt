@@ -12,10 +12,10 @@ import android.widget.FrameLayout
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.getParcelableArrayListCompat
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -66,6 +66,7 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
     mediator = ContactSearchMediator(
       fragment = this,
       selectionLimits = RemoteConfig.shareSelectionLimit,
+      isMultiSelect = true,
       displayOptions = ContactSearchAdapter.DisplayOptions(
         displayCheckBox = true,
         displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER

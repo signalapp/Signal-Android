@@ -17,22 +17,21 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.transition.addListener
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.view.Stub
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.BannerManager
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView
-import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -139,13 +138,13 @@ class ConversationBannerView @JvmOverloads constructor(
     hide(voiceNotePlayerStub)
   }
 
-  fun showPinnedMessageStub(messages: List<ConversationMessage>, canUnpin: Boolean, hasWallpaper: Boolean) {
+  fun showPinnedMessageStub(messages: List<ConversationMessage>, canUnpin: Boolean, hasWallpaper: Boolean, shouldAnimate: Boolean) {
     val firstRender = !pinnedMessageStub.isVisible
 
     val view = pinnedMessageStub.get()
     view.apply {
       setContent {
-        SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(context)) {
+        SignalTheme {
           PinnedMessagesBanner(
             messages = messages,
             canUnpin = canUnpin,
@@ -158,7 +157,7 @@ class ConversationBannerView @JvmOverloads constructor(
       }
     }
 
-    if (firstRender) {
+    if (firstRender && shouldAnimate) {
       view.visibility = INVISIBLE
       view.post {
         view.visible = true
@@ -172,6 +171,8 @@ class ConversationBannerView @JvmOverloads constructor(
           .setDuration(ANIMATION_DURATION)
           .start()
       }
+    } else {
+      view.visible = true
     }
   }
 

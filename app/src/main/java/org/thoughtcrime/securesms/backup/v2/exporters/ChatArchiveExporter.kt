@@ -62,12 +62,13 @@ class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalData
       expireTimerVersion = cursor.requireInt(RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION),
       muteUntilMs = cursor.requireLong(RecipientTable.MUTE_UNTIL).takeIf { it > 0 },
       markedUnread = ThreadTable.ReadStatus.deserialize(cursor.requireInt(ThreadTable.READ)) == ThreadTable.ReadStatus.FORCED_UNREAD,
-      dontNotifyForMentionsIfMuted = RecipientTable.MentionSetting.DO_NOT_NOTIFY.id == cursor.requireInt(RecipientTable.MENTION_SETTING),
+      dontNotifyForMentionsIfMuted = RecipientTable.NotificationSetting.DO_NOT_NOTIFY.id == cursor.requireInt(RecipientTable.MENTION_SETTING),
       style = ChatStyleConverter.constructRemoteChatStyle(
         db = db,
         chatColors = chatColors,
         chatColorId = customChatColorsId,
-        chatWallpaper = chatWallpaper
+        chatWallpaper = chatWallpaper,
+        backupMode = exportState.backupMode
       )
     )
   }

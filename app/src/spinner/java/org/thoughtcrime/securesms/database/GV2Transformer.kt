@@ -5,11 +5,11 @@ import okio.ByteString
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.requireBlob
 import org.signal.spinner.ColumnTransformer
-import org.signal.storageservice.protos.groups.local.DecryptedBannedMember
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember
 
 object GV2Transformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {

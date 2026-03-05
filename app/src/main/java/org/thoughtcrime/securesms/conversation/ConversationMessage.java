@@ -17,10 +17,12 @@ import org.thoughtcrime.securesms.database.BodyRangeUtil;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel;
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelRepository;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
@@ -47,6 +49,9 @@ public class ConversationMessage {
             private final boolean                hasBeenQuoted;
   @Nullable private final MessageRecord          originalMessage;
   @NonNull  private final ComputedProperties     computedProperties;
+  @Nullable private final MemberLabel            memberLabel;
+  @Nullable private final MemberLabel            quoteMemberLabel;
+  @Nullable private final Recipient              deletedByRecipient;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord,
                               @Nullable CharSequence body,
@@ -55,7 +60,10 @@ public class ConversationMessage {
                               @Nullable MessageStyler.Result styleResult,
                               @NonNull Recipient threadRecipient,
                               @Nullable MessageRecord originalMessage,
-                              @NonNull ComputedProperties computedProperties)
+                              @NonNull ComputedProperties computedProperties,
+                              @Nullable MemberLabel memberLabel,
+                              @Nullable MemberLabel quoteMemberLabel,
+                              @Nullable Recipient deletedByRecipient)
   {
     this.messageRecord      = messageRecord;
     this.hasBeenQuoted      = hasBeenQuoted;
@@ -64,6 +72,9 @@ public class ConversationMessage {
     this.threadRecipient    = threadRecipient;
     this.originalMessage    = originalMessage;
     this.computedProperties = computedProperties;
+    this.memberLabel        = memberLabel;
+    this.quoteMemberLabel   = quoteMemberLabel;
+    this.deletedByRecipient = deletedByRecipient;
 
     if (body != null) {
       this.body = SpannableString.valueOf(body);
@@ -98,6 +109,18 @@ public class ConversationMessage {
 
   public @NonNull ComputedProperties getComputedProperties() {
     return computedProperties;
+  }
+
+  public @Nullable MemberLabel getMemberLabel() {
+    return memberLabel;
+  }
+
+  public @Nullable MemberLabel getQuoteMemberLabel() {
+    return quoteMemberLabel;
+  }
+
+  public @Nullable Recipient getDeletedByRecipient() {
+    return deletedByRecipient;
   }
 
   @Override
@@ -165,8 +188,12 @@ public class ConversationMessage {
   }
 
   public static @NonNull FormattedDate getFormattedDate(@NonNull Context context, @NonNull MessageRecord messageRecord) {
-    return MessageRecordUtil.isScheduled(messageRecord) ? new FormattedDate(false, false, DateUtils.getOnlyTimeString(context, ((MmsMessageRecord) messageRecord).getScheduledDate()))
-                                                        : DateUtils.getDatelessRelativeTimeSpanFormattedDate(context, Locale.getDefault(), messageRecord.getTimestamp());
+    if (MessageRecordUtil.isScheduled(messageRecord)) {
+      String time = DateUtils.getOnlyTimeString(context, ((MmsMessageRecord) messageRecord).getScheduledDate());
+      return new FormattedDate(false, false, time, time);
+    } else {
+      return DateUtils.getDatelessRelativeTimeSpanFormattedDate(context, Locale.getDefault(), messageRecord.getTimestamp());
+    }
   }
 
   public static class ComputedProperties {
@@ -229,7 +256,10 @@ public class ConversationMessage {
         }
       }
 
-      FormattedDate formattedDate = getFormattedDate(context, messageRecord);
+      FormattedDate formattedDate    = getFormattedDate(context, messageRecord);
+      MemberLabel   memberLabel      = getMemberLabel(messageRecord, threadRecipient);
+      MemberLabel   quoteMemberLabel = getQuoteMemberLabel(messageRecord, threadRecipient);
+      Recipient     deletedBy        = messageRecord.getDeletedBy() != null ? Recipient.resolved(messageRecord.getDeletedBy()) : null;
 
       return new ConversationMessage(messageRecord,
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
@@ -238,7 +268,10 @@ public class ConversationMessage {
                                      styleResult,
                                      threadRecipient,
                                      originalMessage,
-                                     new ComputedProperties(formattedDate));
+                                     new ComputedProperties(formattedDate),
+                                     memberLabel,
+                                     quoteMemberLabel,
+                                     deletedBy);
     }
 
     /**
@@ -274,6 +307,24 @@ public class ConversationMessage {
       List<Mention> mentions      = SignalDatabase.mentions().getMentionsForMessage(messageRecord.getId());
 
       return createWithUnresolvedData(context, messageRecord, body, mentions, hasBeenQuoted, threadRecipient);
+    }
+
+    @WorkerThread
+    private static @Nullable MemberLabel getMemberLabel(@NonNull MessageRecord messageRecord, @NonNull Recipient threadRecipient) {
+      if (messageRecord.isOutgoing() || !threadRecipient.isPushV2Group()) {
+        return null;
+      }
+      return MemberLabelRepository.getInstance().getLabelJava(threadRecipient.requireGroupId().requireV2(), messageRecord.getFromRecipient());
+    }
+
+    @WorkerThread
+    private static @Nullable MemberLabel getQuoteMemberLabel(@NonNull MessageRecord messageRecord, @NonNull Recipient threadRecipient) {
+      if (!threadRecipient.isPushV2Group() || !(messageRecord instanceof final MmsMessageRecord mmsMessage) || mmsMessage.getQuote() == null) {
+        return null;
+      }
+
+      Recipient quoteAuthor = Recipient.resolved(mmsMessage.getQuote().getAuthor());
+      return MemberLabelRepository.getInstance().getLabelJava(threadRecipient.requireGroupId().requireV2(), quoteAuthor);
     }
   }
 }

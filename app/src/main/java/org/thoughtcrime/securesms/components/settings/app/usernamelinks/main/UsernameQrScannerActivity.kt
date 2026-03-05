@@ -26,8 +26,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.LifecycleOwner
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -38,15 +36,15 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.permissions.rememberPermissionState
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableExtraCompat
+import org.signal.core.util.permissions.PermissionCompat
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.SignalTheme
-import org.thoughtcrime.securesms.permissions.PermissionCompat
-import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.DynamicTheme
 
 /**
  * Prompts the user to scan a username QR code. Uses the activity result to communicate the recipient that was found, or null if no valid usernames were scanned.
@@ -88,7 +86,7 @@ class UsernameQrScannerActivity : AppCompatActivity() {
       val cameraPermissionState: PermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA)
       val state by viewModel.state
 
-      SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
+      SignalTheme {
         Content(
           lifecycleOwner = this,
           diposables = disposables.disposables,
@@ -166,7 +164,7 @@ fun Content(
             onClick = onBackNavigationPressed
           ) {
             Icon(
-              painter = painterResource(R.drawable.symbol_x_24),
+              painter = SignalIcons.X.painter,
               contentDescription = stringResource(android.R.string.cancel)
             )
           }

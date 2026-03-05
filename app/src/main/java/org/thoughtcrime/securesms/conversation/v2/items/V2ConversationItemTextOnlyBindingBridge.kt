@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.reactions.ReactionsConversationView
  */
 data class V2ConversationItemTextOnlyBindingBridge(
   val root: V2ConversationItemLayout,
-  val senderName: EmojiTextView?,
+  val senderNameWithLabel: SenderNameWithLabelView?,
   val senderPhoto: AvatarImageView?,
   val senderBadge: BadgeImageView?,
   val bodyWrapper: ViewGroup,
@@ -52,7 +52,7 @@ data class V2ConversationItemTextOnlyBindingBridge(
 fun V2ConversationItemTextOnlyIncomingBinding.bridge(): V2ConversationItemTextOnlyBindingBridge {
   return V2ConversationItemTextOnlyBindingBridge(
     root = root,
-    senderName = groupMessageSender,
+    senderNameWithLabel = groupSenderNameWithLabel,
     senderPhoto = contactPhoto,
     senderBadge = badge,
     body = conversationItemBody,
@@ -76,7 +76,7 @@ fun V2ConversationItemTextOnlyIncomingBinding.bridge(): V2ConversationItemTextOn
 fun V2ConversationItemTextOnlyOutgoingBinding.bridge(): V2ConversationItemTextOnlyBindingBridge {
   return V2ConversationItemTextOnlyBindingBridge(
     root = root,
-    senderName = null,
+    senderNameWithLabel = null,
     senderPhoto = null,
     senderBadge = null,
     body = conversationItemBody,

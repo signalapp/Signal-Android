@@ -19,9 +19,8 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
-import org.signal.ringrtc.CallLinkEpoch;
 import org.signal.ringrtc.CallLinkRootKey;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupJoinInfo;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
@@ -328,20 +327,15 @@ public class LinkPreviewRepository {
                                                         @NonNull String callLinkUrl,
                                                         @NonNull Callback callback) {
 
-    CallLinks.CallLinkParseResult linkParseResult = CallLinks.parseUrl(callLinkUrl);
-    if (linkParseResult == null) {
+    CallLinkRootKey callLinkRootKey = CallLinks.parseUrl(callLinkUrl);
+    if (callLinkRootKey == null) {
       callback.onError(Error.PREVIEW_NOT_AVAILABLE);
       return () -> { };
     }
 
-    CallLinkEpoch epoch = linkParseResult.getEpoch();
-    byte[] epochBytes = epoch != null ? epoch.getBytes() : null;
-
     Disposable disposable = AppDependencies.getSignalCallManager()
                                            .getCallLinkManager()
-                                           .readCallLink(new CallLinkCredentials(linkParseResult.getRootKey().getKeyBytes(),
-                                                                                 epochBytes,
-                                                                                 null))
+                                           .readCallLink(new CallLinkCredentials(callLinkRootKey.getKeyBytes(), null))
                                            .observeOn(Schedulers.io())
                                            .subscribe(
                                                         result -> {

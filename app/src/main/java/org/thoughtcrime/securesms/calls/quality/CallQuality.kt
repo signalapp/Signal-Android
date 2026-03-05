@@ -61,10 +61,10 @@ object CallQuality {
         .video_recv_jitter_median(callSummary.qualityStats.videoStats.jitterMedianRecvMillis)
         .audio_send_jitter_median(callSummary.qualityStats.audioStats.jitterMedianSendMillis)
         .video_send_jitter_median(callSummary.qualityStats.videoStats.jitterMedianSendMillis)
-        .audio_send_packet_loss_fraction(callSummary.qualityStats.audioStats.packetLossPercentageSend)
-        .video_send_packet_loss_fraction(callSummary.qualityStats.videoStats.packetLossPercentageSend)
-        .audio_recv_packet_loss_fraction(callSummary.qualityStats.audioStats.packetLossPercentageRecv)
-        .video_recv_packet_loss_fraction(callSummary.qualityStats.videoStats.packetLossPercentageRecv)
+        .audio_send_packet_loss_fraction(callSummary.qualityStats.audioStats.packetLossFractionSend)
+        .video_send_packet_loss_fraction(callSummary.qualityStats.videoStats.packetLossFractionSend)
+        .audio_recv_packet_loss_fraction(callSummary.qualityStats.audioStats.packetLossFractionRecv)
+        .video_recv_packet_loss_fraction(callSummary.qualityStats.videoStats.packetLossFractionRecv)
         .call_telemetry(callSummary.rawStats?.toByteString())
         .build()
     } else {
@@ -109,14 +109,6 @@ object CallQuality {
 
       if (lastPromptWasTooRecent) {
         return false
-      }
-
-      val callLength = callSummary.endTime.milliseconds - callSummary.startTime.milliseconds
-      val isLongerThanTenMinutes = callLength > 10.minutes
-      val isLessThanOneMinute = callLength < 1.minutes
-
-      if (isLongerThanTenMinutes || isLessThanOneMinute) {
-        return true
       }
 
       val chance = LocaleRemoteConfig.getCallQualitySurveyPartsPerMillion()

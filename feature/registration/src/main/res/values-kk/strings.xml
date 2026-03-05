@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Құпиялығыңды сақта.\nӘр хабарламада өз болмысыңды көрсет..</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal – коммерциялық емес жоба\nШарттар және Құпиялық саясаты</string>
+    <string name="RegistrationActivity_continue">Жалғастыру</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">Қалпына келтіру немесе тасымалдау</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Рұқсаттар беру</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Сіз білетін адамдарға хат жазуға көмектесу үшін Signal осы рұқсаттарды сұрайды. </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Кейін</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Келесі</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Хабарландырулар</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Жаңа хаттар келгенде хабарландыру алыңыз.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Контактілер</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Өзіңіз танитын адамдарды табыңыз. Контактілеріңіз шифрланған және Signal қызметі оларды көре алмайды.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Телефон қоңыраулары</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Тіркеу процесін жеңілдетіңіз және қосымша қоңырау шалу функцияларын қосыңыз.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Жад</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Құрылғыңыздан фотосуреттер, видеолар және файлдар жіберіңіз.</string>
+
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">Телефон нөмірі</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Сіз тексеру кодын аласыз. Тасымалдаушы ақысы алынуы мүмкін.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">Елді таңдаңыз</string>
+    <string name="RegistrationActivity_phone_number_description">Телефон нөмірі</string>
+    <string name="RegistrationActivity_next">Келесі</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">Еліңіз</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">Close</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">Ел атауы немесе ел коды бойынша іздеңіз</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">Белгісіз ел</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">Верификация коды</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Біз %1$s нөміріне жіберген кодты енгізіңіз</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">Нөмір қате ме?</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">Кодты қайтадан жіберу</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">Маған қоңырау шалыңыз</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">Маған қоңырау шалу (%1$02d:%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">Код дұрыс емес</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">Қосылу мүмкін болмады. Желіні тексеріп, қайталап көріңіз.</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Тым көп әрекет жасалды. %1$s өткен соң қайталап көріңіз.</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">Күтпеген қате шықты. Қайталап көріңіз.</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">Растау кодын жіберу кезінде мәселе туындады. Қайталап көріңіз.</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Таңдалған әдіс арқылы кодты жіберу мүмкін болмады. Басқа опция таңдап көріңіз.</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">Тіркелмеді. Қайталап көріңіз.</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">Мәселе туындады ма?</string>
+</resources>

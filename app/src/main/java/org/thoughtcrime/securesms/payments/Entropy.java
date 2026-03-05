@@ -8,7 +8,7 @@ import com.mobilecoin.lib.exceptions.BadEntropyException;
 import com.mobilecoin.lib.exceptions.BadMnemonicException;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.payments.PaymentsConstants;
 
 import java.util.Arrays;

@@ -14,14 +14,14 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireString
-import org.signal.storageservice.protos.groups.AccessControl
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedBannedMember
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
-import org.signal.storageservice.protos.groups.local.EnabledState
+import org.signal.storageservice.storage.protos.groups.AccessControl
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember
+import org.signal.storageservice.storage.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.backup.v2.ArchiveGroup
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.proto.Group
@@ -116,14 +116,20 @@ private fun AccessControl.toRemote(): Group.AccessControl {
 
 private fun Member.Role.toRemote(): Group.Member.Role {
   return when (this) {
-    Member.Role.UNKNOWN -> Group.Member.Role.UNKNOWN
+    Member.Role.UNKNOWN -> Group.Member.Role.DEFAULT
     Member.Role.DEFAULT -> Group.Member.Role.DEFAULT
     Member.Role.ADMINISTRATOR -> Group.Member.Role.ADMINISTRATOR
   }
 }
 
 private fun DecryptedMember.toRemote(): Group.Member {
-  return Group.Member(userId = aciBytes, role = role.toRemote(), joinedAtVersion = joinedAtRevision)
+  return Group.Member(
+    userId = aciBytes,
+    role = role.toRemote(),
+    joinedAtVersion = joinedAtRevision,
+    labelEmoji = labelEmoji,
+    labelString = labelString
+  )
 }
 
 private fun DecryptedPendingMember.toRemote(): Group.MemberPendingProfileKey {

@@ -121,6 +121,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val activeDevice: SignalAudioManager.AudioDevice = state.localDeviceState.activeDevice
   val availableDevices: Set<SignalAudioManager.AudioDevice> = state.localDeviceState.availableDevices
   val bluetoothPermissionDenied: Boolean = state.localDeviceState.bluetoothPermissionDenied
+  val isAudioDeviceChangePending: Boolean = state.localDeviceState.isAudioDeviceChangePending
 
   val localParticipant: CallParticipant = createLocal(
     state.localDeviceState.cameraState,

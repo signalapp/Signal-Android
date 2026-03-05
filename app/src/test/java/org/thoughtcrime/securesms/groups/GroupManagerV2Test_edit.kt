@@ -8,6 +8,7 @@ import assertk.assertions.isNull
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
+import io.mockk.mockkStatic
 import io.mockk.slot
 import io.mockk.unmockkAll
 import io.mockk.verify
@@ -27,9 +28,9 @@ import org.signal.libsignal.protocol.logging.SignalProtocolLogger
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
-import org.signal.storageservice.protos.groups.GroupChangeResponse
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.GroupChangeResponse
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.thoughtcrime.securesms.TestZkGroupServer
 import org.thoughtcrime.securesms.database.GroupStateTestData
 import org.thoughtcrime.securesms.database.GroupTable
@@ -80,6 +81,7 @@ class GroupManagerV2Test_edit {
   @Before
   fun setUp() {
     mockkObject(RemoteConfig)
+    mockkStatic(RemoteConfig::class)
     mockkObject(SignalStore)
     every { RemoteConfig.internalUser } returns false
 
@@ -123,7 +125,7 @@ class GroupManagerV2Test_edit {
     every { groupTable.requireGroup(groupId) } returns data.groupRecord.get()
     every { groupTable.update(any<GroupId.V2>(), any(), any()) } returns Unit
     every { sendGroupUpdateHelper.sendGroupUpdate(masterKey, any(), any(), any()) } returns GroupManagerV2.RecipientAndThread(Recipient.UNKNOWN, 1)
-    every { groupsV2API.patchGroup(any(), any(), any()) } returns GroupChangeResponse(groupChange = data.groupChange!!)
+    every { groupsV2API.patchGroup(any(), any(), any()) } returns GroupChangeResponse(group_change = data.groupChange!!)
   }
 
   private fun editGroup(perform: GroupManagerV2.GroupEditor.() -> Unit) {

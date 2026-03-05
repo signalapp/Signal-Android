@@ -190,7 +190,7 @@ class StorySendTableTest {
   @Test
   fun getRemoteDeleteRecipients_overlapWithPreviousDeletes() {
     storySends.insert(messageId1, recipients1to10, 200, false, distributionId1)
-    SignalDatabase.messages.markAsRemoteDelete(messageId1)
+    SignalDatabase.messages.markAsDeleteBySelf(messageId1)
 
     storySends.insert(messageId2, recipients6to15, 200, true, distributionId2)
 
@@ -287,7 +287,7 @@ class StorySendTableTest {
   fun givenTwoStoriesAndOneIsRemoteDeleted_whenIGetFullSentStorySyncManifestForStory2_thenIExpectNonNullResult() {
     storySends.insert(messageId1, recipients1to10, 200, false, distributionId1)
     storySends.insert(messageId2, recipients1to10, 200, true, distributionId2)
-    SignalDatabase.messages.markAsRemoteDelete(messageId1)
+    SignalDatabase.messages.markAsDeleteBySelf(messageId1)
 
     val manifest = storySends.getFullSentStorySyncManifest(messageId2, 200)!!
 

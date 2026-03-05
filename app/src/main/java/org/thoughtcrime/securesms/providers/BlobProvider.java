@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.DraftTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.util.IOFunction;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.video.ByteArrayMediaDataSource;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 

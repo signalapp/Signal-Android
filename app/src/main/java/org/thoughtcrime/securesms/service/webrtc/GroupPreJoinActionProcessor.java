@@ -9,6 +9,7 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
@@ -149,7 +150,16 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                                      CallParticipant.DeviceOrdinal.PRIMARY));
     }
 
-    return builder.build();
+    WebRtcServiceStateBuilder stateBuilder = builder.commit();
+
+    if (peekInfo.getDeviceCountExcludingPendingDevices() >= CallParticipantsState.PRE_JOIN_MUTE_THRESHOLD && currentState.getLocalDeviceState().isMicrophoneEnabled()) {
+      Log.i(tag, "Large call detected (" + peekInfo.getDeviceCountExcludingPendingDevices() + " participants), auto-muting microphone");
+      return stateBuilder.changeLocalDeviceState()
+                         .isMicrophoneEnabled(false)
+                         .build();
+    }
+
+    return stateBuilder.build();
   }
 
   @Override

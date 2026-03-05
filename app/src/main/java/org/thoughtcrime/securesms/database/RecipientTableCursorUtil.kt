@@ -10,6 +10,7 @@ import android.database.Cursor
 import com.google.protobuf.InvalidProtocolBufferException
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalBlob
 import org.signal.core.util.optionalBoolean
@@ -45,7 +46,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.util.GroupUtil
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
 import java.io.IOException
@@ -150,7 +150,9 @@ object RecipientTableCursorUtil {
       sealedSenderAccessMode = RecipientTable.SealedSenderAccessMode.fromMode(cursor.requireInt(RecipientTable.SEALED_SENDER_MODE)),
       capabilities = readCapabilities(cursor),
       storageId = Base64.decodeNullableOrThrow(cursor.requireString(RecipientTable.STORAGE_SERVICE_ID)),
-      mentionSetting = RecipientTable.MentionSetting.fromId(cursor.requireInt(RecipientTable.MENTION_SETTING)),
+      mentionSetting = RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.MENTION_SETTING)),
+      callNotificationSetting = RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.CALL_NOTIFICATION_SETTING)),
+      replyNotificationSetting = RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.REPLY_NOTIFICATION_SETTING)),
       wallpaper = chatWallpaper,
       chatColors = chatColors,
       avatarColor = avatarColor,
@@ -165,7 +167,8 @@ object RecipientTableCursorUtil {
       callLinkRoomId = cursor.requireString(RecipientTable.CALL_LINK_ROOM_ID)?.let { CallLinkRoomId.DatabaseSerializer.deserialize(it) },
       phoneNumberSharing = cursor.requireInt(RecipientTable.PHONE_NUMBER_SHARING).let { RecipientTable.PhoneNumberSharingState.fromId(it) },
       nickname = ProfileName.fromParts(cursor.requireString(RecipientTable.NICKNAME_GIVEN_NAME), cursor.requireString(RecipientTable.NICKNAME_FAMILY_NAME)),
-      note = cursor.requireString(RecipientTable.NOTE)
+      note = cursor.requireString(RecipientTable.NOTE),
+      keyTransparencyData = cursor.requireBlob(RecipientTable.KEY_TRANSPARENCY_DATA)
     )
   }
 

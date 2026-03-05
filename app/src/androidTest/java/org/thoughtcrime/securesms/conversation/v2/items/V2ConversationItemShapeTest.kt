@@ -18,7 +18,6 @@ import com.bumptech.glide.RequestManager
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
-import org.signal.ringrtc.CallLinkEpoch
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.contactshare.Contact
@@ -27,6 +26,7 @@ import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV2
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.database.FakeMessageRecords
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
@@ -209,7 +209,7 @@ class V2ConversationItemShapeTest {
     private val nextMessage: MessageRecord? = null
   ) : V2ConversationContext {
 
-    private val colorizer = Colorizer()
+    private val colorizer = ColorizerV2()
 
     override val lifecycleOwner: LifecycleOwner = object : LifecycleOwner {
       override val lifecycle: Lifecycle = LifecycleRegistry(this)
@@ -329,7 +329,7 @@ class V2ConversationItemShapeTest {
 
     override fun onShowGroupDescriptionClicked(groupName: String, description: String, shouldLinkifyWebLinks: Boolean) = Unit
 
-    override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey, callLinkEpoch: CallLinkEpoch?) = Unit
+    override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) = Unit
 
     override fun onItemClick(item: MultiselectPart?) = Unit
 

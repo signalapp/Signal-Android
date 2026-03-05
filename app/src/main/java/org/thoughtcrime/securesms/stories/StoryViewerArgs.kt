@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.stories
 import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import org.thoughtcrime.securesms.blurhash.BlurHash
+import org.signal.blurhash.BlurHash
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**

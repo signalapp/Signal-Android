@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.stories.viewer.post
 
 import android.graphics.Typeface
 import android.net.Uri
-import org.thoughtcrime.securesms.blurhash.BlurHash
+import org.signal.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.linkpreview.LinkPreview

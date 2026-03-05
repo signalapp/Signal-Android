@@ -23,9 +23,9 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireObject
 import org.signal.core.util.requireString
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.EnabledState
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.CallTable.Direction
 import org.thoughtcrime.securesms.database.CallTable.Event

@@ -28,9 +28,9 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog;
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
-import org.thoughtcrime.securesms.util.BottomSheetUtil;
+import org.signal.core.ui.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.signal.core.ui.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
 public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogFragment {
@@ -183,6 +183,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
       case GROUP_LINK_NOT_ACTIVE: return getString(R.string.GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active);
       case BANNED               : return getString(R.string.GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you);
       case NETWORK_ERROR        : return getString(R.string.GroupJoinBottomSheetDialogFragment_encountered_a_network_error);
+      case LIMIT_REACHED        : return getString(R.string.GroupJoinBottomSheetDialogFragment_group_limit_reached);
       default                   : return getString(R.string.GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later);
     }
   }

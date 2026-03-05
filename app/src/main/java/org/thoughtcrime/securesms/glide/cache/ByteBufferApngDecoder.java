@@ -7,6 +7,7 @@ import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.ResourceDecoder;
 import com.bumptech.glide.load.engine.Resource;
 
+import org.signal.glide.apng.ApngOptions;
 import org.signal.glide.common.io.ByteBufferReader;
 import org.signal.glide.common.loader.ByteBufferLoader;
 import org.signal.glide.common.loader.Loader;

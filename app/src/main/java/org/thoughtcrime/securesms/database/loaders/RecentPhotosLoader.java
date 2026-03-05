@@ -10,7 +10,7 @@ import android.provider.MediaStore;
 
 import androidx.loader.content.CursorLoader;
 
-import org.thoughtcrime.securesms.permissions.Permissions;
+import org.signal.core.ui.permissions.Permissions;
 
 public class RecentPhotosLoader extends CursorLoader {
 

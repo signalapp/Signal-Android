@@ -11,11 +11,11 @@ import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
+import org.signal.core.util.Util
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
-import org.thoughtcrime.securesms.util.Util
 import java.io.ByteArrayOutputStream
 import java.util.UUID
 

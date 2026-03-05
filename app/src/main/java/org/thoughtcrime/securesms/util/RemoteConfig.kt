@@ -82,6 +82,14 @@ object RemoteConfig {
   var initialized: Boolean = false
   private val initLock: ReentrantLock = ReentrantLock()
 
+  /** Solely for fixing an issue with the internalUser flag */
+  @VisibleForTesting
+  var underTest: Boolean = false
+
+  @JvmStatic
+  @Volatile
+  var internalUserDisabled: Boolean = false
+
   @JvmStatic
   fun init() {
     initLock.withLock {
@@ -305,11 +313,13 @@ object RemoteConfig {
         val newKey = key.removePrefix("android.libsignal.")
         when (value) {
           is String -> newKey to value
+
           // The server is currently synthesizing "true" / "false" values
           // for RemoteConfigs that are otherwise empty string values.
           // Libsignal expects that disabled values are simply absent from the
           // map, so we map true to "true" and otherwise omit disabled values.
           is Boolean -> if (value) newKey to "true" else null
+
           else -> {
             val type = value?.let { value::class.simpleName }
             Log.w(TAG, "[libsignal] Unexpected type for $newKey! Was a $type")
@@ -562,6 +572,15 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** The maximum number of pinned conversations a user can have. */
+  @JvmStatic
+  @get:JvmName("pinnedChatLimit")
+  val pinnedChatLimit: Int by remoteInt(
+    key = "global.pinnedChatLimit",
+    defaultValue = 4,
+    hotSwappable = true
+  )
+
   /** The maximum number of grapheme  */
   @JvmStatic
   val maxGroupNameGraphemeLength: Int by remoteValue(
@@ -579,7 +598,12 @@ object RemoteConfig {
     key = "android.internalUser",
     hotSwappable = true
   ) { value ->
-    value.asBoolean(false) || Environment.IS_NIGHTLY || Environment.IS_STAGING
+    when {
+      internalUserDisabled -> false
+      underTest -> value.asBoolean(false)
+      Environment.isInternal() -> true
+      else -> value.asBoolean(false)
+    }
   }
 
   /** The raw client expiration JSON string.  */
@@ -786,14 +810,14 @@ object RemoteConfig {
 
   /** A comma-separated list of manufacturers that should *not* use CameraX.  */
   val cameraXModelBlocklist: String by remoteString(
-    key = "android.cameraXModelBlockList",
+    key = "android.cameraXModelBlockList.3",
     defaultValue = "",
     hotSwappable = true
   )
 
   /** A comma-separated list of manufacturers that should *not* use CameraX mixed mode.  */
   val cameraXMixedModelBlocklist: String by remoteString(
-    key = "android.cameraXMixedModelBlockList",
+    key = "android.cameraXMixedModelBlockList.2",
     defaultValue = "",
     hotSwappable = false
   )
@@ -1115,14 +1139,6 @@ object RemoteConfig {
   )
 
   @JvmStatic
-  @get:JvmName("newCallUi")
-  val newCallUi: Boolean by remoteBoolean(
-    key = "android.newCallUi",
-    defaultValue = false,
-    hotSwappable = false
-  )
-
-  @JvmStatic
   @get:JvmName("useHevcEncoder")
   val useHevcEncoder: Boolean by remoteBoolean(
     key = "android.useHevcEncoder",
@@ -1166,35 +1182,19 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  @JvmStatic
-  @get:JvmName("polls")
-  val polls: Boolean by remoteBoolean(
-    key = "android.polls.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** Whether or not to send over binary service ids (alongside string service ids). */
   @JvmStatic
   @get:JvmName("useBinaryId")
   val useBinaryId: Boolean by remoteBoolean(
-    key = "android.useBinaryServiceId",
-    defaultValue = Environment.IS_STAGING,
+    key = "android.useBinaryServiceId.2",
+    defaultValue = true,
     hotSwappable = false
   )
 
   @JvmStatic
-  @get:JvmName("receivePolls")
-  val receivePolls: Boolean by remoteBoolean(
-    key = "android.receivePolls",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  @JvmStatic
-  @get:JvmName("backupsBetaMegaphone")
-  val backupsBetaMegaphone: Boolean by remoteBoolean(
-    key = "android.backupsBetaMegaphone",
+  @get:JvmName("backupsMegaphone")
+  val backupsMegaphone: Boolean by remoteBoolean(
+    key = "android.backupsMegaphone.3",
     defaultValue = false,
     hotSwappable = true
   )
@@ -1210,7 +1210,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("receivePinnedMessages")
   val receivePinnedMessages: Boolean by remoteBoolean(
-    key = "android.receivePinnedMessages",
+    key = "android.receivePinnedMessages.2",
     defaultValue = false,
     hotSwappable = true
   )
@@ -1218,7 +1218,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("sendPinnedMessages")
   val sendPinnedMessages: Boolean by remoteBoolean(
-    key = "android.sendPinnedMessages",
+    key = "android.sendPinnedMessages.2",
     defaultValue = false,
     hotSwappable = true
   )
@@ -1236,6 +1236,81 @@ object RemoteConfig {
   val callQualitySurveyPPM: String by remoteString(
     key = "android.callQualitySurveyPPM",
     defaultValue = "*:10000",
+    hotSwappable = true
+  )
+
+  /**
+   * Whether or not to allow 1:1 polls and a higher character limit for questions
+   */
+  @JvmStatic
+  @get:JvmName("pollsV2")
+  val pollsV2: Boolean by remoteBoolean(
+    key = "android.pollsV2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * Whether to receive and display group member labels.
+   */
+  val receiveMemberLabels: Boolean by remoteBoolean(
+    key = "android.receiveMemberLabels.2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * Whether to enable modifying group member labels.
+   */
+  @JvmStatic
+  @get:JvmName("sendMemberLabels")
+  val sendMemberLabels: Boolean by remoteBoolean(
+    key = "android.sendMemberLabels.3",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * Whether or not to receive admin delete messages.
+   */
+  @JvmStatic
+  @get:JvmName("receiveAdminDelete")
+  val receiveAdminDelete: Boolean by remoteBoolean(
+    key = "android.receiveAdminDelete.2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * Whether or not to send admin delete messages.
+   */
+  @JvmStatic
+  @get:JvmName("sendAdminDelete")
+  val sendAdminDelete: Boolean by remoteBoolean(
+    key = "android.sendAdminDelete",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * Maximum time that passes where a message can still be regularly deleted
+   */
+  @JvmStatic
+  @get:JvmName("regularDeleteThreshold")
+  val regularDeleteThreshold: Long by remoteLong(
+    key = "global.normalDeleteMaxAgeInSeconds",
+    defaultValue = 1.days.inWholeSeconds,
+    hotSwappable = true
+  )
+
+  /**
+   * Maximum time that passes where a message can still be deleted by an admin
+   */
+  @JvmStatic
+  @get:JvmName("adminDeleteThreshold")
+  val adminDeleteThreshold: Long by remoteLong(
+    key = "global.adminDeleteMaxAgeInSeconds",
+    defaultValue = 1.days.inWholeSeconds,
     hotSwappable = true
   )
   // endregion

@@ -4,8 +4,8 @@ import android.animation.ValueAnimator
 import android.app.Activity
 import androidx.core.content.ContextCompat
 import com.google.android.material.animation.ArgbEvaluatorCompat
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.WindowUtil
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Controls status-bar color based off ability to scroll up
@@ -16,8 +16,8 @@ class StatusBarColorAnimator(
   private var animator: ValueAnimator? = null
   private var previousCanScrollUp: Boolean = false
 
-  private val normalColor = ContextCompat.getColor(activity, R.color.signal_colorBackground)
-  private val scrollColor = ContextCompat.getColor(activity, R.color.signal_colorSurface2)
+  private val normalColor = ContextCompat.getColor(activity, CoreUiR.color.signal_colorBackground)
+  private val scrollColor = ContextCompat.getColor(activity, CoreUiR.color.signal_colorSurface2)
 
   fun setCanScrollUp(canScrollUp: Boolean) {
     if (previousCanScrollUp == canScrollUp) {

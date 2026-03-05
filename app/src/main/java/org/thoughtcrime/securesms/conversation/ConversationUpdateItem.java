@@ -54,11 +54,15 @@ import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.ui.util.ThemeUtil;
+import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 import org.signal.core.models.ServiceId;
 
 import java.util.Collection;
@@ -106,6 +110,8 @@ public final class ConversationUpdateItem extends FrameLayout
   private ExpirationTimer timer;
 
   private final PassthroughClickListener passthroughClickListener = new PassthroughClickListener();
+
+  private Disposable activeCallDisposable = Disposable.disposed();
 
   public ConversationUpdateItem(Context context) {
     super(context);
@@ -234,6 +240,7 @@ public final class ConversationUpdateItem extends FrameLayout
   public void unbind() {
     this.displayBodyWithTimer.removeObserver(updateObserver);
     handler.removeCallbacks(timerUpdateRunnable);
+    activeCallDisposable.dispose();
   }
 
   @Override
@@ -487,6 +494,8 @@ public final class ConversationUpdateItem extends FrameLayout
         }
       });
     } else if (conversationMessage.getMessageRecord().isGroupCall()) {
+      activeCallDisposable.dispose();
+
       GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(conversationMessage.getMessageRecord().getBody());
       boolean                isRingingOnLocalDevice = groupCallUpdateDetails.isRingingOnLocalDevice;
       boolean                endedRecently          = GroupCallUpdateDetailsUtil.checkCallEndedRecently(groupCallUpdateDetails);
@@ -495,9 +504,7 @@ public final class ConversationUpdateItem extends FrameLayout
 
       int text = 0;
       if (Util.hasItems(serviceIds) || isRingingOnLocalDevice) {
-        if (serviceIds.contains(SignalStore.account().requireAci())) {
-          text = R.string.ConversationUpdateItem_return_to_call;
-        } else if (GroupCallUpdateDetailsUtil.parse(conversationMessage.getMessageRecord().getBody()).isCallFull) {
+        if (GroupCallUpdateDetailsUtil.parse(conversationMessage.getMessageRecord().getBody()).isCallFull) {
           text = R.string.ConversationUpdateItem_call_is_full;
         } else {
           text = R.string.ConversationUpdateItem_join_call;
@@ -516,6 +523,16 @@ public final class ConversationUpdateItem extends FrameLayout
             passthroughClickListener.onClick(v);
           }
         });
+
+        if (text == R.string.ConversationUpdateItem_join_call) {
+          activeCallDisposable = CommunicationActions.isDeviceInCallWithRecipient(conversationRecipient.getId())
+              .observeOn(AndroidSchedulers.mainThread())
+              .subscribe(isInCall -> {
+                if (isInCall) {
+                  actionButton.setText(R.string.ConversationUpdateItem_return_to_call);
+                }
+              });
+        }
       } else {
         actionButton.setVisibility(GONE);
         actionButton.setOnClickListener(null);
@@ -779,8 +796,8 @@ public final class ConversationUpdateItem extends FrameLayout
 
   private void presentActionButton(boolean hasWallpaper, boolean isBoostRequest) {
     if (isBoostRequest) {
-      actionButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.signal_colorSecondaryContainer)));
-      actionButton.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.signal_colorOnSecondaryContainer)));
+      actionButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorSecondaryContainer)));
+      actionButton.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSecondaryContainer)));
     } else if (hasWallpaper) {
       actionButton.setBackgroundTintList(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_background_wallpaper));
       actionButton.setTextColor(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_text_color_wallpaper));
@@ -800,7 +817,7 @@ public final class ConversationUpdateItem extends FrameLayout
 
   private void presentTimer(UpdateDescription updateDescription) {
     if (updateDescription.hasExpiration() && messageRecord.getExpiresIn() > 0) {
-      timer = new ExpirationTimer(messageRecord.getTimestamp(), messageRecord.getExpiresIn());
+      timer = new ExpirationTimer(messageRecord.getExpireStarted(), messageRecord.getExpiresIn());
       handler.post(timerUpdateRunnable);
     } else {
       latestFrame = 0;

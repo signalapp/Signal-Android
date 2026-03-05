@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import kotlin.math.min
 
 /**
- * This holds UI state for [WebRtcAudioOutputToggleButton]
+ * This holds UI state for [org.thoughtcrime.securesms.components.webrtc.v2.CallAudioToggleButton]
  */
 class ToggleButtonOutputState {
   private val availableOutputs: LinkedHashSet<WebRtcAudioOutput> = linkedSetOf(WebRtcAudioOutput.SPEAKER)

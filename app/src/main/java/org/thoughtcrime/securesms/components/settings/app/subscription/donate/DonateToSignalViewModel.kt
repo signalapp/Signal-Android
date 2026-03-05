@@ -341,7 +341,7 @@ class DonateToSignalViewModel(
           state.copy(
             monthlyDonationState = state.monthlyDonationState.copy(
               nonVerifiedMonthlyDonation = if (jobStatus is DonationRedemptionJobStatus.PendingExternalVerification) jobStatus.nonVerifiedMonthlyDonation else null,
-              transactionState = DonateToSignalState.TransactionState(jobStatus.isInProgress(), levelUpdateProcessing)
+              transactionState = DonateToSignalState.TransactionState(jobStatus.isInProgress(), levelUpdateProcessing, jobStatus is DonationRedemptionJobStatus.PendingKeepAlive)
             )
           )
         }

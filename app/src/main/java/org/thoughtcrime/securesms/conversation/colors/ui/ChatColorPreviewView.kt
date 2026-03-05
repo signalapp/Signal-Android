@@ -11,15 +11,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import org.signal.core.ui.util.ThemeUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.DeliveryStatusView
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV2
 import org.thoughtcrime.securesms.conversation.colors.ColorizerView
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Projection
-import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import java.util.Locale
@@ -87,7 +88,7 @@ class ChatColorPreviewView @JvmOverloads constructor(
         findViewById(R.id.bubble_4_delivery)
       )
 
-      val now: String = DateUtils.getExtendedRelativeTimeSpanString(context, Locale.getDefault(), System.currentTimeMillis())
+      val (now, _) = DateUtils.getExtendedRelativeTimeSpanString(context, Locale.getDefault(), System.currentTimeMillis())
       listOf(sent1, sent2, recv1, recv2).forEach {
         it.time.text = now
         it.delivery?.setRead()
@@ -101,7 +102,7 @@ class ChatColorPreviewView @JvmOverloads constructor(
       wallpaper = findViewById(R.id.wallpaper)
       wallpaperDim = findViewById(R.id.wallpaper_dim)
       colorizerView = findViewById(R.id.colorizer)
-      colorizer = Colorizer()
+      colorizer = ColorizerV2()
     } finally {
       typedArray?.recycle()
     }

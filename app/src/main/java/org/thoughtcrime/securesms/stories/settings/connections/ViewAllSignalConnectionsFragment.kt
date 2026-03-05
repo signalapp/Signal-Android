@@ -28,6 +28,7 @@ class ViewAllSignalConnectionsFragment : Fragment(R.layout.view_all_signal_conne
     val mediator = ContactSearchMediator(
       fragment = this,
       selectionLimits = SelectionLimits(0, 0),
+      isMultiSelect = false,
       displayOptions = ContactSearchAdapter.DisplayOptions(
         displayCheckBox = false,
         displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER

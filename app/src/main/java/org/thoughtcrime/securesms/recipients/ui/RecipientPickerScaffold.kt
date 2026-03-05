@@ -26,18 +26,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.detailPaneMaxContentWidth
+import org.signal.core.ui.isSplitPane
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.ScreenTitlePane
 import org.thoughtcrime.securesms.window.AppScaffold
-import org.thoughtcrime.securesms.window.detailPaneMaxContentWidth
-import org.thoughtcrime.securesms.window.isSplitPane
 import org.thoughtcrime.securesms.window.rememberAppScaffoldNavigator
 
 /**
@@ -62,7 +61,7 @@ fun RecipientPickerScaffold(
       Scaffolds.DefaultTopAppBar(
         title = if (!isSplitPane) title else "",
         titleContent = { _, titleText -> Text(text = titleText, style = MaterialTheme.typography.titleLarge) },
-        navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+        navigationIcon = SignalIcons.ArrowStart.imageVector,
         navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
         onNavigationClick = onNavigateUpClick,
         actions = { topAppBarActions() }

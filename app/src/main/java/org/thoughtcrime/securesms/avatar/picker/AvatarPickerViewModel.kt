@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.util.livedata.Store
 
 sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepository) : ViewModel() {

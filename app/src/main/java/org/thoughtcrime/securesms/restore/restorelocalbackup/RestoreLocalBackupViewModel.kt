@@ -97,6 +97,7 @@ class RestoreLocalBackupViewModel(fileBackupUri: Uri) : ViewModel() {
           SignalStore.registration.localRegistrationMetadata = null
           RegistrationUtil.maybeMarkRegistrationComplete()
 
+          SignalStore.misc.needsUsernameRestore = true
           AppDependencies.jobManager.add(ReclaimUsernameAndLinkJob())
         }
 

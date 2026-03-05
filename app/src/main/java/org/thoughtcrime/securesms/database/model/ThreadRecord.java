@@ -209,6 +209,14 @@ public final class ThreadRecord {
     }
   }
 
+  public @NonNull RecipientId getDeletedByRecipientId() {
+    if (extra != null && extra.getDeletedBy() != null) {
+      return RecipientId.from(extra.getDeletedBy());
+    } else {
+      return RecipientId.UNKNOWN;
+    }
+  }
+
   public @NonNull RecipientId getGroupMessageSender() {
     RecipientId threadRecipientId     = getRecipient().getId();
     RecipientId individualRecipientId = getIndividualRecipientId();

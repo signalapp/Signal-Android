@@ -27,7 +27,7 @@ object NotificationProfiles {
 
   @JvmStatic
   @JvmOverloads
-  fun getActiveProfile(profiles: List<NotificationProfile>, now: Long = System.currentTimeMillis(), zoneId: ZoneId = ZoneId.systemDefault()): NotificationProfile? {
+  fun getActiveProfile(profiles: List<NotificationProfile>, now: Long = System.currentTimeMillis(), zoneId: ZoneId = ZoneId.systemDefault(), shouldSync: Boolean = false): NotificationProfile? {
     val storeValues: NotificationProfileValues = SignalStore.notificationProfile
     val localNow: LocalDateTime = now.toLocalDateTime(zoneId)
 
@@ -41,7 +41,7 @@ object NotificationProfiles {
       profile.schedule.startDateTime(localNow).toMillis(zoneId.toOffset()) > storeValues.manuallyDisabledAt
     }
 
-    if (shouldClearManualOverride(manualProfile, scheduledProfile)) {
+    if (shouldSync && shouldClearManualOverride(manualProfile, scheduledProfile)) {
       SignalExecutors.UNBOUNDED.execute {
         SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
         StorageSyncHelper.scheduleSyncForDataChange()

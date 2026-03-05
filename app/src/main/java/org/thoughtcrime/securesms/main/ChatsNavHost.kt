@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.main
 
+import android.os.Build
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.animateFloat
@@ -12,6 +13,8 @@ import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -42,16 +45,18 @@ import androidx.window.core.layout.WindowSizeClass
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.signal.core.ui.isSplitPane
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.compose.FragmentBackHandler
 import org.thoughtcrime.securesms.compose.FragmentBackPressedState
 import org.thoughtcrime.securesms.conversation.ConversationArgs
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
+import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.serialization.JsonSerializableNavType
 import org.thoughtcrime.securesms.window.AppScaffoldAnimationDefaults
 import org.thoughtcrime.securesms.window.AppScaffoldAnimationState
-import org.thoughtcrime.securesms.window.isSplitPane
 import kotlin.reflect.typeOf
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -72,8 +77,8 @@ fun NavGraphBuilder.chatNavGraphBuilder(
     val context = LocalContext.current
 
     // Because it can take a long time to load content, we use a "fake" chat list image to delay displaying
-    // the fragment and prevent pop-in
-    var shouldDisplayFragment by remember { mutableStateOf(false) }
+    // the fragment and prevent pop-in. When there's no bitmap (e.g. returning from a sub-route), skip the animation.
+    var shouldDisplayFragment by remember { mutableStateOf(chatNavGraphState.chatBitmap == null) }
     val transition: Transition<Boolean> = updateTransition(shouldDisplayFragment)
     val bitmap = chatNavGraphState.chatBitmap
 
@@ -125,15 +130,41 @@ fun NavGraphBuilder.chatNavGraphBuilder(
       fragment.viewLifecycleOwner.lifecycleScope.launch {
         fragment.repeatOnLifecycle(Lifecycle.State.STARTED) {
           fragment.didFirstFrameRender.collectLatest {
-            shouldDisplayFragment = it
-            if (!it) {
-              delay(150.milliseconds)
-              shouldDisplayFragment = true
+            if (!shouldDisplayFragment) {
+              shouldDisplayFragment = it
+              if (!it) {
+                delay(150.milliseconds)
+                shouldDisplayFragment = true
+              }
             }
           }
         }
       }
     }
+  }
+
+  composable<MainNavigationDetailLocation.Chats.MessageDetails>(
+    typeMap = mapOf(
+      typeOf<RecipientId>() to JsonSerializableNavType(RecipientId.serializer())
+    )
+  ) { navBackStackEntry ->
+    val context = LocalContext.current
+    val route = navBackStackEntry.toRoute<MainNavigationDetailLocation.Chats.MessageDetails>()
+    val fragmentState = key(route) { rememberFragmentState() }
+
+    LaunchedEffect(Unit) {
+      (context as? MainNavigator.NavigatorProvider)?.onFirstRender()
+    }
+
+    AndroidFragment(
+      clazz = MessageDetailsFragment::class.java,
+      fragmentState = fragmentState,
+      arguments = MessageDetailsFragment.args(route.recipientId, route.messageId),
+      modifier = Modifier.fillMaxSize()
+        .background(MaterialTheme.colorScheme.background)
+        .statusBarsPadding()
+        .navigationBarsPadding()
+    )
   }
 }
 
@@ -202,7 +233,8 @@ class ChatNavGraphState private constructor(
   private var hasWrittenToGraphicsLayer: Boolean by mutableStateOf(false)
 
   suspend fun writeGraphicsLayerToBitmap() {
-    if (!windowSizeClass.isSplitPane() && hasWrittenToGraphicsLayer) {
+    // toImageBitmap() uses LayerSnapshot which has format compatibility issues on Android 7 and below
+    if (Build.VERSION.SDK_INT >= 26 && !windowSizeClass.isSplitPane() && hasWrittenToGraphicsLayer) {
       chatBitmap = graphicsLayer.toImageBitmap()
     }
   }

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.privacy.advanced
 
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -9,12 +10,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import org.signal.core.util.concurrent.SignalDispatchers
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
@@ -63,6 +69,18 @@ class AdvancedPrivacySettingsViewModel(
     refresh()
   }
 
+  fun setAllowAutomaticVerification(enabled: Boolean) {
+    SignalStore.settings.automaticVerificationEnabled = enabled
+    refresh()
+    viewModelScope.launch(SignalDispatchers.IO) {
+      if (!enabled) {
+        SignalDatabase.recipients.clearAllKeyTransparencyData()
+      }
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
+  }
+
   fun refresh() {
     store.update { getState().copy(showProgressSpinner = it.showProgressSpinner) }
   }
@@ -85,7 +103,8 @@ class AdvancedPrivacySettingsViewModel(
       allowSealedSenderFromAnyone = TextSecurePreferences.isUniversalUnidentifiedAccess(
         AppDependencies.application
       ),
-      false
+      showProgressSpinner = false,
+      allowAutomaticKeyVerification = SignalStore.settings.automaticVerificationEnabled
     )
   }
 

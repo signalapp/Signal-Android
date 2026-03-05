@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.service.webrtc.links
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import org.signal.ringrtc.CallLinkEpoch
 import org.signal.ringrtc.CallLinkRootKey
 
 /**
@@ -16,16 +15,11 @@ import org.signal.ringrtc.CallLinkRootKey
 @Parcelize
 data class CallLinkCredentials(
   val linkKeyBytes: ByteArray,
-  val epochBytes: ByteArray?,
   val adminPassBytes: ByteArray?
 ) : Parcelable {
 
   val roomId: CallLinkRoomId by lazy {
     CallLinkRoomId.fromCallLinkRootKey(CallLinkRootKey(linkKeyBytes))
-  }
-
-  val epoch: CallLinkEpoch? by lazy {
-    epochBytes?.let { CallLinkEpoch.fromBytes(it) }
   }
 
   override fun equals(other: Any?): Boolean {
@@ -39,12 +33,6 @@ data class CallLinkCredentials(
       if (other.adminPassBytes == null) return false
       if (!adminPassBytes.contentEquals(other.adminPassBytes)) return false
     } else if (other.adminPassBytes != null) {
-      return false
-    }
-    if (epochBytes != null) {
-      if (other.epochBytes == null) return false
-      if (!epochBytes.contentEquals(other.epochBytes)) return false
-    } else if (other.epochBytes != null) {
       return false
     }
 
@@ -64,7 +52,6 @@ data class CallLinkCredentials(
     fun generate(): CallLinkCredentials {
       return CallLinkCredentials(
         CallLinkRootKey.generate().keyBytes,
-        null,
         CallLinkRootKey.generateAdminPasskey()
       )
     }

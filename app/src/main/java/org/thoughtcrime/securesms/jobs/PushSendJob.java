@@ -21,11 +21,11 @@ import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
+import org.signal.blurhash.BlurHash;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
+import org.thoughtcrime.securesms.polls.Poll;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -62,7 +63,7 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -484,6 +485,23 @@ public abstract class PushSendJob extends SendJob {
 
   protected @Nullable List<BodyRange> getBodyRanges(@NonNull OutgoingMessage message) {
     return getBodyRanges(message.getBodyRanges());
+  }
+
+  protected @Nullable SignalServiceDataMessage.PollCreate getPollCreate(OutgoingMessage message) {
+    Poll poll = message.getPoll();
+    if (poll == null) {
+      return null;
+    }
+
+    return new SignalServiceDataMessage.PollCreate(poll.getQuestion(), poll.getAllowMultipleVotes(), poll.getPollOptions());
+  }
+
+  protected @Nullable SignalServiceDataMessage.PollTerminate getPollTerminate(OutgoingMessage message) {
+    if (message.getMessageExtras() == null || message.getMessageExtras().pollTerminate == null) {
+      return null;
+    }
+
+    return new SignalServiceDataMessage.PollTerminate(message.getMessageExtras().pollTerminate.targetTimestamp);
   }
 
   protected @Nullable List<BodyRange> getBodyRanges(@Nullable BodyRangeList bodyRanges) {

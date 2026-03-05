@@ -21,11 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 
@@ -78,9 +78,9 @@ fun RestoreRow(
 private fun RestoreMethodRowPreview() {
   Previews.Preview {
     RestoreRow(
-      icon = painterResource(R.drawable.symbol_backup_24),
-      title = stringResource(R.string.SelectRestoreMethodFragment__from_signal_backups),
-      subtitle = stringResource(R.string.SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan)
+      icon = SignalIcons.Backup.painter,
+      title = stringResource(R.string.SelectRestoreMethodFragment__restore_signal_backup),
+      subtitle = stringResource(R.string.SelectRestoreMethodFragment__restore_your_text_messages_and_media_from)
     )
   }
 }

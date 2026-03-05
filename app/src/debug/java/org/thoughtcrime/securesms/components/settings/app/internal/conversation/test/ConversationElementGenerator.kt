@@ -105,7 +105,6 @@ class ConversationElementGenerator {
       false,
       emptyList(),
       false,
-      false,
       now,
       true,
       now,
@@ -122,6 +121,7 @@ class ConversationElementGenerator {
       0,
       false,
       0,
+      null,
       null
     )
 

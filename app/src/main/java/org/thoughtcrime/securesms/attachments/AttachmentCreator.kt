@@ -18,7 +18,9 @@ object AttachmentCreator : Parcelable.Creator<Attachment> {
     POINTER(PointerAttachment::class.java, "pointer"),
     TOMBSTONE(TombstoneAttachment::class.java, "tombstone"),
     URI(UriAttachment::class.java, "uri"),
-    ARCHIVED(ArchivedAttachment::class.java, "archived")
+    ARCHIVED(ArchivedAttachment::class.java, "archived"),
+    LOCAL_STICKER(LocalStickerAttachment::class.java, "local_sticker"),
+    WALLPAPER(WallpaperAttachment::class.java, "wallpaper")
   }
 
   @JvmStatic
@@ -36,6 +38,8 @@ object AttachmentCreator : Parcelable.Creator<Attachment> {
       Subclass.TOMBSTONE -> TombstoneAttachment(source)
       Subclass.URI -> UriAttachment(source)
       Subclass.ARCHIVED -> ArchivedAttachment(source)
+      Subclass.LOCAL_STICKER -> LocalStickerAttachment(source)
+      Subclass.WALLPAPER -> WallpaperAttachment(source)
     }
   }
 

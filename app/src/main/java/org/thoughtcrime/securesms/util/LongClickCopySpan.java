@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.R;
 
 public class LongClickCopySpan extends URLSpan {

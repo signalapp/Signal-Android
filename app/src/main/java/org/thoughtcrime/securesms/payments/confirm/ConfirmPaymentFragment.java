@@ -42,7 +42,7 @@ import org.thoughtcrime.securesms.payments.Payee;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsHomeFragmentDirections;
 import org.thoughtcrime.securesms.payments.preferences.RecipientHasNotEnabledPaymentsDialog;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.BottomSheetUtil;
+import org.signal.core.ui.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
@@ -207,7 +207,7 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
 
   private static CharSequence mono(Context context, CharSequence address) {
     SpannableString spannable = new SpannableString(address);
-    spannable.setSpan(new TextAppearanceSpan(context, R.style.TextAppearance_Signal_Mono),
+    spannable.setSpan(new TextAppearanceSpan(context, org.signal.core.ui.R.style.TextAppearance_Signal_Mono),
                       0,
                       address.length(),
                       Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

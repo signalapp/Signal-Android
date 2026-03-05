@@ -161,16 +161,20 @@
 
     <color name="quote_view_background_incoming_wallpaper">@color/signal_colorTransparent2</color>
     <color name="quote_view_bar_incoming_wallpaper">@color/signal_colorNeutralInverse</color>
-    <color name="quote_view_foreground_incoming_wallpaper">@color/signal_colorNeutralInverse</color>
+    <color name="quote_view_foreground_incoming_wallpaper">@color/signal_colorOnSurface</color>
     <color name="quote_view_background_outgoing_wallpaper">@color/signal_colorTransparent4</color>
     <color name="quote_view_bar_outgoing_wallpaper">@color/signal_colorNeutralInverse</color>
-    <color name="quote_view_foreground_outgoing_wallpaper">@color/signal_colorNeutral</color>
+    <color name="quote_view_foreground_outgoing_wallpaper">@color/signal_colorOnSurfaceInverse</color>
     <color name="quote_view_background_incoming_normal">@color/signal_colorTransparent3</color>
     <color name="quote_view_bar_incoming_normal">@color/signal_colorOnCustom</color>
     <color name="quote_view_foreground_incoming_normal">@color/signal_colorOnSurface</color>
     <color name="quote_view_background_outgoing_normal">@color/signal_colorTransparent4</color>
     <color name="quote_view_bar_outgoing_normal">@color/signal_colorOnCustom</color>
-    <color name="quote_view_foreground_outgoing_normal">@color/signal_light_colorOnSurface</color>
+    <color name="quote_view_foreground_outgoing_normal">@color/signal_colorOnSurfaceInverse</color>
+    <color name="quote_view_label_background_incoming_normal">@color/transparent_white_20</color>
+    <color name="quote_view_label_background_incoming_wallpaper">@color/transparent_white_20</color>
+    <color name="quote_view_label_background_outgoing_normal">@color/transparent_white_20</color>
+    <color name="quote_view_label_background_outgoing_wallpaper">@color/transparent_white_20</color>
 
     <color name="voice_note_player_view_background">@color/signal_colorSurface1</color>
 

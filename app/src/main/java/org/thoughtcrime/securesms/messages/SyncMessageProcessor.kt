@@ -9,6 +9,7 @@ import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
+import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.orNull
@@ -111,7 +112,6 @@ import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -237,7 +237,7 @@ object SyncMessageProcessor {
           handleSynchronizeSentGv2Update(context, envelope, sent)
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
-        dataMessage.groupCallUpdate != null -> DataMessageProcessor.handleGroupCallUpdateMessage(envelope, dataMessage, senderRecipient.id, groupId)
+        dataMessage.groupCallUpdate != null -> DataMessageProcessor.handleGroupCallUpdateMessage(envelope, senderRecipient.id, groupId)
         dataMessage.isEmptyGroupV2Message -> warn(envelope.timestamp!!, "Empty GV2 message! Doing nothing.")
         dataMessage.isExpirationUpdate -> threadId = handleSynchronizeSentExpirationUpdate(sent)
         dataMessage.storyContext != null -> threadId = handleSynchronizeSentStoryReply(sent, envelope.timestamp!!)
@@ -256,6 +256,10 @@ object SyncMessageProcessor {
         dataMessage.pinMessage != null -> threadId = handleSynchronizedPinMessage(envelope, dataMessage, sent, senderRecipient, earlyMessageCacheEntry)
         dataMessage.unpinMessage != null -> {
           DataMessageProcessor.handleUnpinMessage(envelope, dataMessage, senderRecipient, threadRecipient, earlyMessageCacheEntry)
+          threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
+        }
+        dataMessage.adminDelete != null -> {
+          DataMessageProcessor.handleAdminRemoteDelete(envelope, dataMessage, senderRecipient, threadRecipient, earlyMessageCacheEntry)
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
         else -> threadId = handleSynchronizeSentTextMessage(sent, envelope.timestamp!!)
@@ -496,9 +500,8 @@ object SyncMessageProcessor {
 
     if (syncAttachments.isNotEmpty()) {
       SignalDatabase.runPostSuccessfulTransaction {
-        for (attachment in attachments) {
-          AppDependencies.jobManager.add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
-        }
+        val downloadJobs: List<AttachmentDownloadJob> = attachments.map { AttachmentDownloadJob(messageId = messageId, attachmentId = it.attachmentId, forceDownload = it.isSticker) }
+        AppDependencies.jobManager.addAll(downloadJobs)
       }
     }
   }
@@ -596,9 +599,8 @@ object SyncMessageProcessor {
     }
 
     SignalDatabase.runPostSuccessfulTransaction {
-      for (attachment in attachments) {
-        AppDependencies.jobManager.add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
-      }
+      val downloadJobs: List<AttachmentDownloadJob> = attachments.map { AttachmentDownloadJob(messageId = messageId, attachmentId = it.attachmentId, forceDownload = false) }
+      AppDependencies.jobManager.addAll(downloadJobs)
     }
   }
 
@@ -893,10 +895,8 @@ object SyncMessageProcessor {
     }
 
     SignalDatabase.runPostSuccessfulTransaction {
-      val downloadJobs: List<AttachmentDownloadJob> = attachments.map { AttachmentDownloadJob(messageId, it.attachmentId, false) }
-      for (attachment in attachments) {
-        AppDependencies.jobManager.addAll(downloadJobs)
-      }
+      val downloadJobs: List<AttachmentDownloadJob> = attachments.map { AttachmentDownloadJob(messageId = messageId, attachmentId = it.attachmentId, forceDownload = it.isSticker) }
+      AppDependencies.jobManager.addAll(downloadJobs)
     }
 
     return threadId
@@ -1395,7 +1395,6 @@ object SyncMessageProcessor {
         roomId,
         CallLinkCredentials(
           callLinkUpdate.rootKey!!.toByteArray(),
-          callLinkUpdate.epoch?.toByteArray(),
           callLinkUpdate.adminPasskey?.toByteArray()
         )
       )
@@ -1407,7 +1406,6 @@ object SyncMessageProcessor {
           roomId = roomId,
           credentials = CallLinkCredentials(
             linkKeyBytes = callLinkRootKey.keyBytes,
-            epochBytes = callLinkUpdate.epoch?.toByteArray(),
             adminPassBytes = callLinkUpdate.adminPasskey?.toByteArray()
           ),
           state = SignalCallLinkState(),
@@ -1748,18 +1746,9 @@ object SyncMessageProcessor {
     sent: Sent,
     senderRecipient: Recipient
   ): Long {
-    if (!RemoteConfig.receivePolls) {
-      log(envelope.timestamp!!, "Sync poll create not allowed due to remote config.")
-    }
-
     log(envelope.timestamp!!, "Synchronize sent poll creation message.")
 
     val recipient = getSyncMessageDestination(sent)
-    if (!recipient.isGroup) {
-      warn(envelope.timestamp!!, "Poll creation messages should only be synced in groups. Dropping.")
-      return -1
-    }
-
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
 
     val expiresInMillis = message.expireTimerDuration.inWholeMilliseconds
@@ -1781,8 +1770,12 @@ object SyncMessageProcessor {
       question = poll.question!!
     )
 
-    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null).messageId
-    updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
+    val receiptStatus = if (recipient.isGroup) GroupReceiptTable.STATUS_UNKNOWN else GroupReceiptTable.STATUS_UNDELIVERED
+    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, receiptStatus, null).messageId
+
+    if (recipient.isGroup) {
+      updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
+    }
 
     log(envelope.timestamp!!, "Inserted sync poll create message as messageId $messageId")
 
@@ -1803,18 +1796,9 @@ object SyncMessageProcessor {
     senderRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ): Long {
-    if (!RemoteConfig.receivePolls) {
-      log(envelope.timestamp!!, "Sync poll end not allowed due to remote config.")
-    }
-
     log(envelope.timestamp!!, "Synchronize sent poll terminate message")
 
     val recipient = getSyncMessageDestination(sent)
-    if (!recipient.isGroup) {
-      warn(envelope.timestamp!!, "Poll termination messages should only be synced in groups. Dropping.")
-      return -1
-    }
-
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
 
     val expiresInMillis = message.expireTimerDuration.inWholeMilliseconds
@@ -1851,7 +1835,8 @@ object SyncMessageProcessor {
       )
     )
 
-    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null).messageId
+    val receiptStatus = if (recipient.isGroup) GroupReceiptTable.STATUS_UNKNOWN else GroupReceiptTable.STATUS_UNDELIVERED
+    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, receiptStatus, null).messageId
     SignalDatabase.messages.markAsSent(messageId, true)
 
     log(envelope.timestamp!!, "Inserted sync poll end message as messageId $messageId")
@@ -1886,7 +1871,14 @@ object SyncMessageProcessor {
     }
 
     val pinMessage = message.pinMessage!!
-    val targetMessage = SignalDatabase.messages.getMessageFor(pinMessage.targetSentTimestamp!!, Recipient.self().id)
+    val targetAuthorServiceId: ServiceId = ACI.parseOrThrow(pinMessage.targetAuthorAciBinary!!)
+    if (targetAuthorServiceId.isUnknown) {
+      warn(envelope.timestamp!!, "Unknown author")
+      return -1
+    }
+
+    val targetAuthor = Recipient.externalPush(targetAuthorServiceId)
+    val targetMessage = SignalDatabase.messages.getMessageFor(pinMessage.targetSentTimestamp!!, targetAuthor.id)
     if (targetMessage == null) {
       warn(envelope.timestamp!!, "Unable to find target message for sync message. Putting in early message cache.")
       if (earlyMessageCacheEntry != null) {
@@ -1898,6 +1890,11 @@ object SyncMessageProcessor {
 
     if (targetMessage.hasGiftBadge()) {
       warn(envelope.timestamp!!, "Cannot pin gift badge")
+      return -1
+    }
+
+    if (targetMessage.isRemoteDelete) {
+      warn(envelope.timestamp!!, "Cannot pin deleted message")
       return -1
     }
 

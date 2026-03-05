@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -15,7 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.movableContentOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
@@ -28,27 +31,49 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 fun CallParticipantsPager(
   callParticipantsPagerState: CallParticipantsPagerState,
   pagerState: PagerState,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  onTap: (() -> Unit)? = null,
+  onParticipantLongPress: ((CallParticipant) -> Unit)? = null
 ) {
   if (callParticipantsPagerState.focusedParticipant == null) {
     return
   }
 
+  val currentOnTap = rememberUpdatedState(onTap)
+  val currentOnLongPress = rememberUpdatedState(onParticipantLongPress)
+
+  val firstParticipantAR = rememberParticipantAspectRatio(
+    callParticipantsPagerState.callParticipants.firstOrNull()?.videoSink
+  )
+
   // Use movableContentOf to preserve CallGrid state when switching between
   // single participant (no pager) and multiple participants (with pager)
   val callGridContent = remember {
-    movableContentOf { state: CallParticipantsPagerState, mod: Modifier ->
+    movableContentOf { state: CallParticipantsPagerState, mod: Modifier, aspectRatio: Float? ->
       CallGrid(
         items = state.callParticipants,
+        singleParticipantAspectRatio = aspectRatio,
         modifier = mod,
         itemKey = { it.callParticipantId }
       ) { participant, itemModifier ->
+        val longPressModifier = if (!participant.recipient.isSelf && currentOnLongPress.value != null) {
+          itemModifier.pointerInput(participant.callParticipantId) {
+            detectTapGestures(
+              onTap = { currentOnTap.value?.invoke() },
+              onLongPress = { currentOnLongPress.value?.invoke(participant) }
+            )
+          }
+        } else {
+          itemModifier
+        }
+
         RemoteParticipantContent(
           participant = participant,
           renderInPip = state.isRenderInPip,
           raiseHandAllowed = false,
           onInfoMoreInfoClick = null,
-          modifier = itemModifier
+          showAudioIndicator = state.callParticipants.size > 1,
+          modifier = longPressModifier
         )
       }
     }
@@ -63,7 +88,7 @@ fun CallParticipantsPager(
     ) { page ->
       when (page) {
         0 -> {
-          callGridContent(callParticipantsPagerState, Modifier.fillMaxSize())
+          callGridContent(callParticipantsPagerState, Modifier.fillMaxSize(), firstParticipantAR)
         }
 
         1 -> {
@@ -78,7 +103,7 @@ fun CallParticipantsPager(
       }
     }
   } else {
-    callGridContent(callParticipantsPagerState, modifier)
+    callGridContent(callParticipantsPagerState, modifier, firstParticipantAR)
   }
 }
 

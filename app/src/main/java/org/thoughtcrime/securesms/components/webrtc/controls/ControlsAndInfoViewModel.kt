@@ -13,9 +13,12 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.UpdateCallLinkRepository
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsRepository
+import org.thoughtcrime.securesms.database.GroupTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
@@ -34,8 +37,6 @@ class ControlsAndInfoViewModel(
 
   val rootKeySnapshot: ByteArray
     get() = state.value.callLink?.credentials?.linkKeyBytes ?: error("Call link not loaded yet.")
-  val epochSnapshot: ByteArray?
-    get() = state.value.callLink?.credentials?.epochBytes
 
   fun setRecipient(recipient: Recipient) {
     if (recipient.isCallLink && callRecipientId != recipient.id) {
@@ -44,6 +45,16 @@ class ControlsAndInfoViewModel(
       disposables += CallLinks.watchCallLink(recipient.requireCallLinkRoomId()).subscribeBy {
         _state.value = _state.value.copy(callLink = it)
       }
+    } else if (recipient.isGroup && callRecipientId != recipient.id) {
+      callRecipientId = recipient.id
+      disposables += Single.fromCallable {
+        val groupRecord = SignalDatabase.groups.getGroup(recipient.requireGroupId())
+        groupRecord.isPresent && groupRecord.get().memberLevel(Recipient.self()) == GroupTable.MemberLevel.ADMINISTRATOR
+      }
+        .subscribeOn(Schedulers.io())
+        .subscribeBy { isAdmin ->
+          _state.value = _state.value.copy(isGroupAdmin = isAdmin)
+        }
     }
   }
 

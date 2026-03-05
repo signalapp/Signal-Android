@@ -96,6 +96,7 @@ import org.thoughtcrime.securesms.migrations.ResetArchiveTierMigrationJob;
 import org.thoughtcrime.securesms.migrations.SelfRegisteredStateMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerAdditionMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerDayByDayMigrationJob;
+import org.thoughtcrime.securesms.migrations.StickerPackAddition2MigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerLaunchMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerMyDailyLifeMigrationJob;
 import org.thoughtcrime.securesms.migrations.StorageCapabilityMigrationJob;
@@ -126,6 +127,7 @@ public final class JobManagerFactories {
   public static Map<String, Job.Factory> getJobFactories(@NonNull Application application) {
     return new HashMap<>() {{
       put(AccountConsistencyWorkerJob.KEY,             new AccountConsistencyWorkerJob.Factory());
+      put(AdminDeleteSendJob.KEY,                      new AdminDeleteSendJob.Factory());
       put(AnalyzeDatabaseJob.KEY,                      new AnalyzeDatabaseJob.Factory());
       put(ApkUpdateJob.KEY,                            new ApkUpdateJob.Factory());
       put(ArchiveAttachmentBackfillJob.KEY,            new ArchiveAttachmentBackfillJob.Factory());
@@ -154,6 +156,7 @@ public final class JobManagerFactories {
       put(CallQualitySurveySubmissionJob.KEY,          new CallQualitySurveySubmissionJob.Factory());
       put(CallSyncEventJob.KEY,                        new CallSyncEventJob.Factory());
       put(CancelRestoreMediaJob.KEY,                   new CancelRestoreMediaJob.Factory());
+      put(CheckKeyTransparencyJob.KEY,                 new CheckKeyTransparencyJob.Factory());
       put(CheckRestoreMediaLeftJob.KEY,                new CheckRestoreMediaLeftJob.Factory());
       put(CheckServiceReachabilityJob.KEY,             new CheckServiceReachabilityJob.Factory());
       put(CleanPreKeysJob.KEY,                         new CleanPreKeysJob.Factory());
@@ -347,6 +350,7 @@ public final class JobManagerFactories {
       put(StickerAdditionMigrationJob.KEY,                new StickerAdditionMigrationJob.Factory());
       put(StickerDayByDayMigrationJob.KEY,                new StickerDayByDayMigrationJob.Factory());
       put(StickerMyDailyLifeMigrationJob.KEY,             new StickerMyDailyLifeMigrationJob.Factory());
+      put(StickerPackAddition2MigrationJob.KEY,           new StickerPackAddition2MigrationJob.Factory());
       put(StorageCapabilityMigrationJob.KEY,              new StorageCapabilityMigrationJob.Factory());
       put(StorageFixLocalUnknownMigrationJob.KEY,         new StorageFixLocalUnknownMigrationJob.Factory());
       put(StorageServiceMigrationJob.KEY,                 new StorageServiceMigrationJob.Factory());

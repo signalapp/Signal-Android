@@ -18,6 +18,7 @@ import androidx.annotation.StringRes;
 
 import com.bumptech.glide.RequestManager;
 
+import org.signal.core.ui.view.Stub;
 import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
@@ -28,9 +29,8 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -172,11 +172,11 @@ public class LinkPreviewView extends FrameLayout {
     spinner.setVisibility(GONE);
     noPreview.setVisibility(GONE);
 
-    CallLinks.CallLinkParseResult linkParseResult = CallLinks.parseUrl(linkPreview.getUrl());
+    CallLinkRootKey callLinkRootKey = CallLinks.isCallLink(linkPreview.getUrl()) ? CallLinks.parseUrl(linkPreview.getUrl()) : null;
     if (!Util.isEmpty(linkPreview.getTitle())) {
       title.setText(linkPreview.getTitle());
       title.setVisibility(VISIBLE);
-    } else if (linkParseResult != null) {
+    } else if (callLinkRootKey != null) {
       title.setText(R.string.Recipient_signal_call);
       title.setVisibility(VISIBLE);
     } else {
@@ -186,7 +186,7 @@ public class LinkPreviewView extends FrameLayout {
     if (showDescription && !Util.isEmpty(linkPreview.getDescription())) {
       description.setText(linkPreview.getDescription());
       description.setVisibility(VISIBLE);
-    } else if (linkParseResult != null) {
+    } else if (callLinkRootKey != null) {
       description.setText(R.string.LinkPreviewView__use_this_link_to_join_a_signal_call);
       description.setVisibility(VISIBLE);
     } else {
@@ -221,14 +221,14 @@ public class LinkPreviewView extends FrameLayout {
       thumbnail.get().setImageResource(requestManager, new ImageSlide(linkPreview.getThumbnail().get()), type == TYPE_CONVERSATION && !scheduleMessageMode, false);
       thumbnail.get().showSecondaryText(false);
       thumbnail.get().setOutlineEnabled(true);
-    } else if (linkParseResult != null) {
+    } else if (callLinkRootKey != null) {
       thumbnail.setVisibility(VISIBLE);
       thumbnailState.applyState(thumbnail);
       thumbnail.get().setImageDrawable(
           requestManager,
           new FallbackAvatarDrawable(
               getContext(),
-              new FallbackAvatar.Resource.CallLink(AvatarColorHash.forCallLink(linkParseResult.getRootKey().getKeyBytes()))
+              new FallbackAvatar.Resource.CallLink(AvatarColorHash.forCallLink(callLinkRootKey.getKeyBytes()))
           ).circleCrop()
       );
       thumbnail.get().showSecondaryText(false);
@@ -272,7 +272,7 @@ public class LinkPreviewView extends FrameLayout {
     thumbnailState.applyState(thumbnail);
   }
 
-  private  @StringRes static int getLinkPreviewErrorString(@Nullable LinkPreviewRepository.Error customError) {
+  private @StringRes static int getLinkPreviewErrorString(@Nullable LinkPreviewRepository.Error customError) {
     return customError == LinkPreviewRepository.Error.GROUP_LINK_INACTIVE ? R.string.LinkPreviewView_this_group_link_is_not_active
                                                                           : R.string.LinkPreviewView_no_link_preview_available;
   }

@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.IdentityUtil;
-import org.thoughtcrime.securesms.util.LRUCache;
+import org.signal.core.util.LRUCache;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.signal.core.models.ServiceId;
 

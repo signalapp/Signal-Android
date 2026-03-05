@@ -579,6 +579,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     return new SvrBApi(libSignalNetwork);
   }
 
+  @Override
+  public @NonNull KeyTransparencyApi provideKeyTransparencyApi(@NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
+    return new KeyTransparencyApi(unauthWebSocket);
+  }
+
   @VisibleForTesting
   static class DynamicCredentialsProvider implements CredentialsProvider {
 

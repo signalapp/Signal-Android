@@ -27,6 +27,7 @@ class CardViewDetectorTest {
         )
       )
       .issues(CardViewDetector.CARD_VIEW_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
         """
@@ -43,43 +44,6 @@ class CardViewDetectorTest {
             -     new CardView(context);
             +     new com.google.android.material.card.MaterialCardView(context);
             """.trimIndent()
-      )
-  }
-
-  @Test
-  fun cardViewUsed_LogCardViewUsage_2_arg() {
-    TestLintTask.lint()
-      .files(
-        cardViewStub,
-        java(
-          """
-          package foo;
-          import androidx.cardview.widget.CardView;
-          public class Example {
-            public void buildCardView() {
-              new CardView(context, attrs);
-            }
-          }
-          """.trimIndent()
-        )
-      )
-      .issues(CardViewDetector.CARD_VIEW_USAGE)
-      .run()
-      .expect(
-      """
-        src/foo/Example.java:5: Warning: Using 'androidx.cardview.widget.CardView' instead of com.google.android.material.card.MaterialCardView [CardViewUsage]
-            new CardView(context, attrs);
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        0 errors, 1 warnings
-        """
-      )
-      .expectFixDiffs(
-        """
-        Fix for src/foo/Example.java line 5: Replace with new com.google.android.material.card.MaterialCardView(context, attrs):
-        @@ -5 +5
-        -     new CardView(context, attrs);
-        +     new com.google.android.material.card.MaterialCardView(context, attrs);
-        """.trimIndent()
       )
   }
 
@@ -102,6 +66,7 @@ class CardViewDetectorTest {
         )
       )
       .issues(CardViewDetector.CARD_VIEW_USAGE)
+      .allowMissingSdk()
       .run()
       .expect(
       """

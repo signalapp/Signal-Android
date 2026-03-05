@@ -168,7 +168,12 @@ class BackupMessagesJob private constructor(
     val auth = when (val result = BackupRepository.getSvrBAuth()) {
       is NetworkResult.Success -> result.result
       is NetworkResult.NetworkError -> return Result.retry(defaultBackoff()).logW(TAG, "Network error when getting SVRB auth.", result.getCause(), true)
-      is NetworkResult.StatusCodeError -> return Result.retry(defaultBackoff()).logW(TAG, "Status code error when getting SVRB auth.", result.getCause(), true)
+      is NetworkResult.StatusCodeError -> {
+        return when (result.code) {
+          429 -> Result.retry(result.retryAfter()?.inWholeMilliseconds ?: defaultBackoff()).logW(TAG, "Rate limited when getting SVRB auth.", result.getCause(), true)
+          else -> Result.retry(defaultBackoff()).logW(TAG, "Status code error when getting SVRB auth.", result.getCause(), true)
+        }
+      }
       is NetworkResult.ApplicationError -> throw result.throwable
     }
 
@@ -183,7 +188,10 @@ class BackupMessagesJob private constructor(
             Log.i(TAG, "[svrb-restore] No backup data found, continuing.", true)
             null
           } else {
-            return Result.retry(defaultBackoff()).logW(TAG, "[svrb-restore] Status code error when getting remote forward secrecy metadata.", result.getCause(), true)
+            return when (result.code) {
+              429 -> Result.retry(result.retryAfter()?.inWholeMilliseconds ?: defaultBackoff()).logW(TAG, "[svrb-restore] Rate limited when getting remote forward secrecy metadata.", result.getCause(), true)
+              else -> Result.retry(defaultBackoff()).logW(TAG, "[svrb-restore] Status code error when getting remote forward secrecy metadata.", result.getCause(), true)
+            }
           }
         }
         is NetworkResult.ApplicationError -> {
@@ -311,6 +319,10 @@ class BackupMessagesJob private constructor(
               return Result.failure()
             }
           }
+          429 -> {
+            Log.i(TAG, "Rate limited when getting upload spec.", result.getCause(), true)
+            return Result.retry(result.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+          }
           else -> {
             Log.i(TAG, "Status code failure", result.getCause(), true)
             return Result.retry(defaultBackoff())
@@ -359,14 +371,21 @@ class BackupMessagesJob private constructor(
         }
 
         is NetworkResult.StatusCodeError -> {
-          Log.i(TAG, "Status code failure", uploadResult.getCause(), true)
           when (uploadResult.code) {
             400 -> {
               Log.w(TAG, "400 likely means bad resumable state. Resetting the upload spec before retrying.", true)
               resumableMessagesBackupUploadSpec = null
+              return Result.retry(defaultBackoff())
+            }
+            429 -> {
+              Log.w(TAG, "Rate limited when uploading backup file.", uploadResult.getCause(), true)
+              return Result.retry(uploadResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+            }
+            else -> {
+              Log.i(TAG, "Status code failure (${uploadResult.code})", uploadResult.getCause(), true)
+              return Result.retry(defaultBackoff())
             }
           }
-          return Result.retry(defaultBackoff())
         }
 
         is NetworkResult.ApplicationError -> throw uploadResult.throwable

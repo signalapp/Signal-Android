@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Enumeration of the different call states we can display in the CallStateUpdate component.
@@ -58,7 +59,7 @@ fun CallStateUpdatePopup(
     verticalAlignment = Alignment.CenterVertically,
     modifier = modifier
       .background(
-        color = colorResource(id = R.color.signal_light_colorSecondaryContainer),
+        color = colorResource(id = CoreUiR.color.signal_light_colorSecondaryContainer),
         shape = RoundedCornerShape(50)
       )
       .padding(horizontal = 16.dp, vertical = 8.dp)
@@ -67,7 +68,7 @@ fun CallStateUpdatePopup(
       Icon(
         painter = painterResource(id = callControlsChange.iconRes),
         contentDescription = null,
-        tint = colorResource(id = R.color.signal_light_colorOnSecondaryContainer),
+        tint = colorResource(id = CoreUiR.color.signal_light_colorOnSecondaryContainer),
         modifier = Modifier.size(16.dp)
       )
     }
@@ -75,7 +76,7 @@ fun CallStateUpdatePopup(
     Text(
       text = stringResource(id = callControlsChange.stringRes),
       style = MaterialTheme.typography.bodyMedium,
-      color = colorResource(id = R.color.signal_light_colorOnSecondaryContainer)
+      color = colorResource(id = CoreUiR.color.signal_light_colorOnSecondaryContainer)
     )
   }
 }

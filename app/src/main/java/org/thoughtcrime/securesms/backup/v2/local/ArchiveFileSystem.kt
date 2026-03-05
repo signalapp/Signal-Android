@@ -37,6 +37,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
   companion object {
     val TAG = Log.tag(ArchiveFileSystem::class.java)
 
+    const val MAIN_DIRECTORY_NAME = "SignalBackups"
     const val BACKUP_DIRECTORY_PREFIX: String = "signal-backup"
     const val TEMP_BACKUP_DIRECTORY_SUFFIX: String = "tmp"
 
@@ -75,7 +76,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
   val filesFileSystem: FilesFileSystem
 
   init {
-    signalBackups = root.mkdirp("SignalBackups") ?: throw IOException("Unable to create main backups directory")
+    signalBackups = root.mkdirp(MAIN_DIRECTORY_NAME) ?: throw IOException("Unable to create main backups directory")
     val filesDirectory = signalBackups.mkdirp("files") ?: throw IOException("Unable to create files directory")
     filesFileSystem = FilesFileSystem(context, filesDirectory)
   }

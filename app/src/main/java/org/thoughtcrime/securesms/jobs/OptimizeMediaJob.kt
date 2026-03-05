@@ -48,6 +48,11 @@ class OptimizeMediaJob private constructor(parameters: Parameters) : Job(paramet
       return Result.success()
     }
 
+    if (SignalStore.backup.backupDownloadNotifierState != null) {
+      Log.i(TAG, "Backup subscription is pending cancellation, skipping media optimization.")
+      return Result.success()
+    }
+
     if (ArchiveRestoreProgress.state.activelyRestoring()) {
       ArchiveRestoreProgress.onCancelMediaRestore()
 

@@ -23,22 +23,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
+import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.util.Util
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.requests.CallLinkIncomingRequestSheet
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.toLink
-import org.thoughtcrime.securesms.util.BottomSheetUtil
-import org.thoughtcrime.securesms.util.Util
 
 class UsernameLinkShareBottomSheet : ComposeBottomSheetDialogFragment() {
 
@@ -94,7 +94,7 @@ private fun Content(
         .padding(all = 16.dp)
     )
     ButtonRow(
-      icon = painterResource(R.drawable.symbol_copy_android_24),
+      icon = SignalIcons.Copy.painter,
       text = stringResource(R.string.UsernameLinkShareBottomSheet_copy_link),
       modifier = Modifier.padding(top = 12.dp),
       onClick = {
@@ -103,7 +103,7 @@ private fun Content(
       }
     )
     ButtonRow(
-      icon = painterResource(R.drawable.symbol_share_android_24),
+      icon = SignalIcons.Share.painter,
       text = stringResource(R.string.UsernameLinkShareBottomSheet_share),
       modifier = Modifier.padding(bottom = 12.dp),
       onClick = {
@@ -163,7 +163,7 @@ private fun ContentPreview() {
 private fun ButtonRowPreview() {
   Previews.Preview {
     Surface {
-      ButtonRow(icon = painterResource(R.drawable.symbol_share_android_24), text = "Share")
+      ButtonRow(icon = SignalIcons.Share.painter, text = "Share")
     }
   }
 }
