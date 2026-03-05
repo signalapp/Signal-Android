@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حریم خصوصی را همراه داشته باشید.\nدر هر پیام خودتان باشید.</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">سیگنال یک شرکت غیرانتفاعی است\nشرایط و سیاست حریم خصوصی</string>
+    <string name="RegistrationActivity_continue">ادامه</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">بازیابی یا انتقال</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">اجازه دادن به مجوزها</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">برای اینکه راحت‌تر به افرادی که می‌شناسید پیام بفرستید، سیگنال این مجوزها را درخواست خواهد کرد. </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">حالا نه</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">بعدی</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">اعلان‌ها</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">وقتی پیام جدید دریافت می‌شود، اعلان داده شود.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">مخاطبان</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">افرادی که می‌شناسید را پیدا کنید. مخاطبان شما رمزگذاری‌شده و برای سرویس سیگنال قابل مشاهده نیستند.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">تماس‌های تلفنی</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">ثبت‌نام را آسان‌تر و قابلیت‌های اضافی تماس را فعال کنید.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">حافظه</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">از دستگاه‌تان عکس، ویدیو و فایل ارسال کنید.</string>
+
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">شماره تلفن</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">شما یک کد وارسی دریافت خواهید کرد. نرخ‌های اپراتور ممکن است اعمال شوند.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">یک کشور را انتخاب کنید</string>
+    <string name="RegistrationActivity_phone_number_description">شماره تلفن</string>
+    <string name="RegistrationActivity_next">بعدی</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">کشور شما</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">بستن</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">جستجو با نام یا پیش‌شماره کشور</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">کشور ناشناخته</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">کد تایید</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">کد‌ی را که به %1$s ارسال کردیم وارد کنید</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">شماره اشتباه است؟</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">ارسال مجدد کد</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">با من تماس بگیرید</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">(%2$02d:%1$02d)</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">با من تماس بگیر (%1$02d:%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">کد نادرست</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">امکان اتصال وجود ندارد. لطفاً شبکه‌تان را بررسی و دوباره امتحان کنید.</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">تعداد تلاش‌ها بیش از حد زیاد است. بعد از %1$s دوباره امتحان کنید.</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">خطایی غیرمنتظره رخ داد. لطفاً دوباره امتحان کنید.</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">مشکلی در ارسال کد تأیید شما پیش آمد. لطفاً دوباره امتحان کنید.</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">کد به روش انتخابی ارسال نشد. لطفاً گزینه دیگری را امتحان کنید.</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">ثبت‌نام انجام نشد. لطفاً دوباره امتحان کنید.</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">مشکلی وجود دارد؟</string>
+</resources>

@@ -30,6 +30,11 @@ class CallScreenMetrics @RememberInComposition constructor(
      * Shape of self renderer when in large group calls.
      */
     val OverflowParticipantRendererShape = RoundedCornerShape(OverflowParticipantRendererCornerSize)
+
+    /**
+     * Maximum width of the bottom sheet and related UI bars on the call screen.
+     */
+    val SheetMaxWidth = 540.dp
   }
 
   /**
@@ -43,6 +48,11 @@ class CallScreenMetrics @RememberInComposition constructor(
   val overflowParticipantRendererAvatarSize: Dp = forWindowSizeClass(
     compact = 48.dp,
     medium = 56.dp
+  )
+
+  val overflowInfoIconSize: Dp = forWindowSizeClass(
+    compact = 24.dp,
+    medium = 28.dp
   )
 
   private val normalRendererDpWidth: Dp = forWindowSizeClass(

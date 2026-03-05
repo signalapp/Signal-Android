@@ -11,6 +11,7 @@ import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.BidiUtil
+import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
@@ -27,8 +28,8 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColors.Id.Auto
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
-import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting
 import org.thoughtcrime.securesms.database.RecipientTable.MissingRecipientException
+import org.thoughtcrime.securesms.database.RecipientTable.NotificationSetting
 import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode
@@ -45,10 +46,11 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil
 import org.thoughtcrime.securesms.profiles.ProfileName
+import org.thoughtcrime.securesms.recipients.Recipient.Companion.external
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.UsernameUtil.isValidUsernameForSearch
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.util.OptionalUtil
@@ -102,7 +104,9 @@ class Recipient(
   private val sealedSenderAccessModeValue: SealedSenderAccessMode = SealedSenderAccessMode.UNKNOWN,
   private val capabilities: RecipientRecord.Capabilities = RecipientRecord.Capabilities.UNKNOWN,
   val storageId: ByteArray? = null,
-  val mentionSetting: MentionSetting = MentionSetting.ALWAYS_NOTIFY,
+  val mentionSetting: NotificationSetting = NotificationSetting.ALWAYS_NOTIFY,
+  private val callNotificationSettingValue: NotificationSetting = NotificationSetting.ALWAYS_NOTIFY,
+  private val replyNotificationSettingValue: NotificationSetting = NotificationSetting.ALWAYS_NOTIFY,
   private val wallpaperValue: ChatWallpaper? = null,
   private val chatColorsValue: ChatColors? = null,
   val avatarColor: AvatarColor = AvatarColor.UNKNOWN,
@@ -119,7 +123,8 @@ class Recipient(
   private val groupRecord: Optional<GroupRecord> = Optional.empty(),
   val phoneNumberSharing: PhoneNumberSharingState = PhoneNumberSharingState.UNKNOWN,
   val nickname: ProfileName = ProfileName.EMPTY,
-  val note: String? = null
+  val note: String? = null,
+  val keyTransparencyData: ByteArray? = null
 ) {
 
   /** The recipient's [ServiceId], which could be either an [ACI] or [PNI]. */
@@ -144,7 +149,7 @@ class Recipient(
   val e164: Optional<String> = Optional.ofNullable(e164Value)
 
   /** Whether or not we should show this user's e164 in the interface. */
-  val shouldShowE164: Boolean = e164Value.isNotNullOrBlank() && (isSystemContact || phoneNumberSharing == PhoneNumberSharingState.ENABLED)
+  val shouldShowE164: Boolean = e164Value.isNotNullOrBlank() && (isSystemContact || phoneNumberSharing == PhoneNumberSharingState.ENABLED || (aciValue == null && usernameValue == null))
 
   /** The recipient's email, if present. Emails are only for legacy SMS contacts that were reached via email. */
   val email: Optional<String> = Optional.ofNullable(emailValue)
@@ -326,6 +331,14 @@ class Recipient(
 
   /** The notification channel, if both set and supported by the system. Otherwise null. */
   val notificationChannel: String? = if (!NotificationChannels.supported()) null else notificationChannelValue
+
+  /** Whether calls should break through mute for this recipient. */
+  val callNotificationSetting: NotificationSetting
+    get() = if (RemoteConfig.internalUser) callNotificationSettingValue else NotificationSetting.ALWAYS_NOTIFY
+
+  /** Whether replies should break through mute for this recipient. Only applicable to groups. */
+  val replyNotificationSetting: NotificationSetting
+    get() = if (groupIdValue == null) NotificationSetting.DO_NOT_NOTIFY else if (RemoteConfig.internalUser) replyNotificationSettingValue else mentionSetting
 
   /** The state around whether we can send sealed sender to this user. */
   val sealedSenderAccessMode: SealedSenderAccessMode = if (pni.isPresent && pni == serviceId) {
@@ -807,8 +820,9 @@ class Recipient(
       profileAvatar == other.profileAvatar &&
       notificationChannelValue == other.notificationChannelValue &&
       sealedSenderAccessModeValue == other.sealedSenderAccessModeValue &&
-      storageId.contentEquals(other.storageId) &&
       mentionSetting == other.mentionSetting &&
+      callNotificationSettingValue == other.callNotificationSettingValue &&
+      replyNotificationSettingValue == other.replyNotificationSettingValue &&
       wallpaperValue == other.wallpaperValue &&
       chatColorsValue == other.chatColorsValue &&
       avatarColor == other.avatarColor &&
@@ -821,7 +835,8 @@ class Recipient(
       callLinkRoomId == other.callLinkRoomId &&
       phoneNumberSharing == other.phoneNumberSharing &&
       nickname == other.nickname &&
-      note == other.note
+      note == other.note &&
+      keyTransparencyData.contentEquals(other.keyTransparencyData)
   }
 
   override fun equals(other: Any?): Boolean {
@@ -1071,9 +1086,10 @@ class Recipient(
         SignalDatabase.recipients.getOrInsertFromEmail(identifier)
       } else if (isValidUsernameForSearch(identifier)) {
         throw IllegalArgumentException("Creating a recipient based on username alone is not supported!")
+      } else if (SignalE164Util.isPotentialE164(identifier)) {
+        SignalDatabase.recipients.getOrInsertFromE164(identifier)
       } else {
-        val e164: String = SignalE164Util.formatAsE164(identifier) ?: return null
-        SignalDatabase.recipients.getOrInsertFromE164(e164)
+        return null
       }
 
       return resolved(id)

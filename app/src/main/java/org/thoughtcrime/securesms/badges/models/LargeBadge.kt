@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.badges.models
 
+import android.content.Context
 import android.view.View
 import android.widget.TextView
 import org.thoughtcrime.securesms.R
@@ -43,11 +44,7 @@ data class LargeBadge(
       badge.setBadge(model.largeBadge.badge)
 
       name.text = context.getString(R.string.ViewBadgeBottomSheetDialogFragment__s_supports_signal, model.shortName)
-      description.text = if (model.largeBadge.badge.isSubscription()) {
-        context.getString(R.string.ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly, model.shortName)
-      } else {
-        context.getString(R.string.ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation, model.shortName)
-      }
+      description.text = getDescription(context, model.largeBadge.badge.isSubscription(), model.shortName)
 
       description.setLines(model.maxLines)
       description.maxLines = model.maxLines
@@ -56,6 +53,14 @@ data class LargeBadge(
   }
 
   companion object {
+    fun getDescription(context: Context, isSubscriptionBadge: Boolean, shortName: String): String {
+      return if (isSubscriptionBadge) {
+        context.getString(R.string.ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly, shortName)
+      } else {
+        context.getString(R.string.ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation, shortName)
+      }
+    }
+
     fun register(mappingAdapter: MappingAdapter) {
       mappingAdapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.view_badge_bottom_sheet_dialog_fragment_page))
       mappingAdapter.registerFactory(EmptyModel::class.java, LayoutFactory({ EmptyViewHolder(it) }, R.layout.view_badge_bottom_sheet_dialog_fragment_page))

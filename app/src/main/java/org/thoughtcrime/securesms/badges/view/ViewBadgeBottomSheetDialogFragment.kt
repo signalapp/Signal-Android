@@ -11,19 +11,19 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
+import org.signal.core.ui.BottomSheetUtil
+import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.LargeBadge
-import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.databinding.ViewBadgeBottomSheetDialogFragmentBinding
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -57,7 +57,6 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       binding.action.visible = false
     }
 
-    @Suppress("CascadeIf")
     if (!InAppDonations.hasAtLeastOnePaymentMethodAvailable()) {
       binding.noSupport.visible = true
       binding.action.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_open_20)
@@ -65,12 +64,10 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       binding.action.setOnClickListener {
         CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url))
       }
-    } else if (Recipient.self().badges.none { it.category == Badge.Category.Donor && !it.isBoost() && !it.isExpired() }) {
+    } else {
       binding.action.setOnClickListener {
         startActivity(AppSettingsActivity.subscriptions(requireContext()))
       }
-    } else {
-      binding.action.visible = false
     }
 
     val adapter = MappingAdapter()
@@ -104,7 +101,7 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
 
       var maxLines = 3
       state.allBadgesVisibleOnProfile.forEach { badge ->
-        val text = badge.resolveDescription(state.recipient.getShortDisplayName(requireContext()))
+        val text = LargeBadge.getDescription(requireContext(), badge.isSubscription(), state.recipient.getShortDisplayName(requireContext()))
         textPaint.getTextBounds(text, 0, text.length, textBounds)
         val estimatedLines = ceil(textBounds.width().toFloat() / textWidth).toInt()
         maxLines = max(maxLines, estimatedLines)

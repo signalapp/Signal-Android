@@ -28,6 +28,7 @@ import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 private val defaultCallButtonIconSize: Dp = 24.dp
 
@@ -49,9 +50,9 @@ private fun ToggleCallButton(
     colors = IconButtons.run {
       iconToggleButtonColors(
         checkedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-        checkedContentColor = colorResource(id = R.color.signal_light_colorOnPrimary),
-        containerColor = colorResource(id = R.color.signal_light_colorSecondaryContainer),
-        contentColor = colorResource(id = R.color.signal_light_colorOnSecondaryContainer)
+        checkedContentColor = colorResource(id = CoreUiR.color.signal_light_colorOnPrimary),
+        containerColor = colorResource(id = CoreUiR.color.signal_light_colorSecondaryContainer),
+        contentColor = colorResource(id = CoreUiR.color.signal_light_colorOnSecondaryContainer)
       )
     }
   ) {
@@ -70,7 +71,7 @@ private fun CallButton(
   contentDescription: String?,
   modifier: Modifier = Modifier,
   containerColor: Color = MaterialTheme.colorScheme.secondaryContainer,
-  contentColor: Color = colorResource(id = R.color.signal_light_colorOnPrimary),
+  contentColor: Color = colorResource(id = CoreUiR.color.signal_light_colorOnPrimary),
   iconSize: Dp = defaultCallButtonIconSize
 ) {
   val buttonSize = dimensionResource(id = R.dimen.webrtc_button_size)
@@ -216,8 +217,8 @@ fun StartCallButton(
     onClick = onClick,
     modifier = modifier.height(56.dp),
     colors = ButtonDefaults.buttonColors(
-      containerColor = colorResource(id = R.color.signal_light_colorPrimary),
-      contentColor = colorResource(id = R.color.signal_light_colorOnPrimary)
+      containerColor = colorResource(id = CoreUiR.color.signal_light_colorPrimary),
+      contentColor = colorResource(id = CoreUiR.color.signal_light_colorOnPrimary)
     ),
     contentPadding = PaddingValues(horizontal = 48.dp, vertical = 18.dp)
   ) {

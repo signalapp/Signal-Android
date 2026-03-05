@@ -10,7 +10,7 @@ import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.ObsoleteEmoji;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 
 import java.util.HashSet;
 import java.util.Set;

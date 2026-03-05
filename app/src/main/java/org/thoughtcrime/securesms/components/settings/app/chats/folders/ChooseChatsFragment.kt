@@ -8,9 +8,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
+import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.ContactSelectionListFragment
-import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode

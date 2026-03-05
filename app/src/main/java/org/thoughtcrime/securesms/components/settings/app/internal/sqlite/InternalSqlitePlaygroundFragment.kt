@@ -37,7 +37,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -47,13 +46,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.util.Util
 import org.signal.libsignal.protocol.util.Hex
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.internal.sqlite.InternalSqlitePlaygroundViewModel.QueryResult
-import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.util.Util
 
 class InternalSqlitePlaygroundFragment : ComposeFragment() {
 
@@ -85,7 +84,7 @@ private fun Screen(
         navigationIcon = {
           IconButton(onClick = onBackPressed) {
             Icon(
-              painter = painterResource(R.drawable.symbol_arrow_start_24),
+              painter = SignalIcons.ArrowStart.painter,
               tint = MaterialTheme.colorScheme.onSurface,
               contentDescription = null
             )

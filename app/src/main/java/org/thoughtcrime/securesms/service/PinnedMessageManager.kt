@@ -1,19 +1,17 @@
 package org.thoughtcrime.securesms.service
 
 import android.app.Application
-import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.WorkerThread
-import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.GroupUtil
+import org.thoughtcrime.securesms.util.NetworkUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 
 /**
@@ -66,7 +64,17 @@ class PinnedMessageManager(
       if (conversationRecipient.isGroup) {
         GroupUtil.setDataMessageGroupContext(application, dataMessageBuilder, conversationRecipient.requireGroupId().requirePush())
       }
-      AppDependencies.signalServiceMessageSender.sendSyncMessage(dataMessageBuilder.build())
+
+      // Best-effort attempt so that messages expire at the same time across devices but if it fails, we can ignore.
+      if (NetworkUtil.isConnected(application)) {
+        try {
+          AppDependencies.signalServiceMessageSender.sendSyncMessage(dataMessageBuilder.build())
+        } catch (e: Exception) {
+          Log.w(TAG, "Failed to send unpin sync message for message ${record.id}. Other devices will expire the pin independently.", e)
+        }
+      } else {
+        Log.w(TAG, "Failed to send unpin sync message for message ${record.id}. Other devices will expire the pin independently.")
+      }
     }
   }
 
@@ -75,13 +83,10 @@ class PinnedMessageManager(
 
   @WorkerThread
   override fun scheduleAlarm(application: Application, event: Event, delay: Long) {
-    val conversationIntent = ConversationIntents.createBuilderSync(application, event.recipientId, event.threadId).build()
-
-    trySetExactAlarm(
+    setAlarm(
       application,
       System.currentTimeMillis() + delay,
-      PinnedMessagesAlarm::class.java,
-      PendingIntent.getActivity(application, 0, conversationIntent, PendingIntentFlags.mutable())
+      PinnedMessagesAlarm::class.java
     )
   }
 

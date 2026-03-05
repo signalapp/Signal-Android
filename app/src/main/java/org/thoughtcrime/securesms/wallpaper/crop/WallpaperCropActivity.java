@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ProgressCard;
 import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.scribbles.UriGlideRenderer;
+import org.signal.imageeditor.core.renderers.UriGlideRenderer;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.Projection;
@@ -102,7 +102,7 @@ public final class WallpaperCropActivity extends BaseActivity {
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     ActionBar supportActionBar = Objects.requireNonNull(getSupportActionBar());
-    supportActionBar.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.symbol_arrow_start_24));
+    supportActionBar.setHomeAsUpIndicator(ContextCompat.getDrawable(this, org.signal.core.ui.R.drawable.symbol_arrow_start_24));
     supportActionBar.setDisplayHomeAsUpEnabled(true);
 
     blur.setOnCheckedChangeListener((v, checked) -> viewModel.setBlur(checked));
@@ -188,7 +188,7 @@ public final class WallpaperCropActivity extends BaseActivity {
     int   width  = displayMetrics.widthPixels;
     float ratio  = width / (float) height;
 
-    EditorModel editorModel = EditorModel.createForWallpaperEditing(ratio, ContextCompat.getColor(this, R.color.signal_colorBackground));
+    EditorModel editorModel = EditorModel.createForWallpaperEditing(ratio, ContextCompat.getColor(this, org.signal.core.ui.R.color.signal_colorBackground));
 
     EditorElement image = new EditorElement(new UriGlideRenderer(imageUri, true, width, height, UriGlideRenderer.WEAK_BLUR));
     image.getFlags()

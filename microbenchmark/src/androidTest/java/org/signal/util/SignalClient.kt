@@ -15,6 +15,7 @@ import org.signal.libsignal.protocol.groups.GroupSessionBuilder
 import org.signal.libsignal.protocol.kem.KEMKeyPair
 import org.signal.libsignal.protocol.kem.KEMKeyType
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage
+import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.PreKeyBundle
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
@@ -161,11 +162,12 @@ class SignalClient {
         timestamp = sentTimestamp
       )
     )
-    val destinations = others.map { bob ->
-      SignalProtocolAddress(bob.aci.toString(), 1)
+    val destinations = others.map { other ->
+      SignalProtocolAddress(other.aci.toString(), 1)
     }
+    val sessionMap = store.getAllAddressesWithActiveSessions(destinations.map { it.name })
 
-    return cipher.encryptForGroup(distributionId, destinations, null, senderCertificate, content.encode(), ContentHint.DEFAULT, groupId)
+    return cipher.encryptForGroup(distributionId, destinations, sessionMap, senderCertificate, content.encode(), ContentHint.DEFAULT, groupId)
   }
 
   fun decryptMessage(envelope: Envelope) {
@@ -177,14 +179,27 @@ class SignalClient {
     val preKeyRecord = PreKeyRecord(prekeyId, ECKeyPair.generate())
     val signedPreKeyPair = ECKeyPair.generate()
     val signedPreKeySignature = store.identityKeyPair.privateKey.calculateSignature(signedPreKeyPair.publicKey.serialize())
-    val kyerPair = KEMKeyPair.generate(KEMKeyType.KYBER_1024)
+
+    val kyberPair = KEMKeyPair.generate(KEMKeyType.KYBER_1024)
+    val kyberPreKeyRecord = KyberPreKeyRecord(prekeyId, System.currentTimeMillis() - 10, kyberPair, store.identityKeyPair.privateKey.calculateSignature(kyberPair.publicKey.serialize()))
 
     store.storePreKey(prekeyId, preKeyRecord)
     store.storeSignedPreKey(prekeyId, SignedPreKeyRecord(prekeyId, System.currentTimeMillis(), signedPreKeyPair, signedPreKeySignature))
 
+    store.storeKyberPreKey(prekeyId, kyberPreKeyRecord)
+
     return PreKeyBundle(
-      prekeyId, prekeyId, prekeyId, preKeyRecord.keyPair.publicKey, prekeyId, signedPreKeyPair.publicKey, signedPreKeySignature, store.identityKeyPair.publicKey,
-      PreKeyBundle.NULL_PRE_KEY_ID, kyerPair.publicKey, kyerPair.secretKey.serialize()
+      registrationId = prekeyId,
+      deviceId = 1,
+      preKeyId = prekeyId,
+      preKeyPublic = preKeyRecord.keyPair.publicKey,
+      signedPreKeyId = prekeyId,
+      signedPreKeyPublic = signedPreKeyPair.publicKey,
+      signedPreKeySignature = signedPreKeySignature,
+      identityKey = store.identityKeyPair.publicKey,
+      kyberPreKeyId = kyberPreKeyRecord.id,
+      kyberPreKeyPublic = kyberPreKeyRecord.keyPair.publicKey,
+      kyberPreKeySignature = kyberPreKeyRecord.signature
     )
   }
 }

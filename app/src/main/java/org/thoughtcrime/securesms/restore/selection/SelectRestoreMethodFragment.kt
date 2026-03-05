@@ -20,10 +20,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Dialogs
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
 import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.registration.ui.restore.RestoreMethod
@@ -98,7 +98,7 @@ class SelectRestoreMethodFragment : ComposeFragment() {
       }
       RestoreMethod.FROM_OLD_DEVICE -> findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToDeviceTransfer())
       RestoreMethod.FROM_LOCAL_BACKUP_V1 -> findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToLocalBackupRestore())
-      RestoreMethod.FROM_LOCAL_BACKUP_V2 -> error("Not currently supported")
+      RestoreMethod.FROM_LOCAL_BACKUP_V2 -> findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToLocalBackupRestoreV2())
     }
   }
 }

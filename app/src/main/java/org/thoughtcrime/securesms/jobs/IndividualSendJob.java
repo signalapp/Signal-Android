@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
@@ -286,6 +286,8 @@ public class IndividualSendJob extends PushSendJob {
       SignalServiceDataMessage.GiftBadge         giftBadge          = getGiftBadgeFor(message);
       SignalServiceDataMessage.Payment           payment            = getPayment(message);
       List<BodyRange>                            bodyRanges         = getBodyRanges(message);
+      SignalServiceDataMessage.PollCreate        pollCreate         = getPollCreate(message);
+      SignalServiceDataMessage.PollTerminate     pollTerminate      = getPollTerminate(message);
       SignalServiceDataMessage.PinnedMessage     pinnedMessage      = getPinnedMessage(message);
       SignalServiceDataMessage.Builder mediaMessageBuilder = SignalServiceDataMessage.newBuilder()
                                                                                      .withBody(message.getBody())
@@ -303,6 +305,8 @@ public class IndividualSendJob extends PushSendJob {
                                                                                      .asEndSessionMessage(message.isEndSession())
                                                                                      .withPayment(payment)
                                                                                      .withBodyRanges(bodyRanges)
+                                                                                     .withPollCreate(pollCreate)
+                                                                                     .withPollTerminate(pollTerminate)
                                                                                      .withPinnedMessage(pinnedMessage);
 
       if (message.getParentStoryId() != null) {

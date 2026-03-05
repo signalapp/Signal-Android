@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.ui.logging.LoggingFragment
 import org.signal.devicetransfer.TransferStatus
-import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 

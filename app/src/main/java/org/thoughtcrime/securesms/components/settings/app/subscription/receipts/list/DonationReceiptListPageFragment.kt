@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 class DonationReceiptListPageFragment : Fragment(R.layout.donation_receipt_list_page_fragment) {
 
@@ -61,7 +62,7 @@ class DonationReceiptListPageFragment : Fragment(R.layout.donation_receipt_list_
               title = null,
               summary = DSLSettingsText.from(
                 R.string.DonationReceiptListFragment__if_you_have,
-                DSLSettingsText.TextAppearanceModifier(R.style.TextAppearance_Signal_Subtitle)
+                DSLSettingsText.TextAppearanceModifier(CoreUiR.style.TextAppearance_Signal_Subtitle)
               )
             )
         )

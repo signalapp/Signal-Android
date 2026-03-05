@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.math.BigDecimal
 import java.util.Currency
-import java.util.Locale
 import kotlin.concurrent.withLock
 
 /**
@@ -94,7 +93,7 @@ class PostRegistrationBackupRedemptionJob : CoroutineJob {
     info("Attempting to grab price information for records...")
     val subscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).successOrNull()?.activeSubscription
 
-    val emptyPrice = FiatMoney(BigDecimal.ZERO, Currency.getInstance(Locale.getDefault()))
+    val emptyPrice = FiatMoney(BigDecimal.ZERO, SignalStore.inAppPayments.getOneTimeCurrency())
     val price: FiatMoney = if (subscription != null) {
       FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency))
     } else if (AppDependencies.billingApi.getApiAvailability().isSuccess) {

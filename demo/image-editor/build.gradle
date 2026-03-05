@@ -1,0 +1,24 @@
+plugins {
+    id("signal-sample-app")
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.compose.compiler)
+}
+
+android {
+    namespace = "org.signal.imageeditor.app"
+
+    defaultConfig {
+        applicationId = "org.signal.imageeditor.app"
+    }
+
+    lint {
+        disable += "NotificationPermission"
+    }
+}
+
+dependencies {
+    implementation(project(":lib:image-editor"))
+
+    implementation(libs.glide.glide)
+    ksp(libs.glide.ksp)
+}

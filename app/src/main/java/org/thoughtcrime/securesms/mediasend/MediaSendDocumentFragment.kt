@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import org.signal.core.models.media.Media
 import org.signal.core.util.bytes
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.io.IOException
 import java.util.Optional
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Fragment to show full screen document attachments
@@ -59,10 +61,10 @@ class MediaSendDocumentFragment : Fragment(R.layout.mediasend_document_fragment)
       val extensionText: String = MediaUtil.getFileType(requireContext(), Optional.ofNullable(fileInfo.first), media.uri).orElse("")
       if (extensionText.length <= 3) {
         extension.text = extensionText
-        extension.setTextAppearance(requireContext(), R.style.Signal_Text_BodySmall)
+        extension.setTextAppearance(requireContext(), CoreUiR.style.Signal_Text_BodySmall)
       } else if (extensionText.length == 4) {
         extension.text = extensionText
-        extension.setTextAppearance(requireContext(), R.style.Signal_Text_Caption)
+        extension.setTextAppearance(requireContext(), CoreUiR.style.Signal_Text_Caption)
       }
     } else {
       Toast.makeText(requireContext(), R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment, Toast.LENGTH_SHORT).show()

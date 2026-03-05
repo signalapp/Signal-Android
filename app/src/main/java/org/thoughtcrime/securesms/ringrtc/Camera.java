@@ -22,6 +22,7 @@ import org.webrtc.CameraVideoCapturer;
 import org.webrtc.CapturerObserver;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.VideoFrame;
+import org.webrtc.VideoSink;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
             private       boolean                   enabled;
             private       boolean                   isInitialized;
             private       int                       orientation;
+  @Nullable private volatile VideoSink              vanitySink;
 
   public Camera(@NonNull Context context,
                 @NonNull CameraEventListener cameraEventListener,
@@ -85,6 +87,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
                             new CameraCapturerWrapper(observer));
         capturer.setOrientation(orientation);
         isInitialized = true;
+        setEnabled(enabled);
       });
     }
   }
@@ -118,7 +121,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
 
     this.enabled = enabled;
 
-    if (capturer == null) {
+    if (capturer == null || !isInitialized) {
       return;
     }
 
@@ -137,6 +140,15 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
 
   public void setCameraEventListener(@Nullable CameraEventListener cameraEventListener) {
     this.cameraEventListener = cameraEventListener;
+  }
+
+  /**
+   * Set a vanity sink that receives camera frames directly from the capturer,
+   * bypassing the WebRTC VideoTrack pipeline. This allows local preview to work
+   * even when the video track is disabled (e.g., during incoming call ringing).
+   */
+  public void setVanitySink(@Nullable VideoSink vanitySink) {
+    this.vanitySink = vanitySink;
   }
 
   public void dispose() {
@@ -327,6 +339,10 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     @Override
     public void onFrameCaptured(VideoFrame videoFrame) {
       observer.onFrameCaptured(videoFrame);
+      VideoSink sink = vanitySink;
+      if (sink != null) {
+        sink.onFrame(videoFrame);
+      }
     }
   }
 }

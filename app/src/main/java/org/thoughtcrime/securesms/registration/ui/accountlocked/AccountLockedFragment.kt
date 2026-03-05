@@ -12,7 +12,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
-import org.thoughtcrime.securesms.LoggingFragment
+import org.signal.core.ui.logging.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel

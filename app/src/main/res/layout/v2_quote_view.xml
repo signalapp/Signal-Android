@@ -19,17 +19,14 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@color/signal_colorPrimary" />
 
-    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+    <org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView
         android:id="@+id/quote_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textAppearance="@style/Signal.Text.LabelLarge"
-        android:textColor="@color/core_black"
+        android:layout_marginBottom="1dp"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/quote_attachment_name_stub"
         app:layout_constraintEnd_toStartOf="@id/quote_missing_story_reaction_emoji"
@@ -37,8 +34,7 @@
         app:layout_constraintStart_toEndOf="@id/quote_bar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="Peter Parker" />
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <ViewStub
         android:id="@+id/quote_attachment_name_stub"

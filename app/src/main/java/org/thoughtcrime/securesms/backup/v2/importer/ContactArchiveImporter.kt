@@ -66,7 +66,8 @@ object ContactArchiveImporter {
       RecipientTable.SYSTEM_GIVEN_NAME to contact.systemGivenName,
       RecipientTable.SYSTEM_FAMILY_NAME to contact.systemFamilyName,
       RecipientTable.SYSTEM_NICKNAME to contact.systemNickname,
-      RecipientTable.AVATAR_COLOR to contact.avatarColor?.toLocal()?.serialize()
+      RecipientTable.AVATAR_COLOR to contact.avatarColor?.toLocal()?.serialize(),
+      RecipientTable.KEY_TRANSPARENCY_DATA to contact.keyTransparencyData?.toByteArray()
     )
 
     if (contact.registered != null) {

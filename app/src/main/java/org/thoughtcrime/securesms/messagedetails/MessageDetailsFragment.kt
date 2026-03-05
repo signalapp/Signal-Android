@@ -1,28 +1,31 @@
 package org.thoughtcrime.securesms.messagedetails
 
-import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
+import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import org.signal.core.util.logging.Log
-import org.signal.ringrtc.CallLinkEpoch
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.FullScreenDialogFragment
+import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.ColorizerV2
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog.Companion.show
@@ -42,12 +45,12 @@ import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet.forMessageRecord
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet.forOutgoingMessageRecord
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.fragments.requireListener
 
-class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter.Callbacks {
+class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
   private lateinit var requestManager: RequestManager
   private lateinit var viewModel: MessageDetailsViewModel
   private lateinit var adapter: MessageDetailsAdapter
@@ -56,9 +59,16 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
 
   private fun getVoiceNoteMediaController() = requireListener<VoiceNoteMediaControllerOwner>().voiceNoteMediaController
 
-  override fun getTitle() = R.string.AndroidManifest__message_details
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    val view = inflater.inflate(R.layout.full_screen_dialog_fragment, container, false)
+    inflater.inflate(R.layout.message_details_fragment, view.findViewById(R.id.full_screen_dialog_content), true)
 
-  override fun getDialogLayoutResource() = R.layout.message_details_fragment
+    val toolbar: Toolbar = view.findViewById(R.id.full_screen_dialog_toolbar)
+    toolbar.setTitle(R.string.AndroidManifest__message_details)
+    toolbar.setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
+
+    return view
+  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     requestManager = Glide.with(this)
@@ -68,21 +78,11 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
     initializeVideoPlayer(view)
   }
 
-  override fun onDismiss(dialog: DialogInterface) {
-    super.onDismiss(dialog)
-
-    if (activity is Callback) {
-      (activity as Callback?)!!.onMessageDetailsFragmentDismissed()
-    } else if (parentFragment is Callback) {
-      (parentFragment as Callback?)!!.onMessageDetailsFragmentDismissed()
-    }
-  }
-
   private fun initializeList(view: View) {
     val list = view.findViewById<RecyclerView>(R.id.message_details_list)
     val toolbarShadow = view.findViewById<View>(R.id.toolbar_shadow)
 
-    colorizer = Colorizer()
+    colorizer = ColorizerV2()
     adapter = MessageDetailsAdapter(viewLifecycleOwner, requestManager, colorizer, this)
     recyclerViewColorizer = RecyclerViewColorizer(list)
 
@@ -97,20 +97,20 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
     val factory = MessageDetailsViewModel.Factory(recipientId, messageId)
 
     viewModel = ViewModelProvider(this, factory)[MessageDetailsViewModel::class.java]
-    viewModel.messageDetails.observe(this) { details: MessageDetails? ->
+    viewModel.messageDetails.observe(viewLifecycleOwner) { details: MessageDetails? ->
       if (details == null) {
-        dismissAllowingStateLoss()
+        requireActivity().onBackPressedDispatcher.onBackPressed()
       } else {
         adapter.submitList(convertToRows(details))
       }
     }
-    viewModel.recipient.observe(this) { recipient: Recipient -> recyclerViewColorizer.setChatColors(recipient.chatColors) }
+    viewModel.recipient.observe(viewLifecycleOwner) { recipient: Recipient -> recyclerViewColorizer.setChatColors(recipient.chatColors) }
   }
 
   private fun initializeVideoPlayer(view: View) {
     val videoContainer = view.findViewById<FrameLayout>(R.id.video_container)
     val recyclerView = view.findViewById<RecyclerView>(R.id.message_details_list)
-    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(requireContext(), lifecycle, videoContainer, 1)
+    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(requireContext(), viewLifecycleOwner.lifecycle, videoContainer, 1)
     val callback = GiphyMp4ProjectionRecycler(holders)
 
     GiphyMp4PlaybackController.attach(recyclerView, callback, 1)
@@ -153,7 +153,7 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
   }
 
   override fun onErrorClicked(messageRecord: MessageRecord) {
-    forMessageRecord(requireContext(), messageRecord)
+    forOutgoingMessageRecord(requireContext(), messageRecord)
       .show(childFragmentManager)
   }
 
@@ -362,7 +362,7 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
-  override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey, callLinkEpoch: CallLinkEpoch?) {
+  override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
@@ -414,8 +414,12 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
     Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
   }
 
-  interface Callback {
-    fun onMessageDetailsFragmentDismissed()
+  class Dialog : WrapperDialogFragment() {
+    override fun getWrappedFragment(): Fragment {
+      return MessageDetailsFragment().apply {
+        arguments = this@Dialog.requireArguments()
+      }
+    }
   }
 
   companion object {
@@ -423,16 +427,17 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
     private const val MESSAGE_ID_EXTRA = "message_id"
     private const val RECIPIENT_EXTRA = "recipient_id"
 
-    fun create(message: MessageRecord, recipientId: RecipientId): DialogFragment {
-      val dialogFragment: DialogFragment = MessageDetailsFragment()
-      val args = Bundle()
+    fun args(recipientId: RecipientId, messageId: Long): Bundle {
+      return bundleOf(
+        MESSAGE_ID_EXTRA to messageId,
+        RECIPIENT_EXTRA to recipientId
+      )
+    }
 
-      args.putLong(MESSAGE_ID_EXTRA, message.id)
-      args.putParcelable(RECIPIENT_EXTRA, recipientId)
-
-      dialogFragment.arguments = args
-
-      return dialogFragment
+    fun create(message: MessageRecord, recipientId: RecipientId): Dialog {
+      return Dialog().apply {
+        arguments = args(recipientId, message.id)
+      }
     }
   }
 }

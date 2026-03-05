@@ -25,7 +25,7 @@ sealed class ResolvedShareData {
   }
 
   data class Media(
-    val media: List<org.thoughtcrime.securesms.mediasend.Media>,
+    val media: List<org.signal.core.models.media.Media>,
     val text: CharSequence?
   ) : ResolvedShareData() {
     override fun toMultiShareArgs(): MultiShareArgs {

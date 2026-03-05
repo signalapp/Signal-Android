@@ -68,6 +68,7 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
   private fun setDiscoverableByPhoneNumber(discoverable: Boolean) {
     SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (discoverable) PhoneNumberDiscoverabilityMode.DISCOVERABLE else PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
     SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+    SignalDatabase.recipients.clearSelfKeyTransparencyData()
     StorageSyncHelper.scheduleSyncForDataChange()
     AppDependencies.jobManager.startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
     refresh()

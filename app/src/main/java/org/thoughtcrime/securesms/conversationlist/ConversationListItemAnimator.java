@@ -16,9 +16,9 @@ public class ConversationListItemAnimator extends DefaultItemAnimator {
   private boolean shouldDisable;
 
   public ConversationListItemAnimator() {
-    setSupportsChangeAnimations(false);
     setMoveDuration(0);
     setAddDuration(0);
+    setChangeDuration(ANIMATION_DURATION);
   }
 
   @MainThread
@@ -30,6 +30,16 @@ public class ConversationListItemAnimator extends DefaultItemAnimator {
   @MainThread
   public void disable() {
     setMoveDuration(0);
+  }
+
+  @MainThread
+  public void disableChangeAnimations() {
+    setChangeDuration(0);
+  }
+
+  @MainThread
+  public void enableChangeAnimations() {
+    setChangeDuration(ANIMATION_DURATION);
   }
 
 

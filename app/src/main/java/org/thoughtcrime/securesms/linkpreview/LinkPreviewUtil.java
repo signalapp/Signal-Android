@@ -15,7 +15,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LinkUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.Collections;

@@ -134,6 +134,7 @@ message AccountData {
     AppTheme appTheme = 28;  // If unset, treat the same as "Unknown" case
     CallsUseLessDataSetting callsUseLessDataSetting = 29;  // If unset, treat the same as "Unknown" case
     bool allowSealedSenderFromAnyone = 30;
+    bool allowAutomaticKeyVerification = 31;
   }
 
   message SubscriberData {
@@ -180,6 +181,7 @@ message AccountData {
   AndroidSpecificSettings androidSpecificSettings = 12;
   string bioText = 13;
   string bioEmoji = 14;
+  optional bytes keyTransparencyData = 15;
 }
 
 message Recipient {
@@ -268,6 +270,7 @@ message Contact {
   string systemFamilyName = 19;
   string systemNickname = 20;
   optional AvatarColor avatarColor = 21;
+  optional bytes keyTransparencyData = 22;
 }
 
 message Group {
@@ -328,6 +331,8 @@ message Group {
     reserved /*profileKey*/ 3; // This field is ignored in Backups, in favor of Contact frames for members
     reserved /*presentation*/ 4; // This field is deprecated in the context of static group state
     uint32 joinedAtVersion = 5;
+    string labelEmoji = 6;
+    string labelString = 7;
   }
 
   message MemberPendingProfileKey {
@@ -402,7 +407,7 @@ message CallLink {
   string name = 3;
   Restrictions restrictions = 4;
   uint64 expirationMs = 5;
-  optional bytes epoch = 6; // May be absent/empty for older links
+  reserved /*epoch*/ 6;
 }
 
 message AdHocCall {
@@ -460,6 +465,14 @@ message ChatItem {
   message DirectionlessMessageDetails {
   }
 
+  message PinDetails {
+    uint64 pinnedAtTimestamp = 1;
+    oneof pinExpiry {
+      uint64 pinExpiresAtTimestamp = 2; // timestamp when the pin should expire
+      bool pinNeverExpires = 3;
+    }
+  }
+
   uint64 chatId = 1;   // conversation id
   uint64 authorId = 2; // recipient id
   uint64 dateSent = 3;
@@ -487,7 +500,10 @@ message ChatItem {
     ViewOnceMessage viewOnceMessage = 18;
     DirectStoryReplyMessage directStoryReplyMessage = 19; // group story reply messages are not backed up
     Poll poll = 20;
+    AdminDeletedMessage adminDeletedMessage = 22;
   }
+
+  PinDetails pinDetails = 21; // only set if message is pinned
 }
 
 message SendStatus {
@@ -885,6 +901,10 @@ message Poll {
   repeated Reaction reactions = 5;
 }
 
+message AdminDeletedMessage {
+  uint64 adminId = 1; // id of the admin that deleted the message
+}
+
 message ChatUpdateMessage {
   // If unset, importers should ignore the update message without throwing an error.
   oneof update {
@@ -898,6 +918,7 @@ message ChatUpdateMessage {
     GroupCall groupCall = 8;
     LearnedProfileChatUpdate learnedProfileChange = 9;
     PollTerminateUpdate pollTerminate = 10;
+    PinMessageUpdate pinMessage = 11;
   }
 }
 
@@ -1266,6 +1287,11 @@ message GroupExpirationTimerUpdate {
 message PollTerminateUpdate {
   uint64 targetSentTimestamp = 1;
   string question = 2; // Between 1-100 characters
+}
+
+message PinMessageUpdate {
+  uint64 targetSentTimestamp = 1;
+  uint64 authorId = 2; // recipient id
 }
 
 message StickerPack {

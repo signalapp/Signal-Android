@@ -8,11 +8,11 @@ import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.core.os.ParcelCompat
+import org.signal.blurhash.BlurHash
+import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.UuidUtil
 import org.thoughtcrime.securesms.audio.AudioHash
-import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.ParcelUtil
 import java.util.UUID
@@ -153,7 +153,7 @@ abstract class Attachment(
    * Denotes whether the media for the given attachment is no longer available for download.
    */
   val isMediaNoLongerAvailableForDownload: Boolean
-    get() = isPermanentlyFailed && uploadTimestamp.milliseconds > 30.days
+    get() = isPermanentlyFailed && (System.currentTimeMillis().milliseconds - uploadTimestamp.milliseconds) > 30.days
 
   val isSticker: Boolean
     get() = stickerLocator != null

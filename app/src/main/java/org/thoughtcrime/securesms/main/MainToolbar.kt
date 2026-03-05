@@ -71,6 +71,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.compose.Tooltips
 import org.signal.core.ui.compose.circularReveal
@@ -255,7 +256,7 @@ private fun SearchToolbar(
           onClick = callback::onCloseSearchClick
         ) {
           Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+            imageVector = SignalIcons.ArrowStart.imageVector,
             contentDescription = stringResource(R.string.MainToolbar__close_search_content_description)
           )
         }
@@ -326,7 +327,7 @@ private fun ArchiveToolbar(
         callback.onCloseArchiveClick()
       }) {
         Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+          imageVector = SignalIcons.ArrowStart.imageVector,
           contentDescription = stringResource(R.string.CallScreenTopBar__go_back)
         )
       }
@@ -411,7 +412,7 @@ private fun PrimaryToolbar(
         }
       ) {
         Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_search_24),
+          imageVector = SignalIcons.Search.imageVector,
           contentDescription = stringResource(R.string.conversation_list_search_description)
         )
       }

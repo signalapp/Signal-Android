@@ -42,11 +42,7 @@ object CallLinkArchiveImporter {
       CallLinkTable.CallLink(
         recipientId = RecipientId.UNKNOWN,
         roomId = CallLinkRoomId.fromCallLinkRootKey(rootKey),
-        credentials = CallLinkCredentials(
-          callLink.rootKey.toByteArray(),
-          callLink.epoch?.toByteArray(),
-          callLink.adminKey?.toByteArray()
-        ),
+        credentials = CallLinkCredentials(callLink.rootKey.toByteArray(), callLink.adminKey?.toByteArray()),
         state = SignalCallLinkState(
           name = callLink.name,
           restrictions = callLink.restrictions.toLocal(),

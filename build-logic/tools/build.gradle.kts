@@ -4,17 +4,14 @@ plugins {
   alias(libs.plugins.ktlint)
 }
 
-val signalJavaVersion: JavaVersion by rootProject.extra
-val signalKotlinJvmTarget: String by rootProject.extra
-
 java {
-  sourceCompatibility = signalJavaVersion
-  targetCompatibility = signalJavaVersion
+  sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+  targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
 }
 
 kotlin {
   jvmToolchain {
-    languageVersion = JavaLanguageVersion.of(signalKotlinJvmTarget)
+    languageVersion = JavaLanguageVersion.of(libs.versions.kotlinJvmTarget.get())
   }
 }
 
@@ -28,6 +25,9 @@ dependencies {
   implementation(gradleApi())
 
   implementation(libs.dnsjava)
+  api(libs.square.okhttp3)
+
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.mockk)
+  testImplementation(testLibs.square.mockwebserver)
 }

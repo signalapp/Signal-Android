@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.groups.ui.creategroup.details;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,11 +63,15 @@ public class AddGroupDetailsActivity extends PassphraseRequiredActivity implemen
                              long threadId,
                              @NonNull List<Recipient> invitedMembers)
   {
-    Dialog dialog = GroupInviteSentDialog.showInvitesSent(this, this, invitedMembers);
-    if (dialog != null) {
-      dialog.setOnDismissListener((d) -> goToConversation(recipientId, threadId));
-    } else {
+    if (invitedMembers.isEmpty()) {
       goToConversation(recipientId, threadId);
+    } else {
+      getSupportFragmentManager().setFragmentResultListener(
+          GroupInviteSentDialog.RESULT_DISMISSED,
+          this,
+          (requestKey, result) -> goToConversation(recipientId, threadId)
+      );
+      GroupInviteSentDialog.show(getSupportFragmentManager(), invitedMembers);
     }
   }
 

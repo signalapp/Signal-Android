@@ -14,11 +14,11 @@ import androidx.core.util.Consumer;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting;
+import org.thoughtcrime.securesms.database.RecipientTable.NotificationSetting;
 
 public final class GroupMentionSettingDialog {
 
-  public static void show(@NonNull Context context, @NonNull MentionSetting mentionSetting, @Nullable Consumer<MentionSetting> callback) {
+  public static void show(@NonNull Context context, @NonNull NotificationSetting mentionSetting, @Nullable Consumer<NotificationSetting> callback) {
     SelectionCallback selectionCallback = new SelectionCallback(mentionSetting, callback);
 
     new MaterialAlertDialogBuilder(context)
@@ -30,7 +30,7 @@ public final class GroupMentionSettingDialog {
   }
 
   @SuppressLint("InflateParams")
-  private static View getView(@NonNull Context context, @NonNull MentionSetting mentionSetting, @NonNull SelectionCallback selectionCallback) {
+  private static View getView(@NonNull Context context, @NonNull NotificationSetting mentionSetting, @NonNull SelectionCallback selectionCallback) {
     View            root          = LayoutInflater.from(context).inflate(R.layout.group_mention_setting_dialog, null, false);
     CheckedTextView alwaysNotify  = root.findViewById(R.id.group_mention_setting_always_notify);
     CheckedTextView dontNotify    = root.findViewById(R.id.group_mention_setting_dont_notify);
@@ -40,9 +40,9 @@ public final class GroupMentionSettingDialog {
       dontNotify.setChecked(dontNotify == v);
 
       if (alwaysNotify.isChecked()) {
-        selectionCallback.selection = MentionSetting.ALWAYS_NOTIFY;
+        selectionCallback.selection = NotificationSetting.ALWAYS_NOTIFY;
       } else if (dontNotify.isChecked()) {
-        selectionCallback.selection = MentionSetting.DO_NOT_NOTIFY;
+        selectionCallback.selection = NotificationSetting.DO_NOT_NOTIFY;
       }
     };
 
@@ -63,11 +63,11 @@ public final class GroupMentionSettingDialog {
 
   private static class SelectionCallback implements DialogInterface.OnClickListener {
 
-    @NonNull  private final MentionSetting           previousMentionSetting;
-    @NonNull  private       MentionSetting           selection;
-    @Nullable private final Consumer<MentionSetting> callback;
+    @NonNull  private final NotificationSetting           previousMentionSetting;
+    @NonNull  private       NotificationSetting           selection;
+    @Nullable private final Consumer<NotificationSetting> callback;
 
-    public SelectionCallback(@NonNull MentionSetting previousMentionSetting, @Nullable Consumer<MentionSetting> callback) {
+    public SelectionCallback(@NonNull NotificationSetting previousMentionSetting, @Nullable Consumer<NotificationSetting> callback) {
       this.previousMentionSetting = previousMentionSetting;
       this.selection              = previousMentionSetting;
       this.callback               = callback;

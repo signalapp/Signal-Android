@@ -7,6 +7,7 @@ import androidx.core.content.res.use
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
+import org.signal.core.ui.util.ThemeUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.load.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.badges.load.GiftBadgeModel
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImag
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ScreenDensity
-import org.thoughtcrime.securesms.util.ThemeUtil
 
 class BadgeImageView @JvmOverloads constructor(
   context: Context,

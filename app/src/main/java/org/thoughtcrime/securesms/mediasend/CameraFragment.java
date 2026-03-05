@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -27,6 +28,14 @@ public interface CameraFragment {
       return CameraXFragment.newInstance(qrScanEnabled);
     } else {
       return Camera1Fragment.newInstance();
+    }
+  }
+
+  static Class<? extends Fragment> getFragmentClass() {
+    if (CameraXUtil.isSupported()) {
+      return CameraXFragment.class;
+    } else {
+      return Camera1Fragment.class;
     }
   }
 

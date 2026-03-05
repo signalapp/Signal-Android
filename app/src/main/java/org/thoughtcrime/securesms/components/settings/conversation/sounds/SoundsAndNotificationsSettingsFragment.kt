@@ -16,9 +16,10 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
-class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
-  titleId = R.string.ConversationSettingsFragment__sounds_and_notifications
-) {
+class SoundsAndNotificationsSettingsFragment :
+  DSLSettingsFragment(
+    titleId = R.string.ConversationSettingsFragment__sounds_and_notifications
+  ) {
 
   private val mentionLabels: Array<String> by lazy {
     resources.getStringArray(R.array.SoundsAndNotificationsSettingsFragment__mention_labels)
@@ -66,7 +67,7 @@ class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
         summary = DSLSettingsText.from(muteSummary),
         onClick = {
           if (state.muteUntil <= 0) {
-            MuteDialog.show(requireContext(), viewModel::setMuteUntil)
+            MuteDialog.show(requireContext(), childFragmentManager, viewLifecycleOwner, viewModel::setMuteUntil)
           } else {
             MaterialAlertDialogBuilder(requireContext())
               .setMessage(muteSummary)
@@ -81,7 +82,7 @@ class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
       )
 
       if (state.hasMentionsSupport) {
-        val mentionSelection = if (state.mentionSetting == RecipientTable.MentionSetting.ALWAYS_NOTIFY) {
+        val mentionSelection = if (state.mentionSetting == RecipientTable.NotificationSetting.ALWAYS_NOTIFY) {
           0
         } else {
           1
@@ -95,9 +96,9 @@ class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
           onSelected = {
             viewModel.setMentionSetting(
               if (it == 0) {
-                RecipientTable.MentionSetting.ALWAYS_NOTIFY
+                RecipientTable.NotificationSetting.ALWAYS_NOTIFY
               } else {
-                RecipientTable.MentionSetting.DO_NOT_NOTIFY
+                RecipientTable.NotificationSetting.DO_NOT_NOTIFY
               }
             )
           }

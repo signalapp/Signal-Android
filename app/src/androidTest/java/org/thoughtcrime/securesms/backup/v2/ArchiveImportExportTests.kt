@@ -72,6 +72,11 @@ class ArchiveImportExportTests {
   }
 
 //  @Test
+  fun chatItemAdminDelete() {
+    runTests { it.startsWith("chat_item_admin_deleted_") }
+  }
+
+//  @Test
   fun chatItemContactMessage() {
     runTests { it.startsWith("chat_item_contact_message_") }
   }
@@ -214,6 +219,11 @@ class ArchiveImportExportTests {
 //  @Test
   fun chatItemPoll() {
     runTests { it.startsWith("chat_item_poll_") }
+  }
+
+//  @Test
+  fun chatItemPinMessage() {
+    runTests { it.startsWith("chat_item_pin_message_") }
   }
 
 //  @Test

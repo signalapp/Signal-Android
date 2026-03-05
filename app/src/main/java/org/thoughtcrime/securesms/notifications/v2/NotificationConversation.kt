@@ -8,6 +8,7 @@ import android.net.Uri
 import android.text.SpannableStringBuilder
 import androidx.core.app.TaskStackBuilder
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
-import org.thoughtcrime.securesms.util.Util
 
 /**
  * Encapsulate all the notifications for a given conversation (thread) and the top

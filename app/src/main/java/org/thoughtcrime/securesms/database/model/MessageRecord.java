@@ -35,8 +35,8 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.Base64;
 import org.signal.core.util.BidiUtil;
 import org.signal.core.util.logging.Log;
-import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupChangeChatUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCreationUpdate;
@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.components.transfercontrols.TransferControlVie
 import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.model.databaseprotos.AdminDeleteStatus;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
@@ -67,7 +68,7 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
@@ -108,12 +109,12 @@ public abstract class MessageRecord extends DisplayRecord {
   private final boolean                  unidentified;
   private final List<ReactionRecord>     reactions;
   private final long                     serverTimestamp;
-  private final boolean                  remoteDelete;
   private final long                     notifiedTimestamp;
   private final long                     receiptTimestamp;
   private final MessageId                originalMessageId;
   private final int                      revisionNumber;
   private final long                     pinnedUntil;
+  private final RecipientId              deletedBy;
   private final MessageExtras            messageExtras;
 
   protected Boolean isJumboji = null;
@@ -130,13 +131,13 @@ public abstract class MessageRecord extends DisplayRecord {
                 boolean hasReadReceipt,
                 boolean unidentified,
                 @NonNull List<ReactionRecord> reactions,
-                boolean remoteDelete,
                 long notifiedTimestamp,
                 boolean viewed,
                 long receiptTimestamp,
                 @Nullable MessageId originalMessageId,
                 int revisionNumber,
                 long pinnedUntil,
+                @Nullable RecipientId deletedBy,
                 @Nullable MessageExtras messageExtras)
   {
     super(body, fromRecipient, toRecipient, dateSent, dateReceived,
@@ -153,12 +154,12 @@ public abstract class MessageRecord extends DisplayRecord {
     this.unidentified        = unidentified;
     this.reactions           = reactions;
     this.serverTimestamp     = dateServer;
-    this.remoteDelete        = remoteDelete;
     this.notifiedTimestamp   = notifiedTimestamp;
     this.receiptTimestamp    = receiptTimestamp;
     this.originalMessageId   = originalMessageId;
     this.revisionNumber      = revisionNumber;
     this.pinnedUntil         = pinnedUntil;
+    this.deletedBy           = deletedBy;
     this.messageExtras       = messageExtras;
   }
 
@@ -173,6 +174,15 @@ public abstract class MessageRecord extends DisplayRecord {
     return MessageTypes.isLegacyType(type);
   }
 
+  @Override
+  public boolean isFailed() {
+    return super.isFailed() || isFailedAdminDelete();
+  }
+
+  @Override
+  public boolean isPending() {
+    return super.isPending() || isPendingAdminDelete();
+  }
 
   @Override
   @WorkerThread
@@ -785,6 +795,22 @@ public abstract class MessageRecord extends DisplayRecord {
     return pinnedUntil;
   }
 
+  public @Nullable RecipientId getDeletedBy() {
+    return deletedBy;
+  }
+
+  public boolean isPendingAdminDelete() {
+    return messageExtras != null &&
+           messageExtras.adminDeleteStatus != null &&
+           messageExtras.adminDeleteStatus.status == AdminDeleteStatus.Status.PENDING;
+  }
+
+  public boolean isFailedAdminDelete() {
+    return messageExtras != null &&
+           messageExtras.adminDeleteStatus != null &&
+           messageExtras.adminDeleteStatus.status == AdminDeleteStatus.Status.FAILED;
+  }
+
   public boolean isInMemoryMessageRecord() {
     return false;
   }
@@ -832,7 +858,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isRemoteDelete() {
-    return remoteDelete;
+    return deletedBy != null;
   }
 
   public @NonNull List<ReactionRecord> getReactions() {

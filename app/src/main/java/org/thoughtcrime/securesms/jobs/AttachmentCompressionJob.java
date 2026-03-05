@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
+import org.signal.core.models.media.TransformProperties;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -26,7 +27,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -44,6 +45,7 @@ import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException;
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException;
 import org.thoughtcrime.securesms.video.interfaces.TranscoderCancelationSignal;
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor;
+import org.thoughtcrime.securesms.video.videoconverter.exceptions.CodecUnavailableException;
 import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException;
 
 import java.io.ByteArrayInputStream;
@@ -73,7 +75,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                         int mmsSubscriptionId)
   {
     return new AttachmentCompressionJob(databaseAttachment.attachmentId,
-                                        MediaUtil.isVideo(databaseAttachment) && MediaConstraints.isVideoTranscodeAvailable(),
+                                        MediaUtil.isVideo(databaseAttachment) && !databaseAttachment.videoGif && MediaConstraints.isVideoTranscodeAvailable(),
                                         mms,
                                         mmsSubscriptionId);
   }
@@ -149,11 +151,11 @@ public final class AttachmentCompressionJob extends BaseJob {
       throw new UndeliverableMessageException("Cannot find the specified attachment.");
     }
 
-    AttachmentTable.TransformProperties transformProperties = databaseAttachment.transformProperties;
+    TransformProperties transformProperties = databaseAttachment.transformProperties;
 
     if (transformProperties == null) {
       Log.i(TAG, "TransformProperties were null! Using empty TransformProperties.");
-      transformProperties = AttachmentTable.TransformProperties.empty();
+      transformProperties = TransformProperties.empty();
     }
 
     if (transformProperties.shouldSkipTransform()) {
@@ -227,7 +229,7 @@ public final class AttachmentCompressionJob extends BaseJob {
       throw new UndeliverableMessageException("Job is canceled!");
     }
 
-    AttachmentTable.TransformProperties transformProperties = attachment.transformProperties;
+    TransformProperties transformProperties = attachment.transformProperties;
 
     boolean allowSkipOnFailure = false;
 
@@ -279,6 +281,11 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                           percent));
               }, outputStream, cancelationSignal);
             } catch (EncodingException e) {
+              Log.w(TAG, "Video encoding failed"
+                  + " (hdr=" + e.isHdrInput
+                  + ", toneMap=" + e.toneMapApplied
+                  + ", decoder=" + e.decoderName
+                  + ", encoder=" + e.encoderName + ")", e);
               throw new UndeliverableMessageException("Failure during encoding", e);
             }
 
@@ -332,6 +339,16 @@ public final class AttachmentCompressionJob extends BaseJob {
         }
       }
     } catch (VideoSourceException | EncodingException | MemoryFileException e) {
+      if (e instanceof EncodingException) {
+        EncodingException ee = (EncodingException) e;
+        Log.w(TAG, "Video encoding failed"
+            + " (hdr=" + ee.isHdrInput
+            + ", toneMap=" + ee.toneMapApplied
+            + ", decoder=" + ee.decoderName
+            + ", encoder=" + ee.encoderName + ")", e);
+      } else {
+        Log.w(TAG, "Video transcode failed: " + e.getClass().getSimpleName(), e);
+      }
       if (attachment.size > constraints.getVideoMaxSize()) {
         throw new UndeliverableMessageException("Duration not found, attachment too large to skip transcode", e);
       } else {
@@ -342,8 +359,14 @@ public final class AttachmentCompressionJob extends BaseJob {
         }
       }
     } catch (IOException | MmsException e) {
+      if (e instanceof CodecUnavailableException) {
+        Log.w(TAG, "All video codecs exhausted for this content: " + e.getMessage(), e);
+      } else {
+        Log.w(TAG, "Video transcode failed: " + e.getClass().getSimpleName(), e);
+      }
       throw new UndeliverableMessageException("Failed to transcode", e);
     } catch (RuntimeException e) {
+      Log.w(TAG, "Video transcode failed with runtime exception", e);
       if (e.getCause() instanceof IOException) {
         throw new UndeliverableMessageException("Failed to transcode", e);
       } else {

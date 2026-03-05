@@ -6,9 +6,9 @@
 package org.thoughtcrime.securesms.database
 
 import org.signal.core.util.Base64
+import org.signal.core.util.Util
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import kotlin.random.Random

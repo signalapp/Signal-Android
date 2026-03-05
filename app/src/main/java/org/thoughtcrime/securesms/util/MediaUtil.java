@@ -26,13 +26,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 
+import org.signal.core.util.ContentTypeUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.mediasend.Media;
+import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.mms.AudioSlide;
-import org.thoughtcrime.securesms.mms.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;
@@ -56,23 +57,23 @@ public class MediaUtil {
 
   private static final String TAG = Log.tag(MediaUtil.class);
 
-  public static final String IMAGE_PNG         = "image/png";
-  public static final String IMAGE_JPEG        = "image/jpeg";
-  public static final String IMAGE_HEIC        = "image/heic";
-  public static final String IMAGE_HEIF        = "image/heif";
-  public static final String IMAGE_AVIF        = "image/avif";
-  public static final String IMAGE_WEBP        = "image/webp";
-  public static final String IMAGE_GIF         = "image/gif";
-  public static final String AUDIO_AAC         = "audio/aac";
-  public static final String AUDIO_MP4         = "audio/mp4";
-  public static final String AUDIO_UNSPECIFIED = "audio/*";
-  public static final String VIDEO_MP4         = "video/mp4";
-  public static final String VIDEO_UNSPECIFIED = "video/*";
-  public static final String VCARD             = "text/x-vcard";
-  public static final String LONG_TEXT         = "text/x-signal-plain";
-  public static final String VIEW_ONCE         = "application/x-signal-view-once";
-  public static final String UNKNOWN           = "*/*";
-  public static final String OCTET             = "application/octet-stream";
+  public static final String IMAGE_PNG         = ContentTypeUtil.IMAGE_PNG;
+  public static final String IMAGE_JPEG        = ContentTypeUtil.IMAGE_JPEG;
+  public static final String IMAGE_HEIC        = ContentTypeUtil.IMAGE_HEIC;
+  public static final String IMAGE_HEIF        = ContentTypeUtil.IMAGE_HEIF;
+  public static final String IMAGE_AVIF        = ContentTypeUtil.IMAGE_AVIF;
+  public static final String IMAGE_WEBP        = ContentTypeUtil.IMAGE_WEBP;
+  public static final String IMAGE_GIF         = ContentTypeUtil.IMAGE_GIF;
+  public static final String AUDIO_AAC         = ContentTypeUtil.AUDIO_AAC;
+  public static final String AUDIO_MP4         = ContentTypeUtil.AUDIO_MP4;
+  public static final String AUDIO_UNSPECIFIED = ContentTypeUtil.AUDIO_UNSPECIFIED;
+  public static final String VIDEO_MP4         = ContentTypeUtil.VIDEO_MP4;
+  public static final String VIDEO_UNSPECIFIED = ContentTypeUtil.VIDEO_UNSPECIFIED;
+  public static final String VCARD             = ContentTypeUtil.VCARD;
+  public static final String LONG_TEXT         = ContentTypeUtil.LONG_TEXT;
+  public static final String VIEW_ONCE         = ContentTypeUtil.VIEW_ONCE;
+  public static final String UNKNOWN           = ContentTypeUtil.UNKNOWN;
+  public static final String OCTET             = ContentTypeUtil.OCTET;
 
   public static @NonNull SlideType getSlideTypeFromContentType(@Nullable String contentType) {
     if (isGif(contentType)) {
@@ -243,12 +244,8 @@ public class MediaUtil {
       } catch (ExecutionException e) {
         Log.w(TAG, "Glide experienced an exception while trying to get GIF dimensions.", e);
       }
-    } else if (MediaUtil.hasVideoThumbnail(context, uri)) {
-      Bitmap thumbnail = MediaUtil.getVideoThumbnail(context, uri, 1000);
-
-      if (thumbnail != null) {
-        dimens = new Pair<>(thumbnail.getWidth(), thumbnail.getHeight());
-      }
+    } else if (MediaUtil.isVideoType(contentType)) {
+      dimens = getVideoDimensions(context, uri);
     } else {
       InputStream attachmentStream = null;
       try {
@@ -257,6 +254,9 @@ public class MediaUtil {
           dimens = BitmapUtil.getExifDimensions(new ExifInterface(attachmentStream));
           attachmentStream.close();
           attachmentStream = null;
+          if (dimens != null) {
+          } else {
+          }
         }
         if (dimens == null) {
           attachmentStream = PartAuthority.getAttachmentStream(context, uri);
@@ -285,8 +285,63 @@ public class MediaUtil {
     return dimens;
   }
 
+  @WorkerThread
+  private static @NonNull Pair<Integer, Integer> getVideoDimensions(@NonNull Context context, @NonNull Uri uri) {
+    try {
+      MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+
+      try {
+        if (BlobProvider.isAuthority(uri) && MediaUtil.isVideo(BlobProvider.getMimeType(uri))) {
+          MediaDataSource source = BlobProvider.getInstance().getMediaDataSource(context, uri);
+          retriever.setDataSource(source);
+        } else if (PartAuthority.isAttachmentUri(uri)) {
+          MediaDataSource source = SignalDatabase.attachments().mediaDataSourceFor(PartAuthority.requireAttachmentId(uri), false);
+          if (source == null) {
+            throw new IOException("No media data source for attachment URI");
+          }
+          retriever.setDataSource(source);
+        } else {
+          retriever.setDataSource(context, uri);
+        }
+
+        String widthString = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH);
+        String heightString = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT);
+        String rotationString = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
+
+        if (widthString == null || heightString == null) {
+          throw new IOException("Could not extract video dimensions from metadata");
+        }
+
+        int width = Integer.parseInt(widthString);
+        int height = Integer.parseInt(heightString);
+        int rotation = rotationString != null ? Integer.parseInt(rotationString) : 0;
+
+        if (rotation % 180 == 90) {
+          //noinspection SuspiciousNameCombination
+          return new Pair<>(height, width);
+        } else {
+          return new Pair<>(width, height);
+        }
+      } finally {
+        retriever.release();
+      }
+    } catch (Exception e) {
+      Log.w(TAG, "Failed to get video dimensions via metadata for URI: " + uri, e);
+    }
+
+    if (MediaUtil.hasVideoThumbnail(context, uri)) {
+      Bitmap thumbnail = MediaUtil.getVideoThumbnail(context, uri, 1000);
+      if (thumbnail != null) {
+        return new Pair<>(thumbnail.getWidth(), thumbnail.getHeight());
+      }
+    } else {
+    }
+
+    return new Pair<>(0, 0);
+  }
+
   public static boolean isMms(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals("application/mms");
+    return ContentTypeUtil.isMms(contentType);
   }
 
   public static boolean isGif(Attachment attachment) {
@@ -318,39 +373,39 @@ public class MediaUtil {
   }
 
   public static boolean isVideo(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().startsWith("video/");
+    return ContentTypeUtil.isVideo(contentType);
   }
 
   public static boolean isVcard(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(VCARD);
+    return ContentTypeUtil.isVcard(contentType);
   }
 
   public static boolean isGif(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif");
+    return ContentTypeUtil.isGif(contentType);
   }
 
   public static boolean isJpegType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_JPEG);
+    return ContentTypeUtil.isJpegType(contentType);
   }
 
   public static boolean isHeicType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_HEIC);
+    return ContentTypeUtil.isHeicType(contentType);
   }
 
   public static boolean isHeifType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_HEIF);
+    return ContentTypeUtil.isHeifType(contentType);
   }
 
   public static boolean isAvifType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_AVIF);
+    return ContentTypeUtil.isAvifType(contentType);
   }
 
   public static boolean isWebpType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_WEBP);
+    return ContentTypeUtil.isWebpType(contentType);
   }
 
   public static boolean isPngType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_PNG);
+    return ContentTypeUtil.isPngType(contentType);
   }
 
   public static boolean isFile(Attachment attachment) {
@@ -358,7 +413,7 @@ public class MediaUtil {
   }
 
   public static boolean isTextType(String contentType) {
-    return (null != contentType) && contentType.startsWith("text/");
+    return ContentTypeUtil.isTextType(contentType);
   }
 
   public static boolean isNonGifVideo(Media media) {
@@ -366,62 +421,47 @@ public class MediaUtil {
   }
 
   public static boolean isImageType(String contentType) {
-    if (contentType == null) {
-      return false;
-    }
-
-    return (contentType.startsWith("image/") && !contentType.equals("image/svg+xml")) ||
-           contentType.equals(MediaStore.Images.Media.CONTENT_TYPE);
+    return ContentTypeUtil.isImageType(contentType);
   }
 
   public static boolean isAudioType(String contentType) {
-    if (contentType == null) {
-      return false;
-    }
-
-    return contentType.startsWith("audio/") ||
-           contentType.equals(MediaStore.Audio.Media.CONTENT_TYPE);
+    return ContentTypeUtil.isAudioType(contentType);
   }
 
   public static boolean isVideoType(String contentType) {
-    if (contentType == null) {
-      return false;
-    }
-
-    return contentType.startsWith("video/") ||
-           contentType.equals(MediaStore.Video.Media.CONTENT_TYPE);
+    return ContentTypeUtil.isVideoType(contentType);
   }
 
   public static boolean isImageOrVideoType(String contentType) {
-    return isImageType(contentType) || isVideoType(contentType);
+    return ContentTypeUtil.isImageOrVideoType(contentType);
   }
 
   public static boolean isStorySupportedType(String contentType) {
-    return isImageOrVideoType(contentType) && !isGif(contentType);
+    return ContentTypeUtil.isStorySupportedType(contentType);
   }
 
   public static boolean isImageVideoOrAudioType(String contentType) {
-    return isImageOrVideoType(contentType) || isAudioType(contentType);
+    return ContentTypeUtil.isImageVideoOrAudioType(contentType);
   }
 
   public static boolean isImageAndNotGif(@NonNull String contentType) {
-    return isImageType(contentType) && !isGif(contentType);
+    return ContentTypeUtil.isImageAndNotGif(contentType);
   }
 
   public static boolean isLongTextType(String contentType) {
-    return (null != contentType) && contentType.equals(LONG_TEXT);
+    return ContentTypeUtil.isLongTextType(contentType);
   }
 
   public static boolean isViewOnceType(String contentType) {
-    return (null != contentType) && contentType.equals(VIEW_ONCE);
+    return ContentTypeUtil.isViewOnceType(contentType);
   }
 
   public static boolean isOctetStream(@Nullable String contentType) {
-    return OCTET.equals(contentType);
+    return ContentTypeUtil.isOctetStream(contentType);
   }
 
   public static boolean isDocumentType(String contentType) {
-    return !isImageOrVideoType(contentType) && !isGif(contentType) && !isLongTextType(contentType) && !isViewOnceType(contentType);
+    return ContentTypeUtil.isDocumentType(contentType);
   }
 
   public static boolean hasVideoThumbnail(@NonNull Context context, @Nullable Uri uri) {

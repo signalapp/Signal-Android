@@ -18,6 +18,7 @@ import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSes
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3
 import kotlin.concurrent.withLock
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Ensures a user's SVR data is written to SVR3.
@@ -92,6 +93,11 @@ class Svr3MirrorJob private constructor(parameters: Parameters, private var seri
             Log.w(TAG, "Hit an application error. Retrying.", response.exception)
             Result.retry(defaultBackoff())
           }
+        }
+        is BackupResponse.RateLimited -> {
+          val backoff = response.retryAfter ?: defaultBackoff().milliseconds
+          Log.w(TAG, "Hit rate limit. Retrying in $backoff")
+          Result.retry(backoff.inWholeMilliseconds)
         }
         BackupResponse.EnclaveNotFound -> {
           Log.w(TAG, "Could not find the enclave. Giving up.")

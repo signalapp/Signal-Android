@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.util.Currency
 import java.util.concurrent.TimeUnit
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Fragment displayed when a user enters "Subscriptions" via app settings but is already
@@ -67,10 +68,10 @@ class ManageDonationsFragment :
   private lateinit var launcher: ActivityResultLauncher<InAppPaymentType>
 
   private val supportTechSummary: CharSequence by lazy {
-    SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__private_messaging)))
-      .append(" ")
+    SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__private_messaging)))
+      .append("\n")
       .append(
-        SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary)) {
+        SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorPrimary)) {
           findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeLearnMoreBottomSheetDialog())
         }
       )
@@ -150,8 +151,8 @@ class ManageDonationsFragment :
 
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
     return object : Material3OnScrollHelper(activity = requireActivity(), views = listOf(toolbar!!), lifecycleOwner = viewLifecycleOwner) {
-      override val activeColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
-      override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
+      override val activeColorSet: ColorSet = ColorSet(R.color.transparent, CoreUiR.color.signal_colorBackground)
+      override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent, CoreUiR.color.signal_colorBackground)
     }
   }
 
@@ -293,9 +294,6 @@ class ManageDonationsFragment :
           subscriberRequiresCancel = state.subscriberRequiresCancel,
           onRowClick = {
             launcher.launch(InAppPaymentType.RECURRING_DONATION)
-          },
-          onPendingClick = {
-            displayPendingDialog(it)
           }
         )
       )
@@ -316,7 +314,6 @@ class ManageDonationsFragment :
           onContactSupport = {},
           activeSubscription = null,
           subscriberRequiresCancel = state.subscriberRequiresCancel,
-          onPendingClick = {},
           onRowClick = {}
         )
       )

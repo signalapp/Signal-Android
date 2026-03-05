@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.attachments
 
 import android.net.Uri
 import android.os.Parcel
-import org.thoughtcrime.securesms.blurhash.BlurHash
+import org.signal.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.MediaUtil

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">讓私隱與您同在。\n每封訊息都做返自己、講人話。</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal 係一間非牟利機構\n條款同私隱政策</string>
+    <string name="RegistrationActivity_continue">繼續</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">還原或者轉移</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">允許權限</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Signal 會要求取得以下權限，協助你同識得嘅人傳送訊息。 </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">遲啲先啦</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">下一步</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">通知</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">收到新訊息嘅時候通知我。</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">聯絡人</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">尋找你識得嘅人。你嘅聯絡人清單已經加密，Signal 唔會睇到。</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">電話通話</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">簡化註冊過程，同埋啟用額外通話功能。</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">儲存空間</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">由你部機傳送相片、影片同檔案。</string>
+
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">電話冧把</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">你將會收到一個驗證碼。視乎個別情況，電訊商可能會向你收費。</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">揀選國家/地區</string>
+    <string name="RegistrationActivity_phone_number_description">電話冧把</string>
+    <string name="RegistrationActivity_next">下一步</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">你嘅國家/地區</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">關閉</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">搜尋國家/地區名稱或代碼</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">未知國家/地區</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">驗證碼</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">請輸入剛才發送到 %1$s 嘅驗證碼</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">個電話冧把唔啱？</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">重新發送驗證碼</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">都係打電話畀我啦</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">（%1$02d:%2$02d）</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">打俾我 (%1$02d:%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">個驗證碼唔啱</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">連唔到線。請檢查你嘅網絡連線，然後再試多次。</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">白撞太多次。請你喺 %1$s 後再試。</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">出現咗未知錯誤。請你再試多次。</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">發送驗證碼嗰陣出現問題。請你再試多次。</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">用你揀嘅方法發送唔到驗證碼。請你再揀過第二種方法。</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">註冊失敗。請你再試多次。</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">遇到問題？</string>
+</resources>

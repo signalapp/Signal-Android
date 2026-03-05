@@ -264,3 +264,13 @@ message CallQualitySurveySubmissionJobData {
   org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest request = 1;
   bool includeDebugLogs = 2;
 }
+
+message CheckKeyTransparencyJobData{
+  bool showFailure = 1;
+}
+
+message AdminDeleteJobData {
+  uint64 messageId = 1;
+  repeated uint64 recipientIds = 2;
+  uint32 initialRecipientCount = 3;
+}

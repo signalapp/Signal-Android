@@ -17,6 +17,7 @@ import androidx.annotation.Px
 import androidx.annotation.UiThread
 import androidx.core.os.bundleOf
 import com.bumptech.glide.RequestManager
+import org.signal.core.ui.view.Stub
 import org.signal.core.util.dp
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideClickListener
 import org.thoughtcrime.securesms.mms.SlidesClickedListener
 import org.thoughtcrime.securesms.util.Projection.Corners
-import org.thoughtcrime.securesms.util.views.Stub
 
 class ConversationItemThumbnail @JvmOverloads constructor(
   context: Context,

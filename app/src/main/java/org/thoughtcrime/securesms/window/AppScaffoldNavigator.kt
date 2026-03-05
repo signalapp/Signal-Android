@@ -22,6 +22,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.Dp
 import androidx.window.core.layout.WindowSizeClass
+import org.signal.core.ui.horizontalPartitionDefaultSpacerSize
+import org.signal.core.ui.isSplitPane
+import org.signal.core.ui.listPaneDefaultPreferredWidth
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**

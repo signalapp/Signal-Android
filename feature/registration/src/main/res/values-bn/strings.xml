@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">আপনার গোপনীয়তা বজায় রাখুন।\n প্রতিটি বার্তায় নিজস্ব থাকুন।</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal একটি অলাভজনক প্রতিষ্ঠান\nশর্তাবলী এবং গোপনীয়তার নীতিমালা</string>
+    <string name="RegistrationActivity_continue">চলতে থাকুন</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">পুনর্বহাল বা ট্রান্সফার করুন</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">অনুমতি দিন</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">আপনার পরিচিত ব্যক্তিদের মেসেজ করতে সাহায্য করার জন্য, Signal এই অনুমতিগুলোর জন্য অনুরোধ করবে। </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">এখন না</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">পরবর্তী</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">নোটিফিকেশন</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">নতুন মেসেজ এলে নোটিফিকেশন পান।</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">পরিচিতিসমূহ</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">আপনার পরিচিত ব্যক্তিদের খুঁজে বের করুন। আপনার কন্টাক্টগুলো এনক্রিপ্ট অবস্থায় আছে এবং সেগুলো সিগন্যাল সার্ভিসে দৃশ্যমান নয়।</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">ফোন কল</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">নিবন্ধন সহজ করুন এবং কল করার কিছু বাড়তি ফিচার সক্রিয় করুন।</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">স্টোরেজ</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">আপনার ডিভাইস থেকে ছবি, ভিডিও ও ফাইল পাঠান।</string>
+
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">ফোন নম্বর</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">আপনি একটি যাচাইকরণ কোড পাবেন। ক্যারিয়ারের হার প্রযোজ্য হতে পারে।</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">এটি দেশ নির্বাচন করুন</string>
+    <string name="RegistrationActivity_phone_number_description">ফোন নম্বর</string>
+    <string name="RegistrationActivity_next">পরবর্তী</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">আপনার দেশ</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">বন্ধ</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">নাম বা কান্ট্রি কোড দ্বারা অনুসন্ধান করুন</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">অচেনা দেশ</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">যাচাইকরণ কোড</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">%1$s-তে পাঠানো কোড টি এন্টার করুন</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">ভুল নম্বর?</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">কোডটি আবারো পাঠান</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">বরং আমাকে কল করুন</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">আমাকে কল করুন (%1$02d:%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">ভুল কোড</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">সংযোগ স্থাপন করা যায়নি। আপনার নেটওয়ার্ক ঠিক আছে কিনা দেখে আবার চেষ্টা করুন।</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">অনেকবার চেষ্টা করা হয়েছে। %1$s পরে আবার চেষ্টা করুন।</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">একটি অপ্রত্যাশিত সমস্যা দেখা দিয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">আপনার যাচাইকরণ কোড পাঠানোর সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">বেছে নেওয়া পদ্ধতির মাধ্যমে কোড পাঠানো যায়নি। অনুগ্রহ করে অন্য একটি বিকল্প চেষ্টা করুন।</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">নিবন্ধন সফল হয়নি। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">সমস্যা হচ্ছে?</string>
+</resources>

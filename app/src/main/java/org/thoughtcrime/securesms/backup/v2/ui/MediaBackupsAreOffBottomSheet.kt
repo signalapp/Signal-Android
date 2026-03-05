@@ -35,6 +35,7 @@ import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.gibiBytes
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
@@ -105,7 +106,7 @@ private fun SheetContent(
           .padding(2.dp)
       )
       Icon(
-        imageVector = ImageVector.vectorResource(org.thoughtcrime.securesms.R.drawable.symbol_error_circle_fill_24),
+        imageVector = SignalIcons.ErrorCircle.imageVector,
         contentDescription = null,
         tint = MaterialTheme.colorScheme.error,
         modifier = Modifier.align(Alignment.TopEnd)

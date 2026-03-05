@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.signal.core.ui.util.ThemeUtil;
 
 /**
  * Appends an optional "Learn more" link to a given piece of text.
@@ -46,7 +46,7 @@ public class LearnMoreTextView extends AppCompatTextView {
   private void init() {
     setMovementMethod(LinkMovementMethod.getInstance());
     setLinkTextInternal(R.string.LearnMoreTextView_learn_more);
-    setLinkColor(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface));
+    setLinkColor(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSurface));
     visible = true;
   }
 

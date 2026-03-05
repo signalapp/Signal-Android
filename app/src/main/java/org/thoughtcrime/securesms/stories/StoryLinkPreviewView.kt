@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
+import org.signal.core.ui.view.Stub
 import org.signal.core.util.concurrent.ListenableFuture
 import org.signal.core.util.concurrent.SettableFuture
 import org.signal.core.util.isAbsent
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewState
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.Slide
-import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
 import java.text.DateFormat
 import java.text.SimpleDateFormat

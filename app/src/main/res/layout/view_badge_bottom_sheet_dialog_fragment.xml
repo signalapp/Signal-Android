@@ -61,6 +61,7 @@
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="32dp"
             android:minHeight="48dp"
+            android:minWidth="220dp"
             android:text="@string/ViewBadgeBottomSheetDialogFragment__donate_now"
             app:iconGravity="textEnd"
             app:iconTint="@color/signal_colorOnSurfaceVariant"

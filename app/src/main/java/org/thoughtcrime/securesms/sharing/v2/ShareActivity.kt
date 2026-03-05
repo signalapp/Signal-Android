@@ -16,6 +16,7 @@ import androidx.core.text.buildSpannedString
 import com.google.android.material.appbar.MaterialToolbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.models.media.Media
 import org.signal.core.util.Result
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFullScreenDialogFragment
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity.Companion.share
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareDialogs
@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.TimeUnit
+import org.signal.core.ui.R as CoreUiR
 
 class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.Callback {
 
@@ -109,7 +110,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
 
     if (intent?.getBooleanExtra(EXTRA_NAVIGATION, false) == true) {
       toolbar.setTitle(getTitleFromExtras())
-      toolbar.setNavigationIcon(R.drawable.symbol_arrow_start_24)
+      toolbar.setNavigationIcon(CoreUiR.drawable.symbol_arrow_start_24)
       toolbar.setNavigationOnClickListener { finish() }
     } else {
       toolbar.visible = false
@@ -283,9 +284,13 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
           .asBorderless(multiShareArgs.isBorderless)
           .withShareDataTimestamp(System.currentTimeMillis())
 
-        val mainActivityIntent = MainActivity.clearTop(this)
+        val conversationIntent = conversationIntentBuilder.build()
+        val mainActivityIntent = MainActivity.clearTop(this).apply {
+          action = ConversationIntents.ACTION
+          putExtras(conversationIntent)
+        }
         finish()
-        startActivities(arrayOf(mainActivityIntent, conversationIntentBuilder.build()))
+        startActivity(mainActivityIntent)
       }
   }
 

@@ -52,9 +52,6 @@ class CreateCallLinkViewModel(
   val linkKeyBytes: ByteArray
     get() = callLink.value.credentials!!.linkKeyBytes
 
-  val epochBytes: ByteArray?
-    get() = callLink.value.credentials!!.epochBytes
-
   private val internalShowAlreadyInACall = MutableStateFlow(false)
   val showAlreadyInACall: StateFlow<Boolean> = internalShowAlreadyInACall
 

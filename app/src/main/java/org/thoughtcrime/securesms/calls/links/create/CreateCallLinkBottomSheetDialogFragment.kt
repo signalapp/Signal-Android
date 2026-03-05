@@ -26,10 +26,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
@@ -39,10 +37,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.util.Util
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallLinkState
@@ -51,7 +52,6 @@ import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.YouAreAlrea
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.calls.links.SignalCallRow
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
@@ -60,7 +60,6 @@ import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.Util
 import java.time.Instant
 import org.signal.core.ui.R as CoreUiR
 
@@ -163,7 +162,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
           startActivity(
             ShareActivity.sendSimpleText(
               requireContext(),
-              getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.linkKeyBytes, viewModel.epochBytes))
+              getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.linkKeyBytes))
             )
           )
         }
@@ -177,7 +176,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
     lifecycleDisposable += viewModel.commitCallLink().subscribeBy(onSuccess = {
       when (it) {
         is EnsureCallLinkCreatedResult.Success -> {
-          Util.copyToClipboard(requireContext(), CallLinks.url(viewModel.linkKeyBytes, viewModel.epochBytes))
+          Util.copyToClipboard(requireContext(), CallLinks.url(viewModel.linkKeyBytes))
           Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard, Toast.LENGTH_LONG).show()
         }
 
@@ -192,7 +191,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
         is EnsureCallLinkCreatedResult.Success -> {
           val mimeType = Intent.normalizeMimeType("text/plain")
           val shareIntent = ShareCompat.IntentBuilder(requireContext())
-            .setText(CallLinks.url(viewModel.linkKeyBytes, viewModel.epochBytes))
+            .setText(CallLinks.url(viewModel.linkKeyBytes))
             .setType(mimeType)
             .createChooserIntent()
 
@@ -290,19 +289,19 @@ private fun CreateCallLinkBottomSheetContent(
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__share_link_via_signal),
-        icon = ImageVector.vectorResource(id = R.drawable.symbol_forward_24),
+        icon = SignalIcons.Forward.imageVector,
         onClick = onShareViaSignalClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__copy_link),
-        icon = ImageVector.vectorResource(id = R.drawable.symbol_copy_android_24),
+        icon = SignalIcons.Copy.imageVector,
         onClick = onCopyLinkClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__share_link),
-        icon = ImageVector.vectorResource(id = R.drawable.symbol_share_android_24),
+        icon = SignalIcons.Share.imageVector,
         onClick = onShareLinkClicked
       )
 

@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.recipients.ui.about
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,17 +40,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.os.bundleOf
 import androidx.core.widget.TextViewCompat
+import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.conversation.v2.UnverifiedProfileNameBottomSheet
+import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
 import org.thoughtcrime.securesms.groups.ui.incommon.GroupsInCommonActivity
 import org.thoughtcrime.securesms.nicknames.ViewNoteSheet
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -57,6 +63,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.my.SignalConnectionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.viewModel
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displays all relevant context you know for a given user on the sheet.
@@ -64,14 +71,18 @@ import org.thoughtcrime.securesms.util.viewModel
 class AboutSheet : ComposeBottomSheetDialogFragment() {
 
   companion object {
+    const val RESULT_EDIT_MEMBER_LABEL = "edit_member_label"
+    const val RESULT_GROUP_ID = "group_id"
 
     private const val RECIPIENT_ID = "recipient_id"
+    private const val VIEWING_FROM_GROUP_ID = "viewing_from_group_id"
 
     @JvmStatic
-    fun create(recipient: Recipient): AboutSheet {
+    fun create(recipient: Recipient, viewingFromGroupId: GroupId.V2? = null): AboutSheet {
       return AboutSheet().apply {
         arguments = bundleOf(
-          RECIPIENT_ID to recipient.id
+          RECIPIENT_ID to recipient.id,
+          VIEWING_FROM_GROUP_ID to viewingFromGroupId
         )
       }
     }
@@ -79,47 +90,47 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
 
   override val peekHeightPercentage: Float = 1f
 
-  private val recipientId: RecipientId
-    get() = requireArguments().getParcelableCompat(RECIPIENT_ID, RecipientId::class.java)!!
+  private val recipientId: RecipientId by lazy { requireArguments().getParcelableCompat(RECIPIENT_ID, RecipientId::class.java)!! }
+  private val viewingFromGroupId: GroupId.V2? by lazy { requireArguments().getParcelableCompat(VIEWING_FROM_GROUP_ID, GroupId.V2::class.java) }
 
   private val viewModel by viewModel {
-    AboutSheetViewModel(recipientId)
+    AboutSheetViewModel(recipientId, viewingFromGroupId)
   }
 
   @Composable
   override fun SheetContent() {
-    val recipient by viewModel.recipient
-    val groupsInCommonCount by viewModel.groupsInCommonCount
-    val verified by viewModel.verified
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val recipient = state.recipient ?: return
 
-    if (recipient.isPresent) {
-      Content(
-        model = AboutModel(
-          isSelf = recipient.get().isSelf,
-          displayName = recipient.get().getDisplayName(requireContext()),
-          shortName = recipient.get().getShortDisplayName(requireContext()),
-          profileName = recipient.get().profileName.toString(),
-          about = recipient.get().about,
-          verified = verified,
-          hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
-          recipientForAvatar = recipient.get(),
-          formattedE164 = if (recipient.get().hasE164 && recipient.get().shouldShowE164) {
-            SignalE164Util.prettyPrint(recipient.get().requireE164())
-          } else {
-            null
-          },
-          profileSharing = recipient.get().isProfileSharing,
-          systemContact = recipient.get().isSystemContact,
-          groupsInCommon = groupsInCommonCount,
-          note = recipient.get().note ?: ""
-        ),
-        onClickSignalConnections = this::openSignalConnectionsSheet,
-        onAvatarClicked = this::openProfilePhotoViewer,
-        onNoteClicked = this::openNoteSheet,
-        onUnverifiedProfileClicked = this::openUnverifiedProfileSheet,
-        onGroupsInCommonClicked = this::openGroupsInCommon
-      )
-    }
+    Content(
+      model = AboutModel(
+        isSelf = recipient.isSelf,
+        displayName = recipient.getDisplayName(requireContext()),
+        shortName = recipient.getShortDisplayName(requireContext()),
+        profileName = recipient.profileName.toString(),
+        about = recipient.about,
+        verified = state.verified,
+        hasAvatar = recipient.profileAvatarFileDetails.hasFile(),
+        recipientForAvatar = recipient,
+        formattedE164 = if (recipient.hasE164 && recipient.shouldShowE164) {
+          SignalE164Util.prettyPrint(recipient.requireE164())
+        } else {
+          null
+        },
+        profileSharing = recipient.isProfileSharing,
+        systemContact = recipient.isSystemContact,
+        groupsInCommon = state.groupsInCommonCount,
+        note = recipient.note ?: "",
+        memberLabel = state.memberLabel,
+        canEditMemberLabel = state.canEditMemberLabel
+      ),
+      onClickSignalConnections = this::openSignalConnectionsSheet,
+      onAvatarClicked = this::openProfilePhotoViewer,
+      onNoteClicked = this::openNoteSheet,
+      onUnverifiedProfileClicked = this::openUnverifiedProfileSheet,
+      onGroupsInCommonClicked = this::openGroupsInCommon,
+      onMemberLabelClicked = this::openMemberLabelScreen
+    )
   }
 
   private fun openSignalConnectionsSheet() {
@@ -145,6 +156,13 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
     dismiss()
     startActivity(GroupsInCommonActivity.createIntent(requireContext(), recipientId))
   }
+
+  private fun openMemberLabelScreen() {
+    viewingFromGroupId?.let { groupId ->
+      setFragmentResult(RESULT_EDIT_MEMBER_LABEL, bundleOf(RESULT_GROUP_ID to groupId))
+      dismiss()
+    }
+  }
 }
 
 private data class AboutModel(
@@ -160,7 +178,9 @@ private data class AboutModel(
   val profileSharing: Boolean,
   val systemContact: Boolean,
   val groupsInCommon: Int,
-  val note: String
+  val note: String,
+  val memberLabel: MemberLabel? = null,
+  val canEditMemberLabel: Boolean = false
 )
 
 @Composable
@@ -170,7 +190,8 @@ private fun Content(
   onAvatarClicked: () -> Unit,
   onNoteClicked: () -> Unit,
   onUnverifiedProfileClicked: () -> Unit = {},
-  onGroupsInCommonClicked: () -> Unit = {}
+  onGroupsInCommonClicked: () -> Unit = {},
+  onMemberLabelClicked: () -> Unit = {}
 ) {
   Box(
     contentAlignment = Alignment.Center,
@@ -216,17 +237,26 @@ private fun Content(
       modifier = Modifier.fillMaxWidth()
     )
 
+    if (model.isSelf && (model.memberLabel != null || model.canEditMemberLabel)) {
+      MemberLabelRow(
+        memberLabel = model.memberLabel,
+        canEdit = model.canEditMemberLabel,
+        onClick = onMemberLabelClicked,
+        modifier = Modifier.fillMaxWidth()
+      )
+    }
+
     if (model.about.isNotNullOrBlank()) {
       val textColor = LocalContentColor.current
 
       AboutRow(
-        startIcon = ImageVector.vectorResource(R.drawable.symbol_edit_24),
+        startIcon = SignalIcons.Edit.imageVector,
         text = {
           Row {
             AndroidView(factory = ::EmojiTextView) {
               it.text = model.about
 
-              TextViewCompat.setTextAppearance(it, R.style.Signal_Text_BodyLarge)
+              TextViewCompat.setTextAppearance(it, CoreUiR.style.Signal_Text_BodyLarge)
 
               it.setTextColor(textColor.toArgb())
             }
@@ -289,7 +319,7 @@ private fun Content(
 
     if (model.formattedE164.isNotNullOrBlank()) {
       AboutRow(
-        startIcon = ImageVector.vectorResource(R.drawable.symbol_phone_24),
+        startIcon = SignalIcons.Phone.imageVector,
         text = model.formattedE164,
         modifier = Modifier.fillMaxWidth()
       )
@@ -329,6 +359,48 @@ private fun Content(
 
     Spacer(modifier = Modifier.size(26.dp))
   }
+}
+
+@Composable
+private fun MemberLabelRow(
+  memberLabel: MemberLabel?,
+  canEdit: Boolean,
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  AboutRow(
+    startIcon = ImageVector.vectorResource(R.drawable.symbol_tag_24),
+    text = {
+      if (memberLabel != null) {
+        if (!memberLabel.emoji.isNullOrEmpty()) {
+          Text(
+            text = memberLabel.emoji,
+            style = MaterialTheme.typography.bodyLarge
+          )
+          Spacer(modifier = Modifier.size(4.dp))
+        }
+
+        Text(
+          text = memberLabel.displayText,
+          style = MaterialTheme.typography.bodyLarge,
+          maxLines = 1,
+          overflow = TextOverflow.Ellipsis,
+          modifier = Modifier.weight(1f, false)
+        )
+      } else {
+        Text(
+          text = stringResource(id = R.string.AboutSheet__add_group_member_label),
+          style = MaterialTheme.typography.bodyLarge,
+          maxLines = 1,
+          overflow = TextOverflow.Ellipsis,
+          modifier = Modifier.weight(1f, false)
+        )
+      }
+    },
+    endIcon = if (canEdit) ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16) else null,
+    onClick = if (canEdit) onClick else null,
+    modifier = modifier
+  )
 }
 
 @Composable
@@ -483,6 +555,8 @@ private fun ContentPreviewForSelf() {
           profileSharing = true,
           systemContact = true,
           groupsInCommon = 0,
+          memberLabel = MemberLabel("🕷️", "Superhero"),
+          canEditMemberLabel = true,
           note = "Weird Things Happen To Me All The Time."
         ),
         onClickSignalConnections = {},
@@ -624,5 +698,29 @@ private fun AboutRowPreview() {
         endIcon = ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16)
       )
     }
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun MemberLabelRowPreviews() = Previews.Preview {
+  val headerModifier = Modifier
+    .fillMaxWidth()
+    .background(MaterialTheme.colorScheme.primaryContainer)
+    .padding(vertical = 4.dp)
+    .padding(horizontal = 8.dp)
+
+  Column {
+    Text("no label, can't edit:", style = MaterialTheme.typography.labelSmall, modifier = headerModifier)
+    MemberLabelRow(memberLabel = null, canEdit = false, onClick = {})
+
+    Text("no label, editable:", style = MaterialTheme.typography.labelSmall, modifier = headerModifier)
+    MemberLabelRow(memberLabel = null, canEdit = true, onClick = {})
+
+    Text("has label, can't edit:", style = MaterialTheme.typography.labelSmall, modifier = headerModifier)
+    MemberLabelRow(memberLabel = MemberLabel("🕷️", "Superhero"), canEdit = false, onClick = {})
+
+    Text("has label, editable:", style = MaterialTheme.typography.labelSmall, modifier = headerModifier)
+    MemberLabelRow(memberLabel = MemberLabel("🕷️", "Superhero"), canEdit = true, onClick = {})
   }
 }

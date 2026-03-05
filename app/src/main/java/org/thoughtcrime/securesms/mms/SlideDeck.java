@@ -23,7 +23,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 
 import java.util.LinkedList;
 import java.util.List;

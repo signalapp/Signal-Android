@@ -62,6 +62,10 @@ class ConversationGroupViewModel(
     disposables.clear()
   }
 
+  fun isAdmin(): Boolean {
+    return _memberLevel.value?.groupTableMemberLevel == GroupTable.MemberLevel.ADMINISTRATOR
+  }
+
   fun isNonAdminInAnnouncementGroup(): Boolean {
     val memberLevel = _memberLevel.value ?: return false
     return memberLevel.groupTableMemberLevel != GroupTable.MemberLevel.ADMINISTRATOR && memberLevel.isAnnouncementGroup

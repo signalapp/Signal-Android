@@ -24,10 +24,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import kotlinx.collections.immutable.persistentListOf
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
-import org.thoughtcrime.securesms.compose.ComposeFragment
 
 class InternalSvrPlaygroundFragment : ComposeFragment() {
 

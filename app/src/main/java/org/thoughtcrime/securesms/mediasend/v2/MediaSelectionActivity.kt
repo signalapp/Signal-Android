@@ -23,6 +23,7 @@ import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.android.material.animation.ArgbEvaluatorCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.models.media.Media
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.OVERRIDE_TRANSITION_CLOSE_COMPAT
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -39,7 +40,6 @@ import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.mediasend.CameraDisplay
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaReviewFragment
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationViewModel
@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 class MediaSelectionActivity :
   PassphraseRequiredActivity(),
@@ -199,6 +200,7 @@ class MediaSelectionActivity :
         if (error.cause != null) {
           handleError(error.cause)
         }
+        onNoMediaSelected()
       }
     }
 
@@ -206,8 +208,8 @@ class MediaSelectionActivity :
   }
 
   private fun animateTextStyling(selectedSwitch: TextView, unselectedSwitch: TextView, duration: Long) {
-    val offTextColor = ContextCompat.getColor(this, R.color.signal_colorOnSurface)
-    val onTextColor = ContextCompat.getColor(this, R.color.signal_colorSecondaryContainer)
+    val offTextColor = ContextCompat.getColor(this, CoreUiR.color.signal_colorOnSurface)
+    val onTextColor = ContextCompat.getColor(this, CoreUiR.color.signal_colorSecondaryContainer)
 
     animateInShadowLayerValueAnimator?.cancel()
     animateInTextColorValueAnimator?.cancel()

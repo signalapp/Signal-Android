@@ -139,7 +139,8 @@ data class DonateToSignalState(
 
   data class TransactionState(
     val isTransactionJobPending: Boolean = false,
-    val isLevelUpdateInProgress: Boolean = false
+    val isLevelUpdateInProgress: Boolean = false,
+    val isKeepAlive: Boolean = false
   ) {
     val isInProgress: Boolean = isTransactionJobPending || isLevelUpdateInProgress
   }

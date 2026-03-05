@@ -19,6 +19,7 @@ import com.bumptech.glide.load.resource.SimpleResource
 import org.signal.core.util.Base64
 import org.signal.core.util.concurrent.safeBlockingGet
 import org.signal.core.util.readParcelableCompat
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.fonts.TextToScript
 import org.thoughtcrime.securesms.fonts.TypefaceCache
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.ParcelUtil
 import java.io.IOException

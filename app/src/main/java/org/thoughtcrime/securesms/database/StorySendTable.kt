@@ -147,7 +147,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
           AND $MESSAGE_ID IN (
             SELECT ${MessageTable.ID}
             FROM ${MessageTable.TABLE_NAME}
-            WHERE ${MessageTable.REMOTE_DELETED} = 0
+            WHERE ${MessageTable.DELETED_BY} IS NULL
           )
         )
     """
@@ -232,7 +232,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
       .where(
         """
         $SENT_TIMESTAMP = ? AND
-        (SELECT ${MessageTable.REMOTE_DELETED} FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.ID} = $MESSAGE_ID) = 0
+        (SELECT ${MessageTable.DELETED_BY} FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.ID} = $MESSAGE_ID) IS NULL
         """,
         sentTimestamp
       )
@@ -330,7 +330,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
 
       val messagesWithoutAnyReceivers = localRows.map { it.messageId }.distinct() - remoteRows.map { it.messageId }.distinct()
       messagesWithoutAnyReceivers.forEach {
-        SignalDatabase.messages.markAsRemoteDelete(it)
+        SignalDatabase.messages.markAsDeleteBySelf(it)
         SignalDatabase.messages.deleteRemotelyDeletedStory(it)
       }
     }
@@ -344,7 +344,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
             $TABLE_NAME.$RECIPIENT_ID,
             $ALLOWS_REPLIES,
             $DISTRIBUTION_ID,
-            ${MessageTable.REMOTE_DELETED}
+            ${MessageTable.DELETED_BY}
         FROM $TABLE_NAME
         INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID
         WHERE $TABLE_NAME.$SENT_TIMESTAMP = ?
@@ -353,7 +353,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
     ).use { cursor ->
       val results: MutableMap<RecipientId, SentStorySyncManifest.Entry> = mutableMapOf()
       while (cursor.moveToNext()) {
-        val isRemoteDeleted = CursorUtil.requireBoolean(cursor, MessageTable.REMOTE_DELETED)
+        val isRemoteDeleted = !CursorUtil.isNull(cursor, MessageTable.DELETED_BY)
         val recipientId = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID))
         val distributionId = DistributionId.from(CursorUtil.requireString(cursor, DISTRIBUTION_ID))
         val distributionIdList: List<DistributionId> = if (isRemoteDeleted) emptyList() else listOf(distributionId)

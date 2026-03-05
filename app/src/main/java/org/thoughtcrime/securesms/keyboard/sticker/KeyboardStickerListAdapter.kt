@@ -6,10 +6,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import org.signal.glide.apng.ApngOptions
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.model.StickerRecord
-import org.thoughtcrime.securesms.glide.cache.ApngOptions
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel

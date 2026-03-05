@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.testutil.SignalDatabaseMigrationRule
 import org.thoughtcrime.securesms.testutil.SignalDatabaseRule
 
 @RunWith(RobolectricTestRunner::class)
-@Config(manifest = Config.NONE, application = Application::class)
+@Config(manifest = Config.NONE, application = Application::class, sdk = [35])
 class DatabaseConsistencyTest {
 
   @get:Rule

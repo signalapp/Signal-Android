@@ -3,6 +3,7 @@
 package org.thoughtcrime.securesms.util
 
 import android.content.Context
+import org.signal.core.util.Util
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.model.MessageRecord

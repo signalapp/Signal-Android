@@ -7,6 +7,9 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import java.lang.Exception
+import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -23,6 +26,19 @@ class OptimizeMessageSearchIndexJob private constructor(parameters: Parameters) 
     fun enqueue() {
       AppDependencies.jobManager.add(OptimizeMessageSearchIndexJob())
     }
+
+    private fun getInitialDelay(): Long {
+      val now = LocalDateTime.now()
+
+      if (now.hour in 0..3) {
+        return 0
+      }
+
+      val midnight = now.plusDays(1).truncatedTo(ChronoUnit.DAYS)
+      val scheduledTime = midnight.plusMinutes((0..4.hours.inWholeMinutes).random())
+
+      return ChronoUnit.MILLIS.between(now, scheduledTime)
+    }
   }
 
   constructor() : this(
@@ -30,6 +46,7 @@ class OptimizeMessageSearchIndexJob private constructor(parameters: Parameters) 
       .setQueue("OptimizeMessageSearchIndexJob")
       .setMaxAttempts(5)
       .setMaxInstancesForQueue(2)
+      .setInitialDelay(getInitialDelay())
       .build()
   )
 

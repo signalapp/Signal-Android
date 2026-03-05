@@ -23,7 +23,7 @@ import androidx.compose.ui.res.colorResource
 import kotlinx.coroutines.flow.drop
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
-import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Tooltip box appropriately styled for the call screen.
@@ -45,8 +45,8 @@ fun CallScreenTooltipBox(
       PlainTooltip(
         caretShape = DefaultTooltipCaretShape(),
         shape = TooltipDefaults.plainTooltipContainerShape,
-        containerColor = colorResource(R.color.signal_light_colorPrimary),
-        contentColor = colorResource(R.color.signal_light_colorOnPrimary)
+        containerColor = colorResource(CoreUiR.color.signal_light_colorPrimary),
+        contentColor = colorResource(CoreUiR.color.signal_light_colorOnPrimary)
       ) {
         Text(text = text)
       }

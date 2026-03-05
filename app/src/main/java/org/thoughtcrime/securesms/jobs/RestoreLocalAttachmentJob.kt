@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.database.AttachmentTable.RestorableAttachment
+import org.thoughtcrime.securesms.database.AttachmentTable.LocalRestorableAttachment
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -47,15 +47,14 @@ class RestoreLocalAttachmentJob private constructor(
       val jobManager = AppDependencies.jobManager
 
       do {
-        val possibleRestorableAttachments: List<RestorableAttachment> = SignalDatabase.attachments.getRestorableAttachments(500)
+        val possibleRestorableAttachments: List<LocalRestorableAttachment> = SignalDatabase.attachments.getRestorableLocalAttachments(500)
         val notRestorableAttachments = ArrayList<AttachmentId>(possibleRestorableAttachments.size)
         val restoreAttachmentJobs: MutableList<Job> = ArrayList(possibleRestorableAttachments.size)
 
         possibleRestorableAttachments
           .forEachIndexed { index, attachment ->
-            val fileInfo = if (attachment.plaintextHash != null && attachment.remoteKey != null) {
-              val mediaName = MediaName.fromPlaintextHashAndRemoteKey(attachment.plaintextHash, attachment.remoteKey).name
-              mediaNameToFileInfo[mediaName]
+            val fileInfo = if (attachment.plaintextHash != null && attachment.localBackupKey != null) {
+              mediaNameToFileInfo[MediaName.forLocalBackupFilename(attachment.plaintextHash, attachment.localBackupKey.key).name]
             } else {
               null
             }
@@ -90,7 +89,7 @@ class RestoreLocalAttachmentJob private constructor(
     }
   }
 
-  private constructor(queue: String, attachment: RestorableAttachment, info: DocumentFileInfo) : this(
+  private constructor(queue: String, attachment: LocalRestorableAttachment, info: DocumentFileInfo) : this(
     Parameters.Builder()
       .setQueue(queue)
       .setLifespan(Parameters.IMMORTAL)
@@ -122,15 +121,15 @@ class RestoreLocalAttachmentJob private constructor(
   override fun run(): Result {
     Log.i(TAG, "onRun() messageId: $messageId  attachmentId: $attachmentId")
 
-    val attachment = SignalDatabase.attachments.getAttachment(attachmentId)
+    val attachment = SignalDatabase.attachments.getAttachmentWithMetadata(attachmentId)
 
     if (attachment == null) {
       Log.w(TAG, "attachment no longer exists.")
       return Result.failure()
     }
 
-    if (attachment.remoteDigest == null || attachment.remoteKey == null) {
-      Log.w(TAG, "Attachment no longer has a remote digest or key")
+    if (attachment.dataHash == null || attachment.metadata?.localBackupKey == null) {
+      Log.w(TAG, "Attachment no longer has a plaintext hash or local backup key")
       return Result.failure()
     }
 
@@ -144,7 +143,6 @@ class RestoreLocalAttachmentJob private constructor(
       return Result.success()
     }
 
-    val combinedKey = Base64.decode(attachment.remoteKey)
     val streamSupplier = StreamSupplier { ArchiveFileSystem.openInputStream(context, restoreUri) ?: throw IOException("Unable to open stream") }
 
     try {
@@ -154,10 +152,9 @@ class RestoreLocalAttachmentJob private constructor(
         streamSupplier = streamSupplier,
         streamLength = size,
         plaintextLength = attachment.size,
-        combinedKeyMaterial = combinedKey,
-        integrityCheck = IntegrityCheck.forEncryptedDigestAndPlaintextHash(
-          encryptedDigest = attachment.remoteDigest,
-          plaintextHash = attachment.dataHash
+        combinedKeyMaterial = attachment.metadata.localBackupKey.key,
+        integrityCheck = IntegrityCheck.forPlaintextHash(
+          plaintextHash = Base64.decode(attachment.dataHash)
         ),
         incrementalDigest = null,
         incrementalMacChunkSize = 0

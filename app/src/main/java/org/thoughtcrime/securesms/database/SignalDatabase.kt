@@ -82,6 +82,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val backupMediaSnapshotTable: BackupMediaSnapshotTable = BackupMediaSnapshotTable(context, this)
   val pollTable: PollTables = PollTables(context, this)
   val lastResortKeyTuples: LastResortKeyTupleTable = LastResortKeyTupleTable(context, this)
+  val attachmentMetadataTable: AttachmentMetadataTable = AttachmentMetadataTable(context, this)
 
   override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.setForeignKeyConstraintsEnabled(true)
@@ -152,6 +153,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     executeStatements(db, PollTables.CREATE_TABLE)
     db.execSQL(BackupMediaSnapshotTable.CREATE_TABLE)
     db.execSQL(LastResortKeyTupleTable.CREATE_TABLE)
+    db.execSQL(AttachmentMetadataTable.CREATE_TABLE)
 
     executeStatements(db, RecipientTable.CREATE_INDEXS)
     executeStatements(db, MessageTable.CREATE_INDEXS)
@@ -383,6 +385,22 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       }
     }
 
+    /**
+     * Mirrors [runInTransaction] but instead of returning the result of calling block it returns
+     * whether the transaction completed successfully.
+     */
+    @JvmStatic
+    fun tryRunInTransaction(block: (SignalSQLiteDatabase) -> Unit): Boolean {
+      var committed = false
+
+      instance!!.signalWritableDatabase.withinTransaction {
+        block(it)
+        it.runPostSuccessfulTransaction { committed = true }
+      }
+
+      return committed
+    }
+
     @get:JvmStatic
     @get:JvmName("attachments")
     val attachments: AttachmentTable
@@ -597,5 +615,10 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("lastResortKeyTuples")
     val lastResortKeyTuples: LastResortKeyTupleTable
       get() = instance!!.lastResortKeyTuples
+
+    @get:JvmStatic
+    @get:JvmName("attachmentMetadata")
+    val attachmentMetadata: AttachmentMetadataTable
+      get() = instance!!.attachmentMetadataTable
   }
 }

@@ -5,6 +5,10 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import android.graphics.Color
+import android.os.Build
+import android.widget.Toast
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
@@ -16,6 +20,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
@@ -26,21 +31,25 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.rememberIsInPipMode
+import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantListUpdate
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
-import org.thoughtcrime.securesms.components.webrtc.CallReactionScrubber.Companion.CUSTOM_REACTION_BOTTOM_SHEET_TAG
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
 import org.thoughtcrime.securesms.components.webrtc.controls.CallInfoView
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel
 import org.thoughtcrime.securesms.components.webrtc.controls.RaiseHandSnackbar
-import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import kotlin.time.Duration.Companion.seconds
@@ -52,6 +61,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
 
   companion object {
     private val TAG = Log.tag(ComposeCallScreenMediator::class)
+    private const val CUSTOM_REACTION_BOTTOM_SHEET_TAG = "CallReaction"
   }
 
   private val callScreenViewModel = ViewModelProvider(activity)[CallScreenViewModel::class]
@@ -63,12 +73,39 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   private val pendingParticipantsViewListener = MutableStateFlow<PendingParticipantsListener>(PendingParticipantsListener.Empty)
 
   private val callParticipantUpdatePopupController = CallParticipantUpdatePopupController()
+  private val lifecycleDisposable = LifecycleDisposable()
 
   init {
     WindowUtil.clearTranslucentNavigationBar(activity.window)
     WindowUtil.clearTranslucentStatusBar(activity.window)
 
-    activity.enableEdgeToEdge()
+    activity.enableEdgeToEdge(
+      statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+      navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT)
+    )
+
+    if (Build.VERSION.SDK_INT >= 29) {
+      activity.window.isNavigationBarContrastEnforced = false
+      activity.window.isStatusBarContrastEnforced = false
+    }
+
+    lifecycleDisposable.bindTo(activity)
+    activity.supportFragmentManager.setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, activity) { resultKey, bundle ->
+      if (bundle.containsKey(resultKey)) {
+        lifecycleDisposable += controlsAndInfoViewModel.setName(bundle.getString(resultKey)!!).subscribeBy(
+          onSuccess = {
+            if (it !is UpdateCallLinkResult.Update) {
+              Log.w(TAG, "Failed to set name. $it")
+              handleFailure()
+            }
+          },
+          onError = {
+            Log.w(TAG, "Failure during setName", it)
+            handleFailure()
+          }
+        )
+      }
+    }
 
     activity.setContent {
       val recipient by viewModel.getRecipientFlow().collectAsStateWithLifecycle(Recipient.UNKNOWN)
@@ -77,9 +114,16 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
       val callControlsState by viewModel.getCallControlsState().collectAsStateWithLifecycle(CallControlsState())
       val callParticipantsViewState by callScreenViewModel.callParticipantsViewState.collectAsStateWithLifecycle()
       val callParticipantsState = remember(callParticipantsViewState) { callParticipantsViewState.callParticipantsState }
-      val callParticipantsPagerState = remember(callParticipantsState) {
+      val callGridStrategy = rememberCallGridStrategy()
+      val gridParticipants = remember(callParticipantsState.allRemoteParticipants, callGridStrategy) {
+        callParticipantsState.allRemoteParticipants.take(callGridStrategy.maxTiles)
+      }
+      val overflowParticipants = remember(callParticipantsState.allRemoteParticipants, callGridStrategy) {
+        callParticipantsState.allRemoteParticipants.drop(callGridStrategy.maxTiles)
+      }
+      val callParticipantsPagerState = remember(gridParticipants, callParticipantsState) {
         CallParticipantsPagerState(
-          callParticipants = callParticipantsState.gridParticipants,
+          callParticipants = gridParticipants,
           focusedParticipant = callParticipantsState.focusedParticipant,
           isRenderInPip = callParticipantsState.isInPipMode,
           hideAvatar = callParticipantsState.hideAvatar
@@ -115,6 +159,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
       }
 
       val pendingParticipantsListener by this.pendingParticipantsViewListener.collectAsStateWithLifecycle()
+      val savedLocalParticipantLandscape by viewModel.savedLocalParticipantLandscape.collectAsStateWithLifecycle()
 
       val callScreenController = CallScreenController.rememberCallScreenController(
         skipHiddenState = callControlsState.skipHiddenState,
@@ -129,12 +174,15 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
         }
       }
 
+      val controlAndInfoState by controlsAndInfoViewModel.state
+
       SignalTheme(isDarkMode = true) {
         CallScreen(
           callRecipient = recipient,
           webRtcCallState = webRtcCallState,
           isRemoteVideoOffer = viewModel.isAnswerWithVideoAvailable(),
           isInPipMode = rememberIsInPipMode(),
+          savedLocalParticipantLandscape = savedLocalParticipantLandscape,
           callScreenState = callScreenState,
           callControlsState = callControlsState,
           callScreenController = callScreenController,
@@ -143,7 +191,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           callScreenSheetDisplayListener = callScreenSheetDisplayListener,
           callParticipantsPagerState = callParticipantsPagerState,
           pendingParticipantsListener = pendingParticipantsListener,
-          overflowParticipants = callParticipantsState.listParticipants,
+          overflowParticipants = overflowParticipants,
           localParticipant = callParticipantsState.localParticipant,
           localRenderState = callParticipantsState.localRenderState,
           reactions = callParticipantsState.reactions,
@@ -169,7 +217,18 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           onLocalPictureInPictureFocusClicked = viewModel::onLocalPictureInPictureFocusClicked,
           onControlsToggled = onControlsToggled,
           onCallScreenDialogDismissed = { callScreenViewModel.dialog.update { CallScreenDialogType.NONE } },
-          callParticipantUpdatePopupController = callParticipantUpdatePopupController
+          onWifiToCellularPopupDismissed = { callScreenViewModel.callScreenState.update { it.copy(displayWifiToCellularPopup = false) } },
+          onSwipeToSpeakerHintDismissed = { callScreenViewModel.callScreenState.update { it.copy(displaySwipeToSpeakerHint = false) } },
+          onRemoteMuteToastDismissed = { callScreenViewModel.callScreenState.update { it.copy(remoteMuteToastMessage = null) } },
+          callParticipantUpdatePopupController = callParticipantUpdatePopupController,
+          isInternalUser = RemoteConfig.internalUser,
+          isSelfAdmin = controlAndInfoState.isSelfAdmin(),
+          isCallLink = controlAndInfoState.callLink != null,
+          onMuteAudio = callInfoCallbacks::onMuteAudio,
+          onRemoveFromCall = callInfoCallbacks::onRemoveFromCall,
+          onContactDetails = callInfoCallbacks::onContactDetails,
+          onViewSafetyNumber = callInfoCallbacks::onViewSafetyNumber,
+          onGoToChat = callInfoCallbacks::onGoToChat
         )
       }
     }
@@ -218,6 +277,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   }
 
   override fun setRecipient(recipient: Recipient) {
+    controlsAndInfoViewModel.setRecipient(recipient)
     callScreenViewModel.callScreenState.update { it.copy(callRecipientId = recipient.id) }
   }
 
@@ -228,6 +288,9 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   override fun updateCallParticipants(callParticipantsViewState: CallParticipantsViewState) {
     callScreenViewModel.callParticipantsViewState.update { callParticipantsViewState }
     setStatusFromCallParticipantsState(activity, callParticipantsViewState)
+
+    val isWaitingToBeLetIn = callParticipantsViewState.callParticipantsState.groupCallState == WebRtcViewModel.GroupCallState.CONNECTED_AND_PENDING
+    callScreenViewModel.callScreenState.update { it.copy(isWaitingToBeLetIn = isWaitingToBeLetIn) }
   }
 
   override fun maybeDismissAudioPicker() {
@@ -308,6 +371,10 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
     callScreenViewModel.callScreenState.update { it.copy(displayWifiToCellularPopup = true) }
   }
 
+  override fun showRemoteMuteToast(message: String) {
+    callScreenViewModel.callScreenState.update { it.copy(remoteMuteToastMessage = message) }
+  }
+
   override fun hideMissingPermissionsNotice() {
     callScreenViewModel.callScreenState.update { it.copy(displayMissingPermissionsNotice = false) }
   }
@@ -326,6 +393,10 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   override fun onRaiseHandClick(raised: Boolean) {
     AppDependencies.signalCallManager.raiseHand(raised)
     callScreenViewModel.callScreenState.update { it.copy(displayAdditionalActionsDialog = false) }
+  }
+
+  private fun handleFailure() {
+    Toast.makeText(activity, R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
   }
 
   /**

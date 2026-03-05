@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.setRelativeDrawables
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * RecyclerView Adapter for the Call Log screen
@@ -254,7 +255,7 @@ class CallLogAdapter(
 
       binding.callRecipientName.text = SearchUtil.getHighlightedSpan(
         Locale.getDefault(),
-        { arrayOf(TextAppearanceSpan(context, R.style.Signal_Text_TitleSmall)) },
+        { arrayOf(TextAppearanceSpan(context, CoreUiR.style.Signal_Text_TitleSmall)) },
         callLinkName,
         model.callLink.searchQuery,
         SearchUtil.MATCH_ALL
@@ -266,7 +267,7 @@ class CallLogAdapter(
       TextViewCompat.setCompoundDrawableTintList(
         binding.callInfo,
         ColorStateList.valueOf(
-          ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant)
+          ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurfaceVariant)
         )
       )
 
@@ -334,7 +335,7 @@ class CallLogAdapter(
       binding.callRecipientName.text = if (searchQuery != null) {
         SearchUtil.getHighlightedSpan(
           Locale.getDefault(),
-          { arrayOf(TextAppearanceSpan(context, R.style.Signal_Text_TitleSmall)) },
+          { arrayOf(TextAppearanceSpan(context, CoreUiR.style.Signal_Text_TitleSmall)) },
           recipient.getDisplayName(context),
           searchQuery,
           SearchUtil.MATCH_ALL
@@ -346,6 +347,7 @@ class CallLogAdapter(
 
     private fun presentCallInfo(call: CallLogRow.Call, date: Long) {
       val callState = context.getString(getCallStateStringRes(call.record, call.children.size))
+      val (dateString, dateContentDescription) = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), date)
       binding.callInfo.text = context.getString(
         R.string.CallLogAdapter__s_dot_s,
         if (call.children.size > 1) {
@@ -353,7 +355,16 @@ class CallLogAdapter(
         } else {
           callState
         },
-        DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), date)
+        dateString
+      )
+      binding.callInfo.contentDescription = context.getString(
+        R.string.CallLogAdapter__s_dot_s,
+        if (call.children.size > 1) {
+          context.getString(R.string.CallLogAdapter__d_s, call.children.size, callState)
+        } else {
+          callState
+        },
+        dateContentDescription
       )
 
       binding.callInfo.setRelativeDrawables(
@@ -363,9 +374,9 @@ class CallLogAdapter(
       val color = ContextCompat.getColor(
         context,
         if (call.record.isDisplayedAsMissedCallInUi) {
-          R.color.signal_colorError
+          CoreUiR.color.signal_colorError
         } else {
-          R.color.signal_colorOnSurfaceVariant
+          CoreUiR.color.signal_colorOnSurfaceVariant
         }
       )
 
@@ -380,7 +391,7 @@ class CallLogAdapter(
     private fun presentCallType(model: CallModel) {
       when (model.call.record.type) {
         CallTable.Type.AUDIO_CALL -> {
-          binding.callType.setImageResource(R.drawable.symbol_phone_24)
+          binding.callType.setImageResource(CoreUiR.drawable.symbol_phone_24)
           binding.callType.contentDescription = context.getString(R.string.CallLogAdapter__start_a_voice_call)
           binding.callType.setOnClickListener { onStartAudioCallClicked(model.call.peer) }
           binding.callType.visible = true

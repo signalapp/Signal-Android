@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
+import org.signal.core.util.Util;
 
 import java.util.LinkedList;
 import java.util.List;

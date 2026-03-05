@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobs.AdminDeleteSendJob;
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob;
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
@@ -59,7 +60,7 @@ import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.mediasend.Media;
+import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -78,7 +79,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -265,11 +265,10 @@ public class MessageSender {
       long         messageId         = insertResult.getMessageId();
 
       if (!recipient.isPushV2Group()) {
-        Log.w(TAG, "Can only send polls to groups.");
-        return threadId;
+        SignalLocalMetrics.IndividualMessageSend.onInsertedIntoDatabase(messageId, metricId);
+      } else {
+        SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
       }
-
-      SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
 
       sendMessageInternal(context, recipient, sendType, messageId, insertResult.getQuoteAttachmentId(), Collections.emptyList());
       onMessageSent();
@@ -508,7 +507,7 @@ public class MessageSender {
 
   public static void sendRemoteDelete(long messageId) {
     MessageTable db = SignalDatabase.messages();
-    db.markAsRemoteDelete(messageId);
+    db.markAsDeleteBySelf(messageId);
     db.markAsSending(messageId);
 
     try {
@@ -516,6 +515,27 @@ public class MessageSender {
       onMessageSent();
     } catch (NoSuchMessageException e) {
       Log.w(TAG, "[sendRemoteDelete] Could not find message! Ignoring.");
+    }
+  }
+
+  public static void sendAdminDelete(long messageId) {
+    SignalDatabase.messages().markAsDeleteBySelf(messageId);
+    SignalDatabase.messages().markAsPendingAdminDelete(messageId);
+    AdminDeleteSendJob job = AdminDeleteSendJob.create(messageId, Collections.emptyList());
+    if (job != null) {
+      AppDependencies.getJobManager().add(job);
+    } else {
+      Log.w(TAG, "[sendAdminDelete] Could not create the admin delete job.");
+    }
+  }
+
+  public static void resendAdminDelete(MessageRecord message, List<RecipientId> filteredRecipients) {
+    SignalDatabase.messages().markAsPendingAdminDelete(message.getId());
+    AdminDeleteSendJob job = AdminDeleteSendJob.create(message.getId(), filteredRecipients);
+    if (job != null) {
+      AppDependencies.getJobManager().add(job);
+    } else {
+      Log.w(TAG, "[resendAdminDelete] Could not resend the admin delete job.");
     }
   }
 

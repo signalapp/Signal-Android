@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ApkUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.AppForegroundObserver
-import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.FileUtils
 import java.io.FileInputStream
 import java.io.IOException
@@ -148,7 +147,12 @@ object ApkUpdateInstaller {
   }
 
   private fun shouldAutoUpdate(): Boolean {
-    // TODO Auto-updates temporarily restricted to nightlies. Once we have designs for allowing users to opt-out of auto-updates, we can re-enable this
-    return Environment.IS_NIGHTLY && Build.VERSION.SDK_INT >= 31 && SignalStore.apkUpdate.autoUpdate && !AppForegroundObserver.isForegrounded()
+    // Once we have designs for allowing users to opt-out of auto-updates, we can re-enable this
+    return false
+
+//    val webRtcViewModel = EventBus.getDefault().getStickyEvent(WebRtcViewModel::class.java)
+//    val isCallActive = webRtcViewModel != null && webRtcViewModel.state != WebRtcViewModel.State.IDLE
+//
+//    return Build.VERSION.SDK_INT >= 31 && SignalStore.apkUpdate.autoUpdate && !AppForegroundObserver.isForegrounded() && !isCallActive
   }
 }

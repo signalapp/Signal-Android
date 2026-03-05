@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 /**
 * RecyclerView adapter for the chat folders displayed on conversation list
@@ -55,14 +56,14 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
       }
       if (model.isSelected) {
         itemView.backgroundTintList = if (callbacks.isScrolled()) {
-          ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorBackground))
+          ColorStateList.valueOf(ContextCompat.getColor(itemView.context, CoreUiR.color.signal_colorBackground))
         } else {
-          ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorSurface2))
+          ColorStateList.valueOf(ContextCompat.getColor(itemView.context, CoreUiR.color.signal_colorSurface2))
         }
-        name.setTextColor(ContextCompat.getColor(itemView.context, R.color.signal_colorOnSurface))
+        name.setTextColor(ContextCompat.getColor(itemView.context, CoreUiR.color.signal_colorOnSurface))
       } else {
         itemView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.transparent))
-        name.setTextColor(ContextCompat.getColor(itemView.context, R.color.signal_colorOnSurfaceVariant))
+        name.setTextColor(ContextCompat.getColor(itemView.context, CoreUiR.color.signal_colorOnSurfaceVariant))
       }
     }
 

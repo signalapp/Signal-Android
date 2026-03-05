@@ -66,19 +66,19 @@ public class AttachmentUtil {
     } else if (attachment.videoGif) {
       boolean allowed = NotInCallConstraint.isNotInConnectedCall() && allowedTypes.contains("image");
       if (!allowed) {
-        Log.w(TAG, "Not auto downloading. inCall: " + NotInCallConstraint.isNotInConnectedCall() + " allowedType: " + allowedTypes.contains("image"));
+        Log.w(TAG, "Not auto downloading. inCall: " + !NotInCallConstraint.isNotInConnectedCall() + " allowedType: " + allowedTypes.contains("image"));
       }
       return allowed;
     } else if (isNonDocumentType(contentType)) {
       boolean allowed = NotInCallConstraint.isNotInConnectedCall() && allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType));
       if (!allowed) {
-        Log.w(TAG, "Not auto downloading. inCall: " + NotInCallConstraint.isNotInConnectedCall() + " allowedType: " + allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType)));
+        Log.w(TAG, "Not auto downloading. inCall: " + !NotInCallConstraint.isNotInConnectedCall() + " allowedType: " + allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType)));
       }
       return allowed;
     } else {
       boolean allowed = NotInCallConstraint.isNotInConnectedCall() && allowedTypes.contains("documents");
       if (!allowed) {
-        Log.w(TAG, "Not auto downloading. inCall: " + NotInCallConstraint.isNotInConnectedCall() + " allowedType: " + allowedTypes.contains("documents"));
+        Log.w(TAG, "Not auto downloading. inCall: " + !NotInCallConstraint.isNotInConnectedCall() + " allowedType: " + allowedTypes.contains("documents"));
       }
       return allowed;
     }

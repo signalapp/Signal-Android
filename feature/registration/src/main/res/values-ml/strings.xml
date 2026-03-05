@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">പോകുന്നിടത്തെല്ലാം സ്വകാര്യത സംരക്ഷിക്കുക.\nഎല്ലാ സന്ദേശത്തിലും നിങ്ങൾ നിങ്ങളെപ്പോലെ ആകുക.</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal ഒരു ലാഭേച്ഛയില്ലാത്ത സ്ഥാപനമാണ്\n നിബന്ധനകളും സ്വകാര്യതാ നയവും</string>
+    <string name="RegistrationActivity_continue">തുടരുക</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">പുനഃസ്ഥാപിക്കുക അല്ലെങ്കിൽ കൈമാറ്റം ചെയ്യുക</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">അനുമതികൾ അനുവദിക്കുക</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">നിങ്ങൾക്ക് അറിയാവുന്ന ആളുകൾക്ക് സന്ദേശമയയ്ക്കാൻ സഹായിക്കുന്നതിന്, Signal ഈ അനുമതികൾ അഭ്യർത്ഥിക്കും. </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">അടുത്തത്</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">അറിയിപ്പുകൾ</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">പുതിയ സന്ദേശങ്ങൾ വരുമ്പോൾ അറിയിപ്പ് നേടൂ.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">കോൺടാക്ടുകൾ</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">നിങ്ങൾക്ക് അറിയാവുന്ന ആളുകളെ കണ്ടെത്തൂ. നിങ്ങളുടെ കോൺടാക്റ്റുകൾ എൻക്രിപ്റ്റ് ചെയ്‌തിരിക്കുന്നു, അത് Signal സേവനത്തിന് കാണാനാകില്ല.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">ഫോൺ കോളുകൾ</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">രജിസ്റ്റർ ചെയ്യൽ എളുപ്പമാക്കുകയും അധിക കോളിംഗ് ഫീച്ചറുകൾ പ്രവർത്തനക്ഷമമാക്കുകയും ചെയ്യുക.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">സ്റ്റോറേജ്</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">നിങ്ങളുടെ ഉപകരണത്തിൽ നിന്ന് ഫോട്ടോകളോ വീഡിയോകളോ ഫയലുകളോ അയയ്ക്കുക.</string>
+
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">ഫോൺ നമ്പർ</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">നിങ്ങൾക്ക് ഒരു പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് ലഭിക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">ഒരു രാജ്യം തിരഞ്ഞെടുക്കുക</string>
+    <string name="RegistrationActivity_phone_number_description">ഫോൺ നമ്പർ</string>
+    <string name="RegistrationActivity_next">അടുത്തത്</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">നിങ്ങളുടെ രാജ്യം</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">അടയ്ക്കുക</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">പേരോ രാജ്യ കോഡ് നമ്പറോ ഉപയോഗിച്ച് തിരയുക</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">അജ്ഞാത രാജ്യം</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">പരിശോധിച്ചുറപ്പിക്കൽ കോഡ്</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">ഞങ്ങൾ %1$s-ലേക്ക് അയച്ച കോഡ് നൽകുക</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">നമ്പർ തെറ്റാണോ?</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">കോഡ് വീണ്ടും അയയ്‌ക്കുക</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">പകരം എന്നെ വിളിക്കൂ</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">എന്നെ വിളിക്കൂ (%1$02d%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">കോഡ് തെറ്റാണ്</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">കണക്റ്റ് ചെയ്യാൻ കഴിയുന്നില്ല. നിങ്ങളുടെ നെറ്റ്‌വർക്ക് പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">വളരെയധികം ശ്രമങ്ങൾ. %1$s -ൽ വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു. വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">നിങ്ങളുടെ പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് അയയ്ക്കുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി. വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">തിരഞ്ഞെടുത്ത രീതിയിലൂടെ കോഡ് അയയ്ക്കാൻ കഴിഞ്ഞില്ല. മറ്റൊരു ഓപ്ഷൻ പരീക്ഷിച്ചു നോക്കൂ.</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">രജിസ്ട്രേഷൻ പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">പ്രശ്‌നമുണ്ടോ?</string>
+</resources>

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util
 
 import android.os.SystemClock
+import org.signal.core.util.LRUCache
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log

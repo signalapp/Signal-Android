@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.signal.storageservice.protos.groups.AccessControl;
+import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.thoughtcrime.securesms.R;
 
 public final class GV2AccessLevelUtil {

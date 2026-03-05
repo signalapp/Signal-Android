@@ -30,7 +30,7 @@ object ButtonStripPreference {
     val onMessageClick: () -> Unit = {},
     val onVideoClick: () -> Unit = {},
     val onAudioClick: () -> Unit = {},
-    val onMuteClick: () -> Unit = {},
+    val onMuteClick: (View) -> Unit = {},
     val onSearchClick: () -> Unit = {}
   ) : PreferenceModel<Model>() {
     override fun areContentsTheSame(newItem: Model): Boolean {
@@ -97,7 +97,7 @@ object ButtonStripPreference {
       message.setOnClickListener { model.onMessageClick() }
       videoCall.setOnClickListener { model.onVideoClick() }
       audioCall.setOnClickListener { model.onAudioClick() }
-      mute.setOnClickListener { model.onMuteClick() }
+      mute.setOnClickListener { model.onMuteClick(it) }
       search.setOnClickListener { model.onSearchClick() }
       addToStory.setOnClickListener { model.onAddToStoryClick() }
     }

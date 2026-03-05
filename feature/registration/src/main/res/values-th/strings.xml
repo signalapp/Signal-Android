@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">นำความเป็นส่วนตัวไปกับคุณทุกที่\nเป็นตัวคุณในทุกข้อความ</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal เป็นแอปไม่แสวงหาผลกำไร\nเงื่อนไขและนโยบายความเป็นส่วนตัว</string>
+    <string name="RegistrationActivity_continue">ทำต่อ</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">กู้คืนหรือถ่ายโอน</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">การอนุญาตสิทธิ์</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">เพื่อให้คุณสามารถส่งข้อความหาผู้ติดต่อที่รู้จัก Signal จะขอสิทธิ์การเข้าถึงต่อไปนี้ </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">ไว้ทีหลัง</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">ดำเนินการต่อ</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">การแจ้งเตือน</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">ได้รับแจ้งเตือนเมื่อมีข้อความใหม่</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">ผู้ติดต่อ</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">ค้นหาคนที่คุณรู้จัก โดยรายชื่อผู้ติดต่อของคุณจะได้รับการเข้ารหัสและไม่ถูกเปิดเผยต่อบริการของ Signal</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">การโทร</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">ช่วยให้การลงทะเบียนง่ายขึ้น พร้อมเข้าถึงฟีเจอร์การโทรอื่นๆ เพิ่มเติม</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">พื้นที่จัดเก็บ</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">ส่งรูปภาพ วิดีโอ และไฟล์ต่างๆ จากอุปกรณ์ของคุณ</string>
+
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">หมายเลขโทรศัพท์</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">คุณจะได้รับรหัสตรวจยืนยัน ซึ่งอาจมีค่าบริการจากผู้ให้บริการโทรศัพท์</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">เลือกประเทศ</string>
+    <string name="RegistrationActivity_phone_number_description">หมายเลขโทรศัพท์</string>
+    <string name="RegistrationActivity_next">ต่อไป</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">ประเทศของคุณ</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">ปิด</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">ค้นหาโดยชื่อหรือรหัสประเทศ</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">ประเทศที่ไม่รู้จัก</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">รหัสยืนยัน</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">ใส่รหัสที่เราส่งไปให้ %1$s</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">หมายเลขไม่ถูกต้องหรือเปล่า</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">ส่งรหัสอีกครั้ง</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">โทรหาฉันแทน</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">โทรหาฉัน (%1$02d:%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">รหัสไม่ถูกต้อง</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">ไม่สามารถเชื่อมต่อได้ โปรดตรวจสอบเครือข่ายของคุณแล้วลองอีกครั้ง</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">คุณลองหลายครั้งเกินไป โปรดลองอีกครั้งใน %1$s</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">มีข้อผิดพลาดที่ไม่คาดคิดเกิดขึ้น โปรดลองอีกครั้ง</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">พบปัญหาในการส่งรหัสยืนยันของคุณ โปรดลองอีกครั้ง</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">ไม่สามารถส่งรหัสผ่านทางวิธีที่คุณเลือก โปรดลองวิธีอื่น</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">ลงทะเบียนไม่สำเร็จ โปรดลองอีกครั้ง</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">ประสบปัญหาใช่หรือไม่</string>
+</resources>

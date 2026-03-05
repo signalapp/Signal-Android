@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.databinding.WhoCanFindMeByPhoneNumberFragmentBinding
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Allows the user to select who can see their phone number during registration.
@@ -77,8 +78,8 @@ class WhoCanFindMeByPhoneNumberFragment : DSLSettingsFragment(
             WhoCanFindMeByPhoneNumberState.EVERYONE -> R.string.WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your
             WhoCanFindMeByPhoneNumberState.NOBODY -> R.string.WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able
           },
-          DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
-          DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
+          DSLSettingsText.TextAppearanceModifier(CoreUiR.style.Signal_Text_BodyMedium),
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant))
         )
       )
     }

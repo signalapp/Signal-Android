@@ -41,15 +41,16 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
-import org.thoughtcrime.securesms.compose.ComposeDialogFragment
 import org.thoughtcrime.securesms.conversation.clicklisteners.PollVotesFragment.Companion.MAX_INITIAL_VOTER_COUNT
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
@@ -94,7 +95,7 @@ class PollVotesFragment : ComposeDialogFragment(), RecipientBottomSheetDialogFra
     Scaffolds.Settings(
       title = stringResource(if (state.poll?.hasEnded == true) R.string.Poll__poll_results else R.string.Poll__poll_details),
       onNavigationClick = this::dismissAllowingStateLoss,
-      navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_x_24),
+      navigationIcon = SignalIcons.X.imageVector,
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { paddingValues ->
       if (state.poll == null) {
@@ -209,7 +210,8 @@ private fun PollOptionSection(
     if (option.hasMostVotes) {
       Icon(
         imageVector = ImageVector.vectorResource(R.drawable.symbol_favorite_fill_16),
-        contentDescription = stringResource(R.string.Poll__poll_winner)
+        contentDescription = stringResource(R.string.Poll__poll_winner),
+        modifier = Modifier.padding(end = 2.dp)
       )
     }
     if (option.voters.isNotEmpty()) {

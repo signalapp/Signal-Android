@@ -5,8 +5,8 @@ import android.text.SpannableStringBuilder
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.signal.core.ui.R as CoreUiR
 
 sealed class DSLSettingsText {
 
@@ -62,9 +62,9 @@ sealed class DSLSettingsText {
     }
   }
 
-  object TitleLargeModifier : TextAppearanceModifier(R.style.Signal_Text_TitleLarge)
-  object TitleMediumModifier : TextAppearanceModifier(R.style.Signal_Text_TitleMedium)
-  object BodyLargeModifier : TextAppearanceModifier(R.style.Signal_Text_BodyLarge)
+  object TitleLargeModifier : TextAppearanceModifier(CoreUiR.style.Signal_Text_TitleLarge)
+  object TitleMediumModifier : TextAppearanceModifier(CoreUiR.style.Signal_Text_TitleMedium)
+  object BodyLargeModifier : TextAppearanceModifier(CoreUiR.style.Signal_Text_BodyLarge)
 
   open class TextAppearanceModifier(@StyleRes private val textAppearance: Int) : Modifier {
     override fun modify(context: Context, charSequence: CharSequence): CharSequence {

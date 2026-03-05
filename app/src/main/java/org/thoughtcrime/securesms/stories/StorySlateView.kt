@@ -9,9 +9,9 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import org.signal.blurhash.BlurHash
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.recipients.Recipient
