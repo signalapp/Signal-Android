@@ -4,6 +4,8 @@
  */
 package org.thoughtcrime.securesms.components.settings.app.backups.local
 
+import org.thoughtcrime.securesms.preferences.BackupFrequencyV1
+
 /**
  * Immutable state for the on-device (legacy) backups settings screen.
  *
@@ -16,5 +18,6 @@ data class LocalBackupsSettingsState(
   val lastBackupLabel: String? = null,
   val folderDisplayName: String? = null,
   val scheduleTimeLabel: String? = null,
+  val frequencyV1: BackupFrequencyV1 = BackupFrequencyV1.NEVER,
   val progress: BackupProgressState = BackupProgressState.Idle
 )

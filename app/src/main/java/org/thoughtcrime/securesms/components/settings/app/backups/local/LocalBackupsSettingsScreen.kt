@@ -187,6 +187,14 @@ internal fun LocalBackupsSettingsScreen(
           )
         }
 
+        item {
+          Rows.TextRow(
+            text = stringResource(id = R.string.BackupsPreferenceFragment__backup_frequency),
+            label = stringResource(state.frequencyV1.getResourceId()),
+            onClick = callback::onPickFrequencyClick
+          )
+        }
+
         if (!state.folderDisplayName.isNullOrBlank()) {
           item {
             Rows.TextRow(

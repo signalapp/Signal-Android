@@ -6,6 +6,7 @@ package org.thoughtcrime.securesms.components.settings.app.backups.local
 
 import android.Manifest
 import android.content.ActivityNotFoundException
+import android.content.DialogInterface
 import android.net.Uri
 import android.text.format.DateFormat
 import android.widget.Toast
@@ -14,12 +15,15 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import org.signal.core.ui.permissions.Permissions
+import org.signal.core.util.NoExternalStorageException
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob.enqueueArchive
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.preferences.BackupFrequencyPickerDialogFragment
+import org.thoughtcrime.securesms.preferences.BackupFrequencyV1
 import org.thoughtcrime.securesms.service.LocalBackupListener
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -31,6 +35,7 @@ sealed interface LocalBackupsSettingsCallback {
   fun onTurnOnClick()
   fun onCreateBackupClick()
   fun onPickTimeClick()
+  fun onPickFrequencyClick()
   fun onViewBackupKeyClick()
   fun onLearnMoreClick()
   fun onLaunchBackupLocationPickerClick()
@@ -41,6 +46,7 @@ sealed interface LocalBackupsSettingsCallback {
     override fun onTurnOnClick() = Unit
     override fun onCreateBackupClick() = Unit
     override fun onPickTimeClick() = Unit
+    override fun onPickFrequencyClick() = Unit
     override fun onViewBackupKeyClick() = Unit
     override fun onLearnMoreClick() = Unit
     override fun onLaunchBackupLocationPickerClick() = Unit
@@ -86,13 +92,21 @@ class DefaultLocalBackupsSettingsCallback(
       .build()
 
     picker.addOnPositiveButtonClickListener {
-      SignalStore.settings.setBackupSchedule(picker.hour, picker.minute)
-      TextSecurePreferences.setNextBackupTime(fragment.requireContext(), 0)
-      LocalBackupListener.schedule(fragment.requireContext())
+      applyNewBackupScheduleSetting(SignalStore.settings.backupFrequency, picker.hour, picker.minute)
       viewModel.refreshSettingsState()
     }
 
     picker.show(fragment.childFragmentManager, "TIME_PICKER")
+  }
+
+  override fun onPickFrequencyClick() {
+    val frequencyPickerDialogFragment = BackupFrequencyPickerDialogFragment(SignalStore.settings.backupFrequency)
+    frequencyPickerDialogFragment.setOnPositiveButtonClickListener { _: DialogInterface?, _: Int ->
+      val frequency = frequencyPickerDialogFragment.getValue()
+      applyNewBackupScheduleSetting(frequency, SignalStore.settings.backupHour, SignalStore.settings.backupMinute)
+      viewModel.refreshSettingsState()
+    }
+    frequencyPickerDialogFragment.show(fragment.childFragmentManager, "FREQUENCY_PICKER")
   }
 
   override fun onCreateBackupClick() {
@@ -151,4 +165,24 @@ class DefaultLocalBackupsSettingsCallback(
     AppDependencies.jobManager.cancelAllInQueue(LocalBackupJob.QUEUE)
     BackupUtil.deleteUnifiedBackups(fragment.requireContext(), path)
   }
+
+  /** Update the settings on disk and then schedule a backup.
+   *
+   *
+   * This method should be called when the user presses the buttons to set a new backup schedule with the given parameters.  */
+  private fun applyNewBackupScheduleSetting(frequency: BackupFrequencyV1, hour: Int, minute: Int) {
+    Log.i(TAG, "Setting backup schedule: ${frequency.name} at ${hour}h${minute}m")
+    SignalStore.settings.setBackupSchedule(frequency, hour, minute)
+    if (frequency == BackupFrequencyV1.NEVER) {
+      LocalBackupListener.unschedule(fragment.requireContext())
+    } else {
+      // Schedule the next backup using the newly set frequency, but relative to the time of the
+      // last backup. This should only kick off a new backup to be created immediately if the
+      // last backup was long enough ago (or doesn't exist at all).
+      val lastBackupTime = try { BackupUtil.getLatestBackup()?.timestamp ?: 0L } catch (_: NoExternalStorageException) { 0L }
+      TextSecurePreferences.setNextBackupTime(fragment.requireContext(), lastBackupTime + frequency.days * 24 * 60 * 60 * 1000L)
+      LocalBackupListener.schedule(fragment.requireContext())
+    }
+  }
+
 }
