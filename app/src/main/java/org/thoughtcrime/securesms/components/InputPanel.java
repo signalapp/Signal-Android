@@ -96,6 +96,8 @@ public class InputPanel extends ConstraintLayout
   private QuoteView       quoteView;
   private LinkPreviewView linkPreview;
   private EmojiToggle     mediaKeyboard;
+  private ImageButton     inlineAttachButton;
+  private ImageButton     mainAttachButton;
   private ComposeText     composeText;
   private ImageButton     quickCameraToggle;
   private ImageButton     quickAudioToggle;
@@ -112,6 +114,7 @@ public class InputPanel extends ConstraintLayout
   private MicrophoneRecorderView microphoneRecorderView;
   private SlideToCancel          slideToCancel;
   private RecordTime             recordTime;
+  private ValueAnimator          attachButtonAnimator;
   private ValueAnimator          quoteAnimator;
   private ValueAnimator          editMessageAnimator;
   private VoiceNoteDraftView     voiceNoteDraftView;
@@ -151,6 +154,8 @@ public class InputPanel extends ConstraintLayout
     this.quoteView              = findViewById(R.id.quote_view);
     this.linkPreview            = findViewById(R.id.link_preview);
     this.mediaKeyboard          = findViewById(R.id.emoji_toggle);
+    this.inlineAttachButton     = findViewById(R.id.inline_attachment_button);
+    this.mainAttachButton       = findViewById(R.id.attach_button);
     this.composeText            = findViewById(R.id.embedded_text_editor);
     this.composeTextContainer   = findViewById(R.id.embedded_text_editor_container);
     this.quickCameraToggle      = findViewById(R.id.quick_camera_toggle);
@@ -378,6 +383,36 @@ public class InputPanel extends ConstraintLayout
 
   public MediaKeyboard.MediaKeyboardListener getMediaKeyboardListener() {
     return mediaKeyboard;
+  }
+
+  /** Sets the attach buttons to a + sign. */
+  public void rotateAttachButtonsToOpen() {
+    if (attachButtonAnimator != null && attachButtonAnimator.isRunning()) {
+      attachButtonAnimator.end();
+    }
+    attachButtonAnimator = createAttachmentButtonRotationAnimator(45, 0);
+    attachButtonAnimator.start();
+  }
+
+  /** Sets the attach buttons to a x sign. */
+  public void rotateAttachButtonsToClose() {
+    if (attachButtonAnimator != null && attachButtonAnimator.isRunning()) {
+      attachButtonAnimator.end();
+    }
+    attachButtonAnimator = createAttachmentButtonRotationAnimator(0, 45);
+    attachButtonAnimator.start();
+  }
+
+  private ValueAnimator createAttachmentButtonRotationAnimator(float start, float end) {
+    ValueAnimator animator = ValueAnimator.ofFloat(start, end).setDuration(getResources().getInteger(R.integer.fake_keyboard_hide_duration));
+    animator.addUpdateListener(
+        animation -> {
+          float degrees = (float) animation.getAnimatedValue();
+          inlineAttachButton.setRotation(degrees);
+          mainAttachButton.setRotation(degrees);
+        }
+    );
+    return animator;
   }
 
   public void setWallpaperEnabled(boolean enabled) {
