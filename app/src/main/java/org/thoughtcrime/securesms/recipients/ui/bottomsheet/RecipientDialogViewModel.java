@@ -137,7 +137,7 @@ final class RecipientDialogViewModel extends ViewModel {
     if (groupId != null && groupId.isV2() && recipient.isIndividual() && !recipient.isSelf()) {
       SignalExecutors.BOUNDED.execute(() -> {
         GroupId.V2        v2GroupId   = (GroupId.V2) groupId;
-        MemberLabel       label       = MemberLabelRepository.getInstance().getLabelJava(v2GroupId, recipient);
+        MemberLabel       label       = MemberLabelRepository.getInstance().getLabelSync(v2GroupId, recipient);
         StyledMemberLabel styledLabel = null;
 
         if (label != null) {

@@ -113,7 +113,7 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
     }
 
     List<Recipient>               admins              = groupRecord.getAdmins();
-    Map<RecipientId, MemberLabel> labelsByRecipientId = MemberLabelRepository.getInstance().getLabelsJava(groupId.requireV2(), admins);
+    Map<RecipientId, MemberLabel> labelsByRecipientId = MemberLabelRepository.getInstance().getLabelsSync(groupId.requireV2(), admins);
     List<ServiceId>               memberIds           = groupRecord.requireV2GroupProperties().getMemberServiceIds();
     ColorizerV2                   colorizer           = new ColorizerV2(memberIds);
 

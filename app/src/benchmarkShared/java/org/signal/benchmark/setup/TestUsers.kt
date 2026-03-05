@@ -171,13 +171,22 @@ object TestUsers {
     return others
   }
 
-  fun setupGroup(): GroupId.V2 {
+  fun setupGroup(withLabels: Boolean = false): GroupId.V2 {
     val members = setupTestClients(5)
     val self = Recipient.self()
 
+    val labels = listOf("Admin", "Mod", "VIP", "Helper", "Member")
     val fullMembers = buildList {
       add(member(aci = self.requireAci()))
-      addAll(members.map { member(aci = Recipient.resolved(it).requireAci()) })
+      addAll(
+        members.mapIndexed { index, id ->
+          if (withLabels) {
+            member(aci = Recipient.resolved(id).requireAci(), labelString = labels[index % labels.size])
+          } else {
+            member(aci = Recipient.resolved(id).requireAci())
+          }
+        }
+      )
     }
 
     val group = DecryptedGroup(
