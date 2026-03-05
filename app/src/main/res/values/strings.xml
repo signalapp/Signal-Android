@@ -6798,6 +6798,53 @@
     <string name="MyStories__this_story_will_be_deleted">This story will be deleted for you and everyone who received it.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Unable to save</string>
+
+    <!-- StoryArchive -->
+    <!-- Title for the story archive screen -->
+    <string name="StoryArchive__story_archive">Story archive</string>
+    <!-- Section header in story settings -->
+    <string name="StoryArchive__archive">Archive</string>
+    <!-- Label for switch to enable story archiving -->
+    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <!-- Description for the archive toggle -->
+    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <!-- Label for archive duration preference -->
+    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <!-- Archive duration option: forever -->
+    <string name="StoryArchive__forever">Forever</string>
+    <!-- Archive duration option: 1 year -->
+    <string name="StoryArchive__1_year">1 year</string>
+    <!-- Archive duration option: 6 months -->
+    <string name="StoryArchive__6_months">6 months</string>
+    <!-- Archive duration option: 30 days -->
+    <string name="StoryArchive__30_days">30 days</string>
+    <!-- Empty state title when no archived stories exist -->
+    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <!-- Empty state message when no archived stories exist -->
+    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <!-- Empty state button to navigate to story settings -->
+    <string name="StoryArchive__go_to_settings">Go to settings</string>
+    <!-- Label for sort order menu -->
+    <string name="StoryArchive__sort_by">Sort by</string>
+    <!-- Sort order option: newest first -->
+    <string name="StoryArchive__newest">Newest</string>
+    <!-- Sort order option: oldest first -->
+    <string name="StoryArchive__oldest">Oldest</string>
+    <!-- Delete action in story archive multi-select bottom bar -->
+    <string name="StoryArchive__delete">Delete</string>
+    <!-- Content description for selecting a story in multi-select mode -->
+    <string name="StoryArchive__select_story">Select story</string>
+    <!-- Confirmation dialog body when deleting stories from archive -->
+    <plurals name="StoryArchive__delete_n_stories">
+        <item quantity="one">Delete %d story? This cannot be undone.</item>
+        <item quantity="other">Delete %d stories? This cannot be undone.</item>
+    </plurals>
+    <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
+    <plurals name="StoryArchive__d_selected">
+        <item quantity="one">%d selected</item>
+        <item quantity="other">%d selected</item>
+    </plurals>
+
     <!-- Displayed at bottom of story viewer when current item has views -->
     <plurals name="StoryViewerFragment__d_views">
         <item quantity="one">%1$d view</item>

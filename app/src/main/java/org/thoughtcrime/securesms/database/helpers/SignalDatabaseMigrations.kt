@@ -158,6 +158,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V301_RemoveCallLink
 import org.thoughtcrime.securesms.database.helpers.migration.V302_AddDeletedByColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V303_CaseInsensitiveUsernames
 import org.thoughtcrime.securesms.database.helpers.migration.V304_CallAndReplyNotificationSettings
+import org.thoughtcrime.securesms.database.helpers.migration.V305_AddStoryArchivedColumn
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -322,10 +323,11 @@ object SignalDatabaseMigrations {
     301 to V301_RemoveCallLinkEpoch,
     302 to V302_AddDeletedByColumn,
     303 to V303_CaseInsensitiveUsernames,
-    304 to V304_CallAndReplyNotificationSettings
+    304 to V304_CallAndReplyNotificationSettings,
+    305 to V305_AddStoryArchivedColumn
   )
 
-  const val DATABASE_VERSION = 304
+  const val DATABASE_VERSION = 305
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {

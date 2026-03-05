@@ -36,7 +36,9 @@ class StoryViewerViewModel(
         storyViewerArgs.storyThumbUri != null -> StoryViewerState.CrossfadeSource.ImageUri(storyViewerArgs.storyThumbUri, storyViewerArgs.storyThumbBlur)
         else -> StoryViewerState.CrossfadeSource.None
       },
-      skipCrossfade = storyViewerArgs.isFromNotification || storyViewerArgs.isFromQuote
+      skipCrossfade = storyViewerArgs.isFromNotification ||
+        storyViewerArgs.isFromQuote ||
+        (storyViewerArgs.isFromArchive && storyViewerArgs.storyThumbTextModel == null && storyViewerArgs.storyThumbUri == null)
     )
   )
 
@@ -128,7 +130,9 @@ class StoryViewerViewModel(
   }
 
   private fun getStories(): Single<List<RecipientId>> {
-    return if (storyViewerArgs.recipientIds.isNotEmpty()) {
+    return if (storyViewerArgs.isFromArchive) {
+      Single.just(listOf(storyViewerArgs.recipientId))
+    } else if (storyViewerArgs.recipientIds.isNotEmpty()) {
       Single.just(storyViewerArgs.recipientIds - hidden)
     } else {
       repository.getStories(

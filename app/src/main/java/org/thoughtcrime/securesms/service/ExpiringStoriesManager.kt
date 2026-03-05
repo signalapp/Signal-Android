@@ -44,8 +44,19 @@ class ExpiringStoriesManager(
   @WorkerThread
   override fun executeEvent(event: Event) {
     val threshold = System.currentTimeMillis() - STORY_LIFESPAN
-    val deletes = mmsDatabase.deleteStoriesOlderThan(threshold, SignalStore.story.userHasViewedOnboardingStory)
+    val hasSeenOnboarding = SignalStore.story.userHasViewedOnboardingStory
+
+    if (SignalStore.story.isArchiveEnabled) {
+      val archived = mmsDatabase.archiveStoriesOlderThan(threshold, hasSeenOnboarding)
+      Log.i(TAG, "Archived $archived outgoing stories before $threshold")
+    }
+
+    val deletes = mmsDatabase.deleteUnarchivedStoriesOlderThan(threshold, hasSeenOnboarding)
     Log.i(TAG, "Deleted $deletes stories before $threshold")
+
+    if (SignalStore.story.isArchiveEnabled) {
+      AppDependencies.expireArchivedStoriesManager.scheduleIfNecessary()
+    }
   }
 
   @WorkerThread

@@ -226,6 +226,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val PINNING_MESSAGE_ID = "pinning_message_id"
     const val PINNED_AT = "pinned_at"
     const val DELETED_BY = "deleted_by"
+    const val STORY_ARCHIVED = "story_archived"
 
     const val QUOTE_NOT_PRESENT_ID = 0L
     const val QUOTE_TARGET_MISSING_ID = -1L
@@ -297,7 +298,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $PINNED_UNTIL INTEGER DEFAULT 0,
         $PINNING_MESSAGE_ID INTEGER DEFAULT 0,
         $PINNED_AT INTEGER DEFAULT 0,
-        $DELETED_BY INTEGER DEFAULT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE
+        $DELETED_BY INTEGER DEFAULT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
+        $STORY_ARCHIVED INTEGER DEFAULT 0
       )
     """
 
@@ -331,7 +333,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       "CREATE INDEX IF NOT EXISTS message_votes_unread_index ON $TABLE_NAME ($VOTES_UNREAD)",
       "CREATE INDEX IF NOT EXISTS message_pinned_until_index ON $TABLE_NAME ($PINNED_UNTIL)",
       "CREATE INDEX IF NOT EXISTS message_pinned_at_index ON $TABLE_NAME ($PINNED_AT)",
-      "CREATE INDEX IF NOT EXISTS message_deleted_by_index ON $TABLE_NAME ($DELETED_BY)"
+      "CREATE INDEX IF NOT EXISTS message_deleted_by_index ON $TABLE_NAME ($DELETED_BY)",
+      "CREATE INDEX IF NOT EXISTS message_story_archived_index ON $TABLE_NAME ($STORY_ARCHIVED, $STORY_TYPE, $DATE_SENT) WHERE $STORY_TYPE > 0 AND $STORY_ARCHIVED > 0"
     )
 
     private val MMS_PROJECTION_BASE = arrayOf(
@@ -433,7 +436,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         ) AS ${AttachmentTable.ATTACHMENT_JSON_ALIAS}
       """.toSingleLine()
 
-    private const val IS_STORY_CLAUSE = "$STORY_TYPE > 0 AND $DELETED_BY IS NULL"
+    private const val IS_STORY_CLAUSE = "$STORY_TYPE > 0 AND $DELETED_BY IS NULL AND $STORY_ARCHIVED = 0"
+    private const val IS_ARCHIVED_STORY_CLAUSE = "$STORY_TYPE > 0 AND $DELETED_BY IS NULL AND $STORY_ARCHIVED > 0"
     private const val RAW_ID_WHERE = "$TABLE_NAME.$ID = ?"
 
     private val SNIPPET_QUERY =
@@ -1683,9 +1687,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .run()
   }
 
-  fun deleteStoriesOlderThan(timestamp: Long, hasSeenReleaseChannelStories: Boolean): Int {
+  fun deleteUnarchivedStoriesOlderThan(timestamp: Long, hasSeenReleaseChannelStories: Boolean): Int {
     return writableDatabase.withinTransaction { db ->
       val releaseChannelThreadId = getReleaseChannelThreadId(hasSeenReleaseChannelStories)
+
       val storiesBeforeTimestampWhere = "$IS_STORY_CLAUSE AND $DATE_SENT < ? AND $THREAD_ID != ?"
       val sharedArgs = buildArgs(timestamp, releaseChannelThreadId)
 
@@ -1756,6 +1761,65 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
 
       deletedStoryCount
+    }
+  }
+
+  fun archiveStoriesOlderThan(timestamp: Long, hasSeenReleaseChannelStories: Boolean): Int {
+    val releaseChannelThreadId = getReleaseChannelThreadId(hasSeenReleaseChannelStories)
+    val outgoingFilter = "($outgoingTypeClause)"
+
+    return writableDatabase
+      .update(TABLE_NAME)
+      .values(STORY_ARCHIVED to 1)
+      .where("$IS_STORY_CLAUSE AND $DATE_SENT < ? AND $THREAD_ID != ? AND $outgoingFilter", timestamp, releaseChannelThreadId)
+      .run()
+  }
+
+  fun getArchiveScreenStoriesCount(includeActive: Boolean): Int {
+    val storyClause = if (includeActive) "$STORY_TYPE > 0 AND $DELETED_BY IS NULL" else IS_ARCHIVED_STORY_CLAUSE
+    val where = "$storyClause AND ($outgoingTypeClause)"
+    return readableDatabase.select("COUNT(*)").from(TABLE_NAME).where(where).run().readToSingleInt()
+  }
+
+  fun getArchiveScreenStoriesPage(includeActive: Boolean, sortNewest: Boolean, offset: Int, limit: Int): Reader {
+    val storyClause = if (includeActive) "$STORY_TYPE > 0 AND $DELETED_BY IS NULL" else IS_ARCHIVED_STORY_CLAUSE
+    val where = "$storyClause AND ($outgoingTypeClause)"
+    val order = if (sortNewest) "$TABLE_NAME.$DATE_SENT DESC" else "$TABLE_NAME.$DATE_SENT ASC"
+    return MmsReader(rawQueryWithAttachments(where, null, orderBy = order, limit = limit.toLong(), offset = offset.toLong()))
+  }
+
+  fun getOldestArchivedStorySentTimestamp(): Long? {
+    return readableDatabase
+      .select(DATE_SENT)
+      .from(TABLE_NAME)
+      .where(IS_ARCHIVED_STORY_CLAUSE)
+      .limit(1)
+      .orderBy("$DATE_SENT ASC")
+      .run()
+      .readToSingleObject { it.getLong(0) }
+  }
+
+  fun deleteArchivedStoriesOlderThan(timestamp: Long): Int {
+    return writableDatabase.withinTransaction { db ->
+      val where = "$IS_ARCHIVED_STORY_CLAUSE AND $DATE_SENT < ?"
+      val args = buildArgs(timestamp)
+
+      val deletedCount = db.select(ID)
+        .from(TABLE_NAME)
+        .where(where, args)
+        .run()
+        .use { cursor ->
+          while (cursor.moveToNext()) {
+            deleteMessage(cursor.requireLong(ID))
+          }
+          cursor.count
+        }
+
+      if (deletedCount > 0) {
+        OptimizeMessageSearchIndexJob.enqueue()
+      }
+
+      deletedCount
     }
   }
 
@@ -2057,7 +2121,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   /**
    * Note: [reverse] and [orderBy] are mutually exclusive. If you want the order to be reversed, explicitly use 'ASC' or 'DESC'
    */
-  private fun rawQueryWithAttachments(where: String, arguments: Array<String>?, reverse: Boolean = false, limit: Long = 0, orderBy: String = ""): Cursor {
+  private fun rawQueryWithAttachments(where: String, arguments: Array<String>?, reverse: Boolean = false, limit: Long = 0, offset: Long = 0, orderBy: String = ""): Cursor {
     val database = databaseHelper.signalReadableDatabase
     var rawQueryString = """
       SELECT 
@@ -2078,6 +2142,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     if (limit > 0) {
       rawQueryString += " LIMIT $limit"
+      if (offset > 0) {
+        rawQueryString += " OFFSET $offset"
+      }
     }
 
     return database.rawQuery(rawQueryString, arguments)

@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageManager;
 import org.thoughtcrime.securesms.service.DeletedCallEventManager;
+import org.thoughtcrime.securesms.service.ExpiringArchivedStoriesManager;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.ExpiringStoriesManager;
 import org.thoughtcrime.securesms.service.PendingRetryReceiptManager;
@@ -255,6 +256,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull ExpiringStoriesManager provideExpiringStoriesManager() {
     return new ExpiringStoriesManager(context);
+  }
+
+  @Override
+  public @NonNull ExpiringArchivedStoriesManager provideExpiringArchivedStoriesManager() {
+    return new ExpiringArchivedStoriesManager(context);
   }
 
   @Override

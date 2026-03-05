@@ -536,6 +536,12 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
 
         <activity
+            android:name=".stories.archive.StoryArchiveActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Signal.DayNight.NoActionBar" />
+
+        <activity
             android:name=".stories.viewer.StoryViewerActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"
@@ -1428,6 +1434,10 @@
 
         <receiver
             android:name=".service.ExpiringStoriesManager$ExpireStoriesAlarm"
+            android:exported="false" />
+
+        <receiver
+            android:name=".service.ExpiringArchivedStoriesManager$ExpireArchivedStoriesAlarm"
             android:exported="false" />
 
         <receiver

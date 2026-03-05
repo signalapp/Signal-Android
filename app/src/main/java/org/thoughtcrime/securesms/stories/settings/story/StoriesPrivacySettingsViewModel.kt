@@ -14,9 +14,11 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSource
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSourceRepository
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.stories.archive.StoryArchiveDuration
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 class StoriesPrivacySettingsViewModel(
@@ -28,7 +30,9 @@ class StoriesPrivacySettingsViewModel(
   private val store = RxStore(
     StoriesPrivacySettingsState(
       areStoriesEnabled = Stories.isFeatureEnabled(),
-      areViewReceiptsEnabled = SignalStore.story.viewedReceiptsEnabled
+      areViewReceiptsEnabled = SignalStore.story.viewedReceiptsEnabled,
+      isArchiveEnabled = SignalStore.story.isArchiveEnabled,
+      archiveDuration = SignalStore.story.archiveDuration
     )
   )
 
@@ -87,6 +91,24 @@ class StoriesPrivacySettingsViewModel(
     SignalStore.story.viewedReceiptsEnabled = !SignalStore.story.viewedReceiptsEnabled
     store.update { it.copy(areViewReceiptsEnabled = SignalStore.story.viewedReceiptsEnabled) }
     repository.onSettingsChanged()
+  }
+
+  fun toggleArchiveEnabled() {
+    SignalStore.story.isArchiveEnabled = !SignalStore.story.isArchiveEnabled
+    store.update {
+      it.copy(isArchiveEnabled = SignalStore.story.isArchiveEnabled)
+    }
+    if (SignalStore.story.isArchiveEnabled) {
+      AppDependencies.expireArchivedStoriesManager.scheduleIfNecessary()
+    }
+  }
+
+  fun setArchiveDuration(duration: StoryArchiveDuration) {
+    SignalStore.story.archiveDuration = duration
+    store.update {
+      it.copy(archiveDuration = duration)
+    }
+    AppDependencies.expireArchivedStoriesManager.scheduleIfNecessary()
   }
 
   fun displayGroupsAsStories(recipientIds: List<RecipientId>) {

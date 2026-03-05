@@ -151,10 +151,22 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
     return Stories.enqueueAttachmentsFromStoryForDownload(post.conversationMessage.messageRecord as MmsMessageRecord, true)
   }
 
-  fun getStoryPostsFor(recipientId: RecipientId, isOutgoingOnly: Boolean): Observable<List<StoryPost>> {
-    return getStoryRecords(recipientId, isOutgoingOnly)
-      .switchMap { records ->
-        val posts: List<Observable<StoryPost>> = records.map {
+  fun getStoryPostsFor(recipientId: RecipientId, isOutgoingOnly: Boolean, isFromArchive: Boolean = false, initialStoryId: Long = -1L): Observable<List<StoryPost>> {
+    val records = if (isFromArchive && initialStoryId > 0) {
+      Observable.fromCallable {
+        try {
+          listOf(SignalDatabase.messages.getMessageRecord(initialStoryId))
+        } catch (e: NoSuchMessageException) {
+          emptyList()
+        }
+      }
+    } else {
+      getStoryRecords(recipientId, isOutgoingOnly)
+    }
+
+    return records
+      .switchMap { recordList ->
+        val posts: List<Observable<StoryPost>> = recordList.map {
           getStoryPostFromRecord(recipientId, it).distinctUntilChanged()
         }
         if (posts.isEmpty()) {

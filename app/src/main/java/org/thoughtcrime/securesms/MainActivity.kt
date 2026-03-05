@@ -170,6 +170,7 @@ import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment
 import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.stories.archive.StoryArchiveActivity
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment
 import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
 import org.thoughtcrime.securesms.util.AppForegroundObserver
@@ -1177,6 +1178,10 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
     override fun onStoryPrivacyClick() {
       startActivity(StorySettingsActivity.getIntent(this@MainActivity))
+    }
+
+    override fun onStoryArchiveClick() {
+      startActivity(StoryArchiveActivity.createIntent(this@MainActivity))
     }
 
     override fun onCloseSearchClick() {
