@@ -506,11 +506,10 @@ public class MessageSender {
   }
 
   public static void sendRemoteDelete(long messageId) {
-    MessageTable db = SignalDatabase.messages();
-    db.markAsDeleteBySelf(messageId);
-    db.markAsSending(messageId);
-
     try {
+      MessageTable db = SignalDatabase.messages();
+      db.markAsDeleteBySelf(messageId);
+      db.markAsSending(messageId);
       RemoteDeleteSendJob.create(messageId).enqueue();
       onMessageSent();
     } catch (NoSuchMessageException e) {
@@ -519,13 +518,17 @@ public class MessageSender {
   }
 
   public static void sendAdminDelete(long messageId) {
-    SignalDatabase.messages().markAsDeleteBySelf(messageId);
-    SignalDatabase.messages().markAsPendingAdminDelete(messageId);
-    AdminDeleteSendJob job = AdminDeleteSendJob.create(messageId, Collections.emptyList());
-    if (job != null) {
-      AppDependencies.getJobManager().add(job);
-    } else {
-      Log.w(TAG, "[sendAdminDelete] Could not create the admin delete job.");
+    try {
+      SignalDatabase.messages().markAsDeleteBySelf(messageId);
+      SignalDatabase.messages().markAsPendingAdminDelete(messageId);
+      AdminDeleteSendJob job = AdminDeleteSendJob.create(messageId, Collections.emptyList());
+      if (job != null) {
+        AppDependencies.getJobManager().add(job);
+      } else {
+        Log.w(TAG, "[sendAdminDelete] Could not create the admin delete job.");
+      }
+    } catch (NoSuchMessageException e) {
+      Log.w(TAG, "[sendAdminDelete] Could not find message! Ignoring.");
     }
   }
 

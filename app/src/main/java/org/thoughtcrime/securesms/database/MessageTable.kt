@@ -2319,6 +2319,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
+  @Throws(NoSuchMessageException::class)
   fun markAsDeleteBySelf(messageId: Long) {
     val targetMessage: MessageRecord = getMessageRecord(messageId)
     markAsRemoteDelete(targetMessage, Recipient.self().id)
