@@ -36,7 +36,9 @@ import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.signal.core.util.Util;
 import org.signal.core.ui.util.ViewUtil;
+import org.thoughtcrime.securesms.util.LinkUtil;
 
+import java.net.IDN;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -296,6 +298,12 @@ public class LinkPreviewView extends FrameLayout {
       HttpUrl url = HttpUrl.parse(linkPreview.getUrl());
       if (url != null) {
         domain = url.topPrivateDomain();
+        if (domain != null) {
+          String unicodeDomain = IDN.toUnicode(domain);
+          if (LinkUtil.isLegalUrl(unicodeDomain)) {
+            domain = unicodeDomain;
+          }
+        }
       }
     }
 
