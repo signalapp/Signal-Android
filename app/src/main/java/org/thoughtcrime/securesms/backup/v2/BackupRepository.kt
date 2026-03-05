@@ -1218,6 +1218,7 @@ object BackupRepository {
     }
     SignalStore.backup.hasInvalidBackupVersion = false
 
+    var transactionSuccessful = false
     try {
       // Removing all the data from the various tables is *very* expensive (i.e. can take *several* minutes) if we don't do some pre-work.
       // SQLite optimizes deletes if there's no foreign keys, triggers, or WHERE clause, so that's the environment we're gonna create.
@@ -1406,9 +1407,15 @@ object BackupRepository {
       stopwatch.split("fk-check")
 
       SignalDatabase.rawDatabase.setTransactionSuccessful()
+      transactionSuccessful = true
     } finally {
       if (SignalDatabase.rawDatabase.inTransaction()) {
         SignalDatabase.rawDatabase.endTransaction()
+      }
+
+      if (!transactionSuccessful) {
+        Log.w(TAG, "[import] Transaction failed, clearing release channel recipient ID from key-value store.")
+        SignalStore.releaseChannel.clearReleaseChannelRecipientId()
       }
 
       Log.d(TAG, "[import] Re-enabling foreign keys...")
