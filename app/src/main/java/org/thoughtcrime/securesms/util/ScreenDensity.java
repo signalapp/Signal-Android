@@ -44,10 +44,10 @@ public final class ScreenDensity {
     String bucket = UNKNOWN;
 
     for (Map.Entry<Integer, String> entry : LEVELS.entrySet()) {
-      bucket = entry.getValue();
       if (entry.getKey() > density) {
         break;
       }
+      bucket = entry.getValue();
     }
 
     return new ScreenDensity(bucket, density);
