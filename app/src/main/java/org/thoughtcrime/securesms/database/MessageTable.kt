@@ -43,6 +43,7 @@ import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
 import org.signal.core.util.exists
 import org.signal.core.util.forEach
+import org.signal.core.util.forceForeignKeyConstraintsEnabled
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
@@ -4086,38 +4087,54 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     SignalTrace.beginSection("MessageTable#deleteMessagesInThread")
     for (threadId in threadsWithPossibleDeletes) {
-      val subSelect = "SELECT ${TABLE_NAME}.$ID FROM $TABLE_NAME WHERE ${TABLE_NAME}.$THREAD_ID = $threadId $extraWhere LIMIT $DELETE_BATCH_SIZE"
+      val batchTable = "tmp_delete_batch"
+      val batchSelect = "SELECT $ID FROM $batchTable"
       var deletedCount: Int
       do {
         deletedCount = writableDatabase.withinTransaction { db ->
+          db.execSQL("CREATE TEMP TABLE IF NOT EXISTS $batchTable ($ID INTEGER PRIMARY KEY)")
+          db.execSQL("DELETE FROM $batchTable")
+          db.execSQL("INSERT INTO $batchTable SELECT ${TABLE_NAME}.$ID FROM $TABLE_NAME WHERE ${TABLE_NAME}.$THREAD_ID = $threadId $extraWhere LIMIT $DELETE_BATCH_SIZE")
+          // Expand to include revision chain members so they're always deleted together
+          db.execSQL("INSERT OR IGNORE INTO $batchTable SELECT $ID FROM $TABLE_NAME WHERE $LATEST_REVISION_ID IN (SELECT $ID FROM $batchTable) OR $ORIGINAL_MESSAGE_ID IN (SELECT $ID FROM $batchTable)")
+
           db.delete(StorySendTable.TABLE_NAME)
-            .where("${StorySendTable.TABLE_NAME}.${StorySendTable.MESSAGE_ID} IN ($subSelect)")
+            .where("${StorySendTable.TABLE_NAME}.${StorySendTable.MESSAGE_ID} IN ($batchSelect)")
             .run()
 
           db.delete(ReactionTable.TABLE_NAME)
-            .where("${ReactionTable.TABLE_NAME}.${ReactionTable.MESSAGE_ID} IN ($subSelect)")
+            .where("${ReactionTable.TABLE_NAME}.${ReactionTable.MESSAGE_ID} IN ($batchSelect)")
             .run()
 
           db.delete(CallTable.TABLE_NAME)
-            .where("${CallTable.TABLE_NAME}.${CallTable.MESSAGE_ID} IN ($subSelect)")
+            .where("${CallTable.TABLE_NAME}.${CallTable.MESSAGE_ID} IN ($batchSelect)")
             .run()
 
           db.delete(AttachmentTable.TABLE_NAME)
-            .where("${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} IN ($subSelect)")
+            .where("${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} IN ($batchSelect)")
             .run()
 
           db.delete(GroupReceiptTable.TABLE_NAME)
-            .where("${GroupReceiptTable.TABLE_NAME}.${GroupReceiptTable.MMS_ID} IN ($subSelect)")
+            .where("${GroupReceiptTable.TABLE_NAME}.${GroupReceiptTable.MMS_ID} IN ($batchSelect)")
             .run()
 
           db.delete(MentionTable.TABLE_NAME)
-            .where("${MentionTable.TABLE_NAME}.${MentionTable.MESSAGE_ID} IN ($subSelect)")
+            .where("${MentionTable.TABLE_NAME}.${MentionTable.MESSAGE_ID} IN ($batchSelect)")
             .run()
 
-          // Delete the messages themselves
-          db.delete(TABLE_NAME)
-            .where("$ID IN ($subSelect)")
+          // Null self-referential FK links so DELETE doesn't trigger CASCADE checks
+          db.update(TABLE_NAME)
+            .values(LATEST_REVISION_ID to null, ORIGINAL_MESSAGE_ID to null)
+            .where("$LATEST_REVISION_ID IN ($batchSelect) OR $ORIGINAL_MESSAGE_ID IN ($batchSelect)")
             .run()
+
+          SignalTrace.beginSection("deleteMessages")
+          val count = db.delete(TABLE_NAME)
+            .where("$ID IN ($batchSelect)")
+            .run()
+          SignalTrace.endSection()
+
+          count
         }
 
         totalDeletedCount += deletedCount

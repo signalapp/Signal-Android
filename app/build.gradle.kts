@@ -51,6 +51,7 @@ val localProperties: Properties? = if (localPropertiesFile.exists()) {
   null
 }
 val quickstartCredentialsDir: String? = localProperties?.getProperty("quickstart.credentials.dir")
+val benchmarkBackupFile: String? = localProperties?.getProperty("benchmark.backup.file")
 
 val selectableVariants = listOf(
   "nightlyProdSpinner",
@@ -531,6 +532,15 @@ android {
       }
       variant.sources.assets?.addGeneratedSourceDirectory(taskProvider) { it.outputDir }
     }
+
+    onVariants(selector().withBuildType("benchmark")) { variant ->
+      val taskProvider = tasks.register<CopyBenchmarkBackupTask>("copyBenchmarkBackup${variant.name.capitalize()}") {
+        if (benchmarkBackupFile != null) {
+          inputFile.set(File(benchmarkBackupFile))
+        }
+      }
+      variant.sources.assets?.addGeneratedSourceDirectory(taskProvider) { it.outputDir }
+    }
   }
 
   val releaseDir = "$projectDir/src/release/java"
@@ -900,5 +910,29 @@ abstract class CopyQuickstartCredentialsTask : DefaultTask() {
     val dest = outputDir.get().asFile.resolve("quickstart")
     dest.mkdirs()
     chosen.copyTo(dest.resolve(chosen.name), overwrite = true)
+  }
+}
+
+abstract class CopyBenchmarkBackupTask : DefaultTask() {
+  @get:InputFile
+  @get:Optional
+  abstract val inputFile: RegularFileProperty
+
+  @get:OutputDirectory
+  abstract val outputDir: DirectoryProperty
+
+  @TaskAction
+  fun copy() {
+    val dest = outputDir.get().asFile.resolve("backups")
+    dest.mkdirs()
+
+    if (!inputFile.isPresent) {
+      logger.lifecycle("benchmark.backup.file is not set in local.properties. Benchmark tests using backup data will crash at runtime.")
+      return
+    }
+
+    val backupFile = inputFile.get().asFile
+    logger.lifecycle("Using benchmark backup: ${backupFile.absolutePath} (${backupFile.length() / 1024}KB)")
+    backupFile.copyTo(dest.resolve("backup.binproto"), overwrite = true)
   }
 }

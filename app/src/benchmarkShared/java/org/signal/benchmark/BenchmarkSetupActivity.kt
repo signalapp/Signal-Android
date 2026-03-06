@@ -10,16 +10,31 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.signal.benchmark.setup.Harness
 import org.signal.benchmark.setup.TestMessages
 import org.signal.benchmark.setup.TestUsers
+import org.signal.core.models.ServiceId.PNI
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BaseActivity
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.TestDbUtils
+import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.mms.OutgoingMessage
+import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class BenchmarkSetupActivity : BaseActivity() {
+
+  companion object {
+    private val TAG = Log.tag(BenchmarkSetupActivity::class)
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
@@ -43,6 +58,7 @@ class BenchmarkSetupActivity : BaseActivity() {
         "group-read-receipt" -> setupGroupReceipt(enableReadReceipts = true)
         "thread-delete" -> setupThreadDelete()
         "thread-delete-group" -> setupThreadDeleteGroup()
+        "backup-restore" -> setupBackupRestore()
       }
       setupComplete = true
     }
@@ -149,6 +165,35 @@ class BenchmarkSetupActivity : BaseActivity() {
     TestDbUtils.insertMentionsForThread(threadId, memberRecipientIds[0], moduloFilter = 10)
 
     SignalDatabase.threads.update(threadId, true)
+  }
+
+  private fun setupBackupRestore() {
+    TestUsers.setupSelf()
+
+    val profileKey = ProfileKeyUtil.getSelfProfileKey()
+    val selfData = BackupRepository.SelfData(
+      aci = Harness.SELF_ACI,
+      pni = SignalStore.account.requirePni(),
+      e164 = Harness.SELF_E164,
+      profileKey = profileKey
+    )
+
+    val backupBytes = assets.open("backups/backup.binproto").use { it.readBytes() }
+    Log.i(TAG, "Read ${backupBytes.size} bytes from backup asset")
+
+    val result = BackupRepository.importPlaintextTest(
+      length = backupBytes.size.toLong(),
+      inputStreamFactory = { backupBytes.inputStream() },
+      selfData = selfData
+    )
+
+    Log.i(TAG, "Backup import result: $result")
+
+    SignalStore.svr.optOut()
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState.Skipped
+    SignalDatabase.recipients.setProfileKey(Recipient.self().id, profileKey)
+    SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts("Tester", "McTesterson"))
+    RegistrationUtil.maybeMarkRegistrationComplete()
   }
 
   private fun setupGroupReceipt(includeMsl: Boolean = false, enableReadReceipts: Boolean = false) {

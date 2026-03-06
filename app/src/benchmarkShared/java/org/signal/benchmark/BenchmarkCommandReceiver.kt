@@ -15,6 +15,7 @@ import org.signal.benchmark.setup.Generator
 import org.signal.benchmark.setup.Harness
 import org.signal.benchmark.setup.OtherClient
 import org.signal.core.util.ThreadUtil
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.TestDbUtils
@@ -152,17 +153,22 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
   }
 
   private fun handleDeleteThread() {
-    val threadId = SignalDatabase.threads.getRecentConversationList(1, false, false).use { cursor ->
+    val threadId = SignalDatabase.rawDatabase.rawQuery("SELECT thread_id, COUNT(*) AS msg_count FROM message GROUP BY thread_id ORDER BY msg_count DESC LIMIT 1").use { cursor ->
       if (cursor.moveToFirst()) {
-        cursor.getLong(cursor.getColumnIndexOrThrow("_id"))
+        val id = cursor.getLong(0)
+        val count = cursor.getLong(1)
+        Log.i(TAG, "Found largest thread $id with $count messages")
+        id
       } else {
-        Log.w(TAG, "No active threads found for deletion benchmark")
+        Log.w(TAG, "No threads found for deletion benchmark")
         return
       }
     }
-    Log.i(TAG, "Deleting thread $threadId")
+    val recipientName = SignalDatabase.threads.getRecipientForThreadId(threadId)
+      ?.getDisplayName(AppDependencies.application) ?: "unknown"
+    Log.i(TAG, "Deleting thread $threadId (recipient: $recipientName)")
     SignalDatabase.threads.deleteConversation(threadId, syncThreadDelete = false)
-    Log.i(TAG, "Thread $threadId deleted")
+    Log.i(TAG, "Thread $threadId deleted (recipient: $recipientName)")
   }
 
   private fun getOutgoingGroupMessageTimestamps(): List<Long> {

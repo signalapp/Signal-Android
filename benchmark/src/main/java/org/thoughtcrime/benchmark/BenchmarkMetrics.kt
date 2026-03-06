@@ -51,6 +51,7 @@ object BenchmarkMetrics {
   val threadDeletion: List<TraceSectionMetric>
     get() = listOf(
       TraceSectionMetric("ThreadTable#deleteConversations", Mode.Sum),
-      TraceSectionMetric("MessageTable#deleteMessagesInThread", Mode.Sum)
+      TraceSectionMetric("MessageTable#deleteMessagesInThread", Mode.Sum),
+      TraceSectionMetric("deleteMessages", Mode.Sum)
     )
 }
