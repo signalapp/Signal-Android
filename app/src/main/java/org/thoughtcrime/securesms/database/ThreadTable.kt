@@ -2256,73 +2256,82 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
     }
 
-    open fun getCurrent(): ThreadRecord? {
-      val recipientId = RecipientId.from(cursor.requireLong(RECIPIENT_ID))
-      val recipientSettings = RecipientTableCursorUtil.getRecord(context, cursor, RECIPIENT_ID)
+    open fun getCurrent(): ThreadRecord {
+      try {
+        val recipientId = RecipientId.from(cursor.requireLong(RECIPIENT_ID))
+        val recipientSettings = RecipientTableCursorUtil.getRecord(context, cursor, RECIPIENT_ID)
 
-      val recipient: Recipient = if (recipientSettings.groupId != null) {
-        GroupTable.Reader(cursor).getCurrent()?.let { group ->
-          RecipientCreator.forGroup(
-            groupRecord = group,
-            recipientRecord = recipientSettings,
-            resolved = false
-          )
-        } ?: Recipient.live(recipientId).get()
-      } else {
-        RecipientCreator.forIndividual(context, recipientSettings)
-      }
+        val recipient: Recipient = if (recipientSettings.groupId != null) {
+          GroupTable.Reader(cursor).getCurrent()?.let { group ->
+            RecipientCreator.forGroup(
+              groupRecord = group,
+              recipientRecord = recipientSettings,
+              resolved = false
+            )
+          } ?: Recipient.live(recipientId).get()
+        } else {
+          RecipientCreator.forIndividual(context, recipientSettings)
+        }
 
-      val hasReadReceipt = TextSecurePreferences.isReadReceiptsEnabled(context) && cursor.requireBoolean(HAS_READ_RECEIPT)
-      val extraString = cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET_EXTRAS))
-      val messageExtraBytes = cursor.getBlob(cursor.getColumnIndexOrThrow(SNIPPET_MESSAGE_EXTRAS))
-      val messageExtras = if (messageExtraBytes != null) MessageExtras.ADAPTER.decode(messageExtraBytes) else null
-      val extra: Extra? = if (extraString != null) {
-        try {
-          val jsonObject = SaneJSONObject(JSONObject(extraString))
-          Extra(
-            isViewOnce = jsonObject.getBoolean("isRevealable"),
-            isSticker = jsonObject.getBoolean("isSticker"),
-            stickerEmoji = jsonObject.getString("stickerEmoji"),
-            isAlbum = jsonObject.getBoolean("isAlbum"),
-            deletedBy = jsonObject.getString("deletedBy"),
-            isMessageRequestAccepted = jsonObject.getBoolean("isMessageRequestAccepted"),
-            isGv2Invite = jsonObject.getBoolean("isGv2Invite"),
-            groupAddedBy = jsonObject.getString("groupAddedBy"),
-            individualRecipientId = jsonObject.getString("individualRecipientId")!!,
-            bodyRanges = jsonObject.getString("bodyRanges"),
-            isScheduled = jsonObject.getBoolean("isScheduled"),
-            isRecipientHidden = jsonObject.getBoolean("isRecipientHidden"),
-            isPoll = jsonObject.getBoolean("isPoll")
-          )
-        } catch (exception: Exception) {
+        val hasReadReceipt = TextSecurePreferences.isReadReceiptsEnabled(context) && cursor.requireBoolean(HAS_READ_RECEIPT)
+        val extraString = cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET_EXTRAS))
+        val messageExtraBytes = cursor.getBlob(cursor.getColumnIndexOrThrow(SNIPPET_MESSAGE_EXTRAS))
+        val messageExtras = if (messageExtraBytes != null) MessageExtras.ADAPTER.decode(messageExtraBytes) else null
+        val extra: Extra? = if (extraString != null) {
+          try {
+            val jsonObject = SaneJSONObject(JSONObject(extraString))
+            Extra(
+              isViewOnce = jsonObject.getBoolean("isRevealable"),
+              isSticker = jsonObject.getBoolean("isSticker"),
+              stickerEmoji = jsonObject.getString("stickerEmoji"),
+              isAlbum = jsonObject.getBoolean("isAlbum"),
+              deletedBy = jsonObject.getString("deletedBy"),
+              isMessageRequestAccepted = jsonObject.getBoolean("isMessageRequestAccepted"),
+              isGv2Invite = jsonObject.getBoolean("isGv2Invite"),
+              groupAddedBy = jsonObject.getString("groupAddedBy"),
+              individualRecipientId = jsonObject.getString("individualRecipientId")!!,
+              bodyRanges = jsonObject.getString("bodyRanges"),
+              isScheduled = jsonObject.getBoolean("isScheduled"),
+              isRecipientHidden = jsonObject.getBoolean("isRecipientHidden"),
+              isPoll = jsonObject.getBoolean("isPoll")
+            )
+          } catch (exception: Exception) {
+            null
+          }
+        } else {
           null
         }
-      } else {
-        null
-      }
 
-      return ThreadRecord.Builder(cursor.requireLong(ID))
-        .setRecipient(recipient)
-        .setType(cursor.requireLong(SNIPPET_TYPE))
-        .setDistributionType(cursor.requireInt(TYPE))
-        .setBody(cursor.requireString(SNIPPET) ?: "")
-        .setDate(cursor.requireLong(DATE))
-        .setArchived(cursor.requireBoolean(ARCHIVED))
-        .setDeliveryStatus(cursor.requireInt(STATUS).toLong())
-        .setHasDeliveryReceipt(cursor.requireBoolean(HAS_DELIVERY_RECEIPT))
-        .setHasReadReceipt(hasReadReceipt)
-        .setExpiresIn(cursor.requireLong(EXPIRES_IN))
-        .setLastSeen(cursor.requireLong(LAST_SEEN))
-        .setSnippetUri(getSnippetUri(cursor))
-        .setContentType(cursor.requireString(SNIPPET_CONTENT_TYPE))
-        .setMeaningfulMessages(cursor.requireLong(MEANINGFUL_MESSAGES) > 0)
-        .setUnreadCount(cursor.requireInt(UNREAD_COUNT))
-        .setForcedUnread(cursor.requireInt(READ) == ReadStatus.FORCED_UNREAD.serialize())
-        .setPinned(cursor.requireBoolean(PINNED_ORDER))
-        .setUnreadSelfMentionsCount(cursor.requireInt(UNREAD_SELF_MENTION_COUNT))
-        .setExtra(extra)
-        .setSnippetMessageExtras(messageExtras)
-        .build()
+        return ThreadRecord.Builder(cursor.requireLong(ID))
+          .setRecipient(recipient)
+          .setType(cursor.requireLong(SNIPPET_TYPE))
+          .setDistributionType(cursor.requireInt(TYPE))
+          .setBody(cursor.requireString(SNIPPET) ?: "")
+          .setDate(cursor.requireLong(DATE))
+          .setArchived(cursor.requireBoolean(ARCHIVED))
+          .setDeliveryStatus(cursor.requireInt(STATUS).toLong())
+          .setHasDeliveryReceipt(cursor.requireBoolean(HAS_DELIVERY_RECEIPT))
+          .setHasReadReceipt(hasReadReceipt)
+          .setExpiresIn(cursor.requireLong(EXPIRES_IN))
+          .setLastSeen(cursor.requireLong(LAST_SEEN))
+          .setSnippetUri(getSnippetUri(cursor))
+          .setContentType(cursor.requireString(SNIPPET_CONTENT_TYPE))
+          .setMeaningfulMessages(cursor.requireLong(MEANINGFUL_MESSAGES) > 0)
+          .setUnreadCount(cursor.requireInt(UNREAD_COUNT))
+          .setForcedUnread(cursor.requireInt(READ) == ReadStatus.FORCED_UNREAD.serialize())
+          .setPinned(cursor.requireBoolean(PINNED_ORDER))
+          .setUnreadSelfMentionsCount(cursor.requireInt(UNREAD_SELF_MENTION_COUNT))
+          .setExtra(extra)
+          .setSnippetMessageExtras(messageExtras)
+          .build()
+      } catch (e: Exception) {
+        val fallbackThreadId: Long = try { cursor.requireLong(ID) } catch (_: Exception) { 0L }
+        Log.w(TAG, "Failed to fully parse ThreadRecord for thread $fallbackThreadId. Returning record with defaults.", e)
+        return ThreadRecord.Builder(fallbackThreadId)
+          .setBody("")
+          .setRecipient(Recipient.UNKNOWN)
+          .build()
+      }
     }
 
     private fun getSnippetUri(cursor: Cursor?): Uri? {
