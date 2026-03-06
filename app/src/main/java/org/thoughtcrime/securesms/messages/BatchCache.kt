@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.messages
 
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -38,6 +39,9 @@ abstract class BatchCache {
   val groupRevisionCache = HashMap<GroupId, Int>(BATCH_SIZE)
   val groupRecordCache = HashMap<GroupId.V2, Optional<GroupRecord>>(BATCH_SIZE)
 
+  val deliveryReceiptLookupCache = HashMap<Long, MessageTable.ReceiptData>(BATCH_SIZE)
+  val readReceiptLookupCache = HashMap<Long, MessageTable.ReceiptData>(BATCH_SIZE)
+
   protected val groupSecretParamsAndIdCache = HashMap<GroupMasterKey, Pair<GroupSecretParams, GroupId.V2>>(BATCH_SIZE)
 
   fun getGroupInfo(message: DataMessage): Pair<GroupSecretParams?, GroupId.V2?> {
@@ -56,6 +60,8 @@ abstract class BatchCache {
     groupRevisionCache.clear()
     groupRecordCache.clear()
     groupSecretParamsAndIdCache.clear()
+    deliveryReceiptLookupCache.clear()
+    readReceiptLookupCache.clear()
   }
 
   protected fun flushJob(job: Job) {

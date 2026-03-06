@@ -29,7 +29,7 @@ object ReceiptMessageProcessor {
 
     when (receiptMessage.type) {
       ReceiptMessage.Type.DELIVERY -> handleDeliveryReceipt(envelope, metadata, receiptMessage, senderRecipient.id, batchCache)
-      ReceiptMessage.Type.READ -> handleReadReceipt(context, senderRecipient.id, envelope, metadata, receiptMessage, earlyMessageCacheEntry)
+      ReceiptMessage.Type.READ -> handleReadReceipt(context, senderRecipient.id, envelope, metadata, receiptMessage, earlyMessageCacheEntry, batchCache)
       ReceiptMessage.Type.VIEWED -> handleViewedReceipt(context, envelope, metadata, receiptMessage, senderRecipient.id, earlyMessageCacheEntry)
       else -> warn(envelope.timestamp!!, "Unknown recipient message type ${receiptMessage.type}")
     }
@@ -47,7 +47,7 @@ object ReceiptMessageProcessor {
     val stopwatch: Stopwatch? = if (VERBOSE) Stopwatch("delivery-receipt", decimalPlaces = 2) else null
 
     SignalTrace.beginSection("ReceiptMessageProcessor#incrementDeliveryReceiptCounts")
-    val missingTargetTimestamps: Set<Long> = SignalDatabase.messages.incrementDeliveryReceiptCounts(deliveryReceipt.timestamp, senderRecipientId, envelope.timestamp!!, stopwatch)
+    val missingTargetTimestamps: Set<Long> = SignalDatabase.messages.incrementDeliveryReceiptCounts(deliveryReceipt.timestamp, senderRecipientId, envelope.timestamp!!, stopwatch, batchCache.deliveryReceiptLookupCache)
     SignalTrace.endSection()
 
     for (targetTimestamp in missingTargetTimestamps) {
@@ -75,7 +75,8 @@ object ReceiptMessageProcessor {
     envelope: Envelope,
     metadata: EnvelopeMetadata,
     readReceipt: ReceiptMessage,
-    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?,
+    batchCache: BatchCache
   ) {
     if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
       log(envelope.timestamp!!, "Ignoring read receipts for IDs: " + readReceipt.timestamp.joinToString(", "))
@@ -85,7 +86,7 @@ object ReceiptMessageProcessor {
     log(envelope.timestamp!!, "Processing read receipts. Sender: $senderRecipientId, Device: ${metadata.sourceDeviceId}, Timestamps: ${readReceipt.timestamp.joinToString(", ")}")
 
     SignalTrace.beginSection("ReceiptMessageProcessor#incrementReadReceiptCounts")
-    val missingTargetTimestamps: Set<Long> = SignalDatabase.messages.incrementReadReceiptCounts(readReceipt.timestamp, senderRecipientId, envelope.timestamp!!)
+    val missingTargetTimestamps: Set<Long> = SignalDatabase.messages.incrementReadReceiptCounts(readReceipt.timestamp, senderRecipientId, envelope.timestamp!!, batchCache.readReceiptLookupCache)
     SignalTrace.endSection()
 
     if (missingTargetTimestamps.isNotEmpty()) {
