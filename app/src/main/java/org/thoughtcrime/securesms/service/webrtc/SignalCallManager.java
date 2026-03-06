@@ -14,6 +14,9 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.greenrobot.eventbus.EventBus;
+import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.util.Util;
+import org.signal.core.util.concurrent.KeyedSerialMonoLifoExecutor;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.GenericServerPublicParams;
@@ -70,7 +73,6 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.rx.RxStore;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
@@ -87,7 +89,6 @@ import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.push.SyncMessage;
@@ -105,7 +106,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
@@ -113,9 +113,9 @@ import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.Pair;
 import kotlin.jvm.functions.Function1;
 import kotlin.text.Charsets;
-import kotlin.Pair;
 
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.GroupCallState.IDLE;
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.CALL_INCOMING;
@@ -136,10 +136,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Nullable private final CallManager callManager;
 
-  private final Context         context;
-  private final ExecutorService serviceExecutor;
-  private final Executor        networkExecutor;
-  private final LockManager     lockManager;
+  private final Context                     context;
+  private final ExecutorService             serviceExecutor;
+  private final KeyedSerialMonoLifoExecutor keyedExecutor;
+  private final LockManager                 lockManager;
 
   private WebRtcServiceState            serviceState;
   private RxStore<WebRtcEphemeralState> ephemeralStateStore;
@@ -151,7 +151,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     this.context             = application.getApplicationContext();
     this.lockManager         = new LockManager(this.context);
     this.serviceExecutor     = Executors.newSingleThreadExecutor();
-    this.networkExecutor     = Executors.newSingleThreadExecutor();
+    this.keyedExecutor       = new KeyedSerialMonoLifoExecutor(SignalExecutors.BOUNDED_IO);
     this.ephemeralStateStore = new RxStore<>(new WebRtcEphemeralState(), Schedulers.from(serviceExecutor));
     this.linkPeekInfoStore   = new RxStore<>(new HashMap<>(), Schedulers.from(serviceExecutor));
 
@@ -411,7 +411,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       return;
     }
 
-    networkExecutor.execute(() -> {
+    keyedExecutor.execute(id.toString(), () -> {
       try {
         Recipient              callLinkRecipient = Recipient.resolved(id);
         CallLinkRoomId         callLinkRoomId    = callLinkRecipient.requireCallLinkRoomId();
@@ -475,7 +475,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       return;
     }
 
-    networkExecutor.execute(() -> {
+    keyedExecutor.execute(id.toString(), () -> {
       try {
         Recipient               group      = Recipient.resolved(id);
         GroupId.V2              groupId    = group.requireGroupId().requireV2();
@@ -515,7 +515,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       return;
     }
 
-    networkExecutor.execute(() -> {
+    keyedExecutor.execute("Call::" + info.getRecipientId(), () -> {
       try {
         Recipient               group      = Recipient.resolved(info.getRecipientId());
         GroupId.V2              groupId    = group.requireGroupId().requireV2();
@@ -538,7 +538,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   void requestGroupMembershipToken(@NonNull GroupId.V2 groupId, int groupCallHashCode) {
-    networkExecutor.execute(() -> {
+    SignalExecutors.BOUNDED_IO.execute(() -> {
       try {
         ExternalGroupCredential credential = GroupManager.getExternalGroupCredential(context, groupId);
         process((s, p) -> p.handleGroupMembershipProofResponse(s, groupCallHashCode, credential.token.getBytes(Charsets.UTF_8)));
@@ -871,7 +871,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     OpaqueMessage            opaqueMessage = new OpaqueMessage(message, getUrgencyFromCallUrgency(urgency));
     SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOpaque(opaqueMessage, null);
 
-    networkExecutor.execute(() -> {
+    SignalExecutors.BOUNDED_IO.execute(() -> {
       Recipient recipient = Recipient.resolved(RecipientId.from(ACI.from(aciUuid)));
       if (recipient.isBlocked()) {
         return;
@@ -901,7 +901,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   public void onSendCallMessageToGroup(@NonNull byte[] groupIdBytes, @NonNull byte[] message, @NonNull CallManager.CallMessageUrgency urgency, @NonNull List<UUID> overrideRecipients) {
     Log.i(TAG, "onSendCallMessageToGroup():");
 
-    networkExecutor.execute(() -> {
+    SignalExecutors.BOUNDED_IO.execute(() -> {
       try {
         GroupId         groupId    = GroupId.v2(new GroupIdentifier(groupIdBytes));
         List<Recipient> recipients = SignalDatabase.groups().getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
@@ -957,7 +957,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     }
 
     Log.i(TAG, "onSendHttpRequest(): request_id: " + requestId);
-    networkExecutor.execute(() -> {
+    SignalExecutors.BOUNDED_IO.execute(() -> {
       List<Pair<String, String>> headerPairs;
       if (headers != null) {
         headerPairs = Stream.of(headers)
@@ -1130,7 +1130,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
-    networkExecutor.execute(() -> {
+    SignalExecutors.BOUNDED_IO.execute(() -> {
       try {
         List<PeerConnection.IceServer> cachedServers = TurnServerCache.getCachedServers();
         if (cachedServers != null) {
@@ -1279,7 +1279,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   public void sendCallMessage(@NonNull final RemotePeer remotePeer,
                               @NonNull final SignalServiceCallMessage callMessage)
   {
-    networkExecutor.execute(() -> {
+    SignalExecutors.BOUNDED_IO.execute(() -> {
       Recipient recipient = Recipient.resolved(remotePeer.getId());
       if (recipient.isBlocked()) {
         return;
@@ -1319,7 +1319,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
 
     if (SignalStore.account().isMultiDevice()) {
-      networkExecutor.execute(() -> {
+      SignalExecutors.BOUNDED_IO.execute(() -> {
         try {
           SyncMessage.CallEvent callEvent = CallEventSyncMessageUtil.createAcceptedSyncMessage(remotePeer, System.currentTimeMillis(), isOutgoing, isVideoCall);
           AppDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forCallEvent(callEvent));
@@ -1336,7 +1336,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.NOT_ACCEPTED);
 
     if (SignalStore.account().isMultiDevice()) {
-      networkExecutor.execute(() -> {
+      SignalExecutors.BOUNDED_IO.execute(() -> {
         try {
           SyncMessage.CallEvent callEvent = CallEventSyncMessageUtil.createNotAcceptedSyncMessage(remotePeer, System.currentTimeMillis(), isOutgoing, isVideoCall);
           AppDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forCallEvent(callEvent));
@@ -1349,7 +1349,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   public void sendGroupCallNotAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing) {
     if (SignalStore.account().isMultiDevice()) {
-      networkExecutor.execute(() -> {
+      SignalExecutors.BOUNDED_IO.execute(() -> {
         try {
           SyncMessage.CallEvent callEvent = CallEventSyncMessageUtil.createNotAcceptedSyncMessage(remotePeer, System.currentTimeMillis(), isOutgoing, true);
           AppDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forCallEvent(callEvent));
