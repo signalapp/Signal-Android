@@ -1945,6 +1945,59 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  /**
+   * Applies multiple profile fields in a single UPDATE statement. Calls [rotateStorageId] and
+   * [notifyRecipientChanged] at most once. Designed for bulk profile fetches.
+   */
+  fun applyProfileUpdate(id: RecipientId, update: ProfileUpdate) {
+    val contentValues = ContentValues().apply {
+      update.profileName?.let {
+        put(PROFILE_GIVEN_NAME, it.givenName.nullIfBlank())
+        put(PROFILE_FAMILY_NAME, it.familyName.nullIfBlank())
+        put(PROFILE_JOINED_NAME, it.toString().nullIfBlank())
+      }
+      update.about?.let { (aboutText, emoji) ->
+        put(ABOUT, aboutText)
+        put(ABOUT_EMOJI, emoji)
+      }
+      update.badges?.let {
+        val badgeList = BadgeList(badges = it.map { badge -> toDatabaseBadge(badge) })
+        put(BADGES, badgeList.encode())
+      }
+      update.capabilities?.let {
+        put(CAPABILITIES, maskCapabilitiesToLong(it))
+      }
+      update.sealedSenderAccessMode?.let {
+        put(SEALED_SENDER_MODE, it.mode)
+      }
+      update.phoneNumberSharing?.let {
+        put(PHONE_NUMBER_SHARING, it.id)
+      }
+      update.expiringProfileKeyCredential?.let { (profileKey, credential) ->
+        val columnData = ExpiringProfileKeyCredentialColumnData.Builder()
+          .profileKey(profileKey.serialize().toByteString())
+          .expiringProfileKeyCredential(credential.serialize().toByteString())
+          .build()
+        put(EXPIRING_PROFILE_KEY_CREDENTIAL, Base64.encodeWithPadding(columnData.encode()))
+      }
+      if (update.clearUsername) {
+        putNull(USERNAME)
+      }
+    }
+
+    if (contentValues.size() == 0) {
+      return
+    }
+
+    if (update(id, contentValues)) {
+      val needsStorageRotation = update.profileName != null || update.clearUsername
+      if (needsStorageRotation) {
+        rotateStorageId(id)
+      }
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
+  }
+
   fun setProfileName(id: RecipientId, profileName: ProfileName) {
     val contentValues = ContentValues(1).apply {
       put(PROFILE_GIVEN_NAME, profileName.givenName.nullIfBlank())
@@ -4954,4 +5007,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   class SseWithASinglePniSessionForSelfException(cause: Exception) : IllegalStateException(cause)
   class SseWithASinglePniSessionException(cause: Exception) : IllegalStateException(cause)
   class SseWithMultiplePniSessionsException(cause: Exception) : IllegalStateException(cause)
+
+  data class ProfileUpdate(
+    val profileName: ProfileName? = null,
+    val about: Pair<String?, String?>? = null,
+    val badges: List<Badge>? = null,
+    val capabilities: SignalServiceProfile.Capabilities? = null,
+    val sealedSenderAccessMode: SealedSenderAccessMode? = null,
+    val phoneNumberSharing: PhoneNumberSharingState? = null,
+    val expiringProfileKeyCredential: Pair<ProfileKey, ExpiringProfileKeyCredential>? = null,
+    val clearUsername: Boolean = false
+  )
 }
