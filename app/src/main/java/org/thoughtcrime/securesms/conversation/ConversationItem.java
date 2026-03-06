@@ -1170,13 +1170,13 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (message.getDeletedByRecipient().equals(Recipient.self())) {
       body = formatDeletedText(context.getString(R.string.ConversationItem_you_deleted_this_message));
     } else if (!isAdminDelete) {
-      body = formatDeletedText(context.getString(R.string.ConversationItem_s_deleted_this_message, message.getDeletedByRecipient().getDisplayName(context)));
+      body = formatDeletedText(context.getString(R.string.ConversationItem_s_deleted_this_message, message.getDeletedByRecipient().getShortDisplayName(context)));
     } else {
       String template = context.getString(R.string.ConversationItem_admin_s_deleted_this_message, SpanUtil.SPAN_PLACE_HOLDER);
       int    start    = template.indexOf(SpanUtil.SPAN_PLACE_HOLDER);
 
       int             nameColor = colorizer.getIncomingGroupSenderColor(getContext(), message.getDeletedByRecipient());
-      SpannableString name      = new SpannableString(message.getDeletedByRecipient().getDisplayName(context));
+      SpannableString name      = new SpannableString(message.getDeletedByRecipient().getShortDisplayName(context));
       name.setSpan(new ForegroundColorSpan(nameColor), 0, name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       name.setSpan(new RecipientClickableSpan(conversationMessage.getDeletedByRecipient().getId()), 0, name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       name.setSpan(new StyleSpan(Typeface.BOLD), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
