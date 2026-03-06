@@ -33,6 +33,11 @@ object BenchmarkMetrics {
       TraceSectionMetric("DataMessageProcessor#postProcess", Mode.Average)
     )
 
+  val messageDecryptor: List<TraceSectionMetric>
+    get() = listOf(
+      TraceSectionMetric("MessageDecryptor#cipherDecrypt", Mode.Average),
+    )
+
   val messageContentProcessor: List<TraceSectionMetric>
     get() = listOf(
       TraceSectionMetric("MessageContentProcessor#handleMessage", Mode.Average)

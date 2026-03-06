@@ -73,6 +73,7 @@ import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.PniSignatureMessage
 import org.whispersystems.signalservice.internal.util.Util
+import org.thoughtcrime.securesms.util.SignalTrace
 import java.util.Optional
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.DurationUnit
@@ -154,7 +155,9 @@ object MessageDecryptor {
 
     return try {
       val startTimeNanos = System.nanoTime()
+      SignalTrace.beginSection("MessageDecryptor#cipherDecrypt")
       val cipherResult: SignalServiceCipherResult? = cipher.decrypt(envelope, serverDeliveredTimestamp)
+      SignalTrace.endSection()
       val endTimeNanos = System.nanoTime()
 
       val envelope = if (cipherResult?.metadata?.sourceServiceId != null) {
