@@ -53,7 +53,9 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.os.bundleOf
+import androidx.core.view.AccessibilityDelegateCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -195,6 +197,9 @@ import org.thoughtcrime.securesms.conversation.ConversationSearchViewModel
 import org.thoughtcrime.securesms.conversation.ConversationUpdateTick
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.MenuState
+import org.thoughtcrime.securesms.conversation.MessageActionPolicy
+import org.thoughtcrime.securesms.conversation.MessageActionPolicyContext
+import org.thoughtcrime.securesms.conversation.MessageContextAction
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.MessageStyler.getStyling
 import org.thoughtcrime.securesms.conversation.PinnedMessagesBottomSheet
@@ -463,6 +468,7 @@ class ConversationFragment :
       _binding.conversationItemRecycler.removeOnScrollListener(it)
     }
     scrollListener = null
+    _binding.conversationItemRecycler.removeOnChildAttachStateChangeListener(messageAccessibilityChildAttachStateChangeListener)
 
     _binding.conversationItemRecycler.adapter = null
 
@@ -623,6 +629,47 @@ class ConversationFragment :
     delegate.setOnReactionSelectedListener(OnReactionsSelectedListener())
 
     delegate
+  }
+
+  private val messageAccessibilityDelegate = object : AccessibilityDelegateCompat() {
+    override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+      super.onInitializeAccessibilityNodeInfo(host, info)
+
+      val conversationMessage = getConversationMessageFromAccessibilityHost(host) ?: return
+
+      for (action in getAvailableMessageContextActions(conversationMessage)) {
+        info.addAction(
+          AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+            action.accessibilityActionId,
+            host.context.getString(action.labelRes)
+          )
+        )
+      }
+    }
+
+    override fun performAccessibilityAction(host: View, action: Int, args: Bundle?): Boolean {
+      val conversationMessage = getConversationMessageFromAccessibilityHost(host)
+        ?: return super.performAccessibilityAction(host, action, args)
+
+      val messageAction = MessageContextAction.fromAccessibilityActionId(action)
+        ?: return super.performAccessibilityAction(host, action, args)
+
+      if (!getAvailableMessageContextActions(conversationMessage).contains(messageAction)) {
+        return false
+      }
+
+      return executeMessageContextAction(conversationMessage, messageAction)
+    }
+  }
+
+  private val messageAccessibilityChildAttachStateChangeListener = object : RecyclerView.OnChildAttachStateChangeListener {
+    override fun onChildViewAttachedToWindow(view: View) {
+      ViewCompat.setAccessibilityDelegate(view, messageAccessibilityDelegate)
+    }
+
+    override fun onChildViewDetachedFromWindow(view: View) {
+      ViewCompat.setAccessibilityDelegate(view, null)
+    }
   }
 
   private lateinit var voiceMessageRecordingDelegate: VoiceMessageRecordingDelegate
@@ -1318,6 +1365,7 @@ class ConversationFragment :
       SwipeAvailabilityProvider(),
       this::handleReplyToMessage
     ).attachToRecyclerView(binding.conversationItemRecycler)
+    attachMessageAccessibilityActions()
 
     viewModel
       .inputReadyState
@@ -2412,6 +2460,119 @@ class ConversationFragment :
     }
   }
 
+  private fun attachMessageAccessibilityActions() {
+    val recyclerView = binding.conversationItemRecycler
+
+    recyclerView.addOnChildAttachStateChangeListener(messageAccessibilityChildAttachStateChangeListener)
+
+    for (index in 0 until recyclerView.childCount) {
+      ViewCompat.setAccessibilityDelegate(recyclerView.getChildAt(index), messageAccessibilityDelegate)
+    }
+  }
+
+  private fun getConversationMessageFromAccessibilityHost(host: View): ConversationMessage? {
+    return getInteractiveConversationElement(host)?.conversationMessage
+  }
+
+  private fun getInteractiveConversationElement(host: View): InteractiveConversationElement? {
+    if (host is InteractiveConversationElement) {
+      return host
+    }
+
+    val recyclerView = binding.conversationItemRecycler
+
+    return try {
+      val viewHolder = recyclerView.getChildViewHolder(host)
+      when (viewHolder) {
+        is InteractiveConversationElement -> viewHolder
+        else -> viewHolder.itemView as? InteractiveConversationElement
+      }
+    } catch (_: IllegalArgumentException) {
+      null
+    }
+  }
+
+  private fun getMessageActionPolicyContext(conversationMessage: ConversationMessage): MessageActionPolicyContext? {
+    val recipient = viewModel.recipientSnapshot ?: return null
+
+    return MessageActionPolicyContext(
+      recipient = recipient,
+      conversationMessage = conversationMessage,
+      shouldShowMessageRequest = viewModel.hasMessageRequestState,
+      isNonAdminInAnnouncementGroup = conversationGroupViewModel.isNonAdminInAnnouncementGroup(),
+      canEditGroupInfo = conversationGroupViewModel.canEditGroupInfo(),
+      isActionModeStarted = isActionModeStarted(),
+      hasSelection = adapter.selectedItems.isNotEmpty()
+    )
+  }
+
+  private fun getAvailableMessageContextActions(conversationMessage: ConversationMessage): List<MessageContextAction> {
+    val context = getMessageActionPolicyContext(conversationMessage) ?: return emptyList()
+    return MessageActionPolicy.availableActions(context)
+  }
+
+  private fun executeMessageContextAction(conversationMessage: ConversationMessage, action: MessageContextAction): Boolean {
+    if (!getAvailableMessageContextActions(conversationMessage).contains(action)) {
+      return false
+    }
+
+    return when (action) {
+      MessageContextAction.REPLY -> {
+        handleReplyToMessage(conversationMessage)
+        true
+      }
+      MessageContextAction.EDIT -> {
+        handleEditMessage(conversationMessage)
+        true
+      }
+      MessageContextAction.FORWARD -> {
+        handleForwardMessageParts(conversationMessage.multiselectCollection.toSet())
+        true
+      }
+      MessageContextAction.RESEND -> {
+        handleResend(conversationMessage)
+        true
+      }
+      MessageContextAction.SAVE -> {
+        val mmsMessageRecord = conversationMessage.messageRecord as? MmsMessageRecord ?: return false
+        handleSaveAttachment(mmsMessageRecord)
+        true
+      }
+      MessageContextAction.COPY -> {
+        handleCopyMessage(conversationMessage.multiselectCollection.toSet())
+        true
+      }
+      MessageContextAction.PAYMENT_DETAILS -> {
+        handleViewPaymentDetails(conversationMessage)
+        true
+      }
+      MessageContextAction.MULTI_SELECT -> {
+        handleEnterMultiselect(conversationMessage)
+        true
+      }
+      MessageContextAction.VIEW_INFO -> {
+        handleDisplayDetails(conversationMessage)
+        true
+      }
+      MessageContextAction.END_POLL -> {
+        handleEndPoll(conversationMessage.messageRecord.getPoll()?.id)
+        true
+      }
+      MessageContextAction.PIN_MESSAGE -> {
+        handlePinMessage(conversationMessage)
+        true
+      }
+      MessageContextAction.UNPIN_MESSAGE -> {
+        handleUnpinMessage(conversationMessage.messageRecord.id)
+        true
+      }
+      MessageContextAction.DELETE -> {
+        handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
+        true
+      }
+    }
+  }
+
   private fun calculateSelectedItemCount(): String {
     val count = adapter.selectedItems.map(MultiselectPart::conversationMessage).distinct().count()
     return requireContext().resources.getQuantityString(R.plurals.conversation_context__s_selected, count, count)
@@ -2587,7 +2748,7 @@ class ConversationFragment :
   ) {
     reactionDelegate.setOnActionSelectedListener(onActionSelectedListener)
     reactionDelegate.setOnHideListener(onHideListener)
-    reactionDelegate.show(requireActivity(), viewModel.recipientSnapshot!!, conversationMessage, conversationGroupViewModel.isNonAdminInAnnouncementGroup(), selectedConversationModel, conversationGroupViewModel.canEditGroupInfo())
+    reactionDelegate.show(requireActivity(), viewModel.recipientSnapshot!!, conversationMessage, viewModel.hasMessageRequestState, conversationGroupViewModel.isNonAdminInAnnouncementGroup(), selectedConversationModel, conversationGroupViewModel.canEditGroupInfo())
     viewModel.setIsReactionDelegateShowing(true)
     composeText.clearFocus()
   }
@@ -4130,22 +4291,8 @@ class ConversationFragment :
   private inner class ReactionsToolbarListener(
     private val conversationMessage: ConversationMessage
   ) : OnActionSelectedListener {
-    override fun onActionSelected(action: ConversationReactionOverlay.Action) {
-      when (action) {
-        ConversationReactionOverlay.Action.REPLY -> handleReplyToMessage(conversationMessage)
-        ConversationReactionOverlay.Action.EDIT -> handleEditMessage(conversationMessage)
-        ConversationReactionOverlay.Action.FORWARD -> handleForwardMessageParts(conversationMessage.multiselectCollection.toSet())
-        ConversationReactionOverlay.Action.RESEND -> handleResend(conversationMessage)
-        ConversationReactionOverlay.Action.DOWNLOAD -> handleSaveAttachment(conversationMessage.messageRecord as MmsMessageRecord)
-        ConversationReactionOverlay.Action.COPY -> handleCopyMessage(conversationMessage.multiselectCollection.toSet())
-        ConversationReactionOverlay.Action.MULTISELECT -> handleEnterMultiselect(conversationMessage)
-        ConversationReactionOverlay.Action.PAYMENT_DETAILS -> handleViewPaymentDetails(conversationMessage)
-        ConversationReactionOverlay.Action.VIEW_INFO -> handleDisplayDetails(conversationMessage)
-        ConversationReactionOverlay.Action.DELETE -> handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
-        ConversationReactionOverlay.Action.END_POLL -> handleEndPoll(conversationMessage.messageRecord.getPoll()?.id)
-        ConversationReactionOverlay.Action.PIN_MESSAGE -> handlePinMessage(conversationMessage)
-        ConversationReactionOverlay.Action.UNPIN_MESSAGE -> handleUnpinMessage(conversationMessage.messageRecord.id)
-      }
+    override fun onActionSelected(action: MessageContextAction) {
+      executeMessageContextAction(conversationMessage, action)
     }
   }
   // endregion Conversation Callbacks

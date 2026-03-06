@@ -38,11 +38,12 @@ public final class ConversationReactionDelegate {
   public void show(@NonNull Activity activity,
                    @NonNull Recipient conversationRecipient,
                    @NonNull ConversationMessage conversationMessage,
+                   boolean shouldShowMessageRequest,
                    boolean isNonAdminInAnnouncementGroup,
                    @NonNull SelectedConversationModel selectedConversationModel,
                    boolean canEditGroupInfo)
   {
-    resolveOverlay().show(activity, conversationRecipient, conversationMessage, lastSeenDownPoint, isNonAdminInAnnouncementGroup, selectedConversationModel, canEditGroupInfo);
+    resolveOverlay().show(activity, conversationRecipient, conversationMessage, lastSeenDownPoint, shouldShowMessageRequest, isNonAdminInAnnouncementGroup, selectedConversationModel, canEditGroupInfo);
   }
 
   public void hide() {
