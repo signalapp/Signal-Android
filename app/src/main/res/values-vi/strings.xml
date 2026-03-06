@@ -454,7 +454,7 @@
     <string name="ConversationItem_s_deleted_this_message">%1$s đã xóa tin nhắn này</string>
     <string name="ConversationItem_you_deleted_this_message">Bạn đã xóa tin nhắn này</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
-    <string name="ConversationItem_admin_s_deleted_this_message">Admin %1$s deleted this message</string>
+    <string name="ConversationItem_admin_s_deleted_this_message">Quản trị viên %1$s đã xóa tin nhắn này</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Không thể tải tin nhắn xuống. %1$s cần gửi lại.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -5881,7 +5881,7 @@
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls">Calls</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls">Cuộc gọi</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
     <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
@@ -7574,7 +7574,7 @@
     <!-- Action to remove a participant from a call -->
     <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
     <!-- Action to view contact details for a participant -->
-    <string name="CallParticipantSheet__contact_details">Contact details</string>
+    <string name="CallParticipantSheet__contact_details">Chi tiết liên hệ</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -7755,38 +7755,38 @@
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
     <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
     <!-- Primary button of Megaphone B -->
-    <string name="BackupMessagesUpsell__turn_on">Turn on</string>
+    <string name="BackupMessagesUpsell__turn_on">Bật</string>
     <!-- Secondary button of Megaphone B -->
-    <string name="BackupMessagesUpsell__not_now">Not now</string>
+    <string name="BackupMessagesUpsell__not_now">Để sau</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">Back up all your media</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
     <!-- Primary button of Megaphone C -->
-    <string name="BackupMediaUpsell__upgrade">Upgrade</string>
+    <string name="BackupMediaUpsell__upgrade">Nâng cấp</string>
     <!-- Secondary button of Megaphone C -->
-    <string name="BackupMediaUpsell__not_now">Not now</string>
+    <string name="BackupMediaUpsell__not_now">Để sau</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
     <string name="BackupStorageUpsell__title">Save space with paid backups</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
     <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
-    <string name="BackupStorageUpsell__upgrade">Upgrade</string>
+    <string name="BackupStorageUpsell__upgrade">Nâng cấp</string>
     <!-- Primary button of Megaphone D when user has no backups -->
-    <string name="BackupStorageUpsell__turn_on">Turn on</string>
+    <string name="BackupStorageUpsell__turn_on">Bật</string>
     <!-- Secondary button of Megaphone D -->
-    <string name="BackupStorageUpsell__not_now">Not now</string>
+    <string name="BackupStorageUpsell__not_now">Để sau</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
     <!-- Body of the backup upsell bottom sheet -->
     <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
-    <string name="BackupUpsellBottomSheet__price_per_month">%1$s/month</string>
+    <string name="BackupUpsellBottomSheet__price_per_month">%1$s/tháng</string>
     <!-- Subtitle for the paid plan feature card -->
-    <string name="BackupUpsellBottomSheet__text_and_all_media">Text + all your media</string>
+    <string name="BackupUpsellBottomSheet__text_and_all_media">Tin nhắn văn bản + tập tin đa phương tiện</string>
     <!-- Feature bullet: full text and media backup -->
     <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
     <!-- Feature bullet: 100GB storage -->
@@ -7796,12 +7796,12 @@
     <!-- Feature bullet: thanks for supporting Signal -->
     <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
-    <string name="BackupUpsellBottomSheet__subscribe_for">Subscribe for %1$s/month</string>
+    <string name="BackupUpsellBottomSheet__subscribe_for">Đăng ký gói với giá %1$s/tháng</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__no_thanks">No thanks</string>
+    <string name="BackupUpsellBottomSheet__no_thanks">Không, cảm ơn</string>
 
     <!-- Title of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__title">You\'re all set. Start your backup now.</string>
+    <string name="BackupSetupCompleteBottomSheet__title">Mọi thứ đã sẵn sàng. Bắt đầu sao lưu ngay.</string>
     <!-- Body of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
     <!-- Label for the optimize storage toggle -->
@@ -7809,7 +7809,7 @@
     <!-- Subtitle for the optimize storage toggle -->
     <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
     <!-- Primary button on the setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__back_up_now">Back up now</string>
+    <string name="BackupSetupCompleteBottomSheet__back_up_now">Sao lưu Ngay</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__title">Sử dụng bản sao lưu trên thiết bị mới</string>
@@ -8864,13 +8864,13 @@
     <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s của tổng số %2$s (%3$d%%)</string>
 
     <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Can\'t restore backup</string>
+    <string name="RestoreLocalBackupActivity__cant_restore_backup">Không thể khôi phục bản sao lưu</string>
 
     <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Có lỗi xảy ra trong quá trình khôi phục bản sao lưu của bạn. Bản sao lưu của bạn không thể khôi phục được. Vui lòng liên hệ bộ phận hỗ trợ để được trợ giúp.</string>
 
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Contact support</string>
+    <string name="RestoreLocalBackupActivity__contact_support">Liên hệ hỗ trợ</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
     <string name="SelectInstructionsSheet__select_your_backup_folder">Chọn thư mục sao lưu của bạn</string>
@@ -9302,9 +9302,9 @@
     <string name="MemberLabelsEducation__edit_label">Chỉnh sửa nhãn</string>
 
     <!-- Title for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__title">Member label display</string>
+    <string name="MemberLabelsAboutOverride__title">Hiển thị nhãn thành viên</string>
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__body">In this group, your Member Label will be displayed beside your photo in place of your About.</string>
+    <string name="MemberLabelsAboutOverride__body">Trong nhóm này, Nhãn thành viên của bạn sẽ được hiển thị bên cạnh ảnh của bạn thay cho nội dung Giới thiệu về bạn.</string>
 
     <!-- EOF -->
 </resources>
