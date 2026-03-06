@@ -322,6 +322,14 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
+    @NonNull GroupManager.GroupActionResult updateMemberLabelRights(@NonNull GroupAccessControl newRights)
+        throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
+    {
+      AccessControl.AccessRequired accessRequired = rightsToAccessControl(newRights);
+      return commitChangeWithConflictResolution(selfAci, groupOperations.createChangeMemberLabelRights(accessRequired));
+    }
+
+    @WorkerThread
     @NonNull GroupManager.GroupActionResult updateAnnouncementGroup(boolean isAnnouncementGroup)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {

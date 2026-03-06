@@ -41,7 +41,7 @@ public final class DecryptedGroupUtil_empty_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("GroupChangeField and getChangedFields() need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 26, maxFieldFound);
+                 27, maxFieldFound);
   }
 
   @Test
@@ -283,6 +283,16 @@ public final class DecryptedGroupUtil_empty_Test {
 
     assertFalse(DecryptedGroupExtensions.getChangedFields(change).isEmpty());
     assertTrue(DecryptedGroupExtensions.isSilent(change));
+  }
+
+  @Test
+  public void not_empty_with_modify_member_label_access_field_27() {
+    DecryptedGroupChange change = new DecryptedGroupChange.Builder()
+        .newMemberLabelAccess(AccessControl.AccessRequired.ADMINISTRATOR)
+        .build();
+
+    assertFalse(DecryptedGroupExtensions.getChangedFields(change).isEmpty());
+    assertFalse(DecryptedGroupExtensions.isSilent(change));
   }
 
   @Test

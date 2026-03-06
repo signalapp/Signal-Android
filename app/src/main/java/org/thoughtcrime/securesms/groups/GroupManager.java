@@ -300,6 +300,17 @@ public final class GroupManager {
   }
 
   @WorkerThread
+  public static void applyMemberLabelRightsChange(@NonNull Context context,
+                                                  @NonNull GroupId.V2 groupId,
+                                                  @NonNull GroupAccessControl newRights)
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
+  {
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.updateMemberLabelRights(newRights);
+    }
+  }
+
+  @WorkerThread
   public static void applyAnnouncementGroupChange(@NonNull Context context,
                                                   @NonNull GroupId.V2 groupId,
                                                   boolean isAnnouncementGroup)

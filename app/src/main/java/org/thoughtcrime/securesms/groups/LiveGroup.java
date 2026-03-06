@@ -12,6 +12,7 @@ import androidx.lifecycle.Transformations;
 import com.annimon.stream.ComparatorCompat;
 import com.annimon.stream.Stream;
 
+import org.signal.core.models.ServiceId;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.signal.core.models.ServiceId;
 
 import java.text.Collator;
 import java.util.Collections;
@@ -180,6 +180,11 @@ public final class LiveGroup {
 
   public LiveData<GroupAccessControl> getAttributesAccessControl() {
     return Transformations.map(groupRecord, GroupRecord::getAttributesAccessControl);
+  }
+
+  @NonNull
+  public LiveData<GroupAccessControl> getMemberLabelAccessControl() {
+    return Transformations.map(groupRecord, GroupRecord::getMemberLabelAccessControl);
   }
 
   public LiveData<List<GroupMemberEntry.FullMember>> getNonAdminFullMembers() {

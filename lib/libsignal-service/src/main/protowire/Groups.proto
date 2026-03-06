@@ -69,6 +69,7 @@ message AccessControl {
   AccessRequired attributes = 1;
   AccessRequired members = 2;
   AccessRequired addFromInviteLink = 3;
+  AccessRequired memberLabel = 4;
 }
 
 message Group {
@@ -225,6 +226,10 @@ message GroupChange {
       AccessControl.AccessRequired addFromInviteLinkAccess = 1;
     }
 
+    message ModifyMemberLabelAccessControlAction {
+      AccessControl.AccessRequired memberLabelAccess = 1;
+    }
+
     message ModifyInviteLinkPasswordAction {
       bytes inviteLinkPassword = 1;
     }
@@ -262,7 +267,8 @@ message GroupChange {
     repeated DeleteMemberBannedAction delete_members_banned = 23;  // change epoch = 4
     repeated PromoteMemberPendingPniAciProfileKeyAction promote_members_pending_pni_aci_profile_key = 24;  // change epoch = 5
     repeated ModifyMemberLabelAction modifyMemberLabels = 26; // change epoch = 6;
-    // next: 27
+    ModifyMemberLabelAccessControlAction modifyMemberLabelAccess = 27; // change epoch = 6
+    // next: 28
   }
 
   bytes actions = 1;

@@ -37,6 +37,10 @@ class PermissionsSettingsViewModel(
     store.update(liveGroup.isAnnouncementGroup) { isAnnouncementGroup, state ->
       state.copy(announcementGroup = isAnnouncementGroup)
     }
+
+    store.update(liveGroup.memberLabelAccessControl) { memberLabelAccessControl, state ->
+      state.copy(nonAdminCanSetMemberLabel = memberLabelAccessControl == GroupAccessControl.ALL_MEMBERS)
+    }
   }
 
   fun setNonAdminCanAddMembers(nonAdminCanAddMembers: Boolean) {
@@ -54,6 +58,15 @@ class PermissionsSettingsViewModel(
   fun setAnnouncementGroup(announcementGroup: Boolean) {
     repository.applyAnnouncementGroupChange(groupId, announcementGroup) { reason ->
       internalEvents.postValue(PermissionsSettingsEvents.GroupChangeError(reason))
+    }
+  }
+
+  fun setNonAdminCanSetMemberLabel(nonAdminCanSetMemberLabel: Boolean) {
+    repository.applyMemberLabelRightsChange(
+      groupId = groupId,
+      newRights = nonAdminCanSetMemberLabel.asGroupAccessControl()
+    ) { failureReason ->
+      internalEvents.postValue(PermissionsSettingsEvents.GroupChangeError(failureReason))
     }
   }
 

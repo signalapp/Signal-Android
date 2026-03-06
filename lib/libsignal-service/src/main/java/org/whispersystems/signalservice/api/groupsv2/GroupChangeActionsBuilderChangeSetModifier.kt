@@ -105,6 +105,10 @@ internal class GroupChangeActionsBuilderChangeSetModifier(private val result: Gr
     result.modifyMemberLabels = result.modifyMemberLabels.removeIndex(i)
   }
 
+  override fun clearModifyMemberLabelAccess() {
+    result.modifyMemberLabelAccess = null
+  }
+
   private fun <T> List<T>.removeIndex(i: Int): List<T> {
     val modifiedList = this.toMutableList()
     modifiedList.removeAt(i)

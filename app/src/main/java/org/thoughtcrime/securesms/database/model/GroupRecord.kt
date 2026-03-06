@@ -118,6 +118,27 @@ class GroupRecord(
       }
     }
 
+  /**
+   * Who is allowed to add member labels in this group.
+   *
+   * Defaults to ALL_MEMBERS for groups created before this permission was added.
+   */
+  val memberLabelAccessControl: GroupAccessControl
+    get() {
+      if (!isV2Group) {
+        return GroupAccessControl.ALL_MEMBERS
+      }
+
+      return when ((requireV2GroupProperties().decryptedGroup.accessControl ?: AccessControl()).memberLabel) {
+        AccessControl.AccessRequired.ADMINISTRATOR -> GroupAccessControl.ONLY_ADMINS
+
+        AccessControl.AccessRequired.MEMBER,
+        AccessControl.AccessRequired.UNKNOWN, // groups predating this permission
+        AccessControl.AccessRequired.ANY,
+        AccessControl.AccessRequired.UNSATISFIABLE -> GroupAccessControl.ALL_MEMBERS
+      }
+    }
+
   val actionableRequestingMembersCount: Int by lazy {
     if (isV2Group && memberLevel(Recipient.self()) == GroupTable.MemberLevel.ADMINISTRATOR) {
       requireV2GroupProperties()

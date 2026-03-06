@@ -56,4 +56,18 @@ class PermissionsSettingsRepository(private val context: Context) {
       }
     }
   }
+
+  fun applyMemberLabelRightsChange(groupId: GroupId, newRights: GroupAccessControl, errorCallback: GroupChangeErrorCallback) {
+    SignalExecutors.UNBOUNDED.execute {
+      try {
+        GroupManager.applyMemberLabelRightsChange(context, groupId.requireV2(), newRights)
+      } catch (e: GroupChangeException) {
+        Log.w(TAG, e)
+        errorCallback.onError(GroupChangeFailureReason.fromException(e))
+      } catch (e: IOException) {
+        Log.w(TAG, e)
+        errorCallback.onError(GroupChangeFailureReason.fromException(e))
+      }
+    }
+  }
 }

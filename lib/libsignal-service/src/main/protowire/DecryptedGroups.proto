@@ -111,6 +111,7 @@ message DecryptedGroupChange {
   repeated DecryptedBannedMember         deleteBannedMembers         = 23;
   repeated DecryptedMember               promotePendingPniAciMembers = 24;
   repeated DecryptedModifyMemberLabel    modifyMemberLabels          = 26;
+           AccessControl.AccessRequired  newMemberLabelAccess        = 27;
 }
 
 message DecryptedString {
