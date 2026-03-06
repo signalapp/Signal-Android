@@ -11,6 +11,7 @@ import org.signal.core.util.gibiBytes
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -520,6 +521,24 @@ object RemoteConfig {
       transformer = { it.asString(defaultValue) }
     )
   }
+
+  /**
+   * A config that evaluates to true when the app's version is >= the semantic version string (e.g. "8.2.0") stored in the remote config value.
+   *
+   * Returns false if the remote value is absent, empty, or unparseable.
+   */
+  @Suppress("SameParameterValue")
+  private fun remoteMinVersion(
+    key: String
+  ): Config<Boolean> = remoteValue(
+    key = key,
+    hotSwappable = true,
+    transformer = { value ->
+      val minVersion = SemanticVersion.parse(value.asString(null))
+      val appVersion = SemanticVersion.parse(BuildConfig.VERSION_NAME.substringBefore("-"))
+      minVersion != null && appVersion != null && appVersion >= minVersion
+    }
+  )
 
   private fun <T> remoteValue(
     key: String,
@@ -1273,10 +1292,8 @@ object RemoteConfig {
    */
   @JvmStatic
   @get:JvmName("sendMemberLabels")
-  val sendMemberLabels: Boolean by remoteBoolean(
-    key = "android.sendMemberLabels.3",
-    defaultValue = false,
-    hotSwappable = true
+  val sendMemberLabels: Boolean by remoteMinVersion(
+    key = "android.sendMemberLabels.4"
   )
 
   /**
