@@ -93,6 +93,8 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
       adapter.submitList(items) {
         if (selectedPosition > -1) {
           recycler.smoothScrollToPosition(selectedPosition)
+        } else {
+          recycler.smoothScrollToPosition(0)
         }
       }
     }
