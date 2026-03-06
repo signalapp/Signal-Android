@@ -188,7 +188,7 @@ object DataMessageProcessor {
       message.pollVote != null -> messageId = handlePollVote(context, envelope, message, senderRecipient, earlyMessageCacheEntry)
       message.pinMessage != null -> insertResult = handlePinMessage(envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, earlyMessageCacheEntry)
       message.unpinMessage != null -> messageId = handleUnpinMessage(envelope, message, senderRecipient, threadRecipient, earlyMessageCacheEntry)
-      message.adminDelete != null -> messageId = handleAdminRemoteDelete(envelope, message, senderRecipient, threadRecipient, earlyMessageCacheEntry)
+      message.adminDelete != null -> messageId = handleAdminRemoteDelete(context, envelope, message, senderRecipient, threadRecipient, earlyMessageCacheEntry)
     }
     SignalTrace.endSection()
 
@@ -1423,7 +1423,7 @@ object DataMessageProcessor {
     return MessageId(targetMessageId)
   }
 
-  fun handleAdminRemoteDelete(envelope: Envelope, message: DataMessage, senderRecipient: Recipient, threadRecipient: Recipient, earlyMessageCacheEntry: EarlyMessageCacheEntry?): MessageId? {
+  fun handleAdminRemoteDelete(context: Context, envelope: Envelope, message: DataMessage, senderRecipient: Recipient, threadRecipient: Recipient, earlyMessageCacheEntry: EarlyMessageCacheEntry?): MessageId? {
     if (!RemoteConfig.receiveAdminDelete) {
       log(envelope.timestamp!!, "Admin delete is not allowed due to remote config.")
       return null
@@ -1451,6 +1451,7 @@ object DataMessageProcessor {
 
     return if (targetMessage != null && MessageConstraintsUtil.isValidAdminDeleteReceive(targetMessage, senderRecipient, envelope.serverTimestamp!!, groupRecord)) {
       SignalDatabase.messages.markAsRemoteDelete(targetMessage, senderRecipient.id)
+      AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
       MessageId(targetMessage.id)
     } else if (targetMessage == null) {
       warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Could not find matching message! timestamp: $targetSentTimestamp")

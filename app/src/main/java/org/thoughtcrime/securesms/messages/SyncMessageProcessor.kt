@@ -259,7 +259,7 @@ object SyncMessageProcessor {
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
         dataMessage.adminDelete != null -> {
-          DataMessageProcessor.handleAdminRemoteDelete(envelope, dataMessage, senderRecipient, threadRecipient, earlyMessageCacheEntry)
+          DataMessageProcessor.handleAdminRemoteDelete(context, envelope, dataMessage, senderRecipient, threadRecipient, earlyMessageCacheEntry)
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
         else -> threadId = handleSynchronizeSentTextMessage(sent, envelope.timestamp!!)
