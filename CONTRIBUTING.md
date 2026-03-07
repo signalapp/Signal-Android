@@ -20,6 +20,30 @@ Truths which we believe to be self-evident:
 1. Most things are pretty straightforward, and opening the project in Android Studio should get you most of the way there.
 1. Depending on your configuration, you'll also likely need to install additional SDK Tool components, namely the versions of NDK and CMake we are currently using in our [Docker](https://github.com/signalapp/Signal-Android/blob/main/reproducible-builds/Dockerfile#L30) configuration.
 
+### Build Types
+Along with the standard release and debug build types, there are 7 more:
+* instrumentation -- For running the androidTests.
+* spinner -- Spinner is our database debugging interface.
+* perf -- For testing performance improvements (may not be currently used)
+* benchmark -- Runs benchmarks defined in `benchmark/src/main/java/org/thoughtcrime/benchmark` 
+* mocked -- Runs benchmarks using the baseline profile
+* canary -- Used for [LeakCanary](https://github.com/square/leakcanary)
+* quickstart -- Avoids having to re-register every time when testing
+
+### Project Flavors
+There are two flavor dimensions: `distribution` and `environment`. 
+
+`distribution` has 4 flavors:
+* play -- distributed thru the Google Play Store
+* website -- distributed thru the Signal website (includes auto-updater)
+* github -- distributed thru GitHub (no auto-updates)
+* nightly -- the beta/nightly build
+
+`environment` has 3 flavors:
+* prod -- the main network
+* staging -- a secondary network for testing (where you can register with the same phone number)
+* backup -- an extra version of staging, only used for nightly
+
 ## Issues
 
 ### Useful bug reports
