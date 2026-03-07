@@ -365,6 +365,7 @@ message Group {
     AccessRequired attributes = 1;
     AccessRequired members = 2;
     AccessRequired addFromInviteLink = 3;
+    AccessRequired memberLabel = 4;
   }
 }
 
@@ -1075,6 +1076,7 @@ message GroupChangeChatUpdate {
       GroupV2MigrationDroppedMembersUpdate groupV2MigrationDroppedMembersUpdate = 32;
       GroupSequenceOfRequestsAndCancelsUpdate groupSequenceOfRequestsAndCancelsUpdate = 33;
       GroupExpirationTimerUpdate groupExpirationTimerUpdate = 34;
+      GroupMemberLabelAccessLevelChangeUpdate groupMemberLabelAccessLevelChangeUpdate = 35;
     }
   }
 
@@ -1122,6 +1124,11 @@ message GroupMembershipAccessLevelChangeUpdate {
 }
 
 message GroupAttributesAccessLevelChangeUpdate {
+  optional bytes updaterAci = 1;
+  GroupV2AccessLevel accessLevel = 2;
+}
+
+message GroupMemberLabelAccessLevelChangeUpdate {
   optional bytes updaterAci = 1;
   GroupV2AccessLevel accessLevel = 2;
 }

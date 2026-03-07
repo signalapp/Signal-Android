@@ -111,7 +111,12 @@ private fun AccessControl.AccessRequired.toRemote(): Group.AccessControl.AccessR
 }
 
 private fun AccessControl.toRemote(): Group.AccessControl {
-  return Group.AccessControl(members = members.toRemote(), attributes = attributes.toRemote(), addFromInviteLink = addFromInviteLink.toRemote())
+  return Group.AccessControl(
+    members = members.toRemote(),
+    attributes = attributes.toRemote(),
+    addFromInviteLink = addFromInviteLink.toRemote(),
+    memberLabel = memberLabel.toRemote()
+  )
 }
 
 private fun Member.Role.toRemote(): Group.Member.Role {
