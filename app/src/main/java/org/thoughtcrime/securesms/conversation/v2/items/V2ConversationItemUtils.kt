@@ -41,8 +41,20 @@ object V2ConversationItemUtils {
 
     messageBody.getSpans(0, messageBody.length, URLSpan::class.java).forEach { urlSpan ->
       val start = messageBody.getSpanStart(urlSpan)
-      val end = messageBody.getSpanEnd(urlSpan)
-      val span = InterceptableLongClickCopyLinkSpan(urlSpan.url, urlClickHandler)
+      var end = messageBody.getSpanEnd(urlSpan)
+      var url = urlSpan.url
+
+      while (end < messageBody.length && messageBody[end] == '-') {
+        val nextCharIndex = end + 1
+        if (nextCharIndex >= messageBody.length || messageBody[nextCharIndex] == ' ' || messageBody[nextCharIndex] == '\n') {
+          url += '-'
+          end++
+        } else {
+          break
+        }
+      }
+
+      val span = InterceptableLongClickCopyLinkSpan(url, urlClickHandler)
 
       messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
       messageBody.removeSpan(urlSpan)
