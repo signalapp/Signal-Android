@@ -42,7 +42,6 @@ There are two flavor dimensions: `distribution` and `environment`.
 `environment` has 3 flavors:
 * prod -- the main network
 * staging -- a secondary network for testing (where you can register with the same phone number)
-* backup -- an extra version of staging, only used for nightly
 
 ## Issues
 
