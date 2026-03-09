@@ -434,10 +434,10 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">Δεν στάλθηκε, πάτα για λεπτομέρειες</string>
     <string name="ConversationItem_error_partially_not_delivered">Στάλθηκε εν μέρει, πάτα για λεπτομέρειες</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Partially deleted, tap for details</string>
+    <string name="ConversationItem_error_partially_not_deleted">Διαγράφηκε μερικώς, πάτα για λεπτομέρειες</string>
     <string name="ConversationItem_error_network_not_delivered">Αποτυχία αποστολής</string>
     <!-- Warning footer when an admin delete has failed to send -->
-    <string name="ConversationItem_error_delete_failed">Delete failed, tap for details</string>
+    <string name="ConversationItem_error_delete_failed">Η διαγραφή απέτυχε, πάτα για λεπτομέρειες</string>
     <string name="ConversationItem_group_action_left">Ο/Η %1$s αποχώρησε απ\' την ομάδα.</string>
     <string name="ConversationItem_send_paused">Η αποστολή βρίσκεται σε αναμονή</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Να σταλεί ΜΗ κρυπτογραφημένο μήνυμα SMS;</string>
@@ -3590,9 +3590,9 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Κλείδωσε την ηχογράφηση του συνημμένου αρχείου ήχου</string>
     <string name="conversation_activity__message_could_not_be_sent">Το μήνυμα δεν στάλθηκε. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">Η διαγραφή του μηνύματος απέτυχε. Έλεγξε τη σύνδεσή σου και δοκίμασε πάλι.</string>
     <!-- Dialog body when a message failed to delete. -->
-    <string name="conversation_activity__message_failed_to_delete">Message failed to delete.</string>
+    <string name="conversation_activity__message_failed_to_delete">Η διαγραφή του μηνύματος απέτυχε.</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">Σύρε για ακύρωση</string>
@@ -6020,17 +6020,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Προσαρμογή ειδοποιήσεων</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">Όταν είναι σε σίγαση</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__calls">Κλήσεις</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Κουδούνισμα και λήψεις ειδοποιήσεων όταν ξεκινά μια κλήση σε συζητήσεις σε σίγαση.</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Receive notifications when you are mentioned in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Να λαμβάνεις ειδοποιήσεις όταν σε αναφέρουν σε συνομιλίες σε σίγαση.</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Replies to you</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Απαντήσεις σε εσένα</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Receive notifications when someone replies to your messages in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Να λαμβάνεις ειδοποιήσεις όταν κάποιος απαντά στα μηνύματά σου σε συνομιλίες σε σίγαση.</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">Πρόσφατα χρησιμοποιημένα</string>
@@ -7742,9 +7742,9 @@
 
     <!-- CallParticipantSheet -->
     <!-- Action to mute a participant\'s audio in a group call -->
-    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <string name="CallParticipantSheet__mute_audio">Σίγαση ήχου</string>
     <!-- Action to remove a participant from a call -->
-    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <string name="CallParticipantSheet__remove_from_call">Αφαίρεση από την κλήση</string>
     <!-- Action to view contact details for a participant -->
     <string name="CallParticipantSheet__contact_details">Λεπτομέρειες επαφής</string>
 
@@ -7925,27 +7925,27 @@
     <string name="TurnOnSignalBackups__toast_not_now">Μπορείς να ενεργοποιήσεις τα αντίγραφα ασφαλείας στις «Ρυθμίσεις»</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <string name="BackupMessagesUpsell__title">Δεν θα χάσεις ποτέ μήνυμα</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <string name="BackupMessagesUpsell__body">Ενεργοποίησε τα Ασφαλή αντίγραφα Signal για να διατηρήσεις τα μηνύματα και τα πολυμέσα σου.</string>
     <!-- Primary button of Megaphone B -->
     <string name="BackupMessagesUpsell__turn_on">Ενεργοποίηση</string>
     <!-- Secondary button of Megaphone B -->
     <string name="BackupMessagesUpsell__not_now">Όχι τώρα</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <string name="BackupMediaUpsell__title">Δημιούργησε αντίγραφα ασφαλείας όλων των πολυμέσων σου</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">Τα προγράμματα επί πληρωμή \"Ασφαλή αντίγραφα Signal\" διατηρούν όλα τα πολυμέσα σου, έως και 100 GB.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">Αναβάθμιση</string>
     <!-- Secondary button of Megaphone C -->
     <string name="BackupMediaUpsell__not_now">Όχι τώρα</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <string name="BackupStorageUpsell__title">Εξοικονόμησε χώρο με αντίγραφα ασφαλείας επί πληρωμή</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <string name="BackupStorageUpsell__body">Τα προγράμματα ασφαλούς δημιουργίας αντιγράφων ασφαλείας επί πληρωμή μπορούν να εξοικονομήσουν χώρο αποθήκευσης, αφαιρώντας τα μέσα.</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
     <string name="BackupStorageUpsell__upgrade">Αναβάθμιση</string>
     <!-- Primary button of Megaphone D when user has no backups -->
@@ -7954,21 +7954,21 @@
     <string name="BackupStorageUpsell__not_now">Όχι τώρα</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <string name="BackupUpsellBottomSheet__title">Αναβάθμιση για δημιουργία αντιγράφων ασφαλείας όλων των πολυμέσων</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Τα προγράμματα επί πληρωμή \"Ασφαλή αντίγραφα Signal\" αποθηκεύουν όλα τα πολυμέσα που στέλνεις και λαμβάνεις, έως και 100 GB. Δεν θα χάσεις ποτέ εικόνες ή βίντεο όταν αγοράσεις ένα νέο τηλέφωνο ή επανεγκαταστήσεις το Signal.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/μήνα</string>
     <!-- Subtitle for the paid plan feature card -->
     <string name="BackupUpsellBottomSheet__text_and_all_media">Κείμενο + όλα τα πολυμέσα σου</string>
     <!-- Feature bullet: full text and media backup -->
-    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">Πλήρες κείμενο + αντίγραφο ασφαλείας πολυμέσων</string>
     <!-- Feature bullet: 100GB storage -->
-    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <string name="BackupUpsellBottomSheet__storage_100gb">100GB αποθηκευτικού χώρου</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">Εξοικονόμησε αποθηκευτικό χώρο στη συσκευή</string>
     <!-- Feature bullet: thanks for supporting Signal -->
-    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Ευχαριστούμε που στηρίζεις το Signal</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__subscribe_for">Εγγράψου για %1$s/μήνα</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
@@ -7977,11 +7977,11 @@
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">Είσαι εντάξει. Ξεκίνα τη δημιουργία αντιγράφων ασφαλείας τώρα.</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">Αυτό μπορεί να διαρκέσει λίγο. Μπορείς να χρησιμοποιήσεις κανονικά το Signal κατά τη δημιουργία αντιγράφων ασφαλείας.</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Βελτιστοποίηση χώρου αποθήκευσης Signal</string>
     <!-- Subtitle for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Ο φόρτος των παλαιότερων πολυμέσων θα μειωθεί, αλλά μπορούν να ληφθούν από το αντίγραφο ασφαλείας σου ανά πάσα στιγμή.</string>
     <!-- Primary button on the setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__back_up_now">Δημιουργία αντίγραφου τώρα</string>
 
@@ -9473,7 +9473,7 @@
     <!-- Description explaining the group member labels feature. -->
     <string name="GroupMemberLabel__description">Πρόσθεσε μια ετικέτα μέλους για να περιγράψεις τον εαυτό σου ή τον ρόλο σου σε αυτήν την ομάδα. Οι ετικέτες είναι ορατές μόνο εντός αυτής της ομάδας.</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
-    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <string name="GroupMemberLabel__error_cant_save_no_network">Αδυναμία αποθήκευσης ετικέτας. Έλεγξε το δίκτυό σου και δοκίμασε ξανά.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Επιλογή emoji</string>
     <!-- Accessibility label for the group member label close screen button. -->
@@ -9493,7 +9493,7 @@
     <!-- Title for screen shown to let the user know that displaying their member label will take priority over their about text. -->
     <string name="MemberLabelsAboutOverride__title">Εμφάνιση ετικέτας μέλους</string>
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__body">Σε αυτήν την ομάδα, η ετικέτα μέλους σας θα εμφανίζεται δίπλα στη φωτογραφία σου στη θέση της ενότητας \"Πληροφορίες\".</string>
+    <string name="MemberLabelsAboutOverride__body">Σε αυτήν την ομάδα, η ετικέτα μέλους σου θα εμφανίζεται δίπλα στη φωτογραφία σου στη θέση της ενότητας \"Πληροφορίες\".</string>
 
     <!-- EOF -->
 </resources>

@@ -39,7 +39,7 @@
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
     <string name="RegistrationActivity_you_will_receive_a_verification_code">您将收到验证码，运营商可能收取短信费用。</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">选择国家或地区</string>
+    <string name="RegistrationActivity_select_a_country">选择国家</string>
     <string name="RegistrationActivity_phone_number_description">手机号码</string>
     <string name="RegistrationActivity_next">下一步</string>
 

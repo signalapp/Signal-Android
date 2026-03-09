@@ -434,10 +434,10 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">Inte skickat, tryck för detaljer</string>
     <string name="ConversationItem_error_partially_not_delivered">Delvis skickat, tryck för detaljer</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Partially deleted, tap for details</string>
+    <string name="ConversationItem_error_partially_not_deleted">Delvis raderad, tryck för mer information</string>
     <string name="ConversationItem_error_network_not_delivered">Att skicka meddelandet misslyckades</string>
     <!-- Warning footer when an admin delete has failed to send -->
-    <string name="ConversationItem_error_delete_failed">Delete failed, tap for details</string>
+    <string name="ConversationItem_error_delete_failed">Raderingen misslyckades, tryck för mer information</string>
     <string name="ConversationItem_group_action_left">%1$s har lämnat gruppen.</string>
     <string name="ConversationItem_send_paused">Sändning pausad</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Använd okrypterat SMS istället?</string>
@@ -3590,9 +3590,9 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås inspelning av ljudbilaga</string>
     <string name="conversation_activity__message_could_not_be_sent">Meddelandet kunde inte skickas. Kontrollera din anslutning och försök igen.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">Meddelandet kunde inte raderas. Kontrollera din anslutning och försök igen.</string>
     <!-- Dialog body when a message failed to delete. -->
-    <string name="conversation_activity__message_failed_to_delete">Message failed to delete.</string>
+    <string name="conversation_activity__message_failed_to_delete">Meddelandet kunde inte raderas.</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">Dra för att avbryta</string>
@@ -6020,17 +6020,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Anpassade aviseringar</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">När ljudet är avstängt</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__calls">Samtal</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring och ta emot aviseringar när ett samtal startas i tystade chattar.</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Receive notifications when you are mentioned in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Få aviseringar när du omnämns i tystade chattar.</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Replies to you</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Svar till dig</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Receive notifications when someone replies to your messages in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Få aviseringar när någon svarar på dina meddelanden i tystade chattar.</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">Nyligen använda</string>
@@ -7742,9 +7742,9 @@
 
     <!-- CallParticipantSheet -->
     <!-- Action to mute a participant\'s audio in a group call -->
-    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <string name="CallParticipantSheet__mute_audio">Stäng av ljudet</string>
     <!-- Action to remove a participant from a call -->
-    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <string name="CallParticipantSheet__remove_from_call">Ta bort från samtalet</string>
     <!-- Action to view contact details for a participant -->
     <string name="CallParticipantSheet__contact_details">Kontaktdetaljer</string>
 
@@ -7925,27 +7925,27 @@
     <string name="TurnOnSignalBackups__toast_not_now">Du kan aktivera säkerhetskopiering i Inställningar</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <string name="BackupMessagesUpsell__title">Förlora aldrig ett meddelande</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <string name="BackupMessagesUpsell__body">Aktivera Signal Säker säkerhetskopiering för att bevara dina meddelanden och medier.</string>
     <!-- Primary button of Megaphone B -->
     <string name="BackupMessagesUpsell__turn_on">Aktivera</string>
     <!-- Secondary button of Megaphone B -->
     <string name="BackupMessagesUpsell__not_now">Inte nu</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <string name="BackupMediaUpsell__title">Säkerhetskopiera alla dina medier</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">Betalda Signal Säker säkerhetskopiering-planer bevarar alla dina medier, upp till 100 GB.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">Uppgradera</string>
     <!-- Secondary button of Megaphone C -->
     <string name="BackupMediaUpsell__not_now">Inte nu</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <string name="BackupStorageUpsell__title">Spara utrymme med betalda säkerhetskopior</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <string name="BackupStorageUpsell__body">Betalda säker säkerhetskopiering-planer kan spara lagringsutrymme genom att avlasta medier.</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
     <string name="BackupStorageUpsell__upgrade">Uppgradera</string>
     <!-- Primary button of Megaphone D when user has no backups -->
@@ -7954,21 +7954,21 @@
     <string name="BackupStorageUpsell__not_now">Inte nu</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <string name="BackupUpsellBottomSheet__title">Uppgradera för att säkerhetskopiera alla medier</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Betalda Signal Säker säkerhetskopiering-planer sparar alla medier du skickar och tar emot, upp till maximalt 100 GB. Förlora aldrig en bild eller video när du skaffar en ny telefon eller installerar om Signal.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/månad</string>
     <!-- Subtitle for the paid plan feature card -->
     <string name="BackupUpsellBottomSheet__text_and_all_media">Textmeddelanden + alla dina media</string>
     <!-- Feature bullet: full text and media backup -->
-    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">Fullständig säkerhetskopia av text och media</string>
     <!-- Feature bullet: 100GB storage -->
-    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <string name="BackupUpsellBottomSheet__storage_100gb">100 GB lagringsutrymme</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">Spara lagringsutrymme på enheten</string>
     <!-- Feature bullet: thanks for supporting Signal -->
-    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Tack för att du stöder Signal</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__subscribe_for">Prenumerera för %1$s/månad</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
@@ -7977,11 +7977,11 @@
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">Du är redo. Starta din säkerhetskopiering nu.</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">Det kan ta en stund. Du kan använda Signal som vanligt medan du säkerhetskopierar.</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimera Signal-lagring</string>
     <!-- Subtitle for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Äldre medier avlastas men kan laddas ned från din säkerhetskopia när som helst.</string>
     <!-- Primary button on the setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__back_up_now">Säkerhetskopiera nu</string>
 
@@ -9473,7 +9473,7 @@
     <!-- Description explaining the group member labels feature. -->
     <string name="GroupMemberLabel__description">Lägg till en medlemsetikett för att beskriva dig själv eller din roll i den här gruppen. Etiketter är endast synliga inom den här gruppen.</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
-    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <string name="GroupMemberLabel__error_cant_save_no_network">Det gick inte att spara etiketten. Kontrollera ditt nätverk och försök igen.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Välj emoji</string>
     <!-- Accessibility label for the group member label close screen button. -->

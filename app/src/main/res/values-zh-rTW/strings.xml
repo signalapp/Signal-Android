@@ -431,10 +431,10 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">未傳送，請點擊以獲得詳細資訊</string>
     <string name="ConversationItem_error_partially_not_delivered">部分發送，請點擊以了解細節。</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Partially deleted, tap for details</string>
+    <string name="ConversationItem_error_partially_not_deleted">已部分刪除，輕按以查看詳情</string>
     <string name="ConversationItem_error_network_not_delivered">傳送失敗</string>
     <!-- Warning footer when an admin delete has failed to send -->
-    <string name="ConversationItem_error_delete_failed">Delete failed, tap for details</string>
+    <string name="ConversationItem_error_delete_failed">刪除失敗，輕按以查看詳情</string>
     <string name="ConversationItem_group_action_left">%1$s 已經離開群組。</string>
     <string name="ConversationItem_send_paused">傳送已暫停</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">改用未加密的簡訊作為遞補方式？</string>
@@ -3483,9 +3483,9 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">鎖定語音錄製附檔</string>
     <string name="conversation_activity__message_could_not_be_sent">無法傳送訊息。 檢查你的連線，然後重試。</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">刪除訊息失敗。請檢查網路連線，然後再試一次。</string>
     <!-- Dialog body when a message failed to delete. -->
-    <string name="conversation_activity__message_failed_to_delete">Message failed to delete.</string>
+    <string name="conversation_activity__message_failed_to_delete">刪除訊息失敗。</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">滑動以取消</string>
@@ -5879,17 +5879,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">自訂通知</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">靜音時</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__calls">通話</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">當靜音聊天中開始通話時響鈴和接收通知。</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Receive notifications when you are mentioned in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">當靜音聊天中有人提及你時接收通知。</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Replies to you</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">回覆你</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Receive notifications when someone replies to your messages in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">當靜音聊天中有人回覆你的訊息時接收通知。</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">最近使用的</string>
@@ -7570,9 +7570,9 @@
 
     <!-- CallParticipantSheet -->
     <!-- Action to mute a participant\'s audio in a group call -->
-    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <string name="CallParticipantSheet__mute_audio">將音訊靜音</string>
     <!-- Action to remove a participant from a call -->
-    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <string name="CallParticipantSheet__remove_from_call">從通話中移除</string>
     <!-- Action to view contact details for a participant -->
     <string name="CallParticipantSheet__contact_details">聯絡人細節</string>
 
@@ -7751,27 +7751,27 @@
     <string name="TurnOnSignalBackups__toast_not_now">你可以在「設定」中啟用備份</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <string name="BackupMessagesUpsell__title">絕不遺失訊息</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <string name="BackupMessagesUpsell__body">開啟 Signal 安全備份以保留你的訊息和媒體。</string>
     <!-- Primary button of Megaphone B -->
     <string name="BackupMessagesUpsell__turn_on">開啟</string>
     <!-- Secondary button of Megaphone B -->
     <string name="BackupMessagesUpsell__not_now">現在不要</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <string name="BackupMediaUpsell__title">備份所有媒體</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">付費的 Signal 安全備份計劃保存你的所有媒體，最高可達 100GB。</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">升級</string>
     <!-- Secondary button of Megaphone C -->
     <string name="BackupMediaUpsell__not_now">現在不要</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <string name="BackupStorageUpsell__title">使用付費備份節省儲存空間</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <string name="BackupStorageUpsell__body">付費的安全備份計劃可以透過卸載媒體來節省儲存空間。</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
     <string name="BackupStorageUpsell__upgrade">升級</string>
     <!-- Primary button of Megaphone D when user has no backups -->
@@ -7780,21 +7780,21 @@
     <string name="BackupStorageUpsell__not_now">現在不要</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <string name="BackupUpsellBottomSheet__title">升級以備份所有媒體</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">付費的 Signal 安全備份計劃儲存你發送和接收的所有媒體，最高可達 100GB。當你使用新手機或重新安裝 Signal 時，絕不會遺失圖片或影片。</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/月</string>
     <!-- Subtitle for the paid plan feature card -->
     <string name="BackupUpsellBottomSheet__text_and_all_media">文字 + 你所有的媒體</string>
     <!-- Feature bullet: full text and media backup -->
-    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">完整文字 + 媒體備份</string>
     <!-- Feature bullet: 100GB storage -->
-    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <string name="BackupUpsellBottomSheet__storage_100gb">100GB 儲存空間</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">節省裝置上的儲存空間</string>
     <!-- Feature bullet: thanks for supporting Signal -->
-    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">感謝你對 Signal 的支持</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__subscribe_for">以每月 %1$s 定期贊助</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
@@ -7803,11 +7803,11 @@
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">一切準備就緒。立即開始你的備份。</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">這可能需要一點時間。備份期間，你可以如常使用 Signal。</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">最佳化 Signal 儲存空間</string>
     <!-- Subtitle for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">較舊的媒體將被卸載，但可以隨時從備份中下載。</string>
     <!-- Primary button on the setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__back_up_now">馬上備份</string>
 
@@ -9284,7 +9284,7 @@
     <!-- Description explaining the group member labels feature. -->
     <string name="GroupMemberLabel__description">新增一個成員標籤來描述你自己或你在這個群組中的角色。標籤只在此群組內可見。</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
-    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <string name="GroupMemberLabel__error_cant_save_no_network">無法儲存標籤。請檢查你的網路連線，然後再試一次。</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">選擇表情符號</string>
     <!-- Accessibility label for the group member label close screen button. -->

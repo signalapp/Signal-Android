@@ -9302,9 +9302,9 @@
     <string name="MemberLabelsEducation__edit_label">Edit label</string>
 
     <!-- Title for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__title">Tampilan Label Anggota</string>
+    <string name="MemberLabelsAboutOverride__title">Tampilan label anggota</string>
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__body">Dalam grup ini, Label Anggota akan ditampilkan di samping foto sebagai pengganti Tentang Anda.</string>
+    <string name="MemberLabelsAboutOverride__body">Dalam grup ini, Label Anggota akan ditampilkan di samping foto sebagai pengganti informasi Tentang Anda.</string>
 
     <!-- EOF -->
 </resources>

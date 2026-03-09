@@ -434,10 +434,10 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">Göndərilmədi, təfsilatlar üçün toxunun</string>
     <string name="ConversationItem_error_partially_not_delivered">Qismən göndərildi, təfsilatlar üçün toxunun</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Partially deleted, tap for details</string>
+    <string name="ConversationItem_error_partially_not_deleted">Qismən silindi, təfərrüatlar üçün toxunun</string>
     <string name="ConversationItem_error_network_not_delivered">Göndərilmədi</string>
     <!-- Warning footer when an admin delete has failed to send -->
-    <string name="ConversationItem_error_delete_failed">Delete failed, tap for details</string>
+    <string name="ConversationItem_error_delete_failed">Silmək baş tutmadı, təfərrüatlar üçün toxunun</string>
     <string name="ConversationItem_group_action_left">%1$s qrupu tərk etdi.</string>
     <string name="ConversationItem_send_paused">Göndərişə fasilə verildi</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Şifrələnməmiş SMS-ə geri qayıdılsın?</string>
@@ -3590,9 +3590,9 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Səsyazmanı kilidlə</string>
     <string name="conversation_activity__message_could_not_be_sent">Mesaj göndərilə bilmir. Bağlantınızı yoxlayıb yenidən sınayın.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">Mesajı silmək baş tutmadı. Bağlantınızı yoxlayıb yenidən cəhd edin.</string>
     <!-- Dialog body when a message failed to delete. -->
-    <string name="conversation_activity__message_failed_to_delete">Message failed to delete.</string>
+    <string name="conversation_activity__message_failed_to_delete">Mesajı silmək baş tutmadı.</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">İmtina etmək üçün sürüşdürün</string>
@@ -6020,17 +6020,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Özəl bildirişlər</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">Səs bağlandıqda</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__calls">Zənglər</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Səsi bağlanmış çatlarda zəng edildikdə zəng səsi və qəbul etmə bildirişi alacaqsınız.</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Receive notifications when you are mentioned in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Səsi bağlı çatlarda adınız çəkiləndə bildiriş alın.</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Replies to you</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Sizə cavab verir</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Receive notifications when someone replies to your messages in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Səsi bağlı çatlarda kimsə mesajlarınıza cavab verdikdə bildirişlər alın.</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">Son istifadə olunan</string>
@@ -7742,9 +7742,9 @@
 
     <!-- CallParticipantSheet -->
     <!-- Action to mute a participant\'s audio in a group call -->
-    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <string name="CallParticipantSheet__mute_audio">Audionun səsini bağla</string>
     <!-- Action to remove a participant from a call -->
-    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <string name="CallParticipantSheet__remove_from_call">Zəngdən çıxar</string>
     <!-- Action to view contact details for a participant -->
     <string name="CallParticipantSheet__contact_details">Əlaqə təfsilatları</string>
 
@@ -7925,27 +7925,27 @@
     <string name="TurnOnSignalBackups__toast_not_now">Ehtiyat nüsxələrini \"Parametrlər\"də aktivləşdirə bilərsiniz</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <string name="BackupMessagesUpsell__title">Əsla bir mesajı belə itirməyin</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <string name="BackupMessagesUpsell__body">Mesajlarınızı və media fayllarınızı qorumaq üçün Signal təhlükəsiz ehtiyat nüsxələrini aktivləşdirin.</string>
     <!-- Primary button of Megaphone B -->
     <string name="BackupMessagesUpsell__turn_on">Aç</string>
     <!-- Secondary button of Megaphone B -->
     <string name="BackupMessagesUpsell__not_now">İndi yox</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <string name="BackupMediaUpsell__title">Bütün media faylların ehtiyat nüsxəsini çıxarın</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">Ödənişli Signal təhlükəsiz ehtiyat nüsxə planları 100GB-yə qədər olan bütün media fayllarınızı qoruyur.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">Yüksəlt</string>
     <!-- Secondary button of Megaphone C -->
     <string name="BackupMediaUpsell__not_now">İndi yox</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <string name="BackupStorageUpsell__title">Ödənişli ehtiyat nüsxələrlə yaddaşa qənaət edin</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <string name="BackupStorageUpsell__body">Ödənişli təhlükəsiz ehtiyat nüsxə planları media fayllarını köçürərək yaddaşda yerə qənaət edə bilər.</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
     <string name="BackupStorageUpsell__upgrade">Yüksəlt</string>
     <!-- Primary button of Megaphone D when user has no backups -->
@@ -7954,21 +7954,21 @@
     <string name="BackupStorageUpsell__not_now">İndi yox</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <string name="BackupUpsellBottomSheet__title">Bütün media fayllarının ehtiyat nüsxəsini çıxarmaq üçün yeniləyin</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Ödənişli Signal təhlükəsiz ehtiyat nüsxə planları göndərdiyiniz və qəbul etdiyiniz bütün media fayllarını 100GB-yə qədər yaddaşda saxlayır. Yeni telefon aldıqda və ya Signal-ı yenidən quraşdırdıqda şəkil və ya videonu itirməyin.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/ay</string>
     <!-- Subtitle for the paid plan feature card -->
     <string name="BackupUpsellBottomSheet__text_and_all_media">Mətn + bütün media fayllarınız</string>
     <!-- Feature bullet: full text and media backup -->
-    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">Tam mətn + media faylın ehtiyat nüsxəsi</string>
     <!-- Feature bullet: 100GB storage -->
-    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <string name="BackupUpsellBottomSheet__storage_100gb">100GB yaddaş</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">Cihazdaxili yaddaşda saxla</string>
     <!-- Feature bullet: thanks for supporting Signal -->
-    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Signal-ı dəstəklədiyiniz üçün təşəkkürlər</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__subscribe_for">Aylıq %1$s məbləğinə abunə ol</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
@@ -7977,11 +7977,11 @@
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">Hazırsan. Artıq ehtiyat nüsxəni çıxarmağa başla.</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">Bu, bir qədər çəkə bilər. Ehtiyat nüsxə çıxarılana qədər Signal-dan normal qaydada istifadə edə bilərsiniz.</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Signal yaddaşını optimallaşdır</string>
     <!-- Subtitle for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Köhnə media faylı yaddaşdan çıxarılacaq, amma istənilən vaxt ehtiyat nüsxədən endirilə bilər.</string>
     <!-- Primary button on the setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__back_up_now">İndi Arxivləşdir</string>
 
@@ -9473,7 +9473,7 @@
     <!-- Description explaining the group member labels feature. -->
     <string name="GroupMemberLabel__description">Özünüzü və ya bu qrupdakı rolunuzu təsvir etmək üçün bir üzv etiketi əlavə edin. Etiketlər yalnız bu qrup daxilində görünür.</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
-    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <string name="GroupMemberLabel__error_cant_save_no_network">Etiketi yaddaşda saxlamaq mümkün olmadı. Şəbəkənizi yoxlayıb yenidən cəhd edin.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Emoji seçin</string>
     <!-- Accessibility label for the group member label close screen button. -->
@@ -9491,9 +9491,9 @@
     <string name="MemberLabelsEducation__edit_label">Etiketinizi redaktə edin</string>
 
     <!-- Title for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__title">Member label display</string>
+    <string name="MemberLabelsAboutOverride__title">Üzv etiketinin göstərilməsi</string>
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__body">In this group, your Member Label will be displayed beside your photo in place of your About.</string>
+    <string name="MemberLabelsAboutOverride__body">Bu qrupda Üzv etiketi fotonun yanında \"Haqqımda\" mətninin yerində görünəcək.</string>
 
     <!-- EOF -->
 </resources>

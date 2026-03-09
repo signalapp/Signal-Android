@@ -440,10 +440,10 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">Не адпраўлена, націсніце, каб даведацца больш</string>
     <string name="ConversationItem_error_partially_not_delivered">Часткова адпраўлена, націсніце, каб даведацца больш</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Partially deleted, tap for details</string>
+    <string name="ConversationItem_error_partially_not_deleted">Часткова выдалена, націсніце, каб даведацца больш</string>
     <string name="ConversationItem_error_network_not_delivered">Не атрымалася адправіць</string>
     <!-- Warning footer when an admin delete has failed to send -->
-    <string name="ConversationItem_error_delete_failed">Delete failed, tap for details</string>
+    <string name="ConversationItem_error_delete_failed">Не атрымалася выдалiць, націсніце, каб даведацца больш</string>
     <string name="ConversationItem_group_action_left">%1$s пакінуў(-ла) групу.</string>
     <string name="ConversationItem_send_paused">Адпраўка прыпынена</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Адправіць як незашыфраванае SMS?</string>
@@ -2741,7 +2741,7 @@
     <!-- Toggle content description for toggling camera direction  -->
     <string name="WebRtcCallView__toggle_camera_direction">Змяніць напрамак камеры</string>
     <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">Уключыць/адключыць вонкавы дынамік</string>
+    <string name="WebRtcCallView__toggle_speaker">Уключыць/адключыць дынамік</string>
     <!-- Toggle content description for toggling camera state  -->
     <string name="WebRtcCallView__toggle_camera">Уключыць/адключыць камеру</string>
     <!-- Toggle content description for toggling mute state  -->
@@ -2773,7 +2773,7 @@
     <!-- A text description of the headset icon, used for accessibility. -->
     <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">Значок, які адзначае правадную гарнітуру.</string>
     <!-- A text description of the speaker icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Значок, які адзначае вонкавы дынамік.</string>
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Значок, які адзначае дынамік.</string>
     <!-- A text description of the earpiece icon, used for accessibility. -->
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Значок, які адзначае дынамік прылады.</string>
 
@@ -3694,7 +3694,7 @@
     <!-- Audio output option referring to the earpiece built into the phone -->
     <string name="WebRtcAudioOutputToggle__phone_earpiece">Дынамік тэлефона</string>
     <!-- Audio output option referring to the louder speaker built into the phone -->
-    <string name="WebRtcAudioOutputToggle__speaker">Вонкавы дынамік</string>
+    <string name="WebRtcAudioOutputToggle__speaker">Дынамік</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
@@ -3804,9 +3804,9 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Заблакаваць запіс аўдыядалучэння</string>
     <string name="conversation_activity__message_could_not_be_sent">Не атрымалася адправіць паведамленне. Праверце падключэнне і паўтарыце спробу.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">Не атрымалася выдалiць паведамленне. Праверце падключэнне і паўтарыце спробу.</string>
     <!-- Dialog body when a message failed to delete. -->
-    <string name="conversation_activity__message_failed_to_delete">Message failed to delete.</string>
+    <string name="conversation_activity__message_failed_to_delete">Не атрымалася выдалiць паведамленне.</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">Прагартаць, каб скасаваць</string>
@@ -6302,17 +6302,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Карыстальніцкія апавяшчэнні</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">Калі апавяшчэнні адключаны</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__calls">Званкі</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Званіце і атрымлівайце апавяшчэнні, калі пачынаецца званок у чатах з адключанымі апавяшчэннямі.</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Receive notifications when you are mentioned in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Атрымлівайце апавяшчэнні, калі вас згадваюць у чатах з адключанымі апавяшчэннямі.</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Replies to you</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Адказы вам</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Receive notifications when someone replies to your messages in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Атрымлівайце апавяшчэнні, калі хтосьці адказвае на вашы паведамленні ў чатах з адключанымі апавяшчэннямі.</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">Нядаўна выкарыстаныя</string>
@@ -8043,9 +8043,9 @@
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Мікрафон адключаны</string>
     <!-- Displayed when the user turns on their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_on">Вонкавы дынамік уключаны</string>
+    <string name="CallStateUpdatePopupWindow__speaker_on">Дынамік уключаны</string>
     <!-- Displayed when the user turns off their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_off">Вонкавы дынамік адключаны</string>
+    <string name="CallStateUpdatePopupWindow__speaker_off">Дынамік адключаны</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Кнопка «Здымак»</string>
@@ -8086,9 +8086,9 @@
 
     <!-- CallParticipantSheet -->
     <!-- Action to mute a participant\'s audio in a group call -->
-    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <string name="CallParticipantSheet__mute_audio">Адключыць аўдыё</string>
     <!-- Action to remove a participant from a call -->
-    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <string name="CallParticipantSheet__remove_from_call">Выдаліць са званка</string>
     <!-- Action to view contact details for a participant -->
     <string name="CallParticipantSheet__contact_details">Звесткі аб кантакту</string>
 
@@ -8273,27 +8273,27 @@
     <string name="TurnOnSignalBackups__toast_not_now">Вы можаце ўключыць рэзервовае капіраванне ў «Наладах»</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <string name="BackupMessagesUpsell__title">Ніколі не губляйце паведамленні</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <string name="BackupMessagesUpsell__body">Уключыце бяспечнае рэзервовае капіраванне Signal, каб захаваць свае паведамленні і медыяфайлы.</string>
     <!-- Primary button of Megaphone B -->
     <string name="BackupMessagesUpsell__turn_on">Уключыць</string>
     <!-- Secondary button of Megaphone B -->
     <string name="BackupMessagesUpsell__not_now">Не зараз</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <string name="BackupMediaUpsell__title">Зрабіце рэзервовую копію ўсіх медыяфайлаў</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">Платныя планы бяспечнага рэзервовага капіравання Signal захоўваюць усе вашы медыяфайлы памерам да 100 ГБ.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">Абнавіць</string>
     <!-- Secondary button of Megaphone C -->
     <string name="BackupMediaUpsell__not_now">Не зараз</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <string name="BackupStorageUpsell__title">Эканомце месца на сховішчы з дапамогай платнага рэзервовага капіравання</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <string name="BackupStorageUpsell__body">Платныя планы бяспечнага рэзервовага капіравання эканомяць месца на сховішчы шляхам выгрузкі медыяфайлаў.</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
     <string name="BackupStorageUpsell__upgrade">Абнавіць</string>
     <!-- Primary button of Megaphone D when user has no backups -->
@@ -8302,21 +8302,21 @@
     <string name="BackupStorageUpsell__not_now">Не зараз</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <string name="BackupUpsellBottomSheet__title">Абнавіце, каб зрабіць рэзервовае капіраванне ўсіх медыяфайлаў</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Платныя планы бяспечнага рэзервовага капіравання Signal захоўваюць усе медыяфайлы, якія вы адпраўляеце і атрымліваеце, максімум да 100 ГБ. Не губляйце аніводных выявы ці відэа, калі вы набываеце новы тэлефон або нанова ўсталёўваеце Signal.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/месяц</string>
     <!-- Subtitle for the paid plan feature card -->
     <string name="BackupUpsellBottomSheet__text_and_all_media">SMS + усе вашы медыяфайлы</string>
     <!-- Feature bullet: full text and media backup -->
-    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">Поўнае рэзервовае капіраванне тэкставага паведамлення + медыяфайлаў</string>
     <!-- Feature bullet: 100GB storage -->
-    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <string name="BackupUpsellBottomSheet__storage_100gb">Сховішча: 100 ГБ</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">Эканомія месца на сховішчы на прыладзе</string>
     <!-- Feature bullet: thanks for supporting Signal -->
-    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Дзякуй за падтрымку Signal</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__subscribe_for">Падпісацца за %1$s/месяц</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
@@ -8325,11 +8325,11 @@
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">Усё гатова. Пачынайце рэзервовае капіраванне.</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">Гэта можа заняць пэўны час. Падчас рэзервовага капіравання вы можаце карыстацца Signal як звычайна.</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Зрабіць аптымізацыю сховішча Signal</string>
     <!-- Subtitle for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Старэйшыя медыяфайлы будуць выгружаны, але іх можна ў любы час спампаваць з рэзервовай копіі.</string>
     <!-- Primary button on the setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__back_up_now">Пачаць рэзервовае капіраванне</string>
 
@@ -9851,7 +9851,7 @@
     <!-- Description explaining the group member labels feature. -->
     <string name="GroupMemberLabel__description">Дадайце метку ўдзельніка, каб апісаць сябе або сваю ролю ў гэтай групе. Меткі бачныя толькі для гэтай групы.</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
-    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <string name="GroupMemberLabel__error_cant_save_no_network">Не атрымалася захаваць метку. Праверце падключэнне і паўтарыце спробу.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Выбраць эмодзі</string>
     <!-- Accessibility label for the group member label close screen button. -->

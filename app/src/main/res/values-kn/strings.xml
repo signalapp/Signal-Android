@@ -434,10 +434,10 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">ಕಳಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ, ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಇಲ್ಲಿ ಕ್ಲಿಕ್ಕಿಸಿ</string>
     <string name="ConversationItem_error_partially_not_delivered">ಭಾಗಶಃ ಕಳಿಸಿದೆ, ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಇಲ್ಲಿ ಕ್ಲಿಕ್ಕಿಸಿ</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Partially deleted, tap for details</string>
+    <string name="ConversationItem_error_partially_not_deleted">ಭಾಗಶಃ ಅಳಿಸಲಾಗಿದೆ, ವಿವರಗಳಿಗಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
     <string name="ConversationItem_error_network_not_delivered">ಕಳಿಸಲು ವಿಫಲವಾಯಿತು</string>
     <!-- Warning footer when an admin delete has failed to send -->
-    <string name="ConversationItem_error_delete_failed">Delete failed, tap for details</string>
+    <string name="ConversationItem_error_delete_failed">ಅಳಿಸುವಿಕೆ ವಿಫಲವಾಗಿದೆ, ವಿವರಗಳಿಗಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
     <string name="ConversationItem_group_action_left">%1$s ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದಾರೆ</string>
     <string name="ConversationItem_send_paused">ವಿರಾಮಗೊಳಿಸಿ ಕಳುಹಿಸಿ</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ಅನ್‌ಎನ್‌ಕ್ರಿಪ್ಟೆಡ್ ಎಸ್‌‌ಎಂಎಸ್‌ ತಗ್ಗಿಸುವುದೇ?</string>
@@ -3590,9 +3590,9 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ಆಡಿಯೊ ಲಗತ್ತು ರೆಕಾರ್ಡಿಂಗ್ ಲಾಕ್ ಮಾಡಿ</string>
     <string name="conversation_activity__message_could_not_be_sent">ಮೆಸೇಜ್ ಕಳುಹಿಸಲಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">ಮೆಸೇಜ್ ಅಳಿಸಲು ವಿಫಲವಾಗಿದೆ. ನಿಮ್ಮ ಕನೆಕ್ಷನ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Dialog body when a message failed to delete. -->
-    <string name="conversation_activity__message_failed_to_delete">Message failed to delete.</string>
+    <string name="conversation_activity__message_failed_to_delete">ಮೆಸೇಜ್ ಅಳಿಸಲು ವಿಫಲವಾಗಿದೆ.</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">ರದ್ದುಪಡಿಸಲು ಸ್ಲೈಡ್ ಮಾಡಿ</string>
@@ -6020,17 +6020,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">ಮ್ಯೂಟ್ ಮಾಡಿದಾಗ</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__calls">ಕರೆಗಳು</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">ಮ್ಯೂಟ್ ಮಾಡಿದ ಚಾಟ್‌ನಿಂದ ಕರೆ ಬಂದಾಗ ಫೋನ್ ರಿಂಗ್ ಮತ್ತು ನೋಟಿಫಿಕೇಷನ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸಿ.</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Receive notifications when you are mentioned in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">ಮ್ಯೂಟ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳಲ್ಲಿ ನಿಮ್ಮನ್ನು ಉಲ್ಲೇಖಿಸಿದಾಗ ನೋಟಿಫಿಕೇಷನ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸಿ.</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Replies to you</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">ನಿಮಗೆ ಪ್ರತ್ಯುತ್ತರಗಳು</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Receive notifications when someone replies to your messages in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">ಮ್ಯೂಟ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳಲ್ಲಿ ಯಾರಾದರೂ ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗಳಿಗೆ ಪ್ರತ್ಯುತ್ತರಿಸಿದಾಗ ನೋಟಿಫಿಕೇಷನ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸಿ.</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">ಇತ್ತೀಚೆಗೆ ಬಳಸಲಾಗಿದೆ</string>
@@ -7742,9 +7742,9 @@
 
     <!-- CallParticipantSheet -->
     <!-- Action to mute a participant\'s audio in a group call -->
-    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <string name="CallParticipantSheet__mute_audio">ಆಡಿಯೊ ಮ್ಯೂಟ್ ಮಾಡಿ</string>
     <!-- Action to remove a participant from a call -->
-    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <string name="CallParticipantSheet__remove_from_call">ಕರೆಯಿಂದ ತೆಗೆದುಹಾಕಿ</string>
     <!-- Action to view contact details for a participant -->
     <string name="CallParticipantSheet__contact_details">ಸಂಪರ್ಕ ವಿವರಗಳು</string>
 
@@ -7925,27 +7925,27 @@
     <string name="TurnOnSignalBackups__toast_not_now">ನೀವು \'ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ\" ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಬಹುದು</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <string name="BackupMessagesUpsell__title">ಮೆಸೇಜ್ ಅನ್ನು ಎಂದಿಗೂ ಕಳೆದುಕೊಳ್ಳಬೇಡಿ</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <string name="BackupMessagesUpsell__body">ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗಳು ಮತ್ತು ಮೀಡಿಯಾವನ್ನು ಸಂರಕ್ಷಿಸಲು Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಆನ್ ಮಾಡಿ.</string>
     <!-- Primary button of Megaphone B -->
     <string name="BackupMessagesUpsell__turn_on">ಆನ್‌ ಮಾಡಿ</string>
     <!-- Secondary button of Megaphone B -->
     <string name="BackupMessagesUpsell__not_now">ಈಗಲ್ಲ</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <string name="BackupMediaUpsell__title">ನಿಮ್ಮ ಎಲ್ಲಾ ಮೀಡಿಯಾ ಬ್ಯಾಕಪ್ ಮಾಡಿ</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">ಪಾವತಿಸಿದ Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್ ಪ್ಲ್ಯಾನ್‌ಗಳು ನಿಮ್ಮ ಎಲ್ಲಾ ಮೀಡಿಯಾವನ್ನು ಸಂರಕ್ಷಿಸುತ್ತವೆ, 100GB ವರೆಗೆ.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">ಅಪ್ಗ್ರೇಡ್</string>
     <!-- Secondary button of Megaphone C -->
     <string name="BackupMediaUpsell__not_now">ಈಗಲ್ಲ</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <string name="BackupStorageUpsell__title">ಪಾವತಿಸಿದ ಬ್ಯಾಕಪ್‌ಗಳೊಂದಿಗೆ ಸ್ಪೇಸ್ ಉಳಿಸಿ</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <string name="BackupStorageUpsell__body">ಪಾವತಿಸಿದ ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್ ಪ್ಲ್ಯಾನ್‌ಗಳು ಮೀಡಿಯಾವನ್ನು ಆಫ್‌ಲೋಡ್ ಮಾಡುವ ಮೂಲಕ ಸಂಗ್ರಹಣೆ ಸ್ಥಳವನ್ನು ಉಳಿಸಬಹುದು.</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
     <string name="BackupStorageUpsell__upgrade">ಅಪ್ಗ್ರೇಡ್</string>
     <!-- Primary button of Megaphone D when user has no backups -->
@@ -7954,21 +7954,21 @@
     <string name="BackupStorageUpsell__not_now">ಈಗಲ್ಲ</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <string name="BackupUpsellBottomSheet__title">ಎಲ್ಲಾ ಮೀಡಿಯಾವನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡಲು ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">ಪಾವತಿಸಿದ Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್ ಪ್ಲ್ಯಾನ್‌ಗಳು ನೀವು ಕಳುಹಿಸುವ ಮತ್ತು ಸ್ವೀಕರಿಸುವ ಎಲ್ಲಾ ಮೀಡಿಯಾವನ್ನು ಉಳಿಸುತ್ತವೆ, ಗರಿಷ್ಠ 100GB ವರೆಗೆ. ನೀವು ಹೊಸ ಫೋನ್ ಪಡೆದಾಗ ಅಥವಾ Signal ಅನ್ನು ಮರುಇನ್‌ಸ್ಟಾಲ್ ಎಂದಿಗೂ ಚಿತ್ರ ಅಥವಾ ವೀಡಿಯೊವನ್ನು ಕಳೆದುಕೊಳ್ಳಬೇಡಿ.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/ತಿಂಗಳು</string>
     <!-- Subtitle for the paid plan feature card -->
     <string name="BackupUpsellBottomSheet__text_and_all_media">ಪಠ್ಯ + ನಿಮ್ಮ ಎಲ್ಲಾ ಮೀಡಿಯಾ</string>
     <!-- Feature bullet: full text and media backup -->
-    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">ಪೂರ್ಣ ಪಠ್ಯ + ಮೀಡಿಯಾ ಬ್ಯಾಕಪ್</string>
     <!-- Feature bullet: 100GB storage -->
-    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <string name="BackupUpsellBottomSheet__storage_100gb">100GB ಸಂಗ್ರಹಣೆ</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">ಸಾಧನದಲ್ಲಿನ ಸಂಗ್ರಹಣೆಯನ್ನು ಉಳಿಸಿ</string>
     <!-- Feature bullet: thanks for supporting Signal -->
-    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Signal ಅನ್ನು ಬೆಂಬಲಿಸಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__subscribe_for">ತಿಂಗಳಿಗೆ %1$sಕ್ಕೆ ಚಂದಾದಾರರಾಗಿ</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
@@ -7977,11 +7977,11 @@
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">ನೀವು ಸಿದ್ಧರಾಗಿದ್ದೀರಿ. ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಆರಂಭಿಸಿ.</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">ಇದು ಸ್ವಲ್ಪ ಸಮಯ ತೆಗೆದುಕೊಳ್ಳಬಹುದು. ಬ್ಯಾಕಪ್ ಮಾಡುವಾಗ ನೀವು Signal ಅನ್ನು ಎಂದಿನಂತೆ ಬಳಸಬಹುದು.</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Signal ಸಂಗ್ರಹಣೆಯನ್ನು ಆಪ್ಟಿಮೈಸ್ ಮಾಡಿ</string>
     <!-- Subtitle for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">ಹಳೆಯ ಮೀಡಿಯಾವನ್ನು ಆಫ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತದೆ, ಆದರೆ ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ನಿಂದ ಯಾವಾಗ ಬೇಕಾದರೂ ಡೌನ್‌ಲೋಡ್ ಮಾಡಬಹುದು.</string>
     <!-- Primary button on the setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__back_up_now">ಈಗ ಬ್ಯಾಕಪ್‌‌ ಮಾಡಿ</string>
 
@@ -9473,7 +9473,7 @@
     <!-- Description explaining the group member labels feature. -->
     <string name="GroupMemberLabel__description">ಈ ಗುಂಪಿನಲ್ಲಿ ನಿಮ್ಮನ್ನು ಅಥವಾ ನಿಮ್ಮ ಪಾತ್ರವನ್ನು ವಿವರಿಸಲು ಸದಸ್ಯರ ಲೇಬಲ್ ಅನ್ನು ಸೇರಿಸಿ. ಲೇಬಲ್‌ಗಳು ಈ ಗುಂಪಿನೊಳಗೆ ಮಾತ್ರ ಗೋಚರಿಸುತ್ತವೆ.</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
-    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <string name="GroupMemberLabel__error_cant_save_no_network">ಲೇಬಲ್ ಸೇವ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ನೆಟ್‌ವರ್ಕ್ ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">ಎಮೋಜಿ ಆಯ್ಕೆಮಾಡಿ</string>
     <!-- Accessibility label for the group member label close screen button. -->
@@ -9491,9 +9491,9 @@
     <string name="MemberLabelsEducation__edit_label">ನಿಮ್ಮ ಲೇಬಲ್ ಅನ್ನು ಎಡಿಟ್ ಮಾಡಿ</string>
 
     <!-- Title for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__title">Member label display</string>
+    <string name="MemberLabelsAboutOverride__title">ಸದಸ್ಯರ ಲೇಬಲ್ ಡಿಸ್‌ಪ್ಲೇ</string>
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__body">In this group, your Member Label will be displayed beside your photo in place of your About.</string>
+    <string name="MemberLabelsAboutOverride__body">ಈ ಗುಂಪಿನಲ್ಲಿ, ನಿಮ್ಮ ಫೋಟೋದ ಪಕ್ಕದಲ್ಲಿ ನಿಮ್ಮ ಕುರಿತು ಎಂಬ ಜಾಗದಲ್ಲಿ ನಿಮ್ಮ ಸದಸ್ಯರ ಲೇಬಲ್ ಅನ್ನು ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ.</string>
 
     <!-- EOF -->
 </resources>

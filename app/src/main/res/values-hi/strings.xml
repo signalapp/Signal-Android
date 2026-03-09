@@ -434,10 +434,10 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">नहीं भेजा गया, जानकारी के लिए टैप करें</string>
     <string name="ConversationItem_error_partially_not_delivered">पूरी तरह नहीं भेजा जा सका, जानकारी के लिए टैप करें</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Partially deleted, tap for details</string>
+    <string name="ConversationItem_error_partially_not_deleted">थोड़ा हिस्सा ही डिलीट हो पाया, जानकारी के लिए टैप करें</string>
     <string name="ConversationItem_error_network_not_delivered">नहीं भेजा जा सका</string>
     <!-- Warning footer when an admin delete has failed to send -->
-    <string name="ConversationItem_error_delete_failed">Delete failed, tap for details</string>
+    <string name="ConversationItem_error_delete_failed">डिलीट नहीं हो पाया, जानकारी के लिए टैप करें</string>
     <string name="ConversationItem_group_action_left">%1$s ने ग्रुप छोड़ दिया है।</string>
     <string name="ConversationItem_send_paused">भेजने की प्रक्रिया रुक गई है</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">क्या इसके बजाय अनएनक्रिप्टेड SMS भेजना है?</string>
@@ -3590,9 +3590,9 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ऑडियो रिकॉर्ड करने का बटन लॉक करें</string>
     <string name="conversation_activity__message_could_not_be_sent">मैसेज भेजा नहीं जा सका। अपना कनेक्शन देखें और दोबारा कोशिश करें।</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">मैसेज डिलीट नहीं हो पाया। अपना इंटरनेट कनेक्शन देखें और दोबारा कोशिश करें।</string>
     <!-- Dialog body when a message failed to delete. -->
-    <string name="conversation_activity__message_failed_to_delete">Message failed to delete.</string>
+    <string name="conversation_activity__message_failed_to_delete">मैसेज डिलीट नहीं हो पाया।</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">रद्द करने के लिए स्लाइड करें</string>
@@ -6020,17 +6020,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">कस्टम नोटिफ़िकेशन</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">चैट म्यूट होने के दौरान</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__calls">कॉल</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">म्यूट की गई चैट में कॉल शुरू होने पर रिंग और नोटिफ़िकेशन दोनों पाएं।</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Receive notifications when you are mentioned in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">म्यूट की गई चैट में आपको मेंशन किए जाने पर नोटिफ़िकेशन पाएं।</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Replies to you</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">आपको मिलने वाले जवाब</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Receive notifications when someone replies to your messages in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">म्यूट की गई चैट में अगर कोई आपके मैसेज का जवाब दे, तो नोटिफ़िकेशन पाएं।</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">हाल ही में इस्तेमाल किया गया</string>
@@ -7742,11 +7742,11 @@
 
     <!-- CallParticipantSheet -->
     <!-- Action to mute a participant\'s audio in a group call -->
-    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <string name="CallParticipantSheet__mute_audio">ऑडियो म्यूट करें</string>
     <!-- Action to remove a participant from a call -->
-    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <string name="CallParticipantSheet__remove_from_call">कॉल से हटाएं</string>
     <!-- Action to view contact details for a participant -->
-    <string name="CallParticipantSheet__contact_details">संपर्क विवरण</string>
+    <string name="CallParticipantSheet__contact_details">कॉन्टैक्ट की जानकारी</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -7925,27 +7925,27 @@
     <string name="TurnOnSignalBackups__toast_not_now">\'सेटिंग\' में जाकर बैकअप चालू किया जा सकता है</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <string name="BackupMessagesUpsell__title">कोई मैसेज मिस न करें</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <string name="BackupMessagesUpsell__body">अपने मैसेज और मीडिया सुरक्षित रखने के लिए Signal सिक्योर बैकअप चालू करें।</string>
     <!-- Primary button of Megaphone B -->
     <string name="BackupMessagesUpsell__turn_on">चालू करें</string>
     <!-- Secondary button of Megaphone B -->
     <string name="BackupMessagesUpsell__not_now">अभी नहीं</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <string name="BackupMediaUpsell__title">अपने सभी मीडिया का बैकअप लें</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">पेड Signal सिक्योर बैकअप प्लान आपका 100GB तक का सारा मीडिया सुरक्षित रखता है।</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">अपग्रेड करें</string>
     <!-- Secondary button of Megaphone C -->
     <string name="BackupMediaUpsell__not_now">अभी नहीं</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <string name="BackupStorageUpsell__title">पेड बैकअप की मदद से स्पेस बचाएं</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <string name="BackupStorageUpsell__body">पेड सिक्योर बैकअप प्लान मीडिया को ऑफ़लोड करके आपके डिवाइस का स्टोरेज स्पेस खाली रखते हैं।</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
     <string name="BackupStorageUpsell__upgrade">अपग्रेड करें</string>
     <!-- Primary button of Megaphone D when user has no backups -->
@@ -7954,21 +7954,21 @@
     <string name="BackupStorageUpsell__not_now">अभी नहीं</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <string name="BackupUpsellBottomSheet__title">सारे मीडिया का बैकअप लेने के लिए अपग्रेड करें</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">पेड Signal सिक्योर बैकअप प्लान आपके भेजे और पाए गए सभी मीडिया को अधिकतम 100GB तक सेव करते हैं। नया फ़ोन लेने या Signal को रीइंस्टॉल करने पर, अपनी कोई इमेज या वीडियो कभी न खोएं।</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/माह</string>
     <!-- Subtitle for the paid plan feature card -->
     <string name="BackupUpsellBottomSheet__text_and_all_media">टेक्स्ट + आपका पूरा मीडिया</string>
     <!-- Feature bullet: full text and media backup -->
-    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">पूरा टेक्स्ट + मीडिया बैकअप</string>
     <!-- Feature bullet: 100GB storage -->
-    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <string name="BackupUpsellBottomSheet__storage_100gb">100GB स्टोरेज</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">ऑन-डिवाइस स्टोरेज बचाएं</string>
     <!-- Feature bullet: thanks for supporting Signal -->
-    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Signal की सहायता करने के लिए शुक्रिया</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__subscribe_for">%1$s/महीने में सब्सक्राइब करें</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
@@ -7977,11 +7977,11 @@
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">सबकुछ तैयार है। चलिए, बैकअप शुरू करते हैं।</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">इसमें कुछ समय लग सकता है। बैकअप लेने के दौरान भी, Signal का पहले की तरह इस्तेमाल किया जा सकता है।</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Signal स्टोरेज को बेहतर करें</string>
     <!-- Subtitle for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">पुराना मीडिया ऑफ़लोड कर दिया जाएगा। हालांकि, आपके पास इसे अपने बैकअप से डाउनलोड करने का विकल्प मौजूद रहेगा।</string>
     <!-- Primary button on the setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__back_up_now">अभी बैकअप लें।</string>
 
@@ -9473,7 +9473,7 @@
     <!-- Description explaining the group member labels feature. -->
     <string name="GroupMemberLabel__description">इस ग्रुप में अपने बारे में या अपने रोल के बारे में बताने के लिए मेंबर लेबल जोड़ें। मेंबर लेबल सिर्फ़ इसी ग्रुप में दिखाई देंगे।</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
-    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <string name="GroupMemberLabel__error_cant_save_no_network">लेबल सेव नहीं हो पाया। अपना नेटवर्क देखें और दोबारा कोशिश करें।</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">इमोजी चुनें</string>
     <!-- Accessibility label for the group member label close screen button. -->

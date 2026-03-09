@@ -7929,7 +7929,7 @@
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
     <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
     <!-- Primary button of Megaphone B -->
-    <string name="BackupMessagesUpsell__turn_on">Slå på varsler</string>
+    <string name="BackupMessagesUpsell__turn_on">Slå på</string>
     <!-- Secondary button of Megaphone B -->
     <string name="BackupMessagesUpsell__not_now">Ikke nå</string>
 
@@ -7970,7 +7970,7 @@
     <!-- Feature bullet: thanks for supporting Signal -->
     <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
-    <string name="BackupUpsellBottomSheet__subscribe_for">Bli abonnent for %1$s/måned</string>
+    <string name="BackupUpsellBottomSheet__subscribe_for">Bli abonnent for %1$s per måned</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
     <string name="BackupUpsellBottomSheet__no_thanks">Nei takk</string>
 

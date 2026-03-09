@@ -434,10 +434,10 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">ارسال نشد، برای جزئیات ضربه بزنید</string>
     <string name="ConversationItem_error_partially_not_delivered">به صورت کامل ارسال نشد، برای جزئیات ضربه بزنید</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Partially deleted, tap for details</string>
+    <string name="ConversationItem_error_partially_not_deleted">تا حدودی حذف شد، برای جزئیات، ضربه بزنید</string>
     <string name="ConversationItem_error_network_not_delivered">ارسال ناموفق بود</string>
     <!-- Warning footer when an admin delete has failed to send -->
-    <string name="ConversationItem_error_delete_failed">Delete failed, tap for details</string>
+    <string name="ConversationItem_error_delete_failed">حذف انجام نشد، برای جزئیات ضربه بزنید</string>
     <string name="ConversationItem_group_action_left">%1$s گروه را ترک کرد.</string>
     <string name="ConversationItem_send_paused">ارسال متوقف شد</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">بازگشت به حالت پیامک رمزگذاری نشده؟</string>
@@ -3590,9 +3590,9 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">قفل ضبط پیوست صوتی</string>
     <string name="conversation_activity__message_could_not_be_sent">پیام ارسال نشد. اتصال خود را بررسی و دوباره امتحان کنید.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">پیام حذف نشد. اتصال خود را بررسی و دوباره تلاش کنید.</string>
     <!-- Dialog body when a message failed to delete. -->
-    <string name="conversation_activity__message_failed_to_delete">Message failed to delete.</string>
+    <string name="conversation_activity__message_failed_to_delete">پیام حذف نشد.</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">برای لغو به کناره بکشید</string>
@@ -6020,17 +6020,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">اعلان‌ها‌ی سفارشی</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">وقتی بی‌صدا است</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__calls">تماس‌ها</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">وقتی تماسی در گفتگوهای بی‌صداشده شروع می‌شود، صدای زنگ و اعلان دریافت کنید.</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Receive notifications when you are mentioned in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">وقتی در گفتگوهای بی‌صداشده به شما اشاره می‌شود، اعلان دریافت کنید.</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Replies to you</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">پاسخ‌ها به شما</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Receive notifications when someone replies to your messages in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">وقتی کسی به پاسخ‌هایتان در گفتگوهای بی‌صداشده پاسخ می‌دهد، اعلان دریافت کنید.</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">به‌تازگی استفاده شده</string>
@@ -7742,9 +7742,9 @@
 
     <!-- CallParticipantSheet -->
     <!-- Action to mute a participant\'s audio in a group call -->
-    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <string name="CallParticipantSheet__mute_audio">بی‌صدا کردن صوت</string>
     <!-- Action to remove a participant from a call -->
-    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <string name="CallParticipantSheet__remove_from_call">حذف از تماس</string>
     <!-- Action to view contact details for a participant -->
     <string name="CallParticipantSheet__contact_details">جزئیات مخاطب</string>
 
@@ -7925,27 +7925,27 @@
     <string name="TurnOnSignalBackups__toast_not_now">می‌توانید پشتیبان‌گیری را در «تنظیمات» فعال کنید</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <string name="BackupMessagesUpsell__title">هیچ پیامی را از دست ندهید</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <string name="BackupMessagesUpsell__body">«پشتیبان‌گیری امن سیگنال» را روشن کنید تا پیام‌ها و فایل‌های رسانه‌تان را حفظ کنید.</string>
     <!-- Primary button of Megaphone B -->
     <string name="BackupMessagesUpsell__turn_on">روشن کن</string>
     <!-- Secondary button of Megaphone B -->
     <string name="BackupMessagesUpsell__not_now">حالا نه</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <string name="BackupMediaUpsell__title">پشتیبان‌گیری از همه فایل‌های رسانه‌تان</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">طرح‌های پولی «پشتیبان‌گیری امن سیگنال» همه فایل‌های رسانه‌تان تا ۱۰۰ گیگابایت را حفظ می‌کنند.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">ارتقا</string>
     <!-- Secondary button of Megaphone C -->
     <string name="BackupMediaUpsell__not_now">حالا نه</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <string name="BackupStorageUpsell__title">با پشتیبان‌گیری پولی فضا ذخیره کنید</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <string name="BackupStorageUpsell__body">طرح‌های پشتیبان‌گیری امن پولی می‌توانند با آفلود کردن فایل‌های رسانه، در فضای ذخیره‌سازی صرفه‌جویی کنند.</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
     <string name="BackupStorageUpsell__upgrade">ارتقا</string>
     <!-- Primary button of Megaphone D when user has no backups -->
@@ -7954,21 +7954,21 @@
     <string name="BackupStorageUpsell__not_now">حالا نه</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <string name="BackupUpsellBottomSheet__title">برای پشتیبان‌گیری از همه فایل‌های رسانه، ارتقا دهید</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">طرح‌های پولی «پشتیبان‌گیری امن سیگنال» همه فایل‌های رسانه که ارسال و دریافت می‌کنید را تا ۱۰۰ گیگابایت ذخیره می‌کنند. وقتی تلفن جدیدی می‌گیرید یا سیگنال را بازنصب می‌کنید، تصویر یا ویدئویی را از دست ندهید.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s در ماه</string>
     <!-- Subtitle for the paid plan feature card -->
     <string name="BackupUpsellBottomSheet__text_and_all_media">پیامک + همه رسانه‌هایتان</string>
     <!-- Feature bullet: full text and media backup -->
-    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">پشتیبان‌گیری متن کامل + رسانه</string>
     <!-- Feature bullet: 100GB storage -->
-    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <string name="BackupUpsellBottomSheet__storage_100gb">۱۰۰ گیگابایت فضای ذخیره‌سازی</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">ذخیره در فضای ذخیره‌سازی در دستگاه</string>
     <!-- Feature bullet: thanks for supporting Signal -->
-    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">با تشکر از حمایتتان از سیگنال</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__subscribe_for">اشتراک به‌قیمت %1$s در ماه</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
@@ -7977,11 +7977,11 @@
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">همه چیز آماده است. اکنون پشتیبان‌گیری را شروع کنید.</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">این کار ممکن است کمی طول بکشد. می‌توانید در حال پشتیبان‌گیری، به‌طور عادی از سیگنال استفاده کنید.</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">بهینه‌سازی فضای ذخیره‌سازی سیگنال</string>
     <!-- Subtitle for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">رسانه‌های قدیمی‌تر آفلود می‌شوند، اما می‌توانید هر وقت خواستید از نسخه پشتیبان خود دانلودشان کنید.</string>
     <!-- Primary button on the setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__back_up_now">اکنون پشتیبان‌گیری شود</string>
 
@@ -9473,7 +9473,7 @@
     <!-- Description explaining the group member labels feature. -->
     <string name="GroupMemberLabel__description">برای توصیف خود و نقشتان در این گروه، برچسب عضو اضافه کنید. برچسب‌ها فقط در این گروه قابل‌مشاهده هستند.</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
-    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <string name="GroupMemberLabel__error_cant_save_no_network">برچسب ذخیره نشد. شبکه‌تان را بررسی کنید و دوباره امتحان کنید.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">انتخاب ایموجی</string>
     <!-- Accessibility label for the group member label close screen button. -->

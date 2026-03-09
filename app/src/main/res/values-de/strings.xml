@@ -7972,7 +7972,7 @@
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__subscribe_for">Abonniere für %1$s/Monat</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__no_thanks">Nein danke</string>
+    <string name="BackupUpsellBottomSheet__no_thanks">Nein, danke</string>
 
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">Du kannst loslegen. Starte jetzt dein Backup.</string>

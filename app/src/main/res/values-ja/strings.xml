@@ -431,10 +431,10 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">送信されませんでした。タップして詳細を表示</string>
     <string name="ConversationItem_error_partially_not_delivered">一部のみ送信。タップして詳細を表示</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Partially deleted, tap for details</string>
+    <string name="ConversationItem_error_partially_not_deleted">一部消去されました。詳細を表示</string>
     <string name="ConversationItem_error_network_not_delivered">送信に失敗しました。</string>
     <!-- Warning footer when an admin delete has failed to send -->
-    <string name="ConversationItem_error_delete_failed">Delete failed, tap for details</string>
+    <string name="ConversationItem_error_delete_failed">消去できませんでした。詳細を表示</string>
     <string name="ConversationItem_group_action_left">%1$s がグループを抜けました。</string>
     <string name="ConversationItem_send_paused">送信保留中</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">暗号化されないSMSに切り替えますか？</string>
@@ -3483,9 +3483,9 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">音声の録音をロック</string>
     <string name="conversation_activity__message_could_not_be_sent">メッセージを送信できませんでした。接続を確認し、再度試してください。</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">メッセージを消去できませんでした。インターネット接続を確認してもう一度お試しください。</string>
     <!-- Dialog body when a message failed to delete. -->
-    <string name="conversation_activity__message_failed_to_delete">Message failed to delete.</string>
+    <string name="conversation_activity__message_failed_to_delete">メッセージを消去できませんでした。</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">スライドしてキャンセル</string>
@@ -5879,17 +5879,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">カスタム通知</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">ミュート時</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__calls">通話</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">ミュートしたチャットで通話が始まった際の着信音と通知の設定。</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Receive notifications when you are mentioned in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">ミュートしたチャットでメンションがあった際の通知の設定。</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Replies to you</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">あなたへの返信</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Receive notifications when someone replies to your messages in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">ミュートしたチャットで誰かがあなたのメッセージに返信した際の通知の設定。</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">最近使ったもの</string>
@@ -7570,9 +7570,9 @@
 
     <!-- CallParticipantSheet -->
     <!-- Action to mute a participant\'s audio in a group call -->
-    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <string name="CallParticipantSheet__mute_audio">音声をミュート</string>
     <!-- Action to remove a participant from a call -->
-    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <string name="CallParticipantSheet__remove_from_call">通話から削除</string>
     <!-- Action to view contact details for a participant -->
     <string name="CallParticipantSheet__contact_details">連絡先の詳細</string>
 
@@ -7751,27 +7751,27 @@
     <string name="TurnOnSignalBackups__toast_not_now">「設定」からバックアップを有効にすることができます</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <string name="BackupMessagesUpsell__title">メッセージを失わないために</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <string name="BackupMessagesUpsell__body">メッセージとメディアを保存するために、Signalセキュアバックアップをオンにしましょう。</string>
     <!-- Primary button of Megaphone B -->
     <string name="BackupMessagesUpsell__turn_on">有効にする</string>
     <!-- Secondary button of Megaphone B -->
     <string name="BackupMessagesUpsell__not_now">今はしない</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <string name="BackupMediaUpsell__title">すべてのメディアをバックアップ</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">有料のSignalセキュアバックアッププランなら、すべてのメディアを最大100GBまで保存できます</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">アップグレードする</string>
     <!-- Secondary button of Megaphone C -->
     <string name="BackupMediaUpsell__not_now">今はしない</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <string name="BackupStorageUpsell__title">有料バックアップでストレージを節約しましょう</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <string name="BackupStorageUpsell__body">有料の安全なバックアッププランでは、メディアをオフロードすることでストレージ容量を節約できます。</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
     <string name="BackupStorageUpsell__upgrade">アップグレードする</string>
     <!-- Primary button of Megaphone D when user has no backups -->
@@ -7780,21 +7780,21 @@
     <string name="BackupStorageUpsell__not_now">今はしない</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <string name="BackupUpsellBottomSheet__title">すべてのメディアをバックアップするにはアップグレードしてください</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">有料のSignalセキュアバックアッププランなら、送受信したすべてのメディアを最大100GBまで保存できます。スマートフォンを買い替えたりSignalを再インストールしたりしても、画像や動画を失うことはありません。</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/月プラン</string>
     <!-- Subtitle for the paid plan feature card -->
     <string name="BackupUpsellBottomSheet__text_and_all_media">テキストとすべてのメディアが対象となります</string>
     <!-- Feature bullet: full text and media backup -->
-    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">すべてのテキストメッセージとすべてのメディアのバックアップ</string>
     <!-- Feature bullet: 100GB storage -->
-    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <string name="BackupUpsellBottomSheet__storage_100gb">100GBのストレージ</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">端末内のストレージを節約</string>
     <!-- Feature bullet: thanks for supporting Signal -->
-    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Signalをサポートしていただきありがとうございます</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__subscribe_for">%1$s ／月で申し込む</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
@@ -7803,11 +7803,11 @@
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">すべての設定が完了しています。今すぐバックアップを開始しましょう。</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">これにはしばらく時間がかかる可能性があります。バックアップ中でも、通常通りSignalを使用できます。</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Signalのストレージの最適化</string>
     <!-- Subtitle for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">過去のメディアはオフロードされますが、バックアップからいつでもダウンロードできます。</string>
     <!-- Primary button on the setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__back_up_now">いますぐバックアップする</string>
 
@@ -9284,7 +9284,7 @@
     <!-- Description explaining the group member labels feature. -->
     <string name="GroupMemberLabel__description">自分自身や、このグループ内での自分の役割を説明するメンバーラベルを追加しましょう。ラベルはこのグループ内でのみ表示されます。</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
-    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <string name="GroupMemberLabel__error_cant_save_no_network">ラベルを保存できませんでした。ネットワークを確認してもう一度お試しください。</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">絵文字を選択</string>
     <!-- Accessibility label for the group member label close screen button. -->
