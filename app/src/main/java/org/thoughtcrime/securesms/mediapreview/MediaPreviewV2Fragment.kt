@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewV2Binding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediapreview.caption.ExpandingCaptionView
 import org.thoughtcrime.securesms.mediapreview.mediarail.CenterDecoration
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter
@@ -72,6 +73,7 @@ import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
+import org.thoughtcrime.securesms.util.OffloadedMediaDialogUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -584,14 +586,20 @@ class MediaPreviewV2Fragment :
   }
 
   private fun saveToDisk(mediaItem: MediaTable.MediaRecord) {
-    val uri = mediaItem.attachment?.uri
-    val contentType = mediaItem.attachment?.contentType
+    val attachment = mediaItem.attachment
+    if (attachment != null && !attachment.hasData && SignalStore.backup.optimizeStorage) {
+      OffloadedMediaDialogUtil.showAllOffloaded(requireContext())
+      return
+    }
+
+    val uri = attachment?.uri
+    val contentType = attachment?.contentType
     if (uri == null || contentType == null) {
       Log.w(TAG, "Unable to save attachment with null URI or contentType.")
       return
     }
 
-    val attachment = SaveAttachmentUtil.SaveAttachment(
+    val saveAttachment = SaveAttachmentUtil.SaveAttachment(
       uri = uri,
       contentType = contentType,
       date = if (mediaItem.date > 0) mediaItem.date else System.currentTimeMillis(),
@@ -599,7 +607,7 @@ class MediaPreviewV2Fragment :
     )
 
     lifecycleScope.launch {
-      AttachmentSaver(this@MediaPreviewV2Fragment).saveAttachments(setOf(attachment))
+      AttachmentSaver(this@MediaPreviewV2Fragment).saveAttachments(setOf(saveAttachment))
     }
   }
 

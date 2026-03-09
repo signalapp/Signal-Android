@@ -50,11 +50,14 @@ import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.signal.core.ui.permissions.Permissions;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.BottomOffsetDecoration;
+import org.thoughtcrime.securesms.util.OffloadedMediaDialogUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -368,9 +371,32 @@ public final class MediaOverviewPageFragment extends LoggingFragment
 
       bottomActionBar.setItems(Arrays.asList(
           new ActionItem(R.drawable.symbol_save_android_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_save_plural, selectionCount), () -> {
+            Collection<MediaTable.MediaRecord> selected = getListAdapter().getSelectedMedia();
+
+            if (SignalStore.backup().getOptimizeStorage()) {
+              boolean allOffloaded  = selected.stream().allMatch(r -> r.getAttachment() != null && !r.getAttachment().hasData);
+              boolean someOffloaded = !allOffloaded && selected.stream().anyMatch(r -> r.getAttachment() != null && !r.getAttachment().hasData);
+
+              if (allOffloaded) {
+                OffloadedMediaDialogUtil.showAllOffloaded(requireContext());
+                return;
+              } else if (someOffloaded) {
+                OffloadedMediaDialogUtil.showPartiallyOffloaded(requireContext(), () -> {
+                  Collection<MediaTable.MediaRecord> saveable = selected.stream().filter(r -> r.getAttachment() == null || r.getAttachment().hasData).collect(java.util.stream.Collectors.toList());
+                  lifecycleDisposable.add(
+                      MediaActions
+                          .handleSaveMedia(MediaOverviewPageFragment.this, saveable)
+                          .observeOn(AndroidSchedulers.mainThread())
+                          .subscribe(this::exitMultiSelect)
+                  );
+                });
+                return;
+              }
+            }
+
             lifecycleDisposable.add(
                 MediaActions
-                    .handleSaveMedia(MediaOverviewPageFragment.this, getListAdapter().getSelectedMedia())
+                    .handleSaveMedia(MediaOverviewPageFragment.this, selected)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(this::exitMultiSelect)
             );
