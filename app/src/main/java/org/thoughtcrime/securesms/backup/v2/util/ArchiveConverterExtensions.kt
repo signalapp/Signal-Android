@@ -182,7 +182,7 @@ fun DatabaseAttachment.toLocatorInfo(backupMode: BackupMode): FilePointer.Locato
     AttachmentType.INVALID -> Unit
   }
 
-  if (backupMode.isLocalBackup && this.dataHash != null && this.metadata?.localBackupKey != null) {
+  if (backupMode.isLocalBackup && this.dataHash != null && this.metadata?.localBackupKey != null && attachmentType != AttachmentType.TRANSIT) {
     if (locatorBuilder.plaintextHash == null) {
       locatorBuilder.plaintextHash = Base64.decode(this.dataHash).toByteString()
     }
