@@ -417,12 +417,13 @@ class CameraScreenViewModel : ViewModel() {
         imageCapture = attempt.imageCapture
         videoCapture = attempt.videoCapture
         isLimitedBinding = event.enableVideoCapture && attempt.videoCapture == null
-
-        setupOrientationListener(event.context)
-        return
       } catch (e: Exception) {
         Log.e(TAG, "Use case binding failed (attempt ${index + 1} of ${bindingAttempts.size})", e)
+        continue
       }
+
+      setupOrientationListener(event.context)
+      return
     }
 
     Log.e(TAG, "All use case binding attempts failed")

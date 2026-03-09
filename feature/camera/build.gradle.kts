@@ -9,6 +9,12 @@ android {
   buildFeatures {
     compose = true
   }
+
+  testOptions {
+    unitTests {
+      isIncludeAndroidResources = true
+    }
+  }
 }
 
 dependencies {
@@ -52,6 +58,10 @@ dependencies {
 
   // Testing
   testImplementation(testLibs.junit.junit)
+  testImplementation(testLibs.mockk)
+  testImplementation(testLibs.assertk)
+  testImplementation(testLibs.kotlinx.coroutines.test)
+  testImplementation(testLibs.robolectric.robolectric)
   androidTestImplementation(testLibs.androidx.test.ext.junit)
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 }
