@@ -135,6 +135,7 @@ message AccountData {
     CallsUseLessDataSetting callsUseLessDataSetting = 29;  // If unset, treat the same as "Unknown" case
     bool allowSealedSenderFromAnyone = 30;
     bool allowAutomaticKeyVerification = 31;
+    bool hasSeenAdminDeleteEducationDialog = 32;
   }
 
   message SubscriberData {

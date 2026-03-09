@@ -10,7 +10,9 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask
 
 object DeleteDialog {
@@ -75,15 +77,24 @@ object DeleteDialog {
   }
 
   private fun handleAdminDeleteForEveryone(context: Context, messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Pair<Boolean, Boolean>>) {
-    MaterialAlertDialogBuilder(context)
-      .setTitle("${context.getString(R.string.ConversationFragment_delete_for_everyone_title)} - INTERNAL ONLY")
-      .setMessage(R.string.ConversationFragment_delete_for_everyone_body)
-      .setPositiveButton(R.string.ConversationFragment_delete_for_everyone) { _, _ ->
-        handleDeleteForEveryone(context = context, messageRecords = messageRecords, emitter = emitter)
-      }
-      .setNegativeButton(android.R.string.cancel) { _, _ -> emitter.onSuccess(Pair(false, false)) }
-      .setOnCancelListener { emitter.onSuccess(Pair(false, false)) }
-      .show()
+    if (SignalStore.uiHints.hasSeenAdminDeleteEducationDialog()) {
+      handleDeleteForEveryone(context = context, messageRecords = messageRecords, emitter = emitter)
+    } else {
+      MaterialAlertDialogBuilder(context)
+        .setTitle("${context.getString(R.string.ConversationFragment_delete_for_everyone_title)} - INTERNAL ONLY")
+        .setMessage(R.string.ConversationFragment_delete_for_everyone_body)
+        .setPositiveButton(R.string.ConversationFragment_delete_for_everyone) { _, _ ->
+          SignalStore.uiHints.setHasSeenAdminDeleteEducationDialog()
+          SignalExecutors.BOUNDED.execute {
+            SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+            StorageSyncHelper.scheduleSyncForDataChange()
+          }
+          handleDeleteForEveryone(context = context, messageRecords = messageRecords, emitter = emitter)
+        }
+        .setNegativeButton(android.R.string.cancel) { _, _ -> emitter.onSuccess(Pair(false, false)) }
+        .setOnCancelListener { emitter.onSuccess(Pair(false, false)) }
+        .show()
+    }
   }
 
   private fun handleDeleteForEveryone(context: Context, messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Pair<Boolean, Boolean>>) {
