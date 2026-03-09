@@ -65,6 +65,9 @@ private const val TAG = "CameraScreenViewModel"
 class CameraScreenViewModel : ViewModel() {
   companion object {
     private val imageAnalysisExecutor = Executors.newSingleThreadExecutor()
+
+    /** Debug flag for testing limited binding (i.e. no simultaneous binding to image + video). */
+    private const val FORCE_LIMITED_BINDING = false
   }
 
   private val _state: MutableState<CameraScreenState> = mutableStateOf(CameraScreenState())
@@ -74,9 +77,11 @@ class CameraScreenViewModel : ViewModel() {
   private var camera: Camera? = null
   private var lifecycleOwner: LifecycleOwner? = null
   private var cameraProvider: ProcessCameraProvider? = null
+  private var lastSuccessfulAttempt: BindingAttempt? = null
   private var imageCapture: ImageCapture? = null
   private var videoCapture: VideoCapture<Recorder>? = null
   private var recording: Recording? = null
+  private var isLimitedBinding: Boolean = false
   private var brightnessBeforeFlash: Float = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
   private var brightnessWindow: WeakReference<Window>? = null
   private var orientationListener: OrientationEventListener? = null
@@ -229,7 +234,7 @@ class CameraScreenViewModel : ViewModel() {
     output: VideoOutput,
     onVideoCaptured: (VideoCaptureResult) -> Unit
   ) {
-    val capture = videoCapture ?: return
+    val capture = if (isLimitedBinding) rebindForVideoCapture() ?: return else videoCapture ?: return
 
     recordingStartZoomRatio = _state.value.zoomRatio
 
@@ -302,6 +307,10 @@ class CameraScreenViewModel : ViewModel() {
 
             // Clear recording
             recording = null
+
+            if (isLimitedBinding) {
+              rebindToLastSuccessfulAttempt()
+            }
           }
         }
       }
@@ -316,6 +325,56 @@ class CameraScreenViewModel : ViewModel() {
     camera?.cameraControl?.enableTorch(false)
     recording?.stop()
     recording = null
+  }
+
+  /**
+   * Rebinds to just the video use case, needed for devices that cannot bind to image + video capture simultaneously.
+   * Upon failure, will rebind to [lastSuccessfulAttempt].
+   */
+  private fun rebindForVideoCapture(): VideoCapture<Recorder>? {
+    val lastAttempt = lastSuccessfulAttempt ?: return null
+    val cameraProvider = cameraProvider ?: return null
+    val lifecycleOwner = lifecycleOwner ?: return null
+
+    val videoCapture = buildVideoCapture()
+
+    val cameraSelector = CameraSelector.Builder()
+      .requireLensFacing(_state.value.lensFacing)
+      .build()
+
+    return try {
+      cameraProvider.unbindAll()
+      camera = cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, lastAttempt.preview, lastAttempt.imageCapture, videoCapture)
+      this.videoCapture = videoCapture
+      Log.d(TAG, "Rebound with video capture for limited device")
+      videoCapture
+    } catch (e: Exception) {
+      Log.e(TAG, "Failed to rebind with video capture on limited device", e)
+      rebindToLastSuccessfulAttempt()
+      null
+    }
+  }
+
+  /**
+   * On limited devices, restore the last known-good binding after video recording completes.
+   */
+  private fun rebindToLastSuccessfulAttempt() {
+    val attempt = lastSuccessfulAttempt ?: return
+    val cameraProvider = cameraProvider ?: return
+    val lifecycleOwner = lifecycleOwner ?: return
+
+    val cameraSelector = CameraSelector.Builder()
+      .requireLensFacing(_state.value.lensFacing)
+      .build()
+
+    try {
+      cameraProvider.unbindAll()
+      camera = cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, *attempt.toTypedArray())
+      videoCapture = attempt.videoCapture
+      Log.d(TAG, "Rebound to last successful configuration after video capture")
+    } catch (e: Exception) {
+      Log.e(TAG, "Failed to rebind to last successful configuration after video capture", e)
+    }
   }
 
   override fun onCleared() {
@@ -354,8 +413,10 @@ class CameraScreenViewModel : ViewModel() {
 
         lifecycleOwner = event.lifecycleOwner
         cameraProvider = event.cameraProvider
+        lastSuccessfulAttempt = attempt
         imageCapture = attempt.imageCapture
         videoCapture = attempt.videoCapture
+        isLimitedBinding = event.enableVideoCapture && attempt.videoCapture == null
 
         setupOrientationListener(event.context)
         return
@@ -365,6 +426,20 @@ class CameraScreenViewModel : ViewModel() {
     }
 
     Log.e(TAG, "All use case binding attempts failed")
+  }
+
+  @android.annotation.SuppressLint("RestrictedApi")
+  private fun buildVideoCapture(): VideoCapture<Recorder> {
+    val recorder = Recorder.Builder()
+      .setAspectRatio(AspectRatio.RATIO_16_9)
+      .setQualitySelector(
+        androidx.camera.video.QualitySelector.from(
+          androidx.camera.video.Quality.HIGHEST,
+          androidx.camera.video.FallbackStrategy.higherQualityOrLowerThan(androidx.camera.video.Quality.HD)
+        )
+      )
+      .build()
+    return VideoCapture.withOutput(recorder)
   }
 
   private fun buildBindingAttempts(
@@ -386,17 +461,8 @@ class CameraScreenViewModel : ViewModel() {
       .setResolutionSelector(resolutionSelector)
       .build()
 
-    val videoCapture: VideoCapture<Recorder>? = if (event.enableVideoCapture) {
-      val recorder = Recorder.Builder()
-        .setAspectRatio(AspectRatio.RATIO_16_9)
-        .setQualitySelector(
-          androidx.camera.video.QualitySelector.from(
-            androidx.camera.video.Quality.HIGHEST,
-            androidx.camera.video.FallbackStrategy.higherQualityOrLowerThan(androidx.camera.video.Quality.HD)
-          )
-        )
-        .build()
-      VideoCapture.withOutput(recorder)
+    val videoCapture: VideoCapture<Recorder>? = if (event.enableVideoCapture && !FORCE_LIMITED_BINDING) {
+      buildVideoCapture()
     } else {
       null
     }
