@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.app.Application
 import android.content.Context
+import android.database.sqlite.SQLiteException
 import net.zetetic.database.DatabaseErrorHandler
 import net.zetetic.database.sqlcipher.SQLiteConnection
 import net.zetetic.database.sqlcipher.SQLiteDatabase
@@ -25,7 +26,7 @@ class SqlCipherErrorHandler(private val application: Application, private val da
     private val errorHandlingInProgress = AtomicBoolean(false)
   }
 
-  override fun onCorruption(db: SQLiteDatabase, message: String) {
+  override fun onCorruption(db: SQLiteDatabase, exception: SQLiteException?) {
     if (errorHandlingInProgress.getAndSet(true)) {
       Log.w(TAG, "Error handling already in progress, skipping.")
       return
@@ -34,10 +35,10 @@ class SqlCipherErrorHandler(private val application: Application, private val da
     try {
       val result: DiagnosticResults = runDiagnostics(application, db)
       var lines: List<String> = result.logs.split("\n")
-      lines = listOf("Database '$databaseName' corrupted!", "[sqlite] $message", "Diagnostics results:") + lines
+      lines = listOf("Database '$databaseName' corrupted!", "[sqlite] ${exception?.message}", "Diagnostics results:") + lines
 
       Log.e(TAG, "Database '$databaseName' corrupted!")
-      Log.e(TAG, "[sqlite] $message")
+      Log.e(TAG, "[sqlite] ${exception?.message}")
       Log.e(TAG, "Diagnostic results:\n ${result.logs}")
 
       if (result is DiagnosticResults.Success) {
