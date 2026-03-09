@@ -198,7 +198,7 @@ internal fun LocalBackupsSettingsScreen(
 
         item {
           Rows.TextRow(
-            text = stringResource(id = R.string.UnifiedOnDeviceBackupsSettingsScreen__view_backup_key),
+            text = stringResource(id = R.string.UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key),
             onClick = { biometrics.withBiometricsAuthentication { callback.onViewBackupKeyClick() } }
           )
         }

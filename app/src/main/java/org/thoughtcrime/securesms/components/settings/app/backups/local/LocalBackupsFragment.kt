@@ -130,7 +130,7 @@ class LocalBackupsFragment : ComposeFragment() {
             LocalBackupsNavKey.CONFIRM_RECOVERY_KEY -> NavEntry(key) {
               val state: LocalBackupsKeyState by viewModel.backupState.collectAsStateWithLifecycle()
               val scope = rememberCoroutineScope()
-              val backupKeyUpdatedMessage = stringResource(R.string.OnDeviceBackupsFragment__backup_key_updated)
+              val backupKeyUpdatedMessage = stringResource(R.string.OnDeviceBackupsFragment__recovery_key_updated)
               var upgradeInProgress by remember { mutableStateOf(false) }
 
               MessageBackupsKeyVerifyScreen(

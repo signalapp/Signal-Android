@@ -75,7 +75,7 @@ fun EnterLocalBackupKeyScreen(
           onClick = onNoBackupKeyClick,
           colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.outline)
         ) {
-          Text(text = stringResource(R.string.EnterLocalBackupKeyScreen__no_backup_key))
+          Text(text = stringResource(R.string.EnterLocalBackupKeyScreen__no_recovery_key))
         }
         Spacer(modifier = Modifier.weight(1f))
         CircularProgressWrapper(
