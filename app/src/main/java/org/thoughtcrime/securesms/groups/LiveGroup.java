@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.annimon.stream.ComparatorCompat;
 import com.annimon.stream.Stream;
 
 import org.signal.core.models.ServiceId;
@@ -23,6 +22,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
+import org.thoughtcrime.securesms.groups.ui.GroupMemberOrder;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkUrlAndStatus;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
-import java.text.Collator;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -38,15 +37,12 @@ import java.util.Set;
 
 public final class LiveGroup {
 
-  private static final Collator                                        collator          = Collator.getInstance();
-  private static final Comparator<GroupMemberEntry.FullMember>         LOCAL_FIRST       = (m1, m2) -> Boolean.compare(m2.getMember().isSelf(), m1.getMember().isSelf());
-  private static final Comparator<GroupMemberEntry.FullMember>         ADMIN_FIRST       = (m1, m2) -> Boolean.compare(m2.isAdmin(), m1.isAdmin());
-  private static final Comparator<GroupMemberEntry.FullMember>         HAS_DISPLAY_NAME  = (m1, m2) -> Boolean.compare(m2.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()), m1.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()));
-  private static final Comparator<GroupMemberEntry.FullMember>         ALPHABETICAL      = (m1, m2) -> collator.compare(m1.getMember().getDisplayName(AppDependencies.getApplication()).toLowerCase(), m2.getMember().getDisplayName(AppDependencies.getApplication()).toLowerCase());
-  private static final Comparator<? super GroupMemberEntry.FullMember> MEMBER_ORDER      = ComparatorCompat.chain(LOCAL_FIRST)
-                                                                                                           .thenComparing(ADMIN_FIRST)
-                                                                                                           .thenComparing(HAS_DISPLAY_NAME)
-                                                                                                           .thenComparing(ALPHABETICAL);
+  private static final Comparator<GroupMemberEntry.FullMember> MEMBER_ORDER = GroupMemberOrder.comparator(
+      it -> it.getMember().isSelf(),
+      it -> it.isAdmin(),
+      it -> it.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()),
+      it -> it.getMember().getDisplayName(AppDependencies.getApplication())
+  );
 
   private final GroupTable                                  groupDatabase;
   private final LiveData<Recipient>                         recipient;
@@ -64,8 +60,6 @@ public final class LiveGroup {
     this.groupRecord       = LiveDataUtil.filterNotNull(LiveDataUtil.mapAsync(recipient, groupRecipient -> groupDatabase.getGroup(groupRecipient.getId()).orElse(null)));
     this.fullMembers       = mapToFullMembers(this.groupRecord);
     this.requestingMembers = mapToRequestingMembers(this.groupRecord);
-
-    collator.setStrength(Collator.PRIMARY);
 
     if (groupId.isV2()) {
       LiveData<GroupTable.V2GroupProperties> v2Properties = Transformations.map(this.groupRecord, GroupRecord::requireV2GroupProperties);

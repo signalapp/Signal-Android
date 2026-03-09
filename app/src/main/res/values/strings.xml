@@ -9545,6 +9545,8 @@
     <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
+    <!-- Section header for the list of group members who have labels set. -->
+    <string name="GroupMemberLabel__group_members_with_labels">Group members with labels</string>
 
     <!-- Title for the member labels education sheet. -->
     <string name="MemberLabelsEducation__title">Member labels</string>

@@ -16,12 +16,21 @@ import org.signal.core.util.StringUtil
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.conversation.colors.NameColor
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelUiState.SaveState
+import org.thoughtcrime.securesms.groups.ui.GroupMemberOrder
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.NetworkResult
+
+private val MEMBER_ORDER: Comparator<GroupMemberWithLabel> = GroupMemberOrder.comparator(
+  isSelf = { it.recipient.isSelf },
+  isAdmin = { it.isAdmin },
+  hasDisplayName = { it.recipient.hasAUserSetDisplayName(AppDependencies.application) },
+  getDisplayName = { it.recipient.getDisplayName(AppDependencies.application) }
+)
 
 class MemberLabelViewModel(
   private val memberLabelRepo: MemberLabelRepository = MemberLabelRepository.instance,
@@ -52,7 +61,8 @@ class MemberLabelViewModel(
           recipient = recipient,
           labelEmoji = originalLabelEmoji,
           labelText = originalLabelText,
-          senderNameColor = memberLabelRepo.getSenderNameColor(groupId, recipient)
+          senderNameColor = memberLabelRepo.getSenderNameColor(groupId, recipient),
+          membersWithLabels = memberLabelRepo.getMembersWithLabels(groupId).sortedWith(MEMBER_ORDER)
         )
       }
     }
@@ -169,6 +179,7 @@ data class MemberLabelUiState(
   val recipient: Recipient? = null,
   val senderNameColor: NameColor? = null,
   val hasChanges: Boolean = false,
+  val membersWithLabels: List<GroupMemberWithLabel> = emptyList(),
   val saveState: SaveState? = null,
   val showAboutOverrideSheet: Boolean = false
 ) {

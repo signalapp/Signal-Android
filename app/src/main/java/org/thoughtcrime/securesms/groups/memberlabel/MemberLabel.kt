@@ -10,6 +10,8 @@ import org.signal.core.util.BidiUtil
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.StringUtil
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
+import org.thoughtcrime.securesms.conversation.colors.NameColor
+import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
  * A member's custom label within a group.
@@ -66,4 +68,11 @@ data class MemberLabel(
 data class StyledMemberLabel(
   val label: MemberLabel,
   @param:ColorInt val tintColor: Int
+)
+
+data class GroupMemberWithLabel(
+  val recipient: Recipient,
+  val isAdmin: Boolean,
+  val label: MemberLabel,
+  val nameColor: NameColor
 )

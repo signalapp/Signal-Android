@@ -128,6 +128,34 @@ class MemberLabelRepository private constructor(
   }
 
   /**
+   * Returns all group members who have labels set for the given group.
+   */
+  suspend fun getMembersWithLabels(groupId: GroupId.V2): List<GroupMemberWithLabel> = withContext(Dispatchers.IO) {
+    if (!RemoteConfig.receiveMemberLabels) {
+      return@withContext emptyList()
+    }
+
+    val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext emptyList()
+    val groupProperties = groupRecord.requireV2GroupProperties()
+
+    val allMembers = groupProperties.getMemberRecipients(GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF)
+    val colorizer = ColorizerV2(groupMemberIds = allMembers.mapNotNull { it.serviceId.orNull() })
+    val labelsByAci = groupProperties.memberLabelsByAci()
+
+    allMembers.mapNotNull { member ->
+      val aci = member.serviceId.orNull() as? ServiceId.ACI
+      val label = labelsByAci[aci]?.sanitized() ?: return@mapNotNull null
+
+      GroupMemberWithLabel(
+        recipient = member,
+        isAdmin = groupProperties.isAdmin(member),
+        label = label,
+        nameColor = colorizer.getNameColor(context, member)
+      )
+    }
+  }
+
+  /**
    * Sets the group member label for the current user.
    */
   suspend fun setLabel(groupId: GroupId.V2, label: MemberLabel): NetworkResult<Unit> = withContext(Dispatchers.IO) {

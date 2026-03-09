@@ -10,6 +10,7 @@ import android.view.View
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +21,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -36,7 +38,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -57,7 +62,9 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.requireParcelableCompat
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.emoji.Emojifier
+import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelUiState.SaveState
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -201,6 +208,7 @@ private fun MemberLabelScreenUi(
           .padding(horizontal = 24.dp)
           .fillMaxWidth()
           .verticalScroll(rememberScrollState())
+          .padding(bottom = 80.dp)
       ) {
         Text(
           text = stringResource(R.string.GroupMemberLabel__description),
@@ -234,6 +242,18 @@ private fun MemberLabelScreenUi(
             labelText = state.sanitizedLabelText,
             messageText = stringResource(R.string.GroupMemberLabel__preview_sample_message)
           )
+        }
+
+        if (state.membersWithLabels.isNotEmpty()) {
+          Text(
+            text = stringResource(R.string.GroupMemberLabel__group_members_with_labels),
+            style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier.padding(top = 44.dp, bottom = 12.dp)
+          )
+
+          state.membersWithLabels.forEach {
+            MemberWithLabelRow(member = it)
+          }
         }
       }
 
@@ -323,6 +343,54 @@ private fun EmojiPickerButton(
 }
 
 @Composable
+private fun MemberWithLabelRow(
+  member: GroupMemberWithLabel,
+  modifier: Modifier = Modifier
+) {
+  val context = LocalContext.current
+  val tintColor = Color(member.nameColor.getColor(context))
+
+  Row(
+    modifier = modifier
+      .fillMaxWidth()
+      .padding(vertical = 8.dp),
+    verticalAlignment = Alignment.CenterVertically
+  ) {
+    AvatarImage(
+      recipient = member.recipient,
+      modifier = Modifier.size(40.dp)
+    )
+
+    Column(
+      modifier = Modifier
+        .weight(1f)
+        .padding(start = 16.dp)
+    ) {
+      Text(
+        text = member.recipient.getDisplayName(context),
+        style = MaterialTheme.typography.bodyLarge
+      )
+      MemberLabelPill(
+        emoji = member.label.emoji,
+        text = member.label.displayText,
+        tintColor = tintColor,
+        modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
+        textStyle = MemberLabelPill.textStyleCompact
+      )
+    }
+
+    if (member.isAdmin) {
+      Text(
+        text = stringResource(R.string.GroupRecipientListItem_admin),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(start = 16.dp)
+      )
+    }
+  }
+}
+
+@Composable
 private fun SaveButton(
   enabled: Boolean,
   onClick: () -> Unit,
@@ -331,6 +399,7 @@ private fun SaveButton(
   Buttons.LargeTonal(
     onClick = onClick,
     enabled = enabled,
+    colors = ButtonDefaults.filledTonalButtonColors(disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant),
     modifier = modifier
   ) {
     Text(text = stringResource(R.string.GroupMemberLabel__save))
@@ -359,13 +428,38 @@ private interface MemberLabelUiCallbacks {
 @Composable
 private fun MemberLabelScreenPreview() {
   Previews.Preview {
+    val nameColor = NameColor(
+      lightColor = MaterialTheme.colorScheme.primary.toArgb(),
+      darkColor = MaterialTheme.colorScheme.primary.toArgb()
+    )
+
     MemberLabelScreenUi(
       state = MemberLabelUiState(
         recipient = Recipient(
-          profileName = ProfileName.fromParts("Kahless", "The Unforgettable")
+          profileName = ProfileName.fromParts("Benjamin", "Sisko")
         ),
-        labelEmoji = "⛑️",
-        labelText = "Vet Coordinator"
+        labelEmoji = "",
+        labelText = "Captain",
+        membersWithLabels = listOf(
+          GroupMemberWithLabel(
+            recipient = Recipient(profileName = ProfileName.fromParts("Jadzia", "Dax")),
+            isAdmin = true,
+            label = MemberLabel(emoji = "🔬", text = "Science Officer"),
+            nameColor = nameColor
+          ),
+          GroupMemberWithLabel(
+            recipient = Recipient(profileName = ProfileName.fromParts("Quark", "")),
+            isAdmin = false,
+            label = MemberLabel(emoji = "🍻", text = "Bartender/Entrepreneur"),
+            nameColor = nameColor
+          ),
+          GroupMemberWithLabel(
+            recipient = Recipient(profileName = ProfileName.fromParts("Julian", "Bashir")),
+            isAdmin = true,
+            label = MemberLabel(emoji = null, text = "Chief Medical Officer"),
+            nameColor = nameColor
+          )
+        )
       ),
       callbacks = MemberLabelUiCallbacks.Empty
     )
