@@ -55,10 +55,6 @@ class MemberLabelRepository private constructor(
    */
   @WorkerThread
   fun getLabelSync(groupId: GroupId.V2, recipient: Recipient): MemberLabel? {
-    if (!RemoteConfig.receiveMemberLabels) {
-      return null
-    }
-
     val aci = recipient.serviceId.orNull() as? ServiceId.ACI ?: return null
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return null
 
@@ -70,10 +66,6 @@ class MemberLabelRepository private constructor(
    */
   @WorkerThread
   fun getLabelsSync(groupId: GroupId.V2, recipients: Collection<Recipient>): Map<RecipientId, MemberLabel> {
-    if (!RemoteConfig.receiveMemberLabels) {
-      return emptyMap()
-    }
-
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return emptyMap()
     val labelsByAci = groupRecord.requireV2GroupProperties().memberLabelsByAci()
 
@@ -131,10 +123,6 @@ class MemberLabelRepository private constructor(
    * Returns all group members who have labels set for the given group.
    */
   suspend fun getMembersWithLabels(groupId: GroupId.V2): List<GroupMemberWithLabel> = withContext(Dispatchers.IO) {
-    if (!RemoteConfig.receiveMemberLabels) {
-      return@withContext emptyList()
-    }
-
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext emptyList()
     val groupProperties = groupRecord.requireV2GroupProperties()
 
