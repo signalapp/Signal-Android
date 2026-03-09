@@ -159,6 +159,8 @@ import org.thoughtcrime.securesms.database.helpers.migration.V302_AddDeletedByCo
 import org.thoughtcrime.securesms.database.helpers.migration.V303_CaseInsensitiveUsernames
 import org.thoughtcrime.securesms.database.helpers.migration.V304_CallAndReplyNotificationSettings
 import org.thoughtcrime.securesms.database.helpers.migration.V305_AddStoryArchivedColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V306_AddRemoteDeletedColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V307_RemoveRemoteDeletedColumn
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -324,10 +326,12 @@ object SignalDatabaseMigrations {
     302 to V302_AddDeletedByColumn,
     303 to V303_CaseInsensitiveUsernames,
     304 to V304_CallAndReplyNotificationSettings,
-    305 to V305_AddStoryArchivedColumn
+    305 to V305_AddStoryArchivedColumn,
+    306 to V306_AddRemoteDeletedColumn,
+    307 to V307_RemoveRemoteDeletedColumn
   )
 
-  const val DATABASE_VERSION = 305
+  const val DATABASE_VERSION = 307
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {
