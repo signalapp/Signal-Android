@@ -122,6 +122,7 @@ class MemberLabelFragment : ComposeFragment(), ReactWithAnyEmojiBottomSheetDialo
     }
 
     val networkErrorMessage = stringResource(R.string.GroupMemberLabel__error_cant_save_no_network)
+    val noPermissionErrorMessage = stringResource(R.string.GroupMemberLabel__error_no_edit_permission)
 
     LaunchedEffect(uiState.showAboutOverrideSheet) {
       if (uiState.showAboutOverrideSheet) {
@@ -142,7 +143,10 @@ class MemberLabelFragment : ComposeFragment(), ReactWithAnyEmojiBottomSheetDialo
           viewModel.onSaveStateConsumed()
         }
 
-        is SaveState.InsufficientRights -> throw IllegalStateException("User does not have permission to set member label.")
+        is SaveState.InsufficientRights -> {
+          snackbarHostState.showSnackbar(noPermissionErrorMessage)
+          viewModel.onSaveStateConsumed()
+        }
 
         is SaveState.InProgress, null -> Unit
       }

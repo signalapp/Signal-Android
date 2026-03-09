@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -106,7 +107,13 @@ class MemberLabelRepository private constructor(
   suspend fun canSetLabel(groupId: GroupId.V2, recipient: Recipient): Boolean = withContext(Dispatchers.IO) {
     if (!RemoteConfig.sendMemberLabels) return@withContext false
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext false
-    groupRecord.memberLevel(recipient).isInGroup
+
+    val memberLevel = groupRecord.memberLevel(recipient)
+    if (groupRecord.memberLabelAccessControl == GroupAccessControl.ONLY_ADMINS) {
+      memberLevel == GroupTable.MemberLevel.ADMINISTRATOR
+    } else {
+      memberLevel.isInGroup
+    }
   }
 
   /**

@@ -868,6 +868,9 @@ class ConversationSettingsFragment :
               onClick = {
                 val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToMemberLabelFragment(groupState.groupId)
                 navController.safeNavigate(action)
+              },
+              onDisabledClicked = {
+                Snackbar.make(requireView(), R.string.GroupMemberLabel__error_no_edit_permission, Snackbar.LENGTH_SHORT).show()
               }
             )
           }
