@@ -34,7 +34,7 @@ Along with the standard release and debug build types, there are 7 more:
 There are two flavor dimensions: `distribution` and `environment`. 
 
 `distribution` has 4 flavors:
-* play -- distributed thru the Google Play Store
+* play -- distributed through the Google Play Store
 * website -- distributed thru the Signal website (includes auto-updater)
 * github -- distributed thru GitHub (no auto-updates)
 * nightly -- the beta/nightly build
