@@ -3,33 +3,35 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.util.logging.Log
-import org.signal.core.util.orNull
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
+import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
+import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.livedata.Store
-import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
-import java.util.Optional
+import kotlin.time.Duration.Companion.milliseconds
 
 class ManageDonationsViewModel : ViewModel() {
 
@@ -62,6 +64,46 @@ class ManageDonationsViewModel : ViewModel() {
           internalDisplayThanksBottomSheetPulse.emit(Badges.fromDatabaseBadge(it.data.badge!!))
         }
     }
+
+    viewModelScope.launch(Dispatchers.IO) {
+      updateRecurringDonationState()
+
+      InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.RECURRING_DONATION)
+        .asFlow()
+        .collect { redemptionStatus ->
+          val latestPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION)
+
+          val activeSubscription: InAppPaymentTable.InAppPayment? = latestPayment?.let {
+            if (it.data.cancellation == null) it else null
+          }
+
+          store.update { manageDonationsState ->
+            manageDonationsState.copy(
+              nonVerifiedMonthlyDonation = if (redemptionStatus is DonationRedemptionJobStatus.PendingExternalVerification) redemptionStatus.nonVerifiedMonthlyDonation else null,
+              subscriptionRedemptionState = deriveRedemptionState(redemptionStatus, latestPayment),
+              activeSubscription = activeSubscription
+            )
+          }
+        }
+    }
+
+    viewModelScope.launch(Dispatchers.IO) {
+      InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.ONE_TIME_DONATION)
+        .asFlow()
+        .collect { redemptionStatus ->
+          val pendingOneTimeDonation = when (redemptionStatus) {
+            is DonationRedemptionJobStatus.PendingExternalVerification -> redemptionStatus.pendingOneTimeDonation
+            DonationRedemptionJobStatus.PendingReceiptRedemption,
+            DonationRedemptionJobStatus.PendingReceiptRequest -> {
+              val latestPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.ONE_TIME_DONATION)
+              latestPayment?.toPendingOneTimeDonation()
+            }
+            else -> null
+          }
+
+          store.update { it.copy(pendingOneTimeDonation = pendingOneTimeDonation) }
+        }
+    }
   }
 
   override fun onCleared() {
@@ -69,8 +111,8 @@ class ManageDonationsViewModel : ViewModel() {
   }
 
   fun retry() {
-    if (!disposables.isDisposed && store.state.subscriptionTransactionState == ManageDonationsState.TransactionState.NetworkFailure) {
-      store.update { it.copy(subscriptionTransactionState = ManageDonationsState.TransactionState.Init) }
+    if (!disposables.isDisposed && store.state.networkError) {
+      store.update { it.copy(networkError = false) }
       refresh()
     }
   }
@@ -78,16 +120,23 @@ class ManageDonationsViewModel : ViewModel() {
   fun refresh() {
     disposables.clear()
 
-    val levelUpdateOperationEdges: Observable<Boolean> = LevelUpdate.isProcessing.distinctUntilChanged()
-    val activeSubscription: Single<ActiveSubscription> = RecurringInAppPaymentRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION)
+    InAppPaymentKeepAliveJob.enqueueAndTrackTime(System.currentTimeMillis().milliseconds)
 
     disposables += Single.fromCallable {
       InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)
-    }.subscribeOn(Schedulers.io()).subscribeBy { requiresCancel ->
-      store.update {
-        it.copy(subscriberRequiresCancel = requiresCancel)
+    }.subscribeOn(Schedulers.io()).subscribeBy(
+      onSuccess = { requiresCancel ->
+        store.update {
+          it.copy(subscriberRequiresCancel = requiresCancel)
+        }
+      },
+      onError = { throwable ->
+        Log.w(TAG, "Error retrieving cancel state", throwable)
+        store.update {
+          it.copy(networkError = true)
+        }
       }
-    }
+    )
 
     disposables += Recipient.observable(Recipient.self().id).map { it.badges }.subscribeBy { badges ->
       store.update { state ->
@@ -101,53 +150,6 @@ class ManageDonationsViewModel : ViewModel() {
       store.update { it.copy(hasReceipts = hasReceipts) }
     }
 
-    disposables += InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.RECURRING_DONATION).subscribeBy { redemptionStatus ->
-      store.update { manageDonationsState ->
-        manageDonationsState.copy(
-          nonVerifiedMonthlyDonation = if (redemptionStatus is DonationRedemptionJobStatus.PendingExternalVerification) redemptionStatus.nonVerifiedMonthlyDonation else null,
-          subscriptionRedemptionState = mapStatusToRedemptionState(redemptionStatus)
-        )
-      }
-    }
-
-    disposables += Observable.combineLatest(
-      SignalStore.inAppPayments.observablePendingOneTimeDonation,
-      InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.ONE_TIME_DONATION)
-    ) { pendingFromStore, pendingFromJob ->
-      if (pendingFromStore.isPresent) {
-        pendingFromStore
-      } else if (pendingFromJob is DonationRedemptionJobStatus.PendingExternalVerification) {
-        Optional.ofNullable(pendingFromJob.pendingOneTimeDonation)
-      } else {
-        Optional.empty()
-      }
-    }
-      .distinctUntilChanged()
-      .subscribeBy { pending ->
-        store.update { it.copy(pendingOneTimeDonation = pending.orNull()) }
-      }
-
-    disposables += levelUpdateOperationEdges.switchMapSingle { isProcessing ->
-      if (isProcessing) {
-        Single.just(ManageDonationsState.TransactionState.InTransaction)
-      } else {
-        activeSubscription.map { ManageDonationsState.TransactionState.NotInTransaction(it) }
-      }
-    }.subscribeBy(
-      onNext = { transactionState ->
-        store.update {
-          it.copy(subscriptionTransactionState = transactionState)
-        }
-      },
-      onError = { throwable ->
-        Log.w(TAG, "Error retrieving subscription transaction state", throwable)
-
-        store.update {
-          it.copy(subscriptionTransactionState = ManageDonationsState.TransactionState.NetworkFailure)
-        }
-      }
-    )
-
     disposables += RecurringInAppPaymentRepository.getSubscriptions().subscribeBy(
       onSuccess = { subs ->
         store.update { it.copy(availableSubscriptions = subs) }
@@ -158,16 +160,68 @@ class ManageDonationsViewModel : ViewModel() {
     )
   }
 
-  private fun mapStatusToRedemptionState(status: DonationRedemptionJobStatus): ManageDonationsState.RedemptionState {
+  private fun updateRecurringDonationState() {
+    val latestPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION)
+
+    val activeSubscription: InAppPaymentTable.InAppPayment? = latestPayment?.let {
+      if (it.data.cancellation == null) it else null
+    }
+
+    store.update { manageDonationsState ->
+      manageDonationsState.copy(
+        isLoaded = true,
+        activeSubscription = activeSubscription
+      )
+    }
+  }
+
+  private fun deriveRedemptionState(status: DonationRedemptionJobStatus, latestPayment: InAppPaymentTable.InAppPayment?): ManageDonationsState.RedemptionState {
     return when (status) {
-      DonationRedemptionJobStatus.FailedSubscription -> ManageDonationsState.RedemptionState.FAILED
       DonationRedemptionJobStatus.None -> ManageDonationsState.RedemptionState.NONE
       DonationRedemptionJobStatus.PendingKeepAlive -> ManageDonationsState.RedemptionState.SUBSCRIPTION_REFRESH
+      DonationRedemptionJobStatus.FailedSubscription -> ManageDonationsState.RedemptionState.FAILED
 
-      is DonationRedemptionJobStatus.PendingExternalVerification,
+      is DonationRedemptionJobStatus.PendingExternalVerification -> {
+        if (latestPayment != null && (latestPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.SEPA_DEBIT || latestPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL)) {
+          ManageDonationsState.RedemptionState.IS_PENDING_BANK_TRANSFER
+        } else {
+          ManageDonationsState.RedemptionState.IN_PROGRESS
+        }
+      }
+
       DonationRedemptionJobStatus.PendingReceiptRedemption,
       DonationRedemptionJobStatus.PendingReceiptRequest -> ManageDonationsState.RedemptionState.IN_PROGRESS
     }
+  }
+
+  private fun InAppPaymentTable.InAppPayment.toPendingOneTimeDonation(): PendingOneTimeDonation? {
+    if (type.recurring || data.amount == null || data.badge == null) {
+      return null
+    }
+
+    return PendingOneTimeDonation(
+      paymentMethodType = when (data.paymentMethodType) {
+        InAppPaymentData.PaymentMethodType.UNKNOWN -> PendingOneTimeDonation.PaymentMethodType.CARD
+        InAppPaymentData.PaymentMethodType.GOOGLE_PAY -> PendingOneTimeDonation.PaymentMethodType.CARD
+        InAppPaymentData.PaymentMethodType.CARD -> PendingOneTimeDonation.PaymentMethodType.CARD
+        InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT
+        InAppPaymentData.PaymentMethodType.IDEAL -> PendingOneTimeDonation.PaymentMethodType.IDEAL
+        InAppPaymentData.PaymentMethodType.PAYPAL -> PendingOneTimeDonation.PaymentMethodType.PAYPAL
+        InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING -> error("Not supported.")
+      },
+      amount = data.amount,
+      badge = data.badge,
+      timestamp = insertedAt.inWholeMilliseconds,
+      error = data.error?.takeIf { it.data_ != InAppPaymentKeepAliveJob.KEEP_ALIVE }?.let {
+        DonationErrorValue(
+          type = when (it.type) {
+            InAppPaymentData.Error.Type.REDEMPTION -> DonationErrorValue.Type.REDEMPTION
+            InAppPaymentData.Error.Type.PAYMENT_PROCESSING -> DonationErrorValue.Type.PAYMENT
+            else -> DonationErrorValue.Type.PAYMENT
+          }
+        )
+      }
+    )
   }
 
   companion object {

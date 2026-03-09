@@ -153,6 +153,12 @@ class InAppPaymentKeepAliveJob private constructor(
       return
     }
 
+    if (type == InAppPaymentSubscriberRecord.Type.DONATION && activeSubscription.isCanceled) {
+      info(type, "Subscription is canceled. Writing cancellation to DB.")
+      InAppPaymentsRepository.updateInAppPaymentWithCancelation(activeSubscription, type)
+      return
+    }
+
     val activeInAppPayment = getActiveInAppPayment(subscriber, subscription)
     if (activeInAppPayment == null) {
       warn(type, "Failed to generate active in-app payment. Exiting")
