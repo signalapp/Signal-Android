@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import org.signal.benchmark.setup.Harness
 import org.signal.benchmark.setup.TestMessages
 import org.signal.benchmark.setup.TestUsers
-import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.backup.v2.BackupRepository

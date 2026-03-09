@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.GroupJoinRequestUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberAddedUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberJoinedByLinkUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberJoinedUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberLabelAccessLevelChangeUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberLeftUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberRemovedUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMembershipAccessLevelChangeUpdate
@@ -146,6 +147,7 @@ object GroupsV2UpdateMessageConverter {
     translateNewTimer(change, editorUnknown, updates)
     translateNewAttributeAccess(change, editorUnknown, updates)
     translateNewMembershipAccess(change, editorUnknown, updates)
+    translateNewMemberLabelAccess(change, editorUnknown, updates)
     translateNewGroupInviteLinkAccess(previousGroupState, change, editorUnknown, updates)
     translateRequestingMembers(selfIds, change, editorUnknown, updates)
     translateRequestingMemberApprovals(selfIds, change, editorUnknown, updates)
@@ -431,6 +433,21 @@ object GroupsV2UpdateMessageConverter {
           groupMembershipAccessLevelChangeUpdate = GroupMembershipAccessLevelChangeUpdate(
             updaterAci = editorAci,
             accessLevel = translateGv2AccessLevel(change.newMemberAccess)
+          )
+        )
+      )
+    }
+  }
+
+  @JvmStatic
+  fun translateNewMemberLabelAccess(change: DecryptedGroupChange, editorUnknown: Boolean, updates: MutableList<GroupChangeChatUpdate.Update>) {
+    if (change.newMemberLabelAccess !== AccessRequired.UNKNOWN) {
+      val editorAci = if (editorUnknown) null else change.editorServiceIdBytes
+      updates.add(
+        GroupChangeChatUpdate.Update(
+          groupMemberLabelAccessLevelChangeUpdate = GroupMemberLabelAccessLevelChangeUpdate(
+            updaterAci = editorAci,
+            accessLevel = translateGv2AccessLevel(change.newMemberLabelAccess)
           )
         )
       )

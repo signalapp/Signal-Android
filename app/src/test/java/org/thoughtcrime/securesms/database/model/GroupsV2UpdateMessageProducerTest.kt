@@ -824,6 +824,34 @@ class GroupsV2UpdateMessageProducerTest {
     assertEquals(listOf("Who can edit group membership has been changed to \"Only admins\"."), describeChange(change))
   }
 
+  // member label access change
+  @Test
+  fun member_changes_member_label_access() {
+    val change = ChangeBuilder.changeBy(bob)
+      .memberLabelAccess(MEMBER)
+      .build()
+
+    assertEquals(listOf("Bob changed who can add member labels to \"All members\"."), describeChange(change))
+  }
+
+  @Test
+  fun you_changed_member_label_access() {
+    val change = ChangeBuilder.changeBy(you)
+      .memberLabelAccess(ADMINISTRATOR)
+      .build()
+
+    assertEquals(listOf("You changed who can add member labels to \"Only admins\"."), describeChange(change))
+  }
+
+  @Test
+  fun unknown_changed_member_label_access() {
+    val change = ChangeBuilder.changeByUnknown()
+      .memberLabelAccess(ADMINISTRATOR)
+      .build()
+
+    assertEquals(listOf("An admin changed who can add member labels to \"Only admins\"."), describeChange(change))
+  }
+
   // Group link access change
   @Test
   fun you_changed_group_link_access_to_any() {

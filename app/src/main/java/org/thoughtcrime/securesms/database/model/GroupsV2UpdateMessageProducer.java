@@ -11,7 +11,9 @@ import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.models.ServiceId;
 import org.signal.core.util.BidiUtil;
+import org.signal.core.util.UuidUtil;
 import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.signal.storageservice.storage.protos.groups.Member;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedApproveMember;
@@ -46,6 +48,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.GroupJoinRequestUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberAddedUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberJoinedByLinkUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberJoinedUpdate;
+import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberLabelAccessLevelChangeUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberLeftUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberRemovedUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMembershipAccessLevelChangeUpdate;
@@ -66,9 +69,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
-import org.signal.core.models.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceIds;
-import org.signal.core.util.UuidUtil;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -165,6 +166,8 @@ final class GroupsV2UpdateMessageProducer {
       describeGroupMembershipAccessLevelChange(update.groupMembershipAccessLevelChangeUpdate, updates);
     } else if (update.groupAttributesAccessLevelChangeUpdate != null) {
       describeGroupAttributesAccessLevelChange(update.groupAttributesAccessLevelChangeUpdate, updates);
+    } else if (update.groupMemberLabelAccessLevelChangeUpdate != null) {
+      describeGroupMemberLabelAccessLevelChange(update.groupMemberLabelAccessLevelChangeUpdate, updates);
     } else if (update.groupAnnouncementOnlyChangeUpdate != null) {
       describeGroupAnnouncementOnlyUpdate(update.groupAnnouncementOnlyChangeUpdate, updates);
     } else if (update.groupAdminStatusUpdate != null) {
@@ -592,6 +595,24 @@ final class GroupsV2UpdateMessageProducer {
     }
   }
 
+  private void describeGroupMemberLabelAccessLevelChange(@NonNull GroupMemberLabelAccessLevelChangeUpdate update, @NonNull List<UpdateDescription> updates) {
+    if (update.accessLevel == GroupV2AccessLevel.UNKNOWN) {
+      return;
+    }
+
+    String accessLevel = GV2AccessLevelUtil.toString(context, backupGv2AccessLevelToGroups(update.accessLevel));
+    if (update.updaterAci == null) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s, accessLevel), Glyph.MEGAPHONE));
+    } else {
+      boolean editorIsYou = selfIds.matches(update.updaterAci);
+      if (editorIsYou) {
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_add_member_labels_to_s, accessLevel), Glyph.MEGAPHONE));
+      } else {
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_add_member_labels_to_s, update.updaterAci, accessLevel, Glyph.MEGAPHONE));
+      }
+    }
+  }
+
   private void describeGroupAnnouncementOnlyUpdate(@NonNull GroupAnnouncementOnlyChangeUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.updaterAci == null) {
       if (update.isAnnouncementOnly) {
@@ -707,6 +728,7 @@ final class GroupsV2UpdateMessageProducer {
       describeUnknownEditorNewTimer(change, updates);
       describeUnknownEditorNewAttributeAccess(change, updates);
       describeUnknownEditorNewMembershipAccess(change, updates);
+      describeUnknownEditorNewMemberLabelAccess(change, updates);
       describeUnknownEditorNewGroupInviteLinkAccess(previousGroupState, change, updates);
       describeRequestingMembers(change, updates);
       describeUnknownEditorRequestingMembersApprovals(change, updates);
@@ -733,6 +755,7 @@ final class GroupsV2UpdateMessageProducer {
       describeNewTimer(change, updates);
       describeNewAttributeAccess(change, updates);
       describeNewMembershipAccess(change, updates);
+      describeNewMemberLabelAccess(change, updates);
       describeNewGroupInviteLinkAccess(previousGroupState, change, updates);
       describeRequestingMembers(change, updates);
       describeRequestingMembersApprovals(change, updates);
@@ -1220,6 +1243,26 @@ final class GroupsV2UpdateMessageProducer {
     if (change.newMemberAccess != AccessControl.AccessRequired.UNKNOWN) {
       String accessLevel = GV2AccessLevelUtil.toString(context, change.newMemberAccess);
       updates.add(updateDescription(context.getString(R.string.MessageRecord_who_can_edit_group_membership_has_been_changed_to_s, accessLevel), Glyph.MEGAPHONE));
+    }
+  }
+
+  private void describeNewMemberLabelAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
+
+    if (change.newMemberLabelAccess != AccessControl.AccessRequired.UNKNOWN) {
+      String accessLevel = GV2AccessLevelUtil.toString(context, change.newMemberLabelAccess);
+      if (editorIsYou) {
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_add_member_labels_to_s, accessLevel), Glyph.MEGAPHONE));
+      } else {
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_add_member_labels_to_s, change.editorServiceIdBytes, accessLevel, Glyph.MEGAPHONE));
+      }
+    }
+  }
+
+  private void describeUnknownEditorNewMemberLabelAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    if (change.newMemberLabelAccess != AccessControl.AccessRequired.UNKNOWN) {
+      String accessLevel = GV2AccessLevelUtil.toString(context, change.newMemberLabelAccess);
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s, accessLevel), Glyph.MEGAPHONE));
     }
   }
 

@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.asChain
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
 import org.whispersystems.signalservice.api.crypto.ContentHint
@@ -73,7 +74,6 @@ import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.PniSignatureMessage
 import org.whispersystems.signalservice.internal.util.Util
-import org.thoughtcrime.securesms.util.SignalTrace
 import java.util.Optional
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.DurationUnit

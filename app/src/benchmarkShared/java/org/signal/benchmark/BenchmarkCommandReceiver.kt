@@ -15,10 +15,10 @@ import org.signal.benchmark.setup.Generator
 import org.signal.benchmark.setup.Harness
 import org.signal.benchmark.setup.OtherClient
 import org.signal.core.util.ThreadUtil
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.TestDbUtils
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.internal.push.Envelope

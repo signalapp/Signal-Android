@@ -2022,6 +2022,13 @@
     <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s changed who can edit group membership to \"%2$s\".</string>
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Who can edit group membership has been changed to \"%1$s\".</string>
 
+    <!-- Shown when the current user changes the member label permission. -->
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <!-- Shown when another group member changes the member label permission. -->
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <!-- Shown when the member label permission is changed by an unknown admin. -->
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
+
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">You changed the group settings to allow all members to send messages.</string>
     <string name="MessageRecord_you_allow_only_admins_to_send">You changed the group settings to only allow admins to send messages.</string>

@@ -43,7 +43,6 @@ import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
 import org.signal.core.util.exists
 import org.signal.core.util.forEach
-import org.signal.core.util.forceForeignKeyConstraintsEnabled
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
