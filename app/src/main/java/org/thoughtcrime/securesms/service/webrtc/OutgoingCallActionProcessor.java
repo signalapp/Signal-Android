@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.webrtc.PeerConnection;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
@@ -144,6 +145,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
       return currentState;
     }
 
+    byte            dredDuration    = (byte) RemoteConfig.dredDuration();
     boolean         hideIp          = !activePeer.getRecipient().isProfileSharing() || callSetupState.isAlwaysTurnServers();
     VideoState      videoState      = currentState.getVideoState();
     CallParticipant callParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
@@ -160,6 +162,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 hideIp,
                                                 NetworkUtil.getCallingDataMode(context),
                                                 AUDIO_LEVELS_INTERVAL,
+                                                dredDuration,
                                                 currentState.getCallSetupState(activePeer).isEnableVideoOnCreate());
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);

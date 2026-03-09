@@ -1339,5 +1339,13 @@ object RemoteConfig {
     defaultValue = 1.days.inWholeSeconds,
     hotSwappable = true
   )
+
+  @JvmStatic
+  @get:JvmName("dredDuration")
+  val dredDuration: Int by remoteInt(
+    key = "global.calling.dredDuration",
+    defaultValue = 0,
+    hotSwappable = true
+  )
   // endregion
 }
