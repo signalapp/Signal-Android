@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
-import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceState
 import org.thoughtcrime.securesms.registration.olddevice.preparedevice.PrepareDeviceScreenEvents
 import org.thoughtcrime.securesms.registration.olddevice.transferaccount.TransferScreenEvents
 import org.whispersystems.signalservice.api.provisioning.RestoreMethod

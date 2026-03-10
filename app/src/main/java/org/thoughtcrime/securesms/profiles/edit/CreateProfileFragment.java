@@ -22,7 +22,6 @@ import com.airbnb.lottie.SimpleColorFilter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.EditTextUtil;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SimpleTask;
@@ -47,7 +46,6 @@ import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
 
 import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.EXCLUDE_SYSTEM;
 import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.GROUP_ID;

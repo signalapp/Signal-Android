@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.SearchConfigur
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.thoughtcrime.securesms.util.viewModel
 import kotlin.getValue
 
 /**

@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.camera.core.ImageCapture;
 

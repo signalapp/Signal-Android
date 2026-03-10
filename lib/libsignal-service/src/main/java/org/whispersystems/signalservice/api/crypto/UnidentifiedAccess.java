@@ -4,7 +4,6 @@ package org.whispersystems.signalservice.api.crypto;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.protocol.util.ByteUtil;
-import org.signal.libsignal.zkgroup.internal.ByteArray;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 
 import java.security.InvalidAlgorithmParameterException;

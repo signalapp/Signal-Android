@@ -20,7 +20,6 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.incrementalmac.InvalidMacException;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
-import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.video.VideoPlayer;

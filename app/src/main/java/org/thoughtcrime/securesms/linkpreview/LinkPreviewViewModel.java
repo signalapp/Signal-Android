@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.linkpreview;
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;

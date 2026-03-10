@@ -6,7 +6,6 @@ import org.xbill.DNS.Record
 import org.xbill.DNS.SimpleResolver
 import org.xbill.DNS.Type
 import java.net.UnknownHostException
-import kotlin.streams.toList
 
 /**
  * A tool to resolve hostname to static IPs.

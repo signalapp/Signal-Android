@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.contactshare;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 

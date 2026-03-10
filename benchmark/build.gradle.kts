@@ -1,8 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.android.build.api.dsl.ManagedVirtualDevice
 import org.gradle.api.JavaVersion
-import org.gradle.kotlin.dsl.extra
 
 val benchmarkLibs = the<org.gradle.accessors.dm.LibrariesForBenchmarkLibs>()
 

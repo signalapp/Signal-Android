@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.devicetransfer.olddevice;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;

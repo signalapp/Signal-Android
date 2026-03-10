@@ -5,7 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;

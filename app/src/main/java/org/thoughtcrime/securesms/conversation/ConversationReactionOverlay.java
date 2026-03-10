@@ -32,7 +32,6 @@ import androidx.vectordrawable.graphics.drawable.AnimatorInflaterCompat;
 
 import com.annimon.stream.Stream;
 
-import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -49,7 +48,6 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import kotlin.Unit;
 

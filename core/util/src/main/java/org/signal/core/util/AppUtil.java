@@ -1,11 +1,9 @@
 package org.signal.core.util;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 public final class AppUtil {
 

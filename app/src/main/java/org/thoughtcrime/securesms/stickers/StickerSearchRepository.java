@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Set;
 
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public final class StickerSearchRepository {
 

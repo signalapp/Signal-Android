@@ -1,7 +1,6 @@
 package org.whispersystems.signalservice.api.storage
 
 import okio.ByteString
-import okio.ByteString.Companion.EMPTY
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes

@@ -32,7 +32,6 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
-import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -50,7 +49,6 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**

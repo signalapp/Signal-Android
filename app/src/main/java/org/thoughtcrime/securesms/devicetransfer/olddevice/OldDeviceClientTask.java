@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.io.IOException;
 import java.io.OutputStream;

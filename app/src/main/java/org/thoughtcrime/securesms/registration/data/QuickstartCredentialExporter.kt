@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.registration.data
 
 import android.content.Context
 import android.util.Base64
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies

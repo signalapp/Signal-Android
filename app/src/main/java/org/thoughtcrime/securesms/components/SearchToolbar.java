@@ -4,7 +4,6 @@ package org.thoughtcrime.securesms.components;
 import android.animation.Animator;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,13 +17,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
-import org.signal.core.ui.compose.SignalIcons;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.util.EditTextExtensionsKt;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-
-import java.util.Objects;
 
 public class SearchToolbar extends LinearLayout {
 

@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.database.helpers.migration
 import android.app.Application
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.logging.Log
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 

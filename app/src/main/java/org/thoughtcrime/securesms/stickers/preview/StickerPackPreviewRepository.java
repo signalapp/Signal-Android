@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.stickers.preview;
 
-import android.content.Context;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;

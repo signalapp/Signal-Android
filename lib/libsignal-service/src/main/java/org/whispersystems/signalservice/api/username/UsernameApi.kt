@@ -14,7 +14,6 @@ import org.signal.libsignal.net.getOrError
 import org.signal.libsignal.usernames.Username
 import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.get
 import java.util.UUID
 
 /**

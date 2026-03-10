@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import androidx.annotation.WorkerThread
 import androidx.core.content.contentValuesOf
-import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.SqlUtil
@@ -32,7 +31,6 @@ import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.GroupId.V2
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewRecipient
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -419,7 +417,7 @@ class NameCollisionTables(
     )
   }
 
-  private fun getDuplicatedGroupRecipients(groupId: V2, toCheck: Set<RecipientId>): List<ReviewRecipient> {
+  private fun getDuplicatedGroupRecipients(groupId: GroupId.V2, toCheck: Set<RecipientId>): List<ReviewRecipient> {
     if (toCheck.isEmpty()) {
       return emptyList()
     }
@@ -450,7 +448,7 @@ class NameCollisionTables(
     return results
   }
 
-  private fun getProfileChangeRecordsForGroup(groupId: V2): List<MessageRecord> {
+  private fun getProfileChangeRecordsForGroup(groupId: GroupId.V2): List<MessageRecord> {
     val groupRecipientId = SignalDatabase.recipients.getByGroupId(groupId).get()
     val groupThreadId = SignalDatabase.threads.getThreadIdFor(groupRecipientId)
 

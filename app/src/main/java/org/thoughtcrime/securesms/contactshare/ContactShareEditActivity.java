@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.Name;

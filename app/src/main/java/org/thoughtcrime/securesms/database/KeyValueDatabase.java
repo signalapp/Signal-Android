@@ -10,13 +10,11 @@ import androidx.annotation.NonNull;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
 
-import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.KeyValuePersistentStorage;
-import org.signal.core.util.CursorUtil;
 
 import java.util.Collection;
 import java.util.Map;

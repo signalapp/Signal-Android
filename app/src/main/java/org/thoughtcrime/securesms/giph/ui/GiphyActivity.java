@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.util.Collections;
 import java.util.Objects;
-import java.util.Optional;
 
 public class GiphyActivity extends PassphraseRequiredActivity implements KeyboardPageSearchView.Callbacks {
 

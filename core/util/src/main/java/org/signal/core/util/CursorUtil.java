@@ -3,10 +3,8 @@ package org.signal.core.util;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.Optional;
-import java.util.function.Function;
 
 
 public final class CursorUtil {

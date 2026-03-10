@@ -1,7 +1,5 @@
 package org.whispersystems.signalservice.internal.push;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;

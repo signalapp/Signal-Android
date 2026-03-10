@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 
 import java.util.Locale;
 

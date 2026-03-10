@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
 final class LogSectionNotifications implements LogSection {

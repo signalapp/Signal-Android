@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 
 import org.thoughtcrime.securesms.R;

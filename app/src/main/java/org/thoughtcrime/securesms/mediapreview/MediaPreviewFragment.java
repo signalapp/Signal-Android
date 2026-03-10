@@ -1,18 +1,14 @@
 package org.thoughtcrime.securesms.mediapreview;
 
 import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartUriParser;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.signal.core.util.concurrent.SimpleTask;
 
 import java.util.Objects;

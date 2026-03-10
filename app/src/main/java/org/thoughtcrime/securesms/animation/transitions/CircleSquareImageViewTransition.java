@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.animation.transitions;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.graphics.drawable.Drawable;
 import android.transition.Transition;
 import android.transition.TransitionValues;

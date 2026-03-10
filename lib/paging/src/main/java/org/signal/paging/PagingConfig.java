@@ -2,8 +2,6 @@ package org.signal.paging;
 
 import androidx.annotation.NonNull;
 
-import java.util.concurrent.Executor;
-
 /**
  * Describes various properties of how you'd like paging to be handled.
  */

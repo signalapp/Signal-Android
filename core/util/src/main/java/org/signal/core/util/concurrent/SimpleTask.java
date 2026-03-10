@@ -12,8 +12,6 @@ import org.signal.core.util.concurrent.SignalExecutors;
 
 import java.util.concurrent.Executor;
 
-import io.reactivex.rxjava3.observers.DefaultObserver;
-
 public class SimpleTask {
 
   /**

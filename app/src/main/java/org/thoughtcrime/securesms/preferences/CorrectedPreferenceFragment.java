@@ -16,7 +16,6 @@ import androidx.preference.PreferenceScreen;
 import androidx.preference.PreferenceViewHolder;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.CustomDefaultPreference;
 
 public abstract class CorrectedPreferenceFragment extends PreferenceFragmentCompat {

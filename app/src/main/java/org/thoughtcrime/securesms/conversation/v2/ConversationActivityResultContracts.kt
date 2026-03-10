@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
-import org.thoughtcrime.securesms.conversation.v2.ConversationActivityResultContracts.Callbacks
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity
 import org.thoughtcrime.securesms.maps.PlacePickerActivity
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult

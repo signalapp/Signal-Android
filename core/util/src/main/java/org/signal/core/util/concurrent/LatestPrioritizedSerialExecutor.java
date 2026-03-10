@@ -3,11 +3,9 @@ package org.signal.core.util.concurrent;
 import androidx.annotation.NonNull;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.concurrent.Executor;
-import java.util.stream.Collectors;
 
 /**
  * A serial executor that will order pending tasks by a specified priority, and will only keep a single task of a given priority, preferring the latest.

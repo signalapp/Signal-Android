@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;

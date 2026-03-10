@@ -7,12 +7,9 @@
 package org.whispersystems.signalservice.api.messages.multidevice;
 
 import org.whispersystems.signalservice.internal.push.ContactDetails;
-import org.whispersystems.signalservice.internal.push.Verified;
 
 import java.io.IOException;
 import java.io.OutputStream;
-
-import okio.ByteString;
 
 public class DeviceContactsOutputStream extends ChunkedOutputStream {
 

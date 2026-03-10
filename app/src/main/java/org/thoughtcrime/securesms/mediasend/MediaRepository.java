@@ -46,7 +46,6 @@ import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import kotlin.collections.MapsKt;
 
 /**
  * Handles the retrieval of media present on the user's device.

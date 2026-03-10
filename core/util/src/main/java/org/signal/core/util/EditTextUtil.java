@@ -1,7 +1,6 @@
 package org.signal.core.util;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

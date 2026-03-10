@@ -20,12 +20,10 @@ import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.UntrustedIdentityException;
 import org.signal.libsignal.protocol.state.SessionRecord;
-import org.signal.libsignal.protocol.state.SignalProtocolStore;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**

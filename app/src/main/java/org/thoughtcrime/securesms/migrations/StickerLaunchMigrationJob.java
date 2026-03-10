@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackOperationJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class StickerLaunchMigrationJob extends MigrationJob {
 

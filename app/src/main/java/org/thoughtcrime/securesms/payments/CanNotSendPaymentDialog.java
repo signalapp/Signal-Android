@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.payments;
 
-import android.app.AlertDialog;
 import android.content.Context;
 
 import androidx.annotation.NonNull;

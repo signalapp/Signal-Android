@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
-import org.signal.core.util.Util;
 
 public class ViewOnceMessageView extends LinearLayout {
 

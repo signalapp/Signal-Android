@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.Locale;
 
 final class AudioTrackConverter {
 

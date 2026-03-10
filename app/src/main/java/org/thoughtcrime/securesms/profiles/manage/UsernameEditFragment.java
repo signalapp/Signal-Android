@@ -20,7 +20,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.textfield.TextInputLayout;
 
 import org.signal.core.util.EditTextUtil;
 import org.signal.core.util.concurrent.LifecycleDisposable;

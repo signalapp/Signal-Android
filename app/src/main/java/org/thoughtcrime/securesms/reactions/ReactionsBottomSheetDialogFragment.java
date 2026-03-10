@@ -29,8 +29,6 @@ import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.Objects;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-
 public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
   private static final String ARGS_MESSAGE_ID = "reactions.args.message.id";

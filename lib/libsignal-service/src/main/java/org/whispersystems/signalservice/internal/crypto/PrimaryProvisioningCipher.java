@@ -8,7 +8,6 @@ package org.whispersystems.signalservice.internal.crypto;
 
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECKeyPair;
-import org.signal.libsignal.protocol.ecc.ECPrivateKey;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.protocol.kdf.HKDF;
 import org.signal.registration.proto.RegistrationProvisionEnvelope;

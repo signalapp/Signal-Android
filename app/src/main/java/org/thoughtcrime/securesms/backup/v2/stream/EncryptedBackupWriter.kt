@@ -13,7 +13,6 @@ import org.signal.core.util.writeVarInt32
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
-import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader.Companion.createForSignalBackup
 import java.io.IOException
 import java.io.OutputStream
 import javax.crypto.Cipher

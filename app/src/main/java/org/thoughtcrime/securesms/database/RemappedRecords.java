@@ -7,10 +7,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Merging together recipients and threads is messy business. We can easily replace *almost* all of

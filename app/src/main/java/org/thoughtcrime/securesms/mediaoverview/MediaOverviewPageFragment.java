@@ -29,7 +29,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 
-import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.ByteSize;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.LifecycleDisposable;

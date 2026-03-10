@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.animation.transitions;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.util.AttributeSet;
 

@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
-import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireNonNullString

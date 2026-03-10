@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.subjects.Subject;
 
 /**
  * An implementation of {@link PagedData} that will provide data as an {@link Observable}.

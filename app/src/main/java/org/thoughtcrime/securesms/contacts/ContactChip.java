@@ -16,11 +16,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.chip.Chip;
-import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RelativeCornerSize;
 import com.google.android.material.shape.RoundedCornerTreatment;
 import com.google.android.material.shape.ShapeAppearanceModel;
-import com.google.android.material.shape.Shapeable;
 
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
@@ -60,8 +58,8 @@ public final class ContactChip extends Chip {
       if (contactPhoto == null) {
         fallbackContactPhotoDrawable.setShapeAppearanceModel(
             ShapeAppearanceModel.builder()
-                .setAllCorners(new RoundedCornerTreatment())
-                .setAllCornerSizes(new RelativeCornerSize(0.5f)).build()
+                                .setAllCorners(new RoundedCornerTreatment())
+                                .setAllCornerSizes(new RelativeCornerSize(0.5f)).build()
         );
 
         setChipIcon(fallbackContactPhotoDrawable);

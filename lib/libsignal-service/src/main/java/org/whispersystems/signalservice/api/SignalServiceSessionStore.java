@@ -6,7 +6,6 @@ import org.signal.libsignal.protocol.state.SessionStore;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * And extension of the normal protocol session store interface that has additional methods that are

@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
 import android.content.Context;
-import android.os.Build;
 import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;

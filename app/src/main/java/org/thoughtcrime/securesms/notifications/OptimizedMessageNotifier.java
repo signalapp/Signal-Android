@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.LeakyBucketLimiter;
 
 import java.util.Optional;

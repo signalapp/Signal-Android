@@ -6,7 +6,6 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
-import org.whispersystems.signalservice.internal.push.SyncMessage;
 import org.whispersystems.signalservice.internal.push.SyncMessage.AttachmentBackfillResponse;
 import org.whispersystems.signalservice.internal.push.SyncMessage.DeviceNameChange;
 import org.whispersystems.signalservice.internal.push.SyncMessage.CallEvent;

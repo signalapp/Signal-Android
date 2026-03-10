@@ -3,9 +3,6 @@ package org.thoughtcrime.securesms.video.videoconverter.muxer;
 import androidx.annotation.NonNull;
 
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Based on https://github.com/jcodec/jcodec/blob/master/src/main/java/org/jcodec/codecs/h264/H264Utils.java

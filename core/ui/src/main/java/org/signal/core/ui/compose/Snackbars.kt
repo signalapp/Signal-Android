@@ -18,7 +18,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.theme.LocalSnackbarColors
-import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
 /**

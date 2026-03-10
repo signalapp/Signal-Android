@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity

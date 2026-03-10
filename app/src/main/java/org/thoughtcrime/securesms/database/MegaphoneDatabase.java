@@ -9,13 +9,11 @@ import androidx.annotation.NonNull;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
 
-import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.megaphone.Megaphones.Event;
-import org.signal.core.util.CursorUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;

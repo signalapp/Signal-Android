@@ -4,7 +4,6 @@ package org.thoughtcrime.securesms.backup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.greenrobot.eventbus.EventBus;
 import org.signal.libsignal.protocol.util.ByteUtil;
 
 import java.security.MessageDigest;

@@ -2,12 +2,7 @@ package org.thoughtcrime.securesms.groups;
 
 import androidx.annotation.NonNull;
 
-import org.signal.libsignal.zkgroup.auth.AuthCredentialWithPniResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 public final class GroupsV2AuthorizationMemoryValueCache implements GroupsV2Authorization.ValueCache {
 
