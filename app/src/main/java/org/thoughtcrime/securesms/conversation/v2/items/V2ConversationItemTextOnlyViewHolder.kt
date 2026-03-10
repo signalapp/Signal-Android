@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
+import org.thoughtcrime.securesms.util.MAX_BODY_DISPLAY_LENGTH
 import org.thoughtcrime.securesms.util.PlaceholderURLSpan
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
@@ -417,8 +418,11 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     styledText = SearchUtil.getHighlightedSpan(Locale.getDefault(), STYLE_FACTORY, styledText, conversationContext.searchQuery, SearchUtil.MATCH_ALL)
     if (record.hasExtraText()) {
       binding.body.setOverflowText(getLongMessageSpan())
+      val trimmedLength = StringUtil.trim(styledText).length
+      binding.body.setMaxLength(minOf(MAX_BODY_DISPLAY_LENGTH, trimmedLength - 2))
     } else {
       binding.body.setOverflowText(null)
+      binding.body.setMaxLength(-1)
     }
 
     if (isContentCondensed()) {
