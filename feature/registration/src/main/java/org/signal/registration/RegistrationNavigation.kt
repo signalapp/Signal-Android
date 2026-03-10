@@ -67,7 +67,7 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object Welcome : RegistrationRoute
 
   @Serializable
-  data class Permissions(val forRestore: Boolean = false) : RegistrationRoute
+  data class Permissions(val nextRoute: RegistrationRoute) : RegistrationRoute
 
   @Serializable
   data object PhoneNumberEntry : RegistrationRoute
@@ -100,10 +100,13 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object PinCreate : RegistrationRoute
 
   @Serializable
-  data object Restore : RegistrationRoute
+  data object ChooseRestoreOptionBeforeRegistration : RegistrationRoute
 
   @Serializable
-  data object RestoreViaQr : RegistrationRoute
+  data object ChooseRestoreOptionAfterRegistration : RegistrationRoute
+
+  @Serializable
+  data object QuickRestoreQrScan : RegistrationRoute
 
   @Serializable
   data object Transfer : RegistrationRoute
@@ -203,9 +206,9 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     WelcomeScreen(
       onEvent = { event ->
         when (event) {
-          WelcomeScreenEvents.Continue -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(forRestore = false))
-          WelcomeScreenEvents.DoesNotHaveOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Restore)
-          WelcomeScreenEvents.HasOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(forRestore = true))
+          WelcomeScreenEvents.Continue -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.PhoneNumberEntry))
+          WelcomeScreenEvents.HasOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.QuickRestoreQrScan))
+          WelcomeScreenEvents.DoesNotHaveOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.ChooseRestoreOptionBeforeRegistration))
         }
       }
     )
@@ -216,11 +219,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     PermissionsScreen(
       permissionsState = permissionsState,
       onProceed = {
-        if (key.forRestore) {
-          parentEventEmitter.navigateTo(RegistrationRoute.RestoreViaQr)
-        } else {
-          parentEventEmitter.navigateTo(RegistrationRoute.PhoneNumberEntry)
-        }
+        parentEventEmitter.navigateTo(key.nextRoute)
       }
     )
   }
@@ -399,11 +398,11 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     )
   }
 
-  entry<RegistrationRoute.Restore> {
+  entry<RegistrationRoute.ChooseRestoreOptionAfterRegistration> {
     // TODO: Implement RestoreScreen
   }
 
-  entry<RegistrationRoute.RestoreViaQr> {
+  entry<RegistrationRoute.QuickRestoreQrScan> {
     RestoreViaQrScreen(
       state = RestoreViaQrState(),
       onEvent = { event ->

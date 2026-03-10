@@ -179,21 +179,6 @@ interface NetworkController {
    */
   suspend fun setAccountAttributes(attributes: AccountAttributes): RegistrationNetworkResult<Unit, SetAccountAttributesError>
 
-  // TODO
-//  /**
-//   * Validates the provided SVR2 auth credentials, returning information on their usability.
-//   *
-//   * `POST /v2/svr/auth/check`
-//   */
-//  suspend fun validateSvr2AuthCredential(e164: String, usernamePasswords: List<String>)
-//
-//  /**
-//   * Validates the provided SVR3 auth credentials, returning information on their usability.
-//   *
-//   * `POST /v3/backup/auth/check`
-//   */
-//  suspend fun validateSvr3AuthCredential(e164: String, usernamePasswords: List<String>)
-//
 //  /**
 //   * Set [RestoreMethod] enum on the server for use by the old device to update UX.
 //   */
