@@ -173,7 +173,7 @@ signal-aesgcmprovider = "org.signal:aesgcmprovider:0.0.4"
 signal-ringrtc = "org.signal:ringrtc-android:2.66.0"
 
 # Third Party
-signal-android-database-sqlcipher = "net.zetetic:sqlcipher-android:4.11.0"
+signal-android-database-sqlcipher = "net.zetetic:sqlcipher-android:4.13.0"
 greenrobot-eventbus = "org.greenrobot:eventbus:3.0.0"
 jackson-core = "com.fasterxml.jackson.core:jackson-databind:2.12.0"
 jackson-module-kotlin = "com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0"
