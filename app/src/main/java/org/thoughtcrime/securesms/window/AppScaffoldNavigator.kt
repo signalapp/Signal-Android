@@ -22,7 +22,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.Dp
 import androidx.window.core.layout.WindowSizeClass
-import org.signal.libsignal.protocol.logging.Log
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
