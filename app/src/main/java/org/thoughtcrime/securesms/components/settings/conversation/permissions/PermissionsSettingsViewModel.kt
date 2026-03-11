@@ -11,11 +11,11 @@ import org.thoughtcrime.securesms.util.livedata.Store
 
 class PermissionsSettingsViewModel(
   private val groupId: GroupId,
-  private val repository: PermissionsSettingsRepository
+  private val repository: PermissionsSettingsRepository,
+  liveGroup: LiveGroup = LiveGroup(groupId)
 ) : ViewModel() {
 
   private val store = Store(PermissionsSettingsState())
-  private val liveGroup = LiveGroup(groupId)
   private val internalEvents = SingleLiveEvent<PermissionsSettingsEvents>()
 
   val state: LiveData<PermissionsSettingsState> = store.stateLiveData
@@ -61,7 +61,17 @@ class PermissionsSettingsViewModel(
     }
   }
 
-  fun setNonAdminCanSetMemberLabel(nonAdminCanSetMemberLabel: Boolean) {
+  fun onMemberLabelPermissionChangeRequested(nonAdminCanSetMemberLabel: Boolean) {
+    if (!nonAdminCanSetMemberLabel && repository.hasNonAdminMembersWithLabels(groupId)) {
+      internalEvents.postValue(PermissionsSettingsEvents.ShowMemberLabelsWillBeRemovedWarning)
+    } else {
+      setNonAdminCanSetMemberLabel(nonAdminCanSetMemberLabel)
+    }
+  }
+
+  fun onRestrictMemberLabelsToAdminsConfirmed() = setNonAdminCanSetMemberLabel(false)
+
+  private fun setNonAdminCanSetMemberLabel(nonAdminCanSetMemberLabel: Boolean) {
     repository.applyMemberLabelRightsChange(
       groupId = groupId,
       newRights = nonAdminCanSetMemberLabel.asGroupAccessControl()

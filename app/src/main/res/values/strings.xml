@@ -5191,6 +5191,8 @@
     <string name="RecipientBottomSheet_remove_from_group">Remove from group</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">Remove %1$s as group admin?</string>
+    <!-- Message shown when removing an admin will also clear their member label. -->
+    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">Remove %1$s as group admin? This will also clear their member label.</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s" will be able to edit this group and its members.</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Remove %1$s from the group?</string>
@@ -6032,6 +6034,12 @@
     <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
     <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <!-- Warning title shown before restricting member labels to admins only. -->
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Member labels will be cleared</string>
+    <!-- Warning body shown before restricting member labels to admins only. -->
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">Changing this permission to &quot;Only admins&quot; will clear member labels set by non-admins in this group.</string>
+    <!-- Confirm button for changing member label permission after warning. -->
+    <string name="PermissionsSettingsFragment__change_permission">Change permission</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

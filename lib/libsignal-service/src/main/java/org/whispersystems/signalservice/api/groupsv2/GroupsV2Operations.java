@@ -1120,6 +1120,21 @@ public final class GroupsV2Operations {
       );
     }
 
+    public GroupChange.Actions.Builder createRemoveMemberLabelsChange(@Nonnull List<ACI> acis) {
+      List<GroupChange.Actions.ModifyMemberLabelAction> actions = acis
+          .stream()
+          .map(memberAci ->
+                   new GroupChange.Actions.ModifyMemberLabelAction.Builder()
+                       .userId(encryptServiceId(memberAci))
+                       .labelEmoji(ByteString.EMPTY)
+                       .labelString(ByteString.EMPTY)
+                       .build()
+          )
+          .collect(Collectors.toList());
+
+      return new GroupChange.Actions.Builder().modifyMemberLabels(actions);
+    }
+
     public List<ServiceId> decryptAddMembers(List<GroupChange.Actions.AddMemberAction> addMembers) throws InvalidGroupStateException, InvalidInputException, VerificationFailedException {
       List<ServiceId> ids = new ArrayList<>(addMembers.size());
       for (GroupChange.Actions.AddMemberAction addMember : addMembers) {

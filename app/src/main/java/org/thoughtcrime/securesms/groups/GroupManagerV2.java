@@ -322,11 +322,27 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    @NonNull GroupManager.GroupActionResult updateMemberLabelRights(@NonNull GroupAccessControl newRights)
+    @NonNull
+    GroupManager.GroupActionResult updateMemberLabelRights(@NonNull GroupAccessControl newRights)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
-      AccessControl.AccessRequired accessRequired = rightsToAccessControl(newRights);
-      return commitChangeWithConflictResolution(selfAci, groupOperations.createChangeMemberLabelRights(accessRequired));
+      AccessControl.AccessRequired newAccess      = rightsToAccessControl(newRights);
+      GroupChange.Actions.Builder  change         = groupOperations.createChangeMemberLabelRights(newAccess);
+      DecryptedGroup               decryptedGroup = v2GroupProperties.getDecryptedGroup();
+      AccessControl.AccessRequired currentAccess  = decryptedGroup.accessControl != null ? decryptedGroup.accessControl.memberLabel : AccessControl.AccessRequired.UNKNOWN;
+
+      if (newAccess == AccessControl.AccessRequired.ADMINISTRATOR && currentAccess != AccessControl.AccessRequired.ADMINISTRATOR) {
+        List<ACI> membersWithLabelsToClear = v2GroupProperties.nonAdminMembersWithLabels()
+            .stream()
+            .map(member -> ACI.parseOrNull(member.aciBytes))
+            .filter(Objects::nonNull)
+            .collect(Collectors.toList());
+
+        if (!membersWithLabelsToClear.isEmpty()) {
+          change.modifyMemberLabels(groupOperations.createRemoveMemberLabelsChange(membersWithLabelsToClear).modifyMemberLabels);
+        }
+      }
+      return commitChangeWithConflictResolution(selfAci, change);
     }
 
     @WorkerThread
@@ -338,7 +354,7 @@ final class GroupManagerV2 {
 
     @WorkerThread
     @NonNull GroupManager.GroupActionResult updateGroupTitleDescriptionAndAvatar(@Nullable String title, @Nullable String description, @Nullable byte[] avatarBytes, boolean avatarChanged)
-      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
+        throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       try {
         GroupChange.Actions.Builder change = title != null ? groupOperations.createModifyGroupTitle(title)
@@ -409,8 +425,14 @@ final class GroupManagerV2 {
                                                            boolean admin)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
-      Recipient recipient = Recipient.resolved(recipientId);
-      return commitChangeWithConflictResolution(selfAci, groupOperations.createChangeMemberRole(recipient.requireAci(), admin ? Member.Role.ADMINISTRATOR : Member.Role.DEFAULT));
+      Recipient recipient    = Recipient.resolved(recipientId);
+      ACI       recipientAci = recipient.requireAci();
+
+      GroupChange.Actions.Builder change = groupOperations.createChangeMemberRole(recipientAci, admin ? Member.Role.ADMINISTRATOR : Member.Role.DEFAULT);
+      if (!admin && v2GroupProperties.adminDemotionClearsLabel(recipientAci)) {
+        change.modifyMemberLabels(groupOperations.createRemoveMemberLabelsChange(Collections.singletonList(recipientAci)).modifyMemberLabels);
+      }
+      return commitChangeWithConflictResolution(selfAci, change);
     }
 
     @WorkerThread
@@ -1261,7 +1283,7 @@ final class GroupManagerV2 {
 
       throw new GroupChangeFailedException("Unable to cancel group join request after conflicts");
     }
-}
+  }
 
   private abstract static class LockOwner implements Closeable {
     final Closeable lock;
@@ -1339,16 +1361,11 @@ final class GroupManagerV2 {
   }
 
   private static @NonNull AccessControl.AccessRequired rightsToAccessControl(@NonNull GroupAccessControl rights) {
-    switch (rights){
-      case ALL_MEMBERS:
-        return AccessControl.AccessRequired.MEMBER;
-      case ONLY_ADMINS:
-        return AccessControl.AccessRequired.ADMINISTRATOR;
-      case NO_ONE:
-        return AccessControl.AccessRequired.UNSATISFIABLE;
-      default:
-      throw new AssertionError();
-    }
+    return switch (rights) {
+      case ALL_MEMBERS -> AccessControl.AccessRequired.MEMBER;
+      case ONLY_ADMINS -> AccessControl.AccessRequired.ADMINISTRATOR;
+      case NO_ONE -> AccessControl.AccessRequired.UNSATISFIABLE;
+    };
   }
 
   static class RecipientAndThread {

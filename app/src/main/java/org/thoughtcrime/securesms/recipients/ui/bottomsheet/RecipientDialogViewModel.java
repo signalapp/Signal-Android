@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -263,22 +264,30 @@ final class RecipientDialogViewModel extends ViewModel {
         .show();
   }
 
+  @MainThread
   void onRemoveGroupAdminClicked(@NonNull Activity activity) {
-    new MaterialAlertDialogBuilder(activity)
-        .setMessage(context.getString(R.string.RecipientBottomSheet_remove_s_as_group_admin, Objects.requireNonNull(recipient.getValue()).getDisplayName(context)))
-        .setPositiveButton(R.string.RecipientBottomSheet_remove_as_admin,
-                           (dialog, which) -> {
-                             adminActionBusy.setValue(true);
-                             recipientDialogRepository.setMemberAdmin(false, result -> {
-                                                                        adminActionBusy.setValue(false);
-                                                                        if (!result) {
-                                                                          Toast.makeText(activity, R.string.ManageGroupActivity_failed_to_update_the_group, Toast.LENGTH_SHORT).show();
-                                                                        }
-                                                                      },
-                                                                      this::showErrorToast);
-                           })
-        .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
-        .show();
+    Recipient groupMember = Objects.requireNonNull(recipient.getValue());
+
+    recipientDialogRepository.willAdminDemotionClearLabel(willDemotionClearLabel -> {
+      int messageRes = willDemotionClearLabel ? R.string.RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label
+                                              : R.string.RecipientBottomSheet_remove_s_as_group_admin;
+
+      new MaterialAlertDialogBuilder(activity)
+          .setMessage(context.getString(messageRes, groupMember.getDisplayName(context)))
+          .setPositiveButton(R.string.RecipientBottomSheet_remove_as_admin,
+                             (dialog, which) -> {
+                               adminActionBusy.setValue(true);
+                               recipientDialogRepository.setMemberAdmin(false, result -> {
+                                                                          adminActionBusy.setValue(false);
+                                                                          if (!result) {
+                                                                            Toast.makeText(activity, R.string.ManageGroupActivity_failed_to_update_the_group, Toast.LENGTH_SHORT).show();
+                                                                          }
+                                                                        },
+                                                                        this::showErrorToast);
+                             })
+          .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
+          .show();
+    });
   }
 
   void onRemoveFromGroupClicked(@NonNull Activity activity, boolean isLinkActive, @NonNull Runnable onSuccess) {

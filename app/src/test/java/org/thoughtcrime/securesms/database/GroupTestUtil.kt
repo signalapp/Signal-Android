@@ -95,6 +95,18 @@ class GroupChangeData(private val revision: Int, private val groupOperations: Gr
   fun modifyRole(serviceId: ServiceId, role: Member.Role) {
     actionsBuilder.modifyMemberRoles += GroupChange.Actions.ModifyMemberRoleAction(userId = groupOperations.encryptServiceId(serviceId), role = role)
   }
+
+  fun clearMemberLabel(serviceId: ServiceId) {
+    actionsBuilder.modifyMemberLabels += GroupChange.Actions.ModifyMemberLabelAction(
+      userId = groupOperations.encryptServiceId(serviceId),
+      labelEmoji = okio.ByteString.EMPTY,
+      labelString = okio.ByteString.EMPTY
+    )
+  }
+
+  fun changeMemberLabelAccess(access: AccessControl.AccessRequired) {
+    actionsBuilder.modifyMemberLabelAccess = GroupChange.Actions.ModifyMemberLabelAccessControlAction(memberLabelAccess = access)
+  }
 }
 
 class GroupStateTestData(private val masterKey: GroupMasterKey, private val groupOperations: GroupsV2Operations.GroupOperations? = null) {

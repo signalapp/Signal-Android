@@ -42,8 +42,10 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsement
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken
+import org.signal.storageservice.storage.protos.groups.AccessControl
 import org.signal.storageservice.storage.protos.groups.Member
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
@@ -1295,6 +1297,24 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
         }
       }
     }
+
+    fun nonAdminMembersWithLabels(): List<DecryptedMember> {
+      return decryptedGroup.members
+        .filter { it.role != Member.Role.ADMINISTRATOR && it.hasLabel() }
+    }
+
+    /**
+     * Returns true if demoting [aci] from admin should cause their member label to be cleared.
+     */
+    fun adminDemotionClearsLabel(aci: ACI): Boolean {
+      val accessRequired = decryptedGroup.accessControl?.memberLabel ?: AccessControl.AccessRequired.UNKNOWN
+      return when {
+        accessRequired != AccessControl.AccessRequired.ADMINISTRATOR -> false
+        else -> decryptedGroup.members.findMemberByAci(aci).orNull()?.hasLabel() == true
+      }
+    }
+
+    private fun DecryptedMember.hasLabel(): Boolean = labelString.isNotBlank() || labelEmoji.isNotBlank()
   }
 
   @Throws(BadGroupIdException::class)
