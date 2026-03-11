@@ -53,6 +53,11 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   @Override
+  public void clearVisibleThread(@NonNull ConversationId conversationId) {
+    getNotifier().clearVisibleThread(conversationId);
+  }
+
+  @Override
   public void setVisibleBubbleThread(@Nullable ConversationId conversationId) {
     getNotifier().setVisibleBubbleThread(conversationId);
   }
