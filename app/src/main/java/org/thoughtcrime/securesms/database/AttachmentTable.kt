@@ -1981,31 +1981,58 @@ class AttachmentTable(
   }
 
   fun createRemoteKeyIfNecessary(attachmentId: AttachmentId) {
-    val key = Util.getSecretBytes(64)
+    val dataFile = getDataFilePath(attachmentId)
 
+    if (dataFile != null) {
+      val duplicate = readableDatabase
+        .select()
+        .from(TABLE_NAME)
+        .where("$DATA_FILE = ? AND $REMOTE_KEY NOT NULL AND LENGTH($REMOTE_KEY) > 0", dataFile)
+        .orderBy("(CASE WHEN $REMOTE_LOCATION IS NOT NULL AND $REMOTE_DIGEST IS NOT NULL THEN 0 ELSE 1 END), $ID DESC")
+        .run()
+        .readToSingleObject { cursor -> cursor.readAttachment() to cursor.readDataFileInfo() }
+
+      if (duplicate != null) {
+        val (duplicateAttachment, dataFileInfo) = duplicate
+
+        if (duplicateAttachment.remoteLocation != null && duplicateAttachment.remoteDigest != null && dataFileInfo != null) {
+          Log.w(TAG, "[createRemoteKeyIfNecessary][$attachmentId] Found duplicate with full remote data. Copying all remote data.")
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(
+              REMOTE_KEY to duplicateAttachment.remoteKey,
+              REMOTE_LOCATION to duplicateAttachment.remoteLocation,
+              REMOTE_DIGEST to duplicateAttachment.remoteDigest,
+              REMOTE_INCREMENTAL_DIGEST to duplicateAttachment.incrementalDigest?.takeIf { it.isNotEmpty() },
+              REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to duplicateAttachment.incrementalMacChunkSize,
+              UPLOAD_TIMESTAMP to duplicateAttachment.uploadTimestamp,
+              ARCHIVE_CDN to duplicateAttachment.archiveCdn,
+              ARCHIVE_TRANSFER_STATE to duplicateAttachment.archiveTransferState.value,
+              THUMBNAIL_FILE to dataFileInfo.thumbnailFile,
+              THUMBNAIL_RANDOM to dataFileInfo.thumbnailRandom,
+              THUMBNAIL_RESTORE_STATE to dataFileInfo.thumbnailRestoreState
+            )
+            .where("$ID = ? AND ($REMOTE_KEY IS NULL OR LENGTH($REMOTE_KEY) = 0)", attachmentId.id)
+            .run()
+        } else {
+          Log.w(TAG, "[createRemoteKeyIfNecessary][$attachmentId] Found duplicate with key only. Copying key.")
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(REMOTE_KEY to duplicateAttachment.remoteKey)
+            .where("$ID = ? AND ($REMOTE_KEY IS NULL OR LENGTH($REMOTE_KEY) = 0)", attachmentId.id)
+            .run()
+        }
+        return
+      }
+    }
+
+    val key = Util.getSecretBytes(64)
+    Log.w(TAG, "[createRemoteKeyIfNecessary][$attachmentId] Missing key. Assigning new one.")
     writableDatabase
       .update(TABLE_NAME)
       .values(REMOTE_KEY to Base64.encodeWithPadding(key))
       .where("$ID = ? AND ($REMOTE_KEY IS NULL OR LENGTH($REMOTE_KEY) = 0)", attachmentId.id)
       .run()
-  }
-
-  /**
-   * A query for a specific migration. Retrieves attachments that we'd need to create a new digest for.
-   * This is basically all attachments that have data and are finished downloading.
-   */
-  fun getAttachmentsThatNeedNewDigests(): List<AttachmentId> {
-    return readableDatabase
-      .select(ID)
-      .from(TABLE_NAME)
-      .where(
-        """
-        $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND 
-        $DATA_FILE NOT NULL
-        """
-      )
-      .run()
-      .readToList { AttachmentId(it.requireLong(ID)) }
   }
 
   /**

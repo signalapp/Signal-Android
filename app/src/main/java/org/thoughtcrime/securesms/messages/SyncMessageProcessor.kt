@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.jobs.RefreshCallLinkDetailsJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
+import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.log
@@ -871,7 +872,8 @@ object SyncMessageProcessor {
     }
 
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    val messageId: Long = SignalDatabase.messages.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null).messageId
+    val insertResult = SignalDatabase.messages.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
+    val messageId = insertResult.messageId
     log(envelopeTimestamp, "Inserted sync message as messageId $messageId")
 
     if (recipient.isGroup) {
@@ -881,8 +883,6 @@ object SyncMessageProcessor {
     }
 
     SignalDatabase.messages.markAsSent(messageId, true)
-
-    val attachments: List<DatabaseAttachment> = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
 
     if (dataMessage.expireTimerDuration > Duration.ZERO) {
       SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
@@ -895,8 +895,25 @@ object SyncMessageProcessor {
     }
 
     SignalDatabase.runPostSuccessfulTransaction {
-      val downloadJobs: List<AttachmentDownloadJob> = attachments.map { AttachmentDownloadJob(messageId = messageId, attachmentId = it.attachmentId, forceDownload = it.isSticker) }
-      AppDependencies.jobManager.addAll(downloadJobs)
+      if (insertResult.insertedAttachments != null) {
+        val downloadJobs: List<AttachmentDownloadJob> = insertResult.insertedAttachments.mapNotNull { (attachment, attachmentId) ->
+          if (attachment.isSticker) {
+            if (attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
+              AttachmentDownloadJob(messageId = insertResult.messageId, attachmentId = attachmentId, forceDownload = true)
+            } else {
+              null
+            }
+          } else {
+            AttachmentDownloadJob(messageId = insertResult.messageId, attachmentId = attachmentId, forceDownload = false)
+          }
+        }
+        AppDependencies.jobManager.addAll(downloadJobs)
+      }
+
+      if (insertResult.quoteAttachmentId != null && SignalStore.backup.backsUpMedia) {
+        SignalDatabase.attachments.createRemoteKeyIfNecessary(insertResult.quoteAttachmentId)
+        AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(insertResult.quoteAttachmentId))
+      }
     }
 
     return threadId

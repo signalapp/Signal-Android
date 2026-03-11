@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
+import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.jobs.protos.GroupCallPeekJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -982,6 +983,11 @@ object DataMessageProcessor {
             }
           }
           AppDependencies.jobManager.addAll(downloadJobs)
+        }
+
+        if (insertResult.quoteAttachmentId != null && SignalStore.backup.backsUpMedia) {
+          SignalDatabase.attachments.createRemoteKeyIfNecessary(insertResult.quoteAttachmentId)
+          AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(insertResult.quoteAttachmentId))
         }
 
         AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
