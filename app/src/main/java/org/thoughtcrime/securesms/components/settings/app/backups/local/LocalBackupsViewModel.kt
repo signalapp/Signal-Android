@@ -20,8 +20,9 @@ import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.BackupCreationEvent
+import org.thoughtcrime.securesms.backup.BackupCreationProgress
 import org.thoughtcrime.securesms.backup.BackupPassphrase
-import org.thoughtcrime.securesms.backup.v2.LocalBackupV2Event
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -31,7 +32,6 @@ import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.formatHours
-import java.text.NumberFormat
 import java.time.LocalTime
 import java.util.Locale
 
@@ -42,11 +42,6 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
 
   companion object {
     private val TAG = Log.tag(LocalBackupsViewModel::class)
-  }
-
-  private val formatter: NumberFormat = NumberFormat.getInstance().apply {
-    minimumFractionDigits = 1
-    maximumFractionDigits = 1
   }
 
   private val internalSettingsState = MutableStateFlow(
@@ -117,46 +112,14 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
   }
 
   fun onBackupStarted() {
-    val context = AppDependencies.application
     internalSettingsState.update {
-      it.copy(
-        progress = BackupProgressState.InProgress(
-          summary = context.getString(R.string.BackupsPreferenceFragment__in_progress),
-          percentLabel = context.getString(R.string.BackupsPreferenceFragment__d_so_far, 0),
-          progressFraction = null
-        )
-      )
+      it.copy(progress = BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.NONE))
     }
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
-  fun onBackupEvent(event: LocalBackupV2Event) {
-    val context = AppDependencies.application
-    when (event.type) {
-      LocalBackupV2Event.Type.FINISHED -> {
-        internalSettingsState.update { it.copy(progress = BackupProgressState.Idle) }
-      }
-
-      else -> {
-        val summary = context.getString(R.string.BackupsPreferenceFragment__in_progress)
-        val progressState = if (event.estimatedTotalCount == 0L) {
-          BackupProgressState.InProgress(
-            summary = summary,
-            percentLabel = context.getString(R.string.BackupsPreferenceFragment__d_so_far, event.count),
-            progressFraction = null
-          )
-        } else {
-          val fraction = ((event.count / event.estimatedTotalCount.toDouble()) / 100.0).toFloat().coerceIn(0f, 1f)
-          BackupProgressState.InProgress(
-            summary = summary,
-            percentLabel = context.getString(R.string.BackupsPreferenceFragment__s_so_far, formatter.format((event.count / event.estimatedTotalCount.toDouble()))),
-            progressFraction = fraction
-          )
-        }
-
-        internalSettingsState.update { it.copy(progress = progressState) }
-      }
-    }
+  fun onBackupEvent(event: BackupCreationEvent.LocalEncrypted) {
+    internalSettingsState.update { it.copy(progress = event.progress) }
   }
 
   override fun updateBackupKeySaveState(newState: BackupKeySaveState?) {

@@ -7,13 +7,15 @@ import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.BackupCreationEvent
+import org.thoughtcrime.securesms.backup.BackupCreationProgress
 import org.thoughtcrime.securesms.backup.BackupFileIOError
 import org.thoughtcrime.securesms.backup.FullBackupExporter.BackupCanceledException
-import org.thoughtcrime.securesms.backup.v2.LocalBackupV2Event
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -106,14 +108,14 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
         snapshotFileSystem.finalize()
         stopwatch.split("archive-finalize")
 
-        EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.FINISHED))
+        EventBus.getDefault().post(BackupCreationEvent.LocalEncrypted(BackupCreationProgress.Idle))
       } catch (e: BackupCanceledException) {
-        EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.FINISHED))
+        EventBus.getDefault().post(BackupCreationEvent.LocalEncrypted(BackupCreationProgress.Idle))
         Log.w(TAG, "Archive cancelled")
         throw e
       } catch (e: IOException) {
         Log.w(TAG, "Error during archive!", e)
-        EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.FINISHED))
+        EventBus.getDefault().post(BackupCreationEvent.LocalEncrypted(BackupCreationProgress.Idle))
         BackupFileIOError.postNotificationForException(context, e)
         throw e
       } finally {
@@ -148,22 +150,48 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
   private class ProgressUpdater {
     var notification: NotificationController? = null
 
-    private var previousType: LocalBackupV2Event.Type? = null
+    private var previousPhase: NotificationPhase? = null
 
     @Subscribe(threadMode = ThreadMode.POSTING)
-    fun onEvent(event: LocalBackupV2Event) {
+    fun onEvent(event: BackupCreationEvent.LocalEncrypted) {
       val notification = notification ?: return
+      val progress = event.progress
 
-      if (previousType != event.type) {
-        notification.replaceTitle(event.type.toString()) // todo [local-backup] use actual strings
-        previousType = event.type
-      }
+      when (progress) {
+        is BackupCreationProgress.Exporting -> {
+          val phase = NotificationPhase.Export(progress.phase)
+          if (previousPhase != phase) {
+            notification.replaceTitle(progress.phase.toString())
+            previousPhase = phase
+          }
+          if (progress.frameTotalCount == 0L) {
+            notification.setIndeterminateProgress()
+          } else {
+            notification.setProgress(progress.frameTotalCount, progress.frameExportCount)
+          }
+        }
 
-      if (event.estimatedTotalCount == 0L) {
-        notification.setIndeterminateProgress()
-      } else {
-        notification.setProgress(event.estimatedTotalCount, event.count)
+        is BackupCreationProgress.Transferring -> {
+          if (previousPhase !is NotificationPhase.Transfer) {
+            notification.replaceTitle(AppDependencies.application.getString(R.string.LocalArchiveJob__exporting_media))
+            previousPhase = NotificationPhase.Transfer
+          }
+          if (progress.total == 0L) {
+            notification.setIndeterminateProgress()
+          } else {
+            notification.setProgress(progress.total, progress.completed)
+          }
+        }
+
+        else -> {
+          notification.setIndeterminateProgress()
+        }
       }
+    }
+
+    private sealed interface NotificationPhase {
+      data class Export(val phase: BackupCreationProgress.ExportPhase) : NotificationPhase
+      data object Transfer : NotificationPhase
     }
   }
 

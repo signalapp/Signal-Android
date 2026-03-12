@@ -15,8 +15,9 @@ import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readFully
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.backup.BackupCreationEvent
+import org.thoughtcrime.securesms.backup.BackupCreationProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.LocalBackupV2Event
 import org.thoughtcrime.securesms.backup.v2.local.proto.FilesFrame
 import org.thoughtcrime.securesms.backup.v2.local.proto.Metadata
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -233,45 +234,54 @@ object LocalArchiver {
     private var lastVerboseUpdate: Long = 0
 
     override fun onAccount() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_ACCOUNT))
+      post(BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.ACCOUNT))
     }
 
     override fun onRecipient() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_RECIPIENT))
+      post(BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.RECIPIENT))
     }
 
     override fun onThread() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_THREAD))
+      post(BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.THREAD))
     }
 
     override fun onCall() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_CALL))
+      post(BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.CALL))
     }
 
     override fun onSticker() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_STICKER))
+      post(BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.STICKER))
     }
 
     override fun onNotificationProfile() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.NOTIFICATION_PROFILE))
+      post(BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.NOTIFICATION_PROFILE))
     }
 
     override fun onChatFolder() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.CHAT_FOLDER))
+      post(BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.CHAT_FOLDER))
     }
 
     override fun onMessage(currentProgress: Long, approximateCount: Long) {
-      if (lastVerboseUpdate > System.currentTimeMillis() || lastVerboseUpdate + 1000 < System.currentTimeMillis() || currentProgress >= approximateCount) {
-        EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_MESSAGE, currentProgress, approximateCount))
-        lastVerboseUpdate = System.currentTimeMillis()
-      }
+      if (shouldThrottle(currentProgress >= approximateCount)) return
+      post(BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.MESSAGE, frameExportCount = currentProgress, frameTotalCount = approximateCount))
     }
 
     override fun onAttachment(currentProgress: Long, totalCount: Long) {
-      if (lastVerboseUpdate > System.currentTimeMillis() || lastVerboseUpdate + 1000 < System.currentTimeMillis() || currentProgress >= totalCount) {
-        EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_ATTACHMENT, currentProgress, totalCount))
-        lastVerboseUpdate = System.currentTimeMillis()
+      if (shouldThrottle(currentProgress >= totalCount)) return
+      post(BackupCreationProgress.Transferring(completed = currentProgress, total = totalCount, mediaPhase = true))
+    }
+
+    private fun shouldThrottle(forceUpdate: Boolean): Boolean {
+      val now = System.currentTimeMillis()
+      if (forceUpdate || lastVerboseUpdate > now || lastVerboseUpdate + 1000 < now) {
+        lastVerboseUpdate = now
+        return false
       }
+      return true
+    }
+
+    private fun post(progress: BackupCreationProgress) {
+      EventBus.getDefault().post(BackupCreationEvent.LocalEncrypted(progress))
     }
   }
 }
