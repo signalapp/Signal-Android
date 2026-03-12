@@ -769,8 +769,8 @@ public final class GroupsV2Operations {
         modifyMemberLabels.add(
             new DecryptedModifyMemberLabel.Builder()
                 .aciBytes(decryptAciToBinary(action.userId))
-                .labelEmoji(Objects.requireNonNullElse(decryptString(action.labelEmoji), ""))
-                .labelString(Objects.requireNonNullElse(decryptString(action.labelString), ""))
+                .labelEmoji(decryptMemberLabelEmoji(action.labelEmoji))
+                .labelString(decryptMemberLabelText(action.labelString))
                 .build()
         );
       }
@@ -817,8 +817,8 @@ public final class GroupsV2Operations {
     private DecryptedMember.Builder decryptMember(Member member)
         throws InvalidGroupStateException, VerificationFailedException, InvalidInputException
     {
-      String labelEmoji  = Objects.requireNonNullElse(decryptString(member.labelEmoji), "");
-      String labelString = Objects.requireNonNullElse(decryptString(member.labelString), "");
+      String labelEmoji  = decryptMemberLabelEmoji(member.labelEmoji);
+      String labelString = decryptMemberLabelText(member.labelString);
 
       if (member.presentation.size() == 0) {
         ACI aci = decryptAci(member.userId);
@@ -1070,6 +1070,26 @@ public final class GroupsV2Operations {
 
       byte[] decryptedBytes = clientZkGroupCipher.decryptBlob(cipherText.toByteArray());
       return new String(decryptedBytes, StandardCharsets.UTF_8);
+    }
+
+    @Nonnull
+    private String decryptMemberLabelText(@Nullable ByteString cipherText) {
+      try {
+        return Objects.requireNonNullElse(decryptString(cipherText), "");
+      } catch (VerificationFailedException e) {
+        Log.w(TAG, "Failed to decrypt member label string, treating as unset");
+        return "";
+      }
+    }
+
+    @Nonnull
+    private String decryptMemberLabelEmoji(@Nullable ByteString cipherText) {
+      try {
+        return Objects.requireNonNullElse(decryptString(cipherText), "");
+      } catch (VerificationFailedException e) {
+        Log.w(TAG, "Failed to decrypt member label emoji, treating as unset");
+        return "";
+      }
     }
 
     /**

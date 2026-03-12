@@ -477,6 +477,64 @@ public final class GroupsV2Operations_decrypt_change_Test {
   }
 
   @Test
+  public void member_label_text_is_treated_as_unset_on_decryption_error_field26() {
+    ACI        aci          = ACI.from(UUID.fromString("d1d1d1d1-0000-4000-8000-000000000001"));
+    ByteString invalidBytes = ByteString.of(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07 });
+
+    GroupChange.Actions.Builder change = new GroupChange.Actions.Builder()
+        .modifyMemberLabels(
+            List.of(
+                new GroupChange.Actions.ModifyMemberLabelAction.Builder()
+                    .userId(groupOperations.encryptServiceId(aci))
+                    .labelString(invalidBytes)
+                    .build()
+            )
+        );
+
+    DecryptedGroupChange.Builder expected = new DecryptedGroupChange.Builder()
+        .modifyMemberLabels(
+            List.of(
+                new DecryptedModifyMemberLabel.Builder()
+                    .aciBytes(aci.toByteString())
+                    .labelEmoji("")
+                    .labelString("")
+                    .build()
+            )
+        );
+
+    assertDecryption(change, expected);
+  }
+
+  @Test
+  public void member_label_emoji_is_treated_as_unset_on_decryption_error_field26() {
+    ACI        aci          = ACI.from(UUID.fromString("d1d1d1d1-0000-4000-8000-000000000001"));
+    ByteString invalidBytes = ByteString.of(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07 });
+
+    GroupChange.Actions.Builder change = new GroupChange.Actions.Builder()
+        .modifyMemberLabels(
+            List.of(
+                new GroupChange.Actions.ModifyMemberLabelAction.Builder()
+                    .userId(groupOperations.encryptServiceId(aci))
+                    .labelEmoji(invalidBytes)
+                    .build()
+            )
+        );
+
+    DecryptedGroupChange.Builder expected = new DecryptedGroupChange.Builder()
+        .modifyMemberLabels(
+            List.of(
+                new DecryptedModifyMemberLabel.Builder()
+                    .aciBytes(aci.toByteString())
+                    .labelEmoji("")
+                    .labelString("")
+                    .build()
+            )
+        );
+
+    assertDecryption(change, expected);
+  }
+
+  @Test
   public void can_pass_through_new_member_label_access_field_27() {
     GroupChange.Actions.Builder encryptedChange = groupOperations.createChangeMemberLabelRights(AccessControl.AccessRequired.ADMINISTRATOR);
 
