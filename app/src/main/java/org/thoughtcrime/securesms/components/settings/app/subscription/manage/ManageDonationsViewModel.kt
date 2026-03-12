@@ -66,8 +66,6 @@ class ManageDonationsViewModel : ViewModel() {
     }
 
     viewModelScope.launch(Dispatchers.IO) {
-      updateRecurringDonationState()
-
       InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.RECURRING_DONATION)
         .asFlow()
         .collect { redemptionStatus ->
@@ -79,6 +77,7 @@ class ManageDonationsViewModel : ViewModel() {
 
           store.update { manageDonationsState ->
             manageDonationsState.copy(
+              isLoaded = true,
               nonVerifiedMonthlyDonation = if (redemptionStatus is DonationRedemptionJobStatus.PendingExternalVerification) redemptionStatus.nonVerifiedMonthlyDonation else null,
               subscriptionRedemptionState = deriveRedemptionState(redemptionStatus, latestPayment),
               activeSubscription = activeSubscription
@@ -158,21 +157,6 @@ class ManageDonationsViewModel : ViewModel() {
         Log.w(TAG, "Error retrieving subscriptions data", it)
       }
     )
-  }
-
-  private fun updateRecurringDonationState() {
-    val latestPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION)
-
-    val activeSubscription: InAppPaymentTable.InAppPayment? = latestPayment?.let {
-      if (it.data.cancellation == null) it else null
-    }
-
-    store.update { manageDonationsState ->
-      manageDonationsState.copy(
-        isLoaded = true,
-        activeSubscription = activeSubscription
-      )
-    }
   }
 
   private fun deriveRedemptionState(status: DonationRedemptionJobStatus, latestPayment: InAppPaymentTable.InAppPayment?): ManageDonationsState.RedemptionState {

@@ -588,12 +588,14 @@ object InAppPaymentsRepository {
     val fromDatabase: Observable<DonationRedemptionJobStatus> = Observable.create { emitter ->
       val observer = InAppPaymentObserver {
         val latestInAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(type)
-
         emitter.onNext(Optional.ofNullable(latestInAppPayment))
       }
 
       AppDependencies.databaseObserver.registerInAppPaymentObserver(observer)
       emitter.setCancellable { AppDependencies.databaseObserver.unregisterObserver(observer) }
+
+      val latestInAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(type)
+      emitter.onNext(Optional.ofNullable(latestInAppPayment))
     }.switchMap { inAppPaymentOptional ->
       val inAppPayment = inAppPaymentOptional.getOrNull() ?: return@switchMap Observable.just(DonationRedemptionJobStatus.None)
 
