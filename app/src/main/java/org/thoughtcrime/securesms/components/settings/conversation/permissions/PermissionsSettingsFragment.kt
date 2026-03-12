@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 class PermissionsSettingsFragment : DSLSettingsFragment(
@@ -87,21 +86,19 @@ class PermissionsSettingsFragment : DSLSettingsFragment(
         }
       )
 
-      if (RemoteConfig.sendMemberLabels) {
-        radioListPref(
-          title = DSLSettingsText.from(R.string.PermissionsSettingsFragment__add_member_labels),
-          isEnabled = state.selfCanEditSettings,
-          listItems = permissionsOptions,
-          dialogTitle = DSLSettingsText.from(R.string.PermissionsSettingsFragment__who_can_add_member_labels),
-          selected = getSelected(state.nonAdminCanSetMemberLabel),
-          confirmAction = true,
-          onSelected = { selectedIndex ->
-            if (selectedIndex >= 0) {
-              viewModel.onMemberLabelPermissionChangeRequested(nonAdminCanSetMemberLabel = selectedIndex == 1)
-            }
+      radioListPref(
+        title = DSLSettingsText.from(R.string.PermissionsSettingsFragment__add_member_labels),
+        isEnabled = state.selfCanEditSettings,
+        listItems = permissionsOptions,
+        dialogTitle = DSLSettingsText.from(R.string.PermissionsSettingsFragment__who_can_add_member_labels),
+        selected = getSelected(state.nonAdminCanSetMemberLabel),
+        confirmAction = true,
+        onSelected = { selectedIndex ->
+          if (selectedIndex >= 0) {
+            viewModel.onMemberLabelPermissionChangeRequested(nonAdminCanSetMemberLabel = selectedIndex == 1)
           }
-        )
-      }
+        }
+      )
     }
   }
 

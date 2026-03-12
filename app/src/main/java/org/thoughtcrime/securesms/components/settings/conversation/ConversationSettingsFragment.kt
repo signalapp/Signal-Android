@@ -860,20 +860,18 @@ class ConversationSettingsFragment :
             }
           )
 
-          if (RemoteConfig.sendMemberLabels) {
-            clickPref(
-              title = DSLSettingsText.from(R.string.ConversationSettingsFragment__group_member_label),
-              icon = DSLSettingsIcon.from(R.drawable.symbol_tag_24),
-              isEnabled = groupState.canSetOwnMemberLabel && !state.isDeprecatedOrUnregistered,
-              onClick = {
-                val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToMemberLabelFragment(groupState.groupId)
-                navController.safeNavigate(action)
-              },
-              onDisabledClicked = {
-                Snackbar.make(requireView(), R.string.GroupMemberLabel__error_no_edit_permission, Snackbar.LENGTH_SHORT).show()
-              }
-            )
-          }
+          clickPref(
+            title = DSLSettingsText.from(R.string.ConversationSettingsFragment__group_member_label),
+            icon = DSLSettingsIcon.from(R.drawable.symbol_tag_24),
+            isEnabled = groupState.canSetOwnMemberLabel && !state.isDeprecatedOrUnregistered,
+            onClick = {
+              val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToMemberLabelFragment(groupState.groupId)
+              navController.safeNavigate(action)
+            },
+            onDisabledClicked = {
+              Snackbar.make(requireView(), R.string.GroupMemberLabel__error_no_edit_permission, Snackbar.LENGTH_SHORT).show()
+            }
+          )
 
           clickPref(
             title = DSLSettingsText.from(R.string.ConversationSettingsFragment__requests_and_invites),

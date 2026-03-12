@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.UiHintValues
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 
 /**
@@ -97,7 +96,6 @@ class MemberLabelRepository private constructor(
    * Checks whether [recipient] has permission to set their member label in the given group.
    */
   suspend fun canSetLabel(groupId: GroupId.V2, recipient: Recipient): Boolean = withContext(Dispatchers.IO) {
-    if (!RemoteConfig.sendMemberLabels) return@withContext false
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext false
 
     val memberLevel = groupRecord.memberLevel(recipient)
@@ -147,10 +145,6 @@ class MemberLabelRepository private constructor(
    * Sets the group member label for the current user.
    */
   suspend fun setLabel(groupId: GroupId.V2, label: MemberLabel): NetworkResult<Unit> = withContext(Dispatchers.IO) {
-    if (!RemoteConfig.sendMemberLabels) {
-      throw IllegalStateException("Set member label not allowed due to remote config.")
-    }
-
     val sanitizedLabel = label.sanitized()
     NetworkResult.fromFetch {
       GroupManager.updateMemberLabel(context, groupId, sanitizedLabel.text, sanitizedLabel.emoji.orEmpty())
