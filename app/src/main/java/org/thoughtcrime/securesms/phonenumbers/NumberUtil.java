@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms.phonenumbers;
 
-import android.telephony.PhoneNumberUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,15 +37,11 @@ public class NumberUtil {
 
   /**
    * Whether or not a number entered by the user is a valid phone or email address. Differs from
-   * {@link #isValidSmsOrEmail(String)} in that it only returns true for numbers that a user would
+   * PhoneNumberUtils.isWellFormedSmsAddress(String) in that it only returns true for numbers that a user would
    * enter themselves, as opposed to the crazy network prefixes that could theoretically be in an
    * SMS address.
    */
   public static boolean isVisuallyValidNumberOrEmail(String number) {
     return isVisuallyValidNumber(number) || isValidEmail(number);
-  }
-
-  public static boolean isValidSmsOrEmail(String number) {
-    return PhoneNumberUtils.isWellFormedSmsAddress(number) || isValidEmail(number);
   }
 }

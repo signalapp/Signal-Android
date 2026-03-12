@@ -5,10 +5,7 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 
@@ -16,24 +13,6 @@ import androidx.fragment.app.Fragment
  * Helper functions to display custom views in AlertDialogs anchored to the top of the specified view.
  */
 object FragmentDialogs {
-
-  fun Fragment.displayInDialogAboveAnchor(
-    anchorView: View,
-    @LayoutRes contentLayoutId: Int,
-    windowDim: Float = -1f,
-    onShow: (DialogInterface, View) -> Unit = { _, _ -> }
-  ): DialogInterface {
-    val contentView = LayoutInflater.from(anchorView.context).inflate(contentLayoutId, requireView() as ViewGroup, false)
-
-    contentView.measure(
-      View.MeasureSpec.makeMeasureSpec(contentView.layoutParams.width, View.MeasureSpec.EXACTLY),
-      View.MeasureSpec.makeMeasureSpec(contentView.layoutParams.height, View.MeasureSpec.EXACTLY)
-    )
-
-    contentView.layout(0, 0, contentView.measuredWidth, contentView.measuredHeight)
-
-    return displayInDialogAboveAnchor(anchorView, contentView, windowDim, onShow)
-  }
 
   @SuppressLint("AlertDialogBuilderUsage")
   fun Fragment.displayInDialogAboveAnchor(
