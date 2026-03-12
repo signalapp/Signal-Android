@@ -13,14 +13,22 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.signal.core.util.Base64
+import org.signal.core.util.logging.Log
+import org.signal.registration.NetworkController
 import org.signal.registration.StorageController
 import org.signal.registration.sample.storage.RegistrationPreferences
 
 class MainScreenViewModel(
   private val storageController: StorageController,
+  private val networkController: NetworkController,
   private val onLaunchRegistration: () -> Unit,
+  private val onTransferAccount: () -> Unit,
   private val onOpenPinSettings: () -> Unit
 ) : ViewModel() {
+
+  companion object {
+    private val TAG = Log.tag(MainScreenViewModel::class)
+  }
 
   private val _state = MutableStateFlow(MainScreenState())
   val state: StateFlow<MainScreenState> = _state.asStateFlow()
@@ -37,6 +45,7 @@ class MainScreenViewModel(
     viewModelScope.launch {
       when (event) {
         MainScreenEvents.LaunchRegistration -> onLaunchRegistration()
+        MainScreenEvents.TransferAccount -> onTransferAccount()
         MainScreenEvents.OpenPinSettings -> onOpenPinSettings()
         MainScreenEvents.ClearAllData -> {
           storageController.clearAllData()
@@ -65,18 +74,51 @@ class MainScreenViewModel(
           )
         } else {
           null
-        }
+        },
+        registrationExpired = false
       )
+
+      if (existingData != null) {
+        checkRegistrationStatus()
+      }
+    }
+  }
+
+  private suspend fun checkRegistrationStatus() {
+    when (val result = networkController.getSvrCredentials()) {
+      is NetworkController.RegistrationNetworkResult.Success -> {
+        Log.d(TAG, "[CheckRegistration] Still registered.")
+      }
+      is NetworkController.RegistrationNetworkResult.Failure -> {
+        when (result.error) {
+          NetworkController.GetSvrCredentialsError.Unauthorized -> {
+            Log.w(TAG, "[CheckRegistration] No longer registered (401).")
+            _state.value = _state.value.copy(registrationExpired = true)
+          }
+          NetworkController.GetSvrCredentialsError.NoServiceCredentialsAvailable -> {
+            Log.w(TAG, "[CheckRegistration] No credentials available locally.")
+            _state.value = _state.value.copy(registrationExpired = true)
+          }
+        }
+      }
+      is NetworkController.RegistrationNetworkResult.NetworkError -> {
+        Log.w(TAG, "[CheckRegistration] Network error, can't verify status.", result.exception)
+      }
+      is NetworkController.RegistrationNetworkResult.ApplicationError -> {
+        Log.w(TAG, "[CheckRegistration] Application error, can't verify status.", result.exception)
+      }
     }
   }
 
   class Factory(
     private val storageController: StorageController,
+    private val networkController: NetworkController,
     private val onLaunchRegistration: () -> Unit,
+    private val onTransferAccount: () -> Unit,
     private val onOpenPinSettings: () -> Unit
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return MainScreenViewModel(storageController, onLaunchRegistration, onOpenPinSettings) as T
+      return MainScreenViewModel(storageController, networkController, onLaunchRegistration, onTransferAccount, onOpenPinSettings) as T
     }
   }
 }

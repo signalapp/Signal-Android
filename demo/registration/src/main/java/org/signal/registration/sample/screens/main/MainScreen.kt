@@ -5,13 +5,16 @@
 
 package org.signal.registration.sample.screens.main
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -93,6 +96,26 @@ fun MainScreen(
     }
 
     if (state.existingRegistrationState != null) {
+      if (state.registrationExpired) {
+        Row(
+          modifier = Modifier
+            .fillMaxWidth()
+            .background(
+              color = MaterialTheme.colorScheme.errorContainer,
+              shape = RoundedCornerShape(8.dp)
+            )
+            .padding(12.dp),
+          verticalAlignment = Alignment.CenterVertically
+        ) {
+          Text(
+            text = "No longer registered. Your credentials are no longer valid on the server.",
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onErrorContainer
+          )
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+      }
+
       RegistrationInfo(state.existingRegistrationState)
 
       Spacer(modifier = Modifier.height(24.dp))
@@ -102,6 +125,13 @@ fun MainScreen(
         modifier = Modifier.fillMaxWidth()
       ) {
         Text("Re-register")
+      }
+
+      OutlinedButton(
+        onClick = { onEvent(MainScreenEvents.TransferAccount) },
+        modifier = Modifier.fillMaxWidth()
+      ) {
+        Text("Transfer to New Device")
       }
 
       OutlinedButton(

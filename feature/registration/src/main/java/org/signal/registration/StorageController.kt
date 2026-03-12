@@ -86,6 +86,15 @@ interface StorageController {
   suspend fun saveNewlyCreatedPin(pin: String, isAlphanumeric: Boolean)
 
   /**
+   * Saves metadata from a provisioning message received during QR-based restore.
+   *
+   * This includes the restore method token, backup tier, backup timestamps, and
+   * platform information from the old device. Called before registering with
+   * the provisioned data.
+   */
+  suspend fun saveProvisioningData(provisioningMessage: NetworkController.ProvisioningMessage)
+
+  /**
    * Clears all stored registration data, including key material and account information.
    */
   suspend fun clearAllData()

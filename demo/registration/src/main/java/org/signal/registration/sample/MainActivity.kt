@@ -56,6 +56,8 @@ import org.signal.registration.sample.debug.NetworkDebugOverlay
 import org.signal.registration.sample.screens.RegistrationCompleteScreen
 import org.signal.registration.sample.screens.main.MainScreen
 import org.signal.registration.sample.screens.main.MainScreenViewModel
+import org.signal.registration.sample.screens.olddevicetransfer.TransferAccountScreen
+import org.signal.registration.sample.screens.olddevicetransfer.TransferAccountViewModel
 import org.signal.registration.sample.screens.pinsettings.PinSettingsScreen
 import org.signal.registration.sample.screens.pinsettings.PinSettingsViewModel
 
@@ -73,6 +75,9 @@ sealed interface SampleRoute : NavKey {
 
   @Serializable
   data object RegistrationComplete : SampleRoute
+
+  @Serializable
+  data object TransferAccount : SampleRoute
 
   @Serializable
   data object PinSettings : SampleRoute
@@ -146,7 +151,9 @@ private fun SampleNavHost(
       val viewModel: MainScreenViewModel = viewModel(
         factory = MainScreenViewModel.Factory(
           storageController = registrationDependencies.storageController,
+          networkController = registrationDependencies.networkController,
           onLaunchRegistration = { backStack.add(SampleRoute.Registration) },
+          onTransferAccount = { backStack.add(SampleRoute.TransferAccount) },
           onOpenPinSettings = { backStack.add(SampleRoute.PinSettings) }
         )
       )
@@ -175,6 +182,20 @@ private fun SampleNavHost(
 
     entry<SampleRoute.RegistrationComplete> {
       RegistrationCompleteScreen(onStartOver = onStartOver)
+    }
+
+    entry<SampleRoute.TransferAccount> {
+      val viewModel: TransferAccountViewModel = viewModel(
+        factory = TransferAccountViewModel.Factory(
+          onBack = { backStack.removeLastOrNull() }
+        )
+      )
+      val state by viewModel.state.collectAsStateWithLifecycle()
+
+      TransferAccountScreen(
+        state = state,
+        onEvent = { viewModel.onEvent(it) }
+      )
     }
 
     entry<SampleRoute.PinSettings>(

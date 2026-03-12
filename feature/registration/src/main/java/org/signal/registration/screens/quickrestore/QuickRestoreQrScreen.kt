@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.registration.screens.restore
+package org.signal.registration.screens.quickrestore
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.background
@@ -38,7 +38,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.QrCode
 import org.signal.core.ui.compose.QrCodeData
@@ -49,9 +49,9 @@ import org.signal.core.ui.compose.SignalIcons
  * The old device scans this QR code to initiate the transfer.
  */
 @Composable
-fun RestoreViaQrScreen(
-  state: RestoreViaQrState,
-  onEvent: (RestoreViaQrScreenEvents) -> Unit,
+fun QuickRestoreQrScreen(
+  state: QuickRestoreQrState,
+  onEvent: (QuickRestoreQrEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val scrollState = rememberScrollState()
@@ -123,7 +123,7 @@ fun RestoreViaQrScreen(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                Button(onClick = { onEvent(RestoreViaQrScreenEvents.RetryQrCode) }) {
+                Button(onClick = { onEvent(QuickRestoreQrEvents.RetryQrCode) }) {
                   Text("Retry")
                 }
               }
@@ -143,7 +143,7 @@ fun RestoreViaQrScreen(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                Button(onClick = { onEvent(RestoreViaQrScreenEvents.RetryQrCode) }) {
+                Button(onClick = { onEvent(QuickRestoreQrEvents.RetryQrCode) }) {
                   Text("Retry")
                 }
               }
@@ -178,7 +178,7 @@ fun RestoreViaQrScreen(
     Spacer(modifier = Modifier.weight(1f))
 
     TextButton(
-      onClick = { onEvent(RestoreViaQrScreenEvents.Cancel) }
+      onClick = { onEvent(QuickRestoreQrEvents.Cancel) }
     ) {
       Text("Cancel")
     }
@@ -208,9 +208,9 @@ fun RestoreViaQrScreen(
   // Error dialog
   if (state.showRegistrationError) {
     AlertDialog(
-      onDismissRequest = { onEvent(RestoreViaQrScreenEvents.DismissError) },
+      onDismissRequest = { onEvent(QuickRestoreQrEvents.DismissError) },
       confirmButton = {
-        TextButton(onClick = { onEvent(RestoreViaQrScreenEvents.DismissError) }) {
+        TextButton(onClick = { onEvent(QuickRestoreQrEvents.DismissError) }) {
           Text("OK")
         }
       },
@@ -246,23 +246,23 @@ private fun InstructionRow(
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
-private fun RestoreViaQrScreenLoadingPreview() {
+private fun QuickRestoreQrScreenLoadingPreview() {
   Previews.Preview {
-    RestoreViaQrScreen(
-      state = RestoreViaQrState(qrState = QrState.Loading),
+    QuickRestoreQrScreen(
+      state = QuickRestoreQrState(qrState = QrState.Loading),
       onEvent = {}
     )
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
-private fun RestoreViaQrScreenLoadedPreview() {
+private fun QuickRestoreQrScreenLoadedPreview() {
   Previews.Preview {
-    RestoreViaQrScreen(
-      state = RestoreViaQrState(
+    QuickRestoreQrScreen(
+      state = QuickRestoreQrState(
         qrState = QrState.Loaded(QrCodeData.forData("sgnl://rereg?uuid=test&pub_key=test", false))
       ),
       onEvent = {}
@@ -270,23 +270,23 @@ private fun RestoreViaQrScreenLoadedPreview() {
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
-private fun RestoreViaQrScreenFailedPreview() {
+private fun QuickRestoreQrScreenFailedPreview() {
   Previews.Preview {
-    RestoreViaQrScreen(
-      state = RestoreViaQrState(qrState = QrState.Failed),
+    QuickRestoreQrScreen(
+      state = QuickRestoreQrState(qrState = QrState.Failed),
       onEvent = {}
     )
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
-private fun RestoreViaQrScreenRegisteringPreview() {
+private fun QuickRestoreQrScreenRegisteringPreview() {
   Previews.Preview {
-    RestoreViaQrScreen(
-      state = RestoreViaQrState(
+    QuickRestoreQrScreen(
+      state = QuickRestoreQrState(
         qrState = QrState.Scanned,
         isRegistering = true
       ),

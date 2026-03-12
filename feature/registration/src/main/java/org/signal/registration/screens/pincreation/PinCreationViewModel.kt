@@ -51,6 +51,7 @@ class PinCreationViewModel(
     .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PinCreationState(inputLabel = "PIN must be at least 4 digits"))
 
   fun onEvent(event: PinCreationScreenEvents) {
+    Log.d(TAG, "[Event] $event")
     viewModelScope.launch {
       applyEvent(state.value, event)
     }

@@ -124,6 +124,10 @@ class DemoStorageController(context: Context) : StorageController {
     RegistrationPreferences.pinAlphanumeric = isAlphanumeric
   }
 
+  override suspend fun saveProvisioningData(provisioningMessage: NetworkController.ProvisioningMessage) = withContext(Dispatchers.IO) {
+    RegistrationPreferences.saveProvisioningData(provisioningMessage)
+  }
+
   private fun storeKeyMaterial(keyMaterial: KeyMaterial, profileKey: ProfileKey) {
     // Clear existing data
     RegistrationPreferences.clearKeyMaterial()

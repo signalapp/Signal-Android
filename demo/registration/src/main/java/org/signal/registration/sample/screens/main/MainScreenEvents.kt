@@ -7,6 +7,7 @@ package org.signal.registration.sample.screens.main
 
 sealed interface MainScreenEvents {
   data object LaunchRegistration : MainScreenEvents
+  data object TransferAccount : MainScreenEvents
   data object OpenPinSettings : MainScreenEvents
   data object ClearAllData : MainScreenEvents
 }

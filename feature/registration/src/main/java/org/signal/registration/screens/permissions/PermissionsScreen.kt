@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import org.signal.core.ui.compose.Buttons
-import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.registration.R
@@ -207,7 +207,7 @@ private fun PermissionRow(
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
 private fun PermissionsScreenPreview() {
   Previews.Preview {

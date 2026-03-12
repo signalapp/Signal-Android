@@ -46,7 +46,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
-import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.dismissWithAnimation
@@ -255,7 +255,7 @@ private fun RestoreActionRow(
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
 private fun WelcomeScreenPreview() {
   Previews.Preview {
@@ -263,7 +263,7 @@ private fun WelcomeScreenPreview() {
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
 private fun RestoreOrTransferBottomSheetPreview() {
   Previews.BottomSheetPreview {

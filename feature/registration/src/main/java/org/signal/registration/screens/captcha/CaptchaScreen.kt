@@ -28,7 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 
 /**
@@ -133,7 +133,7 @@ fun CaptchaScreen(
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
 private fun CaptchaScreenLoadingPreview() {
   Previews.Preview {
@@ -147,7 +147,7 @@ private fun CaptchaScreenLoadingPreview() {
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
 private fun CaptchaScreenErrorPreview() {
   Previews.Preview {

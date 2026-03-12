@@ -57,6 +57,7 @@ class PhoneNumberEntryViewModel(
   }
 
   fun onEvent(event: PhoneNumberEntryScreenEvents) {
+    Log.d(TAG, "[Event] $event")
     viewModelScope.launch {
       val stateEmitter: (PhoneNumberEntryState) -> Unit = { state ->
         _state.value = state

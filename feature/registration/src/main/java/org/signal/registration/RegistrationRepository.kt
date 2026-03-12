@@ -8,15 +8,19 @@ package org.signal.registration
 import android.app.backup.BackupManager
 import android.content.Context
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.registration.NetworkController.AccountAttributes
 import org.signal.registration.NetworkController.CreateSessionError
 import org.signal.registration.NetworkController.MasterKeyResponse
 import org.signal.registration.NetworkController.PreKeyCollection
+import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.RegisterAccountError
 import org.signal.registration.NetworkController.RegisterAccountResponse
 import org.signal.registration.NetworkController.RegistrationNetworkResult
@@ -155,7 +159,16 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     skipDeviceTransfer: Boolean = true,
     preExistingRegistrationData: PreExistingRegistrationData? = null
   ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
-    registerAccount(e164, sessionId = null, recoveryPassword, registrationLock, skipDeviceTransfer, preExistingRegistrationData)
+    registerAccount(
+      e164 = e164,
+      sessionId = null,
+      recoveryPassword = recoveryPassword,
+      registrationLock = registrationLock,
+      skipDeviceTransfer = skipDeviceTransfer,
+      existingAccountEntropyPool = preExistingRegistrationData?.aep,
+      existingAciIdentityKeyPair = preExistingRegistrationData?.aciIdentityKeyPair,
+      existingPniIdentityKeyPair = preExistingRegistrationData?.pniIdentityKeyPair
+    )
   }
 
   /**
@@ -183,6 +196,42 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   }
 
   /**
+   * Starts a provisioning session for QR-based quick restore.
+   * See [NetworkController.startProvisioning].
+   */
+  fun startProvisioning(): Flow<ProvisioningEvent> {
+    return networkController.startProvisioning()
+  }
+
+  /**
+   * Registers an account using data received from the old device via QR provisioning.
+   *
+   * This method:
+   * 1. Saves provisioning metadata (restore token, backup info) to storage
+   * 2. Re-uses the identity key pairs and AEP from the old device
+   * 3. Derives the recovery password from the provisioned AEP
+   * 4. Registers the account
+   */
+  suspend fun registerAccountWithProvisioningData(
+    provisioningMessage: NetworkController.ProvisioningMessage
+  ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
+    storageController.saveProvisioningData(provisioningMessage)
+
+    val aep = AccountEntropyPool(provisioningMessage.accountEntropyPool)
+    val recoveryPassword = aep.deriveMasterKey().deriveRegistrationRecoveryPassword()
+
+    registerAccount(
+      e164 = provisioningMessage.e164,
+      sessionId = null,
+      recoveryPassword = recoveryPassword,
+      skipDeviceTransfer = true,
+      existingAccountEntropyPool = aep,
+      existingAciIdentityKeyPair = provisioningMessage.aciIdentityKeyPair,
+      existingPniIdentityKeyPair = provisioningMessage.pniIdentityKeyPair
+    )
+  }
+
+  /**
    * Registers a new account.
    *
    * This method:
@@ -205,17 +254,19 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     recoveryPassword: String?,
     registrationLock: String? = null,
     skipDeviceTransfer: Boolean = true,
-    preExistingRegistrationData: PreExistingRegistrationData? = null
+    existingAccountEntropyPool: AccountEntropyPool? = null,
+    existingAciIdentityKeyPair: IdentityKeyPair? = null,
+    existingPniIdentityKeyPair: IdentityKeyPair? = null
   ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
     check(sessionId != null || recoveryPassword != null) { "Either sessionId or recoveryPassword must be provided" }
     check(sessionId == null || recoveryPassword == null) { "Either sessionId or recoveryPassword must be provided, but not both" }
 
-    Log.i(TAG, "[registerAccount] Starting registration for $e164. sessionId: ${sessionId != null}, recoveryPassword: ${recoveryPassword != null}, registrationLock: ${registrationLock != null}, skipDeviceTransfer: $skipDeviceTransfer, preExistingRegistrationData: ${preExistingRegistrationData != null}")
+    Log.i(TAG, "[registerAccount] Starting registration for $e164. sessionId: ${sessionId != null}, recoveryPassword: ${recoveryPassword != null}, registrationLock: ${registrationLock != null}, skipDeviceTransfer: $skipDeviceTransfer, existingAep: ${existingAccountEntropyPool != null}")
 
     val keyMaterial = storageController.generateAndStoreKeyMaterial(
-      existingAccountEntropyPool = preExistingRegistrationData?.aep,
-      existingAciIdentityKeyPair = preExistingRegistrationData?.aciIdentityKeyPair,
-      existingPniIdentityKeyPair = preExistingRegistrationData?.pniIdentityKeyPair
+      existingAccountEntropyPool = existingAccountEntropyPool,
+      existingAciIdentityKeyPair = existingAciIdentityKeyPair,
+      existingPniIdentityKeyPair = existingPniIdentityKeyPair
     )
     val fcmToken = networkController.getFcmToken()
 

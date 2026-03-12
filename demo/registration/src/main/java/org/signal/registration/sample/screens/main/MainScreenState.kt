@@ -6,7 +6,8 @@
 package org.signal.registration.sample.screens.main
 
 data class MainScreenState(
-  val existingRegistrationState: ExistingRegistrationState? = null
+  val existingRegistrationState: ExistingRegistrationState? = null,
+  val registrationExpired: Boolean = false
 ) {
   data class ExistingRegistrationState(
     val phoneNumber: String,

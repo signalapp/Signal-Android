@@ -8,6 +8,8 @@ package org.signal.registration.screens.phonenumber
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.SessionMetadata
 import org.signal.registration.PreExistingRegistrationData
+import org.signal.registration.util.DebugLoggable
+import org.signal.registration.util.DebugLoggableModel
 import kotlin.time.Duration
 
 data class PhoneNumberEntryState(
@@ -23,8 +25,8 @@ data class PhoneNumberEntryState(
   val oneTimeEvent: OneTimeEvent? = null,
   val preExistingRegistrationData: PreExistingRegistrationData? = null,
   val restoredSvrCredentials: List<NetworkController.SvrCredentials> = emptyList()
-) {
-  sealed interface OneTimeEvent {
+) : DebugLoggableModel() {
+  sealed interface OneTimeEvent : DebugLoggable {
     data object NetworkError : OneTimeEvent
     data object UnknownError : OneTimeEvent
     data class RateLimited(val retryAfter: Duration) : OneTimeEvent

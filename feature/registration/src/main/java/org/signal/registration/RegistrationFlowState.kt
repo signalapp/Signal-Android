@@ -11,6 +11,7 @@ import kotlinx.parcelize.TypeParceler
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.registration.util.AccountEntropyPoolParceler
+import org.signal.registration.util.DebugLoggable
 import org.signal.registration.util.MasterKeyParceler
 
 @Parcelize
@@ -37,4 +38,4 @@ data class RegistrationFlowState(
 
   /** If true, do not attempt any flows where we generate RRP's. Create a session instead. */
   val doNotAttemptRecoveryPassword: Boolean = false
-) : Parcelable
+) : Parcelable, DebugLoggable

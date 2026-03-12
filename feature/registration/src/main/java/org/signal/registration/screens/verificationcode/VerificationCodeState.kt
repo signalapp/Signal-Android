@@ -6,6 +6,8 @@
 package org.signal.registration.screens.verificationcode
 
 import org.signal.registration.NetworkController.SessionMetadata
+import org.signal.registration.util.DebugLoggable
+import org.signal.registration.util.DebugLoggableModel
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -16,8 +18,8 @@ data class VerificationCodeState(
   val rateLimits: SmsAndCallRateLimits = SmsAndCallRateLimits(),
   val incorrectCodeAttempts: Int = 0,
   val oneTimeEvent: OneTimeEvent? = null
-) {
-  sealed interface OneTimeEvent {
+) : DebugLoggableModel() {
+  sealed interface OneTimeEvent : DebugLoggable {
     data object NetworkError : OneTimeEvent
     data object UnknownError : OneTimeEvent
     data class RateLimited(val retryAfter: Duration) : OneTimeEvent
@@ -50,4 +52,4 @@ data class VerificationCodeState(
 data class SmsAndCallRateLimits(
   val smsResendTimeRemaining: Duration = 0.seconds,
   val callRequestTimeRemaining: Duration = 0.seconds
-)
+) : DebugLoggableModel()

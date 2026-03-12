@@ -49,7 +49,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.IconButtons.IconButton
 import org.signal.core.ui.compose.LargeFontPreviews
@@ -284,7 +284,7 @@ private fun SearchBar(
   )
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
 private fun ScreenPreview() {
   Previews.Preview {
@@ -305,7 +305,7 @@ private fun ScreenPreview() {
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
 private fun LoadingScreenPreview() {
   Previews.Preview {

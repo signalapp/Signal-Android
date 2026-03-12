@@ -45,6 +45,7 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
   }
 
   fun onEvent(event: RegistrationFlowEvent) {
+    Log.d(TAG, "[Event] $event")
     _state.value = applyEvent(_state.value, event)
   }
 
