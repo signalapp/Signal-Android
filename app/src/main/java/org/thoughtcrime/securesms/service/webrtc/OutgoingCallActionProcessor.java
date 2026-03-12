@@ -75,7 +75,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
     webRtcInteractor.setDefaultAudioDevice(remotePeer.getId(),
                                            isVideoCall ? SignalAudioManager.AudioDevice.SPEAKER_PHONE : SignalAudioManager.AudioDevice.EARPIECE,
                                            false);
-    webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
+    webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, isVideoCall, false));
     webRtcInteractor.initializeAudioForCall();
     webRtcInteractor.startOutgoingRinger();
 
