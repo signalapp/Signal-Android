@@ -39,7 +39,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.PluralsRes;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.content.res.AppCompatResources;
 import org.signal.core.ui.compose.Snackbars;
@@ -1012,7 +1011,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
   private void handleArchive(@NonNull Collection<Long> ids) {
     Set<Long> selectedConversations = new HashSet<>(ids);
     int       count                 = selectedConversations.size();
-    String    snackBarTitle         = getResources().getQuantityString(getArchivedSnackbarTitleRes(), count, count);
+    String    snackBarTitle         = getResources().getQuantityString(R.plurals.ConversationListFragment_conversations_archived, count, count);
     boolean   showProgress          = count > 1;
 
     dismissProgressDialog();
@@ -1021,7 +1020,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     }
 
     lifecycleDisposable.add(Completable
-        .fromAction(() -> archiveThreads(selectedConversations))
+        .fromAction(() -> SignalDatabase.threads().setArchived(selectedConversations, true))
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(() -> {
@@ -1046,17 +1045,38 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   private void handleUnarchive(@NonNull Set<Long> threadIds) {
-    boolean showProgress = threadIds.size() > 1;
+    int     count        = threadIds.size();
+    String  snackBarTitle = getResources().getQuantityString(R.plurals.ConversationListFragment_moved_conversations_to_inbox, count, count);
+    boolean showProgress = count > 1;
 
     dismissProgressDialog();
     if (showProgress) {
       progressDialog = SignalProgressDialog.show(requireContext(), null, null, true, false, null);
     }
 
-    SignalExecutors.BOUNDED_IO.execute(() -> {
-      reverseArchiveThreads(threadIds);
-      ThreadUtil.runOnMain(this::dismissProgressDialog);
-    });
+    lifecycleDisposable.add(Completable
+        .fromAction(() -> SignalDatabase.threads().setArchived(threadIds, false))
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(() -> {
+          dismissProgressDialog();
+          endActionModeIfActive();
+
+          mainNavigationViewModel.getSnackbarRegistry().emit(new SnackbarState(
+              snackBarTitle,
+              new SnackbarState.ActionState(
+                  getString(R.string.ConversationListFragment_undo),
+                  R.color.amber_500,
+                  () -> {
+                    handleArchive(threadIds);
+                    return Unit.INSTANCE;
+                  }
+              ),
+              Snackbars.Duration.LONG,
+              MainSnackbarHostKey.MainChrome.INSTANCE,
+              null
+          ));
+        }));
   }
 
   private void dismissProgressDialog() {
@@ -1436,7 +1456,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     }
 
     if (isArchived()) {
-      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(selectionIds)));
+      items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleUnarchive(selectionIds)));
     } else {
       items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(selectionIds)));
     }
@@ -1464,22 +1484,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
     return ((Callback) requireActivity());
   }
 
-  protected @PluralsRes int getArchivedSnackbarTitleRes() {
-    return R.plurals.ConversationListFragment_conversations_archived;
-  }
-
   protected @DrawableRes int getArchiveIconRes() {
     return R.drawable.symbol_archive_24;
-  }
-
-  @WorkerThread
-  protected void archiveThreads(Set<Long> threadIds) {
-    SignalDatabase.threads().setArchived(threadIds, true);
-  }
-
-  @WorkerThread
-  protected void reverseArchiveThreads(Set<Long> threadIds) {
-    SignalDatabase.threads().setArchived(threadIds, false);
   }
 
   @SuppressLint("StaticFieldLeak")
