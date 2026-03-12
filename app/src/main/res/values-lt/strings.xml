@@ -5439,7 +5439,7 @@
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">Pašalinti %1$s iš grupės administratorių?</string>
     <!-- Message shown when removing an admin will also clear their member label. -->
-    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">Remove %1$s as group admin? This will also clear their member label.</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">Pašalinti %1$s iš grupės administratorių? Tai taip pat išvalys jų nario kategoriją.</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"„%1$s“ galės taisyti šią grupę ir jos narių sąrašą."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Pašalinti %1$s iš grupės?</string>
@@ -6312,7 +6312,7 @@
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
     <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Member labels will be cleared</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Narių kategorijos bus išvalytos</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
     <!-- Confirm button for changing member label permission after warning. -->
@@ -7126,7 +7126,7 @@
     <!-- Title for the story archive screen -->
     <string name="StoryArchive__story_archive">Story archive</string>
     <!-- Section header in story settings -->
-    <string name="StoryArchive__archive">Archive</string>
+    <string name="StoryArchive__archive">Archyvuoti</string>
     <!-- Label for switch to enable story archiving -->
     <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
     <!-- Description for the archive toggle -->
@@ -7134,27 +7134,27 @@
     <!-- Label for archive duration preference -->
     <string name="StoryArchive__keep_stories_for">Keep stories for</string>
     <!-- Archive duration option: forever -->
-    <string name="StoryArchive__forever">Forever</string>
+    <string name="StoryArchive__forever">Amžinai</string>
     <!-- Archive duration option: 1 year -->
-    <string name="StoryArchive__1_year">1 year</string>
+    <string name="StoryArchive__1_year">1 metus</string>
     <!-- Archive duration option: 6 months -->
-    <string name="StoryArchive__6_months">6 months</string>
+    <string name="StoryArchive__6_months">6 mėnesius</string>
     <!-- Archive duration option: 30 days -->
-    <string name="StoryArchive__30_days">30 days</string>
+    <string name="StoryArchive__30_days">30 dienų</string>
     <!-- Empty state title when no archived stories exist -->
     <string name="StoryArchive__no_archived_stories">No archived stories</string>
     <!-- Empty state message when no archived stories exist -->
     <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
     <!-- Empty state button to navigate to story settings -->
-    <string name="StoryArchive__go_to_settings">Go to settings</string>
+    <string name="StoryArchive__go_to_settings">Eiti į nustatymus</string>
     <!-- Label for sort order menu -->
-    <string name="StoryArchive__sort_by">Sort by</string>
+    <string name="StoryArchive__sort_by">Rikiuoti pagal</string>
     <!-- Sort order option: newest first -->
-    <string name="StoryArchive__newest">Newest</string>
+    <string name="StoryArchive__newest">Naujausi</string>
     <!-- Sort order option: oldest first -->
-    <string name="StoryArchive__oldest">Oldest</string>
+    <string name="StoryArchive__oldest">Seniausi</string>
     <!-- Delete action in story archive multi-select bottom bar -->
-    <string name="StoryArchive__delete">Delete</string>
+    <string name="StoryArchive__delete">Ištrinti</string>
     <!-- Content description for selecting a story in multi-select mode -->
     <string name="StoryArchive__select_story">Select story</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
@@ -7166,10 +7166,10 @@
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
-        <item quantity="one">%1$d selected</item>
-        <item quantity="few">%1$d selected</item>
-        <item quantity="many">%1$d selected</item>
-        <item quantity="other">%1$d selected</item>
+        <item quantity="one">Pažymėta: %1$d</item>
+        <item quantity="few">Pažymėta: %1$d</item>
+        <item quantity="many">Pažymėta: %1$d</item>
+        <item quantity="other">Pažymėta: %1$d</item>
     </plurals>
 
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -9132,7 +9132,7 @@
     <string name="OnDeviceBackupsSettingsScreen__update">Atnaujinti</string>
 
     <!-- UnifiedOnDeviceBackupsSettingsScreen -->
-    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key">View recovery key</string>
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key">Rodyti atkūrimo raktą</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -9476,7 +9476,7 @@
     <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
     <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Jūsų atkūrimo raktas yra 64 simbolių kodas, reikalingas norint atkurti paskyrą ir duomenis.</string>
     <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">No recovery key?</string>
+    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Neturite atkūrimo rakto?</string>
     <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
     <string name="EnterLocalBackupKeyScreen__next">Kitas</string>
 
@@ -9934,7 +9934,7 @@
     <!-- Error message shown when the group member label fails to save due to a network error. -->
     <string name="GroupMemberLabel__error_cant_save_no_network">Nepavyko išsaugoti etiketės. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
     <!-- Error message shown when trying to edit a member label without adequate permission. -->
-    <string name="GroupMemberLabel__error_no_edit_permission">Only admins can add member labels in this group.</string>
+    <string name="GroupMemberLabel__error_no_edit_permission">Šioje grupėje narių kategorijas gali pridėti tik administratoriai.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Pasirinkite šypsenėlę</string>
     <!-- Accessibility label for the group member label close screen button. -->
@@ -9942,7 +9942,7 @@
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Išvalyti kategoriją</string>
     <!-- Section header for the list of group members who have labels set. -->
-    <string name="GroupMemberLabel__group_members_with_labels">Group members with labels</string>
+    <string name="GroupMemberLabel__group_members_with_labels">Grupės nariai su kategorijomis</string>
 
     <!-- Title for the member labels education sheet. -->
     <string name="MemberLabelsEducation__title">Narių kategorijos</string>

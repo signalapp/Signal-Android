@@ -5187,7 +5187,7 @@
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">Gusto mo bang tanggalin si %1$s bilang group admin?</string>
     <!-- Message shown when removing an admin will also clear their member label. -->
-    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">Remove %1$s as group admin? This will also clear their member label.</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">Gusto mo bang tanggalin si %1$s bilang group admin? Mawawala rin ang member label nila.</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"Pwedeng i-edit ni \"%1$s\" ang group at ang members nito."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Gusto mo bang tanggalin si %1$s mula sa group?</string>
@@ -6030,7 +6030,7 @@
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
     <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Member labels will be cleared</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Tatanggalin ang member labels</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
     <!-- Confirm button for changing member label permission after warning. -->
@@ -6828,7 +6828,7 @@
     <!-- Title for the story archive screen -->
     <string name="StoryArchive__story_archive">Story archive</string>
     <!-- Section header in story settings -->
-    <string name="StoryArchive__archive">Archive</string>
+    <string name="StoryArchive__archive">I-archive</string>
     <!-- Label for switch to enable story archiving -->
     <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
     <!-- Description for the archive toggle -->
@@ -6848,15 +6848,15 @@
     <!-- Empty state message when no archived stories exist -->
     <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
     <!-- Empty state button to navigate to story settings -->
-    <string name="StoryArchive__go_to_settings">Go to settings</string>
+    <string name="StoryArchive__go_to_settings">Pumunta sa settings</string>
     <!-- Label for sort order menu -->
-    <string name="StoryArchive__sort_by">Sort by</string>
+    <string name="StoryArchive__sort_by">Pasunud-sunurin ayon sa</string>
     <!-- Sort order option: newest first -->
-    <string name="StoryArchive__newest">Newest</string>
+    <string name="StoryArchive__newest">Pinakabago</string>
     <!-- Sort order option: oldest first -->
-    <string name="StoryArchive__oldest">Oldest</string>
+    <string name="StoryArchive__oldest">Pinakaluma</string>
     <!-- Delete action in story archive multi-select bottom bar -->
-    <string name="StoryArchive__delete">Delete</string>
+    <string name="StoryArchive__delete">Burahin</string>
     <!-- Content description for selecting a story in multi-select mode -->
     <string name="StoryArchive__select_story">Select story</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
@@ -8760,7 +8760,7 @@
     <string name="OnDeviceBackupsSettingsScreen__update">I-update</string>
 
     <!-- UnifiedOnDeviceBackupsSettingsScreen -->
-    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key">View recovery key</string>
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key">Tingnan ang recovery key</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -9100,7 +9100,7 @@
     <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
     <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Ang backup key mo ay isang 64-character code na kinakailangan para ma-recover ang iyong account at data.</string>
     <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">No recovery key?</string>
+    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Walang recovery key?</string>
     <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
     <string name="EnterLocalBackupKeyScreen__next">Susunod</string>
 
@@ -9552,7 +9552,7 @@
     <!-- Error message shown when the group member label fails to save due to a network error. -->
     <string name="GroupMemberLabel__error_cant_save_no_network">Hindi ma-save ang label. I-check ang network mo at subukan ulit.</string>
     <!-- Error message shown when trying to edit a member label without adequate permission. -->
-    <string name="GroupMemberLabel__error_no_edit_permission">Only admins can add member labels in this group.</string>
+    <string name="GroupMemberLabel__error_no_edit_permission">Admins lang ang makakapaglagay ng member labels sa group na ito.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Pumili ng emoji</string>
     <!-- Accessibility label for the group member label close screen button. -->
@@ -9560,7 +9560,7 @@
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">I-clear ang label</string>
     <!-- Section header for the list of group members who have labels set. -->
-    <string name="GroupMemberLabel__group_members_with_labels">Group members with labels</string>
+    <string name="GroupMemberLabel__group_members_with_labels">Group members na may labels</string>
 
     <!-- Title for the member labels education sheet. -->
     <string name="MemberLabelsEducation__title">Member labels</string>

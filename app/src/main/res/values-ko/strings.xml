@@ -1594,7 +1594,7 @@
     <!-- Button text for customizing notification options -->
     <string name="CustomNotificationsDialogFragment__customize">맞춤 설정</string>
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">소리와 진동 변경하기</string>
-    <string name="CustomNotificationsDialogFragment__call_settings">전화 설정</string>
+    <string name="CustomNotificationsDialogFragment__call_settings">통화 설정</string>
     <string name="CustomNotificationsDialogFragment__ringtone">벨소리</string>
     <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">기본값</string>
@@ -1794,7 +1794,7 @@
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Signal 통화 서비스 시작</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Signal 통화 서비스 중지</string>
-    <string name="NotificationBarManager__cancel_call">전화 취소</string>
+    <string name="NotificationBarManager__cancel_call">통화 취소</string>
 
     <!-- NotificationsMegaphone -->
     <string name="NotificationsMegaphone_turn_on_notifications">알림을 켜시겠어요?</string>
@@ -2373,7 +2373,7 @@
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s 님에게 전화하려면 Signal에서 카메라 권한이 필요합니다.</string>
     <!-- Subtitle shown at top of call where %s is the elapsed time of the call -->
     <string name="WebRtcCallActivity__signal_s">시그널 %1$s</string>
-    <string name="WebRtcCallActivity__calling">전화 진행 중…</string>
+    <string name="WebRtcCallActivity__calling">전화 거는 중</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">재연결 중…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
@@ -2450,8 +2450,8 @@
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal 통화</string>
     <string name="WebRtcCallView__signal_video_call">Signal 영상 통화</string>
-    <string name="WebRtcCallView__start_call">전화 시작하기</string>
-    <string name="WebRtcCallView__join_call">전화 참여하기</string>
+    <string name="WebRtcCallView__start_call">통화 시작하기</string>
+    <string name="WebRtcCallView__join_call">통화 참여하기</string>
     <string name="WebRtcCallView__call_is_full">통화 최대 참가자 수 도달</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">이 통화는 정원(%1$d명) 초과로 지금은 참여할 수 없습니다. 나중에 다시 시도해 주세요.</string>
     <string name="WebRtcCallView__your_video_is_off">영상이 꺼졌습니다.</string>
@@ -2479,10 +2479,10 @@
         <item quantity="other">%1$s 님과 %2$s 님 외 %3$d명에게 알림이 갑니다.</item>
     </plurals>
 
-    <string name="WebRtcCallView__ringing_s">%1$s 님에게 전화를 거는 중</string>
-    <string name="WebRtcCallView__ringing_s_and_s">%1$s 님과 %2$s 님에게 전화를 거는 중</string>
+    <string name="WebRtcCallView__ringing_s">%1$s 님에게 전화 거는 중</string>
+    <string name="WebRtcCallView__ringing_s_and_s">%1$s 님과 %2$s 님에게 전화 거는 중</string>
     <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-        <item quantity="other">%1$s 님, %2$s 님 외 %3$d명에게 전화를 거는 중</item>
+        <item quantity="other">%1$s 님, %2$s 님 외 %3$d명에게 전화 거는 중</item>
     </plurals>
 
     <string name="WebRtcCallView__s_is_calling_you">%1$s 님이 나에게 전화를 걸었습니다.</string>
@@ -2513,18 +2513,18 @@
     <!-- Content description for additional actions menu button -->
     <string name="WebRtcCallView__additional_actions">작업 더 보기</string>
     <!-- Content description for end-call button -->
-    <string name="WebRtcCallView__end_call">전화 종료</string>
+    <string name="WebRtcCallView__end_call">통화 종료</string>
     <!-- Content description for toggling group ring state -->
     <string name="WebRtcCallView__toggle_group_ringing">그룹 벨소리 토글</string>
 
     <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
-    <string name="WebRtcCallView__s_remotely_muted_you">%1$s 님이 내 알림을 껐습니다.</string>
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s 님이 나를 음소거했습니다.</string>
     <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
-    <string name="WebRtcCallView__you_remotely_muted_s">%1$s의 알림을 껐습니다.</string>
+    <string name="WebRtcCallView__you_remotely_muted_s">%1$s 님을 음소거했습니다.</string>
     <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
-    <string name="WebRtcCallView__s_remotely_muted_s">%1$s 님이 %2$s 님의 알림을 껐습니다.</string>
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s 님이 %2$s 님을 음소거했습니다.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
-    <string name="WebRtcCallView__you_muted_yourself">다른 기기에서 내 알림을 껐습니다.</string>
+    <string name="WebRtcCallView__you_muted_yourself">다른 기기에서 나를 음소거했습니다.</string>
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
     <string name="WebRtcCallView__youve_been_muted_large_group">해당 통화에 참가자가 많아 음소거되었습니다.</string>
 
@@ -2635,7 +2635,7 @@
         <item quantity="other">통화 참가자 수(%1$d명)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_ring">
-        <item quantity="other">Signal에서 전화벨을 울립니다(%1$d).</item>
+        <item quantity="other">Signal에서 전화를 겁니다(%1$d)</item>
     </plurals>
     <!-- Header text shown in a bottom sheet that indicates how many people will be notified about an outgoing call -->
     <plurals name="CallParticipantsListDialog__signal_will_notify">
@@ -2684,7 +2684,7 @@
     </string>
     <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">유효한 전화번호를 입력하세요.</string>
     <string name="RegistrationActivity_invalid_number">잘못된 전화번호</string>
-    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">입력한 전화번호 (%1$s)가 잘못되었습니다.
+    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">입력한 전화번호(%1$s)가 잘못되었습니다.
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
@@ -2793,7 +2793,7 @@
     <string name="SharedContactDetailsActivity_add_to_contacts">연락처에 추가</string>
     <string name="SharedContactDetailsActivity_invite_to_signal">Signal로 초대</string>
     <string name="SharedContactDetailsActivity_signal_message">Signal 메시지</string>
-    <string name="SharedContactDetailsActivity_signal_call">Signal 전화</string>
+    <string name="SharedContactDetailsActivity_signal_call">Signal 통화</string>
 
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">연락처에 추가</string>
@@ -3410,8 +3410,8 @@
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">유선 헤드셋(USB)</string>
 
-    <string name="WebRtcCallControls_answer_call_description">전화 수락</string>
-    <string name="WebRtcCallControls_reject_call_description">전화 거부</string>
+    <string name="WebRtcCallControls_answer_call_description">통화 수락</string>
+    <string name="WebRtcCallControls_reject_call_description">통화 거절</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">기존 암호 문구</string>
@@ -3595,21 +3595,21 @@
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">안전 번호 변경됨</string>
     <string name="safety_number_change_dialog__accept">수락</string>
-    <string name="safety_number_change_dialog__call_anyway">그냥 전화</string>
+    <string name="safety_number_change_dialog__call_anyway">무시하고 전화 걸기</string>
     <string name="safety_number_change_dialog__join_call">통화 참여</string>
-    <string name="safety_number_change_dialog__continue_call">계속 전화</string>
-    <string name="safety_number_change_dialog__leave_call">전화 종료</string>
+    <string name="safety_number_change_dialog__continue_call">통화 계속하기</string>
+    <string name="safety_number_change_dialog__leave_call">통화에서 나가기</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">재설치했거나 기기를 바꾼 사람의 목록입니다. 보안을 보장하려면 안전 번호를 검증하세요.</string>
     <string name="safety_number_change_dialog__view">보기</string>
     <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">이전에 인증됨</string>
 
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
-    <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">전화 알림을 사용합니다.</string>
-    <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">전화 알림 사용</string>
+    <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">통화 알림을 사용합니다.</string>
+    <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">통화 알림 사용</string>
     <string name="EnableCallNotificationSettingsDialog__enable_background_activity">백그라운드 활동 사용</string>
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">설정이 제대로 완료되었어요!</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">전화 알림을 받으려면 여기를 탭하고 \'알림 표시\'를 켜세요.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">통화 알림을 받으려면 여기를 탭하고 \'알림 표시\'를 켜세요.</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">전화 알림을 받으려면 여기를 탭하고 알림을 켜고 소리 및 팝업이 활성화되어 있는지 확인하세요.</string>
     <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">전화 알림을 받으려면 여기를 탭하고 \'배터리\' 설정에서 백그라운드 활동을 활성화하세요. </string>
@@ -3984,7 +3984,7 @@
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">음소거된 채팅 보관 상태로 유지</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">알림을 꺼서 보관한 대화는 새 메시지가 도착해도 보관 상태로 유지됩니다.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">알림을 끈 상태로 보관한 대화는 새 메시지가 도착해도 보관 상태로 유지됩니다.</string>
     <string name="preferences__generate_link_previews">링크 미리보기 생성</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">보내는 메시지에 첨부된 웹 사이트의 링크 미리보기를 불러옵니다.</string>
     <string name="preferences__change_passphrase">암호 문구 변경</string>
@@ -4085,7 +4085,7 @@
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN은 Signal에 저장된 정보를 암호화하여 본인만 접근할 수 있도록 보호합니다. 앱을 재설치해도 프로필, 설정, 연락처가 자동으로 복원되며, 평소 앱을 열 때는 PIN을 입력하지 않아도 됩니다.</string>
     <string name="preferences__system_default">시스템 기본값</string>
     <string name="preferences__language">언어</string>
-    <string name="preferences__signal_messages_and_calls">Signal 메시지 및 전화</string>
+    <string name="preferences__signal_messages_and_calls">Signal 메시지 및 통화</string>
     <string name="preferences__advanced_pin_settings">PIN 고급 설정</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">PIN 고급 설정</string>
@@ -4434,7 +4434,7 @@
     <string name="conversation_callable_insecure__menu_call">전화</string>
 
     <!-- conversation_callable_secure -->
-    <string name="conversation_callable_secure__menu_call">Signal 전화</string>
+    <string name="conversation_callable_secure__menu_call">Signal 통화</string>
     <string name="conversation_callable_secure__menu_video">Signal 영상 통화</string>
 
     <!-- conversation_context -->
@@ -5061,7 +5061,7 @@
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s 님의 그룹 관리자 권한을 해제할까요?</string>
     <!-- Message shown when removing an admin will also clear their member label. -->
-    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">Remove %1$s as group admin? This will also clear their member label.</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">%1$s 님의 그룹 관리자 권한을 해제할까요? 해제하면 해당 멤버의 멤버 라벨도 함께 삭제됩니다.</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s 님은 그룹과 멤버를 수정할 수 있습니다."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">그룹에서 %1$s 님을 내보낼까요?</string>
@@ -5580,7 +5580,7 @@
     <!-- Option in context menu to edit the folder -->
     <string name="ChatFoldersFragment__edit_folder">폴더 수정</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">모두 음소거</string>
+    <string name="ChatFoldersFragment__mute_all">모든 알림 끄기</string>
     <!-- Option in context menu to unmute all chats in the folder -->
     <string name="ChatFoldersFragment__unmute_all">모든 알림 켜기</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
@@ -5889,11 +5889,11 @@
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
     <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Member labels will be cleared</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">멤버 라벨이 제거됩니다</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
     <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Change permission</string>
+    <string name="PermissionsSettingsFragment__change_permission">권한 변경</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->
@@ -6679,7 +6679,7 @@
     <!-- Title for the story archive screen -->
     <string name="StoryArchive__story_archive">Story archive</string>
     <!-- Section header in story settings -->
-    <string name="StoryArchive__archive">Archive</string>
+    <string name="StoryArchive__archive">보관</string>
     <!-- Label for switch to enable story archiving -->
     <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
     <!-- Description for the archive toggle -->
@@ -6687,27 +6687,27 @@
     <!-- Label for archive duration preference -->
     <string name="StoryArchive__keep_stories_for">Keep stories for</string>
     <!-- Archive duration option: forever -->
-    <string name="StoryArchive__forever">Forever</string>
+    <string name="StoryArchive__forever">계속</string>
     <!-- Archive duration option: 1 year -->
-    <string name="StoryArchive__1_year">1 year</string>
+    <string name="StoryArchive__1_year">1년</string>
     <!-- Archive duration option: 6 months -->
-    <string name="StoryArchive__6_months">6 months</string>
+    <string name="StoryArchive__6_months">6개월</string>
     <!-- Archive duration option: 30 days -->
-    <string name="StoryArchive__30_days">30 days</string>
+    <string name="StoryArchive__30_days">30일</string>
     <!-- Empty state title when no archived stories exist -->
     <string name="StoryArchive__no_archived_stories">No archived stories</string>
     <!-- Empty state message when no archived stories exist -->
     <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
     <!-- Empty state button to navigate to story settings -->
-    <string name="StoryArchive__go_to_settings">Go to settings</string>
+    <string name="StoryArchive__go_to_settings">설정으로 이동</string>
     <!-- Label for sort order menu -->
-    <string name="StoryArchive__sort_by">Sort by</string>
+    <string name="StoryArchive__sort_by">정렬 방법</string>
     <!-- Sort order option: newest first -->
-    <string name="StoryArchive__newest">Newest</string>
+    <string name="StoryArchive__newest">최근 순서</string>
     <!-- Sort order option: oldest first -->
-    <string name="StoryArchive__oldest">Oldest</string>
+    <string name="StoryArchive__oldest">오래된 순서</string>
     <!-- Delete action in story archive multi-select bottom bar -->
-    <string name="StoryArchive__delete">Delete</string>
+    <string name="StoryArchive__delete">삭제</string>
     <!-- Content description for selecting a story in multi-select mode -->
     <string name="StoryArchive__select_story">Select story</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
@@ -6716,7 +6716,7 @@
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
-        <item quantity="other">%1$d selected</item>
+        <item quantity="other">%1$d개 선택됨</item>
     </plurals>
 
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -8574,7 +8574,7 @@
     <string name="OnDeviceBackupsSettingsScreen__update">업데이트</string>
 
     <!-- UnifiedOnDeviceBackupsSettingsScreen -->
-    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key">View recovery key</string>
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key">복구 키 보기</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8912,7 +8912,7 @@
     <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
     <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">복구 키는 계정과 데이터를 복구하는 데 필요한 64자리 코드입니다.</string>
     <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">No recovery key?</string>
+    <string name="EnterLocalBackupKeyScreen__no_recovery_key">복구 키가 없으신가요?</string>
     <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
     <string name="EnterLocalBackupKeyScreen__next">다음</string>
 
@@ -9361,7 +9361,7 @@
     <!-- Error message shown when the group member label fails to save due to a network error. -->
     <string name="GroupMemberLabel__error_cant_save_no_network">라벨을 저장할 수 없습니다. 네트워크를 확인한 후 다시 시도하세요.</string>
     <!-- Error message shown when trying to edit a member label without adequate permission. -->
-    <string name="GroupMemberLabel__error_no_edit_permission">Only admins can add member labels in this group.</string>
+    <string name="GroupMemberLabel__error_no_edit_permission">이 그룹의 멤버 라벨은 관리자만 추가할 수 있습니다.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">이모지 선택</string>
     <!-- Accessibility label for the group member label close screen button. -->
@@ -9369,7 +9369,7 @@
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">라벨 지우기</string>
     <!-- Section header for the list of group members who have labels set. -->
-    <string name="GroupMemberLabel__group_members_with_labels">Group members with labels</string>
+    <string name="GroupMemberLabel__group_members_with_labels">라벨이 있는 그룹 멤버</string>
 
     <!-- Title for the member labels education sheet. -->
     <string name="MemberLabelsEducation__title">멤버 라벨</string>
