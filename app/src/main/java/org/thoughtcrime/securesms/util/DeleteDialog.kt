@@ -82,7 +82,7 @@ object DeleteDialog {
     } else {
       MaterialAlertDialogBuilder(context)
         .setTitle("${context.getString(R.string.ConversationFragment_delete_for_everyone_title)} - INTERNAL ONLY")
-        .setMessage(R.string.ConversationFragment_delete_for_everyone_body)
+        .setMessage(context.resources.getQuantityString(R.plurals.ConversationFragment_delete_for_everyone_body, messageRecords.size, messageRecords.size))
         .setPositiveButton(R.string.ConversationFragment_delete_for_everyone) { _, _ ->
           SignalStore.uiHints.setHasSeenAdminDeleteEducationDialog()
           SignalExecutors.BOUNDED.execute {
