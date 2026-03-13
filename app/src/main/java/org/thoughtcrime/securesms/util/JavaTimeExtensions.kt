@@ -95,7 +95,7 @@ fun LocalTime.formatHours(context: Context): String {
   // We have to create our own pattern here, since the formatter instance returned by DateTimeFormatter.ofLocalizedTime() is looked up lazily, is immutable,
   // and is not updated when the system's 24-hour time setting changes.
   val pattern = if (DateFormat.is24HourFormat(context)) "HH:mm" else "h:mm a"
-  return DateTimeFormatter.ofPattern(pattern, Locale.getDefault()).format(this)
+  return DateTimeFormatter.ofPattern(pattern, LocaleUtil.getFirstLocale()).format(this)
 }
 
 /**
