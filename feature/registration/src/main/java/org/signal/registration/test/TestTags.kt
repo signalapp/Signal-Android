@@ -42,4 +42,12 @@ object TestTags {
   const val VERIFICATION_CODE_RESEND_SMS_BUTTON = "verification_code_resend_sms_button"
   const val VERIFICATION_CODE_CALL_ME_BUTTON = "verification_code_call_me_button"
   const val VERIFICATION_CODE_HAVING_TROUBLE_BUTTON = "verification_code_having_trouble_button"
+
+  // Archive Restore Selection Screen
+  const val ARCHIVE_RESTORE_SELECTION_SCREEN = "archive_restore_selection_screen"
+  const val ARCHIVE_RESTORE_SELECTION_FROM_SIGNAL_BACKUPS = "archive_restore_selection_from_signal_backups"
+  const val ARCHIVE_RESTORE_SELECTION_FROM_BACKUP_FOLDER = "archive_restore_selection_from_backup_folder"
+  const val ARCHIVE_RESTORE_SELECTION_FROM_BACKUP_FILE = "archive_restore_selection_from_backup_file"
+  const val ARCHIVE_RESTORE_SELECTION_DEVICE_TRANSFER = "archive_restore_selection_device_transfer"
+  const val ARCHIVE_RESTORE_SELECTION_SKIP = "archive_restore_selection_skip"
 }

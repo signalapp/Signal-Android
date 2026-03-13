@@ -34,8 +34,8 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
-import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.AllDevicePreviews
+import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.registration.R

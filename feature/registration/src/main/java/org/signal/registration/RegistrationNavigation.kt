@@ -30,9 +30,6 @@ import org.signal.core.ui.navigation.TransitionSpecs
 import org.signal.registration.screens.accountlocked.AccountLockedScreen
 import org.signal.registration.screens.accountlocked.AccountLockedScreenEvents
 import org.signal.registration.screens.accountlocked.AccountLockedState
-// TODO [regV5] Uncomment when restore selection flow is ready
-// import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionScreen
-// import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionViewModel
 import org.signal.registration.screens.captcha.CaptchaScreen
 import org.signal.registration.screens.captcha.CaptchaScreenEvents
 import org.signal.registration.screens.captcha.CaptchaState
@@ -52,6 +49,8 @@ import org.signal.registration.screens.pinentry.PinEntryForSvrRestoreViewModel
 import org.signal.registration.screens.pinentry.PinEntryScreen
 import org.signal.registration.screens.quickrestore.QuickRestoreQrScreen
 import org.signal.registration.screens.quickrestore.QuickRestoreQrViewModel
+import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionScreen
+import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionViewModel
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 import org.signal.registration.screens.verificationcode.VerificationCodeScreen
@@ -101,9 +100,8 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   @Serializable
   data object PinCreate : RegistrationRoute
 
-  // TODO [regV5] Uncomment when restore selection flow is ready
-  // @Serializable
-  // data object ArchiveRestoreSelection : RegistrationRoute
+  @Serializable
+  data object ArchiveRestoreSelection : RegistrationRoute
 
   @Serializable
   data object ChooseRestoreOptionBeforeRegistration : RegistrationRoute
@@ -404,22 +402,22 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     )
   }
 
-  // TODO [regV5] Uncomment when restore selection flow is ready
-  // entry<RegistrationRoute.ArchiveRestoreSelection> {
-  //   val viewModel: ArchiveRestoreSelectionViewModel = viewModel(
-  //     factory = ArchiveRestoreSelectionViewModel.Factory(
-  //       repository = registrationRepository,
-  //       parentState = registrationViewModel.state,
-  //       parentEventEmitter = registrationViewModel::onEvent
-  //     )
-  //   )
-  //   val state by viewModel.state.collectAsStateWithLifecycle()
-  //
-  //   ArchiveRestoreSelectionScreen(
-  //     state = state,
-  //     onEvent = { viewModel.onEvent(it) }
-  //   )
-  // }
+  // -- Archive Restore Selection Screen
+  entry<RegistrationRoute.ArchiveRestoreSelection> {
+    val viewModel: ArchiveRestoreSelectionViewModel = viewModel(
+      factory = ArchiveRestoreSelectionViewModel.Factory(
+        repository = registrationRepository,
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    ArchiveRestoreSelectionScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
 
   entry<RegistrationRoute.ChooseRestoreOptionAfterRegistration> {
     // TODO: Implement RestoreScreen

@@ -46,9 +46,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.CircularProgressWrapper
-import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.registration.R

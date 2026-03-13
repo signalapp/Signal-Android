@@ -6,8 +6,6 @@
 package org.signal.registration.screens.pincreation
 
 import org.signal.core.models.AccountEntropyPool
-import org.signal.registration.BuildConfig
-import org.signal.registration.util.DebugLoggable
 import org.signal.registration.util.DebugLoggableModel
 
 data class PinCreationState(

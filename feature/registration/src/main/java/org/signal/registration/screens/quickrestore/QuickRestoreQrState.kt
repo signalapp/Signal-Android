@@ -25,4 +25,3 @@ sealed class QrState : DebugLoggableModel() {
   data object Scanned : QrState()
   data object Failed : QrState()
 }
-
