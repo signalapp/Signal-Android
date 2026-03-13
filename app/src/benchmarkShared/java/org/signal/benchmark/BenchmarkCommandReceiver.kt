@@ -76,7 +76,7 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     runBlocking {
       launch(Dispatchers.IO) {
-        Log.i(TAG, "Sending initial message form Bob to establish session.")
+        Log.i(TAG, "Sending initial message from Bob to establish session.")
         BenchmarkWebSocketConnection.addPendingMessages(listOf(encryptedEnvelope.toWebSocketPayload()))
         BenchmarkWebSocketConnection.releaseMessages()
 
@@ -84,6 +84,10 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
         ThreadUtil.sleep(1000)
       }
     }
+
+    // Complete the session handshake so both sides have a proper double-ratchet session
+    Log.i(TAG, "Completing session handshake with reply.")
+    client.completeSession()
 
     // Have Bob generate N messages that will be received by Alice
     val messageCount = 500
@@ -103,7 +107,7 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     runBlocking {
       launch(Dispatchers.IO) {
-        Log.i(TAG, "Sending initial group messages from client to establish sessions.")
+        Log.i(TAG, "Sending initial group messages from clients to establish sessions.")
         BenchmarkWebSocketConnection.addPendingMessages(encryptedEnvelopes.map { it.toWebSocketPayload() })
         BenchmarkWebSocketConnection.releaseMessages()
 
@@ -111,6 +115,10 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
         ThreadUtil.sleep(1000)
       }
     }
+
+    // Complete session handshakes so both sides have proper double-ratchet sessions
+    Log.i(TAG, "Completing session handshakes with Alice replies.")
+    clients.forEach { it.completeSession() }
 
     // Have clients generate N group messages that will be received by Alice
     val allClientMessages = clients.map { client ->
@@ -150,6 +158,9 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
         ThreadUtil.sleep(1000)
       }
     }
+
+    Log.i(TAG, "Completing session handshakes with Alice replies.")
+    clients.forEach { it.completeSession() }
   }
 
   private fun handleDeleteThread() {
