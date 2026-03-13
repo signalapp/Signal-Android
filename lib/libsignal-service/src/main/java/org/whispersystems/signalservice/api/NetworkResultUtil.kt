@@ -13,13 +13,9 @@ import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
-import org.whispersystems.signalservice.internal.push.SendGroupMessageResponse
 import org.whispersystems.signalservice.internal.push.SendMessageResponse
-import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException
-import org.whispersystems.signalservice.internal.push.exceptions.GroupStaleDevicesException
 import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError
 import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentReceiptCredentialError
-import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException
 import org.whispersystems.signalservice.internal.push.exceptions.PaymentsRegionException
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException
@@ -110,44 +106,6 @@ object NetworkResultUtil {
           410 -> StaleDevicesException(result.parseJsonBody())
           413, 429 -> RateLimitException(result.code, "Rate Limited", Optional.ofNullable(result.header("retry-after")?.toLongOrNull()?.seconds?.inWholeMilliseconds))
           428 -> ProofRequiredException(result.parseJsonBody(), result.header("retry-after")?.toLongOrNull() ?: -1)
-          508 -> ServerRejectedException()
-          else -> result.exception
-        }
-      }
-    }
-  }
-
-  /**
-   * Convert [NetworkResult] into expected type exceptions for a multi-recipient message send.
-   */
-  @JvmStatic
-  @Throws(
-    InvalidUnidentifiedAccessHeaderException::class,
-    NotFoundException::class,
-    GroupMismatchedDevicesException::class,
-    GroupStaleDevicesException::class,
-    RateLimitException::class,
-    ServerRejectedException::class,
-    WebSocketUnavailableException::class,
-    IOException::class
-  )
-  fun toGroupMessageSendLegacy(result: NetworkResult<SendGroupMessageResponse>): SendGroupMessageResponse {
-    return when (result) {
-      is NetworkResult.Success -> result.result
-      is NetworkResult.ApplicationError -> {
-        throw when (val error = result.throwable) {
-          is IOException, is RuntimeException -> error
-          else -> RuntimeException(error)
-        }
-      }
-      is NetworkResult.NetworkError -> throw result.exception
-      is NetworkResult.StatusCodeError -> {
-        throw when (result.code) {
-          401 -> InvalidUnidentifiedAccessHeaderException()
-          404 -> NotFoundException("At least one unregistered user is message send.")
-          409 -> GroupMismatchedDevicesException(result.parseJsonBody())
-          410 -> GroupStaleDevicesException(result.parseJsonBody())
-          413, 429 -> throw RateLimitException(result.code, "Rate Limited", Optional.ofNullable(result.header("retry-after")?.toLongOrNull()?.seconds?.inWholeMilliseconds))
           508 -> ServerRejectedException()
           else -> result.exception
         }

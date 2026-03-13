@@ -72,6 +72,7 @@ import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
+import org.whispersystems.signalservice.api.push.exceptions.RetryNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.internal.push.BodyRange;
 
@@ -160,29 +161,7 @@ public abstract class PushSendJob extends SendJob {
 
   @Override
   public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
-    if (exception instanceof ProofRequiredException) {
-      long backoff = ((ProofRequiredException) exception).getRetryAfterSeconds();
-      warn(TAG, "[Proof Required] Retry-After is " + backoff + " seconds.");
-      if (backoff >= 0) {
-        return TimeUnit.SECONDS.toMillis(backoff);
-      }
-    } else if (exception instanceof RateLimitException) {
-      long backoff = ((RateLimitException) exception).getRetryAfterMilliseconds().orElse(-1L);
-      if (backoff >= 0) {
-        return backoff;
-      }
-    } else if (exception instanceof NonSuccessfulResponseCodeException) {
-      if (((NonSuccessfulResponseCodeException) exception).is5xx()) {
-        return BackoffUtil.exponentialBackoff(pastAttemptCount, RemoteConfig.getServerErrorMaxBackoff());
-      }
-    } else if (exception instanceof RetryLaterException) {
-      long backoff = ((RetryLaterException) exception).getBackoff();
-      if (backoff >= 0) {
-        return backoff;
-      }
-    }
-
-    return super.getNextRunAttemptBackoff(pastAttemptCount, exception);
+    return SendJobUtil.getBackoffMillisFromException(this, TAG, pastAttemptCount, exception, () -> super.getNextRunAttemptBackoff(pastAttemptCount, exception));
   }
 
   protected Optional<byte[]> getProfileKey(@NonNull Recipient recipient) {

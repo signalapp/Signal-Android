@@ -15,11 +15,11 @@ import org.signal.core.util.Hex;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.storageservice.storage.protos.groups.AvatarUploadAttributes;
+import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
 import org.signal.storageservice.storage.protos.groups.Group;
 import org.signal.storageservice.storage.protos.groups.GroupChange;
 import org.signal.storageservice.storage.protos.groups.GroupChangeResponse;
 import org.signal.storageservice.storage.protos.groups.GroupChanges;
-import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
 import org.signal.storageservice.storage.protos.groups.GroupJoinInfo;
 import org.signal.storageservice.storage.protos.groups.GroupResponse;
 import org.signal.storageservice.storage.protos.groups.Member;
@@ -79,11 +79,8 @@ import org.whispersystems.signalservice.internal.configuration.SignalUrl;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
-import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
-import org.whispersystems.signalservice.internal.push.exceptions.GroupStaleDevicesException;
-import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
@@ -135,12 +132,10 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import kotlin.Pair;
-
 import okhttp3.Call;
 import okhttp3.ConnectionPool;
 import okhttp3.ConnectionSpec;
 import okhttp3.Dns;
-import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -531,62 +526,6 @@ public class PushServiceSocket {
   public RegisterAsSecondaryDeviceResponse registerAsSecondaryDevice(RegisterAsSecondaryDeviceRequest request) throws IOException {
     String responseText = makeServiceRequest("/v1/devices/link", "PUT", JsonUtil.toJson(request));
     return JsonUtil.fromJson(responseText, RegisterAsSecondaryDeviceResponse.class);
-  }
-
-  public SendGroupMessageResponse sendGroupMessage(byte[] body, @Nonnull SealedSenderAccess sealedSenderAccess, long timestamp, boolean online, boolean urgent, boolean story)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
-  {
-    ServiceConnectionHolder connectionHolder = (ServiceConnectionHolder) getRandom(serviceClients, random);
-
-    String path = String.format(Locale.US, GROUP_MESSAGE_PATH, timestamp, online, urgent, story);
-
-    Request.Builder requestBuilder = new Request.Builder();
-    requestBuilder.url(String.format("%s%s", connectionHolder.getUrl(), path));
-    requestBuilder.put(RequestBody.create(MediaType.get("application/vnd.signal-messenger.mrm"), body));
-    requestBuilder.addHeader(sealedSenderAccess.getHeaderName(), sealedSenderAccess.getHeaderValue());
-
-    if (signalAgent != null) {
-      requestBuilder.addHeader("X-Signal-Agent", signalAgent);
-    }
-
-    if (connectionHolder.getHostHeader().isPresent()) {
-      requestBuilder.addHeader("Host", connectionHolder.getHostHeader().get());
-    }
-
-    Call call = connectionHolder.getUnidentifiedClient().newCall(requestBuilder.build());
-
-    synchronized (connections) {
-      connections.add(call);
-    }
-
-    try (Response response = call.execute()) {
-      switch (response.code()) {
-        case 200:
-          return readBodyJson(response.body(), SendGroupMessageResponse.class);
-        case 401:
-          throw new InvalidUnidentifiedAccessHeaderException();
-        case 404:
-          throw new NotFoundException("At least one unregistered user in message send.");
-        case 409:
-          GroupMismatchedDevices[] mismatchedDevices = readBodyJson(response.body(), GroupMismatchedDevices[].class);
-          throw new GroupMismatchedDevicesException(mismatchedDevices);
-        case 410:
-          GroupStaleDevices[] staleDevices = readBodyJson(response.body(), GroupStaleDevices[].class);
-          throw new GroupStaleDevicesException(staleDevices);
-        case 508:
-          throw new ServerRejectedException();
-        default:
-          throw new NonSuccessfulResponseCodeException(response.code());
-      }
-    } catch (PushNetworkException | NonSuccessfulResponseCodeException | MalformedResponseException e) {
-      throw e;
-    } catch (IOException e) {
-      throw new PushNetworkException(e);
-    } finally {
-      synchronized (connections) {
-        connections.remove(call);
-      }
-    }
   }
 
   public SendMessageResponse sendMessage(OutgoingPushMessageList bundle, @Nullable SealedSenderAccess sealedSenderAccess, boolean story)

@@ -148,6 +148,11 @@ public class GroupCallUpdateSendJob extends BaseJob {
   }
 
   @Override
+  public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
+    return SendJobUtil.getBackoffMillisFromException(this, TAG, pastAttemptCount, exception, () -> super.getNextRunAttemptBackoff(pastAttemptCount, exception));
+  }
+
+  @Override
   public void onFailure() {
     if (recipients.size() < initialRecipientCount) {
       Log.w(TAG, "Only sent a group update to " + recipients.size() + "/" + initialRecipientCount + " recipients. Still, it sent to someone, so it stays.");

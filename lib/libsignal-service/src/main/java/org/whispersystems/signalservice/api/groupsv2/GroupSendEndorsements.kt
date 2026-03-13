@@ -26,8 +26,12 @@ data class GroupSendEndorsements(
   private val expiration: Instant by lazy { Instant.ofEpochMilli(expirationMs) }
   private val combinedEndorsement: GroupSendEndorsement by lazy { GroupSendEndorsement.combine(endorsements.values) }
 
+  fun toFullToken(): GroupSendFullToken {
+    return combinedEndorsement.toFullToken(groupSecretParams, expiration)
+  }
+
   fun serialize(): ByteArray {
-    return combinedEndorsement.toFullToken(groupSecretParams, expiration).serialize()
+    return toFullToken().serialize()
   }
 
   fun forIndividuals(addresses: List<SignalServiceAddress>): List<GroupSendFullToken?> {

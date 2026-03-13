@@ -166,6 +166,11 @@ public class ProfileKeySendJob extends BaseJob {
   }
 
   @Override
+  public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
+    return SendJobUtil.getBackoffMillisFromException(this, TAG, pastAttemptCount, exception, () -> super.getNextRunAttemptBackoff(pastAttemptCount, exception));
+  }
+
+  @Override
   public @Nullable byte[] serialize() {
     return new JsonJobData.Builder()
                    .putLong(KEY_THREAD, threadId)
