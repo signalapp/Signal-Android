@@ -1293,7 +1293,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("receiveAdminDelete")
   val receiveAdminDelete: Boolean by remoteBoolean(
-    key = "android.receiveAdminDelete.2",
+    key = "android.receiveAdminDelete.3",
     defaultValue = false,
     hotSwappable = true
   )

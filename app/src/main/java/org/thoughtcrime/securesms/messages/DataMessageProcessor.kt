@@ -1448,24 +1448,37 @@ object DataMessageProcessor {
     val targetAuthor = Recipient.externalPush(targetAuthorServiceId)
 
     val targetMessage: MessageRecord? = SignalDatabase.messages.getMessageFor(targetSentTimestamp, targetAuthor.id)
-
-    val groupRecord = SignalDatabase.groups.getGroup(threadRecipient.id).orNull()
-    if (groupRecord == null || !groupRecord.isV2Group) {
-      warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Invalid group.")
-      return null
-    }
-
-    return if (targetMessage != null && MessageConstraintsUtil.isValidAdminDeleteReceive(targetMessage, senderRecipient, envelope.serverTimestamp!!, groupRecord)) {
-      SignalDatabase.messages.markAsRemoteDelete(targetMessage, senderRecipient.id)
-      AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
-      MessageId(targetMessage.id)
-    } else if (targetMessage == null) {
+    if (targetMessage == null) {
       warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Could not find matching message! timestamp: $targetSentTimestamp")
       if (earlyMessageCacheEntry != null) {
         AppDependencies.earlyMessageCache.store(targetAuthor.id, targetSentTimestamp, earlyMessageCacheEntry)
         PushProcessEarlyMessagesJob.enqueue()
       }
-      null
+      return null
+    }
+
+    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
+    if (targetThread == null) {
+      warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Could not find a thread for the message! timestamp: $targetSentTimestamp author: ${targetAuthor.id}")
+      return null
+    }
+
+    val targetThreadRecipientId = targetThread.recipient.id
+    if (targetThreadRecipientId != threadRecipient.id) {
+      warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Target message is in a different thread than the admin delete! timestamp: $targetSentTimestamp")
+      return null
+    }
+
+    val groupRecord = SignalDatabase.groups.getGroup(targetThreadRecipientId).orNull()
+    if (groupRecord == null || !groupRecord.isV2Group) {
+      warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Invalid group.")
+      return null
+    }
+
+    return if (MessageConstraintsUtil.isValidAdminDeleteReceive(targetMessage, senderRecipient, envelope.serverTimestamp!!, groupRecord)) {
+      SignalDatabase.messages.markAsRemoteDelete(targetMessage, senderRecipient.id)
+      AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
+      MessageId(targetMessage.id)
     } else {
       warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Invalid admin delete! deleteTime: ${envelope.serverTimestamp!!}, targetTime: ${targetMessage.serverTimestamp}, deleteAuthor: ${senderRecipient.id}, targetAuthor: ${targetMessage.fromRecipient.id}, isAdmin: ${groupRecord.isAdmin(senderRecipient)}")
       null
