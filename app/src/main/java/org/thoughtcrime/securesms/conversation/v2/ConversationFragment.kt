@@ -576,7 +576,7 @@ class ConversationFragment :
 
   private var previousPage: KeyboardPage? = null
   private var previousPages: Set<KeyboardPage>? = null
-  private var reShowScheduleMessagesBar: Boolean = false
+  private var scheduledCount: Int = 0
   private var composeTextEventsListener: ComposeTextEventsListener? = null
   private var dataObserver: DataObserver? = null
   private var menuProvider: ConversationOptionsMenu.Provider? = null
@@ -619,7 +619,6 @@ class ConversationFragment :
   private val actionModeTopBarView: ActionModeTopBarView
     get() = binding.actionModeTopBar
 
-  private val scheduledMessagesStub: Stub<View> by lazy { Stub(binding.scheduledMessagesStub) }
 
   private val reactionDelegate: ConversationReactionDelegate by lazy(LazyThreadSafetyMode.NONE) {
     val conversationReactionStub = Stub<ConversationReactionOverlay>(binding.conversationReactionScrubberStub)
@@ -1051,10 +1050,6 @@ class ConversationFragment :
 
     searchMenuItem?.collapseActionView()
     binding.toolbar.isInvisible = true
-    if (scheduledMessagesStub.isVisible) {
-      reShowScheduleMessagesBar = true
-      scheduledMessagesStub.visibility = View.GONE
-    }
 
     setCorrectActionModeMenuVisibility()
     binding.conversationItemRecycler.invalidateItemDecorations()
@@ -1077,10 +1072,6 @@ class ConversationFragment :
     setBottomActionBarVisibility(false)
 
     binding.toolbar.isInvisible = false
-    if (reShowScheduleMessagesBar) {
-      scheduledMessagesStub.visibility = View.VISIBLE
-      reShowScheduleMessagesBar = false
-    }
 
     binding.conversationItemRecycler.invalidateItemDecorations()
   }
@@ -1228,6 +1219,11 @@ class ConversationFragment :
     binding.scrollToMention.setOnClickListener {
       binding.conversationItemRecycler.stopScroll()
       scrollToNextMention()
+    }
+
+    binding.scrollToScheduled.setOnClickListener {
+      val recipient = viewModel.recipientSnapshot ?: return@setOnClickListener
+      ScheduledMessagesBottomSheet.show(childFragmentManager, args.threadId, recipient.id)
     }
 
     dataObserver = DataObserver()
@@ -1774,6 +1770,7 @@ class ConversationFragment :
     binding.conversationWallpaper.visible = wallpaperEnabled
     binding.scrollToBottom.setWallpaperEnabled(wallpaperEnabled)
     binding.scrollToMention.setWallpaperEnabled(wallpaperEnabled)
+    binding.scrollToScheduled.setWallpaperEnabled(wallpaperEnabled)
     binding.conversationDisabledInput.setWallpaperEnabled(wallpaperEnabled)
     inputPanel.setWallpaperEnabled(wallpaperEnabled)
 
@@ -1813,6 +1810,7 @@ class ConversationFragment :
     recyclerViewColorizer.setChatColors(chatColors)
     binding.scrollToMention.setUnreadCountBackgroundTint(chatColors.asSingleColor())
     binding.scrollToBottom.setUnreadCountBackgroundTint(chatColors.asSingleColor())
+    binding.scrollToScheduled.setUnreadCountBackgroundTint(chatColors.asSingleColor())
     binding.conversationInputPanel.buttonToggle.background.apply {
       colorFilter = PorterDuffColorFilter(chatColors.asSingleColor(), PorterDuff.Mode.MULTIPLY)
       invalidateSelf()
@@ -1825,6 +1823,11 @@ class ConversationFragment :
     binding.scrollToMention.setUnreadCount(0)
     binding.scrollToMention.isShown = scrollButtonState.hasMentions && scrollButtonState.showScrollButtons
     binding.scrollToBottom.isShown = scrollButtonState.showScrollButtons
+    if (scheduledCount > 0 && scrollButtonState.showScrollButtons) {
+      binding.scrollToScheduled.isShown = true
+    } else {
+      binding.scrollToScheduled.visibility = View.GONE
+    }
   }
 
   private fun presentGroupCallJoinButton() {
@@ -2012,24 +2015,16 @@ class ConversationFragment :
   }
 
   private fun handleScheduledMessagesCountChange(count: Int) {
+    scheduledCount = count
+    binding.scrollToScheduled.findViewById<TextView>(R.id.conversation_scroll_to_count).apply {
+      text = if (count > 99) "99+" else count.toString()
+      visibility = if (count > 0) View.VISIBLE else View.GONE
+    }
     if (count <= 0) {
-      scheduledMessagesStub.visibility = View.GONE
-      reShowScheduleMessagesBar = false
-    } else {
-      scheduledMessagesStub.get().apply {
-        visibility = View.VISIBLE
-
-        findViewById<View>(R.id.scheduled_messages_show_all)
-          .setOnClickListener {
-            val recipient = viewModel.recipientSnapshot ?: return@setOnClickListener
-            container.runAfterAllHidden(composeText) {
-              ScheduledMessagesBottomSheet.show(childFragmentManager, args.threadId, recipient.id)
-            }
-          }
-
-        findViewById<TextView>(R.id.scheduled_messages_text).text = resources.getQuantityString(R.plurals.conversation_scheduled_messages_bar__number_of_messages, count, count)
-      }
-      reShowScheduleMessagesBar = true
+      binding.scrollToScheduled.visibility = View.GONE
+    }
+    if (count > 0 && viewModel.showScrollButtonsSnapshot) {
+      binding.scrollToScheduled.isShown = true
     }
   }
 

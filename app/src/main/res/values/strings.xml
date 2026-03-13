@@ -4669,16 +4669,6 @@
     <string name="conversation_export__export_cancelled">Export cancelled</string>
     <string name="conversation_export__preparing">Preparing export…</string>
 
-    <!-- conversation scheduled messages bar -->
-
-    <!-- Label for button in a banner to show all messages currently scheduled -->
-    <string name="conversation_scheduled_messages_bar__see_all">See all</string>
-    <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
-    <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
-    </plurals>
-
     <!-- conversation_group_options -->
     <string name="conversation_group_options__delivery">Delivery</string>
     <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->

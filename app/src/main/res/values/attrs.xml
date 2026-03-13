@@ -312,6 +312,11 @@
 
     <declare-styleable name="ConversationScrollToView">
         <attr name="cstv_scroll_button_src" format="reference" />
+        <attr name="cstv_badge_gravity" format="flags">
+            <flag name="top" value="0x30" />
+            <flag name="end" value="0x800005" />
+        </attr>
+        <attr name="cstv_icon_padding" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="WarningTextView">
