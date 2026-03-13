@@ -138,8 +138,8 @@ public class WebRtcInteractor {
     ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.SilenceIncomingRinger());
   }
 
-  void initializeAudioForCall() {
-    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.Initialize());
+  void initializeAudioForCall(boolean isGroupCall) {
+    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.Initialize(isGroupCall));
   }
 
   void startIncomingRinger(@Nullable Uri ringtoneUri, boolean vibrate) {
@@ -184,6 +184,10 @@ public class WebRtcInteractor {
 
   public void terminateCall(RecipientId recipientId) {
     AndroidTelecomUtil.terminateCall(recipientId);
+  }
+
+  public void terminateCall(RecipientId recipientId, int disconnectCause) {
+    AndroidTelecomUtil.terminateCall(recipientId, disconnectCause);
   }
 
   public boolean addNewIncomingCall(RecipientId recipientId, long callId, boolean remoteVideoOffer) {

@@ -1282,16 +1282,6 @@
             android:enabled="true"
             android:exported="false" />
 
-        <service
-            android:name=".service.webrtc.AndroidCallConnectionService"
-            android:exported="true"
-            android:foregroundServiceType="phoneCall"
-            android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE"
-            tools:targetApi="28">
-            <intent-filter>
-                <action android:name="android.telecom.ConnectionService" />
-            </intent-filter>
-        </service>
 
         <service
             android:name=".components.voice.VoiceNotePlaybackService"
@@ -1401,7 +1391,7 @@
         <service
             android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallForegroundService"
             android:exported="false"
-            android:foregroundServiceType="dataSync|microphone|camera" />
+            android:foregroundServiceType="dataSync|microphone|camera|phoneCall" />
 
         <service
             android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"

@@ -178,7 +178,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, currentState.getCallInfoState().getCallRecipient(), true);
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
-    webRtcInteractor.initializeAudioForCall();
+    webRtcInteractor.initializeAudioForCall(true);
 
     try {
       groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireCamera());

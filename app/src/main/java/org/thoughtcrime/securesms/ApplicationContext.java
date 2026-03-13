@@ -224,7 +224,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
               .addPostRender(() -> SignalDatabase.messageLog().trimOldMessages(System.currentTimeMillis(), RemoteConfig.retryRespondMaxAge()))
               .addPostRender(() -> JumboEmoji.updateCurrentVersion(this))
               .addPostRender(RetrieveRemoteAnnouncementsJob::enqueue)
-              .addPostRender(() -> AndroidTelecomUtil.registerPhoneAccount())
+              .addPostRender(AndroidTelecomUtil::registerPhoneAccount)
               .addPostRender(() -> AppDependencies.getJobManager().add(new FontDownloaderJob()))
               .addPostRender(CheckServiceReachabilityJob::enqueueIfNecessary)
               .addPostRender(GroupV2UpdateSelfProfileKeyJob::enqueueForGroupsIfNecessary)

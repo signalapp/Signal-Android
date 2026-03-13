@@ -72,11 +72,11 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
     boolean isVideoCall = offerType == OfferMessage.Type.VIDEO_CALL;
 
     webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, remotePeer, isVideoCall);
+    webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, isVideoCall, false));
+    webRtcInteractor.initializeAudioForCall(false);
     webRtcInteractor.setDefaultAudioDevice(remotePeer.getId(),
                                            isVideoCall ? SignalAudioManager.AudioDevice.SPEAKER_PHONE : SignalAudioManager.AudioDevice.EARPIECE,
                                            false);
-    webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, isVideoCall, false));
-    webRtcInteractor.initializeAudioForCall();
     webRtcInteractor.startOutgoingRinger();
 
     if (!webRtcInteractor.addNewOutgoingCall(remotePeer.getId(), remotePeer.getCallId().longValue(), isVideoCall)) {

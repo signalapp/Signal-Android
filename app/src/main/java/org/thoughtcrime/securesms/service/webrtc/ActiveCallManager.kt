@@ -212,7 +212,14 @@ class ActiveCallManager(
 
   fun sendAudioCommand(audioCommand: AudioManagerCommand) {
     if (signalAudioManager == null) {
-      signalAudioManager = create(application, this)
+      val canUseTelecom = if (audioCommand is AudioManagerCommand.Initialize) {
+        !audioCommand.isGroupCall
+      } else {
+        Log.w(TAG, "First AudioCommand received was not Initialize, skipping Telecom usage, command: ${audioCommand.javaClass.simpleName}")
+        false
+      }
+
+      signalAudioManager = create(context = application, eventListener = this, canUseTelecom = canUseTelecom)
     }
 
     Log.i(TAG, "Sending audio command [" + audioCommand.javaClass.simpleName + "] to " + signalAudioManager?.javaClass?.simpleName)
@@ -310,17 +317,23 @@ class ActiveCallManager(
     @get:RequiresApi(30)
     override val serviceType: Int
       get() {
-        var type = ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
+        val telecom = Build.VERSION.SDK_INT >= 34 && AndroidTelecomUtil.hasActiveController()
 
-        if (Permissions.hasAll(this, Manifest.permission.RECORD_AUDIO)) {
-          type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+        return if (telecom) {
+          ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL
+        } else {
+          var type = ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
+
+          if (Permissions.hasAll(this, Manifest.permission.RECORD_AUDIO)) {
+            type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+          }
+
+          if (Permissions.hasAll(this, Manifest.permission.CAMERA)) {
+            type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA
+          }
+
+          type
         }
-
-        if (Permissions.hasAll(this, Manifest.permission.CAMERA)) {
-          type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA
-        }
-
-        return type
       }
 
     @Suppress("DEPRECATION")

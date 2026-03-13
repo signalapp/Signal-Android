@@ -654,6 +654,7 @@ dependencies {
   implementation(libs.androidx.concurrent.futures)
   implementation(libs.androidx.autofill)
   implementation(libs.androidx.biometric)
+  implementation(libs.androidx.core.telecom)
   implementation(libs.androidx.sharetarget)
   implementation(libs.androidx.profileinstaller)
   implementation(libs.androidx.asynclayoutinflater)
