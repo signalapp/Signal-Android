@@ -1613,8 +1613,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         FROM $TABLE_NAME 
           JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}
         WHERE
-          $STORY_TYPE > 0 AND 
-          $DELETED_BY IS NULL
+          $STORY_TYPE > 0 AND
+          $DELETED_BY IS NULL AND
+          $STORY_ARCHIVED = 0
           ${if (isOutgoingOnly) " AND is_outgoing != 0" else ""}
         ORDER BY
           is_unread DESC,
