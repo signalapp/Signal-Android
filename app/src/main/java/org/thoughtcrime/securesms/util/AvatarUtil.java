@@ -138,6 +138,10 @@ public final class AvatarUtil {
   public static @NonNull Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient, int size) {
     ThreadUtil.assertNotMainThread();
 
+    if (recipient.isSelf()) {
+      return DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size);
+    }
+
     try {
       AvatarTarget   avatarTarget   = new AvatarTarget(size);
       RequestManager requestManager = Glide.with(context);
@@ -190,7 +194,12 @@ public final class AvatarUtil {
   }
 
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    FallbackAvatar fallbackAvatar = FallbackAvatar.forTextOrDefault(recipient.getDisplayName(context), recipient.getAvatarColor());
+    FallbackAvatar fallbackAvatar;
+    if (recipient.isSelf()) {
+      fallbackAvatar = recipient.getFallbackAvatar();
+    } else {
+      fallbackAvatar = FallbackAvatar.forTextOrDefault(recipient.getDisplayName(context), recipient.getAvatarColor());
+    }
 
     Drawable avatar = new FallbackAvatarDrawable(context, fallbackAvatar).circleCrop();
     avatar.setBounds(0, 0, targetSize, targetSize);
