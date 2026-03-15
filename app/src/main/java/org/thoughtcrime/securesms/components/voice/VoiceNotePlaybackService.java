@@ -133,6 +133,11 @@ public class VoiceNotePlaybackService extends MediaSessionService {
   @Nullable
   @Override
   public MediaSession onGetSession(@NonNull MediaSession.ControllerInfo controllerInfo) {
+    if (VoiceNoteControllerAccess.levelFor(this, controllerInfo) == VoiceNoteControllerAccessLevel.REJECTED) {
+      Log.w(TAG, "Denying media session access to untrusted controller: " + controllerInfo.getPackageName());
+      return null;
+    }
+
     return mediaSession;
   }
 
