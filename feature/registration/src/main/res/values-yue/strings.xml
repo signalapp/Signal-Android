@@ -93,5 +93,5 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">部舊手機唔喺我手上</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">或者如果你喺同一部機度重新安裝緊 Signal</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">或者如果你係喺同一部機度重新安裝緊 Signal</string>
 </resources>

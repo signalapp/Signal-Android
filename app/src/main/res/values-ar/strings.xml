@@ -6528,7 +6528,7 @@
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
-    <string name="ConversationSettingsFragment__cant_add_to_group_story">تعذَّرت الإضافة إلى قِصة المجموعة</string>
+    <string name="ConversationSettingsFragment__cant_add_to_group_story">تعذَّرت الإضافة إلى القِصة المُخصَّصة للمجموعات</string>
     <!-- Dialog message displayed when non-admin tries to add a story to an audience group -->
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">فقط المُشرِفون على هذه المجموعة هم من يمكنُهم الإضافة إلى قصتها</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
@@ -6769,7 +6769,7 @@
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_the_group_story">إضافة إلى قِصة المجموعة \"%1$s\"</string>
+    <string name="MediaReviewFragment__add_to_the_group_story">إضافة إلى القِصة المُخصَّصة للمجموعات \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">إضافة إلى القصة</string>
     <string name="MediaReviewFragment__add_a_message">إضافة رسالة</string>
@@ -7719,7 +7719,7 @@
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">ظاهرة فقط لأشخاص مُعيَّنين</string>
     <!-- Choose story type bottom sheet group story title -->
-    <string name="ChooseStoryTypeBottomSheet__group_story">قِصة المجموعة</string>
+    <string name="ChooseStoryTypeBottomSheet__group_story">قِصة مُخصَّصة للمجموعات</string>
     <!-- Choose story type bottom sheet group story summary -->
     <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">المشاركة مع مجموعة موجودة</string>
     <!-- Choose groups bottom sheet title -->
@@ -7882,7 +7882,7 @@
     <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">حذف القصة</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">هل ترغبُ بإزالة قِصة المجموعة؟</string>
+    <string name="ContactSearchMediator__remove_group_story">هل ترغبُ بإزالة القِصة المُخصَّصة للمجموعات؟</string>
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">سَيتسبب هذا في إزالة القصة من هذه اللائحة. يُمكنك مواصلة مشاهدة القِصص من هذه المجموعة.</string>
     <!-- Dialog action item for removing a group story -->

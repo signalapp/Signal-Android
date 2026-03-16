@@ -2021,11 +2021,11 @@
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">गट सदस्यता जो संपादित करू शकतो तो \"%1$s\" वर बदलला गेला आहे.</string>
 
     <!-- Shown when the current user changes the member label permission. -->
-    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">तुम्ही सदस्य लेबल्स कोण समाविष्ट करू शकते ते बदलून \"%1$s\" केले.</string>
     <!-- Shown when another group member changes the member label permission. -->
-    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s यांनी सदस्य लेबल्स कोण समाविष्ट करू शकते ते बदलून \"%2$s\" केले.</string>
     <!-- Shown when the member label permission is changed by an unknown admin. -->
-    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">एका अ‍ॅडमिन ने सदस्य लेबल्स कोण समाविष्ट करू शकते ते बदलून \"%1$s\" केले.</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">सर्व सदस्यांना संदेश पाठवण्याची अनुमती देण्यासाठी आपण गट सेटिंग बदलल्या.</string>
@@ -3391,15 +3391,15 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">परवानग्यांविना बाह्य संचयनात जतन करण्यात अक्षम</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>
+    <string name="AttachmentSaver__cant_save_media">मीडिया जतन करता येणार नाही</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">This media has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can download items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__media_offloaded_message">हा मीडिया तुमच्या डिव्हाईसवरून ऑफलोड केला आहे कारण \"डिव्हाईसवरील साठवण ऑप्टिमाईझ करा\" सुरु केलेले आहे. तुम्ही एक-एक करून आयटम डाऊनलोड करू शकता, किंवा तुमच्या डिव्हाईसवर सगळा मीडिया डाऊनलोड करण्यासाठी \"डिव्हाईसवरील साठवण ऑप्टिमाईझ करा\" बंद करू शकता.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_all_items">Can\'t save all items</string>
+    <string name="AttachmentSaver__cant_save_all_items">सर्व आयटम जतन करता येणार नाहीत</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can save items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">तुम्ही निवडलेला थोडा मीडिया तुमच्या डिव्हाईसवरून ऑफलोड केला आहे कारण \"डिव्हाईसवरील साठवण ऑप्टिमाईझ करा\" सुरु केलेले आहे. तुम्ही एक-एक करून आयटम जतन करू शकता, किंवा तुमच्या डिव्हाईसवर सगळा मीडिया डाऊनलोड करण्यासाठी \"डिव्हाईसवरील साठवण ऑप्टिमाईझ करा\" बंद करू शकता.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
-    <string name="AttachmentSaver__view_storage_settings">View storage settings</string>
+    <string name="AttachmentSaver__view_storage_settings">साठवणीच्या सेटिंग्ज बघा</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">शोध</string>
@@ -6026,13 +6026,13 @@
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">या गटाची माहिती कोण संपादित करू शकतो?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">संदेश कोण पाठवू शकतात आणि कॉल सुरू करू शकतात?</string>
     <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
+    <string name="PermissionsSettingsFragment__add_member_labels">सदस्य लेबल्स समाविष्ट करा</string>
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">सदस्य लेबल्स कोण समाविष्ट करू शकते?</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">सदस्य लेबल्स नाहीशी होतील</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"ही अनुमती बदलून केवळ अ‍ॅडमिन्स केल्याने या गटात अ‍ॅडमिन्स नसणाऱ्यांनी सेट केलेली सदस्य लेबल्स नाहीशी होतील."</string>
     <!-- Confirm button for changing member label permission after warning. -->
     <string name="PermissionsSettingsFragment__change_permission">अनुमती बदला</string>
 
@@ -6826,15 +6826,15 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive">Story archive</string>
+    <string name="StoryArchive__story_archive">कथा अर्काइव्ह</string>
     <!-- Section header in story settings -->
     <string name="StoryArchive__archive">आर्काइव्ह</string>
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <string name="StoryArchive__keep_stories_in_archive">स्टोरीज अर्काइव्हमध्ये ठेवा</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <string name="StoryArchive__save_stories_after_they_expire">तुम्ही पाठवलेल्या स्टोरीज सक्रिय फीडमधून नाहीशा झाल्यावर त्या जतन करा.</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <string name="StoryArchive__keep_stories_for">स्टोरीज एवढा काळ ठेवा</string>
     <!-- Archive duration option: forever -->
     <string name="StoryArchive__forever">नेहमीसाठी</string>
     <!-- Archive duration option: 1 year -->
@@ -6844,9 +6844,9 @@
     <!-- Archive duration option: 30 days -->
     <string name="StoryArchive__30_days">30 दिवस</string>
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <string name="StoryArchive__no_archived_stories">एकही अर्काइव्ह केलेली स्टोरीज नाही</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <string name="StoryArchive__no_archived_stories_message">तुमच्या स्टोरीज आपोआप आर्काइव्ह करण्यासाठी कथा सेटिंग्जमध्ये \"स्टोरीज आर्काइव्हमध्ये जतन करा\" चालू करा.</string>
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">सेटिंग्ज वर जा</string>
     <!-- Label for sort order menu -->
@@ -6858,11 +6858,11 @@
     <!-- Delete action in story archive multi-select bottom bar -->
     <string name="StoryArchive__delete">हटवा</string>
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story">Select story</string>
+    <string name="StoryArchive__select_story">कथा निवडा</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
-        <item quantity="one">Delete %1$d story? This cannot be undone.</item>
-        <item quantity="other">Delete %1$d stories? This cannot be undone.</item>
+        <item quantity="one">%1$d कथा हटवून टाकायची का? ही एकदा काढली की परत मिळणार नाही.</item>
+        <item quantity="other">%1$d स्टोरीज् हटवून टाकायच्या का? या एकदा काढल्या की परत मिळणार नाहीत.</item>
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
@@ -8013,7 +8013,7 @@
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">तुमच्या सर्व मीडियाचा बॅकअप घ्या</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">सशुल्क Signal सिक्युअर बॅकअप्स प्लॅन्स तुमचा 100 GB पर्यंतचा सर्व मीडिया संरक्षित करून ठेवतात.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">श्रेणीसुधारणा करा</string>
     <!-- Secondary button of Megaphone C -->
@@ -8033,7 +8033,7 @@
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">सर्व मीडिया बॅकअप करण्यासाठी अपग्रेड करा</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">सशुल्क signal सिक्युअर बॅकअप्स प्लॅन्स तुम्ही पाठवलेला आणि मिळवलेला सर्व मीडिया संरक्षित करतात, 100GB पर्यंत. तुम्ही नवा फोन घेतल्यावर किंवा Signal पुन्हा इन्स्टॉल केल्यावर एकही फोटो किंवा व्हिडिओ गमावू नका.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/महिना</string>
     <!-- Subtitle for the paid plan feature card -->
@@ -8295,7 +8295,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__recovery_key_updated">Recovery key updated</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">रीकव्हरी की अद्ययावत केली</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">निवडलेली डायरेक्टरी : %1$s</string>
 
@@ -8830,9 +8830,9 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">ही की तुमच्या डिव्हाईस वरील बॅकअपसाठीच्या कीची जागा घेईल.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your recovery key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">तुमची रीकव्हरी की हा एक 64-अंकी कोड असून तो तुम्ही जेव्हा Signal पुन्हा-इन्स्टॉल करता तेव्हा तुम्हाला तुमचे बॅकअप्स रीस्टोर करू देतो.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">ही तुमच्या डिव्हाईसवरील रीकव्हरी की असते.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">ही की यासाठी वापरा:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -8850,7 +8850,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">ही की आपले अकाऊंट आणि डेटा पुर्नप्राप्त करण्यासाठी आवश्यक आहे. ही की कोठेतरी सुरक्षित ठेवा. आपण जी ती गहाळ केल्यास, आपण आपले अकाऊंट पुर्नप्राप्त करू शकणार नाही.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">This key is the same as your on-device recovery key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">ही की आणि तुमच्या डिव्हाईसवरील रीकव्हरी की एकच असते. तुमचे खाते आणि डेटा पूर्ववत करण्यासाठी हे आवश्यक आहे.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">क्लिपबोर्ड वर कॉपी करा</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->

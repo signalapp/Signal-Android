@@ -89,7 +89,7 @@
     <!-- Row title for restore/transfer using a previous registered phone/device -->
     <string name="WelcomeFragment_restore_action_i_have_my_old_phone">મારી પાસે મારો જૂનો ફોન છે</string>
     <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">ઝડપથી શરૂ કરવા માટે તમારા વર્તમાન Signal અકાઉન્ટમાંથી QR કોડ સ્કેન કરો</string>
+    <string name="WelcomeFragment_restore_action_scan_qr">ઝડપથી શરૂ કરવા માટે તમારા વર્તમાન Signal એકાઉન્ટમાંથી QR કોડ સ્કેન કરો</string>
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">મારી પાસે મારો જૂનો ફોન નથી</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->

@@ -29,7 +29,7 @@
     <!-- Phone calls permission row description -->
     <string name="GrantPermissionsFragment__make_registering_easier">ធ្វើឲ្យការចុះឈ្មោះកាន់តែងាយស្រួល និងបើកមុខងារហៅទូរសព្ទបន្ថែម។</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">ការផ្ទុក</string>
+    <string name="GrantPermissionsFragment__storage">ទំហំផ្ទុក</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">ផ្ញើរូបថត វីដេអូ និងឯកសារពីឧបករណ៍របស់អ្នក។</string>
 

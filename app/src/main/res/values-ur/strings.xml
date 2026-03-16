@@ -2021,11 +2021,11 @@
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">گروپ ممبرشپ کون ترمیم کرسکتا ہے اسے تبدیل کر کے \"%1$s\" کردیا گیا ہے۔</string>
 
     <!-- Shown when the current user changes the member label permission. -->
-    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">آپ نے یہ تبدیل کر دیا ہے کہ \"%1$s\" میں ممبر لیبلز کون شامل کر سکتا ہے۔</string>
     <!-- Shown when another group member changes the member label permission. -->
-    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s نے یہ تبدیل کر دیا ہے کہ \"%2$s\" میں ممبر لیبلز کون شامل کر سکتا ہے۔</string>
     <!-- Shown when the member label permission is changed by an unknown admin. -->
-    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">ایک ایڈمن نے یہ تبدیل کر دیا ہے کہ \"%1$s\" میں ممبر لیبلز کون شامل کر سکتا ہے۔</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">آپ نے تمام ممبروں کو پیغامات بھیجنے کی اجازت دینے کے لئے گروپ کی ترتیبات کو تبدیل کردیا۔</string>
@@ -3391,15 +3391,15 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">اجازت کے بغیر بیرونی ذخیرہ کو محفوظ کرنے کے قابل نہیں</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>
+    <string name="AttachmentSaver__cant_save_media">میڈیا محفوظ نہیں کیا جا سکتا</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">This media has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can download items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__media_offloaded_message">یہ میڈیا آپ کی ڈیوائس سے آف لوڈ کر دیا گیا ہے کیونکہ \"آن ڈیوائس اسٹوریج کو بہتر بنائیں\" آن ہے۔ آپ آئٹمز کو ایک ایک کر کے ڈاؤن لوڈ کر سکتے ہیں، یا \"آن ڈیوائس اسٹوریج کو بہتر بنائیں\" کو آف کر کے تمام میڈیا کو اپنی ڈیوائس پر ڈاؤن لوڈ کر سکتے ہیں۔</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_all_items">Can\'t save all items</string>
+    <string name="AttachmentSaver__cant_save_all_items">تمام آئٹمز محفوظ نہیں کیے جا سکتے</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can save items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">آپ کا منتخب کردہ کچھ میڈیا آپ کی ڈیوائس سے آف لوڈ کر دیا گیا ہے کیونکہ \"آن ڈیوائس اسٹوریج کو بہتر بنائیں\" آن ہے۔ آپ آئٹمز کو ایک ایک کر کے محفوظ کر سکتے ہیں، یا \"آن ڈیوائس اسٹوریج کو بہتر بنائیں\" کو آف کر کے تمام میڈیا کو اپنی ڈیوائس پر ڈاؤن لوڈ کر سکتے ہیں۔</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
-    <string name="AttachmentSaver__view_storage_settings">View storage settings</string>
+    <string name="AttachmentSaver__view_storage_settings">اسٹوریج سیٹنگز دیکھیں</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">تلا ‎ش کر یں</string>
@@ -6026,13 +6026,13 @@
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">کون اس گروپ کی معلومات میں ترمیم کرسکتا ہے؟</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">کون میسجز بھیج سکتا اور کالز کا آغاز کر سکتا ہے؟</string>
     <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
+    <string name="PermissionsSettingsFragment__add_member_labels">ممبر لیبلز شامل کریں</string>
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">ممبر لیبلز کون شامل کر سکتا ہے؟</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">ممبر لیبلز کو صاف کر دیا جائے گا</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"اس اجازت کو صرف ایڈمنز پر تبدیل کرنے سے اس گروپ میں غیر ایڈمن افراد کی جانب سے مقررہ کردہ ممبر لیبلز صاف ہو جائیں گے۔"</string>
     <!-- Confirm button for changing member label permission after warning. -->
     <string name="PermissionsSettingsFragment__change_permission">اجازت تبدیل کریں</string>
 
@@ -6826,15 +6826,15 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive">Story archive</string>
+    <string name="StoryArchive__story_archive">سٹوری آرکائیو</string>
     <!-- Section header in story settings -->
     <string name="StoryArchive__archive">آرکائیو کریں</string>
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <string name="StoryArchive__keep_stories_in_archive">سٹوریز کو آرکائیو میں محفوظ رکھیں</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <string name="StoryArchive__save_stories_after_they_expire">اپنی بھیجی گئی سٹوریز کو فعال فیڈ سے ہٹنے کے بعد محفوظ کریں۔</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <string name="StoryArchive__keep_stories_for">سٹوریز کو رکھیں برائے</string>
     <!-- Archive duration option: forever -->
     <string name="StoryArchive__forever">ہمیشہ کے لئے</string>
     <!-- Archive duration option: 1 year -->
@@ -6844,9 +6844,9 @@
     <!-- Archive duration option: 30 days -->
     <string name="StoryArchive__30_days">30 دن</string>
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <string name="StoryArchive__no_archived_stories">کوئی آرکائیو شدہ سٹوریز نہیں ہیں</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <string name="StoryArchive__no_archived_stories_message">سٹوری کی سیٹنگز میں \"سٹوریز کو آرکائیو میں محفوظ کریں\" آن کریں تاکہ آپ کی سٹوریز خودکار طور پر آرکائیو ہو جائیں۔</string>
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">سیٹنگز پر جائیں</string>
     <!-- Label for sort order menu -->
@@ -6858,11 +6858,11 @@
     <!-- Delete action in story archive multi-select bottom bar -->
     <string name="StoryArchive__delete">حذف کریں</string>
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story">Select story</string>
+    <string name="StoryArchive__select_story">سٹوری منتخب کریں</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
-        <item quantity="one">Delete %1$d story? This cannot be undone.</item>
-        <item quantity="other">Delete %1$d stories? This cannot be undone.</item>
+        <item quantity="one">%1$d سٹوری حذف کرنی ہے؟ اسے کالعدم نہیں کیا جا سکتا۔</item>
+        <item quantity="other">%1$d سٹوریز حذف کرنی ہیں؟ اسے کالعدم نہیں کیا جا سکتا۔</item>
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
@@ -8013,7 +8013,7 @@
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">اپنے تمام میڈیا کا بیک اپ لیں</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">ادائیگی شدہ Signal محفوظ بیک اپس پلانز آپ کے 100GB تک کے تمام میڈیا کو محفوظ رکھتے ہیں۔</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">اپ گریڈ</string>
     <!-- Secondary button of Megaphone C -->
@@ -8033,7 +8033,7 @@
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">تمام میڈیا کا بیک اپ لینے کے لیے اپ گریڈ کریں</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Signal محفوظ بیک اپس کے ادائیگی شدہ پلانز، زیادہ سے زیادہ 100GB تک آپ کے بھیجے گئے اور موصول کیے گئے تمام میڈیا کو محفوظ کرتے ہیں۔ نیا فون لینے یا Signal دوبارہ انسٹال کرنے پر کبھی بھی کسی تصویر یا ویڈیو سے محروم نہ ہوں۔</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/ماہ</string>
     <!-- Subtitle for the paid plan feature card -->
@@ -8295,7 +8295,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__recovery_key_updated">Recovery key updated</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">بحالی کی کیی کو اپ ڈیٹ کر دیا گیا ہے</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">ڈائریکٹری منتخب کی گئی: %1$s</string>
 
@@ -8830,9 +8830,9 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">یہ کیی آپ کے آن ڈیوائس بیک اپ کی کیی کو بدل دے گی۔</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your recovery key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">آپ کی بحالی کی کیی 64 حروف پر مشتمل ایک کوڈ ہے جو آپ کو Signal کو دوبارہ انسٹال کرنے پر اپنے بیک اپس کو ری اسٹور کرنے میں مدد دیتا ہے۔</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">یہ آپ کی آن ڈیوائس بحالی کی کیی والی ہے۔</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">اس کیی کو استعمال کریں تاکہ:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -8850,7 +8850,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">یہ کیی آپ کے اکاؤنٹ اور ڈیٹا کو بحال کرنے کے لیے درکار ہوتی ہے۔ اس کیی کو کسی محفوظ جگہ پر اسٹور کریں۔ اگر آپ اسے کھو دیتے ہیں، تو آپ اپنا اکاؤنٹ بحال نہیں کر سکیں گے۔</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">This key is the same as your on-device recovery key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">یہ کیی آپ کی آن ڈیوائس بحالی کی کیی والی ہے۔ آپ کا اکاؤنٹ اور ڈیٹا بحال کرنے کے لیے یہ ضروری ہے۔</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->

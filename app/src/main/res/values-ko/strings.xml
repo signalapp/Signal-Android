@@ -876,7 +876,7 @@
     <!-- Toolbar title for this screen -->
     <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">전화번호로 나를 찾을 수 있는 사람은 누구인가요?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">내 전화번호가 있는 사람은 Signal에서 나를 보고 나와 대화를 시작할 수 있습니다.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">내 전화번호가 있는 사람은 내가 Signal을 사용 중임을 알 수 있으며, 나와 대화를 시작할 수 있습니다.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">내가 메시지를 보내는 사용자 또는 기존 대화 기록이 있는 사용자를 제외하고는 아무도 Signal에서 나를 볼 수 없습니다.</string>
 
@@ -2723,7 +2723,7 @@
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">입력한 번호(%1$s)가 표준 형식이 아닙니다.\n\n혹시 입력하려던 번호가 %2$s인가요?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - 전화번호 형식</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
-    <string name="RegistrationActivity_call_requested">통화 요청함</string>
+    <string name="RegistrationActivity_call_requested">통화가 요청되었습니다</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
     <string name="RegistrationActivity_sms_requested">SMS가 필요합니다.</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
@@ -3226,7 +3226,7 @@
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">메시지</string>
-    <string name="NotificationChannel_calls">전화</string>
+    <string name="NotificationChannel_calls">통화</string>
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">실패</string>
     <string name="NotificationChannel_backups">백업</string>
@@ -3610,13 +3610,13 @@
     <string name="EnableCallNotificationSettingsDialog__enable_background_activity">백그라운드 활동 사용</string>
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">설정이 제대로 완료되었어요!</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">통화 알림을 받으려면 여기를 탭하고 \'알림 표시\'를 켜세요.</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">전화 알림을 받으려면 여기를 탭하고 알림을 켜고 소리 및 팝업이 활성화되어 있는지 확인하세요.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">전화 알림을 받으려면 여기를 눌러 알림 설정을 켜고, 소리와 팝업이 활성화되어 있는지 확인하세요.</string>
     <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">전화 알림을 받으려면 여기를 탭하고 \'배터리\' 설정에서 백그라운드 활동을 활성화하세요. </string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">전화 알림을 받으려면 여기를 눌러 \'배터리\' 설정에서 백그라운드 활동을 활성화하세요. </string>
     <string name="EnableCallNotificationSettingsDialog__settings">설정</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">전화 알림을 받으려면 설정을 탭하고 \'알림 표시\'를 켭니다.</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">전화 알림을 받으려면 설정을 탭하고 알림을 켜고 소리와 팝업이 활성화되어 있는지 확인하세요.</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">전화 알림을 받으려면 설정을 탭하고 \'배터리\' 설정에서 백그라운드 활동을 활성화하세요.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">전화 알림을 받으려면 \'설정\'에서 \'알림 표시\'를 켜주세요.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">전화 알림을 받으려면 설정을 눌러 알림을 켜고, 소리와 팝업이 활성화되어 있는지 확인하세요.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">전화 알림을 받으려면 여기를 눌러 \'배터리\' 설정에서 백그라운드 활동을 활성화하세요.</string>
 
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>
@@ -4142,8 +4142,8 @@
 
     <string name="preferences_storage__custom">맞춤</string>
     <string name="preferences_advanced__use_system_emoji">시스템 이모지 사용</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">연락처에게 IP 주소가 표시되지 않도록 모든 전화를 Signal 서버로 릴레이합니다. 전화 품질이 떨어질 수 있습니다.</string>
-    <string name="preferences_advanced__always_relay_calls">향상 전화 릴레이</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">상대방에게 IP 주소가 노출되지 않도록 모든 통화를 Signal 서버로 경유합니다. 통화 품질이 다소 저하될 수 있습니다.</string>
+    <string name="preferences_advanced__always_relay_calls">통화 시 항상 서버 경유</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">결제</string>
     <string name="preferences_chats__chats">대화</string>
@@ -4177,7 +4177,7 @@
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">검열 우회는 인터넷에 연결되었을 때만 활성화할 수 있습니다.</string>
     <string name="preferences_communication__category_sealed_sender">발신자 암호화</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">모두에게 허용</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">연락처에 없는 사람과 프로필을 공유하지 않은 사람이 나에게 보내는 메시지에도 발신자 암호화를 허용합니다.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">연락처에 없거나 프로필을 공유하지 않은 상대가 보내는 메시지에 발신자 암호화 기능을 적용합니다.</string>
     <string name="preferences_proxy">프록시</string>
     <string name="preferences_use_proxy">프록시 사용하기</string>
     <string name="preferences_off">꺼짐</string>
@@ -4808,7 +4808,7 @@
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">전화번호로 나를 찾을 수 있는 사람</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">내 전화번호가 있는 사람은 Signal에서 나를 보고 나와 대화를 시작할 수 있습니다.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">내 전화번호가 있는 사람은 내가 Signal을 사용 중임을 알 수 있으며, 나와 대화를 시작할 수 있습니다.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">내가 메시지를 보내는 사용자 또는 기존 대화 기록이 있는 사용자를 제외하고는 아무도 Signal에서 나를 볼 수 없습니다.</string>
     <!-- Snackbar text when pressing invalid radio item -->
@@ -5696,7 +5696,7 @@
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">상태 아이콘 표시하기</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">봉인된 발신자를 사용하여 전달되었을 때 메시지 세부 정보에 아이콘을 표시합니다.</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">발신자 암호화 기능이 적용된 메시지 상세 정보에 아이콘을 표시합니다.</string>
 
     <!-- ExpireTimerSettingsFragment -->
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">이 기능을 사용하면 내가 새로 시작하는 대화에서 보내거나 받는 새 메시지가 확인된 후 자동 삭제됩니다.</string>
@@ -7724,7 +7724,7 @@
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">링크를 삭제할까요?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">이 링크는 더 이상 아무도 사용할 수 없습니다.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">이 링크는 더 이상 사용할 수 없게 됩니다.</string>
 
     <!-- Button label for the link button in the username link settings -->
     <string name="UsernameLinkSettings_link_button_label">링크</string>

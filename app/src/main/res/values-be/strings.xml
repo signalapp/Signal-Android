@@ -2141,11 +2141,11 @@
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Рэдактар інфармацыі аб членстве ў групе зменены на «%1$s».</string>
 
     <!-- Shown when the current user changes the member label permission. -->
-    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">Вы змянілі асобу, якая можа дадаваць меткі ўдзельнікаў, на «%1$s».</string>
     <!-- Shown when another group member changes the member label permission. -->
-    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s змяніў(-ла) асобу, якая можа дадаваць меткі ўдзельнікаў, на «%2$s».</string>
     <!-- Shown when the member label permission is changed by an unknown admin. -->
-    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">Адмiнiстратар змяніў асобу, якая можа дадаваць меткі ўдзельнікаў, на «%1$s».</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">Вы змянілі налады групы, каб дазволіць усім удзельнікам адпраўляць паведамленні.</string>
@@ -3597,15 +3597,15 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Не атрымалася захаваць на знешнім сховішчы без дазволаў</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>
+    <string name="AttachmentSaver__cant_save_media">Немагчыма захаваць медыяфайлы</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">This media has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can download items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__media_offloaded_message">Гэты медыяфайл быў выгружаны з вашай прылады, бо ўключана опцыя «Аптымізаваць сховішча на прыладзе». Вы можаце запампаваць элементы па чарзе або адключыць опцыю «Аптымізаваць сховішча на прыладзе», каб загрузіць усе медыяфайлы на прыладу.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_all_items">Can\'t save all items</string>
+    <string name="AttachmentSaver__cant_save_all_items">Немагчыма захаваць усе элементы</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can save items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">Некаторыя выбраныя вамі медыяфайлы былі выгружаны з вашай прылады, бо ўключана опцыя «Аптымізаваць сховішча на прыладзе». Вы можаце захаваць элементы па чарзе або адключыць опцыю «Аптымізаваць сховішча на прыладзе», каб загрузіць усе медыяфайлы на прыладу.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
-    <string name="AttachmentSaver__view_storage_settings">View storage settings</string>
+    <string name="AttachmentSaver__view_storage_settings">Прагледзець налады сховішча</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Пошук</string>
@@ -6308,13 +6308,13 @@
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Хто можа рэдагаваць інфармацыю аб гэтай групе?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">Хто можа адпраўляць паведамленні і рабіць званкі?</string>
     <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
+    <string name="PermissionsSettingsFragment__add_member_labels">Дадаць меткі ўдзельнікаў</string>
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Хто можа дадаваць меткі ўдзельнікаў?</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Меткі ўдзельнікаў будуць прыбраны</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Меткі ўдзельнікаў будуць ачышчаны</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Калі вы зменіце гэты дазвол на «Толькі адміністратары», меткі ўдзельнікаў, што былі ўсталяваны не адміністратарамі ў гэтай групе, будуць ачышчаны."</string>
     <!-- Confirm button for changing member label permission after warning. -->
     <string name="PermissionsSettingsFragment__change_permission">Змяніць дазвол</string>
 
@@ -7124,15 +7124,15 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive">Story archive</string>
+    <string name="StoryArchive__story_archive">Архіў гісторый</string>
     <!-- Section header in story settings -->
     <string name="StoryArchive__archive">Архіваваць</string>
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <string name="StoryArchive__keep_stories_in_archive">Захоўваць гісторыі ў архіве</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <string name="StoryArchive__save_stories_after_they_expire">Захоўваць дасланыя гісторыі пасля таго, як яны пакідаюць актыўную стужку.</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <string name="StoryArchive__keep_stories_for">Захоўваць гісторыі на працягу</string>
     <!-- Archive duration option: forever -->
     <string name="StoryArchive__forever">Назаўсёды</string>
     <!-- Archive duration option: 1 year -->
@@ -7142,9 +7142,9 @@
     <!-- Archive duration option: 30 days -->
     <string name="StoryArchive__30_days">30 дзён</string>
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <string name="StoryArchive__no_archived_stories">Няма архіваваных гісторый</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <string name="StoryArchive__no_archived_stories_message">Уключыце опцыю «Захоўваць гісторыі ў архіў» у наладах гісторый, каб аўтаматычна архіваваць іх.</string>
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">Перайсці ў налады</string>
     <!-- Label for sort order menu -->
@@ -7156,13 +7156,13 @@
     <!-- Delete action in story archive multi-select bottom bar -->
     <string name="StoryArchive__delete">Выдаліць</string>
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story">Select story</string>
+    <string name="StoryArchive__select_story">Выбраць гiсторыю</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
-        <item quantity="one">Delete %1$d story? This cannot be undone.</item>
-        <item quantity="few">Delete %1$d stories? This cannot be undone.</item>
-        <item quantity="many">Delete %1$d stories? This cannot be undone.</item>
-        <item quantity="other">Delete %1$d stories? This cannot be undone.</item>
+        <item quantity="one">Выдалiць %1$d гісторыю? Гэта нельга адмяніць.</item>
+        <item quantity="few">Выдалiць %1$d гісторыі? Гэта нельга адмяніць.</item>
+        <item quantity="many">Выдалiць %1$d гісторый? Гэта нельга адмяніць.</item>
+        <item quantity="other">Выдалiць %1$d гісторый? Гэта нельга адмяніць.</item>
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
@@ -8365,7 +8365,7 @@
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">Зрабіце рэзервовую копію ўсіх медыяфайлаў</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">Платныя планы бяспечнага рэзервовага капіравання Signal захоўваюць усе вашы медыяфайлы памерам да 100 ГБ.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">Абнавіць</string>
     <!-- Secondary button of Megaphone C -->
@@ -8385,7 +8385,7 @@
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">Абнавіце, каб зрабіць рэзервовае капіраванне ўсіх медыяфайлаў</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Платныя планы бяспечнага рэзервовага капіравання Signal захоўваюць усе медыяфайлы, якія вы адпраўляеце і атрымліваеце, максімум да 100 ГБ. Не губляйце аніводных фота ці відэа, калі вы набываеце новы тэлефон або нанова ўсталёўваеце Signal.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/месяц</string>
     <!-- Subtitle for the paid plan feature card -->
@@ -8653,7 +8653,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__recovery_key_updated">Recovery key updated</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">Код для аднаўлення абноўлены</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">Выбраны каталог: %1$s</string>
 
@@ -8809,7 +8809,7 @@
     <!-- Setting section title header for storage optimization -->
     <string name="ManageStorageSettingsFragment__on_device_storage">Сховішча на прыладзе</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Зрабіце аптымізацыю сховішча на прыладзе</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Аптымізаваць сховішча на прыладзе</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Нявыкарыстаныя медыяфайлы будуць выгружаны, але іх можна ў любы час спампаваць з рэзервовай копіі.</string>
     <!-- Dialog message for paid tier pending dialog -->
@@ -9202,9 +9202,9 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Гэты код заменіць ключ для рэзервовага капіравання на прыладзе.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your recovery key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Ваш код для аднаўлення – гэта 64-значны код, які дазваляе аднавіць рэзервовыя копіі, калі вы нанова ўсталёўваеце Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Гэта тое ж самае, што і ваш код для аднаўлення на прыладзе.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Выкарыстоўвайце гэты ключ, каб:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9222,7 +9222,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Гэты ключ патрэбны, каб аднавіць ваш уліковы запіс і вашы даныя. Захоўвайце гэты ключ у бяспечным месцы. Калі вы забудзеце яго, вы больш не зможаце аднавіць свой уліковы запіс.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">This key is the same as your on-device recovery key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">Гэты код той жа самы, што і ваш код для аднаўлення на прыладзе. Гэта неабходна, каб аднавіць ваш уліковы запіс і вашы даныя.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Скапіраваць у буфер абмену</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9934,7 +9934,7 @@
     <!-- Error message shown when the group member label fails to save due to a network error. -->
     <string name="GroupMemberLabel__error_cant_save_no_network">Не атрымалася захаваць метку. Праверце падключэнне і паўтарыце спробу.</string>
     <!-- Error message shown when trying to edit a member label without adequate permission. -->
-    <string name="GroupMemberLabel__error_no_edit_permission">Only admins can add member labels in this group.</string>
+    <string name="GroupMemberLabel__error_no_edit_permission">Толькі адміністратары могуць дадаваць меткі ўдзельнікаў у гэтай групе.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Выбраць эмодзі</string>
     <!-- Accessibility label for the group member label close screen button. -->

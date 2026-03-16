@@ -1961,11 +1961,11 @@
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">گۇرۇپپا ئەزالىقىنى كىم تەھرىرلەش «%1$s» غا ئۆزگەرتىلدى.</string>
 
     <!-- Shown when the current user changes the member label permission. -->
-    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">سىز، ئەزا بەلگىلىرىنى كىمنىڭ قوشسا بولىدىغانلىقىنى «%1$s» قىلىپ ئۆزگەرتتىڭىز.</string>
     <!-- Shown when another group member changes the member label permission. -->
-    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s ئەزا بەلگىلىرىنى كىمنىڭ قوشسا بولىدىغانلىقىنى «%2$s» قىلىپ ئۆزگەرتتى.</string>
     <!-- Shown when the member label permission is changed by an unknown admin. -->
-    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">بىر باشقۇرغۇچى ئەزا بەلگىلىرىنى كىمنىڭ قوشسا بولىدىغانلىقىنى «%1$s» قىلىپ ئۆزگەرتتى.</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">گۇرۇپپا تەڭشىكىنى ھەممە ئەزالار ئۇچۇر يوللىيالايدىغان قىلىپ ئۆزگەرتتىڭىز.</string>
@@ -3288,15 +3288,15 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">ئىجازەتسىز سىرتقى ساقلىغۇچقا ساقلىيالمايدۇ</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>
+    <string name="AttachmentSaver__cant_save_media">مېدىيانى ساقلىغىلى بولمىدى</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">This media has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can download items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__media_offloaded_message">بۇ مېدىيا «ئۈسكىنىدە ساقلاش بوشلۇقىنى ئەلالاشتۇرۇش» ئىقتىدارى قوزغىتىلغانلىقى سەۋەپلىك، ئۈسكىنىڭىزدىن چۈشۈرۈۋېتىلگەن. مەزمۇنلارنى بىرمۇ-بىر ساقلىيالايسىز، ۋەياكى ھەممە مېدىيانى ئۈسكۈنىڭىزگە چۈشۈرۈش ئۈچۈن «ئۈسكىنىدە ساقلاش بوشلۇقىنى ئەلالاشتۇرۇش» ئىقتىدارىنى تاقىۋېتىڭ.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_all_items">Can\'t save all items</string>
+    <string name="AttachmentSaver__cant_save_all_items">بارلىق مەزمۇنلارنى ساقلىغىلى بولمىدى</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can save items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">سىز تللىغان بەرى مېدىيالار «ئۈسكىنىدە ساقلاش بوشلۇقىنى ئەلالاشتۇرۇش» ئىقتىدارى قوزغىتىلغانلىقى سەۋەپلىك، ئۈسكىنىڭىزدىن چۈشۈرۈۋېتىلگەن. مەزمۇنلارنى بىرمۇ-بىر ساقلىيالايسىز، ۋەياكى ھەممە مېدىيانى ئۈسكۈنىڭىزگە چۈشۈرۈش ئۈچۈن «ئۈسكىنىدە ساقلاش بوشلۇقىنى ئەلالاشتۇرۇش» ئىقتىدارىنى تاقىۋېتىڭ.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
-    <string name="AttachmentSaver__view_storage_settings">View storage settings</string>
+    <string name="AttachmentSaver__view_storage_settings">ساقلاش بوشلۇقى تەڭشەكلىرىنى كۆرۈش</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">ئىزدە</string>
@@ -5885,13 +5885,13 @@
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">كىم بۇ گۇرۇپپىنىڭ ئۇچۇرلىرىنى تەھرىرلىيەلەيدۇ؟</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">كىم ئۇچۇر يوللىيالايدۇ ھەم تېلېفون قىلالايدۇ؟</string>
     <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
+    <string name="PermissionsSettingsFragment__add_member_labels">ئەزا بەلگىلىرى قوشۇش</string>
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">كىم ئەزا بەلگىلىرى قوشالايدۇ؟</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">ئەزا بەلگىلىرى ئۆچۈرۈلىدۇ</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"بۇ ئىجازەتنى «پەقەت باشقۇرغۇچىلارلا» قىلىپ ئۆزگەرتسىڭىز، بۇ گۇرۇپپىدىكى باشقۇرغۇچى ئەمەس كىشىلەر تەرىپىدىن تەڭشەلگەن ئەزا بەلگىلىرى ئۆچۈرۈلىدۇ."</string>
     <!-- Confirm button for changing member label permission after warning. -->
     <string name="PermissionsSettingsFragment__change_permission">رۇخسەتنى ئۆزگەرتىش</string>
 
@@ -6677,15 +6677,15 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive">Story archive</string>
+    <string name="StoryArchive__story_archive">ھېكايە ئارخىپى</string>
     <!-- Section header in story settings -->
     <string name="StoryArchive__archive">ئارخىپ</string>
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <string name="StoryArchive__keep_stories_in_archive">ھېكايىلەرنى ئارخىپتا ساقلاش</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <string name="StoryArchive__save_stories_after_they_expire">يوللىغان ھېكايىلىرىڭىزنى ئاكتىپ كۆرسىتىش بۆلىكىدىن چىققاندىن كېيىن ساقلاپ قويۇش.</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <string name="StoryArchive__keep_stories_for">ھېكايىلەرنى ساقلاش مۇددىتى</string>
     <!-- Archive duration option: forever -->
     <string name="StoryArchive__forever">مەڭگۈ</string>
     <!-- Archive duration option: 1 year -->
@@ -6695,9 +6695,9 @@
     <!-- Archive duration option: 30 days -->
     <string name="StoryArchive__30_days">30 كۈن</string>
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <string name="StoryArchive__no_archived_stories">ئارخىپلاشتۇرۇلغان ھېكايىلەر يوق</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <string name="StoryArchive__no_archived_stories_message">ھېكايە تەڭشىكىدىن «ھېكايىلەرنى ئارخىپقا ساقلاش»نى قوزغىتىپ، ھېكايىلىرىڭىزنى ئاپتوماتىك ئارخىپلاشتۇرۇڭ.</string>
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">تەڭشەكلەرگە يۆتكەل</string>
     <!-- Label for sort order menu -->
@@ -6709,10 +6709,10 @@
     <!-- Delete action in story archive multi-select bottom bar -->
     <string name="StoryArchive__delete">ئۆچۈرۈش</string>
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story">Select story</string>
+    <string name="StoryArchive__select_story">ھېكايىنى تاللاش</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
-        <item quantity="other">Delete %1$d stories? This cannot be undone.</item>
+        <item quantity="other">بۇ %1$d ھېكايىلەرنى ئۆچۈرەمسىز؟ ئۆچۈرۈلگەندىن كىيىن قايتا ئەسلىگە قايتۇرغىلى بولمايدۇ.</item>
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
@@ -7837,7 +7837,7 @@
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">بارلىق مېدىيالىرىڭىزنى زاپاسلاڭ</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">ھەقلىق Signal بىخەتەر زاپاسلاش پىلانلىرى، 100GB سىغىمغىچە، بارلىق مېدىيالىرىڭىزنى ساقلايدۇ.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">يېڭىلاش</string>
     <!-- Secondary button of Megaphone C -->
@@ -7857,7 +7857,7 @@
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">بارلىق مېدىيالارنى زاپاسلاش ئۈچۈن دەرىجىسىنى كۆتۈرۈڭ</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">ھەقلىق Signal بىخەتەر زاپاسلاش پىلانلىرى سىز ئەۋەتكەن ۋە قوبۇل قىلغان بارلىق مېدىيالىرىڭىزنى 100GB چوڭلىقتىكى ھەجىمگىچە ساقلايدۇ. يېڭى تېلېفون سېتىۋالغاندا ياكى Signal نى قايتا قاچىلىغاندا، ھەرگىز بىرمۇ رەسىم ياكى سىننى يوقاتمايسىز.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/ئايلىقى</string>
     <!-- Subtitle for the paid plan feature card -->
@@ -8116,7 +8116,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__recovery_key_updated">Recovery key updated</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">ئەسلىگە كەلتۈرۈش ئاچقۇچى يېڭىلاندى</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">تاللانغان مۇندەرىجە: %1$s</string>
 
@@ -8644,9 +8644,9 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">بۇ ئاچقۇچ ئۈسكۈنىڭىزدىكى زاپاسلاش ئاچقۇچىنىڭ ئورنىنى ئالىدۇ.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your recovery key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">سىزنىڭ ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىز بولسا Signal نى قايتا قاچىلىغاندا سىزنى زاپاسلاشنى ئەسلىگە كەلتۈرۈشكە يول قويىدىغان 64 خانىلىق كود.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">بۇ ئاچقۇچ، ئۈسكۈنىڭىزدىكى ئەسلىگە كەلتۈرۈش ئاچقۇچى بىلەن ئوخشاش.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">بۇ ئاچقۇچنى تۆۋەندىكى ئىشلارغا ئىشلىتىڭ:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -8664,7 +8664,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">بۇ ئاچقۇچ ھېساباتىڭىز ۋە سانلىق مەلۇماتلىرىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن تەلەپ قىلىنىدۇ. بۇ ئاچقۇچنى بىخەتەر جايدا ساقلاڭ. ئەگەر ئۇنى يوقىتىپ قويسىڭىز ، ھېساباتىڭىزنى ئەسلىگە كەلتۈرەلمەيسىز.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">This key is the same as your on-device recovery key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">بۇ ئاچقۇچ، ئۈسكۈنىڭىزدىكى ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىز بىلەن ئوخشاش. بۇ، ھېساباتىڭىز ۋە سانلىق مەلۇماتلىرىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن تەلەپ قىلىنىدۇ.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">چاپلاش تاختىسىغا كۆچۈر</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->

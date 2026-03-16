@@ -2021,11 +2021,11 @@
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ഗ്രൂപ്പ് അംഗത്വം ആർക്കൊക്കെ എഡിറ്റുചെയ്യാനാകും എന്നത് \"%1$s\" ലേക്ക് മാറ്റി.</string>
 
     <!-- Shown when the current user changes the member label permission. -->
-    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">\"%1$s\" എന്നതിലേക്ക് മെമ്പർ ലേബലുകൾ ചേർക്കാൻ കഴിയുന്നവരെ നിങ്ങൾ മാറ്റി.</string>
     <!-- Shown when another group member changes the member label permission. -->
-    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">\"%2$s\" എന്നതിലേക്ക് മെമ്പർ ലേബലുകൾ ചേർക്കാൻ കഴിയുന്നവരെ %1$s മാറ്റി.</string>
     <!-- Shown when the member label permission is changed by an unknown admin. -->
-    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">\"%1$s\" എന്നതിലേക്ക് മെമ്പർ ലേബലുകൾ ചേർക്കാൻ കഴിയുന്നവരെ ഒരു അഡ്മിൻ മാറ്റി.</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">എല്ലാ അംഗങ്ങളെയും സന്ദേശങ്ങള്‍ അയയ്ക്കാൻ അനുവദിക്കുന്നതിന് നിങ്ങൾ ഗ്രൂപ്പ് ക്രമീകരണങ്ങൾ മാറ്റി.</string>
@@ -3391,15 +3391,15 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">അനുമതിയില്ലാതെ ബാഹ്യ സ്റ്റോറേജിലേക്ക് സംരക്ഷിക്കാൻ കഴിയില്ല</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>
+    <string name="AttachmentSaver__cant_save_media">മീഡിയ സംരക്ഷിക്കാൻ കഴിയില്ല</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">This media has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can download items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__media_offloaded_message">\"ഉപകരണത്തിലെ സ്റ്റോറേജ് ഒപ്റ്റിമൈസ് ചെയ്യുക\" ഓൺ ആയതിനാൽ, ഈ മീഡിയ നിങ്ങളുടെ ഉപകരണത്തിൽ നിന്ന് ഓഫ്‍ലോഡ് ചെയ്യപ്പെട്ടു. നിങ്ങൾക്ക് ഓരോ ഇനങ്ങളും ഒന്നൊന്നായി ഡൗൺലോഡ് ചെയ്യാം, അല്ലെങ്കിൽ എല്ലാ മീഡിയകളും നിങ്ങളുടെ ഉപകരണത്തിലേക്ക് ഡൗൺലോഡ് ചെയ്യുന്നതിനായി \"ഉപകരണത്തിലെ സ്റ്റോറേജ് ഒപ്റ്റിമൈസ് ചെയ്യുക\" ഓഫ് ചെയ്യാം.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_all_items">Can\'t save all items</string>
+    <string name="AttachmentSaver__cant_save_all_items">എല്ലാ ഇനങ്ങളും സംരക്ഷിക്കാൻ കഴിയില്ല</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can save items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">\"ഉപകരണത്തിലെ സ്റ്റോറേജ് ഒപ്റ്റിമൈസ് ചെയ്യുക\" എന്നത് ഓൺ ആയതിനാൽ, നിങ്ങൾ തിരഞ്ഞെടുത്ത ചില മീഡിയകൾ നിങ്ങളുടെ ഉപകരണത്തിൽ നിന്ന് ഓഫ്‍ലോഡ് ചെയ്യപ്പെട്ടു. നിങ്ങൾക്ക് ഓരോ ഇനങ്ങളും ഒന്നൊന്നായി സംരക്ഷിക്കാം, അല്ലെങ്കിൽ എല്ലാ മീഡിയകളും നിങ്ങളുടെ ഉപകരണത്തിലേക്ക് ഡൗൺലോഡ് ചെയ്യുന്നതിനായി \"ഉപകരണത്തിലെ സ്റ്റോറേജ് ഒപ്റ്റിമൈസ് ചെയ്യുക\" ഓഫ് ചെയ്യാം.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
-    <string name="AttachmentSaver__view_storage_settings">View storage settings</string>
+    <string name="AttachmentSaver__view_storage_settings">സംഭരണ ക്രമീകരണങ്ങൾ കാണുക</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">തിരയുക</string>
@@ -6026,15 +6026,15 @@
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ഈ ഗ്രൂപ്പിന്റെ വിവരങ്ങൾ ആർക്കാണ് എഡിറ്റുചെയ്യാൻ കഴിയുക?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">ആർക്കൊക്കെ സന്ദേശങ്ങൾ അയയ്ക്കാനും കോളുകൾ ആരംഭിക്കാനും കഴിയും?</string>
     <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
+    <string name="PermissionsSettingsFragment__add_member_labels">മെമ്പര്‍ ലേബലുകൾ ചേർക്കുക</string>
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">ആർക്കാണ് മെമ്പര്‍ ലേബലുകൾ ചേർക്കാൻ കഴിയുക?</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">മെമ്പര്‍ ലേബലുകൾ മായ്ക്കപ്പെടും</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"ഈ അനുമതി \"അഡ്മിൻമാർക്ക് മാത്രം\" എന്നാക്കി മാറ്റുന്നത് ഈ ഗ്രൂപ്പിലെ അഡ്മിൻമാരല്ലാത്തവർ സജ്ജമാക്കിയ മെമ്പര്‍ ലേബലുകൾ മായ്ക്കും."</string>
     <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Change permission</string>
+    <string name="PermissionsSettingsFragment__change_permission">അനുമതി മാറ്റുക</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->
@@ -6826,15 +6826,15 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive">Story archive</string>
+    <string name="StoryArchive__story_archive">സ്റ്റോറി ആർക്കൈവ്</string>
     <!-- Section header in story settings -->
     <string name="StoryArchive__archive">ആർക്കൈവ്</string>
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <string name="StoryArchive__keep_stories_in_archive">സ്റ്റോറികൾ ആർക്കൈവിൽ സംരക്ഷിക്കുക</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <string name="StoryArchive__save_stories_after_they_expire">സജീവ ഫീഡിൽ നിന്ന് പോയ ശേഷം നിങ്ങളുടെ അയച്ച സ്റ്റോറികൾ സംരക്ഷിക്കുക.</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <string name="StoryArchive__keep_stories_for">സ്റ്റോറികൾ സംരക്ഷിക്കേണ്ട കാലാവധി:</string>
     <!-- Archive duration option: forever -->
     <string name="StoryArchive__forever">എന്നേക്കും</string>
     <!-- Archive duration option: 1 year -->
@@ -6844,9 +6844,9 @@
     <!-- Archive duration option: 30 days -->
     <string name="StoryArchive__30_days">30 ദിവസം</string>
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <string name="StoryArchive__no_archived_stories">ആർക്കൈവ് ചെയ്‌ത സ്റ്റോറികളൊന്നുമില്ല</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <string name="StoryArchive__no_archived_stories_message">നിങ്ങളുടെ സ്റ്റോറികൾ ഓട്ടോ-ആർക്കൈവ് ചെയ്യാൻ സ്റ്റോറി ക്രമീകരണത്തിൽ \"സ്റ്റോറികൾ ആർക്കൈവിലേക്ക് സംരക്ഷിക്കുക\" ഓൺ ചെയ്യുക.</string>
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">ക്രമീകരണത്തിലേക്ക് പോകുക</string>
     <!-- Label for sort order menu -->
@@ -6858,11 +6858,11 @@
     <!-- Delete action in story archive multi-select bottom bar -->
     <string name="StoryArchive__delete">ഇല്ലാതാക്കൂ</string>
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story">Select story</string>
+    <string name="StoryArchive__select_story">സ്റ്റോറി തിരഞ്ഞെടുക്കുക</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
-        <item quantity="one">Delete %1$d story? This cannot be undone.</item>
-        <item quantity="other">Delete %1$d stories? This cannot be undone.</item>
+        <item quantity="one">%1$d സ്റ്റോറി ഇല്ലാതാക്കണോ? ഇത് പിന്നീട് പഴയപടിയാക്കാൻ കഴിയില്ല.</item>
+        <item quantity="other">%1$d സ്റ്റോറികൾ ഇല്ലാതാക്കണോ? ഇത് പിന്നീട് പഴയപടിയാക്കാൻ കഴിയില്ല.</item>
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
@@ -8013,7 +8013,7 @@
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">നിങ്ങളുടെ എല്ലാ മീഡിയയുടെയും ബാക്കപ്പ് എടുക്കുക</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">പണമടച്ചുള്ള Signal സുരക്ഷിത ബാക്കപ്പ് പ്ലാനുകൾ നിങ്ങളുടെ എല്ലാ മീഡിയയും സൂക്ഷിക്കുന്നു, 100GB വരെ.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">അപ്‌ഗ്രേഡ് ചെയ്യുക</string>
     <!-- Secondary button of Megaphone C -->
@@ -8033,7 +8033,7 @@
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">എല്ലാ മീഡിയയും ബാക്കപ്പ് ചെയ്യാൻ അപ്‌ഗ്രേഡ് ചെയ്യുക</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">പണമടച്ചുള്ള Signal സുരക്ഷിത ബാക്കപ്പ് പ്ലാനുകൾ നിങ്ങൾ അയയ്ക്കുകയും സ്വീകരിക്കുകയും ചെയ്യുന്ന എല്ലാ മീഡിയയും പരമാവധി 100GB വരെ സംരക്ഷിക്കുന്നു. പുതിയ ഫോൺ വാങ്ങുമ്പോഴോ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോഴോ ഒരിക്കലും ഒരു ഫോട്ടോയോ വീഡിയോയോ നഷ്ടപ്പെടുത്തരുത്.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/ മാസം</string>
     <!-- Subtitle for the paid plan feature card -->
@@ -8295,7 +8295,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__recovery_key_updated">Recovery key updated</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">വീണ്ടെടുക്കൽ കീ അപ്‌ഡേറ്റ് ചെയ്തു</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">തിരഞ്ഞെടുത്ത ഡയറക്ടറി: %1$s</string>
 
@@ -8830,9 +8830,9 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">നിങ്ങളുടെ ഉപകരണത്തിലെ ബാക്കപ്പിനുള്ള കീ മാറി അതിന്പകരം ഈ കീ വരും.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your recovery key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">നിങ്ങൾ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ ബാക്കപ്പുകൾ പുനഃസ്ഥാപിക്കാൻ നിങ്ങളെ അനുവദിക്കുന്ന 64 അക്ക പ്രതീക കോഡാണ് നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">ഇത് നിങ്ങളുടെ ഉപകരണത്തിലെ വീണ്ടെടുക്കൽ കീയ്ക്ക് സമാനമാണ്.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">ഈ കീ ഉപയോഗിച്ച് ഇവ ചെയ്യുക:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -8850,7 +8850,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">നിങ്ങളുടെ അക്കൗണ്ടും ഡാറ്റയും വീണ്ടെടുക്കാൻ ഈ കീ ആവശ്യമാണ്. ഈ കീ സുരക്ഷിതമായ ഒരിടത്ത് സൂക്ഷിക്കുക. നിങ്ങൾക്കത് നഷ്‌ടപ്പെടുകയാണെങ്കിൽ, നിങ്ങളുടെ അക്കൗണ്ട് വീണ്ടെടുക്കാൻ നിങ്ങൾക്ക് കഴിയില്ല.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">This key is the same as your on-device recovery key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">ഈ കീ നിങ്ങളുടെ ഉപകരണത്തിലെ വീണ്ടെടുക്കൽ കീയ്ക്ക് സമാനമാണ്. നിങ്ങളുടെ അക്കൗണ്ടും ഡാറ്റയും വീണ്ടെടുക്കാൻ ഇത് ആവശ്യമാണ്.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തൂ</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
