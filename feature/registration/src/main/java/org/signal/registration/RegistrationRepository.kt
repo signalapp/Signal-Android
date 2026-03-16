@@ -10,12 +10,18 @@ import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
+import okio.ByteString.Companion.toByteString
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
-import org.signal.core.models.ServiceId.ACI
-import org.signal.core.models.ServiceId.PNI
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.protocol.ecc.ECKeyPair
+import org.signal.libsignal.protocol.kem.KEMKeyPair
+import org.signal.libsignal.protocol.kem.KEMKeyType
+import org.signal.libsignal.protocol.state.KyberPreKeyRecord
+import org.signal.libsignal.protocol.state.SignedPreKeyRecord
+import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.registration.NetworkController.AccountAttributes
 import org.signal.registration.NetworkController.CreateSessionError
 import org.signal.registration.NetworkController.MasterKeyResponse
@@ -29,8 +35,14 @@ import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.NetworkController.SessionMetadata
 import org.signal.registration.NetworkController.SvrCredentials
 import org.signal.registration.NetworkController.UpdateSessionError
+import org.signal.registration.proto.ProvisioningData
+import org.signal.registration.proto.SvrCredential
 import org.signal.registration.util.SensitiveLog
+import java.security.SecureRandom
 import java.util.Locale
+import javax.crypto.Cipher
+import javax.crypto.spec.GCMParameterSpec
+import javax.crypto.spec.SecretKeySpec
 
 class RegistrationRepository(val context: Context, val networkController: NetworkController, val storageController: StorageController) {
 
@@ -98,14 +110,17 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun getSvrCredentials(): RegistrationNetworkResult<SvrCredentials, NetworkController.GetSvrCredentialsError> = withContext(Dispatchers.IO) {
     networkController.getSvrCredentials().also {
       if (it is RegistrationNetworkResult.Success) {
-        storageController.appendSvrCredentials(listOf(it.data))
+        storageController.updateInProgressRegistrationData {
+          svrCredentials = svrCredentials + SvrCredential(username = it.data.username, password = it.data.password)
+        }
         BackupManager(context).dataChanged()
       }
     }
   }
 
   suspend fun getRestoredSvrCredentials(): List<SvrCredentials> = withContext(Dispatchers.IO) {
-    storageController.getRestoredSvrCredentials()
+    val data = storageController.readInProgressRegistrationData()
+    data.svrCredentials.map { SvrCredentials(username = it.username, password = it.password) }
   }
 
   suspend fun checkSvrCredentials(e164: String, credentials: List<SvrCredentials>): RegistrationNetworkResult<NetworkController.CheckSvrCredentialsResponse, NetworkController.CheckSvrCredentialsError> = withContext(Dispatchers.IO) {
@@ -123,9 +138,14 @@ class RegistrationRepository(val context: Context, val networkController: Networ
       pin = pin
     ).also {
       if (it is RegistrationNetworkResult.Success) {
-        // TODO consider whether we should save this now, or whether we should keep in app state and then hand it back to the library user at the end of the flow
-        storageController.saveValidatedPinAndTemporaryMasterKey(pin, isAlphanumeric, it.data.masterKey, forRegistrationLock)
-        storageController.appendSvrCredentials(listOf(svrCredentials))
+        storageController.updateInProgressRegistrationData {
+          this.pin = pin
+          this.pinIsAlphanumeric = isAlphanumeric
+          this.temporaryMasterKey = it.data.masterKey.serialize().toByteString()
+          this.registrationLockEnabled = forRegistrationLock
+          this.svrCredentials += SvrCredential(username = svrCredentials.username, password = svrCredentials.password)
+        }
+        storageController.commitRegistrationData()
       }
     }
   }
@@ -215,7 +235,23 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun registerAccountWithProvisioningData(
     provisioningMessage: NetworkController.ProvisioningMessage
   ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
-    storageController.saveProvisioningData(provisioningMessage)
+    storageController.updateInProgressRegistrationData {
+      provisioningData = ProvisioningData(
+        restoreMethodToken = provisioningMessage.restoreMethodToken,
+        platform = when (provisioningMessage.platform) {
+          NetworkController.ProvisioningMessage.Platform.ANDROID -> ProvisioningData.Platform.ANDROID
+          NetworkController.ProvisioningMessage.Platform.IOS -> ProvisioningData.Platform.IOS
+        },
+        tier = when (provisioningMessage.tier) {
+          NetworkController.ProvisioningMessage.Tier.FREE -> ProvisioningData.Tier.FREE
+          NetworkController.ProvisioningMessage.Tier.PAID -> ProvisioningData.Tier.PAID
+          null -> ProvisioningData.Tier.TIER_UNKNOWN
+        },
+        backupTimestampMs = provisioningMessage.backupTimestampMs ?: 0,
+        backupSizeBytes = provisioningMessage.backupSizeBytes ?: 0,
+        backupVersion = provisioningMessage.backupVersion
+      )
+    }
 
     val aep = AccountEntropyPool(provisioningMessage.accountEntropyPool)
     val recoveryPassword = aep.deriveMasterKey().deriveRegistrationRecoveryPassword()
@@ -263,11 +299,26 @@ class RegistrationRepository(val context: Context, val networkController: Networ
 
     Log.i(TAG, "[registerAccount] Starting registration for $e164. sessionId: ${sessionId != null}, recoveryPassword: ${recoveryPassword != null}, registrationLock: ${registrationLock != null}, skipDeviceTransfer: $skipDeviceTransfer, existingAep: ${existingAccountEntropyPool != null}")
 
-    val keyMaterial = storageController.generateAndStoreKeyMaterial(
+    val keyMaterial = generateKeyMaterial(
       existingAccountEntropyPool = existingAccountEntropyPool,
       existingAciIdentityKeyPair = existingAciIdentityKeyPair,
       existingPniIdentityKeyPair = existingPniIdentityKeyPair
     )
+
+    storageController.updateInProgressRegistrationData {
+      this.aciIdentityKeyPair = keyMaterial.aciIdentityKeyPair.serialize().toByteString()
+      this.pniIdentityKeyPair = keyMaterial.pniIdentityKeyPair.serialize().toByteString()
+      this.aciSignedPreKey = keyMaterial.aciSignedPreKey.serialize().toByteString()
+      this.pniSignedPreKey = keyMaterial.pniSignedPreKey.serialize().toByteString()
+      this.aciLastResortKyberPreKey = keyMaterial.aciLastResortKyberPreKey.serialize().toByteString()
+      this.pniLastResortKyberPreKey = keyMaterial.pniLastResortKyberPreKey.serialize().toByteString()
+      this.aciRegistrationId = keyMaterial.aciRegistrationId
+      this.pniRegistrationId = keyMaterial.pniRegistrationId
+      this.unidentifiedAccessKey = keyMaterial.unidentifiedAccessKey.toByteString()
+      this.servicePassword = keyMaterial.servicePassword
+      this.accountEntropyPool = keyMaterial.accountEntropyPool.value
+    }
+
     val fcmToken = networkController.getFcmToken()
 
     val newMasterKey = keyMaterial.accountEntropyPool.deriveMasterKey()
@@ -321,15 +372,14 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     )
 
     if (result is RegistrationNetworkResult.Success) {
-      storageController.saveNewRegistrationData(
-        NewRegistrationData(
-          e164 = result.data.e164,
-          aci = ACI.parseOrThrow(result.data.aci),
-          pni = PNI.parseOrThrow(result.data.pni),
-          servicePassword = keyMaterial.servicePassword,
-          aep = keyMaterial.accountEntropyPool
-        )
-      )
+      storageController.updateInProgressRegistrationData {
+        this.e164 = result.data.e164
+        this.aci = result.data.aci
+        this.pni = result.data.pni
+        this.servicePassword = keyMaterial.servicePassword
+        this.accountEntropyPool = keyMaterial.accountEntropyPool.value
+      }
+      storageController.commitRegistrationData()
     }
 
     result.mapSuccess { it to keyMaterial }
@@ -343,10 +393,14 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     val result = networkController.setPinAndMasterKeyOnSvr(pin, masterKey)
 
     if (result is RegistrationNetworkResult.Success) {
-      storageController.saveNewlyCreatedPin(pin, isAlphanumeric)
-      result.data?.let { credential ->
-        storageController.appendSvrCredentials(listOf(credential))
+      storageController.updateInProgressRegistrationData {
+        this.pin = pin
+        this.pinIsAlphanumeric = isAlphanumeric
+        result.data?.let { credential ->
+          this.svrCredentials += SvrCredential(username = credential.username, password = credential.password)
+        }
       }
+      storageController.commitRegistrationData()
     }
 
     result
@@ -354,6 +408,82 @@ class RegistrationRepository(val context: Context, val networkController: Networ
 
   suspend fun getPreExistingRegistrationData(): PreExistingRegistrationData? {
     return storageController.getPreExistingRegistrationData()
+  }
+
+  private fun generateKeyMaterial(
+    existingAccountEntropyPool: AccountEntropyPool? = null,
+    existingAciIdentityKeyPair: IdentityKeyPair? = null,
+    existingPniIdentityKeyPair: IdentityKeyPair? = null
+  ): KeyMaterial {
+    val accountEntropyPool = existingAccountEntropyPool ?: AccountEntropyPool.generate()
+    val aciIdentityKeyPair = existingAciIdentityKeyPair ?: IdentityKeyPair.generate()
+    val pniIdentityKeyPair = existingPniIdentityKeyPair ?: IdentityKeyPair.generate()
+
+    val timestamp = System.currentTimeMillis()
+
+    val aciSignedPreKey = generateSignedPreKey(generatePreKeyId(), timestamp, aciIdentityKeyPair)
+    val pniSignedPreKey = generateSignedPreKey(generatePreKeyId(), timestamp, pniIdentityKeyPair)
+    val aciLastResortKyberPreKey = generateKyberPreKey(generatePreKeyId(), timestamp, aciIdentityKeyPair)
+    val pniLastResortKyberPreKey = generateKyberPreKey(generatePreKeyId(), timestamp, pniIdentityKeyPair)
+
+    val profileKey = generateProfileKey()
+
+    return KeyMaterial(
+      aciIdentityKeyPair = aciIdentityKeyPair,
+      aciSignedPreKey = aciSignedPreKey,
+      aciLastResortKyberPreKey = aciLastResortKyberPreKey,
+      pniIdentityKeyPair = pniIdentityKeyPair,
+      pniSignedPreKey = pniSignedPreKey,
+      pniLastResortKyberPreKey = pniLastResortKyberPreKey,
+      aciRegistrationId = generateRegistrationId(),
+      pniRegistrationId = generateRegistrationId(),
+      unidentifiedAccessKey = deriveUnidentifiedAccessKey(profileKey),
+      servicePassword = generatePassword(),
+      accountEntropyPool = accountEntropyPool
+    )
+  }
+
+  private fun generateSignedPreKey(id: Int, timestamp: Long, identityKeyPair: IdentityKeyPair): SignedPreKeyRecord {
+    val keyPair = ECKeyPair.generate()
+    val signature = identityKeyPair.privateKey.calculateSignature(keyPair.publicKey.serialize())
+    return SignedPreKeyRecord(id, timestamp, keyPair, signature)
+  }
+
+  private fun generateKyberPreKey(id: Int, timestamp: Long, identityKeyPair: IdentityKeyPair): KyberPreKeyRecord {
+    val kemKeyPair = KEMKeyPair.generate(KEMKeyType.KYBER_1024)
+    val signature = identityKeyPair.privateKey.calculateSignature(kemKeyPair.publicKey.serialize())
+    return KyberPreKeyRecord(id, timestamp, kemKeyPair, signature)
+  }
+
+  private fun generatePreKeyId(): Int {
+    return SecureRandom().nextInt(Int.MAX_VALUE - 1) + 1
+  }
+
+  private fun generateRegistrationId(): Int {
+    return SecureRandom().nextInt(16380) + 1
+  }
+
+  private fun generateProfileKey(): ProfileKey {
+    val keyBytes = ByteArray(32)
+    SecureRandom().nextBytes(keyBytes)
+    return ProfileKey(keyBytes)
+  }
+
+  private fun generatePassword(): String {
+    val passwordBytes = ByteArray(18)
+    SecureRandom().nextBytes(passwordBytes)
+    return Base64.encodeWithPadding(passwordBytes)
+  }
+
+  private fun deriveUnidentifiedAccessKey(profileKey: ProfileKey): ByteArray {
+    val nonce = ByteArray(12)
+    val input = ByteArray(16)
+
+    val cipher = Cipher.getInstance("AES/GCM/NoPadding")
+    cipher.init(Cipher.ENCRYPT_MODE, SecretKeySpec(profileKey.serialize(), "AES"), GCMParameterSpec(128, nonce))
+
+    val ciphertext = cipher.doFinal(input)
+    return ciphertext.copyOf(16)
   }
 
   companion object {

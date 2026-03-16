@@ -1,0 +1,68 @@
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+syntax = "proto3";
+
+package signal;
+
+option java_package = "org.signal.registration.proto";
+
+message RegistrationData {
+  // Key material (from generateAndStoreKeyMaterial)
+  bytes  aciIdentityKeyPair = 1;
+  bytes  pniIdentityKeyPair = 2;
+  bytes  aciSignedPreKey = 3;
+  bytes  pniSignedPreKey = 4;
+  bytes  aciLastResortKyberPreKey = 5;
+  bytes  pniLastResortKyberPreKey = 6;
+  int32  aciRegistrationId = 7;
+  int32  pniRegistrationId = 8;
+  bytes  unidentifiedAccessKey = 9;
+  string servicePassword = 10;
+  string accountEntropyPool = 11;
+
+  // Account identity (from saveNewRegistrationData / getPreExistingRegistrationData)
+  string e164 = 12;
+  string aci = 13;
+  string pni = 14;
+
+  // PIN data (from saveValidatedPinAndTemporaryMasterKey / saveNewlyCreatedPin)
+  string pin = 15;
+  bool   pinIsAlphanumeric = 16;
+  bytes  temporaryMasterKey = 17;
+  bool   registrationLockEnabled = 18;
+
+  // SVR credentials (from appendSvrCredentials / getRestoredSvrCredentials)
+  repeated SvrCredential svrCredentials = 19;
+
+  // Provisioning data (from saveProvisioningData)
+  ProvisioningData provisioningData = 20;
+}
+
+message SvrCredential {
+  string username = 1;
+  string password = 2;
+}
+
+message ProvisioningData {
+  enum Platform {
+    UNKNOWN = 0;
+    ANDROID = 1;
+    IOS = 2;
+  }
+
+  enum Tier {
+    TIER_UNKNOWN = 0;
+    FREE = 1;
+    PAID = 2;
+  }
+
+  string   restoreMethodToken = 1;
+  Platform platform = 2;
+  Tier     tier = 3;
+  int64    backupTimestampMs = 4;
+  int64    backupSizeBytes = 5;
+  int64    backupVersion = 6;
+}
