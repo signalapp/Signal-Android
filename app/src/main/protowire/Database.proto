@@ -11,8 +11,8 @@ package signal;
 option java_package        = "org.thoughtcrime.securesms.database.model.databaseprotos";
 option java_multiple_files = true;
 
-import Backup.proto;
-import SignalServiceLegacy.proto;
+import "Backup.proto";
+import "SignalServiceLegacy.proto";
 
 // DEPRECATED -- only here for database migrations
 message ReactionList {
