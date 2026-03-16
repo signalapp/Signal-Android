@@ -228,6 +228,10 @@ internal fun LocalBackupsSettingsScreen(
       onDismiss = { showTurnOffAndDeleteDialog = false }
     )
   }
+
+  if (state.isDeleting) {
+    Dialogs.IndeterminateProgressDialog(message = stringResource(id = R.string.BackupDialog_deleting_local_backup))
+  }
 }
 
 @DayNightPreview

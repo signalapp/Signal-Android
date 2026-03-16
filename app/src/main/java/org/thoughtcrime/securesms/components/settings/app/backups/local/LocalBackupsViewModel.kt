@@ -122,6 +122,22 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
     internalSettingsState.update { it.copy(progress = event.progress) }
   }
 
+  fun turnOffAndDelete(context: Context) {
+    internalSettingsState.update { it.copy(isDeleting = true) }
+
+    viewModelScope.launch {
+      withContext(Dispatchers.IO) {
+        SignalStore.backup.newLocalBackupsEnabled = false
+        val path = SignalStore.backup.newLocalBackupsDirectory
+        SignalStore.backup.newLocalBackupsDirectory = null
+        AppDependencies.jobManager.cancelAllInQueue(LocalBackupJob.QUEUE)
+        BackupUtil.deleteUnifiedBackups(context, path)
+      }
+
+      internalSettingsState.update { it.copy(isDeleting = false) }
+    }
+  }
+
   override fun updateBackupKeySaveState(newState: BackupKeySaveState?) {
     internalBackupState.update { it.copy(keySaveState = newState) }
   }
