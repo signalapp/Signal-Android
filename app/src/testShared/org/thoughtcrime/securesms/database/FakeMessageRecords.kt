@@ -19,7 +19,9 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.payments.Payment
+import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.MediaUtil
 
@@ -160,7 +162,9 @@ object FakeMessageRecords {
     parentStoryId: ParentStoryId? = null,
     giftBadge: GiftBadge? = null,
     payment: Payment? = null,
-    call: CallTable.Call? = null
+    call: CallTable.Call? = null,
+    poll: PollRecord? = null,
+    deletedBy: RecipientId? = null
   ): MmsMessageRecord {
     return MmsMessageRecord(
       id,
@@ -198,14 +202,14 @@ object FakeMessageRecords {
       giftBadge,
       payment,
       call,
-      null,
+      poll,
       -1,
       null,
       null,
       0,
       false,
       0,
-      null,
+      deletedBy,
       null
     )
   }

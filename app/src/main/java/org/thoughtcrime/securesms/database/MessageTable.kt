@@ -5372,14 +5372,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
    * A cursor containing all of the messages in a given thread, in the proper order, respecting offset/limit.
    * This does *not* have attachments in it.
    */
-  fun getConversation(threadId: Long, offset: Long, limit: Long): Cursor {
+  fun getConversation(threadId: Long, offset: Long = 0, limit: Long = 0, dateReceiveOrderBy: String = "DESC"): Cursor {
     val limitStr: String = if (limit > 0 || offset > 0) "$offset, $limit" else ""
 
     return readableDatabase
       .select(*MMS_PROJECTION)
       .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
       .where("$THREAD_ID = ? AND $STORY_TYPE = ? AND $PARENT_STORY_ID <= ? AND $SCHEDULED_DATE = ? AND $LATEST_REVISION_ID IS NULL", threadId, 0, 0, -1)
-      .orderBy("$DATE_RECEIVED DESC")
+      .orderBy("$DATE_RECEIVED $dateReceiveOrderBy")
       .limit(limitStr)
       .run()
   }

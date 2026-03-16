@@ -84,11 +84,6 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
-import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.COPY_PENDING
-import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.FINISHED
-import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.NONE
-import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE
-import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.UPLOAD_IN_PROGRESS
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_FILE
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_HASH_END
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.PREUPLOAD_MESSAGE_ID
@@ -494,6 +489,32 @@ class AttachmentTable(
       .run()
       .readToList { it.readAttachments() }
       .flatten()
+  }
+
+  /**
+   * Returns the number of attachments that will be exported for a plaintext export of a given thread.
+   * Used for estimating progress.
+   */
+  fun getPlaintextExportableAttachmentCountForThread(threadId: Long): Int {
+    return readableDatabase.rawQuery(
+      """
+        SELECT COUNT(*)
+        FROM $TABLE_NAME
+        INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
+        WHERE ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ?
+          AND ${MessageTable.TABLE_NAME}.${MessageTable.STORY_TYPE} = 0
+          AND ${MessageTable.TABLE_NAME}.${MessageTable.PARENT_STORY_ID} <= 0
+          AND ${MessageTable.TABLE_NAME}.${MessageTable.SCHEDULED_DATE} = -1
+          AND ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL
+          AND ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0
+          AND ${MessageTable.TABLE_NAME}.${MessageTable.DELETED_BY} IS NULL
+          AND $TABLE_NAME.$DATA_FILE IS NOT NULL
+          AND $TABLE_NAME.$QUOTE = 0
+      """.trimIndent(),
+      arrayOf(threadId.toString())
+    ).use { cursor ->
+      if (cursor.moveToFirst()) cursor.getInt(0) else 0
+    }
   }
 
   fun getAttachmentsForMessagesArchive(mmsIds: Collection<Long>): Map<Long, List<DatabaseAttachment>> {

@@ -4651,6 +4651,7 @@
     <string name="conversation__menu_view_all_media">All media</string>
     <string name="conversation__menu_conversation_settings">Chat settings</string>
     <string name="conversation__menu_add_shortcut">Add to home screen</string>
+    <string name="conversation__menu_export">Export</string>
     <string name="conversation__menu_create_bubble">Create bubble</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Format text</string>
@@ -4659,6 +4660,13 @@
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Add to contacts</string>
+
+    <!-- conversation export -->
+    <string name="conversation_export__exporting">Exporting chat…</string>
+    <string name="conversation_export__export_complete">Chat exported successfully</string>
+    <string name="conversation_export__export_failed">Export failed</string>
+    <string name="conversation_export__export_cancelled">Export cancelled</string>
+    <string name="conversation_export__preparing">Preparing export…</string>
 
     <!-- conversation scheduled messages bar -->
 
