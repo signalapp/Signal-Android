@@ -319,6 +319,14 @@ class MainNavigationViewModel(
    * piece of content via [goTo].
    */
   private inner class Nav<T>(delegate: ThreePaneScaffoldNavigator<T>) : AppScaffoldNavigator<T>(delegate) {
+    override suspend fun navigateBack(backNavigationBehavior: BackNavigationBehavior): Boolean {
+      val result = super.navigateBack(backNavigationBehavior)
+      if (result) {
+        lockPaneToSecondary = true
+      }
+      return result
+    }
+
     override suspend fun seekBack(backNavigationBehavior: BackNavigationBehavior, fraction: Float) {
       super.seekBack(backNavigationBehavior, fraction)
 
