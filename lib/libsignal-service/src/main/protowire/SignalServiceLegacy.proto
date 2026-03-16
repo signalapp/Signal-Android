@@ -15,7 +15,7 @@ package signalservice;
 option java_package = "org.whispersystems.signalservice.internal.push";
 option java_outer_classname = "SignalServiceProtos";
 
-import SignalService.proto;
+import "SignalService.proto";
 
 message GroupContext {
   enum Type {
