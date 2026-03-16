@@ -161,10 +161,10 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
    * Clean up unused files in the shared files directory leveraged across all current snapshots. A file
    * is unused if it is not referenced directly by any current snapshots.
    */
-  fun deleteUnusedFiles() {
+  fun deleteUnusedFiles(allFilesProgressListener: AllFilesProgressListener? = null) {
     Log.i(TAG, "Deleting unused files")
 
-    val allFiles: MutableMap<String, DocumentFileInfo> = filesFileSystem.allFiles().toMutableMap()
+    val allFiles: MutableMap<String, DocumentFileInfo> = filesFileSystem.allFiles(allFilesProgressListener).toMutableMap()
     val snapshots: List<SnapshotInfo> = listSnapshots()
 
     snapshots
@@ -268,14 +268,17 @@ class FilesFileSystem(private val context: Context, private val root: DocumentFi
   /**
    * Enumerate all files in the directory.
    */
-  fun allFiles(): Map<String, DocumentFileInfo> {
+  fun allFiles(allFilesProgressListener: AllFilesProgressListener? = null): Map<String, DocumentFileInfo> {
     val allFiles = HashMap<String, DocumentFileInfo>()
+    val total = subFolders.values.size
 
-    for (subfolder in subFolders.values) {
+    subFolders.values.forEachIndexed { index, subfolder ->
       val subFiles = subfolder.listFiles(context)
       for (file in subFiles) {
         allFiles[file.name] = file
       }
+
+      allFilesProgressListener?.onProgress(index + 1, total)
     }
 
     return allFiles
@@ -329,4 +332,8 @@ private fun String.toMilliseconds(): Long {
   }
 
   return -1
+}
+
+fun interface AllFilesProgressListener {
+  fun onProgress(completed: Int, total: Int)
 }

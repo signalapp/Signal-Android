@@ -14,20 +14,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.BackupCreationEvent
-import org.thoughtcrime.securesms.backup.BackupCreationProgress
 import org.thoughtcrime.securesms.backup.BackupPassphrase
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -77,11 +73,11 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
       }
     }
 
-    EventBus.getDefault().register(this)
-  }
-
-  override fun onCleared() {
-    EventBus.getDefault().unregister(this)
+    viewModelScope.launch {
+      SignalStore.backup.newLocalBackupProgressFlow.collect { progress ->
+        internalSettingsState.update { it.copy(progress = progress) }
+      }
+    }
   }
 
   fun refreshSettingsState() {
@@ -112,14 +108,7 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
   }
 
   fun onBackupStarted() {
-    internalSettingsState.update {
-      it.copy(progress = BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.NONE))
-    }
-  }
-
-  @Subscribe(threadMode = ThreadMode.MAIN)
-  fun onBackupEvent(event: BackupCreationEvent.LocalEncrypted) {
-    internalSettingsState.update { it.copy(progress = event.progress) }
+    SignalStore.backup.newLocalBackupProgress = LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.NONE))
   }
 
   fun turnOffAndDelete(context: Context) {

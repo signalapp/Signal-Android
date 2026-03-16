@@ -36,9 +36,10 @@ import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.Snackbars
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.BackupCreationProgress
+import org.thoughtcrime.securesms.backup.isIdle
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupCreationProgressRow
 import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
+import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.compose.DayNightPreviews as DayNightPreview
@@ -120,7 +121,7 @@ internal fun LocalBackupsSettingsScreen(
           )
         }
       } else {
-        val isCreating = state.progress !is BackupCreationProgress.Idle
+        val isCreating = !state.progress.isIdle
 
         if (isCreating) {
           item {
@@ -272,7 +273,7 @@ private fun LocalBackupsSettingsEnabledIdlePreview() {
         lastBackupLabel = "Last backup: 1 hour ago",
         folderDisplayName = "/storage/emulated/0/Signal/Backups",
         scheduleTimeLabel = "1:00 AM",
-        progress = BackupCreationProgress.Idle
+        progress = LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle())
       ),
       callback = LocalBackupsSettingsCallback.Empty
     )
@@ -289,8 +290,8 @@ private fun LocalBackupsSettingsEnabledExportingIndeterminatePreview() {
         lastBackupLabel = "Last backup: 1 hour ago",
         folderDisplayName = "/storage/emulated/0/Signal/Backups",
         scheduleTimeLabel = "1:00 AM",
-        progress = BackupCreationProgress.Exporting(
-          phase = BackupCreationProgress.ExportPhase.ACCOUNT
+        progress = LocalBackupCreationProgress(
+          exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.ACCOUNT)
         )
       ),
       callback = LocalBackupsSettingsCallback.Empty
@@ -308,10 +309,12 @@ private fun LocalBackupsSettingsEnabledExportingMessagesPreview() {
         lastBackupLabel = "Last backup: 1 hour ago",
         folderDisplayName = "/storage/emulated/0/Signal/Backups",
         scheduleTimeLabel = "1:00 AM",
-        progress = BackupCreationProgress.Exporting(
-          phase = BackupCreationProgress.ExportPhase.MESSAGE,
-          frameExportCount = 42000,
-          frameTotalCount = 100000
+        progress = LocalBackupCreationProgress(
+          exporting = LocalBackupCreationProgress.Exporting(
+            phase = LocalBackupCreationProgress.ExportPhase.MESSAGE,
+            frameExportCount = 42000,
+            frameTotalCount = 100000
+          )
         )
       ),
       callback = LocalBackupsSettingsCallback.Empty
@@ -329,10 +332,12 @@ private fun LocalBackupsSettingsEnabledTransferringPreview() {
         lastBackupLabel = "Last backup: 1 hour ago",
         folderDisplayName = "/storage/emulated/0/Signal/Backups",
         scheduleTimeLabel = "1:00 AM",
-        progress = BackupCreationProgress.Transferring(
-          completed = 50,
-          total = 200,
-          mediaPhase = true
+        progress = LocalBackupCreationProgress(
+          transferring = LocalBackupCreationProgress.Transferring(
+            completed = 50,
+            total = 200,
+            mediaPhase = true
+          )
         )
       ),
       callback = LocalBackupsSettingsCallback.Empty
@@ -350,7 +355,7 @@ private fun LocalBackupsSettingsEnabledNonLegacyPreview() {
         lastBackupLabel = "Last backup: 1 hour ago",
         folderDisplayName = "Signal Backups",
         scheduleTimeLabel = "1:00 AM",
-        progress = BackupCreationProgress.Idle
+        progress = LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle())
       ),
       callback = LocalBackupsSettingsCallback.Empty
     )

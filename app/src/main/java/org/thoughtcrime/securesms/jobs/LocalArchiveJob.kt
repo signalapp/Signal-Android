@@ -1,14 +1,9 @@
 package org.thoughtcrime.securesms.jobs
 
 import android.net.Uri
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.BackupCreationEvent
-import org.thoughtcrime.securesms.backup.BackupCreationProgress
 import org.thoughtcrime.securesms.backup.BackupFileIOError
 import org.thoughtcrime.securesms.backup.FullBackupExporter.BackupCanceledException
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
@@ -18,6 +13,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.service.GenericForegroundService
 import org.thoughtcrime.securesms.service.NotificationController
@@ -49,8 +45,6 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
 
     BackupFileIOError.clearNotification(context)
 
-    val updater = ProgressUpdater()
-
     var notification: NotificationController? = null
     try {
       notification = GenericForegroundService.startForegroundTask(
@@ -64,9 +58,8 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
     }
 
     try {
-      updater.notification = notification
-      EventBus.getDefault().register(updater)
       notification?.setIndeterminateProgress()
+      setProgress(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.INITIALIZING)), notification)
 
       val stopwatch = Stopwatch("archive-export")
 
@@ -108,14 +101,14 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
         snapshotFileSystem.finalize()
         stopwatch.split("archive-finalize")
 
-        EventBus.getDefault().post(BackupCreationEvent.LocalEncrypted(BackupCreationProgress.Idle))
+        setProgress(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.FINALIZING)), notification)
       } catch (e: BackupCanceledException) {
-        EventBus.getDefault().post(BackupCreationEvent.LocalEncrypted(BackupCreationProgress.Idle))
+        setProgress(LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle()), notification)
         Log.w(TAG, "Archive cancelled")
         throw e
       } catch (e: IOException) {
         Log.w(TAG, "Error during archive!", e)
-        EventBus.getDefault().post(BackupCreationEvent.LocalEncrypted(BackupCreationProgress.Idle))
+        setProgress(LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle()), notification)
         BackupFileIOError.postNotificationForException(context, e)
         throw e
       } finally {
@@ -129,70 +122,74 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
       archiveFileSystem.deleteOldBackups()
       stopwatch.split("delete-old")
 
-      archiveFileSystem.deleteUnusedFiles()
+      archiveFileSystem.deleteUnusedFiles { completed, total ->
+        setProgress(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.FINALIZING, frameExportCount = completed.toLong(), frameTotalCount = total.toLong())), notification)
+      }
       stopwatch.split("delete-unused")
 
       stopwatch.stop(TAG)
 
+      setProgress(LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle()), notification)
       SignalStore.backup.newLocalBackupsLastBackupTime = System.currentTimeMillis()
     } finally {
       notification?.close()
-      EventBus.getDefault().unregister(updater)
-      updater.notification = null
     }
 
     return Result.success()
   }
 
   override fun onFailure() {
+    SignalStore.backup.newLocalBackupProgress = LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle())
   }
 
-  private class ProgressUpdater {
-    var notification: NotificationController? = null
+  private fun setProgress(progress: LocalBackupCreationProgress, notification: NotificationController?) {
+    SignalStore.backup.newLocalBackupProgress = progress
+    updateNotification(progress, notification)
+  }
 
-    private var previousPhase: NotificationPhase? = null
+  private var previousPhase: NotificationPhase? = null
 
-    @Subscribe(threadMode = ThreadMode.POSTING)
-    fun onEvent(event: BackupCreationEvent.LocalEncrypted) {
-      val notification = notification ?: return
-      val progress = event.progress
+  private fun updateNotification(progress: LocalBackupCreationProgress, notification: NotificationController?) {
+    if (notification == null) return
 
-      when (progress) {
-        is BackupCreationProgress.Exporting -> {
-          val phase = NotificationPhase.Export(progress.phase)
-          if (previousPhase != phase) {
-            notification.replaceTitle(progress.phase.toString())
-            previousPhase = phase
-          }
-          if (progress.frameTotalCount == 0L) {
-            notification.setIndeterminateProgress()
-          } else {
-            notification.setProgress(progress.frameTotalCount, progress.frameExportCount)
-          }
+    val exporting = progress.exporting
+    val transferring = progress.transferring
+
+    when {
+      exporting != null -> {
+        val phase = NotificationPhase.Export(exporting.phase)
+        if (previousPhase != phase) {
+          notification.replaceTitle(exporting.phase.toString())
+          previousPhase = phase
         }
-
-        is BackupCreationProgress.Transferring -> {
-          if (previousPhase !is NotificationPhase.Transfer) {
-            notification.replaceTitle(AppDependencies.application.getString(R.string.LocalArchiveJob__exporting_media))
-            previousPhase = NotificationPhase.Transfer
-          }
-          if (progress.total == 0L) {
-            notification.setIndeterminateProgress()
-          } else {
-            notification.setProgress(progress.total, progress.completed)
-          }
-        }
-
-        else -> {
+        if (exporting.frameTotalCount == 0L) {
           notification.setIndeterminateProgress()
+        } else {
+          notification.setProgress(exporting.frameTotalCount, exporting.frameExportCount)
         }
       }
-    }
 
-    private sealed interface NotificationPhase {
-      data class Export(val phase: BackupCreationProgress.ExportPhase) : NotificationPhase
-      data object Transfer : NotificationPhase
+      transferring != null -> {
+        if (previousPhase !is NotificationPhase.Transfer) {
+          notification.replaceTitle(AppDependencies.application.getString(R.string.LocalArchiveJob__exporting_media))
+          previousPhase = NotificationPhase.Transfer
+        }
+        if (transferring.total == 0L) {
+          notification.setIndeterminateProgress()
+        } else {
+          notification.setProgress(transferring.total, transferring.completed)
+        }
+      }
+
+      else -> {
+        notification.setIndeterminateProgress()
+      }
     }
+  }
+
+  private sealed interface NotificationPhase {
+    data class Export(val phase: LocalBackupCreationProgress.ExportPhase) : NotificationPhase
+    data object Transfer : NotificationPhase
   }
 
   class Factory : Job.Factory<LocalArchiveJob?> {

@@ -4,7 +4,7 @@
  */
 package org.thoughtcrime.securesms.components.settings.app.backups.local
 
-import org.thoughtcrime.securesms.backup.BackupCreationProgress
+import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 
 /**
  * Immutable state for the on-device backups settings screen.
@@ -18,6 +18,6 @@ data class LocalBackupsSettingsState(
   val lastBackupLabel: String? = null,
   val folderDisplayName: String? = null,
   val scheduleTimeLabel: String? = null,
-  val progress: BackupCreationProgress = BackupCreationProgress.Idle,
+  val progress: LocalBackupCreationProgress = LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle()),
   val isDeleting: Boolean = false
 )
