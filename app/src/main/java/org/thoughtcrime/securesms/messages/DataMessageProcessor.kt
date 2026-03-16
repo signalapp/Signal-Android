@@ -1316,6 +1316,11 @@ object DataMessageProcessor {
       return null
     }
 
+    if (targetThread.recipient.id != threadRecipient.id) {
+      warn(envelope.timestamp!!, "[handlePinMessage] Target message is in a different thread than the thread recipient! timestamp: ${pinMessage.targetSentTimestamp}")
+      return null
+    }
+
     val groupRecord = SignalDatabase.groups.getGroup(threadRecipient.id).orNull()
     if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {
       warn(envelope.timestamp!!, "[handlePinMessage] Sender is not in the group! timestamp: ${pinMessage.targetSentTimestamp}")
@@ -1405,6 +1410,11 @@ object DataMessageProcessor {
     val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
     if (targetThread == null) {
       warn(envelope.timestamp!!, "[handleUnpinMessage] Could not find a thread for the message! timestamp: ${unpinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    if (targetThread.recipient.id != threadRecipient.id) {
+      warn(envelope.timestamp!!, "[handleUnpinMessage] Target message is in a different thread than the thread recipient! timestamp: ${unpinMessage.targetSentTimestamp}")
       return null
     }
 
