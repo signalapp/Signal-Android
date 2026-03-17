@@ -8,7 +8,13 @@ package org.thoughtcrime.securesms.backup.v2.local
 import android.content.Context
 import android.net.Uri
 import androidx.documentfile.provider.DocumentFile
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
 import org.signal.core.models.backup.MediaName
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.androidx.DocumentFileInfo
 import org.signal.core.util.androidx.DocumentFileUtil.delete
 import org.signal.core.util.androidx.DocumentFileUtil.hasFile
@@ -27,6 +33,8 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Provide a domain-specific interface to the root file system backing a local directory based archive.
@@ -251,6 +259,10 @@ class SnapshotFileSystem(private val context: Context, private val snapshotDirec
  */
 class FilesFileSystem(private val context: Context, private val root: DocumentFile) {
 
+  companion object {
+    private val TAG = Log.tag(FilesFileSystem::class.java)
+  }
+
   private val subFolders: Map<String, DocumentFile>
 
   init {
@@ -269,16 +281,36 @@ class FilesFileSystem(private val context: Context, private val root: DocumentFi
    * Enumerate all files in the directory.
    */
   fun allFiles(allFilesProgressListener: AllFilesProgressListener? = null): Map<String, DocumentFileInfo> {
-    val allFiles = HashMap<String, DocumentFileInfo>()
+    val stopwatch = Stopwatch("allFiles")
+
+    val asyncResult = runBlocking { allFilesAsync(allFilesProgressListener) }
+    stopwatch.split("async")
+    stopwatch.stop(TAG)
+
+    return asyncResult
+  }
+
+  private suspend fun allFilesAsync(allFilesProgressListener: AllFilesProgressListener? = null, batchCount: Int = Runtime.getRuntime().availableProcessors()): Map<String, DocumentFileInfo> {
+    val allFiles = ConcurrentHashMap<String, DocumentFileInfo>()
     val total = subFolders.values.size
+    val completed = AtomicInteger(0)
+    val chunkSize = (total + batchCount - 1) / batchCount
 
-    subFolders.values.forEachIndexed { index, subfolder ->
-      val subFiles = subfolder.listFiles(context)
-      for (file in subFiles) {
-        allFiles[file.name] = file
-      }
+    Log.d(TAG, "allFilesAsync: $batchCount")
 
-      allFilesProgressListener?.onProgress(index + 1, total)
+    coroutineScope {
+      subFolders.values.chunked(chunkSize).map { chunk ->
+        async(Dispatchers.IO) {
+          for (subfolder in chunk) {
+            val subFiles = subfolder.listFiles(context)
+            for (file in subFiles) {
+              allFiles[file.name] = file
+            }
+
+            allFilesProgressListener?.onProgress(completed.incrementAndGet(), total)
+          }
+        }
+      }.awaitAll()
     }
 
     return allFiles
