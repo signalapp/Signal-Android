@@ -110,7 +110,6 @@ import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
@@ -1873,10 +1872,6 @@ object SyncMessageProcessor {
     senderRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ): Long {
-    if (!RemoteConfig.receivePinnedMessages) {
-      log(envelope.timestamp!!, "Sync pinned messages not allowed due to remote config.")
-    }
-
     log(envelope.timestamp!!, "Synchronize pinned message")
 
     val recipient = getSyncMessageDestination(sent)

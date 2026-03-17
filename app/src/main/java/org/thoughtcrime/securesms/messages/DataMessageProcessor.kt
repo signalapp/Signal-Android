@@ -1272,11 +1272,6 @@ object DataMessageProcessor {
     receivedTime: Long,
     earlyMessageCacheEntry: EarlyMessageCacheEntry? = null
   ): InsertResult? {
-    if (!RemoteConfig.receivePinnedMessages) {
-      log(envelope.timestamp!!, "Pinned message not allowed due to remote config.")
-      return null
-    }
-
     val pinMessage = message.pinMessage!!
     log(envelope.timestamp!!, "[handlePinMessage] Pin message for " + pinMessage.targetSentTimestamp)
 
@@ -1371,11 +1366,6 @@ object DataMessageProcessor {
     threadRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry? = null
   ): MessageId? {
-    if (!RemoteConfig.receivePinnedMessages) {
-      log(envelope.timestamp!!, "Unpinning message is not allowed due to remote config.")
-      return null
-    }
-
     val unpinMessage = message.unpinMessage!!
     log(envelope.timestamp!!, "[handleUnpinMessage] Unpin message for ${unpinMessage.targetSentTimestamp}")
 

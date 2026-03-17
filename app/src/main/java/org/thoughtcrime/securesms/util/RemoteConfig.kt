@@ -1217,22 +1217,6 @@ object RemoteConfig {
   )
 
   @JvmStatic
-  @get:JvmName("receivePinnedMessages")
-  val receivePinnedMessages: Boolean by remoteBoolean(
-    key = "android.receivePinnedMessages.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  @JvmStatic
-  @get:JvmName("sendPinnedMessages")
-  val sendPinnedMessages: Boolean by remoteBoolean(
-    key = "android.sendPinnedMessages.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  @JvmStatic
   @get:JvmName("callQualitySurvey")
   val callQualitySurvey: Boolean by remoteBoolean(
     key = "android.callQualitySurvey.4",
