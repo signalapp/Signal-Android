@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.stories.archive.StoryArchiveDuration
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -170,7 +169,7 @@ class StoriesPrivacySettingsFragment :
           }
         )
 
-        if (RemoteConfig.internalUser) {
+        if (SignalStore.labs.storyArchive) {
           dividerPref()
 
           sectionHeaderPref(R.string.StoryArchive__archive)

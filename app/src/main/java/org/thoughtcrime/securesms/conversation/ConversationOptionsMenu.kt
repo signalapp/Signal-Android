@@ -16,9 +16,9 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Delegate object for managing the conversation options menu
@@ -164,8 +164,8 @@ internal object ConversationOptionsMenu {
         hideMenuItem(menu, R.id.menu_add_shortcut)
       }
 
-      if (RemoteConfig.internalUser) {
-        menu.findItem(R.id.menu_export)?.title = menu.findItem(R.id.menu_export)?.title.toString() + " (Internal Only)"
+      if (SignalStore.labs.individualChatPlaintextExport) {
+        menu.findItem(R.id.menu_export)?.title = menu.findItem(R.id.menu_export)?.title.toString() + " (Labs)"
       } else {
         hideMenuItem(menu, R.id.menu_export)
       }

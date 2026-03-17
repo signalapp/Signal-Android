@@ -81,9 +81,9 @@ import org.thoughtcrime.securesms.calls.log.CallLogFilter
 import org.thoughtcrime.securesms.components.compose.ActionModeTopBar
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSmall
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 interface MainToolbarCallback {
   fun onNewGroupClick()
@@ -408,7 +408,7 @@ private fun PrimaryToolbar(
       NotificationProfileAction(state, callback)
       ProxyAction(state, callback)
 
-      if (state.destination == MainNavigationListLocation.STORIES && RemoteConfig.internalUser) {
+      if (state.destination == MainNavigationListLocation.STORIES && SignalStore.labs.storyArchive) {
         IconButtons.IconButton(
           onClick = callback::onStoryArchiveClick
         ) {
