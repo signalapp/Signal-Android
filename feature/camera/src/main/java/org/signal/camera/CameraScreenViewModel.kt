@@ -68,6 +68,12 @@ class CameraScreenViewModel : ViewModel() {
 
     /** Debug flag for testing limited binding (i.e. no simultaneous binding to image + video). */
     private const val FORCE_LIMITED_BINDING = false
+
+    /** Number of times to retry camera binding when initial attempt fails due to camera unavailability. */
+    private const val CAMERA_BIND_MAX_RETRIES = 3
+
+    /** Initial delay between camera binding retries, in milliseconds. Doubles on each subsequent retry. */
+    private const val CAMERA_BIND_RETRY_DELAY_MS = 500L
   }
 
   private val _state: MutableState<CameraScreenState> = mutableStateOf(CameraScreenState())
@@ -388,6 +394,36 @@ class CameraScreenViewModel : ViewModel() {
     state: CameraScreenState,
     event: CameraScreenEvents.BindCamera
   ) {
+    if (tryBindCamera(state, event)) {
+      return
+    }
+
+    // Initial binding failed. On some devices (e.g. Fairphone 6), the camera HAL may not
+    // release resources promptly after a previous session ends, causing CameraX to report
+    // zero available cameras. Retry with exponential backoff to give the hardware time to recover.
+    viewModelScope.launch {
+      for (retry in 1..CAMERA_BIND_MAX_RETRIES) {
+        Log.d(TAG, "Retrying camera binding (retry $retry of $CAMERA_BIND_MAX_RETRIES) after $CAMERA_BIND_RETRY_DELAY_MS ms")
+        delay(CAMERA_BIND_RETRY_DELAY_MS)
+
+        if (tryBindCamera(_state.value, event)) {
+          Log.i(TAG, "Camera binding succeeded on retry $retry")
+          return@launch
+        }
+      }
+
+      Log.e(TAG, "All camera binding retries exhausted")
+    }
+  }
+
+  /**
+   * Attempts to bind the camera with progressively fewer optional use cases.
+   * Returns true if binding succeeded, false if all attempts failed.
+   */
+  private fun tryBindCamera(
+    state: CameraScreenState,
+    event: CameraScreenEvents.BindCamera
+  ): Boolean {
     val cameraSelector = CameraSelector.Builder()
       .requireLensFacing(state.lensFacing)
       .build()
@@ -423,10 +459,11 @@ class CameraScreenViewModel : ViewModel() {
       }
 
       setupOrientationListener(event.context)
-      return
+      return true
     }
 
     Log.e(TAG, "All use case binding attempts failed")
+    return false
   }
 
   @android.annotation.SuppressLint("RestrictedApi")
